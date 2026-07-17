@@ -28,16 +28,13 @@ const blogFaqs = [
 ]
 
 export const metadata = createMetadata({
-  title: 'Essays from the Intelligence Age',
+  title: 'Creation Chronicles - Building Intelligence Systems',
   description:
-    'Sharp notes on AI systems, cloud architecture, agentic workflows, creative intelligence, books, business, and becoming a builder with intelligent tools.',
+    "Inside the build. AI systems, creative workflows, and what's actually shipping — from enterprise architecture to AI music production.",
   keywords: [
     'ai blog',
     'creation chronicles',
     'intelligence systems',
-    'cloud ai',
-    'agentic systems',
-    'creator os',
     'ai music',
     'suno ai',
     'enterprise ai',
@@ -66,6 +63,7 @@ function BlogSkeleton() {
 export default function BlogPage() {
   const allPosts = getAllBlogPostSummaries()
   const categories = Array.from(new Set(allPosts.map((post) => post.category))).sort()
+  const tags = Array.from(new Set(allPosts.flatMap((post) => (post.tags || []).map((tag) => tag.trim())))).sort()
 
   return (
     <>
@@ -74,6 +72,7 @@ export default function BlogPage() {
         <BlogPageClient
           posts={allPosts}
           categories={categories}
+          tags={tags}
         />
       </Suspense>
     </>

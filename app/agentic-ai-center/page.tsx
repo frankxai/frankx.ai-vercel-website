@@ -124,7 +124,7 @@ const buildPath = [
     title: 'Pick the operating model',
     description:
       'Decide who owns prompts, data, approvals, release quality, incident handling, and continuous improvement.',
-    href: '/ai-coe',
+    href: '/ai-architect/ai-coe-hub',
     label: 'AI CoE model',
   },
   {

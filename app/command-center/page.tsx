@@ -37,6 +37,7 @@ import {
   Clock,
   ArrowUpRight,
   X,
+  Check,
   Eye,
 } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
@@ -641,6 +642,288 @@ function Priorities() {
   )
 }
 
+// ── Agent Service Bureau & Sovereignty Ledger ────────────────────────────────
+
+interface HaaStARequest {
+  id: string
+  timestamp: string
+  agent: string
+  category: 'taste_check' | 'financial_approval' | 'code_audit' | 'ledger_update'
+  title: string
+  description: string
+  meta: string
+  price: string
+  priority: 'high' | 'medium' | 'low'
+  status: 'pending' | 'approved' | 'rejected'
+}
+
+function HaaStAQueue() {
+  const [requests, setRequests] = useState<HaaStARequest[]>([
+    {
+      id: 'req_20260623_01',
+      timestamp: '10m ago',
+      agent: 'content-publishing-orchestrator',
+      category: 'taste_check',
+      title: 'Polish Post: AEO Strategy 2026',
+      description: 'Review draft for voice polish and verify unverified claims.',
+      meta: 'Claims: 4 | Unverified: 1 ("revolutionary")',
+      price: '0.00 USDC',
+      priority: 'high',
+      status: 'pending',
+    },
+    {
+      id: 'req_20260623_02',
+      timestamp: '2h ago',
+      agent: 'estefania-client-agent',
+      category: 'code_audit',
+      title: 'Verify Escrow: TheEpicWays client-intelligence-pack',
+      description: 'Audit safety adapters for Estefania\'s client intelligence server.',
+      meta: 'Bids: 120 USDC escrowed | Contract: v2.4.0',
+      price: '120.00 USDC',
+      priority: 'medium',
+      status: 'pending',
+    },
+    {
+      id: 'req_20260623_03',
+      timestamp: '4h ago',
+      agent: 'ra-affiliate-auditor',
+      category: 'ledger_update',
+      title: 'Confirm Recurring Deal: Higgsfield Affiliate Integration',
+      description: 'Register the recurring 30% affiliate margin in local ledger.',
+      meta: 'Program: Higgsfield Video | Margin: 30% recur',
+      price: '0.00 USDC',
+      priority: 'low',
+      status: 'pending',
+    },
+  ])
+
+  const handleAction = (id: string, verdict: 'approved' | 'rejected') => {
+    setRequests((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, status: verdict } : r))
+    )
+    // Simulating queue clearance with delay
+    setTimeout(() => {
+      setRequests((prev) => prev.filter((r) => r.id !== id))
+    }, 800)
+  }
+
+  const pendingRequests = requests.filter((r) => r.status === 'pending')
+
+  return (
+    <GlowCard color="violet">
+      <div className="p-4 md:p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+            <Bot className="w-5 h-5 text-violet-400" />
+            Agent Service Bureau (HaaStA Inbox)
+          </h2>
+          <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-500/10 border border-violet-500/20 text-violet-300 font-mono">
+            {pendingRequests.length} Pending
+          </span>
+        </div>
+
+        <div className="space-y-4">
+          {requests.length === 0 ? (
+            <div className="py-8 text-center text-white/30 text-sm">
+              All validation queues clear. Swarm running autonomously.
+            </div>
+          ) : (
+            <AnimatePresence>
+              {requests.map((req) => (
+                <motion.div
+                  key={req.id}
+                  layout
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className={`p-4 rounded-xl border bg-white/[0.01] transition-all ${
+                    req.status === 'approved'
+                      ? 'border-emerald-500/30 bg-emerald-500/[0.02]'
+                      : req.status === 'rejected'
+                      ? 'border-red-500/30 bg-red-500/[0.02]'
+                      : 'border-white/[0.04] hover:bg-white/[0.03]'
+                  }`}
+                >
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-3">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-xs font-mono text-white/40">@{req.agent}</span>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-medium font-mono uppercase ${
+                          req.priority === 'high'
+                            ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
+                            : req.priority === 'medium'
+                            ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                            : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'
+                        }`}>
+                          {req.priority}
+                        </span>
+                        {req.price !== '0.00 USDC' && (
+                          <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px] font-mono">
+                            {req.price}
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-sm font-semibold text-white">{req.title}</h3>
+                      <p className="text-xs text-white/60 leading-relaxed">{req.description}</p>
+                      <p className="text-[11px] text-white/30 font-mono">{req.meta}</p>
+                    </div>
+
+                    <div className="flex items-center gap-2 self-end md:self-start shrink-0">
+                      {req.status === 'pending' ? (
+                        <>
+                          <button
+                            onClick={() => handleAction(req.id, 'rejected')}
+                            className="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/25 border border-red-500/20 text-red-400 text-xs transition-all hover:scale-105"
+                            title="Reject & Flag"
+                          >
+                            <X className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            onClick={() => handleAction(req.id, 'approved')}
+                            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-all hover:scale-105 shadow-md shadow-emerald-950/20"
+                          >
+                            <Check className="w-3.5 h-3.5" />
+                            Sign & Approve
+                          </button>
+                        </>
+                      ) : (
+                        <div className="flex items-center gap-1.5 text-xs font-semibold py-2 px-3 rounded-lg bg-white/[0.04]">
+                          {req.status === 'approved' ? (
+                            <span className="text-emerald-400 flex items-center gap-1">
+                              <Check className="w-3.5 h-3.5" /> Signed
+                            </span>
+                          ) : (
+                            <span className="text-red-400 flex items-center gap-1">
+                              <X className="w-3.5 h-3.5" /> Rejected
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          )}
+        </div>
+      </div>
+    </GlowCard>
+  )
+}
+
+function SovereigntyLedger() {
+  const dpiCategories = [
+    { name: 'Equity (SaaS, LLC)', pct: 35, color: '#8B5CF6' },
+    { name: 'Catalog Royalties', pct: 24, color: '#10B981' },
+    { name: 'Protocol Attribution', pct: 15, color: '#06B6D4' },
+    { name: 'IP Licensing', pct: 10, color: '#F59E0B' },
+    { name: 'Audience-as-Asset', pct: 10, color: '#F43F5E' },
+    { name: 'Yield-Bearing Assets', pct: 6, color: '#6366F1' },
+  ]
+
+  const gates = [
+    { id: 'G1', label: 'Survival', target: '€2.5k/mo', status: 'achieved' },
+    { id: 'G2', label: 'Sovereignty', target: '€5.0k/mo', status: 'achieved' },
+    { id: 'G3', label: 'Multi-Base', target: '€10.0k/mo', status: 'active', progress: 74 },
+    { id: 'G4', label: 'Compound Freedom', target: '€25.0k/mo', status: 'locked' },
+    { id: 'G5', label: 'Legacy', target: '€100.0k/mo', status: 'locked' },
+  ]
+
+  return (
+    <GlowCard color="emerald">
+      <div className="p-4 md:p-6 space-y-5">
+        <h2 className="text-lg font-bold text-white flex items-center gap-2">
+          <Coins className="w-5 h-5 text-emerald-400" />
+          Sovereignty Ledger (DPI)
+        </h2>
+
+        <div className="space-y-3">
+          <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider">Asset Distribution</h3>
+          <div className="h-2 w-full rounded-full bg-white/[0.04] overflow-hidden flex">
+            {dpiCategories.map((cat) => (
+              <div
+                key={cat.name}
+                style={{ width: `${cat.pct}%`, backgroundColor: cat.color }}
+                className="h-full first:rounded-l-full last:rounded-r-full"
+                title={`${cat.name}: ${cat.pct}%`}
+              />
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 pt-1">
+            {dpiCategories.slice(0, 4).map((cat) => (
+              <div key={cat.name} className="flex items-center gap-1.5 text-xs text-white/60">
+                <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: cat.color }} />
+                <span className="truncate flex-1">{cat.name}</span>
+                <span className="font-mono text-white/30 text-[10px]">{cat.pct}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <hr className="border-white/[0.06]" />
+
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider">Gate Progression</h3>
+            <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded">
+              L99 Active
+            </span>
+          </div>
+
+          <div className="space-y-2">
+            {gates.map((gate) => (
+              <div
+                key={gate.id}
+                className={`p-2.5 rounded-lg border flex items-center justify-between text-xs transition-all ${
+                  gate.status === 'achieved'
+                    ? 'border-emerald-500/20 bg-emerald-500/[0.01]'
+                    : gate.status === 'active'
+                    ? 'border-violet-500/30 bg-violet-500/[0.02]'
+                    : 'border-white/[0.04] opacity-40 bg-white/[0.005]'
+                }`}
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className={`w-6 h-6 rounded-md flex items-center justify-center font-mono font-bold text-[10px] ${
+                    gate.status === 'achieved'
+                      ? 'bg-emerald-500/10 text-emerald-400'
+                      : gate.status === 'active'
+                      ? 'bg-violet-500/15 text-violet-400'
+                      : 'bg-white/[0.06] text-white/40'
+                  }`}>
+                    {gate.id}
+                  </span>
+                  <div className="truncate">
+                    <p className="font-medium text-white">{gate.label}</p>
+                    <p className="text-[10px] text-white/30 font-mono">{gate.target}</p>
+                  </div>
+                </div>
+
+                <div className="shrink-0 text-right font-mono">
+                  {gate.status === 'achieved' ? (
+                    <span className="text-emerald-400 text-[10px] font-semibold">Gated</span>
+                  ) : gate.status === 'active' ? (
+                    <div className="flex flex-col items-end gap-1">
+                      <span className="text-violet-400 text-[10px] font-semibold">{gate.progress}%</span>
+                      <div className="w-16 h-1 rounded-full bg-white/[0.06] overflow-hidden">
+                        <div
+                          style={{ width: `${gate.progress}%` }}
+                          className="h-full bg-violet-500 rounded-full"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <span className="text-white/20 text-[10px]">Locked</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </GlowCard>
+  )
+}
+
 // ── Main Dashboard ───────────────────────────────────────────────────────────
 
 function Dashboard() {
@@ -683,6 +966,16 @@ function Dashboard() {
       <main className="max-w-[1600px] mx-auto px-4 md:px-8 py-6 space-y-6">
         {/* Section 1: Status Bar */}
         <StatusBar />
+
+        {/* Section 1.5: Agent Service Bureau (HaaStA) & Sovereignty Ledger */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <HaaStAQueue />
+          </div>
+          <div>
+            <SovereigntyLedger />
+          </div>
+        </div>
 
         {/* Section 2: The Graph — Hero Section */}
         <MindMap />

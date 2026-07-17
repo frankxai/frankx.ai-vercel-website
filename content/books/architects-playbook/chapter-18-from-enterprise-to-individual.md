@@ -23,7 +23,7 @@ There is a bridge that most people never see. It connects the world of enterpris
 
 I build on both sides of that bridge every day.
 
-For years, I worked at Oracle's EMEA AI Center of Excellence. My job was to help large organizations adopt artificial intelligence at scale. That meant building frameworks, advising on architecture, designing governance structures, and ensuring that AI deployments created measurable business value rather than expensive experiments. The organizations I worked with operated at scales that dwarf most countries' economies. The stakes are real. The frameworks have to be rigorous.
+For years, I worked around enterprise AI adoption at Oracle. My job was to help large organizations think clearly about artificial intelligence at scale: architecture, governance, measurable business value, and the gap between demos and production systems. The stakes are real. The frameworks have to be rigorous.
 
 By night — in the hours after the meetings end — I translate those same frameworks for a different kind of organization. One with a headcount of one. A creator, a developer, a professional who wants to do exceptional work and understands that AI is the most powerful tool available for doing it.
 
@@ -165,4 +165,4 @@ That is what an architect does.
 
 ---
 
-*Frank Riemer is a former AI Architect from Oracle's EMEA AI Center of Excellence, which he helped build. He built enterprise AI frameworks for global enterprises and now translates them for individuals at frankx.ai — free. ACOS, the Agentic Creator Operating System, is the working implementation of the architecture described in this book. Start building at frankx.ai/acos.*
+*Frank Riemer is an AI Architect & Creator. He now translates enterprise AI architecture patterns for individuals at frankx.ai — free. ACOS, the Agentic Creator Operating System, is the working implementation of the architecture described in this book. Start building at frankx.ai/acos.*

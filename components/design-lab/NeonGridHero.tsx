@@ -281,7 +281,7 @@ export function NeonGridHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: 0.6, ease: staggerEase }}
           >
-            Enterprise AI at Oracle. 12,000+ songs. 75+ open-source skills.
+            Former enterprise AI practice. 12,000+ songs. 75+ open-source skills.
             Everything documented, everything shipped.
           </motion.p>
 

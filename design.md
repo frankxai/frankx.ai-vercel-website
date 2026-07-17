@@ -30,6 +30,19 @@ Existing candidate asset:
 - **Rules:** Clear typographical separation, minimal containers, high contrast ratio. Use the Tech Spectrum (emerald `#10b981` / cyan `#06b6d4` / obsidian void `#0a0a0b`).
 - **Forbidden:** No bright neon blocks, no circular face portraits, and no default artificial intelligence shapes.
 
+### 3.1 · Allies / Friends / Partner Intelligence Surfaces
+
+For allies, friends, partner portals, and client-intelligence systems, the FrankX default is premium rounded liquid UI, not hard card grids.
+
+- Use large-radius material surfaces: `rounded-[2rem]`, `rounded-[2.5rem]`, `rounded-[2.8rem]`, and `rounded-full` for CTAs, chips, and loop rows.
+- Use translucent layered surfaces with restrained glow, soft borders, inner highlights, and meaningful depth. The target is modern liquid glass sophistication, not flat rectangles or decorative blobs.
+- The first viewport must show the person, company, or real workflow as a strong signal. A pure slogan hero is not enough for partner systems.
+- Use Lucide icons for agents, loops, actions, and states. Prefer familiar symbols over text-heavy controls.
+- Use XYFlow, Mermaid, GSAP, or Framer Motion only when they clarify service loops, client delivery, or system architecture. Motion must respect reduced-motion preferences.
+- For TheEpicWays / Estefania surfaces, keep her human language in front: leadership, communication, human potential, clarity, courage, energy, community, and better rooms. Keep AI, agents, skills, and plugins backstage unless the page is explicitly explaining the service system.
+- Blockchain, NFT, token, and smart-contract framing is not a default for TheEpicWays. Add it only when explicitly requested for that asset.
+- Hard rectangular card walls fail this surface. If a repeated item needs a container, make it rounded, breathable, icon-led, and clearly tied to a workflow or client value.
+
 ---
 
 ## 4 · Rendering Pipelines (Higgsfield)

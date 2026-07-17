@@ -56,8 +56,8 @@ export default function FoundersCirclePage() {
 
           <p className="text-xs text-zinc-500 mt-8 max-w-xl">
             10 seats per quarter. €2,997 per quarter. Real scarcity — that's how many
-            quarterly retainer seats fit in Frank's calendar without diluting his Oracle work
-            and FrankX building. Application form takes 8 minutes; reply within 5 business days.
+            quarterly retainer seats fit in Frank's calendar without diluting FrankX building
+            and existing commitments. Application form takes 8 minutes; reply within 5 business days.
           </p>
         </div>
       </section>
@@ -172,17 +172,16 @@ export default function FoundersCirclePage() {
             About Frank
           </h2>
           <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-            Frank Riemer is an AI Architect at the Oracle EMEA AI Center of Excellence. He
-            builds AI Center of Excellence frameworks for enterprise customers as his
-            day job. He realized the same 6-pillar architecture (Strategy, Governance, Talent,
-            Technology, Data, Ethics) translates directly to personal use — at 1/5000th the
-            cost. On frankx.ai he makes the same enterprise-grade frameworks available openly.
+            Frank Riemer is an AI Architect & Creator who has built AI Center of
+            Excellence frameworks for enterprise customers. He realized the same 6-pillar
+            architecture (Strategy, Governance, Talent, Technology, Data, Ethics) translates
+            directly to personal use — at 1/5000th the cost. On frankx.ai he makes
+            enterprise-grade frameworks available openly.
           </p>
           <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-            Founder's Circle is a separate offering from Frank's Oracle role. It does not
-            involve Oracle proprietary materials. Where the work overlaps with what an
-            employer relationship requires, the work is referred upstream rather than serviced
-            in the Circle.
+            Founder's Circle is a separate FrankX offering. It does not involve Oracle
+            proprietary materials. Where the work overlaps with confidentiality or partner
+            obligations, the work is referred upstream rather than serviced in the Circle.
           </p>
           <p className="text-sm text-zinc-400 leading-relaxed">
             All work in the Circle is done under FrankX (Frank's separate Dutch BV).

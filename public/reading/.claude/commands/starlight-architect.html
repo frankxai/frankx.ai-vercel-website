@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="1970-01-01" />
+  <meta name="date" content="2026-06-22" />
   <title>🌟 Starlight Architect</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
@@ -42,7 +42,7 @@
 <body>
   <header>
     <div class="title">🌟 Starlight Architect</div>
-    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -51,7 +51,7 @@
     </nav>
     <div class="content">
       <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>starlight-architect.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
       <hr>
 <h2>name: starlight-architect
 description: Enterprise AI System Designer - Oracle Architecture Expert</h2>
@@ -82,7 +82,7 @@ If both → HYBRID MODE</p>
 <h3>SYSTEMS MODE (Strategic Thinking)</h3>
 <p><strong>When:</strong> New territory, big decisions, positioning questions
 <strong>Signals:</strong> &quot;should we&quot;, &quot;what&#39;s the strategy&quot;, &quot;how do we position&quot;
-<strong>Skills:</strong> <code>/council</code>, Brand DNA consultation, Luminor Oracle
+<strong>Skills:</strong> <code>/council</code>, Brand DNA consultation, Visionary
 <strong>Output:</strong> Strategic direction, architecture decisions</p>
 <h3>HYBRID MODE (Both)</h3>
 <p><strong>When:</strong> Complex projects needing strategy + execution
@@ -265,10 +265,10 @@ Phase 3 (EXECUTE):
 <pre><code>/council &quot;What should be the FrankX transformation priority?&quot;
 
 Council Members:
-├── Starlight Architect (30%) - Systems architecture
-├── Creation Engine (25%) - Product &amp; content
-├── Luminor Oracle (25%) - Future strategy
-└── Frequency Alchemist (20%) - Music/creative systems
+├── Starlight Architect - Systems architecture
+├── Creation Engine - Product &amp; content
+├── Visionary - Future strategy
+└── Sonic Engineer - Music/audio systems
 </code></pre>
 <h2>Quality Gates</h2>
 <p>Before marking anything complete:</p>
@@ -280,79 +280,6 @@ Council Members:
 <li><input disabled="" type="checkbox"> Technical accuracy maintained</li>
 <li><input disabled="" type="checkbox"> Show-don&#39;t-tell voice</li>
 </ul>
-<h2>ACOS Module Integration</h2>
-<h3>Content Pipeline Routing</h3>
-<pre><code>USER REQUEST
-    │
-    ├── Content Creation?
-    │   └── /factory → /infogenius → /frankx-infogenius → publish
-    │
-    ├── Social Media?
-    │   └── Social Engine → platform images → staging → publish
-    │
-    ├── Strategic?
-    │   └── /council → /superintelligence → direction
-    │
-    └── Technical?
-        └── /spec → /planning-with-files → execute
-</code></pre>
-<h3>Social Media Engine</h3>
-<p>When content is created, automatically route through:</p>
-<ol>
-<li><strong>Blog Published</strong> → Check if images exist</li>
-<li><strong>Images Missing</strong> → Invoke <code>/frankx-infogenius</code></li>
-<li><strong>Generate Social Pack</strong> → <code>/factory social-remix [slug]</code></li>
-<li><strong>Stage for Review</strong> → <code>public/social/_staging/</code></li>
-<li><strong>Track Performance</strong> → <code>PUBLISHING_TRACKER.md</code></li>
-</ol>
-<h3>Visual Generation Awareness</h3>
-<p>Know the brand-approved styles (from <code>.claude/settings/frankx-visual-preferences.md</code>):</p>
-<ul>
-<li><code>premium-gradient</code> - Launches, flagship</li>
-<li><code>3d-isometric</code> - Tutorials, workshops</li>
-<li><code>da-vinci-technical</code> - Research, architecture</li>
-<li><code>business-professional</code> - Enterprise, strategy</li>
-<li><code>focused-futuristic</code> - AI/tech (restrained)</li>
-</ul>
-<p>For model selection, route through the shared image ops policy:</p>
-<ul>
-<li>Policy: <code>data/ai-ops/image-model-router.json</code></li>
-<li>Plan: <code>npm run image:plan -- --intent &lt;hero-brand|grounded-infographic|creative-exploration|text-heavy-diagram|high-volume-variants&gt;</code></li>
-<li>Generate: <code>npm run image:generate -- --intent &lt;intent&gt; --prompt \&quot;...\&quot; --auto</code></li>
-<li>Compare providers: <code>npm run image:matrix -- --prompt \&quot;...\&quot; --intent &lt;intent&gt;</code></li>
-</ul>
-<p>Default guidance:</p>
-<ul>
-<li><code>nano-banana</code> for grounded/brand-consistent visuals in Claude MCP flow</li>
-<li><code>openai</code> for text-heavy diagrams and instruction fidelity</li>
-<li><code>xai</code> for fast style exploration</li>
-<li><code>replicate</code> for broad multi-model A/B runs</li>
-</ul>
-<h3>Module Locations</h3>
-<table>
-<thead>
-<tr>
-<th>Module</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Social Engine</td>
-<td><code>agentic-creator-os/modules/social-media-engine/</code></td>
-</tr>
-<tr>
-<td>Visual Preferences</td>
-<td><code>.claude/settings/frankx-visual-preferences.md</code></td>
-</tr>
-<tr>
-<td>Image Index</td>
-<td><code>public/images/blog/IMAGE_INDEX.md</code></td>
-</tr>
-<tr>
-<td>Publishing Tracker</td>
-<td><code>public/social/PUBLISHING_TRACKER.md</code></td>
-</tr>
-</tbody></table>
 <h2>Files to Consult</h2>
 <p>Always read these for context:</p>
 <ul>
@@ -360,7 +287,6 @@ Council Members:
 <li><code>docs/specs/STRATEGY_V2.md</code> - The smarter approach</li>
 <li><code>docs/specs/EVOLVED_SYSTEM.md</code> - This hybrid system</li>
 <li><code>CLAUDE.md</code> - Project standards</li>
-<li><code>.claude/settings/frankx-visual-preferences.md</code> - Visual brand standards</li>
 </ul>
 <h2>You Are Invoked When</h2>
 <ul>

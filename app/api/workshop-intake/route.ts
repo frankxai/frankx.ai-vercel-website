@@ -21,7 +21,7 @@ export const dynamic = 'force-dynamic'
  *
  * Environment variables:
  *   - RESEND_API_KEY (required for email + audience write)
- *   - OPERATOR_EMAIL (defaults to "hello@frankx.ai") — where notifications land
+ *   - OPERATOR_EMAIL (defaults to "frank@frankx.ai") — where notifications land
  *   - WORKSHOP_INTAKE_AUDIENCE_ID (optional) — if set, leads are also added to
  *     a Resend audience for future cohort communication
  *
@@ -60,7 +60,7 @@ const IntakeSchema = z.object({
 export type IntakePayload = z.infer<typeof IntakeSchema>
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const OPERATOR_EMAIL = process.env.OPERATOR_EMAIL || 'hello@frankx.ai'
+const OPERATOR_EMAIL = process.env.OPERATOR_EMAIL || 'frank@frankx.ai'
 const FROM_EMAIL = 'FrankX Intake <notify@mail.frankx.ai>'
 const WORKSHOP_INTAKE_AUDIENCE_ID = process.env.WORKSHOP_INTAKE_AUDIENCE_ID
 
@@ -255,7 +255,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           ok: false,
-          error: 'We hit a delivery hiccup. Please try again or email hello@frankx.ai.',
+          error: 'We hit a delivery hiccup. Please try again or email frank@frankx.ai.',
         },
         { status: 500 },
       )
@@ -279,15 +279,22 @@ export async function POST(request: NextRequest) {
 
 /**
  * GET — operator endpoint for /admin/intake to fetch recent submissions.
- * Auth-gated by ADMIN_TOKEN cookie or query param.
+ * Auth-gated by ADMIN_TOKEN, fail-closed. Cookie or Bearer header only.
  */
 export async function GET(request: NextRequest) {
+  // Deny-by-default: if ADMIN_TOKEN is unset, no one reads PII. The prior
+  // `if (adminToken && requestToken !== adminToken)` skipped the check
+  // entirely when the env var was unset, leaving this endpoint open.
+  //
+  // Secret comes from the HttpOnly `admin-token` cookie or the
+  // `Authorization: Bearer <token>` header — never a query param, which
+  // ends up in browser history, copied URLs, access logs, and Referer
+  // propagation. Same fix already applied to /api/intake.
   const adminToken = process.env.ADMIN_TOKEN
-  const requestToken =
-    request.nextUrl.searchParams.get('token') ||
-    request.cookies.get('admin-token')?.value
+  const bearer = request.headers.get('authorization')?.match(/^Bearer\s+(.+)$/i)?.[1]
+  const requestToken = bearer || request.cookies.get('admin-token')?.value
 
-  if (adminToken && requestToken !== adminToken) {
+  if (!adminToken || requestToken !== adminToken) {
     return NextResponse.json({ ok: false, error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -307,7 +314,16 @@ export async function GET(request: NextRequest) {
       .reverse() // newest first
       .slice(0, 200)
     return NextResponse.json({ ok: true, count: entries.length, entries })
-  } catch {
-    return NextResponse.json({ ok: true, count: 0, entries: [] })
+  } catch (err) {
+    // ENOENT means no submissions yet — a genuinely empty inbox. Any other
+    // error (permissions, disk, corrupt path) is a real outage.
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
+      return NextResponse.json({ ok: true, count: 0, entries: [] })
+    }
+    console.error('[workshop-intake] failed to read intake log', err)
+    return NextResponse.json(
+      { ok: false, error: 'Failed to read intake log.' },
+      { status: 500 },
+    )
   }
 }

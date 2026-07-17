@@ -204,7 +204,7 @@ export default function PromptVaultPage() {
             <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
               <span className="flex items-center gap-1.5">
                 <Brain className="h-4 w-4 text-[#8B5CF6]" />
-                AI Architect at Oracle
+                AI Architect & Creator
               </span>
               <span className="text-white/20">|</span>
               <span className="flex items-center gap-1.5">
@@ -217,6 +217,9 @@ export default function PromptVaultPage() {
                 40+ agents built
               </span>
             </div>
+            <p className="mb-8 text-xs text-slate-600">
+              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+            </p>
 
             {/* CTA */}
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">

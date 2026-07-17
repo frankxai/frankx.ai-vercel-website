@@ -16,7 +16,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
 import { IntakeForm } from '@/components/workshops/IntakeForm'
 import { ModuleAccordion } from '@/components/workshops/ModuleAccordion'
-import { CourseSchema } from '@/components/workshops/CourseSchema'
+import { WorkshopProvenanceNotice } from '@/components/workshops/WorkshopProvenanceNotice'
 import { getWorkshopBySlug } from '@/data/workshops'
 
 const WORKSHOP_SLUG = 'sovereign-leadership'
@@ -26,8 +26,6 @@ export default function SovereignLeadershipPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <CourseSchema workshop={workshop} />
-
       {/* Hero */}
       <section className="relative pt-28 pb-14 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/[0.05] to-transparent" />
@@ -75,6 +73,8 @@ export default function SovereignLeadershipPage() {
             <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl mb-8">
               {workshop.overview}
             </p>
+
+            <WorkshopProvenanceNotice />
 
             <div className="flex flex-wrap items-center gap-3">
               <a
@@ -129,7 +129,7 @@ export default function SovereignLeadershipPage() {
               The 6-Pillar AI CoE
             </h2>
             <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
-              The same enterprise AI architecture Frank works with at Oracle, adapted
+              Enterprise AI architecture patterns from Frank's former Oracle-era work, adapted
               to the attendee&rsquo;s real context during the session.
             </p>
           </div>

@@ -227,7 +227,7 @@
 **Content:**
 - Personal journey
 - Mission & values
-- Credentials (Oracle AI Architect)
+- Credentials (AI Architect & Creator)
 - Media & press
 
 ### 8.2 Roadmap (/roadmap)

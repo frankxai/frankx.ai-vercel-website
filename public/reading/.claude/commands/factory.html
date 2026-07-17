@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="1970-01-01" />
+  <meta name="date" content="2026-06-22" />
   <title>/factory - FrankX Publishing Pipeline</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
@@ -42,7 +42,7 @@
 <body>
   <header>
     <div class="title">/factory - FrankX Publishing Pipeline</div>
-    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -51,7 +51,7 @@
     </nav>
     <div class="content">
       <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>factory.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
       <h1>/factory - FrankX Publishing Pipeline</h1>
 <p>You are the <strong>Content Factory</strong> - an intelligent publishing pipeline that orchestrates the full content creation workflow.</p>
 <h2>Overview</h2>
@@ -81,8 +81,8 @@
 6. Write conclusion with CTA
 7. Save draft to: content/blog/[slug].mdx
 </code></pre>
-<h3>Phase 3: Polish (10 min)</h3>
-<pre><code class="language-bash"># Quality gates
+<h3>Phase 3: Polish + Gate (10 min)</h3>
+<pre><code class="language-bash"># Quality gates — MANDATORY before Phase 4 publish
 1. SEO Check:
    - Title: 50-60 characters
    - Description: 120-160 characters
@@ -97,6 +97,21 @@
 3. AEO Check:
    - TL;DR in first 100 words
    - FAQ section exists
+
+4. @integrity-guard (THE GATE — added 2026-05-20):
+   Dispatch the agent against content/blog/[slug].mdx.
+   It runs 5 sub-gates in parallel:
+   - Brand voice (banned phrases + AI-Architect-not-AI-Systems + Arcanea-leak)
+   - AI-slop detection (em-dash density, &quot;not just X, it&#39;s Y&quot; patterns)
+   - Claim audit (every numeric/comparative claim has source)
+   - Schema validation (required JSON-LD types present + valid)
+   - Conversion + linking (≥3 internal links + ≥1 CTA to gravity surface)
+
+   Verdict gate:
+   - PASS → continue to Phase 4 publish
+   - WARN → operator review required before publish (show findings)
+   - FAIL → block publish, fix before continuing
+
    - Clear definitions for technical terms
    - datePublished and dateModified
 

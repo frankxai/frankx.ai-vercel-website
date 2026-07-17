@@ -370,12 +370,19 @@ export default function AIEvolutionPage() {
               custom={3}
               className="mt-4 text-base text-slate-500"
             >
-              By Frank Riemer, AI Architect at Oracle
+              By Frank Riemer, AI Architect & Creator
+            </motion.p>
+            <motion.p
+              variants={fadeUp}
+              custom={4}
+              className="mt-2 text-xs text-slate-600"
+            >
+              Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
             </motion.p>
 
             <motion.div
               variants={fadeUp}
-              custom={4}
+              custom={5}
               className="mt-8 flex flex-wrap gap-4"
             >
               <div className="flex items-center gap-2 text-sm text-slate-400">

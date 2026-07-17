@@ -613,7 +613,7 @@ TOTAL: ~$24,417/month = ~$293,000/year
 | Priority | Product | Status | Action |
 |----------|---------|--------|--------|
 | 1 | Residency program | Design | Framework + first partner |
-| 2 | Enterprise | Pipeline | Leverage Oracle network |
+| 2 | Enterprise | Pipeline | Leverage public professional network |
 | 3 | Referral program | Build | Ambassador structure |
 | 4 | Annual planning | Review | Optimize entire funnel |
 

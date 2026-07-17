@@ -28,6 +28,7 @@ import {
   Plug,
   Radar,
   Rocket,
+  Scale,
   Search,
   Shield,
   ShieldCheck,
@@ -41,7 +42,7 @@ import { getSourcesForDomain, sourceTypeLabels } from '@/lib/research/sources'
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Activity, Brain, Building2, Code, Compass, Cpu, Database, FileText,
   GraduationCap, Heart, Layers, Network, Palette, Plug, Radar, Rocket,
-  Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3,
+  Scale, Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3,
 }
 
 const colorConfig: Record<string, { border: string; text: string; bg: string; gradient: string }> = {
@@ -422,7 +423,8 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                         Grade {domain.evidenceGrade}
                       </span>
                       <span className="text-[10px] text-white/20">
-                        {domain.evidenceGrade === 'A' ? '(Peer-reviewed / meta-analyses)' :
+                        {domain.evidenceNote ? `(${domain.evidenceNote})` :
+                         domain.evidenceGrade === 'A' ? '(Peer-reviewed / meta-analyses)' :
                          domain.evidenceGrade === 'B' ? '(Industry reports from credible firms)' :
                          domain.evidenceGrade === 'C' ? '(Mixed sources — industry + editorial)' :
                          '(Mostly editorial / opinion-based)'}

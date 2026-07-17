@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="1970-01-01" />
+  <meta name="date" content="2026-06-22" />
   <title>/publish-content - Publish Article to Production</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
@@ -42,7 +42,7 @@
 <body>
   <header>
     <div class="title">/publish-content - Publish Article to Production</div>
-    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+    <div class="meta">LLM: Unknown • Date: 2026-06-22 • <a href="../../index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -51,7 +51,7 @@
     </nav>
     <div class="content">
       <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>publish-content.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-22</strong></div>
       <h1>/publish-content - Publish Article to Production</h1>
 <p><strong>Set an article to draft: false and deploy to production</strong></p>
 <h2>Usage</h2>
@@ -76,6 +76,23 @@
 <li><input disabled="" type="checkbox"> FAQ section present (for AI citation)</li>
 <li><input disabled="" type="checkbox"> Internal links verified</li>
 </ul>
+<h2>Quality Gate (MANDATORY — added 2026-05-20)</h2>
+<p>Before flipping <code>draft: false</code>, dispatch <code>@integrity-guard &lt;file&gt;</code>. The agent runs
+5 sub-gates in parallel and returns PASS / WARN / FAIL:</p>
+<ul>
+<li>Gate 1: Brand voice (banned phrases, AI-Architect-not-AI-Systems, Arcanea-leak)</li>
+<li>Gate 2: AI-slop detection</li>
+<li>Gate 3: Claim audit (every numeric claim has source)</li>
+<li>Gate 4: Schema + meta (JSON-LD types valid, OG image ≥ 1200×630, canonical set)</li>
+<li>Gate 5: Conversion + linking (≥ 3 internal links, ≥ 1 CTA to gravity surface)</li>
+</ul>
+<p>Verdict rules:</p>
+<ul>
+<li>PASS → proceed to Implementation</li>
+<li>WARN → operator review required, ship-with-corrections allowed</li>
+<li>FAIL → block publish, fix the failing gate first</li>
+</ul>
+<p>No bypass. The gate is what separates the site from generic LLM output.</p>
 <h2>Implementation</h2>
 <pre><code class="language-bash"># 1. Update frontmatter
 # Set draft: false in content/blog/my-article.mdx

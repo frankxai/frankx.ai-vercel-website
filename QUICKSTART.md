@@ -7,11 +7,11 @@ Your v3 branch is **production-ready** with:
 1. **Positioning Fixed**
    - Intelligence Systems (primary): Prompt packs + Tool recommendations + Automations
    - Vibe OS (distinct): Music creation with Suno workflows
-   - Clear messaging: Oracle AI Architect + 500+ songs creator
+   - Clear messaging: AI Architect & Creator + 12,000+ songs creator
 
 2. **Homepage Updated**
    - Hero section with Intelligence Systems positioning
-   - "Frank's 500+ Songs" button links to music page
+   - "Frank's 12,000+ Songs" button links to music page
    - Video section ready (just needs MP4 file)
    - All TypeScript errors fixed
 
@@ -78,7 +78,7 @@ In Resend dashboard:
 
 **Intelligence Systems** (Primary)
 - What: Prompt packs, tool recommendations, n8n/Zapier automations
-- Who: AI Architects, Oracle professionals
+- Who: AI architects, technical creators, operator-founders
 - Price: TBD ($47-97 for packs, $197-297 for full system)
 
 **Vibe OS** (Distinct)

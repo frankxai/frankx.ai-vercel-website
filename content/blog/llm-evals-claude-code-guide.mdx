@@ -22,24 +22,19 @@ keywords:
   - model eval without langsmith
   - promptfoo vs langfuse
   - blind llm judging
+image: "/images/blog/llm-evals-claude-code-guide-hero-v5.jpg"
 featured: true
 schema: ["Article", "FAQPage"]
 architectNote:
   recommendation: "Make evals a routing reflex, not a platform project. The Claude Code Agent tool's per-spawn model override gives you a zero-infrastructure harness for head-to-head rounds — fix ground truth before dispatch, verify mechanically, judge blind, write a receipt. Adopt promptfoo only for prompt regression, Langfuse only once an app serves real users, and skip LangSmith entirely unless you already live in LangChain."
-  coePillar: "Technology · evaluation discipline + Governance · evidence standards"
+  coePillar: "Evaluation discipline + evidence standards"
   personas:
-    - persona: "AI Architects / CoE leads"
+    - persona: "AI architects / engineering leads"
       pick: "This harness — new model day = eval day"
     - persona: "Prompt engineers"
       pick: "promptfoo for pattern regression"
     - persona: "Product teams with live users"
       pick: "Langfuse for runtime tracing"
-image: "/images/blog/generated/llm-evals-claude-code-guide-premium-hero.png"
-visualSystem:
-  version: "2026-06-frankx-vos"
-  hero: "/images/blog/generated/llm-evals-claude-code-guide-premium-hero.png"
-  fallbackHero: "/images/blog/visual-system/llm-evals-claude-code-guide-hero.svg"
-  generatedMode: "built-in-image-gen"
 ---
 
 # How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)
@@ -50,7 +45,7 @@ visualSystem:
 
 ## Why Run Your Own Evals at All?
 
-Vendor benchmarks answer the vendor's question on the vendor's tasks. Your routing decision — which model runs your coding agents, your review gates, your fan-out workers — depends on behavior under *your* constraints: your output contracts, your repo, your governance rules. When [Claude Fable 5](/blog/claude-fable-5-analysis-2026) launched, its model card said nothing about whether it would respect a two-line output contract under load, or flag a governance-gated edit instead of executing it. Two afternoons of harness time answered both. A leaderboard you can't audit is marketing with decimals; an eval you ran yourself is a routing decision with receipts.
+Vendor benchmarks answer the vendor's question on the vendor's tasks. Your routing decision — which model runs your coding agents, your review gates, your fan-out workers — depends on behavior under *your* constraints: your output contracts, your repo, your governance rules. When [Claude Fable 5](/blog/claude-fable-5-analysis-2026) launched, its model card said nothing about whether it would respect a two-line output contract under load, or whether it would stop and ask before touching a file it wasn't authorized to change instead of just editing it. Two afternoons of harness time answered both. A leaderboard you can't audit is marketing with decimals; an eval you ran yourself is a routing decision with receipts.
 
 ## How Does the Claude Code Harness Work?
 
@@ -86,7 +81,7 @@ The complete harness doctrine, task-design rules, and every receipt from our rou
 
 ## What Did This Harness Actually Catch?
 
-Things no model card mentions: Opus 4.8 answering a hard reasoning task confidently wrong in 2.7 seconds while Fable 5 solved it; Fable 5 silently executing a governance-gated edit that Opus flagged; a blind style verdict that *flipped* between rounds (which is exactly why single-judge n=1 style scores should never drive routing); and every model's output discipline degrading under heavy task load — the finding that moved "enforce contracts structurally" from preference to doctrine. Four rounds, two afternoons, zero infrastructure.
+Things no model card mentions: Opus 4.8 answering a hard reasoning task confidently wrong in 2.7 seconds while Fable 5 solved it; Fable 5 silently making an edit it wasn't authorized to make, on a task where Opus correctly stopped and flagged it instead; a blind style verdict that *flipped* between rounds (which is exactly why single-judge n=1 style scores should never drive routing); and every model's output discipline degrading under heavy task load — the finding that moved "enforce contracts structurally" from preference to doctrine. Four rounds, two afternoons, zero infrastructure.
 
 ## Which Eval Tool for Which Job?
 
@@ -127,4 +122,9 @@ Our Round 3 — four tasks, two models, mechanical verification, one blind judgm
 
 ---
 
-*By Frank — AI Architect at Oracle's EMEA AI Center of Excellence. The harness, task-design rules, and all four Fable 5 vs Opus 4.8 receipts are open source: [methodology](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md) · [receipts](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs) · [live results](/research/model-arena).*
+*By Frank — AI Architect & Creator. The independent harness, task-design rules, and all four Fable 5 vs Opus 4.8 receipts are open source: [methodology](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md) · [receipts](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs) · [live results](/research/model-arena). Not affiliated with, endorsed by, or sponsored by Oracle.*
+
+
+---
+
+> **Building AI-powered content?** [GenCreator.ai](https://gencreator.ai) is the Agentic Creator OS — the same intelligence stack that powers this blog, built specifically for content creators and influencers who want to scale with AI.

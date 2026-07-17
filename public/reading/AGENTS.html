@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="2026-06-02" />
-  <title>FrankX — AGENTS.md</title>
+  <meta name="date" content="2026-07-15" />
+  <title>FrankX â€” AGENTS.md</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
@@ -41,8 +41,8 @@
   </head>
 <body>
   <header>
-    <div class="title">FrankX — AGENTS.md</div>
-    <div class="meta">LLM: Unknown • Date: 2026-06-02 • <a href="index.html">All Pages</a></div>
+    <div class="title">FrankX â€” AGENTS.md</div>
+    <div class="meta">LLM: Unknown • Date: 2026-07-15 • <a href="index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -51,32 +51,32 @@
     </nav>
     <div class="content">
       <div class="breadcrumbs"><span>AGENTS.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-06-02</strong></div>
-      <h1>FrankX — AGENTS.md</h1>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-07-15</strong></div>
+      <h1>FrankX â€” AGENTS.md</h1>
 <p><strong>Repo:</strong> <code>frankxai/FrankX</code> (private dev + content authoring)
-<strong>Branch (default):</strong> <code>main</code> · <strong>Active feature:</strong> <code>feature/prompt-hub</code>
-<strong>Live site:</strong> <a href="https://frankx.ai">https://frankx.ai</a> (deploys from a <em>different</em> repo — see &quot;Deploy&quot; below)
-<strong>Stack:</strong> Next.js 16 App Router · React 18.3 · TypeScript 5.7 · Tailwind 3.4 · Vercel · pnpm/npm
-<strong>Last touched:</strong> 2026-06-02</p>
-<h2>Current sprint (W21, 2026-05-18 → 24)</h2>
+<strong>Branch (default):</strong> <code>main</code> Â· <strong>Active feature:</strong> <code>feature/prompt-hub</code>
+<strong>Live site:</strong> <a href="https://frankx.ai">https://frankx.ai</a> (deploys from a <em>different</em> repo â€” see &quot;Deploy&quot; below)
+<strong>Stack:</strong> Next.js 16 App Router Â· React 18.3 Â· TypeScript 5.7 Â· Tailwind 3.4 Â· Vercel Â· pnpm/npm
+<strong>Last touched:</strong> 2026-05-20</p>
+<h2>Current sprint (W21, 2026-05-18 â†’ 24)</h2>
 <ul>
 <li><strong>Theme:</strong> Deliver NLDigital. Ship Newsletter Issue 1. Lock June 1 launch.</li>
 <li><strong>Authoritative doc:</strong> <code>docs/planning/2026-W21-sprint.md</code></li>
 <li><strong>Machine shadow:</strong> <code>data/sprint-current.json</code> (backs <code>/sprint</code>)</li>
-<li><strong>Forcing functions:</strong> NLDigital delivered Tue 5/19 · Newsletter Issue 1 ships Fri 5/22 · Inner Circle launches Mon 6/1 · Madrid trip Wed 5/27 → Mon 6/2</li>
+<li><strong>Forcing functions:</strong> NLDigital delivered Tue 5/19 Â· Newsletter Issue 1 ships Fri 5/22 Â· Inner Circle launches Mon 6/1 Â· Madrid trip Wed 5/27 â†’ Mon 6/2</li>
 <li><strong>In-flight foundations:</strong> <code>/hub-audit</code> <code>/traffic-week</code> <code>/newsletter-week</code> commands + <code>@integrity-guard</code> agent shipped 2026-05-20</li>
 </ul>
 <p>This file is the canonical brief for any AI agent (Codex, Claude Code, Gemini, OpenCode, Cursor, etc.) entering this repo. <strong>Read it first. Read it before AGENTS.md elsewhere.</strong> It overrides general-purpose agent assumptions and points you at the specific files that govern behavior.</p>
 <hr>
 <h2>1. Read in this order</h2>
 <ol>
-<li><strong>This file</strong> — orientation</li>
-<li><strong><code>CLAUDE.md</code></strong> — project-level Claude Code instructions (covers brand, deploy, design contract, anti-patterns)</li>
-<li><strong><code>.codex/instructions.md</code></strong> — Codex-specific delta on top of this file (worktree usage, dangerous-bypass scope)</li>
-<li><strong><code>OPS-INDEX.md</code></strong> — single front-door pointer index (read for &quot;where does X live?&quot;)</li>
-<li><strong><code>design.md</code> + <code>taste.md</code></strong> — visual contract (tokens + judgment). Required before any UI work.</li>
-<li><strong><code>.frankx/identity.md</code> + <code>.frankx/brand.md</code> + <code>.frankx/stack.md</code></strong> — who Frank is, brand voice, tech reference</li>
-<li><strong>Memory index</strong> at <code>~/.claude/projects/C--Users-frank-FrankX/memory/MEMORY.md</code> (Claude Code) — 50+ topic files</li>
+<li><strong>This file</strong> â€” orientation</li>
+<li><strong><code>CLAUDE.md</code></strong> â€” project-level Claude Code instructions (covers brand, deploy, design contract, anti-patterns)</li>
+<li><strong><code>.codex/instructions.md</code></strong> â€” Codex-specific delta on top of this file (worktree usage, dangerous-bypass scope)</li>
+<li><strong><code>OPS-INDEX.md</code></strong> â€” single front-door pointer index (read for &quot;where does X live?&quot;)</li>
+<li><strong><code>design.md</code> + <code>taste.md</code></strong> â€” visual contract (tokens + judgment). Required before any UI work.</li>
+<li><strong><code>.frankx/identity.md</code> + <code>.frankx/brand.md</code> + <code>.frankx/stack.md</code></strong> â€” who Frank is, brand voice, tech reference</li>
+<li><strong>Memory index</strong> at <code>~/.claude/projects/C--Users-frank-FrankX/memory/MEMORY.md</code> (Claude Code) â€” 50+ topic files</li>
 </ol>
 <hr>
 <h2>2. Two-repo deploy architecture (CRITICAL)</h2>
@@ -100,10 +100,10 @@
 <td><code>frankx-ai-vercel-website</code></td>
 </tr>
 </tbody></table>
-<p>To ship: sync the relevant files to the production repo and push there. See <code>CLAUDE.md</code> § &quot;Production Deployment&quot; for the full sync workflow. There is also a sibling worktree at <code>C:\Users\frank\frankx-prod-sync\</code> cloned from production.</p>
+<p>To ship: sync the relevant files to the production repo and push there. See <code>CLAUDE.md</code> Â§ &quot;Production Deployment&quot; for the full sync workflow. There is also a sibling worktree at <code>C:\Users\frank\frankx-prod-sync\</code> cloned from production.</p>
 <p><strong>Do not</strong> add an <code>origin</code> for <code>frankx.ai-vercel-website</code> to this repo and force-push. They are intentionally separate.</p>
 <hr>
-<h2>3. Health + diagnostics — single command</h2>
+<h2>3. Health + diagnostics â€” single command</h2>
 <pre><code class="language-bash"># Process + port + memory snapshot (PowerShell)
 npm run health
 
@@ -122,16 +122,20 @@ npm run predeploy
 </code></pre>
 <p>If <code>npm run health</code> reports orphan Codex sessions, see <code>docs/ops/SESSION-CAPTURE-2026-05-06.md</code> for context.</p>
 <hr>
-<h2>4. Branch hygiene</h2>
+<h2>4. Branch hygiene + parallel-agent coordination</h2>
+<p>Multiple agents (Claude, Grok, Gemini, Codex, Cursor, Cline) work this repo in parallel. Git is the coordination layer â€” these rules keep them from colliding. Don&#39;t trust a hardcoded &quot;current branch&quot; anywhere; run <code>git branch --show-current</code> and <code>git worktree list</code> for live state.</p>
 <ul>
-<li><strong>Default branch:</strong> <code>main</code></li>
-<li><strong>Working branch right now:</strong> <code>feature/papa-hub</code> (Witali Riemer hub work, shipped to production via Trees-API on 2026-05-05)</li>
-<li><strong>Worktrees</strong> at <code>.worktrees/</code> — <code>draft</code>, <code>memory-abstraction</code>, <code>preview</code>. Use these for parallel work; do not switch branches in the main checkout.</li>
-<li><strong>Stale branch policy:</strong> any branch unmerged + untouched &gt; 30 days is candidate for archival. Always inspect with <code>git log --left-right</code> before deleting.</li>
+<li><strong>Default branch:</strong> <code>main</code>. Never two agents committing in the same working tree.</li>
+<li><strong>One agent = one branch.</strong> Name it <code>agent/&lt;harness&gt;/&lt;short-scope&gt;</code> (e.g. <code>agent/grok/seo-pass</code>, <code>agent/claude/404-radar</code>). This makes <code>git branch -a</code> the live ownership map.</li>
+<li><strong>Claim before you touch.</strong> Read + append a row to <code>.agent/active-agents.md</code> (the live board) and pick a scope that doesn&#39;t overlap an active row. Remove your row when you push/merge.</li>
+<li><strong>Heavy or risky parallel work â†’ your own worktree:</strong> <code>git worktree add .worktrees/&lt;name&gt; -b agent/&lt;harness&gt;/&lt;scope&gt;</code>. Isolates the filesystem too, so a failed build in one agent can&#39;t corrupt another&#39;s checkout. Don&#39;t switch branches in the main checkout while another agent is mid-edit there.</li>
+<li><strong>Integrate through the gate, one at a time.</strong> <code>npm run merge:gate</code> clean â†’ push your branch â†’ PR or fast-forward to <code>main</code>. Never two agents merging to <code>main</code> in the same moment.</li>
+<li><strong>Foreign state = another agent&#39;s work.</strong> Untracked files, dirty branches, or worktrees you didn&#39;t create: investigate (<code>git log -1 &lt;branch&gt;</code>, check the board) before deleting or overwriting. Treat a board row as abandoned only if its branch has no commits in &gt;24h.</li>
+<li><strong>Stale branch policy:</strong> unmerged + untouched &gt; 30 days is archival-candidate. Inspect with <code>git log --left-right</code> before deleting.</li>
 </ul>
-<p><code>.gitattributes</code> enforces LF on all source files. If <code>git status</code> shows mass &quot;modified&quot; on files you didn&#39;t touch, run <code>git checkout -- .</code> once after pulling — that&#39;s a one-time CRLF re-normalization.</p>
+<p><code>.gitattributes</code> enforces LF on all source files. If <code>git status</code> shows mass &quot;modified&quot; on files you didn&#39;t touch, run <code>git checkout -- .</code> once after pulling â€” that&#39;s a one-time CRLF re-normalization.</p>
 <hr>
-<h2>5. The merge gate — what must pass before <code>main</code></h2>
+<h2>5. The merge gate â€” what must pass before <code>main</code></h2>
 <pre><code class="language-bash">npm run merge:gate
 # = npm run type-check
 #   &amp;&amp; npm run claims:audit:strict   (no unverified marketing claims)
@@ -145,12 +149,12 @@ npm run predeploy
 <p>Plus, before any content publish (newsletter, blog post, social):</p>
 <pre><code>@integrity-guard &lt;file-or-surface&gt;
 # 5-gate quality check: brand voice + AI-slop + claim audit + schema + conversion
-# PASS → publish. WARN → ship with corrections. FAIL → block.
+# PASS â†’ publish. WARN â†’ ship with corrections. FAIL â†’ block.
 </code></pre>
 <p>See <code>.claude/agents/integrity-guard.md</code>. Shipped 2026-05-20.</p>
 <hr>
 <h2>5b. The 6-layer operating loop (added 2026-05-20)</h2>
-<p>Every operating decision composes into one of six layers. Full doctrine in <code>CLAUDE.md</code> § &quot;The 6-layer Operating Loop&quot;. Quick reference:</p>
+<p>Every operating decision composes into one of six layers. Full doctrine in <code>CLAUDE.md</code> Â§ &quot;The 6-layer Operating Loop&quot;. Quick reference:</p>
 <table>
 <thead>
 <tr>
@@ -193,7 +197,7 @@ npm run predeploy
 <p>The weekly cadence walks all six. Skipping L4 produces the LLM-slop output the site refuses to ship. Skipping L6 produces a one-way street.</p>
 <hr>
 <h2>5c. Antigravity-Native Swarm Orchestration (added 2026-05-29)</h2>
-<p>Antigravity natively federalizes and runs ACOS&#39;s 99+ specialized agents as dynamic subagents using native tool definitions. </p>
+<p>Antigravity natively federalizes and runs ACOS&#39;s 99+ specialized agents as dynamic subagents using native tool definitions.</p>
 <p><strong>Operating Protocol:</strong></p>
 <ol>
 <li><strong>Discovery:</strong> Load agent parameters dynamically from the registry cache <code>.antigravity/agents-registry.json</code> or by running <code>node scripts/lib/acos-agy-registry.mjs &lt;agent-name&gt;</code>.</li>
@@ -202,12 +206,12 @@ npm run predeploy
 </ol>
 <p>For full guidelines and trigger mappings, read <code>.antigravity/instructions.md</code>.</p>
 <hr>
-<h2>6. Brand discipline — non-negotiable</h2>
+<h2>6. Brand discipline â€” non-negotiable</h2>
 <ul>
-<li><strong>Voice:</strong> &quot;Elite Creator. AI Architect. Humble Excellence.&quot; — direct, technical, results-first, never spiritual or guru. See <code>.frankx/brand.md</code>.</li>
+<li><strong>Voice:</strong> &quot;Elite Creator. AI Architect. Humble Excellence.&quot; â€” direct, technical, results-first, never spiritual or guru. See <code>.frankx/brand.md</code>.</li>
 <li><strong>Title:</strong> &quot;AI Architect&quot; (never &quot;AI Systems Architect&quot;, never &quot;Senior AI Architect&quot;).</li>
 <li><strong>No Arcanean mythology in FrankX copy.</strong> Guardians, Gates, Realms, Seekers belong in <code>/ultraworld</code> and the <code>Arcanea</code> repo. FrankX is brand-clean.</li>
-<li><strong>No Canva.</strong> All visuals use Nano Banana 2 (Gemini 3.1 Flash Image) via <code>scripts/lib/nb-image.mjs</code> or the <code>scripts/nb-generate.mjs</code> CLI. See the <code>nb-image</code> skill.</li>
+<li><strong>No Canva.</strong> Use your harness&#39;s native image generation if it has one (Grok Build does); otherwise Nano Banana 2 (Gemini 3.1 Flash Image) via <code>scripts/lib/nb-image.mjs</code> or the <code>scripts/nb-generate.mjs</code> CLI. Either way hold the active <code>lib/gen/lanes.ts</code> lane â€” never mix lanes on one asset. See the <code>nb-image</code> and <code>gen</code> skills.</li>
 <li><strong>No emoji in user-facing copy</strong> unless the user explicitly asked. (System prompts may use them.)</li>
 <li><strong>No AI-slop tells:</strong> <code>delve</code>, <code>dive into</code>, <code>it&#39;s worth noting</code>, <code>certainly</code>, <code>absolutely</code>, <code>unleash</code>, <code>unlock the power of</code>, <code>revolutionary</code>, <code>game-changing</code>. Refusal list in <code>taste.md</code>.</li>
 </ul>
@@ -215,8 +219,8 @@ npm run predeploy
 <h2>7. The design contract</h2>
 <p>Two files at repo root govern visual decisions. <strong>Read both before any UI work.</strong></p>
 <ul>
-<li><strong><code>design.md</code></strong> — Google Labs DESIGN.md spec (alpha, Apache 2.0). YAML tokens (colors, type, spacing, rounded, components) + canonical Do&#39;s/Don&#39;ts. Source of truth: <code>tailwind.config.js</code> and <code>lib/design-system.ts</code> — <code>design.md</code> mirrors them in agent-readable form.</li>
-<li><strong><code>taste.md</code></strong> — companion. Restraint test, AI-slop refusal list, the 8-step polish pass. The judgment Google&#39;s spec deliberately doesn&#39;t capture.</li>
+<li><strong><code>design.md</code></strong> â€” Google Labs DESIGN.md spec (alpha, Apache 2.0). YAML tokens (colors, type, spacing, rounded, components) + canonical Do&#39;s/Don&#39;ts. Source of truth: <code>tailwind.config.js</code> and <code>lib/design-system.ts</code> â€” <code>design.md</code> mirrors them in agent-readable form.</li>
+<li><strong><code>taste.md</code></strong> â€” companion. Restraint test, AI-slop refusal list, the 8-step polish pass. The judgment Google&#39;s spec deliberately doesn&#39;t capture.</li>
 </ul>
 <p>The answer is usually less.</p>
 <hr>
@@ -280,9 +284,13 @@ npm run predeploy
 <td>Audit log (overnight excellence audit, 2026-05-06)</td>
 <td><code>docs/ops/2026-05-06-MASTER-EXCELLENCE-AUDIT.md</code></td>
 </tr>
+<tr>
+<td>Creator Ecosystem &amp; Sovereign Wealth Blueprint</td>
+<td><code>docs/strategy/creator-ecosystem-blueprint.md</code></td>
+</tr>
 </tbody></table>
 <hr>
-<h2>9. Anti-patterns — never</h2>
+<h2>9. Anti-patterns â€” never</h2>
 <ul>
 <li><strong>Never rename working URLs.</strong> <code>/library/{slug}</code> is <code>/library/{slug}</code> forever. SEO history matters more than aesthetics.</li>
 <li><strong>Never delete pages with traffic.</strong> Unlink from nav, keep page noindex&#39;d at most.</li>
@@ -328,6 +336,36 @@ npm run predeploy
 </tbody></table>
 <hr>
 <p><em>End of AGENTS.md. If something here is wrong or missing, the rule is: edit the source-of-truth file (CLAUDE.md, .frankx/*, OPS-INDEX.md) and update the pointer here. Don&#39;t duplicate content.</em></p>
+<h2>Design Taste Kernel</h2>
+<p>For any site, app, landing page, dashboard, visual identity, brand, motion, media, social, or frontend task, apply the shared Design Taste Kernel before handoff:</p>
+<ul>
+<li>C:\Users\frank\starlight\repos\DESIGN_TASTE.md</li>
+<li>C:\Users\frank\starlight\repos\WEB_EXPERIENCE_STANDARD.md</li>
+<li>C:\Users\frank\starlight\repos\MOTION_TASTE_RUBRIC.md</li>
+<li>C:\Users\frank\starlight\repos\MULTI_AGENT_DESIGN_COUNCIL.md</li>
+<li>C:\Users\frank\starlight\repos\VISUAL_QA_GATE.md</li>
+</ul>
+<p>When motion, scroll, generated media, GIF/video, or premium polish matters, route through the Motion Design Studio plugin/skills and verify the result visually.</p>
+<!-- PREMIUM-WEB-OS:START -->
+<h2>Premium Intelligence Web OS Adoption</h2>
+<p>This repo participates in the Starlight Premium Intelligence Web OS.</p>
+<p>For any website, app, landing page, dashboard, brand surface, visual asset, motion system, 3D/WebGL scene, generated media, or public-facing UI work:</p>
+<ul>
+<li>Read the estate OS first: <code>C:\Users\frank\starlight\repos\_intelligence\README.md</code>.</li>
+<li>Use the activation contract: <code>C:\Users\frank\starlight\repos\_intelligence\adoption\activation-contract.md</code>.</li>
+<li>Treat <code>C:\Users\frank\starlight\repos\_intelligence\</code> as the source of truth for premium web taste, design, motion, WebGL, copy, assets, and quality gates.</li>
+<li>Use <code>/pwo</code> or the <code>premium-web-os</code> skill for full builds; use <code>/mad</code> for a design council pass.</li>
+<li>Use <code>/pwo review-pr</code> before absorbing another agent&#39;s PR or branch.</li>
+<li>Use <code>/pwo absorb-assets</code> before using external, generated, scientific, audio, video, or 3D assets.</li>
+<li>Use <code>/pwo motion-score</code> before shipping cinematic scroll, sound-paired motion, or complex choreography.</li>
+<li>Build static composition first, add Track A local motion second, add Track B GSAP/Lenis scroll only when earned, and add 3D only with fallback and reduced-motion behavior.</li>
+<li>Use VIS through <code>C:\Users\frank\starlight\repos\visual-intelligence</code> for asset provenance, curation packets, rights, and publication records.</li>
+<li>Use <code>C:\Users\frank\starlight\repos\_intelligence\visual-worlds\neural-cosmos.md</code> for neuroscience, cerebrum, spine, electron, signal, or golden spiral direction.</li>
+<li>Do not copy reference sites or agencies. Deconstruct principles and create original execution.</li>
+<li>Do not ship without responsive, accessibility, performance, reduced-motion, and visual QA checks appropriate to the change.</li>
+</ul>
+<p>Repo-local instructions remain authoritative when stricter.</p>
+<!-- PREMIUM-WEB-OS:END -->
 
       <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
     </div>

@@ -5,7 +5,7 @@ date: "2026-03-21"
 author: "FrankX"
 category: "Intelligence Dispatches"
 tags: ["DeepSeek", "Open Source AI", "Reasoning", "AI Models", "MoE"]
-image: "/images/blog/golden-age-of-intelligence-hero-v2.png"
+image: "/images/blog/deepseek-r1-open-weight-reasoning-analysis-hero-v10.jpg"
 featured: false
 keywords:
   [
@@ -18,6 +18,18 @@ keywords:
 readingGoal: "You will understand DeepSeek R1 architecture, where it genuinely competes with closed models, and when to use it vs Claude or GPT."
 tldr: "DeepSeek R1 produces explicit chain-of-thought reasoning traces — visible, auditable, fine-tunable. V3 uses a 671B parameter MoE architecture with only 37B active per forward pass, achieving near-GPT-4o performance at a fraction of the cost. The open-weight nature means you can self-host, fine-tune on proprietary data, and run inference without per-token API fees. The tradeoff: no managed API, no SLA, and tool-use consistency lags closed models. For cost-sensitive production and research, DeepSeek changed the calculation permanently."
 schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "R1's lasting contribution to an AI Center of Excellence is the visible reasoning trace — auditable, fine-tunable, and the right substrate for domain adaptation and research pipelines. As a routing target it has been superseded: DeepSeek V4 (April 2026) replaced this line with better coding and a 1M context, and the tool-use consistency gap this post documents still argues against R1 for production agentic work — that lane belongs to Fable 5, the current agentic ceiling at $10/$50. Keep the distills for air-gapped and cost-sensitive batch work; route new open-weight evaluation budget at V4."
+  coePillar: "Technology · model routing + Governance · data sovereignty"
+  personas:
+    - persona: "Fine-tuned domain agents"
+      pick: "R1 distills (8B-70B) — explicit reasoning traces are trainable"
+    - persona: "Sovereign / self-hosted stacks"
+      pick: "R1 distills today, DeepSeek V4 for new deployments"
+    - persona: "Bulk fan-out workers"
+      pick: "DeepSeek V3/V4 — structured extraction at roughly 1/10th closed-API cost"
+    - persona: "Pipeline & coding agents"
+      pick: "Fable 5 — R1 drops constraints and lags on multi-step tool use"
 ---
 
 **TL;DR: DeepSeek R1 produces explicit chain-of-thought reasoning traces — visible, auditable, fine-tunable. V3 uses a 671B parameter MoE architecture with only 37B active per forward pass, achieving near-GPT-4o performance at a fraction of the cost. The open-weight nature means you can self-host, fine-tune on proprietary data, and run inference without per-token API fees. The tradeoff: no managed API, no SLA, and tool-use consistency lags closed models. For cost-sensitive production and research, DeepSeek changed the calculation permanently.**

@@ -138,14 +138,17 @@ Complete guide to the email and CRM architecture for FrankX.AI.
    ```
    RESEND_API_KEY = re_your_actual_key_here
    RESEND_FROM_EMAIL = frank@frankx.ai
+   TEST_EMAIL_SECRET = generate-a-long-random-value
    ```
 5. Save and redeploy
 
 #### Step 5: Test It
 ```bash
-# Send test email via API
+# Remote deployments require TEST_EMAIL_SECRET (local development does not).
+export TEST_EMAIL_SECRET=generate-a-long-random-value
 curl -X POST https://frankx.ai/api/test-email \
   -H "Content-Type: application/json" \
+  -H "x-test-email-secret: $TEST_EMAIL_SECRET" \
   -d '{
     "recipientEmail": "your@email.com",
     "recipientName": "Your Name",

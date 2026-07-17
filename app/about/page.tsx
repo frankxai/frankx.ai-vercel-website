@@ -24,7 +24,7 @@ const aboutFaqs = [
   {
     question: 'Who is Frank and what is FrankX.AI?',
     answer:
-      'Frank is an enterprise AI architect by day and a prolific AI music creator by night. FrankX.AI is his personal hub sharing everything learned from building production AI systems and creating 12,000+ songs with Suno AI, providing tools and frameworks for creators to build their own AI-powered creative practice.',
+      'Frank is an AI Architect & Creator and a prolific AI music creator. FrankX.AI is his independent hub for public, non-confidential lessons from production AI systems, 12,000+ Suno experiments, and practical creator operating systems.',
   },
   {
     question: 'What makes FrankX.AI different from other AI resources?',
@@ -139,7 +139,7 @@ export default function AboutPage() {
                   className="max-w-3xl space-y-5 text-lg leading-relaxed text-white/50"
                 >
                   <p className="text-white/70 text-xl">
-                    Enterprise AI architect. Creator of 12,000+ AI songs. Builder of
+                    Former Oracle AI architect. Creator of 12,000+ AI songs. Builder of
                     the Agentic Creator OS. Based in Amsterdam, on the water.
                   </p>
                   <p>
@@ -200,7 +200,7 @@ export default function AboutPage() {
                 <Music className="h-4 w-4" /> Suno
               </a>
               <a
-                href="mailto:hello@frankx.ai"
+                href="mailto:frank@frankx.ai"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
               >
                 <Mail className="h-4 w-4" /> Email
@@ -342,13 +342,14 @@ export default function AboutPage() {
                     <Code className="w-6 h-6 text-emerald-400" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3">
-                    By day — Enterprise AI
+                    Enterprise AI background
                   </h3>
                   <p className="text-white/50 leading-relaxed">
-                    4+ years architecting production AI systems for global
-                    organizations. 500+ customer implementations. Multi-cloud
-                    infrastructure, RAG architectures, agentic workflows, multi-agent
-                    orchestration. The systems I build handle real scale.
+                    4+ years working on production AI and cloud architecture in
+                    enterprise contexts. Public, non-confidential patterns across
+                    multi-cloud infrastructure, RAG architectures, agentic workflows,
+                    and multi-agent orchestration. The work here translates that
+                    judgment into independent creator systems.
                   </p>
                 </GlowCard>
               </motion.div>
@@ -367,7 +368,7 @@ export default function AboutPage() {
                   <p className="text-white/50 leading-relaxed">
                     12,000+ AI-generated songs with Suno. Not casual experiments — a
                     deliberate practice of exploring what happens when humans and AI
-                    create together. Ambient, electronic, cinematic, healing. Creation
+                    create together. Ambient, electronic, cinematic, meditative. Creation
                     Season starts at midnight.
                   </p>
                 </GlowCard>

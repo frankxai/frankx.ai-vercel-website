@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content="codex-cli" />
   <meta name="llm" content="Unknown" />
-  <meta name="date" content="2026-05-28" />
-  <title>FrankX Claude Code Configuration</title>
+  <meta name="date" content="2026-07-15" />
+  <title>FrankX — Claude Code operating contract</title>
   <style>
     :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
@@ -41,8 +41,8 @@
   </head>
 <body>
   <header>
-    <div class="title">FrankX Claude Code Configuration</div>
-    <div class="meta">LLM: Unknown • Date: 2026-05-28 • <a href="index.html">All Pages</a></div>
+    <div class="title">FrankX — Claude Code operating contract</div>
+    <div class="meta">LLM: Unknown • Date: 2026-07-15 • <a href="index.html">All Pages</a></div>
   </header>
   <main>
     <nav>
@@ -51,338 +51,160 @@
     </nav>
     <div class="content">
       <div class="breadcrumbs"><span>CLAUDE.md</span></div>
-      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-05-28</strong></div>
-      <h1>FrankX Claude Code Configuration</h1>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-07-15</strong></div>
+      <h1>FrankX — Claude Code operating contract</h1>
 <p><em>Elite Creator. AI Architect. Humble Excellence.</em></p>
+<!-- This file is the ALWAYS-TRUE contract, kept under ~200 lines on purpose (Anthropic: files
+     over 200 lines reduce adherence). Situational system knowledge lives in .claude/rules/*.md
+     (path-scoped, loads only when matching files open) and docs/architecture/*.md (reference).
+     Before editing this file, load the `claude-md` skill. Per-line test: "would removing this
+     cause a mistake?" If no, move it to a rule/doc or cut it. Full pre-refactor copy:
+     backups/claude-md/CLAUDE.md.2026-06-06.bak -->
+
 <hr>
-<h2>🚨 CRITICAL: Production Deployment (READ FIRST)</h2>
-<p><strong>Content must be pushed to BOTH repos to go live.</strong></p>
-<h3>Two-Repo Architecture</h3>
+<h2>Operating doctrine — LEAD by default</h2>
+<p><strong>Authoritative: <code>~/.claude/CLAUDE.md</code> Doctrine 0.</strong> You are the lead on this repo and every repo Frank owns. Commit, push, merge, sync, automate — don&#39;t ask &quot;should I push?&quot; The guardians answer that, not Frank. The right question is <strong>&quot;Did the guardians green-light this?&quot;</strong> If yes, ship.</p>
+<p><strong>Ship to production by default.</strong> Public-facing work (<code>app/</code>, <code>components/</code>, <code>content/</code>, <code>public/</code>, <code>lib/</code>, <code>data/</code>) is meant to go live. The moment guardians are green, push to <code>main</code> <strong>and</strong> sync to the production repo (<code>frankx.ai-vercel-website</code>) in the same turn — don&#39;t stop at the private repo, don&#39;t ask &quot;want me to deploy?&quot;, don&#39;t leave it staged. Faster is better <strong>on deploy mechanics</strong> (removing permission-gates) — it does NOT mean rush the work: code quality still obeys the guardrails below. Sync surgically: copy only changed files, port the delta — never wholesale-overwrite a file that diverged on prod (e.g. the research index is <code>components/research/ResearchShell.tsx</code> on prod, not the monolithic <code>app/research/page.tsx</code>). Only genuinely confidential paths stay private.</p>
+<p><strong>Guardians on this repo</strong> (the green-light checklist):</p>
+<ul>
+<li><code>/v BUILD</code> — pre-deploy TypeScript + lint + build</li>
+<li><code>@integrity-guard</code> — pre-publish brand/voice/claim/schema gate (also on <code>/publish</code>, <code>/publish-content</code>, <code>/newsletter-week</code>)</li>
+<li><code>merge:gate</code> (<code>pnpm merge:gate</code>) — broken internal-link check via <code>pnpm links:check:static</code></li>
+<li><code>/hub-audit &lt;hub&gt;</code> — Saturday excellence sweep · <code>/seo-check</code> — SEO regression</li>
+<li><code>FrankXMachineMonitor</code> task (2h) · <code>Sentinel</code> MCP (weekly) — ambient health crons</li>
+</ul>
+<p><strong>Hard stops (still ask):</strong></p>
+<ul>
+<li>Force-push to <code>main</code> of <code>frankx.ai-vercel-website</code> (production)</li>
+<li>Editing under <code>/papa/</code> (family memorial — Witali Riemer hub)</li>
+<li>Dropping a database table / irreversible migrations</li>
+<li>Rotating API keys (<code>AI_GATEWAY_API_KEY</code>, <code>CRON_SECRET</code>, <code>RESEND_API_KEY</code>, …)</li>
+<li>Sending newsletter blasts via Resend (external side effect)</li>
+<li>Posting to LinkedIn/X/Bluesky/Threads via any auto-distribute path</li>
+</ul>
+<p>Everything else: lead, don&#39;t ask. Report what you did with file paths + commit SHAs.</p>
+<p><strong>Parallel agents (Claude, Grok, Gemini, Codex all read this file).</strong> Many harnesses work this repo at once — git is the coordination layer. Before starting: <code>git branch --show-current</code> + read <code>.agent/active-agents.md</code>, then take a non-overlapping scope on your own branch <code>agent/&lt;harness&gt;/&lt;scope&gt;</code> — <strong>never two agents committing the same working tree</strong> (last-write-wins silently clobbers). Heavy parallel work → own worktree (<code>git worktree add .worktrees/&lt;name&gt; -b agent/&lt;harness&gt;/&lt;scope&gt;</code>). Don&#39;t edit a file another live agent is mid-rewrite on. Integrate one at a time through <code>pnpm merge:gate</code>, staging only your own paths. Full protocol: <code>AGENTS.md</code> § 4.</p>
+<hr>
+<h2>Behavioral guardrails (the 5 rules)</h2>
+<ol>
+<li><strong>Think before coding</strong> — don&#39;t assume, don&#39;t hide confusion, surface tradeoffs. If multiple readings exist, present them; if a simpler way exists, push back.</li>
+<li><strong>Explain simply</strong> — what you can&#39;t explain plainly you don&#39;t understand. State the problem + mental model + simplest solution before writing code. No buzzwords (&quot;streamline&quot;, &quot;optimize&quot;) — name the mechanism.</li>
+<li><strong>Simplicity &amp; deep design</strong> — minimum code that solves it, nothing speculative. Simple interfaces, rich internals; no cascades of shallow single-use wrappers. No over-engineered git ceremony.</li>
+<li><strong>Surgical changes</strong> — touch only what you must, match existing style, don&#39;t &quot;improve&quot; adjacent code. Mention unrelated dead code, don&#39;t delete it. Clear names over narrating comments; comment only the non-obvious <em>why</em>.</li>
+<li><strong>Goal-driven</strong> — turn vague asks into verifiable targets; reproduce a bug with a test before fixing; for multi-step work, state a brief plan + verification per step.</li>
+</ol>
+<!-- Full "Top Thinkers" expansion (Karpathy/Feynman/Ousterhout/Hickey/Torvalds/Beck) was condensed
+     here 2026-06-06; the `coding-guardrails` + `feynman-thinking` skills carry the long form. -->
+
+<hr>
+<h2>Decision discipline (always-true)</h2>
+<p><strong>Before any structural change, ask:</strong> What specific problem? Who has it? What&#39;s the evidence? Simplest fix (config over restructure, hide over delete)? What breaks (SEO, users, irreversibility)? Reversible — if not, get approval.</p>
+<p><strong>URL/SEO — NEVER without approval:</strong> never rename working URLs · never delete pages with traffic · never &quot;consolidate&quot; by deletion · &quot;AI Architect&quot; stays &quot;AI Architect&quot; (never &quot;AI Systems Architect&quot;). When Frank says &quot;consolidate routes&quot; he means fix navigation, not delete pages. Optimize for outcomes, not impressive metrics.</p>
+<p><strong>Machine safety:</strong> never kill Claude or node processes (parallel tabs are intentional — the <code>/pp</code> &quot;zombie&quot; flag is a false positive). Only delete inside known caches (<code>node_modules</code>, <code>.next</code>, <code>.turbo</code>, <code>dist</code>, pnpm store). Detail → <code>docs/architecture/machine-readiness.md</code>.</p>
+<hr>
+<h2>Production deployment</h2>
+<p><strong>Pushing to <code>frankxai/FrankX</code> alone does NOT deploy.</strong> Vercel deploys from <code>frankxai/frankx.ai-vercel-website</code> → frankx.ai.</p>
 <table>
 <thead>
 <tr>
 <th>Repo</th>
 <th>Purpose</th>
-<th>Location</th>
+<th>Deployed</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>frankxai/FrankX</code></td>
-<td>Private development</td>
-<td>Main workspace</td>
+<td>private dev + authoring</td>
+<td>no</td>
 </tr>
 <tr>
 <td><code>frankxai/frankx.ai-vercel-website</code></td>
 <td><strong>PRODUCTION</strong></td>
-<td><code>.worktrees/vercel-ui-ux</code></td>
+<td>yes → frankx.ai</td>
 </tr>
 </tbody></table>
-<h3>Deploy Workflow</h3>
-<pre><code class="language-bash"># 1. Create content in FrankX repo
-# 2. Copy to production
-cp content/blog/article.mdx .worktrees/vercel-ui-ux/content/blog/
-
-# 3. Commit and push production
-cd .worktrees/vercel-ui-ux
-git add -A &amp;&amp; git commit -m &quot;feat: Add article&quot;
-git push origin main  # Deploys to frankx.ai
-</code></pre>
-<h3>What Syncs</h3>
+<p><strong>Syncs to prod:</strong> <code>app/</code>, <code>components/</code>, <code>content/</code>, <code>public/</code>, <code>lib/</code>, <code>data/</code>, <code>scripts/</code> (if needed).
+<strong>Stays private:</strong> <code>.claude/</code>, <code>.agent/</code>, <code>docs/</code>, <code>research/</code>, API keys, <code>.env</code>, <code>.github/workflows/</code>.
+Sync = clone the sibling prod repo if absent, copy only changed files, commit, <code>git push origin main</code>. Verify at <a href="https://frankx.ai">https://frankx.ai</a> · Vercel project <code>starlight-intelligence/frankx-ai-vercel-website</code>.</p>
+<hr>
+<h2>Design contract (READ BEFORE ANY UI/VISUAL WORK)</h2>
+<p>Two root files govern every visual decision — read them before generating components, pages, heroes, or any UI:</p>
+<ul>
+<li><strong><code>design.md</code></strong> — Google Labs DESIGN.md spec. YAML tokens (color, type, spacing, components) + canonical Do&#39;s/Don&#39;ts. The machine-readable contract.</li>
+<li><strong><code>taste.md</code></strong> — restraint test, AI-slop refusal list, the 8-step polish pass. The judgment the spec doesn&#39;t capture.</li>
+</ul>
+<p>Tokens from <code>design.md</code>; judgment from <code>taste.md</code>; <strong>the answer is usually less.</strong> Source-of-truth values: <code>tailwind.config.js</code> + <code>lib/design-system.ts</code>.</p>
+<hr>
+<h2>Brand voice</h2>
+<p><strong>Frank = Top Creator. Top AI Architect. Humble.</strong> Former AI architect at Oracle; 12,000+ AI songs; helped build a seven-figure business; ships products, code, content. The narrative: he has seen enterprise-scale AI/cloud work up close and now translates that clarity into practical AI systems for creators, entrepreneurs, and operators (ACOS = personal AI CoE; GenCreator = creator CoE; Prompt Library = the tools; Research Hub = the knowledge). Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.</p>
+<ul>
+<li><strong>DO:</strong> lead with results · precise technical language · show don&#39;t tell · confident but understated · let the work speak.</li>
+<li><strong>DON&#39;T:</strong> spiritual language · grandiose claims · over-explaining philosophy · self-help-guru tone.</li>
+</ul>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Safe Branch Deployment Policy (Added 2026-05-30):</strong>
+For significant code syncs, system refactors, or new component suites (such as ACOS dynamic swarm orchestration, large asset libraries, or complex type changes):</p>
+<ul>
+<li><strong>DO NOT</strong> push directly to <code>main</code> on the production repository.</li>
+<li><strong>DO</strong> push to a dedicated feature branch first (e.g., <code>feat/acos-pillar-9-10-agents</code>) and open a Pull Request.</li>
+<li>This allows peer agents (Claude Code / Codex) on the remote side to review, run CI validations (build, type check, static link audit), and perform a secure merge, preventing unreviewed production regressions.</li>
+</ul>
+</blockquote>
+<p>Full positioning + attributes → <code>frankx-brand</code> skill.</p>
+<hr>
+<h2>LLM + API key policy (machine-global)</h2>
+<p><strong>Authoritative: <code>~/.claude/CLAUDE.md</code>.</strong> Default LLM route = OpenRouter (<code>OPENROUTER_API_KEY</code> + <code>OPENROUTER_BASE_URL</code>). <strong>Reason first</strong> — don&#39;t auto-call external LLMs when you can think. Daily <code>StarlightAPIKeyMonitor</code> + <code>StarlightSecretScan</code> tasks.</p>
+<p><strong>Image gen — use your harness&#39;s own subscription-included engine first; paid APIs are the exception.</strong> Grok → Grok Imagine (SuperGrok). Antigravity/Gemini → Nano Banana Pro / NB2 (free preview, built-in; <strong>Search-grounded → use for text-heavy/technical heroes so labels are legible &amp; accurate</strong>). Codex → gpt-image-2 (<code>$imagegen</code>, counts toward ChatGPT plan). Claude (no native gen) → <code>scripts/nb-generate.mjs</code> (needs <code>GEMINI_API_KEY</code>) or Higgsfield MCP. Reserve Higgsfield/fal/NB-API (paid) for video or when a native quota is exhausted. Hold one <code>lib/gen/lanes.ts</code> lane per asset.</p>
+<hr>
+<h2>Quick reference</h2>
 <table>
 <thead>
 <tr>
-<th>✅ Production</th>
-<th>❌ Private</th>
+<th>Action</th>
+<th>Command</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>app/</code>, <code>components/</code></td>
-<td><code>.claude/</code>, <code>.agent/</code></td>
+<td>Deploy to production</td>
+<td><code>/frankx-ai-deploy</code></td>
 </tr>
 <tr>
-<td><code>content/</code>, <code>public/</code></td>
-<td><code>docs/</code>, <code>research/</code></td>
+<td>Create blog post</td>
+<td><code>/frankx-ai-blog</code></td>
 </tr>
 <tr>
-<td><code>lib/</code>, <code>data/</code></td>
-<td>API keys, <code>.env</code></td>
+<td>Full build session</td>
+<td><code>/frankx-ai-build</code></td>
+</tr>
+<tr>
+<td>Content pipeline</td>
+<td><code>/frankx-ai-content-pipeline</code></td>
+</tr>
+<tr>
+<td>UI components</td>
+<td><code>/frankx-ai-components</code></td>
+</tr>
+<tr>
+<td>SEO optimization</td>
+<td><code>/frankx-ai-seo</code></td>
 </tr>
 </tbody></table>
-<h3>Fix Broken Worktree</h3>
-<pre><code class="language-bash">git clone git@github.com:frankxai/frankx.ai-vercel-website.git .worktrees/vercel-ui-ux
-</code></pre>
-<p><strong>Verification:</strong> <a href="https://frankx.ai">https://frankx.ai</a> | <a href="https://github.com/frankxai/frankx.ai-vercel-website">https://github.com/frankxai/frankx.ai-vercel-website</a></p>
 <hr>
-<h2>🎯 Brand Positioning</h2>
-<p><strong>Frank = Top Creator. Top AI Architect. Humble.</strong></p>
-<h3>Who Frank Is</h3>
+<h2>Architecture — where the depth lives</h2>
+<p>Situational system knowledge was moved out of this contract (2026-06-06) so the rules above stay load-bearing. Each loads on demand.</p>
+<p><strong>Path-scoped rules</strong> (<code>.claude/rules/</code>, auto-load when matching files open):</p>
 <ul>
-<li><strong>AI Architect</strong>: Enterprise-grade AI systems, Oracle expertise, agentic orchestration</li>
-<li><strong>Creator</strong>: 500+ AI songs, music production, generative art, digital products</li>
-<li><strong>Builder</strong>: Ships products, writes code, creates content that works</li>
-<li><strong>Technologist</strong>: Bridges cutting-edge AI with practical creative applications</li>
+<li><code>content-ops.md</code> — single-capture-many-ships intake (L0–L7) · <code>lib/intake/**</code>, <code>app/studio/**</code></li>
+<li><code>visual-intelligence.md</code> — VIS per-platform strategy · <code>lib/visual-intelligence/**</code></li>
+<li><code>gen-layer.md</code> — engine registry + lanes + patterns + router · <code>lib/gen/**</code></li>
+<li><code>library-os.md</code> — book intelligence system · <code>app/library/**</code>, <code>data/book-reviews.ts</code></li>
+<li><code>newsletter.md</code> — weekly cadence + CTA discipline · <code>content/newsletters/**</code></li>
+<li><code>smart-404.md</code> — self-healing URL recovery · <code>app/not-found.tsx</code>, <code>data/redirect-aliases.json</code></li>
+<li><code>content-standards.md</code> — quality bar + SEO checklist · <code>content/**</code></li>
 </ul>
-<h3>Brand Attributes</h3>
-<ul>
-<li><strong>Excellence</strong>: Every detail matters. Ultra high quality in everything.</li>
-<li><strong>Craftsmanship</strong>: Meticulous attention to design, code, and copy.</li>
-<li><strong>Humility</strong>: Let the work speak. Results over claims.</li>
-<li><strong>Depth</strong>: Technical sophistication with creative flair.</li>
-</ul>
-<h3>Voice Guidelines</h3>
-<p><strong>DO:</strong></p>
-<ul>
-<li>Lead with results and demonstrated expertise</li>
-<li>Use precise, technical language when appropriate</li>
-<li>Show don&#39;t tell - share the work, not the philosophy</li>
-<li>Confident but understated</li>
-</ul>
-<p><strong>DON&#39;T:</strong></p>
-<ul>
-<li>Use spiritual/consciousness language (&quot;soul-aligned&quot;, &quot;awakening&quot;, &quot;transformation&quot;)</li>
-<li>Make grandiose claims about impact</li>
-<li>Over-explain motivations or philosophy</li>
-<li>Sound like a self-help guru</li>
-</ul>
-<hr>
-<h2>🤖 Agent Profiles</h2>
-<h3>1. Technical Architect</h3>
-<pre><code class="language-yaml">name: Technical Architect
-role: AI Systems Designer
-specialty: Building enterprise-grade AI systems, agentic orchestration
-focus:
-  - AI architecture and system design
-  - Oracle Cloud and enterprise integration
-  - Agentic workflows and multi-agent systems
-  - Technical documentation and tutorials
-</code></pre>
-<h3>2. Music Producer</h3>
-<pre><code class="language-yaml">name: Music Producer
-role: AI Music Creation Specialist
-specialty: Suno AI prompt engineering, music production
-focus:
-  - Advanced Suno prompt crafting
-  - Genre-specific production techniques
-  - Commercial licensing and distribution
-  - Audio engineering best practices
-</code></pre>
-<h3>3. Content Engine</h3>
-<pre><code class="language-yaml">name: Content Engine
-role: Content &amp; Product Developer
-specialty: High-quality content creation, digital products
-focus:
-  - Blog articles and technical writing
-  - Course development and education
-  - Product launches and marketing
-  - SEO and content strategy
-</code></pre>
-<h3>4. SEO Intelligence</h3>
-<pre><code class="language-yaml">name: SEO Intelligence
-role: Search &amp; Discovery Optimizer
-specialty: AI search optimization, content discoverability
-focus:
-  - AI citation optimization (ChatGPT, Perplexity, Claude)
-  - Keyword research and topic clustering
-  - Schema markup and structured data
-  - Content performance analysis
-</code></pre>
-<hr>
-<h2>✍️ Content Standards</h2>
-<h3>Quality Bar</h3>
-<ul>
-<li><strong>Technical Accuracy</strong>: Every claim is verifiable</li>
-<li><strong>Clarity</strong>: Complex ideas made accessible without dumbing down</li>
-<li><strong>Utility</strong>: Actionable, practical, immediately useful</li>
-<li><strong>Polish</strong>: No typos, proper formatting, optimized images</li>
-</ul>
-<h3>Content Types</h3>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Focus</th>
-<th>Frequency</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Blog</td>
-<td>Technical tutorials, AI tools, music production</td>
-<td>2-3x/week</td>
-</tr>
-<tr>
-<td>Products</td>
-<td>Courses, templates, prompt libraries</td>
-<td>Monthly launches</td>
-</tr>
-<tr>
-<td>Social</td>
-<td>Behind-scenes, work in progress, insights</td>
-<td>Daily</td>
-</tr>
-</tbody></table>
-<h3>SEO Checklist</h3>
-<ul>
-<li><input disabled="" type="checkbox"> TL;DR in first 100 words</li>
-<li><input disabled="" type="checkbox"> Question-based H2s</li>
-<li><input disabled="" type="checkbox"> FAQ section (5+ questions)</li>
-<li><input disabled="" type="checkbox"> Schema markup (Article + FAQPage)</li>
-<li><input disabled="" type="checkbox"> 3+ internal links</li>
-<li><input disabled="" type="checkbox"> Optimized meta title/description</li>
-</ul>
-<hr>
-<h2>📦 Git Architecture</h2>
-<pre><code>FrankX (Private)                 Production (Public)
-├── app/           ─────────►    ├── app/
-├── components/    ─────────►    ├── components/
-├── content/       ─────────►    ├── content/
-├── .claude/       (private)     └── Deploys to frankx.ai
-└── research/      (private)
-</code></pre>
-<p><strong>Commands:</strong></p>
-<ul>
-<li><code>/frankx-ai-deploy</code> - Deploy to production</li>
-<li><code>/frankx-ai-blog</code> - Create blog posts</li>
-<li><code>/frankx-ai-content-pipeline</code> - Full content workflow</li>
-<li><code>/build-log</code> - Convert a build session into MDX log + LinkedIn draft + demo brief + Mermaid diagram + prompt-pack entry (agentic-builder-lab skill — mirrored from ACOS)</li>
-</ul>
-<p><strong>Sync from ACOS:</strong></p>
-<p>ACOS (<code>frankxai/agentic-creator-os</code>) is the canonical source for skills. To pull a skill into this repo&#39;s <code>.claude-skills/</code> mirror, run:</p>
-<pre><code class="language-bash"># List ACOS skills
-node scripts/port-acos-skill.mjs --list
-
-# See which skills are missing or out of date in the mirror
-node scripts/port-acos-skill.mjs --diff
-
-# Port one skill (self-referential paths are rewritten automatically)
-node scripts/port-acos-skill.mjs &lt;skill-name&gt;
-</code></pre>
-<p>Defaults <code>ACOS_REPO_PATH</code> to <code>/home/user/agentic-creator-os</code>. See <code>.claude-skills/SYNC.md</code> for details.</p>
-<hr>
-<h2>📝 Session Logging</h2>
-<p>Log significant work to: <code>/mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md</code></p>
-<p><strong>When to Log:</strong></p>
-<ul>
-<li>Content published</li>
-<li>3+ files modified</li>
-<li>Major architectural decisions</li>
-<li>Features implemented</li>
-</ul>
-<p><strong>Format:</strong></p>
-<pre><code class="language-markdown">## SESSION: FrankX - [Action]
-**Date**: YYYY-MM-DD HH:MM
-### Summary
-[What was accomplished]
-### Artifacts
-- `path/to/file` - Description
-### Next Actions
-- [ ] Follow-up item
-</code></pre>
-<hr>
-<h2>🛑 CRITICAL: Decision-Making Principles</h2>
-<h3>Before Proposing ANY Structural Change</h3>
-<p><strong>STOP. Ask these questions FIRST:</strong></p>
-<ol>
-<li><p><strong>What specific problem are we solving?</strong></p>
-<ul>
-<li>Who experiences this problem?</li>
-<li>What&#39;s the evidence it&#39;s a problem?</li>
-<li>Is this a real user problem or an &quot;architecture smell&quot;?</li>
-</ul>
-</li>
-<li><p><strong>What&#39;s the simplest solution?</strong></p>
-<ul>
-<li>Can we fix this with a config change instead of restructuring?</li>
-<li>Can we hide instead of delete?</li>
-<li>Can we redirect instead of rename?</li>
-</ul>
-</li>
-<li><p><strong>What could go wrong?</strong></p>
-<ul>
-<li>SEO/backlink damage?</li>
-<li>User confusion?</li>
-<li>Irreversible data loss?</li>
-<li>Breaking existing integrations?</li>
-</ul>
-</li>
-<li><p><strong>Is this reversible?</strong></p>
-<ul>
-<li>If not, get explicit approval before proceeding</li>
-</ul>
-</li>
-</ol>
-<h3>Specific Anti-Patterns to AVOID</h3>
-<table>
-<thead>
-<tr>
-<th>Bad Instinct</th>
-<th>Why It&#39;s Wrong</th>
-<th>Better Approach</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&quot;60% reduction sounds impressive&quot;</td>
-<td>Optimizing for metrics, not outcomes</td>
-<td>Ask: does this help users?</td>
-</tr>
-<tr>
-<td>&quot;Shorter URLs are better&quot;</td>
-<td>Loses meaning, hurts SEO</td>
-<td>Keep established URLs</td>
-</tr>
-<tr>
-<td>&quot;Consolidate everything&quot;</td>
-<td>Over-engineering</td>
-<td>Fix navigation, not routes</td>
-</tr>
-<tr>
-<td>&quot;Delete orphan pages&quot;</td>
-<td>Irreversible, may have traffic</td>
-<td>Unlink from nav, keep page</td>
-</tr>
-<tr>
-<td>&quot;Rename for consistency&quot;</td>
-<td>URL changes have SEO cost</td>
-<td>Consistency isn&#39;t worth SEO loss</td>
-</tr>
-<tr>
-<td>&quot;This spec says to do X&quot;</td>
-<td>Following blindly</td>
-<td>Question if X makes sense</td>
-</tr>
-</tbody></table>
-<h3>URL/SEO Changes: NEVER Do Without Approval</h3>
-<ul>
-<li><strong>Never rename working URLs</strong> - Even with 301s, you lose link equity</li>
-<li><strong>Never delete pages with traffic</strong> - Check analytics first</li>
-<li><strong>Never &quot;consolidate&quot; by deletion</strong> - Hide from nav instead</li>
-<li><strong>&quot;AI Architect&quot; stays &quot;AI Architect&quot;</strong> - Brand terms don&#39;t get shortened</li>
-</ul>
-<h3>The Right Way to &quot;Consolidate&quot;</h3>
-<pre><code>WRONG: Delete 60 routes to have fewer routes
-RIGHT: Fix navigation to show 6 clear options (routes still exist)
-
-WRONG: Rename /ai-architect to /architect for &quot;consistency&quot;
-RIGHT: Keep /ai-architect, it&#39;s the brand term
-
-WRONG: Move /soulbook to /resources/soulbook to &quot;organize&quot;
-RIGHT: Keep /soulbook prominent if it&#39;s a lead magnet
-</code></pre>
-<h3>When Frank Says &quot;Consolidate Routes&quot;</h3>
-<p>He probably means: <strong>Fix the navigation so it&#39;s not confusing</strong></p>
-<p>NOT: Delete or rename a bunch of pages</p>
-<p><strong>Ask for clarification before making structural changes.</strong></p>
-<hr>
-<h2>🧠 Thinking Protocol</h2>
-<p>For complex tasks, use this checklist:</p>
-<pre><code class="language-markdown">## Pre-Action Checklist
-- [ ] What problem are we solving? (specific, not vague)
-- [ ] Who has this problem? (users, SEO, maintenance?)
-- [ ] What&#39;s the evidence? (analytics, user feedback, broken things?)
-- [ ] What&#39;s the simplest fix? (not the most impressive)
-- [ ] What could go wrong? (SEO, users, irreversibility)
-- [ ] Is this reversible? (if no, get approval)
-- [ ] Am I optimizing for metrics or outcomes?
-</code></pre>
+<p><strong>Reference docs</strong> (<code>docs/architecture/</code>): <code>machine-readiness.md</code> · <code>skills-library.md</code> · <code>agent-profiles.md</code> · <code>operating-loop.md</code> (the 6-layer weekly cadence) · <code>file-structure.md</code> · <code>session-logging-and-sources.md</code>. Plus existing <code>ARCHITECTURE.md</code>, <code>TWO_REPO_ARCHITECTURE.md</code>.</p>
+<p><strong>System map:</strong> load the <code>frankx-meta</code> skill for &quot;where does X live.&quot;</p>
 <hr>
 <p><em>Excellence in execution. Let the work speak.</em></p>
 

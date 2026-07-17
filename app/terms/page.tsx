@@ -18,7 +18,7 @@ export default function TermsPage() {
         </Link>
 
         <h1 className="text-4xl font-bold mb-8">Terms of Service</h1>
-        <p className="text-white/60 mb-8">Last updated: January 2026</p>
+        <p className="text-white/60 mb-8">Last updated: June 27, 2026</p>
 
         <div className="prose prose-invert prose-sm max-w-none space-y-8">
           <section>
@@ -49,11 +49,29 @@ export default function TermsPage() {
           </section>
 
           <section>
+            <h2 className="text-2xl font-semibold mb-4">AI, Scraping, And Training Restrictions</h2>
+            <p className="text-white/70 leading-relaxed">
+              Public pages may be viewed in a browser. Paid, gated, partner-only, private, downloadable,
+              and product materials may not be used for model training, dataset creation, scraping, resale,
+              redistribution, or competing products without written permission.
+            </p>
+          </section>
+
+          <section>
             <h2 className="text-2xl font-semibold mb-4">Digital Products</h2>
             <p className="text-white/70 leading-relaxed">
               Purchases of digital products (courses, templates, guides) are non-refundable unless
               otherwise specified. You receive a license to use purchased content for personal or
               business purposes as outlined in the specific product terms.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold mb-4">Music, Creative Assets, And Tokens</h2>
+            <p className="text-white/70 leading-relaxed">
+              Music, art, templates, prompts, books, collectibles, NFTs, tokens, and smart-contract records
+              do not grant reuse, copyright, trademark, revenue, royalty, or ownership rights unless explicit
+              written terms say so.
             </p>
           </section>
 
@@ -85,8 +103,8 @@ export default function TermsPage() {
             <h2 className="text-2xl font-semibold mb-4">Contact</h2>
             <p className="text-white/70 leading-relaxed">
               Questions about these terms? Contact us at{' '}
-              <a href="mailto:hello@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
-                hello@frankx.ai
+              <a href="mailto:frank@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
+                frank@frankx.ai
               </a>
             </p>
           </section>

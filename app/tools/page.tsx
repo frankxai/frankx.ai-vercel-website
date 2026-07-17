@@ -429,7 +429,7 @@ export default function ToolsPage() {
                         <PremiumButton
                           variant="ghost"
                           size="lg"
-                          href={tool.href}
+                          href={`${tool.href}/docs`}
                         >
                           <BookOpen className="w-4 h-4" />
                         </PremiumButton>

@@ -469,7 +469,7 @@ bg-white/5 backdrop-blur-md border border-white/10
 ```tsx
 <span className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 px-4 py-2 text-sm font-semibold text-purple-200">
   <Sparkles className="h-4 w-4" aria-hidden="true" />
-  Built by Oracle AI Architect
+  Built by an AI Architect & Creator
 </span>
 ```
 
@@ -657,4 +657,4 @@ This design system should be updated when:
 **Last Updated**: 2026-01-14
 **Next Review**: 2026-02-14
 **Maintained By**: FrankX Design Team
-**Questions?** Contact hello@frankx.ai
+**Questions?** Contact frank@frankx.ai

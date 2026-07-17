@@ -44,7 +44,7 @@ export default function BuildYourAICreatorOSLayout({
             '@type': 'Person',
             name: 'Frank Riemer',
             jobTitle: 'AI Architect',
-            worksFor: {
+            alumniOf: {
               '@type': 'Organization',
               name: 'Oracle',
             },

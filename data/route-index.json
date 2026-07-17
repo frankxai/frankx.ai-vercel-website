@@ -1,25 +1,24 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 685,
-    "aliases": 25,
+    "total": 835,
+    "aliases": 38,
     "byType": {
-      "core": 22,
-      "section": 359,
-      "community": 12,
-      "tool": 10,
+      "core": 21,
+      "section": 388,
+      "community": 17,
+      "tool": 54,
       "static": 15,
-      "blog": 198,
+      "blog": 207,
+      "workshop": 12,
       "guide": 20,
-      "library": 4,
+      "library": 41,
       "newsletter": 1,
-      "os": 5,
-      "partnership": 3,
-      "product": 16,
+      "os": 11,
+      "partnership": 7,
+      "product": 21,
       "research": 3,
-      "travel": 7,
-      "video": 3,
-      "workshop": 7
+      "video": 3
     }
   },
   "routes": [
@@ -83,6 +82,16 @@
         "agentic",
         "builder",
         "lab"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-life-os",
+      "title": "Agentic Life OS",
+      "tags": [
+        "agentic",
+        "life",
+        "os"
       ],
       "type": "section"
     },
@@ -422,7 +431,7 @@
     {
       "href": "/ai-architecture/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -460,6 +469,25 @@
       "tags": [
         "ai",
         "coe"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-coe-readiness",
+      "title": "AI Coe Readiness",
+      "tags": [
+        "ai",
+        "coe",
+        "readiness"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-computer",
+      "title": "AI Computer",
+      "tags": [
+        "ai",
+        "computer"
       ],
       "type": "section"
     },
@@ -509,14 +537,6 @@
       "type": "section"
     },
     {
-      "href": "/ais",
-      "title": "Ais",
-      "tags": [
-        "ais"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/alea",
       "title": "Alea",
       "tags": [
@@ -563,22 +583,54 @@
       "type": "section"
     },
     {
-      "href": "/ana",
-      "title": "Ana",
+      "href": "/allies",
+      "title": "Allies",
       "tags": [
-        "ana"
+        "allies"
       ],
       "type": "section"
     },
     {
-      "href": "/ana-intelligence-system",
-      "title": "Ana Intelligence System",
+      "href": "/allies/ana-cancino",
+      "title": "Ana Cancino",
       "tags": [
+        "allies",
         "ana",
-        "intelligence",
-        "system"
+        "cancino"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/allies/epic-ways",
+      "title": "Epic Ways",
+      "tags": [
+        "allies",
+        "epic",
+        "ways"
       ],
       "type": "section"
+    },
+    {
+      "href": "/allies/harzfenster",
+      "title": "Harzfenster",
+      "tags": [
+        "allies",
+        "harzfenster"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/allies/trinity-ai",
+      "title": "Trinity AI",
+      "tags": [
+        "allies",
+        "trinity",
+        "ai"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/assess",
@@ -1510,6 +1562,14 @@
       "type": "blog"
     },
     {
+      "href": "/blog/CLAUDE",
+      "title": "CLAUDE",
+      "tags": [
+        "CLAUDE"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/claude-agent-sdk-credit-pause-agent-stack-2026",
       "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.",
       "description": "Anthropic paused the Claude Agent SDK credit change. What it means for claude -p, OpenClaw, OpenCode, Codex, and agent pricing.",
@@ -1632,6 +1692,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/codex-plugins-for-teams",
+      "title": "Codex Plugins for Teams: A Practical Operating Guide",
+      "description": "A product-accurate guide to Codex, ChatGPT Work, skills, plugins, apps, team sharing, permissions, and governed workflow releases.",
+      "tags": [
+        "codex",
+        "plugins",
+        "ai skills",
+        "team workflows",
+        "ai governance"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/conscious-ai-for-entrepreneurs",
       "title": "The Thoughtful Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity",
       "description": "How to build AI-powered businesses that create genuine value, foster human connection, and generate sustainable profits — without losing quality or ethics.",
@@ -1665,6 +1738,14 @@
         "Governance",
         "Agentic Systems",
         "Roadmap"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/CONTENT_SCHEMA",
+      "title": "CONTENT_SCHEMA",
+      "tags": [
+        "CONTENT_SCHEMA"
       ],
       "type": "blog"
     },
@@ -1759,6 +1840,27 @@
         "glassmorphism",
         "ai-development",
         "design-lab"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/do-you-need-rtx-5090-for-ai-2026",
+      "title": "Do You Need an RTX 5090 for AI?",
+      "description": "A grounded buyer guide comparing RTX 5090 workstations, cloud GPU rental, RTX 5080, DGX Spark, and Ryzen AI Max+ mini PCs.",
+      "tags": [
+        "ai-computer",
+        "local-ai",
+        "rtx-5090",
+        "creator-systems",
+        "ai-hardware"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/EDITORIAL_STANDARD",
+      "title": "EDITORIAL_STANDARD",
+      "tags": [
+        "EDITORIAL_STANDARD"
       ],
       "type": "blog"
     },
@@ -2366,6 +2468,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/music-intelligence-vibe-os-launch",
+      "title": "The Music Intelligence System: Research, Agents, and Free Tools Behind AI-Era Music",
+      "description": "An open, interconnected system for AI-era music creation — a 25-state research library (Vibe OS), portable agents, an MCP server, and free Suno prompt templates. Built in public across GitHub.",
+      "tags": [
+        "music-intelligence",
+        "vibe-os",
+        "suno-ai",
+        "mcp-server",
+        "ai-music",
+        "open-source"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/my-100-month-ai-stack-every-tool-i-actually-use",
       "title": "My $100/Month AI Stack: Every Tool I Actually Use",
       "description": "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products — with monthly costs broken down.",
@@ -2853,7 +2969,7 @@
     {
       "href": "/blog/suno-ai-music-creation-workshop",
       "title": "Create Music Without Musical Training: The Suno AI Music Creation Workshop",
-      "description": "Transform your ideas into cinematic soundscapes, meditation music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and frequency science for transformative audio.",
+      "description": "Transform your ideas into cinematic soundscapes, meditation-inspired music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and aesthetic tuning choices for expressive audio.",
       "tags": [
         "Suno AI",
         "AI Music",
@@ -2973,6 +3089,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/the-light-within-protocol",
+      "title": "The Light Within Protocol: A 20-Minute Morning Practice (and Where AI Helps)",
+      "description": "A concrete morning practice that stacks the levers with real evidence behind them — paced breath, gratitude, coherence, and vivid visualization — plus an honest account of where a model removes friction and where it must never go.",
+      "tags": [
+        "the-light-within",
+        "visualization",
+        "breathwork",
+        "morning routine",
+        "contemplative practice"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
       "title": "The Research + Generation Flywheel: Sandcastles-Style Analysis + Higgsfield/Grok Execution",
       "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing). The exact weekend workflow that turns signals into shipped shorts, hooks, and reference content.",
@@ -2983,6 +3112,18 @@
         "Hooks",
         "Content Strategy",
         "Creator Workflow"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/the-sovereign-curator",
+      "title": "The Sovereign Curator: Platform Curation and the Art of Responsible AI Reuse",
+      "description": "Why raw content creation is a commodity in the age of infinite AI noise—and how to build high-leverage curation engines, owned platforms, and responsible attribution networks.",
+      "tags": [
+        "Curation",
+        "Creator Economy",
+        "AI Workflows",
+        "Platform Design"
       ],
       "type": "blog"
     },
@@ -3167,6 +3308,24 @@
         "AI research",
         "Perplexity Pro",
         "research workflow"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll",
+      "title": "The Ultimate Guide: Using ElevenLabs for Faceless YouTube Channels and Higgsfield for B-Roll",
+      "description": "How to combine modern AI voice models with responsive video tools for high-retention faceless production.",
+      "tags": [
+        "using",
+        "elevenlabs",
+        "for",
+        "faceless",
+        "youtube",
+        "channels",
+        "and",
+        "higgsfield",
+        "for",
+        "roll"
       ],
       "type": "blog"
     },
@@ -3423,7 +3582,7 @@
     {
       "href": "/blueprint/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -3438,6 +3597,46 @@
       "tags": [
         "books"
       ],
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles",
+      "title": "The Arcanean Creator Principles",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-01-the-seven-principles",
+      "title": "Ch 1 — The Seven Principles",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-02-the-partnership-principle",
+      "title": "Ch 2 — The Partnership Principle",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-03-complementary-strengths",
+      "title": "Ch 3 — Complementary Strengths",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-04-collaboration-modes",
+      "title": "Ch 4 — Collaboration Modes",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-05-trust-calibration",
+      "title": "Ch 5 — Trust Calibration",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-06-the-generator-editor-dance",
+      "title": "Ch 6 — The Generator-Editor Dance",
+      "type": "section"
+    },
+    {
+      "href": "/books/arcanea-creator-principles/chapter-07-advanced-partnership",
+      "title": "Ch 7 — Advanced Partnership",
       "type": "section"
     },
     {
@@ -3470,7 +3669,8 @@
       "tags": [
         "canon"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/changelog",
@@ -3502,32 +3702,10 @@
     },
     {
       "href": "/cloud",
-      "title": "Cloud AI",
-      "description": "Cloud AI systems for prototypes, AI CoEs, MCP workflows, and production-ready workloads",
-      "type": "core"
-    },
-    {
-      "href": "/cloud/ai-coe",
-      "title": "AI CoE Operating System",
-      "description": "AI CoE operating system for turning demand into prototypes, field assets, and cloud workload paths",
-      "type": "section"
-    },
-    {
-      "href": "/cloud/gpu-model-architecture",
-      "title": "GPU, Model and Workload Architecture",
-      "description": "AI workload architecture across models, inference, RAG, agents, evaluation, cost, and deployment",
-      "type": "section"
-    },
-    {
-      "href": "/cloud/mcp-to-cloud",
-      "title": "MCP-to-Cloud Architecture",
-      "description": "Architecture for connecting AI agents to cloud services, APIs, tools, documents, and governance",
-      "type": "section"
-    },
-    {
-      "href": "/cloud/prototype-sprints",
-      "title": "AI Prototype-to-Production Sprints",
-      "description": "10 business day sprint for working AI prototypes, architecture, demo narrative, and roadmap",
+      "title": "Cloud",
+      "tags": [
+        "cloud"
+      ],
       "type": "section"
     },
     {
@@ -3586,15 +3764,8 @@
         "connect",
         "qr"
       ],
-      "type": "section"
-    },
-    {
-      "href": "/consulting",
-      "title": "Consulting",
-      "tags": [
-        "consulting"
-      ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/contact",
@@ -3610,7 +3781,8 @@
         "video",
         "creation"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/content-studio",
@@ -3794,7 +3966,8 @@
         "family",
         "tree"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/design-lab/family-tree/v1",
@@ -3938,7 +4111,8 @@
         "tree",
         "v6"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/design-lab/family-tree/v7",
@@ -4066,6 +4240,29 @@
       "type": "section"
     },
     {
+      "href": "/downloads/ahmad-founder-creator-kit",
+      "title": "Ahmad Founder Creator Kit",
+      "tags": [
+        "downloads",
+        "ahmad",
+        "founder",
+        "creator",
+        "kit"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/downloads/epicways-intelligence",
+      "title": "Epicways Intelligence",
+      "tags": [
+        "downloads",
+        "epicways",
+        "intelligence"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/downloads/health-intelligence-system",
       "title": "Health Intelligence System",
       "tags": [
@@ -4075,6 +4272,19 @@
         "system"
       ],
       "type": "section"
+    },
+    {
+      "href": "/downloads/jojo-hospitality-intelligence-kit",
+      "title": "Jojo Hospitality Intelligence Kit",
+      "tags": [
+        "downloads",
+        "jojo",
+        "hospitality",
+        "intelligence",
+        "kit"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/downloads/preview/agentic-creator-os",
@@ -4136,6 +4346,97 @@
       "type": "section"
     },
     {
+      "href": "/experiences/mindvalley-university-tallinn-2026",
+      "title": "Mindvalley University Tallinn 2026",
+      "tags": [
+        "experiences",
+        "mindvalley",
+        "university",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/mvu-tallinn-2026",
+      "title": "Mvu Tallinn 2026",
+      "tags": [
+        "experiences",
+        "mvu",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026",
+      "title": "Tallinn 2026",
+      "tags": [
+        "experiences",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/experiences/tallinn-2026/agentic-builder-lab",
+      "title": "Build Your First AI Agent",
+      "tags": [
+        "agentic",
+        "builder",
+        "lab"
+      ],
+      "type": "workshop"
+    },
+    {
+      "href": "/experiences/tallinn-2026/ai-music-creation-lab",
+      "title": "AI Music Creation Lab",
+      "tags": [
+        "ai",
+        "music",
+        "creation",
+        "lab"
+      ],
+      "type": "workshop"
+    },
+    {
+      "href": "/experiences/tallinn-2026/purpose-to-practice",
+      "title": "Purpose to Practice",
+      "tags": [
+        "purpose",
+        "to",
+        "practice"
+      ],
+      "type": "workshop"
+    },
+    {
+      "href": "/experiences/tallinn-2026/purpose-to-practice/map",
+      "title": "Map",
+      "tags": [
+        "experiences",
+        "tallinn",
+        "2026",
+        "purpose",
+        "to",
+        "practice",
+        "map"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/speaker-session-amplifier",
+      "title": "Speaker Session Amplifier",
+      "tags": [
+        "speaker",
+        "session",
+        "amplifier"
+      ],
+      "type": "workshop"
+    },
+    {
       "href": "/experiments",
       "title": "Experiments",
       "tags": [
@@ -4149,7 +4450,8 @@
       "tags": [
         "familie"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/forsche-selbst",
@@ -4172,24 +4474,13 @@
     },
     {
       "href": "/familie/geschichte/gorte-linie",
-      "title": "Die Gorte-Linie",
-      "tags": [
-        "familie",
-        "geschichte",
-        "gorte",
-        "linie"
-      ],
-      "type": "section"
+      "title": "Gorte-Linie — Geschichte",
+      "type": "community"
     },
     {
       "href": "/familie/geschichte/karaganda",
-      "title": "Karaganda — Stadt in der Steppe",
-      "tags": [
-        "familie",
-        "geschichte",
-        "karaganda"
-      ],
-      "type": "section"
+      "title": "Karaganda — Geschichte",
+      "type": "community"
     },
     {
       "href": "/familie/geschichte/offene-fragen",
@@ -4200,38 +4491,23 @@
         "offene",
         "fragen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/geschichte/riemer-linie",
-      "title": "Die Riemer-Linie",
-      "tags": [
-        "familie",
-        "geschichte",
-        "riemer",
-        "linie"
-      ],
-      "type": "section"
+      "title": "Riemer-Linie — Geschichte",
+      "type": "community"
     },
     {
       "href": "/familie/geschichte/trudarmee",
-      "title": "Die Trudarmee",
-      "tags": [
-        "familie",
-        "geschichte",
-        "trudarmee"
-      ],
-      "type": "section"
+      "title": "Trudarmee — Geschichte",
+      "type": "community"
     },
     {
       "href": "/familie/geschichte/wolgadeutsche",
-      "title": "Die Wolgadeutschen",
-      "tags": [
-        "familie",
-        "geschichte",
-        "wolgadeutsche"
-      ],
-      "type": "section"
+      "title": "Wolgadeutsche — Geschichte",
+      "type": "community"
     },
     {
       "href": "/familie/interview-kit",
@@ -4241,7 +4517,8 @@
         "interview",
         "kit"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/mitmachen",
@@ -4250,7 +4527,8 @@
         "familie",
         "mitmachen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/stammbaum",
@@ -4259,7 +4537,8 @@
         "familie",
         "stammbaum"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/family",
@@ -4267,7 +4546,8 @@
       "tags": [
         "family"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/family/tree",
@@ -4276,7 +4556,8 @@
         "family",
         "tree"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/feed",
@@ -4335,6 +4616,15 @@
       "type": "section"
     },
     {
+      "href": "/frank-riemer",
+      "title": "Frank Riemer",
+      "tags": [
+        "frank",
+        "riemer"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/frankx",
       "title": "Frankx",
       "tags": [
@@ -4356,6 +4646,43 @@
       "href": "/free-playbook",
       "title": "Free Playbook",
       "type": "static"
+    },
+    {
+      "href": "/friends",
+      "title": "Friends",
+      "tags": [
+        "friends"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/friends/ahmad",
+      "title": "Ahmad",
+      "tags": [
+        "friends",
+        "ahmad"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/friends/estefania",
+      "title": "Estefania",
+      "tags": [
+        "friends",
+        "estefania"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/friends/jojo",
+      "title": "Jojo",
+      "tags": [
+        "friends",
+        "jojo"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/gallery",
@@ -4465,7 +4792,8 @@
         "ikigai",
         "branding"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/goals",
@@ -4483,14 +4811,6 @@
     {
       "href": "/golden-age/chapter-01-when-creation-calls",
       "title": "When Creation Calls",
-      "type": "section"
-    },
-    {
-      "href": "/graph",
-      "title": "Graph",
-      "tags": [
-        "graph"
-      ],
       "type": "section"
     },
     {
@@ -4773,6 +5093,15 @@
       "type": "section"
     },
     {
+      "href": "/hospitality-intelligence",
+      "title": "Hospitality Intelligence",
+      "tags": [
+        "hospitality",
+        "intelligence"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/infogenius",
       "title": "Infogenius",
       "tags": [
@@ -4795,7 +5124,8 @@
         "vault",
         "preview"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/insights",
@@ -4945,14 +5275,389 @@
       "type": "library"
     },
     {
+      "href": "/library/art-and-fear",
+      "title": "Art & Fear",
+      "tags": [
+        "art",
+        "and",
+        "fear"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/atomic-habits",
+      "title": "Atomic Habits",
+      "tags": [
+        "atomic",
+        "habits"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/awaken-the-giant-within",
+      "title": "Awaken the Giant Within",
+      "tags": [
+        "awaken",
+        "the",
+        "giant",
+        "within"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/becoming-supernatural",
+      "title": "Becoming Supernatural",
+      "tags": [
+        "becoming",
+        "supernatural"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/bird-by-bird",
+      "title": "Bird by Bird: Some Instructions on Writing and Life",
+      "tags": [
+        "bird",
+        "by",
+        "bird"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/blue-zones",
+      "title": "The Blue Zones: Lessons for Living Longer From the People Who\\",
+      "tags": [
+        "blue",
+        "zones"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/breaking-the-habit-of-being-yourself",
+      "title": "Breaking the Habit of Being Yourself",
+      "tags": [
+        "breaking",
+        "the",
+        "habit",
+        "of",
+        "being",
+        "yourself"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/breath",
+      "title": "Breath: The New Science of a Lost Art",
+      "tags": [
+        "breath"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/build",
       "title": "Library — Build",
+      "type": "library"
+    },
+    {
+      "href": "/library/cant-hurt-me",
+      "title": "Can",
+      "tags": [
+        "cant",
+        "hurt",
+        "me"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/deep-work",
+      "title": "Deep Work",
+      "tags": [
+        "deep",
+        "work"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/e-squared",
+      "title": "E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality",
+      "tags": [
+        "squared"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/fabric-of-reality",
+      "title": "The Fabric of Reality",
+      "tags": [
+        "fabric",
+        "of",
+        "reality"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/ikigai-japanese-secret",
+      "title": "Ikigai: The Japanese Secret to a Long and Happy Life",
+      "tags": [
+        "ikigai",
+        "japanese",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/ikigai-ni-tsuite",
+      "title": "Ikigai-ni-Tsuite (生きがいについて)",
+      "tags": [
+        "ikigai",
+        "ni",
+        "tsuite"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/mans-search-for-meaning",
+      "title": "Man",
+      "tags": [
+        "mans",
+        "search",
+        "for",
+        "meaning"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/meditations",
+      "title": "Meditations",
+      "tags": [
+        "meditations"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/money-master-the-game",
+      "title": "Money: Master the Game",
+      "tags": [
+        "money",
+        "master",
+        "the",
+        "game"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/no-bad-parts",
+      "title": "No Bad Parts",
+      "tags": [
+        "no",
+        "bad",
+        "parts"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/profit-first",
+      "title": "Profit First",
+      "tags": [
+        "profit",
+        "first"
+      ],
       "type": "library"
     },
     {
       "href": "/library/quotes",
       "title": "Library — Quotes",
       "type": "library"
+    },
+    {
+      "href": "/library/steal-like-an-artist",
+      "title": "Steal Like an Artist",
+      "tags": [
+        "steal",
+        "like",
+        "an",
+        "artist"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/superfans",
+      "title": "Superfans",
+      "tags": [
+        "superfans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tao-te-ching",
+      "title": "Tao Te Ching",
+      "tags": [
+        "tao",
+        "te",
+        "ching"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-4-hour-body",
+      "title": "The 4-Hour Body",
+      "tags": [
+        "the",
+        "hour",
+        "body"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-4-hour-workweek",
+      "title": "The 4-Hour Workweek",
+      "tags": [
+        "the",
+        "hour",
+        "workweek"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-alchemist",
+      "title": "The Alchemist",
+      "tags": [
+        "the",
+        "alchemist"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-book-of-secrets",
+      "title": "The Book of Secrets",
+      "tags": [
+        "the",
+        "book",
+        "of",
+        "secrets"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-creative-act",
+      "title": "The Creative Act: A Way of Being",
+      "tags": [
+        "the",
+        "creative",
+        "act"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-little-book-of-ikigai",
+      "title": "The Little Book of Ikigai: The Essential Japanese Way to Finding Your Purpose in Life",
+      "tags": [
+        "the",
+        "little",
+        "book",
+        "of",
+        "ikigai"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-secret",
+      "title": "The Secret",
+      "tags": [
+        "the",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-war-of-art",
+      "title": "The War of Art",
+      "tags": [
+        "the",
+        "war",
+        "of",
+        "art"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-wordless-laws",
+      "title": "The Wordless Laws",
+      "tags": [
+        "the",
+        "wordless",
+        "laws"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/think-and-grow-rich",
+      "title": "Think and Grow Rich",
+      "tags": [
+        "think",
+        "and",
+        "grow",
+        "rich"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tools-of-titans",
+      "title": "Tools of Titans",
+      "tags": [
+        "tools",
+        "of",
+        "titans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tribe-of-mentors",
+      "title": "Tribe of Mentors",
+      "tags": [
+        "tribe",
+        "of",
+        "mentors"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/unlimited-power",
+      "title": "Unlimited Power",
+      "tags": [
+        "unlimited",
+        "power"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/will-it-fly",
+      "title": "Will It Fly?",
+      "tags": [
+        "will",
+        "it",
+        "fly"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/you-are-the-placebo",
+      "title": "You Are the Placebo",
+      "tags": [
+        "you",
+        "are",
+        "the",
+        "placebo"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/licensing",
+      "title": "Licensing",
+      "tags": [
+        "licensing"
+      ],
+      "type": "section"
     },
     {
       "href": "/links",
@@ -4975,9 +5680,386 @@
     },
     {
       "href": "/llm-hub.json",
-      "title": "LLM Hub JSON",
-      "description": "Agent-readable LLM Hub dataset",
-      "type": "static"
+      "title": "LLM Hub JSON Dataset",
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-fable-5",
+      "title": "Claude Fable 5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-haiku-4-5",
+      "title": "Claude Haiku 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-4-5",
+      "title": "Claude Opus 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-4-6",
+      "title": "Claude Opus 4.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-4-8",
+      "title": "Claude Opus 4.8 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-sonnet-4-5",
+      "title": "Claude Sonnet 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-sonnet-4-6",
+      "title": "Claude Sonnet 4.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-claude-opus-4-8",
+      "title": "Claude Fable 5 VS Claude Opus 4 8 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-deepseek-v4",
+      "title": "Claude Fable 5 VS Deepseek V4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-gemini-3-5-pro",
+      "title": "Claude Fable 5 VS Gemini 3 5 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-gpt-5-5",
+      "title": "Claude Fable 5 VS Gpt 5 5 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-grok-4-3",
+      "title": "Claude Fable 5 VS Grok 4 3 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-kimi-k2-6",
+      "title": "Claude Fable 5 VS Kimi K2 6 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-fable-5-vs-qwen3-7-max",
+      "title": "Claude Fable 5 VS Qwen3 7 Max — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-opus-4-6-vs-gpt-5-2-pro",
+      "title": "Claude Opus 4 6 VS Gpt 5 2 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-opus-4-8-vs-gpt-5-5",
+      "title": "Claude Opus 4 8 VS Gpt 5 5 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-sonnet-4-5-vs-gemini-3-5-flash",
+      "title": "Claude Sonnet 4 5 VS Gemini 3 5 Flash — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/deepseek-v4-vs-claude-opus-4-8",
+      "title": "Deepseek V4 VS Claude Opus 4 8 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gemini-3-5-flash-vs-claude-opus-4-6",
+      "title": "Gemini 3 5 Flash VS Claude Opus 4 6 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gemini-3-5-flash-vs-gpt-5-2-pro",
+      "title": "Gemini 3 5 Flash VS Gpt 5 2 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gpt-oss-vs-gemma-4",
+      "title": "Gpt Oss VS Gemma 4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/grok-4-3-vs-gpt-5-5",
+      "title": "Grok 4 3 VS Gpt 5 5 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/kimi-k2-6-vs-deepseek-v4",
+      "title": "Kimi K2 6 VS Deepseek V4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/qwen3-7-max-vs-deepseek-v4",
+      "title": "Qwen3 7 Max VS Deepseek V4 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/deepseek-v4",
+      "title": "DeepSeek V4 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-5-flash",
+      "title": "Gemini 3.5 Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-5-pro",
+      "title": "Gemini 3.5 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-pro",
+      "title": "Gemini 3 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemma-4",
+      "title": "Gemma 4 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-5-2-pro",
+      "title": "GPT-5.2 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-5-5",
+      "title": "GPT-5.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-oss",
+      "title": "gpt-oss (120b / 20b) — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4-1",
+      "title": "Grok 4.1 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4-3",
+      "title": "Grok 4.3 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/kimi-k2-6",
+      "title": "Kimi K2.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/llama-4-maverick",
+      "title": "Llama 4 Maverick — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-code-1-flash",
+      "title": "MAI-Code-1-Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-image-2-5",
+      "title": "MAI-Image-2.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mai-thinking-1",
+      "title": "MAI-Thinking-1 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/mistral-large-3",
+      "title": "Mistral Large 3 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/phi-4",
+      "title": "Microsoft Phi-4 (open-weight family) — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/qwen3-7-max",
+      "title": "Qwen3.7-Max — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
     },
     {
       "href": "/magic",
@@ -4996,8 +6078,53 @@
       "type": "section"
     },
     {
+      "href": "/map/v1",
+      "title": "V1",
+      "tags": [
+        "map",
+        "v1"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v2",
+      "title": "V2",
+      "tags": [
+        "map",
+        "v2"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v3",
+      "title": "V3",
+      "tags": [
+        "map",
+        "v3"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/media-kit",
+      "title": "Media Kit",
+      "tags": [
+        "media",
+        "kit"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/music",
       "title": "Music",
+      "type": "section"
+    },
+    {
+      "href": "/music-intelligence",
+      "title": "Music Intelligence",
+      "tags": [
+        "music",
+        "intelligence"
+      ],
       "type": "section"
     },
     {
@@ -5061,6 +6188,15 @@
       "type": "section"
     },
     {
+      "href": "/music-os",
+      "title": "Music OS",
+      "tags": [
+        "music",
+        "os"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/music/brainstorm",
       "title": "Brainstorm",
       "tags": [
@@ -5080,7 +6216,11 @@
     },
     {
       "href": "/music/learn",
-      "title": "Music School",
+      "title": "Learn",
+      "tags": [
+        "music",
+        "learn"
+      ],
       "type": "section"
     },
     {
@@ -5164,6 +6304,15 @@
       "type": "section"
     },
     {
+      "href": "/music/templates",
+      "title": "Templates",
+      "tags": [
+        "music",
+        "templates"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/music/tools",
       "title": "Tools",
       "tags": [
@@ -5205,7 +6354,8 @@
         "newsletter",
         "confirm"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/newsletter/preferences",
@@ -5233,7 +6383,8 @@
         "newsletter",
         "unsubscribe"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/observatory",
@@ -5295,7 +6446,8 @@
         "und",
         "oma"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/open-source",
@@ -5307,12 +6459,22 @@
       "type": "section"
     },
     {
+      "href": "/operator-scorecard",
+      "title": "Operator Scorecard",
+      "tags": [
+        "operator",
+        "scorecard"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ops",
       "title": "Ops",
       "tags": [
         "ops"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/ops/calendar",
@@ -5330,7 +6492,8 @@
         "ops",
         "sites"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/opus-pro",
@@ -5344,22 +6507,86 @@
     },
     {
       "href": "/os/aco",
-      "title": "OS — ACO",
+      "title": "Agentic Content Officer",
+      "tags": [
+        "aco"
+      ],
       "type": "os"
     },
     {
       "href": "/os/acos",
-      "title": "OS — ACOS",
+      "title": "ACOS",
+      "tags": [
+        "acos"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/build-first-funnel",
+      "title": "Build First AI Agent Funnel",
+      "tags": [
+        "build",
+        "first",
+        "funnel"
+      ],
       "type": "os"
     },
     {
       "href": "/os/coe-hub",
-      "title": "OS — CoE Hub",
+      "title": "AI CoE Hub",
+      "tags": [
+        "coe",
+        "hub"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/foundry",
+      "title": "FrankX Foundry",
+      "tags": [
+        "foundry"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/iis",
+      "title": "Investment Intelligence System",
+      "tags": [
+        "iis"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/library-os",
+      "title": "Library OS",
+      "tags": [
+        "library",
+        "os"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/vis",
+      "title": "Visual Intelligence System",
+      "tags": [
+        "vis"
+      ],
       "type": "os"
     },
     {
       "href": "/os/watch",
-      "title": "OS — Watch",
+      "title": "Watch OS",
+      "tags": [
+        "watch"
+      ],
+      "type": "os"
+    },
+    {
+      "href": "/os/workshops",
+      "title": "Workshop OS",
+      "tags": [
+        "workshops"
+      ],
       "type": "os"
     },
     {
@@ -5384,7 +6611,8 @@
         "papa",
         "erinnerungen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/papa/leben",
@@ -5398,7 +6626,8 @@
         "papa",
         "mitmachen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/partners",
@@ -5411,11 +6640,38 @@
       "type": "partnership"
     },
     {
+      "href": "/partnerships/anthropic",
+      "title": "Anthropic",
+      "tags": [
+        "partnership",
+        "anthropic"
+      ],
+      "type": "partnership"
+    },
+    {
       "href": "/partnerships/arrow",
       "title": "Arrow",
       "tags": [
         "partnership",
         "arrow"
+      ],
+      "type": "partnership"
+    },
+    {
+      "href": "/partnerships/google",
+      "title": "Google",
+      "tags": [
+        "partnership",
+        "google"
+      ],
+      "type": "partnership"
+    },
+    {
+      "href": "/partnerships/nvidia",
+      "title": "Nvidia",
+      "tags": [
+        "partnership",
+        "nvidia"
       ],
       "type": "partnership"
     },
@@ -5427,11 +6683,38 @@
         "van",
         "ede"
       ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/partnerships/vercel",
+      "title": "Vercel",
+      "tags": [
+        "partnership",
+        "vercel"
+      ],
+      "type": "partnership"
+    },
+    {
+      "href": "/peak-performance",
+      "title": "Peak Performance",
+      "tags": [
+        "peak",
+        "performance"
+      ],
       "type": "section"
     },
     {
       "href": "/plan",
       "title": "Plan",
+      "type": "section"
+    },
+    {
+      "href": "/portal",
+      "title": "Portal",
+      "tags": [
+        "portal"
+      ],
       "type": "section"
     },
     {
@@ -5498,65 +6781,32 @@
     },
     {
       "href": "/products/agentic-creator-os/docs",
-      "title": "Docs",
-      "tags": [
-        "products",
-        "agentic",
-        "creator",
-        "os",
-        "docs"
-      ],
-      "type": "section"
+      "title": "Agentic Creator OS — Docs",
+      "type": "product"
     },
     {
       "href": "/products/agentic-creator-os/docs/agents",
-      "title": "Agents",
-      "tags": [
-        "acos",
-        "docs",
-        "agents"
-      ],
+      "title": "ACOS Docs — Agents",
       "type": "product"
     },
     {
       "href": "/products/agentic-creator-os/docs/getting-started",
-      "title": "Getting Started",
-      "tags": [
-        "acos",
-        "docs",
-        "getting",
-        "started"
-      ],
+      "title": "ACOS Docs — Getting Started",
       "type": "product"
     },
     {
       "href": "/products/agentic-creator-os/docs/mcp",
-      "title": "Mcp",
-      "tags": [
-        "acos",
-        "docs",
-        "mcp"
-      ],
+      "title": "ACOS Docs — MCP",
       "type": "product"
     },
     {
       "href": "/products/agentic-creator-os/docs/skills",
-      "title": "Skills",
-      "tags": [
-        "acos",
-        "docs",
-        "skills"
-      ],
+      "title": "ACOS Docs — Skills",
       "type": "product"
     },
     {
       "href": "/products/agentic-creator-os/docs/workflows",
-      "title": "Workflows",
-      "tags": [
-        "acos",
-        "docs",
-        "workflows"
-      ],
+      "title": "ACOS Docs — Workflows",
       "type": "product"
     },
     {
@@ -5580,6 +6830,16 @@
       "type": "section"
     },
     {
+      "href": "/products/command-center-template",
+      "title": "The Command Center Template",
+      "tags": [
+        "command",
+        "center",
+        "template"
+      ],
+      "type": "product"
+    },
+    {
       "href": "/products/creation-chronicles",
       "title": "Creation Chronicles",
       "tags": [
@@ -5599,6 +6859,15 @@
         "toolkit"
       ],
       "type": "section"
+    },
+    {
+      "href": "/products/founders-circle",
+      "title": "Founder's Circle Guild",
+      "tags": [
+        "founders",
+        "circle"
+      ],
+      "type": "product"
     },
     {
       "href": "/products/generative-creator-os",
@@ -5660,6 +6929,16 @@
       "type": "section"
     },
     {
+      "href": "/products/reality-architect-os",
+      "title": "Reality Architect OS",
+      "tags": [
+        "reality",
+        "architect",
+        "os"
+      ],
+      "type": "product"
+    },
+    {
       "href": "/products/self-development",
       "title": "The Art of Self-Development",
       "tags": [
@@ -5682,6 +6961,15 @@
       "tags": [
         "spartan",
         "mindset"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/starter-kit",
+      "title": "System Architect Starter Kit",
+      "tags": [
+        "starter",
+        "kit"
       ],
       "type": "product"
     },
@@ -5739,6 +7027,17 @@
       "type": "section"
     },
     {
+      "href": "/products/visual-creation-loop",
+      "title": "Visual Creation Loop",
+      "tags": [
+        "products",
+        "visual",
+        "creation",
+        "loop"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/progress",
       "title": "Progress",
       "tags": [
@@ -5766,7 +7065,8 @@
         "prompts",
         "psyche"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/prototype/arcanea-game-engine",
@@ -5920,7 +7220,7 @@
     {
       "href": "/prototype/vital-intelligence-health-system",
       "title": "Vital Intelligence Health System",
-      "description": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
       "tags": [
         "vital",
         "intelligence",
@@ -6022,6 +7322,27 @@
       "href": "/research/sources",
       "title": "Research Sources",
       "type": "research"
+    },
+    {
+      "href": "/research/the-light-within",
+      "title": "The Light Within",
+      "tags": [
+        "research",
+        "the",
+        "light",
+        "within"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/research/visual-catalog",
+      "title": "Visual Catalog",
+      "tags": [
+        "research",
+        "visual",
+        "catalog"
+      ],
+      "type": "section"
     },
     {
       "href": "/resources",
@@ -6220,15 +7541,6 @@
       "type": "section"
     },
     {
-      "href": "/students/ikigai",
-      "title": "Ikigai",
-      "tags": [
-        "students",
-        "ikigai"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/students/prompts",
       "title": "Prompts",
       "tags": [
@@ -6380,7 +7692,14 @@
       "tags": [
         "study"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/superpowers",
+      "title": "AI Superpowers Directory",
+      "description": "Curated directory of AI tools, custom agent systems, and MCP servers mapped by creator superpower",
+      "type": "tool"
     },
     {
       "href": "/svijet",
@@ -6413,6 +7732,16 @@
       "tags": [
         "thank",
         "you"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/the-light-within",
+      "title": "The Light Within",
+      "tags": [
+        "the",
+        "light",
+        "within"
       ],
       "type": "section"
     },
@@ -6450,87 +7779,6 @@
       "type": "section"
     },
     {
-      "href": "/travel/barcelona-june",
-      "title": "Barcelona in June",
-      "tags": [
-        "travel",
-        "barcelona",
-        "spain",
-        "nomad",
-        "sonar"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/cape-town-december",
-      "title": "Cape Town in December",
-      "tags": [
-        "travel",
-        "cape town",
-        "south africa",
-        "nomad"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/copenhagen-july",
-      "title": "Copenhagen in July",
-      "tags": [
-        "travel",
-        "copenhagen",
-        "denmark",
-        "nomad",
-        "jazz"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/edinburgh-august",
-      "title": "Edinburgh in August",
-      "tags": [
-        "travel",
-        "edinburgh",
-        "scotland",
-        "nomad",
-        "fringe"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/lisbon-november",
-      "title": "Lisbon in November",
-      "tags": [
-        "travel",
-        "lisbon",
-        "portugal",
-        "nomad",
-        "web summit"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/mexico-city-september",
-      "title": "Mexico City in September",
-      "tags": [
-        "travel",
-        "mexico city",
-        "mexico",
-        "nomad"
-      ],
-      "type": "travel"
-    },
-    {
-      "href": "/travel/tokyo-october",
-      "title": "Tokyo in October",
-      "tags": [
-        "travel",
-        "tokyo",
-        "japan",
-        "nomad"
-      ],
-      "type": "travel"
-    },
-    {
       "href": "/tribe",
       "title": "Tribe",
       "tags": [
@@ -6541,10 +7789,7 @@
     {
       "href": "/unsubscribe",
       "title": "Unsubscribe",
-      "tags": [
-        "unsubscribe"
-      ],
-      "type": "section"
+      "type": "static"
     },
     {
       "href": "/updates",
@@ -6632,8 +7877,8 @@
       "type": "video"
     },
     {
-      "href": "/watch/shorts/KyxYdicOzTg",
-      "title": "Why You're Always Tired",
+      "href": "/watch/shorts/1Edv43k15cY",
+      "title": "The Real Reason You're Always Tired",
       "tags": [
         "short",
         "video",
@@ -6664,6 +7909,17 @@
       "type": "section"
     },
     {
+      "href": "/work/property-intelligence-os",
+      "title": "Property Intelligence OS",
+      "tags": [
+        "work",
+        "property",
+        "intelligence",
+        "os"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/work/trinity-ai",
       "title": "Trinity AI",
       "tags": [
@@ -6671,7 +7927,8 @@
         "trinity",
         "ai"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/workshops",
@@ -6691,6 +7948,15 @@
     {
       "href": "/workshops/build-first-ai-agent",
       "title": "Build Your First AI Agent",
+      "type": "workshop"
+    },
+    {
+      "href": "/workshops/build-hackathon",
+      "title": "Build Hackathon: Ship an AI Agent in 4 Hours",
+      "tags": [
+        "build",
+        "hackathon"
+      ],
       "type": "workshop"
     },
     {
@@ -6808,29 +8074,185 @@
         "strategy"
       ],
       "type": "section"
+    },
+    {
+      "href": "/ask",
+      "title": "Ask FrankX",
+      "description": "Practical Q&A on AI architecture, music production, and creator workflows",
+      "type": "core",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture",
+        "music-production",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/what-is-a-multi-agent-system",
+      "title": "What is a multi-agent AI system?",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture"
+      ]
+    },
+    {
+      "href": "/ask/how-to-write-suno-prompts",
+      "title": "How to write Suno prompts for professional tracks",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "music-production"
+      ]
+    },
+    {
+      "href": "/ask/ai-for-solo-creators",
+      "title": "AI for solo creators without becoming a content farm",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "content-strategy"
+      ]
+    },
+    {
+      "href": "/ask/claude-and-gemini-together",
+      "title": "Using Claude and Gemini together in one system",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture"
+      ]
+    },
+    {
+      "href": "/ask/ai-music-workflow-end-to-end",
+      "title": "Complete AI music production workflow 2026",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "music-production"
+      ]
+    },
+    {
+      "href": "/ask/adding-ai-without-losing-voice",
+      "title": "Adding AI without losing your creative voice",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "content-strategy"
+      ]
+    },
+    {
+      "href": "/ask/automation-vs-augmentation",
+      "title": "Automation vs augmentation: which to choose",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/best-ai-stack-2026",
+      "title": "Best AI tech stack for creators in 2026",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/how-to-write-claude-md",
+      "title": "How to write a CLAUDE.md that works",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "ai-architecture"
+      ]
+    },
+    {
+      "href": "/ask/enterprise-ai-adoption-strategy",
+      "title": "Enterprise AI adoption strategy framework",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "enterprise-ai"
+      ]
+    },
+    {
+      "href": "/ask/ai-content-engine-setup",
+      "title": "Setting up an AI content engine",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "content-strategy"
+      ]
+    },
+    {
+      "href": "/ask/agentic-creator-os-explained",
+      "title": "What is the Agentic Creator OS (ACOS)?",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "creator-tools"
+      ]
+    },
+    {
+      "href": "/ask/how-do-i-get-chorus-to-lift",
+      "title": "How to get chorus lift in AI music",
+      "type": "section",
+      "tags": [
+        "ask",
+        "q&a",
+        "music-production"
+      ]
     }
   ],
   "aliases": {
     "/aco": "/agents",
-    "/agentic-creator-os": "/products/agentic-creator-os",
     "/ai-coe": "/acos",
-    "/ai-music-academy": "/music/learn",
+    "/ais": "/allies/ana-cancino",
+    "/alliance/cecilia": "/allies/ana-cancino",
+    "/ana": "/allies/ana-cancino",
+    "/ana-intelligence-system": "/allies/ana-cancino",
+    "/books/fable/chapter-00-prologue-the-wall-of-instruments": "/books/fable",
+    "/books/fable/chapter-01-the-listening-machine": "/books/fable",
+    "/books/fable/chapter-02-what-the-machine-kept": "/books/fable",
+    "/books/fable/chapter-03-the-narrow-window": "/books/fable",
+    "/books/fable/chapter-04-a-smaller-shape-of-the-sea": "/books/fable",
+    "/books/fable/chapter-05-the-wrong-note": "/books/fable",
+    "/books/fable/chapter-06-a-thousand-songs": "/books/fable/06-the-thousand-true-songs",
+    "/books/fable/chapter-07-the-grain-of-the-voice": "/books/fable/07-the-weaver-who-copied-a-voice",
+    "/books/fable/chapter-08-the-oracle-question": "/books/fable/08-the-well-and-the-kneeling-man",
+    "/books/fable/chapter-09-the-brokers-offer": "/books/fable/09-the-tower-that-rented-the-rain",
+    "/books/fable/chapter-10-the-second-workshop": "/books/fable/21-the-hundred-benches",
+    "/books/fable/chapter-11-the-copy": "/books/fable/10-the-perfect-forgery",
+    "/books/fable/chapter-12-idas-machine": "/books/fable/12-the-teachers-test",
+    "/books/fable/chapter-13-two-kinds-of-listening": "/books/fable/11-the-two-listeners",
+    "/books/fable/chapter-14-what-the-machine-could-not-hold": "/books/fable/13-the-laugh-in-the-jar",
+    "/books/fable/chapter-15-the-question-of-the-ledger": "/books/fable/24-are-they-dangerous",
+    "/books/fable/chapter-16-the-good-future": "/books/fable/25-the-fair-that-everyone-built",
+    "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
-    "/for/founders": "/for/creators",
+    "/downloads/ana-ai-business-kit": "/allies/ana-cancino",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",
-    "/learning-paths": "/learn",
-    "/llm": "/llm-hub",
-    "/LLM": "/llm-hub",
-    "/llms": "/llm-hub",
-    "/model-arena": "/research/model-arena",
-    "/music-school": "/music/learn",
+    "/llm-hub": "/ai-ops/models-2026",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
-    "/toolkit": "/products/creative-ai-toolkit",
-    "/vibe-os": "/products/vibe-os",
     "/workshops/ikigai": "/workshops/ikigai-branding",
     "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
     "/workshops/ikigai/v2": "/workshops/ikigai-branding",

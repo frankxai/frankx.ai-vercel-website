@@ -118,7 +118,7 @@ export const socialHandles = {
   linkedin: SOCIAL_PROFILES.linkedin.username,
   github: SOCIAL_PROFILES.github.username,
   youtube: SOCIAL_PROFILES.youtube.username,
-  instagram: SOCIAL_PROFILES.instagram.username,
+  instagram: SOCIAL_PROFILES.instagram.handle ?? '@frank_riemer',
 } as const
 
 /**
@@ -195,7 +195,7 @@ export const SHARE_URLS = {
  */
 export const CONTACT_INFO = {
   email: {
-    primary: 'hello@frankx.ai',
+    primary: 'frank@frankx.ai',
     label: 'Email FrankX',
     subject: 'Creative AI Collaboration'
   },

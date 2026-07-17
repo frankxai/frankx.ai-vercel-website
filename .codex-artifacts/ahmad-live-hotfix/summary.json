@@ -1,0 +1,230 @@
+[
+  {
+    "page": "friends-ahmad",
+    "viewport": {
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    "status": 200,
+    "shot": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.codex-artifacts\\ahmad-live-hotfix\\friends-ahmad-desktop.png",
+    "errors": [
+      "Failed to execute 'appendChild' on 'Node': Invalid or unexpected token"
+    ],
+    "failed": [],
+    "title": "Ahmad Hashem | Friend of FrankX | FrankX",
+    "headings": [
+      "Ahmad Hashem",
+      "Culture, food, tech, family, and founder discipline.",
+      "Start from the real signals.",
+      "Help him build the system around the startup, not just a page about it.",
+      "A startup rhythm in normal words.",
+      "Use links, not invented lore.",
+      "Shareable now. Search-hidden until Ahmad approves."
+    ],
+    "textLength": 3853,
+    "imageCount": 1,
+    "brokenImages": [
+      {
+        "src": "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0,
+        "alt": "Axi"
+      }
+    ],
+    "imageSrcs": [
+      "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "page": "allies-trinity-ai",
+    "viewport": {
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    "status": 200,
+    "shot": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.codex-artifacts\\ahmad-live-hotfix\\allies-trinity-ai-desktop.png",
+    "errors": [
+      "Failed to execute 'appendChild' on 'Node': Invalid or unexpected token"
+    ],
+    "failed": [],
+    "title": "Trinity AI Founder System | FrankX Allies | FrankX",
+    "headings": [
+      "Trinity AI Founder Creator System",
+      "FrankX download first",
+      "Build from what can be checked.",
+      "Public story becomes private tools, media loops, offers, and proof.",
+      "The intelligence system should make the founder easier to run.",
+      "Four ways this can become business.",
+      "Powerful, but introduced in the right order.",
+      "Public references stay visible."
+    ],
+    "textLength": 5525,
+    "imageCount": 1,
+    "brokenImages": [
+      {
+        "src": "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0,
+        "alt": "Axi"
+      }
+    ],
+    "imageSrcs": [
+      "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "page": "download-ahmad-kit",
+    "viewport": {
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    "status": 200,
+    "shot": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.codex-artifacts\\ahmad-live-hotfix\\download-ahmad-kit-desktop.png",
+    "errors": [
+      "Failed to execute 'appendChild' on 'Node': Invalid or unexpected token"
+    ],
+    "failed": [],
+    "title": "Ahmad Founder Creator Kit | FrankX.AI | FrankX",
+    "headings": [
+      "Ahmad Founder Creator Kit",
+      "Download package",
+      "A working kit, not a concept note.",
+      "The first hour should create momentum.",
+      "It is real now. It is not the full startup platform yet.",
+      "Give him this link first."
+    ],
+    "textLength": 3313,
+    "imageCount": 1,
+    "brokenImages": [
+      {
+        "src": "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0,
+        "alt": "Axi"
+      }
+    ],
+    "imageSrcs": [
+      "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "page": "friends-ahmad",
+    "viewport": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "status": 200,
+    "shot": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.codex-artifacts\\ahmad-live-hotfix\\friends-ahmad-mobile.png",
+    "errors": [
+      "Failed to execute 'appendChild' on 'Node': Invalid or unexpected token"
+    ],
+    "failed": [],
+    "title": "Ahmad Hashem | Friend of FrankX | FrankX",
+    "headings": [
+      "Ahmad Hashem",
+      "Culture, food, tech, family, and founder discipline.",
+      "Start from the real signals.",
+      "Help him build the system around the startup, not just a page about it.",
+      "A startup rhythm in normal words.",
+      "Use links, not invented lore.",
+      "Shareable now. Search-hidden until Ahmad approves."
+    ],
+    "textLength": 3788,
+    "imageCount": 1,
+    "brokenImages": [
+      {
+        "src": "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0,
+        "alt": "Axi"
+      }
+    ],
+    "imageSrcs": [
+      "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "page": "allies-trinity-ai",
+    "viewport": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "status": 200,
+    "shot": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.codex-artifacts\\ahmad-live-hotfix\\allies-trinity-ai-mobile.png",
+    "errors": [
+      "Failed to execute 'appendChild' on 'Node': Invalid or unexpected token"
+    ],
+    "failed": [],
+    "title": "Trinity AI Founder System | FrankX Allies | FrankX",
+    "headings": [
+      "Trinity AI Founder Creator System",
+      "FrankX download first",
+      "Build from what can be checked.",
+      "Public story becomes private tools, media loops, offers, and proof.",
+      "The intelligence system should make the founder easier to run.",
+      "Four ways this can become business.",
+      "Powerful, but introduced in the right order.",
+      "Public references stay visible."
+    ],
+    "textLength": 5080,
+    "imageCount": 1,
+    "brokenImages": [
+      {
+        "src": "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0,
+        "alt": "Axi"
+      }
+    ],
+    "imageSrcs": [
+      "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "page": "download-ahmad-kit",
+    "viewport": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "status": 200,
+    "shot": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\.codex-artifacts\\ahmad-live-hotfix\\download-ahmad-kit-mobile.png",
+    "errors": [
+      "Failed to execute 'appendChild' on 'Node': Invalid or unexpected token"
+    ],
+    "failed": [],
+    "title": "Ahmad Founder Creator Kit | FrankX.AI | FrankX",
+    "headings": [
+      "Ahmad Founder Creator Kit",
+      "Download package",
+      "A working kit, not a concept note.",
+      "The first hour should create momentum.",
+      "It is real now. It is not the full startup platform yet.",
+      "Give him this link first."
+    ],
+    "textLength": 3248,
+    "imageCount": 1,
+    "brokenImages": [
+      {
+        "src": "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0,
+        "alt": "Axi"
+      }
+    ],
+    "imageSrcs": [
+      "https://www.frankx.ai/images/mascot/axi-v3-icon.png?dpl=dpl_9VmJR6917gkvLMgkN37MfVFhiZXi"
+    ],
+    "horizontalOverflow": false
+  }
+]

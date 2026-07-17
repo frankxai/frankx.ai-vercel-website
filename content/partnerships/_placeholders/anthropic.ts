@@ -21,6 +21,7 @@ export const anthropic: Partner = {
   shortName: 'Anthropic',
   tier: 'model-provider',
   status: 'strategic-alignment',
+  lastUpdated: '2026-05-16',
 
   title: 'AI Architect — Claude-native AI CoE practice',
   tagline:
@@ -32,7 +33,7 @@ export const anthropic: Partner = {
 
 The pattern I see: enterprises and architects are moving toward agent-native workflows faster than the methodology to support that move has matured. Reference implementations, opinionated harnesses, and a curriculum that meets architects where they work are scarce. Claude Code is the strongest harness on the market for that shift, and a Claude-native AI CoE methodology — open, multi-cloud, with public reference implementations — is what closes the gap.
 
-That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-native repositories, the AI Architect Academy curriculum with Claude Code at the centre, the workshop Claude branch I already teach, and a 7,000-person EMEA audience across Oracle, NVIDIA, Anthropic, and founder networks.`,
+That is the layer I bring. Former enterprise AI architecture experience, four public Claude-Code-native repositories, the AI Architect Academy curriculum with Claude Code at the centre, and the workshop Claude branch I already teach. This is an independent project, not affiliated with, endorsed by, or sponsored by Oracle.`,
 
   workingReality: [
     {
@@ -54,9 +55,9 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
       },
     },
     {
-      label: 'Oracle EMEA AI CoE practice',
+      label: 'Former enterprise AI architecture practice',
       detail:
-        'AI Architect at the Oracle EMEA AI Center of Excellence. CoE blueprints used by Oracle solution architects across the region — the same six-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) translated into Claude-Code-native workflows.',
+        'AI Architect & Creator. Enterprise AI architecture patterns translated into Claude-Code-native workflows using public knowledge, personal experience, and non-confidential material.',
     },
     {
       label: 'Workshop Claude branch already taught',
@@ -64,9 +65,9 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
         'I teach the Claude branch of the Build First AI Agent workshop — a multi-path format with Vercel AI SDK at the centre and Claude Code, Codex, Gemini, and ADK as branches. The Claude branch lands strongest in EMEA cohorts.',
     },
     {
-      label: 'EMEA audience funnel',
+      label: 'Public distribution surface',
       detail:
-        'Around 7,000 followers across Oracle, NVIDIA, Anthropic, and founder networks. Posts on Claude Code patterns, agent-native workflows, and AI CoE methodology regularly clear 100+ engagements among that audience.',
+        'FrankX publishes Claude Code patterns, agent-native workflows, AI CoE methodology, and open-source reference implementations through the public site, newsletter, GitHub, and LinkedIn.',
     },
   ],
 
@@ -84,7 +85,7 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
       href: 'https://github.com/frankxai/ai-architect-academy',
     },
     {
-      label: 'OCI Claude Code skill pack — published with the Oracle AI Architect org',
+      label: 'OCI Claude Code skill pack — public Oracle/OCI learning resource',
       href: 'https://github.com/oci-ai-architects/claude-code-oci-ai-architect-skills',
     },
     {
@@ -108,9 +109,9 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
       metric: 'Multi-cloud curriculum',
     },
     {
-      title: 'Built-in EMEA audience funnel',
-      body: 'Around 7,000 followers across Oracle, NVIDIA, Anthropic, and founder networks in EMEA. Posts on Claude Code patterns clear 100+ engagements among that audience without paid amplification.',
-      metric: '7,000+ EMEA followers',
+      title: 'Public distribution surface',
+      body: 'FrankX already publishes Claude Code patterns across the public site, GitHub, newsletter, and LinkedIn. The value is a focused, builder-native audience rather than paid amplification.',
+      metric: 'Public builder channels',
     },
     {
       title: 'Workshop Claude branch already in market',
@@ -248,7 +249,7 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
   ],
 
   whatThisIsNot: [
-    'Not an Anthropic-employee-flavored relationship — Frank is an AI Architect at Oracle EMEA, operator-side.',
+    'Not an Anthropic-employee-flavored relationship — Frank is an independent operator with former enterprise AI architecture experience.',
     'Not a model-reseller pitch — there is no API margin or reseller mechanic in scope.',
     'Not exclusive — Frank also ships in Codex, Gemini, and ADK where the workflow fits. The honest position is Claude-Code-native by default, not Claude-Code-only.',
     'Not a deck-building consulting role — every deliverable is a public artifact (repo, curriculum module, workshop cohort, deep-dive).',
@@ -266,13 +267,13 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
     'Claude Code is the harness for every shipped FrankX project — frankx.ai, ACOS, SIS, Library OS, the workshop curriculum.',
     'ACOS, SIS, and Library OS are three Claude-Code-native open-source systems, all public on github.com/frankxai.',
     'The Build First AI Agent workshop teaches Claude as a primary agent path to the EMEA enterprise architect audience.',
-    '7,000+ EMEA AI architect followers across Oracle, NVIDIA, Anthropic, and founder networks already watching Claude-native CoE patterns.',
+    'Public builder channels across the site, newsletter, GitHub, and LinkedIn already carry Claude-native CoE patterns.',
     'A2A protocol guide and the agent-framework comparison content publish Claude as the reasoning-lane benchmark.',
     'Active feedback loop on Claude Code skills and the MCP roadmap from daily delivery use.',
   ],
 
   formalizationAsk:
-    "What's left to formalize. The work is in motion. The audience is engaged. The reference-implementation is public. What remains is the formal program lane — Claude for Work Partner Program entry, attendee credits for the workshop Claude branch, and co-marketing visibility on the surfaces already pointing at you. That is the conversation.",
+    "What's left to formalize. The work is in motion. The reference implementation is public. What remains is the formal program lane — Claude for Work Partner Program entry, attendee credits for the workshop Claude branch, and co-marketing visibility on the surfaces already pointing at you. That is the conversation.",
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/anthropic.svg',
