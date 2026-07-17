@@ -4,7 +4,7 @@ import auctions from '@/data/auctions.json'
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
 const FROM_EMAIL = 'Frank <frank@mail.frankx.ai>'
-const NOTIFY_EMAIL = process.env.OPERATOR_EMAIL || process.env.RESEND_FROM_EMAIL || 'hello@frankx.ai'
+const NOTIFY_EMAIL = process.env.OPERATOR_EMAIL || process.env.RESEND_FROM_EMAIL || 'frank@frankx.ai'
 
 export async function POST(request: NextRequest) {
   try {
