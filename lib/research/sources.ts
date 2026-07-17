@@ -408,7 +408,7 @@ export const domainSources: Record<string, ResearchSource[]> = {
   'agentic-life-architecture': [
     { name: 'FrankX', title: 'Agentic Operating System Standard (public)', url: 'https://github.com/frankxai/agentic-operating-system-standard', type: 'official' },
     { name: 'FrankX', title: 'Agentic Architecture Field Guide', url: 'https://github.com/frankxai/agentic-architecture-field-guide', type: 'official' },
-    { name: 'FrankX', title: 'Agentic Life OS', url: 'https://github.com/frankxai/agentic-life-os', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Creator Skills', url: 'https://github.com/frankxai/agentic-creator-skills', type: 'official' },
     { name: 'FrankX', title: 'Agentic Creator OS (ACOS)', url: 'https://github.com/frankxai/agentic-creator-os', type: 'official' },
     { name: 'FrankX', title: 'Starlight Intelligence System', url: 'https://github.com/frankxai/Starlight-Intelligence-System', type: 'official' },
     { name: 'FrankX', title: 'Starlight Memory — sovereign provider contract', url: 'https://github.com/frankxai/starlight-memory', type: 'official' },
@@ -485,7 +485,7 @@ export const domainSources: Record<string, ResearchSource[]> = {
 
   'agentic-life-observatory': [
     { name: 'FrankX', title: 'Agentic Operating System Standard', url: 'https://github.com/frankxai/agentic-operating-system-standard', type: 'official' },
-    { name: 'FrankX', title: 'Agentic Life OS', url: 'https://github.com/frankxai/agentic-life-os', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Architecture Field Guide', url: 'https://github.com/frankxai/agentic-architecture-field-guide', type: 'official' },
     { name: 'FrankX', title: 'Starlight Memory', url: 'https://github.com/frankxai/starlight-memory', type: 'official' },
     { name: 'FrankX', title: 'Starlight Evals', url: 'https://github.com/frankxai/starlight-evals', type: 'official' },
     { name: 'Nous Research', title: 'Hermes Agent Documentation', url: 'https://hermes-agent.nousresearch.com/docs', type: 'official' },
