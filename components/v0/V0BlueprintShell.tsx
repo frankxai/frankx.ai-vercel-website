@@ -19,6 +19,8 @@ import {
   originals,
   type Spectrum,
 } from '@/content/v0/blueprints'
+import V0KnowledgeGraph from './V0KnowledgeGraph'
+import { teardowns } from '@/content/v0/teardowns'
 
 const spectrumRing: Record<Spectrum, string> = {
   tech: 'focus-visible:ring-emerald-400/60',
@@ -320,6 +322,9 @@ export default function V0BlueprintShell() {
                 </div>
               ))}
             </div>
+            <div className="mb-10">
+              <V0KnowledgeGraph />
+            </div>
             <div className="grid gap-6 md:grid-cols-3">
               {intelligencePillars.map((p) => (
                 <div
@@ -330,6 +335,52 @@ export default function V0BlueprintShell() {
                   <p className="mt-2 text-sm leading-relaxed text-white/50">{p.note}</p>
                 </div>
               ))}
+            </div>
+
+            {/* Architecture teardowns */}
+            <div className="mt-10">
+              <h3 className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-white/40">
+                Architecture teardowns
+              </h3>
+              <div className="divide-y divide-white/5 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
+                {teardowns.map((t) => (
+                  <details key={t.id} className="group px-5 py-4">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
+                      <span className="flex items-center gap-2.5">
+                        <span
+                          className={`h-2 w-2 rounded-full ${t.spectrum === 'tech' ? 'bg-emerald-400' : 'bg-amber-400'}`}
+                        />
+                        <span className="text-sm font-semibold text-white">{t.archetype}</span>
+                      </span>
+                      <span className="hidden max-w-[45%] truncate text-xs text-white/30 sm:block">
+                        {t.shape}
+                      </span>
+                    </summary>
+                    <div className="mt-4 grid gap-4 pl-[18px] sm:grid-cols-2">
+                      <div>
+                        <div className="text-[11px] uppercase tracking-wide text-white/35">Shape</div>
+                        <p className="mt-1 text-xs leading-relaxed text-white/55">{t.shape}</p>
+                        <div className="mt-3 text-[11px] uppercase tracking-wide text-white/35">
+                          In the graph
+                        </div>
+                        <p className="mt-1 text-xs text-white/55">{t.examples.join(' · ')}</p>
+                      </div>
+                      <div>
+                        <div className="text-[11px] uppercase tracking-wide text-white/35">
+                          Upgrade vectors · Next 16
+                        </div>
+                        <ul className="mt-1 space-y-1">
+                          {t.upgrades.map((u, i) => (
+                            <li key={i} className="text-xs leading-relaxed text-white/55">
+                              — {u}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </details>
+                ))}
+              </div>
             </div>
           </div>
         </section>
