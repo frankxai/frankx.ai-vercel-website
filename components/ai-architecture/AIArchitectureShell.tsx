@@ -20,6 +20,7 @@ import {
   Zap,
   Globe,
   Lock,
+  Clapperboard,
 } from 'lucide-react'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
@@ -82,6 +83,7 @@ const categoryIcons: Record<PrototypeCategory, typeof Shield> = {
   'security-governance': Shield,
   'cost-optimization': Sparkles,
   'observability': Play,
+  'creator-media': Clapperboard,
 }
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string; glow: string }> = {

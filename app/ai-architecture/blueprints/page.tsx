@@ -17,6 +17,7 @@ import {
   Lock,
   BookOpen,
   ChevronLeft,
+  Clapperboard,
 } from 'lucide-react'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
@@ -37,6 +38,7 @@ const categoryIcons: Record<PrototypeCategory, typeof Shield> = {
   'security-governance': Lock,
   'cost-optimization': DollarSign,
   'observability': Activity,
+  'creator-media': Clapperboard,
 }
 
 // Difficulty badge colors

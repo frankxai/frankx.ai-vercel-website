@@ -20,6 +20,7 @@ export type PrototypeCategory =
   | 'security-governance'
   | 'cost-optimization'
   | 'observability'
+  | 'creator-media'
 
 export type CloudProvider = 'aws' | 'gcp' | 'azure' | 'oci' | 'multi-cloud'
 
@@ -394,6 +395,13 @@ export const CATEGORY_META: Record<PrototypeCategory, CategoryMeta> = {
     description: 'Strategies for reducing AI infrastructure and API costs',
     icon: 'DollarSign',
     color: 'green',
+  },
+  'creator-media': {
+    id: 'creator-media',
+    name: 'Creator & Media',
+    description: 'Generative image, video, and audio pipelines — production architectures for multimodal content creation',
+    icon: 'Clapperboard',
+    color: 'fuchsia',
   },
   'observability': {
     id: 'observability',
