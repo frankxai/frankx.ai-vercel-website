@@ -1,5 +1,7 @@
 # FrankX Blog Premium Image Upgrade Plan
 
+> **Status — superseded for new art direction (2026-07-17):** This is a historic execution plan. Its universal deep-void/geometric/no-people/no-text header DNA is no longer active. New hero and social work must follow [`data/blog-ops/hero-reboot/HERO_ART_DIRECTION_SYSTEM.md`](../data/blog-ops/hero-reboot/HERO_ART_DIRECTION_SYSTEM.md). Existing inventory and provenance sections remain useful; no historic assets are implicitly approved by this annotation.
+
 **Goal**: Replace all bad SVG headers, old low-quality PNGs, JPGs with premium 16:9 cinematic heroes, plus infographics and social cards for key posts.
 
 **Current Status (as of 2026-06-23)**:
@@ -76,7 +78,7 @@ Socials for 10+ featured.
 **Vision**: Every blog post has a top-notch cinematic 16/9 premium header. Complex technical posts have dedicated infographics (technical, legible, brand-locked). Featured and high-value posts have platform-optimized social cards. Featured carousels draw from the new library. All wired with exact dimensions, safe overlays, taste.md restraint + design.md tokens. No double-production via VIS reuse audit. Full visual catalog (this HTML) is the scrollable single source of truth with direct image embeds, reasoning, interconnections, and agent credits.
 
 **Scope & Taxonomy (Dimensions & Types)**:
-- **Headers (every post, ~190)**: Strictly 16/9 (1920x1080 or 2560x1440 source). Enforced in code: `aspect-[16/9] overflow-hidden rounded-3xl` + `object-cover` (BlogCard.tsx:74, HeroImage.tsx:28, BlogPageClient). Top 10-15% + bottom 20%+ safe zones for badges/gradients/text. Prompt DNA: deep void #0a0a0b, architectural/geometric motifs, emerald #10b981 + cyan #06b6d4 accents (tech) or amber soul where fitting, subtle film grain, cinematic lighting, no people/stock, high contrast but restrained, per taste.md (Vercel/Linear/Studio Ghibli stills reference) and design.md.
+- **Headers (every post, ~190):** Strictly 16/9 (1920x1080 or 2560x1440 source). Enforced in code: `aspect-[16/9] overflow-hidden rounded-3xl` + `object-cover` (BlogCard.tsx:74, HeroImage.tsx:28, BlogPageClient). Top 10-15% + bottom 20%+ safe zones for badges/gradients/text. **Historic prompt DNA below is retired:** do not apply a universal deep-void/geometric/no-person formula. New briefs use the reader-specific, three-territory contract in `data/blog-ops/hero-reboot/HERO_ART_DIRECTION_SYSTEM.md`.
 - **Infographics (25-35 targeted)**: Complex pillars only (ACOS full family, agent-family/swarm/multi-agent, model routing + AEO, best-ai-tools series, production patterns/observability, comparisons, creator OS layers, prompt-hub etc.). Preferred 16/9 wide for blog consistency or 4:3 detailed. Clean labels, FrankX palette, hierarchy, no clutter. Embed in MDX body + possibly header variant. VIS check first.
 - **Social Cards (25-35)**: 1.91:1 (1200x630) primary for LinkedIn/X/Threads/newsletter. Square (1080x1080) variants for IG. Title + key visual + subtle brand mark. Reuse header crop + overlay when perfect.
 - **Carousels / Featured**: PremiumVisualCarousel + blog index hero grid pull from v* library. Multiple 16/9 variants per major topic ok for motion.

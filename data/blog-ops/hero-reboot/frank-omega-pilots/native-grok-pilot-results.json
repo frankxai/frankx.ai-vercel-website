@@ -1,0 +1,17 @@
+{
+  "batchId": "frank-omega-editorial-header-pilots-2026-07-17",
+  "renderedAt": "2026-07-17T12:55:46.938371+00:00",
+  "mode": "sequential-native-grok-reference-locked",
+  "results": [
+    {
+      "id": "04-small-swarm-real-work",
+      "article": "Building an Agentic Creator OS",
+      "territory": "editorial-point-of-view",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\worktrees\\frankx-hero-reboot-20260717\\data\\blog-ops\\hero-reboot\\frank-omega-pilots\\assets\\04-small-swarm-real-work.png",
+      "bytes": 921288,
+      "exitCode": 1,
+      "tail": "I'll inspect the FRANK-\u03a9 reference image and the imagine skill, then generate one 16:9 pilot frame with identity locked to that reference.Reference locked: gunmetal Pixar-chibi FRANK-\u03a9, cyan eyes, violet core, circular earpods. Generating one 16:9 scene via `image_edit` with that reference as identity truth.`image_edit` failed on the API; retrying with `image_gen` and the inspected identity locked into the prompt.Copying the render to the exact pilot path as PNG, then verifying composition against the brief.Verifying the saved pilot against the brief.Composition is solid; FRANK-\u03a9 face drifted slightly soft. Retrying identity lock with `image_edit` using the official reference plus this pilot.\n\nMax turns reached\nError: max turns reached\n"
+    }
+  ]
+}

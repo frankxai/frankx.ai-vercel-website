@@ -1,5 +1,7 @@
 # Antigravity (Agy) Handover — FrankX Blog Premium Visuals Phase 2
 
+> **Status — superseded for new art direction (2026-07-17):** This historic handover must not be used as an active prompting recipe. In particular, its blanket "no people" and generic prompt DNA are retired. Follow [`data/blog-ops/hero-reboot/HERO_ART_DIRECTION_SYSTEM.md`](../data/blog-ops/hero-reboot/HERO_ART_DIRECTION_SYSTEM.md) before any new hero, OG, social, or carousel production.
+
 **Context**: This is Phase 2 of the god-mode blog visual upgrade. Goal: top-notch website state with premium cinematic assets for all 190 blog posts + infographics for best complex topics + social cards + carousels.
 
 **Split**:
@@ -26,14 +28,9 @@
 - Social: 1.91:1 (1200x630) primary, square 1:1 variants.
 - Code to verify: components/blog/BlogCard.tsx, components/ui/HeroImage.tsx, app/blog/[slug]/page.tsx, app/blog/BlogPageClient.tsx.
 
-**Prompt DNA / Taste for All Generations** (from taste.md + design.md + plan):
-- Deep void #0a0a0b background.
-- Architectural/geometric AI motifs, filmic grain, precise technical elegance.
-- Emerald #10b981 + cyan #06b6d4 (tech) or warm amber (soul) accents.
-- Generous safe zones top/bottom for UI.
-- No people, no stock, no slop, no decorative gradients without purpose, no walls of cards.
-- References: Vercel restraint, Linear density, Studio Ghibli light/composition, high-end cinematic product stills.
-- For infogs: clean hierarchy, readable labels, brand-locked.
+**Historic Prompt DNA (retired; do not use for new work):**
+
+The previous fixed prompt recipe is preserved only to explain existing assets. For every new hero, OG/social card, infographic, or carousel, first read `data/blog-ops/hero-reboot/HERO_ART_DIRECTION_SYSTEM.md` and complete its audience/design card. Use human presence when it carries a truthful role; use deterministic typography when clarity needs words; use visual evidence instead of generic physical metaphors.
 
 **Execution Workflow (repeat for every asset)**:
 1. Pick from catalog/plan remaining list. Check VIS (public/images/acos + lib/visual-intelligence) first — reuse/reference when it fits.

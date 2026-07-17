@@ -1,0 +1,38 @@
+{
+  "batchId": "frankx-hero-reboot-pilots-2026-07-17",
+  "status": "approved-for-draft-render-only",
+  "purpose": "Three controlled source-frame pilots for the FrankX Hero Reboot. They are exploratory evidence, not approved web or social assets. No article/frontmatter/deploy changes are authorized.",
+  "constraints": {
+    "generator": "native Grok CLI /imagine only",
+    "format": "16:9 source-frame draft",
+    "noGeneratedTypography": true,
+    "postProduction": "Exact title, category, proof point, diagrams, and UI are added deterministically after source-frame approval.",
+    "forbidden": ["readable text", "letters", "logos", "fake dashboards", "floating holograms", "generic glowing brains", "stock-worker laptop poses", "purple gradient soup", "generic luxury product stills"]
+  },
+  "jobs": [
+    {
+      "id": "01-acos-studio-that-remembers",
+      "slug": "agentic-creator-os-complete-guide",
+      "territory": "studio-documentary",
+      "reader": "Independent creator frustrated by fragmented prompts, tools, and lost context.",
+      "story": "A creator stops re-opening empty chats and begins working inside a studio that remembers how their work is made.",
+      "prompt": "Original editorial photography for a FrankX article about a creator operating system, not a technology advertisement. In an intimate mixed music-and-software studio at 1 AM, show one independent creator actively making a decision in profile, not posing or looking at the camera. The room carries a precise before-and-after story without a graphic split line: in the darker left foreground, a shallow tray holds only unmarked paper fragments, closed blank cards, and disconnected but plausible tools; on the warmer right, the creator works within one composed session with a guitar, audio interface, an unmarked notebook opened to blank ruled paper, and a purposeful desk arrangement. The change is expressed through spatial order, attention, and light—not a glowing sci-fi wire or a pile of clutter. Use practical amber light balanced by restrained cyan/emerald reflections, tactile wood and metal, premium 35mm editorial composition, an intentional quiet region in the upper-left for a future deterministic title treatment, and a focal human/workspace that remains clear at thumbnail size. Absolutely no readable text, handwritten marks, letters, symbols, screens, visible computer displays, wall posters, exit signs, logos, fake UI, dashboards, robots, holograms, generic laptop pose, brain imagery, purple gradient, or luxury product catalogue styling. 16:9 landscape."
+    },
+    {
+      "id": "02-production-demo-to-responsibility",
+      "slug": "production-agentic-ai-systems",
+      "territory": "evidence-in-context",
+      "reader": "Technical leader deciding whether an agentic initiative belongs in production.",
+      "story": "A prototype can look perfect at 2 AM; production begins when someone must defend its safety, cost, failure behaviour, and human checkpoints.",
+      "prompt": "Original cinematic editorial photograph for a serious FrankX AI architecture article, not a hardware laboratory or technology advertisement. In a sparse late-night architecture review room, make one accountable decision the dominant subject: a single experienced technical architect, seen three-quarter and close enough to read their concentration, pauses at a large physical systems-review table. On the table and behind them, an unlabeled material architecture model tells one clear contrast without written diagrams: a small bright but fragile experimental path terminates at an obvious human checkpoint, while a calmer, ordered production path has visible boundaries, testing stages, and redundancy. Use blank geometric cards, neutral material blocks, cables only where necessary, and one intentional amber stop/approval object; all exact labels and framework content will be added deterministically later. No shelves of electronics, no PCB racks, no fake control room, no wide observational scene. Deep navy, graphite, restrained emerald/cyan accents, tactile light, original high-end magazine composition, a quiet upper-left region for later deterministic title typography. The architect, the decision boundary, and the human checkpoint must remain clear at thumbnail size. Absolutely no readable text, letters, markings, whiteboard scribbles, screens, dashboards, logos, holograms, robots, glowing brain, superhero-engineer pose, purple gradient, or glossy product still life. 16:9 landscape."
+    },
+    {
+      "id": "03-golden-age-one-person-studio-scale",
+      "slug": "golden-age-of-creators-why-now-is-different",
+      "territory": "editorial-point-of-view",
+      "reader": "Ambitious independent creator deciding whether to build a long-term creative system.",
+      "story": "One creator leaves a small night studio with production capacity and distribution reach that once belonged to an institution.",
+      "prompt": "Original magazine-cover editorial photograph for a FrankX essay about why creators now have studio-scale capability, not a generic maker portrait, gritty documentary, or motivational advertisement. Preserve an asymmetrical cover composition: a dignified independent creator works in profile at the threshold between a modest, impeccably controlled late-night studio and a quiet early-dawn horizon of sky and distant unmarked architecture. The actual action must be recognisably creative production: the creator is adjusting one unbranded compact audio workstation beside a clearly recognisable guitar or small recording microphone, with one carefully made work surface and no loose papers. This is a compact, tidy system of real craft—not equipment porn, a fake UI, or luxury fantasy. The frame makes intimate individual work meet a wider possible world; scale comes from composition, human focus, and the disciplined compact studio. Warm amber dawn meets restrained deep navy and cyan, rich filmic texture, an intentional quiet dark/sky region on the left for deterministic title typography, strong portrait-scale focal human and recognisable instrument/workstation at thumbnail size. Absolutely no readable text, letters, signs, logos, diagrams, notes, screens, fake UI, holograms, robots, raised-hands success pose, purple gradient, generic AI symbols, exposed-wire clutter, or isolated decorative object. 16:9 landscape."
+    }
+  ]
+}

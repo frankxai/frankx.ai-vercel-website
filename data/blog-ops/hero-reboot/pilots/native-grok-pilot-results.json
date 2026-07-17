@@ -1,0 +1,17 @@
+{
+  "batchId": "frankx-hero-reboot-pilots-2026-07-17",
+  "renderedAt": "2026-07-17T12:13:27.826032+00:00",
+  "mode": "sequential-native-grok",
+  "results": [
+    {
+      "id": "03-golden-age-one-person-studio-scale",
+      "slug": "golden-age-of-creators-why-now-is-different",
+      "territory": "editorial-point-of-view",
+      "status": "rendered",
+      "output": "C:\\Users\\frank\\starlight\\worktrees\\frankx-hero-reboot-20260717\\data\\blog-ops\\hero-reboot\\pilots\\assets\\03-golden-age-one-person-studio-scale.png",
+      "bytes": 642070,
+      "exitCode": 0,
+      "tail": "Generating the 16:9 editorial pilot frame, then placing the PNG only at the specified path.Converting the generated frame to PNG and writing only the target asset path.**Done.** One 16:9 pilot PNG is at:\n\n`C:\\Users\\frank\\starlight\\worktrees\\frankx-hero-reboot-20260717\\data\\blog-ops\\hero-reboot\\pilots\\assets\\03-golden-age-one-person-studio-scale.png`\n\n(~627 KB, valid PNG). Nothing else was modified.\n\n"
+    }
+  ]
+}
