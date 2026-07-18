@@ -7,7 +7,12 @@
     "https://v0.app/templates/dashboards",
     "https://v0.app/templates/agents",
     "https://v0.app/templates/blog-and-portfolio",
-    "https://v0-premium-templates.vercel.app/"
+    "https://v0-premium-templates.vercel.app/",
+    "https://v0.app/templates/login-and-sign-up",
+    "https://v0.app/templates/animations",
+    "https://v0.app/templates/apps-and-games",
+    "https://v0.app/templates/blog-and-portfolio (wave 2 re-fetch)",
+    "https://vercel.com/templates"
   ],
   "schemaNote": "No knowledge-graph-schema.md existed in strategy/ at curation time. Field set and edge types below were defined per the task brief and documented in README.md.",
   "nodes": [
@@ -17,12 +22,30 @@
       "author": "shadcn",
       "url": "https://v0.app/templates/XFP4VKnRE3t",
       "category": "AI apps",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Vercel AI SDK"],
-      "patterns": ["chat interface", "streaming message list", "system prompt config panel"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Vercel AI SDK"
+      ],
+      "patterns": [
+        "chat interface",
+        "streaming message list",
+        "system prompt config panel"
+      ],
       "designSignals": "Clean reference implementation by shadcn himself — minimal chrome, message bubbles built directly from shadcn/ui primitives.",
       "ratingSignal": "10.2K duplicates / 91 likes (v0.app official AI gallery)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Upgrade to AI SDK 5 UIMessage streaming parts", "Add multi-provider routing via Vercel AI Gateway", "Add persistent chat history (Postgres/Supabase)", "Add tool-calling UI for function results"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Upgrade to AI SDK 5 UIMessage streaming parts",
+        "Add multi-provider routing via Vercel AI Gateway",
+        "Add persistent chat history (Postgres/Supabase)",
+        "Add tool-calling UI for function results"
+      ]
     },
     {
       "id": "image-generation-playground",
@@ -30,12 +53,30 @@
       "author": "estebansuarez",
       "url": "https://v0.app/templates/hkRpZoLOrJC",
       "category": "AI apps",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Vercel AI SDK", "AI Gateway"],
-      "patterns": ["prompt-to-image playground", "gallery grid with generation history", "model/style selector"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Vercel AI SDK",
+        "AI Gateway"
+      ],
+      "patterns": [
+        "prompt-to-image playground",
+        "gallery grid with generation history",
+        "model/style selector"
+      ],
       "designSignals": "Playground-style split panel (prompt controls left, generated gallery right) with generous negative space.",
       "ratingSignal": "6.3K duplicates / 697 likes (v0.app official AI gallery)",
-      "domainFit": ["creator-os", "ai-architect"],
-      "upgradeVectors": ["Swap in Nano Banana Pro / gpt-image-2 via AI Gateway", "Add generation queue + job status polling", "Add rights/usage metadata per generated asset"]
+      "domainFit": [
+        "creator-os",
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Swap in Nano Banana Pro / gpt-image-2 via AI Gateway",
+        "Add generation queue + job status polling",
+        "Add rights/usage metadata per generated asset"
+      ]
     },
     {
       "id": "ai-agent-builder",
@@ -43,12 +84,28 @@
       "author": "mleiter",
       "url": "https://v0.app/templates/vYDG35nW3Kv",
       "category": "AI agents",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["visual workflow canvas", "node-based agent composer", "config drawer"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "visual workflow canvas",
+        "node-based agent composer",
+        "config drawer"
+      ],
       "designSignals": "Node/flow-style builder canvas implying visual agent composition.",
       "ratingSignal": "1K duplicates / 341 likes (v0.app official AI gallery)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Wire to a real agent runtime (LangGraph/Mastra) instead of a static canvas", "Add versioned agent configs", "Add an eval/test-run harness per agent"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Wire to a real agent runtime (LangGraph/Mastra) instead of a static canvas",
+        "Add versioned agent configs",
+        "Add an eval/test-run harness per agent"
+      ]
     },
     {
       "id": "v0-agent-builder",
@@ -56,12 +113,29 @@
       "author": "estebansuarez",
       "url": "https://v0.app/templates/GwWzatIJKwl",
       "category": "AI agents",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "v0 Platform API"],
-      "patterns": ["agent scaffolding UI", "platform API integration", "form-to-agent generator"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "v0 Platform API"
+      ],
+      "patterns": [
+        "agent scaffolding UI",
+        "platform API integration",
+        "form-to-agent generator"
+      ],
       "designSignals": "Meta template — uses v0's own Platform API as the agent substrate, clean dev-tool aesthetic.",
       "ratingSignal": "245 duplicates / 78 likes (v0.app official Agents gallery)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Extend with live v0 Platform API calls for real generation", "Add auth-gated multi-tenant agent library", "Add usage/cost metering per agent"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Extend with live v0 Platform API calls for real generation",
+        "Add auth-gated multi-tenant agent library",
+        "Add usage/cost metering per agent"
+      ]
     },
     {
       "id": "ai-workflow-canvas",
@@ -69,12 +143,28 @@
       "author": "nikhilsbuilds",
       "url": "https://v0.app/templates/Uwmr1erx4dK",
       "category": "AI agents",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["drag-and-drop workflow canvas", "node connectors", "run/inspect panel"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "drag-and-drop workflow canvas",
+        "node connectors",
+        "run/inspect panel"
+      ],
       "designSignals": "Canvas-first orchestration UI with strong information density but no clutter.",
       "ratingSignal": "370 duplicates / 167 likes (v0.app official Agents gallery)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Back it with a real DAG execution engine (Temporal/Inngest)", "Add real-time run tracing", "Add a reusable workflow templates library"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Back it with a real DAG execution engine (Temporal/Inngest)",
+        "Add real-time run tracing",
+        "Add a reusable workflow templates library"
+      ]
     },
     {
       "id": "ai-ad-creator",
@@ -82,12 +172,28 @@
       "author": "estebansuarez",
       "url": "https://v0.app/templates/7JdqEwKmtIG",
       "category": "AI agents",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["brief-to-asset generator", "preview + export panel", "brand kit input"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "brief-to-asset generator",
+        "preview + export panel",
+        "brand kit input"
+      ],
       "designSignals": "Marketing-tool chrome — brief form and generated ad preview side by side.",
       "ratingSignal": "423 duplicates / 116 likes (v0.app official Agents gallery)",
-      "domainFit": ["creator-os", "ai-coe"],
-      "upgradeVectors": ["Connect to Higgsfield/Nano Banana 2 for real ad generation", "Add multi-format export (per-platform social sizes)", "Add A/B variant scoring"]
+      "domainFit": [
+        "creator-os",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Connect to Higgsfield/Nano Banana 2 for real ad generation",
+        "Add multi-format export (per-platform social sizes)",
+        "Add A/B variant scoring"
+      ]
     },
     {
       "id": "jarvis-agentic-ai-platform",
@@ -95,12 +201,28 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/JUnlUjRjMRp",
       "category": "AI agents",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["mission-control dashboard", "particle/ambient background animation", "agent status roster"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "mission-control dashboard",
+        "particle/ambient background animation",
+        "agent status roster"
+      ],
       "designSignals": "Mission-control dark theme with particle animation backdrop; strong sci-fi authority framing for autonomous agents.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Replace decorative particles with real telemetry-driven visualization", "Add a real agent execution log stream", "Add human-in-the-loop approval gates"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Replace decorative particles with real telemetry-driven visualization",
+        "Add a real agent execution log stream",
+        "Add human-in-the-loop approval gates"
+      ]
     },
     {
       "id": "modern-ai-chatbot-interface",
@@ -108,12 +230,28 @@
       "author": "ikaidesign",
       "url": "https://v0.app/templates/GzHBHQAiS2F",
       "category": "AI apps",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["chat interface", "sidebar conversation list", "typing indicator states"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "chat interface",
+        "sidebar conversation list",
+        "typing indicator states"
+      ],
       "designSignals": "Polished consumer-chat aesthetic with rounded bubbles and soft shadows.",
       "ratingSignal": "2.4K duplicates / 426 likes (v0.app official AI gallery)",
-      "domainFit": ["creator-os", "ai-architect"],
-      "upgradeVectors": ["Add voice input/output (ElevenLabs)", "Add RAG citations panel", "Add a multi-model switcher"]
+      "domainFit": [
+        "creator-os",
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Add voice input/output (ElevenLabs)",
+        "Add RAG citations panel",
+        "Add a multi-model switcher"
+      ]
     },
     {
       "id": "nexus-saas-ai-platform",
@@ -121,12 +259,28 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/C8lIjeSzBZr",
       "category": "SaaS",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["hero + feature grid", "pricing table", "logo cloud social proof"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "hero + feature grid",
+        "pricing table",
+        "logo cloud social proof"
+      ],
       "designSignals": "Enterprise SaaS marketing site with automation-platform positioning.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Wire real pricing/billing via Stripe", "Add a usage-based metering UI", "Add a live product demo embed"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Wire real pricing/billing via Stripe",
+        "Add a usage-based metering UI",
+        "Add a live product demo embed"
+      ]
     },
     {
       "id": "devflow-saas-website",
@@ -134,12 +288,27 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/g41dpdrYIwY",
       "category": "SaaS",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["dev-tool hero with code block", "feature comparison table", "docs CTA"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "dev-tool hero with code block",
+        "feature comparison table",
+        "docs CTA"
+      ],
       "designSignals": "Developer-tool marketing site with a code-snippet hero and dark-mode default.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["ai-architect"],
-      "upgradeVectors": ["Add a live interactive code sandbox", "Add a real changelog/RSS feed", "Add docs search (Algolia/Orama)"]
+      "domainFit": [
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Add a live interactive code sandbox",
+        "Add a real changelog/RSS feed",
+        "Add docs search (Algolia/Orama)"
+      ]
     },
     {
       "id": "optimus-ai-platform",
@@ -147,12 +316,28 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/LHv4frpA7Us",
       "category": "SaaS",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["hero + feature grid", "testimonial carousel", "CTA banner"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "hero + feature grid",
+        "testimonial carousel",
+        "CTA banner"
+      ],
       "designSignals": "Velocity-focused enterprise AI landing narrative emphasizing global infrastructure and security.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Add real product screenshots via Figma/Playwright capture", "Add an interactive ROI calculator", "Wire analytics (PostHog)"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Add real product screenshots via Figma/Playwright capture",
+        "Add an interactive ROI calculator",
+        "Wire analytics (PostHog)"
+      ]
     },
     {
       "id": "financial-dashboard-kokonut",
@@ -160,12 +345,29 @@
       "author": "kokonut",
       "url": "https://v0.app/templates/DuidKNEmCKf",
       "category": "Dashboards",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["sidebar admin layout", "KPI card row", "data table with filters", "chart panel"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "sidebar admin layout",
+        "KPI card row",
+        "data table with filters",
+        "chart panel"
+      ],
       "designSignals": "Most-forked dashboard surveyed in this catalog — dense data-table + chart combo with high information trust.",
       "ratingSignal": "28.1K duplicates / 677 likes (v0.app official Dashboards gallery — highest fork count observed in this survey)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Wire to real financial data via Plaid/Stripe", "Add row-level RBAC", "Add export-to-PDF reporting"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Wire to real financial data via Plaid/Stripe",
+        "Add row-level RBAC",
+        "Add export-to-PDF reporting"
+      ]
     },
     {
       "id": "shadcn-dashboard",
@@ -173,12 +375,29 @@
       "author": "estebansuarez",
       "url": "https://v0.app/templates/Pf7lw1nypu5",
       "category": "Dashboards",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["sidebar admin layout", "breadcrumb nav", "data table", "command palette"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "sidebar admin layout",
+        "breadcrumb nav",
+        "data table",
+        "command palette"
+      ],
       "designSignals": "Canonical shadcn/ui reference dashboard — the layout most other admin templates in this survey riff on.",
       "ratingSignal": "4.1K duplicates / 526 likes (v0.app official Dashboards gallery)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Add real auth/session (Auth.js/Clerk)", "Add server-driven data via tRPC", "Add dark/light theme persistence"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Add real auth/session (Auth.js/Clerk)",
+        "Add server-driven data via tRPC",
+        "Add dark/light theme persistence"
+      ]
     },
     {
       "id": "cyberpunk-dashboard",
@@ -186,12 +405,28 @@
       "author": "emmartinzok",
       "url": "https://v0.app/templates/v9Hg1dBb5o3",
       "category": "Dashboards",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["glow/neon accent system", "sidebar admin layout", "gauge/meter widgets"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "glow/neon accent system",
+        "sidebar admin layout",
+        "gauge/meter widgets"
+      ],
       "designSignals": "High-saturation neon dark theme prioritizing visual identity over data density — best for brand-forward ops consoles.",
       "ratingSignal": "14.9K duplicates / 680 likes (v0.app official Dashboards gallery)",
-      "domainFit": ["creator-os", "music"],
-      "upgradeVectors": ["Tone neon accents for WCAG contrast compliance", "Add a reduced-motion fallback for glow animations", "Wire real-time metrics via WebSocket"]
+      "domainFit": [
+        "creator-os",
+        "music"
+      ],
+      "upgradeVectors": [
+        "Tone neon accents for WCAG contrast compliance",
+        "Add a reduced-motion fallback for glow animations",
+        "Wire real-time metrics via WebSocket"
+      ]
     },
     {
       "id": "tasko-task-management",
@@ -199,12 +434,28 @@
       "author": "jessin",
       "url": "https://v0.app/templates/SGGKgsJdrxG",
       "category": "Dashboards",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["kanban board", "sidebar admin layout", "task detail drawer"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "kanban board",
+        "sidebar admin layout",
+        "task detail drawer"
+      ],
       "designSignals": "Clean kanban-first project management surface with a calm neutral palette.",
       "ratingSignal": "1.6K duplicates / 317 likes (v0.app official Dashboards gallery)",
-      "domainFit": ["ai-coe", "creator-os"],
-      "upgradeVectors": ["Add real drag-drop persistence (dnd-kit + DB)", "Add an activity feed", "Add an AI task-suggestion sidebar"]
+      "domainFit": [
+        "ai-coe",
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add real drag-drop persistence (dnd-kit + DB)",
+        "Add an activity feed",
+        "Add an AI task-suggestion sidebar"
+      ]
     },
     {
       "id": "pulse-engineering-metrics",
@@ -212,12 +463,28 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/3hZwaLtyRbc",
       "category": "Dashboards",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["incident timeline", "status badge system", "sidebar admin layout"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "incident timeline",
+        "status badge system",
+        "sidebar admin layout"
+      ],
       "designSignals": "DevOps console aesthetic — status badges and incident timeline, dense but legible.",
       "ratingSignal": "339 duplicates / 101 likes (v0.app official Dashboards gallery)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Wire to real observability (Datadog/Grafana) APIs", "Add an on-call escalation flow", "Add SLA burn-rate charts"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Wire to real observability (Datadog/Grafana) APIs",
+        "Add an on-call escalation flow",
+        "Add SLA burn-rate charts"
+      ]
     },
     {
       "id": "finbro-dashboard",
@@ -225,12 +492,27 @@
       "author": "webrenew",
       "url": "https://v0.app/templates/shuOX59VNOv",
       "category": "Dashboards",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["KPI card row", "sidebar admin layout", "transaction table"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "KPI card row",
+        "sidebar admin layout",
+        "transaction table"
+      ],
       "designSignals": "Fintech admin console with a card-based summary layout.",
       "ratingSignal": "999 duplicates / 231 likes (v0.app official Dashboards gallery)",
-      "domainFit": ["ai-architect"],
-      "upgradeVectors": ["Add a real ledger data source", "Add anomaly-detection alerts", "Add multi-currency support"]
+      "domainFit": [
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Add a real ledger data source",
+        "Add anomaly-detection alerts",
+        "Add multi-currency support"
+      ]
     },
     {
       "id": "marketing-campaign-management",
@@ -238,12 +520,28 @@
       "author": "rajoninternet",
       "url": "https://v0.app/templates/8OqrnMC1MlX",
       "category": "Dashboards (marketing ops)",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["campaign calendar view", "budget/spend tracker", "sidebar admin layout"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "campaign calendar view",
+        "budget/spend tracker",
+        "sidebar admin layout"
+      ],
       "designSignals": "Campaign-ops console blending a calendar and a budget-tracking layout.",
       "ratingSignal": "212 duplicates / 61 likes (v0.app official Dashboards gallery)",
-      "domainFit": ["ai-coe", "creator-os"],
-      "upgradeVectors": ["Wire real ad-platform APIs (Meta/Google Ads)", "Add ROI/attribution charts", "Add an approval workflow for campaign assets"]
+      "domainFit": [
+        "ai-coe",
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Wire real ad-platform APIs (Meta/Google Ads)",
+        "Add ROI/attribution charts",
+        "Add an approval workflow for campaign assets"
+      ]
     },
     {
       "id": "pointer-ai-landing",
@@ -251,12 +549,29 @@
       "author": "yadwinder",
       "url": "https://v0.app/templates/XQxxv76lK5w",
       "category": "Landing pages",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["hero + single CTA", "logo cloud", "feature grid", "pricing section"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "hero + single CTA",
+        "logo cloud",
+        "feature grid",
+        "pricing section"
+      ],
       "designSignals": "High-conversion AI-product hero with a clear single CTA and a social-proof strip.",
       "ratingSignal": "20.2K duplicates / 1.8K likes (v0.app official Landing Pages gallery — 2nd-highest duplicate count observed in this survey)",
-      "domainFit": ["ai-architect", "creator-os"],
-      "upgradeVectors": ["Add real waitlist capture (Resend/Listmonk)", "Add analytics-driven CTA A/B testing", "Add a case-study section with real metrics"]
+      "domainFit": [
+        "ai-architect",
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add real waitlist capture (Resend/Listmonk)",
+        "Add analytics-driven CTA A/B testing",
+        "Add a case-study section with real metrics"
+      ]
     },
     {
       "id": "brillance-saas-landing",
@@ -264,12 +579,28 @@
       "author": "yadwinder",
       "url": "https://v0.app/templates/zdiN8dHwaaT",
       "category": "Landing pages",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["hero + single CTA", "feature showcase carousel", "testimonial grid"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "hero + single CTA",
+        "feature showcase carousel",
+        "testimonial grid"
+      ],
       "designSignals": "Highest like count of any template surveyed — polished SaaS hero with an animated feature showcase.",
       "ratingSignal": "13.8K duplicates / 2K likes (v0.app official Landing Pages gallery — highest like count observed in this survey)",
-      "domainFit": ["ai-architect", "creator-os"],
-      "upgradeVectors": ["Wire a real signup flow", "Add an interactive product demo (video or embed)", "Add localization (i18n)"]
+      "domainFit": [
+        "ai-architect",
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Wire a real signup flow",
+        "Add an interactive product demo (video or embed)",
+        "Add localization (i18n)"
+      ]
     },
     {
       "id": "an-unusual-hero",
@@ -277,12 +608,25 @@
       "author": "webrenew",
       "url": "https://v0.app/templates/VZ9EEGUUq9M",
       "category": "Landing pages",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["asymmetric hero layout", "scroll-triggered reveal"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "asymmetric hero layout",
+        "scroll-triggered reveal"
+      ],
       "designSignals": "Experimental hero composition breaking the standard centered-text pattern — a good reference for differentiated brand pages.",
       "ratingSignal": "2.9K duplicates / 415 likes (v0.app official Landing Pages gallery)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Add a WebGL/shader accent respecting reduced-motion", "Add CMS-driven copy (Sanity/Basehub)"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add a WebGL/shader accent respecting reduced-motion",
+        "Add CMS-driven copy (Sanity/Basehub)"
+      ]
     },
     {
       "id": "terra-landing-page",
@@ -290,12 +634,27 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/5WwO2eLeSCl",
       "category": "Landing pages",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["hero + single CTA", "data-story scroll section", "map/imagery showcase"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "hero + single CTA",
+        "data-story scroll section",
+        "map/imagery showcase"
+      ],
       "designSignals": "Environmental/climate-tech narrative built around a satellite-imagery hero motif.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["ai-architect"],
-      "upgradeVectors": ["Wire a real satellite/geo data API", "Add an interactive map (Mapbox)", "Add a real-time deforestation data feed"]
+      "domainFit": [
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Wire a real satellite/geo data API",
+        "Add an interactive map (Mapbox)",
+        "Add a real-time deforestation data feed"
+      ]
     },
     {
       "id": "homie-real-estate",
@@ -303,12 +662,27 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/aAiqtWslee0",
       "category": "Landing pages",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["property card grid", "hero search bar", "map + listing split view"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "property card grid",
+        "hero search bar",
+        "map + listing split view"
+      ],
       "designSignals": "Lightweight, airy real-estate marketing site with a property-card grid.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Wire a real listings API (MLS-style)", "Add saved-search + alerts", "Add a mortgage calculator widget"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Wire a real listings API (MLS-style)",
+        "Add saved-search + alerts",
+        "Add a mortgage calculator widget"
+      ]
     },
     {
       "id": "waitlist-agentic-ai-glitch",
@@ -316,12 +690,28 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/W7V9OhLHf6g",
       "category": "Landing pages",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["waitlist form", "glitch-text animation", "countdown/urgency element"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "waitlist form",
+        "glitch-text animation",
+        "countdown/urgency element"
+      ],
       "designSignals": "Glitch-effect typography over a dark canvas — a strong pre-launch hype aesthetic.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["ai-architect", "creator-os"],
-      "upgradeVectors": ["Add real email capture with double opt-in (Resend)", "Add a referral/queue-position mechanic", "Add a reduced-motion fallback for the glitch effect"]
+      "domainFit": [
+        "ai-architect",
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add real email capture with double opt-in (Resend)",
+        "Add a referral/queue-position mechanic",
+        "Add a reduced-motion fallback for the glitch effect"
+      ]
     },
     {
       "id": "newsletter-template-joyco",
@@ -329,12 +719,26 @@
       "author": "joyco",
       "url": "https://v0.app/templates/xU39T0XywpR",
       "category": "Landing pages",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["single-field signup form", "editorial typographic hero"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "single-field signup form",
+        "editorial typographic hero"
+      ],
       "designSignals": "Studio-grade minimalist newsletter signup with joyco's signature restrained typography system.",
       "ratingSignal": "3K duplicates / 738 likes (v0.app official Landing Pages gallery)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Wire to Listmonk/Resend for real delivery", "Add an archive/back-issues grid", "Add real subscriber-count social proof"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Wire to Listmonk/Resend for real delivery",
+        "Add an archive/back-issues grid",
+        "Add real subscriber-count social proof"
+      ]
     },
     {
       "id": "shopify-ecommerce-joyco",
@@ -342,12 +746,27 @@
       "author": "joyco",
       "url": "https://v0.app/templates/XmzC9oi7g4m",
       "category": "E-commerce",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["product grid", "PDP with variant selector", "cart drawer"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "product grid",
+        "PDP with variant selector",
+        "cart drawer"
+      ],
       "designSignals": "Studio-grade PDP + cart flow with a restrained editorial product-photography grid.",
       "ratingSignal": "2.8K duplicates / 516 likes (v0.app official E-commerce gallery)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Wire the real Shopify Storefront API", "Add real checkout (Shopify Checkout/Stripe)", "Add inventory-aware variant states"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Wire the real Shopify Storefront API",
+        "Add real checkout (Shopify Checkout/Stripe)",
+        "Add inventory-aware variant states"
+      ]
     },
     {
       "id": "katachi-furniture-ecommerce",
@@ -355,12 +774,27 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/6rnQUvOhgnB",
       "category": "E-commerce",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["product grid", "lifestyle hero imagery", "PDP with variant selector"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "product grid",
+        "lifestyle hero imagery",
+        "PDP with variant selector"
+      ],
       "designSignals": "Handcrafted-goods positioning with large-format lifestyle imagery.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Wire a real product catalog (Shopify/Medusa)", "Add AR/3D product preview", "Add real reviews integration"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Wire a real product catalog (Shopify/Medusa)",
+        "Add AR/3D product preview",
+        "Add real reviews integration"
+      ]
     },
     {
       "id": "evasion-outdoor-ecommerce",
@@ -368,12 +802,27 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/annqMtFCROP",
       "category": "E-commerce",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["product grid", "spec comparison table", "PDP with variant selector"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "product grid",
+        "spec comparison table",
+        "PDP with variant selector"
+      ],
       "designSignals": "Adventure-brand tone with feature-callout tech specs (GPS, temperature control).",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Wire real product data and spec sheets", "Add a size/fit guide", "Add real checkout"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Wire real product data and spec sheets",
+        "Add a size/fit guide",
+        "Add real checkout"
+      ]
     },
     {
       "id": "elegance-luxury-ecommerce",
@@ -381,12 +830,27 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/DFxRolInCJp",
       "category": "E-commerce",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["curated collection grid", "lookbook-style PDP", "editorial hero"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "curated collection grid",
+        "lookbook-style PDP",
+        "editorial hero"
+      ],
       "designSignals": "Luxury-fashion curation with generous whitespace, a muted palette, and editorial collection layout.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Wire real catalog and inventory", "Add wishlist/saved-items", "Add real checkout with tax/shipping calculation"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Wire real catalog and inventory",
+        "Add wishlist/saved-items",
+        "Add real checkout with tax/shipping calculation"
+      ]
     },
     {
       "id": "portfolio-template-joyco",
@@ -394,12 +858,27 @@
       "author": "joyco",
       "url": "https://v0.app/templates/mA8N4h1POSv",
       "category": "Portfolio",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["project grid", "case-study detail page", "about/contact footer"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "project grid",
+        "case-study detail page",
+        "about/contact footer"
+      ],
       "designSignals": "Studio-reference portfolio layout — restrained grid with a strong typographic hierarchy.",
       "ratingSignal": "1.8K duplicates / 358 likes (v0.app official Blog & Portfolio gallery)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Add CMS-driven case studies (Basehub/Sanity)", "Add real analytics on project views", "Add an MDX-based writing section"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add CMS-driven case studies (Basehub/Sanity)",
+        "Add real analytics on project views",
+        "Add an MDX-based writing section"
+      ]
     },
     {
       "id": "brutalist-void-portfolio",
@@ -407,12 +886,27 @@
       "author": "rajoninternet",
       "url": "https://v0.app/templates/0brPGNpjNkt",
       "category": "Portfolio",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["brutalist grid layout", "monospace type system", "scroll-jack sections"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "brutalist grid layout",
+        "monospace type system",
+        "scroll-jack sections"
+      ],
       "designSignals": "High-contrast brutalist type system on a raw grid — a strong, differentiated visual identity.",
       "ratingSignal": "1.2K duplicates / 434 likes (v0.app official Blog & Portfolio gallery)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Add a reduced-motion variant", "Run an accessible-contrast pass (brutalism can fail WCAG AA)", "Add CMS-backed project data"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add a reduced-motion variant",
+        "Run an accessible-contrast pass (brutalism can fail WCAG AA)",
+        "Add CMS-backed project data"
+      ]
     },
     {
       "id": "eincode-digital-lab",
@@ -420,12 +914,27 @@
       "author": "ehsanghaffar",
       "url": "https://v0.app/templates/NjOUgG6VT7X",
       "category": "Portfolio",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["experiment/lab grid", "case-study detail page"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "experiment/lab grid",
+        "case-study detail page"
+      ],
       "designSignals": "Agency/studio-lab framing — an experiment showcase rather than a static resume.",
       "ratingSignal": "1.3K duplicates / 360 likes (v0.app official Blog & Portfolio gallery)",
-      "domainFit": ["creator-os", "ai-architect"],
-      "upgradeVectors": ["Add real experiment write-ups via MDX", "Add tag-based filtering", "Add newsletter capture on lab posts"]
+      "domainFit": [
+        "creator-os",
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Add real experiment write-ups via MDX",
+        "Add tag-based filtering",
+        "Add newsletter capture on lab posts"
+      ]
     },
     {
       "id": "ai-product-portfolio",
@@ -433,12 +942,28 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/LFFFrvSq9Bb",
       "category": "Portfolio",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["project grid", "tool/stack badges", "case-study detail page"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "project grid",
+        "tool/stack badges",
+        "case-study detail page"
+      ],
       "designSignals": "Purpose-built for AI product designers/creators — positions AI-tool work distinctly from generic dev portfolios.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["creator-os", "ai-architect"],
-      "upgradeVectors": ["Add live embedded product demos per case study", "Add real testimonials", "Add a downloadable resume/press kit"]
+      "domainFit": [
+        "creator-os",
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Add live embedded product demos per case study",
+        "Add real testimonials",
+        "Add a downloadable resume/press kit"
+      ]
     },
     {
       "id": "monochrome-ascii-hub",
@@ -446,12 +971,26 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/NK1wPDB0fOh",
       "category": "Portfolio",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["ASCII/character-art hero", "monospace grid"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "ASCII/character-art hero",
+        "monospace grid"
+      ],
       "designSignals": "Character-art aesthetic bridging front-end engineering and ASCII art — niche but memorable.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Add a generative ASCII-from-image tool", "Add accessible text-alt for ASCII art", "Add real project links"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add a generative ASCII-from-image tool",
+        "Add accessible text-alt for ASCII art",
+        "Add real project links"
+      ]
     },
     {
       "id": "infinite-scrolling-images",
@@ -459,12 +998,28 @@
       "author": "abilshr",
       "url": "https://v0.app/templates/mE2nwltmoDT",
       "category": "Animations",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Framer Motion (likely)"],
-      "patterns": ["infinite scroll marquee", "hover-pause interaction"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Framer Motion (likely)"
+      ],
+      "patterns": [
+        "infinite scroll marquee",
+        "hover-pause interaction"
+      ],
       "designSignals": "Smooth marquee-style infinite scroll component — a good building block for galleries/logo walls.",
       "ratingSignal": "465 duplicates / 253 likes (v0.app official Animations gallery)",
-      "domainFit": ["creator-os", "music"],
-      "upgradeVectors": ["Pause by default under reduced-motion", "Virtualize for large image sets (perf)", "Add lazy-loading with blur-up placeholders"]
+      "domainFit": [
+        "creator-os",
+        "music"
+      ],
+      "upgradeVectors": [
+        "Pause by default under reduced-motion",
+        "Virtualize for large image sets (perf)",
+        "Add lazy-loading with blur-up placeholders"
+      ]
     },
     {
       "id": "martian-parallax-experience",
@@ -472,12 +1027,27 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/CCnXoSAG7wn",
       "category": "Creative/interactive",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["parallax scroll", "device-orientation interaction", "cinematic scene sequencing"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "parallax scroll",
+        "device-orientation interaction",
+        "cinematic scene sequencing"
+      ],
       "designSignals": "Device-orientation-reactive parallax — a strong immersive-storytelling reference.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Add a reduced-motion static fallback (required per WEB_EXPERIENCE_STANDARD)", "Optimize for mobile GPU performance", "Add a WebGL upgrade path (three.js/TypeGPU)"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add a reduced-motion static fallback (required per WEB_EXPERIENCE_STANDARD)",
+        "Optimize for mobile GPU performance",
+        "Add a WebGL upgrade path (three.js/TypeGPU)"
+      ]
     },
     {
       "id": "3d-model-generator-rodin",
@@ -485,12 +1055,29 @@
       "author": "ctate",
       "url": "https://v0.app/templates/bTIhXEOJa8w",
       "category": "Apps & Games (creative/interactive)",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Hyper3D Rodin API"],
-      "patterns": ["prompt-to-3D generator", "3D model viewer/inspector", "export panel"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Hyper3D Rodin API"
+      ],
+      "patterns": [
+        "prompt-to-3D generator",
+        "3D model viewer/inspector",
+        "export panel"
+      ],
       "designSignals": "Text/image-to-3D generation tool with a model viewer — a strong technical showcase of an AI+3D pipeline.",
       "ratingSignal": "5.5K duplicates / 188 likes (v0.app official Apps & Games gallery)",
-      "domainFit": ["ai-architect", "creator-os"],
-      "upgradeVectors": ["Add a GLB optimization/compression step", "Add AR Quick Look export", "Add a generation-history library"]
+      "domainFit": [
+        "ai-architect",
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add a GLB optimization/compression step",
+        "Add AR Quick Look export",
+        "Add a generation-history library"
+      ]
     },
     {
       "id": "pixel-survivor-game",
@@ -498,12 +1085,28 @@
       "author": "kerroudj",
       "url": "https://v0.app/templates/nbCYhx2xajE",
       "category": "Apps & Games (creative/interactive)",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Canvas API"],
-      "patterns": ["canvas game loop", "retro pixel-art rendering", "score/survival-timer HUD"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Canvas API"
+      ],
+      "patterns": [
+        "canvas game loop",
+        "retro pixel-art rendering",
+        "score/survival-timer HUD"
+      ],
       "designSignals": "Retro pixel-art survival mini-game — a good reference for lightweight canvas-based browser games.",
       "ratingSignal": "unranked (no duplicate/like counts captured at fetch time; verified real listing on v0.app)",
-      "domainFit": ["creator-os"],
-      "upgradeVectors": ["Profile WebGL/Canvas performance", "Add a leaderboard (Supabase)", "Add mobile touch controls"]
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Profile WebGL/Canvas performance",
+        "Add a leaderboard (Supabase)",
+        "Add mobile touch controls"
+      ]
     },
     {
       "id": "sign-in-with-vercel",
@@ -511,54 +1114,994 @@
       "author": "anatrajkovska2",
       "url": "https://v0.app/templates/E2PMKQo5S11",
       "category": "Login & Sign Up",
-      "stack": ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
-      "patterns": ["OAuth sign-in button pattern", "split-screen auth layout"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "OAuth sign-in button pattern",
+        "split-screen auth layout"
+      ],
       "designSignals": "Minimal OAuth-style sign-in reference using a Vercel brand pattern.",
       "ratingSignal": "20 duplicates / 13 likes (v0.app official Login & Sign Up gallery)",
-      "domainFit": ["ai-architect", "ai-coe"],
-      "upgradeVectors": ["Wire real OAuth (Auth.js/Clerk/WorkOS)", "Add a magic-link fallback", "Add SSO/SAML for enterprise"]
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Wire real OAuth (Auth.js/Clerk/WorkOS)",
+        "Add a magic-link fallback",
+        "Add SSO/SAML for enterprise"
+      ]
+    },
+    {
+      "id": "blog-basehub-cms",
+      "name": "blog",
+      "author": "basehub-v0",
+      "url": "https://v0.app/templates/Oi5INHKYsqg",
+      "category": "Blog & Content",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "BaseHub CMS"
+      ],
+      "patterns": [
+        "CMS-driven post list",
+        "article detail page",
+        "author byline"
+      ],
+      "designSignals": "Editorial-clean blog shell built directly on BaseHub's own headless CMS — the reference implementation for a CMS-backed (not static-array) v0 blog.",
+      "ratingSignal": "3.9K likes / 213 views (v0.app official Blog & Portfolio gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "ai-architect",
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add `use cache` + `cacheTag(slug)` for post fetches with BaseHub webhook-driven `revalidateTag`",
+        "Add full-text search (Orama/Algolia)",
+        "Add RSS/Atom feed generation"
+      ]
+    },
+    {
+      "id": "retro-8bit-blog",
+      "name": "8-bit Retro Blog",
+      "author": "dave-nctnetwork",
+      "url": "https://v0.app/templates/shx0LpBv4gV",
+      "category": "Blog & Content",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "pixel-art theme",
+        "post list",
+        "retro UI chrome"
+      ],
+      "designSignals": "Nostalgia-driven 8-bit pixel aesthetic applied to a standard blog list/detail shape — a niche but memorable visual identity for a personal/dev blog.",
+      "ratingSignal": "171 likes / 69 views (v0.app official Blog & Portfolio gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add MDX-based posts with pixel-font code blocks",
+        "Add a reduced-motion-safe CRT/scanline toggle instead of always-on",
+        "Add tag-based filtering"
+      ]
+    },
+    {
+      "id": "vercel-blog-starter-kit",
+      "name": "Blog Starter Kit",
+      "author": "vercel",
+      "url": "https://vercel.com/templates/next.js/blog-starter-kit",
+      "category": "Blog & Content",
+      "stack": [
+        "Next.js",
+        "React",
+        "Markdown"
+      ],
+      "patterns": [
+        "static Markdown post list",
+        "SSG article detail page"
+      ],
+      "designSignals": "Vercel's own reference blog starter — deliberately minimal chrome so the Markdown-to-static-page pipeline is the entire point of the template.",
+      "ratingSignal": "official Vercel template gallery listing (vercel.com/templates) — no public like/fork counter exposed on this surface, so treated as unranked",
+      "domainFit": [
+        "creator-os",
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Migrate to Cache Components (`use cache` + `cacheLife('days')`) for post rendering",
+        "Add `generateStaticParams` + ISR fallback for new posts without full rebuild",
+        "Add reading-time and related-post computation server-side"
+      ]
+    },
+    {
+      "id": "vercel-contentlayer-blog",
+      "name": "Next.js Contentlayer Blog Starter",
+      "author": "vercel",
+      "url": "https://vercel.com/templates/next.js/nextjs-contentlayer",
+      "category": "Blog & Content",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Contentlayer"
+      ],
+      "patterns": [
+        "typed MDX content pipeline",
+        "static post list",
+        "SSG article detail page"
+      ],
+      "designSignals": "Type-safe content layer over MDX — the architecturally interesting piece is Contentlayer's generated types, not the visual design, which is intentionally plain.",
+      "ratingSignal": "official Vercel template gallery listing (vercel.com/templates) — no public like/fork counter exposed on this surface, so treated as unranked",
+      "domainFit": [
+        "ai-architect",
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Contentlayer's maintenance activity has slowed in recent years — verify current maintenance status before adopting for a new build; consider Velite or a headless CMS as the typed-content layer instead",
+        "Add `use cache` for the generated content index",
+        "Add full-text search over the typed content graph"
+      ]
+    },
+    {
+      "id": "vercel-isr-wordpress-blog",
+      "name": "ISR Blog with Next.js and WordPress",
+      "author": "vercel",
+      "url": "https://vercel.com/templates/next.js/isr-blog-nextjs-wordpress",
+      "category": "Blog & Content",
+      "stack": [
+        "Next.js",
+        "React",
+        "WordPress",
+        "ISR"
+      ],
+      "patterns": [
+        "headless CMS post list",
+        "incremental static regeneration",
+        "webhook-driven revalidation"
+      ],
+      "designSignals": "Architecture-first template — pairs a WordPress backend (content editors keep the CMS they know) with a Next.js ISR frontend; visual design is a plain reference shell.",
+      "ratingSignal": "official Vercel template gallery listing (vercel.com/templates) — no public like/fork counter exposed on this surface, so treated as unranked",
+      "domainFit": [
+        "ai-architect",
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Replace polling-based ISR with `revalidateTag` fired directly from a WordPress webhook on publish",
+        "Migrate to Cache Components (`use cache: remote` + `cacheTag`) per the confirmed Next 16 three-tier caching model",
+        "Add a headless-CMS preview mode for draft posts"
+      ]
+    },
+    {
+      "id": "shadcn-login-block-03",
+      "name": "Login 03",
+      "author": "shadcn",
+      "url": "https://v0.app/templates/LtQ7cIPj9o5",
+      "category": "Login & Sign Up",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "centered auth card",
+        "email/password form",
+        "social sign-in row"
+      ],
+      "designSignals": "Canonical shadcn auth-block reference — the shape most third-party login templates in this survey visually derive from.",
+      "ratingSignal": "651 duplicates / 40 likes (v0.app official Login & Sign Up gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Wire real auth (Auth.js/Clerk/WorkOS)",
+        "Add passkey/WebAuthn option",
+        "Add rate-limit + bot protection on the form action"
+      ]
+    },
+    {
+      "id": "frosted-glass-auth-concept",
+      "name": "Frosted Glass - Authentication Concept",
+      "author": "dollargill",
+      "url": "https://v0.app/templates/BzMyUVoHmrw",
+      "category": "Login & Sign Up",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "glassmorphic auth card",
+        "split-screen background imagery"
+      ],
+      "designSignals": "Frosted-glass/blur auth card over a full-bleed background image — directly the glassmorphism pattern the estate's own DESIGN_TASTE.md bans; useful here as a documented anti-pattern reference, not a direction to imitate.",
+      "ratingSignal": "628 duplicates / 120 likes (v0.app official Login & Sign Up gallery, fetched 2026-07-18)",
+      "domainFit": [],
+      "upgradeVectors": [
+        "Replace blur-panel with a solid elevation-token surface if adapting for FrankX use",
+        "Wire a real auth provider",
+        "Add a reduced-transparency accessibility mode"
+      ]
+    },
+    {
+      "id": "two-column-login-card",
+      "name": "Two-column Login Card",
+      "author": "aryamank",
+      "url": "https://v0.app/templates/FcTLpL2JvgL",
+      "category": "Login & Sign Up",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "split-screen auth layout",
+        "value-proposition copy panel"
+      ],
+      "designSignals": "Highest-engagement login template surveyed in this wave — split-screen layout pairing the form with a brand/value-prop panel rather than a bare centered card.",
+      "ratingSignal": "9.2K duplicates / 102 likes (v0.app official Login & Sign Up gallery, fetched 2026-07-18 — highest duplicate count observed among Login & Sign Up nodes in this survey)",
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Wire real auth (Auth.js/Clerk)",
+        "Add SSO/enterprise login for an AI-CoE intake gate specifically",
+        "Add inline form validation (react-hook-form + zod)"
+      ]
+    },
+    {
+      "id": "clerk-waitlist-starter",
+      "name": "Clerk Waitlist Starter",
+      "author": "railly",
+      "url": "https://v0.app/templates/KFyeD1PKXF4",
+      "category": "Login & Sign Up",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Clerk"
+      ],
+      "patterns": [
+        "waitlist capture form",
+        "gated sign-up",
+        "auth-provider integration"
+      ],
+      "designSignals": "One of the few community login templates wired to a real third-party auth provider (Clerk) rather than a static form mockup.",
+      "ratingSignal": "199 duplicates / 38 likes (v0.app official Login & Sign Up gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Add waitlist-position + referral mechanic",
+        "Add double opt-in email confirmation (Resend)",
+        "Add an admin approve/deny queue for gated access"
+      ]
+    },
+    {
+      "id": "login-atmospheric-shader",
+      "name": "Login Form with atmospheric shader",
+      "author": "deewakar-k",
+      "url": "https://v0.app/templates/FjVZH4DboBv",
+      "category": "Login & Sign Up",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "WebGL shader (likely)"
+      ],
+      "patterns": [
+        "shader background canvas",
+        "centered auth card"
+      ],
+      "designSignals": "Live WebGL shader background behind a standard auth card — a strong reference for pairing a technical/atmospheric hero effect with a functional, low-motion form.",
+      "ratingSignal": "197 duplicates / 36 likes (v0.app official Login & Sign Up gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Add a static poster-frame reduced-motion fallback for the shader",
+        "Cap shader GPU cost / `dpr` on mobile",
+        "Wire real auth beneath the visual layer"
+      ]
+    },
+    {
+      "id": "auth-flows-ui-kit",
+      "name": "Auth Flows UI Kit",
+      "author": "rcrades",
+      "url": "https://v0.app/templates/l4kXaFh0Ckv",
+      "category": "Login & Sign Up",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "multi-screen auth flow",
+        "password-reset flow",
+        "email-verification screen"
+      ],
+      "designSignals": "A full auth-flow kit (not just a single login screen) — sign-in, sign-up, forgot-password, verify-email as one coherent set, rarer than single-screen login templates in this survey.",
+      "ratingSignal": "122 duplicates / 53 likes (v0.app official Login & Sign Up gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Wire the full flow to a real auth provider end-to-end (not just the sign-in screen)",
+        "Add Server Actions with `useActionState` for each step's pending/error state",
+        "Add magic-link as an alternative to password reset"
+      ]
+    },
+    {
+      "id": "3d-gallery-photography-template",
+      "name": "3D Gallery Photography Template",
+      "author": "joelbqz",
+      "url": "https://v0.app/templates/JUFK37Esjlj",
+      "category": "Animations",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "three.js (likely, WebGL 3D gallery)"
+      ],
+      "patterns": [
+        "3D gallery scroll",
+        "immersive image showcase"
+      ],
+      "designSignals": "Highest-engagement Animations-gallery node in this survey — a WebGL-driven 3D photo gallery rather than a 2D grid, a strong reference for a photography/portfolio pillar needing genuine spatial presentation.",
+      "ratingSignal": "3.3K likes / 842 duplicates (v0.app official Animations gallery, fetched 2026-07-18 — highest engagement observed among Animations nodes added in this wave)",
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add a static-grid reduced-motion fallback",
+        "Lazy-mount the 3D canvas behind an IntersectionObserver",
+        "Cap `dpr` and simplify geometry on mobile GPUs"
+      ]
+    },
+    {
+      "id": "logo-particles-v0-aws",
+      "name": "Logo particles (v0 + aws)",
+      "author": "rauchg",
+      "url": "https://v0.app/templates/AdFqYlEFVdC",
+      "category": "Animations",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Canvas/WebGL particle system"
+      ],
+      "patterns": [
+        "particle-based logo reveal",
+        "brand-lockup animation"
+      ],
+      "designSignals": "Highest like count of any node surveyed in this entire wave (by Vercel's own CEO/co-founder) — a particle-physics logo animation used as a co-brand reveal piece, not a full page.",
+      "ratingSignal": "11.7K likes / 348 duplicates (v0.app official Animations gallery, fetched 2026-07-18 — highest like count observed among all nodes added in this wave)",
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Extract as a standalone reusable component (not a full page) for a hero/loading-state use",
+        "Add a reduced-motion static-logo fallback",
+        "Cap particle count adaptively by device performance"
+      ]
+    },
+    {
+      "id": "apple-scroll-3d-product-explode",
+      "name": "Apple-Style Scroll Animation 3D Product Explode",
+      "author": "momo410",
+      "url": "https://v0.app/templates/Dav88XZy66u",
+      "category": "Animations",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "three.js (likely, 3D product model)"
+      ],
+      "patterns": [
+        "scroll-scrubbed 3D sequence",
+        "pinned hero section",
+        "product-explode reveal"
+      ],
+      "designSignals": "Apple-product-page-style scroll-scrubbed 3D explode sequence — the closest community template to the estate's GSAP ScrollTrigger differentiator, but built with scroll-linked 3D rather than 2D layers.",
+      "ratingSignal": "499 duplicates / 164 likes (v0.app official Animations gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Add a static keyframe fallback under `prefers-reduced-motion`",
+        "Verify frame budget on mid-tier mobile GPUs before shipping",
+        "Swap manual scroll math for a maintained scroll-linked animation library if hand-rolled"
+      ]
+    },
+    {
+      "id": "shader-svg-animation",
+      "name": "Shader SVG",
+      "author": "deewakar-k",
+      "url": "https://v0.app/templates/R1iL1WGkMKP",
+      "category": "Animations",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "WebGL/GLSL shader"
+      ],
+      "patterns": [
+        "shader-driven SVG distortion",
+        "hero background effect"
+      ],
+      "designSignals": "Fragment-shader effect applied to SVG shapes rather than a raster canvas — a more performant, more precisely art-directable variant of the generic 'gradient blob' hero background.",
+      "ratingSignal": "571 duplicates / 241 likes (v0.app official Animations gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Add a static SVG fallback for reduced-motion and low-power devices",
+        "Extract as a reusable hero-background component with a props-driven color/intensity API",
+        "Verify shader compile cost doesn't block first paint"
+      ]
+    },
+    {
+      "id": "liquid-glass-tabs",
+      "name": "Liquid glass tabs",
+      "author": "lakbychance",
+      "url": "https://v0.app/templates/uPRGgdXET9Z",
+      "category": "Animations",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "morphing tab indicator",
+        "liquid/blob transition"
+      ],
+      "designSignals": "A single interaction component (animated tab-switcher with a liquid-morph indicator) rather than a full page — a component-level reference, and another instance of the glass/liquid-glass aesthetic worth cross-referencing against the estate's anti-glassmorphism rule (acceptable as a small, contained UI accent; not as a page-level material).",
+      "ratingSignal": "119 duplicates / 11 likes (v0.app official Animations gallery, fetched 2026-07-18)",
+      "domainFit": [],
+      "upgradeVectors": [
+        "Extract as a standalone shadcn-style registry component",
+        "Add keyboard-navigable tab semantics (roving tabindex) under the animation",
+        "Add a reduced-motion instant-snap fallback"
+      ]
+    },
+    {
+      "id": "multiplayer-chatroom-gpt5",
+      "name": "Habbo Hotel like Multiplayer Chatroom using GPT-5",
+      "author": "ingokoepp",
+      "url": "https://v0.app/templates/EYN85i0FdYV",
+      "category": "Apps & Games",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Realtime (likely WebSocket/Presence)",
+        "GPT-5 (AI NPC behavior)"
+      ],
+      "patterns": [
+        "2D avatar movement grid",
+        "realtime multiplayer presence",
+        "AI-driven NPC chat"
+      ],
+      "designSignals": "Highest-engagement Apps & Games node surveyed — a retro isometric-chatroom social space with AI-driven NPCs, the most structurally complex template in this wave (realtime + AI in the same surface).",
+      "ratingSignal": "2.6K duplicates / 422 likes (v0.app official Apps & Games gallery, fetched 2026-07-18 — highest engagement observed among Apps & Games nodes added in this wave)",
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Replace any polling-based presence with a real realtime channel (WebSocket/Supabase Realtime)",
+        "Add moderation/rate-limiting on AI-NPC message generation",
+        "Add persistence for room state across sessions"
+      ]
+    },
+    {
+      "id": "garden-city-game",
+      "name": "Garden City Game",
+      "author": "willierichter123",
+      "url": "https://v0.app/templates/yAouuBHDmnT",
+      "category": "Apps & Games",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Canvas API"
+      ],
+      "patterns": [
+        "city/garden-builder grid",
+        "resource/progress state",
+        "canvas game loop"
+      ],
+      "designSignals": "A calmer, builder-sim-style browser game (city/garden layout) rather than an action/survival game — a useful counterpoint to `pixel-survivor-game` for the low-intensity/casual end of the archetype.",
+      "ratingSignal": "122 duplicates / 20 likes (v0.app official Apps & Games gallery, fetched 2026-07-18)",
+      "domainFit": [],
+      "upgradeVectors": [
+        "Add save-state persistence (localStorage or a real backend)",
+        "Add mobile touch/drag controls",
+        "Profile Canvas redraw cost as the grid grows"
+      ]
+    },
+    {
+      "id": "perlin-noise-playground",
+      "name": "Perlin Noise Playground",
+      "author": "sahaj-jj",
+      "url": "https://v0.app/templates/WztZWXcPx6q",
+      "category": "Apps & Games",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Canvas API"
+      ],
+      "patterns": [
+        "generative noise-field visualization",
+        "parameter control panel"
+      ],
+      "designSignals": "A generative-art tool (Perlin noise field with live parameter controls) rather than a game in the conventional sense — a technical-showcase pattern worth cataloging separately from the game-loop templates it sits alongside.",
+      "ratingSignal": "35 duplicates / 11 likes (v0.app official Apps & Games gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "ai-architect"
+      ],
+      "upgradeVectors": [
+        "Add exportable seed/parameter presets (shareable via URL params)",
+        "Move heavy noise computation to a Web Worker to keep the main thread responsive",
+        "Add a static preview image for the template's own gallery card"
+      ]
+    },
+    {
+      "id": "browser-video-editor",
+      "name": "video editor",
+      "author": "abdullahatrash",
+      "url": "https://v0.app/templates/DgH3kumgLFS",
+      "category": "Apps & Games",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "timeline scrubber",
+        "clip trim/split controls",
+        "preview canvas"
+      ],
+      "designSignals": "A browser-based video-editor UI shell (timeline + trim + preview) — one of the more ambitious app-shape templates in this survey, closer to a real creative tool than most Apps & Games entries.",
+      "ratingSignal": "160 duplicates / 38 likes (v0.app official Apps & Games gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "creator-os"
+      ],
+      "upgradeVectors": [
+        "Wire real client-side video processing (WebCodecs API / ffmpeg.wasm) since a v0-generated shell almost certainly mocks the actual encode/trim operations",
+        "Add export-progress streaming feedback",
+        "Add keyboard shortcuts for scrubber/trim controls"
+      ]
+    },
+    {
+      "id": "monky-dashboard-joyco",
+      "name": "Dashboard – M.O.N.K.Y",
+      "author": "joyco",
+      "url": "https://v0.app/templates/b7GDYVxuoGC",
+      "category": "Dashboards",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "patterns": [
+        "sidebar admin layout",
+        "KPI card row",
+        "data table with filters"
+      ],
+      "designSignals": "Second-highest-duplicate dashboard surveyed across both curation waves — joyco's studio-grade restraint applied to the admin-dashboard archetype rather than their usual marketing/portfolio work.",
+      "ratingSignal": "10.9K duplicates / 1.2K likes (v0.app root templates gallery, fetched 2026-07-18)",
+      "domainFit": [
+        "ai-architect",
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Add real auth/session (Auth.js/Clerk)",
+        "Add per-widget `<Suspense>` streaming per the confirmed dashboard-archetype pattern",
+        "Add command-palette (⌘K) navigation"
+      ]
+    },
+    {
+      "id": "vercel-platforms-starter-kit",
+      "name": "Platforms Starter Kit",
+      "author": "vercel",
+      "url": "https://vercel.com/templates/next.js/platforms-starter-kit",
+      "category": "SaaS",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Redis",
+        "App Router multi-tenancy"
+      ],
+      "patterns": [
+        "multi-tenant subdomain routing",
+        "middleware-based tenant resolution",
+        "admin + per-tenant site shell"
+      ],
+      "designSignals": "Architecture-pattern template rather than a visual-design showcase — the real content is the App Router middleware pattern for resolving a request's tenant/subdomain before rendering.",
+      "ratingSignal": "official Vercel template gallery listing (vercel.com/templates) — no public like/fork counter exposed on this surface, so treated as unranked",
+      "domainFit": [
+        "ai-coe"
+      ],
+      "upgradeVectors": [
+        "Migrate tenant-config lookups to `use cache: remote` with a short `cacheLife` instead of a per-request Redis round trip",
+        "Add tenant-scoped Cache Components boundaries so one tenant's data never leaks into another's cache key",
+        "Add a real tenant-onboarding flow (currently a starter-kit stub in most deployments)"
+      ]
     }
   ],
   "edges": [
-    { "from": "shadcn-dashboard", "to": "financial-dashboard-kokonut", "type": "sharesPattern" },
-    { "from": "shadcn-dashboard", "to": "cyberpunk-dashboard", "type": "sharesPattern" },
-    { "from": "shadcn-dashboard", "to": "tasko-task-management", "type": "sharesPattern" },
-    { "from": "shadcn-dashboard", "to": "pulse-engineering-metrics", "type": "sharesPattern" },
-    { "from": "shadcn-dashboard", "to": "finbro-dashboard", "type": "sharesPattern" },
-    { "from": "shadcn-dashboard", "to": "marketing-campaign-management", "type": "sharesPattern" },
-    { "from": "openai-ai-sdk-chatbot", "to": "modern-ai-chatbot-interface", "type": "sharesPattern" },
-    { "from": "pointer-ai-landing", "to": "brillance-saas-landing", "type": "sharesPattern" },
-    { "from": "pointer-ai-landing", "to": "an-unusual-hero", "type": "sharesPattern" },
-    { "from": "pointer-ai-landing", "to": "nexus-saas-ai-platform", "type": "sharesPattern" },
-    { "from": "pointer-ai-landing", "to": "devflow-saas-website", "type": "sharesPattern" },
-    { "from": "pointer-ai-landing", "to": "optimus-ai-platform", "type": "sharesPattern" },
-    { "from": "pointer-ai-landing", "to": "terra-landing-page", "type": "sharesPattern" },
-    { "from": "pointer-ai-landing", "to": "homie-real-estate", "type": "sharesPattern" },
-    { "from": "shopify-ecommerce-joyco", "to": "katachi-furniture-ecommerce", "type": "sharesPattern" },
-    { "from": "shopify-ecommerce-joyco", "to": "evasion-outdoor-ecommerce", "type": "sharesPattern" },
-    { "from": "shopify-ecommerce-joyco", "to": "elegance-luxury-ecommerce", "type": "sharesPattern" },
-    { "from": "portfolio-template-joyco", "to": "brutalist-void-portfolio", "type": "sharesPattern" },
-    { "from": "portfolio-template-joyco", "to": "eincode-digital-lab", "type": "sharesPattern" },
-    { "from": "portfolio-template-joyco", "to": "ai-product-portfolio", "type": "sharesPattern" },
-    { "from": "portfolio-template-joyco", "to": "monochrome-ascii-hub", "type": "sharesPattern" },
-    { "from": "ai-agent-builder", "to": "v0-agent-builder", "type": "sharesPattern" },
-    { "from": "ai-agent-builder", "to": "ai-workflow-canvas", "type": "sharesPattern" },
-    { "from": "ai-agent-builder", "to": "jarvis-agentic-ai-platform", "type": "sharesPattern" },
-    { "from": "ai-agent-builder", "to": "ai-ad-creator", "type": "sharesPattern" },
-    { "from": "waitlist-agentic-ai-glitch", "to": "newsletter-template-joyco", "type": "sharesPattern" },
-    { "from": "martian-parallax-experience", "to": "infinite-scrolling-images", "type": "sharesPattern" },
-    { "from": "3d-model-generator-rodin", "to": "image-generation-playground", "type": "sharesPattern" },
-    { "from": "openai-ai-sdk-chatbot", "to": "image-generation-playground", "type": "sameStack" },
-    { "from": "openai-ai-sdk-chatbot", "to": "modern-ai-chatbot-interface", "type": "sameStack" },
-    { "from": "ai-workflow-canvas", "to": "v0-agent-builder", "type": "sameStack" },
-    { "from": "3d-model-generator-rodin", "to": "image-generation-playground", "type": "sameStack" },
-    { "from": "brillance-saas-landing", "to": "pointer-ai-landing", "type": "inspiredBy" },
-    { "from": "newsletter-template-joyco", "to": "portfolio-template-joyco", "type": "inspiredBy" },
-    { "from": "v0-agent-builder", "to": "ai-agent-builder", "type": "inspiredBy" },
-    { "from": "ai-ad-creator", "to": "ai-agent-builder", "type": "inspiredBy" },
-    { "from": "financial-dashboard-kokonut", "to": "shadcn-dashboard", "type": "upgradeOf" },
-    { "from": "modern-ai-chatbot-interface", "to": "openai-ai-sdk-chatbot", "type": "upgradeOf" },
-    { "from": "ai-workflow-canvas", "to": "ai-agent-builder", "type": "upgradeOf" },
-    { "from": "elegance-luxury-ecommerce", "to": "shopify-ecommerce-joyco", "type": "upgradeOf" }
+    {
+      "from": "shadcn-dashboard",
+      "to": "financial-dashboard-kokonut",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shadcn-dashboard",
+      "to": "cyberpunk-dashboard",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shadcn-dashboard",
+      "to": "tasko-task-management",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shadcn-dashboard",
+      "to": "pulse-engineering-metrics",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shadcn-dashboard",
+      "to": "finbro-dashboard",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shadcn-dashboard",
+      "to": "marketing-campaign-management",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "openai-ai-sdk-chatbot",
+      "to": "modern-ai-chatbot-interface",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "pointer-ai-landing",
+      "to": "brillance-saas-landing",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "pointer-ai-landing",
+      "to": "an-unusual-hero",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "pointer-ai-landing",
+      "to": "nexus-saas-ai-platform",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "pointer-ai-landing",
+      "to": "devflow-saas-website",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "pointer-ai-landing",
+      "to": "optimus-ai-platform",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "pointer-ai-landing",
+      "to": "terra-landing-page",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "pointer-ai-landing",
+      "to": "homie-real-estate",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shopify-ecommerce-joyco",
+      "to": "katachi-furniture-ecommerce",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shopify-ecommerce-joyco",
+      "to": "evasion-outdoor-ecommerce",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shopify-ecommerce-joyco",
+      "to": "elegance-luxury-ecommerce",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "portfolio-template-joyco",
+      "to": "brutalist-void-portfolio",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "portfolio-template-joyco",
+      "to": "eincode-digital-lab",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "portfolio-template-joyco",
+      "to": "ai-product-portfolio",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "portfolio-template-joyco",
+      "to": "monochrome-ascii-hub",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "ai-agent-builder",
+      "to": "v0-agent-builder",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "ai-agent-builder",
+      "to": "ai-workflow-canvas",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "ai-agent-builder",
+      "to": "jarvis-agentic-ai-platform",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "ai-agent-builder",
+      "to": "ai-ad-creator",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "waitlist-agentic-ai-glitch",
+      "to": "newsletter-template-joyco",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "martian-parallax-experience",
+      "to": "infinite-scrolling-images",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "3d-model-generator-rodin",
+      "to": "image-generation-playground",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "openai-ai-sdk-chatbot",
+      "to": "image-generation-playground",
+      "type": "sameStack"
+    },
+    {
+      "from": "openai-ai-sdk-chatbot",
+      "to": "modern-ai-chatbot-interface",
+      "type": "sameStack"
+    },
+    {
+      "from": "ai-workflow-canvas",
+      "to": "v0-agent-builder",
+      "type": "sameStack"
+    },
+    {
+      "from": "3d-model-generator-rodin",
+      "to": "image-generation-playground",
+      "type": "sameStack"
+    },
+    {
+      "from": "brillance-saas-landing",
+      "to": "pointer-ai-landing",
+      "type": "inspiredBy"
+    },
+    {
+      "from": "newsletter-template-joyco",
+      "to": "portfolio-template-joyco",
+      "type": "inspiredBy"
+    },
+    {
+      "from": "v0-agent-builder",
+      "to": "ai-agent-builder",
+      "type": "inspiredBy"
+    },
+    {
+      "from": "ai-ad-creator",
+      "to": "ai-agent-builder",
+      "type": "inspiredBy"
+    },
+    {
+      "from": "financial-dashboard-kokonut",
+      "to": "shadcn-dashboard",
+      "type": "upgradeOf"
+    },
+    {
+      "from": "modern-ai-chatbot-interface",
+      "to": "openai-ai-sdk-chatbot",
+      "type": "upgradeOf"
+    },
+    {
+      "from": "ai-workflow-canvas",
+      "to": "ai-agent-builder",
+      "type": "upgradeOf"
+    },
+    {
+      "from": "elegance-luxury-ecommerce",
+      "to": "shopify-ecommerce-joyco",
+      "type": "upgradeOf"
+    },
+    {
+      "from": "blog-basehub-cms",
+      "to": "vercel-blog-starter-kit",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "blog-basehub-cms",
+      "to": "vercel-contentlayer-blog",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "blog-basehub-cms",
+      "to": "vercel-isr-wordpress-blog",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "blog-basehub-cms",
+      "to": "retro-8bit-blog",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "blog-basehub-cms",
+      "to": "newsletter-template-joyco",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "vercel-contentlayer-blog",
+      "to": "vercel-blog-starter-kit",
+      "type": "upgradeOf"
+    },
+    {
+      "from": "two-column-login-card",
+      "to": "shadcn-login-block-03",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "two-column-login-card",
+      "to": "frosted-glass-auth-concept",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "two-column-login-card",
+      "to": "login-atmospheric-shader",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "two-column-login-card",
+      "to": "auth-flows-ui-kit",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "clerk-waitlist-starter",
+      "to": "two-column-login-card",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shadcn-login-block-03",
+      "to": "sign-in-with-vercel",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "auth-flows-ui-kit",
+      "to": "shadcn-login-block-03",
+      "type": "upgradeOf"
+    },
+    {
+      "from": "clerk-waitlist-starter",
+      "to": "waitlist-agentic-ai-glitch",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "3d-gallery-photography-template",
+      "to": "apple-scroll-3d-product-explode",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "3d-gallery-photography-template",
+      "to": "shader-svg-animation",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "3d-gallery-photography-template",
+      "to": "martian-parallax-experience",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "logo-particles-v0-aws",
+      "to": "shader-svg-animation",
+      "type": "sameStack"
+    },
+    {
+      "from": "liquid-glass-tabs",
+      "to": "infinite-scrolling-images",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "login-atmospheric-shader",
+      "to": "shader-svg-animation",
+      "type": "inspiredBy"
+    },
+    {
+      "from": "multiplayer-chatroom-gpt5",
+      "to": "pixel-survivor-game",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "multiplayer-chatroom-gpt5",
+      "to": "garden-city-game",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "garden-city-game",
+      "to": "pixel-survivor-game",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "perlin-noise-playground",
+      "to": "3d-model-generator-rodin",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "browser-video-editor",
+      "to": "image-generation-playground",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "monky-dashboard-joyco",
+      "to": "shadcn-dashboard",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "monky-dashboard-joyco",
+      "to": "portfolio-template-joyco",
+      "type": "inspiredBy"
+    },
+    {
+      "from": "vercel-platforms-starter-kit",
+      "to": "nexus-saas-ai-platform",
+      "type": "sharesPattern"
+    },
+    {
+      "from": "shadcn-login-block-03",
+      "to": "openai-ai-sdk-chatbot",
+      "type": "inspiredBy"
+    }
   ]
 }

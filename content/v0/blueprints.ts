@@ -255,9 +255,9 @@ export const curatedTemplates: CuratedTemplate[] = [
 
 // Real, verified graph totals for on-page copy. Sourced from knowledge-graph.json.
 export const graphStats = {
-  templates: 39,
-  connections: 40,
-  categories: 10,
+  templates: 61,
+  connections: 69,
+  categories: 12,
   builtSurfaces: frankxBlueprints.length,
 }
 

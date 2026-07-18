@@ -42,7 +42,9 @@ const BUCKET: Record<string, string> = {
   Animations: 'Creative',
   'Creative/interactive': 'Creative',
   'Apps & Games (creative/interactive)': 'Creative',
+  'Apps & Games': 'Creative',
   'Login & Sign Up': 'Auth',
+  'Blog & Content': 'Content',
 }
 const CLUSTERS: Record<string, { x: number; y: number; label: string }> = {
   AI: { x: 250, y: 210, label: 'AI apps & agents' },
@@ -52,6 +54,7 @@ const CLUSTERS: Record<string, { x: number; y: number; label: string }> = {
   Portfolio: { x: 380, y: 542, label: 'Portfolio' },
   Creative: { x: 150, y: 420, label: 'Creative & games' },
   Auth: { x: 520, y: 398, label: 'Auth' },
+  Content: { x: 600, y: 600, label: 'Blog & content' },
 }
 const W = 1080
 const H = 690

@@ -21,6 +21,7 @@ import {
 } from '@/content/v0/blueprints'
 import V0KnowledgeGraph from './V0KnowledgeGraph'
 import { teardowns } from '@/content/v0/teardowns'
+import { v0Products } from '@/content/v0/products'
 
 const spectrumRing: Record<Spectrum, string> = {
   tech: 'focus-visible:ring-emerald-400/60',
@@ -298,6 +299,59 @@ export default function V0BlueprintShell() {
             </div>
           </section>
         ) : null}
+
+        {/* The Products */}
+        <section className="border-t border-white/5 py-14">
+          <div className="mx-auto max-w-5xl px-6">
+            <SectionHeader
+              icon={Sparkles}
+              eyebrow="In production"
+              title="The Products"
+              blurb="Three flagship products built on this pipeline — designed against the taste bans, generated on v0, finished by hand. Launching soon; commission early access."
+              spectrum="soul"
+            />
+            <div className="grid gap-6 md:grid-cols-3">
+              {v0Products.map((p) => (
+                <motion.div
+                  key={p.id}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <Link
+                    href="/contact"
+                    className={`group relative block h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-void ${spectrumRing[p.spectrum]}`}
+                  >
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${spectrumGlow[p.spectrum]} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                    />
+                    <div className="relative flex h-full flex-col">
+                      <span className={`text-[11px] font-medium uppercase tracking-[0.14em] ${spectrumText[p.spectrum]}`}>
+                        {p.category}
+                      </span>
+                      <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white">{p.name}</h3>
+                      <p className="mt-1 text-sm italic text-white/45">{p.tagline}</p>
+                      <p className="mt-4 flex-1 text-sm leading-relaxed text-white/55">{p.essence}</p>
+                      <ul className="mt-5 space-y-1.5 border-t border-white/5 pt-4">
+                        {p.pillars.map((pillar) => (
+                          <li key={pillar} className="flex items-center gap-2 text-xs text-white/45">
+                            <span
+                              className={`h-1 w-1 rounded-full ${p.spectrum === 'tech' ? 'bg-emerald-400' : 'bg-amber-400'}`}
+                            />
+                            {pillar}
+                          </li>
+                        ))}
+                      </ul>
+                      <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-white/60 transition-colors group-hover:text-white">
+                        Early access <ArrowRight className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* The Intelligence */}
         <section className="border-t border-white/5 py-14">
