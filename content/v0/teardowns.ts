@@ -77,4 +77,43 @@ export const teardowns: Teardown[] = [
       'Server Actions + useOptimistic for the cart',
     ],
   },
+  {
+    id: 'blog-content',
+    archetype: 'Blog / content platform',
+    spectrum: 'soul',
+    shape: 'post index → article (typed MDX or CMS fetch) → tag filters → RSS route',
+    examples: ['BaseHub CMS Blog', 'Vercel Blog Starter Kit', 'ISR WordPress Blog'],
+    upgrades: [
+      'Stream the article body in its own Suspense so the header paints before a slow CMS fetch',
+      '`cacheTag` post fetching + webhook revalidation — publish without redeploy',
+      'AI SDK "ask about this post" panel grounded on the single article, not site-wide RAG',
+      'Programmatic RSS/JSON Feed route reading the same cached source',
+    ],
+  },
+  {
+    id: 'game-animation',
+    archetype: 'Game / animation experience',
+    spectrum: 'soul',
+    shape: 'canvas or WebGL scene mount → imperative rAF loop outside React → DOM HUD overlay',
+    examples: ['Pixel Survivor', 'Martian Parallax', 'Scroll 3D Product Explode'],
+    upgrades: [
+      'Lazy-mount every scene behind `next/dynamic({ ssr: false })` + IntersectionObserver',
+      'Reduced-motion = static poster branch, not a CSS pause — the cost is GPU work',
+      'Web Worker offload for noise/particle physics',
+      'Pause rendering on visibilitychange and scroll-out, not just unmount',
+    ],
+  },
+  {
+    id: 'auth-flow',
+    archetype: 'Auth flow',
+    spectrum: 'tech',
+    shape: '(auth) route group → shared auth card → Server Action or provider SDK → middleware gate',
+    examples: ['shadcn Login Block', 'Clerk Waitlist Starter', 'Auth Flows UI Kit'],
+    upgrades: [
+      'Most templates are visual mockups — wiring a real provider end-to-end is the differentiator',
+      'Passkeys/WebAuthn as a first-class option (zero templates surveyed ship it)',
+      'Rate-limiting + challenge on sign-up and reset, keyed on IP + email',
+      'Middleware session verification for protected routes, not per-page checks',
+    ],
+  },
 ]
