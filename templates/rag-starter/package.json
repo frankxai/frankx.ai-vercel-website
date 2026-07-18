@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "ai": "^6.0.0",
-    "@ai-sdk/openai": "^4.0.0",
-    "@ai-sdk/anthropic": "^4.0.0",
-    "@ai-sdk/react": "^4.0.0",
+    "@ai-sdk/openai": "^3.0.86",
+    "@ai-sdk/anthropic": "^3.0.98",
+    "@ai-sdk/react": "^3.0.232",
     "@supabase/supabase-js": "^2.108.0",
     "next": "^16.0.0",
     "react": "^19.0.0",

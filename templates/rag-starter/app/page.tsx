@@ -14,29 +14,31 @@ export default function Home() {
   const [sources, setSources] = useState<Source[]>([]);
   const [input, setInput] = useState('');
 
-  // BYOK header is attached to every chat request and never stored.
+  // BYOK header is attached to every chat request and never stored. The chat
+  // route returns retrieved sources in an `x-sources` header; a fetch wrapper
+  // captures it (AI SDK 6's useChat no longer exposes an onResponse hook).
   const transport = useMemo(
     () =>
       new DefaultChatTransport({
         api: '/api/chat',
         headers: providerKey ? { 'x-provider-key': providerKey } : undefined,
+        fetch: async (input, init) => {
+          const res = await fetch(input, init);
+          const raw = res.headers.get('x-sources');
+          if (raw) {
+            try {
+              setSources(JSON.parse(decodeURIComponent(raw)));
+            } catch {
+              setSources([]);
+            }
+          }
+          return res;
+        },
       }),
     [providerKey]
   );
 
-  const { messages, sendMessage, status } = useChat({
-    transport,
-    onResponse: (res) => {
-      const raw = res.headers.get('x-sources');
-      if (raw) {
-        try {
-          setSources(JSON.parse(decodeURIComponent(raw)));
-        } catch {
-          setSources([]);
-        }
-      }
-    },
-  });
+  const { messages, sendMessage, status } = useChat({ transport });
 
   async function ingest() {
     setIngestStatus('Ingesting…');

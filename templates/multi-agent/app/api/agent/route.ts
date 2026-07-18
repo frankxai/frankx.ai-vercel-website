@@ -25,8 +25,8 @@ export async function POST(req: Request) {
   // The agent loops internally (search -> ... -> write). Streaming the UI
   // message stream surfaces every step — tool calls and results included — so
   // the client can show the orchestrator's work as it happens.
-  const result = agent.stream({
-    messages: convertToModelMessages(messages),
+  const result = await agent.stream({
+    messages: await convertToModelMessages(messages),
   });
 
   return result.toUIMessageStreamResponse();

@@ -1,5 +1,5 @@
 import { createOpenAI } from '@ai-sdk/openai';
-import { Agent, tool, stepCountIs, generateText } from 'ai';
+import { Experimental_Agent as Agent, tool, stepCountIs, generateText } from 'ai';
 import { z } from 'zod';
 
 // ---------------------------------------------------------------------------
@@ -76,7 +76,7 @@ function workerTools(providerKey?: string) {
 export function researchAgent(providerKey?: string) {
   return new Agent({
     model: model(providerKey),
-    system: [
+    instructions: [
       'You are a research orchestrator.',
       'Plan: use the `search` tool to gather facts (call it more than once if',
       'the topic has distinct sub-questions), then call the `write` tool to',

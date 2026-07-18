@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { createOpenAI } from '@ai-sdk/openai';
 import { embed, embedMany } from 'ai';
 
@@ -13,7 +13,35 @@ export type RetrievedChunk = {
   similarity: number;
 };
 
-let supabaseClient: ReturnType<typeof createClient> | null = null;
+// Minimal schema so the client doesn't infer `never` for inserts/RPC.
+// Regenerate with `supabase gen types typescript` once your schema grows.
+// The Views/Functions keys are required for supabase-js to treat this as a
+// valid schema (otherwise `.from()`/`.rpc()` fall back to `never`).
+type DocumentRow = { source: string; content: string; embedding: number[] };
+type MatchArgs = { query_embedding: number[]; match_threshold: number; match_count: number };
+type Database = {
+  public: {
+    Tables: {
+      documents: {
+        Row: DocumentRow & { id: number };
+        Insert: DocumentRow;
+        Update: Partial<DocumentRow>;
+        Relationships: [];
+      };
+    };
+    Views: Record<never, never>;
+    Functions: {
+      match_documents: {
+        Args: MatchArgs;
+        Returns: { id: number; source: string; content: string; similarity: number }[];
+      };
+    };
+    Enums: Record<never, never>;
+    CompositeTypes: Record<never, never>;
+  };
+};
+
+let supabaseClient: SupabaseClient<Database> | null = null;
 
 function supabase() {
   if (supabaseClient) return supabaseClient;
@@ -22,7 +50,7 @@ function supabase() {
   if (!url || !key) {
     throw new Error('SUPABASE_URL and SUPABASE_ANON_KEY must be set.');
   }
-  supabaseClient = createClient(url, key);
+  supabaseClient = createClient<Database>(url, key);
   return supabaseClient;
 }
 
