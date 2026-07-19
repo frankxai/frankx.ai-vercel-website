@@ -374,6 +374,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     /* book-reviews may not exist in test envs */
   }
 
+  // AI Architecture — per-blueprint deep-dives (dynamic from prototypes registry)
+  let aiArchitectureDetailPages: { url: string; priority: number; changeFrequency: 'weekly' | 'monthly' }[] = []
+  try {
+    const blueprints = require('@/data/ai-architecture/prototypes.json') as Array<{ slug: string; status?: string }>
+    aiArchitectureDetailPages = blueprints
+      .filter((b) => b.status === 'published')
+      .map((b) => ({
+        url: `/ai-architecture/${b.slug}`,
+        priority: 0.7,
+        changeFrequency: 'monthly' as const,
+      }))
+  } catch {
+    /* prototypes.json may not exist in test envs */
+  }
+
   // FrankX OS — meta-spine + per-module deep-dives (dynamic from os-modules registry)
   const osHubPages = [
     { url: '/os', priority: 0.9, changeFrequency: 'weekly' as const },
@@ -663,6 +678,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // FrankX OS — per-module deep-dives
   osDetailPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // AI Architecture — per-blueprint deep-dives
+  aiArchitectureDetailPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
       lastModified: currentDate,
