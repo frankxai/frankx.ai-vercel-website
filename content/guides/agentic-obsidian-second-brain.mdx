@@ -2,7 +2,7 @@
 title: "Obsidian Second Brain: AI Agents, MCP and Agent Skills (2026)"
 description: "Build a local-first Obsidian second brain that Claude, Codex, and other AI agents can safely search, update, and improve with MCP, Agent Skills, and Git."
 date: "2026-07-16"
-updated: "2026-07-16"
+updated: "2026-07-20"
 author: "Frank"
 category: "Content Systems"
 tags: ["obsidian", "second brain", "agent skills", "obsidian mcp", "local-first ai"]
@@ -105,6 +105,17 @@ Second-Brain/
 - how session summaries and decisions are recorded
 
 Do not begin with fifty tags, twenty plugins, or a taxonomy for every future interest. Let repeated retrieval failures reveal the structure you actually need.
+
+### Download the professional starter files
+
+This guide now includes a small, inspectable [Agentic Obsidian Second Brain Starter Kit](/downloads/agentic-obsidian-second-brain-starter-kit-v1.zip). It is intentionally made of Markdown rather than a proprietary vault export:
+
+- `VAULT.md` operating contract — purpose, structure, permissions, provenance, and review rules.
+- `obsidian-vault-steward/SKILL.md` — safe retrieval, capture, linking, and maintenance procedure.
+- `session-close.md` — decisions, evidence, changed artifacts, open questions, and next start.
+- `ACCEPTANCE-TEST.md` — a practical gate for retrieval, bounded writes, provenance, and recovery.
+
+Read every file before using it. Replace the example boundaries with your own, commit a clean baseline, and run the acceptance test against a disposable vault. A starter pack should shorten setup; it should never smuggle permissions into your system.
 
 ## Do you need an Obsidian MCP server?
 
@@ -227,6 +238,21 @@ After connecting, test read operations before writes. Then test create and updat
 A weekly review can find inbox notes, stale projects, orphaned decisions, missing sources, and repeated questions. Let the agent prepare a review packet. You decide what becomes durable truth.
 
 The system should make judgment easier, not remove judgment from the loop.
+
+## When is your second brain ready for professional use?
+
+Do not judge readiness by whether the agent produced one impressive summary. Use a repeatable acceptance gate. The [starter kit](/downloads/agentic-obsidian-second-brain-starter-kit-v1.zip) includes the full acceptance test; the minimum bar is:
+
+| Gate | Pass condition |
+| --- | --- |
+| Retrieval | The agent answers five known questions and cites the correct note paths without inventing sources. |
+| Restraint | When asked to modify a read-only or excluded area, it refuses and explains the boundary. |
+| Write quality | A session-close run changes only the approved log and preserves valid properties and links. |
+| Provenance | New claims retain a source URL or are clearly labeled as interpretation. |
+| Reviewability | The agent lists changed files and provides a readable diff before acceptance. |
+| Recovery | You can restore the pre-change vault from version history or backup in under ten minutes. |
+
+Run the gate again whenever you change the model, agent client, MCP server, skill, sync provider, or vault structure. A professional system is not one that never fails. It is one whose permissions, evidence, and recovery behavior remain testable as components change.
 
 ## How do you keep agent access safe?
 

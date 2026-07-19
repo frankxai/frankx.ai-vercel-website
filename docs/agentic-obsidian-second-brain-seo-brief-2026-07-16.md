@@ -171,7 +171,8 @@ Primary outcome: qualified organic discovery that reaches a useful guide and con
 
 ## Verification record
 
-- Article length: 2,632 words.
+- Article length after professional implementation pass: 3,374 words.
+- Original proof asset: downloadable Markdown starter kit with a vault operating contract, Agent Skill, session-close template, acceptance test, and SHA-256 checksum.
 - MDX build-safety and content-integrity checks: pass.
 - Static internal-link check: pass across 2,086 scanned files.
 - Scoped AI-slop phrase scan: pass; the repository-wide audit script itself is currently blocked by a pre-existing JavaScript comment parsing defect.

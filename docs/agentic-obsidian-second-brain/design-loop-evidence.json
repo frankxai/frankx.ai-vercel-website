@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-16",
+  "version": "2026-07-20",
   "task": "Build the canonical FrankX agentic Obsidian second-brain guide and its architecture proof panel.",
   "surface": "FrankX public technical guide",
   "audience": "Technical creators, founders, researchers, and AI operators adopting Obsidian with Claude Code or Codex",
