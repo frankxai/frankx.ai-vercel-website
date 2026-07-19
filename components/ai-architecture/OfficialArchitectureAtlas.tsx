@@ -154,6 +154,33 @@ export function OfficialArchitectureAtlas() {
         </div>
       </section>
 
+      <section className="border-b border-white/[0.06] py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="font-mono text-xs text-emerald-300">What actually breaks</p>
+          <h2 className="mt-3 max-w-2xl font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            The model is rarely the thing that fails.
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+            A demo works because everything is arranged in its favor &mdash; one user, the happy path, no load, nobody trying to break it, and you driving. Production is none of that. When it fails, it&rsquo;s almost never the model being wrong. It&rsquo;s a retrieval that quietly returned nothing, a loop with no reason to stop, a cost line that makes finance flinch, a prompt injection buried in a support ticket. What carries you through that week is the architecture around the model &mdash; not the model.
+          </p>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              ['A worker that absorbs the spike', 'The request that used to time out waits its turn instead, and the user never feels the load behind it.'],
+              ['An eval that catches the miss', 'The answer that would have been confidently wrong gets flagged before it ever reaches a person.'],
+              ['A budget that caps the loop', 'A runaway agent costs you a line in a log, not a line on the invoice.'],
+            ].map(([title, body]) => (
+              <div key={title} className="border-l border-white/10 pl-5">
+                <h3 className="text-base font-semibold leading-6 text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{body}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-10 max-w-2xl text-base leading-7 text-slate-400">
+            None of it is glamorous. All of it is the difference between a demo and a system you can put your name on.
+          </p>
+        </div>
+      </section>
+
       <section className="border-b border-white/[0.06] py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-8 md:grid-cols-3">
