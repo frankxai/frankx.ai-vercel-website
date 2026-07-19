@@ -213,6 +213,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const audiencePages = [
     { url: '/for/creators', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/for/architects', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/agentic-company', priority: 0.9, changeFrequency: 'weekly' as const },
   ]
 
   // Utility pages
