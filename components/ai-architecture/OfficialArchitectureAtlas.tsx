@@ -130,7 +130,7 @@ export function OfficialArchitectureAtlas() {
               Build the agent system you can operate.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-              I&rsquo;ve built AI systems at enterprise scale, and watched a lot of impressive demos fall over the week they met real traffic. This is what I learned about the difference &mdash; the patterns, the numbers I actually tested, the repos that actually run &mdash; laid out to use, not to admire. Free, and made to be checked.
+              I&rsquo;ve seen AI systems run at enterprise scale, and watched a lot of impressive demos fall over the week they met real traffic. This is what I learned about the difference &mdash; the patterns, the numbers I actually tested, the repos that actually run &mdash; laid out to use, not to admire. Free, and made to be checked.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
