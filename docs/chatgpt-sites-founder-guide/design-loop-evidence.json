@@ -1,0 +1,89 @@
+{
+  "version": "2026-07-22",
+  "task": "Create and validate a premium editorial hero for the FrankX ChatGPT Sites founder guide.",
+  "surface": "FrankX.ai long-form blog hero and Open Graph image",
+  "audience": "Founders, operators, creators, and technical leaders evaluating AI-native website builders",
+  "first_read": "A website becomes durable when intent moves through source, versioning, deployment, and audience controls.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "starlight-design-intelligence/brand-packs/frankx/DESIGN.md"
+  ],
+  "references": [
+    {
+      "label": "FrankX visual system",
+      "source": "C:/Users/frank/starlight/repos/starlight-design-intelligence/brand-packs/frankx/DESIGN.md",
+      "reason": "Defines the obsidian foundation, emerald/cyan technical spectrum, restrained glow, and editorial precision."
+    },
+    {
+      "label": "ChatGPT Sites lifecycle",
+      "source": "https://learn.chatgpt.com/docs/sites",
+      "reason": "Grounds the visual metaphor in the documented project, saved-version, deployment, and audience lifecycle."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Quiet technical luxury",
+      "A legible five-stage progression",
+      "Tactile materials and controlled light",
+      "Strong 16:9 and center-crop resilience"
+    ],
+    "avoid": [
+      "Generic node clouds and orbit graphics",
+      "Fake dashboards or illegible interface text",
+      "ChatGPT, OpenAI, or third-party logos",
+      "Decorative gradients without a concrete delivery metaphor"
+    ],
+    "signature": "Five architectural gates convert a raw signal into one inspectable public surface.",
+    "system": [
+      "Obsidian graphite environment",
+      "Emerald-to-cyan signal path",
+      "One restrained amber approval accent",
+      "No text, logos, people, or fake UI",
+      "Cinematic wide editorial crop"
+    ]
+  },
+  "asset_quality": {
+    "tier": "B",
+    "source_method": "generated-media",
+    "provenance": "generated",
+    "why_premium": "The custom art direction encodes the article's core operating model and is created specifically for the FrankX editorial surface.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "public/images/blog/generated/chatgpt-sites-founder-guide-2026-hero.png",
+      "kind": "image",
+      "inspected": true,
+      "notes": "Inspected at the original 1680x945 export. The article hero uses the same 16:9 ratio at desktop and mobile widths, preserving all five stages without an object-cover crop."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier B custom generated editorial media selected before production."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "Original 1680x945 PNG inspected at full resolution: five stages are countable, geometry is clean, and no text, logos, people, or fake UI are present."
+    },
+    {
+      "name": "visual-qa",
+      "status": "pass",
+      "evidence": "The final asset and HeroImage component were inspected. Both use an exact 16:9 aspect ratio, so the complete sequence remains visible across desktop and mobile layouts; live-page verification remains part of release QA."
+    }
+  ],
+  "score": {
+    "total": 28,
+    "max": 30,
+    "notes": "First read 5, brand fit 5, craft 5, accessibility/responsiveness 4, provenance/artifact quality 5, usefulness 4."
+  },
+  "decision": "ship",
+  "known_risks": [
+    "The fourth stage reads as a deployed architectural structure rather than a literal hosting control, so the surrounding article must carry the exact product semantics."
+  ]
+}
