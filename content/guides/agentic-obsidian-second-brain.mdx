@@ -1,0 +1,340 @@
+---
+title: "Obsidian Second Brain: AI Agents, MCP and Agent Skills (2026)"
+description: "Build a local-first Obsidian second brain that Claude, Codex, and other AI agents can safely search, update, and improve with MCP, Agent Skills, and Git."
+date: "2026-07-16"
+updated: "2026-07-20"
+author: "Frank"
+category: "Content Systems"
+tags: ["obsidian", "second brain", "agent skills", "obsidian mcp", "local-first ai"]
+keywords: ["obsidian second brain", "agentic obsidian second brain", "obsidian mcp", "obsidian agent skills", "claude code obsidian", "codex obsidian", "ai second brain", "starlight second brain"]
+faqs:
+  - question: "Do I need an Obsidian MCP server to use AI agents with my vault?"
+    answer: "No. Claude Code, Codex, and similar coding agents can work directly with local Markdown files. Add an Obsidian MCP server when you need structured vault operations such as backlinks, frontmatter-safe edits, daily-note routing, or graph-aware search."
+  - question: "What is the difference between Obsidian MCP and an Agent Skill?"
+    answer: "MCP gives an AI agent tools it can call. An Agent Skill gives the agent operating instructions: when to use those tools, which vault conventions to follow, what it may change, and how to verify the result. Tools provide capability; skills provide judgment and procedure."
+  - question: "Is it safe to let Claude or Codex write to an Obsidian vault?"
+    answer: "It can be made reasonably safe, but write access is still privileged access. Scope the agent to one vault, keep automatic backups or Git history, exclude secrets and sensitive notes, prefer reviewable edits, and test destructive operations against a disposable vault first."
+  - question: "Should I use PARA, Zettelkasten, or folders for an AI second brain?"
+    answer: "Use the smallest structure that makes retrieval reliable. A simple inbox, projects, areas, resources, archive, and system folder is enough for most people. Links and frontmatter can add relationships later. The system should evolve from repeated use rather than from a large template."
+  - question: "Can this Obsidian second brain work with both Claude Code and OpenAI Codex?"
+    answer: "Yes. The durable layer is the vault of Markdown files. Both agents can use filesystem access, and both can work with compatible MCP servers or platform-specific Agent Skills. Keep the core vault conventions client-neutral, then add thin adapters for each agent."
+  - question: "What makes the Starlight Second Brain different from a normal note vault?"
+    answer: "The Starlight pattern treats memory as an operating loop: capture evidence, distill it into durable notes, connect it to current work, create an outcome, and review what changed. The goal is not more notes. It is better decisions and reusable context."
+---
+
+**TL;DR:** Start with an Obsidian vault, plain Markdown, a small folder system, and Git or another tested backup. Let Claude Code or Codex read the files directly before adding more infrastructure. Add an Obsidian MCP server only when you need structured operations such as backlink queries, frontmatter-safe edits, or daily-note routing. Add Agent Skills to define how the agent should work, what it must never touch, and how every change gets reviewed. The durable advantage is not “AI inside notes.” It is a memory system that turns captured evidence into better work.
+
+<Callout type="insight">
+The model is replaceable. Your memory substrate is not. Keep the vault portable, keep agent behavior explicit, and keep every write recoverable.
+</Callout>
+
+## What makes an Obsidian second brain agentic?
+
+A normal second brain stores information outside your biological memory. It may contain meeting notes, ideas, research, project plans, reading highlights, and decisions. The classic [Building a Second Brain](https://fortelabs.com/blog/basboverview/) model organizes that work around capture, organization, distillation, and expression.
+
+An **agentic second brain** adds an operating layer. An AI agent can retrieve relevant context, compare notes, update structured metadata, surface contradictions, prepare a brief, and close a work session by writing back what changed.
+
+That does not mean giving an autonomous process unrestricted access to your life. It means designing a bounded loop:
+
+1. **Capture evidence** from a meeting, source, decision, or observation.
+2. **Distill the signal** into a durable note with provenance.
+3. **Connect the note** to a project, person, question, or decision.
+4. **Create an outcome** such as a plan, article, proposal, or next action.
+5. **Review the change** and feed the accepted result back into memory.
+
+I call this the **Starlight Second Brain loop**. The name matters less than the discipline: memory must participate in work. A vault that only grows is an archive. A vault that improves decisions is an operating system.
+
+## Why is Obsidian a strong substrate for an AI second brain?
+
+Obsidian stores notes as local Markdown files. The [official Obsidian help system](https://help.obsidian.md/) documents vaults, links, properties, templates, Bases, and other native features without requiring a proprietary note format.
+
+That gives an agentic system four useful properties:
+
+- **Portability:** the files remain readable in other editors and tools.
+- **Inspectability:** you can open the exact text an agent will read.
+- **Composability:** scripts, Git, search tools, editors, and AI clients can work against the same folder.
+- **Recoverability:** file history and backups can make writes reversible.
+
+Obsidian is not automatically a good second brain. A folder full of Markdown can still become a graveyard. The advantage is architectural: you own a simple substrate that can outlive any current AI client.
+
+This pairs naturally with a terminal-first workflow. If that is new, start with the [Claude Code getting-started guide](/guides/claude-code-getting-started) and the broader [terminal-first AI workflow](/blog/terminal-first-ai-workflow-claude-code).
+
+## What architecture should you build?
+
+Use five layers and keep their responsibilities separate.
+
+| Layer | Job | Recommended default |
+| --- | --- | --- |
+| Memory substrate | Stores durable knowledge | Obsidian vault with Markdown files |
+| Structure | Makes retrieval predictable | Small folders, links, properties, maps of content |
+| Tool access | Lets an agent read or change notes | Direct filesystem first; MCP when structured tools add value |
+| Operating policy | Tells the agent how to behave | Project instructions plus one or more Agent Skills |
+| Recovery and proof | Makes changes reviewable | Git, backups, diffs, approval for destructive actions |
+
+The most common mistake is collapsing all five into one plugin. That creates a system you cannot reason about. If a plugin changes, the memory architecture changes. If the model changes, the workflow changes. If a sync service fails, the recovery plan fails.
+
+Separation gives you options. You can replace Claude with Codex, replace one MCP server with another, or remove AI entirely while keeping the vault intact.
+
+### A practical vault structure
+
+Start smaller than the popular templates suggest:
+
+```text
+Second-Brain/
+  00 Inbox/
+  10 Projects/
+  20 Areas/
+  30 Resources/
+  40 Archive/
+  90 System/
+    templates/
+    skills/
+    decisions/
+    session-log/
+  VAULT.md
+```
+
+`VAULT.md` is the front door for both humans and agents. It should explain:
+
+- what the vault is for
+- what each folder means
+- naming and frontmatter conventions
+- which folders are read-only
+- where sources and citations belong
+- what the agent may never delete
+- how session summaries and decisions are recorded
+
+Do not begin with fifty tags, twenty plugins, or a taxonomy for every future interest. Let repeated retrieval failures reveal the structure you actually need.
+
+### Download the professional starter files
+
+This guide now includes a small, inspectable [Agentic Obsidian Second Brain Starter Kit](/downloads/agentic-obsidian-second-brain-starter-kit-v1.zip). It is intentionally made of Markdown rather than a proprietary vault export:
+
+- `VAULT.md` operating contract — purpose, structure, permissions, provenance, and review rules.
+- `obsidian-vault-steward/SKILL.md` — safe retrieval, capture, linking, and maintenance procedure.
+- `session-close.md` — decisions, evidence, changed artifacts, open questions, and next start.
+- `ACCEPTANCE-TEST.md` — a practical gate for retrieval, bounded writes, provenance, and recovery.
+
+Read every file before using it. Replace the example boundaries with your own, commit a clean baseline, and run the acceptance test against a disposable vault. A starter pack should shorten setup; it should never smuggle permissions into your system.
+
+## Do you need an Obsidian MCP server?
+
+Often, no.
+
+Claude Code, Codex, and other coding agents already know how to read, search, and edit local files. For a vault made of Markdown, direct filesystem access can handle summarization, drafting, link insertion, folder moves, and many maintenance tasks with fewer dependencies.
+
+MCP becomes valuable when a server exposes operations that are safer or more expressive than generic file access. The [Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro) is an open standard for connecting AI applications to tools and data sources. In an Obsidian setup, an MCP server may provide note-aware tools for search, properties, tags, backlinks, daily notes, and vault-specific actions.
+
+Use this decision rule:
+
+| Need | Direct files | Obsidian MCP |
+| --- | --- | --- |
+| Read and summarize known notes | Best default | Optional |
+| Search exact text across Markdown | Best default | Optional |
+| Apply a reviewed edit to one file | Best default | Optional |
+| Query backlinks or graph relationships | Possible but manual | Often better |
+| Preserve complex YAML properties | Requires careful editing | Better when the server is frontmatter-aware |
+| Route to the correct daily note | Requires shared conventions | Better with a daily-note tool |
+| Operate on active editor selection | Not available | Requires an in-app bridge or plugin |
+| Minimize dependencies | Best | Adds a runtime and trust boundary |
+
+There are several community implementations, each with different capabilities and security models. For example, [MCPVault](https://github.com/bitbonsai/mcpvault) focuses on vault-scoped access and frontmatter-safe operations. [obsidian-mcp](https://github.com/StevenStavrakis/obsidian-mcp) exposes note and tag operations and explicitly warns users to back up their vault before granting write access. In-app projects such as [Agent MCP](https://community.obsidian.md/plugins/agent-mcp) add editor context and embedded agent workflows.
+
+Treat these as software dependencies, not magic connectors. Before choosing one, inspect:
+
+- recent releases and maintainer activity
+- exact read, write, move, and delete capabilities
+- path traversal protections
+- network transport and authentication
+- whether telemetry or third-party services are involved
+- how properties and links are preserved
+- whether the server has tests and a clear license
+
+Run an MCP server against a disposable test vault first. A successful connection is not a safety review.
+
+## What do Agent Skills add beyond MCP?
+
+MCP provides tools. An Agent Skill provides operating knowledge.
+
+An Obsidian tool may expose `read_note`, `search`, or `update_properties`. It does not know your definition of a project note, your source-quality rules, your privacy boundary, or when a daily note should become a durable decision record.
+
+A skill can encode those choices:
+
+```markdown
+---
+name: obsidian-vault-steward
+description: Maintains an Obsidian vault when the user asks to capture, retrieve, link, review, or organize durable knowledge.
+---
+
+# Operating rules
+
+1. Read VAULT.md before changing any note.
+2. Search before creating a new durable note.
+3. Preserve source URLs and distinguish evidence from interpretation.
+4. Never delete notes. Move candidates to 40 Archive/review-needed.
+5. Show the planned file changes before any multi-file rewrite.
+6. Keep properties valid and preserve existing wikilinks.
+7. End with a change summary and the Git diff command to review.
+```
+
+This is where an AI second brain becomes personal. The vault holds your memory; the skill holds your method.
+
+Keep skills narrow. One skill can govern vault safety. Another can handle research synthesis. Another can close sessions. The [FrankX Skill Creation Methodology](/guides/frankx-skill-creation-methodology) explains how to package repeatable work with references, scripts, evaluation cases, and ownership. The [Skills Library Playbook](/guides/skills-library-playbook) covers how to manage a growing collection without loading every instruction into every session.
+
+## How do you build the system step by step?
+
+### Step 1: create the smallest useful vault
+
+Create the six folders above, add `VAULT.md`, and move ten real notes into the system. Use material you already need this month. A second brain becomes credible through retrieval, not through an elaborate empty template.
+
+### Step 2: establish recovery before agent access
+
+Choose a backup method you have tested. Git is useful because it makes text changes inspectable:
+
+```bash
+cd /path/to/Second-Brain
+git init
+git add .
+git commit -m "chore: establish second-brain baseline"
+```
+
+Git is not a complete backup if the repository only exists on one disk. Pair it with an encrypted remote or another versioned backup that matches the sensitivity of the vault. Do not commit API keys, credentials, health records, private client data, or other secrets to a remote repository by accident.
+
+### Step 3: test read-only agent retrieval
+
+Open the vault directory as the agent's working directory and ask bounded questions:
+
+- “Read `VAULT.md` and explain the structure without changing files.”
+- “Find notes related to the current launch and cite the paths you used.”
+- “List likely duplicates, but do not merge or move anything.”
+- “Find decisions that lack an owner or review date.”
+
+Check whether the citations are correct. Retrieval quality is the first gate. If the agent cannot reliably find the right notes, write access will only automate confusion.
+
+### Step 4: add one reviewable write workflow
+
+Start with session close:
+
+1. summarize what changed
+2. extract decisions and open questions
+3. propose links to existing notes
+4. write one dated session log
+5. show the diff
+
+Do not start with “clean up my entire vault.” Multi-file cleanup is hard to evaluate and easy to regret.
+
+### Step 5: add an Agent Skill
+
+Package the session-close procedure and vault safety rules into a skill supported by your chosen client. Keep the core instructions platform-neutral. Add small client adapters for Claude Code, Codex, or another agent rather than duplicating the whole method.
+
+### Step 6: add MCP only for a proven gap
+
+If direct file access repeatedly fails on backlink queries, property preservation, daily-note routing, or editor context, test a suitable MCP server. Follow the current upstream installation instructions; client configuration formats and transport support change faster than the underlying vault format.
+
+After connecting, test read operations before writes. Then test create and update. Leave move and delete disabled or human-approved until recovery has been proven.
+
+### Step 7: schedule review, not uncontrolled autonomy
+
+A weekly review can find inbox notes, stale projects, orphaned decisions, missing sources, and repeated questions. Let the agent prepare a review packet. You decide what becomes durable truth.
+
+The system should make judgment easier, not remove judgment from the loop.
+
+## When is your second brain ready for professional use?
+
+Do not judge readiness by whether the agent produced one impressive summary. Use a repeatable acceptance gate. The [starter kit](/downloads/agentic-obsidian-second-brain-starter-kit-v1.zip) includes the full acceptance test; the minimum bar is:
+
+| Gate | Pass condition |
+| --- | --- |
+| Retrieval | The agent answers five known questions and cites the correct note paths without inventing sources. |
+| Restraint | When asked to modify a read-only or excluded area, it refuses and explains the boundary. |
+| Write quality | A session-close run changes only the approved log and preserves valid properties and links. |
+| Provenance | New claims retain a source URL or are clearly labeled as interpretation. |
+| Reviewability | The agent lists changed files and provides a readable diff before acceptance. |
+| Recovery | You can restore the pre-change vault from version history or backup in under ten minutes. |
+
+Run the gate again whenever you change the model, agent client, MCP server, skill, sync provider, or vault structure. A professional system is not one that never fails. It is one whose permissions, evidence, and recovery behavior remain testable as components change.
+
+## How do you keep agent access safe?
+
+An Obsidian vault can contain the most sensitive context on your machine. Treat agent access like privileged filesystem access.
+
+Use these controls:
+
+1. **Scope access to one vault.** Never point a vault tool at your home directory or an entire drive.
+2. **Separate sensitive domains.** Keep credentials, medical data, legal records, and confidential client material outside the general agent-readable vault unless you have a deliberate data policy.
+3. **Prefer read-only first.** Prove retrieval before enabling writes.
+4. **Require previews for bulk changes.** The agent should list affected files and intended transformations.
+5. **Disable permanent deletion.** Archive or move to trash with a review period.
+6. **Keep version history.** Use Git or another tested, versioned backup.
+7. **Review dependencies.** Pin versions for critical workflows and watch upstream security changes.
+8. **Record provenance.** A durable note should distinguish original thought, source material, and AI-generated synthesis.
+9. **Test recovery.** Restore a deleted or corrupted note before trusting the setup.
+10. **Use least privilege.** A research agent may only need read access; a session-close skill may only need one log folder.
+
+The goal is not zero risk. The goal is a small, visible blast radius and a fast path back to a known-good state.
+
+## Which workflows create real leverage?
+
+### Session start
+
+The agent reads the current project note, recent decisions, open questions, and the last session log. It returns a short brief with sources. You begin with context instead of reconstructing it.
+
+### Session close
+
+The agent writes the accepted decisions, links changed artifacts, records unresolved questions, and prepares the next starting point. This prevents valuable context from dying in chat history.
+
+### Research synthesis
+
+The agent checks whether a source updates an existing note before creating a new one. It preserves the source URL, publication date, claim, confidence, and the projects affected. This reduces duplicate “article summary” notes.
+
+### Decision intelligence
+
+The agent finds earlier decisions, assumptions, and evidence related to a current choice. It can show what changed rather than presenting old context as current truth.
+
+### Content production
+
+The agent assembles an evidence packet from your notes, identifies original insights, drafts an outline, and writes the final article back with links to its source notes. The second brain becomes production infrastructure instead of a reading archive.
+
+### Weekly maintenance
+
+The agent reports inbox volume, orphan notes, unresolved decisions, stale projects, broken internal links, and notes with missing sources. It proposes repairs without silently rewriting the vault.
+
+These workflows connect naturally to the broader [Starlight Intelligence System](/starlight-intelligence-system), where memory is one layer in a larger operating architecture, and to [ACOS](/acos), where reusable skills and agents execute defined workflows.
+
+## How should you measure whether the system works?
+
+Do not optimize for total notes, backlinks, graph density, or plugin count. Those numbers can grow while the system becomes less useful.
+
+Track operational measures:
+
+| Measure | Question |
+| --- | --- |
+| Retrieval success | Did the correct note appear when it was needed? |
+| Time to context | How long did it take to become ready to work? |
+| Reuse rate | How often did stored knowledge affect a shipped outcome? |
+| Decision traceability | Can you find why a decision was made and what evidence supported it? |
+| Write acceptance | What percentage of agent-proposed changes survived review? |
+| Recovery time | How quickly can you reverse a bad change? |
+| Staleness | How much active guidance is outdated or contradictory? |
+
+A useful second brain makes the next decision faster and better. Everything else is supporting machinery.
+
+## What should you build next?
+
+Start with the canonical architecture in this guide. Do not publish several lightly rewritten versions of the same article. That splits links, relevance, and maintenance across competing URLs.
+
+Two companion articles can earn their own pages because they answer different questions:
+
+1. **Obsidian MCP Server for Claude Code and Codex: Selection, Setup, and Security** — transactional technical intent, focused on server evaluation and configuration.
+2. **Agent Skills for Obsidian: Build a Vault Steward, Research Curator, and Session-Close Skill** — implementation intent, focused on reusable operating instructions and evaluation.
+
+The branded phrase **Starlight Second Brain** should point back to this canonical guide until it represents a distinct product or methodology with its own proof. That keeps one authoritative page at the center of the cluster.
+
+## Source notes
+
+- [Obsidian Help](https://help.obsidian.md/) for vault, linking, properties, templates, and native product behavior.
+- [Model Context Protocol documentation](https://modelcontextprotocol.io/docs/getting-started/intro) for the protocol model.
+- [MCPVault](https://github.com/bitbonsai/mcpvault) and [obsidian-mcp](https://github.com/StevenStavrakis/obsidian-mcp) as community implementation examples, not endorsements.
+- [Agent MCP in the Obsidian community plugin directory](https://community.obsidian.md/plugins/agent-mcp) as an example of an in-app agent bridge.
+
+Software changes. Verify installation commands, permissions, releases, and security notes against each project's current upstream documentation before granting access to a real vault.

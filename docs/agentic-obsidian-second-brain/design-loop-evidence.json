@@ -1,0 +1,125 @@
+{
+  "version": "2026-07-20",
+  "task": "Build the canonical FrankX agentic Obsidian second-brain guide and its architecture proof panel.",
+  "surface": "FrankX public technical guide",
+  "audience": "Technical creators, founders, researchers, and AI operators adopting Obsidian with Claude Code or Codex",
+  "first_read": "Build a local-first second brain in which the model is replaceable and the memory remains owned and recoverable.",
+  "standards": [
+    "DESIGN_TASTE.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/OUTCOMES.md",
+    "_intelligence/quality-gates.md"
+  ],
+  "references": [
+    {
+      "label": "Obsidian Help",
+      "source": "https://help.obsidian.md/",
+      "reason": "Official vault, linking, properties, templates, and product behavior"
+    },
+    {
+      "label": "Model Context Protocol",
+      "source": "https://modelcontextprotocol.io/docs/getting-started/intro",
+      "reason": "Protocol architecture and terminology"
+    },
+    {
+      "label": "FrankX design system",
+      "source": "design.md and taste.md",
+      "reason": "Editorial hierarchy, material restraint, and brand language"
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Dark editorial base",
+      "Large technical typography",
+      "One dominant proof object",
+      "Near-solid reading surface",
+      "Precise system labels"
+    ],
+    "avoid": [
+      "Generic knowledge graph art",
+      "Decorative motion",
+      "Fake Obsidian screenshots",
+      "Equal-card page filler",
+      "Unverified product claims"
+    ],
+    "signature": "A three-layer system panel that separates the replaceable agent, the skills and MCP operating layer, and the durable Obsidian, Markdown, and Git substrate.",
+    "system": [
+      "FrankX emerald signal color",
+      "Tier C code-authored architecture panel",
+      "Static-first editorial composition",
+      "Responsive single-column mobile flow"
+    ]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "vector-diagram",
+    "provenance": "owned",
+    "why_premium": "The asset carries exact technical relationships and readable labels; a code-authored system panel is the correct evidence-bearing medium.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "components/guides/AgenticObsidianHero.tsx",
+      "kind": "web architecture panel",
+      "inspected": true,
+      "notes": "Inspected in the rendered guide at desktop and narrow viewport sizes."
+    },
+    {
+      "path_or_url": "C:/Users/frank/.codex/visualizations/2026/07/16/019f68ef-64b4-7601-840c-d62efff0de39/agentic-obsidian-guide-desktop.png",
+      "kind": "desktop browser capture",
+      "inspected": true,
+      "notes": "1440 by 1100 first-viewport capture."
+    },
+    {
+      "path_or_url": "C:/Users/frank/.codex/visualizations/2026/07/16/019f68ef-64b4-7601-840c-d62efff0de39/agentic-obsidian-guide-narrow.png",
+      "kind": "narrow browser capture",
+      "inspected": true,
+      "notes": "500 by 900 isolated-profile narrow capture."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier C is appropriate for an exact, text-bearing architecture panel."
+    },
+    {
+      "name": "visual-qa",
+      "status": "pass",
+      "evidence": "Desktop and narrow captures show clear hierarchy, readable text, restrained depth, and no clipping."
+    },
+    {
+      "name": "responsive-layout",
+      "status": "pass",
+      "evidence": "The three-stage architecture becomes a readable single-column flow on the narrow layout."
+    },
+    {
+      "name": "accessibility",
+      "status": "pass",
+      "evidence": "Semantic figure and figcaption, real text instead of text in imagery, high contrast, and no motion dependency."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "Actual localhost route captures were opened and visually inspected at both target sizes."
+    },
+    {
+      "name": "asset-provenance",
+      "status": "pass",
+      "evidence": "No external or generated media was introduced; the system panel is owned code."
+    }
+  ],
+  "score": {
+    "total": 28,
+    "max": 30,
+    "notes": "First read, brand fit, exact architecture, typography, responsive composition, and factual integrity meet the ship gate. Two points remain for future user-tested interaction or original product capture once a Starlight Second Brain product exists."
+  },
+  "decision": "ship",
+  "known_risks": [
+    "The whole-site build remains blocked by the pre-existing AI_PROVIDER_META failure on /ai-architecture/prototypes; the changed files compile and type-check cleanly.",
+    "MCP projects and client configuration formats change quickly; the article requires quarterly source review."
+  ]
+}
