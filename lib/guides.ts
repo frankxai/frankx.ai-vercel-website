@@ -21,6 +21,45 @@ export interface GuideDoc {
   content: string
 }
 
+type GuideFrontmatter = Record<string, unknown>
+
+function textValue(value: unknown, fallback = '') {
+  return typeof value === 'string' && value.trim() ? value : fallback
+}
+
+function stringArray(value: unknown) {
+  return Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : []
+}
+
+function guideFromFrontmatter(slug: string, data: GuideFrontmatter, content: string): GuideDoc {
+  const date = textValue(data.date, new Date().toISOString().slice(0, 10))
+  const faqs = Array.isArray(data.faqs)
+    ? data.faqs.filter(
+        (faq): faq is { question: string; answer: string } =>
+          typeof faq === 'object' &&
+          faq !== null &&
+          typeof (faq as Record<string, unknown>).question === 'string' &&
+          typeof (faq as Record<string, unknown>).answer === 'string'
+      )
+    : []
+
+  return {
+    slug,
+    content,
+    readingTime: readingTime(content).text,
+    title: textValue(data.title, slug),
+    description: textValue(data.description),
+    date,
+    author: textValue(data.author, 'Frank'),
+    category: textValue(data.category, 'Guide'),
+    tags: stringArray(data.tags),
+    keywords: stringArray(data.keywords),
+    image: textValue(data.image),
+    updated: textValue(data.updated, date),
+    faqs,
+  }
+}
+
 export function getAllGuides(): GuideDoc[] {
   if (!fs.existsSync(guidesDirectory)) return []
   const fileNames = fs.readdirSync(guidesDirectory)
@@ -31,22 +70,7 @@ export function getAllGuides(): GuideDoc[] {
       const fullPath = path.join(guidesDirectory, fileName)
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const { data, content } = matter(fileContents)
-      const readTime = readingTime(content)
-      return {
-        slug,
-        content,
-        readingTime: readTime.text,
-        title: data.title || slug,
-        description: data.description || '',
-        date: data.date || new Date().toISOString().slice(0,10),
-        author: data.author || 'Frank',
-        category: data.category || 'Guide',
-        tags: data.tags || [],
-        keywords: data.keywords || [],
-        image: data.image || '',
-        updated: data.updated || data.date || '',
-        faqs: Array.isArray(data.faqs) ? data.faqs : [],
-      } as GuideDoc
+      return guideFromFrontmatter(slug, data, content)
     })
     .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 }
@@ -56,22 +80,7 @@ export function getGuide(slug: string): GuideDoc | null {
     const fullPath = path.join(guidesDirectory, `${slug}.mdx`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
-    const readTime = readingTime(content)
-    return {
-      slug,
-      content,
-      readingTime: readTime.text,
-      title: data.title || slug,
-      description: data.description || '',
-      date: data.date || new Date().toISOString().slice(0,10),
-      author: data.author || 'Frank',
-      category: data.category || 'Guide',
-      tags: data.tags || [],
-      keywords: data.keywords || [],
-      image: data.image || '',
-      updated: data.updated || data.date || '',
-      faqs: Array.isArray(data.faqs) ? data.faqs : [],
-    } as GuideDoc
+    return guideFromFrontmatter(slug, data, content)
   } catch {
     return null
   }

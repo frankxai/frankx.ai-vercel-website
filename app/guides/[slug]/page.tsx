@@ -13,13 +13,26 @@ import AgenticObsidianHero from '@/components/guides/AgenticObsidianHero'
 // Static generation - content is read at build time
 export const dynamicParams = false
 
+const SITE_URL = 'https://frankx.ai'
+
+function resolveAbsoluteUrl(primary: string | undefined, fallback?: string) {
+  for (const candidate of [primary, fallback]) {
+    if (!candidate) continue
+    try {
+      return new URL(candidate, SITE_URL).toString()
+    } catch {
+      // Ignore malformed frontmatter and continue to the controlled fallback.
+    }
+  }
+  return undefined
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const guide = getGuide(slug)
   if (!guide) return { title: 'Guide Not Found' }
-  const ogImage = guide.image
-    ? guide.image
-    : `/api/og?title=${encodeURIComponent(guide.title)}&subtitle=${encodeURIComponent(guide.description)}`
+  const fallbackImage = `/api/og?title=${encodeURIComponent(guide.title)}&subtitle=${encodeURIComponent(guide.description)}`
+  const ogImage = resolveAbsoluteUrl(guide.image, fallbackImage) ?? `${SITE_URL}/api/og`
   return createMetadata({
     title: guide.title,
     description: guide.description,
@@ -42,8 +55,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const { slug } = await params
   const guide = getGuide(slug)
   if (!guide) return notFound()
-  const canonicalUrl = `https://frankx.ai/guides/${guide.slug}`
-  const schemaImage = guide.image ? new URL(guide.image, canonicalUrl).toString() : undefined
+  const canonicalUrl = `${SITE_URL}/guides/${guide.slug}`
+  const schemaImage = resolveAbsoluteUrl(guide.image)
   const articleSchema = {
     headline: guide.title,
     description: guide.description,
@@ -92,7 +105,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <MDXContent source={guide.content} />
           </div>
           {guide.faqs && guide.faqs.length > 0 ? (
-            <section className="mt-16 border-t border-white/10 pt-12" aria-labelledby="guide-faq-heading">
+            <section className="mt-16 border-t border-white/[0.08] pt-12" aria-labelledby="guide-faq-heading">
               <h2 id="guide-faq-heading" className="text-3xl font-bold tracking-tight text-white">
                 Frequently asked questions
               </h2>
