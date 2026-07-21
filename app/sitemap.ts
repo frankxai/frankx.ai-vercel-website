@@ -41,6 +41,29 @@ function getBlogEntries(): { slug: string; date: string }[] {
   }
 }
 
+// Get published MVU journal entries from content/mvu directory
+function getMvuEntries(): { slug: string; date: string }[] {
+  const mvuDir = path.join(process.cwd(), 'content/mvu')
+  try {
+    return fs
+      .readdirSync(mvuDir)
+      .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
+      .map((file) => {
+        const slug = file.replace(/\.mdx?$/, '')
+        try {
+          const { data } = matter(fs.readFileSync(path.join(mvuDir, file), 'utf8'))
+          if (data.published === false) return null
+          return { slug, date: data.date || '' }
+        } catch {
+          return { slug, date: '' }
+        }
+      })
+      .filter((e): e is { slug: string; date: string } => e !== null)
+  } catch {
+    return []
+  }
+}
+
 // Get all guide slugs from content/guides directory
 function getGuideSlugs(): string[] {
   const guidesDir = path.join(process.cwd(), 'content/guides')
@@ -388,6 +411,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Get dynamic content
   const blogEntries = getBlogEntries()
+  const mvuEntries = getMvuEntries()
   const guideSlugs = getGuideSlugs()
   const productSlugs = getProductSlugs()
 
@@ -624,6 +648,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
+    })
+  })
+
+  // MVU journey hub + event page + journal entries
+  entries.push(
+    { url: `${BASE_URL}/mvu`, lastModified: currentDate, changeFrequency: 'daily', priority: 0.8 },
+    { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.7 },
+  )
+  mvuEntries.forEach(entry => {
+    entries.push({
+      url: `${BASE_URL}/mvu/${entry.slug}`,
+      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.6,
     })
   })
 
