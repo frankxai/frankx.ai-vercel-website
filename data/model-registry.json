@@ -469,7 +469,7 @@
         "Frontier multimodal: text/image/audio/video/PDF",
         "Positioned as Google's strongest agentic + coding model (vendor-stated)"
       ],
-      "frankx_notes": "Not GA as of June 5, 2026 — limited Vertex preview only, no model card, no benchmarks, no pricing. Announced at I/O May 19, 2026; GA targeted for June. Model id gemini-3.5-pro. Its real differentiation will need to show on hard reasoning (ARC-AGI-2, SWE-bench Pro) and 2M context. Do not architect on it until GA.",
+      "frankx_notes": "Still not GA as of July 17, 2026 — GA slipped from June to July; no model card, benchmarks, or pricing published (leaks target mid-July, unconfirmed). Announced at I/O May 19, 2026. Model id gemini-3.5-pro. Its real differentiation will need to show on hard reasoning (ARC-AGI-2, SWE-bench Pro) and 2M context. Do not architect on it until GA.",
       "sources": [
         "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
         "https://deepmind.google/models/gemini/"

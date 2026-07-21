@@ -3,6 +3,11 @@ import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
+import { getAllModels } from '@/lib/llm-hub/registry'
+import { COMPARISONS } from '@/lib/llm-hub/comparisons'
+import { getEditorial } from '@/lib/llm-hub/editorial'
+import { getCategories as getGenCategories, getGenModelsByCategory } from '@/lib/models-hub/registry'
+import { GEN_COMPARISONS } from '@/lib/models-hub/comparisons'
 import { askQuestions } from '@/data/ask-questions'
 
 const SITE_URL = siteConfig.url
@@ -31,6 +36,27 @@ export async function GET() {
 
   const researchLinks = researchDomains
     .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
+    .join('\n')
+
+  const llmModelLinks = getAllModels()
+    .map((m) => `- [${m.name}](${SITE_URL}/llm-hub/${m.id}): ${getEditorial(m.id)?.tagline || `${m.name} specs, benchmarks, pricing`}`)
+    .join('\n')
+
+  const llmComparisonLinks = COMPARISONS
+    .map((c) => `- [${c.title}](${SITE_URL}/llm-hub/compare/${c.slug}): ${c.verdict}`)
+    .join('\n')
+
+  const genCategoryBlocks = getGenCategories()
+    .map((c) => {
+      const models = getGenModelsByCategory(c.id)
+        .map((m) => `  - [${m.name}](${SITE_URL}/models/${m.category}/${m.id}): ${m.tagline || m.highlight || ''}`)
+        .join('\n')
+      return `- [${c.label}](${SITE_URL}/models/${c.id}): ${c.blurb}\n${models}`
+    })
+    .join('\n')
+
+  const genComparisonLinks = GEN_COMPARISONS
+    .map((c) => `- [${c.title}](${SITE_URL}/models/compare/${c.slug}): ${c.verdict}`)
     .join('\n')
 
   const askLinks = askQuestions
@@ -69,6 +95,24 @@ ${libraryLinks}
 - [Research Sources](${SITE_URL}/research/sources): How research is sourced
 - [Research Methodology](${SITE_URL}/research/methodology): Validation rigor
 ${researchLinks}
+
+## LLM Provider Hub (the decision layer over the frontier model landscape)
+- [LLM Hub](${SITE_URL}/llm-hub): Every frontier provider, model, and agentic platform — categorized, priced, with verdicts
+- [LLM Arena](${SITE_URL}/llm-hub/arena): Interactive side-by-side comparison — pick any two models, see the head-to-head
+- [Sources & Provenance](${SITE_URL}/llm-hub/sources): Where every number comes from — primary, independent, aggregator
+- [LLM Hub JSON](${SITE_URL}/llm-hub.json): Machine-readable registry + verdicts + decision matrix for agents
+${llmModelLinks}
+
+### Model Comparisons (head-to-head)
+${llmComparisonLinks}
+
+## Generative Model Hub (multimodal — image, video, music, voice, embeddings, world)
+- [Generative Model Hub](${SITE_URL}/models): Every frontier multimodal model, categorized, with verdicts
+- [Generative Model Hub JSON](${SITE_URL}/models.json): Machine-readable multimodal registry for agents
+${genCategoryBlocks}
+
+### Multimodal Comparisons (head-to-head)
+${genComparisonLinks}
 
 ## Workshops (live, application or open)
 - [Build First AI Agent](${SITE_URL}/workshops/build-first-ai-agent): Multi-path workshop with Vercel AI SDK + 6 branches

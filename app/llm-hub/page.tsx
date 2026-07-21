@@ -143,6 +143,18 @@ export default async function LlmHubPage() {
                 <Compass className="h-4 w-4" /> Explore all models
               </Link>
               <Link
+                href="/llm-hub/arena"
+                className="inline-flex items-center gap-2 rounded-lg border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm text-purple-300 transition-colors hover:border-purple-500/50"
+              >
+                <Compass className="h-4 w-4" /> Open the Arena
+              </Link>
+              <Link
+                href="/llm-hub/sources"
+                className="inline-flex items-center gap-2 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-300 transition-colors hover:border-cyan-500/50"
+              >
+                <FileJson className="h-4 w-4" /> Sources &amp; provenance
+              </Link>
+              <Link
                 href="/blog/frontier-model-routing-without-fable-5"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
               >
