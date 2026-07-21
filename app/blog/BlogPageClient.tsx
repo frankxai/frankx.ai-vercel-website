@@ -92,14 +92,14 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                 <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={40} height={40} className="rounded-xl" sizes="40px" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                   <Sparkles className="w-4 h-4 text-emerald-400" />
-                  <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
+                  <span className="text-xs font-medium text-emerald-400">FrankX Journal</span>
                 </div>
               </div>
               <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-                Inside the build.
+                Ideas built to travel.
               </h1>
               <p className="mt-2 text-base text-white/40">
-                AI systems, creative workflows, and what&apos;s actually shipping.
+                Field notes, intelligence systems, and what changes when ideas become usable.
               </p>
             </div>
             <div className="hidden md:flex items-center gap-5 text-sm text-white/40">
@@ -317,10 +317,10 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             <span className="text-sm text-emerald-400">Weekly Insights</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Join Creation Chronicles
+            Join the FrankX Journal
           </h2>
           <p className="text-white/50 mb-8">
-            Get weekly insights on AI, creativity, and building in public.
+            Get field notes on AI architecture, creative systems, and the models emerging where they meet.
           </p>
           <Link
             href="/newsletter"

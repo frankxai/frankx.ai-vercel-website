@@ -158,6 +158,12 @@ const nextConfig = {
         destination: '/blog/conscious-ai-for-entrepreneurs',
         permanent: true,
       },
+      // Journal is the editorial brand; /blog remains the article canonical.
+      {
+        source: '/journal/:slug',
+        destination: '/blog/:slug',
+        permanent: true,
+      },
       {
         source: '/blog/05-music-as-consciousness-technology',
         destination: '/blog/music-as-consciousness-technology',
