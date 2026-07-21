@@ -1,0 +1,19 @@
+{
+  "_description": "Human release decisions only. Track metadata and assets remain in data/music/catalog.csv.",
+  "schemaVersion": 1,
+  "records": {
+    "studio-ledger-001_arcanea-rising": {
+      "revision": 1,
+      "gates": {
+        "selection": { "status": "pending" },
+        "rights": { "status": "pending" },
+        "master": { "status": "pending" },
+        "artwork": { "status": "pending" },
+        "copy": { "status": "pending" },
+        "publish": { "status": "pending" },
+        "homepage": { "status": "pending" }
+      }
+    }
+  }
+}
+
