@@ -1,0 +1,541 @@
+---
+title: "ChatGPT Sites: Complete Founder Guide (2026)"
+description: "A practical ChatGPT Sites guide: how it works, how it compares with Claude Artifacts, and how founders should build, govern, and launch in hours."
+date: "2026-07-22"
+lastUpdated: "2026-07-22"
+author: "FrankX"
+category: "Creator Systems"
+tags: ["ChatGPT Sites", "Codex", "AI Website Builder", "Founder Systems", "Agentic Workflows", "AI App Builder"]
+keywords:
+  - "ChatGPT Sites"
+  - "ChatGPT Sites guide"
+  - "Codex Sites"
+  - "how ChatGPT Sites works"
+  - "ChatGPT Sites vs Claude Artifacts"
+  - "AI website builder for founders"
+  - "build a website with ChatGPT"
+  - "AI app builder comparison"
+image: "/images/blog/generated/chatgpt-sites-founder-guide-2026-hero.png"
+readingGoal: "Understand the ChatGPT Sites operating model, choose it for the right jobs, and turn one founder idea into a reviewed live experience in a single working session."
+tldr: "ChatGPT Sites is a managed hosting and publishing layer for websites, lightweight apps, games, and internal tools. It connects intent, source, saved versions, production deployments, storage, identity, audience controls, analytics, and domains. Founders should use it for fast, bounded experiences and govern each Site with an owner, source, audience, data class, metric, and retirement rule."
+faq:
+  - q: "What is ChatGPT Sites?"
+    a: "ChatGPT Sites is OpenAI's managed workflow for creating, hosting, refining, and sharing websites, lightweight apps, games, and internal tools from ChatGPT."
+  - q: "Is Codex Sites a separate product?"
+    a: "No. Codex can start the Sites workflow and work on compatible local source, but the documented product name is ChatGPT Sites."
+  - q: "What is the difference between saving and deploying a Site?"
+    a: "Saving creates a deployable candidate for review. Deploying publishes a saved version to a production URL."
+  - q: "Can ChatGPT Sites use a database or accept files?"
+    a: "Yes. Within the supported runtime, D1 provides durable structured data and R2 provides object storage for files."
+  - q: "Can founders take payments on a ChatGPT Site?"
+    a: "No. OpenAI says Sites must not enable financial transactions or process payment-card data."
+  - q: "When should a founder choose another stack?"
+    a: "Choose another stack for unsupported runtimes, private networks, infrastructure-heavy backends, prohibited or regulated data, financial transactions, or residency requirements Sites cannot meet."
+schema: ["Article", "FAQPage", "HowTo"]
+featured: true
+architectNote:
+  recommendation: "Treat Sites as a product-delivery lane, not a replacement for your entire software estate. Start owner-only, keep source and version evidence, deploy a narrow experience, measure one behavior, and graduate proven products to a deeper stack only when the operating requirements demand it."
+  coePillar: "Strategy · rapid validation; Technology · managed delivery; Governance · access, data, and release control"
+  personas:
+    - persona: "Founder"
+      pick: "Own the audience, promise, success metric, and decision to publish."
+    - persona: "Builder agent"
+      pick: "Turn the brief into source, tests, saved versions, and deployment candidates."
+    - persona: "Reviewer"
+      pick: "Verify claims, data handling, mobile behavior, access, and the live visitor path."
+---
+
+**ChatGPT Sites** is OpenAI's managed way to create, host, refine, and share websites, lightweight web apps, games, and internal tools from ChatGPT. The important part is not that an AI can write a page. Many tools can do that. Sites joins the whole delivery chain: your intent, the source, a saved version, a production deployment, and a defined audience.
+
+That changes the founder question from “Can AI generate this?” to “Can I turn this idea into a controlled, measurable experience today?”
+
+As of July 22, 2026, Sites is in public beta. Availability, limits, custom domains, analytics, and sharing options can depend on plan, region, and workspace settings. OpenAI's current Help Center says the launch rollout excludes Free and Go plans and, at launch, the EEA, Switzerland, and the United Kingdom. Always verify the [current Sites documentation](https://learn.chatgpt.com/docs/sites) and [account availability](https://help.openai.com/en/articles/20001339) before committing a client or launch date.
+
+## The direct answer: what is ChatGPT Sites?
+
+ChatGPT Sites is a **versioned delivery surface**.
+
+You can start from a prompt or a compatible local project. ChatGPT can create the experience, let you inspect and refine it, save a deployable version, publish that version to a hosted URL, and control who can visit. A Site remains available in the Sites manager after the chat that created it ends.
+
+The closest useful mental model is not “a smarter website template.” It is:
+
+```text
+Intent → Source → Saved version → Production deployment → Audience
+```
+
+Each layer answers a different operational question.
+
+| Layer | The question it answers | What good looks like |
+|---|---|---|
+| Intent | Who is this for, and what should they accomplish? | One audience, one job, one measurable outcome |
+| Source | What actually produces the experience? | Inspectable code, content, assets, and configuration |
+| Saved version | What exactly are we reviewing? | A named, reproducible deployment candidate |
+| Deployment | What is live? | One deliberate production release with a known URL |
+| Audience | Who may use it? | The narrowest access level that fits the job |
+
+This is why Sites is more strategically interesting than “vibe coding.” The model is not only generating an output. It is helping manage the boundary between an idea and a live service.
+
+<Callout type="insight">
+**FrankX principle:** a Site is not an artifact with a link. It is a small product with an owner, a source, a release, an audience, and a retirement decision.
+</Callout>
+
+## How ChatGPT Sites works from prompt to production
+
+### 1. Start with a product brief, not a page description
+
+You can trigger the workflow by including the word **website** or mentioning `@Sites`. The best first prompt defines behavior before visual style.
+
+Name:
+
+- the audience;
+- the decision or task they need to complete;
+- the information the Site may use;
+- the required interactions;
+- whether anything must persist between visits;
+- who may access it;
+- what must never be exposed;
+- the release standard.
+
+“Build a premium website for my new offer” gives the agent aesthetic freedom but almost no product truth. “Build a founder diagnostic that asks seven questions, returns one of three operating recommendations, stores nothing, and sends qualified visitors to an external application page” is a buildable product brief.
+
+If you are already working in a repository, Codex can edit and test the local source while Sites handles the hosted project. OpenAI documents that a local Sites project stores its hosting linkage in `.openai/hosting.json`. That makes source ownership visible instead of leaving the product trapped inside one conversation.
+
+### 2. Review the generated experience
+
+Inspect more than the homepage.
+
+Test the full visitor path: first load, navigation, forms, empty states, invalid input, mobile layout, sign-in, storage, links, and the final action. Check every generated claim and image. If the Site accepts user content, test what another visitor can see.
+
+The first review should answer four questions:
+
+1. Does the intended user understand the value within ten seconds?
+2. Can they complete the core job without explanation?
+3. Is every piece of collected or displayed data intentional?
+4. Does the next business action happen outside the Site where necessary?
+
+### 3. Refine with evidence
+
+Ask for changes against a concrete failure, not taste alone.
+
+Weak: “Make it feel more premium.”
+
+Strong: “On a 390-pixel viewport, the comparison table forces horizontal scrolling. Convert the rows into stacked cards below 640 pixels, keep every criterion visible, and preserve the desktop table.”
+
+Screenshots, source files, brand rules, example data, and acceptance criteria shorten the loop. If the Site represents a product, use real product language and real workflow states. Decorative polish cannot rescue a generic experience.
+
+### 4. Save a version before you deploy
+
+This is the most important mechanical rule in the product.
+
+OpenAI separates publishing into two stages:
+
+1. **Save a version.** ChatGPT creates a deployable candidate. For a local source project, the version is associated with the Git commit used for the build.
+2. **Deploy a version.** ChatGPT publishes the saved version and reports the production URL.
+
+Every Sites deployment URL is a production URL. There is no harmless “deployment preview” hiding behind that action. If you want a review point, save first and deploy only after approval.
+
+That small distinction is the difference between improvisation and a release process.
+
+### 5. Choose the audience deliberately
+
+A new Site starts limited to its owner and workspace admins. Depending on plan and workspace policy, the audience can include selected users or groups, the workspace, or anyone on the internet. Sharing gives people permission to visit; it does not grant edit access.
+
+Use the narrowest useful audience:
+
+- **Owner only** for prototypes, prompt experiments, and data review.
+- **Selected collaborators** for stakeholder acceptance.
+- **Workspace** for internal tools, operating manuals, and event rooms.
+- **Public** for acquisition, education, campaigns, and productized utilities.
+
+Enterprise public publishing is off by default and must be enabled by an administrator. Public availability and an authentication feature inside the Site are separate controls.
+
+## What can a ChatGPT Site actually include?
+
+Sites covers more than static pages, but “full stack” still needs precise boundaries.
+
+### Persistent structured data with D1
+
+When people expect records, progress, scores, or submitted items to remain between visits, ask for durable structured storage. OpenAI documents D1 as the relational database option for Sites.
+
+Use it for bounded product data such as:
+
+- workshop progress;
+- a small request tracker;
+- saved assessment results;
+- game scores;
+- lightweight records owned by authenticated users.
+
+Do not request a database for temporary presentation state such as a theme choice or dismissed banner. Complexity should follow a user promise, not the availability of a feature.
+
+### Files and uploads with R2
+
+R2 provides object storage for images, documents, audio, video, and other uploads. If uploaded files also need searchable metadata, OpenAI recommends D1 for the metadata and R2 for the file contents.
+
+Before adding uploads, define file type, maximum size, visibility, retention, deletion, and moderation. “Let visitors upload anything” is not a feature specification.
+
+### Identity and Sign in with ChatGPT
+
+Workspace-restricted Sites already use ChatGPT identity for audience enforcement. Public Sites can optionally add **Sign in with ChatGPT** for identity-aware behavior while remaining accessible to signed-out visitors.
+
+This can support saved progress, personalized views, or user-owned records. Keep authorization decisions in server-side code. A name or email header tells you who the platform authenticated; it does not by itself decide what that person may access.
+
+### Environment values and secrets
+
+Hosted environment values belong in the Site's settings. Keep secrets out of prompts, uploaded files, Site content, the hosting manifest, and committed `.env` files. After changing a hosted value, redeploy the approved saved version so the next deployment receives the new configuration.
+
+### Analytics and custom domains
+
+Sites provides a managed analytics view in ChatGPT for eligible non-Enterprise-owned Sites, including unique visitors and page views. Where custom domains are available, you can connect an apex domain or subdomain you already own by changing DNS records. Sites does not register the domain for you, and OpenAI says custom domains are not available to Enterprise workspaces at launch.
+
+For a serious launch, analytics should answer one business question. “How many people visited?” is weak. “What percentage completed the diagnostic and continued to the application page?” is useful.
+
+## The best ChatGPT Sites use cases
+
+OpenAI's showcase organizes Codex-built work across agentic apps, creative tools, data visualization, documentation, ecommerce experiences, education, games, internal tools, marketing sites, storefronts, and visual experiences. The featured examples include a minimalist 3D game, a living-town simulation, a picnic storefront, and a real-time material studio. These are not instructions to build everything in Sites; they reveal the range of small, interactive experiences AI-native building makes practical.
+
+For founders, the highest-leverage use cases share four traits: narrow scope, visible value, low migration cost, and a short learning loop.
+
+### Interactive lead magnets
+
+Replace another PDF with a diagnostic, calculator, configurator, decision tree, or personalized plan. The visitor receives an answer, not a download. The founder learns which problems and segments are actually present.
+
+Keep the transaction elsewhere. A Site can qualify and route; Sites must not enable financial transactions.
+
+### Launch rooms
+
+Create a focused experience for one launch: product narrative, demo, timeline, objection handling, press assets, application path, and updates. Start owner-only, invite the launch team, then publish the approved version.
+
+This is faster and cleaner than changing the core company website for every experiment.
+
+### Internal operating tools
+
+Request boards, event command centers, onboarding paths, enablement hubs, decision logs, and lightweight registries are strong fits. Workspace or selected-user access can keep the experience bounded while the interface remains easier to use than a spreadsheet.
+
+### Workshop and cohort companions
+
+Turn static curriculum into a guided sequence with progress, exercises, examples, and next actions. Add identity only if progress must follow a person. Store the minimum data needed to fulfill that promise.
+
+### Campaign worlds and product education
+
+A Site can give an album, book, research report, or product release its own interactive environment without creating a permanent engineering commitment. Use it to make the idea tangible, then route durable content back to the canonical brand site.
+
+### Fast operational prototypes
+
+When a team is debating an internal process, a working interface is often more useful than a meeting. Build the smallest tool that expresses the proposed workflow. Let five people use it. Promote, rebuild, or delete it based on evidence.
+
+## When should you not use ChatGPT Sites?
+
+Sites is a fast lane, not the correct lane for every product.
+
+Choose another stack when you need:
+
+- unsupported frameworks or hosting patterns;
+- private-network access;
+- a database or background service outside the supported runtime;
+- infrastructure-level observability or deployment controls;
+- strict regional residency guarantees;
+- a complex multi-service backend;
+- native mobile distribution;
+- payment processing inside the experience;
+- regulated data that the terms exclude.
+
+OpenAI says Sites must not process Protected Health Information or payment-card data, target children under 13 or below the applicable age of digital consent, or enable financial transactions. The product also does not support data or inference residency at launch, including Site code, D1/R2 data, artifacts, and related logs.
+
+If your Site collects personal data, you are the controller of that end-user data under the Sites terms. You need a visible privacy notice, a lawful and expected purpose, data minimization, appropriate security, retention and deletion rules, a rights-request path where applicable, and consent for uses that require it. This is product design, not a footer exercise. Read OpenAI's [data-protection guidance](https://help.openai.com/en/articles/20001340) and obtain legal advice for your actual context.
+
+<Callout type="warning">
+Do not paste a secret into a prompt, treat an owner-only URL as a secret vault, or assume a polished generated interface has a correct authorization model. Access, authentication, authorization, and data policy are separate layers.
+</Callout>
+
+## ChatGPT Sites vs Claude Artifacts, Gemini Canvas, v0, Replit, and Lovable
+
+The tools overlap, but they optimize different boundaries. The right comparison is not “Which model writes the best React?” It is “Where does this experience live, how is it released, and who owns the next operational step?”
+
+| Surface | Best mental model | Strongest fit | Key trade-off |
+|---|---|---|---|
+| ChatGPT Sites | Versioned hosted delivery surface | Fast websites, lightweight apps, games, internal tools, controlled audiences | Beta limits and runtime constraints; every deployment URL is production |
+| Claude Artifacts | Versioned, publishable artifact inside Claude | Remixable tools, embedded experiences, AI-powered artifacts, personal/shared storage | Artifact-centric lifecycle; each user authenticates connected MCP services separately |
+| Gemini Canvas | Document-and-app creation canvas | Turning research or a document into apps, quizzes, infographics, slides, or web pages | Sharing remains closely tied to the Gemini Canvas experience |
+| v0 + Vercel | AI frontend/product builder attached to a Vercel project | Teams that need GitHub, preview branches, environment controls, and mature production hosting | More platform and engineering decisions to own |
+| Replit | Cloud development environment plus multiple deployment types | Broader apps, scheduled jobs, long-running services, bots, and flexible hosting | More infrastructure, pricing, and runtime choices |
+| Lovable | Full-stack conversational product builder | Fast database-backed apps, workspace publishing, custom domains, and guided security checks | A larger product platform to govern and eventually integrate |
+
+### ChatGPT Sites vs Claude Artifacts
+
+Claude Artifacts began as a dedicated surface beside the conversation for documents, code, and interactive components. They now support version selection, public publishing, organization sharing, downloads, embeds, AI-powered behavior, MCP connections, and personal or shared persistent storage.
+
+Claude is especially strong when the object should remain **remixable inside Claude**. A published artifact can be viewed and interacted with by non-users; Claude users can customize it, use AI-powered capabilities within their own limits, and organize discovered artifacts. Published artifacts can also be embedded on allowed domains.
+
+Sites is stronger when the operating center is **a hosted Site with an explicit production and audience lifecycle**. Its documented separation between a saved version and a deployed version is the clearest reason to prefer it for founder releases.
+
+The decision:
+
+- Pick **Claude Artifacts** when remixing, embedding, Claude-powered interaction, or artifact discovery is central.
+- Pick **ChatGPT Sites** when a standalone hosted experience, staged access, source linkage, analytics, or a custom domain is central.
+
+### ChatGPT Sites vs Gemini Canvas
+
+Gemini Canvas is a broad making surface. It can create documents, code, slides, custom visuals, quizzes, infographics, apps, and web pages, then export into Google Docs, Slides, PDF, or Colab where relevant. Shared apps can include Gemini-powered behavior and saved or shared data.
+
+Canvas is attractive when the starting object is research or a document and the next action lives in Google's ecosystem. Sites is the clearer fit when the primary object is a managed web experience with deployment and audience controls.
+
+### ChatGPT Sites vs v0 and Vercel
+
+v0 Projects connect many chats to one Vercel Project. The project shares deployment, hosting, domains, environment variables, and a filesystem. It supports production publishing, GitHub workflows, preview branching, third-party integrations, and deeper Vercel operations.
+
+Use v0 and Vercel when the app is already becoming part of your durable software estate. Use Sites when the experience should be live quickly without first designing a separate deployment system.
+
+The graduation path is healthy: validate the job with a Site; move to a deeper Vercel application when roadmap, integrations, preview environments, team ownership, or infrastructure controls justify the weight. My [Vercel and Claude Code deployment guide](/blog/vercel-claude-code-nextjs-deploy-one-session) covers that more engineering-led lane.
+
+### ChatGPT Sites vs Replit and Lovable
+
+Replit gives a broader cloud development environment and multiple deployment modes: static, autoscale, reserved VM, and scheduled deployments. It is a better fit when your product needs a long-running worker, bot, scheduled job, or runtime choice that Sites does not support.
+
+Lovable centers fast full-stack product creation. Its publishing flow can run a basic security scan, support workspace-only or public access on applicable plans, connect custom domains, and publish a snapshot while leaving later changes unpublished until the next update.
+
+Sites wins when your advantage is the ChatGPT or Codex workflow and you want the shortest route to a bounded hosted experience. Replit and Lovable win when the application environment itself is becoming the product platform.
+
+For the broader model and assistant decision, see my [ChatGPT vs Claude vs Gemini comparison](/blog/chatgpt-vs-claude-vs-gemini-2026). For coding-agent workflows, use the [complete AI coding agents guide](/blog/ultimate-guide-ai-coding-agents-2026).
+
+## A founder operating system for ChatGPT Sites
+
+The risk is not that founders will build too little. It is that they will build twenty useful-looking Sites and lose track of what is live, what contains data, and which one still represents the business.
+
+Manage Sites as a portfolio.
+
+### Keep a Site Registry
+
+Use a table, database, or repository file with one row per Site:
+
+| Field | Why it matters |
+|---|---|
+| Name and purpose | Prevents mystery tools and duplicate experiments |
+| Business owner | Names the person accountable for content and outcome |
+| Technical owner | Names who can inspect, fix, redeploy, or retire it |
+| Audience | Owner, selected people, workspace, or public |
+| Source | Prompt-only origin or canonical local repository and path |
+| Current saved version | Identifies the approved candidate |
+| Live URL and domain | Shows the actual public or internal surface |
+| Data classification | Public, internal, confidential, personal, or prohibited |
+| Storage | None, D1, R2, or both |
+| Environment keys | Names only—never secret values |
+| Success metric | The single behavior the Site exists to change |
+| Last review | Creates a freshness and security checkpoint |
+| Retirement rule | Defines when to archive, rebuild, or delete it |
+
+### Separate playgrounds from products
+
+A playground has no promise of continuity. A product does.
+
+The moment you share a Site with customers, partners, or employees, it acquires product obligations: accuracy, access, support, privacy, ownership, update discipline, and a known failure path. Mark that transition in the registry.
+
+I use a simple maturity ladder:
+
+1. **Sketch:** prompt-only, owner-only, disposable.
+2. **Prototype:** real workflow, synthetic data, selected reviewers.
+3. **Pilot:** bounded real users, minimum necessary data, one metric.
+4. **Productized Site:** named owner, source, release checklist, support and privacy path.
+5. **Graduated product:** moved to a deeper application stack because the operating requirements now justify it.
+
+### Run one release checklist
+
+Before every public or workspace deployment, confirm:
+
+- the saved version is the one you intend to release;
+- the source commit is known when local source is involved;
+- all claims, links, generated images, and uploads were reviewed;
+- mobile and keyboard paths work;
+- access and sign-in were tested as a visitor;
+- authorization is enforced server-side;
+- no secrets or prohibited data are present;
+- the privacy notice matches actual collection and storage;
+- the success event can be observed;
+- the owner knows how to restrict, roll forward, or delete the Site.
+
+OpenAI warns that deleting a Site is permanent and cannot be restored. Treat deletion as an explicit portfolio decision, not tidying.
+
+## How to build and launch a ChatGPT Site in hours
+
+The goal is not to squeeze an entire company into an afternoon. The goal is to ship one complete learning loop.
+
+### Hour 0–1: define the wedge
+
+Write five lines:
+
+1. Audience: one specific user.
+2. Job: one decision or action.
+3. Input: the minimum information they provide.
+4. Output: the useful result they receive.
+5. Business event: the next observable step.
+
+Example: “Independent consultants answer six questions about their delivery workflow, receive one of three automation recommendations, and can request a systems audit on FrankX.ai.”
+
+### Hour 1–2: build the static truth
+
+Create the main path without identity or persistence first. Use real copy, real decision logic, and representative data. Confirm the experience is useful before adding a backend.
+
+### Hour 2–3: add only required state
+
+If the promise requires saved records, user progress, or uploads, add D1, R2, or identity deliberately. Document what is stored and why. If state is not essential, keep the Site stateless.
+
+### Hour 3–4: review, save, and test
+
+Run the release checklist. Save a version without deploying. Inspect the candidate, including mobile, invalid input, another-user access, and all outbound links.
+
+### Hour 4+: deploy to the narrowest audience
+
+Start with selected reviewers or the workspace. Observe the core behavior. Fix the largest friction point. Save a new version, review it, and only then update the deployment or expand the audience.
+
+This is how “production in hours” stays credible: narrow product scope, explicit release boundaries, and evidence before expansion.
+
+## The prompt template I recommend
+
+Use this as a starting contract, then replace every bracketed field.
+
+```text
+@Sites Build a website for [specific audience] who need to [single job].
+
+The core experience:
+1. [first action]
+2. [second action]
+3. [result or next step]
+
+Use only these inputs: [approved content, files, links, or synthetic data].
+The Site must not expose or collect: [secrets, sensitive data, prohibited data].
+
+State and identity:
+- Persistence: [none / D1 for specific records / R2 for specific files]
+- Access: [owner only / selected users / workspace / public]
+- Sign-in: [not needed / workspace identity / optional Sign in with ChatGPT]
+
+Quality bar:
+- Responsive from 390px mobile through desktop
+- Keyboard-accessible controls and visible focus states
+- Helpful empty, error, and success states
+- No invented claims, fake testimonials, or placeholder links
+- One primary action: [action]
+
+Release process:
+- Build and test the experience
+- Show me the visitor path and data model
+- Save a version without deploying
+- Do not change audience access or deploy until I approve the saved version
+```
+
+The strongest line is the last one. It prevents speed from erasing the review boundary.
+
+## How I would use ChatGPT Sites across the Starlight businesses
+
+The best Starlight strategy is not one giant Site. It is a portfolio of narrow experiences that feed durable brands and systems.
+
+### 1. FrankX: interactive founder architecture diagnostic
+
+Build a public, stateless diagnostic that routes founders into one of four next steps: workflow audit, agent architecture, productization, or AI Center of Excellence. The result page should link back to canonical FrankX guides and an application form hosted on the main site.
+
+Metric: completed diagnostics that continue to a relevant FrankX page.
+
+### 2. GenCreator: product pathway configurator
+
+Ask creators about current output, audience, offer, distribution, and automation. Return a recommended system path and the smallest first product. Keep checkout on the canonical commerce stack.
+
+Metric: qualified visitors who enter the correct product or cohort path.
+
+### 3. Fiction and IP: launch-specific campaign worlds
+
+Give a book, gallery release, or creator-owned IP campaign a temporary interactive world: story path, character choice, media gallery, and canonical purchase or community links. This is a campaign surface, not the source of truth for the underlying IP.
+
+Metric: story completion and onward visits to the owned publishing or community platform.
+
+### 4. Agentic Music: release companion experiences
+
+Build an album or track companion with stems, visual worlds, production notes, prompt lineage, and listener choices. Avoid copyrighted material you do not control and keep rights provenance explicit.
+
+Metric: completion, saves, and onward listening on the chosen music platform.
+
+### 5. Enterprise AI: private workshop command rooms
+
+Use workspace or selected-user access for agendas, exercises, decision logs, architecture options, and follow-up ownership. Do not put client-sensitive information into a public or residency-ineligible lane.
+
+Metric: decisions with named owners completed after the session.
+
+### 6. Starlight operations: a live Site Registry
+
+Create the portfolio interface described above: owner, audience, source, version, deployment, data class, metric, last review, and retirement date. Keep the registry internal. It becomes the control plane for every experiment the ecosystem ships.
+
+Metric: zero unowned public Sites and zero Sites past their review date.
+
+The sequence I would execute is **registry first, FrankX diagnostic second, one campaign world third**. The registry prevents speed from becoming sprawl. The diagnostic creates commercial learning. The campaign proves the creative range.
+
+If you are building reusable methods around these releases, read my [Codex Plugins for Teams operating guide](/blog/codex-plugins-for-teams). The plugin should hold the repeatable method; the Site should deliver one bounded experience.
+
+## The durable founder advantage
+
+AI has made the first draft of software abundant. The scarce capability is now **delivery judgment**.
+
+Can you choose a narrow problem? Can you preserve source ownership? Can you separate review from release? Can you expose the right experience to the right audience? Can you collect only the data you need? Can you learn from one metric and retire what does not work?
+
+ChatGPT Sites compresses the distance between idea and live experience. Founders create leverage when they use that speed inside a disciplined operating model.
+
+Build the smallest complete loop. Save it. Review it. Deploy it deliberately. Measure it. Then decide whether it should remain a Site, become a product, or disappear.
+
+## Frequently Asked Questions
+
+### What is ChatGPT Sites?
+
+ChatGPT Sites is OpenAI's managed workflow for creating, hosting, refining, and sharing websites, lightweight apps, games, and internal tools from ChatGPT. It supports saved versions, production deployments, audience controls, optional storage and identity, analytics on eligible accounts, and custom domains where available.
+
+### Is Codex Sites a separate product?
+
+No. “Codex Sites” is an understandable shorthand because the ChatGPT desktop app can start the Sites workflow from Codex, and Codex can edit and test a compatible local project. The documented product name is ChatGPT Sites, and Site management happens through ChatGPT on the web or desktop app rather than a standalone Codex CLI or IDE management view.
+
+### Is every ChatGPT Sites deployment public?
+
+Every deployment URL is a production URL, but the Site is not necessarily public to the internet. The audience can remain owner-only or be limited to selected users, groups, or a workspace where supported. Public access is a separate audience decision.
+
+### What is the difference between saving and deploying a Site?
+
+Saving creates a deployable version for review. Deploying publishes a saved version to the production Site URL. For local source projects, the saved version is associated with the Git commit used for the build. Save first when you need a review boundary.
+
+### Can ChatGPT Sites use a database or accept file uploads?
+
+Yes, within the supported Sites runtime. OpenAI documents D1 for durable structured data and R2 for files such as images, documents, audio, and video. Use D1 plus R2 when uploaded files also need searchable metadata.
+
+### Can I connect a custom domain to a ChatGPT Site?
+
+Where the feature is available, yes. You must already own the apex domain or subdomain and be able to change its DNS records. OpenAI says custom domains are not available in Enterprise workspaces at launch.
+
+### Is ChatGPT Sites better than Claude Artifacts?
+
+Neither is universally better. Choose ChatGPT Sites when you want a standalone hosted experience with explicit saved-version, deployment, audience, analytics, and domain controls. Choose Claude Artifacts when remixing inside Claude, embedding the artifact elsewhere, Claude-powered interaction, or artifact-specific personal and shared storage is the primary value.
+
+### Is ChatGPT Sites suitable for an MVP?
+
+Yes for a bounded MVP whose core value fits the supported runtime and does not require prohibited data, payments, private networks, unsupported background services, or infrastructure-heavy operations. Use it to validate one user job and one business event, then graduate only if the product requirements demand a deeper stack.
+
+### Can I take payments on a ChatGPT Site?
+
+No. OpenAI says Sites must not enable financial transactions or process payment-card data. Use the Site to educate, qualify, or route visitors, then send them to an approved external commerce system.
+
+### Does ChatGPT Sites support GDPR data residency?
+
+Not at launch. OpenAI states that Sites does not support data or inference residency at launch, including deployed Sites, Site code, D1/R2 data and files, generated artifacts, and related logs. If residency is a requirement, choose another delivery lane and confirm the applicable legal and contractual controls.
+
+### What should founders track for every Site?
+
+Track the business owner, technical owner, purpose, audience, source, approved version, live URL, data classification, D1/R2 usage, environment-key names, success metric, last review date, and retirement rule. That registry turns a collection of generated experiments into a governable product portfolio.
+
+## Official sources and further reading
+
+- OpenAI: [ChatGPT Sites documentation](https://learn.chatgpt.com/docs/sites)
+- OpenAI: [Creating and managing ChatGPT Sites](https://help.openai.com/en/articles/20001339)
+- OpenAI: [Data-protection responsibilities for Sites](https://help.openai.com/en/articles/20001340)
+- OpenAI: [Managing Sites for a workspace](https://help.openai.com/en/articles/20001338-managing-chatgpt-sites-for-your-workspace)
+- OpenAI: [Developer showcase](https://developers.openai.com/showcase)
+- Anthropic: [What Claude Artifacts are and how they work](https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them)
+- Anthropic: [Publishing and sharing Claude Artifacts](https://support.claude.com/en/articles/9547008-publish-and-share-artifacts)
+- Google: [Create and share apps with Gemini Canvas](https://support.google.com/gemini/answer/16047321?hl=en)
+- Vercel: [v0 Projects](https://v0.app/docs/projects) and [v0 deployments](https://v0.app/docs/deployments)
+- Replit: [Publishing and deployment types](https://docs.replit.com/learn/projects-and-artifacts/replit-deployments)
+- Lovable: [Publishing projects](https://docs.lovable.dev/features/publish)
+
+*Product behavior and availability change quickly. This guide was researched and verified against official documentation on July 22, 2026.*
