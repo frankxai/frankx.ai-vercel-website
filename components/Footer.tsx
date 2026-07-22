@@ -68,6 +68,8 @@ const NAV_COLUMNS = [
     links: [
       { label: 'Start Here', href: '/start' },
       { label: 'Foundry', href: '/foundry', accent: 'emerald' },
+      { label: 'Accelerator', href: '/accelerator', accent: 'emerald' },
+      { label: 'Portfolio OS', href: '/accelerator/portfolio-os' },
       { label: "Founder's Circle", href: '/founders-circle', accent: 'rose' },
       { label: 'Coaching', href: '/coaching' },
       { label: 'Licensing', href: '/licensing' },

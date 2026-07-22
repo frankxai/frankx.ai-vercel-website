@@ -129,6 +129,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/foundry', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/foundry/guide', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/accelerator', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/accelerator/portfolio-os', priority: 0.85, changeFrequency: 'weekly' as const },
+    { url: '/accelerator/founders', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/accelerator/starlight', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/accelerator/arcanea', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/accelerator/guide', priority: 0.75, changeFrequency: 'monthly' as const },
   ]
 
   // Tool pages
