@@ -264,7 +264,7 @@ That is the layer FrankX brings: former enterprise AI architecture experience, A
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/arrow.svg',
-  ogImagePath: '/images/partnerships/arrow-og.png',
+  ogImagePath: '/images/brand/og-template.png',
   visualSummaryUrl: '/images/partnerships/arrow-compounding-loop.svg',
   visualSummaryAlt:
     'Twelve-month compounding loop showing the FrankX coding-agent AI CoE practice with Arrow ECS — Month 0 foundations, Month 3 first publications, Month 6 cohort certified, Month 12 practice mature.',

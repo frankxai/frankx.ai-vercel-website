@@ -8,6 +8,7 @@ import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import BuyButton from './BuyButton'
 import type { ProductRecord } from '@/types/products'
+import { getOfferForRoute } from '@/lib/site-experience/offers'
 
 // Some registry entries (e.g. golden-age) predate the full ProductRecord shape:
 // they carry title/description/cta/price instead of name/headline/offer.
@@ -62,8 +63,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     notFound()
   }
 
-  const { name, headline, summary, offer, legacyPrice, legacyCta } = normalize(product)
-  const schemaPrice = offer?.primaryPrice ?? legacyPrice
+  const { name, headline, summary, offer } = normalize(product)
+  const offerRecord = getOfferForRoute(`/products/${product.slug}`)
+  const verifiedPrice = offerRecord?.verifiedPrice
+  const hasVerifiedCheckout = Boolean(verifiedPrice && offerRecord?.checkoutDestination)
 
   // Structured Data for Product
   const productSchema = {
@@ -75,14 +78,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       '@type': 'Brand',
       name: 'FrankX',
     },
-    ...(schemaPrice !== undefined
+    ...(hasVerifiedCheckout && verifiedPrice
       ? {
           offers: {
             '@type': 'Offer',
             url: `${siteConfig.url}/products/${product.slug}`,
-            priceCurrency: offer?.currency || 'USD',
-            price: schemaPrice,
-            priceValidUntil: '2026-12-31',
+            priceCurrency: verifiedPrice.currency,
+            price: verifiedPrice.amount,
             availability: 'https://schema.org/InStock',
             seller: {
               '@type': 'Organization',
@@ -93,11 +95,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       : {}),
     ...(product.socialProof?.stats
       ? {
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.9',
-            reviewCount: '150', // Placeholder or real data if available
-          },
         }
       : {}),
   }
@@ -170,62 +167,63 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           {/* Right Column: Offer & Pricing */}
           <div className="lg:sticky lg:top-24 lg:h-fit">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm sm:p-10">
-              <h3 className="text-xl font-semibold text-white">Get Instant Access</h3>
+              <h3 className="text-xl font-semibold text-white">
+                {offerRecord ? 'Current availability' : 'Public status under review'}
+              </h3>
 
-              {offer ? (
+              {offerRecord ? (
                 <>
                   <div className="mt-6 flex items-baseline gap-2">
                     <span className="text-5xl font-bold text-white">
-                      ${offer.primaryPrice}
+                      {offerRecord.publicState === 'free'
+                        ? 'Free'
+                        : verifiedPrice
+                          ? new Intl.NumberFormat('en', {
+                              style: 'currency',
+                              currency: verifiedPrice.currency,
+                              maximumFractionDigits: 0,
+                            }).format(verifiedPrice.amount)
+                          : offerRecord.publicState.replace('_', ' ')}
                     </span>
-                    {offer.originalPrice && (
-                      <span className="text-xl text-gray-500 line-through">
-                        ${offer.originalPrice}
-                      </span>
-                    )}
                   </div>
+
+                  <p className="mt-4 text-sm leading-relaxed text-gray-400">
+                    {offerRecord.deliverable}
+                  </p>
 
                   <div className="mt-8 space-y-4">
-                    <BuyButton
-                      href={offer.ctaPrimaryHref}
-                      label={offer.ctaPrimary}
-                      trackingId={offer.ctaPrimaryTracking}
-                    />
-
-                    {offer.ctaSecondary && offer.ctaSecondaryHref && (
-                      <Link
-                        href={offer.ctaSecondaryHref}
-                        className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/5"
-                      >
-                        {offer.ctaSecondary}
-                      </Link>
+                    {!hasVerifiedCheckout && offer && offerRecord.publicState !== 'retired' && (
+                      <BuyButton
+                        href={offer.ctaPrimaryHref}
+                        label={offer.ctaPrimary}
+                        trackingId={offer.ctaPrimaryTracking}
+                      />
                     )}
-                  </div>
 
-                  {offer.guarantee && (
-                    <div className="mt-8 rounded-xl bg-cyan-500/10 p-4 text-center">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
-                        {offer.guarantee.label}
-                      </p>
-                      <p className="mt-1 text-xs text-gray-400">
-                        {offer.guarantee.description}
-                      </p>
-                    </div>
-                  )}
+                    {hasVerifiedCheckout && offerRecord.checkoutDestination && (
+                      <BuyButton
+                        href={offerRecord.checkoutDestination}
+                        label={offer?.ctaPrimary ?? 'Continue'}
+                        trackingId={offer?.ctaPrimaryTracking}
+                      />
+                    )}
+
+                  </div>
                 </>
               ) : (
                 <>
-                  <div className="mt-6 flex items-baseline gap-2">
-                    <span className="text-5xl font-bold text-white">
-                      {legacyPrice === 0 ? 'Free' : legacyPrice !== undefined ? `$${legacyPrice}` : ''}
-                    </span>
+                  <p className="mt-6 text-sm leading-relaxed text-gray-400">
+                    This page remains available as part of the FrankX body of work, but its price,
+                    checkout, and fulfillment have not been verified for the current release.
+                  </p>
+                  <div className="mt-8">
+                    <Link
+                      href="/products"
+                      className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/5"
+                    >
+                      View current products
+                    </Link>
                   </div>
-
-                  {legacyCta && (
-                    <div className="mt-8 space-y-4">
-                      <BuyButton href={legacyCta.href} label={legacyCta.label} />
-                    </div>
-                  )}
                 </>
               )}
 

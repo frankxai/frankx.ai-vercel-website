@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import anime from 'animejs'
+import { animate, stagger } from 'animejs'
 import { familyNodes, familyEdges, sideColors } from '@/lib/family-tree-data'
 
 type LayoutMode = 'tree' | 'radial' | 'grid'
@@ -85,13 +85,12 @@ export default function FamilyTreeV15Inner() {
       const newPos = layoutPositions[newLayout][nodeId]
       if (!newPos) return
 
-      anime({
-        targets: node,
+      animate(node, {
         cx: newPos.x,
         cy: newPos.y,
         duration: 800,
-        easing: 'easeInOutQuart',
-        delay: anime.stagger(50, { start: index * 10 }),
+        ease: 'inOutQuart',
+        delay: stagger(50, { start: index * 10 }),
       })
     })
 
@@ -102,13 +101,12 @@ export default function FamilyTreeV15Inner() {
       const newPos = layoutPositions[newLayout][nodeId]
       if (!newPos) return
 
-      anime({
-        targets: label,
+      animate(label, {
         x: newPos.x,
         y: newPos.y + 35,
         duration: 800,
-        easing: 'easeInOutQuart',
-        delay: anime.stagger(50, { start: index * 10 }),
+        ease: 'inOutQuart',
+        delay: stagger(50, { start: index * 10 }),
       })
     })
 
@@ -120,11 +118,10 @@ export default function FamilyTreeV15Inner() {
       const newPath = getPathData(sourceId, targetId, newLayout)
       if (!newPath) return
 
-      anime({
-        targets: path,
+      animate(path, {
         d: [{ value: newPath }],
         duration: 800,
-        easing: 'easeInOutQuart',
+        ease: 'inOutQuart',
         delay: index * 30,
       })
     })
@@ -143,51 +140,45 @@ export default function FamilyTreeV15Inner() {
       const labels = svgRef.current.querySelectorAll('.family-label')
       const paths = svgRef.current.querySelectorAll('.family-edge')
 
-      anime({
-        targets: paths,
-        strokeDashoffset: [anime.setDashoffset, 0],
+      animate(paths, {
         opacity: [0, 0.4],
         duration: 1200,
-        easing: 'easeOutQuad',
-        delay: anime.stagger(80),
+        ease: 'outQuad',
+        delay: stagger(80),
       })
 
-      anime({
-        targets: nodes,
+      animate(nodes, {
         scale: [0, 1],
         opacity: [0, 1],
         duration: 600,
-        easing: 'easeOutElastic(1, .6)',
-        delay: anime.stagger(60, { start: 300 }),
+        ease: 'outElastic(1, .6)',
+        delay: stagger(60, { start: 300 }),
       })
 
-      anime({
-        targets: labels,
+      animate(labels, {
         opacity: [0, 1],
         translateY: [10, 0],
         duration: 500,
-        easing: 'easeOutQuad',
-        delay: anime.stagger(60, { start: 500 }),
+        ease: 'outQuad',
+        delay: stagger(60, { start: 500 }),
       })
     }
   }, [])
 
   const handleNodeHover = (e: React.MouseEvent<SVGCircleElement>) => {
-    anime({
-      targets: e.currentTarget,
+    animate(e.currentTarget, {
       scale: [1, 1.15, 1],
       duration: 600,
-      easing: 'easeInOutQuad',
+      ease: 'inOutQuad',
     })
 
     const nodeId = e.currentTarget.getAttribute('data-node-id')
     const glow = svgRef.current?.querySelector(`#glow-${nodeId}`)
     if (glow) {
-      anime({
-        targets: glow,
+      animate(glow, {
         opacity: [0.6, 1, 0.6],
         duration: 600,
-        easing: 'easeInOutQuad',
+        ease: 'inOutQuad',
       })
     }
   }

@@ -277,7 +277,7 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/anthropic.svg',
-  // ogImagePath: '/images/partnerships/anthropic-og.png', // TODO: generate, falls back to site default
+  // Uses the site-level Open Graph fallback until a reviewed partnership asset exists.
 
   seo: {
     title: 'FrankX × Anthropic — Claude-Native AI CoE Practice | FrankX',

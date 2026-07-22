@@ -269,7 +269,7 @@ The strategic alignment is about GPU-aware agent systems and independent educati
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/nvidia.svg',
-  // ogImagePath: '/images/partnerships/nvidia-og.png', // TODO: generate, falls back to site default
+  // Uses the site-level Open Graph fallback until a reviewed partnership asset exists.
 
   seo: {
     title: 'FrankX × NVIDIA — GPU-Aware AI CoE Practice | FrankX',

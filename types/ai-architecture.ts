@@ -599,7 +599,7 @@ export const AI_PROVIDER_META: Record<AIProvider, AIProviderMeta> = {
     name: 'Anthropic',
     shortName: 'Claude',
     keyUrl: 'https://console.anthropic.com/settings/keys',
-    freeTier: '$5 credit',
+    freeTier: 'See current provider pricing',
     color: 'orange',
   },
   openai: {
@@ -607,7 +607,7 @@ export const AI_PROVIDER_META: Record<AIProvider, AIProviderMeta> = {
     name: 'OpenAI',
     shortName: 'GPT',
     keyUrl: 'https://platform.openai.com/api-keys',
-    freeTier: '$5 credit',
+    freeTier: 'See current provider pricing',
     color: 'emerald',
   },
   google: {
@@ -615,7 +615,7 @@ export const AI_PROVIDER_META: Record<AIProvider, AIProviderMeta> = {
     name: 'Google AI',
     shortName: 'Gemini',
     keyUrl: 'https://aistudio.google.com/apikey',
-    freeTier: 'Generous free tier',
+    freeTier: 'See current provider limits',
     color: 'blue',
   },
   oci: {
@@ -623,7 +623,7 @@ export const AI_PROVIDER_META: Record<AIProvider, AIProviderMeta> = {
     name: 'OCI GenAI',
     shortName: 'OCI',
     keyUrl: 'https://cloud.oracle.com/generative-ai',
-    freeTier: 'Free tier available',
+    freeTier: 'See current provider pricing',
     color: 'red',
   },
 }

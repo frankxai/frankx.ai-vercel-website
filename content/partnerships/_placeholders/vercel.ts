@@ -275,7 +275,7 @@ Vercel Partner Program — application is in flight. This page is the conversati
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/vercel.svg',
-  // ogImagePath: '/images/partnerships/vercel-og.png', // TODO: generate, falls back to site default
+  // Uses the site-level Open Graph fallback until a reviewed partnership asset exists.
 
   seo: {
     title: 'FrankX × Vercel — Next-on-Vercel AI CoE Practice | FrankX',

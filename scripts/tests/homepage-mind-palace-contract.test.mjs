@@ -4,7 +4,7 @@ import test from 'node:test'
 
 const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
 
-test('the public homepage leads with ICP outcomes while retaining music as living proof', async () => {
+test('the public homepage leads with the FrankX promise while retaining music as living proof', async () => {
   const page = await readRepoFile('app/page.tsx')
   const homepage = await readRepoFile('components/home/HomePageElite.tsx')
 
@@ -26,17 +26,17 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
   assert.doesNotMatch(homepage, /Music first\./)
   assert.doesNotMatch(homepage, /begin with music/)
-  assert.match(homepage, /Explore your highest-leverage AI move\./)
-  assert.match(homepage, /Architect your AI operating system\./)
-  assert.match(homepage, /Build your AI Center of Excellence\./)
-  assert.match(homepage, /Orchestrate agents around real work\./)
-  assert.match(homepage, /Ship products that compound\./)
-  assert.match(homepage, /function RotatingHeroOutcome\(\)/)
-  assert.match(homepage, /useSyncExternalStore/)
-  assert.match(homepage, /if \(!hasHydrated \|\| shouldReduceMotion\)/)
-  assert.match(homepage, /Pause changing headline/)
-  assert.match(homepage, /Play changing headline/)
-  assert.match(homepage, /<AnimatePresence mode="wait" initial=\{false\}>/)
+  assert.match(homepage, /Build what matters\./)
+  assert.match(homepage, /Public workshop · knowledge constellation · living studio/)
+  assert.match(homepage, /AI architecture, creator systems, research, music, books/)
+  assert.match(homepage, /Find Your Starting Point/)
+  assert.match(homepage, /See the Whole Constellation/)
+  assert.match(homepage, /<StartFromSituation \/>/)
+  assert.match(homepage, /<HubConstellation \/>/)
+  assert.match(homepage, /<CurrentKnowledge \/>/)
+  assert.doesNotMatch(homepage, /function RotatingHeroOutcome\(\)/)
+  assert.doesNotMatch(homepage, /useSyncExternalStore/)
+  assert.doesNotMatch(homepage, /Pause changing headline/)
   assert.match(homepage, /Latest studio release · optional listening/)
   assert.match(homepage, /<MindPalaceAtlas \/>/)
   assert.doesNotMatch(homepage, /autoplay=(?:1|true)/i)

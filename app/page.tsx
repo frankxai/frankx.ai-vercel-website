@@ -1,4 +1,6 @@
 import HomePageElite from '@/components/home/HomePageElite'
+import { existsSync } from 'node:fs'
+import path from 'node:path'
 import { getPublishedBooks } from '@/app/books/lib/books-registry'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { bookReviews } from '@/data/book-reviews'
@@ -8,9 +10,9 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
-  title: 'FrankX — Music, Systems & A Living Studio',
+  title: 'FrankX — Build What Matters',
   description:
-    'Enter Frank Riemer\'s living studio: music, agent systems, books, field notes, and practical tools shared for creators, builders, friends, and family.',
+    'Frank Riemer\'s public workshop for AI architecture, creator systems, research, music, books, personal development, and practical tools.',
   keywords: [
     'Frank Riemer',
     'FrankX',
@@ -32,13 +34,20 @@ export const metadata = createMetadata({
 
 const siteUrl = siteConfig.url
 
+const hasRenderablePublicAsset = (assetPath: string | undefined) => {
+  if (!assetPath) return false
+  if (/^https?:\/\//.test(assetPath)) return true
+  if (!assetPath.startsWith('/')) return false
+  return existsSync(path.join(process.cwd(), 'public', assetPath.slice(1)))
+}
+
 const websiteSchema = {
   '@id': `${siteUrl}/#website`,
   name: 'FrankX',
   alternateName: ['FrankX.AI', 'Frank Riemer'],
   url: siteUrl,
   description:
-    'FrankX is Frank Riemer\'s living studio for music, agent systems, books, field notes, and practical tools.',
+    'FrankX is Frank Riemer\'s public workshop and knowledge constellation for AI architecture, creator systems, research, music, books, and human development.',
   publisher: {
     '@id': `${siteUrl}/#organization`,
   },
@@ -91,19 +100,19 @@ const organizationSchema = {
   },
   sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno],
   description:
-    'FrankX publishes music, inspectable creator systems, agent-workflow labs, books, and practical field notes from Frank Riemer.',
+    'FrankX publishes inspectable AI systems, research, guides, music, books, creative experiments, and practical field notes from Frank Riemer.',
 }
 
 const homepageFAQs = [
   {
     question: 'What is FrankX?',
     answer:
-      'FrankX is Frank Riemer\'s independent living studio: a public home for music, agent systems, books, experiments, and field notes. It is a personal project and is not affiliated with, endorsed by, or sponsored by Oracle.',
+      'FrankX is Frank Riemer\'s independent public workshop, knowledge constellation, and living body of work. It connects AI architecture, creator systems, research, music, books, personal development, experiments, and field notes. It is not affiliated with, endorsed by, or sponsored by Oracle.',
   },
   {
     question: 'Where should I begin?',
     answer:
-      'Begin with what you need now. Listen for music, Learn for practical pathways, Build for open systems, Reflect for books and questions, Acquire for paid tools, or Explore for the wider FrankX ecosystem.',
+      'Begin with the situation you are in now. Choose Music to listen and follow the studio practice, GenCreators to build and publish with AI, Learn for a trustworthy path, Build for architecture and systems, Explore for research and the wider ecosystem, or Blog for current field notes.',
   },
   {
     question: 'How does music fit into FrankX?',
@@ -113,17 +122,17 @@ const homepageFAQs = [
   {
     question: 'Can I use the systems and tools?',
     answer:
-      'Yes. FrankX includes public guides and open systems you can inspect first, plus paid packs and guided paths for people who want a more complete or supported route. Each offer should state its scope before asking for a purchase.',
+      'Yes. FrankX includes public guides, downloads, frameworks, and systems you can inspect before committing to anything. When a resource has a price, application, waitlist, or license requirement, the page should state the current status and scope clearly.',
   },
   {
     question: 'Is FrankX an agency or coaching business?',
     answer:
-      'FrankX is a founder studio rather than a conventional client agency. Some bounded architecture work, programs, or private access may open when the fit is mutual, but the public work and usefulness come first.',
+      'FrankX is a founder-led public workshop rather than a conventional agency or coaching funnel. Direct architecture work, partnerships, speaking, licensing, and collaborations are considered when the problem and fit are specific; the public body of work remains central.',
   },
   {
-    question: 'How are new music and studio updates chosen?',
+    question: 'How can I tell whether a guide or resource is current?',
     answer:
-      'A weekly process can prepare candidates, but nothing is featured automatically from a catalog or social feed. Music, copy, links, and rights state are reviewed before a homepage update or public send.',
+      'Priority guides and research pages show when they were reviewed and link to their sources. Older experiments and archive material should be labeled as such rather than presented as current guidance.',
   },
 ]
 
@@ -141,7 +150,8 @@ export default function Page() {
 
   const books = getPublishedBooks()
     .filter(
-      (book): book is typeof book & { coverImage: string } => Boolean(book.coverImage),
+      (book): book is typeof book & { coverImage: string } =>
+        Boolean(book.coverImage) && hasRenderablePublicAsset(book.coverImage),
     )
     .slice(0, 6)
     .map((book) => ({
@@ -152,7 +162,12 @@ export default function Page() {
     }))
 
   const libraryBooks = bookReviews
-    .filter((review) => (review.quotes?.length ?? 0) > 0 && (review.chapters?.length ?? 0) > 0)
+    .filter(
+      (review) =>
+        (review.quotes?.length ?? 0) > 0 &&
+        (review.chapters?.length ?? 0) > 0 &&
+        hasRenderablePublicAsset(review.coverImage),
+    )
     .sort((a, b) => (b.quotes?.length ?? 0) - (a.quotes?.length ?? 0))
     .slice(0, 5)
     .map((review) => ({

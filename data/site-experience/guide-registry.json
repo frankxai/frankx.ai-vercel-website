@@ -1,0 +1,379 @@
+[
+  {
+    "site": "frankx.ai",
+    "route": "/guides/agent-card-a2a-spec",
+    "title": "Agent Card (A2A) spec — the portability contract",
+    "reviewedDate": "2026-04-24",
+    "nextReview": "2026-07-23",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/agent-collective-operating-system",
+    "title": "Agent Collective Operating System",
+    "reviewedDate": "2025-03-01",
+    "nextReview": "2025-05-30",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/agentic-obsidian-second-brain",
+    "title": "Obsidian Second Brain: AI Agents, MCP and Agent Skills (2026)",
+    "reviewedDate": "2026-07-20",
+    "nextReview": "2026-10-20",
+    "primarySources": [
+      {
+        "title": "Obsidian Help",
+        "url": "https://help.obsidian.md/",
+        "sourceType": "primary"
+      },
+      {
+        "title": "Model Context Protocol documentation",
+        "url": "https://modelcontextprotocol.io/docs/getting-started/intro",
+        "sourceType": "primary"
+      },
+      {
+        "title": "MCPVault",
+        "url": "https://github.com/bitbonsai/mcpvault",
+        "sourceType": "community_implementation"
+      },
+      {
+        "title": "obsidian-mcp",
+        "url": "https://github.com/StevenStavrakis/obsidian-mcp",
+        "sourceType": "community_implementation"
+      }
+    ],
+    "evidenceLevel": "mixed_sources",
+    "supportedAudience": [
+      "mariah_founder",
+      "technical_founder",
+      "ai_native_creator",
+      "learner"
+    ],
+    "relatedGuides": [
+      "/guides/claude-anthropic-guide",
+      "/guides/openai-chatgpt-guide"
+    ],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/ai-writing-system",
+    "title": "Building an AI Writing System",
+    "reviewedDate": "2025-01-02",
+    "nextReview": "2025-04-02",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/anatomy-of-a-production-skill",
+    "title": "Anatomy of a Production Skill",
+    "reviewedDate": "2026-06-22",
+    "nextReview": "2026-09-20",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/claude-anthropic-guide",
+    "title": "Claude AI Guide for Creators",
+    "reviewedDate": "2026-01-12",
+    "nextReview": "2026-04-12",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/claude-code-getting-started",
+    "title": "Getting Started with Claude Code",
+    "reviewedDate": "2025-01-02",
+    "nextReview": "2025-04-02",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/elevenlabs-voice-guide",
+    "title": "ElevenLabs Voice AI Guide for Creators",
+    "reviewedDate": "2026-01-12",
+    "nextReview": "2026-04-12",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/first-agent-primer",
+    "title": "First Agent Primer — build, deploy, and share an AI agent in an afternoon",
+    "reviewedDate": "2026-04-24",
+    "nextReview": "2026-07-23",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/founder-ai-stack-2026",
+    "title": "Founder's AI Stack 2026: Build Fast, Stay Lean",
+    "reviewedDate": "2026-01-31",
+    "nextReview": "2026-05-01",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/frankx-skill-creation-methodology",
+    "title": "The Skill Creation Methodology",
+    "reviewedDate": "2026-06-15",
+    "nextReview": "2026-09-13",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/ifs-ai-agent-architecture",
+    "title": "IFS as an AI Architecture Pattern",
+    "reviewedDate": "2026-05-03",
+    "nextReview": "2026-08-01",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/image-generation-mastery",
+    "title": "Image Generation Mastery: From Concept to Stunning Visuals",
+    "reviewedDate": "2026-01-31",
+    "nextReview": "2026-05-01",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/inner-hr-ai",
+    "title": "Inner HR — Building an AI System for Inner and Outer Team Alignment",
+    "reviewedDate": "2026-05-03",
+    "nextReview": "2026-08-01",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/internal-family-systems-personal-development",
+    "title": "Internal Family Systems for Personal Development",
+    "reviewedDate": "2026-05-03",
+    "nextReview": "2026-08-01",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/midjourney-guide",
+    "title": "Midjourney Guide for Creators",
+    "reviewedDate": "2026-01-12",
+    "nextReview": "2026-04-12",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/modern-guide",
+    "title": "The Golden Age of Intelligence: A Modern, Practical Guide",
+    "reviewedDate": "2025-09-12",
+    "nextReview": "2025-12-11",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/openai-chatgpt-guide",
+    "title": "OpenAI ChatGPT Guide for Creators",
+    "reviewedDate": "2026-01-12",
+    "nextReview": "2026-04-12",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/perplexity-ai-guide",
+    "title": "Perplexity AI Guide for Creators",
+    "reviewedDate": "2026-01-12",
+    "nextReview": "2026-04-12",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/skills-library-playbook",
+    "title": "Skills Library Playbook",
+    "reviewedDate": "2025-03-01",
+    "nextReview": "2025-05-30",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/suno-prompt-playbook",
+    "title": "The Suno AI Prompt Playbook",
+    "reviewedDate": "2025-01-02",
+    "nextReview": "2025-04-02",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  },
+  {
+    "site": "frankx.ai",
+    "route": "/guides/top-50-ai-prompts",
+    "title": "Top 50 AI Prompts Collection",
+    "reviewedDate": "2025-01-03",
+    "nextReview": "2025-04-03",
+    "primarySources": [],
+    "evidenceLevel": "review_required",
+    "supportedAudience": [
+      "learner",
+      "mariah_founder",
+      "ai_native_creator"
+    ],
+    "relatedGuides": [],
+    "maintenanceOwner": "FrankX editorial"
+  }
+]

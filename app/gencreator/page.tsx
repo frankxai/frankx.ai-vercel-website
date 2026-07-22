@@ -6,10 +6,10 @@ import Script from 'next/script'
 export const metadata: Metadata = {
   title: 'The GenCreator Framework — Principles, Handbook, Blueprints & Soul',
   description:
-    'The complete operating system for generative creators. 12 principles, 8 handbook chapters, 12 actionable blueprints, 7 soul dimensions, and a manifesto.',
+    'A human-led framework for creators building with generative tools: principles, handbook, blueprints, soul, and a dedicated GenCreator research environment.',
   openGraph: {
     title: 'The GenCreator Framework',
-    description: 'Principles. Handbook. Blueprints. Soul. The complete creator operating system.',
+    description: 'Use generative tools without giving away your taste, voice, identity, or judgment.',
     url: 'https://frankx.ai/gencreator',
   },
 }
@@ -21,6 +21,7 @@ import {
   Heart,
   Map,
   Scroll,
+  ExternalLink,
 } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'
@@ -75,7 +76,7 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: 'The GenCreator Framework',
-  description: 'The complete framework for generative creators. 12 principles, 8 handbook chapters, 12 blueprints, 7 soul dimensions, and a manifesto.',
+  description: 'A human-led framework for generative creators spanning principles, practice, identity, blueprints, and a lasting body of work.',
   url: 'https://frankx.ai/gencreator',
   author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
   mainEntity: {
@@ -126,9 +127,9 @@ export default function GenCreatorHubPage() {
             </span>
           </h1>
           <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
-            The complete operating system for generative creators.
+            Build with generative tools without giving away your taste, voice, or judgment.
             <br className="hidden sm:block" />
-            Principles. Handbook. Blueprints. Soul. Manifesto.
+            Principles for the work. Blueprints for the practice. Soul for the person doing it.
           </p>
 
           {/* Terminal teaser */}
@@ -143,9 +144,9 @@ export default function GenCreatorHubPage() {
               <p className="mt-2 text-teal-300"># GenCreator: Frank Riemer</p>
               <p className="text-white/40">## Craft: AI Architecture + Music + Content</p>
               <p className="text-white/40">## Stack: Claude, Suno, n8n, Next.js, Vercel</p>
-              <p className="text-white/40">## Principle: Ship daily. Compound relentlessly.</p>
+              <p className="text-white/40">## Principle: Protect taste. Make the work. Leave useful artifacts.</p>
               <p className="mt-2 text-emerald-300/60">
-                &gt; 12 principles loaded. 8 chapters ready. 12 blueprints active.
+                &gt; Principles, handbook, blueprints, and soul are ready to explore.
               </p>
             </div>
           </div>
@@ -157,7 +158,7 @@ export default function GenCreatorHubPage() {
                 <Image src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg" alt="FRANK-Omega" width={32} height={32} className="h-full w-full object-cover object-top" />
               </div>
               <p className="text-xs italic leading-relaxed text-white/50">
-                &ldquo;Every great creator operates from a framework. This is yours.&rdquo;
+                &ldquo;I built this framework to keep human judgment in the loop while the tools became more capable.&rdquo;
               </p>
             </div>
           </div>
@@ -196,7 +197,8 @@ export default function GenCreatorHubPage() {
             Explore the Framework
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
-            Five interconnected systems that together form a complete creator operating framework.
+            Five connected lenses. Use the one that answers the problem in front of you; return to
+            the others when your work asks for more depth.
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {sections.map((section) => (
@@ -226,14 +228,14 @@ export default function GenCreatorHubPage() {
           </h2>
           <div className="mx-auto mt-8 max-w-3xl space-y-6 text-lg leading-relaxed text-white/60">
             <p>
-              A GenCreator is the new breed of creator — someone who wields AI as a creative force multiplier,
-              not a replacement. They build systems that compound, ship daily, own their infrastructure,
-              and leave artifacts that outlive trends.
+              A GenCreator uses AI to extend creative range without outsourcing the decisions that
+              make the work worth caring about. The tools can accelerate drafts, production, and
+              distribution. Taste, responsibility, and the final choice remain human.
             </p>
             <p>
-              Not a content creator. Not a developer. Not an influencer.
-              A GenCreator sits at the intersection of <span className="text-emerald-300">human taste</span> and{' '}
-              <span className="text-teal-300">machine scale</span>.
+              You might be a founder, musician, author, designer, developer, teacher, or several of
+              those at once. The shared practice sits between <span className="text-emerald-300">human taste</span> and{' '}
+              <span className="text-teal-300">machine capability</span>.
             </p>
           </div>
           <div className="mt-10">
@@ -245,14 +247,52 @@ export default function GenCreatorHubPage() {
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
+      {/* ─── Dedicated environment bridge ─── */}
+      <section className="border-y border-white/[0.08] bg-emerald-500/[0.035] py-20">
+        <div className="mx-auto grid max-w-5xl gap-10 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300/60">
+              Two surfaces, one body of work
+            </p>
+            <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+              The framework lives here. The dedicated environment continues at GenCreator.ai.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-white/50">
+              FrankX connects GenCreator to Frank&apos;s architecture, music, books, research, and
+              personal systems. GenCreator.ai is the focused product and member world for applied
+              research, creator stacks, learning paths, community, and the tools that grow from the
+              framework.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-white/10 bg-black/15 p-7">
+            <p className="text-sm font-semibold text-white">Continue in the dedicated environment</p>
+            <div className="mt-5 space-y-3 text-sm text-white/45">
+              <p>Research translated into creator-stack decisions.</p>
+              <p>Learning paths and substrate-specific workflows.</p>
+              <p>Community and member surfaces as they become available.</p>
+            </div>
+            <a
+              href="https://gencreator.ai"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-7 inline-flex items-center gap-2 rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-[#07110d] transition-colors hover:bg-emerald-300"
+            >
+              Visit GenCreator.ai
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Next step ─── */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Start Your GenCreator Journey
+            Choose the layer your work needs next.
           </h2>
           <p className="mt-4 text-lg text-white/50">
-            Begin with the principles. Read the handbook. Execute the blueprints. Build your soul.md.
+            Read the principles for orientation, use the handbook for depth, open a blueprint for a
+            practical workflow, or build your soul.md when the question is identity rather than output.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <PremiumButton variant="luxury" size="lg" href="/gencreator/handbook">

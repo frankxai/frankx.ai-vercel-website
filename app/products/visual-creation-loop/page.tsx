@@ -34,7 +34,7 @@ export default function VisualCreationLoopPage() {
     '@type': 'Product',
     name: product.name,
     description: product.promise,
-    image: 'https://frankx.ai/images/products/visual-creation-loop-hero.jpg',
+    image: 'https://frankx.ai/images/design-lab/variant-products-nature.png',
     brand: {
       '@type': 'Brand',
       name: 'FrankX.ai'

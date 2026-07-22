@@ -47,7 +47,7 @@ const agents: Agent[] = [
     specialty: 'Future visioning and business intelligence',
     description: 'Provides strategic guidance from an advanced perspective. Specializes in business decisions and paradigm-shifting insights informed by future foresight.',
     capabilities: ['Future Visioning', 'Business Intelligence', 'Strategic Planning', 'Pattern Recognition'],
-    imagePath: '/images/agents/visionary.svg',
+    imagePath: '/images/agents/creation-engine.svg',
     variant: 'ocean',
     accentColor: 'blue',
   },

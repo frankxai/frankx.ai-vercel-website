@@ -3,8 +3,8 @@
 import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState, useSyncExternalStore } from 'react'
-import { ArrowRight, ChevronDown, Pause, Play, Sparkles } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
@@ -13,6 +13,13 @@ import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
+import {
+  CurrentKnowledge,
+  HubConstellation,
+  HumanSystems,
+  StartFromSituation,
+  WorkAndConversation,
+} from '@/components/home/HomeConstellationSections'
 
 // ============================================================================
 // TYPES
@@ -209,76 +216,6 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // HERO
 // ============================================================================
 
-const heroOutcomes = [
-  'Explore your highest-leverage AI move.',
-  'Architect your AI operating system.',
-  'Build your AI Center of Excellence.',
-  'Orchestrate agents around real work.',
-  'Ship products that compound.',
-]
-
-const subscribeToHydration = () => () => undefined
-
-function RotatingHeroOutcome() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
-  const shouldReduceMotion = useReducedMotion()
-  const hasHydrated = useSyncExternalStore(
-    subscribeToHydration,
-    () => true,
-    () => false,
-  )
-
-  useEffect(() => {
-    if (!hasHydrated || shouldReduceMotion || isPaused) return
-
-    const interval = window.setInterval(() => {
-      setCurrentIndex((index) => (index + 1) % heroOutcomes.length)
-    }, 3200)
-
-    return () => window.clearInterval(interval)
-  }, [hasHydrated, isPaused, shouldReduceMotion])
-
-  if (!hasHydrated || shouldReduceMotion) {
-    return (
-      <span className="mt-5 block max-w-2xl bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl" aria-hidden="true">
-        {heroOutcomes[0]}
-      </span>
-    )
-  }
-
-  return (
-    <div className="mt-5 flex max-w-2xl items-start gap-3">
-      <span
-        className="relative block min-h-[2.3em] flex-1 overflow-hidden bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl"
-        aria-hidden="true"
-      >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={heroOutcomes[currentIndex]}
-            className="block"
-            initial={{ opacity: 0, y: '58%' }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '-42%' }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {heroOutcomes[currentIndex]}
-          </motion.span>
-        </AnimatePresence>
-      </span>
-      <button
-        type="button"
-        onClick={() => setIsPaused((paused) => !paused)}
-        className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition-colors hover:border-emerald-200/30 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
-        aria-label={isPaused ? 'Play changing headline' : 'Pause changing headline'}
-        aria-pressed={isPaused}
-      >
-        {isPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
-      </button>
-    </div>
-  )
-}
-
 function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
   return (
     <section className="relative flex min-h-[92svh] items-center overflow-hidden pb-16 pt-24 md:pb-20 md:pt-28">
@@ -289,26 +226,24 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
+                <span className="text-sm text-white/60">Public workshop · knowledge constellation · living studio</span>
               </div>
 
               <h1
                 className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
               >
-                Turn AI capability into an operating advantage.
+                Build what matters.
               </h1>
 
-              <span className="sr-only">
-                Explore your highest-leverage AI move, architect your AI operating system, build
-                your AI Center of Excellence, orchestrate agents around real work, and ship products
-                that compound.
-              </span>
-              <RotatingHeroOutcome />
+              <p className="max-w-2xl bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.2] tracking-[-0.025em] text-transparent sm:text-3xl">
+                AI architecture, creator systems, research, music, books, and the human work of becoming.
+              </p>
 
               <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
-                FrankX is the working studio for founders, creators, and AI leaders building an AI
-                operating system, a Center of Excellence, or agentic products. Explore the
-                architecture, inspect the systems, and start from what already works.
+                I&apos;m Frank Riemer—AI architect, creator, researcher, and builder. FrankX is the
+                public workshop where I share the systems, evidence, creative practices, and field
+                notes I use to build with AI without giving up judgment, craft, or a life outside
+                the tools.
               </p>
 
               <div className="flex items-center gap-3">
@@ -322,11 +257,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             {/* CTAs */}
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
-                href="/ai-architecture"
-                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
+                href="/start"
+                onClick={() => trackEvent('hero_cta_click', { type: 'start' })}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Explore AI Architecture
+                Find Your Starting Point
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
@@ -335,11 +270,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Map the Ecosystem
+                See the Whole Constellation
               </Link>
             </div>
 
-            <p className="max-w-xl text-[11px] leading-5 text-white/25">
+            <p className="max-w-xl text-[11px] leading-5 text-white/30">
               Independent project by former Oracle AI architect Frank Riemer. Not affiliated with,
               endorsed by, or sponsored by Oracle.
             </p>
@@ -413,7 +348,7 @@ const products = [
   },
   {
     title: 'Creator Kit',
-    description: 'Premium templates and guided implementation resources for creators who want a faster start.',
+    description: 'Browse templates, guided resources, and current product states in one catalog.',
     href: '/products',
     color: 'cyan' as const,
   },
@@ -683,8 +618,8 @@ function DesignLab() {
             Design Lab
           </h2>
           <p className="text-base text-white/50 max-w-xl">
-            Generative art experiments. Nature-tech fusion aesthetics.
-            Digital gardens where code meets organic form.
+            Visual studies from the studio: generative art, nature-tech compositions, and the
+            design decisions behind them.
           </p>
         </motion.div>
 
@@ -746,7 +681,8 @@ function BooksShowcase({ books }: { books: BookData[] }) {
               Books &amp; Writing
             </h2>
             <p className="text-base text-white/50 max-w-lg">
-              Spanning poetry, discipline, creativity, and hope. Read free online or download as PDF.
+              Long-form work on creativity, discipline, purpose, hope, and the inner life behind
+              ambitious work. Publication and download status is shown on each book.
             </p>
           </div>
           <Link
@@ -816,7 +752,8 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
               Every book, a permanent asset
             </h2>
             <p className="text-base text-white/50 max-w-xl">
-              Curated deep-dives — quotes, chapter summaries, and the connections between ideas. Built on the open-source <Link href="/library/approach" className="text-white/80 underline decoration-white/20 underline-offset-4 hover:decoration-emerald-400/60 transition">Library OS</Link>. Clone it. Run it. Make your reading life public.
+              Curated deep-dives with source notes, chapter summaries, and connections between
+              ideas. The <Link href="/library/approach" className="text-white/80 underline decoration-white/20 underline-offset-4 hover:decoration-emerald-400/60 transition">Library OS approach</Link> explains how the collection is maintained and what each entry contains.
             </p>
           </div>
           <div className="flex flex-col items-start sm:items-end gap-2 flex-shrink-0">
@@ -874,17 +811,10 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-white/40"
-        >
-          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> MIT-licensed</span>
-          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> Cross-AI portable</span>
-          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> SEO + JSON-LD per book</span>
-          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> 3 commands, 1 schema</span>
-        </motion.div>
+        <p className="mt-8 max-w-2xl text-xs leading-5 text-white/30">
+          Every entry states what is available—source, summary, notes, or deeper analysis—so you can
+          decide whether it is useful before opening it.
+        </p>
       </div>
     </section>
   )
@@ -969,29 +899,29 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
 
 const learningCards = [
   {
-    title: 'Students & Creators',
-    description: 'AI guides for students, families, and aspiring creators.',
-    href: '/students',
-    image: '/images/blog/agi-2026-opportunities-students-creators-hero.png',
+    title: 'Agentic Obsidian Second Brain',
+    description: 'A local-first guide to durable memory, MCP tools, Agent Skills, Git, and safe agent access.',
+    href: '/guides/agentic-obsidian-second-brain',
+    image: '/images/blog/ultimate-guide-ai-coding-agents-2026-hero-v2.png',
     color: 'cyan' as const,
   },
   {
     title: 'Guides & Tutorials',
-    description: 'Step-by-step guides from beginner to advanced.',
+    description: 'Maintained tutorials with a clear outcome, review date, and source trail.',
     href: '/guides',
     image: '/images/blog/ultimate-guide-ai-coding-agents-2026-hero-v2.png',
     color: 'emerald' as const,
   },
   {
     title: 'Watch',
-    description: 'Video tutorials and workshop recordings.',
+    description: 'Video tutorials, recorded explanations, and workshop material.',
     href: '/watch',
     image: '/images/blog/creators-ai-toolkit-workshop-hero.png',
     color: 'violet' as const,
   },
   {
     title: 'Tools & Resources',
-    description: 'Curated tools, templates, and resource libraries.',
+    description: 'Curated tools, templates, downloads, and reference material.',
     href: '/tools',
     image: '/images/blog/golden-age-field-guide-hero.png',
     color: 'amber' as const,
@@ -1015,7 +945,7 @@ function LearningHub() {
             Learn & Explore
           </h2>
           <p className="text-base text-white/50 max-w-lg">
-            Guides, courses, video tutorials, and tools — everything you need to level up.
+            Choose a real outcome, see what the resource assumes, and learn at the depth your work needs.
           </p>
         </motion.div>
 
@@ -1096,7 +1026,8 @@ function EmailCTA() {
               Stay in the Signal Loop
             </h2>
             <p className="text-sm text-white/40 mb-8 max-w-xs mx-auto">
-              One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
+              A considered note when there is something worth sharing: a useful system, a field
+              lesson, a new piece of research, or a studio release.
             </p>
             <div className="max-w-sm mx-auto">
               <EmailSignup
@@ -1327,7 +1258,7 @@ function FinalCTA() {
 }
 
 // ============================================================================
-// MAIN COMPONENT — 16 sections
+// MAIN COMPONENT — constellation journey
 // ============================================================================
 
 export default function HomePageElite({
@@ -1346,10 +1277,13 @@ export default function HomePageElite({
         {/* 1-3. Hero with featured track */}
         <Hero featuredTrack={featuredTrack} />
 
-        {/* 4. Authority bar */}
+        {/* Identity proof and situation-first orientation */}
         <AuthorityBar />
+        <StartFromSituation />
+        <HubConstellation />
+        <CurrentKnowledge />
 
-        {/* 4b. AI Stack — tool logos with guide links */}
+        {/* Inspectable proof and working systems */}
         <TrustedByBlock />
 
         {/* 4c. Signature route atlas — one earned GSAP scene */}
@@ -1405,6 +1339,9 @@ export default function HomePageElite({
         {/* 10b. Library OS — open-source book deep-dives */}
         <LibraryShowcase libraryBooks={libraryBooks} />
 
+        {/* Human development is a cross-cutting body of work, not a new funnel. */}
+        <HumanSystems />
+
         {/* 11. Latest Articles — expanded to 6 */}
         <LatestArticles posts={latestPosts} />
 
@@ -1413,6 +1350,9 @@ export default function HomePageElite({
 
         {/* 13. FRANK-Ω — Digital Twin */}
         <DigitalTwin />
+
+        {/* Credible routes for direct work, partnerships, and media. */}
+        <WorkAndConversation />
 
         {/* 14. Email CTA */}
         <EmailCTA />

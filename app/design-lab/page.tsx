@@ -263,7 +263,7 @@ const designStudies = [
     title: 'Nature × Technology',
     subtitle: '10 AI-generated concept images exploring organic intelligence meets dark technology',
     href: '/design-lab/nature',
-    image: '/images/design-lab/nature-01-digital-garden.png',
+    image: '/images/design-lab/nature-01-digital-garden-hero.png',
     color: 'emerald',
     stats: [
       { label: 'Concepts', value: '10' },

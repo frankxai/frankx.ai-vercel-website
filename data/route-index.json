@@ -1,18 +1,18 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 835,
-    "aliases": 38,
+    "total": 851,
+    "aliases": 42,
     "byType": {
       "core": 21,
-      "section": 388,
+      "section": 396,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 207,
+      "blog": 212,
       "workshop": 12,
-      "guide": 20,
-      "library": 41,
+      "guide": 22,
+      "library": 56,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
@@ -631,6 +631,14 @@
       ],
       "type": "section",
       "sitemap": false
+    },
+    {
+      "href": "/ask",
+      "title": "Ask",
+      "tags": [
+        "ask"
+      ],
+      "type": "section"
     },
     {
       "href": "/assess",
@@ -1534,6 +1542,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/chatgpt-sites-founder-guide-2026",
+      "title": "ChatGPT Sites: Complete Founder Guide (2026)",
+      "description": "A practical ChatGPT Sites guide: how it works, how it compares with Claude Artifacts, and how founders should build, govern, and launch in hours.",
+      "tags": [
+        "ChatGPT Sites",
+        "Codex",
+        "AI Website Builder",
+        "Founder Systems",
+        "Agentic Workflows",
+        "AI App Builder"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/chatgpt-vs-claude-vs-gemini-2026",
       "title": "ChatGPT vs Claude vs Gemini 2026: Which AI Assistant for Everyday Use?",
       "description": "An honest, results-first comparison of the three $20 AI subscriptions — ChatGPT Plus, Claude Pro, and Google AI Pro — for writing, research, images, voice, memory, and everyday questions. Pick by use case.",
@@ -2253,6 +2275,19 @@
       "type": "section"
     },
     {
+      "href": "/blog/intent-architecture-agentic-delegation",
+      "title": "Intent Architecture: The Discipline of Agentic Delegation",
+      "description": "A research-grounded framework for turning human purpose into bounded, verifiable execution across AI agents, tools, and people.",
+      "tags": [
+        "intent-architecture",
+        "ai-agents",
+        "human-ai-collaboration",
+        "agent-orchestration",
+        "ai-governance"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/karpathys-ai-vision-deep-dive",
       "title": "Karpathy's AI Vision: A Deep Dive",
       "description": "Key takeaways from Karpathy's latest AI insights",
@@ -2319,6 +2354,19 @@
         "Arcanea",
         "Starlight Intelligence",
         "Sovereignty"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/manifestation-reality-architect-ai-vibe",
+      "title": "Manifestation, Honestly: How I Became a Reality Architect",
+      "description": "What actually changed after I read The Secret and Think and Grow Rich — imagination, felt state, my own music, and AI as the loop that ships it.",
+      "tags": [
+        "manifestation",
+        "reality-architecture",
+        "vibe-os",
+        "creativity",
+        "ai-creation"
       ],
       "type": "blog"
     },
@@ -2927,6 +2975,32 @@
         "governance",
         "enterprise-ai",
         "evals"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/skill-maturity-model",
+      "title": "The Skill Maturity Model: From Prompt to Composed Capability",
+      "description": "The six levels of the Agent Skill Standard — L0 Prompt to L5 Composed — and how to move a skill up the ladder without over-engineering it.",
+      "tags": [
+        "ai-skills",
+        "agent-skill-standard",
+        "maturity-model",
+        "ai-coe",
+        "operating-knowledge"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/skills-vs-agents-vs-prompts-vs-mcp",
+      "title": "Skills vs Agents vs Prompts vs MCP: What Goes Where",
+      "description": "Four AI primitives that get confused constantly. Here is what each one is for, why they compose instead of compete, and how to decide which you actually need.",
+      "tags": [
+        "ai-skills",
+        "agents",
+        "mcp",
+        "agent-skill-standard",
+        "agentic-systems"
       ],
       "type": "blog"
     },
@@ -4666,6 +4740,16 @@
       "sitemap": false
     },
     {
+      "href": "/friends/ana",
+      "title": "Ana",
+      "tags": [
+        "friends",
+        "ana"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
       "href": "/friends/estefania",
       "title": "Estefania",
       "tags": [
@@ -4844,6 +4928,19 @@
       "type": "guide"
     },
     {
+      "href": "/guides/agentic-obsidian-second-brain",
+      "title": "Obsidian Second Brain: AI Agents, MCP and Agent Skills (2026)",
+      "description": "Build a local-first Obsidian second brain that Claude, Codex, and other AI agents can safely search, update, and improve with MCP, Agent Skills, and Git.",
+      "tags": [
+        "obsidian",
+        "second brain",
+        "agent skills",
+        "obsidian mcp",
+        "local-first ai"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/ai-writing-system",
       "title": "Building an AI Writing System",
       "description": "Create a systematic approach to AI-assisted writing that preserves your voice while 10x-ing output",
@@ -4853,6 +4950,19 @@
         "Claude",
         "Content",
         "Systems"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/anatomy-of-a-production-skill",
+      "title": "Anatomy of a Production Skill",
+      "description": "A line-by-line teardown of a real, governed SKILL.md — what every section does, why it is there, and how it maps to the Agent Skill Standard.",
+      "tags": [
+        "ai-skills",
+        "agent-skill-standard",
+        "skill-md",
+        "operating-knowledge",
+        "ai-coe"
       ],
       "type": "guide"
     },
@@ -4927,8 +5037,8 @@
     },
     {
       "href": "/guides/frankx-skill-creation-methodology",
-      "title": "The FrankX Skill Creation Methodology",
-      "description": "A practical operating method for turning repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises.",
+      "title": "The Skill Creation Methodology",
+      "description": "The authoring method behind the Agent Skill Standard: turn repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises.",
       "tags": [
         "ai-skills",
         "ai-coe",
@@ -5270,6 +5380,15 @@
       "type": "library"
     },
     {
+      "href": "/library/altered-traits",
+      "title": "Altered Traits",
+      "tags": [
+        "altered",
+        "traits"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/approach",
       "title": "Library — Approach",
       "type": "library"
@@ -5301,6 +5420,16 @@
         "the",
         "giant",
         "within"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/beastie-boys-book",
+      "title": "Beastie Boys Book",
+      "tags": [
+        "beastie",
+        "boys",
+        "book"
       ],
       "type": "library"
     },
@@ -5369,6 +5498,27 @@
       "type": "library"
     },
     {
+      "href": "/library/cant-stop-wont-stop",
+      "title": "Can’t Stop Won’t Stop",
+      "tags": [
+        "cant",
+        "stop",
+        "wont",
+        "stop"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/chronicles-volume-one",
+      "title": "Chronicles: Volume One",
+      "tags": [
+        "chronicles",
+        "volume",
+        "one"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/deep-work",
       "title": "Deep Work",
       "tags": [
@@ -5396,6 +5546,26 @@
       "type": "library"
     },
     {
+      "href": "/library/girl-in-a-band",
+      "title": "Girl in a Band",
+      "tags": [
+        "girl",
+        "in",
+        "band"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/how-music-works",
+      "title": "How Music Works",
+      "tags": [
+        "how",
+        "music",
+        "works"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/ikigai-japanese-secret",
       "title": "Ikigai: The Japanese Secret to a Long and Happy Life",
       "tags": [
@@ -5416,6 +5586,33 @@
       "type": "library"
     },
     {
+      "href": "/library/just-kids",
+      "title": "Just Kids",
+      "tags": [
+        "just",
+        "kids"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/life-keith-richards",
+      "title": "Life",
+      "tags": [
+        "life",
+        "keith",
+        "richards"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/m-train",
+      "title": "M Train",
+      "tags": [
+        "train"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/mans-search-for-meaning",
       "title": "Man",
       "tags": [
@@ -5431,6 +5628,28 @@
       "title": "Meditations",
       "tags": [
         "meditations"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/meet-me-in-the-bathroom",
+      "title": "Meet Me in the Bathroom",
+      "tags": [
+        "meet",
+        "me",
+        "in",
+        "the",
+        "bathroom"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/miles-the-autobiography",
+      "title": "Miles: The Autobiography",
+      "tags": [
+        "miles",
+        "the",
+        "autobiography"
       ],
       "type": "library"
     },
@@ -5456,6 +5675,37 @@
       "type": "library"
     },
     {
+      "href": "/library/our-band-could-be-your-life",
+      "title": "Our Band Could Be Your Life",
+      "tags": [
+        "our",
+        "band",
+        "could",
+        "be",
+        "your",
+        "life"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/please-kill-me",
+      "title": "Please Kill Me",
+      "tags": [
+        "please",
+        "kill",
+        "me"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/popism",
+      "title": "POPism: The Warhol Sixties",
+      "tags": [
+        "popism"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/profit-first",
       "title": "Profit First",
       "tags": [
@@ -5468,6 +5718,16 @@
       "href": "/library/quotes",
       "title": "Library — Quotes",
       "type": "library"
+    },
+    {
+      "href": "/library/rockstar-energy",
+      "title": "Rockstar Energy",
+      "tags": [
+        "library",
+        "rockstar",
+        "energy"
+      ],
+      "type": "section"
     },
     {
       "href": "/library/steal-like-an-artist",
@@ -5557,6 +5817,17 @@
         "book",
         "of",
         "ikigai"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-power-of-eight",
+      "title": "The Power of Eight",
+      "tags": [
+        "the",
+        "power",
+        "of",
+        "eight"
       ],
       "type": "library"
     },
@@ -6066,6 +6337,23 @@
       "title": "Magic",
       "tags": [
         "magic"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/manifestation",
+      "title": "Manifestation",
+      "tags": [
+        "manifestation"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/manifestation/quest",
+      "title": "Quest",
+      "tags": [
+        "manifestation",
+        "quest"
       ],
       "type": "section"
     },
@@ -6883,7 +7171,7 @@
     {
       "href": "/products/golden-age",
       "title": "The Golden Age of Creators",
-      "description": "How the creator economy crossed $250 billion and the barriers to creative expression evaporated. The definitive guide to building in the golden age.",
+      "description": "How AI tools and direct distribution changed what an independent creator can build, publish, and own.",
       "tags": [
         "book",
         "creator-economy",
@@ -7254,6 +7542,17 @@
       "href": "/research",
       "title": "Research",
       "type": "research"
+    },
+    {
+      "href": "/research/agentic-life-observatory",
+      "title": "Agentic Life Observatory",
+      "tags": [
+        "research",
+        "agentic",
+        "life",
+        "observatory"
+      ],
+      "type": "section"
     },
     {
       "href": "/research/ai-contemplative-practice",
@@ -7746,6 +8045,26 @@
       "type": "section"
     },
     {
+      "href": "/the-secret",
+      "title": "The Secret",
+      "tags": [
+        "the",
+        "secret"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/think-and-grow-rich",
+      "title": "Think And Grow Rich",
+      "tags": [
+        "think",
+        "and",
+        "grow",
+        "rich"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/tools",
       "title": "Tools",
       "type": "tool"
@@ -8074,149 +8393,6 @@
         "strategy"
       ],
       "type": "section"
-    },
-    {
-      "href": "/ask",
-      "title": "Ask FrankX",
-      "description": "Practical Q&A on AI architecture, music production, and creator workflows",
-      "type": "core",
-      "tags": [
-        "ask",
-        "q&a",
-        "ai-architecture",
-        "music-production",
-        "creator-tools"
-      ]
-    },
-    {
-      "href": "/ask/what-is-a-multi-agent-system",
-      "title": "What is a multi-agent AI system?",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "ai-architecture"
-      ]
-    },
-    {
-      "href": "/ask/how-to-write-suno-prompts",
-      "title": "How to write Suno prompts for professional tracks",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "music-production"
-      ]
-    },
-    {
-      "href": "/ask/ai-for-solo-creators",
-      "title": "AI for solo creators without becoming a content farm",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "content-strategy"
-      ]
-    },
-    {
-      "href": "/ask/claude-and-gemini-together",
-      "title": "Using Claude and Gemini together in one system",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "ai-architecture"
-      ]
-    },
-    {
-      "href": "/ask/ai-music-workflow-end-to-end",
-      "title": "Complete AI music production workflow 2026",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "music-production"
-      ]
-    },
-    {
-      "href": "/ask/adding-ai-without-losing-voice",
-      "title": "Adding AI without losing your creative voice",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "content-strategy"
-      ]
-    },
-    {
-      "href": "/ask/automation-vs-augmentation",
-      "title": "Automation vs augmentation: which to choose",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "creator-tools"
-      ]
-    },
-    {
-      "href": "/ask/best-ai-stack-2026",
-      "title": "Best AI tech stack for creators in 2026",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "creator-tools"
-      ]
-    },
-    {
-      "href": "/ask/how-to-write-claude-md",
-      "title": "How to write a CLAUDE.md that works",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "ai-architecture"
-      ]
-    },
-    {
-      "href": "/ask/enterprise-ai-adoption-strategy",
-      "title": "Enterprise AI adoption strategy framework",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "enterprise-ai"
-      ]
-    },
-    {
-      "href": "/ask/ai-content-engine-setup",
-      "title": "Setting up an AI content engine",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "content-strategy"
-      ]
-    },
-    {
-      "href": "/ask/agentic-creator-os-explained",
-      "title": "What is the Agentic Creator OS (ACOS)?",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "creator-tools"
-      ]
-    },
-    {
-      "href": "/ask/how-do-i-get-chorus-to-lift",
-      "title": "How to get chorus lift in AI music",
-      "type": "section",
-      "tags": [
-        "ask",
-        "q&a",
-        "music-production"
-      ]
     }
   ],
   "aliases": {
@@ -8246,6 +8422,10 @@
     "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
     "/downloads/ana-ai-business-kit": "/allies/ana-cancino",
+    "/guide/agentic-obsidian-second-brain": "/guides/agentic-obsidian-second-brain",
+    "/guide/obsidian-mcp-agent-skills": "/guides/agentic-obsidian-second-brain",
+    "/guide/starlight-second-brain": "/guides/agentic-obsidian-second-brain",
+    "/guides/starlight-second-brain": "/guides/agentic-obsidian-second-brain",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",

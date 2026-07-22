@@ -35,7 +35,7 @@ const agents: Agent[] = [
     name: 'Visionary',
     title: 'Strategic Intelligence',
     description: 'Future visioning and business guidance',
-    imagePath: '/images/agents/visionary.svg',
+    imagePath: '/images/agents/creation-engine.svg',
     accentColor: 'blue',
   },
   {
