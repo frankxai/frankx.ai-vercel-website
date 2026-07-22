@@ -9,6 +9,7 @@ const baseUrl = (process.env.V0_QA_BASE_URL ?? "http://localhost:4337").replace(
   /\/$/,
   "",
 )
+const bootstrapUrl = process.env.V0_QA_BOOTSTRAP_URL?.trim()
 const outputDirectory =
   process.env.V0_QA_OUTPUT_DIR ?? path.join(os.tmpdir(), "frankx-v0-qa")
 
@@ -437,6 +438,16 @@ const browser = await puppeteer.launch({
 })
 
 try {
+  if (bootstrapUrl) {
+    const bootstrapPage = await browser.newPage()
+    const response = await bootstrapPage.goto(bootstrapUrl, {
+      waitUntil: "networkidle2",
+      timeout: 90_000,
+    })
+    assert.ok(response?.ok(), "Preview access bootstrap failed")
+    await bootstrapPage.close()
+  }
+
   const viewports = [
     { name: "desktop", width: 1440, height: 900 },
     { name: "mobile", width: 390, height: 844, isMobile: true },

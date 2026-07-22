@@ -1,6 +1,6 @@
 # FrankX v0 Template OS
 
-Status snapshot: 2026-07-19.
+Status snapshot: 2026-07-22.
 
 This directory is the source of truth for the FrankX v0 catalog, first-party template packages, architecture teardowns, preview policy, and release evidence. It separates three things that must not be conflated:
 

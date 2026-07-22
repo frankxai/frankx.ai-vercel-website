@@ -79,7 +79,13 @@
       "path_or_url": "scripts/qa/v0-visual-qa.mjs",
       "kind": "quality-receipt",
       "inspected": true,
-      "notes": "The final local run at C:/tmp/frankx-v0-qa-final/report.json passed all route, viewport, workflow, accessibility, focus, reduced-motion, and performance assertions."
+      "notes": "The final local run and the committed cloud-preview report passed all route, viewport, workflow, accessibility, focus, reduced-motion, and performance assertions."
+    },
+    {
+      "path_or_url": "content/v0/evidence/preview-2026-07-22/",
+      "kind": "preview-evidence",
+      "inspected": true,
+      "notes": "Nine inspected WebP exports and the machine-readable report were captured from the READY Vercel preview without retaining its temporary access token."
     }
   ],
   "checks": [
@@ -126,12 +132,12 @@
     {
       "name": "independent-review",
       "status": "blocked",
-      "evidence": "External v0 Max review is intentionally deferred until the draft PR and Vercel preview are available."
+      "evidence": "v0 Max correctly withheld approval because its first pass received the protected login page and client-rendered PR shell; committed screenshots and raw source are being supplied for re-review."
     },
     {
       "name": "production-artifact",
-      "status": "blocked",
-      "evidence": "The Vercel preview has not been created; production promotion remains human-gated."
+      "status": "pass",
+      "evidence": "Draft PR 351, GitHub CI, and the single native Vercel branch preview are READY; three canonical routes returned their expected FrankX pages at 200."
     }
   ],
   "score": {
@@ -145,7 +151,7 @@
       "provenance_and_accuracy": 4,
       "intended_utility": 5
     },
-    "notes": "Local design and engineering evidence clears the 26/30 premium gate; external preview review remains before the ship decision."
+    "notes": "Local and cloud design and engineering evidence clear the 26/30 premium gate; independent review remains before the ship decision."
   },
   "decision": "iterate",
   "known_risks": [

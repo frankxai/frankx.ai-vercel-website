@@ -70,7 +70,7 @@
     "reducedMotion": true,
     "performance": true,
     "productionBuild": true,
-    "vercelPreview": false
+    "vercelPreview": true
   },
   "productionBlockers": [
     "provider adapters are deterministic demos",
