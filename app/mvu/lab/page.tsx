@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, Check, Clock, MapPin, Users } from 'lucide-react'
 
 import { createMetadata } from '@/lib/seo'
-import { MVU_LAB, getLabRsvpUrl } from '@/lib/mvu/lab'
+import { MVU_LAB } from '@/lib/mvu/lab'
 import { LabRsvp } from '@/components/mvu/LabRsvp'
 
 const SITE_URL = 'https://frankx.ai'
@@ -15,20 +15,20 @@ export const metadata: Metadata = createMetadata({
 })
 
 const LEAVE_WITH = [
-  'One inbox for captures — not five apps you rotate between.',
-  'A ten-minute weekly pass that turns notes into at most three commitments.',
-  'One place those commitments resurface when you can actually act on them.',
-  'The whole loop on paper first, so it works without any particular tool.',
+  'One place your captures live — not the five apps you rotate between and never reopen.',
+  'A ten-minute weekly ritual that turns a week of notes into three things you’ll actually do.',
+  'A way for the one idea that matters to come back to you at the moment you can use it.',
+  'The whole system on paper first — so it survives without an app, a subscription, or me.',
 ]
 
 const RUN_OF_SHOW = [
-  { t: '0–15', what: 'The leak — where event value actually disappears, and why capture isn’t the fix.' },
-  { t: '15–45', what: 'Build your spine — inbox, weekly pass, resurfacing. Paper first, live.' },
-  { t: '45–75', what: 'Run one real capture through the whole loop with your own material.' },
-  { t: '75–90', what: 'Your Friday commitment + how to keep the spine after Tallinn.' },
+  { t: '0–15', what: 'Where the value really goes. Not memory — the missing catch between insight and action.' },
+  { t: '15–45', what: 'You build your spine, live, on paper: one inbox, one weekly pass, one way things resurface.' },
+  { t: '45–75', what: 'Run something real from these two weeks through the whole loop, start to finish.' },
+  { t: '75–90', what: 'The one commitment you leave with — and how to keep the spine standing after Tallinn.' },
 ]
 
-function LabJsonLd({ rsvpUrl }: { rsvpUrl: string }) {
+function LabJsonLd() {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Event',
@@ -51,7 +51,7 @@ function LabJsonLd({ rsvpUrl }: { rsvpUrl: string }) {
       price: '0',
       priceCurrency: 'EUR',
       availability: 'https://schema.org/LimitedAvailability',
-      ...(rsvpUrl && { url: rsvpUrl }),
+      url: `${SITE_URL}/mvu/lab`,
     },
     url: `${SITE_URL}/mvu/lab`,
     isAccessibleForFree: true,
@@ -63,17 +63,15 @@ function LabJsonLd({ rsvpUrl }: { rsvpUrl: string }) {
 }
 
 export default function MvuLabPage() {
-  const rsvpUrl = getLabRsvpUrl()
-
   const facts = [
     { icon: Clock, label: MVU_LAB.timeLabel ? `${MVU_LAB.dateLabel} · ${MVU_LAB.timeLabel}` : '90 minutes · week two' },
-    { icon: MapPin, label: MVU_LAB.venueLabel || `${MVU_LAB.city} — address in the confirmation` },
+    { icon: MapPin, label: MVU_LAB.venueLabel || `${MVU_LAB.city} — address in your confirmation` },
     { icon: Users, label: `${MVU_LAB.capacity} people · ${MVU_LAB.price}` },
   ]
 
   return (
     <main className="min-h-screen bg-void">
-      <LabJsonLd rsvpUrl={rsvpUrl} />
+      <LabJsonLd />
 
       <div className="mx-auto w-full max-w-2xl px-5 py-16 sm:py-24">
         <Link
@@ -94,7 +92,22 @@ export default function MvuLabPage() {
           <p className="mt-5 text-lg leading-relaxed text-white/70">{MVU_LAB.tagline}</p>
         </header>
 
-        <dl className="mt-8 grid gap-3 sm:grid-cols-3">
+        {/* The stakes — why this exists */}
+        <section className="mt-10 space-y-4 text-base leading-relaxed text-white/70">
+          <p>
+            You already know the feeling. Two weeks that changed how you see things,
+            and then a Tuesday three weeks later when almost none of it is left. The
+            insight was real. It just had nowhere to live.
+          </p>
+          <p>
+            That gap — between who you become in a room like this and who you are the
+            week after — isn’t a failure of memory or willpower. It’s a missing
+            system. This lab is ninety honest minutes building the smallest system
+            that closes it. You leave with the thing, not a promise to build it later.
+          </p>
+        </section>
+
+        <dl className="mt-10 grid gap-3 sm:grid-cols-3">
           {facts.map((f) => {
             const Icon = f.icon
             return (
@@ -109,20 +122,20 @@ export default function MvuLabPage() {
         {/* RSVP */}
         <section className="mt-10 rounded-2xl border border-tech-primary/20 bg-gradient-to-br from-tech-primary/[0.06] to-transparent p-6">
           <h2 className="text-lg font-semibold text-white">
-            {rsvpUrl ? 'Reserve your seat' : 'Want this to happen?'}
+            {MVU_LAB.confirmed ? 'Ask for a seat' : 'Want this to happen?'}
           </h2>
           <p className="mb-5 mt-1.5 text-sm leading-relaxed text-white/55">
-            {rsvpUrl
-              ? `Capped at ${MVU_LAB.capacity}, approval-gated to keep the room working. Free.`
-              : 'I only run this if enough people genuinely want it. Register interest and I’ll decide by mid-week.'}
+            {MVU_LAB.confirmed
+              ? `Capped at ${MVU_LAB.capacity} and approved by hand, so it stays a room and not an audience. Free.`
+              : 'I only run this if enough people genuinely want it. Put your name down and I’ll decide by mid-week — and come back to you either way.'}
           </p>
-          <LabRsvp rsvpUrl={rsvpUrl} />
+          <LabRsvp confirmed={MVU_LAB.confirmed} />
         </section>
 
         {/* What you leave with */}
         <section className="mt-14">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-white/40">
-            What you leave with
+            What you walk out with
           </h2>
           <ul className="mt-5 space-y-3">
             {LEAVE_WITH.map((item) => (
@@ -137,7 +150,7 @@ export default function MvuLabPage() {
         {/* Run of show */}
         <section className="mt-14">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-white/40">
-            The 90 minutes
+            The ninety minutes
           </h2>
           <ul className="mt-5 space-y-4">
             {RUN_OF_SHOW.map((row) => (
@@ -157,9 +170,9 @@ export default function MvuLabPage() {
             Who it’s for
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-white/70">
-            Creators, founders, and operators who leave events full of insight and
-            watch it evaporate by the following week. No tools to install, no prior
-            system required. Bring a notebook and one real thing you learned here.
+            Creators, founders, and operators who leave events full and watch it drain
+            away by the next week. No tools to install, no system required in advance.
+            Bring a notebook and one real thing you learned here — we build from that.
           </p>
         </section>
 
@@ -167,8 +180,8 @@ export default function MvuLabPage() {
 
         <p className="text-sm leading-relaxed text-white/45">
           This is an independent session I host — not organized, sponsored, or
-          endorsed by Mindvalley, and not part of the official program. It’s open to
-          anyone in Tallinn, whether or not they’re at the University.
+          endorsed by Mindvalley, and not part of the official program. Open to anyone
+          in Tallinn, whether or not they’re at the University.
         </p>
       </div>
     </main>

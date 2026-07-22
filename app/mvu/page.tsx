@@ -69,12 +69,14 @@ export default function MvuPage() {
             Tallinn · 20 Jul – 2 Aug 2026
           </p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            Mindvalley University, in the open
+            Two weeks I don’t want to lose
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
-            Two weeks of learning, connection, and building calm systems so
-            insights survive the week after the event. This is the journal —
-            written as it happens.
+            Most of what happens at something like this evaporates by the Tuesday
+            after. So I’m writing it down as it happens — the rooms, the people, the
+            things that actually change my mind — and building the small systems that
+            let insight survive contact with normal life. This is that journal, in
+            the open.
           </p>
         </header>
 
