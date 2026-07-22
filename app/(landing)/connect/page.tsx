@@ -59,8 +59,10 @@ function ConnectJsonLd() {
           },
         }),
         url: CONNECT_URL,
-        organizer: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
-        performer: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
+        // Frank attends these events; he does not run them. Claiming organizer
+        // or performer would assert an affiliation that does not exist — which
+        // matters most for third-party events like Mindvalley University.
+        attendee: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
       })),
     ],
   }
