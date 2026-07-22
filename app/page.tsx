@@ -33,6 +33,8 @@ export const metadata = createMetadata({
 
 const siteUrl = siteConfig.url
 
+// Keep homepage asset checks registry-backed. A dynamic public-directory lookup makes
+// Turbopack trace thousands of files into the root function and can exceed Vercel's limit.
 const verifiedPublicAssets = new Set(
   assetRegistry
     .filter((asset) => asset.renderStatus === 'verified')
