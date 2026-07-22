@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 835,
+    "total": 841,
     "aliases": 38,
     "byType": {
-      "core": 21,
-      "section": 388,
+      "core": 23,
+      "section": 405,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 207,
+      "blog": 208,
       "workshop": 12,
       "guide": 20,
       "library": 41,
@@ -3441,6 +3441,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/your-mind-is-a-temporary-library",
+      "title": "Your Mind Is a Temporary Library",
+      "description": "A Mindvalley field note on turning lived experience into durable knowledge, agentic systems, and public capability that can outlast us.",
+      "tags": [
+        "MVU Field Notes",
+        "Knowledge Transfer",
+        "AI Agents",
+        "Publishing",
+        "Creator Systems",
+        "Legacy"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blueprint/arcanea-game-engine",
       "title": "Arcanea Game Platform",
       "description": "AI-driven narrative game with dynamic world generation",
@@ -5197,6 +5211,12 @@
       "type": "section"
     },
     {
+      "href": "/journal",
+      "title": "FrankX Journal",
+      "type": "core",
+      "sitemap": false
+    },
+    {
       "href": "/lab",
       "title": "Lab",
       "tags": [
@@ -6066,6 +6086,23 @@
       "title": "Magic",
       "tags": [
         "magic"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/manifestation",
+      "title": "Manifestation",
+      "tags": [
+        "manifestation"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/manifestation/quest",
+      "title": "Quest",
+      "tags": [
+        "manifestation",
+        "quest"
       ],
       "type": "section"
     },
@@ -7742,6 +7779,26 @@
         "the",
         "light",
         "within"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/the-secret",
+      "title": "The Secret",
+      "tags": [
+        "the",
+        "secret"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/think-and-grow-rich",
+      "title": "Think And Grow Rich",
+      "tags": [
+        "think",
+        "and",
+        "grow",
+        "rich"
       ],
       "type": "section"
     },

@@ -444,15 +444,15 @@ export default function NavigationMega() {
 
               <NavigationMenu.Item>
                 <Link
-                  href="/blog"
+                  href="/journal"
                   className={cn(
                     'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]',
-                    isActive('/blog')
+                    isActive('/blog') || isActive('/journal')
                       ? 'text-white bg-white/5'
                       : 'text-slate-300 hover:text-white hover:bg-white/5'
                   )}
                 >
-                  Blog
+                  Journal
                 </Link>
               </NavigationMenu.Item>
 

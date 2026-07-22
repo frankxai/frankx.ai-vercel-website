@@ -46,6 +46,13 @@ const payload = {
   aliases: sortedAliases,
 }
 
+const countedRoutes = Object.values(payload.stats.byType).reduce((sum, count) => sum + count, 0)
+if (countedRoutes !== payload.stats.total) {
+  throw new Error(
+    `[build-route-index] stats mismatch: total=${payload.stats.total}, byType=${countedRoutes}`
+  )
+}
+
 fs.mkdirSync(path.dirname(OUTPUT), { recursive: true })
 fs.writeFileSync(OUTPUT, JSON.stringify(payload, null, 2) + '\n', 'utf8')
 

@@ -6,16 +6,16 @@ import BlogPageClient from './BlogPageClient'
 
 const blogFaqs = [
   {
-    question: 'What is Creation Chronicles?',
-    answer: 'Creation Chronicles is FrankX.AI\'s blog featuring weekly insights on building intelligence systems. It covers topics from enterprise AI architecture to creative AI applications like music production with Suno, sharing real-world learnings and practical implementation strategies.'
+    question: 'What is the FrankX Journal?',
+    answer: 'The FrankX Journal turns field observations from AI architecture, venture building, creativity, and human potential into essays, models, and practical systems.'
   },
   {
     question: 'How often is new content published?',
     answer: 'New articles are published 2-3 times per week, covering a range of topics including AI implementation guides, enterprise architecture patterns, creative AI workflows, and insights from building production AI systems.'
   },
   {
-    question: 'What topics does Creation Chronicles cover?',
-    answer: 'The blog covers enterprise AI architecture, Oracle Cloud AI services, creative AI tools like Suno and Midjourney, agentic AI systems, AI implementation strategies, and personal insights from a musician-technologist\'s journey building with AI.'
+    question: 'What topics does the FrankX Journal cover?',
+    answer: 'The journal covers AI architecture, agentic systems, creator workflows, AI music, venture building, and field notes from the rooms where new ideas are being tested.'
   },
   {
     question: 'Can I get notified about new articles?',
@@ -28,11 +28,12 @@ const blogFaqs = [
 ]
 
 export const metadata = createMetadata({
-  title: 'Creation Chronicles - Building Intelligence Systems',
+  title: 'FrankX Journal - Field Notes and Intelligence Systems',
   description:
-    "Inside the build. AI systems, creative workflows, and what's actually shipping — from enterprise architecture to AI music production.",
+    'Field notes, AI architecture, creative systems, and practical models built to travel beyond the room where they were discovered.',
   keywords: [
     'ai blog',
+    'frankx journal',
     'creation chronicles',
     'intelligence systems',
     'ai music',

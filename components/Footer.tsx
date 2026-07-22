@@ -50,7 +50,7 @@ const NAV_COLUMNS = [
       { label: 'Library', href: '/library' },
       { label: 'Games Lab', href: '/games' },
       { label: 'Watch', href: '/watch' },
-      { label: 'Blog', href: '/blog' },
+      { label: 'Journal', href: '/journal' },
     ],
   },
   {
