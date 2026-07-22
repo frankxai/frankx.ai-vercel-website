@@ -56,9 +56,12 @@ test('priority navigation copy contains no stale quantity or price claims', asyn
   }
 })
 
-test('homepage filters dynamic covers against the production public directory', async () => {
+test('homepage filters dynamic covers against the verified asset registry', async () => {
   const homepagePage = await readRepoFile('app/page.tsx')
 
+  assert.match(homepagePage, /assetRegistry from '@\/data\/site-experience\/asset-registry\.json'/)
+  assert.match(homepagePage, /verifiedPublicAssets\.has\(assetPath\)/)
+  assert.doesNotMatch(homepagePage, /existsSync/)
   assert.match(homepagePage, /hasRenderablePublicAsset/)
   assert.match(homepagePage, /hasRenderablePublicAsset\(book\.coverImage\)/)
   assert.match(homepagePage, /hasRenderablePublicAsset\(review\.coverImage\)/)

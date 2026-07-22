@@ -1,10 +1,9 @@
 import HomePageElite from '@/components/home/HomePageElite'
-import { existsSync } from 'node:fs'
-import path from 'node:path'
 import { getPublishedBooks } from '@/app/books/lib/books-registry'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { bookReviews } from '@/data/book-reviews'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
+import assetRegistry from '@/data/site-experience/asset-registry.json'
 import { getAllBlogPosts } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
@@ -34,11 +33,17 @@ export const metadata = createMetadata({
 
 const siteUrl = siteConfig.url
 
+const verifiedPublicAssets = new Set(
+  assetRegistry
+    .filter((asset) => asset.renderStatus === 'verified')
+    .map((asset) => asset.canonicalSource),
+)
+
 const hasRenderablePublicAsset = (assetPath: string | undefined) => {
   if (!assetPath) return false
   if (/^https?:\/\//.test(assetPath)) return true
   if (!assetPath.startsWith('/')) return false
-  return existsSync(path.join(process.cwd(), 'public', assetPath.slice(1)))
+  return verifiedPublicAssets.has(assetPath)
 }
 
 const websiteSchema = {
