@@ -48,52 +48,52 @@ const PROOF_STACK = [
 const PILOT = [
   {
     label: "01 · Listen",
-    title: "Capture the real audience language.",
+    title: "Capture the irreplaceable human signal.",
     detail:
-      "One deep conversation, existing posts, offers, emails, and audience responses become a source-grounded signal set — not a synthetic persona.",
+      "Founder stories, judgment, language, beliefs, offers, and audience responses become a source-grounded signal set — not a synthetic persona.",
   },
   {
     label: "02 · Model",
-    title: "Build the authority graph.",
+    title: "Model it without averaging it.",
     detail:
-      "Map audience tensions, language, beliefs, proof, mechanisms, offers, stories, and objections into a creator-owned intelligence layer.",
+      "Map the founder’s voice, proof, mechanisms, boundaries, audience tensions, and contradictions into a creator-owned authority graph.",
   },
   {
     label: "03 · Activate",
-    title: "Turn the graph into a live campaign.",
+    title: "Activate it with explicit boundaries.",
     detail:
-      "Generate the webinar thesis, framing, email sequence, content constellation, and distribution brief from the same governed source.",
+      "Build the webinar thesis, email sequence, content constellation, and distribution brief from one governed source — with human approval before publication.",
   },
   {
     label: "04 · Compound",
-    title: "Let every response improve the next move.",
+    title: "Learn without identity drift.",
     detail:
-      "Questions, replies, conversions, and objections return to the intelligence layer instead of disappearing inside a campaign dashboard.",
+      "Questions, replies, conversions, and objections improve the system while the founder’s core signal remains stable and attributable.",
   },
 ] as const;
 
 const OVERLAP = [
   {
     number: "01",
-    title: "Your method finds the signal.",
-    body: "Audience language, emotional cues, offer framing, webinar psychology, and the distribution sequence that creates demand.",
+    title: "You find what makes the founder irreplaceable.",
+    body: "Human story, judgment, audience language, emotional cues, offer framing, webinar psychology, and the sequence that builds trust.",
   },
   {
     number: "02",
-    title: "My systems preserve and operationalize it.",
-    body: "Knowledge graphs, agent memory, portable skills, governed workflows, creator tooling, and the engineering required to keep the system alive.",
+    title: "My systems preserve it across the agent fleet.",
+    body: "Sovereign memory, authority graphs, portable skills, governed workflows, and the engineering required to keep the human signal intact.",
   },
   {
     number: "03",
-    title: "Together, the work compounds.",
-    body: "Every conversation strengthens the message. Every campaign strengthens the model. The creator owns the resulting intelligence.",
+    title: "The result is leverage without identity drift.",
+    body: "Every conversation strengthens the message. Every campaign strengthens the model. The founder keeps ownership of the resulting intelligence.",
   },
 ] as const;
 
 export const metadata: Metadata = {
-  title: "For Sabrina — Authority Intelligence Lab | FrankX",
+  title: "For Sabrina — Impossibly Human, Compounding | FrankX",
   description:
-    "An unlisted working concept connecting Sabrina’s Audience-to-Authority method with the FrankX creator intelligence stack.",
+    "An unlisted working concept connecting Impossibly Human founder authority with the FrankX creator intelligence stack.",
   robots: {
     index: false,
     follow: false,
@@ -131,14 +131,28 @@ export default function SabrinaMvuPage() {
               Sabrina —
             </p>
             <h1 className="max-w-4xl text-4xl font-semibold leading-[1.04] tracking-[-0.035em] text-white sm:text-6xl lg:text-7xl">
-              You mapped the commercial spine. I&apos;ve been building the
-              intelligence layer around it.
+              The moat is human. The system should make that humanity compound.
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-white/70 sm:text-xl">
-              The sequence you showed on stage — audience psychology, an owned
-              email list, webinar framing, content, and distribution — becomes
-              more valuable when the client leaves with a system that keeps
-              learning after the campaign ends.
+              Your Impossibly Human thesis and the live build solve the hardest
+              side: finding a founder&apos;s real signal and turning it into
+              trusted authority. I&apos;ve been building the sovereign memory,
+              skills, and governance layer that can preserve that signal across
+              campaigns and agents without flattening it into generic AI output.
+            </p>
+
+            <p className="mt-6 max-w-3xl text-sm leading-6 text-white/45">
+              I read your public framing after the session:{" "}
+              <a
+                href="https://sabrinastocker.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/70 underline decoration-white/20 underline-offset-4 transition hover:text-tech-light"
+              >
+                the founder is the brand
+              </a>
+              . This is infrastructure beneath that boundary, not a replacement
+              for it.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -167,7 +181,7 @@ export default function SabrinaMvuPage() {
               The overlap
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              From an authority campaign to an authority intelligence system.
+              From founder authority to founder-owned intelligence.
             </h2>
           </div>
 
@@ -199,21 +213,22 @@ export default function SabrinaMvuPage() {
               A precise test
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              One author. One live offer. One compounding system.
+              One founder. One live offer. One system that stays human.
             </h2>
             <p className="mt-6 text-base leading-7 text-white/60">
-              Select one author, speaker, or expert whose body of work is
-              substantial but fragmented. Build the first Authority Intelligence
-              System around a real campaign, with consent and human approval at
-              every publishing boundary.
+              Select one Impossibly Human founder whose body of work is
+              substantial but fragmented. Build a private, creator-owned
+              intelligence substrate underneath one real authority campaign,
+              with consent and human approval at every publishing boundary.
             </p>
             <div className="mt-8 rounded-2xl border border-tech-light/20 bg-tech-light/5 p-6">
               <p className="text-sm font-medium text-white">
-                The deliverable is not more content.
+                The deliverable is not more AI content.
               </p>
               <p className="mt-2 text-sm leading-6 text-white/60">
-                It is a creator-owned model of audience, voice, proof, offer,
-                and performance that can keep producing better decisions.
+                It is a controlled source of truth for voice, story, audience,
+                proof, offer, and performance — including what can be delegated
+                and what must remain human.
               </p>
             </div>
           </div>
@@ -315,12 +330,12 @@ export default function SabrinaMvuPage() {
             The next move
           </p>
           <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-            Compare the systems. Then decide whether one pilot deserves to
-            exist.
+            See whether this architecture earns a place beneath Impossibly
+            Human.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/60">
-            No partnership theatre. Thirty minutes is enough to inspect the
-            overlap, choose one real creator, or close the idea cleanly.
+            Thirty minutes is enough to inspect the overlap, choose one real
+            founder for a pilot, or close the idea cleanly.
           </p>
           <Link
             href="/connect?ref=mvu-sabrina"
