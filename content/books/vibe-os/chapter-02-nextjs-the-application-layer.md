@@ -115,7 +115,7 @@ date: "2026-01-15"
 author: "Frank Riemer"
 category: "AI Music"
 tags: ["suno", "prompt engineering", "music production"]
-image: "/images/blog/suno-guide-hero.png"
+image: "/images/blog/suno-prompt-engineering-complete-guide-hero.png"
 keywords: ["suno ai prompts", "ai music production"]
 tldr: "A systematic approach to Suno prompt engineering..."
 ---
@@ -219,7 +219,7 @@ export const booksRegistry: BookConfig[] = [
     title: 'Love & Poetry',
     subtitle: 'Verses Across Time and Tongue',
     author: 'Frank Riemer',
-    coverImage: '/images/books/love-and-poetry-cover-v2.png',
+    coverImage: '/images/books/love-and-poetry-cover.png',
     theme: {
       primary: 'rose',
       accent: 'gold',
@@ -374,7 +374,7 @@ export const metadata = createMetadata({
   description: 'AI Architect & Creator...',
   path: '/',
   type: 'website',
-  image: '/images/og-default.png',
+  image: '/images/brand/og-template.png',
   keywords: ['ai architect', 'creator tools'],
 })
 ```

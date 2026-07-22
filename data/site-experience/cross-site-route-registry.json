@@ -1,0 +1,32 @@
+[
+  {
+    "sourceDomain": "frankx.ai",
+    "sourceRoute": "/gencreator",
+    "destinationDomain": "gencreator.ai",
+    "destinationRoute": "/",
+    "relationship": "framework_to_dedicated_environment",
+    "audienceReason": "FrankX explains the GenCreator framework in the context of Frank's wider body of work; GenCreator.ai carries the focused stack, research, learning, community, and member experience.",
+    "reciprocalLink": "https://gencreator.ai/",
+    "healthStatus": "review_required"
+  },
+  {
+    "sourceDomain": "frankx.ai",
+    "sourceRoute": "/research",
+    "destinationDomain": "gencreator.ai",
+    "destinationRoute": "/research",
+    "relationship": "broad_evidence_to_applied_creator_research",
+    "audienceReason": "FrankX Research is the broad evidence substrate; GenCreator Research applies evidence to creator stacks and workflows.",
+    "reciprocalLink": "https://gencreator.ai/research",
+    "healthStatus": "planned"
+  },
+  {
+    "sourceDomain": "gencreator.ai",
+    "sourceRoute": "/",
+    "destinationDomain": "frankx.ai",
+    "destinationRoute": "/gencreator",
+    "relationship": "dedicated_environment_to_origin_framework",
+    "audienceReason": "Members and product visitors can understand the human framework, public body of work, and origin story behind GenCreator.",
+    "reciprocalLink": "https://frankx.ai/gencreator",
+    "healthStatus": "planned"
+  }
+]

@@ -49,14 +49,14 @@ const visionImages = [
     aspect: 'landscape' as const,
   },
   {
-    src: '/images/social/claude-code-command-center.png',
+    src: '/images/mascot/mascot-v19-hero-command-center.png',
     alt: 'Claude Code Command Center — AI development workspace',
     title: 'Command Center',
     href: '/blog',
     aspect: 'landscape' as const,
   },
   {
-    src: '/images/social/great-transition-split.png',
+    src: '/images/social/blog/the-great-transition-build-your-own-business/wide.png',
     alt: 'The Great Transition — from the old world to the builder economy',
     title: 'The Great Transition',
     href: '/blog/the-great-transition',

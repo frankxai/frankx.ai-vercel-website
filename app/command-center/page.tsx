@@ -666,7 +666,7 @@ function HaaStAQueue() {
       category: 'taste_check',
       title: 'Polish Post: AEO Strategy 2026',
       description: 'Review draft for voice polish and verify unverified claims.',
-      meta: 'Claims: 4 | Unverified: 1 ("revolutionary")',
+      meta: 'Claims: 4 | Unverified: 1',
       price: '0.00 USDC',
       priority: 'high',
       status: 'pending',

@@ -42,8 +42,8 @@
       "ctaSecondary": "Explore the Framework",
       "ctaSecondaryHref": "/soulbook",
       "guarantee": {
-        "label": "Open Source Forever",
-        "description": "The Creator's Soulbook is and will always be free. Open source on GitHub for the creator community."
+        "label": "Current public status",
+        "description": "The current vault is available as a free download. Any future edition will state its own terms clearly."
       }
     },
     "modules": [
@@ -109,30 +109,21 @@
       "Build a repeatable daily ritual that ships consistently without burnout"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100+",
-          "label": "Early Adopters"
-        },
-        {
-          "number": "500+",
-          "label": "Suno Sessions Created"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 47,
-      "originalPrice": 97,
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Waitlist",
       "currency": "USD",
-      "ctaPrimary": "Get Instant Access",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/creative-ai-toolkit",
+      "ctaPrimary": "Join the Waitlist",
+      "ctaPrimaryHref": "/newsletter?ref=creative-ai-toolkit-waitlist",
       "ctaPrimaryTracking": "creative-ai-toolkit-primary",
-      "ctaSecondary": "Bundle with Agentic Creator OS",
+      "ctaSecondary": "Explore Creator Systems",
       "ctaSecondaryHref": "/products/agentic-creator-os",
       "guarantee": {
-        "label": "Agent Team Promise",
-        "description": "30-day complete satisfaction guarantee. If your workflow isn't transformed, we refund every penny."
+        "label": "Current public status",
+        "description": "The toolkit is not currently offered through a verified public checkout. Join the waitlist for release updates."
       }
     },
     "modules": [
@@ -156,17 +147,17 @@
     "bonuses": [
       {
         "title": "Quick Reference Cards",
-        "value": "$27",
+        "value": "Concept item",
         "description": "Top 20 prompts and decision frameworks in printable format for instant access."
       },
       {
         "title": "Email Mastery Sprint",
-        "value": "$47",
+        "value": "Concept item",
         "description": "Seven-day guided campaign to rebuild your communication rhythm with AI assistance."
       },
       {
         "title": "Agent Team Strategy Session",
-        "value": "$197",
+        "value": "Not currently scheduled",
         "description": "45-minute collective intelligence consult to personalize your rollout."
       }
     ],
@@ -206,7 +197,7 @@
       "stats": [
         {
           "number": "Free",
-          "label": "Always Free"
+          "label": "During Beta"
         },
         {
           "number": "Beta",
@@ -226,8 +217,8 @@
       "ctaSecondaryHref": "/products/vibe-os/docs",
       "ctaSecondaryTracking": "vibe-os-docs",
       "guarantee": {
-        "label": "Open Source & Free Forever",
-        "description": "Vibe OS is free to use with no strings attached. Track your creative states and optimize your workflow without paying a penny."
+        "label": "Free During Public Beta",
+        "description": "The current Vibe OS beta has no payment step. Any future change to access or pricing will be stated on this page before it takes effect."
       }
     },
     "modules": [
@@ -257,7 +248,7 @@
       {
         "title": "Energy Optimization Guide",
         "value": "Free",
-        "description": "Science-backed strategies for managing energy, focus, and creative momentum."
+        "description": "Practical prompts for noticing energy, focus, and creative momentum."
       },
       {
         "title": "Notion Dashboard Template",
@@ -268,7 +259,7 @@
     "faq": [
       {
         "question": "Is Vibe OS really free?",
-        "answer": "Yes. Vibe OS is completely free with no hidden costs, trials, or premium tiers. It's built for creators who want practical tools without the paywall."
+        "answer": "The current public beta is free and has no payment step. If access or pricing changes later, the current state will be stated here clearly."
       },
       {
         "question": "How is this different from other productivity tools?",
@@ -327,8 +318,8 @@
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 497,
-      "originalPrice": 997,
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Framework available",
       "currency": "USD",
       "ctaPrimary": "Explore the Framework",
       "ctaPrimaryHref": "/creation-chronicles",
@@ -336,8 +327,8 @@
       "ctaSecondary": "Preview Free Resources",
       "ctaSecondaryHref": "/resources",
       "guarantee": {
-        "label": "Narrative Impact Guarantee",
-        "description": "Implement the core storytelling sprints for 45 days. If you don't see clearer messaging and measurable engagement lifts, we refund you in full."
+        "label": "Current public status",
+        "description": "Explore the published framework. No paid package or outcome guarantee is represented on this page."
       }
     },
     "modules": [
@@ -361,60 +352,18 @@
     "bonuses": [
       {
         "title": "Launch Narrative Templates",
-        "value": "$197",
+        "value": "Concept library",
         "description": "Swipe files for product launches, founder letters, and transformation case studies."
       },
       {
         "title": "Editorial Operations Hub",
-        "value": "$97",
+        "value": "Concept library",
         "description": "Notion + Airtable base that tracks ideas, drafts, approvals, and analytics."
       },
       {
         "title": "Story Circle Live Lab",
-        "value": "$297",
+        "value": "Not currently scheduled",
         "description": "Monthly critique sessions with the FrankX storytelling collective."
-      }
-    ],
-    "pricingTiers": [
-      {
-        "name": "Creator Package",
-        "price": "$497",
-        "description": "Solo creators and early-stage brands establishing their foundational story.",
-        "features": [
-          "Brand story framework intensive",
-          "Content pillar blueprint",
-          "Template starter library",
-          "4 weeks of async support"
-        ],
-        "ctaLabel": "Start Creating",
-        "ctaHref": "https://frankx.gumroad.com/l/creation-chronicles-creator"
-      },
-      {
-        "name": "Business Package",
-        "price": "$997",
-        "description": "Growing teams ready to scale narrative-led marketing with AI-assisted workflows.",
-        "features": [
-          "Everything in Creator",
-          "Advanced content systems",
-          "Social amplification playbooks",
-          "Monthly strategy calls"
-        ],
-        "ctaLabel": "Scale Your Story",
-        "ctaHref": "https://frankx.gumroad.com/l/creation-chronicles-business",
-        "featured": true
-      },
-      {
-        "name": "Enterprise Package",
-        "price": "$2,497",
-        "description": "Established organizations seeking custom storytelling operations and enablement.",
-        "features": [
-          "Everything in Business",
-          "Team training and onboarding",
-          "Custom workflow development",
-          "Quarterly narrative summits"
-        ],
-        "ctaLabel": "Transform Your Brand",
-        "ctaHref": "mailto:frank@frankx.ai?subject=Creation%20Chronicles%20Enterprise"
       }
     ],
     "faq": [
@@ -467,13 +416,13 @@
       "primaryPriceDisplay": "Creator Studio Diagnostic",
       "currency": "USD",
       "ctaPrimary": "Book Studio Diagnostic",
-      "ctaPrimaryHref": "/products/generative-creator-os",
+      "ctaPrimaryHref": "/contact?topic=creator-studio-diagnostic",
       "ctaPrimaryTracking": "generative-creator-os-primary",
       "ctaSecondary": "Explore Resources",
       "ctaSecondaryHref": "/resources",
       "guarantee": {
-        "label": "Creative Integrity Promise",
-        "description": "We co-design workflow changes with you. If the system does not boost output within 45 days, we iterate at no cost."
+        "label": "Scoped after fit review",
+        "description": "A diagnostic begins with your current workflow, constraints, and desired outcome. Any paid work requires a separate written scope."
       },
       "note": "Diagnostics map your current process, gaps, and the automation plan before any build begins."
     },
@@ -495,48 +444,6 @@
         "description": "Run a Notion/Supabase dashboard that tracks output velocity, audience signals, and monetisation."
       }
     ],
-    "pricingTiers": [
-      {
-        "name": "Starter Studio",
-        "price": "Projects from $4,800",
-        "description": "Two-week sprint to audit your creative stack and ship a pilot workflow.",
-        "features": [
-          "Creative pipeline map",
-          "AI-assisted pilot workflow",
-          "Template + prompt starter kit",
-          "Retro + next-step plan"
-        ],
-        "ctaLabel": "Start Sprint",
-        "ctaHref": "mailto:frank@frankx.ai?subject=Starter%20Studio%20Sprint"
-      },
-      {
-        "name": "Creator Collective",
-        "price": "Programs from $12k",
-        "description": "Six-week engagement to roll out multi-channel automations and training.",
-        "features": [
-          "All Starter Studio deliverables",
-          "Weekly build + coaching sessions",
-          "Team enablement library",
-          "Analytics + experimentation kit"
-        ],
-        "ctaLabel": "Plan Your Build",
-        "ctaHref": "mailto:frank@frankx.ai?subject=Creator%20Collective%20Program",
-        "featured": true
-      },
-      {
-        "name": "Residency",
-        "price": "Quarterly partnerships",
-        "description": "Ongoing co-building with the FrankX agent collective for launches, tours, or season arcs.",
-        "features": [
-          "Dedicated systems architect",
-          "Monthly experimentation labs",
-          "Release-by-release playbooks",
-          "Priority agent desk access"
-        ],
-        "ctaLabel": "Request Residency",
-        "ctaHref": "mailto:frank@frankx.ai?subject=Creator%20Residency"
-      }
-    ],
     "faq": [
       {
         "question": "Is this just for big teams?",
@@ -544,7 +451,7 @@
       },
       {
         "question": "How fast will we see impact?",
-        "answer": "Most sprints unlock a new publishing rhythm within 30 days. We track output velocity and sentiment so you can see progress."
+        "answer": "The first useful outcome is a scoped workflow and a working pilot. Timing depends on the current stack, access, and review cycle."
       },
       {
         "question": "Do you train us on the tools?",
@@ -588,8 +495,8 @@
           "label": "Lab Cohort Format"
         },
         {
-          "number": "Apply",
-          "label": "Limited Spots Available"
+          "number": "Direct",
+          "label": "Fit Review"
         }
       ],
       "quotes": []
@@ -599,15 +506,15 @@
       "primaryPriceDisplay": "Apply for the Lab",
       "currency": "USD",
       "ctaPrimary": "Apply for the Lab",
-      "ctaPrimaryHref": "/products/agentic-creator-os",
+      "ctaPrimaryHref": "/contact?topic=agentic-creator-lab",
       "ctaPrimaryTracking": "creator-lab-apply",
       "ctaSecondary": "Download Creator Lab Overview",
       "ctaSecondaryHref": "/creation-chronicles",
       "guarantee": {
-        "label": "Momentum Promise",
-        "description": "If you do the work and the system does not increase your publishing cadence within 30 days of graduation, we coach you until it does."
+        "label": "Application status",
+        "description": "The lab is not an open public checkout. Ask about the current format, timing, and fit before making plans."
       },
-      "note": "Applications reviewed weekly. Cohorts are capped to keep the studio intimate."
+      "note": "The current format and timing are confirmed directly before any commitment."
     },
     "modules": [
       {
@@ -625,47 +532,6 @@
       {
         "title": "Field Tests",
         "description": "Ship a live release with accountability, analytics, and peer feedback."
-      }
-    ],
-    "pricingTiers": [
-      {
-        "name": "Self-Paced Starter",
-        "price": "$297",
-        "description": "Toolkit + recorded labs for creators who prefer to implement solo.",
-        "features": [
-          "Full Creator Lab OS curriculum",
-          "Automation + template library",
-          "Office hour invites",
-          "Community check-ins"
-        ],
-        "ctaLabel": "Get Starter Kit",
-        "ctaHref": "/creator-lab-starter"
-      },
-      {
-        "name": "Guided Cohort",
-        "price": "$997",
-        "description": "Four-week live lab with Frank + agents to build your system together.",
-        "features": [
-          "Weekly live build sessions",
-          "1:1 agent desk feedback",
-          "Implementation sprints",
-          "Launch + analytics review"
-        ],
-        "ctaLabel": "Apply for Cohort",
-        "ctaHref": "/creator-lab"
-      },
-      {
-        "name": "Creator Residency",
-        "price": "Custom",
-        "description": "Ongoing partnership for creators scaling products, shows, or studios.",
-        "features": [
-          "Dedicated systems architect",
-          "Monthly ritual labs",
-          "Automations + analytics upkeep",
-          "Priority agent desk support"
-        ],
-        "ctaLabel": "Request Residency",
-        "ctaHref": "mailto:frank@frankx.ai?subject=Creator%20Residency"
       }
     ],
     "faq": [
@@ -734,11 +600,7 @@
       "stats": [
         {
           "number": "100+",
-          "label": "Curated Prompts"
-        },
-        {
-          "number": "500+",
-          "label": "Sessions Tested"
+          "label": "Prompt drafts"
         },
         {
           "number": "12",
@@ -748,17 +610,17 @@
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 27,
-      "originalPrice": 47,
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Waitlist",
       "currency": "USD",
-      "ctaPrimary": "Get Instant Access",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/suno-prompt-library",
+      "ctaPrimary": "Join the Waitlist",
+      "ctaPrimaryHref": "/newsletter?ref=suno-prompt-library-waitlist",
       "ctaPrimaryTracking": "suno-prompt-library-primary",
-      "ctaSecondary": "Bundle with Vibe OS",
+      "ctaSecondary": "Explore Vibe OS",
       "ctaSecondaryHref": "/products/vibe-os",
       "guarantee": {
-        "label": "Prompt Success Guarantee",
-        "description": "If these prompts don't improve your Suno output within 7 days, get a full refund. No questions asked."
+        "label": "Current public status",
+        "description": "The paid prompt library is not currently offered through a verified public checkout."
       }
     },
     "modules": [
@@ -786,17 +648,17 @@
     "bonuses": [
       {
         "title": "Prompt Formula Cheatsheet",
-        "value": "$17",
+        "value": "Concept item",
         "description": "One-page reference showing the anatomy of a perfect Suno prompt with fill-in templates."
       },
       {
         "title": "Genre Quick-Start Cards",
-        "value": "$12",
+        "value": "Concept item",
         "description": "Printable cards for the top 5 prompts in each genre\u2014perfect for studio sessions."
       },
       {
         "title": "Monthly Prompt Updates",
-        "value": "$47/yr",
+        "value": "Not currently scheduled",
         "description": "New prompts added monthly as Suno evolves and new techniques emerge."
       }
     ],
@@ -878,17 +740,17 @@
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 19,
-      "originalPrice": 39,
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Waitlist",
       "currency": "USD",
-      "ctaPrimary": "Get Aurora UI Kit",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/aurora-ui-kit",
+      "ctaPrimary": "Join the Waitlist",
+      "ctaPrimaryHref": "/newsletter?ref=aurora-ui-kit-waitlist",
       "ctaPrimaryTracking": "aurora-ui-kit-primary",
       "ctaSecondary": "Preview Components",
       "ctaSecondaryHref": "/design-lab",
       "guarantee": {
-        "label": "Ship It Guarantee",
-        "description": "If you can't ship a polished UI within 48 hours of purchase, get a full refund."
+        "label": "Current public status",
+        "description": "The UI kit is not currently offered through a verified public checkout."
       }
     },
     "modules": [
@@ -912,12 +774,12 @@
     "bonuses": [
       {
         "title": "6 Page Templates",
-        "value": "$29",
+        "value": "Concept item",
         "description": "Landing page, dashboard, pricing, blog, portfolio, and 404 \u2014 all built with Aurora components."
       },
       {
         "title": "Figma Design Tokens",
-        "value": "$15",
+        "value": "Concept item",
         "description": "Matching Figma variables for designer-developer handoff."
       }
     ],
@@ -993,17 +855,17 @@
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 97,
-      "originalPrice": 197,
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Waitlist",
       "currency": "USD",
-      "ctaPrimary": "Get Content Engine",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/agentic-content-engine",
+      "ctaPrimary": "Join the Waitlist",
+      "ctaPrimaryHref": "/newsletter?ref=agentic-content-engine-waitlist",
       "ctaPrimaryTracking": "agentic-content-engine-primary",
       "ctaSecondary": "See It In Action",
       "ctaSecondaryHref": "/blog",
       "guarantee": {
-        "label": "Content Velocity Guarantee",
-        "description": "Publish your first AI-assisted article within 24 hours of setup or get a full refund."
+        "label": "Current public status",
+        "description": "The content engine is not currently offered through a verified public checkout."
       }
     },
     "modules": [
@@ -1031,17 +893,17 @@
     "bonuses": [
       {
         "title": "Content Calendar Template",
-        "value": "$47",
+        "value": "Concept item",
         "description": "Notion + Airtable template for planning, tracking, and managing your content pipeline."
       },
       {
         "title": "SEO Keyword Research Kit",
-        "value": "$27",
+        "value": "Concept item",
         "description": "Python scripts for keyword research, competitor analysis, and content gap identification."
       },
       {
         "title": "Email Newsletter Integration",
-        "value": "$37",
+        "value": "Concept item",
         "description": "Resend-powered newsletter system with subscriber management and automated sends."
       }
     ],
@@ -1144,7 +1006,7 @@
       },
       {
         "question": "Is this really free?",
-        "answer": "Yes. Enter your email and the PDF is delivered instantly. We also offer a full 100+ prompt library for $27."
+        "answer": "Yes. Enter your email and the current PDF is delivered instantly. Any expanded library will be announced only after its public status is verified."
       }
     ],
     "analyticsId": "5-suno-prompts",
@@ -1420,7 +1282,7 @@
     "id": "golden-age-book",
     "slug": "golden-age",
     "title": "The Golden Age of Creators",
-    "description": "How the creator economy crossed $250 billion and the barriers to creative expression evaporated. The definitive guide to building in the golden age.",
+    "description": "How AI tools and direct distribution changed what an independent creator can build, publish, and own.",
     "category": "book",
     "badge": "FREE PDF",
     "image": "/images/golden-age/golden-age-hero-council-v2.png",
@@ -1520,17 +1382,17 @@
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 97,
-      "primaryPriceDisplay": "€97",
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Waitlist",
       "currency": "EUR",
-      "ctaPrimary": "Get Instant Access",
-      "ctaPrimaryHref": "/checkout/starter-kit",
+      "ctaPrimary": "Ask About Availability",
+      "ctaPrimaryHref": "/contact?topic=system-architect-starter-kit",
       "ctaPrimaryTracking": "starter-kit-purchase",
       "ctaSecondary": "View Workflows",
       "ctaSecondaryHref": "/command-center#workflows",
       "guarantee": {
-        "label": "30-Day Money Back Guarantee",
-        "description": "If you don't save at least 5 hours in your first week, email support for a full refund."
+        "label": "Current public status",
+        "description": "The starter kit is not currently connected to a verified public checkout and fulfillment path."
       }
     },
     "modules": [
@@ -1578,17 +1440,17 @@
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 497,
-      "primaryPriceDisplay": "€497",
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Waitlist",
       "currency": "EUR",
-      "ctaPrimary": "Unlock Command Center",
-      "ctaPrimaryHref": "/checkout/command-center",
+      "ctaPrimary": "Ask About Availability",
+      "ctaPrimaryHref": "/contact?topic=command-center-template",
       "ctaPrimaryTracking": "cc-template-purchase",
       "ctaSecondary": "Watch Preview",
       "ctaSecondaryHref": "/command-center/preview",
       "guarantee": {
-        "label": "100% Satisfaction Guarantee",
-        "description": "Full setup support included. We will ensure the dashboard runs cleanly in your local development environment."
+        "label": "Current public status",
+        "description": "The template is not currently connected to a verified public checkout and fulfillment path."
       }
     },
     "modules": [
@@ -1628,25 +1490,21 @@
       "Receive 1:1 operational consulting sessions to optimize your G3-G5 passive income ladders"
     ],
     "socialProof": {
-      "stats": [
-        { "number": "12", "label": "Max Members" },
-        { "number": "1:1", "label": "Bespoke Consulting" },
-        { "number": "USDC/Stripe", "label": "Secure Payments" }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 2997,
-      "primaryPriceDisplay": "€2,997/qtr",
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Custom quote",
       "currency": "EUR",
-      "ctaPrimary": "Apply for Membership",
-      "ctaPrimaryHref": "/founders-circle/apply",
+      "ctaPrimary": "Start a Conversation",
+      "ctaPrimaryHref": "/contact?topic=founder-systems",
       "ctaPrimaryTracking": "founders-circle-apply",
-      "ctaSecondary": "Book Discovery Call",
-      "ctaSecondaryHref": "/consulting/discovery",
+      "ctaSecondary": "Explore Founder Systems",
+      "ctaSecondaryHref": "/build",
       "guarantee": {
-        "label": "Bespoke Execution Guarantee",
-        "description": "If your custom swarm isn't operational within 30 days, we work 1:1 with you for free until it is."
+        "label": "Scoped after fit review",
+        "description": "Any collaboration begins with a direct conversation and a written scope. No public price or outcome guarantee is represented."
       }
     },
     "modules": [

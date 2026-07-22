@@ -293,7 +293,7 @@ The strategic alignment here is about a Google-native AI CoE practice with works
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/google.svg',
-  // ogImagePath: '/images/partnerships/google-og.png', // TODO: generate, falls back to site default
+  // Uses the site-level Open Graph fallback until a reviewed partnership asset exists.
 
   seo: {
     title: 'FrankX × Google Cloud — Gemini + ADK AI CoE Practice | FrankX',

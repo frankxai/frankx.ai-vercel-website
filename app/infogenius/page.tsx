@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: 'InfoGenius — FRANK-Ω | FrankX.AI',
     description:
       'Superintelligent. Direct. Results in seconds. FRANK-Ω transforms complex topics into cinematic visual knowledge.',
-    images: [{ url: '/images/mascot/frank-omega-v1.png' }],
+    images: [{ url: '/images/mascot/frank-omega-pixar-blue-v1.png' }],
   },
 }
 
@@ -317,8 +317,8 @@ export default function InfoGeniusPage() {
                 bg: 'from-blue-900/40 to-black',
               },
               {
-                src: '/images/mascot/frank-omega-v1.png',
-                thumb: '/images/mascot/frank-omega-v1_thumb.jpeg',
+                src: '/images/mascot/frank-omega-pixar-blue-v1.png',
+                thumb: '/images/mascot/frank-omega-pixar-blue-v1_thumb.jpeg',
                 label: 'Cinematic',
                 tag: 'Hero / OG Image',
                 bg: 'from-violet-900/40 to-black',

@@ -45,7 +45,7 @@ export const linksPageSchema = {
     url: 'https://frankx.ai',
     image: {
       '@type': 'ImageObject',
-      url: 'https://frankx.ai/images/profile/frank-x-riemer.jpg',
+      url: 'https://frankx.ai/images/portraits/frank-presenting-oracle-2025.jpg',
       width: 400,
       height: 400,
       caption: 'Frank X. Riemer - AI Architect and Music Creator',

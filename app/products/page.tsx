@@ -78,7 +78,7 @@ const products = [
     tagline: 'Suno Music Mastery',
     description:
       'Prompt packs, emotion mapping, and production checklists for Suno creators.',
-    status: 'active',
+    status: 'waitlist',
     href: '/products/vibe-os',
     color: 'emerald',
     highlights: [
@@ -115,7 +115,7 @@ const products = [
     href: '/products/suno-prompt-library',
     color: 'cyan',
     highlights: [
-      '50+ battle-tested prompts across 5 genres',
+      'Curated prompt drafts across 5 genres',
       'Emotion and tempo mapping for each genre',
       'Production tips and remixing guides',
     ],
@@ -131,8 +131,8 @@ const products = [
     href: '/newsletter?ref=creative-ai-toolkit-early-access',
     color: 'emerald',
     highlights: [
-      '100+ validated prompts across storytelling, marketing, and operations',
-      '12 ready-to-deploy workflow automations',
+      'Prompt patterns across storytelling, marketing, and operations',
+      'Workflow concepts for recurring production tasks',
       '30/60/90 day implementation roadmaps',
     ],
   },
@@ -264,7 +264,7 @@ function EarlyAccessModal({
             This product is in development. Join the early access list to get:
           </p>
           <ul className="space-y-2">
-            {['Priority launch access', 'Exclusive early pricing', 'Behind-the-scenes updates'].map(
+            {['Release status updates', 'What is included when verified', 'Behind-the-scenes notes'].map(
               (item) => (
                 <li key={item} className="flex items-center gap-2 text-sm text-slate-300">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
@@ -340,8 +340,8 @@ export default function ProductsPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              The exact frameworks, prompts, and workflows I use in my own creative practice
-              and enterprise work. No theory — just what actually works.
+              Working frameworks, prompts, and experiments from my creative and architecture
+              practice—clearly marked as free, available, in development, or conversation-led.
             </motion.p>
           </div>
         </section>
@@ -458,10 +458,10 @@ export default function ProductsPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="flex flex-wrap justify-center gap-6 md:gap-10">
               {[
-                { icon: Sparkles, label: 'Early Access Benefits', color: 'text-amber-400' },
-                { icon: Zap, label: 'Priority Launch Access', color: 'text-cyan-400' },
-                { icon: Users, label: 'Exclusive Community', color: 'text-emerald-400' },
-                { icon: Star, label: 'Battle-Tested Systems', color: 'text-emerald-400' },
+                { icon: Sparkles, label: 'Clear public status', color: 'text-amber-400' },
+                { icon: Zap, label: 'No unverified checkout', color: 'text-cyan-400' },
+                { icon: Users, label: 'Free resources stay visible', color: 'text-emerald-400' },
+                { icon: Star, label: 'Direct fit review for custom work', color: 'text-emerald-400' },
               ].map((badge, i) => (
                 <motion.div
                   key={badge.label}

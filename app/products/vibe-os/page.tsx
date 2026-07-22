@@ -41,7 +41,7 @@ const structuredData = {
   '@type': 'SoftwareApplication',
   name: product.name,
   description: product.promise,
-  image: 'https://frankx.ai/images/products/vibe-os-hero.jpg',
+  image: 'https://frankx.ai/images/vibe-os/vibe-os-ecosystem-overview.png',
   applicationCategory: 'ProductivityApplication',
   operatingSystem: 'Web',
   brand: {
@@ -53,11 +53,6 @@ const structuredData = {
     price: '0',
     priceCurrency: product.offer.currency,
     availability: 'https://schema.org/InStock'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    reviewCount: '23'
   }
 }
 
@@ -100,10 +95,10 @@ export default function VibeOSPage() {
                 Built for Creators
               </span>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                How Creators Use Vibe OS
+                Ways to Use Vibe OS
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-white/60">
-                Real workflows from creators who manage their energy and ship consistently.
+                Practical situations where a state-aware planning system may help.
               </p>
             </div>
 

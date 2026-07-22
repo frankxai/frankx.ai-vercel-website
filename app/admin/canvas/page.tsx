@@ -97,7 +97,7 @@ export default function AdminCanvasPage() {
         x: 510,
         y: 220,
         props: {
-          text: 'Taste Guard Check\nRuns bin/taste-guard.mjs to strip AI slop (delve, unleash).',
+          text: 'Taste Guard Check\nRuns bin/taste-guard.mjs to remove generic marketing language.',
           color: 'green',
           size: 's',
           font: 'serif',

@@ -1,0 +1,209 @@
+{
+  "/": {
+    "hub": "home",
+    "pageRole": "hub",
+    "primaryAudience": "mariah_founder",
+    "secondaryAudiences": ["technical_founder", "ai_native_creator", "learner", "researcher_partner", "personal_development_reader"],
+    "freshness": "current",
+    "evidence": "documented",
+    "assetStatus": "verified",
+    "ctaStatus": "verified",
+    "lastReview": "2026-07-22",
+    "experienceContract": {
+      "whoItIsFor": "Founders, builders, creators, learners, researchers, partners, readers, and listeners.",
+      "situation": "You want to build with AI or explore a serious body of work without losing judgment, standards, or humanity.",
+      "whatYouWillFind": "AI architecture, creator systems, research, guides, books, music, personal systems, experiments, and collaboration routes.",
+      "startHere": "/start",
+      "relatedWorlds": ["/music", "/gencreator", "/learn", "/build", "/resources", "/blog"]
+    }
+  },
+  "/music": {
+    "hub": "music",
+    "pageRole": "hub",
+    "primaryAudience": "ai_native_creator",
+    "secondaryAudiences": ["personal_development_reader", "general_explorer"],
+    "freshness": "current",
+    "evidence": "experiential",
+    "lastReview": "2026-07-22",
+    "experienceContract": {
+      "whoItIsFor": "Listeners, musicians, producers, and creators interested in AI-era music practice.",
+      "situation": "You want to listen first, then understand how the music and production practice are evolving.",
+      "whatYouWillFind": "Selected releases, catalog pathways, production notes, music systems, and studio experiments.",
+      "startHere": "/music",
+      "relatedWorlds": ["/music-lab", "/music-school", "/vibe", "/gencreator"]
+    }
+  },
+  "/gencreator": {
+    "hub": "gencreator",
+    "pageRole": "hub",
+    "primaryAudience": "ai_native_creator",
+    "secondaryAudiences": ["mariah_founder", "personal_development_reader", "learner"],
+    "freshness": "current",
+    "evidence": "documented",
+    "lastReview": "2026-07-22",
+    "experienceContract": {
+      "whoItIsFor": "Creators, founders, authors, musicians, and studio builders developing a body of work with AI.",
+      "situation": "You want more creative leverage without letting tools flatten your taste, voice, or identity.",
+      "whatYouWillFind": "The GenCreator framework, principles, handbook, blueprints, prompts, and links to the dedicated GenCreator environment.",
+      "startHere": "/gencreator/principles",
+      "relatedWorlds": ["https://gencreator.ai", "/gencreator/soul", "/prompt-library", "/creation-chronicles"]
+    }
+  },
+  "/learn": {
+    "hub": "learn",
+    "pageRole": "hub",
+    "primaryAudience": "learner",
+    "secondaryAudiences": ["mariah_founder", "ai_native_creator", "technical_founder"],
+    "freshness": "current",
+    "evidence": "documented",
+    "lastReview": "2026-07-22",
+    "experienceContract": {
+      "whoItIsFor": "People who want a trustworthy, level-appropriate path into AI tools, systems, and creative practice.",
+      "situation": "You need to learn something useful without sorting through an entire internet of generic advice.",
+      "whatYouWillFind": "Guides, courses, books, assessments, video, games, and student pathways.",
+      "startHere": "/guides/agentic-obsidian-second-brain",
+      "relatedWorlds": ["/guides", "/courses", "/books", "/library", "/students"]
+    }
+  },
+  "/build": {
+    "hub": "build",
+    "pageRole": "hub",
+    "primaryAudience": "technical_founder",
+    "secondaryAudiences": ["mariah_founder", "ai_lead"],
+    "freshness": "current",
+    "evidence": "documented",
+    "lastReview": "2026-07-22",
+    "experienceContract": {
+      "whoItIsFor": "Founders, AI leads, architects, engineers, and operators responsible for systems that must work in practice.",
+      "situation": "You need to turn an AI opportunity into a credible architecture, operating model, or product decision.",
+      "whatYouWillFind": "Architecture patterns, blueprints, prototypes, templates, agent systems, and implementation notes.",
+      "startHere": "/ai-architecture",
+      "relatedWorlds": ["/ai-architecture", "/developers", "/acos", "/research"]
+    }
+  },
+  "/resources": {
+    "hub": "explore",
+    "pageRole": "hub",
+    "primaryAudience": "general_explorer",
+    "secondaryAudiences": ["researcher_partner", "learner", "ai_native_creator"],
+    "freshness": "current",
+    "evidence": "documented",
+    "lastReview": "2026-07-22",
+    "experienceContract": {
+      "whoItIsFor": "Visitors looking for the wider FrankX estate beyond one discipline or funnel.",
+      "situation": "You know there may be something useful here, but you need the worlds and their relationships made legible.",
+      "whatYouWillFind": "Research, downloads, systems, creative worlds, products, partnerships, and background on FrankX.",
+      "startHere": "/ecosystem",
+      "relatedWorlds": ["/research", "/guides", "/downloads", "/studio", "/partnerships"]
+    }
+  },
+  "/blog": {
+    "hub": "blog",
+    "pageRole": "hub",
+    "primaryAudience": "general_explorer",
+    "secondaryAudiences": ["mariah_founder", "technical_founder", "ai_native_creator", "researcher_partner"],
+    "freshness": "current",
+    "evidence": "editorial",
+    "lastReview": "2026-07-22",
+    "experienceContract": {
+      "whoItIsFor": "Readers following current work across AI, creation, research, music, systems, and personal practice.",
+      "situation": "You want the latest field notes rather than a fixed curriculum or product path.",
+      "whatYouWillFind": "Essays, implementation notes, research summaries, studio stories, and current experiments.",
+      "startHere": "/blog",
+      "relatedWorlds": ["/research", "/guides", "/music", "/gencreator"]
+    }
+  },
+  "/research": {
+    "hub": "research",
+    "pageRole": "research",
+    "primaryAudience": "researcher_partner",
+    "secondaryAudiences": ["technical_founder", "ai_lead", "mariah_founder"],
+    "freshness": "review_due",
+    "evidence": "primary_sourced",
+    "lastReview": "2026-07-22"
+  },
+  "/guides": {
+    "hub": "learn",
+    "pageRole": "hub",
+    "primaryAudience": "learner",
+    "secondaryAudiences": ["mariah_founder", "technical_founder", "ai_native_creator"],
+    "freshness": "current",
+    "evidence": "documented",
+    "lastReview": "2026-07-22"
+  },
+  "/guides/agentic-obsidian-second-brain": {
+    "hub": "learn",
+    "pageRole": "guide",
+    "primaryAudience": "mariah_founder",
+    "secondaryAudiences": ["technical_founder", "ai_native_creator", "learner"],
+    "freshness": "current",
+    "evidence": "primary_sourced",
+    "assetStatus": "verified",
+    "ctaStatus": "verified",
+    "lastReview": "2026-07-20"
+  },
+  "/library": {
+    "hub": "library",
+    "pageRole": "hub",
+    "primaryAudience": "personal_development_reader",
+    "secondaryAudiences": ["researcher_partner", "learner", "general_explorer"],
+    "freshness": "review_due",
+    "evidence": "editorial",
+    "lastReview": "2026-07-22"
+  },
+  "/books": {
+    "hub": "books",
+    "pageRole": "hub",
+    "primaryAudience": "personal_development_reader",
+    "secondaryAudiences": ["ai_native_creator", "general_explorer"],
+    "freshness": "review_due",
+    "evidence": "experiential",
+    "lastReview": "2026-07-22"
+  },
+  "/acos": {
+    "hub": "acos",
+    "pageRole": "hub",
+    "primaryAudience": "ai_native_creator",
+    "secondaryAudiences": ["technical_founder", "ai_lead"],
+    "freshness": "review_due",
+    "evidence": "documented",
+    "lastReview": "2026-07-22"
+  },
+  "/studio": {
+    "hub": "studio",
+    "pageRole": "hub",
+    "primaryAudience": "ai_native_creator",
+    "secondaryAudiences": ["mariah_founder", "general_explorer"],
+    "freshness": "review_due",
+    "evidence": "experiential",
+    "lastReview": "2026-07-22"
+  },
+  "/foundry": {
+    "hub": "foundry",
+    "pageRole": "experiment",
+    "primaryAudience": "technical_founder",
+    "secondaryAudiences": ["ai_native_creator", "general_explorer"],
+    "freshness": "review_due",
+    "evidence": "experiential",
+    "lastReview": "2026-07-22"
+  },
+  "/partnerships": {
+    "hub": "partnerships",
+    "pageRole": "partner",
+    "primaryAudience": "researcher_partner",
+    "secondaryAudiences": ["mariah_founder", "ai_lead", "ai_native_creator"],
+    "freshness": "review_due",
+    "evidence": "documented",
+    "lastReview": "2026-07-22"
+  },
+  "/contact": {
+    "hub": "connect",
+    "pageRole": "partner",
+    "primaryAudience": "researcher_partner",
+    "secondaryAudiences": ["mariah_founder", "technical_founder", "ai_native_creator"],
+    "freshness": "current",
+    "evidence": "documented",
+    "ctaStatus": "verified",
+    "lastReview": "2026-07-22"
+  }
+}

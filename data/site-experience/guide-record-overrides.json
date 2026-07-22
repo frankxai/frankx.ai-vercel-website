@@ -1,0 +1,32 @@
+{
+  "/guides/agentic-obsidian-second-brain": {
+    "reviewedDate": "2026-07-20",
+    "nextReview": "2026-10-20",
+    "primarySources": [
+      {
+        "title": "Obsidian Help",
+        "url": "https://help.obsidian.md/",
+        "sourceType": "primary"
+      },
+      {
+        "title": "Model Context Protocol documentation",
+        "url": "https://modelcontextprotocol.io/docs/getting-started/intro",
+        "sourceType": "primary"
+      },
+      {
+        "title": "MCPVault",
+        "url": "https://github.com/bitbonsai/mcpvault",
+        "sourceType": "community_implementation"
+      },
+      {
+        "title": "obsidian-mcp",
+        "url": "https://github.com/StevenStavrakis/obsidian-mcp",
+        "sourceType": "community_implementation"
+      }
+    ],
+    "evidenceLevel": "mixed_sources",
+    "supportedAudience": ["mariah_founder", "technical_founder", "ai_native_creator", "learner"],
+    "relatedGuides": ["/guides/claude-anthropic-guide", "/guides/openai-chatgpt-guide"],
+    "maintenanceOwner": "FrankX editorial"
+  }
+}
