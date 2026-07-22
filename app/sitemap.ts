@@ -5,7 +5,8 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
-import { learningPaths } from '@/data/learning-paths'\nimport { getMvuEntrySummaries } from '@/lib/mvu'
+import { learningPaths } from '@/data/learning-paths'
+import { getMvuEntrySummaries } from '@/lib/mvu'
 
 const BASE_URL = siteConfig.url
 
