@@ -90,6 +90,9 @@ const OVERLAP = [
   },
 ] as const;
 
+// This recipient-specific brief has no runtime data or client state.
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "For Sabrina — Impossibly Human, Compounding | FrankX",
   description:
