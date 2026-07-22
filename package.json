@@ -17,6 +17,8 @@
     "test:ai-architecture": "node scripts/check-ai-architecture-contract.mjs",
     "test:email-safety": "node --test scripts/tests/email-send-surface-contract.test.mjs",
     "test:agentic-life-research": "node --test scripts/tests/agentic-life-research-contract.test.mjs",
+    "test:v0-template-os": "tsc scripts/tests/v0-foundry-behavior.test.ts scripts/tests/v0-preview-behavior.test.ts --outDir .next/v0-foundry-tests --rootDir . --module commonjs --moduleResolution node --target es2022 --lib es2022,dom --types node --esModuleInterop --skipLibCheck --strict --noEmit false --allowImportingTsExtensions false && node --test .next/v0-foundry-tests/scripts/tests/v0-foundry-behavior.test.js .next/v0-foundry-tests/scripts/tests/v0-preview-behavior.test.js scripts/tests/v0-template-os-contract.test.mjs",
+    "qa:v0": "node scripts/qa/v0-visual-qa.mjs",
     "research:agentic-life:audit": "node scripts/audit-agentic-life-research.mjs",
     "research:agentic-life:receipt": "node scripts/audit-agentic-life-research.mjs --write",
     "research:agentic-life:json": "node scripts/audit-agentic-life-research.mjs --json",
@@ -188,6 +190,7 @@
     "three": "^0.182.0",
     "tldraw": "^4.4.0",
     "topojson-client": "^3.1.0",
+    "v0": "3.0.0-canary.fd3f6f6",
     "zod": "^4.4.3"
   },
   "devDependencies": {

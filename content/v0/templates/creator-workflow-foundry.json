@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKey": "frankx-visual-foundry-v1",
+  "version": "1.2.0",
+  "title": "Visual Foundry",
+  "route": "/v0/studio",
+  "status": "interactive-prototype",
+  "sourceClass": "frankx-first-party",
+  "capabilities": [
+    "typed multimodal workflow graph",
+    "cycle-safe connections",
+    "bounded transactional JSON import",
+    "deterministic demo run engine",
+    "review pause and resume",
+    "A/B output comparison",
+    "provenance inspection",
+    "mobile step view"
+  ],
+  "assets": [
+    {
+      "path": "/images/v0-foundry/product-photography.png",
+      "kind": "generated-still",
+      "intendedRole": "product photography demo output",
+      "inspected": true,
+      "rightsStatus": "internal-review"
+    },
+    {
+      "path": "/images/v0-foundry/launch-film-poster.png",
+      "kind": "generated-still",
+      "intendedRole": "launch-film poster and storyboard frame",
+      "inspected": true,
+      "rightsStatus": "internal-review"
+    },
+    {
+      "path": "/images/v0-foundry/identity-variant-a.png",
+      "kind": "generated-still",
+      "intendedRole": "identity material study A, not a final logo",
+      "inspected": true,
+      "rightsStatus": "internal-review"
+    },
+    {
+      "path": "/images/v0-foundry/identity-variant-b.png",
+      "kind": "generated-still",
+      "intendedRole": "identity material study B, not a final logo",
+      "inspected": true,
+      "rightsStatus": "internal-review"
+    },
+    {
+      "path": "/images/v0-foundry/product-3d-study.png",
+      "kind": "generated-still",
+      "intendedRole": "3D object study poster, not a GLB",
+      "inspected": true,
+      "rightsStatus": "internal-review"
+    }
+  ],
+  "provenance": {
+    "generationTool": "Codex built-in image generation",
+    "generatedAt": "2026-07-19",
+    "sourceImages": [],
+    "thirdPartyMarks": false,
+    "note": "Created for this prototype with no known third-party source. Use remains subject to the image provider terms and human rights review."
+  },
+  "independentlyVerified": {
+    "typecheck": true,
+    "lint": true,
+    "unitTests": true,
+    "accessibility": true,
+    "visualDesktop": true,
+    "visualMobile": true,
+    "reducedMotion": true,
+    "performance": true,
+    "productionBuild": true,
+    "vercelPreview": false
+  },
+  "productionBlockers": [
+    "provider adapters are deterministic demos",
+    "persistence is local to the browser",
+    "authorization and multi-user collaboration are absent",
+    "moderation and spend controls are absent",
+    "video is a poster/storyboard",
+    "3D is a poster rather than an inspectable model"
+  ]
+}
