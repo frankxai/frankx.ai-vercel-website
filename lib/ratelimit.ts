@@ -21,7 +21,7 @@ export const emailRatelimit = new Ratelimit({
   prefix: 'ratelimit:email'
 })
 
-// Analytics tracking rate limit - Generous for normal usage
+// QR rendering rate limit - keeps uncached raster requests bounded\nexport const qrRatelimit = new Ratelimit({\n  redis: kv,\n  limiter: Ratelimit.slidingWindow(60, '1 m'),\n  analytics: true,\n  prefix: 'ratelimit:qr'\n})\n\n// Analytics tracking rate limit - Generous for normal usage
 export const analyticsRatelimit = new Ratelimit({
   redis: kv,
   limiter: Ratelimit.slidingWindow(100, '1 m'),
