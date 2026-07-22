@@ -1,0 +1,7 @@
+{
+  "streams": {
+    "default": { "per_transaction": 25, "per_day": 100, "currency": "EUR" },
+    "content": { "per_transaction": 50, "per_day": 200, "currency": "EUR" },
+    "infra": { "per_transaction": 100, "per_day": 400, "currency": "EUR" }
+  }
+}

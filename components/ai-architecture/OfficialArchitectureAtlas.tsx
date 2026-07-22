@@ -125,12 +125,12 @@ export function OfficialArchitectureAtlas() {
         </div>
         <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pb-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:pb-24">
           <div>
-            <p className="font-mono text-sm text-emerald-300">AI architecture field guide</p>
+            <p className="font-mono text-sm text-emerald-300">Built and tested in the open</p>
             <h1 className="mt-5 max-w-xl font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
               Build the agent system you can operate.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-              Official reference architectures, working repositories, and a practical Vercel–Railway–GCP deployment split. Every external link in this catalog was checked on 12 July 2026.
+              I&rsquo;ve seen AI systems run at enterprise scale, and watched a lot of impressive demos fall over the week they met real traffic. This is what I learned about the difference &mdash; the patterns, the numbers I actually tested, the repos that actually run &mdash; laid out to use, not to admire. Free, and made to be checked.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
@@ -151,6 +151,33 @@ export function OfficialArchitectureAtlas() {
             </div>
           </div>
           <SystemTopology />
+        </div>
+      </section>
+
+      <section className="border-b border-white/[0.06] py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="font-mono text-xs text-emerald-300">What actually breaks</p>
+          <h2 className="mt-3 max-w-2xl font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            The model is rarely the thing that fails.
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+            A demo works because everything is arranged in its favor &mdash; one user, the happy path, no load, nobody trying to break it, and you driving. Production is none of that. When it fails, it&rsquo;s almost never the model being wrong. It&rsquo;s a retrieval that quietly returned nothing, a loop with no reason to stop, a cost line that makes finance flinch, a prompt injection buried in a support ticket. What carries you through that week is the architecture around the model &mdash; not the model.
+          </p>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              ['A worker that absorbs the spike', 'The request that used to time out waits its turn instead, and the user never feels the load behind it.'],
+              ['An eval that catches the miss', 'The answer that would have been confidently wrong gets flagged before it ever reaches a person.'],
+              ['A budget that caps the loop', 'A runaway agent costs you a line in a log, not a line on the invoice.'],
+            ].map(([title, body]) => (
+              <div key={title} className="border-l border-white/10 pl-5">
+                <h3 className="text-base font-semibold leading-6 text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{body}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-10 max-w-2xl text-base leading-7 text-slate-400">
+            None of it is glamorous. All of it is the difference between a demo and a system you can put your name on.
+          </p>
         </div>
       </section>
 
@@ -180,6 +207,7 @@ export function OfficialArchitectureAtlas() {
               <h2 className="mt-3 max-w-2xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
                 Start from maintained architecture, then adapt it deliberately.
               </h2>
+              <p className="mt-3 text-sm text-slate-500">Every external link in this catalog was checked on 12 July 2026.</p>
             </div>
             <div className="flex flex-wrap gap-2" role="group" aria-label="Filter architectures by deployment target">
               {deploymentFilters.map((item) => (
@@ -243,6 +271,85 @@ export function OfficialArchitectureAtlas() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/[0.06] py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="font-mono text-xs text-emerald-300">Built to be checked</p>
+          <h2 className="mt-3 max-w-2xl font-display text-2xl font-bold text-white sm:text-3xl">
+            Every number here is generated or sourced — never trusted.
+          </h2>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                label: 'Methodology',
+                title: 'How numbers earn a place',
+                body: 'Sourcing, dating, and retirement rules — plus how to challenge any figure by PR.',
+                href: '/ai-architecture/methodology',
+                external: false,
+                destination: 'methodology',
+              },
+              {
+                label: 'Dataset',
+                title: 'Cost & reliability ledger',
+                body: 'Every borrowed stat with its denominator, failure definition, source, and confidence.',
+                href: '/ai-architecture/data',
+                external: false,
+                destination: 'dataset',
+              },
+              {
+                label: 'Benchmarks',
+                title: 'First-party benchmark spine',
+                body: 'Retrieval miss, runaway-loop cost, context eviction — harnesses, raw output, reproducible offline.',
+                href: 'https://github.com/frankxai/frankx.ai-vercel-website/tree/main/benchmarks',
+                external: true,
+                destination: 'benchmarks',
+              },
+            ].map((item) => (
+              <div key={item.label} className="border-l border-white/10 pl-5">
+                <p className="font-mono text-xs text-slate-500">{item.label}</p>
+                <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{item.body}</p>
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => trackEvent('ai_architecture_cta_opened', { destination: item.destination, placement: 'credibility' })}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200"
+                  >
+                    Run it yourself
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    onClick={() => trackEvent('ai_architecture_cta_opened', { destination: item.destination, placement: 'credibility' })}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200"
+                  >
+                    Read it
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/[0.06] py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <figure className="max-w-2xl">
+            <blockquote className="font-display text-2xl font-semibold leading-snug text-white sm:text-[1.7rem]">
+              &ldquo;I keep this free because the version of me starting out needed exactly this and couldn&rsquo;t find it &mdash; the honest map, not the sales pitch. If one architecture here saves you a month of learning it the hard way, it did its job.&rdquo;
+            </blockquote>
+            <figcaption className="mt-5 flex items-center gap-3 text-sm text-slate-400">
+              <span className="font-mono text-emerald-300">Frank Riemer</span>
+              <span className="text-slate-600" aria-hidden="true">·</span>
+              <span>AI Architect &amp; Creator</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 

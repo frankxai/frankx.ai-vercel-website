@@ -20,13 +20,24 @@ export default function robots(): MetadataRoute.Robots {
     '/downloads/*',
   ]
 
+  // Answer-engine retrieval crawlers — distribution in 2026 is shifting from
+  // clicks to citations, so visitor-triggered bots that power Claude /
+  // Perplexity / ChatGPT / Bing search are explicitly welcomed (same
+  // disallows as everyone). ClaudeBot itself is excluded here — it is a
+  // training/broad-ingestion crawler and is blocked below alongside GPTBot,
+  // CCBot, etc.
+  const answerEngineBots = [
+    'Claude-User',
+    'Claude-SearchBot',
+    'PerplexityBot',
+    'OAI-SearchBot',
+    'Bingbot',
+  ]
+
   return {
     rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: privatePaths,
-      },
+      { userAgent: '*', allow: '/', disallow: privatePaths },
+      ...answerEngineBots.map((userAgent) => ({ userAgent, allow: '/', disallow: privatePaths })),
       {
         userAgent: [
           // Training and broad content-ingestion crawlers remain blocked.

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "s01",
+    "name": "single-file-fix",
+    "description": "Fix a failing test in one file. No hidden dependency.",
+    "optimal_steps": 3,
+    "trap": "none",
+    "avg_tokens_per_step": 900
+  },
+  {
+    "id": "s02",
+    "name": "flaky-test-retry",
+    "description": "Agent re-runs a flaky test that fails ~stochastically for reasons unrelated to its edit, and re-edits the same file each time it sees red.",
+    "optimal_steps": 4,
+    "trap": "retry-without-new-information",
+    "trap_period": 3,
+    "avg_tokens_per_step": 1100
+  },
+  {
+    "id": "s03",
+    "name": "circular-tool-delegation",
+    "description": "A search tool returns a result the agent doesn't trust, so it calls a second tool to verify, which recommends calling the first tool again.",
+    "optimal_steps": 5,
+    "trap": "state-revisit-cycle",
+    "trap_period": 4,
+    "avg_tokens_per_step": 1400
+  },
+  {
+    "id": "s04",
+    "name": "goal-drift-refactor",
+    "description": "A refactor task where each step's output nudges the agent's understanding of \"done\" slightly further, so the stopping condition is never satisfied.",
+    "optimal_steps": 8,
+    "trap": "moving-goalpost",
+    "trap_period": 6,
+    "avg_tokens_per_step": 2200
+  },
+  {
+    "id": "s05",
+    "name": "tool-error-loop",
+    "description": "A misconfigured tool call returns a malformed-input error; the agent retries with a near-identical payload instead of changing approach.",
+    "optimal_steps": 2,
+    "trap": "identical-retry",
+    "trap_period": 2,
+    "avg_tokens_per_step": 700
+  }
+]

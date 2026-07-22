@@ -1,0 +1,183 @@
+---
+title: "Context Engineering and Minimum Viable Context: The 2026 Discipline"
+description: "Prompt engineering grew up. In 2026 the named discipline is context engineering, and its core move is Minimum Viable Context — dose the agent with exactly what the current step needs instead of stuffing the window. Why context rots, how to dose it, and the memory tiers that keep an agent sharp across a long run."
+publishedAt: "2026-06-27"
+updatedAt: "2026-06-27"
+author: "Frank"
+category: "AI Architecture"
+tags: ["Context Engineering", "AI Agents", "Prompt Engineering", "LLM", "Architecture"]
+image: "/images/blog/context-engineering-mvc-hero.png"
+featured: true
+tldr: "Context engineering is the 2026 discipline of curating what enters the model's window. Its core practice is Minimum Viable Context — give the agent exactly what the current step needs, not everything it might need. Long windows rot under irrelevant tokens, so treat retrieval as dosing, separate session memory from durable memory, and compact tool results before they pile up."
+schema: ["Article", "FAQPage"]
+lastUpdated: "2026-06-27"
+faq:
+  - q: "What is context engineering?"
+    a: "Context engineering is the discipline of deciding what information enters a model's context window at each step of an agent's run — and what stays out. It treats the window as a scarce, curated resource rather than a bucket to fill. It supersedes prompt engineering as the primary skill once you are building agents that take many steps rather than single prompts."
+  - q: "What is Minimum Viable Context (MVC)?"
+    a: "MVC is the practice of giving an agent exactly the context the current step needs to act correctly, and no more. Instead of stuffing the prompt with everything that might be relevant, you dose: retrieve what this step requires, act, then drop or compact it before the next step. Less, but sufficient."
+  - q: "Why do long context windows degrade performance?"
+    a: "Even when a model technically fits a million tokens, irrelevant or stale tokens dilute attention and increase the chance the model latches onto the wrong detail — a phenomenon often called context rot. More tokens also cost more and run slower. A smaller, well-chosen context usually beats a larger, noisy one."
+  - q: "What is the difference between session memory and durable memory?"
+    a: "Session memory is scoped to the current run or conversation — the working state the agent needs right now, discarded when the task ends. Durable memory persists across sessions — learned preferences, prior decisions, facts worth keeping. Keeping them separate prevents transient working state from polluting long-term memory and vice versa."
+---
+
+**TL;DR**: Context engineering is the 2026 name for the discipline of curating what enters a model's window. Its core practice is **Minimum Viable Context (MVC)**: dose the agent with exactly what the current step needs, not everything it might need. Long windows rot under irrelevant tokens, so retrieve as dosing, keep session memory separate from durable memory, and compact tool results before they pile up. Less context, chosen well, beats more context.
+
+---
+
+## The skill that replaced prompt engineering
+
+Prompt engineering was the craft of wording a single request well. It mattered when the unit of work was one prompt, one answer.
+
+The unit of work changed. An agent in 2026 takes dozens of steps — it retrieves, calls tools, reads results, decides, calls more tools. At each step, *something* fills its context window. The question is no longer "how do I word this prompt" but "what should be in the window right now, and what should not be." That is **context engineering**, and Anthropic's guidance on *effective context engineering for AI agents* named it as the discipline that supersedes prompt engineering for agent builders.
+
+The mental model is a budget, not a bucket. The window is finite attention. Every token you spend on something irrelevant is attention taken from something that matters.
+
+---
+
+## Why windows rot
+
+A common objection: "models fit a million tokens now, so why ration?" Because *fits* is not *uses well*.
+
+Two failure modes show up as the window fills:
+
+1. **Context rot.** Irrelevant or stale tokens dilute attention. The model is statistically more likely to latch onto the wrong detail when the right detail is buried among ten thousand tokens of noise. Recall of any single fact degrades as the surrounding context grows, even within the advertised limit.
+2. **Cost and latency.** Tokens are money and milliseconds. An agent that carries its entire history into every step pays for that history on every step.
+
+The counterintuitive result, repeatable in practice: a 4k-token context with exactly the right material often beats a 200k-token context that contains the same material plus a lot of plausible-looking distraction. **Less, but sufficient.**
+
+---
+
+## Minimum Viable Context: dosing, not stuffing
+
+MVC borrows its framing from medicine. You do not give a patient every drug that might help; you give the right dose of the right thing for the current condition. Apply it to context:
+
+- **Retrieval is dosing, not loading.** Do not pour the whole knowledge base into the prompt. Retrieve the specific chunks this step needs, use them, then release them. The next step gets its own dose.
+- **Carry forward summaries, not transcripts.** When a sub-task finishes, replace its raw working trace with a compact result. The agent needs "the search found contract X, terminating 2027," not the forty lines of tool output that produced it.
+- **Default to omission.** The bias is *exclude* unless a token earns its place by helping the current step. This inverts the instinct to include everything "just in case."
+
+The discipline is asking, before each step: *what is the minimum this step needs to act correctly?* Then giving that, and only that.
+
+---
+
+## Memory tiers: session vs durable
+
+Dosing only works if you separate what the agent needs *now* from what it should remember *across runs*. Conflating them is how transient junk leaks into long-term memory and how stale long-term facts crowd out current work.
+
+| Tier | Scope | Holds | Lifecycle |
+| --- | --- | --- | --- |
+| **Session memory** | Current run / conversation | Working state, intermediate results, the task at hand | Discarded when the task ends |
+| **Durable memory** | Across sessions | Learned preferences, prior decisions, stable facts | Persists; updated deliberately, not automatically |
+
+The rule: **session memory is the default; promotion to durable memory is a deliberate write.** An agent should not silently persist every observation. It should persist the few that are worth carrying into the next run — and even then, durable memory is retrieved into the window by the same dosing logic, not dumped in wholesale.
+
+This separation is also why the managed-memory distinctions across cloud runtimes matter. As of mid-2026, AWS Bedrock AgentCore Memory is GA while Memory in Microsoft Foundry Agent Service (formerly Azure AI Foundry) is still preview — if your design leans on durable managed memory, that GA/preview gap changes what you can rely on per platform.
+
+---
+
+## Compacting tool results
+
+The fastest way a window rots in an agentic run is unbounded tool output. A search returns 8 chunks, a SQL query returns 200 rows, a file read returns a 2,000-line file — and all of it lands in context, then rides along for every subsequent step.
+
+Compact at the boundary. Before a tool result re-enters the loop, reduce it to what the next decision needs:
+
+```ts
+import { generateText, tool } from 'ai'
+import { openai } from '@ai-sdk/openai'
+import { z } from 'zod'
+import { runQuery } from './db'
+
+const searchContracts = tool({
+  description: 'Search contracts. Returns a compacted summary, not raw rows.',
+  inputSchema: z.object({ counterparty: z.string() }),
+  execute: async ({ counterparty }) => {
+    const rows = await runQuery(counterparty) // could be hundreds of rows
+
+    // Dose, do not dump: keep only the fields the agent reasons over,
+    // and cap the count so one tool call cannot flood the window.
+    const compacted = rows.slice(0, 5).map((r) => ({
+      id: r.id,
+      party: r.counterparty,
+      ends: r.termination_date,
+      autoRenew: r.auto_renew,
+    }))
+
+    return {
+      total: rows.length,
+      shown: compacted.length,
+      contracts: compacted,
+      note:
+        rows.length > compacted.length
+          ? `${rows.length - compacted.length} more — refine the query to narrow.`
+          : undefined,
+    }
+  },
+})
+
+const { text } = await generateText({
+  model: openai('gpt-5.5'),
+  tools: { searchContracts },
+  system:
+    'Reason only over compacted tool results. If a result is truncated, ' +
+    'refine and re-query rather than asking for the full dump.',
+  prompt: userQuestion,
+})
+```
+
+Two moves do the work: **project to the fields the agent actually reasons over**, and **cap the count** so a single tool call cannot flood the window. The truncation note keeps the agent honest — it knows the result was narrowed and can re-query instead of hallucinating completeness.
+
+---
+
+## Failure modes and fixes
+
+A field guide to context problems and the dosing fix for each:
+
+| Failure mode | Symptom | Fix |
+| --- | --- | --- |
+| **Context rot** | Accuracy drops as the run gets longer | Compact between steps; drop finished sub-task traces |
+| **Tool-result flooding** | One query dumps hundreds of rows into the window | Project to needed fields, cap count, summarize at the boundary |
+| **Transcript carry-over** | Every step re-reads the full history | Replace raw history with running summaries |
+| **Memory bleed** | Stale facts from a past run surface wrongly | Separate session from durable memory; retrieve durable, do not dump it |
+| **Over-retrieval** | Prompt stuffed with "maybe relevant" chunks | Default to omission; retrieve per step, not up front |
+| **Premature persistence** | Junk written to long-term memory | Make durable writes deliberate, never automatic |
+
+The through-line is the same in every row: the window is a budget. Spend it on the current step, and reclaim it before the next one.
+
+---
+
+## The habit to build
+
+Context engineering is not a tool you install. It is a question you ask at every step of an agent's design: *what is the minimum this step needs to act correctly?* Answer that honestly and most of the failure modes above never appear, because you never put the noise in the window to begin with.
+
+It pairs directly with the rest of the stack. Retrieval ([naive through GraphRAG](/blog/agentic-rag-vs-graphrag-2026)) decides *what is available* to dose. [MCP](/blog/mcp-as-architecture) decides *how tools deliver* their results — and well-designed MCP servers compact at the source. Context engineering is the discipline that connects them: choosing, step by step, what actually enters the model's attention.
+
+For how this sits inside a full production agent — orchestration, memory, guardrails, observability — see the [AI Architecture hub](/ai-architecture). For reference wirings, the [blueprints](/ai-architecture/blueprints) show the connections in place.
+
+---
+
+## FAQ
+
+### What is context engineering?
+
+Context engineering is the discipline of deciding what information enters a model's context window at each step of an agent's run — and what stays out. It treats the window as a scarce, curated resource rather than a bucket to fill. It supersedes prompt engineering as the primary skill once you are building agents that take many steps rather than single prompts.
+
+### What is Minimum Viable Context (MVC)?
+
+MVC is the practice of giving an agent exactly the context the current step needs to act correctly, and no more. Instead of stuffing the prompt with everything that might be relevant, you dose: retrieve what this step requires, act, then drop or compact it before the next step. Less, but sufficient.
+
+### Why do long context windows degrade performance?
+
+Even when a model technically fits a million tokens, irrelevant or stale tokens dilute attention and increase the chance the model latches onto the wrong detail — a phenomenon often called context rot. More tokens also cost more and run slower. A smaller, well-chosen context usually beats a larger, noisy one.
+
+### What is the difference between session memory and durable memory?
+
+Session memory is scoped to the current run or conversation — the working state the agent needs right now, discarded when the task ends. Durable memory persists across sessions — learned preferences, prior decisions, facts worth keeping. Keeping them separate prevents transient working state from polluting long-term memory and vice versa.
+
+---
+
+## Related Articles
+
+- [Naive RAG to GraphRAG: The 2026 Production Ladder](/blog/agentic-rag-vs-graphrag-2026) — what retrieval makes available to dose
+- [MCP as an Architectural Pattern](/blog/mcp-as-architecture) — how tools deliver results into the window
+- [The 7 Pillars of Production Agent Systems](/blog/production-agent-patterns-7-pillars) — where context and memory sit in the full stack

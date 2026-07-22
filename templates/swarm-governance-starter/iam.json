@@ -1,0 +1,38 @@
+{
+  "version": "1",
+  "description": "Per-role IAM profiles: which tools each role may call, which path globs it may touch, and the strictest tier its spend proposals can ever resolve below. Deny by default — a tool or path not explicitly allowed is denied.",
+  "profiles": {
+    "coordinator": {
+      "description": "Runs the loop and approves coordinator-tier actions. May not edit the governance config itself.",
+      "allowedTools": ["read_file", "search", "write_file", "run_tests"],
+      "allowedPaths": ["**"],
+      "deniedPaths": ["iam.json", ".governance/**"],
+      "maxSpendTier": "coordinator-approval"
+    },
+    "research-worker": {
+      "description": "Read-only intelligence gathering. Never spends, never writes outside research notes.",
+      "allowedTools": ["read_file", "search", "fetch_docs"],
+      "allowedPaths": ["research/**", "content/**", "docs/**"],
+      "deniedPaths": [],
+      "maxSpendTier": "none"
+    },
+    "content-worker": {
+      "description": "Drafts posts and pages. Never touches code, config, or money.",
+      "allowedTools": ["read_file", "search", "write_file"],
+      "allowedPaths": ["content/**", "public/images/**"],
+      "deniedPaths": ["content/config/**"],
+      "maxSpendTier": "none"
+    },
+    "ops-worker": {
+      "description": "Runs maintenance scripts and proposes infra spend. Proposes — never approves.",
+      "allowedTools": ["read_file", "run_command", "write_file"],
+      "allowedPaths": ["scripts/**", "infra/**"],
+      "deniedPaths": [],
+      "maxSpendTier": "coordinator-approval"
+    }
+  },
+  "globalDeny": {
+    "paths": [".env*", "*.pem", "*.key", "**/secrets/**", "**/credentials/**"],
+    "description": "Secrets are denied to every role. No profile can re-allow them."
+  }
+}

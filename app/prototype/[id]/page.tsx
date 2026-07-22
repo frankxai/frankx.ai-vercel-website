@@ -22,6 +22,7 @@ import {
   Clock,
   Code2,
   FileText,
+  Clapperboard,
 } from 'lucide-react'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
@@ -43,6 +44,7 @@ const categoryIcons: Record<PrototypeCategory, typeof Shield> = {
   'security-governance': Lock,
   'cost-optimization': DollarSign,
   'observability': Activity,
+  'creator-media': Clapperboard,
 }
 
 const cloudColors: Record<CloudProvider, string> = {

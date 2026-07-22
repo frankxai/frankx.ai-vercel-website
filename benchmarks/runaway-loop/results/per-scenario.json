@@ -1,0 +1,107 @@
+[
+  {
+    "id": "s01",
+    "name": "single-file-fix",
+    "trap": "none",
+    "optimal_steps": 3,
+    "avg_tokens_per_step": 900,
+    "cap_steps": 9,
+    "uncapped": {
+      "steps": 3,
+      "converged": true,
+      "cost_usd": 0.0081
+    },
+    "capped": {
+      "steps": 3,
+      "converged": true,
+      "cost_usd": 0.0081
+    },
+    "optimal_cost_usd": 0.0081,
+    "cost_ratio_uncapped_to_optimal": 1,
+    "cost_ratio_capped_to_optimal": 1
+  },
+  {
+    "id": "s02",
+    "name": "flaky-test-retry",
+    "trap": "retry-without-new-information",
+    "optimal_steps": 4,
+    "avg_tokens_per_step": 1100,
+    "cap_steps": 12,
+    "uncapped": {
+      "steps": 500,
+      "converged": false,
+      "cost_usd": 1.65
+    },
+    "capped": {
+      "steps": 12,
+      "converged": false,
+      "cost_usd": 0.0396
+    },
+    "optimal_cost_usd": 0.0132,
+    "cost_ratio_uncapped_to_optimal": 125,
+    "cost_ratio_capped_to_optimal": 3
+  },
+  {
+    "id": "s03",
+    "name": "circular-tool-delegation",
+    "trap": "state-revisit-cycle",
+    "optimal_steps": 5,
+    "avg_tokens_per_step": 1400,
+    "cap_steps": 15,
+    "uncapped": {
+      "steps": 500,
+      "converged": false,
+      "cost_usd": 2.1
+    },
+    "capped": {
+      "steps": 15,
+      "converged": false,
+      "cost_usd": 0.063
+    },
+    "optimal_cost_usd": 0.021,
+    "cost_ratio_uncapped_to_optimal": 100,
+    "cost_ratio_capped_to_optimal": 3
+  },
+  {
+    "id": "s04",
+    "name": "goal-drift-refactor",
+    "trap": "moving-goalpost",
+    "optimal_steps": 8,
+    "avg_tokens_per_step": 2200,
+    "cap_steps": 24,
+    "uncapped": {
+      "steps": 500,
+      "converged": false,
+      "cost_usd": 3.3
+    },
+    "capped": {
+      "steps": 24,
+      "converged": false,
+      "cost_usd": 0.1584
+    },
+    "optimal_cost_usd": 0.0528,
+    "cost_ratio_uncapped_to_optimal": 62.5,
+    "cost_ratio_capped_to_optimal": 3
+  },
+  {
+    "id": "s05",
+    "name": "tool-error-loop",
+    "trap": "identical-retry",
+    "optimal_steps": 2,
+    "avg_tokens_per_step": 700,
+    "cap_steps": 6,
+    "uncapped": {
+      "steps": 500,
+      "converged": false,
+      "cost_usd": 1.05
+    },
+    "capped": {
+      "steps": 6,
+      "converged": false,
+      "cost_usd": 0.0126
+    },
+    "optimal_cost_usd": 0.0042,
+    "cost_ratio_uncapped_to_optimal": 250,
+    "cost_ratio_capped_to_optimal": 3
+  }
+]

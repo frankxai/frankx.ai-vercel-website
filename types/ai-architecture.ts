@@ -20,6 +20,7 @@ export type PrototypeCategory =
   | 'security-governance'
   | 'cost-optimization'
   | 'observability'
+  | 'creator-media'
 
 export type CloudProvider = 'aws' | 'gcp' | 'azure' | 'oci' | 'multi-cloud'
 
@@ -38,6 +39,7 @@ export interface ArchitectureComponent {
   description: string
   cloudService?: string // e.g., "AWS Lambda", "OCI Functions"
   configuration?: Record<string, unknown>
+  affiliateId?: string // maps to lib/affiliates/affiliate-manager.ts id for a tracked deep-link
 }
 
 export interface DataFlow {
@@ -124,6 +126,16 @@ export interface ArchitecturePrototype {
   // Social proof
   useCases: string[]
   caseStudies?: CaseStudy[]
+
+  // Decisiveness (the "use when / skip when" verdict — mirrors ArchitecturePattern)
+  whenToUse?: string[]
+  whenNotToUse?: string[]
+  tradeoffs?: PatternTradeoffs
+  maturity?: 'emerging' | 'production' | 'mature'
+
+  // "By the numbers" — verified figures cross-referenced from the cost &
+  // reliability dataset (/ai-architecture/data). Values must match a dataset row.
+  keyStats?: { value: string; label: string }[]
 
   // Timestamps
   createdAt: string
@@ -383,6 +395,13 @@ export const CATEGORY_META: Record<PrototypeCategory, CategoryMeta> = {
     description: 'Strategies for reducing AI infrastructure and API costs',
     icon: 'DollarSign',
     color: 'green',
+  },
+  'creator-media': {
+    id: 'creator-media',
+    name: 'Creator & Media',
+    description: 'Generative image, video, and audio pipelines — production architectures for multimodal content creation',
+    icon: 'Clapperboard',
+    color: 'fuchsia',
   },
   'observability': {
     id: 'observability',

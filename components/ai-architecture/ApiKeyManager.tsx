@@ -271,7 +271,8 @@ export function ApiKeyManager({
         <div>
           <h3 className="font-semibold text-white">API Keys (BYOK)</h3>
           <p className="text-sm text-slate-400">
-            Keys are stored in your browser only. Never sent to our servers.
+            Keys are stored in your browser only and relayed to the provider through our API —
+            never persisted or logged on our servers.
           </p>
         </div>
       </div>

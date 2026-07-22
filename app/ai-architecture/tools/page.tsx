@@ -15,10 +15,25 @@ import {
   FileText,
   Cpu,
   GitBranch,
+  Network,
 } from 'lucide-react'
 
+import { getAffiliateLink } from '@/lib/affiliates/affiliate-manager'
+import { AffiliateDisclosure } from '@/components/affiliate-disclosure'
+
+type Tool = {
+  name: string
+  description: string
+  url: string
+  badge?: string
+  // When set and the id resolves in the affiliate registry, the card links
+  // through a tracked affiliate URL with rel="sponsored". Tools without a
+  // program stay plain links — honesty over revenue.
+  affiliateId?: string
+}
+
 // Tool categories
-const toolCategories = [
+const toolCategories: { id: string; title: string; icon: typeof Cpu; tools: Tool[] }[] = [
   {
     id: 'ai-platforms',
     title: 'AI Platforms',
@@ -52,32 +67,87 @@ const toolCategories = [
   },
   {
     id: 'frameworks',
-    title: 'AI Frameworks',
+    title: 'Agent Frameworks',
     icon: Code,
     tools: [
       {
-        name: 'LangChain',
-        description: 'Framework for LLM-powered applications',
-        url: 'https://python.langchain.com',
-        badge: 'Open Source',
-      },
-      {
-        name: 'LlamaIndex',
-        description: 'Data framework for RAG applications',
-        url: 'https://docs.llamaindex.ai',
-        badge: 'Open Source',
-      },
-      {
-        name: 'Vercel AI SDK',
-        description: 'TypeScript toolkit for AI applications',
+        name: 'Vercel AI SDK 6',
+        description: 'TypeScript toolkit with a first-class Agent abstraction, MCP support, and tool approval',
         url: 'https://sdk.vercel.ai',
         badge: 'Open Source',
       },
       {
         name: 'LangGraph',
-        description: 'Multi-agent orchestration framework',
+        description: 'Stateful multi-agent orchestration — nodes, edges, durable checkpoints',
         url: 'https://langchain-ai.github.io/langgraph',
         badge: 'Open Source',
+      },
+      {
+        name: 'Mastra',
+        description: 'The de-facto TypeScript agent framework — best when the agent lives next to the UI',
+        url: 'https://mastra.ai',
+        badge: 'Open Source',
+      },
+      {
+        name: 'Claude Agent SDK',
+        description: 'Anthropic-native agents for production tool-use and long-running loops',
+        url: 'https://docs.anthropic.com/en/api/agent-sdk',
+        badge: 'SDK',
+      },
+      {
+        name: 'OpenAI Agents SDK',
+        description: 'Production-mature framework for OpenAI-native agent builds',
+        url: 'https://openai.github.io/openai-agents-python',
+        badge: 'Open Source',
+      },
+      {
+        name: 'Pydantic AI',
+        description: 'Type-safe Python agents with FastAPI ergonomics and structured outputs',
+        url: 'https://ai.pydantic.dev',
+        badge: 'Open Source',
+      },
+      {
+        name: 'LlamaIndex',
+        description: 'Data framework and RAG-grounded agents',
+        url: 'https://docs.llamaindex.ai',
+        badge: 'Open Source',
+      },
+      {
+        name: 'CrewAI',
+        description: 'Fastest role-based multi-agent prototyping',
+        url: 'https://www.crewai.com',
+        badge: 'Open Source',
+      },
+    ],
+  },
+  {
+    id: 'cloud-agent-runtimes',
+    title: 'Cloud Agent Runtimes',
+    icon: Network,
+    tools: [
+      {
+        name: 'AWS Bedrock AgentCore',
+        description: 'Framework-agnostic managed agent runtime with session memory + multi-agent (GA)',
+        url: 'https://aws.amazon.com/bedrock/agentcore',
+        badge: 'GA',
+      },
+      {
+        name: 'Azure AI Foundry',
+        description: 'Agent Service GA with one-click Teams/M365 deploy (Foundry Memory in preview)',
+        url: 'https://ai.azure.com',
+        badge: 'GA',
+      },
+      {
+        name: 'Google Vertex AI ADK',
+        description: 'Agent Development Kit on Gemini 3 — stable, with a Java version',
+        url: 'https://google.github.io/adk-docs',
+        badge: 'GA',
+      },
+      {
+        name: 'Oracle OCI Enterprise AI',
+        description: 'Enterprise AI Agents (GA) via an OpenAI Responses-compatible unified API',
+        url: 'https://www.oracle.com/artificial-intelligence/generative-ai/agents',
+        badge: 'GA',
       },
     ],
   },
@@ -93,16 +163,28 @@ const toolCategories = [
         badge: 'Free tier',
       },
       {
+        name: 'Turbopuffer',
+        description: 'Object-storage-backed vector + full-text search — cost-efficient at scale',
+        url: 'https://turbopuffer.com',
+        badge: 'Usage-based',
+      },
+      {
+        name: 'Qdrant',
+        description: 'Open-source vector database with hybrid search and quantization',
+        url: 'https://qdrant.tech',
+        badge: 'Open Source',
+      },
+      {
         name: 'Weaviate',
-        description: 'Open-source vector database',
+        description: 'Open-source vector database with built-in hybrid search',
         url: 'https://weaviate.io',
         badge: 'Open Source',
       },
       {
-        name: 'Chroma',
-        description: 'Lightweight embedding database',
-        url: 'https://www.trychroma.com',
-        badge: 'Open Source',
+        name: 'Supabase Vector',
+        description: 'pgvector on managed Postgres — keep vectors next to your app data',
+        url: 'https://supabase.com/vector',
+        badge: 'Free tier',
       },
       {
         name: 'pgvector',
@@ -119,15 +201,24 @@ const toolCategories = [
     tools: [
       {
         name: 'Vercel',
-        description: 'Frontend deployment with edge functions',
+        description: 'Frontend + AI deploys on Fluid compute, with one-click Deploy buttons',
         url: 'https://vercel.com',
         badge: 'Free tier',
+        affiliateId: 'vercel',
+      },
+      {
+        name: 'Vercel AI Gateway',
+        description: 'One endpoint across providers — routing, retries, caching, observability',
+        url: 'https://vercel.com/docs/ai-gateway',
+        badge: 'Usage-based',
+        affiliateId: 'vercel',
       },
       {
         name: 'Railway',
-        description: 'Full-stack deployment platform',
+        description: 'Full-stack deployment platform with a template marketplace',
         url: 'https://railway.app',
         badge: '$5 credit',
+        affiliateId: 'railway',
       },
       {
         name: 'Replit',
@@ -212,25 +303,31 @@ const toolCategories = [
     tools: [
       {
         name: 'Langfuse',
-        description: 'Open-source LLM observability',
+        description: 'Community-leading open-source LLM observability, self-hostable (now ClickHouse-owned)',
         url: 'https://langfuse.com',
         badge: 'Open Source',
       },
       {
+        name: 'Braintrust',
+        description: 'Prompt-centric eval workflows with a generous free tier',
+        url: 'https://www.braintrust.dev',
+        badge: 'Free tier',
+      },
+      {
         name: 'LangSmith',
-        description: 'LangChain tracing & evaluation',
+        description: 'Native tracing & evaluation for LangChain / LangGraph teams',
         url: 'https://smith.langchain.com',
         badge: 'Free tier',
       },
       {
         name: 'Helicone',
-        description: 'LLM logging and analytics',
+        description: 'Proxy-style logging — instant multi-provider cost visibility',
         url: 'https://helicone.ai',
         badge: 'Free tier',
       },
       {
         name: 'Arize Phoenix',
-        description: 'ML observability platform',
+        description: 'Fully open-source observability, unlimited self-host',
         url: 'https://phoenix.arize.com',
         badge: 'Open Source',
       },
@@ -269,12 +366,19 @@ const toolCategories = [
   },
 ]
 
-function ToolCard({ tool }: { tool: (typeof toolCategories)[0]['tools'][0] }) {
+function ToolCard({ tool }: { tool: Tool }) {
+  // Route through a tracked affiliate URL only when the id resolves in the
+  // registry; otherwise fall back to the plain link. rel="sponsored" is set
+  // for affiliate links so they're disclosed to crawlers.
+  const affiliate = tool.affiliateId ? getAffiliateLink(tool.affiliateId, 'ai-arch-tools') : undefined
+  const href = affiliate?.trackingUrl ?? tool.url
+  const rel = affiliate ? 'sponsored noopener noreferrer' : 'noopener noreferrer'
+
   return (
     <a
-      href={tool.url}
+      href={href}
       target="_blank"
-      rel="noopener noreferrer"
+      rel={rel}
       className="group rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
     >
       <div className="mb-2 flex items-start justify-between">
@@ -336,7 +440,7 @@ export default function ToolsPage() {
         </div>
         <div className="absolute bottom-0 left-0 p-6">
           <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-400/60 mb-2">AI Architecture</p>
-          <h1 className="text-2xl font-bold text-white">Architecture Tools</h1>
+          <p className="text-2xl font-bold text-white">Architecture Tools</p>
         </div>
       </div>
 
@@ -386,12 +490,13 @@ export default function ToolsPage() {
         </div>
       </section>
 
-      {/* Disclaimer */}
+      {/* Disclosure */}
       <section className="py-12 border-t border-white/5">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-sm text-slate-500">
-            These are third-party tools we recommend. FrankX.ai is not affiliated with any of these
-            companies. Links open in new tabs to external websites.
+        <div className="mx-auto max-w-4xl px-6">
+          <AffiliateDisclosure providers={['vercel', 'railway']} />
+          <p className="mt-4 text-center text-xs text-slate-500">
+            Most links here are plain references with no affiliate relationship. We only mark a link
+            as sponsored when a program exists, and we recommend every tool from production experience.
           </p>
         </div>
       </section>

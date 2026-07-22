@@ -1,0 +1,30 @@
+{
+  "name": "starter-swarm",
+  "description": "One coordinator, three workers, per-stream budgets. The 'streams' map uses the same shape as agent-payments-guard's caps.json, so this file can double as the guard's caps file.",
+  "coordinator": {
+    "name": "coordinator",
+    "profile": "coordinator"
+  },
+  "workers": [
+    {
+      "name": "research-worker",
+      "profile": "research-worker",
+      "job": "gather sources and summarize — never publishes"
+    },
+    {
+      "name": "content-worker",
+      "profile": "content-worker",
+      "job": "draft posts and pages — never sends"
+    },
+    {
+      "name": "ops-worker",
+      "profile": "ops-worker",
+      "job": "run maintenance scripts, propose infra spend — never approves it"
+    }
+  ],
+  "streams": {
+    "default": { "per_transaction": 25, "per_day": 100, "currency": "EUR" },
+    "content": { "per_transaction": 50, "per_day": 200, "currency": "EUR" },
+    "infra": { "per_transaction": 100, "per_day": 400, "currency": "EUR" }
+  }
+}

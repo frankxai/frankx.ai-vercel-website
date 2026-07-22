@@ -14,6 +14,7 @@ import {
   ExternalLink,
   ArrowRight,
   Lock,
+  Check,
 } from 'lucide-react'
 
 import { AI_PROVIDER_META } from '@/types/ai-architecture'
@@ -34,20 +35,22 @@ const upcomingPrototypes = [
   {
     id: 'rag-tester',
     title: 'RAG Playground',
-    description: 'Upload documents and ask questions with retrieval-augmented generation',
+    description: 'Paste a document and ask questions with retrieval-grounded answers and citations',
     icon: FileSearch,
-    providers: ['anthropic', 'openai'] as AIProvider[],
-    status: 'coming-soon',
-    features: ['PDF upload', 'Chunk visualization', 'Source citations'],
+    providers: ['anthropic', 'openai', 'google'] as AIProvider[],
+    status: 'live',
+    href: '/prototype/rag-tester',
+    features: ['Retrieved-passage view', 'Inline citations', 'Source citations'],
   },
   {
     id: 'agent-simulator',
     title: 'Agent Simulator',
-    description: 'Watch multi-agent systems coordinate to solve problems',
+    description: 'Give an orchestrator a task and watch it decompose, run each step, and synthesize',
     icon: Users,
-    providers: ['anthropic', 'openai'] as AIProvider[],
-    status: 'coming-soon',
-    features: ['Agent handoffs', 'Task decomposition', 'Execution trace'],
+    providers: ['anthropic', 'openai', 'google'] as AIProvider[],
+    status: 'live',
+    href: '/prototype/agent-simulator',
+    features: ['Orchestrator → workers', 'Task decomposition', 'Execution trace'],
   },
   {
     id: 'prompt-engineer',
@@ -171,7 +174,7 @@ export default function PrototypesPage() {
         </div>
         <div className="absolute bottom-0 left-0 p-6">
           <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
-          <h1 className="text-2xl font-bold text-white">Interactive Prototypes</h1>
+          <p className="text-2xl font-bold text-white">Interactive Prototypes</p>
         </div>
       </div>
 
@@ -236,19 +239,19 @@ export default function PrototypesPage() {
                 </p>
                 <ul className="space-y-2 text-sm text-slate-400">
                   <li className="flex items-start gap-2">
-                    <span className="mt-1 text-emerald-400">✓</span>
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-emerald-400" aria-hidden="true" />
                     <span>Your keys stay in your browser (localStorage) - never sent to our servers</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-1 text-emerald-400">✓</span>
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-emerald-400" aria-hidden="true" />
                     <span>You control costs - uses your own API quota</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-1 text-emerald-400">✓</span>
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-emerald-400" aria-hidden="true" />
                     <span>Works with any provider - Anthropic, OpenAI, Google, or OCI</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-1 text-emerald-400">✓</span>
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-emerald-400" aria-hidden="true" />
                     <span>Same patterns work in production on your cloud</span>
                   </li>
                 </ul>
