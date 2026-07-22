@@ -2,9 +2,11 @@ import "server-only"
 
 import {
   getPreviewConfigurationForEnvironment,
+  getSharedPreviewCacheProviderForEnvironment,
   isPreviewKey,
   type PreviewEnvironment,
   type PreviewReadiness,
+  type SharedPreviewCacheProvider,
 } from "./config-policy"
 
 export { isPreviewKey, type PreviewReadiness }
@@ -28,7 +30,7 @@ export function isProductionDeployment(): boolean {
 }
 
 export function hasSharedPreviewCache(): boolean {
-  return Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN)
+  return getSharedPreviewCacheProvider() !== null
 }
 
 function currentEnvironment(): PreviewEnvironment {
@@ -39,7 +41,13 @@ function currentEnvironment(): PreviewEnvironment {
     VERCEL_ENV: process.env.VERCEL_ENV,
     KV_REST_API_URL: process.env.KV_REST_API_URL,
     KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
+    UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
+    UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
   }
+}
+
+export function getSharedPreviewCacheProvider(): SharedPreviewCacheProvider {
+  return getSharedPreviewCacheProviderForEnvironment(currentEnvironment())
 }
 
 export function getPreviewReadiness(previewKey: string): PreviewReadiness {

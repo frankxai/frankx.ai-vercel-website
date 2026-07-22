@@ -6,7 +6,10 @@ import {
   getPreviewTtlSeconds,
   isPreviewFresh,
 } from "../../lib/v0/preview/cache-policy"
-import { getPreviewConfigurationForEnvironment } from "../../lib/v0/preview/config-policy"
+import {
+  getPreviewConfigurationForEnvironment,
+  getSharedPreviewCacheProviderForEnvironment,
+} from "../../lib/v0/preview/config-policy"
 import {
   getSafePreviewReturnTo,
   loadPreviewWithDependencies,
@@ -258,6 +261,41 @@ describe("v0 preview readiness policy", () => {
         KV_REST_API_TOKEN: "server-cache-token",
       }),
       { readiness: "ready", chatId: "private-chat-id" },
+    )
+    assert.deepEqual(
+      getPreviewConfigurationForEnvironment("visual-foundry", {
+        ...configured,
+        VERCEL_ENV: "production",
+        UPSTASH_REDIS_REST_URL: "https://cache.example.test",
+        UPSTASH_REDIS_REST_TOKEN: "server-cache-token",
+      }),
+      { readiness: "ready", chatId: "private-chat-id" },
+    )
+  })
+
+  it("selects only complete shared-cache bindings", () => {
+    assert.equal(getSharedPreviewCacheProviderForEnvironment({}), null)
+    assert.equal(
+      getSharedPreviewCacheProviderForEnvironment({
+        UPSTASH_REDIS_REST_URL: "https://cache.example.test",
+      }),
+      null,
+    )
+    assert.equal(
+      getSharedPreviewCacheProviderForEnvironment({
+        KV_REST_API_URL: "https://cache.example.test",
+        KV_REST_API_TOKEN: "server-cache-token",
+        UPSTASH_REDIS_REST_URL: "https://other-cache.example.test",
+        UPSTASH_REDIS_REST_TOKEN: "other-server-cache-token",
+      }),
+      "vercel-kv",
+    )
+    assert.equal(
+      getSharedPreviewCacheProviderForEnvironment({
+        UPSTASH_REDIS_REST_URL: "https://cache.example.test",
+        UPSTASH_REDIS_REST_TOKEN: "server-cache-token",
+      }),
+      "upstash",
     )
   })
 })

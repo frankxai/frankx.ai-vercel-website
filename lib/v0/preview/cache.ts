@@ -1,6 +1,10 @@
 import "server-only"
 
-import { hasSharedPreviewCache, isProductionDeployment } from "./config"
+import {
+  getSharedPreviewCacheProvider,
+  hasSharedPreviewCache,
+  isProductionDeployment,
+} from "./config"
 import { getPreviewTtlSeconds, isPreviewFresh } from "./cache-policy"
 
 export interface CachedPreview {
@@ -19,27 +23,51 @@ const memoryCache =
   globalThis.__frankxV0PreviewCache ??
   (globalThis.__frankxV0PreviewCache = new Map<string, CachedPreview>())
 
+let sharedClientPromise: ReturnType<typeof createSharedClient> | null = null
+
 function cacheKey(previewKey: string): string {
   return `${CACHE_PREFIX}:${previewKey}`
 }
 
+async function createSharedClient() {
+  const provider = getSharedPreviewCacheProvider()
+  const { createClient, kv } = await import("@vercel/kv")
+
+  if (provider === "vercel-kv") return kv
+  if (provider === "upstash") {
+    const url = process.env.UPSTASH_REDIS_REST_URL
+    const token = process.env.UPSTASH_REDIS_REST_TOKEN
+    if (!url || !token) {
+      throw new Error("Shared preview cache is not configured.")
+    }
+    return createClient({ url, token })
+  }
+
+  throw new Error("Shared preview cache is not configured.")
+}
+
+function getSharedClient() {
+  sharedClientPromise ??= createSharedClient()
+  return sharedClientPromise
+}
+
 async function getShared(previewKey: string): Promise<CachedPreview | null> {
-  const { kv } = await import("@vercel/kv")
-  return (await kv.get<CachedPreview>(cacheKey(previewKey))) ?? null
+  const client = await getSharedClient()
+  return (await client.get<CachedPreview>(cacheKey(previewKey))) ?? null
 }
 
 async function setShared(
   previewKey: string,
   preview: CachedPreview,
 ): Promise<void> {
-  const { kv } = await import("@vercel/kv")
+  const client = await getSharedClient()
   const ttlSeconds = getPreviewTtlSeconds(preview)
-  await kv.set(cacheKey(previewKey), preview, { ex: ttlSeconds })
+  await client.set(cacheKey(previewKey), preview, { ex: ttlSeconds })
 }
 
 async function deleteShared(previewKey: string): Promise<void> {
-  const { kv } = await import("@vercel/kv")
-  await kv.del(cacheKey(previewKey))
+  const client = await getSharedClient()
+  await client.del(cacheKey(previewKey))
 }
 
 export async function getCachedPreview(

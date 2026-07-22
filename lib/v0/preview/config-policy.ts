@@ -28,7 +28,11 @@ export interface PreviewEnvironment {
   VERCEL_ENV?: string
   KV_REST_API_URL?: string
   KV_REST_API_TOKEN?: string
+  UPSTASH_REDIS_REST_URL?: string
+  UPSTASH_REDIS_REST_TOKEN?: string
 }
+
+export type SharedPreviewCacheProvider = "vercel-kv" | "upstash" | null
 
 export interface PreviewConfiguration {
   readiness: PreviewReadiness
@@ -49,6 +53,21 @@ function readChatMap(raw: string | undefined): Record<string, string> {
 
 export function isPreviewKey(value: string): boolean {
   return previewKeySchema.safeParse(value).success
+}
+
+export function getSharedPreviewCacheProviderForEnvironment(
+  environment: PreviewEnvironment,
+): SharedPreviewCacheProvider {
+  if (environment.KV_REST_API_URL && environment.KV_REST_API_TOKEN) {
+    return "vercel-kv"
+  }
+  if (
+    environment.UPSTASH_REDIS_REST_URL &&
+    environment.UPSTASH_REDIS_REST_TOKEN
+  ) {
+    return "upstash"
+  }
+  return null
 }
 
 export function getPreviewConfigurationForEnvironment(
@@ -72,7 +91,7 @@ export function getPreviewConfigurationForEnvironment(
   }
 
   const hasSharedCache = Boolean(
-    environment.KV_REST_API_URL && environment.KV_REST_API_TOKEN,
+    getSharedPreviewCacheProviderForEnvironment(environment),
   )
   if (environment.VERCEL_ENV === "production" && !hasSharedCache) {
     return { readiness: "shared-cache-required", chatId: null }

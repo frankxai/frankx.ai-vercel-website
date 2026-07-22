@@ -120,7 +120,8 @@ The preview route is therefore opt-in and fails closed. Configure these values i
 - `V0_PREVIEW_BETA_ENABLED=true`
 - `V0_API_KEY`
 - `V0_PREVIEW_CHAT_MAP` as a JSON object from public preview keys to private chat IDs
-- `KV_REST_API_URL` and `KV_REST_API_TOKEN` for production shared caching
+- either `KV_REST_API_URL`/`KV_REST_API_TOKEN` or
+  `UPSTASH_REDIS_REST_URL`/`UPSTASH_REDIS_REST_TOKEN` for shared caching
 
 Security properties:
 
@@ -134,6 +135,10 @@ Security properties:
 - Loading retries are same-origin and reject open redirects.
 
 Do not enable the beta preview in production until a live canary test, security review, and human release decision pass. Stable Vercel deployments remain the preferred public preview mechanism.
+
+Bind the v0 variables to the Preview environment first. Promote the same approved
+bindings to Production only after the exact release preview passes the canary,
+security, and visual checks.
 
 ## Release Loop
 
