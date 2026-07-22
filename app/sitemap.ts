@@ -5,7 +5,7 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
-import { learningPaths } from '@/data/learning-paths'
+import { learningPaths } from '@/data/learning-paths'\nimport { getMvuEntrySummaries } from '@/lib/mvu'
 
 const BASE_URL = siteConfig.url
 
@@ -36,29 +36,6 @@ function getBlogEntries(): { slug: string; date: string }[] {
         }
       })
       .filter((entry): entry is { slug: string; date: string } => entry !== null)
-  } catch {
-    return []
-  }
-}
-
-// Get published MVU journal entries from content/mvu directory
-function getMvuEntries(): { slug: string; date: string }[] {
-  const mvuDir = path.join(process.cwd(), 'content/mvu')
-  try {
-    return fs
-      .readdirSync(mvuDir)
-      .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
-      .map((file) => {
-        const slug = file.replace(/\.mdx?$/, '')
-        try {
-          const { data } = matter(fs.readFileSync(path.join(mvuDir, file), 'utf8'))
-          if (data.published === false) return null
-          return { slug, date: data.date || '' }
-        } catch {
-          return { slug, date: '' }
-        }
-      })
-      .filter((e): e is { slug: string; date: string } => e !== null)
   } catch {
     return []
   }
@@ -411,7 +388,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Get dynamic content
   const blogEntries = getBlogEntries()
-  const mvuEntries = getMvuEntries()
+  const mvuEntries = getMvuEntrySummaries()
   const guideSlugs = getGuideSlugs()
   const productSlugs = getProductSlugs()
 
