@@ -85,7 +85,13 @@
       "path_or_url": "content/v0/evidence/preview-2026-07-22/",
       "kind": "preview-evidence",
       "inspected": true,
-      "notes": "Nine inspected WebP exports and the machine-readable report were captured from the READY Vercel preview without retaining its temporary access token."
+      "notes": "Nine inspected WebP exports, six lossless PNG review derivatives, and the machine-readable report were captured from the READY Vercel preview without retaining its temporary access token."
+    },
+    {
+      "path_or_url": "content/v0/evidence/independent-review-2026-07-22.md",
+      "kind": "independent-review",
+      "inspected": true,
+      "notes": "Records the private-ID-safe v0 engineering and visual verdicts, remediation closure, conservative score, and remaining human cloud gate."
     }
   ],
   "checks": [
@@ -122,42 +128,44 @@
     {
       "name": "engineering-gates",
       "status": "pass",
-      "evidence": "Twenty-two behavior tests, TypeScript, scoped ESLint, and the Next.js production build passed."
+      "evidence": "Thirty-three focused behavior and contract tests, full TypeScript, scoped ESLint, staged secret scans, and the Next.js 16.2.6 production build passed."
     },
     {
       "name": "secure-preview",
       "status": "pass",
-      "evidence": "Behavior tests cover cache hit and miss, refresh invalidation, nested assets, method rejection, safe fallback, and request and response credential stripping."
+      "evidence": "Tests cover server-only configuration, own-property key maps, shared-cache readiness, stale and malformed remote rejection, GET and HEAD boundaries, nested assets, SDK compression alignment, same-key redirects, missing redirects, safe loading returns, and deny-by-default headers."
     },
     {
       "name": "independent-review",
-      "status": "blocked",
-      "evidence": "v0 Max correctly withheld approval because its first pass received the protected login page and client-rendered PR shell; committed screenshots and raw source are being supplied for re-review."
+      "status": "pass",
+      "evidence": "v0 Max Fast returned PASS WITH FOLLOW-UPS for the exact engineering patch and six-view visual packet; all medium engineering findings were closed and the visual review scored 26/30."
     },
     {
       "name": "production-artifact",
-      "status": "pass",
-      "evidence": "Draft PR 351, GitHub CI, and the single native Vercel branch preview are READY; three canonical routes returned their expected FrankX pages at 200."
+      "status": "blocked",
+      "evidence": "Draft PR 351 and its earlier UI preview are healthy, but the exact final commit is intentionally skipped by Vercel while the PR remains draft. Frank must mark the PR ready to trigger the final cloud suite."
     }
   ],
   "score": {
-    "total": 28,
+    "total": 26,
     "max": 30,
     "breakdown": {
       "hierarchy": 5,
       "brand_fit_and_distinctiveness": 4,
-      "craft": 5,
-      "accessibility_responsiveness_and_reduced_motion": 5,
-      "provenance_and_accuracy": 4,
+      "craft": 4,
+      "accessibility_responsiveness_and_reduced_motion": 3,
+      "provenance_and_accuracy": 5,
       "intended_utility": 5
     },
-    "notes": "Local and cloud design and engineering evidence clear the 26/30 premium gate; independent review remains before the ship decision."
+    "notes": "The independent visual council scored the release 26/30, clearing the premium beta gate. Engineering review passed; the final exact-commit cloud build remains behind the intentional draft-to-ready human gate."
   },
   "decision": "iterate",
   "known_risks": [
     "v0 Platform API v2 and the exact SDK package are beta.",
     "Generated identity studies are concept material, not final vector identity.",
     "Live image, video, and 3D providers are not connected.",
+    "Muted secondary-label contrast should be verified from computed tokens before a wider release.",
+    "The desktop workflow graph can use a slightly larger initial scale in a future polish pass.",
     "Repo-wide security scan reports pre-existing findings outside this lane."
   ]
 }
