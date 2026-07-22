@@ -55,7 +55,7 @@ export function SaveContactButton({
   const copy = platform ? PLATFORM_COPY[platform] : null
   const label = copy?.label ?? 'Save my contact'
 
-  const base = 'group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all active:scale-[0.98]'
+  const base = 'group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none'
   const styles =
     variant === 'primary'
       ? 'bg-gradient-to-r from-emerald-500 via-emerald-400 to-cyan-400 px-6 py-3.5 text-sm text-black shadow-[0_10px_40px_-12px_rgba(16,185,129,0.7)] hover:shadow-[0_14px_50px_-10px_rgba(16,185,129,0.85)] hover:scale-[1.02]'
@@ -68,7 +68,7 @@ export function SaveContactButton({
       onClick={() => trackEvent('connect_vcard_downloaded', { source: 'connect_hero', platform: platform ?? 'unknown' })}
       className={`${base} ${styles} ${className}`}
     >
-      <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" aria-hidden />
+      <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 motion-reduce:transform-none motion-reduce:transition-none" aria-hidden />
       <span>{label}</span>
     </a>
   )
