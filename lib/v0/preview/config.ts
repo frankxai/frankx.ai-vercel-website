@@ -1,27 +1,13 @@
 import "server-only"
 
-import { z } from "zod"
+import {
+  getPreviewConfigurationForEnvironment,
+  isPreviewKey,
+  type PreviewEnvironment,
+  type PreviewReadiness,
+} from "./config-policy"
 
-const previewKeySchema = z
-  .string()
-  .min(2)
-  .max(64)
-  .regex(/^[a-z0-9][a-z0-9-]*$/, "Invalid preview key")
-
-const chatIdSchema = z
-  .string()
-  .min(6)
-  .max(128)
-  .regex(/^[A-Za-z0-9_-]+$/, "Invalid v0 chat id")
-
-const chatMapSchema = z.record(previewKeySchema, chatIdSchema)
-
-export type PreviewReadiness =
-  | "disabled"
-  | "credentials-required"
-  | "mapping-required"
-  | "shared-cache-required"
-  | "ready"
+export { isPreviewKey, type PreviewReadiness }
 
 export class PreviewConfigurationError extends Error {
   readonly status: number
@@ -31,10 +17,6 @@ export class PreviewConfigurationError extends Error {
     this.name = "PreviewConfigurationError"
     this.status = status
   }
-}
-
-export function isPreviewKey(value: string): boolean {
-  return previewKeySchema.safeParse(value).success
 }
 
 export function isPreviewBetaEnabled(): boolean {
@@ -49,36 +31,32 @@ export function hasSharedPreviewCache(): boolean {
   return Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN)
 }
 
-function readChatMap(): Record<string, string> {
-  const raw = process.env.V0_PREVIEW_CHAT_MAP
-  if (!raw) return {}
-
-  try {
-    const parsed: unknown = JSON.parse(raw)
-    const result = chatMapSchema.safeParse(parsed)
-    return result.success ? result.data : {}
-  } catch {
-    return {}
+function currentEnvironment(): PreviewEnvironment {
+  return {
+    V0_PREVIEW_BETA_ENABLED: process.env.V0_PREVIEW_BETA_ENABLED,
+    V0_API_KEY: process.env.V0_API_KEY,
+    V0_PREVIEW_CHAT_MAP: process.env.V0_PREVIEW_CHAT_MAP,
+    VERCEL_ENV: process.env.VERCEL_ENV,
+    KV_REST_API_URL: process.env.KV_REST_API_URL,
+    KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
   }
 }
 
 export function getPreviewReadiness(previewKey: string): PreviewReadiness {
-  if (!isPreviewBetaEnabled()) return "disabled"
-  if (!process.env.V0_API_KEY) return "credentials-required"
-  if (!isPreviewKey(previewKey) || !readChatMap()[previewKey]) {
-    return "mapping-required"
-  }
-  if (isProductionDeployment() && !hasSharedPreviewCache()) {
-    return "shared-cache-required"
-  }
-  return "ready"
+  return getPreviewConfigurationForEnvironment(
+    previewKey,
+    currentEnvironment(),
+  ).readiness
 }
 
 export function resolvePreviewChatId(previewKey: string): string {
-  const readiness = getPreviewReadiness(previewKey)
-  if (readiness !== "ready") {
+  const configuration = getPreviewConfigurationForEnvironment(
+    previewKey,
+    currentEnvironment(),
+  )
+  if (configuration.readiness !== "ready" || !configuration.chatId) {
     throw new PreviewConfigurationError("Preview is not available.")
   }
 
-  return readChatMap()[previewKey]
+  return configuration.chatId
 }

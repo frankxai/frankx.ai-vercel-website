@@ -231,7 +231,7 @@ export function validateConnection(
     (e) =>
       e.source === source &&
       e.target === target &&
-      (e.targetHandle ?? null) === (targetHandle ?? inPort.id ?? null),
+      findPort(targetNode, e.targetHandle, "in")?.id === inPort.id,
   )
   if (duplicate) {
     return { ok: false, reason: "That connection already exists." }

@@ -141,11 +141,20 @@ export class RunController {
     }
 
     this.order = topoSort(this.workflow.nodes, this.workflow.edges)
-    const startIndex = this.opts.startFromNodeId
-      ? Math.max(0, this.order.findIndex((n) => n.id === this.opts.startFromNodeId))
+    const requestedStartIndex = this.opts.startFromNodeId !== undefined
+      ? this.order.findIndex((n) => n.id === this.opts.startFromNodeId)
       : 0
+    if (requestedStartIndex < 0) {
+      this.emit({
+        type: "status",
+        status: "failed",
+        failureReason: `Resume node "${this.opts.startFromNodeId}" does not exist.`,
+      })
+      return
+    }
+
     this.emit({ type: "status", status: "running" })
-    await this.drive(startIndex)
+    await this.drive(requestedStartIndex)
   }
 
   /** Resume from a paused review node: mark it complete, then continue. */

@@ -1,7 +1,10 @@
+import "server-only"
+
 import {
   getPreviewReadiness,
   isPreviewKey,
 } from "@/lib/v0/preview/config"
+import { getSafePreviewReturnTo } from "@/lib/v0/preview/proxy-core"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -18,22 +21,6 @@ function escapeHtml(value: string): string {
     .replaceAll(">", "&gt;")
 }
 
-function safeReturnTo(value: string | null, previewKey: string): string {
-  const prefix = `/api/v0-preview/${previewKey}/`
-  if (!value) return prefix
-
-  try {
-    const base = new URL("https://preview.invalid")
-    const target = new URL(value, base)
-    if (target.origin !== base.origin || !target.pathname.startsWith(prefix)) {
-      return prefix
-    }
-    return target.pathname + target.search
-  } catch {
-    return prefix
-  }
-}
-
 export async function GET(
   request: Request,
   context: RouteContext,
@@ -47,7 +34,7 @@ export async function GET(
   }
 
   const requestUrl = new URL(request.url)
-  const returnTo = safeReturnTo(
+  const returnTo = getSafePreviewReturnTo(
     requestUrl.searchParams.get("returnTo"),
     previewKey,
   )

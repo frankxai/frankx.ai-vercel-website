@@ -1,4 +1,5 @@
 import assert from "node:assert/strict"
+import { createHash } from "node:crypto"
 import { readdir, readFile, stat } from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
@@ -105,29 +106,49 @@ describe("v0 secure preview contract", () => {
       await Promise.all(files.map(async (file) => `${file}\n${await read(file)}`))
     ).join("\n")
 
-    for (const privateValue of [
-      "sUVnzplxmGM",
-      "wQn1UYbDf0I",
-      "b_ZsFO8YHzoiB",
-    ]) {
-      assert.equal(corpus.includes(privateValue), false)
+    const privateValueHashes = new Set([
+      "f5a25868af34e8d17f0cf7334dc79794d91550b3d59419a86ef5be508a32537a",
+      "c5da3360a23fe50868e2c03d4720d191ce305be2c8639644019345d98fcea8c5",
+      "1681129e84730ca9d167d837bcd2caf24dcefd76c3a46b048a4bf42232a9305d",
+    ])
+    const identifierCandidates = new Set(
+      corpus.match(/[A-Za-z0-9_-]{6,128}/g) ?? [],
+    )
+    for (const candidate of identifierCandidates) {
+      const fingerprint = createHash("sha256").update(candidate).digest("hex")
+      assert.equal(
+        privateValueHashes.has(fingerprint),
+        false,
+        "A private v0 identifier fingerprint appeared in the public corpus.",
+      )
     }
     assert.doesNotMatch(corpus, /vusercontent|__v0_token/i)
 
     const config = await read("lib/v0/preview/config.ts")
+    const policy = await read("lib/v0/preview/config-policy.ts")
+    const configurationBoundary = `${config}\n${policy}`
     assert.match(config, /import "server-only"/)
-    assert.match(config, /V0_PREVIEW_BETA_ENABLED/)
-    assert.match(config, /V0_PREVIEW_CHAT_MAP/)
-    assert.match(config, /V0_API_KEY/)
-    assert.doesNotMatch(config, /NEXT_PUBLIC_/)
+    assert.match(configurationBoundary, /V0_PREVIEW_BETA_ENABLED/)
+    assert.match(configurationBoundary, /V0_PREVIEW_CHAT_MAP/)
+    assert.match(configurationBoundary, /V0_API_KEY/)
+    assert.doesNotMatch(configurationBoundary, /NEXT_PUBLIC_/)
   })
 
   it("allowlists request headers and strips stateful response headers", async () => {
     const proxy = await read("lib/v0/preview/proxy.ts")
     const core = await read("lib/v0/preview/proxy-core.ts")
+    const route = await read(
+      "app/api/v0-preview/[previewKey]/[[...path]]/route.ts",
+    )
+    const loadingRoute = await read(
+      "app/api/v0-preview/[previewKey]/loading/route.ts",
+    )
     assert.match(proxy, /import "server-only"/)
+    assert.match(route, /import "server-only"/)
+    assert.match(loadingRoute, /import "server-only"/)
     assert.match(core, /const SAFE_PREVIEW_REQUEST_HEADERS/)
-    assert.match(core, /headers\.delete\("set-cookie"\)/)
+    assert.match(core, /const SAFE_PREVIEW_RESPONSE_HEADERS/)
+    assert.doesNotMatch(core, /new Headers\(response\.headers\)/)
     assert.match(core, /headers\.set\("cache-control", "private, no-store"\)/)
     assert.doesNotMatch(core, /headers:\s*request\.headers/)
     assert.match(core, /request\.method !== "GET"/)

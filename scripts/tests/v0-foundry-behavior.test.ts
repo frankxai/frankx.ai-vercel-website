@@ -114,6 +114,37 @@ describe("Visual Foundry graph rules", () => {
     assert.equal(duplicate.ok, false)
     assert.match(duplicate.reason ?? "", /already exists/i)
 
+    const normalizedDuplicate = validateConnection(
+      nodes,
+      [{ ...makeEdge("a", "b"), sourceHandle: undefined, targetHandle: undefined }],
+      {
+        source: "a",
+        target: "b",
+        sourceHandle: "a-out-0",
+        targetHandle: "b-in-0",
+      },
+    )
+    assert.equal(normalizedDuplicate.ok, false)
+    assert.match(normalizedDuplicate.reason ?? "", /already exists/i)
+
+    const multiInputTarget = makeNode("multi")
+    multiInputTarget.data.inputs.push({
+      id: "multi-in-1",
+      kind: "any",
+      label: "Alternate input",
+    })
+    const distinctPort = validateConnection(
+      [makeNode("source"), multiInputTarget],
+      [makeEdge("source", "multi")],
+      {
+        source: "source",
+        target: "multi",
+        sourceHandle: "source-out-0",
+        targetHandle: "multi-in-1",
+      },
+    )
+    assert.equal(distinctPort.ok, true)
+
     const self = validateConnection(nodes, edges, {
       source: "a",
       target: "a",
@@ -279,5 +310,25 @@ describe("Visual Foundry deterministic run engine", () => {
       ["a", "b"],
     )
     assert.equal(events.some((event) => event.type === "output"), false)
+  })
+
+  it("fails closed when a requested resume node is missing or empty", async () => {
+    for (const startFromNodeId of ["deleted-node", ""]) {
+      const events: RunEvent[] = []
+      const controller = new RunController(
+        getSeedWorkflow("wf-product-photography")!,
+        (event) => events.push(event),
+        {
+          runId: "run_missing_resume",
+          startFromNodeId,
+          stepDelayMs: 0,
+        },
+      )
+
+      await controller.start()
+      assert.equal(events.at(-1)?.status, "failed")
+      assert.match(events.at(-1)?.failureReason ?? "", /does not exist/i)
+      assert.equal(events.some((event) => event.type === "output"), false)
+    }
   })
 })

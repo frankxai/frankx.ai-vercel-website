@@ -9,3 +9,5 @@ Captured from the READY Vercel preview for draft PR 351 on 2026-07-22.
 - Runtime checks: focus trap and restoration, mobile inspector, reduced motion, output-action geometry, console and request diagnostics, accessibility names, image integrity, overflow, and performance budgets
 
 `report.json` is the machine-readable receipt. The WebP files are the actual inspected exports. Vercel deployment protection was bootstrapped through an environment-only QA input; no temporary share token is stored in this directory or repository.
+
+`reviewer-png/` contains lossless first-viewport PNG derivatives used only for cross-provider visual review. The canonical full-page WebP receipts remain unchanged.
