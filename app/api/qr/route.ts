@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import QRCode from 'qrcode'\nimport { getClientIdentifier, qrRatelimit } from '@/lib/ratelimit'
+import QRCode from 'qrcode'
+import { getClientIdentifier, qrRatelimit } from '@/lib/ratelimit'
 
 export const runtime = 'nodejs'
 
 const SITE = 'https://frankx.ai'
 const DEFAULT_SIZE = 1024
-const MAX_SIZE = 4096\nconst SUPPORTED_PNG_SIZES = new Set([512, 1024, 2048])
+const MAX_SIZE = 4096
+const SUPPORTED_PNG_SIZES = new Set([512, 1024, 2048])
 
 const BRAND_FOREGROUND = '#10b981'
 const BRAND_BACKGROUND = '#0a0a0b'
@@ -56,7 +58,19 @@ export async function GET(request: NextRequest) {
   const transparent = searchParams.get('bg') === 'transparent'
   const caption = searchParams.get('caption') === '1'
 
-  // The route is public and cacheable, but first-time query variants still invoke\n  // the renderer. Rate-limit those misses without turning KV availability into a\n  // dependency for an otherwise static asset.\n  try {\n    const { success } = await qrRatelimit.limit(getClientIdentifier(request))\n    if (!success) {\n      return NextResponse.json({ error: 'Too many QR render requests' }, { status: 429 })\n    }\n  } catch (error) {\n    console.warn('QR rate limit unavailable; rendering with bounded inputs', error)\n  }\n\n  const dest = resolveDestination(searchParams.get('to'))
+  // The route is public and cacheable, but first-time query variants still invoke
+  // the renderer. Rate-limit those misses without turning KV availability into a
+  // dependency for an otherwise static asset.
+  try {
+    const { success } = await qrRatelimit.limit(getClientIdentifier(request))
+    if (!success) {
+      return NextResponse.json({ error: 'Too many QR render requests' }, { status: 429 })
+    }
+  } catch (error) {
+    console.warn('QR rate limit unavailable; rendering with bounded inputs', error)
+  }
+
+  const dest = resolveDestination(searchParams.get('to'))
   const targetUrl = `${SITE}${dest.path}?ref=qr`
   const fileBase = dest.path.replace(/\//g, '-').replace(/^-/, '') || 'connect'
 
