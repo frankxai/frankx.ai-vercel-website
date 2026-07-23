@@ -1,0 +1,45 @@
+{
+  "week": "2026-W30",
+  "generatedAt": "2026-07-20T07:06:49Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-07-13T07:06:49Z",
+  "windowEnd": "2026-07-20T07:06:49Z",
+  "metrics": {
+    "count_total": 20,
+    "count_production": 0,
+    "count_preview": 20,
+    "count_skipped": 3,
+    "count_error": 0,
+    "count_ready": 17,
+    "duration_p50_seconds": 547,
+    "duration_p95_seconds": 612,
+    "duration_max_seconds": 623,
+    "total_build_minutes": 158,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 17,
+    "ready_deploys_total": 17,
+    "duration_note": "17/17 READY deploys sampled via get_deployment (Jul 13–20). Max outlier: dpl_Bhs98Z2D4NrWme4Ca2SC9GWghy9V (623s, creator-media category infra commit, Jul 17). p95=612s via linear interpolation at position 15.2."
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W29",
+    "count_total": -80,
+    "count_total_pct": "-80.0%",
+    "count_production": -20,
+    "count_preview": -60,
+    "count_error": -1,
+    "count_error_pct": "-100.0%",
+    "count_skipped": -9,
+    "count_skipped_pct": "-75.0%",
+    "duration_p50_seconds": -23,
+    "duration_p50_pct": "-4.0%",
+    "total_build_minutes": -659,
+    "total_build_minutes_pct": "-80.7%"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "duration_p50=547s > 360s RED threshold. Marginal improvement from W29's 570s (-23s, -4.0%). Build times remain structurally elevated — Turbopack + large Next.js content site averaging ~559s/build. p50 needs to fall below 360s to exit RED; currently ~52% above threshold. Max outlier=623s (dpl_Bhs98Z2D4NrWme4Ca2SC9GWghy9V, creator-media category infra, Jul 17).",
+    "count_total=20 vs 100 (W29), -80%. Zero production deploys in window — all 20 are preview/PR branch builds. Low volume consistent with a PR-heavy, merge-light week; branch claude/ai-architecture-templates-65188c dominated with 12 of 20 deploys. No production regression risk, but zero main-branch merges for 7d is worth monitoring.",
+    "count_error=0 (was 1 W29). Clean build week across all 17 READY deploys. count_skipped=3 (CANCELED, likely superseded by rapid successive pushes on the same branch)."
+  ]
+}
