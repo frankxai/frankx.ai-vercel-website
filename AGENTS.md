@@ -1,285 +1,98 @@
-# FrankX â€” AGENTS.md
+# frankx.ai-vercel-website — AGENTS.md
 
-**Repo:** `frankxai/FrankX` (private dev + content authoring)
-**Branch (default):** `main` Â· **Active feature:** `feature/prompt-hub`
-**Live site:** https://frankx.ai (deploys from a *different* repo â€” see "Deploy" below)
-**Stack:** Next.js 16 App Router Â· React 18.3 Â· TypeScript 5.7 Â· Tailwind 3.4 Â· Vercel Â· pnpm/npm
-**Last touched:** 2026-05-20
+**Repo:** `frankxai/frankx.ai-vercel-website` (public)
+**This repo IS production.** Vercel's native git integration deploys this repo's `main` branch to https://frankx.ai on every push. There is no separate "production repo" — this is it.
+**Stack (verified from `package.json`):** Next.js 16.1 (App Router) · React 18.3 · TypeScript 5.7 (strict) · Tailwind CSS 3.4 · Vercel (Edge Functions, ISR) · pnpm
 
-## Current sprint (W21, 2026-05-18 â†’ 24)
-
-- **Theme:** Deliver NLDigital. Ship Newsletter Issue 1. Lock June 1 launch.
-- **Authoritative doc:** `docs/planning/2026-W21-sprint.md`
-- **Machine shadow:** `data/sprint-current.json` (backs `/sprint`)
-- **Forcing functions:** NLDigital delivered Tue 5/19 Â· Newsletter Issue 1 ships Fri 5/22 Â· Inner Circle launches Mon 6/1 Â· Madrid trip Wed 5/27 â†’ Mon 6/2
-- **In-flight foundations:** `/hub-audit` `/traffic-week` `/newsletter-week` commands + `@integrity-guard` agent shipped 2026-05-20
-
-This file is the canonical brief for any AI agent (Codex, Claude Code, Gemini, OpenCode, Cursor, etc.) entering this repo. **Read it first. Read it before AGENTS.md elsewhere.** It overrides general-purpose agent assumptions and points you at the specific files that govern behavior.
+This file is the canonical brief for any AI agent (Claude Code, Codex, Gemini, Grok, Cursor, OpenCode, etc.) entering this repo. Read it before assuming anything about deploy mechanics, branch protocol, or repo identity.
 
 ---
 
-## 1. Read in this order
+## 1. Repo identity — read this first
 
-1. **This file** â€” orientation
-2. **`CLAUDE.md`** â€” project-level Claude Code instructions (covers brand, deploy, design contract, anti-patterns)
-3. **`.codex/instructions.md`** â€” Codex-specific delta on top of this file (worktree usage, dangerous-bypass scope)
-4. **`OPS-INDEX.md`** â€” single front-door pointer index (read for "where does X live?")
-5. **`design.md` + `taste.md`** â€” visual contract (tokens + judgment). Required before any UI work.
-6. **`.frankx/identity.md` + `.frankx/brand.md` + `.frankx/stack.md`** â€” who Frank is, brand voice, tech reference
-7. **Memory index** at `~/.claude/projects/C--Users-frank-FrankX/memory/MEMORY.md` (Claude Code) â€” 50+ topic files
+Do not treat this repo as a dev/staging checkout that "syncs to production elsewhere." It does not. Confirmed:
 
----
+- `git remote -v` → `origin` is `frankxai/frankx.ai-vercel-website`, the only remote.
+- The GitHub repo is public, default branch `main`.
+- `.github/workflows/ci.yml` runs type-check + lint + build on push/PR to `main`/`staging` — it does **not** deploy. Deployment happens through Vercel's git integration outside of GitHub Actions.
+- This checkout also contains a large number of root-level planning/strategy documents (business plans, CMS comparisons, roadmap notes, etc.) that read like private-repo working notes rather than production docs. Treat those as historical artifacts, not as authoritative statements about what currently ships to frankx.ai. If a root `.md` file's claims matter for a task, verify against the live site or the actual `app/`/`data/` source first.
+- `package.json` `"name"` is `"frankx"`, not this repo's own name — a known inconsistency, out of scope for a docs-only fix. Don't infer repo identity from it.
+- `CLAUDE_NEW.md` at repo root is a stale, superseded draft (older "Agent Team" XML persona config) that predates and does not match this file or `CLAUDE.md`. Ignore it; it is not currently corrected or removed as part of this change.
 
-## 2. Two-repo deploy architecture (CRITICAL)
-
-`frankx.ai` does **not** deploy from this repo. Pushing to `main` here ships nothing to production.
-
-| Repo                                | Role                            | Vercel project             |
-| ----------------------------------- | ------------------------------- | -------------------------- |
-| `frankxai/FrankX` (this)            | Private dev + content authoring | (not deployed)             |
-| `frankxai/frankx.ai-vercel-website` | **PRODUCTION**                  | `frankx-ai-vercel-website` |
-
-To ship: sync the relevant files to the production repo and push there. See `CLAUDE.md` Â§ "Production Deployment" for the full sync workflow. There is also a sibling worktree at `C:\Users\frank\frankx-prod-sync\` cloned from production.
-
-**Do not** add an `origin` for `frankx.ai-vercel-website` to this repo and force-push. They are intentionally separate.
+If you are looking for the *private* authoring/content repo referenced in some of this checkout's older docs, that is a separate repo (`frankxai/FrankX`, private). You are not in it.
 
 ---
 
-## 3. Health + diagnostics â€” single command
+## 2. Working commands (verified against `package.json`)
 
 ```bash
-# Process + port + memory snapshot (PowerShell)
-npm run health
+# Install (pnpm — pnpm-lock.yaml is the authoritative lockfile; CI uses pnpm)
+pnpm install
 
-# Stop runaway SIS dev stack (dry-run by default)
-npm run sis:stop          # show
-npm run sis:stop:apply    # actually stop
+# Dev server
+pnpm dev
 
-# Cross-repo agent harness audit
-npm run agents:audit      # writes .frankx/machine/agent-harness-audit.json
+# Type check / lint / build (what CI runs)
+pnpm run type-check
+pnpm run lint
+pnpm run build
 
-# Type-check + claims audit + link check (the merge gate)
-npm run merge:gate
+# Broader pre-push gate (includes contract tests, claims/AI-slop audits, link checks)
+pnpm run merge:gate
 
-# Full pre-deploy gate (merge:gate + sync:check)
-npm run predeploy
+# Full local CI mirror
+pnpm run ci:check
+
+# Process/health snapshot (Windows/PowerShell)
+pnpm run health
 ```
 
-If `npm run health` reports orphan Codex sessions, see `docs/ops/SESSION-CAPTURE-2026-05-06.md` for context.
+Do not assume every script referenced in older docs in this checkout (e.g. `sync:check`, `sync:fix`) reflects current practice for this repo — they exist in `package.json` but their operational role from this specific checkout has not been re-verified as part of this fix.
 
 ---
 
-## 4. Branch hygiene + parallel-agent coordination
+## 3. Branch and PR protocol (estate standard)
 
-Multiple agents (Claude, Grok, Gemini, Codex, Cursor, Cline) work this repo in parallel. Git is the coordination layer â€” these rules keep them from colliding. Don't trust a hardcoded "current branch" anywhere; run `git branch --show-current` and `git worktree list` for live state.
+Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this repo. Git is the coordination layer.
 
-- **Default branch:** `main`. Never two agents committing in the same working tree.
-- **One agent = one branch.** Name it `agent/<harness>/<short-scope>` (e.g. `agent/grok/seo-pass`, `agent/claude/404-radar`). This makes `git branch -a` the live ownership map.
-- **Claim before you touch.** Read + append a row to `.agent/active-agents.md` (the live board) and pick a scope that doesn't overlap an active row. Remove your row when you push/merge.
-- **Heavy or risky parallel work â†’ your own worktree:** `git worktree add .worktrees/<name> -b agent/<harness>/<scope>`. Isolates the filesystem too, so a failed build in one agent can't corrupt another's checkout. Don't switch branches in the main checkout while another agent is mid-edit there.
-- **Integrate through the gate, one at a time.** `npm run merge:gate` clean â†’ push your branch â†’ PR or fast-forward to `main`. Never two agents merging to `main` in the same moment.
-- **Foreign state = another agent's work.** Untracked files, dirty branches, or worktrees you didn't create: investigate (`git log -1 <branch>`, check the board) before deleting or overwriting. Treat a board row as abandoned only if its branch has no commits in >24h.
-- **Stale branch policy:** unmerged + untouched > 30 days is archival-candidate. Inspect with `git log --left-right` before deleting.
-
-`.gitattributes` enforces LF on all source files. If `git status` shows mass "modified" on files you didn't touch, run `git checkout -- .` once after pulling â€” that's a one-time CRLF re-normalization.
-
----
-
-## 5. The merge gate â€” what must pass before `main`
-
-### Public/private content gate
-
-- Public content must follow `C:\Users\frank\.starlight\policies\public-private-content-boundary.md`.
-- A client or partner hub is a route-scoped permission boundary. Material approved for that hub must not be reused in blogs, newsletters, social posts, screenshots, diagrams, marketplace copy, or other public routes without a separate consent record for that surface.
-- Before publishing, scan copy, frontmatter, code blocks, filenames, alt text, captions, metadata, links, and public assets for names and identifying operational details.
-- If named-entity consent is absent, use a generic or fictional example and remove identifying repositories, packages, plugins, skills, versions, commands, workflows, roadmaps, and orphaned assets.
-- Named or client-adjacent public releases require an independent privacy verifier and a post-deploy scan of live HTML and direct asset URLs.
-
-```bash
-npm run merge:gate
-# = npm run type-check
-#   && npm run claims:audit:strict   (no unverified marketing claims)
-#   && npm run links:check:ci         (no broken internal links)
-```
-
-Plus, before any production sync:
-
-```bash
-npm run predeploy
-# = merge:gate + sync:check (parity with frankx.ai-vercel-website)
-```
-
-If any agent skips these gates, that's a regression. CI runs `npm run ci:check` which adds `lint + content:validate + diagrams:guard`.
-
-Plus, before any content publish (newsletter, blog post, social):
-
-```
-@integrity-guard <file-or-surface>
-# 5-gate quality check: brand voice + AI-slop + claim audit + schema + conversion
-# PASS â†’ publish. WARN â†’ ship with corrections. FAIL â†’ block.
-```
-
-See `.claude/agents/integrity-guard.md`. Shipped 2026-05-20.
+- **Never push directly to `main`.** All work lands on a branch and goes through a PR, even for a solo agent session.
+- **One agent = one branch:** `agent/<harness>/<short-scope>` (e.g. `agent/claude/blog-fix`, `agent/codex/newsletter`). Heavy or risky work gets its own worktree: `git worktree add .worktrees/<name> -b agent/<harness>/<scope>`.
+- **Draft-first PRs.** Open every PR as a draft (`gh pr create --draft`). Iterate on the draft; only mark it ready (`gh pr ready`) when the change is complete and gates pass — that is what should trigger any heavier CI.
+- **Batch commits.** Don't push per-tiny-edit; each push re-runs CI. Group logical work.
+- **`[skip ci]`** in the commit subject for docs-only, chore, or content-only commits that touch no code paths CI cares about.
+- **Verify locally first.** Run `pnpm run type-check`, `pnpm run lint`, and `pnpm run build` locally before pushing. Cloud CI is the merge-boundary check, not the iteration loop.
+- **Vercel deploys via git integration only.** Never add a GitHub Actions deploy step — Vercel's own git integration already deploys `main` on push; an Actions-based deploy would double-build and fight it.
+- **Don't touch another agent's in-flight work.** Check `git branch -a`, `git status`, and any dirty/untracked state before editing — foreign state usually means another harness is mid-task.
 
 ---
 
-## 5b. The 6-layer operating loop (added 2026-05-20)
+## 4. Brand + content discipline
 
-Every operating decision composes into one of six layers. Full doctrine in `CLAUDE.md` Â§ "The 6-layer Operating Loop". Quick reference:
-
-| Layer | Question | Tier-1 commands |
-|---|---|---|
-| L1 Intelligence | What's worth saying? | `/research` `/deepresearch` `/new-model` |
-| L2 Strategy + Plan | What gets made + when? | `/content-strategy` `/plan-week` `/traffic-week` `/sunday` |
-| L3 Production | Make the thing | `/factory` `/talking-head-ship` `/visual-strategy` |
-| L4 Excellence Gates | Don't ship slop | `/v` `/hub-audit` `/seo-check` `@integrity-guard` |
-| L5 Distribution | Reach the reader | `/content-ops` `/newsletter-week` `/publish` `/amplify-attendee` |
-| L6 Learning | What worked? | `/palace` `/chronicle` `/hook-learn` `/sentinel` |
-
-The weekly cadence walks all six. Skipping L4 produces the LLM-slop output the site refuses to ship. Skipping L6 produces a one-way street.
-
-**The automated spine.** 7 always-on cloud routines (CCR) walk this loop without Frank's machine on — daily research pulse, Sunday fan-out, Friday newsletter, Saturday hub audit, monthly dependency audit, weekly Vercel cost watch. `docs/ops/SCHEDULED-ROUTINES.md` is the fleet's source of truth for every scheduled automation: read it before creating, changing, or reasoning about one, and add a table row in the same change. **Durable-output-sink law:** every routine must leave a PR, a committed file, or a Slack DM — never report-only into run-history. Agents cannot toggle web-UI-created routines (API rejects it); those are Frank's to manage at https://claude.ai/code/routines.
+- **Voice:** "Elite Creator. AI Architect. Humble Excellence." — direct, technical, results-first. Never spiritual or guru-toned.
+- **Title stays "AI Architect"** — never "AI Systems Architect" or "Senior AI Architect."
+- **No Arcanea mythology in FrankX copy** (Guardians, Gates, Realms, Seekers, etc.) — that belongs to the separate Arcanea brand.
+- **No emoji in user-facing copy** unless explicitly requested.
+- **No AI-slop tells:** `delve`, `dive into`, `it's worth noting`, `certainly`, `absolutely`, `unleash`, `unlock the power of`, `revolutionary`, `game-changing`.
+- **Never rename a working URL.** `/library/{slug}` stays `/library/{slug}`. Never delete a page with traffic — unlink from nav and noindex it instead.
+- **Design contract:** `design.md` (token spec — colors, type, spacing, components) and `taste.md` (restraint test, AI-slop refusal list, polish pass) both exist at repo root and govern any UI/visual work. Read both before touching `app/`, `components/`, or `content/` presentation.
 
 ---
 
-## 5c. Antigravity-Native Swarm Orchestration (added 2026-05-29)
+## 5. Where things live (verified present in this checkout)
 
-Antigravity natively federalizes and runs ACOS's 99+ specialized agents as dynamic subagents using native tool definitions.
+| You need... | Look here |
+|---|---|
+| Claude Code operating contract | `CLAUDE.md` |
+| Design tokens / visual contract | `design.md`, `taste.md` |
+| Content system / route ownership | `docs/content-system.md`, `docs/site-map.md` |
+| Architecture reference docs | `docs/architecture/` |
+| Project-level slash commands | `.claude/commands/` (includes `hub-audit.md`, `seo-check.md`, `publish.md`, `publish-content.md`, `newsletter-week.md`, `traffic-week.md`, `frankx-ai-deploy.md`) |
+| Project-level agents | `.claude/agents/` (includes `integrity-guard.md`) |
+| CI workflow | `.github/workflows/ci.yml` (type-check/lint/build gate) |
+| Branch cleanup automation | `.github/workflows/branch-cleanup.yml` |
 
-**Operating Protocol:**
-1. **Discovery:** Load agent parameters dynamically from the registry cache `.antigravity/agents-registry.json` or by running `node scripts/lib/acos-agy-registry.mjs <agent-name>`.
-2. **Registration:** Define the subagent dynamically using the `define_subagent` tool. The system pre-compiles the FrankX Voice & Brand Guard directly into the system instructions.
-3. **Execution:** Invoke the subagent using `invoke_subagent` to execute specialized tasks or coordinate multi-agent cascades.
-
-For full guidelines and trigger mappings, read `.antigravity/instructions.md`.
-
----
-
-## 6. Brand discipline â€” non-negotiable
-
-- **Voice:** "Elite Creator. AI Architect. Humble Excellence." â€” direct, technical, results-first, never spiritual or guru. See `.frankx/brand.md`.
-- **Title:** "AI Architect" (never "AI Systems Architect", never "Senior AI Architect").
-- **No Arcanean mythology in FrankX copy.** Guardians, Gates, Realms, Seekers belong in `/ultraworld` and the `Arcanea` repo. FrankX is brand-clean.
-- **No Canva.** Use your harness's native image generation if it has one (Grok Build does); otherwise Nano Banana 2 (Gemini 3.1 Flash Image) via `scripts/lib/nb-image.mjs` or the `scripts/nb-generate.mjs` CLI. Either way hold the active `lib/gen/lanes.ts` lane â€” never mix lanes on one asset. See the `nb-image` and `gen` skills.
-- **No emoji in user-facing copy** unless the user explicitly asked. (System prompts may use them.)
-- **No AI-slop tells:** `delve`, `dive into`, `it's worth noting`, `certainly`, `absolutely`, `unleash`, `unlock the power of`, `revolutionary`, `game-changing`. Refusal list in `taste.md`.
+No `CONTRIBUTING.md` exists in this repo. No `.agent/active-agents.md` live-board file exists here either — don't assume one and don't invent claims about a coordination board that isn't present.
 
 ---
 
-## 7. The design contract
-
-Two files at repo root govern visual decisions. **Read both before any UI work.**
-
-- **`design.md`** â€” Google Labs DESIGN.md spec (alpha, Apache 2.0). YAML tokens (colors, type, spacing, rounded, components) + canonical Do's/Don'ts. Source of truth: `tailwind.config.js` and `lib/design-system.ts` â€” `design.md` mirrors them in agent-readable form.
-- **`taste.md`** â€” companion. Restraint test, AI-slop refusal list, the 8-step polish pass. The judgment Google's spec deliberately doesn't capture.
-
-The answer is usually less.
-
----
-
-## 8. Where things live (pointer-only)
-
-| You need...                                                | Look here                                         |
-| ---------------------------------------------------------- | ------------------------------------------------- |
-| Project-level Claude rules                                 | `CLAUDE.md`                                        |
-| Codex-specific rules                                       | `.codex/instructions.md`                           |
-| Front-door pointer index                                   | `OPS-INDEX.md`                                     |
-| Frank's identity / brand / stack / family                  | `.frankx/`                                         |
-| Machine state (inventory, accounts, programs log)          | `.frankx/machine/`                                 |
-| Memory across sessions (Claude Code)                       | `~/.claude/projects/C--Users-frank-FrankX/memory/` |
-| Sibling-repo registry (which repo for what?)               | `C:\Users\frank\REPO-REGISTRY.md`                  |
-| Slash commands                                             | `.claude/commands/`                                |
-| Project agents                                             | `.claude/agents/`                                  |
-| Skills (project-level)                                     | `.claude/skills/`                                  |
-| Recent decisions / handovers                               | `docs/ops/HANDOVER-*.md` (newest first)            |
-| Architecture + strategy (Personal Data Mesh, SIS-MCP plan) | `docs/PERSONAL_DATA_MESH.md`, `docs/ops/SIS-MCP-PROPAGATION-PLAN.md` |
-| Audit log (overnight excellence audit, 2026-05-06)         | `docs/ops/2026-05-06-MASTER-EXCELLENCE-AUDIT.md`   |
-| Creator Ecosystem & Sovereign Wealth Blueprint             | `docs/strategy/creator-ecosystem-blueprint.md`     |
-
----
-
-## 9. Anti-patterns â€” never
-
-- **Never rename working URLs.** `/library/{slug}` is `/library/{slug}` forever. SEO history matters more than aesthetics.
-- **Never delete pages with traffic.** Unlink from nav, keep page noindex'd at most.
-- **Never push to `main` without `npm run merge:gate` clean.** No exceptions for "trivial" fixes.
-- **Never `git stash pop` without a clean working tree.** The `~/.claude/` substrate had to be hand-rescued from this exact mistake on 2026-05-06.
-- **Never auto-resolve a merge conflict in `~/.claude/`.** That's the agent operating system. Always read, plan, then human-gate.
-- **Never delete nested `.git` directories without a read-only audit first.** Memory: 2026-04-20 nested `.git` had 48 unique commits + 628 dirty files that would have been destroyed by naive cleanup.
-- **Never invent a function/file/flag from memory without verifying it exists.** Memory entries become stale; the code is authoritative.
-
----
-
-## 10. Default work pattern
-
-1. Read this file + `CLAUDE.md` + relevant skill files.
-2. State in one sentence what you're about to do.
-3. Make the change in the smallest reversible unit.
-4. Run the relevant gate (`type-check` for TS edits, `links:check` for content edits).
-5. Commit with a Conventional Commit message (`feat`, `fix`, `chore`, `docs`, `refactor`, `test`).
-6. Auto-push completed work on feature branches you own. Do not push `main` or the production repo without explicit ship/deploy approval.
-
-If you discover unexpected state (untracked files, dirty branches, foreign worktrees), **investigate before deleting or overwriting**. It may be in-progress work from another agent.
-
----
-
-## 11. Forcing-function deadlines (as of 2026-05-07)
-
-These shape priority. Confirm in `docs/planning/2026-W19-sprint.md` for the latest.
-
-| When             | What                                            |
-| ---------------- | ----------------------------------------------- |
-| 2026-05-19       | NLDigital workshop (Build First AI Agent)       |
-| 2026-05-27       | Madrid workshop (Build First AI Agent)          |
-| 2026-W23         | SIS MCP propagation across 6 repos (post-Madrid)|
-
----
-
-_End of AGENTS.md. If something here is wrong or missing, the rule is: edit the source-of-truth file (CLAUDE.md, .frankx/*, OPS-INDEX.md) and update the pointer here. Don't duplicate content._
-
-## Design Taste Kernel
-
-For any site, app, landing page, dashboard, visual identity, brand, motion, media, social, or frontend task, apply the shared Design Taste Kernel before handoff:
-
-- C:\Users\frank\starlight\repos\DESIGN_TASTE.md
-- C:\Users\frank\starlight\repos\WEB_EXPERIENCE_STANDARD.md
-- C:\Users\frank\starlight\repos\MOTION_TASTE_RUBRIC.md
-- C:\Users\frank\starlight\repos\MULTI_AGENT_DESIGN_COUNCIL.md
-- C:\Users\frank\starlight\repos\VISUAL_QA_GATE.md
-
-When motion, scroll, generated media, GIF/video, or premium polish matters, route through the Motion Design Studio plugin/skills and verify the result visually.
-
-
-<!-- PREMIUM-WEB-OS:START -->
-## Premium Intelligence Web OS Adoption
-
-This repo participates in the Starlight Premium Intelligence Web OS.
-
-For any website, app, landing page, dashboard, brand surface, visual asset, motion system, 3D/WebGL scene, generated media, or public-facing UI work:
-
-- Read the estate OS first: `C:\Users\frank\starlight\repos\_intelligence\README.md`.
-- Use the activation contract: `C:\Users\frank\starlight\repos\_intelligence\adoption\activation-contract.md`.
-- Treat `C:\Users\frank\starlight\repos\_intelligence\` as the source of truth for premium web taste, design, motion, WebGL, copy, assets, and quality gates.
-- Use `/pwo` or the `premium-web-os` skill for full builds; use `/mad` for a design council pass.
-- Use `/pwo review-pr` before absorbing another agent's PR or branch.
-- Use `/pwo absorb-assets` before using external, generated, scientific, audio, video, or 3D assets.
-- Use `/pwo motion-score` before shipping cinematic scroll, sound-paired motion, or complex choreography.
-- Build static composition first, add Track A local motion second, add Track B GSAP/Lenis scroll only when earned, and add 3D only with fallback and reduced-motion behavior.
-- Use VIS through `C:\Users\frank\starlight\repos\visual-intelligence` for asset provenance, curation packets, rights, and publication records.
-- Use `C:\Users\frank\starlight\repos\_intelligence\visual-worlds\neural-cosmos.md` for neuroscience, cerebrum, spine, electron, signal, or golden spiral direction.
-- Do not copy reference sites or agencies. Deconstruct principles and create original execution.
-- Do not ship without responsive, accessibility, performance, reduced-motion, and visual QA checks appropriate to the change.
-
-Repo-local instructions remain authoritative when stricter.
-<!-- PREMIUM-WEB-OS:END -->
-
-<!-- STARLIGHT-REPO-CONTRACT:START -->
-## Starlight repository contract
-
-Contract: `starlight.repo_profile.v2` · Team: `frankx-product-revenue-team` · Priority: `tier-0`
-- Work only in assigned paths and preserve unrelated dirty files.
-- Read `SYSTEM.md`, `SCHEMA.md`, and `SKILLS.md` before architectural changes.
-- Use the smallest 3–5 role team and an independent verifier for release-affecting work.
-- Required handoff: artifacts, checks, verifier verdict, risks, approvals, rollback, and next bounded action.
-- Human-gated actions: DNS, secrets, billing, spend, migrations, destructive operations, permissions, legal/IP, brand identity, external sends, and high-risk production changes.
-<!-- STARLIGHT-REPO-CONTRACT:END -->
+_End of AGENTS.md. This file replaces a prior version that was a verbatim, unadapted copy of the private `frankxai/FrankX` repo's AGENTS.md and stated this repo does not deploy to production — that was backwards. This repo is production._
