@@ -14,7 +14,7 @@ Do not treat this repo as a dev/staging checkout that "syncs to production elsew
 
 - `git remote -v` → `origin` is `frankxai/frankx.ai-vercel-website`, the only remote.
 - The GitHub repo is public, default branch `main`.
-- `.github/workflows/ci.yml` runs type-check + lint + build on push/PR to `main`/`staging` — it does **not** deploy. Deployment happens through Vercel's git integration outside of GitHub Actions.
+- `.github/workflows/ci.yml` runs type-check, lint, the strict language-refusal audit, and build on relevant pushes and PRs to `main`/`staging` — it does **not** deploy. Deployment happens through Vercel's git integration outside GitHub Actions.
 - This checkout also contains a large number of root-level planning/strategy documents (business plans, CMS comparisons, roadmap notes, etc.) that read like private-repo working notes rather than production docs. Treat those as historical artifacts, not as authoritative statements about what currently ships to frankx.ai. If a root `.md` file's claims matter for a task, verify against the live site or the actual `app/`/`data/` source first.
 - `package.json` `"name"` is `"frankx"`, not this repo's own name — a known inconsistency, out of scope for a docs-only fix. Don't infer repo identity from it.
 - `CLAUDE_NEW.md` at repo root is a stale, superseded draft (older "Agent Team" XML persona config) that predates and does not match this file or `CLAUDE.md`. Ignore it; it is not currently corrected or removed as part of this change.
@@ -32,12 +32,13 @@ pnpm install
 # Dev server
 pnpm dev
 
-# Type check / lint / build (what CI runs)
+# Required CI gates
 pnpm run type-check
 pnpm run lint
+pnpm run ai-slop:audit:strict
 pnpm run build
 
-# Broader pre-push gate (includes contract tests, claims/AI-slop audits, link checks)
+# Broader pre-push gate (includes contract tests, claims/language audits, link checks)
 pnpm run merge:gate
 
 # Full local CI mirror
@@ -59,8 +60,8 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 - **One agent = one branch:** `agent/<harness>/<short-scope>` (e.g. `agent/claude/blog-fix`, `agent/codex/newsletter`). Heavy or risky work gets its own worktree: `git worktree add .worktrees/<name> -b agent/<harness>/<scope>`.
 - **Draft-first PRs.** Open every PR as a draft (`gh pr create --draft`). Iterate on the draft; only mark it ready (`gh pr ready`) when the change is complete and gates pass — that is what should trigger any heavier CI.
 - **Batch commits.** Don't push per-tiny-edit; each push re-runs CI. Group logical work.
-- **`[skip ci]`** in the commit subject for docs-only, chore, or content-only commits that touch no code paths CI cares about.
-- **Verify locally first.** Run `pnpm run type-check`, `pnpm run lint`, and `pnpm run build` locally before pushing. Cloud CI is the merge-boundary check, not the iteration loop.
+- **Do not use `[skip ci]`** for changes under `app/`, `components/`, `content/`, `lib/`, or `taste.md`; those paths carry required release gates. Use it only for truly non-executable documentation after checking the workflow path rules.
+- **Verify locally first.** Run `pnpm run type-check`, `pnpm run lint`, `pnpm run ai-slop:audit:strict`, and `pnpm run build` before pushing. Cloud CI is the merge-boundary check, not the iteration loop.
 - **Vercel deploys via git integration only.** Never add a GitHub Actions deploy step — Vercel's own git integration already deploys `main` on push; an Actions-based deploy would double-build and fight it.
 - **Don't touch another agent's in-flight work.** Check `git branch -a`, `git status`, and any dirty/untracked state before editing — foreign state usually means another harness is mid-task.
 
@@ -74,7 +75,17 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 - **No emoji in user-facing copy** unless explicitly requested.
 - **No AI-slop tells:** `delve`, `dive into`, `it's worth noting`, `certainly`, `absolutely`, `unleash`, `unlock the power of`, `revolutionary`, `game-changing`.
 - **Never rename a working URL.** `/library/{slug}` stays `/library/{slug}`. Never delete a page with traffic — unlink from nav and noindex it instead.
-- **Design contract:** `design.md` (token spec — colors, type, spacing, components) and `taste.md` (restraint test, AI-slop refusal list, polish pass) both exist at repo root and govern any UI/visual work. Read both before touching `app/`, `components/`, or `content/` presentation.
+- **Local design contract:** `design.md` (tokens — colors, type, spacing, components) and `taste.md` (restraint test, language-refusal list, polish pass) govern UI and presentation in this repo. Read both before touching `app/`, `components/`, or `content/` presentation.
+
+### World-class release kernel
+
+The canonical cross-repo standard lives in [`frankxai/starlight-design-intelligence`](https://github.com/frankxai/starlight-design-intelligence):
+
+- `skills/world-class-web-release/SKILL.md` — release workflow
+- `brand-packs/frankx/` — FrankX editorial, visual, typography, and motion rules
+- `evals/web-release-gate.md` — evidence contract and scoring thresholds
+
+For a high-value new page or redesign, use that kernel together with this repo's `design.md` and `taste.md`. Capture the current desktop and mobile source first; if it cannot be captured, stop before visual ideation. Compare exactly three directions, then require reviewed copy, typography, motion/reduced-motion, mobile, URL, analytics, independent-review, and post-deploy evidence. Do not call a surface "world-class," "legendary," or production-complete without the receipt.
 
 ---
 
@@ -83,12 +94,13 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 | You need... | Look here |
 |---|---|
 | Claude Code operating contract | `CLAUDE.md` |
-| Design tokens / visual contract | `design.md`, `taste.md` |
+| Local design tokens / visual contract | `design.md`, `taste.md` |
+| Cross-repo web release standard | `frankxai/starlight-design-intelligence` → `skills/world-class-web-release/`, `brand-packs/frankx/`, `evals/web-release-gate.md` |
 | Content system / route ownership | `docs/content-system.md`, `docs/site-map.md` |
 | Architecture reference docs | `docs/architecture/` |
 | Project-level slash commands | `.claude/commands/` (includes `hub-audit.md`, `seo-check.md`, `publish.md`, `publish-content.md`, `newsletter-week.md`, `traffic-week.md`, `frankx-ai-deploy.md`) |
 | Project-level agents | `.claude/agents/` (includes `integrity-guard.md`) |
-| CI workflow | `.github/workflows/ci.yml` (type-check/lint/build gate) |
+| CI workflow | `.github/workflows/ci.yml` (type-check/lint/strict-language/build gate) |
 | Branch cleanup automation | `.github/workflows/branch-cleanup.yml` |
 
 No `CONTRIBUTING.md` exists in this repo. No `.agent/active-agents.md` live-board file exists here either — don't assume one and don't invent claims about a coordination board that isn't present.
