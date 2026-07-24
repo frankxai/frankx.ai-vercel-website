@@ -117,6 +117,9 @@ frankxai/
 frankx/
 frankx-os/
 ai-architect-academy/
+!app/ai-architect-academy/
+!app/ai-architect-academy/patterns/
+!app/ai-architect-academy/patterns/page.tsx
 education/context-engineering-for-creators/
 claude-skills/
 products/mcp-doctor/

@@ -238,7 +238,7 @@ export default function AIArchitectAcademyPage() {
               className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Master enterprise AI patterns, Claude Code skills, and production architectures.
-              80+ skills, 20+ battle-tested patterns, and 13 learning paths from an enterprise AI architect.
+              80+ skills, 20+ documented patterns, and five core learning paths from an enterprise AI architect.
             </motion.p>
 
             {/* Tech badges */}
@@ -312,7 +312,7 @@ export default function AIArchitectAcademyPage() {
               {[
                 { value: '80+', label: 'Claude Skills', sublabel: 'Ready to use' },
                 { value: '20+', label: 'Design Patterns', sublabel: 'Enterprise-grade' },
-                { value: '13', label: 'Learning Paths', sublabel: 'Structured curriculum' },
+                { value: '5', label: 'Core Paths', sublabel: 'Structured curriculum' },
                 { value: 'Free', label: 'Open Source', sublabel: 'MIT License' },
               ].map((stat, i) => (
                 <motion.div
@@ -365,7 +365,8 @@ export default function AIArchitectAcademyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                   >
-                    <div
+                    <Link
+                      href={pattern.href}
                       className={`relative flex h-full flex-col rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
                     >
                       <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}>
@@ -379,7 +380,7 @@ export default function AIArchitectAcademyPage() {
                         <span className="text-sm font-medium">Learn pattern</span>
                         <ArrowRight className="h-4 w-4" />
                       </div>
-                    </div>
+                    </Link>
                   </motion.div>
                 )
               })}
@@ -420,7 +421,7 @@ export default function AIArchitectAcademyPage() {
                 Structured Learning
               </h2>
               <p className="max-w-2xl text-lg text-slate-400">
-                13 comprehensive learning paths from beginner to expert. Start with foundations, progress to advanced multi-agent systems.
+                Five core learning paths from foundations to advanced multi-agent systems.
               </p>
             </motion.div>
 
@@ -461,7 +462,7 @@ export default function AIArchitectAcademyPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
               >
-                Explore all 13 learning paths
+                Explore the five core learning paths
                 <ExternalLink className="h-4 w-4" />
               </a>
             </motion.div>

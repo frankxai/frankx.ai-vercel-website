@@ -93,7 +93,7 @@ const navigation = {
       badge: 'Hub',
     },
     items: [
-      { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning paths' },
+      { name: 'Course Picks', href: '/courses', icon: GraduationCap, description: 'Independent picks + FrankX originals' },
       { name: 'Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials' },
       { name: "Frank's Books", href: '/books', icon: BookOpen, description: '23 books, 411K+ words' },
       { name: 'Library', href: '/library', icon: Layers, description: 'Book deep-dives · open-source Library OS' },
