@@ -6,12 +6,16 @@
     "lastReviewed": "2026-05-21"
   },
   "aliases": {
+    "/academy": "/ai-architect-academy",
     "/aco": "/agents",
     "/ai-coe": "/acos",
+    "/aiarchitectacademy": "/ai-architect-academy",
     "/ais": "/allies/ana-cancino",
     "/alliance/cecilia": "/allies/ana-cancino",
     "/ana": "/allies/ana-cancino",
     "/ana-intelligence-system": "/allies/ana-cancino",
+    "/ar-architect-academy": "/ai-architect-academy",
+    "/architect-academy": "/ai-architect-academy",
     "/books/fable/chapter-00-prologue-the-wall-of-instruments": "/books/fable",
     "/books/fable/chapter-01-the-listening-machine": "/books/fable",
     "/books/fable/chapter-02-what-the-machine-kept": "/books/fable",
