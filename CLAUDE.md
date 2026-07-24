@@ -67,7 +67,7 @@ Frank: AI Architect and Creator, ships products/code/content, translates enterpr
 | Strict language refusal | `pnpm run ai-slop:audit:strict` |
 | Build | `pnpm run build` |
 | Pre-push gate | `pnpm run merge:gate` |
-| Full local CI mirror | `pnpm run ci:check` |
+| Repository integrity suite (does not run the production build) | `pnpm run ci:check` |
 | Process/health snapshot | `pnpm run health` |
 
 Project-level slash commands live in `.claude/commands/` — confirmed present: `hub-audit.md`, `seo-check.md`, `publish.md`, `publish-content.md`, `newsletter-week.md`, `traffic-week.md`, `frankx-ai-deploy.md`. Project-level agents live in `.claude/agents/`, including `integrity-guard.md`.
