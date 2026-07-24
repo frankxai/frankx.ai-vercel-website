@@ -1,30 +1,15 @@
 'use client'
 
-import { useSyncExternalStore } from 'react'
-import { Analytics, type BeforeSendEvent } from '@vercel/analytics/react'
+import { useEffect, useSyncExternalStore } from 'react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
-import {
-  allowsAnalyticsMeasurement,
-  hasDoNotTrack,
-  sanitizeAnalyticsUrl,
-} from '@/lib/analytics-policy'
+import { allowsAnalyticsMeasurement } from '@/lib/analytics-policy'
+import { initializePrivacySafeAnalytics } from '@/lib/privacy-safe-analytics-client'
 
 const subscribeToMeasurementPolicy: (onStoreChange: () => void) => () => void = () => () => {}
 const getServerMeasurementPermission = () => false
 const getBrowserMeasurementPermission = () =>
   allowsAnalyticsMeasurement(typeof navigator !== 'undefined' ? navigator.doNotTrack : undefined)
-
-function beforeSend(event: BeforeSendEvent): BeforeSendEvent | null {
-  if (hasDoNotTrack(typeof navigator === 'undefined' ? undefined : navigator.doNotTrack)) {
-    return null
-  }
-
-  return {
-    ...event,
-    url: sanitizeAnalyticsUrl(event.url),
-  }
-}
 
 /**
  * The site's only default browser measurement surface.
@@ -39,12 +24,13 @@ export function PrivacySafeAnalytics() {
     getServerMeasurementPermission,
   )
 
+  useEffect(() => {
+    if (measurementAllowed) {
+      initializePrivacySafeAnalytics()
+    }
+  }, [measurementAllowed])
+
   if (!measurementAllowed) return null
 
-  return (
-    <>
-      <Analytics beforeSend={beforeSend} />
-      <SpeedInsights />
-    </>
-  )
+  return <SpeedInsights />
 }
