@@ -6,8 +6,10 @@ on:
     paths:
       - 'app/**'
       - 'components/**'
+      - 'content/**'
       - 'lib/**'
       - 'data/**'
+      - 'taste.md'
       - 'scripts/**'
       - 'package.json'
       - 'package-lock.json'
@@ -21,8 +23,10 @@ on:
     paths:
       - 'app/**'
       - 'components/**'
+      - 'content/**'
       - 'lib/**'
       - 'data/**'
+      - 'taste.md'
       - 'scripts/**'
       - 'package.json'
       - 'package-lock.json'
@@ -65,6 +69,9 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Language refusal gate
+        run: pnpm run ai-slop:audit:strict
 
       - name: Build
         run: pnpm run build
