@@ -24,7 +24,7 @@
     "bestFor": "Governed knowledge assistants and data-heavy enterprise workloads.",
     "deployment": ["GCP", "Vercel"],
     "flow": ["Vercel UI", "Vertex AI", "Retrieval", "Evaluation"],
-    "docsUrl": "https://cloud.google.com/architecture/rag-capable-gen-ai-app-using-vertex-ai",
+    "docsUrl": "https://docs.cloud.google.com/architecture/rag-capable-gen-ai-app-using-vertex-ai",
     "source": {
       "kind": "repository",
       "label": "Agent Starter Pack repository",

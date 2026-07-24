@@ -7,14 +7,28 @@ import {
   Clock,
   DollarSign,
   ExternalLink,
+  ArrowRight,
+  Share2,
 } from 'lucide-react'
+import { SHARE_URLS } from '@/lib/social-links'
+import { EmailSignup } from '@/components/email-signup'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
 import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-architecture'
 import type { ArchitecturePrototype } from '@/types/ai-architecture'
+import { buildHowToSchema, buildBreadcrumbSchema, SITE_CONFIG } from '@/lib/schema-builders'
+import { ldJson } from '@/lib/seo/jsonld'
+import { createMetadata } from '@/lib/seo'
 import { BlueprintDiagramWrapper } from './BlueprintDiagramWrapper'
 
 const blueprints = prototypesData as ArchitecturePrototype[]
+const bySlug = new Map(blueprints.map((b) => [b.slug, b]))
+
+const MATURITY_META: Record<string, { label: string; className: string }> = {
+  emerging: { label: 'Emerging', className: 'border-violet-500/30 text-violet-300' },
+  production: { label: 'Production-ready', className: 'border-emerald-500/30 text-emerald-300' },
+  mature: { label: 'Mature', className: 'border-cyan-500/30 text-cyan-300' },
+}
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -27,12 +41,27 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const blueprint = blueprints.find((b) => b.slug === slug)
-  if (!blueprint) return { title: 'Blueprint Not Found' }
+  if (!blueprint) {
+    return createMetadata({
+      title: 'Blueprint Not Found | AI Architecture',
+      description: 'The requested AI architecture blueprint could not be located.',
+      path: `/ai-architecture/${slug}`,
+      noindex: true,
+    })
+  }
 
-  return {
+  // Image is intentionally omitted — the co-located opengraph-image.tsx in
+  // this route segment supplies the OG image automatically (Next.js file
+  // convention), so a manual `image` here would just be overridden.
+  return createMetadata({
     title: `${blueprint.title} | AI Architecture Blueprint`,
     description: blueprint.metaDescription || blueprint.subtitle,
-  }
+    path: `/ai-architecture/${blueprint.slug}`,
+    type: 'article',
+    keywords: blueprint.keywords,
+    updatedTime: blueprint.updatedAt,
+    publishedTime: blueprint.publishedAt || blueprint.createdAt,
+  })
 }
 
 export default async function BlueprintPage({ params }: Props) {
@@ -43,8 +72,60 @@ export default async function BlueprintPage({ params }: Props) {
     notFound()
   }
 
+  const canonical = `${SITE_CONFIG.url}/ai-architecture/${blueprint.slug}`
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'TechArticle',
+        headline: blueprint.title,
+        description: blueprint.metaDescription || blueprint.subtitle,
+        url: canonical,
+        datePublished: blueprint.publishedAt || blueprint.createdAt,
+        dateModified: blueprint.updatedAt,
+        author: { '@type': 'Person', name: 'Frank Riemer', url: SITE_CONFIG.author.url },
+        publisher: {
+          '@type': 'Organization',
+          name: SITE_CONFIG.organization.name,
+          logo: { '@type': 'ImageObject', url: SITE_CONFIG.organization.logo },
+        },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+        ...(blueprint.keywords && { keywords: blueprint.keywords.join(', ') }),
+        proficiencyLevel: DIFFICULTY_META[blueprint.difficulty].name,
+      },
+      buildBreadcrumbSchema([
+        { name: 'AI Architecture', url: '/ai-architecture' },
+        { name: 'Blueprints', url: '/ai-architecture/blueprints' },
+        { name: blueprint.title, url: `/ai-architecture/${blueprint.slug}` },
+      ]),
+      ...(blueprint.implementationSteps.length > 0
+        ? [
+            buildHowToSchema({
+              name: `How to build: ${blueprint.title}`,
+              description: blueprint.solution,
+              difficulty:
+                blueprint.difficulty === 'beginner'
+                  ? 'Beginner'
+                  : blueprint.difficulty === 'expert' || blueprint.difficulty === 'advanced'
+                    ? 'Advanced'
+                    : 'Intermediate',
+              totalTime: blueprint.timeToImplement,
+              tools: blueprint.technologies,
+              steps: blueprint.implementationSteps.map((s) => ({
+                name: s.title,
+                text: s.description,
+              })),
+            }),
+          ]
+        : []),
+    ],
+  }
+
+  const maturity = blueprint.maturity ? MATURITY_META[blueprint.maturity] : null
+
   return (
     <main className="min-h-screen bg-[#0a0a0b]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       {/* Header */}
       <section className="pt-32 pb-12 border-b border-white/5">
         <div className="mx-auto max-w-4xl px-6">
@@ -78,6 +159,11 @@ export default async function BlueprintPage({ params }: Props) {
             }`}>
               {DIFFICULTY_META[blueprint.difficulty].name}
             </span>
+            {maturity && (
+              <span className={`rounded-full border px-3 py-1 ${maturity.className}`}>
+                {maturity.label}
+              </span>
+            )}
             {blueprint.timeToImplement && (
               <span className="flex items-center gap-1 text-slate-400">
                 <Clock className="h-4 w-4" />
@@ -143,11 +229,11 @@ export default async function BlueprintPage({ params }: Props) {
           {/* Problem & Solution */}
           <div className="mb-12 grid gap-8 md:grid-cols-2">
             <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-6">
-              <h3 className="mb-3 text-lg font-semibold text-red-400">The Problem</h3>
+              <h2 className="mb-3 text-lg font-semibold text-red-400">The Problem</h2>
               <p className="text-slate-400">{blueprint.problem}</p>
             </div>
             <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-6">
-              <h3 className="mb-3 text-lg font-semibold text-emerald-400">The Solution</h3>
+              <h2 className="mb-3 text-lg font-semibold text-emerald-400">The Solution</h2>
               <p className="text-slate-400">{blueprint.solution}</p>
             </div>
           </div>
@@ -157,6 +243,87 @@ export default async function BlueprintPage({ params }: Props) {
             <h2 className="mb-4 text-2xl font-bold text-white">Overview</h2>
             <p className="text-slate-400 leading-relaxed">{blueprint.overview}</p>
           </div>
+
+          {/* The verdict — use when / skip when */}
+          {(blueprint.whenToUse?.length || blueprint.whenNotToUse?.length) && (
+            <div className="mb-12">
+              <h2 className="mb-4 text-2xl font-bold text-white">The verdict</h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                {blueprint.whenToUse?.length ? (
+                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-6">
+                    <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-emerald-400">
+                      Use this when
+                    </h3>
+                    <ul className="space-y-2">
+                      {blueprint.whenToUse.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {blueprint.whenNotToUse?.length ? (
+                  <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-6">
+                    <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-amber-400">
+                      Skip it when
+                    </h3>
+                    <ul className="space-y-2">
+                      {blueprint.whenNotToUse.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </div>
+              {blueprint.tradeoffs && (
+                <div className="mt-6 grid gap-6 md:grid-cols-2">
+                  <div>
+                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500">Pros</h4>
+                    <ul className="space-y-1">
+                      {blueprint.tradeoffs.pros.map((p, i) => (
+                        <li key={i} className="text-sm text-slate-400">+ {p}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500">Cons</h4>
+                    <ul className="space-y-1">
+                      {blueprint.tradeoffs.cons.map((c, i) => (
+                        <li key={i} className="text-sm text-slate-400">− {c}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* By the numbers — verified figures cross-referenced from the dataset */}
+          {blueprint.keyStats && blueprint.keyStats.length > 0 && (
+            <div className="mb-12">
+              <h2 className="mb-4 text-2xl font-bold text-white">By the numbers</h2>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {blueprint.keyStats.map((s, i) => (
+                  <div key={i} className="rounded-xl border border-cyan-500/15 bg-cyan-500/[0.04] p-5">
+                    <p className="text-2xl font-bold text-cyan-300">{s.value}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-400">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-xs text-slate-500">
+                Sourced, denominator-tagged figures from the{' '}
+                <Link href="/ai-architecture/data" className="text-cyan-400 hover:underline">
+                  cost &amp; reliability dataset
+                </Link>
+                . Numbers vary by stack and date — see each row for N and method.
+              </p>
+            </div>
+          )}
 
           {/* Interactive Architecture Diagram */}
           {blueprint.architecture.components.length > 0 && (
@@ -181,7 +348,7 @@ export default async function BlueprintPage({ params }: Props) {
                     className="rounded-xl border border-white/10 bg-white/5 p-4"
                   >
                     <div className="mb-2 flex items-center justify-between">
-                      <h4 className="font-semibold text-white">{component.name}</h4>
+                      <h3 className="font-semibold text-white">{component.name}</h3>
                       <span className="rounded bg-white/10 px-2 py-0.5 text-xs text-slate-400">
                         {component.type}
                       </span>
@@ -210,7 +377,7 @@ export default async function BlueprintPage({ params }: Props) {
                         {step.phase}
                       </span>
                       <div>
-                        <h4 className="font-semibold text-white">{step.title}</h4>
+                        <h3 className="font-semibold text-white">{step.title}</h3>
                         {step.estimatedDuration && (
                           <p className="text-xs text-slate-500">{step.estimatedDuration}</p>
                         )}
@@ -218,7 +385,7 @@ export default async function BlueprintPage({ params }: Props) {
                     </div>
                     <p className="mb-4 text-sm text-slate-400">{step.description}</p>
                     <div className="mb-4">
-                      <h5 className="mb-2 text-xs font-semibold uppercase text-slate-500">Tasks</h5>
+                      <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500">Tasks</h4>
                       <ul className="space-y-1">
                         {step.tasks.map((task, i) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
@@ -229,7 +396,7 @@ export default async function BlueprintPage({ params }: Props) {
                       </ul>
                     </div>
                     <div>
-                      <h5 className="mb-2 text-xs font-semibold uppercase text-slate-500">Deliverables</h5>
+                      <h4 className="mb-2 text-xs font-semibold uppercase text-slate-500">Deliverables</h4>
                       <div className="flex flex-wrap gap-2">
                         {step.deliverables.map((d, i) => (
                           <span key={i} className="rounded bg-white/5 px-2 py-1 text-xs text-slate-400">
@@ -251,7 +418,7 @@ export default async function BlueprintPage({ params }: Props) {
               <div className="space-y-6">
                 {blueprint.codeExamples.map((example) => (
                   <div key={example.id} className="rounded-xl border border-white/10 bg-white/5 p-6">
-                    <h4 className="mb-2 font-semibold text-white">{example.title}</h4>
+                    <h3 className="mb-2 font-semibold text-white">{example.title}</h3>
                     {example.description && (
                       <p className="mb-4 text-sm text-slate-400">{example.description}</p>
                     )}
@@ -344,6 +511,34 @@ export default async function BlueprintPage({ params }: Props) {
               ))}
             </div>
           </div>
+
+          {/* Related patterns */}
+          {(() => {
+            const related = (blueprint.relatedPatterns || [])
+              .map((slug) => bySlug.get(slug))
+              .filter((b): b is ArchitecturePrototype => Boolean(b) && b!.slug !== blueprint.slug)
+            if (related.length === 0) return null
+            return (
+              <div className="mb-4">
+                <h2 className="mb-4 text-2xl font-bold text-white">Related patterns</h2>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {related.map((r) => (
+                    <Link
+                      key={r.slug}
+                      href={`/ai-architecture/${r.slug}`}
+                      className="group flex items-start justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/20 hover:bg-white/[0.06]"
+                    >
+                      <div className="min-w-0">
+                        <p className="font-semibold text-white">{r.title}</p>
+                        <p className="mt-0.5 text-sm text-slate-400 line-clamp-1">{r.subtitle}</p>
+                      </div>
+                      <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-600 transition-transform group-hover:translate-x-0.5 group-hover:text-cyan-400" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )
+          })()}
         </div>
       </section>
 
@@ -354,6 +549,27 @@ export default async function BlueprintPage({ params }: Props) {
           <p className="mb-6 text-slate-400">
             Try the interactive prototype or get the production-ready template.
           </p>
+          <div className="mb-8 flex items-center justify-center gap-3">
+            <span className="inline-flex items-center gap-1.5 text-xs text-slate-500">
+              <Share2 className="h-3.5 w-3.5" /> Share
+            </span>
+            <a
+              href={SHARE_URLS.twitter(`${blueprint.title} — AI architecture blueprint`, canonical)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-400 transition-colors hover:border-white/25 hover:text-white"
+            >
+              X
+            </a>
+            <a
+              href={SHARE_URLS.linkedin(canonical)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-400 transition-colors hover:border-white/25 hover:text-white"
+            >
+              LinkedIn
+            </a>
+          </div>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/ai-architecture/prototypes"
@@ -369,6 +585,14 @@ export default async function BlueprintPage({ params }: Props) {
               <Package className="h-5 w-5" />
               Get Template
             </Link>
+          </div>
+
+          <div className="mx-auto mt-12 max-w-md border-t border-white/5 pt-8">
+            <p className="mb-3 text-sm text-slate-400">
+              New blueprints, first-party benchmarks, and the data behind them — in the AI Architect
+              Dispatch.
+            </p>
+            <EmailSignup listType="ai-architect" compact buttonText="Subscribe" />
           </div>
         </div>
       </section>

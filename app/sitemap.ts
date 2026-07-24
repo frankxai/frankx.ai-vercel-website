@@ -307,6 +307,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/ai-ops/agi-ready', priority: 0.7, changeFrequency: 'monthly' as const },
     // AI Architect sub-routes
     { url: '/ai-architect/multi-cloud-comparison', priority: 0.7, changeFrequency: 'monthly' as const },
+    // AI Architecture hub sub-routes
+    { url: '/ai-architecture/blueprints', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/ai-architecture/prototypes', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/templates', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/tools', priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/multi-cloud-comparison', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/methodology', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture/data', priority: 0.8, changeFrequency: 'weekly' as const },
     // Soulbook sub-routes
     { url: '/soulbook/7-pillars', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook/assessment', priority: 0.7, changeFrequency: 'monthly' as const },
@@ -369,6 +377,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   } catch {
     /* book-reviews may not exist in test envs */
+  }
+
+  // AI Architecture — per-blueprint deep-dives (dynamic from prototypes registry)
+  let aiArchitectureDetailPages: { url: string; priority: number; changeFrequency: 'weekly' | 'monthly' }[] = []
+  try {
+    const blueprints = require('@/data/ai-architecture/prototypes.json') as Array<{ slug: string; status?: string }>
+    aiArchitectureDetailPages = blueprints
+      .filter((b) => b.status === 'published')
+      .map((b) => ({
+        url: `/ai-architecture/${b.slug}`,
+        priority: 0.7,
+        changeFrequency: 'monthly' as const,
+      }))
+  } catch {
+    /* prototypes.json may not exist in test envs */
   }
 
   // FrankX OS — meta-spine + per-module deep-dives (dynamic from os-modules registry)
@@ -675,6 +698,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // FrankX OS — per-module deep-dives
   osDetailPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // AI Architecture — per-blueprint deep-dives
+  aiArchitectureDetailPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
       lastModified: currentDate,

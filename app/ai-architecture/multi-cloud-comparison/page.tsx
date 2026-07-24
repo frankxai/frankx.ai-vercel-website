@@ -189,7 +189,7 @@ const cloudProviders = {
     tagline: 'Enterprise Integration Champion',
     color: 'from-blue-600 to-indigo-600',
     pricing: 'Premium',
-    description: 'Enterprise-ready cloud with seamless Microsoft ecosystem integration',
+    description: 'Enterprise-ready cloud with native Microsoft 365 and Entra ID integration',
     strengths: ['Microsoft ecosystem', 'Enterprise compliance', 'Hybrid cloud', '.NET excellence'],
     weaknesses: ['Complex pricing', 'Steeper learning curve', 'Less startup-friendly'],
     aiServices: ['Azure OpenAI', 'Cognitive Services', 'ML Studio', 'Form Recognizer'],
@@ -380,7 +380,7 @@ function CloudProviderTabs() {
                 }
               `}
             >
-              <span className="mr-2">{cloudProviders[key].logo}</span>
+              <Cloud className="mr-2 h-4 w-4 shrink-0" aria-hidden="true" />
               {cloudProviders[key].name}
             </button>
           ))}
@@ -403,8 +403,8 @@ function CloudProviderTabs() {
                   <h3 className="text-2xl font-bold text-white mb-2">{provider.name}</h3>
                   <p className="text-white/60">Pricing Tier: {provider.pricing}</p>
                 </div>
-                <div className={`text-4xl bg-gradient-to-br ${provider.color} bg-clip-text text-transparent`}>
-                  {provider.logo}
+                <div className={`grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br ${provider.color}`}>
+                  <Cloud className="h-6 w-6 text-white" aria-hidden="true" />
                 </div>
               </div>
 
@@ -536,7 +536,11 @@ function CloudProviderTabs() {
             </div>
 
             <p className="text-xs text-white/40 mt-4">
-              * Estimates based on moderate usage patterns. Actual costs vary with traffic, AI model usage, and storage needs.
+              * Illustrative estimates, not benchmarked &mdash; moderate-usage assumptions as of July 2026, drawn from public list pricing. Actual costs vary with traffic, model usage, and storage.{' '}
+              <Link href="/ai-architecture/methodology" className="underline decoration-white/20 underline-offset-2 hover:text-white/70">
+                How figures are sourced
+              </Link>
+              .
             </p>
           </div>
 
@@ -702,7 +706,7 @@ export default function AIArchitecturePage() {
           </div>
           <div className="absolute bottom-0 left-0 p-6">
             <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
-            <h1 className="text-2xl font-bold text-white">Multi-Cloud Architecture Comparison</h1>
+            <p className="text-2xl font-bold text-white">Multi-Cloud Architecture Comparison</p>
           </div>
         </div>
 
@@ -713,7 +717,7 @@ export default function AIArchitecturePage() {
         {/* Footer note */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 text-center">
           <p className="text-sm text-white/40">
-            This is independent technical research by Frank, AI systems architect.
+            This is independent technical research by Frank Riemer, AI Architect &amp; Creator.
             Not endorsed by or representing Oracle, AWS, Google, or Microsoft.
           </p>
         </div>

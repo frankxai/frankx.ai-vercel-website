@@ -16,6 +16,7 @@ import {
   Lock,
   ExternalLink,
   Filter,
+  Clapperboard,
 } from 'lucide-react'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
@@ -37,6 +38,7 @@ const categoryIcons: Record<PrototypeCategory, typeof Shield> = {
   'security-governance': Lock,
   'cost-optimization': DollarSign,
   'observability': Activity,
+  'creator-media': Clapperboard,
 }
 
 // Color mapping for categories
@@ -51,9 +53,16 @@ const categoryColors: Record<PrototypeCategory, string> = {
   'security-governance': 'red',
   'cost-optimization': 'green',
   'observability': 'purple',
+  'creator-media': 'fuchsia',
 }
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; text: string }> = {
+  fuchsia: {
+    bg: 'bg-fuchsia-500/10',
+    border: 'border-fuchsia-500/20 hover:border-fuchsia-500/40',
+    icon: 'bg-fuchsia-500/20 text-fuchsia-400',
+    text: 'text-fuchsia-400',
+  },
   violet: {
     bg: 'bg-violet-500/10',
     border: 'border-violet-500/20 hover:border-violet-500/40',

@@ -17,6 +17,7 @@ import {
   Lock,
   BookOpen,
   ChevronLeft,
+  Clapperboard,
 } from 'lucide-react'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
@@ -37,6 +38,7 @@ const categoryIcons: Record<PrototypeCategory, typeof Shield> = {
   'security-governance': Lock,
   'cost-optimization': DollarSign,
   'observability': Activity,
+  'creator-media': Clapperboard,
 }
 
 // Difficulty badge colors
@@ -149,7 +151,7 @@ export default function BlueprintsPage() {
         </div>
         <div className="absolute bottom-0 left-0 p-6">
           <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
-          <h1 className="text-2xl font-bold text-white">Architecture Blueprints</h1>
+          <p className="text-2xl font-bold text-white">Architecture Blueprints</p>
         </div>
       </div>
 

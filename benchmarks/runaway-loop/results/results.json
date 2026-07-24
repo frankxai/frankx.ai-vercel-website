@@ -1,0 +1,16 @@
+{
+  "metric": "agent loop cost under uncapped vs stepCountIs(N)-capped policy, per scenario and summed",
+  "n_scenarios": 5,
+  "cap_multiplier": 3,
+  "uncapped_horizon_steps": 500,
+  "price_per_million_tokens_usd": 3,
+  "totals": {
+    "uncapped_cost_usd": 8.1081,
+    "capped_cost_usd": 0.2817,
+    "optimal_cost_usd": 0.0993,
+    "uncapped_to_optimal_ratio": 81.65,
+    "capped_to_optimal_ratio": 2.84,
+    "cost_contained_by_cap_usd": 7.8264
+  },
+  "live": null
+}

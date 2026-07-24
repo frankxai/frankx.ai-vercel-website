@@ -1,0 +1,24 @@
+{
+  "name": "ai-arch-template-swarm-governance-starter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Governance harness for coordinator/worker agent teams: deny-by-default IAM, a fail-closed three-tier escalation ladder (autonomous / coordinator-approval / human-approval), an append-only decision ledger, and a plug-point for the agent-payments-guard MCP server as the spend-cap backend. No LLM calls — this is the harness your agent loop runs inside.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && node --test dist/test/governance.test.js",
+    "dry-run": "tsc && node dist/src/dry-run.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
