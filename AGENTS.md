@@ -41,7 +41,7 @@ pnpm run build
 # Broader pre-push gate (includes contract tests, claims/language audits, link checks)
 pnpm run merge:gate
 
-# Full local CI mirror
+# Broader repository integrity suite (does not run the production build)
 pnpm run ci:check
 
 # Process/health snapshot (Windows/PowerShell)
