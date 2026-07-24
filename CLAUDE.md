@@ -15,9 +15,9 @@ This is the production repo for frankx.ai. Vercel's git integration deploys `mai
 ## Branch and merge discipline
 
 - **Never push directly to `main`.** Work on `agent/claude/<scope>`, open a **draft** PR (`gh pr create --draft`), and only mark it ready when the change is complete and verified.
-- **Verify locally before pushing:** `pnpm run type-check`, `pnpm run lint`, `pnpm run build`. These are exactly what `.github/workflows/ci.yml` runs — a clean local pass means a clean CI run.
-- **`pnpm run merge:gate`** runs a broader pre-merge check (contract tests, marketing-claims audit, AI-slop audit, internal link checks). Run it before marking a substantial PR ready.
-- **Batch commits; use `[skip ci]`** in the subject line for docs-only or content-only commits that don't touch code CI cares about.
+- **Verify locally before pushing:** `pnpm run type-check`, `pnpm run lint`, `pnpm run ai-slop:audit:strict`, and `pnpm run build`. These are the required checks in `.github/workflows/ci.yml`.
+- **`pnpm run merge:gate`** runs the broader pre-merge contract, claims, strict-language, and internal-link checks. Run it before marking a substantial PR ready.
+- **Batch commits.** Do not use `[skip ci]` for changes under `app/`, `components/`, `content/`, `lib/`, or `taste.md`; those paths carry required gates. Use it only for truly non-executable documentation after checking the workflow path rules.
 - **Do not add a GitHub Actions deploy job.** Vercel's git integration already deploys; an Actions-based deploy would double-build against it.
 
 ---
@@ -38,10 +38,13 @@ This is the production repo for frankx.ai. Vercel's git integration deploys `mai
 
 ---
 
-## Design contract (read before any UI/visual work)
+## Design and release contract (read before any UI/visual work)
 
-- **`design.md`** — token spec (color, type, spacing, components). Source of truth is `tailwind.config.js` plus the design-system source under `lib/`; `design.md` mirrors them in agent-readable form.
-- **`taste.md`** — restraint test, AI-slop refusal list, polish pass. The judgment the token spec doesn't capture.
+- **`design.md`** — local token spec (color, type, spacing, components). Source of truth is `tailwind.config.js` plus the design-system source under `lib/`; `design.md` mirrors them in agent-readable form.
+- **`taste.md`** — local restraint test, language-refusal list, and polish pass. The judgment the token spec doesn't capture.
+- **Canonical kernel:** [`frankxai/starlight-design-intelligence`](https://github.com/frankxai/starlight-design-intelligence), specifically `skills/world-class-web-release/SKILL.md`, `brand-packs/frankx/`, and `evals/web-release-gate.md`.
+
+For a high-value new page or redesign, apply the canonical kernel with the two local contracts. Capture the current desktop and mobile source before visual ideation; if capture is blocked, stop. Compare exactly three directions. A release needs reviewed copy, typography, motion and reduced-motion, mobile, URL, analytics, independent-review, and post-deploy evidence. Do not self-certify scores or describe the result as production-complete without the receipt.
 
 ---
 
@@ -61,6 +64,7 @@ Frank: AI Architect and Creator, ships products/code/content, translates enterpr
 | Dev server | `pnpm dev` |
 | Type check | `pnpm run type-check` |
 | Lint | `pnpm run lint` |
+| Strict language refusal | `pnpm run ai-slop:audit:strict` |
 | Build | `pnpm run build` |
 | Pre-push gate | `pnpm run merge:gate` |
 | Full local CI mirror | `pnpm run ci:check` |
