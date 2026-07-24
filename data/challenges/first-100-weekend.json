@@ -1,0 +1,46 @@
+{
+  "id": "first-100-weekend-2026-07-16",
+  "title": "The First €100 Weekend",
+  "status": "live",
+  "startedAt": "2026-07-16T21:00:00+02:00",
+  "deadlineAt": "2026-07-19T23:59:59+02:00",
+  "lastUpdatedAt": "2026-07-16T21:00:00+02:00",
+  "product": {
+    "id": "agentic-creator-os",
+    "name": "ACOS Creator Kit",
+    "priceEur": 99,
+    "currency": "EUR"
+  },
+  "completionProof": {
+    "status": "required",
+    "requiredBy": "2026-07-19T23:59:59+02:00",
+    "requiredEvidence": [
+      "timestamped gross-revenue and refund summary",
+      "independent customer count",
+      "human-hours and incremental-spend record",
+      "postmortem"
+    ]
+  },
+  "target": {
+    "grossEur": 100,
+    "customers": 3,
+    "qualifiedInvitations": 35,
+    "maxHumanHours": 6,
+    "maxIncrementalSpendEur": 25
+  },
+  "actual": {
+    "grossEur": 0,
+    "customers": 0,
+    "qualifiedInvitations": 0,
+    "humanHours": 0,
+    "incrementalSpendEur": 0,
+    "refunds": 0
+  },
+  "updates": [
+    {
+      "at": "2026-07-16T21:00:00+02:00",
+      "label": "Challenge commissioned",
+      "detail": "One existing offer, one €99 price, one checkout and a public evidence ledger. No outreach counted yet."
+    }
+  ]
+}
