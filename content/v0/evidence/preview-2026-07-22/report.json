@@ -1,0 +1,681 @@
+{
+  "schemaVersion": "1.1.0",
+  "baseUrl": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app",
+  "startedAt": "2026-07-22T00:28:07.092Z",
+  "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "outputDirectory": "C:\\tmp\\frankx-v0-qa-preview",
+  "pages": [
+    {
+      "route": "/v0",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "screenshotPath": "C:\\tmp\\frankx-v0-qa-preview\\v0-desktop.webp",
+      "audit": {
+        "title": "v0 Template Intelligence | FrankX",
+        "lang": "en",
+        "viewportWidth": 1440,
+        "viewportHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 4265,
+        "mainCount": 1,
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "controlsOutsideViewport": [],
+        "images": [
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fv0-foundry%2Flaunch-film-poster.png&w=640&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "A black creative device on a restrained studio stage with cyan light.",
+            "complete": true,
+            "naturalWidth": 559,
+            "naturalHeight": 314,
+            "inViewport": true
+          },
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fv0-foundry%2Fproduct-3d-study.png&w=640&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "A graphite folded-ribbon object surrounding a suspended glass core.",
+            "complete": true,
+            "naturalWidth": 559,
+            "naturalHeight": 559,
+            "inViewport": true
+          },
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fmascot%2Faxi-v3-icon.png&w=96&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "Axi — FrankX mascot",
+            "complete": false,
+            "naturalWidth": 0,
+            "naturalHeight": 0,
+            "inViewport": false
+          }
+        ],
+        "brokenImages": [],
+        "imagesWithoutAlt": [],
+        "headingLevels": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "performance": {
+          "firstContentfulPaintMs": 704,
+          "domContentLoadedMs": 698,
+          "loadMs": 763,
+          "resourceCount": 42,
+          "transferBytes": 33363,
+          "scriptDecodedBytes": 822944
+        },
+        "visibleReactFlowNodes": 0,
+        "visibleMobileSteps": 0
+      },
+      "diagnostics": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedLocalRequests": []
+      }
+    },
+    {
+      "route": "/v0/templates/visual-foundry",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "screenshotPath": "C:\\tmp\\frankx-v0-qa-preview\\v0-templates-visual-foundry-desktop.webp",
+      "audit": {
+        "title": "Visual Foundry | FrankX",
+        "lang": "en",
+        "viewportWidth": 1440,
+        "viewportHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 3562,
+        "mainCount": 1,
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "controlsOutsideViewport": [],
+        "images": [
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fv0-foundry%2Flaunch-film-poster.png&w=1200&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "A black creative device on a restrained studio stage with cyan light.",
+            "complete": true,
+            "naturalWidth": 1152,
+            "naturalHeight": 648,
+            "inViewport": true
+          },
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fmascot%2Faxi-v3-icon.png&w=96&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "Axi — FrankX mascot",
+            "complete": false,
+            "naturalWidth": 0,
+            "naturalHeight": 0,
+            "inViewport": false
+          }
+        ],
+        "brokenImages": [],
+        "imagesWithoutAlt": [],
+        "headingLevels": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "performance": {
+          "firstContentfulPaintMs": 940,
+          "domContentLoadedMs": 933,
+          "loadMs": 1045,
+          "resourceCount": 42,
+          "transferBytes": 26728,
+          "scriptDecodedBytes": 814407
+        },
+        "visibleReactFlowNodes": 0,
+        "visibleMobileSteps": 0
+      },
+      "diagnostics": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedLocalRequests": []
+      }
+    },
+    {
+      "route": "/v0/studio",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "screenshotPath": "C:\\tmp\\frankx-v0-qa-preview\\v0-studio-desktop.webp",
+      "audit": {
+        "title": "Visual Foundry | FrankX",
+        "lang": "en",
+        "viewportWidth": 1440,
+        "viewportHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 1573,
+        "mainCount": 0,
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "controlsOutsideViewport": [],
+        "images": [
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fmascot%2Faxi-v3-icon.png&w=48&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "Axi — FrankX mascot",
+            "complete": true,
+            "naturalWidth": 48,
+            "naturalHeight": 48,
+            "inViewport": false
+          }
+        ],
+        "brokenImages": [],
+        "imagesWithoutAlt": [],
+        "headingLevels": [
+          1,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "performance": {
+          "firstContentfulPaintMs": 1028,
+          "domContentLoadedMs": 1031,
+          "loadMs": 1075,
+          "resourceCount": 79,
+          "transferBytes": 203141,
+          "scriptDecodedBytes": 1364470
+        },
+        "visibleReactFlowNodes": 6,
+        "visibleMobileSteps": 1
+      },
+      "diagnostics": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedLocalRequests": []
+      }
+    },
+    {
+      "route": "/v0",
+      "viewport": {
+        "name": "mobile",
+        "width": 390,
+        "height": 844,
+        "isMobile": true
+      },
+      "screenshotPath": "C:\\tmp\\frankx-v0-qa-preview\\v0-mobile.webp",
+      "audit": {
+        "title": "v0 Template Intelligence | FrankX",
+        "lang": "en",
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 8026,
+        "mainCount": 1,
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "controlsOutsideViewport": [],
+        "images": [
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fv0-foundry%2Flaunch-film-poster.png&w=640&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "A black creative device on a restrained studio stage with cyan light.",
+            "complete": true,
+            "naturalWidth": 390,
+            "naturalHeight": 219,
+            "inViewport": true
+          },
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fv0-foundry%2Fproduct-3d-study.png&w=640&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "A graphite folded-ribbon object surrounding a suspended glass core.",
+            "complete": true,
+            "naturalWidth": 390,
+            "naturalHeight": 390,
+            "inViewport": false
+          },
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fmascot%2Faxi-v3-icon.png&w=96&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "Axi — FrankX mascot",
+            "complete": false,
+            "naturalWidth": 0,
+            "naturalHeight": 0,
+            "inViewport": false
+          }
+        ],
+        "brokenImages": [],
+        "imagesWithoutAlt": [],
+        "headingLevels": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "performance": {
+          "firstContentfulPaintMs": 480,
+          "domContentLoadedMs": 467,
+          "loadMs": 469,
+          "resourceCount": 37,
+          "transferBytes": 5802,
+          "scriptDecodedBytes": 820041
+        },
+        "visibleReactFlowNodes": 0,
+        "visibleMobileSteps": 0
+      },
+      "diagnostics": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedLocalRequests": []
+      }
+    },
+    {
+      "route": "/v0/templates/visual-foundry",
+      "viewport": {
+        "name": "mobile",
+        "width": 390,
+        "height": 844,
+        "isMobile": true
+      },
+      "screenshotPath": "C:\\tmp\\frankx-v0-qa-preview\\v0-templates-visual-foundry-mobile.webp",
+      "audit": {
+        "title": "Visual Foundry | FrankX",
+        "lang": "en",
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 4483,
+        "mainCount": 1,
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "controlsOutsideViewport": [],
+        "images": [
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fv0-foundry%2Flaunch-film-poster.png&w=640&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "A black creative device on a restrained studio stage with cyan light.",
+            "complete": true,
+            "naturalWidth": 390,
+            "naturalHeight": 219,
+            "inViewport": true
+          },
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fmascot%2Faxi-v3-icon.png&w=96&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "Axi — FrankX mascot",
+            "complete": false,
+            "naturalWidth": 0,
+            "naturalHeight": 0,
+            "inViewport": false
+          }
+        ],
+        "brokenImages": [],
+        "imagesWithoutAlt": [],
+        "headingLevels": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "performance": {
+          "firstContentfulPaintMs": 604,
+          "domContentLoadedMs": 514,
+          "loadMs": 579,
+          "resourceCount": 37,
+          "transferBytes": 7507,
+          "scriptDecodedBytes": 811504
+        },
+        "visibleReactFlowNodes": 0,
+        "visibleMobileSteps": 0
+      },
+      "diagnostics": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedLocalRequests": []
+      }
+    },
+    {
+      "route": "/v0/studio",
+      "viewport": {
+        "name": "mobile",
+        "width": 390,
+        "height": 844,
+        "isMobile": true
+      },
+      "screenshotPath": "C:\\tmp\\frankx-v0-qa-preview\\v0-studio-mobile.webp",
+      "audit": {
+        "title": "Visual Foundry | FrankX",
+        "lang": "en",
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 2067,
+        "mainCount": 0,
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "controlsOutsideViewport": [],
+        "images": [
+          {
+            "src": "https://frankx-ai-vercel-website-l8narfn2h-starlight-intelligence.vercel.app/_next/image?url=%2Fimages%2Fmascot%2Faxi-v3-icon.png&w=48&q=75&dpl=dpl_3mEXYdqU7Y4zbMs9GTtFVq3BTMV8",
+            "alt": "Axi — FrankX mascot",
+            "complete": true,
+            "naturalWidth": 48,
+            "naturalHeight": 48,
+            "inViewport": false
+          }
+        ],
+        "brokenImages": [],
+        "imagesWithoutAlt": [],
+        "headingLevels": [
+          1,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "performance": {
+          "firstContentfulPaintMs": 980,
+          "domContentLoadedMs": 952,
+          "loadMs": 1020,
+          "resourceCount": 38,
+          "transferBytes": 3495,
+          "scriptDecodedBytes": 1361567
+        },
+        "visibleReactFlowNodes": 0,
+        "visibleMobileSteps": 3
+      },
+      "diagnostics": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedLocalRequests": []
+      }
+    }
+  ],
+  "interaction": {
+    "status": "pass",
+    "reviewScreenshot": "C:\\tmp\\frankx-v0-qa-preview\\v0-studio-review.webp",
+    "completeScreenshot": "C:\\tmp\\frankx-v0-qa-preview\\v0-studio-complete.webp",
+    "outputImages": 2,
+    "outputActions": {
+      "actionCount": 4,
+      "cardCount": 1,
+      "outside": [],
+      "measurements": [
+        {
+          "cardIndex": 0,
+          "label": "Select for A/B compare",
+          "button": {
+            "top": 845,
+            "right": 211,
+            "bottom": 877,
+            "left": 179,
+            "width": 32,
+            "height": 32
+          },
+          "card": {
+            "top": 737,
+            "right": 376,
+            "bottom": 888,
+            "left": 16
+          },
+          "clip": {
+            "top": 725,
+            "right": 1440,
+            "bottom": 900,
+            "left": 0
+          },
+          "containedByCard": true,
+          "verticallyVisible": true
+        },
+        {
+          "cardIndex": 0,
+          "label": "Approve output",
+          "button": {
+            "top": 845,
+            "right": 247,
+            "bottom": 877,
+            "left": 215,
+            "width": 32,
+            "height": 32
+          },
+          "card": {
+            "top": 737,
+            "right": 376,
+            "bottom": 888,
+            "left": 16
+          },
+          "clip": {
+            "top": 725,
+            "right": 1440,
+            "bottom": 900,
+            "left": 0
+          },
+          "containedByCard": true,
+          "verticallyVisible": true
+        },
+        {
+          "cardIndex": 0,
+          "label": "Reject output with note",
+          "button": {
+            "top": 845,
+            "right": 283,
+            "bottom": 877,
+            "left": 251,
+            "width": 32,
+            "height": 32
+          },
+          "card": {
+            "top": 737,
+            "right": 376,
+            "bottom": 888,
+            "left": 16
+          },
+          "clip": {
+            "top": 725,
+            "right": 1440,
+            "bottom": 900,
+            "left": 0
+          },
+          "containedByCard": true,
+          "verticallyVisible": true
+        },
+        {
+          "cardIndex": 0,
+          "label": "View provenance",
+          "button": {
+            "top": 845,
+            "right": 319,
+            "bottom": 877,
+            "left": 287,
+            "width": 32,
+            "height": 32
+          },
+          "card": {
+            "top": 737,
+            "right": 376,
+            "bottom": 888,
+            "left": 16
+          },
+          "clip": {
+            "top": 725,
+            "right": 1440,
+            "bottom": 900,
+            "left": 0
+          },
+          "containedByCard": true,
+          "verticallyVisible": true
+        }
+      ]
+    },
+    "keyboard": {
+      "dialogFocusTrap": "pass",
+      "focusRestored": true
+    },
+    "diagnostics": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedLocalRequests": []
+    }
+  },
+  "mobileInteraction": {
+    "status": "pass",
+    "inspectorExplicitOpen": true,
+    "inspectorFocusTrap": "pass",
+    "inspectorFocusRestored": true,
+    "outputActions": {
+      "actionCount": 4,
+      "cardCount": 1,
+      "outside": [],
+      "measurements": [
+        {
+          "cardIndex": 0,
+          "label": "Select for A/B compare",
+          "button": {
+            "top": 722,
+            "right": 189,
+            "bottom": 754,
+            "left": 157,
+            "width": 32,
+            "height": 32
+          },
+          "card": {
+            "top": 636,
+            "right": 374,
+            "bottom": 763,
+            "left": 16
+          },
+          "clip": {
+            "top": 628,
+            "right": 390,
+            "bottom": 771,
+            "left": 0
+          },
+          "containedByCard": true,
+          "verticallyVisible": true
+        },
+        {
+          "cardIndex": 0,
+          "label": "Approve output",
+          "button": {
+            "top": 722,
+            "right": 225,
+            "bottom": 754,
+            "left": 193,
+            "width": 32,
+            "height": 32
+          },
+          "card": {
+            "top": 636,
+            "right": 374,
+            "bottom": 763,
+            "left": 16
+          },
+          "clip": {
+            "top": 628,
+            "right": 390,
+            "bottom": 771,
+            "left": 0
+          },
+          "containedByCard": true,
+          "verticallyVisible": true
+        },
+        {
+          "cardIndex": 0,
+          "label": "Reject output with note",
+          "button": {
+            "top": 722,
+            "right": 261,
+            "bottom": 754,
+            "left": 229,
+            "width": 32,
+            "height": 32
+          },
+          "card": {
+            "top": 636,
+            "right": 374,
+            "bottom": 763,
+            "left": 16
+          },
+          "clip": {
+            "top": 628,
+            "right": 390,
+            "bottom": 771,
+            "left": 0
+          },
+          "containedByCard": true,
+          "verticallyVisible": true
+        },
+        {
+          "cardIndex": 0,
+          "label": "View provenance",
+          "button": {
+            "top": 722,
+            "right": 297,
+            "bottom": 754,
+            "left": 265,
+            "width": 32,
+            "height": 32
+          },
+          "card": {
+            "top": 636,
+            "right": 374,
+            "bottom": 763,
+            "left": 16
+          },
+          "clip": {
+            "top": 628,
+            "right": 390,
+            "bottom": 771,
+            "left": 0
+          },
+          "containedByCard": true,
+          "verticallyVisible": true
+        }
+      ]
+    },
+    "completeScreenshot": "C:\\tmp\\frankx-v0-qa-preview\\v0-studio-complete-mobile.webp",
+    "diagnostics": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedLocalRequests": []
+    }
+  },
+  "reducedMotion": {
+    "status": "pass",
+    "elapsedToReviewMs": 24,
+    "infiniteAnimations": 0
+  },
+  "finishedAt": "2026-07-22T00:29:01.552Z"
+}

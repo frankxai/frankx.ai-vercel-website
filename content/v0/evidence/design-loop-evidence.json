@@ -1,0 +1,171 @@
+{
+  "version": "2026-07-22",
+  "task": "Build the FrankX v0 Template Intelligence catalog, Visual Foundry, secure preview boundary, and multimodal creation architecture.",
+  "surface": "FrankX v0 Template OS",
+  "audience": "Technical founders, creative operators, and product teams evaluating premium generative web systems.",
+  "first_read": "A governed v0-to-production system with a working multimodal creation prototype.",
+  "standards": [
+    "DESIGN_TASTE.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "MOTION_TASTE_RUBRIC.md",
+    "PREMIUM_ASSET_STANDARD.md",
+    "AGENTIC_DESIGN_LOOP.md",
+    "VISUAL_QA_GATE.md"
+  ],
+  "references": [
+    {
+      "label": "v0 preview guide",
+      "source": "https://v0.app/docs/api/v2/guides/accessing-previews",
+      "reason": "Official preview-token and proxy contract"
+    },
+    {
+      "label": "Figma Weave capability research",
+      "source": "https://weave.figma.com/",
+      "reason": "Capability research for node-based multimodal workflows; no trade dress, media, copy, or implementation copied"
+    }
+  ],
+  "direction": {
+    "keep": [
+      "dark FrankX technical register",
+      "compact product surfaces",
+      "real proof assets",
+      "visible provenance and release boundaries",
+      "purpose-built mobile workflow"
+    ],
+    "avoid": [
+      "Aurora gradients",
+      "decorative glass",
+      "card walls",
+      "ambient text motion",
+      "fake live providers",
+      "private preview identifiers"
+    ],
+    "signature": "A precise node-based studio paired with a source-classified catalog and secure preview boundary.",
+    "system": [
+      "Inter, Poppins, and JetBrains Mono",
+      "void, emerald, cyan, neutral ink",
+      "static-first hierarchy",
+      "event-driven motion only"
+    ]
+  },
+  "asset_quality": {
+    "tier": "B",
+    "source_method": "generated-media",
+    "provenance": "generated",
+    "why_premium": "Each still demonstrates a real workflow output and remains inspectable in the product surface.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "app/v0/page.tsx",
+      "kind": "web",
+      "inspected": true,
+      "notes": "Inspected at 1440x900 and 390x844 through the six-route browser QA run."
+    },
+    {
+      "path_or_url": "app/v0/studio/page.tsx",
+      "kind": "web",
+      "inspected": true,
+      "notes": "Inspected across desktop and mobile run, review, resume, completion, dialog focus, and reduced-motion states."
+    },
+    {
+      "path_or_url": "public/images/v0-foundry/",
+      "kind": "image-set",
+      "inspected": true,
+      "notes": "Five generated outputs and their responsive in-product crops were inspected individually."
+    },
+    {
+      "path_or_url": "scripts/qa/v0-visual-qa.mjs",
+      "kind": "quality-receipt",
+      "inspected": true,
+      "notes": "The final local run and the committed cloud-preview report passed all route, viewport, workflow, accessibility, focus, reduced-motion, and performance assertions."
+    },
+    {
+      "path_or_url": "content/v0/evidence/preview-2026-07-22/",
+      "kind": "preview-evidence",
+      "inspected": true,
+      "notes": "Nine inspected WebP exports, six lossless PNG review derivatives, and the machine-readable report were captured from the READY Vercel preview without retaining its temporary access token."
+    },
+    {
+      "path_or_url": "content/v0/evidence/independent-review-2026-07-22.md",
+      "kind": "independent-review",
+      "inspected": true,
+      "notes": "Records the private-ID-safe v0 engineering and visual verdicts, remediation closure, conservative score, and remaining human cloud gate."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier B generated proof media is appropriate for the first-party studio outputs."
+    },
+    {
+      "name": "source-classification",
+      "status": "pass",
+      "evidence": "First-party, community gallery, and Vercel marketplace sources are explicitly separated."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "Nine final WebP captures were inspected, including all six route and viewport combinations plus review and completed workflow states."
+    },
+    {
+      "name": "visual-qa",
+      "status": "pass",
+      "evidence": "Six route and viewport combinations passed with no overflow, clipping, duplicate IDs, unnamed controls, broken visible images, console errors, or local request failures."
+    },
+    {
+      "name": "accessibility",
+      "status": "pass",
+      "evidence": "Desktop dialog and mobile inspector focus traps, Escape behavior, trigger restoration, accessible names, alt text, and reduced-motion behavior passed."
+    },
+    {
+      "name": "performance",
+      "status": "pass",
+      "evidence": "Local FCP, resource-count, and decoded-script budgets passed on every tested route and viewport."
+    },
+    {
+      "name": "engineering-gates",
+      "status": "pass",
+      "evidence": "Thirty-three focused behavior and contract tests, full TypeScript, scoped ESLint, staged secret scans, and the Next.js 16.2.6 production build passed."
+    },
+    {
+      "name": "secure-preview",
+      "status": "pass",
+      "evidence": "Tests cover server-only configuration, own-property key maps, shared-cache readiness, stale and malformed remote rejection, GET and HEAD boundaries, nested assets, SDK compression alignment, same-key redirects, missing redirects, safe loading returns, and deny-by-default headers."
+    },
+    {
+      "name": "independent-review",
+      "status": "pass",
+      "evidence": "v0 Max Fast returned PASS WITH FOLLOW-UPS for the exact engineering patch and six-view visual packet; all medium engineering findings were closed and the visual review scored 26/30."
+    },
+    {
+      "name": "production-artifact",
+      "status": "blocked",
+      "evidence": "Draft PR 351 and its earlier UI preview are healthy, but the exact final commit is intentionally skipped by Vercel while the PR remains draft. Frank must mark the PR ready to trigger the final cloud suite."
+    }
+  ],
+  "score": {
+    "total": 26,
+    "max": 30,
+    "breakdown": {
+      "hierarchy": 5,
+      "brand_fit_and_distinctiveness": 4,
+      "craft": 4,
+      "accessibility_responsiveness_and_reduced_motion": 3,
+      "provenance_and_accuracy": 5,
+      "intended_utility": 5
+    },
+    "notes": "The independent visual council scored the release 26/30, clearing the premium beta gate. Engineering review passed; the final exact-commit cloud build remains behind the intentional draft-to-ready human gate."
+  },
+  "decision": "iterate",
+  "known_risks": [
+    "v0 Platform API v2 and the exact SDK package are beta.",
+    "Generated identity studies are concept material, not final vector identity.",
+    "Live image, video, and 3D providers are not connected.",
+    "Muted secondary-label contrast should be verified from computed tokens before a wider release.",
+    "The desktop workflow graph can use a slightly larger initial scale in a future polish pass.",
+    "Repo-wide security scan reports pre-existing findings outside this lane."
+  ]
+}

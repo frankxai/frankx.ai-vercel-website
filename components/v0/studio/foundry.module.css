@@ -1,0 +1,99 @@
+.foundry {
+  --color-fx-bg: #0a0a0b;
+  --color-fx-surface: #111113;
+  --color-fx-surface-2: #16161a;
+  --color-fx-border: #1e1e1e;
+  --color-fx-border-strong: #2a2a2e;
+  --color-fx-ink: #f4f4f5;
+  --color-fx-muted: #8a8a93;
+  --color-fx-faint: #5c5c64;
+  --color-fx-emerald: #10b981;
+  --color-fx-cyan: #06b6d4;
+  --color-fx-danger: #e26d6d;
+  color-scheme: dark;
+  isolation: isolate;
+}
+
+.foundry :global(.fx-canvas) {
+  --xy-background-color: var(--color-fx-bg);
+  --xy-edge-stroke-default: var(--color-fx-border-strong);
+  --xy-edge-stroke-selected: var(--color-fx-emerald);
+  --xy-connectionline-stroke-default: var(--color-fx-cyan);
+  --xy-attribution-background-color-default: transparent;
+}
+
+.foundry :global(.fx-canvas .react-flow__attribution) {
+  display: none;
+}
+
+.foundry :global(.fx-canvas .react-flow__handle) {
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--color-fx-border-strong);
+  border-radius: 9999px;
+  background: var(--color-fx-surface-2);
+}
+
+.foundry :global(.fx-canvas .react-flow__handle:hover) {
+  border-color: var(--color-fx-emerald);
+}
+
+.foundry :global(.fx-canvas .react-flow__handle-connecting) {
+  border-color: var(--color-fx-cyan);
+}
+
+.foundry :global(.fx-canvas .react-flow__edge-path) {
+  stroke-width: 1.5;
+}
+
+.foundry :global(.fx-canvas .react-flow__edge.fx-edge-active .react-flow__edge-path) {
+  stroke: var(--color-fx-emerald);
+  stroke-width: 2;
+}
+
+.foundry :global(.fx-canvas .react-flow__controls) {
+  overflow: hidden;
+  border: 1px solid var(--color-fx-border);
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.foundry :global(.fx-canvas .react-flow__controls-button) {
+  border-bottom: 1px solid var(--color-fx-border);
+  background: var(--color-fx-surface);
+  color: var(--color-fx-muted);
+}
+
+.foundry :global(.fx-canvas .react-flow__controls-button:hover) {
+  background: var(--color-fx-surface-2);
+  color: var(--color-fx-ink);
+}
+
+.foundry :global(.fx-canvas .react-flow__controls-button svg) {
+  fill: currentColor;
+}
+
+@keyframes tokenTravel {
+  from {
+    offset-distance: 0%;
+  }
+
+  to {
+    offset-distance: 100%;
+  }
+}
+
+.foundry :global(.fx-run-token) {
+  animation: tokenTravel var(--fx-token-duration, 480ms) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foundry :global(.fx-run-token) {
+    animation: none;
+    offset-distance: 100%;
+  }
+
+  .foundry :global(.fx-canvas .react-flow__edge.fx-edge-active .react-flow__edge-path) {
+    transition: none;
+  }
+}
