@@ -90,7 +90,10 @@ test('event helpers do not fall back to ambient marketing globals or raw campaig
   )
   assert.match(analytics, /sanitizeAnalyticsProperties\(params\)/)
   assert.doesNotMatch(landed, /utm_source:\s*utmSource|utm_medium:\s*utmMedium|utm_campaign:\s*utmCampaign/)
-  assert.match(landed, /entry: hasCampaignTag/)
+  assert.match(landed, /trackEvent\('connect_landed', \{ entry \}\)/)
+  assert.match(landed, /referral === 'mvu-sabrina'/)
+  assert.match(landed, /'mvu_sabrina_briefing'/)
+  assert.doesNotMatch(landed, /trackEvent\('connect_landed',\s*\{[^}]*\bref(?:erral)?\s*:/s)
 })
 
 test('newsletter conversion remains provider-accepted and analytics receives no email', async () => {
