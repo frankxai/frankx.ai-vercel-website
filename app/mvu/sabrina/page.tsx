@@ -90,13 +90,42 @@ const OVERLAP = [
   },
 ] as const;
 
+const PAGE_URL = "https://www.frankx.ai/mvu/sabrina";
+const PAGE_TITLE = "For Sabrina — Impossibly Human, Compounding";
+const PAGE_DESCRIPTION =
+  "An unlisted working concept connecting Impossibly Human founder authority with the FrankX creator intelligence stack.";
+const PAGE_IMAGE = "https://www.frankx.ai/hero-homepage.png";
+
 // This recipient-specific brief has no runtime data or client state.
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "For Sabrina — Impossibly Human, Compounding | FrankX",
-  description:
-    "An unlisted working concept connecting Impossibly Human founder authority with the FrankX creator intelligence stack.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: {
+    canonical: PAGE_URL,
+  },
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
+    siteName: "FrankX",
+    type: "website",
+    images: [
+      {
+        url: PAGE_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "FrankX creator intelligence systems",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [PAGE_IMAGE],
+  },
   robots: {
     index: false,
     follow: false,
