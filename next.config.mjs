@@ -106,15 +106,21 @@ const nextConfig = {
         destination: 'https://arcanea.ai/:path*',
         permanent: true,
       },
-      // Creator Lab signup → product page
+      // Creator Lab routes → /acos. The fictional "Creator Lab OS" cohort page
+      // sold a product that doesn't exist; the real ACOS product lives at /acos.
       {
         source: '/creator-lab',
-        destination: '/products/agentic-creator-os',
+        destination: '/acos',
         permanent: false,
       },
       {
         source: '/creator-lab-starter',
-        destination: '/products/agentic-creator-os',
+        destination: '/acos',
+        permanent: false,
+      },
+      {
+        source: '/products/agentic-creator-os',
+        destination: '/acos',
         permanent: false,
       },
       // Research Hub content relocation redirects

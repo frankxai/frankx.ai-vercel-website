@@ -99,12 +99,12 @@
     "category": "Creative Intelligence",
     "badge": "CREATORS SHIPPING",
     "headline": "Replace AI Panic with Proven Workflows",
-    "subheadline": "100+ battle-tested prompts + 12 ready-to-deploy automations that cut content creation time in half while keeping your voice intact.",
+    "subheadline": "The prompt templates and automation recipes I use in my own practice — organized so you can put them to work the day you download them.",
     "promise": "Go from AI overwhelm to a trusted daily ritual. One week to measurable creative velocity.",
     "summary": "Structured prompts, workflow templates, and daily rituals that turn AI into your creative co-pilot, not a distraction.",
     "transformation": [
       "Deploy 100+ validated prompts across storytelling, marketing, content, and operations within 48 hours",
-      "Cut content creation time by 40-50% while maintaining creative voice and quality",
+      "Spend your time on the thinking, not the formatting — the mechanical steps are templated",
       "Run 12 plug-and-play automations (email, social, drafting) that handle the mechanical stuff",
       "Build a repeatable daily ritual that ships consistently without burnout"
     ],
@@ -112,11 +112,11 @@
       "stats": [
         {
           "number": "100+",
-          "label": "Early Adopters"
+          "label": "Prompts Included"
         },
         {
-          "number": "500+",
-          "label": "Suno Sessions Created"
+          "number": "12",
+          "label": "Automation Recipes"
         }
       ],
       "quotes": []
@@ -173,7 +173,7 @@
     "faq": [
       {
         "question": "What makes the FrankX.ai system different?",
-        "answer": "Every asset is validated across six specialized agents, ensuring strategic, creative, and technical excellence rather than single-expert bias."
+        "answer": "These aren't scraped prompt lists. Every template comes from work I shipped, with notes on when to use it and when not to."
       },
       {
         "question": "Who is the toolkit for?",
@@ -181,7 +181,7 @@
       },
       {
         "question": "How fast will I see results?",
-        "answer": "Most members report tangible improvements within one week using the quick-start rituals and daily momentum prompts."
+        "answer": "The quick-start is built to fit one working week: pick three prompts, wire one automation, ship one piece."
       }
     ],
     "analyticsId": "creative-ai-toolkit"
