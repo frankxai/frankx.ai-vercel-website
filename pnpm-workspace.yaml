@@ -1,9 +1,10 @@
 allowBuilds:
-  agentdb: set this to true or false
-  argon2: set this to true or false
-  better-sqlite3: set this to true or false
-  hnswlib-node: set this to true or false
-  protobufjs: set this to true or false
-  puppeteer: set this to true or false
-  sharp: set this to true or false
-  unrs-resolver: set this to true or false
+  'agentdb@3.0.0-alpha.14': false
+  'argon2@0.44.0': false
+  'better-sqlite3@11.10.0': false
+  'hnswlib-node@3.0.0': false
+  'protobufjs@6.11.6 || 7.5.6': false
+  'puppeteer@24.43.0': false
+  'sharp@0.32.6': false
+  'sharp@0.34.5': true
+  'unrs-resolver@1.11.1': true
