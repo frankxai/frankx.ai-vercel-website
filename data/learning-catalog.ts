@@ -1,11 +1,18 @@
 export type CourseRelationship = 'editorial' | 'affiliate' | 'owned'
 
+export type AffiliateApproval = {
+  status: 'approved'
+  program: string
+  approvedAt: string
+}
+
 export type CourseRecommendation = {
   slug: string
   provider: string
   title: string
   canonicalUrl: string
   affiliateUrl?: string
+  affiliateApproval?: AffiliateApproval
   relationship: CourseRelationship
   level: string
   effort: string
@@ -38,10 +45,38 @@ export type LearningFieldNote = {
   label: string
 }
 
+export type CourseDestination = {
+  href: string
+  isAffiliate: boolean
+}
+
+/**
+ * Affiliate destinations fail closed. A URL is eligible only when the
+ * recommendation is explicitly marked as an affiliate relationship and has a
+ * dated approval record for the named program.
+ */
+export function resolveCourseDestination(
+  course: CourseRecommendation,
+): CourseDestination {
+  const approvedAffiliateUrl =
+    course.relationship === 'affiliate' &&
+    course.affiliateApproval?.status === 'approved' &&
+    course.affiliateApproval.program.trim().length > 0 &&
+    course.affiliateApproval.approvedAt.trim().length > 0
+      ? course.affiliateUrl
+      : undefined
+
+  return {
+    href: approvedAffiliateUrl ?? course.canonicalUrl,
+    isAffiliate: Boolean(approvedAffiliateUrl),
+  }
+}
+
 /**
  * Coursera affiliate destinations belong in `affiliateUrl` only after the
- * FrankX Impact account is approved and a real tracking link is available.
- * Until then the UI uses the verified canonical provider URL.
+ * FrankX Impact account is approved, a real tracking link is available, and a
+ * dated `affiliateApproval` record names the approved program. Until then the
+ * UI uses the verified canonical provider URL.
  */
 export const recommendedCourses: CourseRecommendation[] = [
   {
