@@ -17,7 +17,7 @@ const sections = [
     border: 'border-cyan-500/30',
     icon: Layers,
     badge: 'New',
-    priceRange: '$19 – $297',
+    priceRange: '$27 – $297',
   },
   {
     id: 'auctions',

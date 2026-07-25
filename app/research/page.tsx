@@ -94,8 +94,8 @@ function HeroSection() {
           </h1>
 
           <p className="text-lg md:text-xl text-white/60 mb-8 leading-relaxed max-w-3xl">
-            Validated research across enterprise AI, production patterns, multi-agent systems,
-            and emerging technology. Every claim cross-referenced, every insight actionable.
+            Research across enterprise AI, production patterns, multi-agent systems,
+            and emerging technology &mdash; with dates, citations, and source links kept visible.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -426,8 +426,9 @@ function ResearchTeamSection() {
             Research Operations Team
           </h2>
           <p className="text-white/50 max-w-2xl">
-            Five specialized AI research agents that continuously scan, validate,
-            synthesize, and publish intelligence across all domains.
+            The five agent roles this research runs through — scanning, validation,
+            synthesis, and publishing happen in working sessions with these specialists,
+            not in an autonomous pipeline.
           </p>
         </div>
 
@@ -598,13 +599,13 @@ function FlagshipArticles() {
       title: 'Blue Zones, Ikigai, and the AI Era',
       href: '/research/blue-zones-ikigai-ai-era',
       blurb:
-        'What 110-year-olds in Okinawa understand about meaning that AI is now forcing the rest of us to learn.',
+        'Longevity research from Okinawa and Sardinia, read as a systems question: what keeps work meaningful when AI does more of it.',
       readingTime: '12 min',
     },
     {
       kanji: '識',
       label: 'sovereign ai · architecture',
-      title: 'Conscious AI Operating Systems',
+      title: 'Sovereign AI Operating Systems',
       href: '/research/conscious-ai-operating-systems',
       blurb:
         'Sovereign AI architectures that integrate biometrics, persistent memory, and ethical guardrails.',
