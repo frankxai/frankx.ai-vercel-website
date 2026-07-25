@@ -18,7 +18,7 @@
       "claim_classes": ["capability", "provenance"]
     }
   ],
-  "local_contracts": ["AGENTS.md", "design.md"],
+  "local_contracts": ["AGENTS.md", "design.md", "taste.md"],
   "release_evidence": {
     "schema_version": "starlight.web_release_evidence.v1",
     "receipt_directory": ".starlight/release-evidence"
