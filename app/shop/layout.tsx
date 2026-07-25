@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Shop — Templates, Tools & Digital Products | FrankX',
+  title: { absolute: 'Shop — Templates, Tools & Digital Products | FrankX' },
   description:
     'Production-ready AI templates, Claude Code skill packs, n8n workflows, Next.js starters, and digital products. Built by an AI architect who ships.',
   keywords: [

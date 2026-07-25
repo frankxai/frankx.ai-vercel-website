@@ -2,6 +2,7 @@ import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
   title: 'AI Architecture Field Guide | Vercel, Railway & GCP | FrankX',
+  absoluteTitle: true,
   description: 'Verified official AI architectures and working repositories for agent interfaces, persistent workers, enterprise RAG, MCP, durable workflows, and observability.',
   path: '/ai-architecture',
 })

@@ -28,6 +28,11 @@ export const siteConfig = {
 
 type CreateMetadataOptions = {
   title: string
+  /**
+   * Bypass the root "%s | FrankX" title template when the supplied title
+   * already carries the brand. Keep false for unbranded page titles.
+   */
+  absoluteTitle?: boolean
   description: string
   path?: string
   keywords?: string[]
@@ -50,6 +55,7 @@ type CreateMetadataOptions = {
 
 export function createMetadata({
   title,
+  absoluteTitle = false,
   description,
   path = '/',
   keywords = siteConfig.keywords,
@@ -65,7 +71,7 @@ export function createMetadata({
   const canonicalUrl = canonical ?? url
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     keywords,
     alternates: {

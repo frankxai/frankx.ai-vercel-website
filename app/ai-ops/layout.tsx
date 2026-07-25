@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'AI Operations Research Hub | FrankX.AI',
+  title: { absolute: 'AI Operations Research Hub | FrankX.AI' },
   description: 'The definitive knowledge base for AI Operations. Production-ready LLM infrastructure, OCI AI Accelerator Packs, memory systems, multi-agent orchestration, and the path to AGI.',
   keywords: [
     'AI Ops',

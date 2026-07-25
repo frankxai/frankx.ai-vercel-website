@@ -2,6 +2,7 @@ import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
   title: 'Resources | Templates, Guides & Tools | FrankX',
+  absoluteTitle: true,
   description:
     'Free and premium resources for AI architects and creators, including templates, playbooks, affiliate programs, and GitHub repo maps.',
   path: '/resources',

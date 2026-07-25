@@ -17,12 +17,12 @@ cleanup() {
 trap cleanup EXIT
 
 if curl -fsS "$SERVER_URL" >/dev/null 2>&1; then
-  npm run links:check
+  pnpm run links:check
   exit 0
 fi
 
 : >"$DEV_LOG"
-npm run dev >"$DEV_LOG" 2>&1 &
+pnpm run dev >"$DEV_LOG" 2>&1 &
 DEV_PID=$!
 STARTED_SERVER=1
 
@@ -31,6 +31,12 @@ for _ in $(seq 1 90); do
   if curl -fsS "$SERVER_URL" >/dev/null 2>&1; then
     READY=1
     break
+  fi
+  if ! kill -0 "$DEV_PID" 2>/dev/null; then
+    echo "ERROR: Dev server exited before becoming ready on ${SERVER_URL}"
+    echo "Recent dev log:"
+    tail -n 120 "$DEV_LOG" || true
+    exit 1
   fi
   sleep 1
 done
@@ -42,4 +48,4 @@ if [[ "$READY" -ne 1 ]]; then
   exit 1
 fi
 
-npm run links:check
+pnpm run links:check

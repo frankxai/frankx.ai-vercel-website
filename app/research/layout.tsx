@@ -8,7 +8,7 @@ const sourceCount = new Set(
 ).size
 
 export const metadata: Metadata = {
-  title: 'Research Intelligence Hub | FrankX.AI',
+  title: { absolute: 'Research Intelligence Hub | FrankX.AI' },
   description: `Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology. 135+ cross-referenced findings, ${domainCount} active research domains, ${sourceCount}+ verified sources.`,
   keywords: [
     'AI research',
