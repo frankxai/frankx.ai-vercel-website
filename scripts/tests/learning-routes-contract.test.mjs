@@ -37,6 +37,19 @@ test('legacy Academy paths resolve to the canonical Academy route', () => {
   }
 })
 
+test('retired signal entry resolves to the maintained architecture field guide', () => {
+  const redirects = JSON.parse(
+    fs.readFileSync(path.join(root, 'data/redirect-aliases.json'), 'utf8'),
+  )
+
+  assert.equal(redirects.aliases['/signal'], '/ai-architecture')
+  assert.equal(
+    fs.existsSync(path.join(root, 'app/ai-architecture/page.tsx')),
+    true,
+    'the /signal destination must remain a real page',
+  )
+})
+
 test('course recommendations never fabricate an affiliate destination', () => {
   const catalog = fs.readFileSync(path.join(root, 'data/learning-catalog.ts'), 'utf8')
 
