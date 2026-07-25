@@ -131,8 +131,8 @@ const patterns = [
   },
 ]
 
-// Learning paths preview
-const learningPaths = [
+// Learning path previews
+const learningPathPreviews = [
   {
     title: 'AI Architecture Foundations',
     duration: '2 weeks',
@@ -238,7 +238,8 @@ export default function AIArchitectAcademyPage() {
               className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Master enterprise AI patterns, Claude Code skills, and production architectures.
-              80+ skills, 20+ documented patterns, and five core learning paths from an enterprise AI architect.
+              80+ skills, 20+ documented patterns, and {learningPathPreviews.length} curriculum
+              previews from an enterprise AI architect.
             </motion.p>
 
             {/* Tech badges */}
@@ -312,7 +313,11 @@ export default function AIArchitectAcademyPage() {
               {[
                 { value: '80+', label: 'Claude Skills', sublabel: 'Ready to use' },
                 { value: '20+', label: 'Design Patterns', sublabel: 'Enterprise-grade' },
-                { value: '5', label: 'Core Paths', sublabel: 'Structured curriculum' },
+                {
+                  value: String(learningPathPreviews.length),
+                  label: 'Path Previews',
+                  sublabel: 'Structured curriculum',
+                },
                 { value: 'Free', label: 'Open Source', sublabel: 'MIT License' },
               ].map((stat, i) => (
                 <motion.div
@@ -421,12 +426,13 @@ export default function AIArchitectAcademyPage() {
                 Structured Learning
               </h2>
               <p className="max-w-2xl text-lg text-slate-400">
-                Five core learning paths from foundations to advanced multi-agent systems.
+                {learningPathPreviews.length} curriculum previews, from foundations to advanced
+                multi-agent systems.
               </p>
             </motion.div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {learningPaths.map((path, i) => {
+              {learningPathPreviews.map((path, i) => {
                 const colors = colorMap[path.color as keyof typeof colorMap]
 
                 return (
@@ -462,7 +468,7 @@ export default function AIArchitectAcademyPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
               >
-                Explore the five core learning paths
+                Explore the full learning-path library
                 <ExternalLink className="h-4 w-4" />
               </a>
             </motion.div>

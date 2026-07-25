@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { ArrowUpRight, BookOpen, Clock3 } from 'lucide-react'
-import type { CourseRecommendation } from '@/data/learning-catalog'
+import {
+  resolveCourseDestination,
+  type CourseRecommendation,
+} from '@/data/learning-catalog'
 
 type CourseRecommendationCardProps = {
   course: CourseRecommendation
@@ -11,8 +14,7 @@ export default function CourseRecommendationCard({
   course,
   featured = false,
 }: CourseRecommendationCardProps) {
-  const destination = course.affiliateUrl ?? course.canonicalUrl
-  const isAffiliate = Boolean(course.affiliateUrl)
+  const { href: destination, isAffiliate } = resolveCourseDestination(course)
 
   return (
     <article

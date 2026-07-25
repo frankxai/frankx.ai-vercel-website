@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   type LucideIcon,
 } from 'lucide-react'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -189,16 +190,21 @@ export default function AcademyPatternsPage() {
               Take the pattern into a real architecture.
             </h2>
           </div>
-          <a
+          <TrackedLink
             href="https://github.com/frankxai/ai-architect-academy/tree/main/01-design-patterns"
             target="_blank"
             rel="noopener noreferrer"
+            eventName="cta_click"
+            eventProperties={{
+              location: 'academy-patterns',
+              target: 'implementation-patterns',
+            }}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d0f]"
             aria-label="Open the AI Architect Academy pattern repository on GitHub (opens in a new tab)"
           >
             Explore implementation patterns
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          </TrackedLink>
         </div>
       </section>
     </main>

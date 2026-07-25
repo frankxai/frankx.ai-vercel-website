@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 857,
+    "total": 855,
     "aliases": 49,
     "byType": {
       "core": 22,
-      "section": 400,
+      "section": 398,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -4765,16 +4765,6 @@
       "sitemap": false
     },
     {
-      "href": "/friends/ana",
-      "title": "Ana",
-      "tags": [
-        "friends",
-        "ana"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
       "href": "/friends/estefania",
       "title": "Estefania",
       "tags": [
@@ -6656,16 +6646,6 @@
         "lab"
       ],
       "type": "section"
-    },
-    {
-      "href": "/mvu/sabrina",
-      "title": "Sabrina",
-      "tags": [
-        "mvu",
-        "sabrina"
-      ],
-      "type": "section",
-      "sitemap": false
     },
     {
       "href": "/n8n",

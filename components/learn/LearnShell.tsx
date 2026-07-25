@@ -148,7 +148,7 @@ export default function LearnShell() {
 
             <div className="border-b border-white/[0.07]">
               {learningOutcomes.map((outcome, index) => {
-                const Icon = outcomeIcons[index]
+                const Icon = outcomeIcons[index] ?? BookOpen
 
                 return (
                   <Link
