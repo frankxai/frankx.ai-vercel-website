@@ -50,6 +50,32 @@ test('retired signal entry resolves to the maintained architecture field guide',
   )
 })
 
+test('Mindvalley University aliases resolve permanently to the canonical MVU page', async () => {
+  const redirects = JSON.parse(
+    fs.readFileSync(path.join(root, 'data/redirect-aliases.json'), 'utf8'),
+  )
+  const nextConfig = (await import('../../next.config.mjs')).default
+  const configuredRedirects = await nextConfig.redirects()
+
+  assert.equal(
+    fs.existsSync(path.join(root, 'app/mvu/page.tsx')),
+    true,
+    'the canonical /mvu destination must remain a real page',
+  )
+
+  for (const source of ['/mindvalley-university', '/mindvalleyuniversity']) {
+    assert.equal(redirects.aliases[source], '/mvu')
+    assert.deepEqual(
+      configuredRedirects.find((redirect) => redirect.source === source),
+      {
+        source,
+        destination: '/mvu',
+        permanent: true,
+      },
+    )
+  }
+})
+
 test('course recommendations never fabricate an affiliate destination', () => {
   const catalog = fs.readFileSync(path.join(root, 'data/learning-catalog.ts'), 'utf8')
 
