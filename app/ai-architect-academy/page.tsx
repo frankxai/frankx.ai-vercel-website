@@ -1,6 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+
+import { EmailSignup } from '@/components/email-signup'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -15,7 +17,6 @@ import {
   GitBranch,
   ExternalLink,
   CheckCircle2,
-  Sparkles,
   Bot,
   GraduationCap,
   Building,
@@ -613,20 +614,28 @@ export default function AIArchitectAcademyPage() {
           </div>
         </section>
 
-        {/* Future: AI Architect OS teaser */}
-        <section className="py-12 border-t border-white/5">
+        {/* Capture: curriculum updates */}
+        <section className="py-16 border-t border-white/5">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="mx-auto max-w-xl rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 text-center"
             >
-              <p className="text-sm text-slate-500">
-                <Sparkles className="mr-2 inline h-4 w-4" />
-                Coming soon: <span className="text-slate-400">AI Architect OS</span> -
-                The complete system packaged for teams. Interactive guided wizard, templates, and more.
+              <h2 className="text-xl font-bold text-white">Follow the curriculum as it grows</h2>
+              <p className="mt-2 text-sm text-slate-400">
+                The repo is free and stays free. One email when new skills, patterns, or
+                learning paths land &mdash; and first word when AI Architect OS (the packaged
+                team edition) opens.
               </p>
+              <EmailSignup
+                listType="ai-architect"
+                compact
+                placeholder="you@example.com"
+                buttonText="Get curriculum updates"
+                className="mx-auto mt-4 max-w-md"
+              />
             </motion.div>
           </div>
         </section>
