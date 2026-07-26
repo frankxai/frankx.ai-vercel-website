@@ -1,0 +1,127 @@
+{
+  "version": "2026-07-11",
+  "task": "Restore and evolve the FrankX music-led homepage into a living studio and intent-driven mind palace.",
+  "surface": "FrankX homepage hero and Mind Palace Atlas",
+  "audience": "Friends, family, creators, founders, builders, and curious visitors seeking music, learning, tools, or direction.",
+  "first_read": "FrankX is a personal living studio; music is immediately available; every visitor can choose a clear next room.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "_intelligence/operating-system.md",
+    "_intelligence/motion.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "MOTION_TASTE_RUBRIC.md"
+  ],
+  "references": [
+    {
+      "label": "Previous music-led FrankX homepage",
+      "source": "git:c4e7fa08^:app/page.tsx",
+      "reason": "Preserves the studio breadth and embedded music entry that the owner explicitly wants restored."
+    },
+    {
+      "label": "Current proof-led FrankX homepage",
+      "source": "components/home/FrankXProductionHome.tsx",
+      "reason": "Preserves evidence-before-adjectives, bounded claims, and clear route discipline."
+    },
+    {
+      "label": "God Mode GSAP pattern library",
+      "source": "queen/reports/god-mode-gsap-pattern-library-2026-07-11.md",
+      "reason": "Defines the one-scene limit, final-state utility, matchMedia cleanup, and signal-route brand physics."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "User-initiated Suno music in the opening composition",
+      "Real studio work across music, agents, books, design, and field notes",
+      "Evidence-before-adjectives and explicit independence disclaimer",
+      "Warm founder voice and a route for people who need reflection rather than commerce"
+    ],
+    "avoid": [
+      "Generic agency or client-services positioning",
+      "Card-wall navigation without hierarchy",
+      "Autoplay sound, scroll hijacking, and continuous text motion",
+      "Unverified counts, revenue claims, outcomes, scarcity, or latest-release labels",
+      "Decorative orbs, fake dashboards, abstract topology, and uninspected generated media"
+    ],
+    "signature": "Six real signals converge into one calm, clickable mind-palace map.",
+    "system": [
+      "Near-black editorial canvas with restrained emerald and cyan signal accents",
+      "Static, readable founder thesis paired with a real embedded studio release",
+      "One GSAP ScrollTrigger timeline using transform and opacity only",
+      "Native scroll with static mobile, coarse-pointer, and reduced-motion compositions",
+      "Semantic route rail rather than interchangeable feature cards"
+    ]
+  },
+  "asset_quality": {
+    "tier": "A",
+    "source_method": "product-capture",
+    "provenance": "owned",
+    "why_premium": "The primary asset is Frank's real, reviewed Suno release and the page routes to inspectable work rather than decorative filler.",
+    "shortcut_risk": "low",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "path_or_url": "app/page.tsx",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Music-led page assembly; browser inspection pending."
+    },
+    {
+      "path_or_url": "components/home/MindPalaceAtlas.tsx",
+      "kind": "motion",
+      "inspected": false,
+      "notes": "Signature GSAP scene; desktop, mobile, and reduced-motion proof pending."
+    },
+    {
+      "path_or_url": "data/homepage-featured-release.ts",
+      "kind": "ui",
+      "inspected": true,
+      "notes": "Human-reviewed featured-release source; no raw-catalog auto-promotion."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier A: real owned music and inspectable studio work are the primary proof."
+    },
+    {
+      "name": "music-release-governance",
+      "status": "pass",
+      "evidence": "Featured source is explicitly approved and weekly candidates remain human-gated."
+    },
+    {
+      "name": "motion-contract",
+      "status": "pass",
+      "evidence": "One-scene limit, native scroll, cleanup, and static fallback are specified before implementation."
+    },
+    {
+      "name": "export-inspection",
+      "status": "blocked",
+      "evidence": "Machine browser-qa admission is currently on hold."
+    },
+    {
+      "name": "visual-qa",
+      "status": "blocked",
+      "evidence": "Desktop, mobile, and reduced-motion captures are pending."
+    },
+    {
+      "name": "vercel-preview",
+      "status": "blocked",
+      "evidence": "Preview follows a coherent local verification pass and one batched push."
+    }
+  ],
+  "score": {
+    "total": 22,
+    "max": 30,
+    "notes": "Direction and primary asset pass; export inspection, browser QA, and preview evidence remain required."
+  },
+  "decision": "iterate",
+  "known_risks": [
+    "The inherited long-form homepage still contains repeated card grids that need evidence-led consolidation.",
+    "The current approved opening track is a stable studio release, not an automatically inferred latest track.",
+    "Browser and preview gates depend on machine admission recovering from hold."
+  ]
+}

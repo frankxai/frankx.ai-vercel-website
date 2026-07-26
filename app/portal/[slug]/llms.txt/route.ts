@@ -108,7 +108,7 @@ export async function GET(
 
   lines.push('## Engage')
   lines.push(`${partner.cta.label}: ${partner.cta.href.startsWith('http') ? partner.cta.href : `${SITE_URL}${partner.cta.href}`}`)
-  lines.push(`Email: hello@frankx.ai`)
+  lines.push(`Email: frank@frankx.ai`)
 
   return new NextResponse(lines.join('\n') + '\n', {
     headers: {

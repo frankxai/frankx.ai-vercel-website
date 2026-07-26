@@ -267,7 +267,7 @@ export const PILLARS: Pillar[] = [
   {
     id: 'meta',
     number: 11,
-    title: 'Meta-Infrastructure',
+    title: 'Foundation',
     tagline: 'The system that runs the system.',
     accent: 'indigo',
     surface: '/acos',

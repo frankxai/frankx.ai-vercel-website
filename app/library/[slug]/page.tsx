@@ -2,15 +2,19 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { bookReviews, getReviewBySlug, getAllReviewSlugs } from '@/data/book-reviews';
+import { bookReviews, getReviewBySlug } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 import type { BookReview } from '@/app/books/types';
 
 const SITE_URL = 'https://frankx.ai';
 
-export function generateStaticParams() {
-  return getAllReviewSlugs().map((slug) => ({ slug }));
+function absoluteUrl(src?: string) {
+  if (!src) return undefined;
+  if (/^https?:\/\//.test(src)) return src;
+  return `${SITE_URL}${src.startsWith('/') ? '' : '/'}${src}`;
 }
+
+// Review pages are resolved on demand. Avoid enumerating the whole library on every deploy.
 
 function truncate(text: string, limit = 158) {
   if (text.length <= limit) return text;
@@ -33,7 +37,9 @@ export async function generateMetadata({
 
   const description = reviewDescription(review);
   const canonical = `${SITE_URL}/library/${review.slug}`;
-  const ogImage = review.hasCover ? `${SITE_URL}${review.coverImage}` : undefined;
+  const ogImage = review.hasCover
+    ? absoluteUrl(review.coverImage)
+    : absoluteUrl(review.capture?.images?.[0]?.src);
 
   return {
     title: `${review.title} by ${review.author} — Book Review & Key Insights | FrankX Library`,
@@ -88,7 +94,9 @@ function JsonLd({ review }: { review: BookReview }) {
   const url = `${SITE_URL}/library/${review.slug}`;
   const description = reviewDescription(review);
   const reviewBody = review.tldr ?? review.keyInsights.join(' — ');
-  const imageUrl = review.hasCover ? `${SITE_URL}${review.coverImage}` : undefined;
+  const imageUrl = review.hasCover
+    ? absoluteUrl(review.coverImage)
+    : absoluteUrl(review.capture?.images?.[0]?.src);
 
   const graph: Array<Record<string, unknown>> = [
     {
@@ -197,6 +205,13 @@ export default async function ReviewPage({
     .filter((r) => r.slug !== review.slug)
     .slice(0, 3);
 
+  const headerImage = review.hasCover
+    ? {
+        src: review.coverImage,
+        alt: `${review.title} by ${review.author} — book cover`,
+      }
+    : review.capture?.images?.[0];
+
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Back Link */}
@@ -225,11 +240,11 @@ export default async function ReviewPage({
       {/* Review Header */}
       <header className="max-w-3xl mx-auto px-6 pb-12">
         <div className="flex items-start gap-6">
-          {review.hasCover ? (
+          {headerImage ? (
             <div className="w-24 h-36 rounded-xl border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
               <Image
-                src={review.coverImage}
-                alt={`${review.title} by ${review.author} — book cover`}
+                src={headerImage.src}
+                alt={headerImage.alt}
                 width={192}
                 height={288}
                 priority
@@ -262,6 +277,64 @@ export default async function ReviewPage({
           </div>
         </div>
       </header>
+
+      {/* Source capture — public projection only */}
+      {review.capture && (
+        <section className="max-w-3xl mx-auto px-6 pb-12">
+          <div className="overflow-hidden rounded-2xl border border-cyan-400/15 bg-cyan-500/[0.03]">
+            <div className="p-6">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-cyan-300/75 mb-3">
+                Source capture
+              </p>
+              {review.capture.publicNote && (
+                <p className="text-[15px] leading-relaxed text-white/75">
+                  {review.capture.publicNote}
+                </p>
+              )}
+              <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-cyan-100/65">
+                <span className="rounded-full border border-cyan-400/15 bg-cyan-400/[0.05] px-2.5 py-1">
+                  Captured: {review.capture.capturedAt}
+                </span>
+                {review.capture.translator && (
+                  <span className="rounded-full border border-cyan-400/15 bg-cyan-400/[0.05] px-2.5 py-1">
+                    Translation: {review.capture.translator}
+                  </span>
+                )}
+                {review.capture.sourcePages && review.capture.sourcePages.length > 0 && (
+                  <span className="rounded-full border border-cyan-400/15 bg-cyan-400/[0.05] px-2.5 py-1">
+                    Source pages: {review.capture.sourcePages.join(', ')}
+                  </span>
+                )}
+              </div>
+              {review.capture.rightsStatus && (
+                <p className="mt-4 border-t border-cyan-400/10 pt-4 text-xs leading-relaxed text-white/45">
+                  {review.capture.rightsStatus}
+                </p>
+              )}
+            </div>
+            {review.capture.images && review.capture.images.length > 0 && (
+              <div className="grid gap-px border-t border-cyan-400/10 bg-cyan-400/10 sm:grid-cols-2">
+                {review.capture.images.map((image, index) => (
+                  <figure key={`${image.src}-${index}`} className="bg-[#0a0a0b]">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width ?? 960}
+                      height={image.height ?? 1280}
+                      className="h-auto w-full object-cover"
+                    />
+                    {image.caption && (
+                      <figcaption className="px-4 py-3 text-xs leading-relaxed text-white/45">
+                        {image.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* The Short Answer (TL;DR) */}
       {review.tldr && (
@@ -310,6 +383,13 @@ export default async function ReviewPage({
                 01 &nbsp;·&nbsp; Key Insights
               </a>
             </li>
+            {review.application && (
+              <li>
+                <a href="#application" className="hover:text-amber-300 transition-colors">
+                  Action &nbsp;·&nbsp; Practice this
+                </a>
+              </li>
+            )}
             {review.quotes && review.quotes.length > 0 && (
               <li>
                 <a href="#quotes" className="hover:text-amber-300 transition-colors">
@@ -460,6 +540,67 @@ export default async function ReviewPage({
                 </div>
               </details>
             ))}
+          </div>
+        </section>
+      )}
+
+      {/* Applied to FrankX */}
+      {review.application && (
+        <section id="application" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
+          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
+            <span className="w-8 h-px bg-cyan-400/60" />
+            Applied to FrankX
+          </h2>
+          <div className="rounded-2xl border border-cyan-400/15 bg-cyan-500/[0.035] p-6">
+            <h3 className="text-lg font-semibold text-cyan-100">{review.application.title}</h3>
+            <p className="mt-3 text-[15px] leading-relaxed text-white/70">{review.application.body}</p>
+            {review.application.practice && (
+              <div className="mt-5 rounded-xl border border-cyan-400/15 bg-[#0a0a0b]/50 p-5">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <p className="text-sm font-semibold text-white">
+                    {review.application.practice.title}
+                  </p>
+                  {review.application.practice.duration && (
+                    <span className="text-[11px] uppercase tracking-[0.14em] text-cyan-200/55">
+                      {review.application.practice.duration}
+                    </span>
+                  )}
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-white/65">
+                  {review.application.practice.instruction}
+                </p>
+              </div>
+            )}
+            {review.application.connections && review.application.connections.length > 0 && (
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {review.application.connections.map((connection, index) => {
+                  const card = (
+                    <>
+                      <p className="text-sm font-semibold text-white/90">{connection.label}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-white/50">{connection.reason}</p>
+                    </>
+                  );
+                  const className =
+                    'block rounded-xl border border-white/[0.08] bg-white/[0.025] p-4 transition-colors hover:border-cyan-400/25 hover:bg-cyan-500/[0.05]';
+
+                  return connection.href.startsWith('http') ? (
+                    <a
+                      key={`${connection.href}-${index}`}
+                      href={connection.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={className}
+                    >
+                      {card}
+                    </a>
+                  ) : (
+                    <Link key={`${connection.href}-${index}`} href={connection.href} className={className}>
+                      {card}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </section>
       )}

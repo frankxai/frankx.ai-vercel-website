@@ -98,7 +98,7 @@ export default async function Page({ params }: PageProps) {
       url: 'https://frankx.ai',
     },
     dateModified: domain.lastUpdated,
-    datePublished: '2026-01-27',
+    datePublished: domain.publishedAt ?? '2026-01-27',
     mainEntityOfPage: `https://frankx.ai/research/${domain.slug}`,
     about: domain.keyFindings.slice(0, 3).join('. '),
     keywords: [domain.title, ...domain.highlights.map(h => h.label)].join(', '),

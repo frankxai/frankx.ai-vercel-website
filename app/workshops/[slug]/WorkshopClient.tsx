@@ -16,6 +16,7 @@ import {
   Users,
 } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
+import { WorkshopProvenanceNotice } from '@/components/workshops/WorkshopProvenanceNotice'
 import { EmailSignup } from '@/components/email-signup'
 import type { Workshop, WorkshopModule } from '@/data/workshops'
 import type { GlowColor } from '@/components/ui/glow-card'
@@ -248,6 +249,8 @@ export default function WorkshopClient({ workshop }: { workshop: Workshop }) {
             <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl">
               {workshop.overview}
             </p>
+
+            {workshop.provenance === 'studio-draft' ? <WorkshopProvenanceNotice /> : null}
           </motion.div>
         </div>
       </section>

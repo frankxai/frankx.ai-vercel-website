@@ -57,7 +57,7 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
     {
       label: 'Former enterprise AI architecture practice',
       detail:
-        'Former AI architect at Oracle. Enterprise AI architecture patterns translated into Claude-Code-native workflows using public knowledge, personal experience, and non-confidential material.',
+        'AI Architect & Creator. Enterprise AI architecture patterns translated into Claude-Code-native workflows using public knowledge, personal experience, and non-confidential material.',
     },
     {
       label: 'Workshop Claude branch already taught',

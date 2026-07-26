@@ -1,0 +1,57 @@
+{
+  "name": "property-intelligence-starter-kit",
+  "version": "0.1.0",
+  "releaseDate": "2026-07-05",
+  "audience": ["owners", "boutique-agencies", "implementation-partners", "community-forks"],
+  "repos": [
+    "property-os-template",
+    "property-portal-template",
+    "property-intelligence-system",
+    "brother-property-os"
+  ],
+  "included": [
+    "prd",
+    "user-flows",
+    "success-metrics",
+    "agent-profiles",
+    "skill-pack",
+    "mcp-server-skeleton",
+    "mcp-railway-architecture",
+    "vercel-portal-template",
+    "railway-architecture",
+    "v0-prompt",
+    "partner-implementation-guide",
+    "install-runbook",
+    "business-model",
+    "data-boundaries",
+    "success-gates"
+  ],
+  "files": [
+    "README.md",
+    "DOWNLOAD.md",
+    "V0_PROMPT.md",
+    "PARTNER_IMPLEMENTATION.md",
+    "AGENT_TEAM.md",
+    "MCP_RAILWAY_ARCHITECTURE.md",
+    "INSTALL_RUNBOOK.md",
+    "BUSINESS_MODEL.md",
+    "SUCCESS_GATES.md",
+    "DATA_BOUNDARIES.md",
+    "manifest.json"
+  ],
+  "blockedV1": [
+    "automatic-listing-publication",
+    "automatic-renter-messaging",
+    "vendor-dispatch",
+    "applicant-selection",
+    "access-secret-disclosure",
+    "rent-or-deposit-handling"
+  ],
+  "validation": [
+    "property-os-template npm run validate",
+    "property-portal-template npm run validate",
+    "property-portal-template npm run typecheck",
+    "property-portal-template npm run build",
+    "property-portal-template npm run smoke"
+  ]
+}

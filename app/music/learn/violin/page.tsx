@@ -107,6 +107,12 @@ export default function ViolinLearnPage() {
           </p>
         </motion.header>
 
+        <div className="mb-10 rounded-2xl border border-violet-200 bg-white/80 px-5 py-4 text-sm leading-6 text-slate-600" role="note">
+          <strong className="text-slate-800">Hinweis für Familien:</strong> Diese Seite speichert keine Namen,
+          E-Mail-Adressen oder Aufnahmen. Jüngere Lernende sollten externe Videos und Dienste nur gemeinsam mit
+          einem Elternteil, einer Aufsichtsperson oder einer Lehrkraft öffnen.
+        </div>
+
         {/* Quick Start */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
@@ -165,7 +171,7 @@ export default function ViolinLearnPage() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <h2 className="mb-6 text-2xl font-bold text-slate-800">🎓 Die besten Lehrer auf YouTube</h2>
+          <h2 className="mb-6 text-2xl font-bold text-slate-800">🎓 Ausgewählte Lehrer auf YouTube</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {TEACHERS.map((teacher) => {
               const c = colorMap[teacher.color]

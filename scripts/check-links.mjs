@@ -26,6 +26,10 @@ const pagesToTest = [
   { path: '/agentic-ai-center', name: 'Agentic AI Center' },
   { path: '/founder-playbook', name: 'Founder Playbook' },
   { path: '/realm', name: 'Realm' },
+  { path: '/library', name: 'Library' },
+  { path: '/library/approach', name: 'Library OS Approach' },
+  { path: '/library/build', name: 'Build Your Library' },
+  { path: '/library/tao-te-ching', name: 'Tao Te Ching Field Note' },
 ];
 
 // Simple HTML parser to extract links

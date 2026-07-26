@@ -2,7 +2,10 @@ import { NextResponse } from 'next/server'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
 import { buildModelRows } from '@/lib/llm-hub/rows'
 
-export const revalidate = 3600
+// Keep the live catalog out of deploy-time prerendering. fetchLivePricing() still
+// uses the Next Data Cache and refreshes the upstream response at most hourly.
+export const dynamic = 'force-dynamic'
+// Intentional Function boundary: external pricing refreshes independently of site deploys.
 
 export async function GET() {
   const live = await fetchLivePricing()

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">The Intent Contract</title>
+  <desc id="desc">Seven stacked fields: purpose, end state, context, boundaries, decision rights, evidence, and escalation and memory.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0a0b"/>
+      <stop offset="1" stop-color="#0c1517"/>
+    </linearGradient>
+    <linearGradient id="rail" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5b942"/>
+      <stop offset="0.45" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" rx="36" fill="url(#bg)"/>
+  <text x="150" y="110" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="750">The Intent Contract</text>
+  <text x="150" y="155" fill="#849195" font-family="Inter, Arial, sans-serif" font-size="21">Seven fields that convert a desire into bounded, verifiable work.</text>
+  <rect x="150" y="215" width="12" height="660" rx="6" fill="url(#rail)"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(210 205)">
+      <rect width="1190" height="82" rx="20" fill="#171410" stroke="#f5b942" stroke-width="2"/>
+      <text x="35" y="36" fill="#f5b942" font-size="17" font-weight="700" letter-spacing="2">01 · PURPOSE</text>
+      <text x="355" y="51" fill="#ffffff" font-size="23">Why this outcome matters and which value it serves.</text>
+    </g>
+    <g transform="translate(210 300)">
+      <rect width="1190" height="82" rx="20" fill="#151713" stroke="#d6c062" stroke-width="2"/>
+      <text x="35" y="36" fill="#e9cf72" font-size="17" font-weight="700" letter-spacing="2">02 · END STATE</text>
+      <text x="355" y="51" fill="#ffffff" font-size="23">What must be observably true when the work is complete.</text>
+    </g>
+    <g transform="translate(210 395)">
+      <rect width="1190" height="82" rx="20" fill="#101a1b" stroke="#38c5c8" stroke-width="2"/>
+      <text x="35" y="36" fill="#62d4d6" font-size="17" font-weight="700" letter-spacing="2">03 · CONTEXT</text>
+      <text x="355" y="51" fill="#ffffff" font-size="23">Facts, dependencies, prior decisions, and current state.</text>
+    </g>
+    <g transform="translate(210 490)">
+      <rect width="1190" height="82" rx="20" fill="#0e1a1d" stroke="#06b6d4" stroke-width="2"/>
+      <text x="35" y="36" fill="#5dd4ee" font-size="17" font-weight="700" letter-spacing="2">04 · BOUNDARIES</text>
+      <text x="355" y="51" fill="#ffffff" font-size="23">Invariants, exclusions, budgets, and protected conditions.</text>
+    </g>
+    <g transform="translate(210 585)">
+      <rect width="1190" height="82" rx="20" fill="#0d1b1a" stroke="#16bd9c" stroke-width="2"/>
+      <text x="35" y="36" fill="#5de0c1" font-size="17" font-weight="700" letter-spacing="2">05 · DECISION RIGHTS</text>
+      <text x="355" y="51" fill="#ffffff" font-size="23">What may be decided, executed, delegated, or communicated.</text>
+    </g>
+    <g transform="translate(210 680)">
+      <rect width="1190" height="82" rx="20" fill="#0d1c18" stroke="#10b981" stroke-width="2"/>
+      <text x="35" y="36" fill="#6ee7b7" font-size="17" font-weight="700" letter-spacing="2">06 · EVIDENCE</text>
+      <text x="355" y="51" fill="#ffffff" font-size="23">Artifacts, tests, sources, and observations that prove completion.</text>
+    </g>
+    <g transform="translate(210 775)">
+      <rect width="1190" height="100" rx="20" fill="#0c1c17" stroke="#10b981" stroke-width="2"/>
+      <text x="35" y="42" fill="#6ee7b7" font-size="17" font-weight="700" letter-spacing="2">07 · ESCALATION + MEMORY</text>
+      <text x="355" y="43" fill="#ffffff" font-size="23">When to stop, whom to ask, and what the system must retain.</text>
+      <text x="355" y="73" fill="#78928a" font-size="17">The field that keeps local execution from becoming institutional amnesia.</text>
+    </g>
+  </g>
+  <text x="800" y="945" text-anchor="middle" fill="#899699" font-family="Inter, Arial, sans-serif" font-size="20">A strong brief closes decision rights. It does not prescribe every implementation step.</text>
+</svg>

@@ -292,7 +292,7 @@ export default function VanEdeProposalPage() {
 
           <MotionItem className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
             {[
-              '4+ years at Oracle EMEA AI Center of Excellence',
+              '4+ years enterprise AI (Oracle EMEA AI CoE)',
               'BMW, Volkswagen, KPN, Daimler Trucks, Roche',
               'Sold-out NLDigital workshop — 38 registrations, their record',
               'FrankX Operations BV, Amsterdam',

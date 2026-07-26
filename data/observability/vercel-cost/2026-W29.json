@@ -1,0 +1,45 @@
+{
+  "week": "2026-W29",
+  "generatedAt": "2026-07-13T07:10:00Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-07-06T07:08:50Z",
+  "windowEnd": "2026-07-13T07:08:50Z",
+  "metrics": {
+    "count_total": 100,
+    "count_production": 20,
+    "count_preview": 80,
+    "count_skipped": 12,
+    "count_error": 1,
+    "count_ready": 87,
+    "duration_p50_seconds": 570,
+    "duration_p95_seconds": 663,
+    "duration_max_seconds": 663,
+    "total_build_minutes": 817,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 10,
+    "ready_deploys_total": 87,
+    "duration_note": "10/87 READY deploys sampled via get_deployment (spanning Jul 6 – Jul 13); total_build_minutes extrapolated as avg(563.1s) × 87 = 817 min"
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W28",
+    "count_total": -28,
+    "count_total_pct": "-21.9%",
+    "count_production": -6,
+    "count_preview": -7,
+    "count_error": -6,
+    "count_error_pct": "-85.7%",
+    "count_skipped": 4,
+    "count_skipped_pct": "+50.0%",
+    "duration_p50_seconds": 60,
+    "duration_p50_pct": "+11.8%",
+    "total_build_minutes": -144,
+    "total_build_minutes_pct": "-15.0%"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "duration_p50=570s > 360s RED threshold (was 510s W28, +11.8%). Build times still elevated and trending up; Turbopack + Next.js with large content library now averaging ~563s per READY build. P95=663s is the highest sampled this observability cycle — single slow outlier (dpl_Fs6jRMWvEHzS7wuDdd3Mwuj5yNUY, Jul 12 production) drove the tail.",
+    "count_error=1 (was 7 W28, -85.7% improvement). Single failure on preview branch agent/claude/web-excellence (dpl_7GdmpQ5pjHmWd3pinktVkrSES5ue, Jul 9 ~23:12 UTC) — not a production regression. Below RED threshold of ≥2.",
+    "total_build_minutes=817 vs W28=961 (-15.0%). Lower total driven by fewer deploys this week (100 vs 128). Absolute level (817 min) well below 1500-min RED ceiling. count_skipped rose from 8 to 12 (+50%) but absolute swing is small (+4 deploys skipped)."
+  ]
+}

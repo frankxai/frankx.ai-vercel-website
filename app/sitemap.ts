@@ -6,6 +6,7 @@ import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
 import { learningPaths } from '@/data/learning-paths'
+import { getMvuEntrySummaries } from '@/lib/mvu'
 
 const BASE_URL = siteConfig.url
 
@@ -98,7 +99,7 @@ function getNewsletterIssues(): { slug: string; date: string; status: string }[]
   }
 }
 
-function getRouteIndexRoutes(): Array<{ href: string; type: string }> {
+function getRouteIndexRoutes(): Array<{ href: string; type: string; sitemap?: boolean }> {
   try {
     const routeIndexPath = path.join(process.cwd(), 'data', 'route-index.json')
     const raw = JSON.parse(fs.readFileSync(routeIndexPath, 'utf8'))
@@ -236,6 +237,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/terms',
     '/legal',
+    '/licensing',
   ]
 
   // Strategy and framework pages
@@ -272,6 +274,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Section pages (important navigation destinations)
   const sectionPages = [
     { url: '/vision', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/manifestation', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/manifestation/quest', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/the-secret', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/think-and-grow-rich', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/ai-world', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/see-through-the-noise', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -346,6 +352,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/library/approach', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/library/build', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/library/quotes', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/library/rockstar-energy', priority: 0.8, changeFrequency: 'monthly' as const },
   ]
 
   // Library OS — individual book deep-dives (dynamic from book-reviews registry)
@@ -382,6 +389,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Get dynamic content
   const blogEntries = getBlogEntries()
+  const mvuEntries = getMvuEntrySummaries()
   const guideSlugs = getGuideSlugs()
   const productSlugs = getProductSlugs()
 
@@ -621,6 +629,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // MVU journey hub + event page + journal entries
+  entries.push(
+    { url: `${BASE_URL}/mvu`, lastModified: currentDate, changeFrequency: 'daily', priority: 0.8 },
+    { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.7 },
+  )
+  mvuEntries.forEach(entry => {
+    entries.push({
+      url: `${BASE_URL}/mvu/${entry.slug}`,
+      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    })
+  })
+
   // Library OS — hub + manifesto + build + quotes
   libraryPages.forEach(page => {
     entries.push({
@@ -712,6 +734,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     legacy: { priority: 0.3, changeFrequency: 'yearly' },
   }
   for (const route of discovered) {
+    if (route.sitemap === false) continue
     const url = `${BASE_URL}${route.href}`
     if (seenUrls.has(url)) continue
     seenUrls.add(url)

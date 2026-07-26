@@ -5,6 +5,7 @@ import { ArrowRight, Download, Music, Sparkles, BookOpen, Zap, BarChart3, Mail, 
 import Link from 'next/link'
 import { PRIMARY_SOCIAL_LINKS } from '@/lib/social-links'
 import { useState } from 'react'
+import { trackEvent } from '@/lib/analytics'
 
 /**
  * FrankX Links Page - Mobile-First Creator Hub
@@ -15,29 +16,16 @@ import { useState } from 'react'
  *
  * Social Links: Pulls from @/lib/social-links (BRAND_IDENTITY.md source of truth)
  * Design System: Follows DESIGN_SYSTEM.md patterns
- * Analytics: PostHog event tracking on all CTAs
+ * Analytics: bounded aggregate event tracking on all CTAs
  * Reference: /mnt/c/Users/Frank/FrankX/LINKS_PAGE_DESIGN_SPEC.md
  */
 
-// PostHog type declaration for type safety
-declare global {
-  interface Window {
-    posthog?: {
-      capture: (event: string, properties?: Record<string, unknown>) => void
-    }
-  }
-}
-
 // Track link click events with proper typing
-const trackLinkClick = (linkTitle: string, linkHref: string, linkType: string) => {
-  if (typeof window !== 'undefined' && window.posthog) {
-    window.posthog.capture('link_clicked', {
-      link_title: linkTitle,
-      link_href: linkHref,
-      link_type: linkType,
-      page: 'links',
-    })
-  }
+const trackLinkClick = (_linkTitle: string, _linkHref: string, linkType: string) => {
+  trackEvent('link_clicked', {
+    link_type: linkType,
+    page: 'links',
+  })
 }
 
 export default function LinksPage() {

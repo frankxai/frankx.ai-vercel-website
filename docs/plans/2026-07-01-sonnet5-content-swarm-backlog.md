@@ -13,7 +13,7 @@ Full leak-scan findings: `docs/plans/2026-07-01-leak-scan-findings.md` (892 file
 
 ## Needs Frank's decision (not a copyediting call — strategic/brand)
 
-**"SIP" (Starlight Intelligence Protocol) branding — 102 hits across 35 files**, including a dedicated landing page (`app/starlight-intelligence-system/page.tsx`), a badge component (`components/sis/SIPBadge.tsx`), a sister page (`app/ana-intelligence-system/page.tsx`), and a downloadable "SIP Starter" kit (`app/downloads/DownloadsClient.tsx`). Unlike the Model Arena leak, this isn't obviously accidental — it reads like a deliberate open-protocol product positioning. Rewriting or removing it unilaterally would touch a working page with its own URL, possible backlinks/SEO equity, and a real download product — exactly the kind of "never rename working URLs, never consolidate by deletion without approval" call this repo's own CLAUDE.md reserves for Frank. Options as I see them, not a recommendation:
+**"SIP" (Starlight Intelligence Protocol) branding — 102 hits across 35 files**, including a dedicated landing page (`app/starlight-intelligence-system/page.tsx`), a badge component (`components/sis/SIPBadge.tsx`), and a downloadable "SIP Starter" kit (`app/downloads/DownloadsClient.tsx`). Unlike the Model Arena leak, this isn't obviously accidental — it reads like a deliberate open-protocol product positioning. Rewriting or removing it unilaterally would touch a working page with its own URL, possible backlinks/SEO equity, and a real download product — exactly the kind of "never rename working URLs, never consolidate by deletion without approval" call this repo's own CLAUDE.md reserves for Frank. Options as I see them, not a recommendation:
 1. Keep as-is — it's an intentional protocol/brand play, not a leak.
 2. Keep the substance, add a one-sentence plain-English gloss the first time "SIP" appears on each page (cheap, safe, doesn't touch the product).
 3. Simplify/consolidate — bigger job, needs a real content/brand decision first.
@@ -21,7 +21,6 @@ Full leak-scan findings: `docs/plans/2026-07-01-leak-scan-findings.md` (892 file
 ## Tier 2 — remaining jargon hits, ranked (from full scan, not yet touched)
 
 - `app/starlight-intelligence-system/page.tsx` (9 hits) — blocked on the SIP decision above
-- `app/ana-intelligence-system/page.tsx` (5 hits) — same
 - `app/chronicle/page.tsx` (4 hits) — same
 - `app/downloads/preview/agentic-creator-os/page.tsx` (6 hits), `app/downloads/DownloadsClient.tsx` (4 hits) — same
 - `components/research/ThreeArenaScene.tsx` receipt-viewer copy — already fixed tonight; double-check no other components render the old `RECEIPT_LOGS` governance-trap text elsewhere on the site (single-source in page.tsx, should be fine)

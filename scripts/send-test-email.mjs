@@ -14,7 +14,9 @@
 import 'dotenv/config'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
+const TEST_EMAIL_SECRET = process.env.TEST_EMAIL_SECRET
 const API_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const isLocalApiUrl = /^https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?(?:\/|$)/.test(API_URL)
 
 // Colors for terminal output
 const colors = {
@@ -42,6 +44,12 @@ async function sendTestEmail(recipientEmail, templateType = 'test') {
     log('   3. Add to .env.local file:', 'cyan')
     log('      RESEND_API_KEY=re_your_key_here\n', 'green')
     log('   4. Or set in Vercel dashboard → Environment Variables\n', 'cyan')
+    process.exit(1)
+  }
+
+  if (!isLocalApiUrl && !TEST_EMAIL_SECRET) {
+    log('❌ ERROR: TEST_EMAIL_SECRET is required when targeting a remote deployment', 'red')
+    log('   Set TEST_EMAIL_SECRET to the same value configured for the deployment.', 'yellow')
     process.exit(1)
   }
 
@@ -77,7 +85,8 @@ async function sendTestEmail(recipientEmail, templateType = 'test') {
     const response = await fetch(`${API_URL}/api/test-email`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...(TEST_EMAIL_SECRET ? { 'x-test-email-secret': TEST_EMAIL_SECRET } : {})
       },
       body: JSON.stringify(payload)
     })

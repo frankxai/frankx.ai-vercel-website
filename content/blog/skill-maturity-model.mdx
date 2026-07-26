@@ -1,0 +1,128 @@
+---
+title: "The Skill Maturity Model: From Prompt to Composed Capability"
+description: "The six levels of the Agent Skill Standard — L0 Prompt to L5 Composed — and how to move a skill up the ladder without over-engineering it."
+date: "2026-06-22"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["ai-skills", "agent-skill-standard", "maturity-model", "ai-coe", "operating-knowledge"]
+image: "/images/infographics/skill-maturity-ladder.svg"
+featured: true
+keywords: ["skill maturity model", "agent skill standard", "ai skill levels", "l0 l5 skills", "skill governance", "agent skills"]
+readingGoal: "You will learn the six maturity levels of an AI skill and exactly what each one requires, so you can place any skill on the ladder and decide what it needs next."
+tldr: "An AI skill matures through six levels: L0 Prompt, L1 Documented, L2 Referenced, L3 Evaluated, L4 Governed, L5 Composed. Each level adds one guarantee the level below it lacked. Most teams sit at L0–L1. Durable capability starts at L3. The model is part of the open Agent Skill Standard."
+schema: ["Article", "FAQPage"]
+---
+
+# The Skill Maturity Model: From Prompt to Composed Capability
+
+## TL;DR
+
+A skill is not on or off. It matures through six levels, and each level adds exactly one guarantee the previous level could not make.
+
+- **L0 Prompt** — works once
+- **L1 Documented** — has a name and a job
+- **L2 Referenced** — scales without bloat
+- **L3 Evaluated** — works on purpose, not by luck
+- **L4 Governed** — is owned and reversible
+- **L5 Composed** — runs safely alongside other skills
+
+Most teams live at L0 and L1. The advantage is in the climb to L3 and beyond.
+
+---
+
+A maturity model is not bureaucracy. It is a shared vocabulary. When a teammate says "this skill is L4," everyone knows it has an owner, a version, a risk tier, and a rollback path — no meeting required.
+
+The model below is part of the [Agent Skill Standard](https://github.com/frankxai/claude-skills-library/tree/main/standard), an open spec built on top of Anthropic's Agent Skills format.
+
+<Diagram src="/images/infographics/skill-maturity-ladder.svg" alt="The Skill Maturity Model: six levels from L0 Prompt to L5 Composed and attested capability" caption="Each rung adds one guarantee. You cannot skip a rung and keep the guarantee." />
+
+## What does each level actually require?
+
+### L0 — Prompt
+
+An instruction you typed into a chat. It produced a good result, so you saved it somewhere. There is nothing wrong with L0. It is where every skill begins. The limitation is that it lives in one person's history and depends on the way they happened to phrase it.
+
+**Test to pass:** none. This is the starting line.
+
+### L1 — Documented
+
+The prompt becomes a `SKILL.md`: a folder with a name, a description full of trigger language, and one narrow job. The description matters more than the body, because it is the only text the model sees when deciding whether to load the skill at all.
+
+**Test to pass:** a valid `SKILL.md` (uppercase), a hyphenated name, and a third-person description that states what the skill does and when to load it.
+
+### L2 — Referenced
+
+The skill stops being one giant file. Deep knowledge moves to `references/`, deterministic checks move to `scripts/`, and reusable templates move to `assets/`. This is progressive disclosure: the body stays small and only pulls in detail when it is actually needed.
+
+**Test to pass:** the body is under roughly 500 lines, and supporting material lives in subfolders that load on demand.
+
+### L3 — Evaluated
+
+This is the level that separates a real skill from a hopeful one. The skill carries at least three evaluation scenarios: a clean success case, an incomplete-input case, and a misuse or boundary case. Now you can change the skill and know whether you broke it.
+
+**Test to pass:** three or more eval scenarios that can be re-run, plus examples and named anti-patterns.
+
+### L4 — Governed
+
+The skill earns a row in a registry: owner, version, status, risk tier, allowed data class, last-reviewed date, and a rollback version. This is what makes a skill safe to share across a team instead of trapped with the person who wrote it.
+
+**Test to pass:** a registry entry and a rollback path. For anything above risk tier T2, this level is mandatory before the skill ships.
+
+### L5 — Composed
+
+The skill runs safely inside a bundle of other skills without confusing the router, carries an attestation of what it is built on, and declares a clear sovereignty boundary — what it will and will not touch. This is the level for skills that operate as part of an agent team.
+
+**Test to pass:** coexistence tests inside its bundle, an attestation block, and an explicit data and action boundary.
+
+## Where should my skill be?
+
+Match the level to the stakes, not to ambition.
+
+- A personal note-summarizer can stop at **L2** forever. Governing it would be friction with no payoff.
+- A skill your team relies on to write customer proposals belongs at **L4**.
+- A skill that touches production, billing, or regulated data has no business below **L4**, and probably wants **L5**.
+
+The mistake is uniform governance: forcing L4 paperwork onto an L1 personal skill, or letting an L1 skill touch customer data. The [risk-tier model](/blog/skill-libraries-ai-coe-governance) tells you the floor; the maturity model tells you the climb.
+
+## How do I move a skill up a level?
+
+One rung at a time, and only when the next guarantee is worth it.
+
+1. **L0 to L1:** write the `SKILL.md`. Spend most of your effort on the description.
+2. **L1 to L2:** pull the deep material out of the body into `references/` and `scripts/`.
+3. **L2 to L3:** write three eval scenarios. This is the highest-leverage step in the whole model.
+4. **L3 to L4:** add the registry row and a rollback version.
+5. **L4 to L5:** run it inside its real bundle and add attestation.
+
+If you only ever do step 3, you will already be ahead of most teams. Evaluation is the craft that turns AI activity into AI capability.
+
+## FAQ
+
+### Is the maturity model the same as the risk tiers?
+
+No, and the difference matters. Risk tiers (T0–T4) measure possible harm and set the minimum governance a skill needs. Maturity levels (L0–L5) measure how built-out a skill is. A low-risk skill can stay at a low maturity level safely. A high-risk skill must reach L4 regardless of how simple it looks.
+
+### Do I have to take every skill to L5?
+
+No. Most skills should never reach L5. The right level is the lowest one that still covers the skill's risk. Over-governing simple work is its own failure mode.
+
+### What is the single most important level?
+
+L3, Evaluated. It is the point where a skill stops working by luck. Teams that build eval scenarios early compound faster than teams with larger but unproven libraries.
+
+### How does this relate to Anthropic's Agent Skills?
+
+Anthropic's Agent Skills format defines the L1 primitive: the `SKILL.md` file and progressive disclosure. The Agent Skill Standard extends it upward with the evaluation, governance, and composition levels that production teams need.
+
+### Where can I see the full specification?
+
+The spec, the maturity model, and a conformance validator are open source in the [Agent Skill Standard](https://github.com/frankxai/claude-skills-library/tree/main/standard) repository.
+
+## Related Reading
+
+- [The Skill Creation Methodology](/guides/frankx-skill-creation-methodology)
+- [AI Skills Are the New Operating Layer](/blog/ai-skills-operating-layer)
+- [How to Govern an AI Skill Library](/blog/skill-libraries-ai-coe-governance)
+- [Skills vs Agents vs Prompts vs MCP](/blog/skills-vs-agents-vs-prompts-vs-mcp)
+- [Research: Agent Skills as Operating Knowledge](/research/agent-skills-operating-knowledge)
+- [Agent Skill Standard (open spec)](https://github.com/frankxai/claude-skills-library/tree/main/standard)

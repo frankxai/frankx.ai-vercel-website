@@ -1,13 +1,15 @@
 import type { Metadata } from 'next'
 
+import vaultManifest from '@/data/vault-manifest.json'
+
+const { totalAssets, totalCollections } = vaultManifest
+
 export const metadata: Metadata = {
   title: 'ArcaneaVault — Visual Asset Library | FrankX',
-  description:
-    'Browse 484 AI-generated visual assets across 30 collections — blog heroes, mascot concepts, ecosystem infographics, architecture diagrams, and more.',
+  description: `Browse ${totalAssets.toLocaleString('en-US')} AI-generated visual assets across ${totalCollections} collections — blog heroes, mascot concepts, ecosystem infographics, architecture diagrams, and more.`,
   openGraph: {
     title: 'ArcaneaVault — Visual Asset Library',
-    description:
-      'The complete visual asset library for the FrankX ecosystem. 484 assets. 30 collections.',
+    description: `The complete visual asset library for the FrankX ecosystem. ${totalAssets.toLocaleString('en-US')} assets. ${totalCollections} collections.`,
     images: ['/images/ecosystem/01-frankx-ecosystem-overview.png'],
   },
 }

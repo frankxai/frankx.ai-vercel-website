@@ -170,7 +170,7 @@ export default async function BlogPostPage({
           <div className="mx-auto max-w-4xl">
             <Breadcrumbs
               items={[
-                { label: 'Creation Chronicles', href: '/blog' },
+                { label: 'FrankX Journal', href: '/journal' },
                 { label: post.title, href: `/blog/${post.slug}` },
               ]}
             />
@@ -377,6 +377,5 @@ export default async function BlogPostPage({
     </main>
   )
 }
-
 
 

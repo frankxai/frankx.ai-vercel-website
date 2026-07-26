@@ -1,0 +1,27 @@
+{
+  "$comment": "Repo-level Claude Code config. Loads on every session in this repo. Hooks here are committed (visible to all collaborators); local-only overrides go in .claude/settings.local.json which is gitignored.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/session-start-excellence.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/blog-commit-gate.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

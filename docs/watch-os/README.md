@@ -73,7 +73,7 @@ Each Short carries: verified embed, editorial commentary, transcript slot, Video
 - **SEO/AEO flywheel.** Each curated Short → indexed page → AI citations → site authority → more discovery.
 
 ### For builders reading FrankX
-- **Pre-filtered by an AI Architect at Oracle.** The bar is: does this compress a real insight? If not, it doesn't ship.
+- **Pre-filtered by an AI Architect & Creator.** The bar is: does this compress a real insight? If not, it doesn't ship.
 - **Frameworks, not entertainment.** Every Short is tagged to a pillar (AI Foundations, Build & Ship, Strategy, Human Edge, Creative & Culture) — builders can subscribe to a lens.
 - **Template to copy.** The Notion → GH Action pipeline is documented here, not behind a paywall.
 

@@ -1,12 +1,12 @@
-import { createMetadata } from '@/lib/seo'
+import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: 'Learn Violin | Beginner Guide & Best Teachers | FrankX',
+  title: "Learn Violin | German-First Beginner Practice | FrankX",
   description:
-    'Learn violin with curated YouTube teachers, first pieces, practice tips, and inspiring stories. For kids and beginners of all ages.',
-  path: '/music/learn/violin',
-})
+    "A free German-first violin orientation with curated external teachers, first pieces, and family-supported practice prompts.",
+  path: "/music/learn/violin",
+});
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children
+  return children;
 }

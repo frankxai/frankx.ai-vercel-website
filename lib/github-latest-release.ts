@@ -1,21 +1,19 @@
 /**
  * GitHub latest release helper.
  *
- * Used by /starlight-intelligence-system/ and /ana-intelligence-system/ pages
- * to fetch the latest release tag at build-time so the .zip download links
- * stay current automatically when Frank tags a new version.
+ * Used by downloadable project pages to fetch the latest release tag at
+ * build-time so archive links stay current when a new version is tagged.
  *
- * Mirrors the existing SIS pattern (hardcoded STARTER_ZIP constant) but
- * generalized so both pages share one fetcher.
+ * Generalizes the release lookup so multiple pages can share one fetcher.
  *
  * Usage in a Server Component:
  *
- *   const ais = await getLatestRelease('frankxai/Ana-Intelligence-System', {
+ *   const toolkit = await getLatestRelease('owner/private-toolkit', {
  *     fallbackTag: 'v0.1.0',
  *   })
- *   // ais.tag      → 'v0.3.2'
- *   // ais.zipUrl   → 'https://github.com/.../archive/refs/tags/v0.3.2.zip'
- *   // ais.htmlUrl  → 'https://github.com/.../releases/tag/v0.3.2'
+ *   // toolkit.tag      → 'v0.3.2'
+ *   // toolkit.zipUrl   → 'https://github.com/.../archive/refs/tags/v0.3.2.zip'
+ *   // toolkit.htmlUrl  → 'https://github.com/.../releases/tag/v0.3.2'
  */
 
 export interface GithubRelease {

@@ -1,9 +1,15 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   ArrowUpRight,
   Bot,
+  BriefcaseBusiness,
   CheckCircle2,
   ClipboardList,
+  CopyCheck,
+  Cpu,
+  Database,
+  Download,
   ExternalLink,
   FileText,
   Gauge,
@@ -13,26 +19,117 @@ import {
   Layers3,
   LifeBuoy,
   LockKeyhole,
+  PackageOpen,
+  PlugZap,
+  Rocket,
   Route,
+  ServerCog,
+  ShieldCheck,
+  Store,
+  UsersRound,
+  Workflow,
 } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
-import {
-  listEngagements,
-  listLiveSubstrate,
-  listLiveWhitelabelOrCreator,
-  listPast,
-} from '@/content/work'
-import { EngagementCard } from '@/components/work/EngagementCard'
 import { PropertyExperiencePreview } from '@/components/work/PropertyExperiencePreview'
 
 export const metadata = createMetadata({
-  title: 'Work - Property Intelligence OS | FrankX',
+  title: 'Work - Property Intelligence OS',
   description:
-    'A premium rental-property operating system: repo-native owner workspace, renter portal, listing studio, support triage, and agent-assisted workflows.',
+    'A premium rental-property operating system and downloadable starter kit: repo-native owner workspace, renter portal, listing studio, support triage, and Codex/Claude-ready workflows.',
   path: '/work/property-intelligence-os',
 })
 
 const SITE_URL = 'https://frankx.ai'
+const version = '0.1.0'
+const releaseDate = '2026-07-05'
+const assetName = `property-intelligence-starter-kit-v${version}.zip`
+const zipUrl = `/downloads/${assetName}`
+const checksumUrl = `/downloads/property-intelligence-starter-kit-v${version}.sha256`
+const checksumSha256 =
+  '7a6c9b171be77a54e366796dc5f1997e8455680d8deeaa94c014c77782e8070e'
+
+const downloadAssets = [
+  {
+    title: 'Starter kit ZIP',
+    href: zipUrl,
+    detail: 'Public-safe package with the product manifest, README, v0/Vercel prompt, and partner implementation guide.',
+    icon: PackageOpen,
+    cta: 'Download ZIP',
+  },
+  {
+    title: 'v0 / Vercel prompt',
+    href: `/downloads/property-intelligence-starter-kit-v${version}/V0_PROMPT.md`,
+    detail: 'A build brief for recreating the portal experience with modern Next.js and Vercel defaults.',
+    icon: Rocket,
+    cta: 'Open prompt',
+  },
+  {
+    title: 'Partner guide',
+    href: `/downloads/property-intelligence-starter-kit-v${version}/PARTNER_IMPLEMENTATION.md`,
+    detail: 'How an implementer packages this into paid installs, retainers, and premium owner operations.',
+    icon: BriefcaseBusiness,
+    cta: 'Open guide',
+  },
+  {
+    title: 'Agent team map',
+    href: `/downloads/property-intelligence-starter-kit-v${version}/AGENT_TEAM.md`,
+    detail: 'Role-by-role operating model for steward, listing, inquiry, renter guide, maintenance, privacy, QA, and partner agents.',
+    icon: UsersRound,
+    cta: 'Open agents',
+  },
+  {
+    title: 'MCP architecture',
+    href: `/downloads/property-intelligence-starter-kit-v${version}/MCP_RAILWAY_ARCHITECTURE.md`,
+    detail: 'Railway-ready MCP boundary with resources, tools, prompts, environment variables, health checks, and safety rules.',
+    icon: ServerCog,
+    cta: 'Open MCP',
+  },
+  {
+    title: 'Install runbook',
+    href: `/downloads/property-intelligence-starter-kit-v${version}/INSTALL_RUNBOOK.md`,
+    detail: 'Step-by-step owner or agency installation path from repos to preview to agent dry-runs and retainer loop.',
+    icon: Workflow,
+    cta: 'Open runbook',
+  },
+  {
+    title: 'Release manifest',
+    href: `/downloads/property-intelligence-starter-kit-v${version}/manifest.json`,
+    detail: 'Machine-readable scope, boundaries, repos, gates, and template positioning for the release.',
+    icon: CopyCheck,
+    cta: 'Open manifest',
+  },
+]
+
+const liveTemplateLinks = [
+  {
+    title: 'Owner OS template',
+    href: 'https://github.com/frankxai/property-os-template',
+    detail: 'Public GitHub template with Codex/Claude instructions, agent profiles, MCP boundary, Railway architecture, and validation gates.',
+    icon: GitBranch,
+    cta: 'Fork template',
+  },
+  {
+    title: 'Portal template',
+    href: 'https://github.com/frankxai/property-portal-template',
+    detail: 'Public Next.js/Vercel template for property pages, renter portal, inquiry/support intake, owner dashboard, and listing studio.',
+    icon: Gauge,
+    cta: 'Fork portal',
+  },
+  {
+    title: 'Deploy on Vercel',
+    href: 'https://vercel.com/new/clone?repository-url=https://github.com/frankxai/property-portal-template',
+    detail: 'Clone the public portal template into a Vercel project for owner preview, domain setup, and later production hardening.',
+    icon: Rocket,
+    cta: 'Deploy portal',
+  },
+  {
+    title: 'Stable releases',
+    href: 'https://github.com/frankxai/property-portal-template/releases/tag/v0.1.0',
+    detail: 'The v0.1.0 GitHub releases provide stable source ZIPs for both the owner OS and the Vercel portal template.',
+    icon: PackageOpen,
+    cta: 'Open release',
+  },
+]
 
 const proof = [
   {
@@ -54,6 +151,11 @@ const proof = [
     label: 'V1 trust rule',
     value: 'Human gate',
     detail: 'no pricing, lease, availability, or urgent commitments without owner approval',
+  },
+  {
+    label: 'Public kit',
+    value: `v${version}`,
+    detail: 'downloadable ZIP, checksum, v0 prompt, partner guide, release manifest',
   },
 ]
 
@@ -97,7 +199,99 @@ const successCriteria = [
   'The owner sees only the decisions that matter: availability, price, legal terms, urgent issues, and publication.',
   'Every listing draft carries its missing-fact checklist before it reaches a public channel.',
   'No renter names, access secrets, payment details, or private owner facts enter public/template artifacts.',
+  'An implementer can fork the template, install it for one owner, and sell a managed operating service.',
   'The visual experience feels like a premium property operator, not a generic AI SaaS dashboard.',
+]
+
+const productLanes = [
+  {
+    title: 'Owner self-service',
+    copy: 'A property owner can add approved facts, publish a premium property page, review inquiries, and approve agent drafts without learning a heavy suite first.',
+    icon: Home,
+  },
+  {
+    title: 'Renter self-service',
+    copy: 'A renter gets one calm portal for stay or rental information, support, documents, renewal interest, and urgent escalation.',
+    icon: KeyRound,
+  },
+  {
+    title: 'Implementer business',
+    copy: 'A partner can sell setup, content migration, listing refresh, support knowledge-base hardening, and managed weekly operations.',
+    icon: UsersRound,
+  },
+  {
+    title: 'Agency operating layer',
+    copy: 'A real estate agency can standardize property websites, inquiry triage, vacancy reporting, and approved answer workflows across a portfolio.',
+    icon: Store,
+  },
+]
+
+const platformLayers = [
+  {
+    title: 'Premium web layer',
+    detail: 'Next.js App Router on Vercel: property pages, renter portal, inquiry/support forms, owner dashboard, listing studio, and preview gates.',
+    icon: Gauge,
+  },
+  {
+    title: 'Approved source layer',
+    detail: 'GitHub and MDX/YAML hold public-safe property facts, policies, listing copy, FAQs, workflow docs, and release decisions.',
+    icon: GitBranch,
+  },
+  {
+    title: 'Runtime data layer',
+    detail: 'Secure database and object storage handle inquiries, tickets, renter sessions, documents, and sanitized issue summaries.',
+    icon: Database,
+  },
+  {
+    title: 'Agent service layer',
+    detail: 'Codex, Claude Code, role markdown, skills, commands, approval checkpoints, and MCP tools draft work without making owner commitments.',
+    icon: Cpu,
+  },
+  {
+    title: 'Hosted MCP layer',
+    detail: 'Railway-ready MCP service exposes property search, listing draft, support triage, approval status, and privacy-scan tools.',
+    icon: ServerCog,
+  },
+  {
+    title: 'Integration layer',
+    detail: 'EstateSync, ImmoScout24, Kleinanzeigen, Immowelt, email, WhatsApp, calendar, Stripe, e-signature, and vendor routing enter after manual proof.',
+    icon: PlugZap,
+  },
+]
+
+const businessModels = [
+  {
+    title: 'Community template',
+    price: 'Free / open-core',
+    detail: 'Public starter kit and Vercel/v0 prompt create reach, trust, and implementer adoption.',
+    icon: PackageOpen,
+  },
+  {
+    title: 'Owner install',
+    price: '1,500-7,500 EUR setup',
+    detail: 'Property onboarding, facts, photos, portal, inquiry flow, listing drafts, and owner training.',
+    icon: Home,
+  },
+  {
+    title: 'Managed operating service',
+    price: '300-2,000 EUR monthly',
+    detail: 'Weekly owner review, FAQ updates, listing refresh, support knowledge hygiene, analytics, and agent run audit.',
+    icon: Workflow,
+  },
+  {
+    title: 'Agency/partner license',
+    price: 'Revenue share or seat bundle',
+    detail: 'White-label implementation playbook, private install runbook, support standards, and premium quality gates.',
+    icon: BriefcaseBusiness,
+  },
+]
+
+const launchGates = [
+  'Public repo release contains no renter data, access secrets, owner-private facts, or hidden credentials.',
+  'Portal passes lint, typecheck, build, smoke, mobile/desktop visual QA, and Vercel preview verification.',
+  'MCP server passes tool smoke tests and runs with least-privilege environment variables on Railway or equivalent.',
+  'Human approval is mandatory for pricing, availability, lease terms, refunds, legal statements, urgent repairs, and personal data.',
+  'Partner can complete a sample install from the download kit, template repos, and setup checklist without founder intervention.',
 ]
 
 const relatedLinks = [
@@ -140,11 +334,6 @@ const relatedLinks = [
 ]
 
 export default function WorkHubPage() {
-  const liveSubstrate = listLiveSubstrate()
-  const liveWhitelabelOrCreator = listLiveWhitelabelOrCreator()
-  const past = listPast()
-  const all = listEngagements()
-
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -178,11 +367,6 @@ export default function WorkHubPage() {
         name: 'Property Intelligence OS',
         url: `${SITE_URL}/work/property-intelligence-os`,
       },
-      ...all.map((e) => ({
-        '@type': 'WebPage',
-        name: e.name,
-        url: `${SITE_URL}/work/${e.slug}`,
-      })),
     ],
   }
 
@@ -199,7 +383,7 @@ export default function WorkHubPage() {
 
       <section
         id="property-intelligence-os"
-        className="relative min-h-[calc(100vh-4rem)] overflow-hidden border-b border-white/10 pt-28 sm:pt-32"
+        className="relative min-h-[88vh] overflow-hidden border-b border-white/10 pt-28 sm:pt-32"
       >
         <HeroAtmosphere />
         <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 pb-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:pb-20">
@@ -216,31 +400,33 @@ export default function WorkHubPage() {
               A premium operating system for rental properties.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-              Built brother-first for German rental operations, then packaged as a repeatable GitHub and Vercel template: owner workspace, renter portal, listing studio, support triage, and Codex/Claude-ready workflows.
+              Built brother-first for German rental operations, then packaged as a repeatable GitHub and Vercel template: owner workspace, renter portal, listing studio, support triage, Railway-ready MCP, and Codex/Claude workflows.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="#example"
+              <a
+                href={zipUrl}
+                download={assetName}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#04110f] transition-colors hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-300/70 focus:ring-offset-2 focus:ring-offset-[#0a0a0b]"
               >
-                Explore the example
-                <ArrowUpRight className="h-4 w-4" aria-hidden />
-              </Link>
+                Download starter kit
+                <Download className="h-4 w-4" aria-hidden />
+              </a>
               <Link
-                href="#related"
+                href="#architecture"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/25 hover:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-white/35"
               >
-                Link map
+                See architecture
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
               </Link>
             </div>
           </div>
 
-          <HeroCommandSurface />
+          <HeroProductVisual />
         </div>
       </section>
 
       <section className="border-b border-white/10 bg-[#080b0d] py-10">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 px-0 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 px-0 sm:grid-cols-2 lg:grid-cols-5">
           {proof.map((item) => (
             <article key={item.label} className="bg-[#0a0d10] p-6 sm:p-7">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
@@ -252,6 +438,35 @@ export default function WorkHubPage() {
               <p className="mt-2 text-sm leading-6 text-slate-400">{item.detail}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <DownloadKitSection />
+
+      <section className="border-b border-white/10 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Self-service product"
+            title="The product serves the owner, renter, implementer, and agency."
+            copy="The market is full of property tools. The wedge here is an AI-native operating layer that is easy to install, safe to supervise, and premium enough to justify better renter expectations."
+          />
+          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {productLanes.map((lane) => {
+              const Icon = lane.icon
+              return (
+                <article
+                  key={lane.title}
+                  className="rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-6 shadow-[0_1px_0_rgba(255,255,255,0.05)_inset]"
+                >
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-300/20 bg-emerald-300/10 text-emerald-200">
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </div>
+                  <h3 className="text-lg font-semibold tracking-tight text-white">{lane.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-400">{lane.copy}</p>
+                </article>
+              )
+            })}
+          </div>
         </div>
       </section>
 
@@ -303,6 +518,10 @@ export default function WorkHubPage() {
           </div>
         </div>
       </section>
+
+      <ArchitectureSection />
+
+      <BusinessModelSection />
 
       <section className="border-b border-white/10 py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -379,12 +598,6 @@ export default function WorkHubPage() {
         </div>
       </section>
 
-      <EngagementRegistry
-        liveSubstrate={liveSubstrate}
-        liveWhitelabelOrCreator={liveWhitelabelOrCreator}
-        past={past}
-      />
-
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-6 lg:px-8">
           <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-300/60">
@@ -420,123 +633,294 @@ export default function WorkHubPage() {
 function HeroAtmosphere() {
   return (
     <div className="pointer-events-none absolute inset-0" aria-hidden>
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:56px_56px] opacity-30" />
-      <div className="absolute left-1/2 top-0 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-emerald-400/[0.09] blur-[140px]" />
-      <div className="absolute right-[-12rem] top-28 h-[34rem] w-[34rem] rounded-full bg-cyan-400/[0.08] blur-[130px]" />
-      <div className="absolute bottom-[-12rem] left-[-10rem] h-[28rem] w-[28rem] rounded-full bg-amber-300/[0.05] blur-[120px]" />
+      <div className="absolute inset-0 bg-[#070a0c]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:56px_56px] opacity-25" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_72%_18%,rgba(45,212,191,0.16),transparent_46%),linear-gradient(145deg,rgba(16,185,129,0.08),transparent_38%,rgba(245,158,11,0.055))]" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#080b0d] to-transparent" />
     </div>
   )
 }
 
-function HeroCommandSurface() {
+function HeroProductVisual() {
   return (
     <div className="relative flex min-h-[68vh] items-center lg:pl-4">
       <div className="relative w-full overflow-hidden rounded-[2.4rem] border border-white/12 bg-[#0b0f14]/85 p-4 shadow-[0_40px_140px_rgba(0,0,0,0.45)] backdrop-blur-2xl sm:p-5">
         <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent" aria-hidden />
-        <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.035] p-5">
-            <div className="mb-5 flex items-center justify-between">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
-                  Owner cockpit
-                </p>
-                <h2 className="mt-1 text-xl font-semibold tracking-tight text-white">
-                  Urban Haven Sample
-                </h2>
-              </div>
-              <span className="rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-1 text-xs text-amber-100">
-                approval gates active
-              </span>
+        <div className="rounded-[1.8rem] border border-white/10 bg-black/25 p-3 sm:p-4">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 px-1">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
+                Live template proof
+              </p>
+              <h2 className="mt-1 text-xl font-semibold tracking-tight text-white">
+                Vercel renter portal and owner cockpit
+              </h2>
             </div>
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                ['Listings', '4 drafts'],
-                ['Support', '2 queued'],
-                ['Vacancy', 'owner review'],
-              ].map(([label, value]) => (
-                <div key={label} className="rounded-2xl border border-white/8 bg-black/20 p-3">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500">{label}</p>
-                  <p className="mt-2 text-sm font-semibold text-white">{value}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 grid gap-3">
-              {[
-                {
-                  label: 'Inquiry Concierge',
-                  value: 'Draft reply from approved facts only',
-                  icon: Bot,
-                },
-                {
-                  label: 'Maintenance Triage',
-                  value: 'Urgent path requires owner confirmation',
-                  icon: LifeBuoy,
-                },
-                {
-                  label: 'Listing Ops',
-                  value: 'Kleinanzeigen copy ready for review',
-                  icon: ClipboardList,
-                },
-              ].map(({ label, value, icon: Icon }) => (
-                <div
-                  key={label}
-                  className="grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.025] p-3"
-                >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-300/10 text-emerald-200">
-                    <Icon className="h-4 w-4" aria-hidden />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-white">{label}</p>
-                    <p className="text-xs text-slate-500">{value}</p>
-                  </div>
-                  <div className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.8)]" />
-                </div>
-              ))}
-            </div>
+            <a
+              href={zipUrl}
+              download={assetName}
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3.5 py-2 text-xs font-semibold text-emerald-100 transition-colors hover:bg-emerald-300/15"
+            >
+              <Download className="h-3.5 w-3.5" aria-hidden />
+              v{version} kit
+            </a>
           </div>
 
-          <div className="grid gap-4">
-            <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.03] p-5">
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-300/10 text-cyan-200">
-                  <KeyRound className="h-5 w-5" aria-hidden />
+          <div className="overflow-hidden rounded-[1.45rem] border border-white/10 bg-[#080b0d]">
+            <Image
+              src="/images/property-intelligence/portal-desktop.png"
+              alt="Property Intelligence OS portal desktop preview"
+              width={1440}
+              height={1000}
+              priority
+              className="h-auto w-full"
+            />
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            {[
+              {
+                label: 'Agent drafts',
+                value: 'Codex and Claude ready',
+                icon: Bot,
+              },
+              {
+                label: 'Human gates',
+                value: 'approval before commitments',
+                icon: ShieldCheck,
+              },
+              {
+                label: 'Runtime',
+                value: 'Vercel + Railway MCP path',
+                icon: ServerCog,
+              },
+            ].map(({ label, value, icon: Icon }) => (
+              <div key={label} className="grid grid-cols-[auto_1fr] gap-3 rounded-2xl border border-white/8 bg-white/[0.035] p-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-300/10 text-emerald-200">
+                  <Icon className="h-4 w-4" aria-hidden />
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-200/60">
-                    Renter portal
-                  </p>
-                  <p className="text-sm text-white">Move-in information without access secrets in Git.</p>
+                  <p className="text-sm font-medium text-white">{label}</p>
+                  <p className="text-xs leading-5 text-slate-500">{value}</p>
                 </div>
               </div>
-              <div className="space-y-2">
-                {['Wi-Fi policy', 'Trash schedule', 'Urgent escalation'].map((item) => (
-                  <div key={item} className="flex items-center justify-between rounded-xl bg-black/20 px-3 py-2">
-                    <span className="text-xs text-slate-300">{item}</span>
-                    <LockKeyhole className="h-3.5 w-3.5 text-emerald-200" aria-hidden />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.03] p-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
-                Channel studio
-              </p>
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                {['Own site', 'Kleinanzeigen', 'ImmoScout24', 'Immowelt'].map((channel) => (
-                  <div key={channel} className="rounded-xl border border-white/8 bg-black/20 px-3 py-2 text-xs text-slate-300">
-                    {channel}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-emerald-300 to-cyan-300" />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
+  )
+}
+
+function DownloadKitSection() {
+  return (
+    <section id="download-kit" className="border-b border-white/10 py-20 lg:py-28">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
+        <div>
+          <SectionHeader
+            eyebrow="Public release candidate"
+            title="A real starter kit people can download, fork, and sell around."
+            copy="The free package is deliberately useful but bounded: it gives owners and implementers the operating model, the build prompt, and partner guide without leaking private install data."
+          />
+          <div className="mt-7 rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-5">
+            <div className="flex items-start gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-300/10 text-emerald-200">
+                <LockKeyhole className="h-5 w-5" aria-hidden />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-white">Safe public boundary</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  The download contains template strategy, not renter data. Private property facts, portal access codes, payments, lease terms, and owner decisions stay inside the installed workspace.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-[2rem] border border-white/10 bg-[#0d1116] p-5 sm:p-6">
+          <div className="grid gap-3 sm:grid-cols-2">
+            {downloadAssets.map((asset) => {
+              const Icon = asset.icon
+              return (
+                <a
+                  key={asset.title}
+                  href={asset.href}
+                  download={asset.href === zipUrl ? assetName : undefined}
+                  className="group rounded-[1.45rem] border border-white/10 bg-white/[0.035] p-5 transition-colors hover:border-emerald-300/25 hover:bg-white/[0.055] focus:outline-none focus:ring-2 focus:ring-emerald-300/50"
+                >
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-300/10 text-emerald-200">
+                      <Icon className="h-5 w-5" aria-hidden />
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-100">
+                      {asset.cta}
+                      <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-semibold tracking-tight text-white">{asset.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{asset.detail}</p>
+                </a>
+              )
+            })}
+          </div>
+
+          <div className="mt-5 rounded-[1.45rem] border border-white/10 bg-black/20 p-5">
+            <dl className="grid gap-4 text-sm sm:grid-cols-3">
+              <div>
+                <dt className="text-slate-500">Version</dt>
+                <dd className="mt-1 font-mono text-emerald-100">v{version}</dd>
+              </div>
+              <div>
+                <dt className="text-slate-500">Released</dt>
+                <dd className="mt-1 font-mono text-slate-300">{releaseDate}</dd>
+              </div>
+              <div>
+                <dt className="text-slate-500">Checksum</dt>
+                <dd className="mt-1">
+                  <a href={checksumUrl} className="font-mono text-xs leading-5 text-emerald-100 hover:text-emerald-200">
+                    {checksumSha256.slice(0, 18)}...
+                  </a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div className="mt-5 rounded-[1.45rem] border border-emerald-300/15 bg-emerald-300/[0.035] p-5">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold text-white">Live GitHub and Vercel templates</p>
+                <p className="mt-1 text-sm leading-6 text-slate-400">
+                  The free community path is now forkable, downloadable, and deployable from the public repositories.
+                </p>
+              </div>
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-100">v{version}</span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {liveTemplateLinks.map((template) => {
+                const Icon = template.icon
+                return (
+                  <a
+                    key={template.title}
+                    href={template.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group rounded-2xl border border-white/10 bg-black/20 p-4 transition-colors hover:border-emerald-300/25 hover:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-emerald-300/50"
+                  >
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-300/10 text-emerald-200">
+                        <Icon className="h-4 w-4" aria-hidden />
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-100">
+                        {template.cta}
+                        <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+                      </span>
+                    </div>
+                    <h3 className="text-base font-semibold tracking-tight text-white">{template.title}</h3>
+                    <p className="mt-2 text-xs leading-5 text-slate-400">{template.detail}</p>
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ArchitectureSection() {
+  return (
+    <section id="architecture" className="border-b border-white/10 py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Hosted AI architecture"
+          title="Vercel front end, GitHub source of truth, Railway-ready MCP, human approvals."
+          copy="This is designed as agentic-as-a-service infrastructure: the agents know their lanes, the data boundary is explicit, and integrations are added only after the manual workflow proves useful."
+        />
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {platformLayers.map((layer) => {
+            const Icon = layer.icon
+            return (
+              <article
+                key={layer.title}
+                className="rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-6 shadow-[0_1px_0_rgba(255,255,255,0.05)_inset]"
+              >
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">
+                  <Icon className="h-5 w-5" aria-hidden />
+                </div>
+                <h3 className="text-lg font-semibold tracking-tight text-white">{layer.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{layer.detail}</p>
+              </article>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function BusinessModelSection() {
+  return (
+    <section id="partner-business" className="border-b border-white/10 py-20 lg:py-28">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 sm:px-6 lg:grid-cols-[1.12fr_0.88fr] lg:px-8">
+        <div>
+          <SectionHeader
+            eyebrow="Business substrate"
+            title="Free template at the edge, paid installs and managed operations in the center."
+            copy="The winning shape is not only software. It is a productized service business: implementers can sell setup, owners get relief, renters get clarity, and agencies get a repeatable premium operating standard."
+          />
+          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {businessModels.map((model) => {
+              const Icon = model.icon
+              return (
+                <article
+                  key={model.title}
+                  className="rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-6 shadow-[0_1px_0_rgba(255,255,255,0.05)_inset]"
+                >
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-300/10 text-amber-100">
+                      <Icon className="h-5 w-5" aria-hidden />
+                    </div>
+                    <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs font-semibold text-slate-300">
+                      {model.price}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-semibold tracking-tight text-white">{model.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-400">{model.detail}</p>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+
+        <aside className="rounded-[2rem] border border-white/10 bg-[#0d1116] p-6 sm:p-7">
+          <div className="mb-6 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-300/10 text-emerald-200">
+              <ShieldCheck className="h-5 w-5" aria-hidden />
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
+                Launch gates
+              </p>
+              <h2 className="text-2xl font-semibold tracking-tight text-white">
+                Product-ready means verifiable.
+              </h2>
+            </div>
+          </div>
+          <ul className="grid gap-3">
+            {launchGates.map((gate) => (
+              <li
+                key={gate}
+                className="grid grid-cols-[auto_1fr] gap-3 rounded-2xl border border-white/8 bg-white/[0.025] p-4"
+              >
+                <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-200" aria-hidden />
+                <span className="text-sm leading-6 text-slate-300">{gate}</span>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </div>
+    </section>
   )
 }
 
@@ -589,53 +973,5 @@ function RelatedLinkCard({
       <h3 className="text-lg font-semibold tracking-tight text-white">{title}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-400">{detail}</p>
     </Link>
-  )
-}
-
-function EngagementRegistry({
-  liveSubstrate,
-  liveWhitelabelOrCreator,
-  past,
-}: {
-  liveSubstrate: ReturnType<typeof listLiveSubstrate>
-  liveWhitelabelOrCreator: ReturnType<typeof listLiveWhitelabelOrCreator>
-  past: ReturnType<typeof listPast>
-}) {
-  const hasPublicEngagements =
-    liveSubstrate.length > 0 || liveWhitelabelOrCreator.length > 0 || past.length > 0
-
-  return (
-    <section className="border-b border-white/10 py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        <SectionHeader
-          eyebrow="Work registry"
-          title="Public engagements publish only after consent."
-          copy="The property OS can be shown because it uses template-safe sample facts. Client engagements stay private until the framing is approved."
-        />
-
-        {hasPublicEngagements ? (
-          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {[...liveSubstrate, ...liveWhitelabelOrCreator, ...past].map((engagement) => (
-              <EngagementCard key={engagement.slug} engagement={engagement} />
-            ))}
-          </div>
-        ) : (
-          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {[
-              ['Private intake', 'Client work remains off the public route until consent is explicit.'],
-              ['Template-safe proof', 'The property OS example uses approved sample facts and no renter data.'],
-              ['Production path', 'The next public artifacts are install notes, template downloads, and a Vercel preview.'],
-            ].map(([title, body]) => (
-              <article key={title} className="rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-6">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald-300/60">
-                  {title}
-                </p>
-                <p className="mt-3 text-sm leading-6 text-slate-400">{body}</p>
-              </article>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
   )
 }

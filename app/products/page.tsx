@@ -51,7 +51,7 @@ function ProductsBackground() {
       <div
         className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(16,185,129,0.03) 0%, transparent 70%)',
           filter: 'blur(128px)',
         }}
       />
@@ -97,7 +97,7 @@ const products = [
       'Life operating system with 7 pillars, frameworks, and AI coaching prompts. Complete Obsidian vault included.',
     status: 'active',
     href: '/soulbook',
-    color: 'cyan',
+    color: 'amber',
     highlights: [
       '7 Life Pillars framework with reflection exercises',
       '3 transformational perspectives (Life Symphony, Golden Path, 7 Pillars)',
@@ -113,7 +113,7 @@ const products = [
       'Five curated prompt bundles for specific genres: electronic, hip-hop, ambient, cinematic, and lo-fi.',
     status: 'active',
     href: '/products/suno-prompt-library',
-    color: 'violet',
+    color: 'cyan',
     highlights: [
       '50+ battle-tested prompts across 5 genres',
       'Emotion and tempo mapping for each genre',
@@ -129,7 +129,7 @@ const products = [
       'A digital kit with prompts, templates, and rollout rituals for consistent output.',
     status: 'early-access',
     href: '/newsletter?ref=creative-ai-toolkit-early-access',
-    color: 'amber',
+    color: 'emerald',
     highlights: [
       '100+ validated prompts across storytelling, marketing, and operations',
       '12 ready-to-deploy workflow automations',
@@ -161,7 +161,7 @@ const products = [
       'Multi-modal templates, prompts, and guardrails for a reliable studio system.',
     status: 'early-access',
     href: '/newsletter?ref=generative-creator-os-early-access',
-    color: 'violet',
+    color: 'emerald',
     highlights: [
       'Multi-modal asset generation pipelines',
       'Brand intelligence and compliance system',
@@ -177,7 +177,7 @@ const products = [
       'Agentic playbooks, prompt stacks, and governance checklists for builders.',
     status: 'early-access',
     href: '/newsletter?ref=agentic-creator-os-early-access',
-    color: 'rose',
+    color: 'cyan',
     highlights: [
       'Claude Code and Cursor mastery systems',
       'Agentic workflow and automation patterns',
@@ -187,14 +187,6 @@ const products = [
 ]
 
 const colorMap = {
-  violet: {
-    bg: 'bg-white/[0.03]',
-    border: 'border-white/[0.08] hover:border-violet-500/30',
-    icon: 'bg-violet-500/10 text-violet-400',
-    accent: 'text-violet-400',
-    button: 'bg-violet-600 hover:bg-violet-500',
-    glow: 'group-hover:shadow-lg group-hover:shadow-violet-500/10',
-  },
   emerald: {
     bg: 'bg-white/[0.03]',
     border: 'border-white/[0.08] hover:border-emerald-500/30',
@@ -218,14 +210,6 @@ const colorMap = {
     accent: 'text-amber-400',
     button: 'bg-amber-600 hover:bg-amber-500',
     glow: 'group-hover:shadow-lg group-hover:shadow-amber-500/10',
-  },
-  rose: {
-    bg: 'bg-white/[0.03]',
-    border: 'border-white/[0.08] hover:border-rose-500/30',
-    icon: 'bg-rose-500/10 text-rose-400',
-    accent: 'text-rose-400',
-    button: 'bg-rose-600 hover:bg-rose-500',
-    glow: 'group-hover:shadow-lg group-hover:shadow-rose-500/10',
   },
 }
 
@@ -254,7 +238,7 @@ function EarlyAccessModal({
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-md rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-slate-900/70 p-8 backdrop-blur-xl"
+        className="relative w-full max-w-md rounded-2xl border border-white/10 bg-gradient-to-br from-void/90 via-void/80 to-space/70 p-8 backdrop-blur-xl"
       >
         {/* Close button */}
         <button
@@ -329,8 +313,8 @@ export default function ProductsPage() {
               transition={{ duration: 0.6 }}
               className="mb-8 flex items-center gap-4"
             >
-              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
+              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(16,185,129,0.3)' }} />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400">
                 <Package className="h-5 w-5" />
               </div>
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
@@ -345,7 +329,7 @@ export default function ProductsPage() {
               className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
             >
               Systems I use.
-              <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400">
+              <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
                 Packaged for you.
               </span>
             </motion.h1>
@@ -476,7 +460,7 @@ export default function ProductsPage() {
               {[
                 { icon: Sparkles, label: 'Early Access Benefits', color: 'text-amber-400' },
                 { icon: Zap, label: 'Priority Launch Access', color: 'text-cyan-400' },
-                { icon: Users, label: 'Exclusive Community', color: 'text-violet-400' },
+                { icon: Users, label: 'Exclusive Community', color: 'text-emerald-400' },
                 { icon: Star, label: 'Battle-Tested Systems', color: 'text-emerald-400' },
               ].map((badge, i) => (
                 <motion.div
@@ -530,13 +514,12 @@ export default function ProductsPage() {
                   title: 'Continuous Updates',
                   description: 'AI tools evolve fast. Your purchase includes all future updates as I refine and expand these systems.',
                   icon: Star,
-                  color: 'violet',
+                  color: 'emerald',
                 },
               ].map((item, i) => {
                 const colorClasses: Record<string, string> = {
                   emerald: 'bg-emerald-500/10 text-emerald-400',
                   cyan: 'bg-cyan-500/10 text-cyan-400',
-                  violet: 'bg-violet-500/10 text-violet-400',
                 }
 
                 return (
@@ -620,7 +603,7 @@ export default function ProductsPage() {
               className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur-xl"
             >
               {/* Decorative gradient */}
-              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 blur-3xl" />
+              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 blur-3xl" />
 
               <div className="relative flex flex-col items-center gap-8 text-center">
                 <div className="max-w-2xl">

@@ -1,13 +1,13 @@
 # FrankX Claude Skills Library
 **Last Updated**: December 29, 2025
-**Total Skills**: 52 skills across 8 categories (including The Creator's Soulbook)
+**Total Skills**: 53 skills across 8 categories (including The Creator's Soulbook)
 
 ---
 
 ## Quick Navigation
 
 - [The Creator's Soulbook](#the-creators-soulbook) (25 skills) - Life Books, 7 Pillars, AI Agents
-- [Technical Skills](#technical-skills) (19 skills) - AI frameworks, development, architecture, devops, security
+- [Technical Skills](#technical-skills) (20 skills) - AI frameworks, development, architecture, devops, security
 - [Business Skills](#business-skills) (2 skills) - Oracle Cloud, product management
 - [Creative Skills](#creative-skills) (8 skills) - Brand, content, music, social media, book writing, content strategy
 - [Personal Skills](#personal-skills) (4 skills) - Philosophy, fitness, nutrition
@@ -162,6 +162,7 @@ Skills use their directory name as identifier:
 | `documentation-generation` | Automated docs from code (TypeDoc, Sphinx, etc.) | Auto-generated API or library docs |
 | `monitoring-observability` | Metrics, logs, traces, SLOs | Adding observability or debugging prod |
 | `security-hardening` | Auth, secrets, OWASP, runtime defense | Security review or hardening work |
+| `design-asset-intake` | Triage external GitHub design/UI/motion/shader libraries (npm-dependency / vendor-copy / reference-study) | Adopting a new design asset repo into the site |
 
 **Most Used**: `mcp-architecture`, `claude-sdk`, `nextjs-react-expert`
 

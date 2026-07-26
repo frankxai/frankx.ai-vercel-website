@@ -90,6 +90,18 @@ export const downloadsList: DownloadItem[] = [
     image: '/images/downloads/health-intelligence-system.png',
   },
   {
+    id: 'property-intelligence-os',
+    title: 'Property Intelligence OS',
+    subtitle: 'Rental Property Agentic Service Template',
+    description: 'A public-safe starter kit for premium property pages, renter self-service, listing workflows, owner approvals, Codex/Claude agents, MCP/Railway architecture, and partner installs.',
+    category: 'systems',
+    previewUrl: '/work/property-intelligence-os',
+    features: ['Renter Portal', 'Listing Studio', 'MCP/Railway', 'Partner Guide'],
+    variant: 'emerald',
+    icon: 'cpu',
+    image: '/images/property-intelligence/portal-desktop.png',
+  },
+  {
     id: 'epicways-intelligence',
     title: 'EpicWays Intelligence Kit',
     subtitle: 'TheEpicWays Client Service System',

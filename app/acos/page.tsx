@@ -77,10 +77,10 @@ const tiers = [
     name: 'Pro System',
     price: '$197',
     priceNote: 'One-time',
-    description: 'Full ACOS mastery. Deep-dive setup, custom configurations, quarterly updates, and 1:1 support.',
+    description: 'Full ACOS mastery. Guided setup, custom configurations, quarterly updates, and 1:1 support.',
     features: [
       'Everything in Creator Kit',
-      'Deep-dive setup walkthrough (2hr)',
+      'Full setup walkthrough (2hr)',
       'Custom agent configuration guide',
       'Quarterly skill pack updates',
       'Priority GitHub issue resolution',

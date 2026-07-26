@@ -30,11 +30,11 @@ tags: [self, riemer-side, gorte-side, creator, ai-architect]
 
 # Frank Riemer
 
-The creator behind FrankX.AI. Former AI architect at Oracle, music producer, builder.
+The creator behind FrankX.AI. AI Architect & Creator, music producer, builder.
 
 ## Identity
 
-- **Professional**: Former AI architect at Oracle, enterprise AI systems
+- **Professional**: AI Architect & Creator, enterprise AI systems
 - **Creator**: 12,000+ AI songs, digital products, technical content
 - **Location**: Amsterdam, Netherlands
 - **Partner**: Tien

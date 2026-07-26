@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         </Link>
 
         <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
-        <p className="text-white/60 mb-8">Last updated: January 2026</p>
+        <p className="text-white/60 mb-8">Last updated: July 2026</p>
 
         <div className="prose prose-invert prose-sm max-w-none space-y-8">
           <section>
@@ -35,10 +35,24 @@ export default function PrivacyPage() {
             <p className="text-white/70 leading-relaxed mb-4">We may collect the following types of information:</p>
             <ul className="list-disc list-inside text-white/70 space-y-2">
               <li>Email address (when you subscribe to our newsletter or make a purchase)</li>
-              <li>Usage data (pages visited, time spent, referral sources)</li>
-              <li>Device information (browser type, operating system)</li>
+              <li>Aggregate page-view data (page path, referrer category, browser, device, and approximate region)</li>
+              <li>Performance data (such as Core Web Vitals)</li>
               <li>Payment information (processed securely through third-party providers)</li>
             </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold mb-4">Website Measurement</h2>
+            <p className="text-white/70 leading-relaxed mb-4">
+              We use Vercel Web Analytics for aggregate traffic measurement and Vercel Speed Insights for
+              performance measurement. Vercel Web Analytics does not use cookies and does not create a profile
+              that follows you across websites or days.
+            </p>
+            <p className="text-white/70 leading-relaxed">
+              Before a Web Analytics page view is sent, this site removes query strings and URL fragments.
+              It also suppresses Web Analytics events when your browser sends a Do Not Track signal. We do not
+              load optional marketing analytics on the current site because there is no visitor consent control.
+            </p>
           </section>
 
           <section>
@@ -54,8 +68,9 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-semibold mb-4">Third-Party Services</h2>
             <p className="text-white/70 leading-relaxed">
-              We use trusted third-party services including Vercel (hosting),
-              analytics providers, and payment processors. These services have their own privacy policies.
+              We use Vercel for hosting and the aggregate measurement described above, Resend for newsletter
+              subscriptions and delivery, and payment processors when you choose to make a purchase. These
+              services process only the information needed for their role and maintain their own privacy terms.
             </p>
           </section>
 

@@ -1571,6 +1571,22 @@
       "prompt": "Premium holographic-command visualization for Qwen3-Max: Deep Tech Analysis & Benchmark Review.",
       "model": "pro",
       "proModel": "pro"
+    },
+    {
+      "id": "inner-hr-ai-agent",
+      "title": "Inner HR: The AI Agent for Your Internal Team",
+      "blog": "/blog/inner-hr-ai-agent",
+      "image": "/images/blog/generated/inner-hr-ai-agent-premium-hero.jpg",
+      "proImage": "/images/blog/generated/inner-hr-ai-agent-premium-hero.jpg",
+      "date": "2026-05-03",
+      "category": "AI Architecture",
+      "exists": true,
+      "score": 10,
+      "proScore": 10,
+      "style": "holographic-command",
+      "prompt": "## CONCEPT\nVisualizing Internal Family Systems (IFS) self-leadership and the integration of internal parts under a central Self.\n\n## ART DIRECTION\nHolographic Command style blended with Dark Premium Glass. Deep navy-to-black void background (#0a0a0b) with a subtle, thin network constellation grid.\n\n## SCENE\nA large, central, pristine glass sphere representing the integrated 'Self'. The sphere refracts light, glowing with a soft golden-amber and electric-cyan core. Orbiting this central sphere are four floating, semi-transparent glass tiles representing different internal parts (Manager, Protector, Firefighter, Exile). Each tile is intricately detailed with thin holographic wireframe designs of shields, gears, and waves. Thin, elegant laser-like beams of warm gold and cool cyan light stream from the central sphere to connect each orbiting tile, symbolizing organizational alignment and inner harmony.\n\n## COMPOSITION\nCentered three-dimensional composition, deep layers, balanced negative space on the sides. Anamorphic lens feel, cinematic depth of field.\n\n## LIGHTING & MOOD\nHigh-contrast studio rim lighting, glowing neon reflections on the glass surfaces, calm, authoritative, and clean.\n\n## PALETTE\nDeep navy, glowing electric cyan (#43BFE3), warm golden-amber (#F59E0B), and soft violet highlights.\n\n## NEGATIVE PROMPT\ntext, labels, words, letters, logos, watermark, signature, clay, claymorphic, pastel colors, cartoon, cute, toy, Play-Doh, bright white background, childish, emoji, flat icons, clip art, generic brain illustration, oversaturated single color, stock photo, blurry, low detail",
+      "model": "pro",
+      "proModel": "pro"
     }
   ]
 }

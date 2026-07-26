@@ -17,7 +17,7 @@ import { getLivePatterns } from '@/lib/prompt-hub/fetch-library'
 import type { Category, Lane, Pattern } from '@/lib/prompt-hub/types'
 
 export const metadata: Metadata = {
-  title: 'Prompt Library — 98 patterns evaluated, attributed, lab-tagged | FrankX',
+  title: 'Prompt Library — 130+ patterns evaluated, attributed, lab-tagged | FrankX',
   description:
     'Live OSS prompt corpus. Every pattern in the frankxai/prompt-library repo, ranked, attributed, and lab-tagged. Filter by Claude / GPT / Gemini / OSS lane, by category, or search across titles.',
   alternates: { canonical: 'https://www.frankx.ai/prompt-library' },

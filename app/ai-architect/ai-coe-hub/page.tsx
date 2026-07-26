@@ -206,12 +206,12 @@ export default function AICoEHubPage() {
     : resources.filter(r => r.category === activeCategory)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <div className="min-h-screen bg-gradient-to-br from-void via-space to-void">
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
         </div>
 
         <div className="relative max-w-7xl mx-auto text-center">
@@ -227,7 +227,7 @@ export default function AICoEHubPage() {
             </span>
           </h1>
 
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-zinc-300 max-w-3xl mx-auto mb-8">
             Everything you need to build enterprise-grade GenAI systems on Oracle Cloud Infrastructure.
             Reference architectures, code samples, decision frameworks, and best practices.
           </p>
@@ -243,7 +243,7 @@ export default function AICoEHubPage() {
               href="https://github.com/oracle-quickstart/oci-ai-blueprints"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-slate-800 text-white font-semibold rounded-lg border border-slate-700 hover:bg-slate-700 transition-all inline-flex items-center gap-2"
+              className="px-6 py-3 bg-elevated text-white font-semibold rounded-lg border border-subtle hover:bg-subtle transition-all inline-flex items-center gap-2"
             >
               <CodeBracketIcon className="w-5 h-5" />
               Get Starter Code
@@ -253,7 +253,7 @@ export default function AICoEHubPage() {
       </section>
 
       {/* Quick Start Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 border-y border-slate-800">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 border-y border-elevated">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-8 text-center">
             Quick Start: From Demo to Production
@@ -263,7 +263,7 @@ export default function AICoEHubPage() {
             {quickStartSteps.map((step) => (
               <div
                 key={step.step}
-                className="relative bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-xl p-6 hover:border-amber-500/50 transition-all"
+                className="relative bg-space/50 backdrop-blur-sm border border-elevated rounded-xl p-6 hover:border-amber-500/50 transition-all"
               >
                 <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
                   {step.step}
@@ -271,7 +271,7 @@ export default function AICoEHubPage() {
                 <h3 className="text-lg font-semibold text-white mt-2 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-slate-400 text-sm mb-4">
+                <p className="text-zinc-400 text-sm mb-4">
                   {step.description}
                 </p>
                 <Link
@@ -295,18 +295,18 @@ export default function AICoEHubPage() {
           <h2 className="text-2xl font-bold text-white mb-2 text-center">
             Which Oracle AI Service Do I Need?
           </h2>
-          <p className="text-slate-400 text-center mb-8">
+          <p className="text-zinc-400 text-center mb-8">
             Quick decision framework for choosing the right service
           </p>
 
-          <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-xl overflow-hidden">
-            <div className="divide-y divide-slate-800">
+          <div className="bg-space/50 backdrop-blur-sm border border-elevated rounded-xl overflow-hidden">
+            <div className="divide-y divide-elevated">
               {decisionMatrix.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-4 hover:bg-slate-800/50 transition-colors"
+                  className="flex items-center justify-between p-4 hover:bg-elevated/50 transition-colors"
                 >
-                  <span className="text-slate-300">{item.question}</span>
+                  <span className="text-zinc-300">{item.question}</span>
                   <Link
                     href={item.href}
                     target="_blank"
@@ -339,7 +339,7 @@ export default function AICoEHubPage() {
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   activeCategory === category.id
                     ? 'bg-amber-500 text-white'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    : 'bg-elevated text-zinc-300 hover:bg-subtle'
                 }`}
               >
                 {category.label}
@@ -355,7 +355,7 @@ export default function AICoEHubPage() {
                 href={resource.href}
                 target={resource.external ? '_blank' : undefined}
                 rel={resource.external ? 'noopener noreferrer' : undefined}
-                className="group bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-xl p-6 hover:border-amber-500/50 hover:bg-slate-800/50 transition-all"
+                className="group bg-space/50 backdrop-blur-sm border border-elevated rounded-xl p-6 hover:border-amber-500/50 hover:bg-elevated/50 transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className={`p-2 rounded-lg ${
@@ -366,13 +366,13 @@ export default function AICoEHubPage() {
                     <resource.icon className="w-6 h-6" />
                   </div>
                   {resource.external && (
-                    <ArrowTopRightOnSquareIcon className="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors" />
+                    <ArrowTopRightOnSquareIcon className="w-4 h-4 text-zinc-500 group-hover:text-amber-400 transition-colors" />
                   )}
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-amber-400 transition-colors">
                   {resource.title}
                 </h3>
-                <p className="text-slate-400 text-sm">
+                <p className="text-zinc-400 text-sm">
                   {resource.description}
                 </p>
               </Link>
@@ -382,12 +382,12 @@ export default function AICoEHubPage() {
       </section>
 
       {/* Production Checklist */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-space/50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-2 text-center">
             Production Readiness Checklist
           </h2>
-          <p className="text-slate-400 text-center mb-8">
+          <p className="text-zinc-400 text-center mb-8">
             Don&apos;t ship without checking these boxes
           </p>
 
@@ -404,10 +404,10 @@ export default function AICoEHubPage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 bg-slate-800/50 rounded-lg p-4"
+                className="flex items-start gap-3 bg-elevated/50 rounded-lg p-4"
               >
                 <CheckCircleIcon className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                <span className="text-slate-300 text-sm">{item}</span>
+                <span className="text-zinc-300 text-sm">{item}</span>
               </div>
             ))}
           </div>
@@ -420,7 +420,7 @@ export default function AICoEHubPage() {
           <h2 className="text-2xl font-bold text-white mb-4">
             Need Help Building Production AI Systems?
           </h2>
-          <p className="text-slate-400 mb-8">
+          <p className="text-zinc-400 mb-8">
             FrankX specializes in enterprise AI architecture and implementation on Oracle Cloud.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -432,7 +432,7 @@ export default function AICoEHubPage() {
             </Link>
             <Link
               href="/ai-architect-academy"
-              className="px-6 py-3 bg-slate-800 text-white font-semibold rounded-lg border border-slate-700 hover:bg-slate-700 transition-all"
+              className="px-6 py-3 bg-elevated text-white font-semibold rounded-lg border border-subtle hover:bg-subtle transition-all"
             >
               Explore AI Architect Academy
             </Link>

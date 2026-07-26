@@ -1,24 +1,24 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 799,
-    "aliases": 15,
+    "total": 855,
+    "aliases": 49,
     "byType": {
-      "core": 21,
-      "section": 385,
+      "core": 22,
+      "section": 398,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 202,
-      "guide": 20,
-      "library": 31,
+      "blog": 213,
+      "workshop": 12,
+      "guide": 22,
+      "library": 56,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
       "product": 21,
       "research": 3,
-      "video": 3,
-      "workshop": 8
+      "video": 3
     }
   },
   "routes": [
@@ -211,14 +211,6 @@
       "type": "section"
     },
     {
-      "href": "/ahmad",
-      "title": "Ahmad",
-      "tags": [
-        "ahmad"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/ai-architect",
       "title": "AI Architect",
       "type": "section"
@@ -226,6 +218,17 @@
     {
       "href": "/ai-architect-academy",
       "title": "AI Architect Academy",
+      "type": "section"
+    },
+    {
+      "href": "/ai-architect-academy/patterns",
+      "title": "Patterns",
+      "tags": [
+        "ai",
+        "architect",
+        "academy",
+        "patterns"
+      ],
       "type": "section"
     },
     {
@@ -481,6 +484,25 @@
       "type": "section"
     },
     {
+      "href": "/ai-coe-readiness",
+      "title": "AI Coe Readiness",
+      "tags": [
+        "ai",
+        "coe",
+        "readiness"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-computer",
+      "title": "AI Computer",
+      "tags": [
+        "ai",
+        "computer"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ai-evolution",
       "title": "AI Evolution",
       "type": "section"
@@ -523,14 +545,6 @@
     {
       "href": "/ai-world",
       "title": "AI World",
-      "type": "section"
-    },
-    {
-      "href": "/ais",
-      "title": "Ais",
-      "tags": [
-        "ais"
-      ],
       "type": "section"
     },
     {
@@ -595,7 +609,8 @@
         "ana",
         "cancino"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/allies/epic-ways",
@@ -614,7 +629,8 @@
         "allies",
         "harzfenster"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/allies/trinity-ai",
@@ -624,23 +640,14 @@
         "trinity",
         "ai"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
-      "href": "/ana",
-      "title": "Ana",
+      "href": "/ask",
+      "title": "Ask",
       "tags": [
-        "ana"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/ana-intelligence-system",
-      "title": "Ana Intelligence System",
-      "tags": [
-        "ana",
-        "intelligence",
-        "system"
+        "ask"
       ],
       "type": "section"
     },
@@ -1546,6 +1553,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/chatgpt-sites-founder-guide-2026",
+      "title": "ChatGPT Sites: Complete Founder Guide (2026)",
+      "description": "A practical ChatGPT Sites guide: how it works, how it compares with Claude Artifacts, and how founders should build, govern, and launch in hours.",
+      "tags": [
+        "ChatGPT Sites",
+        "Codex",
+        "AI Website Builder",
+        "Founder Systems",
+        "Agentic Workflows",
+        "AI App Builder"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/chatgpt-vs-claude-vs-gemini-2026",
       "title": "ChatGPT vs Claude vs Gemini 2026: Which AI Assistant for Everyday Use?",
       "description": "An honest, results-first comparison of the three $20 AI subscriptions — ChatGPT Plus, Claude Pro, and Google AI Pro — for writing, research, images, voice, memory, and everyday questions. Pick by use case.",
@@ -1704,6 +1725,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/codex-plugins-for-teams",
+      "title": "Codex Plugins for Teams: A Practical Operating Guide",
+      "description": "A product-accurate guide to Codex, ChatGPT Work, skills, plugins, apps, team sharing, permissions, and governed workflow releases.",
+      "tags": [
+        "codex",
+        "plugins",
+        "ai skills",
+        "team workflows",
+        "ai governance"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/conscious-ai-for-entrepreneurs",
       "title": "The Thoughtful Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity",
       "description": "How to build AI-powered businesses that create genuine value, foster human connection, and generate sustainable profits — without losing quality or ethics.",
@@ -1839,6 +1873,19 @@
         "glassmorphism",
         "ai-development",
         "design-lab"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/do-you-need-rtx-5090-for-ai-2026",
+      "title": "Do You Need an RTX 5090 for AI?",
+      "description": "A grounded buyer guide comparing RTX 5090 workstations, cloud GPU rental, RTX 5080, DGX Spark, and Ryzen AI Max+ mini PCs.",
+      "tags": [
+        "ai-computer",
+        "local-ai",
+        "rtx-5090",
+        "creator-systems",
+        "ai-hardware"
       ],
       "type": "blog"
     },
@@ -2239,6 +2286,19 @@
       "type": "section"
     },
     {
+      "href": "/blog/intent-architecture-agentic-delegation",
+      "title": "Intent Architecture: The Discipline of Agentic Delegation",
+      "description": "A research-grounded framework for turning human purpose into bounded, verifiable execution across AI agents, tools, and people.",
+      "tags": [
+        "intent-architecture",
+        "ai-agents",
+        "human-ai-collaboration",
+        "agent-orchestration",
+        "ai-governance"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/karpathys-ai-vision-deep-dive",
       "title": "Karpathy's AI Vision: A Deep Dive",
       "description": "Key takeaways from Karpathy's latest AI insights",
@@ -2305,6 +2365,19 @@
         "Arcanea",
         "Starlight Intelligence",
         "Sovereignty"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/manifestation-reality-architect-ai-vibe",
+      "title": "Manifestation, Honestly: How I Became a Reality Architect",
+      "description": "What actually changed after I read The Secret and Think and Grow Rich — imagination, felt state, my own music, and AI as the loop that ships it.",
+      "tags": [
+        "manifestation",
+        "reality-architecture",
+        "vibe-os",
+        "creativity",
+        "ai-creation"
       ],
       "type": "blog"
     },
@@ -2450,6 +2523,20 @@
         "Creative Technology",
         "Suno AI",
         "Creative Process"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/music-intelligence-vibe-os-launch",
+      "title": "The Music Intelligence System: Research, Agents, and Free Tools Behind AI-Era Music",
+      "description": "An open, interconnected system for AI-era music creation — a 25-state research library (Vibe OS), portable agents, an MCP server, and free Suno prompt templates. Built in public across GitHub.",
+      "tags": [
+        "music-intelligence",
+        "vibe-os",
+        "suno-ai",
+        "mcp-server",
+        "ai-music",
+        "open-source"
       ],
       "type": "blog"
     },
@@ -2903,6 +2990,32 @@
       "type": "blog"
     },
     {
+      "href": "/blog/skill-maturity-model",
+      "title": "The Skill Maturity Model: From Prompt to Composed Capability",
+      "description": "The six levels of the Agent Skill Standard — L0 Prompt to L5 Composed — and how to move a skill up the ladder without over-engineering it.",
+      "tags": [
+        "ai-skills",
+        "agent-skill-standard",
+        "maturity-model",
+        "ai-coe",
+        "operating-knowledge"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/skills-vs-agents-vs-prompts-vs-mcp",
+      "title": "Skills vs Agents vs Prompts vs MCP: What Goes Where",
+      "description": "Four AI primitives that get confused constantly. Here is what each one is for, why they compose instead of compete, and how to decide which you actually need.",
+      "tags": [
+        "ai-skills",
+        "agents",
+        "mcp",
+        "agent-skill-standard",
+        "agentic-systems"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/soul-frequency-framework",
       "title": "Soul Frequency Framework",
       "tags": [
@@ -3061,6 +3174,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/the-light-within-protocol",
+      "title": "The Light Within Protocol: A 20-Minute Morning Practice (and Where AI Helps)",
+      "description": "A concrete morning practice that stacks the levers with real evidence behind them — paced breath, gratitude, coherence, and vivid visualization — plus an honest account of where a model removes friction and where it must never go.",
+      "tags": [
+        "the-light-within",
+        "visualization",
+        "breathwork",
+        "morning routine",
+        "contemplative practice"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
       "title": "The Research + Generation Flywheel: Sandcastles-Style Analysis + Higgsfield/Grok Execution",
       "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing). The exact weekend workflow that turns signals into shipped shorts, hooks, and reference content.",
@@ -3071,6 +3197,18 @@
         "Hooks",
         "Content Strategy",
         "Creator Workflow"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/the-sovereign-curator",
+      "title": "The Sovereign Curator: Platform Curation and the Art of Responsible AI Reuse",
+      "description": "Why raw content creation is a commodity in the age of infinite AI noise—and how to build high-leverage curation engines, owned platforms, and responsible attribution networks.",
+      "tags": [
+        "Curation",
+        "Creator Economy",
+        "AI Workflows",
+        "Platform Design"
       ],
       "type": "blog"
     },
@@ -3388,6 +3526,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/your-mind-is-a-temporary-library",
+      "title": "Your Mind Is a Temporary Library",
+      "description": "A Mindvalley field note on turning lived experience into durable knowledge, agentic systems, and public capability that can outlast us.",
+      "tags": [
+        "MVU Field Notes",
+        "Knowledge Transfer",
+        "AI Agents",
+        "Publishing",
+        "Creator Systems",
+        "Legacy"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blueprint/arcanea-game-engine",
       "title": "Arcanea Game Platform",
       "description": "AI-driven narrative game with dynamic world generation",
@@ -3616,7 +3768,8 @@
       "tags": [
         "canon"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/changelog",
@@ -3710,15 +3863,8 @@
         "connect",
         "qr"
       ],
-      "type": "section"
-    },
-    {
-      "href": "/consulting",
-      "title": "Consulting",
-      "tags": [
-        "consulting"
-      ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/contact",
@@ -3734,7 +3880,8 @@
         "video",
         "creation"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/content-studio",
@@ -3918,7 +4065,8 @@
         "family",
         "tree"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/design-lab/family-tree/v1",
@@ -4062,7 +4210,8 @@
         "tree",
         "v6"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/design-lab/family-tree/v7",
@@ -4199,19 +4348,8 @@
         "creator",
         "kit"
       ],
-      "type": "section"
-    },
-    {
-      "href": "/downloads/ana-ai-business-kit",
-      "title": "Ana AI Business Kit",
-      "tags": [
-        "downloads",
-        "ana",
-        "ai",
-        "business",
-        "kit"
-      ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/downloads/epicways-intelligence",
@@ -4244,7 +4382,8 @@
         "intelligence",
         "kit"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/downloads/preview/agentic-creator-os",
@@ -4306,6 +4445,97 @@
       "type": "section"
     },
     {
+      "href": "/experiences/mindvalley-university-tallinn-2026",
+      "title": "Mindvalley University Tallinn 2026",
+      "tags": [
+        "experiences",
+        "mindvalley",
+        "university",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/mvu-tallinn-2026",
+      "title": "Mvu Tallinn 2026",
+      "tags": [
+        "experiences",
+        "mvu",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026",
+      "title": "Tallinn 2026",
+      "tags": [
+        "experiences",
+        "tallinn",
+        "2026"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/experiences/tallinn-2026/agentic-builder-lab",
+      "title": "Build Your First AI Agent",
+      "tags": [
+        "agentic",
+        "builder",
+        "lab"
+      ],
+      "type": "workshop"
+    },
+    {
+      "href": "/experiences/tallinn-2026/ai-music-creation-lab",
+      "title": "AI Music Creation Lab",
+      "tags": [
+        "ai",
+        "music",
+        "creation",
+        "lab"
+      ],
+      "type": "workshop"
+    },
+    {
+      "href": "/experiences/tallinn-2026/purpose-to-practice",
+      "title": "Purpose to Practice",
+      "tags": [
+        "purpose",
+        "to",
+        "practice"
+      ],
+      "type": "workshop"
+    },
+    {
+      "href": "/experiences/tallinn-2026/purpose-to-practice/map",
+      "title": "Map",
+      "tags": [
+        "experiences",
+        "tallinn",
+        "2026",
+        "purpose",
+        "to",
+        "practice",
+        "map"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
+      "href": "/experiences/tallinn-2026/speaker-session-amplifier",
+      "title": "Speaker Session Amplifier",
+      "tags": [
+        "speaker",
+        "session",
+        "amplifier"
+      ],
+      "type": "workshop"
+    },
+    {
       "href": "/experiments",
       "title": "Experiments",
       "tags": [
@@ -4319,7 +4549,8 @@
       "tags": [
         "familie"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/forsche-selbst",
@@ -4359,7 +4590,8 @@
         "offene",
         "fragen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/geschichte/riemer-linie",
@@ -4384,7 +4616,8 @@
         "interview",
         "kit"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/mitmachen",
@@ -4393,7 +4626,8 @@
         "familie",
         "mitmachen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie/stammbaum",
@@ -4402,7 +4636,8 @@
         "familie",
         "stammbaum"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/family",
@@ -4410,7 +4645,8 @@
       "tags": [
         "family"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/family/tree",
@@ -4419,7 +4655,8 @@
         "family",
         "tree"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/feed",
@@ -4524,16 +4761,8 @@
         "friends",
         "ahmad"
       ],
-      "type": "section"
-    },
-    {
-      "href": "/friends/ana",
-      "title": "Ana",
-      "tags": [
-        "friends",
-        "ana"
-      ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/friends/estefania",
@@ -4551,7 +4780,8 @@
         "friends",
         "jojo"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/gallery",
@@ -4661,7 +4891,8 @@
         "ikigai",
         "branding"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/goals",
@@ -4679,14 +4910,6 @@
     {
       "href": "/golden-age/chapter-01-when-creation-calls",
       "title": "When Creation Calls",
-      "type": "section"
-    },
-    {
-      "href": "/graph",
-      "title": "Graph",
-      "tags": [
-        "graph"
-      ],
       "type": "section"
     },
     {
@@ -4720,6 +4943,19 @@
       "type": "guide"
     },
     {
+      "href": "/guides/agentic-obsidian-second-brain",
+      "title": "Obsidian Second Brain: AI Agents, MCP and Agent Skills (2026)",
+      "description": "Build a local-first Obsidian second brain that Claude, Codex, and other AI agents can safely search, update, and improve with MCP, Agent Skills, and Git.",
+      "tags": [
+        "obsidian",
+        "second brain",
+        "agent skills",
+        "obsidian mcp",
+        "local-first ai"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/ai-writing-system",
       "title": "Building an AI Writing System",
       "description": "Create a systematic approach to AI-assisted writing that preserves your voice while 10x-ing output",
@@ -4729,6 +4965,19 @@
         "Claude",
         "Content",
         "Systems"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/anatomy-of-a-production-skill",
+      "title": "Anatomy of a Production Skill",
+      "description": "A line-by-line teardown of a real, governed SKILL.md — what every section does, why it is there, and how it maps to the Agent Skill Standard.",
+      "tags": [
+        "ai-skills",
+        "agent-skill-standard",
+        "skill-md",
+        "operating-knowledge",
+        "ai-coe"
       ],
       "type": "guide"
     },
@@ -4803,8 +5052,8 @@
     },
     {
       "href": "/guides/frankx-skill-creation-methodology",
-      "title": "The FrankX Skill Creation Methodology",
-      "description": "A practical operating method for turning repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises.",
+      "title": "The Skill Creation Methodology",
+      "description": "The authoring method behind the Agent Skill Standard: turn repeatable AI work into reusable, evaluated, and governed skills for founders, teams, and enterprises.",
       "tags": [
         "ai-skills",
         "ai-coe",
@@ -4961,14 +5210,6 @@
       "type": "guide"
     },
     {
-      "href": "/harzfenster",
-      "title": "Harzfenster",
-      "tags": [
-        "harzfenster"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/hoffnung",
       "title": "Hoffnung",
       "tags": [
@@ -4982,15 +5223,6 @@
       "tags": [
         "hospitality",
         "intelligence"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/hospitality-os",
-      "title": "Hospitality OS",
-      "tags": [
-        "hospitality",
-        "os"
       ],
       "type": "section"
     },
@@ -5017,7 +5249,8 @@
         "vault",
         "preview"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/insights",
@@ -5089,12 +5322,10 @@
       "type": "section"
     },
     {
-      "href": "/jojo",
-      "title": "Jojo",
-      "tags": [
-        "jojo"
-      ],
-      "type": "section"
+      "href": "/journal",
+      "title": "FrankX Journal",
+      "type": "core",
+      "sitemap": false
     },
     {
       "href": "/lab",
@@ -5170,8 +5401,27 @@
       "type": "library"
     },
     {
+      "href": "/library/altered-traits",
+      "title": "Altered Traits",
+      "tags": [
+        "altered",
+        "traits"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/approach",
       "title": "Library — Approach",
+      "type": "library"
+    },
+    {
+      "href": "/library/art-and-fear",
+      "title": "Art & Fear",
+      "tags": [
+        "art",
+        "and",
+        "fear"
+      ],
       "type": "library"
     },
     {
@@ -5195,11 +5445,31 @@
       "type": "library"
     },
     {
+      "href": "/library/beastie-boys-book",
+      "title": "Beastie Boys Book",
+      "tags": [
+        "beastie",
+        "boys",
+        "book"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/becoming-supernatural",
       "title": "Becoming Supernatural",
       "tags": [
         "becoming",
         "supernatural"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/bird-by-bird",
+      "title": "Bird by Bird: Some Instructions on Writing and Life",
+      "tags": [
+        "bird",
+        "by",
+        "bird"
       ],
       "type": "library"
     },
@@ -5226,6 +5496,14 @@
       "type": "library"
     },
     {
+      "href": "/library/breath",
+      "title": "Breath: The New Science of a Lost Art",
+      "tags": [
+        "breath"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/build",
       "title": "Library — Build",
       "type": "library"
@@ -5241,11 +5519,40 @@
       "type": "library"
     },
     {
+      "href": "/library/cant-stop-wont-stop",
+      "title": "Can’t Stop Won’t Stop",
+      "tags": [
+        "cant",
+        "stop",
+        "wont",
+        "stop"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/chronicles-volume-one",
+      "title": "Chronicles: Volume One",
+      "tags": [
+        "chronicles",
+        "volume",
+        "one"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/deep-work",
       "title": "Deep Work",
       "tags": [
         "deep",
         "work"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/e-squared",
+      "title": "E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality",
+      "tags": [
+        "squared"
       ],
       "type": "library"
     },
@@ -5256,6 +5563,26 @@
         "fabric",
         "of",
         "reality"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/girl-in-a-band",
+      "title": "Girl in a Band",
+      "tags": [
+        "girl",
+        "in",
+        "band"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/how-music-works",
+      "title": "How Music Works",
+      "tags": [
+        "how",
+        "music",
+        "works"
       ],
       "type": "library"
     },
@@ -5280,6 +5607,33 @@
       "type": "library"
     },
     {
+      "href": "/library/just-kids",
+      "title": "Just Kids",
+      "tags": [
+        "just",
+        "kids"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/life-keith-richards",
+      "title": "Life",
+      "tags": [
+        "life",
+        "keith",
+        "richards"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/m-train",
+      "title": "M Train",
+      "tags": [
+        "train"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/mans-search-for-meaning",
       "title": "Man",
       "tags": [
@@ -5295,6 +5649,28 @@
       "title": "Meditations",
       "tags": [
         "meditations"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/meet-me-in-the-bathroom",
+      "title": "Meet Me in the Bathroom",
+      "tags": [
+        "meet",
+        "me",
+        "in",
+        "the",
+        "bathroom"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/miles-the-autobiography",
+      "title": "Miles: The Autobiography",
+      "tags": [
+        "miles",
+        "the",
+        "autobiography"
       ],
       "type": "library"
     },
@@ -5320,6 +5696,37 @@
       "type": "library"
     },
     {
+      "href": "/library/our-band-could-be-your-life",
+      "title": "Our Band Could Be Your Life",
+      "tags": [
+        "our",
+        "band",
+        "could",
+        "be",
+        "your",
+        "life"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/please-kill-me",
+      "title": "Please Kill Me",
+      "tags": [
+        "please",
+        "kill",
+        "me"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/popism",
+      "title": "POPism: The Warhol Sixties",
+      "tags": [
+        "popism"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/profit-first",
       "title": "Profit First",
       "tags": [
@@ -5334,10 +5741,41 @@
       "type": "library"
     },
     {
+      "href": "/library/rockstar-energy",
+      "title": "Rockstar Energy",
+      "tags": [
+        "library",
+        "rockstar",
+        "energy"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/library/steal-like-an-artist",
+      "title": "Steal Like an Artist",
+      "tags": [
+        "steal",
+        "like",
+        "an",
+        "artist"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/superfans",
       "title": "Superfans",
       "tags": [
         "superfans"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tao-te-ching",
+      "title": "Tao Te Ching",
+      "tags": [
+        "tao",
+        "te",
+        "ching"
       ],
       "type": "library"
     },
@@ -5371,6 +5809,27 @@
       "type": "library"
     },
     {
+      "href": "/library/the-book-of-secrets",
+      "title": "The Book of Secrets",
+      "tags": [
+        "the",
+        "book",
+        "of",
+        "secrets"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-creative-act",
+      "title": "The Creative Act: A Way of Being",
+      "tags": [
+        "the",
+        "creative",
+        "act"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-little-book-of-ikigai",
       "title": "The Little Book of Ikigai: The Essential Japanese Way to Finding Your Purpose in Life",
       "tags": [
@@ -5383,6 +5842,26 @@
       "type": "library"
     },
     {
+      "href": "/library/the-power-of-eight",
+      "title": "The Power of Eight",
+      "tags": [
+        "the",
+        "power",
+        "of",
+        "eight"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-secret",
+      "title": "The Secret",
+      "tags": [
+        "the",
+        "secret"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-war-of-art",
       "title": "The War of Art",
       "tags": [
@@ -5390,6 +5869,16 @@
         "war",
         "of",
         "art"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-wordless-laws",
+      "title": "The Wordless Laws",
+      "tags": [
+        "the",
+        "wordless",
+        "laws"
       ],
       "type": "library"
     },
@@ -5453,6 +5942,14 @@
         "placebo"
       ],
       "type": "library"
+    },
+    {
+      "href": "/licensing",
+      "title": "Licensing",
+      "tags": [
+        "licensing"
+      ],
+      "type": "section"
     },
     {
       "href": "/links",
@@ -5865,10 +6362,54 @@
       "type": "section"
     },
     {
+      "href": "/manifestation",
+      "title": "Manifestation",
+      "tags": [
+        "manifestation"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/manifestation/quest",
+      "title": "Quest",
+      "tags": [
+        "manifestation",
+        "quest"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/map",
       "title": "Map",
       "tags": [
         "map"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v1",
+      "title": "V1",
+      "tags": [
+        "map",
+        "v1"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v2",
+      "title": "V2",
+      "tags": [
+        "map",
+        "v2"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/map/v3",
+      "title": "V3",
+      "tags": [
+        "map",
+        "v3"
       ],
       "type": "section"
     },
@@ -5884,6 +6425,15 @@
     {
       "href": "/music",
       "title": "Music",
+      "type": "section"
+    },
+    {
+      "href": "/music-intelligence",
+      "title": "Music Intelligence",
+      "tags": [
+        "music",
+        "intelligence"
+      ],
       "type": "section"
     },
     {
@@ -6063,11 +6613,37 @@
       "type": "section"
     },
     {
+      "href": "/music/templates",
+      "title": "Templates",
+      "tags": [
+        "music",
+        "templates"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/music/tools",
       "title": "Tools",
       "tags": [
         "music",
         "tools"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/mvu",
+      "title": "Mvu",
+      "tags": [
+        "mvu"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/mvu/lab",
+      "title": "Lab",
+      "tags": [
+        "mvu",
+        "lab"
       ],
       "type": "section"
     },
@@ -6104,7 +6680,8 @@
         "newsletter",
         "confirm"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/newsletter/preferences",
@@ -6132,7 +6709,8 @@
         "newsletter",
         "unsubscribe"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/observatory",
@@ -6194,7 +6772,8 @@
         "und",
         "oma"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/open-source",
@@ -6206,12 +6785,22 @@
       "type": "section"
     },
     {
+      "href": "/operator-scorecard",
+      "title": "Operator Scorecard",
+      "tags": [
+        "operator",
+        "scorecard"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ops",
       "title": "Ops",
       "tags": [
         "ops"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/ops/calendar",
@@ -6229,7 +6818,8 @@
         "ops",
         "sites"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/opus-pro",
@@ -6347,7 +6937,8 @@
         "papa",
         "erinnerungen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/papa/leben",
@@ -6361,7 +6952,8 @@
         "papa",
         "mitmachen"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/partners",
@@ -6417,7 +7009,8 @@
         "van",
         "ede"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/partnerships/vercel",
@@ -6760,6 +7353,17 @@
       "type": "section"
     },
     {
+      "href": "/products/visual-creation-loop",
+      "title": "Visual Creation Loop",
+      "tags": [
+        "products",
+        "visual",
+        "creation",
+        "loop"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/progress",
       "title": "Progress",
       "tags": [
@@ -6787,7 +7391,8 @@
         "prompts",
         "psyche"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/prototype/arcanea-game-engine",
@@ -6977,6 +7582,17 @@
       "type": "research"
     },
     {
+      "href": "/research/agentic-life-observatory",
+      "title": "Agentic Life Observatory",
+      "tags": [
+        "research",
+        "agentic",
+        "life",
+        "observatory"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/research/ai-contemplative-practice",
       "title": "AI Contemplative Practice",
       "tags": [
@@ -7043,6 +7659,17 @@
       "href": "/research/sources",
       "title": "Research Sources",
       "type": "research"
+    },
+    {
+      "href": "/research/the-light-within",
+      "title": "The Light Within",
+      "tags": [
+        "research",
+        "the",
+        "light",
+        "within"
+      ],
+      "type": "section"
     },
     {
       "href": "/research/visual-catalog",
@@ -7251,15 +7878,6 @@
       "type": "section"
     },
     {
-      "href": "/students/ikigai",
-      "title": "Ikigai",
-      "tags": [
-        "students",
-        "ikigai"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/students/prompts",
       "title": "Prompts",
       "tags": [
@@ -7411,7 +8029,8 @@
       "tags": [
         "study"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/superpowers",
@@ -7454,6 +8073,36 @@
       "type": "section"
     },
     {
+      "href": "/the-light-within",
+      "title": "The Light Within",
+      "tags": [
+        "the",
+        "light",
+        "within"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/the-secret",
+      "title": "The Secret",
+      "tags": [
+        "the",
+        "secret"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/think-and-grow-rich",
+      "title": "Think And Grow Rich",
+      "tags": [
+        "think",
+        "and",
+        "grow",
+        "rich"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/tools",
       "title": "Tools",
       "type": "tool"
@@ -7491,15 +8140,6 @@
       "title": "Tribe",
       "tags": [
         "tribe"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/trinity-ai",
-      "title": "Trinity AI",
-      "tags": [
-        "trinity",
-        "ai"
       ],
       "type": "section"
     },
@@ -7644,7 +8284,8 @@
         "trinity",
         "ai"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/workshops",
@@ -7793,14 +8434,48 @@
     }
   ],
   "aliases": {
+    "/academy": "/ai-architect-academy",
     "/aco": "/agents",
     "/ai-coe": "/acos",
+    "/aiarchitectacademy": "/ai-architect-academy",
+    "/ais": "/allies/ana-cancino",
+    "/alliance/cecilia": "/allies/ana-cancino",
+    "/ana": "/allies/ana-cancino",
+    "/ana-intelligence-system": "/allies/ana-cancino",
+    "/ar-architect-academy": "/ai-architect-academy",
+    "/architect-academy": "/ai-architect-academy",
+    "/books/fable/chapter-00-prologue-the-wall-of-instruments": "/books/fable",
+    "/books/fable/chapter-01-the-listening-machine": "/books/fable",
+    "/books/fable/chapter-02-what-the-machine-kept": "/books/fable",
+    "/books/fable/chapter-03-the-narrow-window": "/books/fable",
+    "/books/fable/chapter-04-a-smaller-shape-of-the-sea": "/books/fable",
+    "/books/fable/chapter-05-the-wrong-note": "/books/fable",
+    "/books/fable/chapter-06-a-thousand-songs": "/books/fable/06-the-thousand-true-songs",
+    "/books/fable/chapter-07-the-grain-of-the-voice": "/books/fable/07-the-weaver-who-copied-a-voice",
+    "/books/fable/chapter-08-the-oracle-question": "/books/fable/08-the-well-and-the-kneeling-man",
+    "/books/fable/chapter-09-the-brokers-offer": "/books/fable/09-the-tower-that-rented-the-rain",
+    "/books/fable/chapter-10-the-second-workshop": "/books/fable/21-the-hundred-benches",
+    "/books/fable/chapter-11-the-copy": "/books/fable/10-the-perfect-forgery",
+    "/books/fable/chapter-12-idas-machine": "/books/fable/12-the-teachers-test",
+    "/books/fable/chapter-13-two-kinds-of-listening": "/books/fable/11-the-two-listeners",
+    "/books/fable/chapter-14-what-the-machine-could-not-hold": "/books/fable/13-the-laugh-in-the-jar",
+    "/books/fable/chapter-15-the-question-of-the-ledger": "/books/fable/24-are-they-dangerous",
+    "/books/fable/chapter-16-the-good-future": "/books/fable/25-the-fair-that-everyone-built",
+    "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
+    "/downloads/ana-ai-business-kit": "/allies/ana-cancino",
+    "/guide/agentic-obsidian-second-brain": "/guides/agentic-obsidian-second-brain",
+    "/guide/obsidian-mcp-agent-skills": "/guides/agentic-obsidian-second-brain",
+    "/guide/starlight-second-brain": "/guides/agentic-obsidian-second-brain",
+    "/guides/starlight-second-brain": "/guides/agentic-obsidian-second-brain",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",
     "/llm-hub": "/ai-ops/models-2026",
+    "/mindvalley-university": "/mvu",
+    "/mindvalleyuniversity": "/mvu",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
+    "/signal": "/ai-architecture",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
     "/workshops/ikigai": "/workshops/ikigai-branding",

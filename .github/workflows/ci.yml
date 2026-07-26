@@ -6,11 +6,16 @@ on:
     paths:
       - 'app/**'
       - 'components/**'
+      - 'content/**'
       - 'lib/**'
       - 'data/**'
+      - 'taste.md'
       - 'scripts/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.npmrc'
       - 'next.config.*'
       - 'tsconfig*.json'
       - '.eslintrc*'
@@ -21,11 +26,16 @@ on:
     paths:
       - 'app/**'
       - 'components/**'
+      - 'content/**'
       - 'lib/**'
       - 'data/**'
+      - 'taste.md'
       - 'scripts/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.npmrc'
       - 'next.config.*'
       - 'tsconfig*.json'
       - '.eslintrc*'
@@ -60,11 +70,17 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Build integrity contract
+        run: pnpm run test:build-integrity
+
       - name: Type Check
         run: pnpm run type-check
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Language refusal gate
+        run: pnpm run ai-slop:audit:strict
 
       - name: Build
         run: pnpm run build

@@ -81,6 +81,18 @@ const navItems: NavItem[] = [
     ],
   },
   {
+    name: 'Manifestation',
+    href: '/manifestation',
+    subItems: [
+      { name: 'Manifestation Hub', href: '/manifestation' },
+      { name: 'The 10-Day Quest', href: '/manifestation/quest' },
+      { name: 'The Secret', href: '/the-secret' },
+      { name: 'Think and Grow Rich', href: '/think-and-grow-rich' },
+      { name: 'The Research', href: '/research/manifestation-law-of-attraction-ai-systems' },
+      { name: 'Vibe OS (Set Your State)', href: '/products/vibe-os' },
+    ],
+  },
+  {
     name: 'Research',
     href: '/research',
     subItems: [

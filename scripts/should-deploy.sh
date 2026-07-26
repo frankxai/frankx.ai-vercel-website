@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Vercel ignoreCommand — exit 0 SKIPS the build, non-zero PROCEEDS.
-# Skips when only docs/internal/research paths changed since the previous deploy.
+# Skips when (a) the triggering PR is a draft, or (b) only docs/internal/
+# research paths changed since the previous deploy.
 # Phase 3.5 of VERCEL-COST-MASSIVE-ACTION — cuts ~30-50% of preview-deploy spend
 # on docs-only commits without touching site behavior.
 #
@@ -21,6 +22,21 @@ set +e  # Don't auto-abort on non-zero — we control exit codes explicitly.
 #   VERCEL_ENV              = production | preview | development
 CURRENT_SHA="${VERCEL_GIT_COMMIT_SHA:-$(git rev-parse HEAD 2>/dev/null)}"
 PREVIOUS_SHA="${VERCEL_GIT_PREVIOUS_SHA:-}"
+
+# 0. Draft PR check — cheapest possible skip, runs before any git work.
+#    VERCEL_GIT_PULL_REQUEST_ID is only set for PR-linked preview builds
+#    (empty for production and non-PR previews), so this never touches
+#    production. Repo is public — unauthenticated GitHub API call, no token.
+#    Fail-safe to PROCEED: any curl/parse hiccup falls through to the
+#    existing path-diff logic below rather than risking a false skip.
+if [ -n "${VERCEL_GIT_PULL_REQUEST_ID:-}" ] && [ -n "${VERCEL_GIT_REPO_OWNER:-}" ] && [ -n "${VERCEL_GIT_REPO_SLUG:-}" ]; then
+  PR_JSON=$(curl -sf --max-time 5 \
+    "https://api.github.com/repos/${VERCEL_GIT_REPO_OWNER}/${VERCEL_GIT_REPO_SLUG}/pulls/${VERCEL_GIT_PULL_REQUEST_ID}" 2>/dev/null)
+  if [ -n "$PR_JSON" ] && echo "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*true'; then
+    echo "[should-deploy] PR #${VERCEL_GIT_PULL_REQUEST_ID} is a draft — SKIPPING build."
+    exit 0
+  fi
+fi
 
 # 1. Env-var-only redeploy (Vercel dashboard "Redeploy"): same SHA twice.
 #    The user clicked redeploy precisely because something changed (env vars).

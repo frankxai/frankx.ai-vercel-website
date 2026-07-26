@@ -1,0 +1,93 @@
+---
+title: "The Music Intelligence System: Research, Agents, and Free Tools Behind AI-Era Music"
+description: "An open, interconnected system for AI-era music creation — a 25-state research library (Vibe OS), portable agents, an MCP server, and free Suno prompt templates. Built in public across GitHub."
+date: "2026-07-06"
+lastUpdated: "2026-07-06"
+author: "Frank"
+category: "Music Intelligence"
+tags:
+  - music-intelligence
+  - vibe-os
+  - suno-ai
+  - mcp-server
+  - ai-music
+  - open-source
+keywords:
+  - music intelligence system
+  - vibe os
+  - suno prompt generator
+  - ai music mcp server
+  - music psychology research
+  - suno ai prompts free
+image: "/images/vibe-os/vibe-os-ecosystem-overview.png"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+**TL;DR:** The [Music Intelligence System](/music-intelligence) is the hub for everything I've built around AI music creation: a research-backed state library (Vibe OS) mapping BPM, key, mode, and instrumentation to 25 target states; a Suno prompt generator and MCP server that put the research to work for any agent; and [nine free copy-paste Suno templates](/music/templates) — now with an interactive picker over the full 25-state library. Everything is open source at [github.com/frankxai/vibe-os](https://github.com/frankxai/vibe-os).
+
+## What problem does this solve?
+
+Suno and similar tools generate music from a text prompt, but most prompts are guesswork — a genre name and a mood word, with no connection to what actually changes how music affects a listener. The research on tempo, mode, and timbre is well established in music psychology; it just wasn't packaged for prompt engineering.
+
+Vibe OS closes that gap. Every one of its 25 states fixes the parameters the literature points to — tempo for arousal, major/minor mode for valence, timbre for color — and leaves everything else (melody, arrangement, specific instrumentation choices) for Suno to vary. The result: the target state holds across takes, even as the actual music differs each time.
+
+## What's actually in the system?
+
+Six pieces, each usable on its own:
+
+1. **Vibe OS** — the state library and Suno prompt generator, open source on GitHub. 25 states across energy, focus, calm, emotional, goal-directed, processing, and social categories.
+2. **An MCP server** — so any MCP-compatible agent (Claude, GPT, or otherwise) can call the state library directly instead of a human copy-pasting prompts.
+3. **The Music Intelligence Hub** — a public GitHub repo with the schema, registry, and research notes tying the pieces together.
+4. **Free Suno templates** at [/music/templates](/music/templates) — nine ready-to-paste prompts, plus a new picker over all 25 states with BPM, key, instrumentation, and a copy-ready prompt for each.
+5. **The Music Lab** at [/music-lab](/music-lab) — free browser instruments (piano, drums, DJ pads) for anyone who wants to make sound without installing anything.
+6. **Vibe OS the product** — the paid companion at [/products/vibe-os](/products/vibe-os): prompt packs across genres, emotion mapping, and production checklists.
+
+## How do you use the new state picker?
+
+Open [/music/templates](/music/templates) and scroll to "Want a state that isn't in the nine above?" Pick any of the 25 states — say, Grief Processing or Anticipation — and the panel shows its BPM range, key, instrumentation, and a ready-made Suno style prompt. Copy it, paste it into Suno's custom mode, and generate. The parameters that matter are locked; everything else Suno varies for you.
+
+This is a straight data port from Vibe OS's `VIBE_STATES` dictionary — no new research claims, just the existing library made interactive on the web.
+
+## What does the research actually say?
+
+Four parameters, three of them well supported and one held at arm's length:
+
+- **Tempo** is the strongest lever on arousal — the faster the BPM, the higher the perceived energy, up to a ceiling effect in exercise contexts.
+- **Mode** (major or minor) shapes valence — the emotional read of "positive" versus "negative," independent of tempo.
+- **Timbre** colors how a piece reads — bright, warm, soft, or powerful instrumentation carries its own associations regardless of tempo or mode.
+- **Brainwave entrainment** claims (binaural beats, frequency pairing) are treated as open questions, not selling points. Rhythmic entrainment to tempo has decent support; stronger claims have weaker, mixed evidence. Vibe OS tracks this distinction openly in its docs rather than blurring it into marketing copy.
+
+## Why build this in public?
+
+Because the value isn't the code — Suno prompt generation is a few hundred lines of Python. The value is the mapping from research to usable parameters, and that mapping is more useful shared than hoarded. The state library, the MCP server, and the schema are all MIT-licensed on GitHub. The free templates and picker on frankx.ai are the same data, made accessible without needing to run Python or clone a repo.
+
+## FAQ
+
+### What is Vibe OS?
+
+Vibe OS is an open-source, research-backed state library for AI music generation. It maps 25 target states — from morning energy to grief processing — to concrete musical parameters (BPM, key, mode, instrumentation, timbre) and generates Suno-ready style prompts from them.
+
+### Is Vibe OS free?
+
+The state library, prompt generator, and MCP server are free and open source at [github.com/frankxai/vibe-os](https://github.com/frankxai/vibe-os). Nine curated templates and the full 25-state picker are free on [/music/templates](/music/templates). Vibe OS the product ([/products/vibe-os](/products/vibe-os)) is a separate paid companion with deeper prompt packs and production checklists.
+
+### How many states does the Vibe OS library cover?
+
+25, grouped into seven categories: energy, focus, calm, emotional, goal-directed, processing, and social. Each state fixes a BPM range, an optimal BPM, a key and mode, instrumentation, timbre, and a music style.
+
+### Do binaural beats actually work?
+
+The evidence is mixed and weaker than rhythmic entrainment to tempo, which is well supported. Vibe OS tracks "frequency pairing" (which brainwave state a track is designed to support) as a documented hypothesis, not a guaranteed effect, and says so directly in its research notes.
+
+### Can I use these prompts with tools other than Suno?
+
+Yes. The prompts describe genre, tempo, key, and instrumentation in plain language, which most text-to-music models (Suno, Udio, and similar) can parse. Suno's custom mode is what the templates were tuned against, so results may vary slightly on other platforms.
+
+### What's an MCP server, and why does Vibe OS have one?
+
+MCP (Model Context Protocol) lets AI agents call external tools directly instead of a human copy-pasting between systems. Vibe OS's MCP server exposes the state library and prompt generator so any MCP-compatible agent — Claude Code, a custom pipeline, or another LLM — can generate a state-matched Suno prompt without a person in the loop.
+
+### Where do I start if I just want a free prompt right now?
+
+[/music/templates](/music/templates) — pick one of the nine curated templates or open the state picker for the full 25. Copy, paste into Suno, generate.

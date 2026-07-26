@@ -4,9 +4,6 @@ import './globals.css'
 import Script from 'next/script'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { GoogleAnalytics } from '@next/third-parties/google'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
@@ -17,6 +14,7 @@ import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
+import { PrivacySafeAnalytics } from '@/components/analytics/PrivacySafeAnalytics'
 
 // AIS Plan A Task 21 — Schema.org @graph injected into <head> for AEO/GEO
 const aisSchemaGraph = (() => {
@@ -142,7 +140,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -171,13 +168,6 @@ export default function RootLayout({
       >
         <SessionProvider>
           <OrganizationJsonLd />
-          {plausibleDomain && (
-            <Script
-              strategy="afterInteractive"
-              data-domain={plausibleDomain}
-              src="https://plausible.io/js/script.js"
-            />
-          )}
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
@@ -198,11 +188,7 @@ export default function RootLayout({
             {children}
           </div>
           <Footer />
-          <Analytics />
-          <SpeedInsights />
-          {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-          )}
+          <PrivacySafeAnalytics />
         </SessionProvider>
       </body>
     </html >

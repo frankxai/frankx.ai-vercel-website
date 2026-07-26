@@ -6,6 +6,11 @@ export interface WorkshopModule {
   resources: { label: string; href: string }[]
 }
 
+export type WorkshopProvenance =
+  | 'delivered-personal'
+  | 'delivered-studio-assisted'
+  | 'studio-draft'
+
 export interface Workshop {
   slug: string
   title: string
@@ -15,6 +20,8 @@ export interface Workshop {
   difficulty: 'Beginner' | 'Intermediate' | 'Advanced'
   moduleCount: number
   color: 'cyan' | 'violet' | 'amber'
+  /** Separates delivery history from authorship so the catalog never overclaims either. */
+  provenance: WorkshopProvenance
   overview: string
   objectives: string[]
   prerequisites: string[]
@@ -37,6 +44,7 @@ export const workshops: Workshop[] = [
     difficulty: 'Beginner',
     moduleCount: 7,
     color: 'violet',
+    provenance: 'delivered-personal',
     overview:
       'An interactive, coach-guided workshop. You map your Ikigai through a 4-step wizard (what you love, what you are good at, what the world needs, what pays), synthesize your purpose statement, and immediately translate it into a brand: positioning, audience-of-one, and three content pillars. Pair it with the free Ikigai & Branding Coach GPT for deeper Socratic questioning.',
     objectives: [
@@ -109,6 +117,7 @@ export const workshops: Workshop[] = [
     difficulty: 'Beginner',
     moduleCount: 5,
     color: 'cyan',
+    provenance: 'studio-draft',
     overview:
       'This workshop equips graduates with practical AI literacy — from understanding the current landscape to hands-on prompting techniques. Students leave with a clear mental model of where AI is heading and how to position themselves.',
     objectives: [
@@ -189,6 +198,7 @@ export const workshops: Workshop[] = [
     difficulty: 'Intermediate',
     moduleCount: 7,
     color: 'cyan',
+    provenance: 'delivered-studio-assisted',
     intakeEnabled: true,
     overview:
       'A hands-on technical workshop. Every participant ships a working AI agent on the Vercel AI SDK — our central path — and leaves with a portable Agent Card (Google A2A) that works across Claude, OpenAI, Google ADK, and no-code stacks. The point is not the framework; the point is the six primitives (model, tool, memory, loop, spec, deploy) that transfer to every agent you will ever build. Six optional branch modules then re-build the same agent on Claude, OpenAI, Google ADK, Oracle ADK, no-code (n8n/Notion/Dify), and AI-builds-AI (Claude Code) stacks.',
@@ -299,6 +309,7 @@ export const workshops: Workshop[] = [
     difficulty: 'Beginner',
     moduleCount: 4,
     color: 'amber',
+    provenance: 'studio-draft',
     overview:
       'This workshop demystifies AI music production. Participants learn prompt engineering techniques specific to Suno, create original tracks during the session, and understand the publishing and distribution landscape.',
     objectives: [
@@ -370,6 +381,7 @@ export const workshops: Workshop[] = [
     difficulty: 'Beginner',
     moduleCount: 5,
     color: 'violet',
+    provenance: 'studio-draft',
     intakeEnabled: true,
     overview:
       'A facilitator-led workshop that picks up where the self-serve /workshops/ikigai-branding wizard stops. Attendees map their Ikigai with evidence-backed inputs, distill a two-line purpose statement, translate it into brand positioning plus three content pillars, then use AI tools (ChatGPT, Claude, Suno, Nano Banana) to ship their first visible artifact before leaving the room. Everyone leaves with a 30-day publishing cadence and momentum.',
@@ -457,6 +469,7 @@ export const workshops: Workshop[] = [
     difficulty: 'Intermediate',
     moduleCount: 4,
     color: 'cyan',
+    provenance: 'studio-draft',
     intakeEnabled: true,
     overview:
       'A boardroom-format workshop for leaders who are tired of outsourcing AI strategy to vendors and frameworks they did not choose. The session adapts the 6-pillar AI Center of Excellence framework Frank has used in enterprise AI contexts (Strategy, Governance, Talent, Technology, Data, Ethics) to the attendee’s actual company. Every participant leaves having identified one AI decision they have been over-delegating and committing to re-own it this quarter.',
@@ -530,6 +543,7 @@ export const workshops: Workshop[] = [
     difficulty: 'Intermediate',
     moduleCount: 4,
     color: 'amber',
+    provenance: 'studio-draft',
     intakeEnabled: true,
     overview:
       'A hands-on 90-minute workshop that treats the participant as a 1-person enterprise operating system. Frank walks through how serious AI Centers of Excellence are structured — six pillars, budget discipline, multi-month rollout, and governance — then shows the mirror-image personal version. By end of session, every attendee has a working personal AI CoE: a strategy doc, a tool policy, a prompt library, a memory system, and a weekly review cadence.',
@@ -601,6 +615,7 @@ export const workshops: Workshop[] = [
     difficulty: 'Intermediate',
     moduleCount: 5,
     color: 'cyan',
+    provenance: 'studio-draft',
     overview:
       'A half-day hackathon format. Teams of 3-5 take one real problem from their work, decompose it into an agentic workflow, build with Claude Code (or a comparable agent CLI), and ship a working prototype to a live URL. The facilitator role shifts from teacher to co-pilot — Frank pairs with each team during the build, unblocks blockers, and pushes for shipped-over-polished. By the close, every team has a live link they can share.',
     objectives: [

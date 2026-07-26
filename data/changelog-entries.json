@@ -607,62 +607,6 @@
           "repo": "arcanea"
         },
         {
-          "id": "cl-2026-05-01-00bef5b",
-          "date": "2026-05-01",
-          "type": "shipped",
-          "title": "re-render Ana-Ω v2 — robot-form + corrected glasses",
-          "description": "feat(ana): re-render Ana-Ω v2 — robot-form + corrected glasses — frankx",
-          "tags": [
-            "frankx",
-            "characters"
-          ],
-          "commit": "00bef5b",
-          "impact": "medium",
-          "repo": "frankx"
-        },
-        {
-          "id": "cl-2026-05-01-973ff8a",
-          "date": "2026-05-01",
-          "type": "fixed",
-          "title": "noindex AIS landing too — wait for Ana attribution consent",
-          "description": "fix(ana): noindex AIS landing too — wait for Ana attribution consent — frankx",
-          "tags": [
-            "frankx",
-            "characters"
-          ],
-          "commit": "973ff8a",
-          "impact": "medium",
-          "repo": "frankx"
-        },
-        {
-          "id": "cl-2026-05-01-293e626",
-          "date": "2026-05-01",
-          "type": "shipped",
-          "title": "/ana-intelligence-system + /ana page scaffolds",
-          "description": "feat(ana): /ana-intelligence-system + /ana page scaffolds — frankx",
-          "tags": [
-            "frankx",
-            "characters"
-          ],
-          "commit": "293e626",
-          "impact": "medium",
-          "repo": "frankx"
-        },
-        {
-          "id": "cl-2026-05-01-c9cb2dc",
-          "date": "2026-05-01",
-          "type": "shipped",
-          "title": "Ana-Ω mascot system + AIS scaffolding (Phase 0-3)",
-          "description": "feat(ana): Ana-Ω mascot system + AIS scaffolding (Phase 0-3) — frankx",
-          "tags": [
-            "frankx",
-            "characters"
-          ],
-          "commit": "c9cb2dc",
-          "impact": "medium",
-          "repo": "frankx"
-        },
-        {
           "id": "cl-2026-05-01-2dd292d",
           "date": "2026-05-01",
           "type": "shipped",

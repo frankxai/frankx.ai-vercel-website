@@ -29,6 +29,17 @@ export const CONNECT_EVENTS: ConnectEvent[] = [
     accent: 'amber',
     location: 'Madrid',
   },
+  // Frank attends as a participant. Anything he hosts in Tallinn is an
+  // independent session — see the `attendee` framing in the /connect JSON-LD.
+  {
+    id: 'mindvalley-u-2026',
+    label: 'Mindvalley University',
+    shortLabel: 'Mindvalley U',
+    start: '2026-07-20',
+    end: '2026-08-02',
+    accent: 'violet',
+    location: 'Tallinn',
+  },
 ]
 
 function inWindow(now: Date, startISO: string, endISO: string): boolean {

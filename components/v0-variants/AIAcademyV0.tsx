@@ -402,7 +402,7 @@ export default function AcademyPage() {
                       {'Meet Your Instructor'}
                     </CardTitle>
                     <CardDescription className="text-base">
-                      {'Frank — AI Architect with enterprise experience at Oracle, creator of ACOS'}
+                      {'Frank — AI Architect & Creator, builder of ACOS'}
                     </CardDescription>
                   </div>
                 </div>
@@ -410,7 +410,7 @@ export default function AcademyPage() {
               <CardContent>
                 <div className="grid sm:grid-cols-3 gap-6 pt-4">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-cyan mb-1">{'500+'}</div>
+                    <div className="text-3xl font-bold text-cyan mb-1">{'12K+'}</div>
                     <div className="text-sm text-muted-foreground">{'AI Songs Created'}</div>
                   </div>
                   <div className="text-center">

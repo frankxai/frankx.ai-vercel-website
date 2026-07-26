@@ -5,7 +5,7 @@
 
 ### The Backstory (Where I Was)
 
-I was an AI architect at Oracle, working around enterprise-scale systems and production-grade AI constraints. The work was technically excellent --- distributed systems, multi-agent orchestration, production-grade AI at scale. I was good at finding patterns in complex problems and turning them into clean architecture.
+I was an AI Architect & Creator, working around enterprise-scale systems and production-grade AI constraints. The work was technically excellent --- distributed systems, multi-agent orchestration, production-grade AI at scale. I was good at finding patterns in complex problems and turning them into clean architecture.
 
 But I had this other thing. I made music. A lot of music. And I kept noticing something I couldn't ignore.
 
