@@ -120,9 +120,12 @@ const navigation = {
       { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Starter kits ($29-199)' },
       { name: 'AI World', href: '/ai-world', icon: Workflow, description: 'Live architecture demos' },
       { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Tools & workflows' },
-      { name: 'AI Studio', href: '/consulting', icon: Briefcase, description: 'Architecture consulting' },
+      { name: 'AI Studio', href: '/work-with-me', icon: Briefcase, description: 'Studio engagements (\u20ac3k\u2013\u20ac25k)' },
       { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'AI-powered investing' },
       { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Automated analysis agents' },
+      { name: 'Workshops', href: '/workshops', icon: Users, description: 'Sessions built around one shipped result' },
+      { name: 'Coaching', href: '/coaching', icon: Target, description: '1:1 architecture coaching, application-based' },
+      { name: 'Shop', href: '/shop', icon: Download, description: 'Templates & skills ($27\u2013$297)' },
     ],
     groups: [
       {
@@ -131,7 +134,11 @@ const navigation = {
       },
       {
         label: 'Deep Dives',
-        items: ['AI World', 'Developer Hub', 'AI Studio'],
+        items: ['AI World', 'Developer Hub'],
+      },
+      {
+        label: 'Work with Frank',
+        items: ['AI Studio', 'Workshops', 'Coaching', 'Shop'],
       },
       {
         label: 'Invest',
