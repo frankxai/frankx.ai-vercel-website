@@ -35,6 +35,7 @@ import { researchDomains, researchAgents, domainCategories } from '@/lib/researc
 import type { DomainCategory } from '@/lib/research/domains'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { MODEL_MAKER_PORTALS } from '@/lib/learn/related-portals'
+import { EmailSignup } from '@/components/email-signup'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -567,6 +568,14 @@ function CTASection() {
               Get weekly intelligence briefs synthesizing the most important
               developments across AI architecture, production patterns, and emerging technology.
             </p>
+
+            <EmailSignup
+              listType="newsletter"
+              compact
+              placeholder="you@example.com"
+              buttonText="Get the briefs"
+              className="mx-auto mb-8 max-w-md"
+            />
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
