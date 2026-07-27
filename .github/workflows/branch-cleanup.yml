@@ -6,11 +6,12 @@ name: Branch Cleanup
 #     every line in that file (one branch name per line, # for comments).
 #
 # To use the queue:
-#   1. Edit .github/cleanup-queue.txt — add branch names (one per line).
-#   2. Commit + merge to main.
-#   3. Workflow fires, deletes the listed branches.
-#   4. The queue file is automatically cleared by the workflow at the end,
-#      so the next push doesn't re-run it.
+#   1. Replace the entries in .github/cleanup-queue.txt with verified branch
+#      names (one per line) in a pull request.
+#   2. Merge that pull request to main.
+#   3. This workflow deletes exactly the listed branches.
+#   4. Clear the completed queue in a follow-up pull request. Main is
+#      PR-protected, so this workflow must not try to push a cleanup commit.
 #
 # See BRANCH_AUDIT.md at repo root for the canonical SAFE_DELETE list.
 
@@ -41,6 +42,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false
 
       - name: Resolve branch list
         id: list
@@ -94,25 +96,3 @@ jobs:
           done
           echo ""
           echo "Summary: $ok deleted · $fail failed"
-
-      - name: Clear the queue file
-        if: github.event_name == 'push' && steps.list.outputs.branches != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Reset queue to its header so the next push doesn't re-run.
-          cat > .github/cleanup-queue.txt <<'EOF'
-          # Branch cleanup queue.
-          # Add branch names below (one per line) and commit to main.
-          # The Branch Cleanup workflow will delete them and clear this file.
-          # See BRANCH_AUDIT.md for the canonical safe-delete list.
-          EOF
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/cleanup-queue.txt
-          if git diff --cached --quiet; then
-            echo "Queue already empty"
-          else
-            git commit -m "chore(ci): clear branch cleanup queue [skip ci]"
-            git push
-          fi
