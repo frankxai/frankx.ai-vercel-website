@@ -78,12 +78,26 @@ export interface JournalEntry {
 
 export type JournalEntrySummary = Omit<JournalEntry, 'content'>
 
+/**
+ * Frontmatter dates arrive as either a string or a Date: YAML parses an
+ * unquoted `date: 2026-07-26` into a Date, and `String()`-ing that yields
+ * "Sun Jul 26 2026 …", which breaks the YYYY-MM month grouping and the
+ * <time datetime> attribute. Normalize both shapes to YYYY-MM-DD so writing
+ * the date the natural way cannot break the page.
+ */
+function normalizeDate(value: unknown): string {
+  if (value instanceof Date) {
+    return Number.isNaN(value.getTime()) ? '' : value.toISOString().slice(0, 10)
+  }
+  return typeof value === 'string' ? value.trim() : ''
+}
+
 function buildEntry(slug: string, data: Record<string, unknown>, content: string): JournalEntry {
   const kind = data.kind as JournalKind
   return {
     slug,
     title: String(data.title ?? slug),
-    date: String(data.date ?? ''),
+    date: normalizeDate(data.date),
     kind: JOURNAL_KINDS.includes(kind) ? kind : 'daily',
     summary: String(data.summary ?? ''),
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],

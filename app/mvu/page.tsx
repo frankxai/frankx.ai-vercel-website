@@ -151,11 +151,15 @@ export default function MvuPage() {
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              {/* This used to point at /journal back when that path redirected to
+                  the article archive. /journal is now the site-wide daily-notes
+                  journal, which has nothing to do with Tallinn — so this CTA goes
+                  to the MVU field journal it actually means, further down the page. */}
               <Link
-                href="/journal"
+                href="#field-journal"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-tech-light px-6 py-3 text-sm font-semibold text-void transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
               >
-                Read the public journal
+                Read the field journal
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
               <Link
@@ -338,7 +342,7 @@ export default function MvuPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section id="field-journal" className="py-20 sm:py-24 scroll-mt-24">
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-white/40">
             Journal & essays

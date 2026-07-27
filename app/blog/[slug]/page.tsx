@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!post) {
     return createMetadata({
-      title: 'Post Not Found - FrankX Journal',
-      description: 'The requested FrankX Journal story could not be located.',
+      title: 'Post Not Found - FrankX Blog',
+      description: 'The requested FrankX blog article could not be located.',
       path: `/blog/${slug}`,
     })
   }

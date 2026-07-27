@@ -56,6 +56,7 @@ const MANUAL_ITEMS: SiteSearchItem[] = [
 const CURATED_HREFS = [
   '/start',
   '/blog',
+  '/journal',
   '/prompt-library',
   '/ai-architecture',
   '/music',
@@ -77,7 +78,14 @@ function titleFromHref(href: string) {
 function groupForRoute(route: RouteIndexRoute): SiteSearchGroup {
   const href = route.href
 
-  if (href === '/' || href === '/start' || href === '/blog' || href === '/search') return 'Shortcuts'
+  if (
+    href === '/' ||
+    href === '/start' ||
+    href === '/blog' ||
+    href === '/journal' ||
+    href === '/search'
+  )
+    return 'Shortcuts'
   if (href.startsWith('/music') || href.startsWith('/vibe') || href.startsWith('/products/vibe-os')) return 'Music'
   if (
     href.startsWith('/gencreator') ||

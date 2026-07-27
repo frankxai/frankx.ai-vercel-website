@@ -32,7 +32,7 @@ export default function StarlightGravityEssay() {
         </Link>
 
         <p className="mt-10 text-[11px] font-medium uppercase tracking-[0.24em] text-tech-light/80">
-          Journal · Founder essay
+          Starlight · Founder essay
         </p>
         <h1 className="mt-4 text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-white sm:text-5xl">
           The Starlight Gravity Engine: Human and Agentic Engineering for a Life People Want to Join
