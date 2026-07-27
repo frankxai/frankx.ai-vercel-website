@@ -2,6 +2,7 @@ import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
   title: 'Skills | AI Agent Capabilities & Skill Library | FrankX',
+  absoluteTitle: true,
   description: 'Browse 75+ AI agent skills across architecture, music production, content creation, and more. The complete ACOS skill library.',
   path: '/skills',
 })
