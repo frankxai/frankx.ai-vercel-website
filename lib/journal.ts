@@ -50,6 +50,19 @@ export const JOURNAL_KIND_LABEL: Record<JournalKind, string> = {
   log: 'Log',
 }
 
+/** Format a journal date consistently without letting the runtime timezone shift the day. */
+export function formatJournalDate(date: string, month: 'short' | 'long'): string {
+  if (!date) return ''
+  const parsed = new Date(date)
+  if (Number.isNaN(parsed.getTime())) return date
+  return parsed.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month,
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
 export interface JournalEntry {
   slug: string
   title: string
