@@ -56,9 +56,11 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # No `version:` here on purpose. action-setup errors out if the version is
+      # specified both here and as `packageManager` in package.json; package.json
+      # is the single source of truth, so this step reads it from there.
       - uses: pnpm/action-setup@v4
         with:
-          version: 10
           run_install: false
 
       - uses: actions/setup-node@v5
