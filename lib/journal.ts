@@ -89,7 +89,25 @@ function normalizeDate(value: unknown): string {
   if (value instanceof Date) {
     return Number.isNaN(value.getTime()) ? '' : value.toISOString().slice(0, 10)
   }
-  return typeof value === 'string' ? value.trim() : ''
+  if (typeof value !== 'string') return ''
+
+  const trimmed = value.trim()
+  if (!trimmed) return ''
+
+  // Everything gets parsed — an already-canonical string, an ISO timestamp, or
+  // "July 26 2026". Unparseable values become '' so the entry lands in
+  // "Undated" rather than emitting a broken <time datetime>, a garbage month
+  // heading, or a date that throws when the sitemap calls toISOString().
+  const parsed = new Date(trimmed)
+  if (Number.isNaN(parsed.getTime())) return ''
+
+  // Date-only ISO strings parse as UTC, so this round-trip is stable. It also
+  // catches silent rollover: "2026-02-30" parses to Mar 2 and "2026-13-45" to
+  // 2027 — both look canonical but are not the date that was written, so
+  // reject rather than publish a date nobody typed.
+  const iso = parsed.toISOString().slice(0, 10)
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed) && iso !== trimmed) return ''
+  return iso
 }
 
 function buildEntry(slug: string, data: Record<string, unknown>, content: string): JournalEntry {

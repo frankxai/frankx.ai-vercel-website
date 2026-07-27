@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 
 import { EventRibbon } from '@/components/connect/EventRibbon'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { createMetadata } from '@/lib/seo'
 import { getMvuEntrySummaries, type MvuKind } from '@/lib/mvu'
 import { MVU_LAB } from '@/lib/mvu/lab'
@@ -155,13 +156,15 @@ export default function MvuPage() {
                   the article archive. /journal is now the site-wide daily-notes
                   journal, which has nothing to do with Tallinn — so this CTA goes
                   to the MVU field journal it actually means, further down the page. */}
-              <Link
+              <TrackedLink
                 href="#field-journal"
+                eventName="mvu_navigation"
+                eventProperties={{ destination: 'field_journal', placement: 'hero_cta' }}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-tech-light px-6 py-3 text-sm font-semibold text-void transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
               >
                 Read the field journal
                 <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
+              </TrackedLink>
               <Link
                 href="/connect?ref=mvu"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white/80 transition-colors hover:border-white/30 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
