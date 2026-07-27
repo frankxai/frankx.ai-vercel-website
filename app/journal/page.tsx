@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, PenLine, Rss, StickyNote, Terminal } from 'lucide-react'
 
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import {
+  formatJournalDate,
   getJournalEntriesByMonth,
   getJournalEntrySummaries,
   JOURNAL_KIND_LABEL,
@@ -33,13 +35,6 @@ const KIND_ICON: Record<JournalKind, typeof PenLine> = {
   daily: PenLine,
   note: StickyNote,
   log: Terminal,
-}
-
-function formatDate(date: string): string {
-  if (!date) return ''
-  const d = new Date(date)
-  if (Number.isNaN(d.getTime())) return date
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
 function JournalJsonLd({ entryCount }: { entryCount: number }) {
@@ -78,13 +73,15 @@ export default function JournalPage() {
               <PenLine className="h-4 w-4 text-tech-light" aria-hidden />
               <span className="text-xs font-medium text-tech-light">Journal</span>
             </span>
-            <Link
+            <TrackedLink
               href="/journal/feed.xml"
+              eventName="journal_navigation"
+              eventProperties={{ destination: 'rss' }}
               className="inline-flex items-center gap-1.5 text-xs text-white/40 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
             >
               <Rss className="h-3.5 w-3.5" aria-hidden />
               RSS
-            </Link>
+            </TrackedLink>
           </div>
 
           <h1 className="mt-7 text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl">
@@ -99,12 +96,14 @@ export default function JournalPage() {
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/45">
             When a note here turns into something worth researching properly, it graduates
             to an article on the{' '}
-            <Link
+            <TrackedLink
               href="/blog"
+              eventName="journal_navigation"
+              eventProperties={{ destination: 'blog_inline' }}
               className="text-tech-light underline decoration-tech-light/30 underline-offset-4 transition-colors hover:decoration-tech-light"
             >
               blog
-            </Link>
+            </TrackedLink>
             . Two different jobs, two different places.
           </p>
 
@@ -144,8 +143,10 @@ export default function JournalPage() {
                     const Icon = KIND_ICON[entry.kind]
                     return (
                       <li key={entry.slug}>
-                        <Link
+                        <TrackedLink
                           href={`/journal/${entry.slug}`}
+                          eventName="journal_navigation"
+                          eventProperties={{ destination: 'entry', entry_kind: entry.kind }}
                           className="group flex flex-col gap-2 py-6 transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
                         >
                           <div className="flex flex-wrap items-center gap-3 text-xs text-white/40">
@@ -154,7 +155,7 @@ export default function JournalPage() {
                               {JOURNAL_KIND_LABEL[entry.kind]}
                             </span>
                             <span aria-hidden>·</span>
-                            <time dateTime={entry.date}>{formatDate(entry.date)}</time>
+                            <time dateTime={entry.date}>{formatJournalDate(entry.date, 'short')}</time>
                             {entry.readingTime && (
                               <>
                                 <span aria-hidden>·</span>
@@ -170,7 +171,7 @@ export default function JournalPage() {
                               {entry.summary}
                             </p>
                           )}
-                        </Link>
+                        </TrackedLink>
                       </li>
                     )
                   })}
@@ -179,8 +180,10 @@ export default function JournalPage() {
             ))
           )}
 
-          <Link
+          <TrackedLink
             href="/blog"
+            eventName="journal_navigation"
+            eventProperties={{ destination: 'blog_cta' }}
             className="group mt-14 block border-t border-white/10 pt-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
           >
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-tech-light/70">
@@ -200,7 +203,7 @@ export default function JournalPage() {
                 aria-hidden
               />
             </span>
-          </Link>
+          </TrackedLink>
           </div>
         </div>
       </section>
