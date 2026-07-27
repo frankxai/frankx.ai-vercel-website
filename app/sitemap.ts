@@ -7,6 +7,7 @@ import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
 import { learningPaths } from '@/data/learning-paths'
 import { getMvuEntrySummaries } from '@/lib/mvu'
+import { getJournalEntrySummaries } from '@/lib/journal'
 
 const BASE_URL = siteConfig.url
 
@@ -119,6 +120,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/journal', priority: 0.8, changeFrequency: 'daily' as const },
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
@@ -390,6 +392,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Get dynamic content
   const blogEntries = getBlogEntries()
   const mvuEntries = getMvuEntrySummaries()
+  const journalEntries = getJournalEntrySummaries()
   const guideSlugs = getGuideSlugs()
   const productSlugs = getProductSlugs()
 
@@ -639,6 +642,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/mvu/${entry.slug}`,
       lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
       changeFrequency: 'weekly',
+      priority: 0.6,
+    })
+  })
+
+  // Journal entries (private/unpublished ones are filtered by the loader)
+  journalEntries.forEach(entry => {
+    entries.push({
+      url: `${BASE_URL}/journal/${entry.slug}`,
+      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
+      changeFrequency: 'monthly',
       priority: 0.6,
     })
   })

@@ -5323,9 +5323,9 @@
     },
     {
       "href": "/journal",
-      "title": "FrankX Journal",
-      "type": "core",
-      "sitemap": false
+      "title": "Journal",
+      "description": "Short, dated notes from the build",
+      "type": "core"
     },
     {
       "href": "/lab",

@@ -6,16 +6,20 @@ import BlogPageClient from './BlogPageClient'
 
 const blogFaqs = [
   {
-    question: 'What is the FrankX Journal?',
-    answer: 'The FrankX Journal turns field observations from AI architecture, venture building, creativity, and human potential into essays, models, and practical systems.'
+    question: 'What is the FrankX blog?',
+    answer: 'The FrankX blog is the long-form archive: researched articles on AI architecture, agentic systems, creator workflows, and AI music production, written to stay useful long after publication. Shorter daily notes live separately in the FrankX Journal at frankx.ai/journal.'
   },
   {
     question: 'How often is new content published?',
     answer: 'New articles are published 2-3 times per week, covering a range of topics including AI implementation guides, enterprise architecture patterns, creative AI workflows, and insights from building production AI systems.'
   },
   {
-    question: 'What topics does the FrankX Journal cover?',
-    answer: 'The journal covers AI architecture, agentic systems, creator workflows, AI music, venture building, and field notes from the rooms where new ideas are being tested.'
+    question: 'What is the difference between the blog and the journal?',
+    answer: 'The blog holds researched, edited articles built to be found and re-read. The journal at frankx.ai/journal holds short dated notes written as the work happens. A journal note sometimes graduates into a blog article once the thinking is worth researching properly.'
+  },
+  {
+    question: 'What topics does the blog cover?',
+    answer: 'The blog covers enterprise AI architecture, agentic systems, creative AI tools like Suno and Midjourney, AI implementation strategies, venture building, and insights from building production AI systems.'
   },
   {
     question: 'Can I get notified about new articles?',
@@ -28,13 +32,12 @@ const blogFaqs = [
 ]
 
 export const metadata = createMetadata({
-  title: 'FrankX Journal - Field Notes and Intelligence Systems',
+  title: 'Blog - AI Architecture, Creative Systems, and What Ships',
   description:
-    'Field notes, AI architecture, creative systems, and practical models built to travel beyond the room where they were discovered.',
+    "Inside the build. Researched articles on AI systems, creative workflows, and what's actually shipping — from enterprise architecture to AI music production.",
   keywords: [
     'ai blog',
-    'frankx journal',
-    'creation chronicles',
+    'frankx blog',
     'intelligence systems',
     'ai music',
     'suno ai',
