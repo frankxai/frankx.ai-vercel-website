@@ -45,7 +45,9 @@ import {
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
 
-// Navigation: 5 megas + Blog. Invest merged into Build (AI Architecture covers enterprise + investor tooling).
+// Navigation: 5 megas + Blog + Journal. Blog is the long-form archive, Journal
+// the short dated notes — two destinations, deliberately not merged.
+// Invest merged into Build (AI Architecture covers enterprise + investor tooling).
 const navigation = {
   music: {
     label: 'Music',
@@ -451,10 +453,24 @@ export default function NavigationMega() {
 
               <NavigationMenu.Item>
                 <Link
+                  href="/blog"
+                  className={cn(
+                    'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]',
+                    isActive('/blog')
+                      ? 'text-white bg-white/5'
+                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  )}
+                >
+                  Blog
+                </Link>
+              </NavigationMenu.Item>
+
+              <NavigationMenu.Item>
+                <Link
                   href="/journal"
                   className={cn(
-                    'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]',
-                    isActive('/blog') || isActive('/journal')
+                    'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]',
+                    isActive('/journal')
                       ? 'text-white bg-white/5'
                       : 'text-slate-300 hover:text-white hover:bg-white/5'
                   )}

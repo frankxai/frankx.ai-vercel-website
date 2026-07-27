@@ -14,6 +14,7 @@ import {
   Palette,
   FileText,
   BookOpen,
+  PenLine,
   Users,
   GraduationCap,
   Target,
@@ -403,14 +404,27 @@ function HomeView({
         Go directly
       </h2>
 
-      <Link href="/journal" onClick={onClose} className={tileBase}>
+      <Link href="/blog" onClick={onClose} className={tileBase}>
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-200">
           <BookOpen className="h-4 w-4" />
         </span>
         <span className="min-w-0 flex-1">
+          <span className="block text-[15px] font-semibold text-white">Blog</span>
+          <span className="mt-0.5 block truncate text-[12px] leading-tight text-slate-400">
+            Researched articles and systems
+          </span>
+        </span>
+        <ChevronRight className="h-4 w-4 shrink-0 text-slate-500" />
+      </Link>
+
+      <Link href="/journal" onClick={onClose} className={tileBase}>
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-200">
+          <PenLine className="h-4 w-4" />
+        </span>
+        <span className="min-w-0 flex-1">
           <span className="block text-[15px] font-semibold text-white">Journal</span>
           <span className="mt-0.5 block truncate text-[12px] leading-tight text-slate-400">
-            Essays, fieldnotes, and signal
+            Short daily notes from the build
           </span>
         </span>
         <ChevronRight className="h-4 w-4 shrink-0 text-slate-500" />
