@@ -23,6 +23,7 @@ const SITE_URL = 'https://frankx.ai'
 const MVU_URL = SITE_URL + '/mvu'
 const OFFICIAL_EVENT_URL = 'https://www.mindvalley.com/u/schedule'
 const FEATURED_ARTICLE_URL = '/blog/your-mind-is-a-temporary-library'
+const UNHOOKING_GUIDE_URL = '/mvu/unhooking-the-mind'
 const FEATURED_ARTICLE_IMAGE =
   '/images/blog/editorial/headers/your-mind-is-a-temporary-library-hero.webp'
 const MINDVALLEY_LOGO_URL =
@@ -194,6 +195,36 @@ export default function MvuPage() {
               </figcaption>
             </div>
           </figure>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 bg-[#0d0c09] py-20 sm:py-24">
+        <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:px-8">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-amber-300/70">
+              Day 8 · new field guide
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              A thought can appear without becoming an instruction.
+            </h2>
+          </div>
+          <div>
+            <p className="max-w-2xl text-base leading-7 text-white/60">
+              A grounded practice for tracing result attachment, comparison,
+              control, and spiritual striving—then returning to the body, honest
+              inquiry, kindness, and a clear boundary.
+            </p>
+            <Link
+              href={UNHOOKING_GUIDE_URL}
+              className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
+            >
+              Open Unhooking the Mind
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
+                aria-hidden
+              />
+            </Link>
+          </div>
         </div>
       </section>
 
