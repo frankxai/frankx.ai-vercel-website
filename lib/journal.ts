@@ -40,6 +40,16 @@ export type JournalVisibility = 'public' | 'private'
 
 const JOURNAL_KINDS: readonly JournalKind[] = ['daily', 'note', 'log']
 
+/**
+ * Display labels for entry kinds, shared so the index and the entry page agree.
+ * Icons stay with the pages that render them — this module stays presentation-free.
+ */
+export const JOURNAL_KIND_LABEL: Record<JournalKind, string> = {
+  daily: 'Daily',
+  note: 'Note',
+  log: 'Log',
+}
+
 export interface JournalEntry {
   slug: string
   title: string
@@ -90,7 +100,18 @@ function readAll(): JournalEntry[] {
       )
       return buildEntry(slug, data, content)
     })
-    .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+    .sort((a, b) => {
+      // Newest first. Must return 0 for equal dates — several notes can share a
+      // day, and a comparator that never returns 0 gives them a non-deterministic
+      // order that then flows into prev/next links, the feed, and the sitemap.
+      // Unparseable dates sort last instead of poisoning the comparison with NaN.
+      const at = new Date(a.date).getTime()
+      const bt = new Date(b.date).getTime()
+      if (Number.isNaN(at) && Number.isNaN(bt)) return 0
+      if (Number.isNaN(at)) return 1
+      if (Number.isNaN(bt)) return -1
+      return bt - at
+    })
 }
 
 function isPublic(entry: JournalEntry): boolean {

@@ -2,14 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, PenLine, Rss, StickyNote, Terminal } from 'lucide-react'
 
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import {
   getJournalEntriesByMonth,
   getJournalEntrySummaries,
+  JOURNAL_KIND_LABEL,
   type JournalKind,
 } from '@/lib/journal'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 // Revalidate hourly so a newly committed entry appears without a redeploy.
 export const revalidate = 3600
@@ -28,10 +29,10 @@ export const metadata: Metadata = createMetadata({
   path: '/journal',
 })
 
-const KIND_META: Record<JournalKind, { label: string; icon: typeof PenLine }> = {
-  daily: { label: 'Daily', icon: PenLine },
-  note: { label: 'Note', icon: StickyNote },
-  log: { label: 'Log', icon: Terminal },
+const KIND_ICON: Record<JournalKind, typeof PenLine> = {
+  daily: PenLine,
+  note: StickyNote,
+  log: Terminal,
 }
 
 function formatDate(date: string): string {
@@ -140,8 +141,7 @@ export default function JournalPage() {
 
                 <ul className="mt-4 divide-y divide-white/10 border-t border-white/10">
                   {month.entries.map((entry) => {
-                    const meta = KIND_META[entry.kind]
-                    const Icon = meta.icon
+                    const Icon = KIND_ICON[entry.kind]
                     return (
                       <li key={entry.slug}>
                         <Link
@@ -151,7 +151,7 @@ export default function JournalPage() {
                           <div className="flex flex-wrap items-center gap-3 text-xs text-white/40">
                             <span className="inline-flex items-center gap-1.5 text-tech-light/80">
                               <Icon className="h-3.5 w-3.5" aria-hidden />
-                              {meta.label}
+                              {JOURNAL_KIND_LABEL[entry.kind]}
                             </span>
                             <span aria-hidden>·</span>
                             <time dateTime={entry.date}>{formatDate(entry.date)}</time>

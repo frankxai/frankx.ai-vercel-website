@@ -3,16 +3,17 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import {
   getAdjacentJournalEntries,
   getJournalEntries,
   getJournalEntry,
+  JOURNAL_KIND_LABEL,
 } from '@/lib/journal'
 import { MDXContent } from '@/components/blog/MDXContent'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export function generateStaticParams() {
   return getJournalEntries().map((entry) => ({ slug: entry.slug }))
@@ -96,7 +97,7 @@ export default async function JournalEntryPage({
 
         <header className="mt-8">
           <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-widest text-white/40">
-            <span className="text-tech-light/80">{entry.kind}</span>
+            <span className="text-tech-light/80">{JOURNAL_KIND_LABEL[entry.kind]}</span>
             <span aria-hidden>·</span>
             <time dateTime={entry.date}>{formatDate(entry.date)}</time>
             {entry.readingTime && (

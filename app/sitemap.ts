@@ -646,11 +646,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Journal entries (private/unpublished ones are filtered by the loader)
+  // Journal entries (private/unpublished ones are filtered by the loader).
+  // Frontmatter dates are free text, so a typo like "2026-13-45" parses to an
+  // Invalid Date whose toISOString() throws — which would take out sitemap.xml
+  // for the whole site, not just journal. Fall back instead of throwing.
   journalEntries.forEach(entry => {
+    const parsed = entry.date ? new Date(entry.date) : null
     entries.push({
       url: `${BASE_URL}/journal/${entry.slug}`,
-      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
+      lastModified:
+        parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate,
       changeFrequency: 'monthly',
       priority: 0.6,
     })

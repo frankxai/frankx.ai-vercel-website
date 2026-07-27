@@ -1,8 +1,12 @@
 import { getJournalEntrySummaries } from '@/lib/journal'
+import { siteConfig } from '@/lib/seo'
 
 export const dynamic = 'force-static'
+// Match the index page, so the feed and the page never disagree about which
+// entries exist.
+export const revalidate = 3600
 
-const BASE_URL = 'https://frankx.ai'
+const BASE_URL = siteConfig.url
 
 function escapeXml(str: string): string {
   return str
