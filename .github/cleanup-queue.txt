@@ -2,3 +2,21 @@
 # Add branch names below (one per line) and commit to main.
 # The Branch Cleanup workflow will delete them and clear this file.
 # See BRANCH_AUDIT.md for the canonical safe-delete list.
+#
+# Tier A, verified 2026-07-27 against main @ 93849c62.
+# Every branch below was proved fully landed: for each file it touched,
+# its version is byte-identical to main, or its PR merged and the only
+# remaining difference is main moving forward afterwards.
+codex/production-excellence-sweep-20260619
+codex/ana-ai-business-kit
+codex/jojo-hospitality-intelligence
+agent/claude/content-integrity-gate
+codex/property-work-showcase
+agent/claude/sonnet5-content-swarm
+codex/mvu-service-layer-clean-20260722
+observability/vercel-cost-2026-W25
+codex/frankx-home-overlay-hotfix-20260711
+codex/frankx-music-learning-canonical-v3-20260710
+codex/frankx-dnt-privacy-hotfix-20260711
+codex/frankx-production-proof-2026-07-10
+fix/footer
