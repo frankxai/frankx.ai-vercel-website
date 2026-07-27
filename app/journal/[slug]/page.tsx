@@ -3,8 +3,10 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import {
+  formatJournalDate,
   getAdjacentJournalEntries,
   getJournalEntries,
   getJournalEntry,
@@ -43,13 +45,6 @@ export async function generateMetadata({
     publishedTime: entry.date || undefined,
     authors: ['Frank Riemer'],
   })
-}
-
-function formatDate(date: string): string {
-  if (!date) return ''
-  const d = new Date(date)
-  if (Number.isNaN(d.getTime())) return date
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
 export default async function JournalEntryPage({
@@ -99,7 +94,7 @@ export default async function JournalEntryPage({
           <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-widest text-white/40">
             <span className="text-tech-light/80">{JOURNAL_KIND_LABEL[entry.kind]}</span>
             <span aria-hidden>·</span>
-            <time dateTime={entry.date}>{formatDate(entry.date)}</time>
+            <time dateTime={entry.date}>{formatJournalDate(entry.date, 'long')}</time>
             {entry.readingTime && (
               <>
                 <span aria-hidden>·</span>
@@ -140,8 +135,10 @@ export default async function JournalEntryPage({
             className="grid gap-4 sm:grid-cols-2"
           >
             {older ? (
-              <Link
+              <TrackedLink
                 href={`/journal/${older.slug}`}
+                eventName="journal_navigation"
+                eventProperties={{ destination: 'adjacent_entry', direction: 'older' }}
                 className="group rounded-2xl border border-white/10 bg-space p-5 transition-colors hover:border-tech-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
               >
                 <span className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-white/35">
@@ -151,14 +148,16 @@ export default async function JournalEntryPage({
                 <span className="mt-2 block text-sm font-semibold text-white transition-colors group-hover:text-tech-light">
                   {older.title}
                 </span>
-              </Link>
+              </TrackedLink>
             ) : (
               <span aria-hidden />
             )}
 
             {newer && (
-              <Link
+              <TrackedLink
                 href={`/journal/${newer.slug}`}
+                eventName="journal_navigation"
+                eventProperties={{ destination: 'adjacent_entry', direction: 'newer' }}
                 className="group rounded-2xl border border-white/10 bg-space p-5 text-right transition-colors hover:border-tech-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light sm:col-start-2"
               >
                 <span className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-white/35">
@@ -168,7 +167,7 @@ export default async function JournalEntryPage({
                 <span className="mt-2 block text-sm font-semibold text-white transition-colors group-hover:text-tech-light">
                   {newer.title}
                 </span>
-              </Link>
+              </TrackedLink>
             )}
           </nav>
         )}
@@ -176,19 +175,23 @@ export default async function JournalEntryPage({
         <p className="mt-12 text-sm leading-relaxed text-white/45">
           This is a working note, not a finished argument. The researched, edited version
           of this thinking lives on the{' '}
-          <Link
+          <TrackedLink
             href="/blog"
+            eventName="journal_navigation"
+            eventProperties={{ destination: 'blog_entry_footer' }}
             className="text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-tech-light"
           >
             blog
-          </Link>
+          </TrackedLink>
           , and the weekly digest goes out through{' '}
-          <Link
+          <TrackedLink
             href="/newsletter"
+            eventName="journal_navigation"
+            eventProperties={{ destination: 'newsletter' }}
             className="text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-tech-light"
           >
             Creation Chronicles
-          </Link>
+          </TrackedLink>
           .
         </p>
       </article>
