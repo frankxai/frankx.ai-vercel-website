@@ -78,12 +78,44 @@ export interface JournalEntry {
 
 export type JournalEntrySummary = Omit<JournalEntry, 'content'>
 
+/**
+ * Frontmatter dates arrive as either a string or a Date: YAML parses an
+ * unquoted `date: 2026-07-26` into a Date, and `String()`-ing that yields
+ * "Sun Jul 26 2026 …", which breaks the YYYY-MM month grouping and the
+ * <time datetime> attribute. Normalize both shapes to YYYY-MM-DD so writing
+ * the date the natural way cannot break the page.
+ */
+function normalizeDate(value: unknown): string {
+  if (value instanceof Date) {
+    return Number.isNaN(value.getTime()) ? '' : value.toISOString().slice(0, 10)
+  }
+  if (typeof value !== 'string') return ''
+
+  const trimmed = value.trim()
+  if (!trimmed) return ''
+
+  // Everything gets parsed — an already-canonical string, an ISO timestamp, or
+  // "July 26 2026". Unparseable values become '' so the entry lands in
+  // "Undated" rather than emitting a broken <time datetime>, a garbage month
+  // heading, or a date that throws when the sitemap calls toISOString().
+  const parsed = new Date(trimmed)
+  if (Number.isNaN(parsed.getTime())) return ''
+
+  // Date-only ISO strings parse as UTC, so this round-trip is stable. It also
+  // catches silent rollover: "2026-02-30" parses to Mar 2 and "2026-13-45" to
+  // 2027 — both look canonical but are not the date that was written, so
+  // reject rather than publish a date nobody typed.
+  const iso = parsed.toISOString().slice(0, 10)
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed) && iso !== trimmed) return ''
+  return iso
+}
+
 function buildEntry(slug: string, data: Record<string, unknown>, content: string): JournalEntry {
   const kind = data.kind as JournalKind
   return {
     slug,
     title: String(data.title ?? slug),
-    date: String(data.date ?? ''),
+    date: normalizeDate(data.date),
     kind: JOURNAL_KINDS.includes(kind) ? kind : 'daily',
     summary: String(data.summary ?? ''),
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
