@@ -1,0 +1,35 @@
+{
+  "week": "2026-W31",
+  "generatedAt": "2026-07-27T07:10:00Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-07-20T07:10:00Z",
+  "windowEnd": "2026-07-27T07:10:00Z",
+  "metrics": {
+    "count_total": null,
+    "count_production": null,
+    "count_preview": null,
+    "count_skipped": null,
+    "count_error": null,
+    "count_ready": null,
+    "duration_p50_seconds": null,
+    "duration_p95_seconds": null,
+    "duration_max_seconds": null,
+    "total_build_minutes": null,
+    "duration_method": null,
+    "duration_note": "No data — Vercel MCP tools did not load in this automated session"
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W30",
+    "count_total": "baseline",
+    "duration_p50_seconds": "baseline",
+    "total_build_minutes": "baseline",
+    "note": "2026-W30.json not found (prior ISO week snapshot missing); W29 last known state: p50=570s RED, count_total=100, total_build_minutes=817"
+  },
+  "verdict": "YELLOW",
+  "alerts": [
+    "MCP returned no data — Vercel MCP tools unavailable in this automated session. Connector confirmed connected (enabledInChat: true) but tools did not appear in ToolSearch registry. This is likely a transient session-startup issue.",
+    "Prior week 2026-W30 snapshot is also missing — two consecutive weeks without observability data. Last known state: W29 verdict=RED (p50=570s, count_total=100, 1 error). Recommend manual verification of build health before next scheduled run.",
+    "Action required: verify Vercel connector tool availability in an interactive session via /mcp and re-run /vercel-cost-watch if tools are confirmed loaded."
+  ]
+}
