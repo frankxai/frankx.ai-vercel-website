@@ -633,6 +633,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   entries.push(
     { url: `${BASE_URL}/mvu`, lastModified: currentDate, changeFrequency: 'daily', priority: 0.8 },
     { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/mvu/unhooking-the-mind`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.78 },
   )
   mvuEntries.forEach(entry => {
     entries.push({
