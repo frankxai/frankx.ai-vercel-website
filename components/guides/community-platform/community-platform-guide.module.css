@@ -1,0 +1,1791 @@
+.page {
+  --atlas-void: #0a0a0b;
+  --atlas-ink: rgba(255, 255, 255, 0.96);
+  --atlas-body: rgba(255, 255, 255, 0.78);
+  --atlas-muted: rgba(255, 255, 255, 0.54);
+  --atlas-line: rgba(255, 255, 255, 0.11);
+  --atlas-line-strong: rgba(255, 255, 255, 0.2);
+  --atlas-emerald: #34d399;
+  --atlas-emerald-deep: #10b981;
+  --atlas-cyan: #22d3ee;
+  min-height: 100vh;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 72% 6%, rgba(6, 182, 212, 0.07), transparent 26rem),
+    radial-gradient(circle at 22% 18%, rgba(16, 185, 129, 0.055), transparent 30rem),
+    var(--atlas-void);
+  color: var(--atlas-ink);
+}
+
+.heroWrap,
+.visuals,
+.articleSection,
+.registrySection,
+.faqSection,
+.guideFooter {
+  width: min(100% - 40px, 1320px);
+  margin-inline: auto;
+}
+
+.heroWrap {
+  padding-top: 7rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(460px, 0.98fr);
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: center;
+  min-height: 720px;
+  padding-block: clamp(2.25rem, 5vw, 5rem) clamp(4.25rem, 8vw, 7.5rem);
+}
+
+.heroCopy {
+  max-width: 690px;
+}
+
+.eyebrow,
+.figureNumber {
+  margin: 0 0 1.15rem;
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 820px;
+  margin: 0;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: clamp(3.2rem, 6.2vw, 6.7rem);
+  font-weight: 600;
+  letter-spacing: -0.058em;
+  line-height: 0.93;
+  text-wrap: balance;
+}
+
+.heroDescription {
+  max-width: 650px;
+  margin: 2rem 0 0;
+  color: var(--atlas-body);
+  font-size: clamp(1.05rem, 1.45vw, 1.28rem);
+  line-height: 1.72;
+}
+
+.heroRecommendation {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.4rem;
+  padding-block: 1.35rem;
+  border-block: 1px solid var(--atlas-line-strong);
+}
+
+.heroRecommendation > span {
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.heroRecommendation p {
+  margin: 0;
+  color: var(--atlas-body);
+  line-height: 1.7;
+}
+
+.heroRecommendation strong {
+  color: var(--atlas-ink);
+  font-weight: 600;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.8rem;
+}
+
+.heroActions a,
+.downloadButton {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.72rem 1.05rem;
+  border: 1px solid var(--atlas-line-strong);
+  border-radius: 999px;
+  color: var(--atlas-ink);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.heroActions a:first-child,
+.downloadButton {
+  border-color: rgba(52, 211, 153, 0.38);
+  background: var(--atlas-emerald);
+  color: #07130f;
+}
+
+.heroActions a:hover,
+.downloadButton:hover {
+  border-color: var(--atlas-emerald);
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--atlas-emerald);
+}
+
+.heroActions a:focus-visible,
+.downloadButton:focus-visible,
+.sectionNav a:focus-visible,
+.articleMargin a:focus-visible,
+.guideFooter a:focus-visible,
+.sourceLinks a:focus-visible,
+.tableSources a:focus-visible,
+.aiRoutes a:focus-visible {
+  outline: 2px solid var(--atlas-cyan);
+  outline-offset: 4px;
+}
+
+.heroTopology {
+  position: relative;
+  border-block: 1px solid var(--atlas-line-strong);
+}
+
+.topologyLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0.85rem 0;
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.topologyLabel span:last-child {
+  text-align: right;
+}
+
+.heroTopology ol {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.heroTopology ol::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 21px;
+  width: 1px;
+  background: linear-gradient(var(--atlas-emerald), rgba(34, 211, 238, 0.2));
+  content: "";
+}
+
+.heroTopology li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  min-height: 118px;
+  border-top: 1px solid var(--atlas-line);
+}
+
+.heroTopology li > span {
+  z-index: 1;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--atlas-line-strong);
+  background: var(--atlas-void);
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.67rem;
+}
+
+.heroTopology li[data-active="true"] > span {
+  border-color: var(--atlas-emerald);
+  background: var(--atlas-emerald);
+  color: #06110d;
+}
+
+.heroTopology li strong {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.heroTopology li p {
+  margin: 0.42rem 0 0;
+  color: var(--atlas-muted);
+  font-size: 0.79rem;
+  line-height: 1.55;
+}
+
+.heroTopology li b {
+  padding-right: 0.3rem;
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.topologyFooter {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 1px solid var(--atlas-line);
+  color: var(--atlas-body);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.topologyFooter svg {
+  flex: none;
+  color: var(--atlas-cyan);
+}
+
+.sectionNav {
+  position: sticky;
+  z-index: 20;
+  top: 64px;
+  border-block: 1px solid var(--atlas-line);
+  background: rgba(10, 10, 11, 0.91);
+  backdrop-filter: blur(20px);
+}
+
+.sectionNav > div {
+  display: flex;
+  width: min(100% - 40px, 1320px);
+  min-height: 54px;
+  margin-inline: auto;
+  align-items: center;
+  gap: clamp(1.1rem, 3vw, 2.6rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sectionNav > div::-webkit-scrollbar {
+  display: none;
+}
+
+.sectionNav a {
+  flex: none;
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 160ms ease;
+}
+
+.sectionNav a:hover {
+  color: var(--atlas-emerald);
+}
+
+.decisionStrip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  width: min(100% - 40px, 1320px);
+  margin: clamp(3rem, 7vw, 6rem) auto 0;
+  align-items: center;
+  gap: clamp(1rem, 2.6vw, 2.6rem);
+  padding-block: 2rem;
+  border-block: 1px solid var(--atlas-line-strong);
+}
+
+.decisionStrip > svg {
+  color: rgba(52, 211, 153, 0.55);
+}
+
+.decisionStrip p {
+  margin: 0;
+  color: var(--atlas-muted);
+  font-size: 0.83rem;
+  line-height: 1.65;
+}
+
+.decisionStrip span,
+.decisionStrip strong {
+  display: block;
+}
+
+.decisionStrip span {
+  margin-bottom: 0.48rem;
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.decisionStrip strong {
+  margin-bottom: 0.3rem;
+  color: var(--atlas-ink);
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: 1.04rem;
+  font-weight: 500;
+}
+
+.visuals {
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+}
+
+.visualSection {
+  scroll-margin-top: 136px;
+  padding-top: clamp(6rem, 11vw, 11rem);
+}
+
+.visualHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.6fr);
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 2.7rem;
+}
+
+.visualHeader h2,
+.articleIntro h2,
+.registryHeading h2,
+.faqSection h2 {
+  max-width: 850px;
+  margin: 0;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: clamp(2rem, 4.3vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: -0.044em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.visualHeader > p {
+  max-width: 420px;
+  justify-self: end;
+  margin: 0;
+  color: var(--atlas-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  text-align: right;
+}
+
+.spectrumAxis {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--atlas-line-strong);
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.controlLanes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.controlLanes > li {
+  position: relative;
+  min-height: 420px;
+  padding: 1.25rem clamp(1rem, 2.2vw, 2rem) 1.8rem;
+  border-right: 1px solid var(--atlas-line);
+}
+
+.controlLanes > li:last-child {
+  border-right: 0;
+}
+
+.controlLanes > li::before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: calc(25% * (var(--lane-index, 1)));
+  height: 2px;
+  background: var(--atlas-cyan);
+  content: "";
+}
+
+.controlLanes > li:nth-child(1) {
+  --lane-index: 1;
+}
+
+.controlLanes > li:nth-child(2) {
+  --lane-index: 2;
+}
+
+.controlLanes > li:nth-child(3) {
+  --lane-index: 3;
+}
+
+.controlLanes > li:nth-child(4) {
+  --lane-index: 4;
+}
+
+.controlLanes > li[data-current="true"] {
+  background: linear-gradient(180deg, rgba(52, 211, 153, 0.08), transparent 78%);
+}
+
+.controlLanes > li[data-current="true"]::before {
+  width: 100%;
+  background: var(--atlas-emerald);
+}
+
+.laneTopline {
+  display: flex;
+  min-height: 38px;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.59rem;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.laneTopline strong {
+  color: var(--atlas-emerald);
+  font-weight: 500;
+  text-align: right;
+}
+
+.controlLanes h3 {
+  margin: 2.6rem 0 0;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.laneExample {
+  min-height: 52px;
+  margin: 0.7rem 0 2.5rem;
+  color: var(--atlas-muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.controlLanes dl,
+.evidenceRail dl,
+.timeline dl {
+  margin: 0;
+}
+
+.controlLanes dl > div {
+  padding-block: 1rem;
+  border-top: 1px solid var(--atlas-line);
+}
+
+.controlLanes dt,
+.evidenceRail dt,
+.timeline dt {
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.controlLanes dd,
+.evidenceRail dd,
+.timeline dd {
+  margin: 0.45rem 0 0;
+  color: var(--atlas-body);
+  font-size: 0.78rem;
+  line-height: 1.62;
+}
+
+.atlasControls {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.3fr) minmax(190px, 0.7fr) minmax(190px, 0.7fr);
+  gap: 1px;
+  border-block: 1px solid var(--atlas-line-strong);
+  background: var(--atlas-line);
+}
+
+.atlasControls label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem;
+  background: var(--atlas-void);
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.atlasControls input,
+.atlasControls select {
+  width: 100%;
+  min-height: 44px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--atlas-ink);
+  font-family: var(--font-sans), "Inter", sans-serif;
+  font-size: 0.86rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.atlasControls select {
+  padding-inline: 0.1rem;
+}
+
+.atlasControls select option {
+  background: #111113;
+  color: white;
+}
+
+.atlasControls label:focus-within {
+  box-shadow: inset 0 0 0 1px var(--atlas-cyan);
+}
+
+.inputShell {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.inputShell svg {
+  flex: none;
+  color: var(--atlas-emerald);
+}
+
+.atlasLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.7rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--atlas-line);
+  color: var(--atlas-muted);
+  font-size: 0.72rem;
+}
+
+.atlasLegend b {
+  margin-right: 0.35rem;
+  color: var(--atlas-emerald);
+  font-weight: 500;
+}
+
+.atlasBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(340px, 0.6fr);
+  border-bottom: 1px solid var(--atlas-line-strong);
+}
+
+.constellation {
+  min-width: 0;
+  padding: 1.4rem 2rem 2.2rem 0;
+  border-right: 1px solid var(--atlas-line);
+}
+
+.constellationLane {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-block: 1.15rem;
+  border-bottom: 1px solid var(--atlas-line);
+}
+
+.constellationLane:last-child {
+  border-bottom: 0;
+}
+
+.laneHeading {
+  display: flex;
+  min-width: 0;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.laneHeading h3 {
+  margin: 0;
+  color: var(--atlas-body);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.laneHeading span {
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+}
+
+.platformTiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  gap: 0.45rem 0.55rem;
+}
+
+.platformTile {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid transparent;
+  border-bottom-color: var(--atlas-line);
+  background: transparent;
+  color: var(--atlas-body);
+  font-size: 0.75rem;
+  line-height: 1.25;
+  text-align: left;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.platformTile > span {
+  flex: none;
+  color: var(--atlas-muted);
+}
+
+.platformTile[data-shortlist="true"] > span {
+  color: var(--atlas-emerald);
+}
+
+.platformTile:hover {
+  border-color: var(--atlas-line-strong);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--atlas-ink);
+}
+
+.platformTile[aria-pressed="true"] {
+  border-color: rgba(52, 211, 153, 0.6);
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--atlas-ink);
+}
+
+.platformTile:focus-visible,
+.motionControls button:focus-visible,
+.registryDetails summary:focus-visible,
+.faqList summary:focus-visible {
+  outline: 2px solid var(--atlas-cyan);
+  outline-offset: 2px;
+}
+
+.emptyState {
+  margin: 2rem 0;
+  color: var(--atlas-muted);
+}
+
+.evidenceRail {
+  min-width: 0;
+  scroll-margin-top: 136px;
+  padding: 1.7rem 0 2.2rem 2rem;
+}
+
+.evidenceIdentity {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.evidenceIdentity > div > span,
+.controlMark,
+.verifiedDate {
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.evidenceIdentity h3 {
+  margin: 0.55rem 0 0;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.controlMark {
+  flex: none;
+  color: var(--atlas-emerald);
+}
+
+.evidenceUseCase {
+  margin: 1rem 0 2rem;
+  color: var(--atlas-body);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.evidenceRail dl > div {
+  padding-block: 0.85rem;
+  border-top: 1px solid var(--atlas-line);
+}
+
+.evidenceRail dd strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--atlas-cyan);
+  font-weight: 500;
+}
+
+.sourceLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.sourceLinks a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 0.35rem;
+  border-bottom: 1px solid var(--atlas-line-strong);
+  color: var(--atlas-emerald);
+  font-size: 0.71rem;
+  text-decoration: none;
+}
+
+.verifiedDate {
+  margin: 1.2rem 0 0;
+}
+
+.motionControls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
+
+.motionControls button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.62rem 0.82rem;
+  border: 1px solid var(--atlas-line-strong);
+  background: transparent;
+  color: var(--atlas-body);
+  font-size: 0.74rem;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.motionControls button:first-child {
+  border-color: rgba(52, 211, 153, 0.4);
+  color: var(--atlas-emerald);
+}
+
+.motionControls button:hover:not(:disabled) {
+  border-color: var(--atlas-emerald);
+  background: rgba(52, 211, 153, 0.08);
+  color: var(--atlas-ink);
+}
+
+.motionControls button:disabled {
+  cursor: progress;
+  opacity: 0.5;
+}
+
+.permissionMap {
+  position: relative;
+  padding-top: 2.4rem;
+  border-block: 1px solid var(--atlas-line-strong);
+}
+
+.readZone,
+.writeZone {
+  position: absolute;
+  top: 0.8rem;
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.readZone {
+  left: 0;
+}
+
+.writeZone {
+  right: 0;
+}
+
+.approvalBoundary {
+  position: absolute;
+  z-index: 1;
+  top: 2.4rem;
+  bottom: 0;
+  left: 75%;
+  width: 1px;
+  background: linear-gradient(transparent, var(--atlas-emerald), transparent);
+}
+
+.approvalBoundary span {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  padding: 0.45rem 0.65rem;
+  background: var(--atlas-void);
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  white-space: nowrap;
+}
+
+.permissionMap ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.permissionMap li {
+  position: relative;
+  display: grid;
+  min-height: 260px;
+  align-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem clamp(1rem, 2.4vw, 2rem) 1.7rem;
+  border-right: 1px solid var(--atlas-line);
+}
+
+.permissionMap li:last-child {
+  border-right: 0;
+}
+
+.permissionMap li::after {
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  z-index: 2;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--atlas-line-strong);
+  border-radius: 50%;
+  background: var(--atlas-void);
+  content: "";
+  transform: translateY(-50%);
+  transition:
+    background-color 260ms ease,
+    box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+
+.permissionMap li:last-child::after {
+  display: none;
+}
+
+.permissionMap li[data-active="true"]::after {
+  border-color: var(--atlas-emerald);
+  background: var(--atlas-emerald);
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.45);
+}
+
+.stepIndex,
+.stepScope {
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.permissionMap h3 {
+  margin: 0;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: clamp(1.35rem, 2.6vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.permissionMap li p {
+  margin: 0.7rem 0 0;
+  color: var(--atlas-muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.permissionMap li[data-active="true"] .stepIndex,
+.permissionMap li[data-active="true"] .stepScope {
+  color: var(--atlas-emerald);
+}
+
+.permissionMap li[data-active="true"] h3 {
+  color: var(--atlas-ink);
+}
+
+.aiRoutes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-bottom: 1px solid var(--atlas-line-strong);
+}
+
+.aiRoutes > div {
+  padding: 1.1rem clamp(0.8rem, 2vw, 1.5rem);
+  border-right: 1px solid var(--atlas-line);
+}
+
+.aiRoutes > div:last-child {
+  border-right: 0;
+}
+
+.aiRoutes span {
+  color: var(--atlas-cyan);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.61rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aiRoutes p {
+  margin: 0.55rem 0 0;
+  color: var(--atlas-muted);
+  font-size: 0.73rem;
+  line-height: 1.55;
+}
+
+.aiRoutes .routeExamples {
+  color: var(--atlas-body);
+}
+
+.aiRoutes a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.7rem;
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.61rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline::before {
+  position: absolute;
+  top: 27px;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--atlas-emerald), var(--atlas-cyan));
+  content: "";
+}
+
+.timeline > li {
+  position: relative;
+  padding: 0 clamp(1rem, 2.4vw, 2rem) 2rem 0;
+}
+
+.timelineMarker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border: 1px solid var(--atlas-emerald);
+  border-radius: 50%;
+  background: var(--atlas-void);
+}
+
+.timelineMarker span {
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  color: var(--atlas-emerald);
+}
+
+.timelineDay {
+  margin: 1.45rem 0 0;
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.59rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.timeline h3 {
+  margin: 0.65rem 0 1.5rem;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: clamp(1.12rem, 1.8vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.timeline dl > div {
+  padding-block: 0.8rem;
+  border-top: 1px solid var(--atlas-line);
+}
+
+.decisionFork {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 2rem;
+  padding-block: 1.5rem;
+  border-block: 1px solid var(--atlas-line-strong);
+}
+
+.decisionFork > span {
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.decisionFork > div {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.decisionFork p {
+  margin: 0;
+  color: var(--atlas-muted);
+  font-size: 0.73rem;
+  line-height: 1.55;
+}
+
+.decisionFork strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--atlas-ink);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.articleSection {
+  scroll-margin-top: 136px;
+  padding-block: clamp(6rem, 11vw, 11rem);
+  border-top: 1px solid var(--atlas-line-strong);
+}
+
+.articleIntro,
+.registryHeading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.55fr);
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--atlas-line-strong);
+}
+
+.articleIntro > p,
+.registryHeading > div > p {
+  margin: 0;
+  color: var(--atlas-muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.articleIntro > p {
+  justify-self: end;
+  text-align: right;
+}
+
+.articleGrid {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.32fr) minmax(0, 0.68fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  align-items: start;
+  padding-top: 3rem;
+}
+
+.articleMargin {
+  position: sticky;
+  top: 86px;
+  padding-top: 0.2rem;
+}
+
+.articleMargin > span {
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+}
+
+.articleMargin p {
+  margin: 1rem 0 1.6rem;
+  color: var(--atlas-body);
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.32rem;
+  font-style: italic;
+  line-height: 1.52;
+}
+
+.articleMargin a,
+.guideFooter a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.45rem;
+  border-bottom: 1px solid var(--atlas-line-strong);
+  color: var(--atlas-emerald);
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.articleBody {
+  min-width: 0;
+  max-width: 790px;
+}
+
+.articleBody > :first-child {
+  margin-top: 0;
+}
+
+.registrySection {
+  scroll-margin-top: 136px;
+  padding-bottom: clamp(7rem, 12vw, 12rem);
+}
+
+.registryHeading {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+}
+
+.registryHeading > div > p {
+  max-width: 660px;
+  margin-top: 1rem;
+}
+
+.registryDetails {
+  border-bottom: 1px solid var(--atlas-line-strong);
+}
+
+.registryDetails summary {
+  display: flex;
+  min-height: 70px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  color: var(--atlas-ink);
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  list-style: none;
+}
+
+.registryDetails summary::-webkit-details-marker {
+  display: none;
+}
+
+.registryDetails summary::before {
+  margin-right: 0.75rem;
+  color: var(--atlas-emerald);
+  content: "+";
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+}
+
+.registryDetails[open] summary::before {
+  content: "−";
+}
+
+.registryDetails summary span {
+  margin-left: auto;
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.registryTableWrap {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.registryTable {
+  width: 100%;
+  min-width: 1480px;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.registryTable th,
+.registryTable td {
+  max-width: 320px;
+  padding: 1rem 1.1rem;
+  border-top: 1px solid var(--atlas-line);
+  color: var(--atlas-body);
+  line-height: 1.55;
+  text-align: left;
+  vertical-align: top;
+}
+
+.registryTable thead th {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background: #0a0a0b;
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.59rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.registryTable tbody th {
+  color: var(--atlas-ink);
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.registryTable tbody th span {
+  display: block;
+  margin-top: 0.42rem;
+  color: var(--atlas-muted);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.54rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.registryTable tbody tr:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.tableSources {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.tableSources a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--atlas-emerald);
+  text-decoration: none;
+}
+
+.faqSection {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.45fr) minmax(0, 0.55fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  padding-block: clamp(6rem, 10vw, 10rem);
+  border-top: 1px solid var(--atlas-line-strong);
+}
+
+.faqList details {
+  border-bottom: 1px solid var(--atlas-line);
+}
+
+.faqList summary {
+  display: grid;
+  min-height: 70px;
+  cursor: pointer;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  color: var(--atlas-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+  list-style: none;
+}
+
+.faqList summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqList summary svg {
+  color: var(--atlas-emerald);
+  transform: rotate(-45deg);
+  transition: transform 160ms ease;
+}
+
+.faqList details[open] summary svg {
+  transform: rotate(0);
+}
+
+.faqList p {
+  margin: -0.2rem 0 1.5rem;
+  color: var(--atlas-muted);
+  font-size: 0.85rem;
+  line-height: 1.72;
+}
+
+.relatedLearning {
+  border-top: 1px solid var(--atlas-line);
+}
+
+.guideFooter {
+  display: flex;
+  min-height: 110px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 1px solid var(--atlas-line);
+  color: var(--atlas-muted);
+  font-size: 0.7rem;
+}
+
+.guideFooter p {
+  margin: 0;
+}
+
+@media (max-width: 1120px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: auto;
+  }
+
+  .heroCopy {
+    max-width: 820px;
+  }
+
+  .heroTopology {
+    width: min(100%, 820px);
+  }
+
+  .controlLanes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .controlLanes > li:nth-child(2) {
+    border-right: 0;
+  }
+
+  .controlLanes > li:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--atlas-line);
+  }
+
+  .atlasBody {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .constellation {
+    order: 2;
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .evidenceRail {
+    order: 1;
+    padding-left: 0;
+    border-top: 1px solid var(--atlas-line);
+    border-bottom: 1px solid var(--atlas-line);
+  }
+
+  .decisionStrip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .decisionStrip > svg {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 820px) {
+  .heroWrap,
+  .visuals,
+  .articleSection,
+  .registrySection,
+  .faqSection,
+  .guideFooter {
+    width: min(100% - 32px, 1320px);
+  }
+
+  .heroWrap {
+    padding-top: 6rem;
+  }
+
+  .heroRecommendation {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .visualHeader,
+  .articleIntro,
+  .registryHeading,
+  .faqSection {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .visualHeader > p,
+  .articleIntro > p {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .atlasControls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .constellationLane {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .laneHeading {
+    justify-content: flex-start;
+  }
+
+  .permissionMap ol,
+  .aiRoutes,
+  .timeline {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .permissionMap {
+    padding-top: 0;
+  }
+
+  .readZone,
+  .writeZone {
+    display: none;
+  }
+
+  .permissionMap li {
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+    min-height: 150px;
+    align-content: center;
+    align-items: center;
+    border-right: 0;
+    border-bottom: 1px solid var(--atlas-line);
+  }
+
+  .permissionMap li::after {
+    top: auto;
+    right: auto;
+    bottom: -5px;
+    left: 21px;
+    transform: none;
+  }
+
+  .permissionMap h3 {
+    font-size: 1.25rem;
+  }
+
+  .approvalBoundary {
+    top: auto;
+    right: 0;
+    bottom: 150px;
+    left: 0;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--atlas-emerald), transparent);
+  }
+
+  .approvalBoundary span {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .aiRoutes > div {
+    border-right: 0;
+    border-bottom: 1px solid var(--atlas-line);
+  }
+
+  .timeline::before {
+    top: 0;
+    bottom: 0;
+    left: 27px;
+    width: 1px;
+    height: auto;
+  }
+
+  .timeline > li {
+    min-height: 220px;
+    padding: 0 0 2rem 82px;
+  }
+
+  .timelineMarker {
+    position: absolute;
+    left: 0;
+  }
+
+  .timelineDay {
+    margin-top: 0;
+  }
+
+  .decisionFork {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .decisionFork > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .articleGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .articleMargin {
+    position: static;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--atlas-line);
+  }
+
+  .articleMargin p {
+    max-width: 520px;
+  }
+
+  .registryHeading .downloadButton {
+    justify-self: start;
+  }
+
+  .guideFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-block: 1.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .heroWrap,
+  .visuals,
+  .articleSection,
+  .registrySection,
+  .faqSection,
+  .guideFooter {
+    width: min(100% - 24px, 1320px);
+  }
+
+  .heroWrap {
+    padding-top: 4.75rem;
+  }
+
+  .hero {
+    gap: 3.2rem;
+    padding-top: 0.75rem;
+  }
+
+  .hero h1 {
+    max-width: 11ch;
+    font-size: clamp(2.35rem, 11vw, 3.3rem);
+    line-height: 0.97;
+  }
+
+  .heroDescription {
+    margin-top: 1.25rem;
+    line-height: 1.58;
+  }
+
+  .heroRecommendation {
+    margin-top: 1.4rem;
+    padding-block: 1rem;
+  }
+
+  .heroActions {
+    margin-top: 1.2rem;
+  }
+
+  .eyebrow,
+  .figureNumber,
+  .heroRecommendation > span,
+  .topologyLabel,
+  .heroTopology li b,
+  .sectionNav a,
+  .decisionStrip span,
+  .laneTopline,
+  .laneHeading h3,
+  .laneHeading span,
+  .evidenceRail dt,
+  .timeline dt,
+  .evidenceIdentity > div > span,
+  .controlMark,
+  .verifiedDate,
+  .readZone,
+  .writeZone,
+  .approvalBoundary span,
+  .stepIndex,
+  .stepScope,
+  .aiRoutes span,
+  .aiRoutes a,
+  .timelineMarker span,
+  .timelineDay,
+  .decisionFork > span,
+  .articleMargin > span,
+  .registryDetails summary span,
+  .registryTable thead th,
+  .registryTable tbody th span,
+  .guideFooter {
+    font-size: 0.75rem;
+  }
+
+  .heroTopology li p,
+  .topologyFooter,
+  .decisionStrip p,
+  .visualHeader > p,
+  .evidenceUseCase,
+  .evidenceRail dd,
+  .permissionMap li p,
+  .aiRoutes p,
+  .timeline dd,
+  .decisionFork p {
+    font-size: 1rem;
+  }
+
+  .atlasControls input,
+  .atlasControls select {
+    font-size: 1rem;
+  }
+
+  .heroActions a,
+  .downloadButton,
+  .platformTile,
+  .motionControls button,
+  .sourceLinks a {
+    font-size: 0.875rem;
+  }
+
+  .atlasControls label,
+  .atlasLegend {
+    font-size: 0.75rem;
+  }
+
+  .heroTopology li {
+    grid-template-columns: 44px minmax(0, 1fr);
+    min-height: 128px;
+  }
+
+  .heroTopology li b {
+    grid-column: 2;
+    margin-top: -0.8rem;
+  }
+
+  .topologyLabel span:last-child {
+    display: none;
+  }
+
+  .sectionNav > div {
+    width: min(100% - 24px, 1320px);
+  }
+
+  .decisionStrip {
+    width: min(100% - 24px, 1320px);
+  }
+
+  .controlLanes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .controlLanes > li {
+    min-height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--atlas-line);
+  }
+
+  .controlLanes > li:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--atlas-line);
+  }
+
+  .laneExample {
+    min-height: 0;
+  }
+
+  .platformTiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .evidenceIdentity {
+    flex-direction: column;
+  }
+
+  .motionControls {
+    justify-content: flex-start;
+  }
+
+  .motionControls button:first-child {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .permissionMap li {
+    grid-template-columns: 34px minmax(0, 1fr);
+    min-height: 160px;
+    padding-inline: 0.8rem;
+  }
+
+  .permissionMap li .stepScope {
+    grid-column: 2;
+  }
+
+  .permissionMap li::after {
+    left: 17px;
+  }
+
+  .decisionFork > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .registryDetails summary {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+
+  .registryDetails summary span {
+    margin-left: 1.65rem;
+  }
+
+  .faqSection {
+    gap: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

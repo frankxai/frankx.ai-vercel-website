@@ -11,7 +11,7 @@ function BackToTop() {
     <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="group flex items-center gap-1.5 text-xs text-white/30 hover:text-white/70 transition-colors"
+      className="group flex items-center gap-1.5 text-xs text-white/55 hover:text-white transition-colors"
       aria-label="Back to top"
     >
       <ArrowUp className="w-3 h-3 transition-transform group-hover:-translate-y-0.5" />
@@ -92,8 +92,8 @@ function FooterLink({ link }: { link: NavLink }) {
     link.accent === 'emerald'
       ? 'text-emerald-400/70 hover:text-emerald-300'
       : link.accent === 'rose'
-        ? 'text-rose-400/70 hover:text-rose-300'
-        : 'text-white/40'
+        ? 'text-rose-300/90 hover:text-rose-200'
+        : 'text-white/55'
 
   if (link.external) {
     return (
@@ -155,7 +155,7 @@ export default function Footer() {
             {/* Email — direct contact signal */}
             <a
               href="mailto:frank@frankx.ai"
-              className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-white transition-colors"
+              className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/55 hover:text-white transition-colors"
             >
               <Mail className="w-3 h-3" />
               frank@frankx.ai
@@ -211,7 +211,7 @@ export default function Footer() {
           <div className="relative flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-white">Weekly dispatch — AI architecture &amp; creative systems</p>
-              <p className="text-xs text-white/40 mt-0.5">One email per week. No fluff. Unsubscribe anytime.</p>
+              <p className="text-xs text-white/55 mt-0.5">One email per week. No fluff. Unsubscribe anytime.</p>
             </div>
             <div className="w-full sm:w-auto sm:min-w-[300px]">
               <EmailSignup listType="newsletter" placeholder="your@email.com" buttonText="Subscribe" compact />
@@ -220,7 +220,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
+        <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/55">
           <p>&copy; {new Date().getFullYear()} Frank Riemer. All rights reserved.</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1" aria-label="Legal">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>

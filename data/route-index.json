@@ -1,17 +1,17 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 855,
+    "total": 859,
     "aliases": 49,
     "byType": {
       "core": 22,
-      "section": 398,
+      "section": 400,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 213,
+      "blog": 214,
       "workshop": 12,
-      "guide": 22,
+      "guide": 23,
       "library": 56,
       "newsletter": 1,
       "os": 11,
@@ -1738,6 +1738,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/coherence-is-an-engineering-property",
+      "title": "Coherence Is an Engineering Property",
+      "description": "One voice across 210 posts, 85 agents, and four AI vendors is not culture — it is architecture. How coherence becomes code, and why it compounds.",
+      "tags": [
+        "Coherence",
+        "Systems Architecture",
+        "Brand Voice",
+        "Multi-Agent Systems",
+        "Benevolent AI",
+        "Creator Systems"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/conscious-ai-for-entrepreneurs",
       "title": "The Thoughtful Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity",
       "description": "How to build AI-powered businesses that create genuine value, foster human connection, and generate sustainable profits — without losing quality or ethics.",
@@ -1954,12 +1968,14 @@
     },
     {
       "href": "/blog/frankx-business-plan-canvas",
-      "title": "FrankX Business Plan Canvas",
-      "description": "The concise business model behind the Agentic Creator OS and the FrankX product ladder.",
+      "title": "Recurring Revenue Starts With a Recurring Job",
+      "description": "Why natural advantage, consequential problems, owned assets, and repeat customer outcomes must come before subscription pricing.",
       "tags": [
         "Business Model",
+        "Recurring Revenue",
         "Product Strategy",
-        "Creator Economy"
+        "Creator Economy",
+        "AI Business"
       ],
       "type": "blog"
     },
@@ -5009,6 +5025,18 @@
       "type": "guide"
     },
     {
+      "href": "/guides/community-platform-for-creators",
+      "title": "Circle vs Custom Community App: The 2026 Creator Guide",
+      "description": "A source-led comparison of 60 community platforms, official MCP options, branded apps, headless architecture, and the evidence required before a creator builds custom.",
+      "tags": [
+        "Community Platforms",
+        "Creator Business",
+        "AI Agents",
+        "Product Architecture"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/elevenlabs-voice-guide",
       "title": "ElevenLabs Voice AI Guide for Creators",
       "description": "Master ElevenLabs for professional voiceovers, podcast production, voice cloning, and building audio content at scale without recording equipment",
@@ -5326,6 +5354,17 @@
       "title": "Journal",
       "description": "Short, dated notes from the build",
       "type": "core"
+    },
+    {
+      "href": "/journal/starlight-gravity-engine",
+      "title": "Starlight Gravity Engine",
+      "tags": [
+        "journal",
+        "starlight",
+        "gravity",
+        "engine"
+      ],
+      "type": "section"
     },
     {
       "href": "/lab",
@@ -7827,6 +7866,15 @@
     {
       "href": "/starlight-intelligence-system",
       "title": "Starlight Intelligence System",
+      "type": "section"
+    },
+    {
+      "href": "/starlight/gravity",
+      "title": "Gravity",
+      "tags": [
+        "starlight",
+        "gravity"
+      ],
       "type": "section"
     },
     {
