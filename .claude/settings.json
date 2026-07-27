@@ -10,6 +10,15 @@
             "command": "bash .claude/hooks/session-start-excellence.sh"
           }
         ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/web-excellence-session.py"
+          }
+        ]
       }
     ],
     "PreToolUse": [
@@ -19,6 +28,25 @@
           {
             "type": "command",
             "command": "bash .claude/hooks/blog-commit-gate.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/web-excellence-gate.py"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/web-excellence-stop.py"
           }
         ]
       }
