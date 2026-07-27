@@ -58,7 +58,6 @@ SYNC_DIRS=(
 
 SYNC_FILES=(
   "package.json"
-  "package-lock.json"
   "pnpm-lock.yaml"
   "tsconfig.json"
   "next.config.mjs"
