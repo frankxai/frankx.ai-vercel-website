@@ -295,11 +295,17 @@ export async function GET(req: Request) {
                     color: '#3ee0aa',
                     border: '1px solid #3ee0aa',
                     borderRadius: 11,
-                    fontSize: 12,
-                    fontWeight: 700,
                   }}
                 >
-                  ✓
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: 7,
+                      height: 7,
+                      borderRadius: 7,
+                      background: '#3ee0aa',
+                    }}
+                  />
                 </div>
                 Human approval remains between AI reasoning and consequential writes.
               </div>
