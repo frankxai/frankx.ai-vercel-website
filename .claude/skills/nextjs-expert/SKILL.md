@@ -1,3 +1,8 @@
+---
+name: nextjs-expert
+description: "Next.js 16+ application development — App Router, React Server Components, Server Actions, caching and revalidation, route handlers, streaming and Suspense, middleware, and the next-devtools / Context7 MCP servers for runtime debugging and current docs. Use when building or debugging Next.js routes, layouts, data fetching, server/client component boundaries, or deployment behavior on Vercel."
+---
+
 # Next.js Expert Skill
 
 **Version:** 2.0 (Next.js 16+ with MCP Integration)

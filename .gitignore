@@ -202,3 +202,9 @@ link-checker-report.txt
 .gemini/
 
 .vercel
+
+# web-excellence pack — local evidence, not repo artifacts
+.visual-proof/
+.lighthouse.json
+.extract-design-system/
+.claude/skills/.replaced/
