@@ -71,7 +71,7 @@ export default function JournalPage() {
       <JournalJsonLd entryCount={entries.length} />
 
       <section className="border-b border-white/10">
-        <div className="mx-auto w-full max-w-3xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32">
+        <div className="mx-auto w-full max-w-6xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8">
           <div className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-tech-primary/20 bg-tech-primary/10 px-3 py-1.5">
               <PenLine className="h-4 w-4 text-tech-light" aria-hidden />
@@ -107,25 +107,16 @@ export default function JournalPage() {
             . Two different jobs, two different places.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/40">
-            <span>
-              <span className="font-semibold text-white">{entries.length}</span>{' '}
-              {entries.length === 1 ? 'entry' : 'entries'}
-            </span>
-            <span aria-hidden>·</span>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
-            >
-              Long-form articles on the blog
-              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-            </Link>
-          </div>
+          <p className="mt-9 text-sm text-white/40">
+            <span className="font-semibold text-white">{entries.length}</span>{' '}
+            {entries.length === 1 ? 'entry' : 'entries'}
+          </p>
         </div>
       </section>
 
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
+      <section className="py-20 sm:py-24">
+        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
           {entries.length === 0 ? (
             <div className="rounded-3xl border border-white/10 bg-space p-8 text-center">
               <p className="text-white/60">
@@ -188,52 +179,28 @@ export default function JournalPage() {
             ))
           )}
 
-          <div className="mt-16 grid gap-4 sm:grid-cols-2">
-            <Link
-              href="/blog"
-              className="group rounded-2xl border border-white/10 bg-space p-6 transition-colors hover:border-tech-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
-            >
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-tech-light/70">
-                Blog
-              </p>
-              <p className="mt-3 text-base font-semibold text-white">
-                Researched articles and systems
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-white/55">
-                The long-form work: AI architecture, creative workflows, and what is
-                actually shipping.
-              </p>
-              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-tech-light">
-                Read the blog
-                <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
-                  aria-hidden
-                />
-              </span>
-            </Link>
-
-            <Link
-              href="/newsletter"
-              className="group rounded-2xl border border-white/10 bg-space p-6 transition-colors hover:border-tech-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
-            >
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-tech-light/70">
-                Newsletter
-              </p>
-              <p className="mt-3 text-base font-semibold text-white">
-                Creation Chronicles
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-white/55">
-                The weekly digest, if you would rather not check back for individual
-                notes.
-              </p>
-              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-tech-light">
-                Subscribe
-                <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
-                  aria-hidden
-                />
-              </span>
-            </Link>
+          <Link
+            href="/blog"
+            className="group mt-14 block border-t border-white/10 pt-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-tech-light/70">
+              Blog
+            </p>
+            <p className="mt-3 text-lg font-semibold text-white transition-colors group-hover:text-tech-light">
+              The researched work lives next door
+            </p>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/55">
+              AI architecture, creative workflows, and what is actually shipping —
+              written to still be useful a year from now.
+            </p>
+            <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-tech-light">
+              Read the blog
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
+                aria-hidden
+              />
+            </span>
+          </Link>
           </div>
         </div>
       </section>
