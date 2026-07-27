@@ -92,14 +92,24 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                 <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={40} height={40} className="rounded-xl" sizes="40px" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                   <Sparkles className="w-4 h-4 text-emerald-400" />
-                  <span className="text-xs font-medium text-emerald-400">FrankX Journal</span>
+                  <span className="text-xs font-medium text-emerald-400">Blog</span>
                 </div>
               </div>
               <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-                Ideas built to travel.
+                Inside the build.
               </h1>
               <p className="mt-2 text-base text-white/40">
-                Field notes, intelligence systems, and what changes when ideas become usable.
+                AI systems, creative workflows, and what&apos;s actually shipping.
+              </p>
+              <p className="mt-3 text-sm text-white/35">
+                Writing shorter and more often over in the{' '}
+                <Link
+                  href="/journal"
+                  className="text-emerald-400/80 underline decoration-emerald-400/25 underline-offset-4 transition-colors hover:text-emerald-400 hover:decoration-emerald-400/60"
+                >
+                  journal
+                </Link>
+                .
               </p>
             </div>
             <div className="hidden md:flex items-center gap-5 text-sm text-white/40">
@@ -317,10 +327,10 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             <span className="text-sm text-emerald-400">Weekly Insights</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Join the FrankX Journal
+            Join Creation Chronicles
           </h2>
           <p className="text-white/50 mb-8">
-            Get field notes on AI architecture, creative systems, and the models emerging where they meet.
+            Get weekly insights on AI, creativity, and building in public.
           </p>
           <Link
             href="/newsletter"
@@ -329,6 +339,16 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             Start Here
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
+          <p className="mt-8 text-sm text-white/40">
+            Prefer the raw version?{' '}
+            <Link
+              href="/journal"
+              className="text-emerald-400/80 underline decoration-emerald-400/25 underline-offset-4 transition-colors hover:text-emerald-400 hover:decoration-emerald-400/60"
+            >
+              Read the journal
+            </Link>{' '}
+            — short, dated notes written as the work happens.
+          </p>
         </div>
       </section>
     </main>
