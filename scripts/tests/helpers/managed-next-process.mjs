@@ -1,11 +1,10 @@
 import { execFile, spawn } from 'node:child_process'
-import { fileURLToPath } from 'node:url'
+import { createRequire } from 'node:module'
 
-const nextCli = fileURLToPath(
-  new URL('../../../node_modules/next/dist/bin/next', import.meta.url),
-)
+const require = createRequire(import.meta.url)
 const isWindows = process.platform === 'win32'
 const delay = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
+const resolveNextCli = () => require.resolve('next/dist/bin/next')
 
 function hasExited(child) {
   return child.exitCode !== null || child.signalCode !== null
@@ -41,31 +40,41 @@ function closePipes(child) {
 }
 
 export function spawnManagedProcess(command, args, options = {}) {
-  return spawn(command, args, {
+  const child = spawn(command, args, {
     ...options,
     detached: !isWindows,
     shell: false,
     stdio: options.stdio ?? ['ignore', 'pipe', 'pipe'],
   })
+
+  child.spawnError = null
+  child.once('error', (error) => {
+    child.spawnError = error
+  })
+
+  return child
 }
 
 export function startNextServer({ cwd, hostname = '127.0.0.1', port }) {
   return spawnManagedProcess(
     process.execPath,
-    [nextCli, 'start', '--hostname', hostname, '--port', String(port)],
+    [resolveNextCli(), 'start', '--hostname', hostname, '--port', String(port)],
     { cwd },
   )
 }
 
 export async function stopManagedProcess(child, { graceMilliseconds = 5_000 } = {}) {
   try {
+    if (!child.pid) return
     if (hasExited(child) && !processGroupIsAlive(child.pid)) return
 
     if (isWindows) {
       await new Promise((resolve) => {
         execFile('taskkill', ['/pid', String(child.pid), '/T', '/F'], () => resolve())
       })
-      await waitForTreeExit(child, graceMilliseconds)
+      if (!(await waitForTreeExit(child, graceMilliseconds))) {
+        throw new Error(`managed process tree ${child.pid} did not exit after taskkill`)
+      }
       return
     }
 
