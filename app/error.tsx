@@ -71,9 +71,9 @@ export default function Error({ error, reset }: ErrorProps) {
             variant="premium"
             className="p-6 text-left"
           >
-            <h3 className="text-lg font-semibold text-slate-100 mb-3">
+            <h2 className="text-lg font-semibold text-slate-100 mb-3">
               Error Details
-            </h3>
+            </h2>
             <div className="space-y-2 text-sm">
               <div>
                 <span className="text-slate-400">Message:</span>
