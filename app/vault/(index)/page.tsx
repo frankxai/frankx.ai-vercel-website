@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { siteConfig } from '@/lib/seo'
 import { getVaultManifest, getCollections, formatBytes } from '@/lib/vault'
-import { VaultHubClient } from './VaultHubClient'
+import { VaultHubClient } from '../VaultHubClient'
 
 const title = 'Visual Vault | AI Asset Library | FrankX'
 const description =

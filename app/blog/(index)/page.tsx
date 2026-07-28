@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { getAllBlogPostSummaries } from '@/lib/blog'
 import { createMetadata } from '@/lib/seo'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import BlogPageClient from './BlogPageClient'
+import BlogPageClient from '../BlogPageClient'
 
 const blogFaqs = [
   {
