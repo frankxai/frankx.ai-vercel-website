@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import { socialLinks } from '@/lib/social-links'
 import {
@@ -167,7 +168,7 @@ function HeroSection() {
   const shouldReduceMotion = useReducedMotion()
   return (
     <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -206,6 +207,29 @@ function HeroSection() {
             </PremiumButton>
           </div>
         </motion.div>
+
+        <motion.figure
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="hidden lg:block"
+        >
+          <div className="relative overflow-hidden rounded-2xl border border-white/10">
+            <Image
+              src="/images/portraits/frank-presenting-oracle-2025.jpg"
+              alt="Frank Riemer on stage presenting the shift from static AI models to autonomous, AI-driven actions at an enterprise AI event"
+              width={1920}
+              height={1440}
+              priority
+              sizes="(max-width: 1023px) 0px, 45vw"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/40 to-transparent" />
+          </div>
+          <figcaption className="mt-3 text-xs text-slate-500">
+            Presenting the shift from static AI models to autonomous agents, 2025.
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   )
