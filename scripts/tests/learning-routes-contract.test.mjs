@@ -20,7 +20,14 @@ test('learning discovery and Academy pattern routes exist', () => {
   ]
 
   for (const page of requiredPages) {
-    assert.equal(fs.existsSync(path.join(root, page)), true, `${page} must exist`)
+    // An index page may sit in an (index) route group so its loading.tsx wraps
+    // only the index and not the dynamic siblings beside it. Route groups do
+    // not change the URL, so either location satisfies "this route exists" —
+    // and deleting the page still fails, which is what this guard is for.
+    const grouped = page.replace(/\/page\.tsx$/, '/(index)/page.tsx')
+    const exists =
+      fs.existsSync(path.join(root, page)) || fs.existsSync(path.join(root, grouped))
+    assert.equal(exists, true, `${page} (or ${grouped}) must exist`)
   }
 })
 
