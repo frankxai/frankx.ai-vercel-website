@@ -90,7 +90,9 @@ export default async function JournalEntryPage({
         />
 
         <header className="mt-8">
-          <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-widest text-white/40">
+          {/* Same mono dateline register as the /journal index, so an entry reads
+              as a page out of the same notebook rather than a separate template. */}
+          <div className="flex flex-wrap items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-white/35">
             <span className="text-tech-light/80">{JOURNAL_KIND_LABEL[entry.kind]}</span>
             <span aria-hidden>·</span>
             <time dateTime={entry.date}>{formatJournalDate(entry.date, 'long')}</time>
@@ -101,7 +103,7 @@ export default async function JournalEntryPage({
               </>
             )}
           </div>
-          <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+          <h1 className="mt-4 text-balance break-words text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
             {entry.title}
           </h1>
           {entry.summary && (

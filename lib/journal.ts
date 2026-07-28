@@ -73,6 +73,8 @@ export interface JournalEntry {
   visibility: JournalVisibility
   published: boolean
   readingTime: string
+  /** Plain-text opening of the entry, so the index can be read without clicking. */
+  excerpt: string
   content: string
 }
 
@@ -110,6 +112,35 @@ function normalizeDate(value: unknown): string {
   return iso
 }
 
+/**
+ * The opening of an entry as plain prose, for the index.
+ *
+ * A journal you have to click into is a list of links. Showing the first few
+ * lines makes the index itself readable, which is the point of a journal you
+ * scroll. Markdown is stripped rather than rendered — this lands inside a
+ * <p> next to the title, so it must not carry block markup.
+ */
+const EXCERPT_WORDS = 34
+
+function buildExcerpt(content: string): string {
+  const plain = content
+    .replace(/^---[\s\S]*?---/, '') // stray frontmatter, if gray-matter left any
+    .replace(/```[\s\S]*?```/g, ' ') // fenced code
+    .replace(/`[^`]*`/g, ' ') // inline code
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ') // images
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // links keep their text
+    .replace(/^\s{0,3}#{1,6}\s+/gm, '') // headings
+    .replace(/^\s{0,3}>\s?/gm, '') // blockquote markers
+    .replace(/^\s{0,3}[-*+]\s+/gm, '') // list bullets
+    .replace(/[*_~]/g, '') // emphasis
+    .replace(/\s+/g, ' ')
+    .trim()
+
+  if (!plain) return ''
+  const words = plain.split(' ')
+  return words.length <= EXCERPT_WORDS ? plain : `${words.slice(0, EXCERPT_WORDS).join(' ')}…`
+}
+
 function buildEntry(slug: string, data: Record<string, unknown>, content: string): JournalEntry {
   const kind = data.kind as JournalKind
   return {
@@ -122,6 +153,7 @@ function buildEntry(slug: string, data: Record<string, unknown>, content: string
     visibility: data.visibility === 'private' ? 'private' : 'public',
     published: data.published !== false,
     readingTime: readingTime(content).text,
+    excerpt: buildExcerpt(content),
     content,
   }
 }
