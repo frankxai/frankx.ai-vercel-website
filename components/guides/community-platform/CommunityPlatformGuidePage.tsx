@@ -12,11 +12,14 @@ import { MDXContent } from '@/components/blog/MDXContent'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import JsonLd from '@/components/seo/JsonLd'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
+import { getCommunityPlatformAiMode } from '@/lib/community-platform-ai'
 import type { GuideDoc } from '@/lib/guides'
 import type { CommunityPlatform } from '@/lib/community-platforms'
 import { portalsForGuide } from '@/lib/learn/related-portals'
 
 import AiPermissionTopology from './AiPermissionTopology'
+import CommunityGuideMeasurement from './CommunityGuideMeasurement'
 import CommunityPlatformAtlas from './CommunityPlatformAtlas'
 import styles from './community-platform-guide.module.css'
 
@@ -198,6 +201,72 @@ function EvidenceTimeline() {
   )
 }
 
+function ResearchReleaseStatus({
+  platformCount,
+  officialMcpCount,
+}: {
+  platformCount: number
+  officialMcpCount: number
+}) {
+  return (
+    <section className={styles.researchStatus} aria-labelledby="research-status-title">
+      <div className={styles.statusIntro}>
+        <p className={styles.figureNumber}>28 July research release</p>
+        <h2 id="research-status-title">The evidence level travels with every recommendation.</h2>
+        <p>
+          Eleven additional systems were reconciled into the source registry. Podia is no longer
+          named without a row; beta and waitlist products remain qualified rather than promoted
+          by novelty.
+        </p>
+      </div>
+
+      <div className={styles.statusLegend} aria-label="Research evidence levels">
+        <p>
+          <span>Documentation verified</span>
+          Current capability or pricing found in a primary vendor source.
+        </p>
+        <p>
+          <span>Vendor claim / beta</span>
+          Public claim retained with maturity and production-risk qualification.
+        </p>
+        <p>
+          <span>Independent validation pending</span>
+          No firsthand product trial, customer interview, load test, or export drill is claimed.
+        </p>
+      </div>
+
+      <div className={styles.statusDownloads}>
+        <p>
+          <strong>{platformCount} products</strong>
+          <span>
+            20 evidence fields · {officialMcpCount} documentation-verified vendor MCP surfaces
+          </span>
+        </p>
+        <TrackedLink
+          href="/downloads/community-platform-vendor-due-diligence-checklist.csv"
+          download
+          prefetch={false}
+          eventName="community_guide_download"
+          eventProperties={{ asset: 'vendor_checklist', surface: 'research_status' }}
+        >
+          <Download aria-hidden="true" size={16} />
+          Vendor diligence checklist
+        </TrackedLink>
+        <TrackedLink
+          href="/downloads/starlight-community-os-blueprint.md"
+          download
+          prefetch={false}
+          eventName="community_guide_download"
+          eventProperties={{ asset: 'control_plane_blueprint', surface: 'research_status' }}
+        >
+          <Download aria-hidden="true" size={16} />
+          Ownership blueprint
+        </TrackedLink>
+      </div>
+    </section>
+  )
+}
+
 function FullRegistry({ platforms }: { platforms: CommunityPlatform[] }) {
   return (
     <section id="full-registry" className={styles.registrySection} aria-labelledby="registry-title">
@@ -207,17 +276,20 @@ function FullRegistry({ platforms }: { platforms: CommunityPlatform[] }) {
           <h2 id="registry-title">All {platforms.length} researched products</h2>
           <p>
             Primary sources and qualified current reporting, pricing, AI path, app model and
-            FrankX verdict. Last verified 27 July 2026.
+            FrankX verdict. Last verified 28 July 2026.
           </p>
         </div>
-        <a
+        <TrackedLink
           className={styles.downloadButton}
           href="/downloads/community-platform-matrix-2026.csv"
           download
+          prefetch={false}
+          eventName="community_guide_download"
+          eventProperties={{ asset: 'platform_matrix', surface: 'source_registry' }}
         >
           <Download aria-hidden="true" size={17} />
-          Download the 60-platform CSV
-        </a>
+          Download the {platforms.length}-platform CSV
+        </TrackedLink>
       </div>
 
       <details className={styles.registryDetails}>
@@ -228,7 +300,7 @@ function FullRegistry({ platforms }: { platforms: CommunityPlatform[] }) {
         <div className={styles.registryTableWrap}>
           <table className={styles.registryTable}>
             <caption className="sr-only">
-              Community platform comparison last verified 27 July 2026
+              Community platform comparison last verified 28 July 2026
             </caption>
             <thead>
               <tr>
@@ -258,7 +330,13 @@ function FullRegistry({ platforms }: { platforms: CommunityPlatform[] }) {
                   <td>
                     <div className={styles.tableSources}>
                       {platform.primarySourceUrls.slice(0, 3).map((source) => (
-                        <a key={source} href={source} target="_blank" rel="noreferrer">
+                        <a
+                          key={source}
+                          href={source}
+                          target="_blank"
+                          rel="noreferrer"
+                          data-community-platform={platform.platform}
+                        >
                           {sourceHost(source)}
                           <ExternalLink aria-hidden="true" size={12} />
                         </a>
@@ -281,6 +359,7 @@ export default function CommunityPlatformGuidePage({
 }: CommunityPlatformGuidePageProps) {
   return (
     <main className={styles.page}>
+      <CommunityGuideMeasurement />
       <JsonLd
         type="ItemList"
         id="community-platform-registry"
@@ -305,7 +384,9 @@ export default function CommunityPlatformGuidePage({
 
         <section className={styles.hero} aria-labelledby="community-guide-title">
           <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>FrankX decision system · 60 platforms · July 2026</p>
+            <p className={styles.eyebrow}>
+              FrankX decision system · {platforms.length} platforms · July 2026
+            </p>
             <h1 id="community-guide-title">{guide.title}</h1>
             <p className={styles.heroDescription}>{guide.description}</p>
             <div className={styles.heroRecommendation}>
@@ -321,14 +402,23 @@ export default function CommunityPlatformGuidePage({
                 Explore the atlas
                 <ArrowDown aria-hidden="true" size={17} />
               </a>
-              <a href="/downloads/community-platform-matrix-2026.csv" download>
+              <TrackedLink
+                href="/downloads/community-platform-matrix-2026.csv"
+                download
+                prefetch={false}
+                eventName="community_guide_download"
+                eventProperties={{ asset: 'platform_matrix', surface: 'hero' }}
+              >
                 <Download aria-hidden="true" size={17} />
                 Download research
-              </a>
+              </TrackedLink>
             </div>
           </div>
 
-          <div className={styles.heroTopology} role="img" aria-label="Decision topology from rented infrastructure to owned product behavior">
+          <figure className={styles.heroTopology}>
+            <figcaption className="sr-only">
+              Decision topology from rented infrastructure to owned product behavior
+            </figcaption>
             <div className={styles.topologyLabel}>
               <span>OWNERSHIP TOPOLOGY</span>
               <span>Move only when evidence clears the gate</span>
@@ -371,14 +461,14 @@ export default function CommunityPlatformGuidePage({
               <ShieldCheck aria-hidden="true" size={17} />
               <span>Human approval remains between AI reasoning and consequential writes.</span>
             </div>
-          </div>
+          </figure>
         </section>
       </div>
 
       <nav className={styles.sectionNav} aria-label="Guide sections">
         <div>
           <a href="#control-spectrum">Control</a>
-          <a href="#platform-atlas">60-platform atlas</a>
+          <a href="#platform-atlas">{platforms.length}-platform atlas</a>
           <a href="#ai-topology">AI topology</a>
           <a href="#proof-system">90-day proof</a>
           <a href="#analysis">Deep guide</a>
@@ -409,6 +499,15 @@ export default function CommunityPlatformGuidePage({
         </p>
       </div>
 
+      <ResearchReleaseStatus
+        platformCount={platforms.length}
+        officialMcpCount={
+          platforms.filter(
+            (platform) => getCommunityPlatformAiMode(platform) === 'Official MCP'
+          ).length
+        }
+      />
+
       <div className={styles.visuals}>
         <ControlLiabilitySpectrum />
         <CommunityPlatformAtlas platforms={platforms} />
@@ -436,7 +535,7 @@ export default function CommunityPlatformGuidePage({
             <span>THE RULE</span>
             <p>Rent the commodity. Own the promise. Build only the behavior that becomes the moat.</p>
             <a href="#full-registry">
-              Inspect every source
+              Inspect the source registry
               <ArrowRight aria-hidden="true" size={15} />
             </a>
           </div>
@@ -479,8 +578,8 @@ export default function CommunityPlatformGuidePage({
 
       <footer className={styles.guideFooter}>
         <p>
-          Research date: 27 July 2026 · 60 unique products · 20 evidence fields · no
-          undisclosed commercial ranking.
+          Research date: 28 July 2026 · {platforms.length} unique products · 20 evidence fields ·
+          no undisclosed commercial ranking.
         </p>
         <Link href="/guides">
           More FrankX guides
