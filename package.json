@@ -124,7 +124,8 @@
     "sync:fix": "bash scripts/pre-deploy-sync-check.sh --sync",
     "sync:diff": "bash scripts/pre-deploy-sync-check.sh --diff",
     "predeploy": "npm run merge:gate && npm run sync:check",
-    "journal:new": "node scripts/new-journal-entry.mjs"
+    "journal:new": "node scripts/new-journal-entry.mjs",
+    "test:templates": "node --experimental-strip-types --test scripts/tests/templates-catalog-contract.test.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
