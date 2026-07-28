@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, Play, RotateCcw } from 'lucide-react'
 
+import { trackEvent } from '@/lib/analytics'
 import { getCommunityPlatformAiMode } from '@/lib/community-platform-ai'
 import type { CommunityPlatform } from '@/lib/community-platforms'
 import styles from './community-platform-guide.module.css'
@@ -93,6 +94,9 @@ export default function AiPermissionTopology({ platforms }: AiPermissionTopology
 
   function runCycle() {
     clearTimers()
+    trackEvent('community_guide_ai_cycle_started', {
+      reduced_motion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    })
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reducedMotion) {
       setPhase(STEPS.length - 1)
@@ -108,6 +112,7 @@ export default function AiPermissionTopology({ platforms }: AiPermissionTopology
   function resetCycle() {
     clearTimers()
     setPhase(-1)
+    trackEvent('community_guide_ai_cycle_reset')
   }
 
   useEffect(() => () => clearTimers(), [])
@@ -166,7 +171,17 @@ export default function AiPermissionTopology({ platforms }: AiPermissionTopology
               <p>{route.description}</p>
               <p className={styles.routeExamples}>{compactExamples(route.platforms)}</p>
               {source ? (
-                <a href={source} target="_blank" rel="noreferrer">
+                <a
+                  href={source}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() =>
+                    trackEvent('community_guide_source_opened', {
+                      integration_mode: route.label,
+                      surface: 'ai_topology',
+                    })
+                  }
+                >
                   Inspect source
                   <ArrowUpRight aria-hidden="true" size={13} />
                 </a>

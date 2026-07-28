@@ -59,3 +59,33 @@ The Research Atlas wins because it turns evidence into the visual system, preser
 - Platform capabilities must come from one dated registry.
 - The static state must remain complete without animation.
 - Mobile must recompose, not scale down.
+
+## 28 July 2026 Production Hardening
+
+The selected Research Atlas remains the visual direction. This release does not add another
+infographic; it strengthens the decision product around it.
+
+### Micro-direction A — Vendor Orbit
+
+A logo-led hub with vendors arranged around Circle. Rejected because visual prominence would imply
+a universal vendor ranking and age quickly as the registry changes.
+
+### Micro-direction B — Four-layer Ownership Stack
+
+Execution surfaces feed a stable gateway, a governed intelligence layer, and an owned data plane.
+Selected as a compact editorial architecture inside the article because it explains how a creator
+can start hosted without surrendering the long-term product boundary.
+
+### Micro-direction C — Animated Event Loop
+
+A live event stream showing member actions moving through agents, approvals, and platform writes.
+Deferred until real product telemetry exists; simulated operational data would weaken the guide's
+evidence standard.
+
+### Release Acceptance
+
+- Registry and visible counts reconcile to 71 source-backed products.
+- New and beta products remain visibly qualified; no maturity is inferred from marketing copy.
+- The ownership stack is labeled as a proposed blueprint, not an already shipped platform.
+- Downloads answer vendor diligence and migration architecture questions without an email gate.
+- Analytics record decision interactions without storing search terms or other free text.

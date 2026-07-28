@@ -28,16 +28,16 @@
 }
 
 .heroWrap {
-  padding-top: 7rem;
+  padding-top: 5.5rem;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(460px, 0.98fr);
-  gap: clamp(3rem, 6vw, 7rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(430px, 0.9fr);
+  gap: clamp(3rem, 4.5vw, 5.25rem);
   align-items: center;
-  min-height: 720px;
-  padding-block: clamp(2.25rem, 5vw, 5rem) clamp(4.25rem, 8vw, 7.5rem);
+  min-height: 690px;
+  padding-block: clamp(1.5rem, 3vw, 2.75rem) clamp(3rem, 5vw, 4.5rem);
 }
 
 .heroCopy {
@@ -59,7 +59,7 @@
   max-width: 820px;
   margin: 0;
   font-family: var(--font-poppins), "Poppins", sans-serif;
-  font-size: clamp(3.2rem, 6.2vw, 6.7rem);
+  font-size: clamp(3.2rem, 5.7vw, 5.95rem);
   font-weight: 600;
   letter-spacing: -0.058em;
   line-height: 0.93;
@@ -68,7 +68,7 @@
 
 .heroDescription {
   max-width: 650px;
-  margin: 2rem 0 0;
+  margin: 1.5rem 0 0;
   color: var(--atlas-body);
   font-size: clamp(1.05rem, 1.45vw, 1.28rem);
   line-height: 1.72;
@@ -78,8 +78,8 @@
   display: grid;
   grid-template-columns: 150px minmax(0, 1fr);
   gap: 1.5rem;
-  margin-top: 2.4rem;
-  padding-block: 1.35rem;
+  margin-top: 1.65rem;
+  padding-block: 1.05rem;
   border-block: 1px solid var(--atlas-line-strong);
 }
 
@@ -107,7 +107,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 1.8rem;
+  margin-top: 1.1rem;
 }
 
 .heroActions a,
@@ -158,6 +158,7 @@
 
 .heroTopology {
   position: relative;
+  margin: 0;
   border-block: 1px solid var(--atlas-line-strong);
 }
 
@@ -343,6 +344,124 @@
   font-family: var(--font-poppins), "Poppins", sans-serif;
   font-size: 1.04rem;
   font-weight: 500;
+}
+
+.researchStatus {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.96fr) minmax(240px, 0.66fr);
+  width: min(100% - 40px, 1320px);
+  margin: 2.25rem auto 0;
+  border-bottom: 1px solid var(--atlas-line-strong);
+  background: linear-gradient(90deg, rgba(52, 211, 153, 0.045), transparent 46%);
+}
+
+.statusIntro,
+.statusLegend,
+.statusDownloads {
+  min-width: 0;
+  padding: clamp(1.65rem, 3vw, 2.5rem);
+}
+
+.statusLegend,
+.statusDownloads {
+  border-left: 1px solid var(--atlas-line);
+}
+
+.statusIntro {
+  padding-left: 0;
+}
+
+.statusIntro h2 {
+  max-width: 620px;
+  margin: 0;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: clamp(1.55rem, 2.25vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.statusIntro > p:last-child {
+  max-width: 650px;
+  margin: 1.1rem 0 0;
+  color: var(--atlas-muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.statusLegend {
+  display: grid;
+  align-content: center;
+  gap: 1.15rem;
+}
+
+.statusLegend p {
+  margin: 0;
+  color: var(--atlas-muted);
+  font-size: 0.76rem;
+  line-height: 1.58;
+}
+
+.statusLegend span {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--atlas-ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.statusDownloads {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7rem;
+  padding-right: 0;
+}
+
+.statusDownloads p {
+  margin: 0 0 0.45rem;
+  color: var(--atlas-muted);
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.statusDownloads p strong,
+.statusDownloads p span {
+  display: block;
+}
+
+.statusDownloads p strong {
+  color: var(--atlas-emerald);
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.statusDownloads a {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.55rem;
+  border-bottom: 1px solid var(--atlas-line);
+  color: var(--atlas-body);
+  font-size: 0.74rem;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.statusDownloads a:hover {
+  border-color: var(--atlas-emerald);
+  color: var(--atlas-emerald);
+}
+
+.statusDownloads a:focus-visible {
+  outline: 2px solid var(--atlas-cyan);
+  outline-offset: 4px;
 }
 
 .visuals {
@@ -1424,11 +1543,26 @@
   .decisionStrip > svg {
     transform: rotate(90deg);
   }
+
+  .researchStatus {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .statusDownloads {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(220px, 0.7fr) repeat(2, minmax(0, 0.65fr));
+    align-items: center;
+    border-top: 1px solid var(--atlas-line);
+    border-left: 0;
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 820px) {
   .heroWrap,
   .visuals,
+  .researchStatus,
   .articleSection,
   .registrySection,
   .faqSection,
@@ -1443,6 +1577,27 @@
   .heroRecommendation {
     grid-template-columns: 1fr;
     gap: 0.7rem;
+  }
+
+  .researchStatus {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .statusIntro,
+  .statusLegend,
+  .statusDownloads {
+    padding-inline: 0;
+  }
+
+  .statusLegend,
+  .statusDownloads {
+    border-top: 1px solid var(--atlas-line);
+    border-left: 0;
+  }
+
+  .statusDownloads {
+    display: flex;
+    align-items: stretch;
   }
 
   .visualHeader,
@@ -1588,6 +1743,7 @@
 @media (max-width: 560px) {
   .heroWrap,
   .visuals,
+  .researchStatus,
   .articleSection,
   .registrySection,
   .faqSection,

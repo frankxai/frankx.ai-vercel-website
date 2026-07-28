@@ -1,6 +1,6 @@
 # Community Platform Guide — Search Strategy
 
-**SERP review:** 27 July 2026
+**SERP review:** 28 July 2026
 **Target route:** `/guides/community-platform-for-creators`
 **Primary intent:** commercial investigation with an architecture decision
 **Secondary intents:** implementation planning, AI integration, branded-app diligence, migration
@@ -24,6 +24,31 @@ Representative current results include:
 
 The results are unstable at the factual level. One current comparison page, for example, says Circle has no native mobile app, while Circle documents shared iOS and Android apps and separately sells an own-brand app path. This is why FrankX should cite product documentation beside decisive claims and avoid inheriting assertions from ranking pages.
 
+### Dated query-to-result ledger
+
+Observed on 28 July 2026 in a clean search sample. Results vary by market, device, and
+personalization; the order below is a research snapshot, not a permanent rank claim.
+
+| Query | Visible leaders, in observed order | Result type | Gap FrankX should own |
+|---|---|---|---|
+| `best community platforms for creators 2026` | [Mighty Networks](https://www.mightynetworks.com/resources/community-platform-for-creators), [CreateGears](https://www.creategears.com/reviews/best-community-platforms-creators-2026), [Circle membership roundup](https://circle.so/blog/best-membership-platforms) | Two vendor pages plus an affiliate listicle | Separate recommendation from commercial incentive; compare ownership, app model, agent surface, exit evidence, and stage-specific fit |
+| `Circle vs Mighty Networks` | [Circle](https://circle.so/compare/vs-mighty), [Mighty Networks](https://www.mightynetworks.com/resources/circle-vs-mighty-networks), [Ruzuku](https://www.ruzuku.com/learn/articles/circle-vs-mighty-networks) | Adversarial vendor comparisons and a product-led challenger page | Use primary evidence, show both products' strongest job, and model migration, app ownership, MCP/API, and effective economics |
+| `Circle alternatives for creators` | [Circle comparison hub](https://circle.so/compare), [Circle's Skool alternatives](https://circle.so/blog/skool-alternatives), [tchop](https://tchop.io/alternative/circle) | Incumbent-owned SERP plus competitor landing page | Acknowledge when Circle remains the correct pilot; route alternatives by the exact constraint rather than publishing a generic replacement list |
+| `white label community app` | [LetTalk](https://www.let-talk.com/), [NIX](https://nixapp.io/), [Nectios](https://nectios.com/gl/), [Scrile Connect](https://www.scrile.com/connect/community-platform) | Product landing pages | Explain shared app versus dedicated listing, Apple/Google account ownership, signing, bundle ID, release duty, store payments, transfer, and exit |
+| `community platform with branded mobile app` | [NIX](https://nixapp.io/), [My Community Platform](https://mycommunityplatform.com/), [Wylo](https://www.wyloapp.com/) | Branded-app sales pages | Compare the member experience and contract schedule, not the phrase “white label”; demand listing and continuity evidence |
+| `community platform MCP` | [Circle MCP](https://circle.so/mcp), [Bonfire](https://onbonfire.com/), [Circle MCP use cases](https://circle.so/blog/circle-mcp-use-cases), third-party integration directories | Official vendor pages, a launch-stage claimant, and integration intermediaries | Distinguish vendor-operated MCP from Zapier/Pipedream wrappers and documentation-only servers; compare auth, tools, permissions, approvals, audit, quotas, and maturity |
+
+The current SERP is unusually vendor-controlled. FrankX should not try to win by publishing a
+longer affiliate list. It should win on decision integrity: a dated source ledger, a visible
+evidence contract, operational definitions, downloadable diligence, and a recommendation that can
+change when the creator's proven behavior changes.
+
+Keep an excluded-leads log beside this ledger. Loopwise, for example, currently surfaces for
+agent-native course and community terms and advertises hosted MCP, OAuth, and API access, but its
+reviewed signup and OpenAPI links returned 404s and its legal pages referenced older Teachify/Kaik
+entities. Exclude it from the registry and every MCP count until the product, operator, contracts,
+and authenticated tool surface can be verified.
+
 ## Search gap FrankX can own
 
 No prominent result in the reviewed set combines all of the following:
@@ -33,6 +58,7 @@ No prominent result in the reviewed set combines all of the following:
 - shared mobile access versus an own-name App Store listing;
 - developer-account, bundle-ID, export and exit diligence;
 - a dated, downloadable source registry;
+- a downloadable vendor contract checklist and vendor-neutral ownership blueprint;
 - a 30-day bake-off and 90-day production proof system;
 - an explicit trigger for when custom software becomes rational.
 
@@ -98,7 +124,7 @@ Do not assign fabricated search volumes. Use Search Console and a paid keyword s
 
 **Title:** Circle vs Custom Community App: The 2026 Creator Guide
 
-**Description:** A source-led comparison of 60 community platforms, official MCP options, branded apps, headless architecture and the evidence required before a creator builds custom.
+**Description:** Compare 71 community platforms for creators: Circle, branded apps, official MCP, AI integrations, custom builds, ownership, pricing, and exit risk.
 
 The page should retain a direct answer in the first screen:
 
@@ -107,13 +133,14 @@ The page should retain a direct answer in the first screen:
 ## Information architecture
 
 1. Answer-first hero and recommendation.
-2. Control–liability spectrum.
-3. Complete platform atlas with filters and source rail.
-4. AI permission topology.
-5. 90-day evidence line.
-6. Long-form architecture guide.
-7. Complete registry and downloadable CSV.
-8. FAQ.
+2. Visible evidence contract and update note.
+3. Control–liability spectrum.
+4. Complete platform atlas with filters and source rail.
+5. AI permission topology.
+6. 90-day evidence line.
+7. Long-form architecture guide and vendor-neutral control-plane model.
+8. Complete registry, CSV, diligence checklist, and blueprint downloads.
+9. FAQ.
 
 This sequence satisfies executive readers before serving the broader comparison and implementation queries.
 
@@ -148,3 +175,45 @@ Measure by query cluster rather than aggregate page traffic:
 - assisted conversions into architecture or creator-system offers.
 
 Reverify pricing and official-MCP claims monthly for the first quarter, then quarterly. Record factual corrections in the registry before changing the editorial recommendation.
+
+The production instrumentation uses:
+
+- `community_guide_download` with an asset and surface;
+- `community_guide_atlas_filter`;
+- `community_guide_atlas_search` with character count and result count, never the search term;
+- `community_guide_platform_selected`;
+- `community_guide_source_opened`;
+- `community_guide_ai_cycle_started` and `community_guide_ai_cycle_reset`;
+- `community_guide_migration_trigger_reached`.
+
+## Supporting content sequence
+
+The guide is the canonical decision page. Supporting articles should answer one narrower intent and
+link back to the guide rather than repeat its entire registry.
+
+1. `/blog/circle-mcp-community-manager` — workflow examples, approval boundaries, quotas, and
+   operations. Targets “Circle MCP use cases” and “connect Circle to ChatGPT.”
+2. `/blog/circle-vs-mighty-networks-for-creators` — member-network behavior, courses, MCP/API,
+   mobile model, and migration implications.
+3. `/blog/white-label-community-app-ownership-guide` — Apple/Google accounts, bundle IDs, signing,
+   store payments, release ownership, and exit rights.
+4. `/blog/custom-community-app-cost` — hosted, branded, headless, and custom cost models including
+   year-two ownership.
+5. `/blog/community-platform-headless-api-guide` — gateway, identity mapping, entitlements,
+   webhooks, and vendor adapters.
+6. `/blog/community-validation-metrics` — first value, response quality, cohort retention, and the
+   custom-build trigger.
+7. `/blog/build-community-app-with-ai` — where AI compresses implementation and where it does not
+   remove product, safety, security, or operating responsibility.
+8. `/blog/community-audience-validation-economics` — model founding-cohort size, conversion,
+   retention, moderation load and break-even economics before choosing an ownership layer. Keep
+   “best community platform for 100K followers” canonical to this guide to avoid cannibalization.
+
+## 28 July release note
+
+The registry expanded from 60 to 71 products. Podia, already named in the article, now has a
+source-backed row; UUKI, Pensil, Locals.com, Mateflow, Aqyl, CommunityXO, ShaunSocial, EZCLUB.APP,
+Indigo, and Bonfire were added with explicit maturity qualifications. Bonfire's vendor-documented
+MCP claim remains outside the documentation-verified vendor-MCP count until an authenticated
+permission and tool test passes. The count therefore remains 16 because API access, native AI, an MCP
+tutorial, a claimed endpoint, and a live account-connected MCP are different capabilities.

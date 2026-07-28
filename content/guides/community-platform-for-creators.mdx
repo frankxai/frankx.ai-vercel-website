@@ -1,8 +1,8 @@
 ---
 title: "Circle vs Custom Community App: The 2026 Creator Guide"
-description: "A source-led comparison of 60 community platforms, official MCP options, branded apps, headless architecture, and the evidence required before a creator builds custom."
+description: "Compare 71 community platforms for creators: Circle, branded apps, official MCP, AI integrations, custom builds, ownership, pricing, and exit risk."
 date: "2026-07-27"
-updated: "2026-07-27"
+updated: "2026-07-28"
 author: "Frank"
 category: "Creator Systems"
 tags:
@@ -49,7 +49,7 @@ Here is the short answer:
 
 That recommendation is not a vote against ambition. It is how ambition avoids becoming an expensive collection of assumptions.
 
-This guide is built from a dated registry of **60 products** across hosted communities, creator commerce, learning suites, branded-app specialists, enterprise networks, open-source systems and custom infrastructure. The complete CSV is available on this page. Capability labels are deliberately conservative: “official MCP” means the vendor documents an MCP surface; “agent-buildable” means an API or webhook path exists; neither is inferred from a generic Zapier logo.
+This guide is built from a dated registry of **71 products** across hosted communities, creator commerce, learning suites, branded-app specialists, enterprise networks, open-source systems and custom infrastructure. The complete CSV is available on this page. Capability labels are deliberately conservative: “official MCP” means the vendor documents a first-party MCP surface; “agent-buildable” means an API or webhook path exists; neither is inferred from a generic Zapier logo.
 
 ## The decisive idea: choose the layer you need to own
 
@@ -108,13 +108,15 @@ This is the clean mental model:
 Vendor comparison pages often put every AI claim in one column. That hides the architecture.
 
 1. **Native AI** works inside the vendor’s interface. It may summarize, moderate, recommend or draft, but the vendor defines the tools and context.
-2. **Official MCP** exposes vendor-documented tools to an external AI client. The dated registry currently verifies **16 vendor-supported MCP surfaces**—but they range from mature hosted services to read-only betas and an experimental local bundle.
+2. **Official MCP** exposes vendor-documented tools to an external AI client. The dated registry currently contains **16 documentation-verified vendor-supported MCP surfaces**—but they range from mature hosted services to read-only betas and an experimental local bundle.
 3. **Agent-buildable API or webhooks** allow a team to create its own governed agent connection. Heartbeat, Memberful, Disciple, Bettermode, BuddyBoss and many others fit here on qualifying plans. GroupApp does not yet belong in this class: its official roadmap marks Public API + MCP as in progress.
 4. **Headless or source-owned infrastructure** allows AI to participate inside an interface and product model the creator controls. It also transfers security, evaluation, audit, privacy and uptime responsibility to the team.
 
 An MCP badge is not proof of member-facing intelligence. A public API is not proof that every needed object can be read or changed. For production, inspect the actual tool list, permission model, quotas, webhooks, audit trail and deletion behavior.
 
-### The 16 vendor-supported MCP surfaces we verified
+Bonfire is included in the 71-product registry as a watchlist entry because its vendor documentation describes a hosted MCP endpoint and 18 tools. It is excluded from the 16 documentation-verified vendor surfaces because launch-stage credibility signals require a higher bar: an authenticated tool inventory, permission boundary, approval flow and audit trail must be independently tested first.
+
+### The 16 documentation-verified vendor-supported MCP surfaces
 
 This is the part most comparison articles miss: “has MCP” is not a useful buying criterion until you know **who can connect, what the tools can read, what they can change, and whether the surface is live, beta or experimental**.
 
@@ -284,14 +286,33 @@ Use full custom when:
 
 **Best use:** build a software company because the software behavior is the business.
 
-## The 2026 platform landscape: 60 products, seven different jobs
+## The architecture that survives a vendor migration
 
-Prices and plan contents below were verified on **27 July 2026**. Public prices are usually monthly equivalents under annual billing, exclude taxes, and can change. “Native app” distinguishes access through a vendor’s shared app from a dedicated app listed under the creator’s brand.
+A durable long-term option is **Starlight Community OS**, a proposed vendor-neutral control plane. This is a reference architecture—not a platform that has already been built or proof that this creator needs custom software now.
 
-The decision room on this page contains the full 60-product registry. The table below is the executive shortlist, not a claim that the other products do not exist. The larger landscape includes:
+Its purpose is to let Circle, Mighty, Whop, email, a branded app and a future custom product behave as replaceable execution surfaces behind a stable product boundary:
 
-- **Hosted creator communities:** Circle, Mighty Networks, Skool, Heartbeat, GroupApp, Whop and Nas.com.
-- **Learning and business suites:** Disco, Kajabi, Thinkific, LearnWorlds, Podia, Teachable, Passion.io and Uscreen.
+1. **Execution surfaces** — community, courses, events, email, support, mobile and future custom experiences.
+2. **Stable community gateway** — one owned vocabulary for member identity, entitlements, activity, drafts, approvals, actions and exports. Vendor adapters translate it to each product.
+3. **Governed intelligence** — AI can read within a member or operator’s permissions, reason privately, propose a command, cross a human or policy gate, act through a scoped tool, and leave an audit record.
+4. **Owned data plane** — canonical member IDs, consent, roles, entitlements, relationships, outcomes, vendor-object mappings and event history in an owned database.
+
+This is not an argument to mirror every post into a second database. Own only the records required for continuity, governance, measurement and differentiated behavior. Keep vendor object IDs in one mapping layer. Normalize only the events used by a real product decision. Make command execution idempotent and fail closed when a vendor adapter does not support a requested tool.
+
+A practical pilot might use Circle Business as the execution surface, a small Next.js gateway, managed Postgres for canonical records, and one approval-gated agent workflow. A later system could add Expo, relationship-based authorization, durable workflows, notification orchestration, agent evaluations or live-media infrastructure. Those tools are examples; the enduring asset is the boundary.
+
+The important strategic consequence is that a creator can **start hosted without making the host the permanent product identity**. If the member loop later earns a custom onboarding flow, matching system, reputation model or native app, that surface connects to the same member IDs, policy and event contract.
+
+[Open the proposed Starlight Community OS blueprint](/downloads/starlight-community-os-blueprint.md) for the reference schema, adapter contract, AI approval envelope, 90-day implementation sequence, production objectives and exit drill.
+
+## The 2026 platform landscape: 71 products, seven different jobs
+
+Prices and plan contents below were verified on **27–28 July 2026**. Public prices are usually monthly equivalents under annual billing, exclude taxes, and can change. “Native app” distinguishes access through a vendor’s shared app from a dedicated app listed under the creator’s brand.
+
+The decision room on this page contains the full 71-product registry. The table below is the executive shortlist, not a claim that the other products do not exist. The larger landscape includes:
+
+- **Hosted creator communities:** Circle, Mighty Networks, Skool, Heartbeat, GroupApp, Whop, Nas.com, UUKI and Locals.com.
+- **Learning and business suites:** Disco, Kajabi, Thinkific, LearnWorlds, Podia, Pensil, Teachable, Passion.io and Uscreen.
 - **Branded-app specialists:** Disciple, Honeycommb, TopFan and mobile-first learning products.
 - **Commerce and membership layers:** Fourthwall, Patreon, Memberful, Substack and fan-economy products.
 - **Enterprise and customer communities:** Bettermode, Hivebrite, Higher Logic Vanilla, Khoros and Gainsight Customer Communities.
@@ -663,6 +684,8 @@ Before committing, create a portability scorecard.
 | Safety | Moderation records, block lists and reports portable or archived |
 | Exit | Contract states migration support, timing and deletion process |
 
+[Open the vendor due-diligence checklist](/downloads/community-platform-vendor-due-diligence-checklist.csv) for 36 contract, API, AI, security, mobile, economics and exit tests. Use it during the demo and require evidence before the order form—not after the migration.
+
 Also test the platform with real members on mobile. A sales demo cannot reveal whether notifications are noisy, search is weak, older members struggle with navigation, or the feed rewards the wrong behavior.
 
 ## New and emerging platforms worth watching
@@ -684,11 +707,13 @@ The fresh creator-specific entrant is **TopFan**. In February 2026, Axios report
 
 **[VewMe](https://markets.businessinsider.com/news/stocks/vewme-announces-full-public-launch-of-its-white-label-community-and-membership-platform-1036341147)** announced a public launch in July 2026 as a white-label community and membership platform. It belongs on a watchlist, not yet above proven infrastructure in a high-stakes decision. A press release is not evidence of product depth, portability or operational reliability.
 
+**[Bonfire](https://onbonfire.com/docs/api)** is the most explicitly agent-oriented launch-stage product in this update: its documentation describes a hosted MCP endpoint, 18 tools, a public API, webhooks, a CLI and a white-label PWA. Those are vendor claims, not production proof. Its authenticated tool surface was not independently tested, and some competitor-comparison claims conflict with the current product documentation reviewed for this guide. Treat it as a synthetic-data sandbox until customer references, security and load evidence, permission tests and a complete export drill pass.
+
 New does not mean low risk. Evaluate young platforms with a staged pilot, export test, reference calls and an exit plan.
 
 **[Octo](https://www.getocto.com/en/features/)** and **[Socie Premium](https://socie.eu/own-white-labeled-app/)** are credible additions when the brief resembles an association rather than a creator school. Octo emphasizes workflows, payments, forms and an operations-heavy super-app; Socie has unusually clear customer-owned Apple and Google developer accounts plus a member/group API. Neither displaces the creator shortlist for the case in this guide.
 
-LetTalk, NIX Platform, EzyCommunity, PrivateHive and YouToo have active or claimed-live products and now appear in the registry with explicit maturity and exit-risk labels. They should not receive a 100,000-person production audience until comparable customer references, load tests, security evidence, complete export demonstrations and written mobile-listing terms pass review.
+UUKI, Pensil, Locals.com, Mateflow, Aqyl, CommunityXO, ShaunSocial, EZCLUB.APP, Indigo and Bonfire now appear alongside LetTalk, NIX Platform, EzyCommunity, PrivateHive and YouToo with explicit maturity and exit-risk labels. Podia is also present as the established simple-suite option it is. None of the younger systems should receive a 100,000-person production audience until comparable customer references, load tests, security evidence, complete export demonstrations and written mobile-listing terms pass review.
 
 ### The overlooked technical dark horse: Whop
 
@@ -698,7 +723,7 @@ The tradeoff is equally specific: the creator does not receive an independent ow
 
 ### The watchlist, not the recommendation list
 
-Mateflow, Mobieus, MyFoundr, Cohortia, VewMe and other young products surfaced during research. They may become useful. They do not yet displace established infrastructure for a 100,000-follower launch on the evidence available. Treat launch announcements and dynamic pricing pages as discovery signals, then require a sandbox, customer references, a full export test, uptime and security answers, and written exit terms before moving a large audience.
+Mateflow, Aqyl, CommunityXO, EZCLUB.APP, Mobieus, MyFoundr, Cohortia, VewMe and other young products surfaced during research. They may become useful. They do not yet displace established infrastructure for a 100,000-follower launch on the evidence available. Treat launch announcements and dynamic pricing pages as discovery signals, then require a sandbox, customer references, a full export test, uptime and security answers, and written exit terms before moving a large audience.
 
 ## The final recommendation for the 100,000-follower creator
 
@@ -731,6 +756,6 @@ A high-quality brand does not require custom code on day one. It requires a prec
 
 ## Research method and disclosure
 
-This guide is based on primary product, pricing, API and policy documentation reviewed on 27 July 2026, supplemented by current reporting for new entrants. Vendor claims are treated as claims, not independent proof. Public pricing can change; request written quotes and contract terms before purchase. Cost ranges in this guide are FrankX planning estimates, not quotations.
+This guide is based on primary product, pricing, API and policy documentation reviewed on 27–28 July 2026, supplemented by current reporting for new entrants. Vendor claims are treated as claims, not independent proof. The 28 July release added ten registry rows, corrected the missing Podia row, and added the vendor-neutral ownership blueprint and diligence checklist. It does **not** claim firsthand product trials, private customer interviews, load tests, security audits or completed export drills; those remain buyer diligence. Public pricing can change, so request written quotes and contract terms before purchase. Cost ranges in this guide are FrankX planning estimates, not quotations.
 
 FrankX has no disclosed commercial relationship with the platforms in this comparison. If affiliate links are added later, they should be labeled without changing the recommendation methodology.

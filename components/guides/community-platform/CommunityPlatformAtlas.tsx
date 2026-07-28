@@ -7,6 +7,7 @@ import {
   getCommunityPlatformAiMode,
   type CommunityPlatformAiMode,
 } from '@/lib/community-platform-ai'
+import { trackEvent } from '@/lib/analytics'
 import type { CommunityPlatform } from '@/lib/community-platforms'
 import styles from './community-platform-guide.module.css'
 
@@ -116,6 +117,7 @@ export default function CommunityPlatformAtlas({ platforms }: PlatformAtlasProps
   const [aiFilter, setAiFilter] = useState<'All' | AiMode>('All')
   const [selectedName, setSelectedName] = useState('Circle')
   const evidenceRef = useRef<HTMLElement>(null)
+  const lastSearchSignatureRef = useRef('')
 
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
@@ -144,7 +146,12 @@ export default function CommunityPlatformAtlas({ platforms }: PlatformAtlasProps
   ).length
 
   function selectPlatform(platformName: string) {
+    const selectedPlatform = platforms.find((platform) => platform.platform === platformName)
     setSelectedName(platformName)
+    trackEvent('community_guide_platform_selected', {
+      platform: platformName,
+      lane: selectedPlatform ? behaviorLane(selectedPlatform) : 'Unknown',
+    })
     if (window.matchMedia('(max-width: 1120px)').matches) {
       window.requestAnimationFrame(() => {
         evidenceRef.current?.scrollIntoView({
@@ -155,6 +162,22 @@ export default function CommunityPlatformAtlas({ platforms }: PlatformAtlasProps
     }
   }
 
+  function recordSearch() {
+    const characterCount = query.trim().length
+    if (!characterCount) return
+
+    const signature = `${query.trim()}:${filtered.length}:${laneFilter}:${aiFilter}`
+    if (signature === lastSearchSignatureRef.current) return
+    lastSearchSignatureRef.current = signature
+
+    trackEvent('community_guide_atlas_search', {
+      character_count: characterCount,
+      result_count: filtered.length,
+      lane: laneFilter,
+      ai_mode: aiFilter,
+    })
+  }
+
   return (
     <section id="platform-atlas" className={styles.visualSection} aria-labelledby="atlas-title">
       <header className={styles.visualHeader}>
@@ -163,8 +186,8 @@ export default function CommunityPlatformAtlas({ platforms }: PlatformAtlasProps
           <h2 id="atlas-title">Choose by member behavior. Then inspect control.</h2>
         </div>
         <p>
-          {platforms.length} products · {officialMcpCount} verified vendor-MCP surfaces · live,
-          beta and experimental
+          {platforms.length} products · {officialMcpCount} documentation-verified vendor-MCP
+          surfaces · live, beta and experimental
         </p>
       </header>
 
@@ -177,6 +200,10 @@ export default function CommunityPlatformAtlas({ platforms }: PlatformAtlasProps
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
+              onBlur={recordSearch}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') recordSearch()
+              }}
               placeholder="Platform, use case, verdict"
             />
           </span>
@@ -185,7 +212,14 @@ export default function CommunityPlatformAtlas({ platforms }: PlatformAtlasProps
           <span>Member behavior</span>
           <select
             value={laneFilter}
-            onChange={(event) => setLaneFilter(event.target.value as 'All' | BehaviorLane)}
+            onChange={(event) => {
+              const value = event.target.value as 'All' | BehaviorLane
+              setLaneFilter(value)
+              trackEvent('community_guide_atlas_filter', {
+                filter_type: 'member_behavior',
+                filter_value: value,
+              })
+            }}
           >
             <option>All</option>
             {BEHAVIOR_LANES.map((lane) => (
@@ -197,7 +231,14 @@ export default function CommunityPlatformAtlas({ platforms }: PlatformAtlasProps
           <span>AI connection</span>
           <select
             value={aiFilter}
-            onChange={(event) => setAiFilter(event.target.value as 'All' | AiMode)}
+            onChange={(event) => {
+              const value = event.target.value as 'All' | AiMode
+              setAiFilter(value)
+              trackEvent('community_guide_atlas_filter', {
+                filter_type: 'ai_connection',
+                filter_value: value,
+              })
+            }}
           >
             <option>All</option>
             <option>Official MCP</option>
@@ -304,7 +345,19 @@ export default function CommunityPlatformAtlas({ platforms }: PlatformAtlasProps
           </dl>
           <div className={styles.sourceLinks}>
             {selected.primarySourceUrls.slice(0, 3).map((source, index) => (
-              <a key={source} href={source} target="_blank" rel="noreferrer">
+              <a
+                key={source}
+                href={source}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() =>
+                  trackEvent('community_guide_source_opened', {
+                    platform: selected.platform,
+                    source_index: index + 1,
+                    surface: 'atlas',
+                  })
+                }
+              >
                 Evidence source {index + 1}
                 <ArrowUpRight aria-hidden="true" size={14} />
               </a>
