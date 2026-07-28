@@ -74,7 +74,14 @@ function fail(message) {
   process.exit(1)
 }
 
-const args = parseArgs(process.argv.slice(2))
+// parseArgs throws on an unknown flag. Catch it so a typo gets the same clean
+// one-line error as every other bad input, rather than a Node stack trace.
+let args
+try {
+  args = parseArgs(process.argv.slice(2))
+} catch (error) {
+  fail(error instanceof Error ? error.message : String(error))
+}
 
 if (!args.title) {
   fail(
@@ -132,5 +139,17 @@ await mkdir(JOURNAL_DIR, { recursive: true })
 await writeFile(filepath, body, 'utf8')
 
 console.log(`content/journal/${filename}`)
-console.log(`  /journal/${date}-${slug}${args.visibility === 'private' ? '  (private — not published)' : ''}`)
-console.log('\nFill in the summary line, write the note, commit. That publishes it.')
+
+if (args.visibility === 'private') {
+  // No URL to print — a private entry has no route. Saying so plainly beats
+  // printing an address that 404s.
+  console.log('  private — no URL. Kept out of the index, feed, sitemap, and its own route.')
+  console.log(
+    '\nThis is not access control. Committing the file publishes its text to this\n' +
+      'public repo on GitHub; it just never reaches frankx.ai. Anything you would\n' +
+      'not show a stranger belongs outside the repo entirely.',
+  )
+} else {
+  console.log(`  /journal/${date}-${slug}`)
+  console.log('\nFill in the summary line, write the note, commit. That publishes it.')
+}

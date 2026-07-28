@@ -2,7 +2,9 @@
 # You usually do not need this file. Run:
 #
 #   pnpm journal:new "Your title"          # today's entry, ready to write
-#   pnpm journal:new "Your title" --private
+#   pnpm journal:new "Your title" --private  # kept off frankx.ai — but see below:
+#                                            # committing it still publishes the
+#                                            # text to this public repo.
 #
 # It writes the file, the slug, and valid frontmatter for you. This template is
 # the reference for what those fields mean, and the fallback if you'd rather
