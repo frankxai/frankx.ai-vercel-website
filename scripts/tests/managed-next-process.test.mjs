@@ -63,3 +63,15 @@ test('managed process teardown exits the child tree and closes its pipes promptl
     await stopManagedProcess(child, { graceMilliseconds: 500 })
   }
 })
+
+test('managed process captures spawn failures without an uncaught error', async () => {
+  const child = spawnManagedProcess('command-that-must-not-exist-for-managed-process-test', [])
+  const [error] = await once(child, 'error')
+
+  assert.equal(error.code, 'ENOENT')
+  assert.equal(child.spawnError, error)
+
+  await stopManagedProcess(child)
+  assert.equal(child.stdout.destroyed, true)
+  assert.equal(child.stderr.destroyed, true)
+})
