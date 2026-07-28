@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check, FlaskConical, Sparkles, Users } from 'lucide-react'
 
@@ -70,26 +71,39 @@ export default function WorkshopsPage() {
               </div>
             </div>
 
-            <div className="border-y border-white/10 py-7">
-              <p className="text-sm font-semibold text-white">The provenance line is explicit</p>
-              <div className="mt-6 grid gap-6 sm:grid-cols-3">
-                <div>
-                  <p className="text-xs font-semibold text-amber-200">Personally developed + delivered</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">
-                    Ikigai &amp; Branding is Frank’s personally developed and facilitated foundation.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-emerald-200">Delivered, studio-assisted</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">
-                    Build Your First AI Agent has a delivery record; its architecture was built with the agentic studio.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-cyan-200">Studio drafts</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">
-                    The remaining formats are prepared architectures to tailor and pilot—not past delivery claims.
-                  </p>
+            <div>
+              <div className="overflow-hidden rounded-2xl border border-white/10">
+                <Image
+                  src="/images/workshops/workshop-os-hero.jpg"
+                  alt="Sunlit workshop room with laptops and notebooks around a shared table and a system diagram sketched on the whiteboard"
+                  width={2752}
+                  height={1536}
+                  priority
+                  sizes="(max-width: 1023px) 100vw, 55vw"
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="mt-8 border-y border-white/10 py-7">
+                <p className="text-sm font-semibold text-white">The provenance line is explicit</p>
+                <div className="mt-6 grid gap-6 sm:grid-cols-3">
+                  <div>
+                    <p className="text-xs font-semibold text-amber-200">Personally developed + delivered</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">
+                      Ikigai &amp; Branding is Frank’s personally developed and facilitated foundation.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-emerald-200">Delivered, studio-assisted</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">
+                      Build Your First AI Agent has a delivery record; its architecture was built with the agentic studio.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-cyan-200">Studio drafts</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">
+                      The remaining formats are prepared architectures to tailor and pilot—not past delivery claims.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
