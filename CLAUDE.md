@@ -62,6 +62,7 @@ Frank: AI Architect and Creator, ships products/code/content, translates enterpr
 
 | Purpose | Command |
 |---|---|
+| New journal entry | `pnpm journal:new "Title"` (`--kind note\|log`, `--private`, `--date`) |
 | Dev server | `pnpm dev` |
 | Type check | `pnpm run type-check` |
 | Lint | `pnpm run lint` |
