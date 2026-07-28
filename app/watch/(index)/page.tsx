@@ -5,7 +5,7 @@ import {
   getEditorsPicks,
   getVideoStats,
 } from '@/lib/video'
-import WatchClient from './WatchClient'
+import WatchClient from '../WatchClient'
 
 export default function WatchPage() {
   const videos = getAllVideos()
