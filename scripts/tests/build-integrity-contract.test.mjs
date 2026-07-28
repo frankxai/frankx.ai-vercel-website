@@ -81,7 +81,7 @@ test('CI runs the boundary contract when dependency policy changes', async () =>
   )
   assert.equal(
     packageJson.scripts.postbuild,
-    'npm run test:build-artifact-integrity',
+    'npm run test:build-artifact-integrity && npm run test:vault-metadata:rendered',
     'every production build must verify the emitted prerender manifest',
   )
 })
