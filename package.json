@@ -14,7 +14,7 @@
     "smoke:json": "node scripts/run-smoke-evals.mjs --json",
     "test:newsletter": "node --experimental-strip-types --test scripts/tests/submit-newsletter.test.mjs",
     "test:privacy-analytics": "node --experimental-strip-types --test scripts/tests/privacy-analytics.test.mjs",
-    "test:build-integrity": "node --test scripts/tests/build-integrity-contract.test.mjs",
+    "test:build-integrity": "node --test scripts/tests/build-integrity-contract.test.mjs scripts/tests/managed-next-process.test.mjs",
     "test:build-artifact-integrity": "node --test scripts/tests/build-artifact-integrity.test.mjs",
     "test:tallinn-experience": "node --test scripts/tests/tallinn-experience-foundry-contract.test.mjs",
     "test:ai-architecture": "node scripts/check-ai-architecture-contract.mjs",
