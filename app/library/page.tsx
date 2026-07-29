@@ -125,10 +125,11 @@ const categoryColors: Record<string, string> = {
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="flex gap-0.5">
+    <div className="flex gap-0.5" role="img" aria-label={`${rating} out of 5 stars`}>
       {[1, 2, 3, 4, 5].map((star) => (
         <svg
           key={star}
+          aria-hidden="true"
           className={`h-4 w-4 ${star <= rating ? 'text-amber-400' : 'text-white/10'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -322,6 +323,14 @@ export default function LibraryPage() {
                     <div className="mb-4 -mt-2">
                       <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-200/80 border border-cyan-500/15">
                         Source-backed
+                      </span>
+                    </div>
+                  )}
+
+                  {review.slug === 'handbook-to-higher-consciousness' && (
+                    <div className="mb-4 -mt-2">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-amber-500/10 text-amber-200/80 border border-amber-500/20">
+                        Complete system map
                       </span>
                     </div>
                   )}
