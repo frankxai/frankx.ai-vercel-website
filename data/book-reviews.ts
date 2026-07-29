@@ -1,6 +1,8 @@
 import type { BookReview } from '@/app/books/types';
+import { handbookToHigherConsciousnessReview } from '@/data/handbook-to-higher-consciousness';
 
 export const bookReviews: BookReview[] = [
+  handbookToHigherConsciousnessReview,
   {
     slug: 'e-squared',
     title: 'E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality',
