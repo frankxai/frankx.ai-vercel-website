@@ -4,34 +4,12 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 
 import { createMetadata } from '@/lib/seo'
-import { getMvuEntries, getMvuEntry, type MvuLayer } from '@/lib/mvu'
+import { getMvuEntries, getMvuEntry } from '@/lib/mvu'
+import { MVU_LAYER_META } from '@/lib/mvu-display'
+import { serializeJsonLd } from '@/lib/structured-data'
 import { MDXContent } from '@/components/blog/MDXContent'
 
 const SITE_URL = 'https://frankx.ai'
-
-const LAYER_META: Record<
-  MvuLayer,
-  { label: string; description: string; accent: string; panel: string }
-> = {
-  'frank-note': {
-    label: 'Frank’s note · first person',
-    description: 'Lived experience, minimally edited.',
-    accent: 'text-amber-200',
-    panel: 'border-amber-200/20 bg-amber-100/[0.04]',
-  },
-  'field-intelligence': {
-    label: 'Field intelligence · editorial synthesis',
-    description: 'Interpretation and synthesis, not a verbatim transcript.',
-    accent: 'text-tech-light',
-    panel: 'border-tech-light/20 bg-tech-light/[0.04]',
-  },
-  'practice-guide': {
-    label: 'Practice guide · applied system',
-    description: 'A sourced exercise or protocol built from the field notes.',
-    accent: 'text-emerald-300',
-    panel: 'border-emerald-300/20 bg-emerald-300/[0.04]',
-  },
-}
 
 export function generateStaticParams() {
   return getMvuEntries().map((entry) => ({ slug: entry.slug }))
@@ -52,8 +30,7 @@ export async function generateMetadata({
     })
   }
 
-  const collectionLabel =
-    entry.layer === 'frank-note' ? 'MVU journal' : 'MVU field intelligence'
+  const collectionLabel = MVU_LAYER_META[entry.layer].collectionLabel
 
   return createMetadata({
     title: `${entry.title} — ${collectionLabel}`,
@@ -90,17 +67,17 @@ export default async function MvuEntryPage({
     isPartOf: { '@type': 'CollectionPage', name: 'MVU field atlas', url: `${SITE_URL}/mvu` },
   }
 
-  const layer = LAYER_META[entry.layer]
+  const layer = MVU_LAYER_META[entry.layer]
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#080908]">
+    <main className="relative min-h-screen overflow-hidden bg-void">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_50%_0%,rgba(251,191,36,0.08),transparent_62%)]"
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
       />
 
       <article className="relative mx-auto w-full max-w-3xl px-5 py-16 sm:px-6 sm:py-24">
