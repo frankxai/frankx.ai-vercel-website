@@ -1,7 +1,9 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Download, RotateCcw, ShieldCheck, Trash2 } from 'lucide-react'
+
+import { trackEvent } from '@/lib/analytics'
 
 const STORAGE_KEY = 'frankx:mvu:unhooking-entry:v1'
 
@@ -69,6 +71,29 @@ const FIELDS: Array<{
   },
 ]
 
+function normalizeEntry(value: unknown): Entry {
+  if (!value || typeof value !== 'object') return { ...EMPTY_ENTRY }
+
+  const candidate = value as Record<string, unknown>
+  const stringValue = (key: keyof Entry) =>
+    typeof candidate[key] === 'string' ? String(candidate[key]) : ''
+
+  const savedAttachment =
+    typeof candidate.attachment === 'number' && Number.isFinite(candidate.attachment)
+      ? candidate.attachment
+      : EMPTY_ENTRY.attachment
+
+  return {
+    facts: stringValue('facts'),
+    body: stringValue('body'),
+    thought: stringValue('thought'),
+    impulse: stringValue('impulse'),
+    beneficiary: stringValue('beneficiary'),
+    kindAction: stringValue('kindAction'),
+    attachment: Math.min(5, Math.max(0, Math.round(savedAttachment))),
+  }
+}
+
 function asMarkdown(entry: Entry) {
   return `# Unhooking practice entry
 
@@ -89,11 +114,12 @@ Reflection: A thought appeared. I did not have to turn it into an instruction.
 export function UnhookingTracker() {
   const [entry, setEntry] = useState<Entry>(EMPTY_ENTRY)
   const [hydrated, setHydrated] = useState(false)
+  const skipNextSave = useRef(false)
 
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY)
-      if (saved) setEntry({ ...EMPTY_ENTRY, ...JSON.parse(saved) })
+      if (saved) setEntry(normalizeEntry(JSON.parse(saved)))
     } catch {
       // A blocked or malformed local store should never block the practice.
     } finally {
@@ -103,6 +129,10 @@ export function UnhookingTracker() {
 
   useEffect(() => {
     if (!hydrated) return
+    if (skipNextSave.current) {
+      skipNextSave.current = false
+      return
+    }
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(entry))
     } catch {
@@ -127,19 +157,30 @@ export function UnhookingTracker() {
     link.download = `unhooking-entry-${new Date().toISOString().slice(0, 10)}.md`
     link.click()
     URL.revokeObjectURL(url)
+    trackEvent('mvu_practice_action', {
+      action: 'export_reflection',
+      completed_signals: completed,
+    })
+  }
+
+  function startFreshEntry() {
+    setEntry({ ...EMPTY_ENTRY })
+    trackEvent('mvu_practice_action', { action: 'start_fresh_entry' })
   }
 
   function clearEntry() {
-    setEntry(EMPTY_ENTRY)
+    skipNextSave.current = true
+    setEntry({ ...EMPTY_ENTRY })
     try {
       window.localStorage.removeItem(STORAGE_KEY)
     } catch {
       // The visible reset still succeeds.
     }
+    trackEvent('mvu_practice_action', { action: 'delete_local_data' })
   }
 
   return (
-    <div className="overflow-hidden rounded-[2rem] border border-amber-300/20 bg-[#100f0c]">
+    <div className="overflow-hidden rounded-[2rem] border border-amber-300/20 bg-space">
       <div className="flex flex-col gap-5 border-b border-white/10 px-5 py-6 sm:flex-row sm:items-end sm:justify-between sm:px-8">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-amber-300/70">
@@ -157,7 +198,7 @@ export function UnhookingTracker() {
 
       <div className="grid gap-px bg-white/10 lg:grid-cols-2">
         {FIELDS.map((field, index) => (
-          <label key={field.key} className="block bg-[#0b0b09] p-5 sm:p-7">
+          <label key={field.key} className="block bg-void p-5 sm:p-7">
             <span className="flex items-baseline justify-between gap-4">
               <span className="text-sm font-semibold text-white">
                 {String(index + 1).padStart(2, '0')} · {field.label}
@@ -206,14 +247,14 @@ export function UnhookingTracker() {
           <button
             type="button"
             onClick={downloadEntry}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-300 px-5 py-2.5 text-sm font-semibold text-[#0b0b09] transition-colors hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-300 px-5 py-2.5 text-sm font-semibold text-void transition-colors hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
           >
             <Download className="h-4 w-4" aria-hidden />
             Export this reflection
           </button>
           <button
             type="button"
-            onClick={() => setEntry(EMPTY_ENTRY)}
+            onClick={startFreshEntry}
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-sm text-white/65 transition-colors hover:border-white/25 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
           >
             <RotateCcw className="h-4 w-4" aria-hidden />
