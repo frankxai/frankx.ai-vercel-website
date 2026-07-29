@@ -95,7 +95,15 @@ function readAll(): MvuEntry[] {
       const { data, content } = matter(fs.readFileSync(fullPath, 'utf8'))
       return buildEntry(slug, data, content)
     })
-    .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+    .sort((a, b) => {
+      const at = new Date(a.date).getTime()
+      const bt = new Date(b.date).getTime()
+      if (Number.isNaN(at) && Number.isNaN(bt)) return a.slug.localeCompare(b.slug)
+      if (Number.isNaN(at)) return 1
+      if (Number.isNaN(bt)) return -1
+      if (at !== bt) return bt - at
+      return a.slug.localeCompare(b.slug)
+    })
 }
 
 /** Published entries only — what the live site shows. Newest first. */
