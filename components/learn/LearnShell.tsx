@@ -235,6 +235,31 @@ export default function LearnShell() {
             </div>
 
             <div>
+              <Link
+                href="/learn/openai"
+                className="group mb-10 block rounded-3xl border border-emerald-300/20 bg-emerald-300/[0.045] p-6 transition-colors hover:border-emerald-300/35 hover:bg-emerald-300/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 sm:p-7"
+              >
+                <span className="flex items-start justify-between gap-6">
+                  <span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-200/75">
+                      OpenAI decision hub · Updated July 29
+                    </span>
+                    <span className="mt-3 block font-display text-2xl font-semibold tracking-[-0.03em] text-white">
+                      Chat vs ChatGPT Work vs Codex
+                    </span>
+                    <span className="mt-3 block max-w-2xl text-sm leading-6 text-[#b8b8bd]">
+                      Choose the right desktop mode for your role, then follow a
+                      verified path into conversation, reviewable knowledge work,
+                      or software development.
+                    </span>
+                  </span>
+                  <ArrowRight
+                    className="mt-1 h-5 w-5 shrink-0 text-emerald-200 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+
               <div className="mb-6 flex items-center gap-3">
                 <Bot className="h-5 w-5 text-emerald-300" aria-hidden="true" />
                 <h3 className="font-display text-xl font-semibold text-white">Model makers</h3>

@@ -7,6 +7,12 @@ import {
   recommendedCourses,
   resolveCourseDestination,
 } from '../../data/learning-catalog.ts'
+import {
+  OPENAI_MASTERY_VERIFIED_AT,
+  openAIModes,
+  openAIResources,
+  openAIRolePaths,
+} from '../../data/openai-mastery.ts'
 import { enumerateRoutes } from '../../lib/route-enumeration.mjs'
 
 const root = process.cwd()
@@ -29,6 +35,93 @@ test('learning discovery and Academy pattern routes exist', () => {
       fs.existsSync(path.join(root, page)) || fs.existsSync(path.join(root, grouped))
     assert.equal(exists, true, `${page} (or ${grouped}) must exist`)
   }
+})
+
+test('OpenAI mastery keeps one hub, three mode paths, and the stable legacy URLs', () => {
+  for (const page of [
+    'app/learn/openai/page.tsx',
+    'app/learn/chatgpt-work-mastery/page.tsx',
+  ]) {
+    assert.equal(fs.existsSync(path.join(root, page)), true, `${page} must exist`)
+  }
+
+  assert.deepEqual(
+    openAIModes.map((mode) => mode.id),
+    ['chat', 'work', 'codex'],
+  )
+  assert.deepEqual(
+    openAIModes.map((mode) => mode.href),
+    [
+      '/learn/chatgpt-mastery',
+      '/learn/chatgpt-work-mastery',
+      '/learn/codex-mastery',
+    ],
+  )
+
+  const legacyRegistry = fs.readFileSync(
+    path.join(root, 'data/learning-paths.ts'),
+    'utf8',
+  )
+  assert.match(legacyRegistry, /slug:\s*'chatgpt-mastery'/)
+  assert.match(legacyRegistry, /slug:\s*'codex-mastery'/)
+})
+
+test('OpenAI mastery registry has explicit provenance, lifecycle, and freshness', () => {
+  const ids = new Set()
+  const isoDate = /^\d{4}-\d{2}-\d{2}$/
+
+  assert.match(OPENAI_MASTERY_VERIFIED_AT, isoDate)
+
+  for (const resource of openAIResources) {
+    assert.equal(ids.has(resource.id), false, `${resource.id} must be unique`)
+    ids.add(resource.id)
+    assert.equal(resource.url.startsWith('https://'), true, `${resource.id} must use HTTPS`)
+    assert.match(resource.lastVerifiedAt, isoDate, `${resource.id} needs an ISO review date`)
+    assert.equal(typeof resource.official, 'boolean')
+    assert.ok(resource.audiences.length > 0, `${resource.id} needs at least one audience`)
+    assert.ok(resource.surfaces.length > 0, `${resource.id} needs at least one surface`)
+  }
+
+  assert.equal(
+    openAIResources.some((resource) => resource.url === 'https://github.com/openai/skills'),
+    false,
+    'the deprecated openai/skills catalog must not be presented as current',
+  )
+  assert.equal(
+    openAIResources.some(
+      (resource) =>
+        resource.url === 'https://github.com/openai/plugins' &&
+        resource.status === 'current',
+    ),
+    true,
+    'openai/plugins must be the current official catalog',
+  )
+})
+
+test('OpenAI role recommendations remain a bounded routing layer', () => {
+  assert.deepEqual(
+    openAIRolePaths.map((role) => role.id),
+    ['founder', 'creator', 'researcher', 'developer', 'team'],
+  )
+
+  for (const role of openAIRolePaths) {
+    assert.notEqual(role.primarySurface, role.secondarySurface)
+    assert.equal(role.nextHref.startsWith('/'), true)
+  }
+})
+
+test('OpenAI hub emits collection schemas instead of pretending to be one course', () => {
+  const hub = fs.readFileSync(path.join(root, 'app/learn/openai/page.tsx'), 'utf8')
+  const workPath = fs.readFileSync(
+    path.join(root, 'app/learn/chatgpt-work-mastery/page.tsx'),
+    'utf8',
+  )
+
+  assert.match(hub, /type="CollectionPage"/)
+  assert.match(hub, /type="ItemList"/)
+  assert.match(hub, /type="BreadcrumbList"/)
+  assert.doesNotMatch(hub, /type="Course"/)
+  assert.match(workPath, /type="Course"/)
 })
 
 test('legacy Academy paths resolve to the canonical Academy route', () => {
