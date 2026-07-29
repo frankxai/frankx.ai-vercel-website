@@ -1,14 +1,16 @@
 # Branch Audit — frankx.ai-vercel-website
 
 **As of:** 2026-07-29
-**Baseline:** `main` @ 12850052e
-**Before this change:** 70 branches · **After it merges:** 59, in three legible classes
+**Baseline:** `main` @ fba63b509 (#398)
+**Before this change:** 71 branches · **After it merges:** 61, in three legible classes
 
 ## Method — and the two ways this measurement goes wrong
 
 Two naive metrics both give the wrong answer on this repo, so neither is used here.
 
-**`git diff main...branch` is wrong after a squash merge.** Three-dot diff measures from the merge base, and a squash merge creates a commit on `main` that is not in the branch's ancestry. `agent/codex/vault-refresh-388` reports "4 unlanded files" by that metric even though PR #388 merged its content verbatim — the merge base simply never moved. Both vault-refresh branches are fully landed.
+**`git diff main...branch` is wrong after a squash merge.** Three-dot diff measures from the merge base, and a squash merge creates a commit on `main` that is not in the branch's ancestry, so the base never moves and long-landed content still reports as "unlanded."
+
+**A tree-equality result expires.** `merge-tree result == main tree` proves a branch adds nothing *at that moment*. Once `main` deletes a file the branch still carries, merging it would resurrect that file and the equality breaks. Both `vault-refresh` branches measured as adding nothing at `12850052e` and stopped doing so four commits later, when `app/vault/page.tsx` was replaced by the `app/vault/(index)/` route group. Re-measure against the `main` you are actually merging into.
 
 **Raw file counts are inflated by `public/reading/`.** `main` untracked that directory on 2026-07-26 (#349) — 17,880 files, ~508MB of recursive generator output. Every branch created before that date still carries them, so a plain diff reports a ~6.6M-line delta on almost every branch. That is an artifact, not unlanded work. A three-way merge preserves `main`'s deletion, verified by test-merging every branch: **zero** stage a `public/reading/` file.
 
@@ -20,11 +22,15 @@ Every branch now falls into exactly one of three classes, so nobody has to guess
 
 | Class | Count after | Meaning |
 |---|---|---|
-| Backs an open PR | 30 | In flight — leave alone until the PR resolves |
-| `archive/*` | 26 | Inert by construction. Nothing outside this namespace is a save-point |
-| Active development | 3 | Branches with commits from the last 48 hours |
+| Backs an open PR | ~30 | In flight — leave alone until the PR resolves |
+| `archive/*` | 28 | Inert by construction. Nothing outside this namespace is a save-point |
+| Active development | rest | Branches with commits from the last few days |
 
 24 branches are queued for deletion in `.github/cleanup-queue.txt`. Nothing is deleted without a recovery path, and every path is named below.
+
+### A correction worth recording
+
+An earlier draft of this queue listed `agent/codex/vault-refresh-388` and `-v2` as "fully landed, nothing to preserve," inferring from the branch names that they backed PR #388. **They did not.** PR #388's head was `agent/hermes/vault-rendered-metadata-20260728`; the vault-refresh pair carried equivalent content that never had a PR of its own. They are orphans and are archived like the rest. Branch names are not evidence — the PR head ref is.
 
 ## Why `archive/*` branches and not tags
 
@@ -44,13 +50,6 @@ git push origin --tags
 
 ## Queued for deletion (24)
 
-### Fully landed — content is already on `main` (2)
-
-| Branch | PR | Proof |
-|---|---|---|
-| `agent/codex/vault-refresh-388` | 388 | merge-tree result == `main` tree |
-| `agent/codex/vault-refresh-388-v2` | 388 | merge-tree result == `main` tree; superseded duplicate |
-
 ### PR closed unmerged (9)
 
 Someone opened a PR and closed it. That is a decision already made. GitHub retains the head commit on the PR page indefinitely — **"Restore branch" on the PR recovers each of these**, so no separate archive ref is needed.
@@ -67,7 +66,7 @@ Someone opened a PR and closed it. That is a decision already made. GitHub retai
 | `codex/remove-acos-agentdb` | 186 | 2026-06-18 | 3 |
 | `observability/vercel-cost-2026-W31` | 375 | 2026-07-27 | 1 |
 
-### Orphans with no PR — copied to `archive/*` first (12)
+### Orphans with no PR — copied to `archive/*` first (14)
 
 These are the branches that actually lose work: committed changes never proposed for review and not on `main`. Each was pushed to an `archive/*` ref at a **byte-identical tip** before being queued, and each pair was verified equal by SHA.
 
@@ -85,6 +84,8 @@ These are the branches that actually lose work: committed changes never proposed
 | `codex/x` | `archive/codex-x-2026-07-15` | 2026-07-15 | 120 |
 | `feat/ikigai-branding-workshop` | `archive/feat-ikigai-branding-workshop-2026-06-14` | 2026-06-14 | 71 |
 | `feat/map-v1-v2-v3-upgrades` | `archive/feat-map-v1-v2-v3-upgrades-2026-07-15` | 2026-07-15 | 120 |
+| `agent/codex/vault-refresh-388` | `archive/agent-codex-vault-refresh-388-2026-07-28` | 2026-07-28 | 4 |
+| `agent/codex/vault-refresh-388-v2` | `archive/agent-codex-vault-refresh-388-v2-2026-07-28` | 2026-07-28 | 4 |
 
 Recover any of them with `git checkout -b <original-name> origin/<recovery-ref>`.
 
@@ -104,23 +105,39 @@ Two are worth a look before they age further: `agent/worktree-sync`'s only chang
 
 ## The open-PR backlog
 
-30 PRs are open. **13 of them conflict with `main`** and cannot land without a rebase; 17 merge clean. Counting which files actually conflict across the backlog:
+30 PRs are open. **13 conflict with `main`** and cannot land without a rebase; 17 merge clean.
 
-| File | Conflicts in | Nature |
+An earlier draft of this file claimed the conflicts were mostly generated files and therefore mechanical. **That was measured across the whole 47-branch backlog, most of which this change deletes.** Re-measured against the 13 conflicting *open PRs* only, the picture is different: **none of them is mechanical.** Every one has at least one hand-written conflicting file. The generated-file recipe below still applies where it comes up, but it will not unblock a single PR on its own.
+
+### What is actually blocking them
+
+The dominant pattern is not competing edits — it is **stale branches trying to re-add files `main` deliberately removed**. Merging these as-is would silently resurrect deleted surfaces:
+
+| PR | Branch | Would resurrect |
 |---|---|---|
-| `data/route-index.json` | 13 | **Generated** — rebuilt by `scripts/build-route-index.mjs` in `prebuild`, on every build including Vercel's |
-| `data/vault-manifest.json` | 11 | **Generated** by `pnpm vault:scan` (hand-triggered) |
-| `package.json` | 11 | Genuine |
-| `next.config.mjs` | 8 | Genuine |
-| `components/NavigationMega.tsx` | 8 | Genuine |
-| `.gitignore` | 8 | Genuine |
-| `package-lock.json` | 7 | Resolved — deleted from `main` in #378 |
+| #368 | `agent/codex/metadata-integrity-20260725` | `app/vault/page.tsx` (replaced by the `app/vault/(index)/` route group) |
+| #276 | `agent/codex/starlight-retreat-vision-20260714` | `app/downloads/ana-ai-business-kit/` (2 files), `content/portal/ana.ts` |
+| #284 | `codex/best-ai-hardware` | `scripts/tests/ana-collaboration-contract.test.mjs` |
+| #278 | `agent/codex/tallinn-tribe-studio-20260714` | `scripts/tests/ana-collaboration-contract.test.mjs` |
+| #266 | `agent/codex/family-ai-operating-system` | `types/ai-architecture.js` |
+| #210 | `claude/ai-architecture-templates-65188c` | `package-lock.json` (deleted in #378) |
+| #202 | `claude/premium-ops-ruxnO` | `package-lock.json` (deleted in #378) |
 
-The single largest conflict source is a file no human edits.
+The two `package-lock.json` rows resolve one way only — take `main`'s deletion; the repo is pnpm-only. The rest are content decisions, not merge mechanics: they are asking whether a removed page comes back, which is Frank's call under the URL/SEO rule, not a reviewer's.
 
-**It cannot simply be untracked.** Four TypeScript modules import it statically — `lib/fuzzy-route-match.ts`, `lib/site-search.ts`, `lib/blog.ts`, and both `app/api/404/*` routes — and CI runs `type-check` *before* `build`, so `prebuild` has not run yet at that point. Removing it from version control would break CI on a fresh checkout. Committing it is correct given that import shape.
+### The remaining conflicts, by file
 
-What that leaves is a resolution recipe. **When `data/route-index.json` or `data/blog-hero-manifest.json` conflicts, do not hand-merge it:**
+`package.json` (6 PRs) · `components/NavigationMega.tsx` (3) · `app/sitemap.ts` (3) · `.gitignore` (3) · `app/friends/ana/page.tsx` and `data/ana-collaboration.ts` (3 each) · `next.config.mjs` (2). These are genuine parallel edits to shared index files and need a human to pick.
+
+`#221` (`blog-structure-and-content`) is the widest content conflict — `app/page.tsx`, `components/home/HomePageElite.tsx`, `components/Navigation.tsx`, `lib/blog.ts` — i.e. it competes with the homepage and blog as they now exist.
+
+### The generated-file recipe
+
+`data/route-index.json` and `data/blog-hero-manifest.json` are rebuilt by `scripts/build-route-index.mjs` in `prebuild`, on every build including Vercel's.
+
+**They cannot simply be untracked.** Four TypeScript modules import them statically — `lib/fuzzy-route-match.ts`, `lib/site-search.ts`, `lib/blog.ts`, and both `app/api/404/*` routes — and CI runs `type-check` *before* `build`, so `prebuild` has not run at that point. Removing them from version control would break CI on a fresh checkout. Committing them is correct given that import shape.
+
+**When either conflicts, do not hand-merge it:**
 
 ```sh
 git checkout --ours data/route-index.json data/blog-hero-manifest.json
@@ -128,11 +145,9 @@ pnpm routes:build
 git add data/route-index.json data/blog-hero-manifest.json
 ```
 
-The generator is deterministic and enumerates from `app/`, so the regenerated file is correct for the merged tree by construction — which a hand-resolved union of two stale copies is not. Making this cheaper (generating into a gitignored path and importing through a committed shim) is a separate structural change with real risk to `type-check`.
+The generator is deterministic and enumerates from `app/`, so the regenerated file is correct for the merged tree by construction — which a hand-resolved union of two stale copies is not.
 
-`data/blog-hero-manifest.json`'s committed copy is currently stale by two entries relative to what `prebuild` produces. Harmless in production — every deploy regenerates it — but it is drift, and it is what the recipe above prevents.
-
-`app/sitemap.ts` auto-merges in 15 branches. It is the most-touched shared file but not, in fact, a conflict source.
+`data/blog-hero-manifest.json`'s committed copy is currently stale by two entries relative to what `prebuild` produces. Harmless in production — every deploy regenerates it — but it is drift, and it is what the recipe prevents.
 
 ## Keeping this file true
 

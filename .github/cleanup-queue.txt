@@ -4,9 +4,6 @@
 # Clear a completed queue through a follow-up pull request because main is PR-protected.
 # See BRANCH_AUDIT.md for the canonical safe-delete list and the recovery path per branch.
 
-# --- Fully landed in main (content is already on main; nothing to preserve) ---
-agent/codex/vault-refresh-388
-agent/codex/vault-refresh-388-v2
 
 # --- PR closed unmerged (GitHub retains the head commit on the PR page;
 #     "Restore branch" there recovers each one indefinitely) ---
@@ -23,6 +20,8 @@ observability/vercel-cost-2026-W31
 # --- Orphans with no PR, copied to archive/* at an identical tip before deletion.
 #     Each line's replacement ref is listed in BRANCH_AUDIT.md. ---
 agent/codex/frankx-earbuds-2026
+agent/codex/vault-refresh-388
+agent/codex/vault-refresh-388-v2
 agent/gemini/auctions-upgrade
 agent/gemini/tallinn-reconciliation-main-prod
 agent/worktree-sync
