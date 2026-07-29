@@ -5,9 +5,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   BookOpen,
-  FileText,
   Layers3,
-  PenLine,
   ShieldCheck,
   Sparkles,
   Wrench,
@@ -16,7 +14,9 @@ import {
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { EventRibbon } from '@/components/connect/EventRibbon'
 import { getMvuEntrySummaries, type MvuLayer } from '@/lib/mvu'
+import { MVU_MVU_LAYER_META } from '@/lib/mvu-display'
 import { createMetadata } from '@/lib/seo'
+import { serializeJsonLd } from '@/lib/structured-data'
 
 const SITE_URL = 'https://frankx.ai'
 const MVU_URL = `${SITE_URL}/mvu`
@@ -36,60 +36,6 @@ export const metadata: Metadata = createMetadata({
   path: '/mvu',
 })
 
-const LAYER_META: Record<
-  MvuLayer,
-  {
-    label: string
-    shortLabel: string
-    description: string
-    icon: typeof PenLine
-    accent: string
-  }
-> = {
-  'frank-note': {
-    label: 'Frank’s note',
-    shortLabel: 'First person',
-    description:
-      'My words and lived experience, edited only for grammar, privacy, and public clarity.',
-    icon: PenLine,
-    accent: 'text-amber-200',
-  },
-  'field-intelligence': {
-    label: 'Field intelligence',
-    shortLabel: 'Editorial synthesis',
-    description:
-      'Session notes and my interpretation, clearly separated from a speaker’s original work.',
-    icon: FileText,
-    accent: 'text-tech-light',
-  },
-  'practice-guide': {
-    label: 'Practice guide',
-    shortLabel: 'Applied system',
-    description:
-      'A sourced exercise, tracker, or protocol built to make an insight testable in ordinary life.',
-    icon: Wrench,
-    accent: 'text-emerald-300',
-  },
-}
-
-const SOURCE_QUEUE = [
-  {
-    title: 'Receiving & money setpoints',
-    source: 'Day 7 · Regan Hillyer session + Frank’s structural notes',
-    status: 'Source mapped',
-  },
-  {
-    title: 'Breathwork: awareness → relaxation → breathing',
-    source: 'Day 8 · Dan Brulé session',
-    status: 'Researching attribution',
-  },
-  {
-    title: 'Identity, evidence & recovery rehearsal',
-    source: 'Day 9 · visualization, wealth blueprint, and media sessions',
-    status: 'Separating three source threads',
-  },
-] as const
-
 function formatDate(date: string): string {
   if (!date) return ''
   const parsedDate = new Date(date)
@@ -98,6 +44,16 @@ function formatDate(date: string): string {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
+  })
+}
+
+function formatShortDate(date: string): string {
+  if (!date) return ''
+  const parsedDate = new Date(date)
+  if (Number.isNaN(parsedDate.getTime())) return date
+  return parsedDate.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
   })
 }
 
@@ -125,7 +81,7 @@ function MvuJsonLd({ entryCount }: { entryCount: number }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   )
 }
@@ -138,7 +94,7 @@ export default function MvuPage() {
   const chronology = entries.filter((entry) => entry.slug !== featuredNote?.slug)
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#080908] text-white">
+    <main className="min-h-screen overflow-hidden bg-void text-white">
       <MvuJsonLd entryCount={entries.length} />
 
       <section className="relative isolate border-b border-white/10">
@@ -186,7 +142,7 @@ export default function MvuPage() {
                     destination: 'week_one_reflection',
                     placement: 'hero_cta',
                   }}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-amber-200 px-6 py-3 text-sm font-semibold text-[#11100d] transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-200"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-amber-200 px-6 py-3 text-sm font-semibold text-void transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-200"
                 >
                   Read the Week One reflection
                   <ArrowRight className="h-4 w-4" aria-hidden />
@@ -206,14 +162,15 @@ export default function MvuPage() {
               aria-hidden="true"
               className="absolute -inset-5 -z-10 rounded-[2.5rem] bg-amber-300/[0.06] blur-2xl"
             />
-            <div className="relative overflow-hidden rounded-[2rem] border border-amber-100/15 bg-[#11110e] p-7 shadow-2xl shadow-black/40 sm:p-9">
+            <div className="relative overflow-hidden rounded-[2rem] border border-amber-100/15 bg-space p-7 shadow-2xl shadow-black/40 sm:p-9">
               <div className="flex items-center justify-between border-b border-white/10 pb-5 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-white/38">
-                <span>Week One · raw reflection</span>
-                <time dateTime="2026-07-28T04:16:00+03:00">04:16 · 28 Jul</time>
+                <span>{featuredNote.session || 'Frank’s note'}</span>
+                <time dateTime={featuredNote.date}>
+                  {featuredNote.recordedAt || formatShortDate(featuredNote.date)}
+                </time>
               </div>
               <blockquote className="mt-9 font-serif text-3xl leading-[1.28] tracking-[-0.025em] text-amber-50 sm:text-[2.45rem]">
-                “I am amazed by myself and deeply grateful for myself. Usually I
-                would hold myself small. Tonight I do not want to.”
+                “{featuredNote.pullQuote || featuredNote.summary}”
               </blockquote>
               <figcaption className="mt-9 flex items-start gap-3 border-t border-white/10 pt-5 text-sm leading-6 text-white/48">
                 <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-amber-200" aria-hidden />
@@ -275,11 +232,11 @@ export default function MvuPage() {
           </div>
 
           <div className="mt-11 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 lg:grid-cols-3">
-            {(Object.keys(LAYER_META) as MvuLayer[]).map((layer) => {
-              const meta = LAYER_META[layer]
+            {(Object.keys(MVU_LAYER_META) as MvuLayer[]).map((layer) => {
+              const meta = MVU_LAYER_META[layer]
               const Icon = meta.icon
               return (
-                <article key={layer} className="bg-[#0a0b0a] p-7 sm:p-8">
+                <article key={layer} className="bg-void p-7 sm:p-8">
                   <Icon className={`h-5 w-5 ${meta.accent}`} aria-hidden />
                   <p className={`mt-7 text-xs font-semibold uppercase tracking-[0.2em] ${meta.accent}`}>
                     {meta.shortLabel}
@@ -296,7 +253,7 @@ export default function MvuPage() {
       </section>
 
       {featuredNote && (
-        <section className="border-b border-white/10 bg-[#0e0d0a] py-20 sm:py-28">
+        <section className="border-b border-white/10 bg-space py-20 sm:py-28">
           <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-start lg:gap-16 lg:px-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200/70">
@@ -322,8 +279,13 @@ export default function MvuPage() {
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/62">
                 {featuredNote.summary}
               </p>
-              <Link
+              <TrackedLink
                 href={`/mvu/${featuredNote.slug}`}
+                eventName="mvu_navigation"
+                eventProperties={{
+                  destination: featuredNote.slug,
+                  placement: 'featured_reflection',
+                }}
                 className="group mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-200"
               >
                 Read the reflection
@@ -331,7 +293,7 @@ export default function MvuPage() {
                   className="h-4 w-4 transition-transform group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
                   aria-hidden
                 />
-              </Link>
+              </TrackedLink>
             </article>
           </div>
         </section>
@@ -355,7 +317,7 @@ export default function MvuPage() {
 
             <ol className="border-t border-white/10">
               {chronology.map((entry, index) => {
-                const meta = LAYER_META[entry.layer]
+                const meta = MVU_LAYER_META[entry.layer]
                 const Icon = meta.icon
                 return (
                   <li key={entry.slug} className="border-b border-white/10">
@@ -365,7 +327,7 @@ export default function MvuPage() {
                     >
                       <div className="flex items-center gap-3 text-xs text-white/35">
                         <span className="font-mono">{String(index + 1).padStart(2, '0')}</span>
-                        <time dateTime={entry.date}>{formatDate(entry.date).replace(' 2026', '')}</time>
+                        <time dateTime={entry.date}>{formatShortDate(entry.date)}</time>
                       </div>
                       <div>
                         <p className={`inline-flex items-center gap-2 text-xs font-medium ${meta.accent}`}>
@@ -392,7 +354,7 @@ export default function MvuPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/10 bg-[#0d0c09] py-20 sm:py-24">
+      <section className="border-b border-white/10 bg-space py-20 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
             <div>
@@ -406,8 +368,13 @@ export default function MvuPage() {
             </div>
 
             <div>
-              <Link
+              <TrackedLink
                 href="/mvu/unhooking-the-mind"
+                eventName="mvu_navigation"
+                eventProperties={{
+                  destination: 'unhooking_the_mind',
+                  placement: 'applied_guide',
+                }}
                 className="group block rounded-3xl border border-amber-200/20 bg-amber-100/[0.04] p-7 transition hover:-translate-y-0.5 hover:border-amber-200/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-200 motion-reduce:transform-none motion-reduce:transition-none sm:p-9"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
@@ -433,27 +400,9 @@ export default function MvuPage() {
                     aria-hidden
                   />
                 </span>
-              </Link>
+              </TrackedLink>
 
-              <div className="mt-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/35">
-                  Source desk · not published as finished lessons yet
-                </p>
-                <div className="mt-4 divide-y divide-white/10 border-y border-white/10">
-                  {SOURCE_QUEUE.map((item) => (
-                    <article
-                      key={item.title}
-                      className="grid gap-2 py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-6"
-                    >
-                      <div>
-                        <h3 className="text-sm font-semibold text-white/82">{item.title}</h3>
-                        <p className="mt-1 text-xs leading-5 text-white/38">{item.source}</p>
-                      </div>
-                      <p className="text-xs font-medium text-tech-light/65">{item.status}</p>
-                    </article>
-                  ))}
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -463,6 +412,7 @@ export default function MvuPage() {
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
           <Link
             href={FEATURED_ARTICLE_URL}
+            aria-label="Read Your Mind Is a Temporary Library"
             className="group relative block aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
           >
             <Image
@@ -474,7 +424,7 @@ export default function MvuPage() {
             />
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-[#080908]/85 via-transparent to-transparent"
+              className="absolute inset-0 bg-gradient-to-t from-void/85 via-transparent to-transparent"
             />
           </Link>
 
