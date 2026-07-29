@@ -2,6 +2,40 @@
 # Replace the entries below in a pull request; do not append a new batch to stale entries.
 # The Branch Cleanup workflow deletes exactly the non-comment lines after merge.
 # Clear a completed queue through a follow-up pull request because main is PR-protected.
-# See BRANCH_AUDIT.md for the canonical safe-delete list.
+# See BRANCH_AUDIT.md for the canonical safe-delete list and the recovery path per branch.
+
+# --- Fully landed in main (content is already on main; nothing to preserve) ---
 agent/codex/vault-refresh-388
 agent/codex/vault-refresh-388-v2
+
+# --- PR closed unmerged (GitHub retains the head commit on the PR page;
+#     "Restore branch" there recovers each one indefinitely) ---
+agent/claude/homepage-music-email-fixes
+agent/claude/remove-test-email-endpoint
+claude/ecosystem-audit-strategy-7ovdli
+claude/frankx-freemium-experience-hJuk4
+claude/newsletter-doi-revival-ruxnO
+claude/remove-personal-info-1DgLs
+codex/frankx-v-template-studio
+codex/remove-acos-agentdb
+observability/vercel-cost-2026-W31
+
+# --- Orphans with no PR, copied to archive/* at an identical tip before deletion.
+#     Each line's replacement ref is listed in BRANCH_AUDIT.md. ---
+agent/codex/frankx-earbuds-2026
+agent/gemini/auctions-upgrade
+agent/gemini/tallinn-reconciliation-main-prod
+agent/worktree-sync
+claude/fable-cover-v3-spiral
+claude/gifted-pasteur-9LsID
+claude/multi-agent-newsletter-system-anKSZ
+codex/blog
+codex/openai-devday-resource
+codex/x
+feat/ikigai-branding-workshop
+feat/map-v1-v2-v3-upgrades
+
+# --- Housekeeping: probe ref created while testing which ref types this
+#     session may push. Branch deletion is 403-blocked outside this workflow,
+#     so it has to be removed through the queue like everything else. ---
+probe-archive-test

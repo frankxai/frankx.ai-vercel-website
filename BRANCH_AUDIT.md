@@ -1,8 +1,8 @@
 # Branch Audit — frankx.ai-vercel-website
 
-**As of:** 2026-07-28
+**As of:** 2026-07-29
 **Baseline:** `main` @ 12850052e
-**Branches:** 67 (excluding `main`) · **Open PRs:** 30
+**Before this change:** 70 branches · **After it merges:** 59, in three legible classes
 
 ## Method — and the two ways this measurement goes wrong
 
@@ -12,145 +12,132 @@ Two naive metrics both give the wrong answer on this repo, so neither is used he
 
 **Raw file counts are inflated by `public/reading/`.** `main` untracked that directory on 2026-07-26 (#349) — 17,880 files, ~508MB of recursive generator output. Every branch created before that date still carries them, so a plain diff reports a ~6.6M-line delta on almost every branch. That is an artifact, not unlanded work. A three-way merge preserves `main`'s deletion, verified by test-merging every branch: **zero** stage a `public/reading/` file.
 
-**What is used instead:** `git merge-tree --write-tree main <branch>`, comparing the resulting tree to `main`'s tree. If they match, the branch contributes nothing new and is safe to delete. If the merge exits non-zero, the branch conflicts. This is a real merge, not a diff.
+**What is used instead:** `git merge-tree --write-tree main <branch>`, comparing the resulting tree to `main`'s tree. If they match, the branch contributes nothing new. If the merge exits non-zero, the branch conflicts. This is a real merge, not a diff.
 
-Deletion stays reversible until GitHub garbage-collects the ref (typically weeks). Revive with `git checkout origin/<branch>`.
+## What this change does
 
-## Summary
+Every branch now falls into exactly one of three classes, so nobody has to guess again whether a branch is alive:
 
-| Class | Count | Action |
+| Class | Count after | Meaning |
 |---|---|---|
-| Fully landed in `main` | 2 | Delete now — queued in `.github/cleanup-queue.txt` |
-| Backs an open PR, merges clean | 17 | Review and land |
-| Backs an open PR, conflicts | 13 | Needs a rebase before it can land |
-| No open PR, merges clean | 2 | Triage |
-| No open PR, conflicts | 33 | Triage — see the systemic cause below |
+| Backs an open PR | 30 | In flight — leave alone until the PR resolves |
+| `archive/*` | 26 | Inert by construction. Nothing outside this namespace is a save-point |
+| Active development | 3 | Branches with commits from the last 48 hours |
 
-**47 of 67 branches conflict with `main` today.** That is the number that matters: the backlog is not free to land, and it gets more expensive every week `main` moves.
+24 branches are queued for deletion in `.github/cleanup-queue.txt`. Nothing is deleted without a recovery path, and every path is named below.
 
-## The systemic cause of the conflicts
+## Why `archive/*` branches and not tags
 
-Counting which files actually conflict across all 47 branches:
+Tags are the textbook answer, and the repo already has two (`archive/pr-273-…`, `archive/pr-274-…`). They were not used here for a mechanical reason worth recording: **pushing a tag ref returns HTTP 403 through the agent proxy** on an agent session, while branch refs push normally. Deleting a branch ref is likewise 403-blocked, which is why the queue-driven `Branch Cleanup` workflow exists — it runs inside Actions with `contents: write`.
 
-| File | Branches it conflicts in | Nature |
+So the archive namespace is a branch namespace. If you want to collapse it to tags with your own credentials, this does it in one pass:
+
+```sh
+git fetch origin --prune
+for b in $(git branch -r --format='%(refname:short)' | grep '^origin/archive/'); do
+  n=${b#origin/}
+  git tag -a "${n/archive\//archive-}" "$b" -m "Archived branch $n"
+done
+git push origin --tags
+# then queue the archive/* branch names for deletion in a follow-up PR
+```
+
+## Queued for deletion (24)
+
+### Fully landed — content is already on `main` (2)
+
+| Branch | PR | Proof |
+|---|---|---|
+| `agent/codex/vault-refresh-388` | 388 | merge-tree result == `main` tree |
+| `agent/codex/vault-refresh-388-v2` | 388 | merge-tree result == `main` tree; superseded duplicate |
+
+### PR closed unmerged (9)
+
+Someone opened a PR and closed it. That is a decision already made. GitHub retains the head commit on the PR page indefinitely — **"Restore branch" on the PR recovers each of these**, so no separate archive ref is needed.
+
+| Branch | PR | Last commit | Unlanded files |
+|---|---|---|---|
+| `agent/claude/homepage-music-email-fixes` | 209 | 2026-06-28 | 44 |
+| `agent/claude/remove-test-email-endpoint` | 218 | 2026-07-14 | 3 |
+| `claude/ecosystem-audit-strategy-7ovdli` | 196 | 2026-07-01 | 202 |
+| `claude/frankx-freemium-experience-hJuk4` | 204 | 2026-06-24 | 6 |
+| `claude/newsletter-doi-revival-ruxnO` | 169 | 2026-06-10 | 10 |
+| `claude/remove-personal-info-1DgLs` | 190 | 2026-06-22 | 48 |
+| `codex/frankx-v-template-studio` | 233 | 2026-07-14 | 111 |
+| `codex/remove-acos-agentdb` | 186 | 2026-06-18 | 3 |
+| `observability/vercel-cost-2026-W31` | 375 | 2026-07-27 | 1 |
+
+### Orphans with no PR — copied to `archive/*` first (12)
+
+These are the branches that actually lose work: committed changes never proposed for review and not on `main`. Each was pushed to an `archive/*` ref at a **byte-identical tip** before being queued, and each pair was verified equal by SHA.
+
+| Deleted branch | Recovery ref | Last commit | Unlanded files |
+|---|---|---|---|
+| `agent/codex/frankx-earbuds-2026` | `archive/agent-codex-frankx-earbuds-2026-2026-06-26` | 2026-06-26 | 64 |
+| `agent/gemini/auctions-upgrade` | `archive/agent-gemini-auctions-upgrade-2026-07-14` | 2026-07-14 | 6 |
+| `agent/gemini/tallinn-reconciliation-main-prod` | `archive/agent-gemini-tallinn-reconciliation-main-prod-2026-07-15` | 2026-07-15 | 61 |
+| `agent/worktree-sync` | `archive/agent-worktree-sync-2026-06-18` | 2026-06-18 | 1 |
+| `claude/fable-cover-v3-spiral` | `archive/claude-fable-cover-v3-spiral-2026-07-04` | 2026-07-04 | 2 |
+| `claude/gifted-pasteur-9LsID` | `archive/claude-gifted-pasteur-9LsID-2026-06-10` | 2026-06-10 | 64 |
+| `claude/multi-agent-newsletter-system-anKSZ` | `archive/claude-multi-agent-newsletter-system-anKSZ-2026-06-10` | 2026-06-10 | 34 |
+| `codex/blog` | `archive/codex-blog-2026-07-15` | 2026-07-15 | 87 |
+| `codex/openai-devday-resource` | `archive/codex-openai-devday-resource-2026-07-03` | 2026-07-03 | 17 |
+| `codex/x` | `archive/codex-x-2026-07-15` | 2026-07-15 | 120 |
+| `feat/ikigai-branding-workshop` | `archive/feat-ikigai-branding-workshop-2026-06-14` | 2026-06-14 | 71 |
+| `feat/map-v1-v2-v3-upgrades` | `archive/feat-map-v1-v2-v3-upgrades-2026-07-15` | 2026-07-15 | 120 |
+
+Recover any of them with `git checkout -b <original-name> origin/<recovery-ref>`.
+
+Two are worth a look before they age further: `agent/worktree-sync`'s only change strips 25 lines from `.gitignore` (inspect before reviving), and `feat/map-v1-v2-v3-upgrades` / `codex/x` carry 120 files each.
+
+### Housekeeping (1)
+
+`probe-archive-test` — a throwaway ref created to determine which ref types this session may push. Branch deletion is 403-blocked outside the cleanup workflow, so it has to leave through the queue like everything else.
+
+## Not deleted, and why
+
+**`agent/witali-father-code` is excluded from every sweep.** It carries the family memorial hub (`/witali`, `/father-code`) and now backs PR #382. Do not queue it.
+
+**The 14 pre-existing `archive/*` save-points stay.** They are deliberate April–June recovery snapshots and they are already in the archive namespace doing their job. Deleting a backup to tidy a list is the wrong trade, and without tag-push permission there is nowhere safer to put them.
+
+**Two branches from 2026-07-29 stay** — `codex/mvu-source-recovery-20260729` and `codex/openai-mastery-hub-20260729` are active work, not backlog.
+
+## The open-PR backlog
+
+30 PRs are open. **13 of them conflict with `main`** and cannot land without a rebase; 17 merge clean. Counting which files actually conflict across the backlog:
+
+| File | Conflicts in | Nature |
 |---|---|---|
 | `data/route-index.json` | 13 | **Generated** — rebuilt by `scripts/build-route-index.mjs` in `prebuild`, on every build including Vercel's |
 | `data/vault-manifest.json` | 11 | **Generated** by `pnpm vault:scan` (hand-triggered) |
-| `package.json` | 11 | Genuine — dependency and script edits |
-| `next.config.mjs` | 8 | Genuine — redirects and config |
-| `components/NavigationMega.tsx` | 8 | Genuine — the shared nav index |
+| `package.json` | 11 | Genuine |
+| `next.config.mjs` | 8 | Genuine |
+| `components/NavigationMega.tsx` | 8 | Genuine |
 | `.gitignore` | 8 | Genuine |
-| `package-lock.json` | 7 | Resolved — deleted from `main` in #378, so this cause is gone going forward |
-| `data/blog-hero-manifest.json` | — | **Generated** by the same prebuild script; the committed copy is currently stale by two entries |
+| `package-lock.json` | 7 | Resolved — deleted from `main` in #378 |
 
-The single largest conflict source is a file no human edits. `data/route-index.json` and `data/blog-hero-manifest.json` are both rewritten by `scripts/build-route-index.mjs` in `prebuild`, before `next build`.
+The single largest conflict source is a file no human edits.
 
-**They cannot simply be untracked.** Four TypeScript modules import them statically — `lib/fuzzy-route-match.ts`, `lib/site-search.ts`, `lib/blog.ts`, and both `app/api/404/*` routes — and CI runs `type-check` *before* `build`, so `prebuild` has not run yet at that point. Removing them from version control would break CI on a fresh checkout. Committing them is correct given that import shape.
+**It cannot simply be untracked.** Four TypeScript modules import it statically — `lib/fuzzy-route-match.ts`, `lib/site-search.ts`, `lib/blog.ts`, and both `app/api/404/*` routes — and CI runs `type-check` *before* `build`, so `prebuild` has not run yet at that point. Removing it from version control would break CI on a fresh checkout. Committing it is correct given that import shape.
 
-What that leaves is a resolution recipe rather than a restructure. **When either file conflicts, do not hand-merge it:**
+What that leaves is a resolution recipe. **When `data/route-index.json` or `data/blog-hero-manifest.json` conflicts, do not hand-merge it:**
 
-```
+```sh
 git checkout --ours data/route-index.json data/blog-hero-manifest.json
 pnpm routes:build
 git add data/route-index.json data/blog-hero-manifest.json
 ```
 
-The generator is deterministic and enumerates from `app/`, so the regenerated file is correct for the merged tree by construction — which a hand-resolved union of two stale copies is not. Making this cheaper than a recipe (generating into a gitignored path and importing through a committed shim, so the artifact leaves version control entirely) is a separate structural change with real risk to `type-check`; it is not made here.
+The generator is deterministic and enumerates from `app/`, so the regenerated file is correct for the merged tree by construction — which a hand-resolved union of two stale copies is not. Making this cheaper (generating into a gitignored path and importing through a committed shim) is a separate structural change with real risk to `type-check`.
 
-Related: `data/blog-hero-manifest.json`'s committed copy is currently stale by two entries relative to what `prebuild` produces. Harmless in production — every deploy regenerates it — but it is drift, and it is what the recipe above prevents.
+`data/blog-hero-manifest.json`'s committed copy is currently stale by two entries relative to what `prebuild` produces. Harmless in production — every deploy regenerates it — but it is drift, and it is what the recipe above prevents.
 
 `app/sitemap.ts` auto-merges in 15 branches. It is the most-touched shared file but not, in fact, a conflict source.
 
-## Fully landed — safe to delete (queued)
-
-| Branch | PR | Proof |
-|---|---|---|
-| `agent/codex/vault-refresh-388` | 388 | merge-tree result == `main` tree; PR merged as 12850052e |
-| `agent/codex/vault-refresh-388-v2` | 388 | merge-tree result == `main` tree; same content, superseded duplicate |
-
-## Open pull requests (30)
-
-Merge status test-merged against `main` @ 12850052e.
-
-| PR | State | Merge | Branch | Title |
-|---|---|---|---|---|
-| #394 | ready | clean | `agent/claude/soft-404-fix` | Fix soft-404s: five route families returned 200 |
-| #389 | draft | clean | `agent/hermes/template-catalog-conversion-foundation` | Outcome-led catalog foundation |
-| #384 | draft | clean | `agent/book/r1-cta` | Rescue: primary nav + homepage CTA → gencreator.ai |
-| #383 | draft | clean | `agent/codex/mind-page` | Rescue: premium Mind operating-system page |
-| #382 | draft | clean | `agent/witali-father-code` | Rescue: /witali and /father-code memorial pages |
-| #377 | ready | clean | `agent/codex/mvu-day8-unhooking` | MVU Day 8 unhooking field guide |
-| #368 | ready | **conflicts** | `agent/codex/metadata-integrity-20260725` | Preserve essential metadata identity |
-| #355 | draft | clean | `agent/codex/mvu-field-intelligence` | Rolling Tallinn field intelligence |
-| #352 | ready | **conflicts** | `codex/frankx-constellation-elevation-20260722` | Elevate the FrankX constellation |
-| #351 | draft | **conflicts** | `codex/frankx-v0-template-os-production` | Productionize v0 template OS and Visual Foundry |
-| #346 | draft | **conflicts** | `codex/studio-ledger-release-gate` | Fail-closed Studio Ledger release gate |
-| #340 | draft | clean | `agent/claude/agentic-company-offer` | Campaign C1: /agentic-company |
-| #338 | draft | clean | `agent/claude/v0-products` | The Products + wave-2 intelligence (stacked on #336) |
-| #336 | ready | clean | `agent/claude/v0-blueprint` | /v0 Blueprint |
-| #335 | draft | clean | `claude/magnifica-flagship-upgrade` | Magnifica Humanitas flagship upgrade |
-| #334 | draft | clean | `agent/book/first-100-hardening` | Harden First €100 Weekend |
-| #326 | draft | clean | `codex/first-100-weekend-challenge` | Launch the First €100 Weekend |
-| #321 | draft | clean | `agent/hermes/accelerator-surface` | Venture Fabric + Portfolio OS constellation |
-| #284 | ready | **conflicts** | `codex/best-ai-hardware` | AI hardware intelligence hub |
-| #278 | ready | **conflicts** | `agent/codex/tallinn-tribe-studio-20260714` | Public Tallinn session studio |
-| #276 | draft | **conflicts** | `agent/codex/starlight-retreat-vision-20260714` | Starlight Retreats: founding vision |
-| #271 | draft | **conflicts** | `agent/codex/frankx-ai-architecture-20260712` | Verified AI architecture deployment atlas |
-| #266 | draft | **conflicts** | `agent/codex/family-ai-operating-system` | Governed Family Intelligence foundation |
-| #243 | draft | clean | `agent/claude/checkout-revenue-fix` | Wire $47 kit CTA to real Stripe checkout |
-| #231 | draft | clean | `claude/wealth-os-agent-architecture-efj4hb` | Hosted investment-intelligence council |
-| #221 | ready | **conflicts** | `blog-structure-and-content` | Website metadata and job title |
-| #210 | ready | **conflicts** | `claude/ai-architecture-templates-65188c` | Elevate /ai-architecture to 2026 SOTA |
-| #202 | ready | **conflicts** | `claude/premium-ops-ruxnO` | Five doors framework + Strategic Advisor door |
-| #168 | ready | **conflicts** | `claude/exec-hardening-ruxnO` | #107 standard on lab/build pages + voice router |
-| #166 | ready | **conflicts** | `claude/build-llm-research-hub-75ba8` | Model Hub expansion |
-
-## No open PR (35)
-
-Committed work that was never proposed for review, plus deliberate `archive/*` save-points. Nothing here is queued for deletion. Unlanded counts exclude `public/reading/`.
-
-| Branch | Last commit | Unlanded | Merge | Note |
-|---|---|---|---|---|
-| `observability/vercel-cost-2026-W31` | 2026-07-27 | 1 | clean | Weekly cost snapshot |
-| `claude/fable-cover-v3-spiral` | 2026-07-04 | 2 | clean | PR #225 was closed |
-| `agent/worktree-sync` | 2026-06-18 | 1 | conflicts | Sole change strips 25 lines from `.gitignore` — inspect before reviving |
-| `codex/remove-acos-agentdb` | 2026-06-18 | 3 | conflicts | PR #186 was closed |
-| `agent/claude/remove-test-email-endpoint` | 2026-07-14 | 3 | conflicts | PR #218 was closed |
-| `agent/gemini/auctions-upgrade` | 2026-07-14 | 6 | conflicts | |
-| `claude/frankx-freemium-experience-hJuk4` | 2026-06-24 | 6 | conflicts | PR #204 was closed |
-| `claude/newsletter-doi-revival-ruxnO` | 2026-06-10 | 10 | conflicts | PR #169 was closed |
-| `codex/openai-devday-resource` | 2026-07-03 | 17 | conflicts | |
-| `claude/multi-agent-newsletter-system-anKSZ` | 2026-06-10 | 34 | conflicts | |
-| `agent/claude/homepage-music-email-fixes` | 2026-06-28 | 44 | conflicts | PR #209 was closed |
-| `claude/remove-personal-info-1DgLs` | 2026-06-22 | 48 | conflicts | PR #190 was closed |
-| `agent/gemini/tallinn-reconciliation-main-prod` | 2026-07-15 | 61 | conflicts | |
-| `agent/codex/frankx-earbuds-2026` | 2026-06-26 | 64 | conflicts | |
-| `claude/gifted-pasteur-9LsID` | 2026-06-10 | 64 | conflicts | |
-| `feat/ikigai-branding-workshop` | 2026-06-14 | 71 | conflicts | |
-| `codex/blog` | 2026-07-15 | 87 | conflicts | |
-| `codex/frankx-v-template-studio` | 2026-07-14 | 111 | conflicts | PR #233 was closed |
-| `codex/x` | 2026-07-15 | 120 | conflicts | |
-| `feat/map-v1-v2-v3-upgrades` | 2026-07-15 | 120 | conflicts | |
-| `claude/ecosystem-audit-strategy-7ovdli` | 2026-07-01 | 202 | conflicts | PR #196 was closed |
-| `archive/observability-vercel-cost-2026-W21` | 2026-05-29 | 3 | conflicts | save-point |
-| `archive/normalize-line-endings-2026-W20` | 2026-05-11 | 5 | conflicts | save-point |
-| `archive/ikigai-upgrade-2-2026-W20` | 2026-05-14 | 10 | conflicts | save-point |
-| `archive/ikigai-upgrade-3-2026-W20` | 2026-05-14 | 11 | conflicts | save-point |
-| `archive/feat-newsletter-launch-v1` | 2026-05-19 | 12 | conflicts | save-point |
-| `archive/claude-frankx-freemium-experience-hJuk4` | 2026-05-29 | 27 | conflicts | save-point |
-| `archive/multi-agent-newsletter-system-anKSZ` | 2026-05-19 | 30 | conflicts | save-point |
-| `archive/sync-prompt-hub-from-frankx` | 2026-05-16 | 35 | conflicts | save-point |
-| `archive/normalize-line-endings-2026-05` | 2026-05-29 | 52 | conflicts | save-point |
-| `archive/rails-phase-0` | 2026-05-03 | 58 | conflicts | save-point |
-| `archive/recovery-sibling-2026-04-20` | 2026-04-16 | 62 | conflicts | save-point |
-| `archive/claude-build-llm-research-hub-75ba8` | 2026-06-01 | 63 | conflicts | save-point |
-| `archive/staging-madrid-2026-05-25` | 2026-05-25 | 796 | conflicts | large recovery snapshot |
-| `archive/recovery-nested-2026-04-20` | 2026-04-14 | 1021 | conflicts | large recovery snapshot |
-
-`agent/witali-father-code` is no longer in this list — it now backs PR #382. It touches the family memorial hub; do not delete it under any cleanup pass.
-
 ## Keeping this file true
 
-Branch auto-delete on merge is **on** — verified against the seven most recently merged PRs, all of whose branches are gone. So this backlog is legacy plus in-flight work, not ongoing accumulation.
+Branch auto-delete on merge is **on** — verified against the seven most recently merged PRs, all of whose branches are gone. This backlog was legacy, not ongoing accumulation.
+
+The rule that keeps it from coming back: **a branch either backs an open PR, lives under `archive/`, or has a commit from the last few days.** Anything else is backlog, and it should be queued.
 
 Regenerate after any batch of merges. The measurement that matters is `git merge-tree --write-tree main <branch>`: tree equal to `main` means safe to delete, non-zero exit means it needs a rebase before it can land. Do not substitute a `git diff` for it.
