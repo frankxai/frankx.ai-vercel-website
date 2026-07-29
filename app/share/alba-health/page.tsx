@@ -129,8 +129,7 @@ export default function AlbaHealthSharePage() {
           className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_78%_16%,rgba(110,163,126,0.18),transparent_34%),radial-gradient(circle_at_14%_4%,rgba(255,255,255,0.92),transparent_30%)]"
         />
 
-        <div className="mx-auto flex max-w-7xl items-center justify-between border-b border-[#173c30]/10 pb-5">
-          <p className="text-sm font-semibold tracking-[-0.02em]">FrankX.AI</p>
+        <div className="mx-auto flex max-w-7xl justify-end border-b border-[#173c30]/10 pb-5">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#60766d]">
             Independent contribution · July 2026
           </p>
