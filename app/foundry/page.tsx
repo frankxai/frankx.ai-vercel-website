@@ -62,9 +62,10 @@ const osFamily = [
   },
   {
     name: 'agentic-investor-os',
-    audience: 'For wealth',
-    status: 'in development' as const,
-    note: 'Portfolio intelligence and decision memory.',
+    audience: 'For wealth & programs',
+    status: 'live' as const,
+    href: 'https://github.com/frankxai/agentic-investor-os',
+    note: 'Thesis, diligence, memos, portfolio support — human gates. Used by Portfolio OS.',
   },
 ]
 
@@ -300,6 +301,19 @@ export default function FoundryPage() {
                 The human layer: evaluate, forge, stay connected. The templates are free and
                 MIT-licensed; the Foundry prices the install, the brand derivation, and the
                 connected relationship.
+              </p>
+            </GlowCard>
+
+            <GlowCard color="cyan" href="/accelerator" className="p-7">
+              <p className="font-mono text-xs text-cyan-400/70">LAYER 3 — PROGRAMS</p>
+              <h3 className="mt-2 text-lg font-semibold text-white">
+                Accelerator · Venture Fabric
+              </h3>
+              <p className="mt-2 max-w-2xl text-sm text-white/60">
+                Accelerators, funds, and studios equip many companies with Portfolio OS — shared
+                intelligence, diligence workflows, agent swarms, and Day-0 kits. Founders stay here;
+                programs go to{' '}
+                <span className="text-cyan-300">/accelerator</span>.
               </p>
             </GlowCard>
           </div>

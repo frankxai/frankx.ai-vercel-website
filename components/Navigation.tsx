@@ -110,6 +110,19 @@ const navItems: NavItem[] = [
       { name: 'Apply', href: '/foundry#apply' },
     ],
   },
+  {
+    name: 'Accelerator',
+    href: '/accelerator',
+    subItems: [
+      { name: 'Venture Fabric', href: '/accelerator' },
+      { name: 'Portfolio OS', href: '/accelerator/portfolio-os' },
+      { name: 'For Founders', href: '/accelerator/founders' },
+      { name: 'Starlight', href: '/accelerator/starlight' },
+      { name: 'Arcanea', href: '/accelerator/arcanea' },
+      { name: 'Guide', href: '/accelerator/guide' },
+      { name: 'Apply', href: '/accelerator#apply' },
+    ],
+  },
   { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
 ]
