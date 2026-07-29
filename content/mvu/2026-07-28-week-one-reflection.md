@@ -5,6 +5,8 @@ kind: "journal"
 layer: "frank-note"
 session: "Week One · dictated at 04:16"
 provenance: "Frank's dictated reflection, lightly edited for grammar, repetition, privacy, and public clarity."
+pullQuote: "I am amazed by myself and deeply grateful for myself. Usually I would hold myself small. Tonight I do not want to."
+recordedAt: "04:16 · 28 Jul"
 summary: "A first-person record of how one week at Mindvalley University changed the way I see myself, my work, and the life I want to build."
 tags: ["journal", "week-one", "tallinn", "identity", "creator"]
 featured: true
