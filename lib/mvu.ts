@@ -19,6 +19,8 @@ import { cache } from 'react'
  *   layer:     'frank-note' | 'field-intelligence' | 'practice-guide'
  *   session:   human-readable event/session label
  *   provenance: short public explanation of the source boundary
+ *   pullQuote: exact line used by the hub hero or cards
+ *   recordedAt: optional human-readable capture time
  *   featured:  boolean
  *   summary:   one-line teaser for the hub list
  *   tags:      string[]
@@ -38,6 +40,8 @@ export interface MvuEntry {
   layer: MvuLayer
   session: string
   provenance: string
+  pullQuote: string
+  recordedAt: string
   featured: boolean
   summary: string
   tags: string[]
@@ -62,6 +66,8 @@ function buildEntry(slug: string, data: Record<string, unknown>, content: string
       : defaultLayer,
     session: String(data.session ?? ''),
     provenance: String(data.provenance ?? ''),
+    pullQuote: String(data.pullQuote ?? ''),
+    recordedAt: String(data.recordedAt ?? ''),
     featured: data.featured === true,
     summary: String(data.summary ?? ''),
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
