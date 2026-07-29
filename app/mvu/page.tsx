@@ -8,6 +8,7 @@ import {
   Globe2,
   GraduationCap,
   Mic2,
+  Microscope,
   PenLine,
   Sparkles,
   StickyNote,
@@ -43,6 +44,7 @@ const KIND_META: Record<MvuKind, { label: string; icon: typeof BookOpen }> = {
   essay: { label: 'Essay', icon: BookOpen },
   journal: { label: 'Journal', icon: PenLine },
   note: { label: 'Note', icon: StickyNote },
+  research: { label: 'Research', icon: Microscope },
 }
 
 const SERVICE_PATHS = [
@@ -77,6 +79,7 @@ function formatDate(date: string): string {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
+    timeZone: 'UTC',
   })
 }
 
@@ -348,7 +351,7 @@ export default function MvuPage() {
       <section id="field-journal" className="py-20 sm:py-24 scroll-mt-24">
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-white/40">
-            Journal & essays
+            Research, journals & essays
           </h2>
 
           {entries.length === 0 ? (

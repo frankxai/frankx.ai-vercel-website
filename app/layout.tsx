@@ -170,7 +170,7 @@ export default function RootLayout({
           <OrganizationJsonLd />
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
+            className="skip-to-content"
           >
             Skip to content
           </a>

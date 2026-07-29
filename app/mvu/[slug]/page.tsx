@@ -6,6 +6,7 @@ import { ArrowLeft } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
 import { getMvuEntries, getMvuEntry } from '@/lib/mvu'
 import { MDXContent } from '@/components/blog/MDXContent'
+import { MvuResearchArticle } from '@/components/mvu/MvuResearchArticle'
 
 const SITE_URL = 'https://frankx.ai'
 
@@ -28,10 +29,37 @@ export async function generateMetadata({
     })
   }
 
+  const keywords = Array.from(
+    new Set(
+      [
+        ...entry.tags,
+        entry.speaker,
+        entry.kind === 'research' ? 'Mindvalley University research' : 'Mindvalley University journal',
+        ...(entry.slug === 'dan-brule-breathwork'
+          ? [
+              'Dan Brulé breathwork',
+              'Dan Brulé Breath Mastery',
+              'conscious breathing',
+              'breathing awareness',
+              'relaxation breathing',
+            ]
+          : []),
+      ].filter((value): value is string => Boolean(value)),
+    ),
+  )
+
   return createMetadata({
-    title: `${entry.title} — MVU journal`,
+    title:
+      entry.kind === 'research'
+        ? `${entry.title} — MVU research`
+        : `${entry.title} — MVU journal`,
     description: entry.summary || `${entry.title} — from Frank Riemer’s Mindvalley University journal.`,
     path: `/mvu/${slug}`,
+    keywords,
+    type: 'article',
+    publishedTime: entry.date || undefined,
+    updatedTime: entry.reviewed || entry.date || undefined,
+    authors: ['Frank Riemer'],
   })
 }
 
@@ -39,7 +67,12 @@ function formatDate(date: string): string {
   if (!date) return ''
   const d = new Date(date)
   if (Number.isNaN(d.getTime())) return date
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
 }
 
 export default async function MvuEntryPage({
@@ -51,16 +84,46 @@ export default async function MvuEntryPage({
   const entry = getMvuEntry(slug)
   if (!entry) notFound()
 
+  const canonicalUrl = `${SITE_URL}/mvu/${entry.slug}`
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': entry.kind === 'journal' ? 'BlogPosting' : 'Article',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
     headline: entry.title,
     description: entry.summary,
     datePublished: entry.date,
+    ...(entry.reviewed ? { dateModified: entry.reviewed } : {}),
+    inLanguage: 'en',
+    isAccessibleForFree: true,
+    keywords: entry.tags.join(', '),
     author: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
     publisher: { '@type': 'Organization', name: 'FrankX', url: SITE_URL },
-    url: `${SITE_URL}/mvu/${entry.slug}`,
+    url: canonicalUrl,
     isPartOf: { '@type': 'CollectionPage', name: 'MVU journal', url: `${SITE_URL}/mvu` },
+    ...(entry.speaker
+      ? {
+          about: {
+            '@type': 'Person',
+            name: entry.speaker,
+            ...(entry.slug === 'dan-brule-breathwork'
+              ? { url: 'https://links.breathmastery.com/' }
+              : {}),
+          },
+        }
+      : {}),
+    ...(entry.sources.length ? { citation: entry.sources } : {}),
+  }
+
+  if (entry.kind === 'research') {
+    return (
+      <main className="min-h-screen bg-void">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
+        <MvuResearchArticle entry={entry} />
+      </main>
+    )
   }
 
   return (
