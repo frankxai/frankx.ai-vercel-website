@@ -120,6 +120,7 @@ const sections: NavSection[] = [
       badge: 'Hub',
     },
     items: [
+      { name: 'OpenAI Mastery', href: '/learn/openai', icon: Sparkles, description: 'Choose Chat, Work, or Codex' },
       { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning paths' },
       { name: 'Guides', href: '/guides', icon: BookOpen, description: 'Deep how-tos' },
       { name: 'Books', href: '/books', icon: BookOpen, description: 'Long-form reading' },

@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 859,
+    "total": 861,
     "aliases": 49,
     "byType": {
       "core": 22,
-      "section": 400,
+      "section": 402,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -5172,16 +5172,14 @@
     },
     {
       "href": "/guides/openai-chatgpt-guide",
-      "title": "OpenAI ChatGPT Guide for Creators",
-      "description": "Master ChatGPT and OpenAI tools for content creation, brainstorming, automation, and building AI-powered workflows with the world's most popular AI assistant",
+      "title": "ChatGPT for Creators: Chat, Work, and Codex in 2026",
+      "description": "A practical creator workflow for using Chat to shape ideas, ChatGPT Work to produce reviewable campaigns and assets, and Codex when the project becomes software.",
       "tags": [
-        "ai",
-        "chatgpt",
-        "openai",
-        "guide",
-        "tutorial",
-        "gpt-4",
-        "content-creation"
+        "ChatGPT",
+        "ChatGPT Work",
+        "Codex",
+        "Creator Workflows",
+        "Content Systems"
       ],
       "type": "guide"
     },
@@ -5383,6 +5381,26 @@
       "href": "/learn",
       "title": "Learn",
       "type": "core"
+    },
+    {
+      "href": "/learn/chatgpt-work-mastery",
+      "title": "Chatgpt Work Mastery",
+      "tags": [
+        "learn",
+        "chatgpt",
+        "work",
+        "mastery"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/learn/openai",
+      "title": "Openai",
+      "tags": [
+        "learn",
+        "openai"
+      ],
+      "type": "section"
     },
     {
       "href": "/lebensbaum",

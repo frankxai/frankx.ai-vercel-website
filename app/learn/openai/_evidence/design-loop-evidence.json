@@ -1,0 +1,114 @@
+{
+  "version": "2026-07-29",
+  "task": "Create one current OpenAI learning system that helps founders, creators, researchers, developers, and teams choose between ChatGPT, ChatGPT Work, and Codex.",
+  "surface": "/learn/openai and /learn/chatgpt-work-mastery",
+  "audience": "Founders and operators first; team leads, creators, developers, and researchers as routed role paths",
+  "standards": [
+    "_intelligence/operating-system.md",
+    "_intelligence/taste.md",
+    "_intelligence/design.md",
+    "_intelligence/quality-gates.md",
+    "design-agent-standards/DESIGN_TASTE.md",
+    "design-agent-standards/WEB_EXPERIENCE_STANDARD.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md"
+  ],
+  "references": [
+    {
+      "label": "Official ChatGPT surface chooser",
+      "source": "https://learn.chatgpt.com/docs/use-chatgpt",
+      "reason": "Defines the distinction between Chat, Work, and Codex."
+    },
+    {
+      "label": "Official ChatGPT Work guide",
+      "source": "https://learn.chatgpt.com/docs/get-started-with-work",
+      "reason": "Anchors the Work curriculum and capability boundaries."
+    },
+    {
+      "label": "Official OpenAI plugins catalog",
+      "source": "https://github.com/openai/plugins",
+      "reason": "Replaces the deprecated openai/skills catalog in the technical resource shelf."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Existing stable ChatGPT, Codex, and creator-guide URLs",
+      "FrankX dark editorial learning language",
+      "One central academy with reusable role metadata"
+    ],
+    "avoid": [
+      "Separate subdomains or repositories for each product surface",
+      "Five duplicated role academies",
+      "Stale model, pricing, and repository claims",
+      "Decorative AI imagery or generic card-wall composition"
+    ],
+    "signature": "Choose your role, choose the right OpenAI surface, and leave with one reviewable workflow.",
+    "system": [
+      "Obsidian editorial canvas with restrained emerald, cyan, and warm signal colors",
+      "Role selector drives one recommended path without hiding the full system",
+      "Chat, Work, and Codex are compared by job-to-be-done, not product jargon",
+      "Verified resources carry dates, provenance, surface, audience, and lifecycle status",
+      "Static-first hierarchy, visible focus, reduced-motion-safe transitions, and no generated hero media"
+    ]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "browser-capture",
+    "provenance": "owned",
+    "why_premium": "The primary asset is the exact role-and-surface decision system itself; the curriculum UI is real product proof rather than decorative media.",
+    "shortcut_risk": "low",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "path_or_url": "https://frankx-ai-vercel-website-git-code-ff8bec-starlight-intelligence.vercel.app/learn/openai",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Vercel preview is READY and CI-green; the browser URL policy blocked both the protected preview and the supervised localhost fallback."
+    },
+    {
+      "path_or_url": "https://frankx-ai-vercel-website-git-code-ff8bec-starlight-intelligence.vercel.app/learn/chatgpt-work-mastery",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Vercel preview is READY and CI-green; the browser URL policy blocked both the protected preview and the supervised localhost fallback."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier C exact curriculum and decision UI is the primary proof; no filler or generated hero asset is used."
+    },
+    {
+      "name": "export-inspection",
+      "status": "blocked",
+      "evidence": "The protected preview reached READY. After the machine gate permitted one bounded localhost fallback, the browser URL policy blocked it and explicitly prohibited alternate automation workarounds."
+    },
+    {
+      "name": "visual-qa",
+      "status": "blocked",
+      "evidence": "Desktop and mobile inspection remains blocked by the browser URL policy. The supervised localhost server was stopped and no browser-policy workaround was attempted."
+    },
+    {
+      "name": "production-build",
+      "status": "pass",
+      "evidence": "Local and Vercel production builds completed, including 1,147 static pages and postbuild artifact tests."
+    },
+    {
+      "name": "accessibility-mechanical",
+      "status": "pass",
+      "evidence": "Scoped ESLint and the Web Interface Guidelines mechanical CI gate pass."
+    }
+  ],
+  "score": {
+    "total": 25,
+    "max": 30,
+    "notes": "The architecture, content, code craft, provenance, responsive implementation, and automated gates are strong; five points remain withheld until actual desktop and mobile exports are inspected."
+  },
+  "decision": "blocked",
+  "known_risks": [
+    "External OpenAI documentation, Academy event status, GitHub repository activity, and model names can change after the recorded verification date.",
+    "Role-path conversion data does not exist yet; dedicated persona pages should be promoted only after role and resource click telemetry accumulates.",
+    "Actual desktop and mobile preview exports remain uninspected because the browser URL policy blocks both the protected preview and localhost fallback."
+  ]
+}

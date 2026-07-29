@@ -229,7 +229,12 @@ for (const e of entries) {
     if (href.startsWith('https://') || href.startsWith('http://')) continue
     if (href.startsWith('/learn/')) {
       const target = href.replace(/^\/learn\//, '').replace(/#.*$/, '')
-      if (!slugs.has(target) && target !== e.id /* let self-ref pass for late binding */) {
+      const literalPage = path.join(ROOT, 'app', 'learn', target, 'page.tsx')
+      if (
+        !slugs.has(target) &&
+        !fileExists(literalPage) &&
+        target !== e.id /* let self-ref pass for late binding */
+      ) {
         // Defer: the slug may be added by a sibling entry in this very file. We collected
         // all slugs above, so by now this should resolve. If it doesn't, that's a real bug.
         warn(`[${e.id}] relatedGuides "${href}" points at /learn/${target} which is not (yet) a known portal slug`)

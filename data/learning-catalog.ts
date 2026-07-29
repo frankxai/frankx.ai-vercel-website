@@ -188,8 +188,8 @@ export const learningOutcomes: LearningOutcome[] = [
     title: 'Use AI at work',
     audience: 'Operators, founders, and knowledge workers',
     capability: 'Research, write, analyze, and automate routine work with sound judgment.',
-    href: '/learn/chatgpt-mastery',
-    routeLabel: 'Start with an assistant',
+    href: '/learn/openai',
+    routeLabel: 'Choose Chat, Work, or Codex',
   },
   {
     id: 'build-ai-products',

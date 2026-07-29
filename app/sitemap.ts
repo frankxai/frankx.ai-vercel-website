@@ -287,6 +287,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/ai-architect-academy', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/links', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/learn', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/learn/openai', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/learn/chatgpt-work-mastery', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/showcase', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },

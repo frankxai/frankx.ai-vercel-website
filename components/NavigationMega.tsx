@@ -95,6 +95,7 @@ const navigation = {
       badge: 'Hub',
     },
     items: [
+      { name: 'OpenAI Mastery', href: '/learn/openai', icon: Sparkles, description: 'Choose Chat, Work, or Codex' },
       { name: 'Course Picks', href: '/courses', icon: GraduationCap, description: 'Independent picks + FrankX originals' },
       { name: 'Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials' },
       { name: "Frank's Books", href: '/books', icon: BookOpen, description: '23 books, 411K+ words' },
