@@ -306,10 +306,9 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <RotatingHeroOutcome />
 
               <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
-                FrankX is the working studio for experts, founders, and AI leaders turning
-                distinctive knowledge into owned intelligence systems. Explore the architecture,
-                inspect the open systems, or build an operating advantage around what makes your
-                work valuable.
+                FrankX is the working studio for experts and founders turning what they know into
+                sharper decisions, stronger work, better offers, and an AI-powered business that
+                compounds. Inspect the open systems or build your own intelligence advantage.
               </p>
 
               <div className="flex items-center gap-3">
@@ -333,10 +332,10 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <Link
                 href="/work-with-me"
-                onClick={() => trackEvent('hero_cta_click', { type: 'expert_intelligence_system' })}
+                onClick={() => trackEvent('hero_cta_click', { type: 'intelligence_advantage' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Build Your Intelligence System
+                Build Your Intelligence Advantage
               </Link>
             </div>
 

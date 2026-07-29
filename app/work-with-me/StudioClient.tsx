@@ -82,17 +82,17 @@ const staggerContainer = {
 /* ─── Data ─── */
 const services = [
   {
-    title: 'Intelligence Opportunity Assessment',
+    title: 'The Leverage Map',
     duration: '1 — 2 days',
     price: 'From EUR 3,000',
     icon: Target,
     color: 'violet' as const,
     description:
-      'Find where your expertise, proprietary data, and recurring decisions can create the most valuable AI advantage.',
+      'Find where your expertise, proprietary data, and recurring decisions can create the greatest practical advantage.',
     deliverables: ['Knowledge and workflow map', 'Opportunity portfolio', 'Risk assessment', 'Prioritized roadmap'],
   },
   {
-    title: 'Expert Intelligence Sprint',
+    title: 'The Intelligence Blueprint',
     duration: '1 — 2 weeks',
     price: 'From EUR 8,000',
     icon: Layers,
@@ -102,7 +102,7 @@ const services = [
     deliverables: ['Intelligence architecture', 'Knowledge model', 'Agent workflow', 'Implementation plan'],
   },
   {
-    title: 'Intelligence System Build',
+    title: 'The Sovereign System Build',
     duration: '4 — 8 weeks',
     price: 'From EUR 25,000',
     icon: Building2,
@@ -112,7 +112,7 @@ const services = [
     deliverables: ['Owned AI operating system', 'Agent and skill library', 'Quality gates', 'Team activation'],
   },
   {
-    title: 'Intelligence Architecture Partner',
+    title: 'AI Architecture Partner',
     duration: 'Monthly',
     price: 'From EUR 3,000/mo',
     icon: Shield,
@@ -122,7 +122,7 @@ const services = [
     deliverables: ['Architecture reviews', 'Opportunity sessions', 'Team coaching', 'System evolution'],
   },
   {
-    title: 'Leadership Intelligence Lab',
+    title: 'Leadership Possibility Lab',
     duration: '1 day',
     price: 'From EUR 5,000',
     icon: Lightbulb,
@@ -225,28 +225,28 @@ function HeroSection() {
         >
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-sm text-slate-400">AI Architecture Studio · Expert Intelligence Systems</span>
+            <span className="text-sm text-slate-400">AI Architecture Studio · Sovereign Intelligence</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
             <span className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-              Build the intelligence system
+              Turn what only you know
             </span>
             <br />
             <span className="bg-gradient-to-r from-[#AB47C7] via-blue-400 to-[#43BFE3] bg-clip-text text-transparent">
-              behind your next chapter.
+              into what your business can do.
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mb-10 leading-relaxed">
-            I work with established experts and founder-led businesses to turn distinctive
-            knowledge, data, and repeatable judgment into an owned AI system — then apply it to
-            operations, sales, marketing, delivery, and new product creation.
+            I help experts and founder-led teams capture their knowledge, judgment, and methods,
+            then build an AI-powered operating system around them — so the business can make
+            sharper decisions, create stronger work, serve more people, and launch new products.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <PremiumButton href="#contact" variant="primary" size="lg" glow>
-              Explore an Intelligence Build
+              Design My Advantage
               <ArrowRight className="ml-2 h-5 w-5" />
             </PremiumButton>
             <PremiumButton href="/foundry" variant="ghost" size="lg">
@@ -267,18 +267,19 @@ function PositioningSection() {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
             <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/60">
-              The Category
+              The Advantage
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Expert intelligence, made operational.
+              Your expertise should become infrastructure.
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-slate-400">
-              Personal branding makes expertise visible. An Expert Intelligence System makes it
-              usable. It preserves how you think, equips agents to work by your standards, and
-              connects that intelligence to the parts of the business where it creates value.
+              Personal branding makes expertise visible. Sovereign Intelligence makes it usable.
+              It preserves how you think, equips agents to work by your standards, and connects
+              that intelligence to the parts of the business where it creates value.
             </p>
             <p className="mt-5 text-base leading-relaxed text-slate-500">
-              The result is not a generic chatbot or a pile of automations. It is an owned
+              Sovereign means the context, memory, agents, and workflows remain under your
+              direction. The result is not a generic chatbot or a pile of automations. It is an
               architecture your team can inspect, operate, and improve.
             </p>
           </div>
@@ -313,12 +314,12 @@ function IntelligenceSystemSection() {
           One System
         </p>
         <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          Your knowledge should compound across the whole business.
+          One source of truth. Five forms of leverage.
         </h2>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-400">
-          The architecture brings the systems FrankX already operates — intelligence, agents,
-          creator workflows, business operations, and learning loops — into one client-specific
-          installation.
+          Starlight is the intelligence engine. Sovereign Intelligence is the principle. The
+          FrankX Foundry is how both become yours — connected to agents, creator workflows,
+          business operations, and learning loops.
         </p>
 
         <div className="mt-12 grid gap-4 md:grid-cols-5">
@@ -417,13 +418,13 @@ function FoundrySection() {
             Beyond Advisory
           </p>
           <h2 className="text-3xl font-bold text-white tracking-tight mb-3">
-            The flagship build: your Expert Intelligence System.
+            Build the system. Keep the intelligence.
           </h2>
           <p className="text-white/60 text-base mb-6">
             The FrankX Foundry installs the full architecture — knowledge base, agent harness,
             brand and quality contracts, operating workflows, and compounding business memory —
-            derived for your business and owned by you. Application-only, with a small number of
-            installs per quarter.
+            derived for your business and kept under your direction. Application-only, with a
+            small number of installs per quarter.
           </p>
           <Link
             href="/foundry"
@@ -490,7 +491,7 @@ function MethodologySection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Methodology</h2>
           <p className="text-slate-400 text-lg max-w-2xl">
-            Six phases move from deep listening to an intelligence system that improves through use.
+            From signal to system to scale: six phases that turn hidden expertise into working leverage.
           </p>
         </motion.div>
 

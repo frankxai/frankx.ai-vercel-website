@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import StudioClient from './StudioClient'
 
 export const metadata: Metadata = {
-  title: 'Expert Intelligence Systems — AI Architecture Studio | FrankX',
+  title: 'Build Your Intelligence Advantage — AI Architecture Studio | FrankX',
   description:
-    'Turn your expertise, business data, and repeatable judgment into an owned AI intelligence system for operations, sales, marketing, and product creation.',
+    'Turn what only you know into what your business can do. Build an owned AI operating advantage around your expertise, data, and judgment.',
   keywords: [
     'AI architecture studio',
-    'expert intelligence system',
-    'founder intelligence system',
+    'intelligence advantage',
+    'sovereign intelligence',
     'personal AI operating system',
     'AI operating system for business',
     'enterprise AI',
@@ -20,17 +20,17 @@ export const metadata: Metadata = {
     'AI coaching',
   ],
   openGraph: {
-    title: 'Expert Intelligence Systems — FrankX',
+    title: 'Build Your Intelligence Advantage — FrankX',
     description:
-      'Turn your expertise, business data, and repeatable judgment into an owned AI intelligence system.',
+      'Turn what only you know into what your business can do with an AI operating advantage you own.',
     url: 'https://frankx.ai/work-with-me',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Expert Intelligence Systems — FrankX',
+    title: 'Build Your Intelligence Advantage — FrankX',
     description:
-      'Turn your expertise, business data, and repeatable judgment into an owned AI intelligence system.',
+      'Turn what only you know into what your business can do with an AI operating advantage you own.',
   },
 }
 
