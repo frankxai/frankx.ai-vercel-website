@@ -32,7 +32,7 @@ function BreathInstrument() {
         <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-tech-light/70">
           Breath instrument
         </p>
-        <p className="mt-2 text-sm text-white/45">Session model · not a timer</p>
+        <p className="mt-2 text-sm text-white/60">Session model · not a timer</p>
       </div>
 
       <div className="relative px-6 py-8 sm:px-8">
@@ -47,7 +47,7 @@ function BreathInstrument() {
               Inhale
             </p>
             <p className="mt-2 text-lg font-semibold text-white">Open + expand</p>
-            <p className="mt-1 text-xs leading-5 text-white/45">
+            <p className="mt-1 text-xs leading-5 text-white/60">
               Complete and comfortable
             </p>
           </div>
@@ -59,11 +59,11 @@ function BreathInstrument() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
               Exhale
             </p>
             <p className="mt-2 text-lg font-semibold text-white">Relax + release</p>
-            <p className="mt-1 text-xs leading-5 text-white/45">
+            <p className="mt-1 text-xs leading-5 text-white/60">
               Unforced and unheld
             </p>
           </div>
@@ -81,7 +81,7 @@ function BreathInstrument() {
         </div>
       </div>
 
-      <figcaption className="border-t border-white/10 px-6 py-4 text-xs leading-5 text-white/40">
+      <figcaption className="border-t border-white/10 px-6 py-4 text-xs leading-5 text-white/60">
         Frank&apos;s visual synthesis of the session. “Fully in” means complete
         but comfortable—not a forced maximum.
       </figcaption>
@@ -98,7 +98,7 @@ function SourceKey() {
 
   return (
     <div className="rounded-2xl border border-white/10 bg-space p-5">
-      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
+      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/60">
         Source key
       </p>
       <ul className="mt-4 space-y-3">
@@ -147,7 +147,7 @@ export async function MvuResearchArticle({ entry }: { entry: MvuEntry }) {
                 {entry.summary}
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm text-white/48">
+              <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm text-white/60">
                 <span className="inline-flex items-center gap-2">
                   <CalendarDays className="h-4 w-4 text-tech-light/65" aria-hidden />
                   {formatDate(entry.date)}
@@ -188,21 +188,21 @@ export async function MvuResearchArticle({ entry }: { entry: MvuEntry }) {
         <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
           <SourceKey />
           <div className="rounded-2xl border border-white/10 p-5">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/60">
               Field record
             </p>
             <dl className="mt-4 space-y-4 text-sm">
               <div>
-                <dt className="text-white/35">Session</dt>
+                <dt className="text-white/60">Session</dt>
                 <dd className="mt-1 leading-5 text-white/65">{entry.session}</dd>
               </div>
               <div>
-                <dt className="text-white/35">Evidence reviewed</dt>
+                <dt className="text-white/60">Evidence reviewed</dt>
                 <dd className="mt-1 text-white/65">{formatDate(entry.reviewed)}</dd>
               </div>
             </dl>
           </div>
-          <p className="px-1 text-xs leading-5 text-white/35">
+          <p className="px-1 text-xs leading-5 text-white/60">
             Teaching, research, and interpretation stay visibly separate. That
             boundary is part of the work.
           </p>
@@ -213,7 +213,7 @@ export async function MvuResearchArticle({ entry }: { entry: MvuEntry }) {
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 py-12 sm:px-6 md:grid-cols-[1fr_auto] md:items-center lg:px-8">
           <div>
             <p className="text-sm font-semibold text-white">Continue with the source</p>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-white/48">
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-white/60">
               Find Dan Brulé&apos;s books, courses, events, and Breath Mastery channels
               through his official link page.
             </p>
@@ -229,7 +229,7 @@ export async function MvuResearchArticle({ entry }: { entry: MvuEntry }) {
           </a>
         </div>
         <div className="border-t border-white/10">
-          <p className="mx-auto w-full max-w-6xl px-5 py-6 text-xs leading-5 text-white/35 sm:px-6 lg:px-8">
+          <p className="mx-auto w-full max-w-6xl px-5 py-6 text-xs leading-5 text-white/60 sm:px-6 lg:px-8">
             Independent participant research by FrankX. Not affiliated with or
             endorsed by Dan Brulé, Breath Mastery, or Mindvalley. Educational
             material only; breath practices can affect physiology and are not
