@@ -141,7 +141,13 @@ export default function AlbaHealthSharePage() {
               <HeartHandshake className="h-3.5 w-3.5 text-[#3d8a62]" aria-hidden="true" />
               For Nora & the Alba team
             </p>
-            <h1 className="mt-7 max-w-3xl text-balance text-5xl font-semibold leading-[0.96] tracking-[-0.052em] sm:text-6xl lg:text-7xl">
+            <h1
+              className="mt-7 max-w-3xl text-balance text-5xl font-semibold leading-[0.96] tracking-[-0.052em] sm:text-6xl lg:text-7xl"
+              style={{
+                fontFamily:
+                  'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+              }}
+            >
               Turn the report into a family rhythm.
             </h1>
             <div className="mt-7 max-w-2xl space-y-3 text-base leading-7 text-[#52675f]">
