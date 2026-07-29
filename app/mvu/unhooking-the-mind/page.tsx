@@ -163,13 +163,13 @@ export default function UnhookingTheMindPage() {
               className="inline-flex items-center gap-2 text-sm text-white/45 transition-colors hover:text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden />
-              MVU field journal
+              MVU field atlas
             </Link>
 
             <div className="mt-16 grid gap-14 lg:grid-cols-[1.14fr_0.86fr] lg:items-end">
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-amber-300/70">
-                  Tallinn 2026 · Day 8 · field note 01
+                  Tallinn 2026 · 27 Jul · practice guide
                 </p>
                 <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-white sm:text-7xl">
                   Unhooking
@@ -211,8 +211,8 @@ export default function UnhookingTheMindPage() {
             </div>
 
             <div className="mt-16 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs leading-5 text-white/38 sm:flex-row sm:items-center sm:justify-between">
-              <p>Frank Riemer field notes · speaker attribution pending verification</p>
-              <p>Independent reflection · not an official Mindvalley transcript</p>
+              <p>Frank’s personal reflection · expanded with listed primary sources</p>
+              <p>Independent practice guide · not an official Mindvalley transcript</p>
             </div>
           </div>
         </header>
@@ -504,7 +504,7 @@ export default function UnhookingTheMindPage() {
             href="/mvu"
             className="inline-flex items-center gap-2 text-white/55 transition-colors hover:text-amber-200"
           >
-            Return to the MVU journal
+            Return to the MVU field atlas
             <ArrowRight className="h-3.5 w-3.5" aria-hidden />
           </Link>
         </footer>

@@ -15,31 +15,32 @@ import { cache } from 'react'
  * Frontmatter contract (all optional except title + date):
  *   title:     string
  *   date:      YYYY-MM-DD
- *   kind:      'journal' | 'essay' | 'note' | 'research'   (default 'note')
+ *   kind:      'journal' | 'essay' | 'note'   (default 'note')
+ *   layer:     'frank-note' | 'field-intelligence' | 'practice-guide'
+ *   session:   human-readable event/session label
+ *   provenance: short public explanation of the source boundary
+ *   featured:  boolean
  *   summary:   one-line teaser for the hub list
  *   tags:      string[]
- *   speaker:   string  (research entries)
- *   session:   string  (research entries)
- *   reviewed:  YYYY-MM-DD  (research entries)
- *   sources:   string[]  (research entries)
  *   published: boolean  (default true — set false to keep a draft out of prod)
  */
 
 const mvuDirectory = path.join(process.cwd(), 'content/mvu')
 
-export type MvuKind = 'journal' | 'essay' | 'note' | 'research'
+export type MvuKind = 'journal' | 'essay' | 'note'
+export type MvuLayer = 'frank-note' | 'field-intelligence' | 'practice-guide'
 
 export interface MvuEntry {
   slug: string
   title: string
   date: string
   kind: MvuKind
+  layer: MvuLayer
+  session: string
+  provenance: string
+  featured: boolean
   summary: string
   tags: string[]
-  speaker: string
-  session: string
-  reviewed: string
-  sources: string[]
   published: boolean
   readingTime: string
   content: string
@@ -47,25 +48,23 @@ export interface MvuEntry {
 
 export type MvuEntrySummary = Omit<MvuEntry, 'content'>
 
-export interface MvuCorpusStats {
-  total: number
-  published: number
-  held: number
-}
-
 function buildEntry(slug: string, data: Record<string, unknown>, content: string): MvuEntry {
   const kind = (data.kind as MvuKind) || 'note'
+  const defaultLayer: MvuLayer = kind === 'journal' ? 'frank-note' : 'field-intelligence'
+  const layer = (data.layer as MvuLayer) || defaultLayer
   return {
     slug,
     title: String(data.title ?? slug),
     date: String(data.date ?? ''),
-    kind: (['journal', 'essay', 'note', 'research'] as const).includes(kind) ? kind : 'note',
+    kind: (['journal', 'essay', 'note'] as const).includes(kind) ? kind : 'note',
+    layer: (['frank-note', 'field-intelligence', 'practice-guide'] as const).includes(layer)
+      ? layer
+      : defaultLayer,
+    session: String(data.session ?? ''),
+    provenance: String(data.provenance ?? ''),
+    featured: data.featured === true,
     summary: String(data.summary ?? ''),
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
-    speaker: String(data.speaker ?? ''),
-    session: String(data.session ?? ''),
-    reviewed: String(data.reviewed ?? ''),
-    sources: Array.isArray(data.sources) ? (data.sources as string[]) : [],
     published: data.published !== false,
     readingTime: readingTime(content).text,
     content,
@@ -101,18 +100,6 @@ export const getMvuEntries = cache((): MvuEntry[] =>
 export const getMvuEntrySummaries = cache((): MvuEntrySummary[] =>
   getMvuEntries().map(({ content: _content, ...rest }) => rest),
 )
-
-/** Editorial state for the complete MVU corpus, including held drafts. */
-export const getMvuCorpusStats = cache((): MvuCorpusStats => {
-  const entries = readAll()
-  const published = entries.filter((entry) => entry.published).length
-
-  return {
-    total: entries.length,
-    published,
-    held: entries.length - published,
-  }
-})
 
 export const getMvuEntry = cache((slug: string): MvuEntry | null => {
   const entry = readAll().find((e) => e.slug === slug && e.published)

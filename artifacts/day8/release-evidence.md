@@ -1,4 +1,4 @@
-# Day 8 — Unhooking the Mind release evidence
+# 27 July — Unhooking the Mind release evidence
 
 ## Decision
 
@@ -42,4 +42,4 @@ Local-only console noise came from missing Auth.js development configuration and
 
 ## Provenance boundary
 
-The page labels the material as Frank Riemer’s field notes and an independent synthesis. Speaker attribution remains pending verification. Advaita self-inquiry and early Buddhist not-self analysis are presented as related practices with different doctrinal claims.
+The page labels the material as Frank Riemer’s personal reflection, expanded with listed primary sources, and an independent synthesis. It does not claim a speaker source. Advaita self-inquiry and early Buddhist not-self analysis are presented as related practices with different doctrinal claims.
