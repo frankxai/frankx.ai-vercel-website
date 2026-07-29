@@ -145,7 +145,7 @@ export function GutJourneyDemo() {
       <div className="border-b border-[#183c30]/10 px-5 py-5 sm:px-7">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#5c766b]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#52675f]">
               Fictional journey · no personal data
             </p>
             <p className="mt-1 text-sm font-semibold text-[#173c30]">
@@ -193,7 +193,7 @@ export function GutJourneyDemo() {
                 className={`group flex min-h-16 flex-col items-center justify-center gap-1.5 rounded-2xl px-1 py-2 text-center transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3d8a62] motion-reduce:transition-none ${
                   selected
                     ? 'bg-[#173c30] text-white'
-                    : 'text-[#60766d] hover:bg-[#f3f7f2] hover:text-[#173c30]'
+                    : 'text-[#465c54] hover:bg-[#f3f7f2] hover:text-[#173c30]'
                 }`}
               >
                 <Icon
@@ -218,18 +218,18 @@ export function GutJourneyDemo() {
         className="grid lg:grid-cols-[0.9fr_1.1fr]"
       >
         <div className="border-b border-[#183c30]/10 bg-[#f4f0e7] p-6 sm:p-8 lg:border-b-0 lg:border-r">
-          <p className="font-mono text-xs font-semibold text-[#3d8a62]">
+          <p className="font-mono text-xs font-semibold text-[#32664e]">
             {active.number} / 05
           </p>
-          <h3 className="mt-4 max-w-md text-2xl font-semibold tracking-[-0.03em] text-[#173c30] sm:text-3xl">
+          <h2 className="mt-4 max-w-md text-2xl font-semibold tracking-[-0.03em] text-[#173c30] sm:text-3xl">
             {active.title}
-          </h3>
+          </h2>
           <p className="mt-4 max-w-lg text-sm leading-6 text-[#52675f]">
             {active.description}
           </p>
 
           <div className="mt-8">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71837c]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#52675f]">
               Authority at this stage
             </p>
             <p className="mt-2 text-sm font-semibold text-[#173c30]">
@@ -239,12 +239,12 @@ export function GutJourneyDemo() {
         </div>
 
         <div className="p-6 sm:p-8">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71837c]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#52675f]">
             {active.artifactLabel}
           </p>
-          <h4 className="mt-2 text-xl font-semibold tracking-tight text-[#173c30]">
+          <h3 className="mt-2 text-xl font-semibold tracking-tight text-[#173c30]">
             {active.artifactTitle}
-          </h4>
+          </h3>
           <ul className="mt-5 space-y-3">
             {active.artifactLines.map((line) => (
               <li
@@ -262,7 +262,7 @@ export function GutJourneyDemo() {
 
           <div className="mt-7 grid gap-4 border-t border-[#183c30]/10 pt-6 sm:grid-cols-2">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#3d8a62]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#32664e]">
                 Used
               </p>
               <p className="mt-2 text-xs leading-5 text-[#52675f]">
@@ -270,7 +270,7 @@ export function GutJourneyDemo() {
               </p>
             </div>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#9b655d]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#824c45]">
                 Deliberately excluded
               </p>
               <p className="mt-2 text-xs leading-5 text-[#52675f]">

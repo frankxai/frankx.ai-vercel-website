@@ -130,7 +130,7 @@ export default function AlbaHealthSharePage() {
         />
 
         <div className="mx-auto flex max-w-7xl justify-end border-b border-[#173c30]/10 pb-5">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#60766d]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#465c54]">
             Independent contribution · July 2026
           </p>
         </div>
@@ -144,14 +144,19 @@ export default function AlbaHealthSharePage() {
             <h1 className="mt-7 max-w-3xl text-balance text-5xl font-semibold leading-[0.96] tracking-[-0.052em] sm:text-6xl lg:text-7xl">
               Turn the report into a family rhythm.
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#52675f]">
-              Alba already connects a child&apos;s at-home gut test with a personal
-              report, action plan, nutrition coach, and year-long in-app advisor.
-              I built this as an optional next layer: an open, governed system
-              that helps a parent turn approved guidance into meals, preparation,
-              reflection, and a sharper human handoff.
-            </p>
-            <p className="mt-5 max-w-2xl border-l-2 border-[#3d8a62]/45 pl-4 text-sm leading-6 text-[#60766d]">
+            <div className="mt-7 max-w-2xl space-y-3 text-base leading-7 text-[#52675f]">
+              <p>
+                Alba already connects a child&apos;s at-home gut test with a
+                personal report, action plan, nutrition coach, and year-long
+                in-app advisor.
+              </p>
+              <p>
+                I built this as an optional next layer: an open, governed system
+                that helps a parent turn approved guidance into meals,
+                preparation, reflection, and a sharper human handoff.
+              </p>
+            </div>
+            <p className="mt-5 max-w-2xl border-l-2 border-[#32664e]/45 pl-4 text-sm leading-6 text-[#465c54]">
               This is a gift and a working concept, not a partnership claim. Use
               anything useful. The fictional journey beside this note shows the
               idea end to end.
@@ -188,7 +193,7 @@ export default function AlbaHealthSharePage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#3d8a62]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#32664e]">
                 The observation
               </p>
               <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
@@ -210,7 +215,7 @@ export default function AlbaHealthSharePage() {
                 school, what deserves a coach&apos;s attention, and what should
                 inform the next plan.
               </p>
-              <p className="text-sm leading-6 text-[#71837c]">
+              <p className="text-sm leading-6 text-[#52675f]">
                 Source grounding:{' '}
                 <a
                   href="https://albahealth.com/pages/about"
@@ -257,7 +262,7 @@ export default function AlbaHealthSharePage() {
                 >
                   <div className="flex items-center justify-between">
                     <Icon className="h-5 w-5 text-[#a9d9b5]" aria-hidden="true" />
-                    <span className="font-mono text-xs text-white/35">
+                      <span className="font-mono text-xs text-white/60">
                       {layer.number}
                     </span>
                   </div>
@@ -267,7 +272,7 @@ export default function AlbaHealthSharePage() {
                   <h3 className="mt-3 text-2xl font-semibold tracking-tight">
                     {layer.title}
                   </h3>
-                  <p className="mt-4 text-sm leading-6 text-white/58">
+                  <p className="mt-4 text-sm leading-6 text-white/75">
                     {layer.body}
                   </p>
                 </article>
@@ -275,7 +280,7 @@ export default function AlbaHealthSharePage() {
             })}
           </div>
 
-          <div className="mt-8 grid gap-4 text-sm leading-6 text-white/55 sm:grid-cols-2">
+          <div className="mt-8 grid gap-4 text-sm leading-6 text-white/75 sm:grid-cols-2">
             <p className="flex items-start gap-2.5">
               <DatabaseZap className="mt-1 h-4 w-4 shrink-0 text-[#a9d9b5]" aria-hidden="true" />
               Starlight can provide provenance, versioning, consent-aware memory,
@@ -294,13 +299,13 @@ export default function AlbaHealthSharePage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#3d8a62]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#32664e]">
                 Portable capability
               </p>
               <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
                 Skills for parents. Agents for governance. Humans for judgment.
               </h2>
-              <p className="mt-6 text-base leading-7 text-[#60766d]">
+              <p className="mt-6 text-base leading-7 text-[#465c54]">
                 The packs are intentionally small. Each one owns a bounded job,
                 names what it may use, and knows when to stop.
               </p>
@@ -317,7 +322,7 @@ export default function AlbaHealthSharePage() {
                     {pack.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-start gap-2 text-sm leading-6 text-[#60766d]"
+                        className="flex items-start gap-2 text-sm leading-6 text-[#465c54]"
                       >
                         <CheckCircle2
                           className="mt-1 h-4 w-4 shrink-0 text-[#3d8a62]"
@@ -337,7 +342,7 @@ export default function AlbaHealthSharePage() {
       <section className="border-y border-[#173c30]/10 bg-white/48 px-5 py-20 sm:px-8 md:py-28 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#3d8a62]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#32664e]">
               Three honest ways forward
             </p>
             <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
@@ -351,13 +356,13 @@ export default function AlbaHealthSharePage() {
                 key={path.label}
                 className={`py-8 lg:px-8 lg:py-10 ${index > 0 ? 'border-t border-[#173c30]/12 lg:border-t-0' : ''}`}
               >
-                <p className="font-mono text-xs font-semibold text-[#3d8a62]">
+                <p className="font-mono text-xs font-semibold text-[#32664e]">
                   0{index + 1} · {path.label}
                 </p>
                 <h3 className="mt-5 text-2xl font-semibold tracking-tight">
                   {path.title}
                 </h3>
-                <p className="mt-4 text-sm leading-6 text-[#60766d]">
+                <p className="mt-4 text-sm leading-6 text-[#465c54]">
                   {path.body}
                 </p>
               </article>
@@ -408,7 +413,7 @@ export default function AlbaHealthSharePage() {
 
       <footer className="border-t border-[#173c30]/10 px-5 py-10 sm:px-8 lg:px-12">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-          <p className="max-w-3xl text-xs leading-5 text-[#71837c]">
+          <p className="max-w-3xl text-xs leading-5 text-[#52675f]">
             Independent concept by FrankX. No affiliation, endorsement, or
             partnership with Alba Health is implied. All family examples are
             fictional. This page collects no personalized health data and does
