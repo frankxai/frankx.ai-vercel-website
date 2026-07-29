@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, MotionConfig } from 'framer-motion'
 import {
   TrendingUp,
   Bot,
@@ -20,7 +20,6 @@ import {
   Shield,
 } from 'lucide-react'
 
-import Image from 'next/image'
 import { getFeaturedProducts, INVESTOR_CATEGORIES, type InvestorCategory } from '@/lib/investor'
 import InvestorProductCard from '@/components/investor/InvestorProductCard'
 
@@ -245,7 +244,7 @@ export default function InvestorHubPage() {
   const featuredProducts = getFeaturedProducts().slice(0, 6)
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <HubBackground />
       <main className="relative min-h-screen">
         {/* Hero */}
@@ -257,12 +256,11 @@ export default function InvestorHubPage() {
               transition={{ duration: 0.5 }}
               className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm"
             >
-              <Image src="/images/mascot/mascot-v14-dimensional-rift.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(6,182,212,0.3)' }} />
-              <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-amber-500/30 to-cyan-500/30">
-                <TrendingUp className="h-3.5 w-3.5 text-white" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-400/20 bg-gradient-to-br from-amber-500/20 to-cyan-500/15">
+                <TrendingUp className="h-4 w-4 text-amber-200" />
               </div>
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-                Invest Smarter with AI
+                Frank&apos;s research stack
               </span>
             </motion.div>
 
@@ -272,9 +270,9 @@ export default function InvestorHubPage() {
               transition={{ duration: 0.6, delay: 0.08 }}
               className="mb-6 max-w-4xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
-              Your AI{' '}
+              My AI-assisted{' '}
               <span className="bg-gradient-to-r from-amber-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                Investment Edge.
+                investment research stack.
               </span>
             </motion.h1>
 
@@ -284,8 +282,9 @@ export default function InvestorHubPage() {
               transition={{ duration: 0.6, delay: 0.16 }}
               className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-400"
             >
-              The platforms I invest on, the AI tools I research with, and the prompts
-              that give you an edge — whether you hold stocks, crypto, or both.
+              The platforms, research tools, and repeatable workflows I use to
+              investigate public markets and digital assets. Educational only—not
+              financial advice.
             </motion.p>
 
             <motion.div
@@ -299,7 +298,7 @@ export default function InvestorHubPage() {
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
               >
                 <TrendingUp className="h-4 w-4" />
-                Platform Picks
+                Browse platform notes
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
               <Link
@@ -307,7 +306,7 @@ export default function InvestorHubPage() {
                 className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10"
               >
                 <Search className="h-4 w-4" />
-                AI Research Tools
+                See the research workflow
               </Link>
             </motion.div>
           </div>
@@ -606,16 +605,18 @@ export default function InvestorHubPage() {
                 <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/15 text-amber-400">
                   <DollarSign className="h-7 w-7" />
                 </div>
-                <h3 className="mb-3 text-2xl font-bold text-white">Start Investing Smarter Today</h3>
+                <h3 className="mb-3 text-2xl font-bold text-white">
+                  Build a more disciplined research process
+                </h3>
                 <p className="mx-auto mb-8 max-w-lg leading-relaxed text-slate-400">
-                  Free investment prompts for Claude, a Perplexity research workflow guide, and a portfolio
-                  tracking template. No credit card, no catch — just better research.
+                  Start with practical research tools, reusable prompts, and workspace
+                  patterns. Verify every conclusion against primary sources before you act.
                 </p>
                 <Link
-                  href="#"
+                  href="/investor/tools"
                   className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-lg hover:shadow-amber-500/20"
                 >
-                  Download Free Kit
+                  Explore research tools
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -623,6 +624,6 @@ export default function InvestorHubPage() {
           </div>
         </section>
       </main>
-    </>
+    </MotionConfig>
   )
 }

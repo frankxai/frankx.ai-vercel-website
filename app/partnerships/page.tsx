@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { createMetadata, siteConfig } from '@/lib/seo'
@@ -17,9 +18,9 @@ import {
 import type { Partner } from '@/content/partnerships/types'
 
 export const metadata = createMetadata({
-  title: 'Partnerships — Sovereign-node AI Architect collaborations | FrankX',
+  title: 'AI Partnerships — Architecture, Workshops & Adoption | FrankX',
   description:
-    'Active strategic conversations and operating alignments with Anthropic, Vercel, NVIDIA, Google, Arrow, and the infrastructure behind the practice. Peer-architect collaboration from Amsterdam, EMEA reach.',
+    'How Frank Riemer collaborates with model, cloud, silicon, and distribution partners through field architecture, workshops, and inspectable AI systems.',
   path: '/partnerships',
 })
 
@@ -85,7 +86,7 @@ export default function PartnershipsHubPage() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20">
+      <section className="relative overflow-hidden pb-20 pt-28 lg:pb-24 lg:pt-36">
         <div
           aria-hidden
           className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.06] via-transparent to-transparent"
@@ -94,31 +95,83 @@ export default function PartnershipsHubPage() {
           aria-hidden
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(6,182,212,0.06),_transparent_60%)]"
         />
-        <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-          <MotionHero>
-            <MotionHeroItem delay={0}>
-              <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-                Partnerships
-              </p>
-            </MotionHeroItem>
-            <MotionHeroItem delay={0.1}>
-              <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-6 max-w-3xl"
-                style={{
-                  fontFamily: 'var(--font-poppins, Poppins), Inter, sans-serif',
-                  letterSpacing: '-0.025em',
-                }}
-              >
-                How I collaborate with partners.
-              </h1>
-            </MotionHeroItem>
-            <MotionHeroItem delay={0.2}>
-              <p className="text-lg text-zinc-300 leading-[1.7] max-w-2xl">
-                Active strategic conversations and operating alignments with
-                model providers, clouds, distributors, and silicon partners.
-                One human operator, an army of agents, shipping a
-                coding-agent-native AI CoE practice from Amsterdam.
-              </p>
+        <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
+          <MotionHero className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
+            <div>
+              <MotionHeroItem delay={0}>
+                <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-300/70">
+                  Partner intelligence · Amsterdam / EMEA
+                </p>
+              </MotionHeroItem>
+              <MotionHeroItem delay={0.1}>
+                <h1
+                  className="max-w-3xl text-4xl font-bold leading-[1.03] text-white sm:text-5xl lg:text-6xl"
+                  style={{
+                    fontFamily: 'var(--font-poppins, Poppins), Inter, sans-serif',
+                    letterSpacing: '-0.035em',
+                  }}
+                >
+                  Build the next useful AI capability together.
+                </h1>
+              </MotionHeroItem>
+              <MotionHeroItem delay={0.2}>
+                <p className="mt-6 max-w-2xl text-base leading-[1.75] text-zinc-300 sm:text-lg">
+                  I collaborate with model providers, cloud and silicon teams, and
+                  distributors where field-tested architecture, workshops, or creator
+                  systems can turn platform capability into visible adoption.
+                </p>
+              </MotionHeroItem>
+              <MotionHeroItem delay={0.3}>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <Link
+                    href="#active-heading"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-300 px-6 py-3 text-sm font-semibold text-[#07110d] transition-colors hover:bg-emerald-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                  >
+                    See active partner lanes
+                    <ArrowUpRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                  <Link
+                    href={MEET_AND_GROW_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/25 hover:bg-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                  >
+                    Start a conversation
+                  </Link>
+                </div>
+              </MotionHeroItem>
+              <MotionHeroItem delay={0.4}>
+                <p className="mt-5 text-xs leading-5 text-zinc-500">
+                  Independent practice. Platform references describe current use,
+                  documented conversations, or prior professional work—not implied
+                  endorsement.
+                </p>
+              </MotionHeroItem>
+            </div>
+
+            <MotionHeroItem delay={0.18}>
+              <figure className="relative min-h-[390px] overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] shadow-[0_35px_100px_-55px_rgba(16,185,129,0.55)] sm:min-h-[520px]">
+                <Image
+                  src="/images/oracle-events/oracle-workshop-P1081724.jpg"
+                  alt="Frank Riemer facilitating a technical workshop with a live audience"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 44vw, 100vw"
+                  className="object-cover object-[49%_center]"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                  <p className="text-sm font-medium text-white">
+                    Architecture becomes valuable when a room can use it.
+                  </p>
+                  <p className="mt-1 text-xs text-white/55">
+                    Technical workshop facilitation · Amsterdam
+                  </p>
+                </figcaption>
+              </figure>
             </MotionHeroItem>
           </MotionHero>
         </div>
