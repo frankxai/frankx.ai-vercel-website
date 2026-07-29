@@ -2,6 +2,9 @@
 title: "What makes content travel"
 date: "2026-07-23"
 kind: "essay"
+layer: "field-intelligence"
+session: "Session note · Chiara King"
+provenance: "Frank's interpretation of a public session, expanded into an editorial field note."
 summary: "A Tallinn field note on engineered recognition: why people send ideas to each other, how to preserve human provenance in an AI-amplified world, and a practical system for creating work worth passing on."
 tags: ["authenticity", "content", "recognition", "AI", "provenance", "Mindvalley University"]
 published: true

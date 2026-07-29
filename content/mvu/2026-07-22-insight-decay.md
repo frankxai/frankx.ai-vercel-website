@@ -2,6 +2,9 @@
 title: "The cost of an insight you never live"
 date: "2026-07-22"
 kind: "essay"
+layer: "field-intelligence"
+session: "Integration thesis"
+provenance: "Editorial synthesis from Frank's event-integration thesis; not a verbatim journal entry."
 summary: "The value of an event doesn't fade because you forget. It fades because nothing was standing by to catch it. The thesis behind the lab I might run here."
 tags: ["essay", "second-brain", "thesis"]
 published: true

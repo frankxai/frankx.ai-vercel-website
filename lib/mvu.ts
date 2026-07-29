@@ -16,6 +16,12 @@ import { cache } from 'react'
  *   title:     string
  *   date:      YYYY-MM-DD
  *   kind:      'journal' | 'essay' | 'note'   (default 'note')
+ *   layer:     'frank-note' | 'field-intelligence' | 'practice-guide'
+ *   session:   human-readable event/session label
+ *   provenance: short public explanation of the source boundary
+ *   pullQuote: exact line used by the hub hero or cards
+ *   recordedAt: optional human-readable capture time
+ *   featured:  boolean
  *   summary:   one-line teaser for the hub list
  *   tags:      string[]
  *   published: boolean  (default true — set false to keep a draft out of prod)
@@ -24,12 +30,19 @@ import { cache } from 'react'
 const mvuDirectory = path.join(process.cwd(), 'content/mvu')
 
 export type MvuKind = 'journal' | 'essay' | 'note'
+export type MvuLayer = 'frank-note' | 'field-intelligence' | 'practice-guide'
 
 export interface MvuEntry {
   slug: string
   title: string
   date: string
   kind: MvuKind
+  layer: MvuLayer
+  session: string
+  provenance: string
+  pullQuote: string
+  recordedAt: string
+  featured: boolean
   summary: string
   tags: string[]
   published: boolean
@@ -41,11 +54,21 @@ export type MvuEntrySummary = Omit<MvuEntry, 'content'>
 
 function buildEntry(slug: string, data: Record<string, unknown>, content: string): MvuEntry {
   const kind = (data.kind as MvuKind) || 'note'
+  const defaultLayer: MvuLayer = kind === 'journal' ? 'frank-note' : 'field-intelligence'
+  const layer = (data.layer as MvuLayer) || defaultLayer
   return {
     slug,
     title: String(data.title ?? slug),
     date: String(data.date ?? ''),
     kind: (['journal', 'essay', 'note'] as const).includes(kind) ? kind : 'note',
+    layer: (['frank-note', 'field-intelligence', 'practice-guide'] as const).includes(layer)
+      ? layer
+      : defaultLayer,
+    session: String(data.session ?? ''),
+    provenance: String(data.provenance ?? ''),
+    pullQuote: String(data.pullQuote ?? ''),
+    recordedAt: String(data.recordedAt ?? ''),
+    featured: data.featured === true,
     summary: String(data.summary ?? ''),
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
     published: data.published !== false,
@@ -72,7 +95,15 @@ function readAll(): MvuEntry[] {
       const { data, content } = matter(fs.readFileSync(fullPath, 'utf8'))
       return buildEntry(slug, data, content)
     })
-    .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+    .sort((a, b) => {
+      const at = new Date(a.date).getTime()
+      const bt = new Date(b.date).getTime()
+      if (Number.isNaN(at) && Number.isNaN(bt)) return a.slug.localeCompare(b.slug)
+      if (Number.isNaN(at)) return 1
+      if (Number.isNaN(bt)) return -1
+      if (at !== bt) return bt - at
+      return a.slug.localeCompare(b.slug)
+    })
 }
 
 /** Published entries only — what the live site shows. Newest first. */
