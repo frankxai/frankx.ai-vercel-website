@@ -1,0 +1,119 @@
+{
+  "version": "1.0",
+  "task": "Rebuild /connect and its critical destinations into a premium authority journey",
+  "surface": "frankx.ai/connect, partnerships, and investor",
+  "audience": "Primary: established experts and founder-led teams with proprietary methods; enterprise AI and technology partner decision-makers. Secondary: builders and creators who want to inspect the work before engaging.",
+  "first_read": "Frank is a credible AI Architect who ships real systems and creative work; the visitor can immediately choose the route that matches their context.",
+  "standards": [
+    "Starlight Premium Intelligence Web OS",
+    "FrankX design.md and taste.md",
+    "WEB_EXPERIENCE_STANDARD",
+    "VISUAL_QA_GATE",
+    "PREMIUM_ASSET_STANDARD"
+  ],
+  "references": [
+    {
+      "label": "Live /connect before-state",
+      "source": "https://www.frankx.ai/connect",
+      "reason": "Established the current link-hub hierarchy, mobile behavior, and route mismatches."
+    },
+    {
+      "label": "Frank presenting enterprise AI architecture",
+      "source": "/images/portraits/frank-presenting-oracle-2025.jpg",
+      "reason": "Owned, documentary proof communicates authority more credibly than a generated avatar."
+    },
+    {
+      "label": "Frank facilitating a technical workshop",
+      "source": "/images/oracle-events/oracle-workshop-P1081724.jpg",
+      "reason": "Owned, in-room evidence makes the partnership proposition concrete and human."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Near-black FrankX canvas and restrained emerald signal color",
+      "Fast access to contact, agent, newsletter, social, and QR utilities",
+      "Existing date-aware event ribbon",
+      "Quiet motion with reduced-motion compatibility"
+    ],
+    "avoid": [
+      "Generic link-in-bio composition",
+      "Synthetic mascot or avatar as the primary authority signal",
+      "Stale event-specific marketing copy",
+      "Unsupported partnership or investor promises",
+      "Dense card walls without a clear decision hierarchy"
+    ],
+    "signature": "The human plus the operating proof: documentary workshop imagery paired with precise, inspectable systems.",
+    "system": [
+      "One decisive value proposition above the fold",
+      "Real-work photography with explicit context and affiliation disclaimer",
+      "Three compact proof links before role selection",
+      "Four intent-aligned visitor routes",
+      "Proof-led featured work and one clear conversation close"
+    ]
+  },
+  "asset_quality": {
+    "tier": "A",
+    "source_method": "product-capture",
+    "provenance": "owned",
+    "why_premium": "The primary visuals are owned documentary photographs of Frank presenting and facilitating real technical work. They are specific to the practice, high resolution, and contextually relevant.",
+    "shortcut_risk": "low",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "path_or_url": "/images/portraits/frank-presenting-oracle-2025.jpg",
+      "kind": "owned workshop photograph",
+      "inspected": true,
+      "notes": "Used as the /connect authority hero with a visible independent-project disclaimer."
+    },
+    {
+      "path_or_url": "/images/oracle-events/oracle-workshop-P1081724.jpg",
+      "kind": "owned workshop photograph",
+      "inspected": true,
+      "notes": "Used in the partnerships hero; image contains no implied partner logo endorsement."
+    },
+    {
+      "path_or_url": "https://www.frankx.ai/connect",
+      "kind": "live before-state",
+      "inspected": true,
+      "notes": "Captured at 1440x1000 and 390x844 before implementation."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Intent and route architecture",
+      "status": "pass",
+      "evidence": "Investor, partner, client, and creator labels were replaced with expert/founder, enterprise/partner, builder/architect, and creator/community routes that match their destination promises."
+    },
+    {
+      "name": "Broken asset and dead-link repair",
+      "status": "pass",
+      "evidence": "Removed the missing investor mascot image and replaced the href='#' free-kit CTA with a real /investor/tools destination."
+    },
+    {
+      "name": "Responsive browser QA",
+      "status": "blocked",
+      "evidence": "Pending preview deployment."
+    },
+    {
+      "name": "Accessibility and reduced motion",
+      "status": "blocked",
+      "evidence": "Pending preview deployment and automated checks."
+    },
+    {
+      "name": "Production build and live verification",
+      "status": "blocked",
+      "evidence": "Pending clean main-based commit and Vercel deployment."
+    }
+  ],
+  "score": {
+    "total": 0,
+    "max": 100,
+    "notes": "Final score will be recorded after preview visual QA and production verification."
+  },
+  "decision": "iterate",
+  "known_risks": [
+    "The production repository working tree contains unrelated user changes; release must be assembled from origin/main with a clean alternate Git index.",
+    "Vercel Observability Plus is not enabled, so the optimization skill's metric comparison lane is unavailable."
+  ]
+}

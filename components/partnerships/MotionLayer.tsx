@@ -16,7 +16,7 @@
  *    `MotionHeroItem` with explicit delay sequencing.
  */
 
-import { motion, type Variants } from 'framer-motion'
+import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const
@@ -64,9 +64,11 @@ export function MotionSection({
   variant = 'default',
   ...rest
 }: MotionSectionProps) {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <motion.section
-      initial="hidden"
+      initial={shouldReduceMotion ? false : 'hidden'}
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
       variants={variant === 'fast' ? staggerFast : stagger}
@@ -100,9 +102,11 @@ type MotionHeroProps = ComponentPropsWithoutRef<typeof motion.div> & {
 }
 
 export function MotionHero({ children, className, ...rest }: MotionHeroProps) {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <motion.div
-      initial="hidden"
+      initial={shouldReduceMotion ? false : 'hidden'}
       animate="visible"
       variants={stagger}
       className={className}

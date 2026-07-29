@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { CheckCircle2, AlertCircle, Sparkles } from 'lucide-react'
+import { CheckCircle2, AlertCircle, Radio } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
@@ -42,11 +42,12 @@ export function ConnectNewsletterForm() {
   return (
     <div className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.01] p-5 backdrop-blur">
       <div className="mb-3 flex items-center gap-2">
-        <Sparkles className="h-4 w-4 text-amber-300" aria-hidden />
-        <p className="text-sm font-semibold text-white">Join the inner circle</p>
+        <Radio className="h-4 w-4 text-emerald-300" aria-hidden />
+        <p className="text-sm font-semibold text-white">Signal, once a week</p>
       </div>
       <p className="mb-3 text-xs leading-relaxed text-white/60">
-        Weekly drops on AI architecture, music, and the systems behind FrankX. No noise.
+        AI architecture, agent systems, and creative production notes. Specific enough
+        to use. Quiet enough to keep.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
         <input
