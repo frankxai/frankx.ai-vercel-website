@@ -45,7 +45,7 @@ export default function OgImage() {
               textTransform: 'uppercase',
             }}
           >
-            MVU Tallinn · Day 8 · Field Guide
+            MVU Tallinn · 27 Jul · Practice Guide
           </div>
           <div
             style={{
