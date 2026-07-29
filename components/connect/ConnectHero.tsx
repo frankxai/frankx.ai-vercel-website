@@ -130,7 +130,7 @@ export function ConnectHero() {
                 <span className="mt-0.5 block text-xs text-white/50">{item.detail}</span>
               </span>
               <ArrowRight
-                className="ml-auto h-3.5 w-3.5 text-white/25 transition-all group-hover:translate-x-0.5 group-hover:text-white/65"
+                className="ml-auto h-3.5 w-3.5 text-white/25 transition-[transform,color] group-hover:translate-x-0.5 group-hover:text-white/65"
                 aria-hidden
               />
             </Link>
