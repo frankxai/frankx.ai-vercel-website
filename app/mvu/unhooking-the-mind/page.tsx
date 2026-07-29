@@ -13,8 +13,10 @@ import {
   Scale,
 } from 'lucide-react'
 
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { UnhookingTracker } from '@/components/mvu/UnhookingTracker'
 import { createMetadata } from '@/lib/seo'
+import { serializeJsonLd } from '@/lib/structured-data'
 
 const PAGE_PATH = '/mvu/unhooking-the-mind'
 const PAGE_URL = `https://frankx.ai${PAGE_PATH}`
@@ -141,62 +143,26 @@ function ArticleJsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   )
 }
 
 export default function UnhookingTheMindPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#090907] text-white">
+    <main className="min-h-screen overflow-hidden bg-void text-white">
       <ArticleJsonLd />
 
-      <article>
-        <header className="relative border-b border-white/10">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-24 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-amber-300/[0.06] blur-[120px]"
-          />
-          <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-10 sm:px-6 sm:pb-28 lg:px-8">
-            <Link
-              href="/mvu"
-              className="inline-flex items-center gap-2 text-sm text-white/45 transition-colors hover:text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
-            >
-              <ArrowLeft className="h-4 w-4" aria-hidden />
-              MVU field atlas
-            </Link>
-
-            <div className="mt-16 grid gap-14 lg:grid-cols-[1.14fr_0.86fr] lg:items-end">
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-amber-300/70">
-                  Tallinn 2026 · 27 Jul · practice guide
-                </p>
-                <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-white sm:text-7xl">
-                  Unhooking
-                  <br />
-                  the mind.
-                </h1>
-                <p className="mt-7 max-w-2xl text-lg leading-8 text-white/62 sm:text-xl">
-                  A thought can appear without becoming an instruction. The work
-                  is to notice the hook, return to the body, examine the owner,
-                  and choose an action that does not deepen separation.
-                </p>
-                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                  <a
-                    href="#practice"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-300 px-6 py-3 text-sm font-semibold text-[#090907] transition-colors hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
-                  >
-                    Begin the practice
-                    <ArrowDown className="h-4 w-4" aria-hidden />
-                  </a>
-                  <a
-                    href="/downloads/mvu-unhooking-practice-kit-v0.1.0.zip"
+      <TrackedLink
+  href="/mvu"
+  eventName="mvu_practice_action"
+  eventProperties={{ action: 'download_kit', placement: 'weekly_review' }}
                     download
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white/70 transition-colors hover:border-amber-300/35 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
-                  >
+  className="relative border-b border-white/10"
+>
                     <Download className="h-4 w-4" aria-hidden />
                     Download the practice kit
-                  </a>
+                  </TrackedLink>
                 </div>
               </div>
 
@@ -247,7 +213,7 @@ export default function UnhookingTheMindPage() {
           </div>
         </section>
 
-        <section className="border-b border-white/10 bg-[#0d0c09]">
+        <section className="border-b border-white/10 bg-space">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
             <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
               <div>
@@ -261,7 +227,7 @@ export default function UnhookingTheMindPage() {
                 </h2>
               </div>
               <div className="grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-2">
-                <div className="bg-[#090907] p-7 sm:p-8">
+                <div className="bg-void p-7 sm:p-8">
                   <p className="text-sm font-semibold text-amber-200">Advaita self-inquiry</p>
                   <p className="mt-4 text-sm leading-7 text-white/57">
                     “Who am I?” turns attention toward the presumed owner of
@@ -269,7 +235,7 @@ export default function UnhookingTheMindPage() {
                     match for the “master key” language in these field notes.
                   </p>
                 </div>
-                <div className="bg-[#090907] p-7 sm:p-8">
+                <div className="bg-void p-7 sm:p-8">
                   <p className="text-sm font-semibold text-amber-200">Early Buddhist analysis</p>
                   <p className="mt-4 text-sm leading-7 text-white/57">
                     Experience is examined as changing and not fit to be held as
@@ -319,7 +285,7 @@ export default function UnhookingTheMindPage() {
           </div>
         </section>
 
-        <section className="border-b border-white/10 bg-[#0d0c09]">
+        <section className="border-b border-white/10 bg-space">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
               <div>
@@ -361,7 +327,7 @@ export default function UnhookingTheMindPage() {
         <section className="border-b border-white/10">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
             <div className="grid gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 lg:grid-cols-3">
-              <div className="bg-[#0d0c09] p-7 sm:p-9">
+              <div className="bg-space p-7 sm:p-9">
                 <Footprints className="h-5 w-5 text-amber-300" aria-hidden />
                 <h2 className="mt-7 text-xl font-semibold">Take care of the body.</h2>
                 <p className="mt-4 text-sm leading-7 text-white/52">
@@ -369,7 +335,7 @@ export default function UnhookingTheMindPage() {
                   They are the conditions in which attention operates.
                 </p>
               </div>
-              <div className="bg-[#0d0c09] p-7 sm:p-9">
+              <div className="bg-space p-7 sm:p-9">
                 <Moon className="h-5 w-5 text-amber-300" aria-hidden />
                 <h2 className="mt-7 text-xl font-semibold">Remove less. Notice earlier.</h2>
                 <p className="mt-4 text-sm leading-7 text-white/52">
@@ -378,7 +344,7 @@ export default function UnhookingTheMindPage() {
                   and faster repair.
                 </p>
               </div>
-              <div className="bg-[#0d0c09] p-7 sm:p-9">
+              <div className="bg-space p-7 sm:p-9">
                 <HeartHandshake className="h-5 w-5 text-amber-300" aria-hidden />
                 <h2 className="mt-7 text-xl font-semibold">Choose kindness with edges.</h2>
                 <p className="mt-4 text-sm leading-7 text-white/52">
@@ -391,7 +357,7 @@ export default function UnhookingTheMindPage() {
           </div>
         </section>
 
-        <section className="border-b border-white/10 bg-[#0d0c09]">
+        <section className="border-b border-white/10 bg-space">
           <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-6 sm:py-28 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
             <div>
               <Scale className="h-5 w-5 text-amber-300" aria-hidden />
@@ -429,7 +395,7 @@ export default function UnhookingTheMindPage() {
               {DAYS.map(([day, title, practice], index) => (
                 <li
                   key={day}
-                  className={`bg-[#0d0c09] p-6 sm:p-8 ${
+                  className={`bg-space p-6 sm:p-8 ${
                     index === DAYS.length - 1 ? 'md:col-span-2' : ''
                   }`}
                 >
@@ -445,23 +411,25 @@ export default function UnhookingTheMindPage() {
               <a
                 href="/downloads/mvu-unhooking-practice-kit-v0.1.0.zip"
                 download
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-300 px-6 py-3 text-sm font-semibold text-[#090907] transition-colors hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-300 px-6 py-3 text-sm font-semibold text-void transition-colors hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
               >
                 <Download className="h-4 w-4" aria-hidden />
                 Download tracker + weekly review
-              </a>
-              <Link
-                href="/skills"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm text-white/65 transition-colors hover:border-amber-300/35 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
-              >
+              </TrackedLink>
+              <TrackedLink
+  href="/skills"
+  eventName="mvu_practice_action"
+  eventProperties={{ action: 'explore_skills', placement: 'weekly_review' }}
+  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm text-white/65 transition-colors hover:border-amber-300/35 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
+>
                 Explore FrankX skills
                 <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
+              </TrackedLink>
             </div>
           </div>
         </section>
 
-        <section className="border-b border-white/10 bg-[#0d0c09]">
+        <section className="border-b border-white/10 bg-space">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
               <div>
