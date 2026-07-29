@@ -15,15 +15,19 @@ import { cache } from 'react'
  * Frontmatter contract (all optional except title + date):
  *   title:     string
  *   date:      YYYY-MM-DD
- *   kind:      'journal' | 'essay' | 'note'   (default 'note')
+ *   kind:      'journal' | 'essay' | 'note' | 'research'   (default 'note')
  *   summary:   one-line teaser for the hub list
  *   tags:      string[]
+ *   speaker:   string  (research entries)
+ *   session:   string  (research entries)
+ *   reviewed:  YYYY-MM-DD  (research entries)
+ *   sources:   string[]  (research entries)
  *   published: boolean  (default true — set false to keep a draft out of prod)
  */
 
 const mvuDirectory = path.join(process.cwd(), 'content/mvu')
 
-export type MvuKind = 'journal' | 'essay' | 'note'
+export type MvuKind = 'journal' | 'essay' | 'note' | 'research'
 
 export interface MvuEntry {
   slug: string
@@ -32,6 +36,10 @@ export interface MvuEntry {
   kind: MvuKind
   summary: string
   tags: string[]
+  speaker: string
+  session: string
+  reviewed: string
+  sources: string[]
   published: boolean
   readingTime: string
   content: string
@@ -45,9 +53,13 @@ function buildEntry(slug: string, data: Record<string, unknown>, content: string
     slug,
     title: String(data.title ?? slug),
     date: String(data.date ?? ''),
-    kind: (['journal', 'essay', 'note'] as const).includes(kind) ? kind : 'note',
+    kind: (['journal', 'essay', 'note', 'research'] as const).includes(kind) ? kind : 'note',
     summary: String(data.summary ?? ''),
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
+    speaker: String(data.speaker ?? ''),
+    session: String(data.session ?? ''),
+    reviewed: String(data.reviewed ?? ''),
+    sources: Array.isArray(data.sources) ? (data.sources as string[]) : [],
     published: data.published !== false,
     readingTime: readingTime(content).text,
     content,
