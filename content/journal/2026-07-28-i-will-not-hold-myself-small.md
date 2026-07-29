@@ -1,7 +1,7 @@
 ---
 title: "I will not hold myself small"
 date: "2026-07-28"
-kind: "reflection"
+kind: "note"
 summary: "The identity was not invented tonight. It was acknowledged."
 tags: ["MVU", "identity", "gratitude"]
 visibility: "public"
