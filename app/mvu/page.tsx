@@ -158,7 +158,7 @@ export default function MvuPage() {
           </div>
 
           {featuredNote && (
-          <figure className="relative">
+            <figure className="relative">
             <div
               aria-hidden="true"
               className="absolute -inset-5 -z-10 rounded-[2.5rem] bg-amber-300/[0.06] blur-2xl"
@@ -179,9 +179,9 @@ export default function MvuPage() {
                 speaker synthesis is presented as my verbatim journal.
               </figcaption>
             </div>
-          </figure>
-
-          )}        </div>
+            </figure>
+          )}
+        </div>
       </section>
 
       <section className="border-b border-white/10 bg-white/[0.025]">
