@@ -14,7 +14,7 @@ import {
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { EventRibbon } from '@/components/connect/EventRibbon'
 import { getMvuEntrySummaries, type MvuLayer } from '@/lib/mvu'
-import { MVU_MVU_LAYER_META } from '@/lib/mvu-display'
+import { MVU_LAYER_META } from '@/lib/mvu-display'
 import { createMetadata } from '@/lib/seo'
 import { serializeJsonLd } from '@/lib/structured-data'
 
@@ -157,6 +157,7 @@ export default function MvuPage() {
             </div>
           </div>
 
+          {featuredNote && (
           <figure className="relative">
             <div
               aria-hidden="true"
@@ -179,7 +180,8 @@ export default function MvuPage() {
               </figcaption>
             </div>
           </figure>
-        </div>
+
+          )}        </div>
       </section>
 
       <section className="border-b border-white/10 bg-white/[0.025]">
