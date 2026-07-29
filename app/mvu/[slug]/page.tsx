@@ -87,7 +87,7 @@ export default async function MvuEntryPage({
     author: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
     publisher: { '@type': 'Organization', name: 'FrankX', url: SITE_URL },
     url: `${SITE_URL}/mvu/${entry.slug}`,
-    isPartOf: { '@type': 'CollectionPage', name: 'MVU journal', url: `${SITE_URL}/mvu` },
+    isPartOf: { '@type': 'CollectionPage', name: 'MVU field atlas', url: `${SITE_URL}/mvu` },
   }
 
   const layer = LAYER_META[entry.layer]
@@ -109,7 +109,7 @@ export default async function MvuEntryPage({
           className="inline-flex min-h-11 items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
-          MVU journal
+          MVU field atlas
         </Link>
 
         <header className="mt-10 border-b border-white/10 pb-10 sm:pb-12">

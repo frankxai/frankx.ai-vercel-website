@@ -103,5 +103,5 @@ I am grateful that I got to experience this week in my lifetime.
 ---
 
 *Editorial boundary: this is a lightly edited first-person reflection. Private
-relationship details and mythology belonging to other FrankX/Arcanea contexts
-were removed. Ambitions are presented as ambitions, not verified outcomes.*
+relationship details and material outside this public MVU record were removed.
+Ambitions are presented as ambitions, not verified outcomes.*
