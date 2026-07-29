@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 859,
+    "total": 860,
     "aliases": 49,
     "byType": {
       "core": 22,
-      "section": 400,
+      "section": 401,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -7758,6 +7758,17 @@
       "href": "/see-through-the-noise",
       "title": "See Through the Noise",
       "type": "section"
+    },
+    {
+      "href": "/share/alba-health",
+      "title": "Alba Health",
+      "tags": [
+        "share",
+        "alba",
+        "health"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/shop",

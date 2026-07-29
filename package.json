@@ -21,6 +21,7 @@
     "test:ai-architecture": "node scripts/check-ai-architecture-contract.mjs",
     "test:email-safety": "node --test scripts/tests/email-send-surface-contract.test.mjs",
     "test:agentic-life-research": "node --test scripts/tests/agentic-life-research-contract.test.mjs",
+    "test:alba-gut": "node --test scripts/tests/alba-gut-intelligence-contract.test.mjs",
     "test:community-platform-guide": "node --test scripts/tests/community-platform-guide-contract.test.mjs",
     "test:learning-routes": "node --experimental-strip-types --test scripts/tests/learning-routes-contract.test.mjs",
     "research:agentic-life:audit": "node scripts/audit-agentic-life-research.mjs",
