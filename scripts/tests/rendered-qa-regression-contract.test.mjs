@@ -7,6 +7,7 @@ const readRepoFile = (path) => readFileSync(new URL(`../../${path}`, import.meta
 const arenaPage = readRepoFile('app/research/model-arena/page.tsx')
 const routingPlayground = readRepoFile('components/research/TaskRoutingPlayground.tsx')
 const studio = readRepoFile('app/work-with-me/StudioClient.tsx')
+const blog = readRepoFile('app/blog/BlogPageClient.tsx')
 
 test('model arena receipt outputs expose named keyboard-scroll regions', () => {
   assert.match(arenaPage, /aria-label=\{`\$\{RECEIPT_LOGS\[activeReceiptTab\]\.modelA\.name\} completion output`\}/)
@@ -28,4 +29,10 @@ test('studio reduced motion uses hydration-stable render props', () => {
   assert.match(studio, /motion-safe:animate-pulse/)
   assert.doesNotMatch(studio, /useReducedMotion/)
   assert.doesNotMatch(studio, /shouldReduceMotion/)
+})
+
+test('blog content does not wait in an opacity-zero entrance state', () => {
+  assert.equal((blog.match(/initial=\{false\}/g) ?? []).length, 6)
+  assert.doesNotMatch(blog, /initial=\{\{\s*opacity:\s*0/)
+  assert.match(blog, /src=\{latestPost\.image\}[\s\S]*?fill[\s\S]*?priority/)
 })
