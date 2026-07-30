@@ -151,6 +151,14 @@ export const METRICS: Metric[] = [
   { id: 'latency', label: 'Response Speed (Tokens/sec)', shortLabel: 'Latency', color: '#ec4899' },
 ]
 
+const getMetricValue = (model: ModelNode, metricId: string) => {
+  if (metricId === 'constraint') return model.constraint
+  if (metricId === 'judgment') return model.judgment
+  if (metricId === 'reasoning') return model.reasoning
+  if (metricId === 'cost') return model.cost
+  return model.latency
+}
+
 export function ThreeArenaScene() {
   const mountRef = useRef<HTMLDivElement>(null)
   
@@ -163,6 +171,7 @@ export function ThreeArenaScene() {
   const [hoveredModel, setHoveredModel] = useState<ModelNode | null>(null)
   const [autoRotate, setAutoRotate] = useState(true)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [webglUnavailable, setWebglUnavailable] = useState(false)
 
   const sceneRef = useRef<THREE.Scene | null>(null)
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
@@ -215,17 +224,10 @@ export function ThreeArenaScene() {
 
   // Helper utility to calculate coordinates based on metrics selection
   const getCoords = (model: ModelNode, xMet: string, yMet: string, zMet: string) => {
-    const getVal = (model: ModelNode, id: string) => {
-      if (id === 'constraint') return model.constraint
-      if (id === 'judgment') return model.judgment
-      if (id === 'reasoning') return model.reasoning
-      if (id === 'cost') return model.cost
-      return model.latency
-    }
     return {
-      x: -2.5 + getVal(model, xMet) * 5,
-      y: -2.5 + getVal(model, yMet) * 5,
-      z: -2.5 + getVal(model, zMet) * 5,
+      x: -2.5 + getMetricValue(model, xMet) * 5,
+      y: -2.5 + getMetricValue(model, yMet) * 5,
+      z: -2.5 + getMetricValue(model, zMet) * 5,
     }
   }
 
@@ -375,7 +377,7 @@ export function ThreeArenaScene() {
 
   // Build full scene
   useEffect(() => {
-    if (!mountRef.current) return
+    if (!mountRef.current || webglUnavailable) return
 
     const container = mountRef.current
     const width = container.clientWidth
@@ -391,11 +393,41 @@ export function ThreeArenaScene() {
     camera.position.set(6, 4, 9)
     cameraRef.current = camera
 
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
+    // WebGL is optional. Restricted browsers and low-power devices should get
+    // the useful HTML comparison below instead of the sitewide error page.
+    const canvas = document.createElement('canvas')
+    const context = canvas.getContext('webgl2', {
+      alpha: false,
+      antialias: true,
+      powerPreference: 'high-performance',
+    })
+    if (!context) {
+      setWebglUnavailable(true)
+      return
+    }
+
+    let renderer: THREE.WebGLRenderer
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: false,
+        canvas,
+        context,
+      })
+    } catch {
+      setWebglUnavailable(true)
+      return
+    }
+
+    const handleContextLost = (event: Event) => {
+      event.preventDefault()
+      setWebglUnavailable(true)
+    }
+
     renderer.setSize(width, height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setClearColor(0x020617, 1)
+    renderer.domElement.addEventListener('webglcontextlost', handleContextLost)
     container.appendChild(renderer.domElement)
     rendererRef.current = renderer
 
@@ -848,11 +880,13 @@ export function ThreeArenaScene() {
       container.removeEventListener('touchstart', handleTouchStart)
       container.removeEventListener('touchmove', handleTouchMove)
       container.removeEventListener('touchend', handleTouchEnd)
+      renderer.domElement.removeEventListener('webglcontextlost', handleContextLost)
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement)
       }
+      renderer.dispose()
     }
-  }, [autoRotate, prefersReducedMotion])
+  }, [autoRotate, prefersReducedMotion, webglUnavailable])
 
   const focusModelById = (modelId: string) => {
     if (!modelId) {
@@ -897,6 +931,115 @@ export function ThreeArenaScene() {
   const activeX = METRICS.find(m => m.id === xAxisMetric)
   const activeY = METRICS.find(m => m.id === yAxisMetric)
   const activeZ = METRICS.find(m => m.id === zAxisMetric)
+
+  if (webglUnavailable) {
+    return (
+      <div className="relative min-h-[580px] w-full overflow-hidden rounded-3xl border border-white/10 bg-[#020617] p-5 shadow-2xl sm:p-7">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(168,85,247,0.12),transparent_38%),radial-gradient(circle_at_10%_90%,rgba(34,211,238,0.08),transparent_36%)]"
+          aria-hidden="true"
+        />
+
+        <div className="relative">
+          <div className="flex flex-col gap-3 border-b border-white/10 pb-5 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-300">
+                Compatibility mode · same telemetry
+              </p>
+              <h3 className="mt-2 text-xl font-semibold text-white">Model performance, without WebGL.</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-white/65">
+                This browser cannot render the 3D scene, so the underlying comparison is shown
+                as an accessible model grid. Change the axes to inspect the same normalized data.
+              </p>
+            </div>
+            <span className="w-fit rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white/55">
+              HTML fallback
+            </span>
+          </div>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            {[
+              { id: 'arena-fallback-x', label: 'X axis', value: xAxisMetric, setValue: setXAxisMetric },
+              { id: 'arena-fallback-y', label: 'Y axis', value: yAxisMetric, setValue: setYAxisMetric },
+              { id: 'arena-fallback-z', label: 'Z axis', value: zAxisMetric, setValue: setZAxisMetric },
+            ].map((axis) => (
+              <label
+                key={axis.id}
+                htmlFor={axis.id}
+                className="rounded-xl border border-white/10 bg-white/[0.03] p-3"
+              >
+                <span className="block font-mono text-[10px] uppercase tracking-wider text-white/50">
+                  {axis.label}
+                </span>
+                <select
+                  id={axis.id}
+                  value={axis.value}
+                  onChange={(event) => axis.setValue(event.target.value)}
+                  className="mt-2 w-full rounded-lg border border-white/10 bg-slate-950 px-2.5 py-2 text-xs text-white outline-none focus-visible:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-300/70"
+                >
+                  {METRICS.map((metric) => (
+                    <option key={metric.id} value={metric.id}>{metric.shortLabel}</option>
+                  ))}
+                </select>
+              </label>
+            ))}
+          </div>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {MODEL_DATA.map((model) => {
+              const isSelected = selectedModel?.id === model.id
+              const values = [
+                { label: 'X', value: getMetricValue(model, xAxisMetric), color: activeX?.color },
+                { label: 'Y', value: getMetricValue(model, yAxisMetric), color: activeY?.color },
+                { label: 'Z', value: getMetricValue(model, zAxisMetric), color: activeZ?.color },
+              ]
+
+              return (
+                <button
+                  key={model.id}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => setSelectedModel(isSelected ? null : model)}
+                  className={`rounded-2xl border p-4 text-left transition-[border-color,background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80 ${
+                    isSelected
+                      ? 'border-white/30 bg-white/[0.09]'
+                      : 'border-white/10 bg-white/[0.035] hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06]'
+                  }`}
+                >
+                  <span className="flex items-start justify-between gap-3">
+                    <span>
+                      <span className="block text-sm font-semibold text-white">{model.name}</span>
+                      <span className="mt-0.5 block text-[11px] text-white/60">{model.org}</span>
+                    </span>
+                    <span
+                      className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full shadow-[0_0_16px_currentColor]"
+                      style={{ backgroundColor: model.color, color: model.color }}
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <span className="mt-4 grid grid-cols-3 gap-2">
+                    {values.map((metric) => (
+                      <span key={metric.label} className="rounded-lg bg-black/25 px-2 py-2">
+                        <span className="block font-mono text-[9px] uppercase text-white/60">{metric.label}</span>
+                        <span className="mt-0.5 block font-mono text-xs font-semibold" style={{ color: metric.color }}>
+                          {metric.value.toFixed(2)}
+                        </span>
+                      </span>
+                    ))}
+                  </span>
+                  {isSelected && (
+                    <span className="mt-3 block border-t border-white/10 pt-3 text-xs leading-5 text-white/65">
+                      {model.stats.verdict}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="relative w-full h-[580px] bg-[#020617] rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
