@@ -138,12 +138,13 @@ export default function AboutPage() {
               <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-200/80">
                 Why I build
               </p>
-              <blockquote className="mt-7 text-3xl font-semibold leading-tight tracking-[-0.03em] text-white sm:text-4xl">
-                “Make something sturdy enough that other people can stand on it.”
-              </blockquote>
+              <p className="mt-7 text-3xl font-semibold leading-tight tracking-[-0.03em] text-white sm:text-4xl">
+                The lesson I carried forward: make something sturdy enough that other people can
+                stand on it.
+              </p>
               <p className="mt-7 text-base leading-7 text-white/66">
-                That principle came from my father, who built houses and helped displaced families
-                find footing. My materials are different. The responsibility is not.
+                I learned that posture from my father, who built houses and helped displaced
+                families find footing. My materials are different. The responsibility is not.
               </p>
               <div className="mt-9 border-y border-white/[0.09]">
                 {[

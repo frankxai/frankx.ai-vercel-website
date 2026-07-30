@@ -110,17 +110,17 @@ const homepageFAQs = [
   {
     question: 'How does music fit into FrankX?',
     answer:
-      'Music is one of Frank\'s creative AI practices and a source of repeatable lessons about taste, iteration, state, and release craft. It has its own route and no longer competes with the workspace explanation in the first viewport.',
+      'Music is one of Frank\'s creative AI practices and a source of repeatable lessons about taste, iteration, state, and release craft. Its studio route brings the releases and process notes together so you can follow how creative judgment develops through iteration.',
   },
   {
     question: 'Can I use the systems and tools?',
     answer:
-      'Yes. FrankX includes public guides and open systems you can inspect first, plus paid packs and guided paths for people who want a more complete or supported route. Each offer should state its scope before asking for a purchase.',
+      'Yes. Start with public guides and open systems you can inspect. Paid packs and guided paths are available when you want a more complete implementation or direct support, with the scope stated clearly before purchase.',
   },
   {
     question: 'Is FrankX an agency or coaching business?',
     answer:
-      'No. FrankX is Frank\'s public workspace and body of work. Bounded architecture or partnership work may begin around a real problem, but the site is not presented as an autonomous AI agency or a generic coaching funnel.',
+      'FrankX is primarily Frank\'s public workspace and body of work, not an autonomous AI agency. Frank also offers a small set of bounded architecture, coaching, workshop, and partnership engagements when a real problem fits the work.',
   },
 ]
 
