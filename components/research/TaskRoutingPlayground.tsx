@@ -232,10 +232,10 @@ print(f"Dynamically routed to: {response.model_name}")`
       <div className="flex flex-col border border-white/10 bg-slate-950 rounded-2xl overflow-hidden shadow-inner">
         {/* Dynamic Recommendation banner */}
         <div className={`p-5 border-b border-white/5 transition-all ${recommendation.borderColor} ${recommendation.bg}`}>
-          <div className="text-xs text-white/40 font-mono uppercase tracking-wider mb-1">PROVING GROUND RESOLUTION</div>
+          <div className="text-xs text-white/60 font-mono uppercase tracking-wider mb-1">PROVING GROUND RESOLUTION</div>
           <div className="flex items-baseline gap-2 mb-1">
             <span className={`text-xl font-bold ${recommendation.color}`}>{recommendation.model}</span>
-            <span className="text-[10px] text-white/40 font-mono">({recommendation.tier})</span>
+            <span className="text-[10px] text-white/60 font-mono">({recommendation.tier})</span>
           </div>
           <p className="text-xs text-white/60 leading-relaxed">{recommendation.reason}</p>
         </div>
@@ -252,7 +252,7 @@ print(f"Dynamically routed to: {response.model_name}")`
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-2 py-0.5 rounded capitalize font-mono text-[10px] transition-colors ${
-                  activeTab === tab ? 'bg-white/10 text-white' : 'text-white/40 hover:text-white/70'
+                  activeTab === tab ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white/80'
                 }`}
               >
                 {tab}

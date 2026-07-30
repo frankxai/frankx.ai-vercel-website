@@ -532,7 +532,12 @@ export default function ModelArenaPage() {
                           {RECEIPT_LOGS[activeReceiptTab].modelA.status.toUpperCase()}
                         </span>
                       </div>
-                      <div className="p-4 flex-1 font-mono text-[11px] text-zinc-300 overflow-x-auto whitespace-pre bg-[#020617] min-h-[140px] leading-relaxed">
+                      <div
+                        role="region"
+                        aria-label={`${RECEIPT_LOGS[activeReceiptTab].modelA.name} completion output`}
+                        tabIndex={0}
+                        className="p-4 flex-1 font-mono text-[11px] text-zinc-300 overflow-x-auto whitespace-pre bg-[#020617] min-h-[140px] leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#a855f7]/70"
+                      >
                         {RECEIPT_LOGS[activeReceiptTab].modelA.completion}
                       </div>
                       <div className="p-3.5 bg-slate-900/30 border-t border-white/5 text-[11px] text-zinc-400 leading-relaxed">
@@ -555,7 +560,12 @@ export default function ModelArenaPage() {
                           {RECEIPT_LOGS[activeReceiptTab].modelB.status.toUpperCase()}
                         </span>
                       </div>
-                      <div className="p-4 flex-1 font-mono text-[11px] text-zinc-300 overflow-x-auto whitespace-pre bg-[#020617] min-h-[140px] leading-relaxed">
+                      <div
+                        role="region"
+                        aria-label={`${RECEIPT_LOGS[activeReceiptTab].modelB.name} completion output`}
+                        tabIndex={0}
+                        className="p-4 flex-1 font-mono text-[11px] text-zinc-300 overflow-x-auto whitespace-pre bg-[#020617] min-h-[140px] leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#a855f7]/70"
+                      >
                         {RECEIPT_LOGS[activeReceiptTab].modelB.completion}
                       </div>
                       <div className="p-3.5 bg-slate-900/30 border-t border-white/5 text-[11px] text-zinc-400 leading-relaxed">

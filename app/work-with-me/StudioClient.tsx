@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, MotionConfig } from 'framer-motion'
 import { socialLinks } from '@/lib/social-links'
 import {
   ArrowRight,
@@ -165,18 +165,17 @@ const proofPoints = [
 /* ─── Sections ─── */
 
 function HeroSection() {
-  const shouldReduceMotion = useReducedMotion()
   return (
     <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-4xl"
         >
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" />
             <span className="text-sm text-slate-400">Open to build together</span>
           </div>
 
@@ -209,9 +208,9 @@ function HeroSection() {
         </motion.div>
 
         <motion.figure
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="hidden lg:block"
         >
           <div className="relative overflow-hidden rounded-2xl border border-white/10">
@@ -236,12 +235,11 @@ function HeroSection() {
 }
 
 function ServicesSection() {
-  const shouldReduceMotion = useReducedMotion()
   return (
     <section className="py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
@@ -254,14 +252,14 @@ function ServicesSection() {
         </motion.div>
 
         <motion.div
-          variants={shouldReduceMotion ? {} : staggerContainer}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {services.map((s, i) => (
-            <motion.div key={s.title} variants={shouldReduceMotion ? {} : fadeUp} custom={i}>
+            <motion.div key={s.title} variants={fadeUp} custom={i}>
               <GlowCard color={s.color} className="h-full">
                 <div className="p-6 sm:p-8 flex flex-col h-full">
                   <div className="flex items-start justify-between mb-4">
@@ -330,12 +328,11 @@ function FoundrySection() {
 }
 
 function IndustriesSection() {
-  const shouldReduceMotion = useReducedMotion()
   return (
     <section className="py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
@@ -348,14 +345,14 @@ function IndustriesSection() {
         </motion.div>
 
         <motion.div
-          variants={shouldReduceMotion ? {} : staggerContainer}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           className="grid grid-cols-2 sm:grid-cols-4 gap-4"
         >
           {industries.map((ind, i) => (
-            <motion.div key={ind.name} variants={shouldReduceMotion ? {} : fadeUp} custom={i}>
+            <motion.div key={ind.name} variants={fadeUp} custom={i}>
               <div className="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.14] hover:bg-white/[0.05] transition-all duration-300">
                 <ind.icon className={`h-8 w-8 ${ind.color} transition-transform duration-300 group-hover:scale-110`} />
                 <span className="text-sm font-medium text-slate-300">{ind.name}</span>
@@ -369,12 +366,11 @@ function IndustriesSection() {
 }
 
 function MethodologySection() {
-  const shouldReduceMotion = useReducedMotion()
   return (
     <section className="py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
@@ -387,7 +383,7 @@ function MethodologySection() {
         </motion.div>
 
         <motion.div
-          variants={shouldReduceMotion ? {} : staggerContainer}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
@@ -398,7 +394,7 @@ function MethodologySection() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {methodology.map((m, i) => (
-              <motion.div key={m.step} variants={shouldReduceMotion ? {} : fadeUp} custom={i}>
+              <motion.div key={m.step} variants={fadeUp} custom={i}>
                 <div className="relative flex flex-col items-center text-center p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.14] hover:bg-white/[0.05] transition-all duration-300 group">
                   <span className="text-xs font-mono text-slate-500 mb-3">{m.step}</span>
                   <div className="p-3 rounded-xl bg-white/5 border border-white/10 mb-4 group-hover:border-white/20 transition-colors">
@@ -424,19 +420,18 @@ function MethodologySection() {
 }
 
 function ProofPointsSection() {
-  const shouldReduceMotion = useReducedMotion()
   return (
     <section className="py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          variants={shouldReduceMotion ? {} : staggerContainer}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6"
         >
           {proofPoints.map((p, i) => (
-            <motion.div key={p.label} variants={shouldReduceMotion ? {} : fadeUp} custom={i}>
+            <motion.div key={p.label} variants={fadeUp} custom={i}>
               <div className="text-center p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
                 <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] bg-clip-text text-transparent mb-2">
                   {p.value}
@@ -452,14 +447,13 @@ function ProofPointsSection() {
 }
 
 function ContactSection() {
-  const shouldReduceMotion = useReducedMotion()
   return (
     <section id="contact" className="py-20 md:py-28 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Left column — info */}
           <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6 }}
@@ -509,7 +503,7 @@ function ContactSection() {
 
           {/* Right column — form */}
           <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -688,7 +682,7 @@ function FooterLinksSection() {
 /* ─── Main ─── */
 export default function StudioClient() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <StudioBackground />
       <main className="relative">
         <HeroSection />
@@ -700,6 +694,6 @@ export default function StudioClient() {
         <ContactSection />
         <FooterLinksSection />
       </main>
-    </>
+    </MotionConfig>
   )
 }
