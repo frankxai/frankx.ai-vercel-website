@@ -262,17 +262,6 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'arXiv', title: 'Structured Context Engineering for File-Native Agentic Systems (McMillan)', url: 'https://arxiv.org/abs/2602.05447', date: '2026-02-12', type: 'preprint' },
   ],
 
-  'agent-evaluation': [
-    { name: 'arXiv', title: 'AppWorld: A Controllable World of Apps and People for Benchmarking Interactive Coding Agents (Trivedi et al.)', url: 'https://arxiv.org/abs/2407.18901', date: '2024-07', type: 'preprint' },
-    { name: 'arXiv / ICLR 2024', title: 'SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (Jimenez et al.)', url: 'https://arxiv.org/abs/2310.06770', date: '2024-01', type: 'benchmark' },
-    { name: 'arXiv', title: 'AMA-Bench: Evaluating Long-Horizon Memory for Agentic Applications (Zhao et al.)', url: 'https://arxiv.org/abs/2602.22769', date: '2026-03-04', type: 'preprint' },
-    { name: 'arXiv', title: 'RULER: What\'s the Real Context Size of Your Long-Context Language Models? (Hsieh et al.)', url: 'https://arxiv.org/abs/2404.06654', date: '2024-08', type: 'benchmark' },
-    { name: 'Anthropic', title: 'Effective Context Engineering for AI Agents — failures are test cases you haven\'t written yet', url: 'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents', date: '2025-09-29', type: 'official' },
-    { name: 'arXiv / ICLR 2026', title: 'Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models (Zhang et al.)', url: 'https://arxiv.org/abs/2510.04618', date: '2026-03-29', type: 'preprint' },
-    { name: 'Anthropic Engineering', title: 'Managed Agents — sessions and trace capture as first-class primitives (Martin/Cemaj/Cohen)', url: 'https://www.anthropic.com/engineering/managed-agents', date: '2026-04-08', type: 'official' },
-    { name: 'Langfuse', title: 'LLM Observability for Agent Trajectories — Traces, Scores, and Evaluations', url: 'https://langfuse.com/docs/tracing', date: '2026-01', type: 'official' },
-  ],
-
   'ai-education': [
     { name: 'UNESCO', title: 'Two-Thirds of Higher Education Institutions Developing AI Guidance', url: 'https://www.unesco.org/en/articles/unesco-survey-two-thirds-higher-education-institutions-have-or-are-developing-guidance-ai-use', type: 'official' },
     { name: 'Inside Higher Ed', title: '5 Predictions on How AI Will Shape Higher Ed in 2026', url: 'https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2026/01/05/5-predictions-how-ai-will-shape-higher-ed', type: 'news' },
@@ -476,6 +465,14 @@ export const domainSources: Record<string, ResearchSource[]> = {
   ],
 
   'agentic-evals': [
+    { name: 'arXiv', title: 'AppWorld: A Controllable World of Apps and People for Benchmarking Interactive Coding Agents (Trivedi et al.)', url: 'https://arxiv.org/abs/2407.18901', date: '2024-07', type: 'preprint' },
+    { name: 'arXiv / ICLR 2024', title: 'SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (Jimenez et al.)', url: 'https://arxiv.org/abs/2310.06770', date: '2024-01', type: 'benchmark' },
+    { name: 'arXiv', title: 'AMA-Bench: Evaluating Long-Horizon Memory for Agentic Applications (Zhao et al.)', url: 'https://arxiv.org/abs/2602.22769', date: '2026-03-04', type: 'preprint' },
+    { name: 'arXiv', title: 'RULER: What\'s the Real Context Size of Your Long-Context Language Models? (Hsieh et al.)', url: 'https://arxiv.org/abs/2404.06654', date: '2024-08', type: 'benchmark' },
+    { name: 'Anthropic', title: 'Effective Context Engineering for AI Agents — failures are test cases you haven\'t written yet', url: 'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents', date: '2025-09-29', type: 'official' },
+    { name: 'arXiv / ICLR 2026', title: 'Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models (Zhang et al.)', url: 'https://arxiv.org/abs/2510.04618', date: '2026-03-29', type: 'preprint' },
+    { name: 'Anthropic Engineering', title: 'Managed Agents — sessions and trace capture as first-class primitives (Martin/Cemaj/Cohen)', url: 'https://www.anthropic.com/engineering/managed-agents', date: '2026-04-08', type: 'official' },
+    { name: 'Langfuse', title: 'LLM Observability for Agent Trajectories — Traces, Scores, and Evaluations', url: 'https://langfuse.com/docs/tracing', date: '2026-01', type: 'official' },
     { name: 'Braintrust', title: 'AI agent evaluation framework (trajectory-aware)', url: 'https://www.braintrust.dev/articles/ai-agent-evaluation-framework', type: 'blog' },
     { name: 'MorphLLM', title: 'AI Agent Evaluation Frameworks 2026 compared', url: 'https://www.morphllm.com/ai-agent-evaluation-frameworks', type: 'blog' },
     { name: 'MorphLLM', title: 'AI Agent Evaluation 2026 — metrics & production', url: 'https://www.morphllm.com/ai-agent-evaluation', type: 'blog' },

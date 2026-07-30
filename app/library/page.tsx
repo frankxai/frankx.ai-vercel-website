@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { bookReviews, getAllReviewCategories } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = 'https://www.frankx.ai';
 const LIBRARY_URL = `${SITE_URL}/library`;
 
 export const metadata: Metadata = {
-  title: 'Library | Book Reviews & Key Insights | FrankX',
+  title: 'Library — Book Intelligence',
   description:
-    'Curated book reviews with key insights from the best books on self-development, mindset, creativity, wealth, and the architecture of reality. Read the ideas that shaped our own books.',
+    'Source-aware book intelligence from Frank Riemer: core arguments, useful models, tensions, and personal interpretation kept distinct.',
   keywords: [
     'book reviews',
     'book summaries',
@@ -24,13 +24,13 @@ export const metadata: Metadata = {
   alternates: { canonical: LIBRARY_URL },
   openGraph: {
     title: 'The Library | FrankX',
-    description: 'Key insights from the books that matter most.',
+    description: 'Source-aware book intelligence with authorship, interpretation, and review status kept distinct.',
     type: 'website',
     url: LIBRARY_URL,
     siteName: 'FrankX',
     images: [
       {
-        url: '/hero-homepage.png',
+        url: '/images/brand/frankx-public-workspace-og-1200x630.png',
         width: 1200,
         height: 630,
         alt: 'FrankX Library — book reviews and key insights',
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'The Library | FrankX',
-    description: 'Key insights from the books that matter most.',
-    images: ['/hero-homepage.png'],
+    description: 'Source-aware book intelligence with authorship, interpretation, and review status kept distinct.',
+    images: ['/images/brand/frankx-public-workspace-og-1200x630.png'],
   },
 };
 
@@ -60,7 +60,7 @@ function CollectionJsonLd() {
         '@type': 'CollectionPage',
         name: 'The FrankX Library',
         description:
-          'Curated book reviews with key insights — the ideas that shaped our own books.',
+          'Source-aware book intelligence with the author’s ideas and Frank Riemer’s interpretation kept distinct.',
         url: LIBRARY_URL,
         isPartOf: { '@type': 'WebSite', name: 'FrankX', url: SITE_URL },
       },
@@ -89,37 +89,37 @@ function CollectionJsonLd() {
 const categoryColors: Record<string, string> = {
   'Self-Development': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
   Habits: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Psychology: 'bg-violet-500/10 text-violet-400 border-violet-500/20',
-  Productivity: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  Focus: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  Mindset: 'bg-red-500/10 text-red-400 border-red-500/20',
-  Fitness: 'bg-red-500/10 text-red-400 border-red-500/20',
-  Fiction: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
-  Philosophy: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-  Stoicism: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-  Creativity: 'bg-violet-500/10 text-violet-400 border-violet-500/20',
-  Wealth: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
-  Classic: 'bg-stone-500/10 text-stone-400 border-stone-500/20',
-  Writing: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
-  Career: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  Spirituality: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-  Memoir: 'bg-stone-500/10 text-stone-400 border-stone-500/20',
-  Autobiography: 'bg-stone-500/10 text-stone-400 border-stone-500/20',
-  Discipline: 'bg-red-500/10 text-red-400 border-red-500/20',
-  Ikigai: 'bg-teal-500/10 text-teal-300 border-teal-500/25',
+  Psychology: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Productivity: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Focus: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Mindset: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Fitness: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Fiction: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Philosophy: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+  Stoicism: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+  Creativity: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Wealth: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+  Classic: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Writing: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Career: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Spirituality: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Memoir: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Autobiography: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Discipline: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  Ikigai: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
   Longevity: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
-  Meaning: 'bg-amber-500/10 text-amber-300 border-amber-500/25',
-  Health: 'bg-green-500/10 text-green-300 border-green-500/25',
-  Anthropology: 'bg-stone-500/10 text-stone-300 border-stone-500/25',
-  Neuroscience: 'bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/25',
-  'Inner Work': 'bg-violet-500/10 text-violet-300 border-violet-500/25',
-  IFS: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
-  Music: 'bg-pink-500/10 text-pink-300 border-pink-500/25',
-  'Rockstar Energy': 'bg-orange-500/10 text-orange-300 border-orange-500/25',
-  Scenes: 'bg-sky-500/10 text-sky-300 border-sky-500/25',
-  Scaling: 'bg-orange-500/10 text-orange-300 border-orange-500/25',
+  Meaning: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
+  Health: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
+  Anthropology: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
+  Neuroscience: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
+  'Inner Work': 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
+  IFS: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
+  Music: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
+  'Rockstar Energy': 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
+  Scenes: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
+  Scaling: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
   'Business Strategy': 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  Leadership: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
+  Leadership: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
   Platforms: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
 };
 
@@ -130,7 +130,7 @@ function StarRating({ rating }: { rating: number }) {
         <svg
           key={star}
           aria-hidden="true"
-          className={`h-4 w-4 ${star <= rating ? 'text-amber-400' : 'text-white/10'}`}
+          className={`h-4 w-4 ${star <= rating ? 'text-emerald-400' : 'text-white/10'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -148,29 +148,29 @@ export default function LibraryPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#0a0a0b]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       <CollectionJsonLd />
       {/* Hero */}
       <section className="relative pt-32 pb-20 px-6">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
         </div>
 
         <div className="relative max-w-5xl mx-auto text-center">
-          <p className="text-amber-400/80 text-sm tracking-[0.2em] uppercase mb-4">
-            Curated Insights
+          <p className="text-emerald-300/80 text-sm tracking-[0.2em] uppercase mb-4">
+            Book intelligence
           </p>
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             The{' '}
-            <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent">
               Library
             </span>
           </h1>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
-            Key insights from the books that shaped our thinking. Not summaries — the ideas
-            that changed how we build, create, and live. Each review connects back to our own
-            books.
+          <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+            My agent workspace reconstructs each book&apos;s argument, models, and tensions. I
+            review the result and keep the author&apos;s ideas, my interpretation, and the action
+            I take from it visibly separate.
           </p>
 
           <div className="flex flex-wrap justify-center gap-2 mt-10">
@@ -189,7 +189,7 @@ export default function LibraryPage() {
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
               href="/library/quotes"
-              className="inline-flex items-center gap-2 text-sm text-rose-300/80 hover:text-rose-200 transition-colors border border-rose-500/20 rounded-full px-4 py-2 bg-rose-500/5 hover:bg-rose-500/10"
+              className="inline-flex items-center gap-2 text-sm text-cyan-300/80 hover:text-cyan-200 transition-colors border border-cyan-500/20 rounded-full px-4 py-2 bg-cyan-500/5 hover:bg-cyan-500/10"
             >
               Browse all quotes
               <svg
@@ -209,7 +209,7 @@ export default function LibraryPage() {
             </Link>
             <Link
               href="/library/approach"
-              className="inline-flex items-center gap-2 text-sm text-amber-400/80 hover:text-amber-300 transition-colors border border-amber-500/20 rounded-full px-4 py-2 bg-amber-500/5 hover:bg-amber-500/10"
+              className="inline-flex items-center gap-2 text-sm text-emerald-400/80 hover:text-emerald-300 transition-colors border border-emerald-500/20 rounded-full px-4 py-2 bg-emerald-500/5 hover:bg-emerald-500/10"
             >
               How this library is built
               <svg
@@ -235,14 +235,14 @@ export default function LibraryPage() {
       <section className="max-w-6xl mx-auto px-6 pb-12">
         <Link
           href="/library/rockstar-energy"
-          className="group block rounded-2xl border border-orange-500/[0.18] bg-gradient-to-br from-orange-500/[0.06] via-rose-500/[0.03] to-transparent p-6 sm:p-7 transition-all hover:border-orange-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+          className="group block rounded-2xl border border-emerald-500/[0.18] bg-gradient-to-br from-emerald-500/[0.06] via-cyan-500/[0.03] to-transparent p-6 sm:p-7 transition-colors hover:border-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
         >
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
             <div className="flex-1 min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.24em] text-orange-300/80 mb-2">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-emerald-300/80 mb-2">
                 Featured Collection
               </p>
-              <h2 className="text-xl sm:text-2xl font-semibold text-white group-hover:text-orange-200 transition-colors">
+              <h2 className="text-xl sm:text-2xl font-semibold text-white group-hover:text-emerald-200 transition-colors">
                 Rockstar Energy &amp; Mindset
               </h2>
               <p className="text-sm text-white/60 leading-relaxed mt-2 max-w-2xl">
@@ -252,7 +252,7 @@ export default function LibraryPage() {
                 around them?
               </p>
             </div>
-            <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 px-4 py-2 text-sm font-medium text-orange-200 transition-colors group-hover:bg-orange-500/20">
+            <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors group-hover:bg-emerald-500/20">
               Enter the collection
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -304,7 +304,7 @@ export default function LibraryPage() {
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <h2 className="text-lg font-semibold text-white group-hover:text-amber-300 transition-colors truncate">
+                      <h2 className="text-lg font-semibold text-white group-hover:text-emerald-300 transition-colors truncate">
                         {review.title}
                       </h2>
                       <p className="text-sm text-white/40 mb-1">by {review.author}</p>
@@ -329,7 +329,7 @@ export default function LibraryPage() {
 
                   {review.slug === 'handbook-to-higher-consciousness' && (
                     <div className="mb-4 -mt-2">
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-amber-500/10 text-amber-200/80 border border-amber-500/20">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-emerald-500/10 text-emerald-200/80 border border-emerald-500/20">
                         Complete system map
                       </span>
                     </div>
@@ -339,17 +339,17 @@ export default function LibraryPage() {
                   {(review.chapters?.length || review.quotes?.length) && (
                     <div className="flex flex-wrap gap-2 mb-4 -mt-2">
                       {review.quotes && review.quotes.length > 0 && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-rose-500/10 text-rose-300/80 border border-rose-500/15">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-300/80 border border-cyan-500/15">
                           {review.quotes.length} quotes
                         </span>
                       )}
                       {review.chapters && review.chapters.length > 0 && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-violet-500/10 text-violet-300/80 border border-violet-500/15">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-300/80 border border-cyan-500/15">
                           {review.chapters.length} chapters
                         </span>
                       )}
                       {review.videos && review.videos.length > 0 && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-red-500/10 text-red-300/80 border border-red-500/15">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-300/80 border border-cyan-500/15">
                           {review.videos.length} videos
                         </span>
                       )}
@@ -375,9 +375,9 @@ export default function LibraryPage() {
                   {relatedBook && (
                     <div className="pt-3 border-t border-white/[0.06]">
                       <p className="text-[10px] uppercase tracking-wider text-white/30 mb-1">
-                        Related to our book
+                        Related FrankX book
                       </p>
-                      <p className="text-xs text-amber-400/70">{relatedBook.title}</p>
+                      <p className="text-xs text-emerald-400/70">{relatedBook.title}</p>
                     </div>
                   )}
                 </article>
@@ -389,10 +389,10 @@ export default function LibraryPage() {
 
       {/* Research articles grounded in this collection */}
       <section className="max-w-4xl mx-auto px-6 pb-16">
-        <div className="rounded-2xl border border-violet-500/[0.16] bg-violet-500/[0.03] p-8">
+        <div className="rounded-2xl border border-cyan-500/[0.16] bg-cyan-500/[0.03] p-8">
           <div className="flex flex-wrap items-baseline justify-between gap-3 mb-3">
             <h2 className="text-xl font-semibold text-white">Research grounded in this collection</h2>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-violet-200">flagship article</span>
+            <span className="text-[10px] uppercase tracking-[0.18em] text-cyan-200">flagship article</span>
           </div>
           <p className="text-sm text-white/60 leading-relaxed mb-5">
             Some of the books in this library are not just reading recommendations &mdash; they
@@ -401,7 +401,7 @@ export default function LibraryPage() {
           </p>
           <Link
             href="/research/blue-zones-ikigai-ai-era"
-            className="group block rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.16] p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="group block rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.16] p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
             <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-2">
               Blue Zones &middot; Ikigai &middot; AI Era
@@ -447,21 +447,21 @@ export default function LibraryPage() {
         </div>
       </section>
 
-      {/* Our Books CTA */}
+      {/* FrankX Books CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-32">
-        <div className="rounded-2xl border border-amber-500/10 bg-amber-500/[0.03] p-10 text-center">
+        <div className="rounded-2xl border border-emerald-500/10 bg-emerald-500/[0.03] p-10 text-center">
           <h2 className="text-2xl font-bold text-white mb-3">
-            Inspired by the best. Built from experience.
+            What I carried forward.
           </h2>
-          <p className="text-white/50 max-w-xl mx-auto mb-6">
-            These books shaped our thinking. Our own six books distill those ideas into
-            actionable frameworks built from lived experience.
+          <p className="text-white/60 max-w-xl mx-auto mb-6">
+            Some of these sources changed how I build, teach, and create. My books turn that
+            reading into original frameworks, with the influences kept visible.
           </p>
           <Link
             href="/books"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-sm font-medium hover:bg-emerald-500/20 transition-colors"
           >
-            Explore Our Books
+            Explore FrankX books
             <svg
               className="w-4 h-4"
               fill="none"
@@ -478,6 +478,6 @@ export default function LibraryPage() {
           </Link>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

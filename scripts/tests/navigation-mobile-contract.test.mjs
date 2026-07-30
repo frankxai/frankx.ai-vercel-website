@@ -35,3 +35,18 @@ test('the mobile menu contains focus, restores focus, and respects motion prefer
   assert.match(overlay, /useReducedMotion\(\)/)
   assert.match(overlay, /document\.body\.style\.overflow = 'hidden'/)
 })
+
+test('desktop and mobile navigation expose the workspace authorship model', async () => {
+  const navigation = await readRepoFile('components/NavigationMega.tsx')
+  const overlay = await readRepoFile('components/MobileNavOverlay.tsx')
+
+  assert.match(navigation, /Public agentic workspace/)
+  assert.match(navigation, /label: 'Workspace'/)
+  assert.match(navigation, /Source → agents → Frank → artifact/)
+  assert.match(navigation, /const desktopSections: NavKey\[\] = \['explore', 'build', 'learn', 'gencreators'\]/)
+  assert.doesNotMatch(navigation, /router\.push/)
+
+  assert.match(overlay, /Public agentic workspace/)
+  assert.match(overlay, /Source material, specialist passes, Frank’s decision, public artifact/)
+  assert.match(overlay, /How Frank and the agent team build in public/)
+})

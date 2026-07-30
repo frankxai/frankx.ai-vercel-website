@@ -162,11 +162,17 @@ export function ThreeArenaScene() {
   const [selectedModel, setSelectedModel] = useState<ModelNode | null>(null)
   const [hoveredModel, setHoveredModel] = useState<ModelNode | null>(null)
   const [autoRotate, setAutoRotate] = useState(true)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   const sceneRef = useRef<THREE.Scene | null>(null)
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const spheresRef = useRef<THREE.Mesh[]>([])
+  const axisMetricsRef = useRef({
+    x: xAxisMetric,
+    y: yAxisMetric,
+    z: zAxisMetric,
+  })
   
   // Projection lines & markers references
   const floorLineRef = useRef<THREE.Line | null>(null)
@@ -186,6 +192,26 @@ export function ThreeArenaScene() {
   const mouseRef = useRef(new THREE.Vector2())
   const raycasterRef = useRef(new THREE.Raycaster())
   const rotationVelocity = useRef({ x: 0, y: 0 })
+
+  useEffect(() => {
+    axisMetricsRef.current = {
+      x: xAxisMetric,
+      y: yAxisMetric,
+      z: zAxisMetric,
+    }
+  }, [xAxisMetric, yAxisMetric, zAxisMetric])
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const syncPreference = () => {
+      setPrefersReducedMotion(mediaQuery.matches)
+      if (mediaQuery.matches) setAutoRotate(false)
+    }
+
+    syncPreference()
+    mediaQuery.addEventListener('change', syncPreference)
+    return () => mediaQuery.removeEventListener('change', syncPreference)
+  }, [])
 
   // Helper utility to calculate coordinates based on metrics selection
   const getCoords = (model: ModelNode, xMet: string, yMet: string, zMet: string) => {
@@ -298,7 +324,15 @@ export function ThreeArenaScene() {
     spheresRef.current.forEach((sphere) => {
       const model = sphere.userData.model as ModelNode
       const dest = getCoords(model, xAxisMetric, yAxisMetric, zAxisMetric)
-      
+
+      if (prefersReducedMotion) {
+        sphere.position.set(dest.x, dest.y, dest.z)
+        if (selectedModel?.id === model.id) {
+          updateProjections(sphere.position, parseInt(model.color.replace('#', '0x')))
+        }
+        return
+      }
+
       gsap.to(sphere.position, {
         x: dest.x,
         y: dest.y,
@@ -337,7 +371,7 @@ export function ThreeArenaScene() {
     if (!selectedModel) {
       clearProjections()
     }
-  }, [xAxisMetric, yAxisMetric, zAxisMetric])
+  }, [xAxisMetric, yAxisMetric, zAxisMetric, prefersReducedMotion, selectedModel])
 
   // Build full scene
   useEffect(() => {
@@ -532,7 +566,12 @@ export function ThreeArenaScene() {
     const sphereGeometry = new THREE.SphereGeometry(0.2, 32, 32)
 
     MODEL_DATA.forEach((model) => {
-      const dest = getCoords(model, xAxisMetric, yAxisMetric, zAxisMetric)
+      const dest = getCoords(
+        model,
+        axisMetricsRef.current.x,
+        axisMetricsRef.current.y,
+        axisMetricsRef.current.z,
+      )
 
       const material = new THREE.MeshStandardMaterial({
         color: model.color,
@@ -585,13 +624,15 @@ export function ThreeArenaScene() {
     spheresRef.current = spheres
 
     // Initial Camera Intro Glide
-    gsap.from(camera.position, {
-      x: 10,
-      y: 9,
-      z: 14,
-      duration: 2.2,
-      ease: 'power3.out'
-    })
+    if (!prefersReducedMotion) {
+      gsap.from(camera.position, {
+        x: 10,
+        y: 9,
+        z: 14,
+        duration: 2.2,
+        ease: 'power3.out'
+      })
+    }
 
     const handleMouseDown = (e: MouseEvent) => {
       isDragging.current = true
@@ -626,24 +667,30 @@ export function ThreeArenaScene() {
           const hovered = intersects[0].object.userData.model as ModelNode
           setHoveredModel(hovered)
           document.body.style.cursor = 'pointer'
-          gsap.to(intersects[0].object.scale, {
-            x: hovered.size * 1.25,
-            y: hovered.size * 1.25,
-            z: hovered.size * 1.25,
-            duration: 0.25
-          })
-        } else {
-          setHoveredModel(null)
-          if (!selectedModel) {
-            document.body.style.cursor = 'default'
-          }
-          spheres.forEach((s) => {
-            gsap.to(s.scale, {
-              x: s.userData.model.size,
-              y: s.userData.model.size,
-              z: s.userData.model.size,
+          if (prefersReducedMotion) {
+            intersects[0].object.scale.setScalar(hovered.size * 1.25)
+          } else {
+            gsap.to(intersects[0].object.scale, {
+              x: hovered.size * 1.25,
+              y: hovered.size * 1.25,
+              z: hovered.size * 1.25,
               duration: 0.25
             })
+          }
+        } else {
+          setHoveredModel(null)
+          document.body.style.cursor = 'default'
+          spheres.forEach((s) => {
+            if (prefersReducedMotion) {
+              s.scale.setScalar(s.userData.model.size)
+            } else {
+              gsap.to(s.scale, {
+                x: s.userData.model.size,
+                y: s.userData.model.size,
+                z: s.userData.model.size,
+                duration: 0.25
+              })
+            }
           })
         }
       }
@@ -663,26 +710,34 @@ export function ThreeArenaScene() {
         setSelectedModel(model)
 
         const targetPos = intersects[0].object.position
-        gsap.to(camera.position, {
-          x: targetPos.x + 2.5,
-          y: targetPos.y + 1.8,
-          z: targetPos.z + 3.2,
-          duration: 1.2,
-          ease: 'power2.out'
-        })
+        if (prefersReducedMotion) {
+          camera.position.set(targetPos.x + 2.5, targetPos.y + 1.8, targetPos.z + 3.2)
+        } else {
+          gsap.to(camera.position, {
+            x: targetPos.x + 2.5,
+            y: targetPos.y + 1.8,
+            z: targetPos.z + 3.2,
+            duration: 1.2,
+            ease: 'power2.out'
+          })
+        }
         
         // Show lines on select
         updateProjections(targetPos, parseInt(model.color.replace('#', '0x')))
       } else {
         setSelectedModel(null)
         clearProjections()
-        gsap.to(camera.position, {
-          x: 6,
-          y: 4,
-          z: 9,
-          duration: 1.2,
-          ease: 'power2.out'
-        })
+        if (prefersReducedMotion) {
+          camera.position.set(6, 4, 9)
+        } else {
+          gsap.to(camera.position, {
+            x: 6,
+            y: 4,
+            z: 9,
+            duration: 1.2,
+            ease: 'power2.out'
+          })
+        }
       }
     }
 
@@ -729,42 +784,44 @@ export function ThreeArenaScene() {
       animationFrameId = requestAnimationFrame(animate)
       const elapsedTime = clock.getElapsedTime()
 
-      // Slow orbital rotate of particle field
-      pointCloud.rotation.y = elapsedTime * 0.01
-      pointCloud.rotation.x = Math.sin(elapsedTime * 0.04) * 0.03
+      if (!prefersReducedMotion) {
+        // Slow orbital rotate of particle field
+        pointCloud.rotation.y = elapsedTime * 0.01
+        pointCloud.rotation.x = Math.sin(elapsedTime * 0.04) * 0.03
 
-      // Auto-rotation inertia loop
-      if (autoRotate && !isDragging.current) {
-        scene.rotation.y += 0.002
-      } else if (!isDragging.current) {
-        // Apply rotation velocity decay (damping)
-        scene.rotation.y += rotationVelocity.current.x
-        scene.rotation.x += rotationVelocity.current.y
-        rotationVelocity.current.x *= 0.92
-        rotationVelocity.current.y *= 0.92
+        // Auto-rotation inertia loop
+        if (autoRotate && !isDragging.current) {
+          scene.rotation.y += 0.002
+        } else if (!isDragging.current) {
+          // Apply rotation velocity decay (damping)
+          scene.rotation.y += rotationVelocity.current.x
+          scene.rotation.x += rotationVelocity.current.y
+          rotationVelocity.current.x *= 0.92
+          rotationVelocity.current.y *= 0.92
+        }
+
+        // Rotate targeting rings and orbit satellites
+        spheres.forEach((sphere, index) => {
+          sphere.position.y += Math.sin(elapsedTime * 1.4 + index) * 0.002
+
+          // Inner ring
+          if (sphere.children[0]) {
+            sphere.children[0].rotation.z += 0.008
+          }
+
+          // Satellites
+          if (sphere.children[1]) {
+            const s1 = sphere.children[1] as THREE.Mesh
+            s1.position.x = Math.cos(elapsedTime * 1.8 + index) * 0.48
+            s1.position.z = Math.sin(elapsedTime * 1.8 + index) * 0.48
+          }
+          if (sphere.children[2]) {
+            const s2 = sphere.children[2] as THREE.Mesh
+            s2.position.y = Math.cos(elapsedTime * 2.2 + index + Math.PI) * 0.38
+            s2.position.z = Math.sin(elapsedTime * 2.2 + index + Math.PI) * 0.38
+          }
+        })
       }
-
-      // Rotate targeting rings and orbit satellites
-      spheres.forEach((sphere, index) => {
-        sphere.position.y += Math.sin(elapsedTime * 1.4 + index) * 0.002
-        
-        // Inner ring
-        if (sphere.children[0]) {
-          sphere.children[0].rotation.z += 0.008
-        }
-        
-        // Satellites
-        if (sphere.children[1]) {
-          const s1 = sphere.children[1] as THREE.Mesh
-          s1.position.x = Math.cos(elapsedTime * 1.8 + index) * 0.48
-          s1.position.z = Math.sin(elapsedTime * 1.8 + index) * 0.48
-        }
-        if (sphere.children[2]) {
-          const s2 = sphere.children[2] as THREE.Mesh
-          s2.position.y = Math.cos(elapsedTime * 2.2 + index + Math.PI) * 0.38
-          s2.position.z = Math.sin(elapsedTime * 2.2 + index + Math.PI) * 0.38
-        }
-      })
 
       renderer.render(scene, camera)
     }
@@ -795,7 +852,47 @@ export function ThreeArenaScene() {
         container.removeChild(renderer.domElement)
       }
     }
-  }, [autoRotate])
+  }, [autoRotate, prefersReducedMotion])
+
+  const focusModelById = (modelId: string) => {
+    if (!modelId) {
+      setSelectedModel(null)
+      clearProjections()
+      const camera = cameraRef.current
+      if (camera) {
+        if (prefersReducedMotion) {
+          camera.position.set(6, 4, 9)
+        } else {
+          gsap.to(camera.position, { x: 6, y: 4, z: 9, duration: 1.2, ease: 'power2.out' })
+        }
+      }
+      return
+    }
+
+    const model = MODEL_DATA.find((candidate) => candidate.id === modelId)
+    const sphere = spheresRef.current.find(
+      (candidate) => (candidate.userData.model as ModelNode | undefined)?.id === modelId,
+    )
+    if (!model || !sphere) return
+
+    setSelectedModel(model)
+    setHoveredModel(null)
+    updateProjections(sphere.position, parseInt(model.color.replace('#', '0x')))
+
+    const camera = cameraRef.current
+    if (!camera) return
+    if (prefersReducedMotion) {
+      camera.position.set(sphere.position.x + 2.5, sphere.position.y + 1.8, sphere.position.z + 3.2)
+    } else {
+      gsap.to(camera.position, {
+        x: sphere.position.x + 2.5,
+        y: sphere.position.y + 1.8,
+        z: sphere.position.z + 3.2,
+        duration: 1.2,
+        ease: 'power2.out',
+      })
+    }
+  }
 
   const activeX = METRICS.find(m => m.id === xAxisMetric)
   const activeY = METRICS.find(m => m.id === yAxisMetric)
@@ -807,7 +904,11 @@ export function ThreeArenaScene() {
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_120%,rgba(168,85,247,0.06),transparent_50%)]" />
 
       {/* THREE viewport mount */}
-      <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+      <div
+        ref={mountRef}
+        aria-hidden="true"
+        className="w-full h-full cursor-grab active:cursor-grabbing"
+      />
 
       {/* WebGL Overlay HUD Panels */}
       
@@ -822,11 +923,12 @@ export function ThreeArenaScene() {
 
         {/* X Axis select */}
         <div className="space-y-1">
-          <label className="text-[10px] uppercase font-mono tracking-wider text-white/40 flex items-center gap-1">
+          <label htmlFor="arena-x-axis" className="text-xs uppercase font-mono tracking-wider text-white/70 flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-[#a855f7]" /> X-Axis (Width)
           </label>
           <div className="relative">
             <select
+              id="arena-x-axis"
               value={xAxisMetric}
               onChange={(e) => setXAxisMetric(e.target.value)}
               className="w-full bg-slate-900 border border-white/5 rounded-lg px-2.5 py-1.5 text-xs text-white/80 focus:border-purple-500 outline-none cursor-pointer appearance-none"
@@ -841,11 +943,12 @@ export function ThreeArenaScene() {
 
         {/* Y Axis select */}
         <div className="space-y-1">
-          <label className="text-[10px] uppercase font-mono tracking-wider text-white/40 flex items-center gap-1">
+          <label htmlFor="arena-y-axis" className="text-xs uppercase font-mono tracking-wider text-white/70 flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b]" /> Y-Axis (Height)
           </label>
           <div className="relative">
             <select
+              id="arena-y-axis"
               value={yAxisMetric}
               onChange={(e) => setYAxisMetric(e.target.value)}
               className="w-full bg-slate-900 border border-white/5 rounded-lg px-2.5 py-1.5 text-xs text-white/80 focus:border-amber-500 outline-none cursor-pointer appearance-none"
@@ -860,11 +963,12 @@ export function ThreeArenaScene() {
 
         {/* Z Axis select */}
         <div className="space-y-1">
-          <label className="text-[10px] uppercase font-mono tracking-wider text-white/40 flex items-center gap-1">
+          <label htmlFor="arena-z-axis" className="text-xs uppercase font-mono tracking-wider text-white/70 flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" /> Z-Axis (Depth)
           </label>
           <div className="relative">
             <select
+              id="arena-z-axis"
               value={zAxisMetric}
               onChange={(e) => setZAxisMetric(e.target.value)}
               className="w-full bg-slate-900 border border-white/5 rounded-lg px-2.5 py-1.5 text-xs text-white/80 focus:border-emerald-500 outline-none cursor-pointer appearance-none"
@@ -877,23 +981,46 @@ export function ThreeArenaScene() {
           </div>
         </div>
 
+        {/* Keyboard-accessible model selector */}
+        <div className="space-y-1">
+          <label htmlFor="arena-model-focus" className="text-xs uppercase font-mono tracking-wider text-white/70">
+            Focus model
+          </label>
+          <select
+            id="arena-model-focus"
+            value={selectedModel?.id ?? ''}
+            onChange={(event) => focusModelById(event.target.value)}
+            className="w-full cursor-pointer rounded-lg border border-white/10 bg-slate-900 px-2.5 py-1.5 text-xs text-white/90 outline-none transition-[border-color,box-shadow] focus-visible:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          >
+            <option value="">Overview</option>
+            {MODEL_DATA.map((model) => (
+              <option key={model.id} value={model.id}>{model.name}</option>
+            ))}
+          </select>
+        </div>
+
         {/* Auto Rotate Control */}
         <div className="flex items-center justify-between pt-1">
-          <span className="text-[10px] text-white/45 font-mono">Camera Auto-Orbit</span>
+          <span className="text-xs text-white/70 font-mono">Camera Auto-Orbit</span>
           <button
+            type="button"
+            aria-pressed={autoRotate}
+            disabled={prefersReducedMotion}
             onClick={() => setAutoRotate(!autoRotate)}
             className={`px-3 py-1 rounded-md text-[10px] font-mono border transition-all ${
-              autoRotate ? 'bg-[#a855f7]/10 border-[#a855f7]/30 text-[#a855f7]' : 'bg-white/5 border-white/5 text-white/40'
+              autoRotate
+                ? 'bg-[#a855f7]/10 border-[#a855f7]/30 text-[#d8b4fe]'
+                : 'bg-white/5 border-white/10 text-white/70'
             }`}
           >
-            {autoRotate ? 'ACTIVE' : 'PAUSED'}
+            {prefersReducedMotion ? 'REDUCED MOTION' : autoRotate ? 'ACTIVE' : 'PAUSED'}
           </button>
         </div>
       </div>
 
       {/* 2. Hover mini stats card */}
       {hoveredModel && !selectedModel && (
-        <div className="absolute bottom-6 left-6 z-10 w-72 bg-slate-950/90 backdrop-blur-md border border-white/10 p-4 rounded-2xl animate-fade-in shadow-xl pointer-events-none">
+        <div className={`absolute bottom-6 left-6 z-10 w-72 bg-slate-950/90 backdrop-blur-md border border-white/10 p-4 rounded-2xl shadow-xl pointer-events-none ${prefersReducedMotion ? '' : 'animate-fade-in'}`}>
           <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: hoveredModel.color }} />
             <span className="font-bold text-white text-base">{hoveredModel.name}</span>
@@ -908,14 +1035,14 @@ export function ThreeArenaScene() {
 
       {/* 3. Selection detail stats HUD overlay */}
       {selectedModel && (
-        <div className="absolute bottom-6 right-6 left-6 md:left-auto md:w-[360px] z-10 bg-slate-950/95 backdrop-blur-md border border-white/10 p-5 rounded-2xl shadow-2xl animate-slide-in">
+        <div className={`absolute bottom-6 right-6 left-6 md:left-auto md:w-[360px] z-10 bg-slate-950/95 backdrop-blur-md border border-white/10 p-5 rounded-2xl shadow-2xl ${prefersReducedMotion ? '' : 'animate-slide-in'}`}>
           <div className="flex items-start justify-between mb-4">
             <div>
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: selectedModel.color }} />
+                <span className={`w-2.5 h-2.5 rounded-full ${prefersReducedMotion ? '' : 'animate-pulse'}`} style={{ backgroundColor: selectedModel.color }} />
                 <span className="font-bold text-white text-lg">{selectedModel.name}</span>
               </div>
-              <span className="text-[10px] text-white/45 font-mono">{selectedModel.org} receipt telemetry</span>
+              <span className="text-xs text-white/70 font-mono">{selectedModel.org} receipt telemetry</span>
             </div>
             <button 
               onClick={() => {
@@ -923,10 +1050,14 @@ export function ThreeArenaScene() {
                 clearProjections()
                 const cam = cameraRef.current
                 if (cam) {
-                  gsap.to(cam.position, { x: 6, y: 4, z: 9, duration: 1.2, ease: 'power2.out' })
+                  if (prefersReducedMotion) {
+                    cam.position.set(6, 4, 9)
+                  } else {
+                    gsap.to(cam.position, { x: 6, y: 4, z: 9, duration: 1.2, ease: 'power2.out' })
+                  }
                 }
               }}
-              className="text-[10px] text-white/50 hover:text-white bg-white/5 hover:bg-white/10 px-2 py-1 rounded-md transition-colors"
+              className="text-xs text-white/70 hover:text-white bg-white/5 hover:bg-white/10 px-2 py-1 rounded-md transition-colors"
             >
               Reset camera
             </button>
@@ -937,7 +1068,7 @@ export function ThreeArenaScene() {
           {/* Active coordinates readout */}
           <div className="grid grid-cols-3 gap-2 mb-4 bg-slate-900/60 p-2.5 rounded-xl border border-white/5 font-mono text-[10px]">
             <div>
-              <span className="block text-white/30 text-[9px] uppercase">X-Axis</span>
+              <span className="block text-white/65 text-xs uppercase">X-Axis</span>
               <span className="text-white font-bold" style={{ color: activeX?.color }}>
                 {xAxisMetric === 'constraint' ? selectedModel.constraint :
                  xAxisMetric === 'judgment' ? selectedModel.judgment :
@@ -946,7 +1077,7 @@ export function ThreeArenaScene() {
               </span>
             </div>
             <div>
-              <span className="block text-white/30 text-[9px] uppercase">Y-Axis</span>
+              <span className="block text-white/65 text-xs uppercase">Y-Axis</span>
               <span className="text-white font-bold" style={{ color: activeY?.color }}>
                 {yAxisMetric === 'constraint' ? selectedModel.constraint :
                  yAxisMetric === 'judgment' ? selectedModel.judgment :
@@ -955,7 +1086,7 @@ export function ThreeArenaScene() {
               </span>
             </div>
             <div>
-              <span className="block text-white/30 text-[9px] uppercase">Z-Axis</span>
+              <span className="block text-white/65 text-xs uppercase">Z-Axis</span>
               <span className="text-white font-bold" style={{ color: activeZ?.color }}>
                 {zAxisMetric === 'constraint' ? selectedModel.constraint :
                  zAxisMetric === 'judgment' ? selectedModel.judgment :
@@ -967,15 +1098,15 @@ export function ThreeArenaScene() {
 
           <div className="space-y-2.5 border-t border-white/5 pt-3.5 mb-4">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-white/40 flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-zinc-500" /> Core Verdict</span>
+              <span className="text-white/70 flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-zinc-400" /> Core Verdict</span>
               <span className="text-white font-medium" style={{ color: selectedModel.color }}>{selectedModel.stats.verdict}</span>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="text-white/40 flex items-center gap-1.5"><DollarSign className="w-3.5 h-3.5 text-zinc-500" /> Cost / 1M</span>
+              <span className="text-white/70 flex items-center gap-1.5"><DollarSign className="w-3.5 h-3.5 text-zinc-400" /> Cost / 1M</span>
               <span className="text-zinc-300 font-mono">{selectedModel.stats.pricing}</span>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="text-white/40 flex items-center gap-1.5"><Target className="w-3.5 h-3.5 text-zinc-500" /> Peak Benchmark</span>
+              <span className="text-white/70 flex items-center gap-1.5"><Target className="w-3.5 h-3.5 text-zinc-400" /> Peak Benchmark</span>
               <span className="text-zinc-300 font-mono">{selectedModel.stats.benchmark}</span>
             </div>
           </div>

@@ -92,8 +92,8 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
 
   assert.match(homepage, /bg-emerald-500 hover:bg-emerald-600 text-black/)
   assert.match(homepage, /max-w-md text-xs leading-5 text-white\/60/)
-  assert.match(start, /bg-emerald-500 px-7 py-4 text-sm font-semibold text-black/)
-  assert.match(start, /tracking-\[0\.2em\] text-white\/60/)
+  assert.match(start, /bg-emerald-400 px-6 py-3 text-sm font-semibold text-\[#07120d\]/)
+  assert.match(start, /tracking-\[0\.24em\] text-emerald-300\/80/)
   assert.match(blog, /bg-emerald-500 hover:bg-emerald-600 text-black/)
   assert.match(blogCard, /text-white\/75 leading-relaxed/)
   assert.match(blogCard, /text-xs text-white\/75 group-hover:text-white\/85/)
@@ -107,4 +107,15 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
   assert.match(mdx, /role="region"/)
   assert.match(mdx, /aria-label="Scrollable data table"/)
   assert.match(mdx, /tabIndex=\{0\}/)
+})
+
+test('404 recovery cannot surface consent-gated partnership routes from stale data', async () => {
+  const matcher = await readRepoFile('lib/fuzzy-route-match.ts')
+
+  assert.match(matcher, /const DISCOVERY_BLOCKED_PREFIXES = \[/)
+  assert.match(matcher, /'\/partnerships\/proposal'/)
+  assert.match(matcher, /'\/partnerships\/van-ede'/)
+  assert.match(matcher, /route\.sitemap !== false && !isDiscoveryBlocked\(route\.href\)/)
+  assert.match(matcher, /new Fuse\(discoverableRoutes,/)
+  assert.match(matcher, /discoverableAliases\[normalized\] \|\| null/)
 })
