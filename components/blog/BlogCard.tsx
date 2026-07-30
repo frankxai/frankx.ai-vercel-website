@@ -136,7 +136,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
           {post.description}
         </p>
 
-        <div className="flex items-center gap-4 text-xs text-white/40 group-hover:text-white/55 transition-colors duration-300">
+        <div className="flex items-center gap-4 text-xs text-white/60 group-hover:text-white/75 transition-colors duration-300">
           <span className="flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5" />
             {new Date(post.date).toLocaleDateString('en-US', {
@@ -156,7 +156,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
             {post.tags.slice(0, featured ? 5 : 3).map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 rounded-full text-xs text-white/45 bg-white/[0.04] border border-white/[0.06] group-hover:bg-white/[0.08] group-hover:text-white/60 transition-all duration-300"
+                className="px-2.5 py-1 rounded-full text-xs text-white/60 bg-white/[0.04] border border-white/[0.06] group-hover:bg-white/[0.08] group-hover:text-white/75 transition-all duration-300"
               >
                 #{tag}
               </span>

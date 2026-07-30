@@ -42,6 +42,9 @@ test('shared email capture has a named, labelled field and an inline privacy bou
 
   assert.doesNotMatch(signup, />Leave this field blank</)
   assert.match(signup, /aria-hidden="true"/)
+  assert.match(connectSignup, /name="website"/)
+  assert.match(connectSignup, /tabIndex=\{-1\}/)
+  assert.match(connectSignup, /JSON\.stringify\(\{ email, website,/)
 })
 
 test('shared navigation exposes one named navigation landmark', async () => {
@@ -71,4 +74,32 @@ test('connect schema describes the page without claiming third-party events', as
   assert.doesNotMatch(connect, /CONNECT_EVENTS/)
   assert.doesNotMatch(connect, /'@type': 'Event'/)
   assert.match(connect, /'@type': 'WebPage'/)
+})
+
+test('primary spine keeps verified contrast and scroll-region failures closed', async () => {
+  const [homepage, start, blog, blogCard, carousel, journal, mvu, mdx] = await Promise.all(
+    [
+      'components/home/HomePageElite.tsx',
+      'app/start/page.tsx',
+      'app/blog/BlogPageClient.tsx',
+      'components/blog/BlogCard.tsx',
+      'components/blog/PremiumVisualCarousel.tsx',
+      'app/journal/page.tsx',
+      'app/mvu/page.tsx',
+      'components/blog/MDXComponents.tsx',
+    ].map(readRepoFile),
+  )
+
+  assert.match(homepage, /bg-emerald-500 hover:bg-emerald-600 text-black/)
+  assert.match(homepage, /max-w-md text-xs leading-5 text-white\/60/)
+  assert.match(start, /bg-emerald-500 px-7 py-4 text-sm font-semibold text-black/)
+  assert.match(start, /tracking-\[0\.2em\] text-white\/60/)
+  assert.match(blog, /bg-emerald-500 hover:bg-emerald-600 text-black/)
+  assert.match(blogCard, /text-xs text-white\/60 group-hover:text-white\/75/)
+  assert.match(carousel, /text-white\/60 tracking-widest">Drag to browse/)
+  assert.doesNotMatch(journal, /text-white\/(?:30|35|40)/)
+  assert.match(mvu, /tracking-widest text-white\/60/)
+  assert.match(mdx, /role="region"/)
+  assert.match(mdx, /aria-label="Scrollable data table"/)
+  assert.match(mdx, /tabIndex=\{0\}/)
 })

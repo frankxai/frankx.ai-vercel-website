@@ -225,7 +225,7 @@ export default function MvuPage() {
             </span>
           </a>
 
-          <p className="max-w-xl text-sm leading-6 text-white/45 md:text-right">
+          <p className="max-w-xl text-sm leading-6 text-white/60 md:text-right">
             Participant field journal · independently written and published by
             FrankX · not organized, sponsored, or endorsed by Mindvalley.
           </p>
@@ -351,7 +351,7 @@ export default function MvuPage() {
 
       <section id="field-journal" className="py-20 sm:py-24 scroll-mt-24">
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-white/40">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-white/60">
             Research, journals & essays
           </h2>
 
@@ -368,7 +368,7 @@ export default function MvuPage() {
                       href={'/mvu/' + entry.slug}
                       className="group flex flex-col gap-2 py-6 transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
                     >
-                      <div className="flex flex-wrap items-center gap-3 text-xs text-white/40">
+                      <div className="flex flex-wrap items-center gap-3 text-xs text-white/60">
                         <span className="inline-flex items-center gap-1.5 text-tech-light/80">
                           <Icon className="h-3.5 w-3.5" aria-hidden />
                           {meta.label}

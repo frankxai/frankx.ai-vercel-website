@@ -89,7 +89,7 @@ export default function JournalPage() {
               href="/journal/feed.xml"
               eventName="journal_navigation"
               eventProperties={{ destination: 'rss' }}
-              className="inline-flex items-center gap-1.5 text-xs text-white/40 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
+              className="inline-flex items-center gap-1.5 text-xs text-white/60 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
             >
               <Rss className="h-3.5 w-3.5" aria-hidden />
               RSS
@@ -106,7 +106,7 @@ export default function JournalPage() {
           </p>
 
           {/* Dateline: what a journal opens with — how much there is and how far back. */}
-          <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-white/35">
+          <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-white/60">
             <span className="text-white/70">
               {entries.length} {entries.length === 1 ? 'entry' : 'entries'}
             </span>
@@ -147,7 +147,7 @@ export default function JournalPage() {
                 */}
                 <h2
                   id={`month-${month.key}`}
-                  className="pt-10 font-mono text-[11px] uppercase tracking-[0.25em] text-white/35 sm:sticky sm:top-24 sm:z-10 sm:w-28 sm:pt-12 sm:text-right"
+                  className="pt-10 font-mono text-[11px] uppercase tracking-[0.25em] text-white/60 sm:sticky sm:top-24 sm:z-10 sm:w-28 sm:pt-12 sm:text-right"
                 >
                   {month.label}
                 </h2>
@@ -166,7 +166,7 @@ export default function JournalPage() {
                           {/* Date margin — desktop only; the mobile dateline is inline below. */}
                           <time
                             dateTime={entry.date}
-                            className="hidden pt-8 text-right font-mono text-xs leading-6 text-white/30 transition-colors group-hover:text-tech-light/70 sm:block"
+                            className="hidden pt-8 text-right font-mono text-xs leading-6 text-white/60 transition-colors group-hover:text-tech-light/80 sm:block"
                           >
                             {formatJournalDate(entry.date, 'short')}
                           </time>
@@ -181,7 +181,7 @@ export default function JournalPage() {
                             the top border would just add noise.
                           */}
                           <div className="border-t border-white/[0.07] py-8 transition-colors group-hover:border-tech-primary/40 sm:border-l sm:border-t-0 sm:pl-8">
-                            <div className="flex flex-wrap items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-white/35">
+                            <div className="flex flex-wrap items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-white/60">
                               <span className="inline-flex items-center gap-1.5 text-tech-light/70">
                                 <Icon className="h-3.5 w-3.5" aria-hidden />
                                 {JOURNAL_KIND_LABEL[entry.kind]}
@@ -213,7 +213,7 @@ export default function JournalPage() {
                               </p>
                             )}
 
-                            <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white/30 transition-colors group-hover:text-tech-light">
+                            <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white/60 transition-colors group-hover:text-tech-light">
                               Read the entry
                               <ArrowRight
                                 className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
@@ -236,7 +236,7 @@ export default function JournalPage() {
             eventProperties={{ destination: 'blog_cta' }}
             className="group mt-16 block border-t border-white/10 pt-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light sm:grid sm:grid-cols-[7rem_1fr] sm:gap-x-8"
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-tech-light/60 sm:text-right">
+            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-tech-light/80 sm:text-right">
               Blog
             </p>
             <div>

@@ -166,14 +166,14 @@ export default function StartPage() {
             AI music experiments, and peak-state routines for people who want more leverage
             without losing the human signal.
           </p>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/38">
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/60">
             AI Architect & Creator. Independent project. Not affiliated with, endorsed by,
             or sponsored by Oracle.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/newsletter"
-              className="group inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-600"
+              className="group inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-7 py-4 text-sm font-semibold text-black shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-600"
             >
               Join Signal Loop
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
@@ -266,12 +266,12 @@ export default function StartPage() {
                       <Icon className="h-6 w-6" />
                     </div>
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-white/35">
+                      <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-white/60">
                         {path.eyebrow}
                       </p>
                       <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">{path.title}</h3>
                       <p className="mt-3 text-sm leading-relaxed text-white/52">{path.description}</p>
-                      <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/42 transition group-hover:text-white/75">
+                      <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/60 transition group-hover:text-white/75">
                         Open path
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                       </div>
