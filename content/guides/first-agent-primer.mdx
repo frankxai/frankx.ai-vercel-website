@@ -354,7 +354,7 @@ describe possible next areas:
 - **B5 — AI builds AI (Claude Code / Cursor).** Use an AI to generate your next agent.
 - **B6 — Oracle ADK + Open Agent Spec.** Enterprise-grade with portable spec.
 
-Each branch re-implements the same research-assistant agent on a different stack. The Agent Card stays the same — that's the portability contract.
+Each branch re-implements the same research-assistant agent on a different stack. The Agent Card contract can stay stable only if every branch exposes the same declared A2A interface; a stack without native support needs a compatible binding or adapter.
 
 ---
 
@@ -376,9 +376,9 @@ Three common causes:
 2. `maxSteps` is too high and the agent is looping. Cap at 5 for a simple agent.
 3. Session memory is unbounded. Set an explicit retention bound in your own `memory.ts`.
 
-### "The Agent Card isn't discoverable from another origin"
+### "A browser on another origin cannot fetch the Agent Card"
 
-CORS. Configure the required origin policy explicitly for `/.well-known/agent-card.json`; do not assume a template has done it for you.
+That is a browser CORS boundary, not a discovery failure. Configure the required origin policy explicitly for `/.well-known/agent-card.json`; do not assume a template has done it for you. Server-to-server clients are not governed by browser CORS.
 
 ---
 

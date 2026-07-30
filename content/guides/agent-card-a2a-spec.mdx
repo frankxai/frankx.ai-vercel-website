@@ -232,7 +232,7 @@ Two baseline requirements:
 1. **Serve the public Card at `/.well-known/agent-card.json`** on the agent's domain.
 2. **Return JSON over HTTPS.** Use `Content-Type: application/json`. If browser-based clients on other origins must fetch this public Card, add an explicit CORS policy; server-to-server A2A clients do not rely on browser CORS.
 
-For a deliberately public Card that browser clients may discover, a Next.js header rule can be:
+For a deliberately public Card that browser clients may fetch, a Next.js header rule can be:
 
 ```ts
 // next.config.mjs
@@ -341,7 +341,7 @@ If a public Card advertises `https://internal.corp.com/my-agent`, outside client
 
 Callers use `examples` to decide if your skill is the right match for their intent. If you ship misleading examples, you get misrouted requests. Pick examples that are representative of the actual skill.
 
-### 5. Browser discovery needs an explicit CORS decision
+### 5. Cross-origin browser access needs an explicit CORS decision
 
 Server-to-server A2A clients are not governed by browser CORS. If a browser application on another origin must fetch a public Card, allow only the origins your use case requires—or use `*` only when the Card is intentionally public to every origin.
 
@@ -355,7 +355,7 @@ Before exposing an Agent Card in production:
 - [ ] At least one skill with `id`, `name`, `description`, and `tags`; representative examples are strongly recommended
 - [ ] Every declared interface URL is reachable by its intended audience and implements its declared binding/version
 - [ ] Public Card served at `/.well-known/agent-card.json` with `Content-Type: application/json`
-- [ ] Browser CORS policy added only if cross-origin browser discovery is intended
+- [ ] Browser CORS policy added only if cross-origin browser access is intended
 - [ ] Validated against the exact A2A version declared by each interface
 - [ ] No secrets in the Card
 - [ ] Security schemes and requirements match the server, or their omission is an intentional public-access decision with network-layer limits

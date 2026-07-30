@@ -62,9 +62,9 @@ Time spent: 10 minutes. Lesson: evals catch what tests don't — non-determinist
 
 ## Minute 65-80 — The Agent Card
 
-Create `public/.well-known/agent-card.json`. Read every field, then set the name, description, and URL for your agent.
+Create `public/.well-known/agent-card.json`. Read every field, then set the identity, each `supportedInterfaces` entry (`url`, `protocolBinding`, and `protocolVersion`), media modes, capabilities, and skills for the endpoint you actually run.
 
-Validate against the A2A schema. Verify CORS headers in `next.config.mjs` are set so other origins can fetch the Card.
+Validate against the A2A schema for the protocol version you declare. If browser-based clients on other origins must fetch the public Card, configure and verify an explicit CORS policy; server-to-server A2A clients do not rely on browser CORS.
 
 Time spent: 15 minutes. Lesson: the spec is a contract; specifying clearly costs nothing and pays for years.
 

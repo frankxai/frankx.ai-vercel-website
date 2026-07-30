@@ -45,7 +45,20 @@ test('retired routes consolidate permanently and conversion paths are measured',
 })
 
 test('commerce identity and the current A2A discovery path have one truthful source', async () => {
-  const [commerce, productPage, buyButton, templates, primer, cardGuide, essay, email, workshops] =
+  const [
+    commerce,
+    productPage,
+    buyButton,
+    templates,
+    primer,
+    cardGuide,
+    essay,
+    email,
+    workshops,
+    specEmail,
+    walkthrough,
+    transferMatrix,
+  ] =
     await Promise.all([
       readRepoFile('lib/commerce-links.ts'),
       readRepoFile('app/build/[slug]/page.tsx'),
@@ -56,6 +69,9 @@ test('commerce identity and the current A2A discovery path have one truthful sou
       readRepoFile('content/blog/six-primitives-ai-agent.mdx'),
       readRepoFile('content/email/funnel/08-walkthrough.md'),
       readRepoFile('data/workshops.ts'),
+      readRepoFile('content/email/funnel/06-spec.md'),
+      readRepoFile('content/email/funnel/08-walkthrough.md'),
+      readRepoFile('content/email/funnel/09-transfer-matrix.md'),
     ])
 
   assert.match(commerce, /https:\/\/frankx\.lemonsqueezy\.com/)
@@ -77,12 +93,26 @@ test('commerce identity and the current A2A discovery path have one truthful sou
   assert.match(cardGuide, /securitySchemes/)
   assert.doesNotMatch(cardGuide, /"authentication":/)
   assert.doesNotMatch(cardGuide, /stateTransitionHistory/)
-  for (const source of [primer, workshops]) {
+  for (const source of [primer, workshops, specEmail, walkthrough, transferMatrix]) {
     assert.doesNotMatch(source, /Google A2A/)
   }
   assert.match(primer, /CORS headers are a separate browser boundary/)
   assert.match(workshops, /compatible A2A clients can discover/)
   assert.match(workshops, /need native A2A client support or an adapter/)
+  for (const source of [specEmail, walkthrough]) {
+    assert.match(source, /supportedInterfaces/)
+    assert.match(source, /protocolBinding/)
+    assert.match(source, /protocolVersion/)
+  }
+  assert.doesNotMatch(specEmail, /"provider": \{ "name":/)
+  assert.doesNotMatch(specEmail, /lowest-common-denominator/)
+  assert.doesNotMatch(specEmail, /BCG's enterprise agent playbook/)
+  assert.match(specEmail, /neither is a subset of the other/)
+  assert.match(walkthrough, /server-to-server A2A clients do not rely on browser CORS/)
+  assert.match(transferMatrix, /need a compatible server binding or adapter/)
+  assert.doesNotMatch(transferMatrix, /same Card works whether/)
+  assert.doesNotMatch(primer, /isn't discoverable from another origin/)
+  assert.doesNotMatch(cardGuide, /cross-origin browser discovery/)
 })
 
 test('the blog collection route is concrete despite its route group', async () => {

@@ -14,13 +14,13 @@ The honest answer is the **transfer matrix** — what changes between stacks and
 
 | Component | Changes per path? |
 |---|---|
-| **Agent Card** | No — identical across all six |
+| **Agent Card contract** | Can stay stable only when every branch exposes the same A2A interface |
 | **Agent behavior** | No — same research assistant |
 | **Tool definition (the contract)** | Minor — schema same, call site differs |
 | **Eval cases** | No — judge templates port directly |
 | **Architectural mental model** | No — six primitives apply to every stack |
 
-The Agent Card is the headline. **The same Card works whether you implemented the agent on Vercel AI SDK, Claude Agent SDK, OpenAI Agents, Google ADK, n8n, or Oracle ADK.** That's the portability contract you ship as part of every agent.
+The Agent Card is the headline, with an important boundary: the same Card can describe implementations on different stacks only when each implementation exposes the declared A2A interface. Stacks without native A2A support need a compatible server binding or adapter. Publishing the same JSON does not make those frameworks interoperable by itself.
 
 ## What changes per path
 
