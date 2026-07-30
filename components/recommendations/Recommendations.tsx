@@ -80,7 +80,7 @@ export default function Recommendations({ documents, currentDocument }: Recommen
                       </span>
                     )}
                     {doc.readingTime && (
-                      <span className="text-[10px] text-white/30">{doc.readingTime}</span>
+                      <span className="text-[10px] text-white/60">{doc.readingTime}</span>
                     )}
                   </div>
                 )}
@@ -90,7 +90,7 @@ export default function Recommendations({ documents, currentDocument }: Recommen
                 </h3>
 
                 {doc.description && (
-                  <p className="mt-2 text-xs text-white/40 leading-relaxed line-clamp-2">
+                  <p className="mt-2 text-xs text-white/60 leading-relaxed line-clamp-2">
                     {doc.description}
                   </p>
                 )}

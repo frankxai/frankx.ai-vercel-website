@@ -226,7 +226,7 @@ function HeroSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/40 to-transparent" />
           </div>
-          <figcaption className="mt-3 text-xs text-slate-500">
+          <figcaption className="mt-3 text-xs text-slate-400">
             Presenting the shift from static AI models to autonomous agents, 2025.
           </figcaption>
         </motion.figure>
@@ -306,7 +306,7 @@ function FoundrySection() {
     <section className="border-t border-white/5 py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
+          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-300 font-medium mb-3">
             Beyond Advisory
           </p>
           <h2 className="text-3xl font-bold text-white tracking-tight mb-3">
@@ -673,7 +673,7 @@ function FooterLinksSection() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-slate-500 hover:text-white transition-colors duration-200 flex items-center gap-1.5"
+              className="text-sm text-slate-400 hover:text-white transition-colors duration-200 flex items-center gap-1.5"
             >
               {l.label}
               <ArrowRight className="h-3.5 w-3.5" />

@@ -55,7 +55,7 @@ export default function TableOfContents() {
       aria-label="Table of contents"
       className="mb-10 rounded-xl border border-white/[0.08] bg-white/[0.02] p-5"
     >
-      <div className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+      <div className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
         On this page
       </div>
       <ul className="space-y-1.5 text-sm">

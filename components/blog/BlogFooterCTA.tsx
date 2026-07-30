@@ -92,7 +92,7 @@ export default function BlogFooterCTA() {
             >
               <item.icon className={`h-5 w-5 ${item.iconColor}`} />
             </div>
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-white/40">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-white/60">
               {item.label}
             </span>
             <h3 className="mt-1.5 text-lg font-semibold text-white group-hover:text-white/90 transition-colors">
