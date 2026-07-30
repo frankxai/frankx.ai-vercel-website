@@ -127,7 +127,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               transition={{ delay: 0.12, duration: 0.6 }}
             >
               <Link href={`/blog/${latestPost.slug}`} className="group block">
-                <div className="relative rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-emerald-500/30 hover:bg-white/[0.05]">
+                <div className="relative rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden transition-colors duration-300 hover:border-emerald-500/30 hover:bg-white/[0.05]">
                   {latestPost.image ? (
                     <div className="grid md:grid-cols-2 gap-0">
                       <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[280px] overflow-hidden p-1">
@@ -135,6 +135,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                           src={latestPost.image}
                           alt={latestPost.title}
                           fill
+                          sizes="(max-width: 767px) 100vw, 50vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       </div>
@@ -334,7 +335,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
           </p>
           <Link
             href="/newsletter"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black font-semibold shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow] hover:shadow-xl hover:shadow-emerald-500/30"
           >
             Start Here
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

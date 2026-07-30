@@ -285,6 +285,7 @@ export default function MvuPage() {
               src={FEATURED_ARTICLE_IMAGE}
               alt=""
               fill
+              loading="eager"
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-cover transition duration-500 group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none"
             />
