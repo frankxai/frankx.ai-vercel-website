@@ -6,10 +6,11 @@ const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url
 
 test('primary public routes emit direct www canonicals', async () => {
   const seo = await readRepoFile('lib/seo.ts')
-  const criticalRoutes = await Promise.all(
+  const criticalRoutePaths =
     [
       'app/page.tsx',
       'app/start/page.tsx',
+      'app/work-with-me/page.tsx',
       'app/blog/[slug]/page.tsx',
       'app/journal/page.tsx',
       'app/mvu/page.tsx',
@@ -17,13 +18,17 @@ test('primary public routes emit direct www canonicals', async () => {
       'app/mvu/lab/page.tsx',
       'app/(landing)/connect/page.tsx',
       'app/vault/(index)/page.tsx',
-    ].map(readRepoFile),
-  )
+    ]
+  const criticalRoutes = await Promise.all(criticalRoutePaths.map(readRepoFile))
 
   assert.match(seo, /const siteUrl = 'https:\/\/www\.frankx\.ai'/)
   for (const source of criticalRoutes) {
     assert.doesNotMatch(source, /https:\/\/frankx\.ai/)
   }
+  assert.match(
+    criticalRoutes[criticalRoutePaths.indexOf('app/work-with-me/page.tsx')],
+    /canonical: 'https:\/\/www\.frankx\.ai\/work-with-me'/,
+  )
 })
 
 test('shared email capture has a named, labelled field and an inline privacy boundary', async () => {
