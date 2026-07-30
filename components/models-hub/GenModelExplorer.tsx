@@ -60,7 +60,7 @@ export function GenModelExplorer({ rows, lockCategory }: { rows: GenRow[]; lockC
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search models…"
-            className="w-full rounded-lg border border-white/10 bg-white/[0.03] py-2 pl-9 pr-3 text-sm text-white placeholder:text-white/30 focus:border-white/30 focus:outline-none"
+            className="w-full rounded-lg border border-white/10 bg-white/[0.03] py-2 pl-9 pr-3 text-sm text-white placeholder:text-white/30 focus:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60"
           />
         </div>
         <div className="flex items-center gap-3">
@@ -68,7 +68,7 @@ export function GenModelExplorer({ rows, lockCategory }: { rows: GenRow[]; lockC
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm capitalize text-white/80 focus:border-white/30 focus:outline-none"
+              className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm capitalize text-white/80 focus:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60"
             >
               <option value="all">All categories</option>
               {categories.map((c) => (
@@ -81,7 +81,7 @@ export function GenModelExplorer({ rows, lockCategory }: { rows: GenRow[]; lockC
           <select
             value={license}
             onChange={(e) => setLicense(e.target.value)}
-            className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-white/80 focus:border-white/30 focus:outline-none"
+            className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-white/80 focus:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60"
           >
             <option value="all">All licenses</option>
             <option value="open">Open weights</option>
