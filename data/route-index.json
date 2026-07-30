@@ -5065,7 +5065,7 @@
     {
       "href": "/guides/first-agent-primer",
       "title": "First Agent Primer — build, deploy, and share an AI agent in an afternoon",
-      "description": "The canonical long-form guide to building your first AI agent. Covers the six primitives, a working TypeScript build on Vercel AI SDK, a Google A2A Agent Card, and three eval cases you can run today.",
+      "description": "The canonical long-form guide to building your first AI agent. Covers the six primitives, a working TypeScript build on Vercel AI SDK, an A2A 1.0 Agent Card, and three eval cases you can run today.",
       "tags": [
         "AI Agents",
         "Vercel AI SDK",

@@ -201,7 +201,7 @@ export const workshops: Workshop[] = [
     provenance: 'delivered-studio-assisted',
     intakeEnabled: true,
     overview:
-      'A hands-on technical workshop. Every participant ships a working AI agent on the Vercel AI SDK — our central path — and leaves with a portable Agent Card (Google A2A) that works across Claude, OpenAI, Google ADK, and no-code stacks. The point is not the framework; the point is the six primitives (model, tool, memory, loop, spec, deploy) that transfer to every agent you will ever build. Six optional branch modules then re-build the same agent on Claude, OpenAI, Google ADK, Oracle ADK, no-code (n8n/Notion/Dify), and AI-builds-AI (Claude Code) stacks.',
+      'A hands-on technical workshop. Every participant ships a working AI agent on the Vercel AI SDK — our central path — and leaves with an A2A 1.0 Agent Card that compatible A2A clients can discover. Other stacks need native A2A client support or an adapter; the Card does not make Claude, OpenAI, Google ADK, or no-code tools interoperable by itself. The point is not the framework; the point is the six primitives (model, tool, memory, loop, spec, deploy) that transfer to every agent you will ever build. Six optional branch modules then re-build the same agent on Claude, OpenAI, Google ADK, Oracle ADK, no-code (n8n/Notion/Dify), and AI-builds-AI (Claude Code) stacks.',
     objectives: [
       'Name the six primitives of any AI agent — model, tool, memory, loop, spec, deploy',
       'Ship a working research-assistant agent on the Vercel AI SDK with tool use, memory, and a public URL',
@@ -281,7 +281,7 @@ export const workshops: Workshop[] = [
         instructorNotes:
           'The Agent Card is the artifact that makes the portability lesson concrete. Use the inline template so participants fill fields rather than writing JSON from scratch.',
         resources: [
-          { label: 'Google A2A Agent Card spec', href: 'https://a2a-protocol.org/' },
+          { label: 'A2A Protocol 1.0 specification', href: 'https://a2a-protocol.org/latest/specification/' },
           { label: 'Oracle Open Agent Specification', href: '/ai-architecture' },
         ],
       },

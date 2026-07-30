@@ -34,11 +34,28 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-semibold mb-4">Information We Collect</h2>
             <p className="text-white/70 leading-relaxed mb-4">We may collect the following types of information:</p>
             <ul className="list-disc list-inside text-white/70 space-y-2">
-              <li>Email address (when you subscribe to our newsletter or make a purchase)</li>
+              <li>Email address (when you subscribe, make a purchase, or send an inquiry)</li>
+              <li>
+                Studio inquiry details: your name, message, and optional company or organization
+              </li>
               <li>Aggregate page-view data (page path, referrer category, browser, device, and approximate region)</li>
               <li>Performance data (such as Core Web Vitals)</li>
               <li>Payment information (processed securely through third-party providers)</li>
             </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold mb-4">Studio Inquiries</h2>
+            <p className="text-white/70 leading-relaxed mb-4">
+              When you use the Work With Me form, we collect your name, email address, message, and
+              optional company or organization. We use those details only to review and respond to
+              your inquiry. Sending an inquiry does not add you to a marketing list.
+            </p>
+            <p className="text-white/70 leading-relaxed">
+              The form sends those details through Resend to our monitored inbox. Inquiry details
+              are retained only as long as needed to respond and manage the related correspondence,
+              unless a longer period is required by law. You may ask us to delete them.
+            </p>
           </section>
 
           <section>
@@ -60,6 +77,7 @@ export default function PrivacyPage() {
             <ul className="list-disc list-inside text-white/70 space-y-2">
               <li>To provide and improve our services</li>
               <li>To send newsletters and updates (with your consent)</li>
+              <li>To review and respond to studio inquiries</li>
               <li>To process transactions</li>
               <li>To analyze website usage and optimize user experience</li>
             </ul>
@@ -69,8 +87,10 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-semibold mb-4">Third-Party Services</h2>
             <p className="text-white/70 leading-relaxed">
               We use Vercel for hosting and the aggregate measurement described above, Resend for newsletter
-              subscriptions and delivery, and payment processors when you choose to make a purchase. These
-              services process only the information needed for their role and maintain their own privacy terms.
+              subscriptions, newsletter delivery, and delivery of studio inquiries to our monitored inbox,
+              and payment processors when you choose to make a purchase. Resend receives the inquiry fields
+              listed above when you submit that form. These services process the information needed for their
+              role and maintain their own privacy terms.
             </p>
           </section>
 

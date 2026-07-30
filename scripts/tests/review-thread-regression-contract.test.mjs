@@ -45,7 +45,7 @@ test('retired routes consolidate permanently and conversion paths are measured',
 })
 
 test('commerce identity and the current A2A discovery path have one truthful source', async () => {
-  const [commerce, productPage, buyButton, templates, primer, cardGuide, essay, email] =
+  const [commerce, productPage, buyButton, templates, primer, cardGuide, essay, email, workshops] =
     await Promise.all([
       readRepoFile('lib/commerce-links.ts'),
       readRepoFile('app/build/[slug]/page.tsx'),
@@ -55,6 +55,7 @@ test('commerce identity and the current A2A discovery path have one truthful sou
       readRepoFile('content/guides/agent-card-a2a-spec.mdx'),
       readRepoFile('content/blog/six-primitives-ai-agent.mdx'),
       readRepoFile('content/email/funnel/08-walkthrough.md'),
+      readRepoFile('data/workshops.ts'),
     ])
 
   assert.match(commerce, /https:\/\/frankx\.lemonsqueezy\.com/)
@@ -76,6 +77,12 @@ test('commerce identity and the current A2A discovery path have one truthful sou
   assert.match(cardGuide, /securitySchemes/)
   assert.doesNotMatch(cardGuide, /"authentication":/)
   assert.doesNotMatch(cardGuide, /stateTransitionHistory/)
+  for (const source of [primer, workshops]) {
+    assert.doesNotMatch(source, /Google A2A/)
+  }
+  assert.match(primer, /CORS headers are a separate browser boundary/)
+  assert.match(workshops, /compatible A2A clients can discover/)
+  assert.match(workshops, /need native A2A client support or an adapter/)
 })
 
 test('the blog collection route is concrete despite its route group', async () => {
@@ -84,8 +91,10 @@ test('the blog collection route is concrete despite its route group', async () =
 })
 
 test('the inquiry form and walkthrough expose their real privacy and setup boundaries', async () => {
-  const [inquiry, walkthrough] = await Promise.all([
+  const [inquiry, privacy, inquiryRoute, walkthrough] = await Promise.all([
     readRepoFile('app/work-with-me/StudioClient.tsx'),
+    readRepoFile('app/privacy/page.tsx'),
+    readRepoFile('app/api/studio-inquiry/route.ts'),
     readRepoFile('content/email/funnel/08-walkthrough.md'),
   ])
 
@@ -94,6 +103,11 @@ test('the inquiry form and walkthrough expose their real privacy and setup bound
   assert.match(inquiry, /autoComplete="organization"/)
   assert.match(inquiry, /href="\/privacy"/)
   assert.match(inquiry, /store these details only to review and/)
+  assert.match(privacy, /your name, email address, message, and/)
+  assert.match(privacy, /The form sends those details through Resend/)
+  assert.match(privacy, /Sending an inquiry does not add you to a marketing list/)
+  assert.match(inquiryRoute, /https:\/\/api\.resend\.com\/emails/)
+  assert.match(inquiryRoute, /reply_to: email\.trim\(\)/)
 
   assert.match(walkthrough, /without assuming that you downloaded a repository or handout/)
   assert.match(walkthrough, /project you control/)

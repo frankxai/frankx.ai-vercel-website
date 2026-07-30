@@ -1,6 +1,6 @@
 ---
 title: "First Agent Primer — build, deploy, and share an AI agent in an afternoon"
-description: "The canonical long-form guide to building your first AI agent. Covers the six primitives, a working TypeScript build on Vercel AI SDK, a Google A2A Agent Card, and three eval cases you can run today."
+description: "The canonical long-form guide to building your first AI agent. Covers the six primitives, a working TypeScript build on Vercel AI SDK, an A2A 1.0 Agent Card, and three eval cases you can run today."
 date: "2026-04-24"
 author: "Frank"
 category: "AI Agents"
@@ -162,7 +162,7 @@ An A2A 1.0 Agent Card—JSON describing the agent's identity, supported interfac
 
 ### Deploy (next.config.mjs + vercel.json)
 
-`vercel --prod` puts the agent on the public internet. The `next.config.mjs` sets CORS headers on the Agent Card so other agents can discover it cross-origin.
+`vercel --prod` puts the agent on the public internet. Publishing the Agent Card at the well-known URL makes its location predictable to compatible A2A clients. CORS headers are a separate browser boundary: they allow browser-based clients from approved origins to fetch the Card, but they do not create discovery or make a client A2A-compatible.
 
 ---
 
