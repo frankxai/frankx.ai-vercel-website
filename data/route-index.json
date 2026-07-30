@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 861,
-    "aliases": 49,
+    "total": 860,
+    "aliases": 50,
     "byType": {
       "core": 22,
       "section": 401,
@@ -12,7 +12,7 @@
       "blog": 214,
       "workshop": 12,
       "guide": 23,
-      "library": 57,
+      "library": 56,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
@@ -4704,16 +4704,6 @@
       "type": "community"
     },
     {
-      "href": "/founders-circle/apply",
-      "title": "Apply",
-      "tags": [
-        "founders",
-        "circle",
-        "apply"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/foundry",
       "title": "Foundry",
       "tags": [
@@ -5617,14 +5607,15 @@
     },
     {
       "href": "/library/handbook-to-higher-consciousness",
-      "title": "Handbook to Higher Consciousness — Complete System Map",
+      "title": "Handbook TO Higher Consciousness",
       "tags": [
-        "ken-keyes",
-        "consciousness",
-        "living-love",
-        "non-attachment"
+        "library",
+        "handbook",
+        "to",
+        "higher",
+        "consciousness"
       ],
-      "type": "library"
+      "type": "section"
     },
     {
       "href": "/library/how-music-works",
@@ -7052,17 +7043,6 @@
       "type": "partnership"
     },
     {
-      "href": "/partnerships/van-ede",
-      "title": "Van Ede",
-      "tags": [
-        "partnerships",
-        "van",
-        "ede"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
       "href": "/partnerships/vercel",
       "title": "Vercel",
       "tags": [
@@ -8464,6 +8444,14 @@
       "type": "workshop"
     },
     {
+      "href": "/workspace",
+      "title": "Workspace",
+      "tags": [
+        "workspace"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/year-of-the-fire-horse",
       "title": "Year OF The Fire Horse",
       "tags": [
@@ -8544,6 +8532,7 @@
     "/llm-hub": "/ai-ops/models-2026",
     "/mindvalley-university": "/mvu",
     "/mindvalleyuniversity": "/mvu",
+    "/mvu/breathwork-dan-brule": "/mvu/dan-brule-breathwork",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/signal": "/ai-architecture",
     "/soul-frequency-assessment": "/soul-frequency-quiz",

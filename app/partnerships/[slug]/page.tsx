@@ -15,7 +15,7 @@ import { AntiPositioning } from '@/components/partnerships/AntiPositioning'
 import { PartnerCTA } from '@/components/partnerships/PartnerCTA'
 import { PlaceholderState } from '@/components/partnerships/PlaceholderState'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = 'https://www.frankx.ai'
 
 export function generateStaticParams() {
   return listPartners().map((p) => ({ slug: p.slug }))
@@ -50,7 +50,7 @@ export default async function PartnershipPage({
   const partner = getPartner(slug)
   if (!partner) notFound()
 
-  const isProposalTier = partner.status === 'active'
+  const hasPublishedProposal = partner.status === 'active'
   const url = `${SITE_URL}/partnerships/${partner.slug}`
 
   const graph: Record<string, unknown>[] = [
@@ -89,16 +89,16 @@ export default async function PartnershipPage({
       '@type': 'Person',
       '@id': `${SITE_URL}#frank`,
       name: 'Frank Riemer',
-      jobTitle: partner.title,
+      jobTitle: 'AI Architect',
       url: SITE_URL,
     },
   ]
 
-  if (isProposalTier) {
+  if (hasPublishedProposal) {
     graph.push({
       '@type': 'ProfessionalService',
       '@id': `${url}#practice`,
-      name: `FrankX × ${partner.name} — AI CoE practice`,
+      name: `FrankX proposal for ${partner.name} — AI CoE practice`,
       description: partner.tagline,
       provider: { '@id': `${SITE_URL}#frank` },
       areaServed: 'EMEA',
@@ -123,17 +123,18 @@ export default async function PartnershipPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaLd) }}
       />
 
+      <main className="bg-[#0a0a0b] text-white">
       {/* Hero — always renders */}
       <PartnershipHero
         partner={partner}
         secondaryCta={
-          isProposalTier
+          hasPublishedProposal
             ? { label: 'View the methodology', href: '/ai-architect/ai-coe-hub' }
             : undefined
         }
       />
 
-      {/* Tier 1 — working reality (renders for active + placeholder) */}
+      {/* Documented reality — FrankX evidence, not implied partner endorsement */}
       {partner.contextWindow ? (
         <PartnerContextWindow context={partner.contextWindow} />
       ) : null}
@@ -146,8 +147,8 @@ export default async function PartnershipPage({
         <ProofPoints points={partner.proofPoints} />
       ) : null}
 
-      {/* Tier 2 — labeled proposal (only for active partners) */}
-      {isProposalTier ? (
+      {/* Labeled proposal — only when FrankX has chosen to publish one */}
+      {hasPublishedProposal ? (
         <>
           <ProposalDivider />
 
@@ -202,7 +203,7 @@ export default async function PartnershipPage({
           <PartnerCTA partner={partner} />
 
           {partner.lastUpdated ? (
-            <p className="mx-auto max-w-4xl px-6 pb-12 text-center text-xs text-white/30">
+            <p className="mx-auto max-w-4xl px-6 pb-12 text-center text-xs text-white/60">
               Last updated{' '}
               <time dateTime={partner.lastUpdated}>
                 {new Date(partner.lastUpdated + 'T00:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
@@ -213,6 +214,7 @@ export default async function PartnershipPage({
       ) : (
         <PlaceholderState partner={partner} />
       )}
+      </main>
     </>
   )
 }

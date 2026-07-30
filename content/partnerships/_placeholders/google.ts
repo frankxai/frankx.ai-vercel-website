@@ -3,13 +3,13 @@ import { crossLink } from '@/lib/cross-links'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 
 /**
- * Google Cloud — strategic-alignment tier. Gemini in daily multimodal
- * delivery; ADK + A2A protocol carry the enterprise lane of the Build
- * First AI Agent workshop and the Starlight Agent Lab three-lane portfolio.
+ * Google Cloud — independently authored opportunity brief. Public artifacts
+ * are linked where available; tool use is not presented as a reciprocal
+ * relationship.
  *
- * Google Cloud Partner Advantage is the pursued shape — attendee credits
- * for the workshop cohort, multi-cloud agent harness research, and an
- * ADK reference architecture surface on /ai-architecture.
+ * This is a public-only record of FrankX tool use and an independently
+ * authored proposal. No application, reciprocal conversation, endorsement,
+ * credits, or formal relationship is claimed.
  *
  * Content is sanitized. No named Google contacts, no pricing figures,
  * no co-marketing claims beyond "pursuing" language.
@@ -20,33 +20,44 @@ export const google: Partner = {
   shortName: 'Google',
   tier: 'cloud',
   status: 'strategic-alignment',
-  lastUpdated: '2026-06-10',
+  publicationBasis: 'independent-proposal',
+  consentStatus: 'not-requested',
+  privacyClassification: 'public-only',
+  lastUpdated: '2026-07-30',
 
-  title: 'AI Architect — Gemini + ADK enterprise AI CoE practice',
+  title: 'Independent Gemini, ADK, and A2A opportunity brief',
   tagline:
-    'Gemini and the Agent Development Kit, taught in the workshop and used in real delivery.',
+    'Public learning surfaces today, with a bounded proposal for what a collaboration could test.',
   subTagline:
-    'Gemini already in daily multimodal delivery. Google ADK + A2A protocol already in the workshop enterprise lane. The conversation is Cloud Partner Advantage entry + workshop credits.',
+    'Frank uses Gemini and studies ADK and A2A in public learning material. This is an independent proposal, not a Google-authored or endorsed page.',
 
-  contextWindow: `Gemini is part of my daily multimodal delivery — text (Gemini 3 Pro for long-context grounding), image (Nano Banana 2 / Imagen via Higgsfield MCP), and video (Veo) all sit inside the working set alongside Claude and the OpenAI stack. Antigravity is the multi-model agentic dev surface where Gemini 3 Pro and Claude Sonnet refactor side-by-side — multi-model parallel comparison as daily practice, not benchmark theater. The Google Agent Development Kit and the A2A protocol are not a slide — they are the enterprise lane of the Build First AI Agent workshop and the explicit enterprise lane of the Starlight Agent Lab three-lane portfolio (Vercel AI SDK / Claude Agent SDK / Google ADK).
+  contextWindow: `FrankX publishes independent learning pages and guides about Gemini, Google ADK, and the A2A protocol. The linked artifacts make that editorial and educational interest inspectable; they do not by themselves prove daily tool use, customer delivery, Google review, or partner status.
 
-The strategic alignment here is about a Google-native AI CoE practice with workshop and curriculum distribution. Pursuing Google Cloud Partner Advantage status. The currency that matters more than commission is attendee credits for the workshop cohort and reference-architecture surfaces with Deploy-to-GCP CTAs. FrankX already has public builder channels where the topic fits naturally.`,
+The possible alignment described here is a FrankX-authored proposal for education and reference architectures. Google has not reviewed or approved it, and FrankX does not claim an application, reciprocal conversation, credits, or a formal relationship.`,
 
   workingReality: [
     {
-      label: 'Gemini in daily multimodal delivery',
+      label: 'Public Gemini learning surface',
       detail:
-        'Gemini 3 Pro, Nano Banana 2, Veo, and Imagen sit inside the working set used for daily multimodal output — research, image (via Higgsfield MCP), video, and long-context code. Not a benchmark exercise. The daily-use stack.',
+        'FrankX publishes an independently curated Gemini and Google AI learning portal. It is evidence of published coverage, not a Google collaboration or usage-volume claim.',
+      evidence: {
+        label: '/learn/gemini-mastery',
+        href: '/learn/gemini-mastery',
+      },
     },
     {
-      label: 'Antigravity for multi-model agentic dev',
+      label: 'Public agent-framework research',
       detail:
-        'Antigravity is where I run multi-model parallel refactors — Gemini 3 Pro and Claude Sonnet side-by-side on the same task, pick the best, merge or compose. Multi-model comparison as daily practice. Native browser pane and Vercel deploy integration round it out.',
+        'The research hub includes an independently authored comparison of agent frameworks. It offers context for a possible ADK learning lane without claiming production delivery.',
+      evidence: {
+        label: '/research/agent-frameworks',
+        href: '/research/agent-frameworks',
+      },
     },
     {
-      label: 'ADK + A2A in the Build First AI Agent workshop',
+      label: 'Google path in workshop material',
       detail:
-        'The Google branch — Agent Development Kit and the Agent-to-Agent protocol — is one of the enterprise tracks taught in the workshop. Cohort gets hands-on ADK and Agent Cards, not framework theater.',
+        'Build First AI Agent includes Google ADK and A2A as one possible implementation path. The public page is the evidence; no cohort outcome or hands-on delivery is claimed here.',
       evidence: {
         label: '/workshops/build-first-ai-agent',
         href: '/workshops/build-first-ai-agent',
@@ -55,21 +66,16 @@ The strategic alignment here is about a Google-native AI CoE practice with works
     {
       label: 'Public A2A protocol guide',
       detail:
-        'Agent Card / A2A protocol specification documented end-to-end on /guides/agent-card-a2a-spec — written from hands-on use, with the wire-level detail an enterprise architect needs.',
+        'FrankX independently documents the Agent Card and A2A protocol on a public guide page.',
       evidence: {
         label: '/guides/agent-card-a2a-spec',
         href: '/guides/agent-card-a2a-spec',
       },
     },
     {
-      label: 'Starlight Agent Lab enterprise lane = ADK',
+      label: 'Relationship status',
       detail:
-        'The three-lane portfolio explicitly positions Google ADK as the enterprise lane alongside Vercel AI SDK (web) and Claude Agent SDK (reasoning). Multi-cloud by design, ADK by enterprise default.',
-    },
-    {
-      label: 'Google Cloud Partner Advantage — pursuit underway',
-      detail:
-        'Pursuing Google Cloud Partner Advantage status. The attendee-credit channel for the workshop cohort is the higher-value mechanic — credits convert to durable Gemini and Vertex usage across the EMEA architect funnel.',
+        'Independent proposal only. No Google Cloud program application, attendee credits, reciprocal conversation, endorsement, or formal relationship is claimed.',
     },
   ],
 
@@ -105,18 +111,18 @@ The strategic alignment here is about a Google-native AI CoE practice with works
 
   asymmetricValue: [
     {
-      title: 'Gemini + Antigravity + ADK + A2A native operator',
-      body: 'Gemini 3 Pro in daily multimodal delivery, Antigravity as the daily multi-model agentic dev surface, ADK + A2A in the workshop enterprise lane, and a public A2A protocol guide on /guides. Not a tourist — an operator with the full Google AI stack in hand.',
-      metric: 'Native operator',
+      title: 'Inspectable Google AI learning surface',
+      body: 'The Gemini portal, A2A guide, workshop page, and agent-framework research give a prospective collaborator specific public artifacts to review.',
+      metric: 'Public learning artifacts',
     },
     {
-      title: 'Workshop enterprise lane biased Google ADK',
-      body: 'The Build First AI Agent workshop teaches three enterprise frameworks. ADK is the one I personally architect with in CoE delivery, which makes it the lane the cohort gets pulled toward.',
-      metric: 'Enterprise lane',
+      title: 'Workshop path ready for review',
+      body: 'The public workshop material includes a Google path. Any stronger curriculum role, cohort, credits, or attribution would be a separate pilot decision.',
+      metric: 'Proposed learning lane',
     },
     {
       title: 'Public A2A protocol documentation',
-      body: 'Wire-level Agent Card / A2A specification published on /guides/agent-card-a2a-spec. The kind of reference enterprise architects send to their teams when they need to ship.',
+      body: 'The independently authored Agent Card and A2A guide is public and available for technical review.',
       metric: 'Public reference',
     },
     {
@@ -125,40 +131,40 @@ The strategic alignment here is about a Google-native AI CoE practice with works
       metric: 'Public channels',
     },
     {
-      title: 'Open-source body of work running multi-cloud incl. GCP',
-      body: 'ACOS, SIS, the AI Architect Academy, and the OCI Claude Code skill pack — all public, all designed cloud-agnostic with GCP as a first-class deploy target. The work is reviewable, not pitched.',
-      metric: '85+ public repos',
+      title: 'Public multi-model repositories',
+      body: 'ACOS, SIS, and AI Architect Academy are public implementation and curriculum surfaces. This page does not claim that they are deployed on GCP.',
+      metric: 'Public repositories',
     },
   ],
 
   programs: [
     {
       number: 1,
-      name: 'Google Cloud Partner Advantage pursuit',
-      cadence: 'M0 submission, ongoing program work',
+      name: 'Google Cloud ecosystem fit review',
+      cadence: 'One-time, if mutually invited',
       whatItIs:
-        'Active pursuit of Google Cloud Partner Advantage status with workshop-and-curriculum positioning rather than reseller positioning.',
+        'A proposed review of whether any Google Cloud ecosystem pathway fits the public workshop and curriculum work. No application or eligibility is assumed.',
       whatItProduces: [
-        'Partner Advantage submission package aligned to the workshop and CoE practice',
-        'Sponsored partner profile with Gemini + ADK specialization',
-        'Quarterly partner-program review aligned to attendee-credit utilization',
+        'A documented fit or no-fit decision',
+        'A bounded scope for any next step',
+        'A public status update only after both sides can verify it',
       ],
       pricingPosture:
-        'Program-track, not transactional. Attendee credits as the higher-value currency over commission.',
+        'Subject to the relevant program terms only if an application is invited and accepted.',
     },
     {
       number: 2,
       name: 'Workshop Attendee Credit Program',
       cadence: 'Cohort-aligned, quarterly',
       whatItIs:
-        'Google Cloud credits distributed to Build First AI Agent workshop attendees taking the Google enterprise lane, so ADK and A2A learning continues into real Gemini and Vertex usage post-workshop.',
+        'If a workshop pilot is mutually approved, consider limited credits for participants who choose the Google path.',
       whatItProduces: [
-        'Credit pack per workshop cohort, sized to the Google-lane track',
-        'Post-workshop credit-utilization dashboard',
-        'Quarterly attribution report — credits to active Gemini / Vertex projects',
+        'A proposed, capped credit pack for one pilot',
+        'A consent-aware measure of whether credits were useful',
+        'A continue-or-close decision after the pilot',
       ],
       pricingPosture:
-        'Credit-pack pilot, no markup taken. Attribution-tracked.',
+        'Conditional request; no current credit allocation or commercial agreement.',
     },
     {
       number: 3,
@@ -205,23 +211,23 @@ The strategic alignment here is about a Google-native AI CoE practice with works
   compoundingModel: [
     {
       month: 0,
-      title: 'Partner Advantage submission + credit pilot designed',
-      body: 'Google Cloud Partner Advantage submission filed. Workshop attendee-credit pilot designed and aligned to the next two cohorts. A2A protocol guide indexed on /guides as the public spine.',
+      title: 'Independent proposal and public work separated',
+      body: 'FrankX tool use, public A2A material, and possible future collaboration are labeled as distinct things.',
     },
     {
       month: 3,
-      title: 'Attendee credits live + A2A deep-dive published',
-      body: 'First workshop cohort receives Google Cloud credits. First A2A protocol deep-dive published on /guides. Multi-cloud agent harness research piece live on /research. Credit-utilization attribution tracking running.',
+      title: 'Possible learning pilot',
+      body: 'If mutually approved, test one ADK or A2A learning module with explicit attribution and measurable outcomes.',
     },
     {
       month: 6,
-      title: 'ADK reference architecture + joint webinar',
-      body: 'First Google ADK reference architecture published on /ai-architecture with Deploy-to-GCP CTA. Joint webinar — ADK + A2A enterprise patterns — delivered into the EMEA architect funnel. Second cohort of workshop attendees credited.',
+      title: 'Possible reference architecture',
+      body: 'If the pilot proves useful, publish one reviewed ADK reference architecture and decide separately whether a joint session adds value.',
     },
     {
       month: 12,
-      title: 'Referenceable Gemini-native AI CoE practice in EMEA',
-      body: 'Gemini + ADK AI CoE practice referenceable in the EMEA partner network. Two ADK reference architectures shipped, A2A content stream operating, four cohorts of workshop attendees on Google Cloud credits, agent-frameworks reference page refreshed. Renewal conversation at expanded scope.',
+      title: 'Evidence-based continuation decision',
+      body: 'Review real usage, learning outcomes, and editorial value before deciding whether any formal relationship makes sense.',
     },
   ],
 
@@ -233,8 +239,8 @@ The strategic alignment here is about a Google-native AI CoE practice with works
     ),
     crossLink(
       'connect',
-      'In-person + QR landing surface. Live event ribbon shows Google AI Live Madrid 2026-05-28 → 30 and South Summit Madrid 2026-06-02 → 06 — the calendar the partnership conversation overlaps.',
-      'Connect — Google AI Live Madrid presence'
+      'The public contact surface for discussing the independently authored proposal.',
+      'Connect with Frank'
     ),
     crossLink(
       'ai-architect-academy',
@@ -276,28 +282,26 @@ The strategic alignment here is about a Google-native AI CoE practice with works
     href: MEET_AND_GROW_URL,
   },
 
-  programStatus: 'Google Cloud Partner Advantage — pursuit underway',
+  programStatus: 'Independent proposal — no formal Google Cloud relationship claimed',
 
   alreadyShared: [
-    'Gemini 3 Pro in daily multimodal delivery — Veo, Nano Banana 2, and Imagen evaluations sit inside the working set.',
-    'Antigravity in daily use — multi-model parallel agentic dev (Gemini 3 Pro and Claude Sonnet side-by-side) as a working pattern, not a one-off experiment.',
-    'Google ADK + A2A protocol in the Build First AI Agent workshop enterprise lane, taught hands-on.',
-    'Public /guides/agent-card-a2a-spec documentation written from operator-grade use of the protocol.',
-    'Starlight Agent Lab three-lane portfolio explicitly positions ADK as the enterprise lane alongside Vercel AI SDK and Claude Agent SDK.',
-    'Multi-cloud AI CoE methodology with Google as a first-class enterprise lane across reference architectures.',
-    'Public builder channels across the site, newsletter, GitHub, and LinkedIn overlap naturally with the GCP developer community.',
+    'FrankX publishes an independently curated Gemini and Google AI learning portal.',
+    'Build First AI Agent includes Google ADK and A2A as one possible path.',
+    'The Agent Card and A2A protocol guide is public and independently authored.',
+    'The research hub includes a public agent-framework comparison.',
+    'No daily-use volume, customer delivery, application, credits, endorsement, or Google involvement is claimed.',
   ],
 
   formalizationAsk:
-    "What's left to formalize. Gemini is daily delivery. Antigravity is the daily multi-model agentic dev surface. ADK is the enterprise lane in the workshop. A2A protocol is publicly documented. The conversation is closing Cloud Partner Advantage, workshop attendee credits for Build First AI Agent (Google branch), DevRel touchpoint with the ADK and Antigravity teams, and a joint slot at Google Cloud Next EMEA.",
+    'If this independent proposal is relevant, the next step is a scoped fit conversation. Until that happens, no application, credits, endorsement, shared roadmap, or formal relationship is claimed.',
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/google.svg',
   // ogImagePath: '/images/partnerships/google-og.png', // TODO: generate, falls back to site default
 
   seo: {
-    title: 'FrankX × Google Cloud — Gemini + ADK AI CoE Practice | FrankX',
+    title: 'FrankX on Google Cloud — Independent Gemini + ADK Brief',
     description:
-      'Gemini in daily multimodal delivery, ADK and A2A protocol in the workshop and CoE practice. Pursuing Google Cloud Partner Advantage across EMEA.',
+      'How FrankX uses Gemini, ADK, and A2A, plus an independently authored alignment proposal. No Google Cloud partnership or endorsement is implied.',
   },
 }

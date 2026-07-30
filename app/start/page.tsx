@@ -4,6 +4,7 @@ import {
   BookOpen,
   Boxes,
   GitBranch,
+  Network,
   PenLine,
   Workflow,
 } from 'lucide-react'
@@ -161,6 +162,13 @@ export default function StartPage() {
               >
                 <PenLine className="h-4 w-4" aria-hidden="true" />
                 Dated field notes
+              </Link>
+              <Link
+                href="/workspace"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-white/35 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              >
+                <Network className="h-4 w-4" aria-hidden="true" />
+                How the workspace runs
               </Link>
             </div>
           </div>

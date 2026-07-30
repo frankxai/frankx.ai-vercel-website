@@ -46,10 +46,10 @@ const NAV_COLUMNS = [
     ],
   },
   {
-    label: 'Studio',
+    label: 'Workspace',
     links: [
+      { label: 'How the workspace runs', href: '/workspace' },
       { label: 'GenCreator', href: '/gencreator' },
-      { label: 'Music', href: '/music' },
       { label: 'About Frank', href: '/frank-riemer' },
       { label: 'Contact', href: '/contact' },
     ],
@@ -88,8 +88,9 @@ export default function Footer() {
               Agentic systems and field notes
             </p>
             <p className="mt-5 max-w-md text-sm leading-6 text-white/75">
-              Frank Riemer maps founder-routed work and builds bounded agent systems with explicit
-              human control.
+              Frank Riemer maps founder-routed work and builds bounded agent systems. Specialist
+              agents extend the work; evidence, publication, and consequential decisions remain
+              under explicit human control.
             </p>
             <a
               href="mailto:frank@frankx.ai"

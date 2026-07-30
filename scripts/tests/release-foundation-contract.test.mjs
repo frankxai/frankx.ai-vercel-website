@@ -112,3 +112,14 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
   assert.match(mdx, /aria-label="Scrollable data table"/)
   assert.match(mdx, /tabIndex=\{0\}/)
 })
+
+test('404 recovery cannot surface consent-gated partnership routes from stale data', async () => {
+  const matcher = await readRepoFile('lib/fuzzy-route-match.ts')
+
+  assert.match(matcher, /const DISCOVERY_BLOCKED_PREFIXES = \[/)
+  assert.match(matcher, /'\/partnerships\/proposal'/)
+  assert.match(matcher, /'\/partnerships\/van-ede'/)
+  assert.match(matcher, /route\.sitemap !== false && !isDiscoveryBlocked\(route\.href\)/)
+  assert.match(matcher, /new Fuse\(discoverableRoutes,/)
+  assert.match(matcher, /discoverableAliases\[normalized\] \|\| null/)
+})

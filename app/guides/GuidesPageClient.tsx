@@ -1,26 +1,15 @@
-'use client'
-
 import Link from 'next/link'
-import { motion, useReducedMotion } from 'framer-motion'
 import {
+  ArrowRight,
+  Clock,
+  Code,
+  FileText,
   Image,
-  Mic,
+  Music,
   PenTool,
   Rocket,
-  Code,
-  Clock,
-  ArrowRight,
-  Sparkles,
-  Target,
-  Palette,
-  Music,
-  Building2,
-  Zap
+  type LucideIcon,
 } from 'lucide-react'
-
-// ============================================================================
-// TYPES
-// ============================================================================
 
 interface GuideDoc {
   slug: string
@@ -36,406 +25,238 @@ interface GuidesPageClientProps {
   guides: GuideDoc[]
 }
 
-// ============================================================================
-// GUIDE CATEGORIES - OUTCOME FOCUSED
-// ============================================================================
+type GuideCategory = {
+  id: string
+  title: string
+  description: string
+  icon: LucideIcon
+  slugs: string[]
+}
 
-const GUIDE_CATEGORIES = [
+const GUIDE_CATEGORIES: GuideCategory[] = [
   {
     id: 'visual',
-    title: 'Visual Creation',
-    subtitle: 'From concept to stunning imagery',
-    description: 'Master AI image generation, product photography, and brand design systems.',
+    title: 'Visual systems',
+    description: 'Image generation, product photography, and repeatable brand decisions.',
     icon: Image,
-    color: 'from-purple-500/20 to-pink-500/20',
-    iconColor: 'text-purple-400',
-    slugs: ['midjourney-guide', 'image-generation-mastery', 'product-photography-ai', 'brand-identity-design']
+    slugs: [
+      'midjourney-guide',
+      'image-generation-mastery',
+      'product-photography-ai',
+      'brand-identity-design',
+    ],
   },
   {
     id: 'content',
-    title: 'Content Systems',
-    subtitle: 'Build your content empire',
-    description: 'Create scalable writing systems, documentation, and content workflows.',
+    title: 'Research and publishing',
+    description: 'Writing, documentation, source work, and content workflows that can be maintained.',
     icon: PenTool,
-    color: 'from-emerald-500/20 to-teal-500/20',
-    iconColor: 'text-emerald-400',
-    slugs: ['agentic-obsidian-second-brain', 'ai-writing-system', 'claude-anthropic-guide', 'openai-chatgpt-guide', 'perplexity-ai-guide', 'top-50-ai-prompts']
+    slugs: [
+      'agentic-obsidian-second-brain',
+      'ai-writing-system',
+      'claude-anthropic-guide',
+      'openai-chatgpt-guide',
+      'perplexity-ai-guide',
+      'top-50-ai-prompts',
+    ],
   },
   {
     id: 'audio',
-    title: 'Audio & Music',
-    subtitle: 'Professional sound design',
-    description: 'Produce AI music, voice content, and audio branding that stands out.',
+    title: 'Music and voice',
+    description: 'Prompting, production, voice, and the release decisions around creative audio.',
     icon: Music,
-    color: 'from-orange-500/20 to-amber-500/20',
-    iconColor: 'text-orange-400',
-    slugs: ['suno-prompt-playbook', 'elevenlabs-voice-guide', 'ai-music-production']
+    slugs: ['suno-prompt-playbook', 'elevenlabs-voice-guide', 'ai-music-production'],
   },
   {
     id: 'founder',
-    title: "Founder's Playbook",
-    subtitle: 'Y Combinator-level strategy',
-    description: 'Build your AI-first startup with enterprise patterns and proven frameworks.',
+    title: 'Founder practice',
+    description: 'Decision frameworks and operating patterns for building with a small team and AI.',
     icon: Rocket,
-    color: 'from-blue-500/20 to-cyan-500/20',
-    iconColor: 'text-blue-400',
-    slugs: ['modern-guide', 'skills-library-playbook', 'agent-collective-operating-system', 'founder-ai-stack-2026']
+    slugs: [
+      'modern-guide',
+      'skills-library-playbook',
+      'agent-collective-operating-system',
+      'founder-ai-stack-2026',
+    ],
   },
   {
     id: 'development',
-    title: 'AI Development',
-    subtitle: 'Code smarter, ship faster',
-    description: 'AI-assisted development, multi-agent systems, and automation.',
+    title: 'Agent and development workflows',
+    description: 'Coding agents, orchestration, automation boundaries, and production handoffs.',
     icon: Code,
-    color: 'from-rose-500/20 to-red-500/20',
-    iconColor: 'text-rose-400',
-    slugs: ['claude-code-getting-started', 'multi-agent-orchestration', 'ai-automation-patterns']
-  }
+    slugs: [
+      'claude-code-getting-started',
+      'multi-agent-orchestration',
+      'ai-automation-patterns',
+    ],
+  },
 ]
 
-// ============================================================================
-// AURORA BACKGROUND
-// ============================================================================
-
-function AuroraBackground() {
-  const shouldReduceMotion = useReducedMotion()
-
+function GuideCard({ guide }: { guide: GuideDoc }) {
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
-      <motion.div
-        className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(139, 92, 246, 0.06) 0%, transparent 70%)',
-          filter: 'blur(100px)',
-        }}
-        animate={shouldReduceMotion ? undefined : { x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.1, 1] }}
-        transition={shouldReduceMotion ? undefined : { duration: 30, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%]"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.05) 0%, transparent 70%)',
-          filter: 'blur(100px)',
-        }}
-        animate={shouldReduceMotion ? undefined : { x: [0, -80, 0], y: [0, -30, 0], scale: [1, 1.15, 1] }}
-        transition={shouldReduceMotion ? undefined : { duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <div
-        className="absolute inset-0 opacity-[0.015]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-        }}
-      />
-    </div>
-  )
-}
-
-// ============================================================================
-// GUIDE CARD
-// ============================================================================
-
-function GuideCard({ guide, index }: { guide: GuideDoc; index: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.05 }}
+    <Link
+      href={`/guides/${guide.slug}`}
+      className="group grid min-h-[190px] grid-rows-[1fr_auto] rounded-[1.35rem] border border-white/[0.09] bg-white/[0.022] p-6 transition-colors hover:border-emerald-300/25 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
     >
-      <Link
-        href={`/guides/${guide.slug}`}
-        className="group block relative p-5 rounded-xl border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:-translate-y-0.5 bg-white/[0.02]"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        <div className="relative">
-          <div className="flex items-start justify-between mb-3">
-            <h3 className="text-base font-medium text-white group-hover:text-white transition-colors leading-tight pr-4">
-              {guide.title}
-            </h3>
-            <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" />
-          </div>
-
-          <p className="text-sm text-white/40 leading-relaxed mb-3 line-clamp-2 group-hover:text-white/50 transition-colors">
-            {guide.description}
-          </p>
-
-          <div className="flex items-center gap-3 text-xs text-white/30">
-            <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3" />
-              {guide.readingTime}
-            </span>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
+      <div>
+        <h3 className="text-lg font-semibold leading-snug text-white">{guide.title}</h3>
+        <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/65">{guide.description}</p>
+      </div>
+      <div className="mt-6 flex items-center justify-between border-t border-white/[0.07] pt-4">
+        <span className="inline-flex items-center gap-1.5 text-xs text-white/55">
+          <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+          {guide.readingTime}
+        </span>
+        <span className="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 group-hover:text-emerald-200">
+          Read
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+        </span>
+      </div>
+    </Link>
   )
 }
-
-// ============================================================================
-// CATEGORY SECTION
-// ============================================================================
 
 function CategorySection({
   category,
   guides,
-  index
 }: {
-  category: typeof GUIDE_CATEGORIES[0]
+  category: GuideCategory
   guides: GuideDoc[]
-  index: number
 }) {
-  const Icon = category.icon
-  const categoryGuides = guides.filter(g => category.slugs.includes(g.slug))
-
+  const categoryGuides = guides.filter((guide) => category.slugs.includes(guide.slug))
   if (categoryGuides.length === 0) return null
 
+  const Icon = category.icon
+
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ delay: index * 0.1 }}
-      className="mb-16"
-    >
-      {/* Category Header */}
-      <div className="flex items-start gap-4 mb-6">
-        <div className={`p-3 rounded-xl bg-gradient-to-br ${category.color}`}>
-          <Icon className={`w-6 h-6 ${category.iconColor}`} />
-        </div>
+    <section className="border-t border-white/[0.08] py-14" aria-labelledby={`guide-category-${category.id}`}>
+      <div className="grid gap-8 lg:grid-cols-[0.34fr_1fr] lg:gap-14">
         <div>
-          <h2 className="text-xl font-semibold text-white mb-1">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-300/15 bg-cyan-300/[0.055] text-cyan-300">
+            <Icon className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <h2 id={`guide-category-${category.id}`} className="mt-5 text-2xl font-semibold">
             {category.title}
           </h2>
-          <p className="text-sm text-white/40">
-            {category.subtitle}
-          </p>
+          <p className="mt-3 max-w-sm text-sm leading-6 text-white/62">{category.description}</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {categoryGuides.map((guide) => (
+            <GuideCard key={guide.slug} guide={guide} />
+          ))}
         </div>
       </div>
-
-      {/* Guides Grid */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {categoryGuides.map((guide, i) => (
-          <GuideCard key={guide.slug} guide={guide} index={i} />
-        ))}
-      </div>
-    </motion.section>
+    </section>
   )
 }
-
-// ============================================================================
-// FEATURED GUIDE
-// ============================================================================
-
-function FeaturedGuide({ guide }: { guide: GuideDoc }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3 }}
-    >
-      <Link
-        href={`/guides/${guide.slug}`}
-        className="group block relative p-8 rounded-2xl border border-white/10 overflow-hidden hover:border-emerald-500/30 transition-all duration-500"
-      >
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-blue-500/10 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-
-        {/* Featured Badge */}
-        <div className="absolute top-4 right-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">
-            <Sparkles className="w-3 h-3" />
-            Featured
-          </span>
-        </div>
-
-        <div className="relative">
-          <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-100 transition-colors pr-24">
-            {guide.title}
-          </h3>
-          <p className="text-white/50 leading-relaxed mb-4 max-w-2xl group-hover:text-white/60 transition-colors">
-            {guide.description}
-          </p>
-          <div className="flex items-center gap-4 text-sm text-white/40">
-            <span className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4" />
-              {guide.readingTime}
-            </span>
-            <span className="flex items-center gap-1.5 text-emerald-400 group-hover:text-emerald-300 transition-colors">
-              Read guide
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
-  )
-}
-
-// ============================================================================
-// STATS BAR
-// ============================================================================
-
-function StatsBar() {
-  const stats = [
-    { icon: Target, label: 'Outcome-focused', value: 'Not tool-centric' },
-    { icon: Zap, label: 'Battle-tested', value: 'Real workflows' },
-    { icon: Building2, label: 'Enterprise-grade', value: 'Production ready' },
-  ]
-
-  return (
-    <div className="grid grid-cols-3 gap-4 mb-12">
-      {stats.map((stat, i) => (
-        <motion.div
-          key={stat.label}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 + i * 0.1 }}
-          className="text-center p-4 rounded-xl bg-white/[0.02] border border-white/5"
-        >
-          <stat.icon className="w-5 h-5 text-white/30 mx-auto mb-2" />
-          <div className="text-xs text-white/60 font-medium">{stat.label}</div>
-          <div className="text-xs text-white/30">{stat.value}</div>
-        </motion.div>
-      ))}
-    </div>
-  )
-}
-
-// ============================================================================
-// MAIN CLIENT COMPONENT
-// ============================================================================
 
 export default function GuidesPageClient({ guides }: GuidesPageClientProps) {
-  // Find the featured guide (modern-guide or most recent)
-  const featuredGuide = guides.find(g => g.slug === 'modern-guide') || guides[0]
-
-  // Get guides that aren't in any category (for "More Guides" section)
-  const categorizedSlugs = GUIDE_CATEGORIES.flatMap(c => c.slugs)
-  const uncategorizedGuides = guides.filter(g =>
-    !categorizedSlugs.includes(g.slug) && g.slug !== featuredGuide?.slug
+  const openingGuide = guides.find((guide) => guide.slug === 'modern-guide') ?? guides[0]
+  const categorizedSlugs = new Set(GUIDE_CATEGORIES.flatMap((category) => category.slugs))
+  const uncategorizedGuides = guides.filter(
+    (guide) => !categorizedSlugs.has(guide.slug) && guide.slug !== openingGuide?.slug,
   )
 
   return (
-    <main className="relative min-h-screen text-white">
-      <AuroraBackground />
-
-      <div className="relative z-10">
-        {/* Hero Section */}
-        <section className="pt-32 pb-12">
-          <div className="max-w-6xl mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              {/* Breadcrumb */}
-              <div className="mb-8">
-                <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
-                  Creator Guides
-                </span>
-              </div>
-
-              {/* Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-                What do you want
-                <span className="block mt-2 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                  to create?
-                </span>
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
+      <section className="relative overflow-hidden border-b border-white/[0.07] pb-20 pt-32">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_76%_8%,rgba(16,185,129,0.1),transparent_30%),radial-gradient(circle_at_12%_0%,rgba(6,182,212,0.06),transparent_26%)]"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80">
+            Field guides · methods from the work
+          </p>
+          <div className="mt-6 grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-end lg:gap-20">
+            <div>
+              <h1 className="font-display text-5xl font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl">
+                Methods that survived
+                <span className="block text-white/55">the work.</span>
               </h1>
-
-              {/* Subtext */}
-              <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed mb-8">
-                Outcome-focused guides for elite creators and founders.
-                Not tool tutorials—real systems that ship.
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70">
+                These guides begin with a build, a research question, or a repeated creative
+                practice. I publish the method when it becomes clear enough for someone else to
+                test—not when a tool needs another tutorial.
               </p>
-            </motion.div>
+            </div>
 
-            {/* Stats Bar */}
-            <StatsBar />
-
-            {/* Featured Guide */}
-            {featuredGuide && <FeaturedGuide guide={featuredGuide} />}
-          </div>
-        </section>
-
-        {/* Category Sections */}
-        <section className="py-12">
-          <div className="max-w-6xl mx-auto px-6">
-            {GUIDE_CATEGORIES.map((category, i) => (
-              <CategorySection
-                key={category.id}
-                category={category}
-                guides={guides}
-                index={i}
-              />
-            ))}
-
-            {/* Uncategorized Guides */}
-            {uncategorizedGuides.length > 0 && (
-              <motion.section
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="mb-16"
+            {openingGuide && (
+              <Link
+                href={`/guides/${openingGuide.slug}`}
+                className="group rounded-[1.5rem] border border-emerald-300/20 bg-emerald-300/[0.045] p-7 transition-colors hover:border-emerald-300/35 hover:bg-emerald-300/[0.065] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
               >
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-white/5">
-                    <Palette className="w-6 h-6 text-white/40" />
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-semibold text-white mb-1">
-                      More Guides
-                    </h2>
-                    <p className="text-sm text-white/40">
-                      Additional resources and tutorials
-                    </p>
-                  </div>
-                </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {uncategorizedGuides.map((guide, i) => (
-                    <GuideCard key={guide.slug} guide={guide} index={i} />
-                  ))}
-                </div>
-              </motion.section>
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald-200/75">
+                  A useful first guide
+                </p>
+                <h2 className="mt-5 text-2xl font-semibold">{openingGuide.title}</h2>
+                <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/65">
+                  {openingGuide.description}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-emerald-300 group-hover:text-emerald-200">
+                  Read the guide
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </span>
+              </Link>
             )}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="py-16 border-t border-white/5">
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Ready to build?
-              </h2>
-              <p className="text-white/50 mb-8">
-                Get the tools and templates to accelerate your creator journey.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
-                  href="/products"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
-                >
-                  View Products
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/resources"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:border-white/20 font-medium transition-colors"
-                >
-                  Free Resources
-                </Link>
+      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+        {GUIDE_CATEGORIES.map((category) => (
+          <CategorySection key={category.id} category={category} guides={guides} />
+        ))}
+
+        {uncategorizedGuides.length > 0 && (
+          <section className="border-t border-white/[0.08] py-14" aria-labelledby="more-guides">
+            <div className="grid gap-8 lg:grid-cols-[0.34fr_1fr] lg:gap-14">
+              <div>
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.035] text-white/72">
+                  <FileText className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h2 id="more-guides" className="mt-5 text-2xl font-semibold">More from the work</h2>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-white/62">
+                  Additional methods that do not fit neatly inside one practice.
+                </p>
               </div>
-            </motion.div>
-          </div>
-        </section>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {uncategorizedGuides.map((guide) => (
+                  <GuideCard key={guide.slug} guide={guide} />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </div>
-    </main>
+
+      <section className="border-t border-white/[0.07] bg-[#0c0e0e] py-20">
+        <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
+          <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">
+            Want the reasoning behind the method?
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/65">
+            Open the research for sources and open questions, or inspect the workspace to see
+            how a guide moves from raw material to a reviewed public page.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/research"
+              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0c0e0e]"
+            >
+              Open the research
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/workspace"
+              className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-white/72 underline decoration-white/25 underline-offset-8 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              Inspect the workflow
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

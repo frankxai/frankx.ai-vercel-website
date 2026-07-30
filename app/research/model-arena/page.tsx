@@ -189,12 +189,12 @@ export default function ModelArenaPage() {
 
       {/* Grid Background Effect */}
       <div className="absolute inset-0 bg-[#020617] pointer-events-none" />
-      <div 
-        className="absolute inset-0 opacity-[0.02] pointer-events-none animate-pulse" 
-        style={{ 
-          backgroundImage: `linear-gradient(rgba(168,85,247,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.3) 1px, transparent 1px)`, 
-          backgroundSize: '50px 50px' 
-        }} 
+      <div
+        className="absolute inset-0 opacity-[0.02] pointer-events-none animate-pulse motion-reduce:animate-none"
+        style={{
+          backgroundImage: `linear-gradient(rgba(168,85,247,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.3) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}
       />
       <div className="absolute top-0 right-0 w-[55%] h-[45%] bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-transparent filter blur-[140px] pointer-events-none" />
 
@@ -203,7 +203,7 @@ export default function ModelArenaPage() {
         <nav className="mb-10 flex items-center justify-between">
           <Link
             href="/research"
-            className="group inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
+            className="group inline-flex items-center gap-2 text-sm text-zinc-300 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             Research Hub
@@ -236,17 +236,17 @@ export default function ModelArenaPage() {
               <h2 className="text-xs font-bold uppercase tracking-widest text-[#22d3ee]">
                 Published Benchmarks — {PUBLISHED_BENCHMARKS.model}
               </h2>
-              <span className="text-[10px] bg-white/5 text-white/50 px-2 py-0.5 rounded font-mono">Released {PUBLISHED_BENCHMARKS.released}</span>
+              <span className="text-xs bg-white/5 text-white/70 px-2 py-0.5 rounded font-mono">Released {PUBLISHED_BENCHMARKS.released}</span>
             </div>
           </div>
           <div className="rounded-3xl border border-white/5 bg-slate-950/40 p-6 backdrop-blur-md">
-            <p className="text-xs text-zinc-500 mb-4">
+            <p className="text-xs text-zinc-300 mb-4">
               These are Anthropic's own numbers at launch, not measured by this harness — cited here for context. The Round 5 card below is what we measured directly.
             </p>
             <div className="grid gap-3 sm:grid-cols-3 mb-4">
               {PUBLISHED_BENCHMARKS.items.map((item) => (
                 <div key={item.metric} className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
-                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mb-2">{item.metric}</div>
+                  <div className="text-xs uppercase tracking-wider text-zinc-300 mb-2">{item.metric}</div>
                   <div className="space-y-1">
                     {Object.entries(item.values).map(([model, value]) => (
                       <div key={model} className="flex items-baseline justify-between text-xs">
@@ -259,10 +259,10 @@ export default function ModelArenaPage() {
               ))}
             </div>
             <p className="text-sm text-zinc-300 leading-relaxed mb-3">{PUBLISHED_BENCHMARKS.note}</p>
-            <p className="text-xs text-zinc-500 mb-3 font-mono">Pricing: {PUBLISHED_BENCHMARKS.pricing}</p>
+            <p className="text-xs text-zinc-300 mb-3 font-mono">Pricing: {PUBLISHED_BENCHMARKS.pricing}</p>
             <div className="flex flex-wrap gap-3 text-[11px]">
               {PUBLISHED_BENCHMARKS.sources.map((s) => (
-                <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-zinc-500 hover:text-white underline decoration-zinc-700 underline-offset-4">
+                <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-zinc-300 hover:text-white underline decoration-zinc-600 underline-offset-4">
                   {s.label}
                   <ExternalLink className="h-3 w-3" />
                 </a>
@@ -278,9 +278,9 @@ export default function ModelArenaPage() {
               <h2 className="text-xs font-bold uppercase tracking-widest text-[#a855f7]">
                 Performance Space
               </h2>
-              <span className="text-[10px] bg-white/5 text-white/50 px-2 py-0.5 rounded font-mono">v1.2</span>
+              <span className="text-xs bg-white/5 text-white/70 px-2 py-0.5 rounded font-mono">v1.2</span>
             </div>
-            <span className="text-[10px] text-zinc-500 font-mono">Double click sphere to zoom, drag to spin</span>
+            <span className="text-xs text-zinc-300 font-mono">Choose a model in the HUD or drag the scene to explore</span>
           </div>
           <ThreeArenaScene />
         </section>
@@ -302,8 +302,9 @@ export default function ModelArenaPage() {
               {/* Selectors row */}
               <div className="flex flex-wrap items-center gap-4 pb-4 border-b border-white/5">
                 <div className="flex-1 min-w-[140px]">
-                  <label className="block text-[10px] uppercase font-mono text-zinc-500 mb-1">Model A</label>
+                  <label htmlFor="model-compare-a" className="block text-xs uppercase font-mono text-zinc-300 mb-1">Model A</label>
                   <select 
+                    id="model-compare-a"
                     value={compareAId}
                     onChange={(e) => setCompareAId(e.target.value)}
                     className="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none cursor-pointer focus:border-[#a855f7]"
@@ -313,10 +314,11 @@ export default function ModelArenaPage() {
                     ))}
                   </select>
                 </div>
-                <div className="text-zinc-600 font-bold self-end py-2">VS</div>
+                <div className="text-zinc-400 font-bold self-end py-2">VS</div>
                 <div className="flex-1 min-w-[140px]">
-                  <label className="block text-[10px] uppercase font-mono text-zinc-500 mb-1">Model B</label>
+                  <label htmlFor="model-compare-b" className="block text-xs uppercase font-mono text-zinc-300 mb-1">Model B</label>
                   <select 
+                    id="model-compare-b"
                     value={compareBId}
                     onChange={(e) => setCompareBId(e.target.value)}
                     className="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none cursor-pointer focus:border-[#a855f7]"
@@ -385,7 +387,7 @@ export default function ModelArenaPage() {
             {/* Right side comparative scorecard */}
             <div className="flex flex-col border border-white/10 bg-slate-950 p-5 rounded-2xl shadow-inner">
               <div className="mb-4">
-                <span className="text-[10px] text-zinc-500 uppercase font-mono tracking-wider block mb-1">Comparative Verdict</span>
+                <span className="text-xs text-zinc-400 uppercase font-mono tracking-wider block mb-1">Comparative Verdict</span>
                 <h3 className="font-bold text-white text-lg flex items-center gap-1.5">
                   <Flame className="w-5 h-5 text-amber-500" />
                   <span>Strategic AI Routing</span>
@@ -401,7 +403,7 @@ export default function ModelArenaPage() {
                     <span className="font-bold text-xs text-white">{modelA.name}</span>
                   </div>
                   <p className="text-[11px] text-zinc-400 leading-relaxed mb-2">{modelA.description}</p>
-                  <div className="text-[10px] font-mono text-zinc-500">
+                  <div className="text-xs font-mono text-zinc-400">
                     <span className="text-zinc-300 font-semibold">Pricing:</span> {modelA.stats.pricing}
                   </div>
                 </div>
@@ -413,7 +415,7 @@ export default function ModelArenaPage() {
                     <span className="font-bold text-xs text-white">{modelB.name}</span>
                   </div>
                   <p className="text-[11px] text-zinc-400 leading-relaxed mb-2">{modelB.description}</p>
-                  <div className="text-[10px] font-mono text-zinc-500">
+                  <div className="text-xs font-mono text-zinc-400">
                     <span className="text-zinc-300 font-semibold">Pricing:</span> {modelB.stats.pricing}
                   </div>
                 </div>
@@ -501,13 +503,13 @@ export default function ModelArenaPage() {
                   {/* Grid of Input and expected */}
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="bg-slate-950 p-4 rounded-xl border border-white/5">
-                      <span className="text-[10px] text-zinc-500 uppercase font-mono block mb-1">PROMPT DISPATCHED</span>
+                      <span className="text-xs text-zinc-400 uppercase font-mono block mb-1">PROMPT DISPATCHED</span>
                       <pre className="text-xs text-zinc-300 font-mono whitespace-pre-wrap leading-relaxed">
                         {RECEIPT_LOGS[activeReceiptTab].prompt}
                       </pre>
                     </div>
                     <div className="bg-slate-950 p-4 rounded-xl border border-white/5">
-                      <span className="text-[10px] text-zinc-500 uppercase font-mono block mb-1">EXPECTED CRITERIA</span>
+                      <span className="text-xs text-zinc-400 uppercase font-mono block mb-1">EXPECTED CRITERIA</span>
                       <pre className="text-xs text-zinc-300 font-mono whitespace-pre-wrap leading-relaxed">
                         {RECEIPT_LOGS[activeReceiptTab].expected}
                       </pre>
@@ -610,7 +612,7 @@ export default function ModelArenaPage() {
             <div className="bg-slate-950/50 border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-sm animate-fade-in">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                 <h3 className="text-xl font-bold text-white">{activeRound.card}</h3>
-                <span className="text-xs text-zinc-500 font-mono">Executed: {activeRound.date}</span>
+                <span className="text-xs text-zinc-400 font-mono">Executed: {activeRound.date}</span>
               </div>
 
               <div className="mb-6 flex flex-wrap gap-2">
@@ -633,7 +635,7 @@ export default function ModelArenaPage() {
 
               {/* Task Breakdown list */}
               <div className="space-y-3">
-                <div className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">TASK SPECIFICS</div>
+                <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">TASK SPECIFICS</div>
                 {activeRound.tasks.map((task) => (
                   <div 
                     key={task.id}
@@ -641,7 +643,7 @@ export default function ModelArenaPage() {
                   >
                     <span className="text-zinc-400 font-medium mb-1 sm:mb-0">{task.category}</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-zinc-500 font-mono text-[10px]">{task.id}</span>
+                      <span className="text-zinc-400 font-mono text-xs">{task.id}</span>
                       <span className="font-semibold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20">
                         {task.winner}
                       </span>
@@ -655,7 +657,7 @@ export default function ModelArenaPage() {
                   href={activeRound.receiptUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs text-zinc-300 hover:text-white transition-colors"
                 >
                   <Code2 className="w-4 h-4 text-zinc-400" />
                   View canonical JSON receipt mapping this round
@@ -689,7 +691,7 @@ export default function ModelArenaPage() {
             ))}
           </div>
 
-          <p className="mt-6 text-xs text-zinc-500">
+          <p className="mt-6 text-xs text-zinc-400">
             Read complete verification rules in{' '}
             <a
               href={METHODOLOGY_URL}
@@ -758,7 +760,7 @@ export default function ModelArenaPage() {
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-white/90 group-open:text-white">
                   {faq.question}
-                  <span className="text-zinc-500 transition-transform group-open:rotate-45">+</span>
+                <span className="text-zinc-400 transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-3 text-xs leading-relaxed text-zinc-400">{faq.answer}</p>
               </details>
@@ -767,7 +769,7 @@ export default function ModelArenaPage() {
         </section>
 
         {/* Page Footer */}
-        <footer className="border-t border-white/5 pt-8 text-center text-xs text-zinc-500">
+        <footer className="border-t border-white/5 pt-8 text-center text-xs text-zinc-400">
           <p>Starlight Model Arena • built and run by Frank's multi-agent research system • 2026</p>
         </footer>
       </div>

@@ -26,6 +26,7 @@ export interface Route {
   title?: string
   description?: string
   tags?: string[]
+  sitemap?: boolean
   type:
     | 'core'
     | 'blog'
@@ -69,8 +70,35 @@ export interface MatchResult {
 
 const typedIndex = routeIndex as RouteIndex
 
+// Generated data is refreshed during production builds, but 404 recovery must
+// also fail closed when a developer or preview is running with a stale index.
+// `sitemap: false` covers all normal unlisted routes; the explicit prefixes
+// protect recipient/proposal pages that may predate that metadata.
+const DISCOVERY_BLOCKED_PREFIXES = [
+  '/partnerships/proposal',
+  '/partnerships/van-ede',
+] as const
+
+function isDiscoveryBlocked(href: string): boolean {
+  const normalized = href.toLowerCase().trim().replace(/\/+$/, '') || '/'
+  return DISCOVERY_BLOCKED_PREFIXES.some(
+    (prefix) => normalized === prefix || normalized.startsWith(`${prefix}/`),
+  )
+}
+
+const discoverableRoutes = typedIndex.routes.filter(
+  (route) => route.sitemap !== false && !isDiscoveryBlocked(route.href),
+)
+
+const discoverableAliases = Object.fromEntries(
+  Object.entries(typedIndex.aliases).filter(
+    ([source, destination]) =>
+      !isDiscoveryBlocked(source) && !isDiscoveryBlocked(destination),
+  ),
+) as Record<string, string>
+
 // Build once at module init — Fuse.js indexes are pure and cheap to reuse.
-const fuse = new Fuse(typedIndex.routes, {
+const fuse = new Fuse(discoverableRoutes, {
   keys: [
     { name: 'href', weight: 0.45 },
     { name: 'title', weight: 0.35 },
@@ -93,7 +121,7 @@ export function matchRoute(pathname: string, maxResults = 5): MatchResult {
   const normalized = pathname.toLowerCase().trim()
 
   // Curated-alias fast path
-  const aliasHit = typedIndex.aliases[normalized] || null
+  const aliasHit = discoverableAliases[normalized] || null
 
   // Build a query that Fuse can chew on — strip leading slash, replace separators
   const query = normalized.replace(/^\//, '').replace(/[-/_]+/g, ' ').trim()

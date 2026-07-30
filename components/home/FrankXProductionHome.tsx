@@ -231,13 +231,22 @@ export default function FrankXProductionHome({
                 The first decision is not a platform or transformation program. It is which
                 recurring queue can safely leave your daily path.
               </p>
-              <Link
-                href="/work-with-me#contact"
-                className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
-              >
-                Map the workflow
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
+              <div className="mt-8 flex flex-col items-start gap-4">
+                <Link
+                  href="/work-with-me#contact"
+                  className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                >
+                  Map the workflow
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/workspace"
+                  className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-white/75 underline decoration-white/35 underline-offset-8 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                >
+                  See how the human-directed workspace runs
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
 
             <div className="relative border-l border-white/15 pl-7 sm:pl-10">
@@ -268,7 +277,9 @@ export default function FrankXProductionHome({
                     <p className="font-medium text-white">The human boundary stays explicit.</p>
                     <p className="mt-2 text-sm leading-6 text-white/75">
                       Consequential decisions keep human approval. Evaluation, cost, failure paths,
-                      and rollback are part of the system from the beginning.
+                      and rollback are part of the system from the beginning. A generated draft is
+                      not a published FrankX position until its evidence, language, privacy, and
+                      consequence have been reviewed.
                     </p>
                   </div>
                 </div>

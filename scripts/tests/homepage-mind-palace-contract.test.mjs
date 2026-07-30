@@ -32,6 +32,8 @@ test('the public homepage is the Human Proof Studio release', async () => {
   )
   assert.match(homepage, /Map the workflow that waits on me/)
   assert.match(homepage, /href="\/work-with-me#contact"/)
+  assert.match(homepage, /See how the human-directed workspace runs/)
+  assert.match(homepage, /href="\/workspace"/)
   assert.match(homepage, /Already shipping agents\? See the Toolkit’s release status\./)
   assert.match(homepage, /Frank Riemer · AI Architect · Independent practice/)
   assert.match(homepage, /not affiliated with, endorsed by, or sponsored by Oracle/)
@@ -80,6 +82,7 @@ test('the start page routes by current state without contradictory entry spines'
     'I’m here to study the work.',
     'Durable essays',
     'Dated field notes',
+    'How the workspace runs',
   ]) {
     assert.ok(start.includes(copy), `missing start-page copy: ${copy}`)
   }
@@ -91,6 +94,7 @@ test('the start page routes by current state without contradictory entry spines'
     '/gencreator',
     '/blog',
     '/journal',
+    '/workspace',
   ]) {
     assert.ok(start.includes(route), `missing start-page route: ${route}`)
   }
@@ -224,6 +228,8 @@ test('footer and machine-readable surfaces share the canonical proposition', asy
 
   assert.match(footer, /Agentic systems and field notes/)
   assert.match(footer, /maps founder-routed work and builds bounded agent systems/)
+  assert.match(footer, /How the workspace runs/)
+  assert.match(footer, /Specialist\s+agents extend the work/)
   assert.doesNotMatch(footer, /Weekly dispatch|One email per week|Foundry|Founder’s Circle|Coaching/)
 
   for (const source of [llms, llmsFull]) {
@@ -244,4 +250,43 @@ test('footer and machine-readable surfaces share the canonical proposition', asy
   ]) {
     assert.doesNotMatch(machineCopy, new RegExp(stoppedClaim), `machine copy still contains: ${stoppedClaim}`)
   }
+})
+
+test('the inherited workspace keeps the responsibility chain and stop conditions inspectable', async () => {
+  const workspace = await readRepoFile('app/workspace/page.tsx')
+  const positioning = await readRepoFile('data/site-positioning.ts')
+
+  assert.match(positioning, /Public agentic workspace/)
+  assert.match(positioning, /I choose what becomes public/)
+  assert.match(positioning, /Specialist agents/)
+  assert.match(positioning, /Human review/)
+  assert.match(workspace, /A question becomes useful/)
+  assert.match(workspace, /by surviving the passes/)
+  assert.match(workspace, /Four stages\. One accountable chain\./)
+  assert.match(workspace, /Review can stop publication/)
+  assert.match(workspace, /Frank’s decision/)
+  assert.match(workspace, /sitePositioning\.workflow\.map/)
+  assert.match(workspace, /sitePositioning\.currentWork\.map/)
+  assert.doesNotMatch(workspace, /framer-motion/)
+})
+
+test('the inherited navigation keeps the workspace method discoverable', async () => {
+  const navigation = await readRepoFile('components/NavigationMega.tsx')
+  const mobile = await readRepoFile('components/MobileNavOverlay.tsx')
+
+  assert.match(navigation, /label: 'Workspace'/)
+  assert.match(navigation, /Public agentic workspace/)
+  assert.match(
+    navigation,
+    /const desktopSections: NavKey\[\] = \['explore', 'build', 'learn', 'gencreators'\]/,
+  )
+  assert.match(navigation, /label: 'Create'/)
+  assert.doesNotMatch(navigation, /onClick=\{\(\) => router\.push/)
+  assert.match(mobile, /Public agentic workspace/)
+  assert.match(mobile, /How Frank and the agent team build in public/)
+  assert.match(mobile, /label: 'Create'/)
+  assert.match(
+    mobile,
+    /Source material, specialist passes, Frank’s decision, public artifact/,
+  )
 })

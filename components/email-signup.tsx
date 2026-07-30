@@ -29,6 +29,7 @@ export function EmailSignup({
   const hpId = useId()
   const emailId = useId()
   const nameId = useId()
+  const statusId = useId()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   // Honeypot — a hidden field real users never see. Bots that auto-fill inputs
@@ -104,33 +105,37 @@ export function EmailSignup({
     return (
       <form onSubmit={handleSubmit} className={cn('relative', className)}>
         {honeypotField}
-        <label htmlFor={emailId} className="sr-only">
-          Email address
-        </label>
         <div className="flex gap-2">
+          <label htmlFor={emailId} className="sr-only">
+            Email address
+          </label>
           <input
             id={emailId}
             type="email"
             name="email"
             autoComplete="email"
             required
+            aria-describedby={statusId}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
             disabled={status === 'loading' || status === 'success'}
-            className="min-w-0 flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
+            className="min-w-0 flex-1 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="rounded-full bg-emerald-400 px-6 py-2 font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓' : buttonText}
           </button>
         </div>
         <p className="mt-2 text-xs leading-5 text-slate-400">
           Occasional FrankX field notes. Unsubscribe anytime.{' '}
-          <Link href="/privacy" className="underline decoration-slate-600 underline-offset-2 hover:text-white">
+          <Link
+            href="/privacy"
+            className="underline decoration-slate-600 underline-offset-2 hover:text-white"
+          >
             Privacy details
           </Link>
           .
@@ -142,6 +147,9 @@ export function EmailSignup({
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
+              id={statusId}
+              role="alert"
+              aria-live="assertive"
               className="text-red-400 text-sm mt-2"
             >
               {errorMessage}
@@ -152,6 +160,9 @@ export function EmailSignup({
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
+              id={statusId}
+              role="status"
+              aria-live="polite"
               className="text-emerald-400 text-sm mt-2"
             >
               Successfully subscribed! Check your email.
@@ -194,6 +205,7 @@ export function EmailSignup({
             id={emailId}
             name="email"
             autoComplete="email"
+            aria-describedby={statusId}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
@@ -225,6 +237,9 @@ export function EmailSignup({
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
+              id={statusId}
+              role="alert"
+              aria-live="assertive"
               className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm"
             >
               {errorMessage}
@@ -235,6 +250,9 @@ export function EmailSignup({
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
+              id={statusId}
+              role="status"
+              aria-live="polite"
               className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-sm"
             >
               Successfully subscribed! Check your email for confirmation.
@@ -246,7 +264,10 @@ export function EmailSignup({
 
       <p className="mt-4 text-xs text-slate-500 text-center">
         Occasional FrankX field notes. Unsubscribe anytime.{' '}
-        <Link href="/privacy" className="underline decoration-slate-600 underline-offset-2 hover:text-slate-300">
+        <Link
+          href="/privacy"
+          className="underline decoration-slate-600 underline-offset-2 hover:text-slate-300"
+        >
           Privacy details
         </Link>
         .

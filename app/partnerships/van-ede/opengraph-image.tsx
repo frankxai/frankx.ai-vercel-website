@@ -1,9 +1,8 @@
 import { ImageResponse } from 'next/og'
 
-// Branded OG for the private proposal — the link gets shared by email/WhatsApp,
-// so it still needs a real image even though the page is noindex.
+// Branded OG for the private, auth-gated proposal.
 export const runtime = 'nodejs'
-export const alt = 'FrankX × Van Ede & Partners — Partnership Proposal'
+export const alt = 'FrankX on Van Ede & Partners — Private Proposal Draft'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -47,7 +46,7 @@ export default function OgImage() {
             letterSpacing: 8,
           }}
         >
-          Partnership Proposal
+          Private Proposal Draft
         </div>
 
         <div

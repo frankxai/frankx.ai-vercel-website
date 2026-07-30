@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import {
   Activity,
   AlertTriangle,
@@ -67,7 +66,6 @@ function FAQItem({ question, answer, colors, defaultOpen }: {
   defaultOpen?: boolean
 }) {
   const [open, setOpen] = useState(defaultOpen ?? false)
-  const shouldReduceMotion = useReducedMotion()
 
   return (
     <div className={`rounded-xl border ${open ? colors.border : 'border-white/[0.06]'} bg-white/[0.02] overflow-hidden transition-colors`}>
@@ -75,26 +73,17 @@ function FAQItem({ question, answer, colors, defaultOpen }: {
         onClick={() => setOpen(!open)}
         className="w-full flex items-start gap-3 p-4 text-left hover:bg-white/[0.02] transition-colors"
       >
-        <HelpCircle className={`w-4 h-4 mt-0.5 flex-shrink-0 ${open ? colors.text : 'text-white/30'} transition-colors`} />
+        <HelpCircle className={`w-4 h-4 mt-0.5 flex-shrink-0 ${open ? colors.text : 'text-white/60'} transition-colors`} />
         <span className={`text-sm font-medium flex-1 ${open ? 'text-white' : 'text-white/70'} transition-colors`}>
           {question}
         </span>
-        <ChevronDown className={`w-4 h-4 text-white/30 flex-shrink-0 mt-0.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-4 h-4 text-white/60 flex-shrink-0 mt-0.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={shouldReduceMotion ? false : { height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={shouldReduceMotion ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="px-4 pb-4 pl-11">
-              <p className="text-sm text-white/50 leading-relaxed">{answer}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {open && (
+        <div className="px-4 pb-4 pl-11">
+          <p className="text-sm text-white/50 leading-relaxed">{answer}</p>
+        </div>
+      )}
     </div>
   )
 }
@@ -107,7 +96,6 @@ interface Props {
 }
 
 export default function ResearchDomainPage({ domain, relatedDomains, claimCount = 0, blogPostTitles = {} }: Props) {
-  const shouldReduceMotion = useReducedMotion()
   const Icon = iconMap[domain.icon] || Layers
   const colors = colorConfig[domain.color] || colorConfig.emerald
   const hasFaq = domain.faq && domain.faq.length > 0
@@ -164,13 +152,13 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
             {/* Sidebar TOC (desktop only) */}
             <aside className="hidden lg:block w-52 flex-shrink-0">
               <div className="sticky top-32">
-                <p className="text-[10px] font-semibold text-white/25 uppercase tracking-wider mb-3">On this page</p>
+                <p className="text-[10px] font-semibold text-white/55 uppercase tracking-wider mb-3">On this page</p>
                 <nav className="space-y-1 border-l border-white/[0.06] pl-3">
                   {tocItems.map((item) => (
                     <a
                       key={item.id}
                       href={`#${item.id}`}
-                      className="block text-xs text-white/35 hover:text-white/70 py-1 transition-colors truncate"
+                      className="block text-xs text-white/60 hover:text-white/70 py-1 transition-colors truncate"
                     >
                       {item.label}
                     </a>
@@ -182,12 +170,10 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
             {/* Main Content */}
             <div className="flex-1 min-w-0 max-w-4xl">
               {/* Breadcrumb */}
-              <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
+              <div
                 className="mb-8"
               >
-                <div className="flex items-center gap-2 text-sm text-white/40">
+                <div className="flex items-center gap-2 text-sm text-white/65">
                   <Link href="/research" className="hover:text-white transition-colors flex items-center gap-1.5">
                     <ArrowLeft className="h-3.5 w-3.5" />
                     Research Hub
@@ -195,13 +181,10 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                   <span>/</span>
                   <span className="text-white/70">{domain.title}</span>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Hero */}
-              <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.05 }}
+              <div
                 className="mb-10"
               >
                 <div className="flex items-start gap-4 mb-6">
@@ -212,7 +195,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                     <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">
                       {domain.title}
                     </h1>
-                    <p className="text-white/40 mt-1">{domain.subtitle}</p>
+                    <p className="text-white/65 mt-1">{domain.subtitle}</p>
                   </div>
                 </div>
 
@@ -226,19 +209,21 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                   </div>
                   <p className="text-white/90 leading-relaxed">{domain.tldr}</p>
                   <div className="mt-3 pt-3 border-t border-white/5">
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-white/30">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-white/60">
                       <span className="flex items-center gap-1.5">
                         <Calendar className="w-3 h-3" />
                         Updated {domain.lastUpdated}
                       </span>
                       <span className="flex items-center gap-1.5">
                         <ShieldCheck className="w-3 h-3" />
-                        {domain.sourceCount} sources validated
+                        {sources.length > 0
+                          ? `${sources.length} source references`
+                          : 'Source registry pending'}
                       </span>
-                      {claimCount > 0 && (
+                      {claimCount > 0 && sources.length > 0 && (
                         <span className="flex items-center gap-1.5">
                           <CheckCircle2 className="w-3 h-3" />
-                          {claimCount} claims verified
+                          {claimCount} claims indexed
                         </span>
                       )}
                     </div>
@@ -248,7 +233,8 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                 {/* Above-fold conversion bar — added 2026-05-20 per /hub-audit research P1.2 */}
                 <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-3.5">
                   <p className="text-sm text-white/55 leading-relaxed">
-                    Research briefs like this — one per week. <span className="text-white/75">Validated sources, no filler.</span>
+                    Research briefs like this, when the evidence is ready.{' '}
+                    <span className="text-white/75">Source links, limitations, and open questions.</span>
                   </p>
                   <Link
                     href="/newsletter"
@@ -258,13 +244,10 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Stats */}
-              <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
+              <div
                 className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12"
               >
                 {domain.highlights.map((h, i) => {
@@ -287,29 +270,26 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                             href={sourceUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[10px] text-white/25 hover:text-white/50 transition-colors inline-flex items-center gap-0.5"
+                            className="text-[10px] text-white/55 hover:text-white/50 transition-colors inline-flex items-center gap-0.5"
                           >
                             {h.source}
                             <ArrowUpRight className="w-2.5 h-2.5" />
                           </a>
                         ) : (
-                          <p className="text-[10px] text-white/25">{h.source}</p>
+                          <p className="text-[10px] text-white/55">{h.source}</p>
                         )
                       )}
                     </div>
                   )
                 })}
-              </motion.div>
+              </div>
 
               {/* Sections with numbering */}
               <div className="space-y-10 mb-12">
                 {domain.sections.map((section, sIndex) => (
-                  <motion.div
+                  <div
                     key={sIndex}
                     id={`section-${sIndex}`}
-                    initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 + sIndex * 0.05 }}
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <span className={`text-[10px] font-bold ${colors.text} ${colors.bg} px-2 py-0.5 rounded-full`}>
@@ -334,21 +314,18 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                                 </span>
                               )}
                             </div>
-                            <p className="text-xs text-white/40 leading-relaxed">{item.description}</p>
+                            <p className="text-xs text-white/65 leading-relaxed">{item.description}</p>
                           </div>
                         ))}
                       </div>
                     )}
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
               {/* Key Findings */}
-              <motion.div
+              <div
                 id="findings"
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.35 }}
                 className="mb-12"
               >
                 <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -368,15 +345,12 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* Research Transparency */}
               {(domain.limitations?.length || domain.whatWeDontKnow?.length) && (
-                <motion.div
+                <div
                   id="transparency"
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.37 }}
                   className="mb-12"
                 >
                   <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -389,7 +363,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                         <h3 className="text-sm font-semibold text-amber-400 mb-3">Limitations</h3>
                         <ul className="space-y-2">
                           {domain.limitations.map((l, i) => (
-                            <li key={i} className="text-xs text-white/45 leading-relaxed flex gap-2">
+                            <li key={i} className="text-xs text-white/65 leading-relaxed flex gap-2">
                               <span className="text-amber-400/50 mt-0.5 flex-shrink-0">&bull;</span>
                               {l}
                             </li>
@@ -402,7 +376,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                         <h3 className="text-sm font-semibold text-blue-400 mb-3">What We Don&apos;t Know</h3>
                         <ul className="space-y-2">
                           {domain.whatWeDontKnow.map((w, i) => (
-                            <li key={i} className="text-xs text-white/45 leading-relaxed flex gap-2">
+                            <li key={i} className="text-xs text-white/65 leading-relaxed flex gap-2">
                               <span className="text-blue-400/50 mt-0.5 flex-shrink-0">?</span>
                               {w}
                             </li>
@@ -411,9 +385,9 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                       </div>
                     )}
                   </div>
-                  {domain.evidenceGrade && (
+                  {sources.length > 0 && domain.evidenceGrade ? (
                     <div className="mt-3 flex items-center gap-2">
-                      <span className="text-[10px] text-white/25">Evidence Grade:</span>
+                      <span className="text-[10px] text-white/55">Evidence Grade:</span>
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                         domain.evidenceGrade === 'A' ? 'bg-emerald-500/10 text-emerald-400' :
                         domain.evidenceGrade === 'B' ? 'bg-blue-500/10 text-blue-400' :
@@ -422,7 +396,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                       }`}>
                         Grade {domain.evidenceGrade}
                       </span>
-                      <span className="text-[10px] text-white/20">
+                      <span className="text-[10px] text-white/55">
                         {domain.evidenceNote ? `(${domain.evidenceNote})` :
                          domain.evidenceGrade === 'A' ? '(Peer-reviewed / meta-analyses)' :
                          domain.evidenceGrade === 'B' ? '(Industry reports from credible firms)' :
@@ -430,17 +404,18 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                          '(Mostly editorial / opinion-based)'}
                       </span>
                     </div>
+                  ) : (
+                    <p className="mt-3 text-xs text-white/65">
+                      Evidence review pending until this domain’s source registry is complete.
+                    </p>
                   )}
-                </motion.div>
+                </div>
               )}
 
               {/* FAQ Section */}
               {hasFaq && (
-                <motion.div
+                <div
                   id="faq"
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.38 }}
                   className="mb-12"
                 >
                   <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -458,16 +433,13 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                       />
                     ))}
                   </div>
-                </motion.div>
+                </div>
               )}
 
               {/* Sources & References */}
               {sources.length > 0 && (
-                <motion.div
+                <div
                   id="sources"
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.42 }}
                   className="mb-12"
                 >
                   <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -475,8 +447,8 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                     Sources & References
                   </h2>
                   <div className={`rounded-2xl border ${colors.border} bg-white/[0.01] p-5`}>
-                    <p className="text-xs text-white/35 mb-4">
-                      {sources.length} validated sources · Last updated {domain.lastUpdated}
+                    <p className="text-xs text-white/60 mb-4">
+                      {sources.length} source references · Last updated {domain.lastUpdated}
                     </p>
                     <div className="space-y-2.5">
                       {sources.map((src, idx) => (
@@ -495,12 +467,12 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                               <ArrowUpRight className="w-3 h-3 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
                             </a>
                             <div className="flex items-center gap-2 mt-0.5">
-                              <span className="text-[10px] text-white/25">{src.name}</span>
-                              <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full ${colors.bg} ${colors.text} opacity-60`}>
+                              <span className="text-[10px] text-white/55">{src.name}</span>
+                              <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
                                 {sourceTypeLabels[src.type]}
                               </span>
                               {src.date && (
-                                <span className="text-[10px] text-white/20">{src.date}</span>
+                                <span className="text-[10px] text-white/55">{src.date}</span>
                               )}
                             </div>
                           </div>
@@ -508,16 +480,13 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                       ))}
                     </div>
                   </div>
-                </motion.div>
+                </div>
               )}
 
               {/* Related Domains */}
               {relatedDomains.length > 0 && (
-                <motion.div
+                <div
                   id="related"
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
                   className="mb-12"
                 >
                   <h2 className="text-lg font-bold text-white mb-4">Related Research</h2>
@@ -539,22 +508,19 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                             <h3 className="text-sm font-semibold text-white group-hover:text-white/90 transition-colors">
                               {rd.title}
                             </h3>
-                            <p className="text-xs text-white/30 mt-0.5 line-clamp-1">{rd.subtitle}</p>
+                            <p className="text-xs text-white/60 mt-0.5 line-clamp-1">{rd.subtitle}</p>
                           </div>
-                          <ArrowUpRight className="w-3.5 h-3.5 text-white/15 group-hover:text-white/40 transition-colors flex-shrink-0 mt-0.5" />
+                          <ArrowUpRight className="w-3.5 h-3.5 text-white/15 group-hover:text-white/65 transition-colors flex-shrink-0 mt-0.5" />
                         </Link>
                       )
                     })}
                   </div>
-                </motion.div>
+                </div>
               )}
 
               {/* Related Blog Posts */}
               {domain.relatedBlogPosts.length > 0 && (
-                <motion.div
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.45 }}
+                <div
                   className="mb-12"
                 >
                   <h2 className="text-lg font-bold text-white mb-4">Published Articles</h2>
@@ -565,32 +531,29 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                         href={post}
                         className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] transition-all"
                       >
-                        <FileText className="w-4 h-4 text-white/25 group-hover:text-white/40 flex-shrink-0" />
+                        <FileText className="w-4 h-4 text-white/55 group-hover:text-white/65 flex-shrink-0" />
                         <span className="text-sm text-white/60 group-hover:text-white transition-colors line-clamp-1 flex-1">
                           {blogPostTitles[post] || post.replace('/blog/', '').replace(/-/g, ' ')}
                         </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 flex-shrink-0 transition-colors" />
+                        <ArrowRight className="w-3.5 h-3.5 text-white/55 group-hover:text-white/50 flex-shrink-0 transition-colors" />
                       </Link>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               )}
 
               {/* Back to Hub */}
-              <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.5 }}
+              <div
                 className="pt-8 border-t border-white/[0.04]"
               >
                 <Link
                   href="/research"
-                  className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back to Research Hub
                 </Link>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

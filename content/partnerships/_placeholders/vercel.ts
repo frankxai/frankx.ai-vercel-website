@@ -5,123 +5,125 @@ import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 /**
  * Vercel — strategic-alignment tier.
  *
- * Every frankx.ai project ships on Vercel today. This page is the
- * peer-architect proposal for a deeper alignment around the Vercel AI SDK,
- * Fluid Compute, and AI Gateway as the production agent stack. The Vercel
- * Partner Program application is in flight. Nothing here claims a formal
- * partnership exists yet.
+ * This is FrankX's independently authored record of public platform use and
+ * a possible deeper alignment. It is based on public-only evidence. Vercel
+ * has not reviewed or approved the proposal, and no application, endorsement,
+ * conversation, or formal partnership is claimed.
  */
 export const vercel: Partner = {
   slug: 'vercel',
   name: 'Vercel',
   shortName: 'Vercel',
   tier: 'tooling',
-  status: 'active',
-  lastUpdated: '2026-05-16',
+  status: 'strategic-alignment',
+  publicationBasis: 'independent-proposal',
+  consentStatus: 'not-requested',
+  privacyClassification: 'public-only',
+  lastUpdated: '2026-07-30',
 
   title: 'AI Architect — Next-on-Vercel AI CoE practice',
   tagline:
-    'The deployment substrate the entire AI CoE practice runs on.',
+    'I run frankx.ai on Vercel. Here is the collaboration I would test next.',
   subTagline:
-    'Every shipped FrankX surface already runs on Vercel infrastructure. The Build First AI Agent workshop centres Vercel AI SDK. The conversation is making the alignment formal.',
+    'FrankX uses Vercel for this production site and studies the AI SDK and platform as part of a broader agentic architecture practice. This is an independent proposal, not a Vercel-endorsed page.',
 
-  contextWindow: `Vercel is the deployment substrate the entire FrankX AI Architect practice runs on. frankx.ai, the production site frankx.ai-vercel-website, Watch OS, Workshop OS, Library OS, Studio, ACO, Partnerships — every public surface ships on Vercel. The AI Architect Academy uses Next.js 16 with Turbopack, Cache Components, Fluid Compute, and the new vercel.ts config as its standard reference deploy.
+  contextWindow: `frankx.ai is a Next.js production site deployed through Vercel. Its public repository and live deployment provide inspectable evidence for that narrow claim. Other FrankX projects and learning materials explore related Next.js and agent-development patterns, but this page does not claim that every project is deployed on Vercel.
 
-The alignment I see is around the production agent stack — AI SDK at the centre, Fluid Compute carrying the long-running calls, AI Gateway in front of the model layer. The Build First AI Agent workshop already teaches the Vercel AI SDK as the central path. The ai-architecture and ai-coe pages on frankx.ai are Next-on-Vercel reference architectures.
+The possible alignment I see is around practical agent interfaces, deployment, model routing, and education. The Build First AI Agent material includes a Vercel AI SDK path, while the architecture and AI CoE pages document FrankX's own production patterns.
 
-Vercel Partner Program — application is in flight. This page is the conversation about the shape of a strategic-alignment relationship.`,
+Everything beyond demonstrated platform use is an independently authored proposal. No Vercel application, reciprocal conversation, endorsement, or formal relationship is asserted.`,
 
   workingReality: [
     {
-      label: 'Every project ships on Vercel',
+      label: 'frankx.ai deploys through Vercel',
       detail:
-        'frankx.ai, the production site frankx.ai-vercel-website, Watch OS, Workshop OS, Library OS, Studio, ACO, Partnerships — 8+ public production deploys on Vercel under the frankxai org.',
+        'The production site and this public repository provide the evidence for the deployment claim made on this page. No broader project count is claimed.',
       evidence: {
         label: 'frankx.ai',
-        href: 'https://frankx.ai',
+        href: 'https://www.frankx.ai',
       },
     },
     {
       label: 'Vercel AI SDK in workshop curriculum',
       detail:
-        'The Build First AI Agent workshop teaches Vercel AI SDK as the central path. Curriculum branch is explicitly Vercel-anchored — workshop attendees ship their first production agent on the AI SDK + Next.js stack.',
+        'The public Build First AI Agent material includes Vercel AI SDK and Next.js as an implementation path. It is FrankX-authored curriculum, not co-branded or Vercel-approved material.',
       evidence: {
         label: '/workshops/build-first-ai-agent',
         href: '/workshops/build-first-ai-agent',
       },
     },
     {
-      label: 'Vercel Partner Program — in flight',
+      label: 'Relationship status',
       detail:
-        'Application submitted. This page is the conversation about the shape of the alignment once the program pathway completes.',
+        'Independent proposal only. FrankX does not claim a submitted application, reciprocal conversation, endorsement, or formal Vercel relationship.',
     },
     {
-      label: 'Next.js 16 + Cache Components + Fluid Compute in delivery',
+      label: 'Next.js production practice',
       detail:
-        'Production stack on every frankx.ai surface — Next.js 16, Turbopack, Cache Components, Fluid Compute, the new vercel.ts config. Reference deploys, not slideware.',
+        'frankx.ai is an inspectable Next.js production codebase. Platform-specific patterns are adopted only where they are visible in the repository or live deployment.',
     },
     {
-      label: 'AI Gateway adoption',
+      label: 'Architecture research',
       detail:
-        'AI Gateway aware across the workshop curriculum and the ai-architecture reference pages. The production agent stack is AI SDK + Fluid Compute + AI Gateway, taught and shipped together.',
+        'AI Gateway, model routing, and long-running agent workloads are research and proposal topics. This page does not present them as jointly implemented or endorsed.',
     },
   ],
 
   proofPoints: [
     {
       label: 'frankx.ai — Next-on-Vercel reference deploy',
-      href: 'https://frankx.ai',
+      href: 'https://www.frankx.ai',
     },
     {
       label: 'Build First AI Agent — Vercel AI SDK workshop branch',
       href: '/workshops/build-first-ai-agent',
     },
     {
-      label: 'ACOS — agentic creator OS, ships on Vercel',
+      label: 'ACOS — open agentic creator OS',
       href: 'https://github.com/frankxai/agentic-creator-os',
     },
     {
-      label: 'SIS — Starlight Intelligence System, Next-on-Vercel substrate',
+      label: 'SIS — open multi-agent system',
       href: 'https://github.com/frankxai/starlight-intelligence-system',
     },
     {
-      label: 'ai-architecture — Next-on-Vercel reference architectures',
+      label: 'ai-architecture — FrankX reference architectures',
       href: '/ai-architecture',
     },
     {
-      label: 'ai-coe — the AI CoE blueprint in public, deployed on Vercel',
+      label: 'ai-coe — the FrankX AI CoE blueprint',
       href: '/ai-architect/ai-coe-hub',
     },
   ],
 
   proposalIntro:
-    'What follows is the shape a strategic-alignment relationship could take. The Partner Program application is in flight; the operating modes below are how the alignment compounds once the pathway clears.',
+    'What follows is an independent proposal for consideration. Vercel has not reviewed or approved it, and no program application or reciprocal conversation is claimed.',
 
   asymmetricValue: [
     {
       title: 'Next-on-Vercel AI CoE reference implementation',
-      body: 'The ai-architecture and ai-coe surfaces are working Next-on-Vercel reference architectures for enterprise AI CoE patterns. Public, reviewable, deployed.',
-      metric: 'Reference deploys',
+      body: 'frankx.ai and its public architecture material can serve as a reviewable starting point for discussing Next.js-based AI CoE patterns.',
+      metric: 'Public work',
     },
     {
       title: 'Workshop curriculum biased Vercel AI SDK first',
-      body: 'Build First AI Agent teaches Vercel AI SDK as the central path. Workshop attendees ship their first production agent on the AI SDK + Next.js stack.',
-      metric: 'AI SDK-first',
+      body: 'Build First AI Agent includes a Vercel AI SDK and Next.js path that could be developed further if both sides found it useful.',
+      metric: 'Proposed path',
     },
     {
-      title: 'Open-source body of work that ships on Vercel',
-      body: 'ACOS, SIS, library-os, ai-architect-academy — every public repo deploys to Vercel as its reference target. The toolkit and the deploy are inseparable.',
-      metric: '8+ prod deploys',
+      title: 'Open-source body of agentic work',
+      body: 'ACOS, SIS, Library OS, and AI Architect Academy make the surrounding FrankX methodology inspectable without implying a shared deployment relationship.',
+      metric: 'Open source',
     },
     {
       title: 'EMEA audience funnel',
-      body: 'Audience across Oracle, NVIDIA, Anthropic, and founder networks in EMEA. AI Architect content lands among architects evaluating their production agent stack.',
-      metric: 'EMEA reach',
+      body: 'FrankX writes for architects, builders, and partners evaluating production agent systems in Europe and beyond.',
+      metric: 'Architect audience',
     },
     {
       title: 'AI CoE-tier reference architectures with Deploy-on-Vercel CTAs',
-      body: 'The /ai-architecture surface is built to carry Deploy-on-Vercel CTAs alongside other deployment targets. The funnel from architecture demo to Vercel deploy is one click.',
-      metric: 'CTA-ready',
+      body: 'The /ai-architecture surface could add clearly attributed deployment paths where a working template and mutual agreement justify them.',
+      metric: 'Proposal',
     },
   ],
 
@@ -169,16 +171,16 @@ Vercel Partner Program — application is in flight. This page is the conversati
     },
     {
       number: 4,
-      name: 'Vercel Partner Program — Pursuit Completion',
-      cadence: 'One-time pathway, then renewal cadence',
+      name: 'Ecosystem Pathway Review',
+      cadence: 'One-time fit review',
       whatItIs:
-        'Complete the Vercel Partner Program application pathway. Move from strategic-alignment to formal partner tier.',
+        'If there is mutual interest, identify the appropriate public ecosystem or partner pathway without presuming eligibility or acceptance.',
       whatItProduces: [
-        'Partner Program enrolment',
-        'Page status updates from strategic-alignment to active',
-        'Formal partner-tier surfaces wherever Vercel-program-shaped CTAs apply',
+        'A confirmed fit or no-fit decision',
+        'A written scope for any next step',
+        'A public status update only after both sides can verify it',
       ],
-      pricingPosture: 'Program-defined.',
+      pricingPosture: 'Any program terms remain Vercel-defined.',
     },
     {
       number: 5,
@@ -198,46 +200,46 @@ Vercel Partner Program — application is in flight. This page is the conversati
   compoundingModel: [
     {
       month: 0,
-      title: 'Partner Program submitted, workshop branch live',
-      body: 'Partner Program application in flight. Build First AI Agent workshop Vercel AI SDK branch live. Working reality on the page already verifiable.',
+      title: 'Public evidence and proposal separated',
+      body: 'frankx.ai deployment evidence, FrankX-authored curriculum, and the independent proposal are labeled as distinct things.',
     },
     {
       month: 3,
-      title: 'Deploy CTAs in ai-architecture, first co-published deep-dive',
-      body: 'Deploy-via-Vercel CTAs live on /ai-architecture reference architectures. First co-published Next-on-Vercel agent-patterns deep-dive on /research with companion starter repo.',
+      title: 'Possible template and research pilot',
+      body: 'If mutually approved, test one working deployment template and one clearly attributed technical deep-dive.',
     },
     {
       month: 6,
-      title: 'Academy distributing Vercel-native curriculum',
-      body: 'AI Architect Academy curriculum cycle running with Vercel as the standard reference deploy across modules. Workshop cohorts shipping on AI SDK + Fluid Compute by default.',
+      title: 'Possible curriculum integration',
+      body: 'If the pilot proves useful, add a maintained Vercel path to relevant Academy and workshop modules.',
     },
     {
       month: 12,
-      title: 'Reference customer for Next-on-Vercel AI CoE in EMEA',
-      body: 'FrankX operating as the EMEA reference customer for Next-on-Vercel AI CoE patterns. Partner Program tier active. Research stream and academy curriculum compounding.',
+      title: 'Evidence-based continuation decision',
+      body: 'Review real template use, learning outcomes, and editorial value before deciding whether any formal relationship makes sense.',
     },
   ],
 
   crossLinks: [
     crossLink(
       'ai-architecture',
-      'Where the Deploy-via-Vercel CTAs land on every Next-on-Vercel reference architecture.',
-      'Reference architectures with Deploy CTAs'
+      'The public architecture surface where a verified deployment template could be documented.',
+      'FrankX reference architectures'
     ),
     crossLink(
       'ai-architect-academy',
-      'The curriculum that ships Vercel-native by default — AI SDK, Fluid Compute, AI Gateway as the standard reference deploy.',
-      'Vercel-native curriculum'
+      'The curriculum surface where a maintained Vercel implementation path could live.',
+      'AI Architect curriculum'
     ),
     crossLink(
       'workshops',
-      'Build First AI Agent — Vercel AI SDK branch is the headline path through the curriculum.',
-      'Vercel AI SDK-anchored workshop'
+      'Build First AI Agent includes a Vercel AI SDK and Next.js implementation path.',
+      'Agent-building workshop'
     ),
     crossLink(
       'research',
-      'Next-on-Vercel agent-pattern stream open for joint editorial — AI SDK production patterns, Fluid Compute, AI Gateway routing.',
-      'Joint research stream'
+      'Independent research on production agent patterns, including deployment and model routing.',
+      'Independent research'
     ),
     crossLink(
       'blog',
@@ -247,11 +249,11 @@ Vercel Partner Program — application is in flight. This page is the conversati
   ],
 
   whatThisIsNot: [
-    'A Vercel-employee-flavored relationship — this is operator-to-platform, peer-architect',
-    'Exclusive — FrankX also ships on Cloudflare Pages where the workload calls for it',
-    'On-call deployment support or Vercel-side ops cover',
-    'A deck-building consulting role',
-    'A freebie content-machine — co-marketing is mutual, not extractive',
+    'A claim that Vercel authored, reviewed, or endorsed this page',
+    'Evidence of a submitted application or reciprocal conversation',
+    'A formal partner, customer-reference, or employee relationship',
+    'An exclusive technology commitment',
+    'A promise of co-marketing, credits, or platform access',
   ],
 
   cta: {
@@ -259,27 +261,25 @@ Vercel Partner Program — application is in flight. This page is the conversati
     href: MEET_AND_GROW_URL,
   },
 
-  programStatus: 'Vercel Partner Program — application in flight',
+  programStatus: 'Independent proposal — no formal Vercel relationship claimed',
 
   alreadyShared: [
-    'Every shipped frankx.ai surface runs on Vercel infrastructure — Watch OS, Workshop OS, Library OS, Studio, ACO, Partnerships.',
-    'The Build First AI Agent workshop centres Vercel AI SDK as the recommended path for the central cohort track.',
-    '8+ public production deploys under the frankxai/* org, every one a working Next-on-Vercel reference.',
-    'Active feedback loop on AI Gateway, Fluid Compute, Cache Components, and the new vercel.ts config from daily delivery.',
-    'Workshop curriculum biased Vercel AI SDK first — not OpenAI Assistants, not LangChain — across every cohort.',
-    'Reference-architecture demos with Deploy-via-Vercel CTAs ready to publish on /ai-architecture.',
+    'frankx.ai is deployed through Vercel.',
+    'The public FrankX codebase uses Next.js.',
+    'Build First AI Agent includes a FrankX-authored Vercel AI SDK path.',
+    'FrankX publishes independent research on deployment, model routing, and agent interfaces.',
   ],
 
   formalizationAsk:
-    "What's left to formalize. Eight production deploys ship on your platform already. The workshop curriculum already biases your AI SDK. The conversation is closing the Partner Program loop, attendee credits for the workshop EMEA cohort, and DevRel touchpoint with the Lee Robinson / Guillermo Rauch network.",
+    'If this independent proposal is relevant, the next step is a scoped fit conversation. Until that happens, the page remains public-only analysis with no consent, endorsement, or formal relationship claimed.',
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/vercel.svg',
   // ogImagePath: '/images/partnerships/vercel-og.png', // TODO: generate, falls back to site default
 
   seo: {
-    title: 'FrankX × Vercel — Next-on-Vercel AI CoE Practice | FrankX',
+    title: 'FrankX on Vercel — Independent AI CoE Alignment',
     description:
-      'Next-on-Vercel AI CoE practice — AI SDK, Fluid Compute, AI Gateway as the production agent stack. Strategic-alignment proposal from EMEA AI Architect.',
+      'How frankx.ai uses Vercel, plus a clearly labeled independent proposal for deeper alignment. No application, conversation, endorsement, or formal relationship is implied.',
   },
 }

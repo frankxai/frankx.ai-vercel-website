@@ -15,24 +15,31 @@ import {
   Zap,
 } from 'lucide-react'
 import { researchDomains } from '@/lib/research/domains'
+import { domainSources } from '@/lib/research/sources'
 
 export const metadata: Metadata = {
-  title: 'Research Methodology | FrankX Research Hub',
+  title: 'Research Methodology',
   description:
-    'How we validate claims, cross-reference sources, and maintain research quality across 20 domains and 180+ sources. Our 4-phase methodology ensures every insight is evidence-backed.',
+    'The working FrankX method for directed scans, specialist passes, evidence review, human decisions, source registration, and explicit limitations.',
   alternates: {
-    canonical: 'https://frankx.ai/research/methodology',
+    canonical: 'https://www.frankx.ai/research/methodology',
   },
   openGraph: {
     title: 'Research Methodology | FrankX Research Hub',
-    description: 'Our 4-phase research methodology: signal detection, deep analysis, validation, and publication.',
+    description: 'The working FrankX method for directed scans, specialist passes, evidence review, and human publication decisions.',
     type: 'article',
-    url: 'https://frankx.ai/research/methodology',
+    url: 'https://www.frankx.ai/research/methodology',
   },
 }
 
-const totalSources = researchDomains.reduce((sum, d) => sum + d.sourceCount, 0)
-const totalFindings = researchDomains.reduce((sum, d) => sum + d.keyFindings.length, 0)
+const totalSources = new Set(
+  Object.values(domainSources).flat().map((source) => source.url),
+).size
+const sourcedDomainCount = researchDomains.filter(
+  (domain) => (domainSources[domain.slug]?.length ?? 0) > 0,
+).length
+const pendingDomainCount = researchDomains.length - sourcedDomainCount
+const sourceCountFor = (slug: string) => domainSources[slug]?.length ?? 0
 
 const phases = [
   {
@@ -41,12 +48,12 @@ const phases = [
     icon: Search,
     duration: 'Continuous',
     description:
-      'Automated and manual scanning of primary research sources including academic papers, industry reports (Gartner, McKinsey, Forrester), vendor documentation, developer surveys, and regulatory filings.',
+      'The intended intake combines directed manual searches, specialist-agent scans, academic papers, industry reports, vendor documentation, developer surveys, and regulatory sources.',
     details: [
-      'Monitor 50+ primary sources weekly across all domains',
-      'Track funding rounds, product launches, and regulatory updates',
-      'Identify emerging patterns through cross-domain signal correlation',
-      'Flag contradictions between vendor claims and independent research',
+      'Maintain a curated watchlist for the domains under active review',
+      'Track relevant product launches, research releases, and regulatory updates',
+      'Look for patterns across domains without treating correlation as proof',
+      'Record contradictions between vendor claims and independent evidence',
     ],
   },
   {
@@ -55,12 +62,12 @@ const phases = [
     icon: Brain,
     duration: '2-4 hours per domain',
     description:
-      'Multi-agent analysis of promising signals with systematic extraction of quantitative data, qualitative insights, and strategic implications.',
+      'For selected questions, specialist passes extract supported quantitative data, qualitative context, uncertainty, and possible implications.',
     details: [
-      'Extract specific metrics: market size, adoption rates, performance benchmarks',
-      'Map competitive landscapes with validated market share data',
+      'Record a metric only when the cited source supports its scope and date',
+      'Separate observed facts, source claims, and FrankX interpretation',
       'Identify methodology limitations in cited research',
-      'Cross-reference findings across minimum 2 independent sources',
+      'Seek two independent sources for consequential claims; label single-source evidence plainly',
     ],
   },
   {
@@ -69,12 +76,12 @@ const phases = [
     icon: ShieldCheck,
     duration: 'Per claim',
     description:
-      'Every quantitative claim receives a confidence rating based on source quality, recency, and cross-reference count. Claims below threshold are flagged or excluded.',
+      'The target standard is to rate consequential quantitative claims by source quality, recency, and corroboration. Older briefs remain provisional until that review is complete.',
     details: [
-      'High confidence: 2+ independent primary sources, recent data (< 6 months)',
-      'Medium confidence: Single authoritative source or industry consensus',
-      'Low confidence: Vendor-sourced data without independent verification — flagged',
-      'Excluded: Unverifiable claims, outdated data (> 12 months), single-source vendor marketing',
+      'Target high confidence: two or more independent, directly relevant sources',
+      'Medium confidence: one authoritative source or a documented expert consensus',
+      'Low confidence: vendor-sourced or weakly corroborated data — label it',
+      'Exclude or rewrite claims whose scope, date, or provenance cannot be verified',
     ],
   },
   {
@@ -83,12 +90,12 @@ const phases = [
     icon: FileText,
     duration: 'Per domain update',
     description:
-      'Synthesis into structured research briefs with TL;DR summaries, FAQ sections, JSON-LD schema markup, and SEO-optimized content for both human readers and AI citation engines.',
+      'Reviewed material is synthesized into readable briefs with registered sources, explicit limits, and structured metadata where the page content supports it.',
     details: [
-      'TechArticle + FAQPage JSON-LD for search engine and AI citation optimization',
-      'Question-based section headers for Answer Engine Optimization (AEO)',
-      'Internal cross-linking between related domains',
-      'Continuous refresh cycle with lastUpdated timestamps',
+      'Use TechArticle or FAQPage JSON-LD only when the visible page warrants it',
+      'Use question-based headings when they help a reader navigate the evidence',
+      'Link related domains without implying evidentiary support between them',
+      'Update lastUpdated timestamps only when a human review actually occurs',
     ],
   },
 ]
@@ -98,13 +105,13 @@ const qualityPrinciples = [
     icon: Target,
     title: 'Specificity Over Generality',
     description:
-      'We cite exact numbers — "$29.3B valuation" not "large valuation." Every statistic includes its source and date.',
+      'When a brief uses a statistic, pair it with its scope, source, and date. Unsupported precision is worse than a careful qualitative statement.',
   },
   {
     icon: GitBranch,
     title: 'Cross-Reference Everything',
     description:
-      'High-confidence claims require 2+ independent sources. Single-source claims are marked as such.',
+      'Two independent sources are the target for high-confidence claims. Single-source evidence should be marked, not quietly upgraded.',
   },
   {
     icon: Shield,
@@ -116,7 +123,7 @@ const qualityPrinciples = [
     icon: Zap,
     title: 'Recency Matters',
     description:
-      'AI moves fast. Data older than 12 months is flagged. We prioritize 2026 sources over 2025 where available.',
+      'AI moves fast, but newer is not automatically better. Use current sources for changing facts and foundational sources where they remain authoritative.',
   },
 ]
 
@@ -135,26 +142,26 @@ const methodologyLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
   headline: 'Research Methodology — FrankX Research Hub',
-  description: `How we validate claims, cross-reference sources, and maintain research quality across ${researchDomains.length} domains and ${totalSources}+ sources.`,
+  description: `The working review method across ${researchDomains.length} domains and ${totalSources} registered source URLs.`,
   author: {
     '@type': 'Person',
     name: 'Frank Riemer',
-    url: 'https://frankx.ai',
+    url: 'https://www.frankx.ai',
     jobTitle: 'AI Architect',
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: 'https://www.frankx.ai',
   },
-  dateModified: '2026-02-06',
-  mainEntityOfPage: 'https://frankx.ai/research/methodology',
+  dateModified: '2026-07-30',
+  mainEntityOfPage: 'https://www.frankx.ai/research/methodology',
   breadcrumb: {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-      { '@type': 'ListItem', position: 2, name: 'Research Hub', item: 'https://frankx.ai/research' },
-      { '@type': 'ListItem', position: 3, name: 'Methodology', item: 'https://frankx.ai/research/methodology' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.frankx.ai' },
+      { '@type': 'ListItem', position: 2, name: 'Research Hub', item: 'https://www.frankx.ai/research' },
+      { '@type': 'ListItem', position: 3, name: 'Methodology', item: 'https://www.frankx.ai/research/methodology' },
     ],
   },
 })
@@ -185,7 +192,7 @@ export default function MethodologyPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <Link
               href="/research"
-              className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Research Hub
@@ -203,25 +210,27 @@ export default function MethodologyPage() {
             </h1>
 
             <p className="text-lg text-white/60 leading-relaxed max-w-3xl mb-8">
-              Every claim in this research hub is backed by evidence. This page explains how we
-              detect signals, analyze data, validate findings, and publish research across{' '}
-              {researchDomains.length} domains with {totalSources}+ sources.
+              This is the standard I want every research page to meet: a directed question,
+              inspectable sources, separate specialist passes, explicit limitations, and a human
+              publication decision. The registry currently spans {researchDomains.length} domains
+              and {totalSources} unique source URLs; some older domains are still awaiting a
+              complete source registry.
             </p>
 
             {/* Quick stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
                 { label: 'Active Domains', value: String(researchDomains.length) },
-                { label: 'Total Sources', value: `${totalSources}+` },
-                { label: 'Validated Findings', value: `${totalFindings}+` },
-                { label: 'Refresh Cadence', value: 'Weekly' },
+                { label: 'Domains With Sources', value: String(sourcedDomainCount) },
+                { label: 'Registered Sources', value: String(totalSources) },
+                { label: 'Pending Registries', value: String(pendingDomainCount) },
               ].map((stat) => (
                 <div
                   key={stat.label}
                   className="bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3"
                 >
                   <p className="text-xl font-bold text-white">{stat.value}</p>
-                  <p className="text-xs text-white/40">{stat.label}</p>
+                  <p className="text-xs text-white/65">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -235,7 +244,8 @@ export default function MethodologyPage() {
               4-Phase Research Process
             </h2>
             <p className="text-white/50 mb-8">
-              From raw signal to published intelligence — how every research brief is created.
+              The target workflow for new briefs, plus the standard older briefs are being
+              brought up to.
             </p>
 
             <div className="space-y-6">
@@ -262,7 +272,7 @@ export default function MethodologyPage() {
                           <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">
                             Phase {phase.number}
                           </span>
-                          <span className="text-xs text-white/30">{phase.duration}</span>
+                          <span className="text-xs text-white/65">{phase.duration}</span>
                         </div>
                         <h3 className="text-lg font-bold text-white mb-2">{phase.title}</h3>
                         <p className="text-sm text-white/50 leading-relaxed mb-4">
@@ -270,7 +280,7 @@ export default function MethodologyPage() {
                         </p>
                         <ul className="space-y-2">
                           {phase.details.map((detail, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-white/40">
+                            <li key={i} className="flex items-start gap-2 text-sm text-white/65">
                               <CheckCircle2 className="w-4 h-4 text-emerald-500/50 flex-shrink-0 mt-0.5" />
                               {detail}
                             </li>
@@ -305,7 +315,7 @@ export default function MethodologyPage() {
                   >
                     <Icon className="w-5 h-5 text-emerald-400 mb-3" />
                     <h3 className="text-sm font-bold text-white mb-2">{principle.title}</h3>
-                    <p className="text-xs text-white/40 leading-relaxed">{principle.description}</p>
+                    <p className="text-xs text-white/65 leading-relaxed">{principle.description}</p>
                   </div>
                 )
               })}
@@ -337,14 +347,14 @@ export default function MethodologyPage() {
                   }`}
                 >
                   <span className="text-sm font-medium text-white">{source.type}</span>
-                  <span className="text-sm text-white/40">{source.examples}</span>
+                  <span className="text-sm text-white/65">{source.examples}</span>
                   <span
                     className={`text-xs font-medium px-2 py-0.5 rounded-full h-fit ${
                       source.weight === 'High'
                         ? 'bg-emerald-500/10 text-emerald-400'
                         : source.weight === 'Medium'
                         ? 'bg-amber-500/10 text-amber-400'
-                        : 'bg-white/[0.06] text-white/40'
+                        : 'bg-white/[0.06] text-white/65'
                     }`}
                   >
                     {source.weight}
@@ -362,8 +372,8 @@ export default function MethodologyPage() {
               Domain Coverage
             </h2>
             <p className="text-white/50 mb-8">
-              {researchDomains.length} active research domains, each maintained with regular source
-              validation and data refresh cycles.
+              {researchDomains.length} research domains at different stages of review. Counts below
+              come from the source registry itself; an empty registry is labeled as pending.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-3">
@@ -374,12 +384,16 @@ export default function MethodologyPage() {
                   className="flex items-center justify-between bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-3 hover:bg-white/[0.04] hover:border-white/[0.12] transition-all group"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <Layers className="w-4 h-4 text-white/30 flex-shrink-0" />
+                    <Layers className="w-4 h-4 text-white/60 flex-shrink-0" />
                     <span className="text-sm text-white truncate">{domain.title}</span>
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0">
-                    <span className="text-[10px] text-white/30">{domain.sourceCount} sources</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 transition-colors" />
+                    <span className="text-xs text-white/65">
+                      {sourceCountFor(domain.slug) > 0
+                        ? `${sourceCountFor(domain.slug)} sources`
+                        : 'Registry pending'}
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-white/50 group-hover:text-white transition-colors" />
                   </div>
                 </Link>
               ))}
@@ -395,8 +409,8 @@ export default function MethodologyPage() {
                 Explore the Research
               </h2>
               <p className="text-sm text-white/50 mb-6 max-w-lg mx-auto">
-                Explore any of our {researchDomains.length} research domains. Every finding is
-                cross-referenced and regularly updated.
+                Each page shows its current source registry or states plainly when that registry
+                is still pending.
               </p>
               <Link
                 href="/research"
