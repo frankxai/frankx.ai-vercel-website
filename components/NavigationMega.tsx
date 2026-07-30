@@ -433,7 +433,7 @@ export default function NavigationMega() {
             : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
         )}
       >
-        <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <div className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <Logo />
 
           <NavigationMenu.Root
@@ -532,7 +532,7 @@ export default function NavigationMega() {
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
-        </nav>
+        </div>
       </header>
 
       <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />

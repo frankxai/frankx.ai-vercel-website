@@ -313,7 +313,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <div className="flex items-center gap-3">
                 <FrankOmegaAvatar size="xs" />
-                <p className="max-w-lg font-serif text-lg italic leading-7 text-white/30">
+                <p className="max-w-lg font-serif text-lg italic leading-7 text-white/70">
                   &ldquo;I build to understand. I document so the people I love can build after me.&rdquo;
                 </p>
               </div>
@@ -339,7 +339,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </Link>
             </div>
 
-            <p className="max-w-xl text-[11px] leading-5 text-white/25">
+            <p className="max-w-xl text-[11px] leading-5 text-white/70">
               Independent project by former Oracle AI architect Frank Riemer. Not affiliated with,
               endorsed by, or sponsored by Oracle.
             </p>

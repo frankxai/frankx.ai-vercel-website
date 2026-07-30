@@ -16,11 +16,11 @@ import {
 
 import { EventRibbon } from '@/components/connect/EventRibbon'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { getMvuEntrySummaries, type MvuKind } from '@/lib/mvu'
 import { MVU_LAB } from '@/lib/mvu/lab'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const MVU_URL = SITE_URL + '/mvu'
 const OFFICIAL_EVENT_URL = 'https://www.mindvalley.com/u/schedule'
 const FEATURED_ARTICLE_URL = '/blog/your-mind-is-a-temporary-library'
@@ -278,6 +278,7 @@ export default function MvuPage() {
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
           <Link
             href={FEATURED_ARTICLE_URL}
+            aria-label="Read Your Mind Is a Temporary Library"
             className="group relative block aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-space focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
           >
             <Image

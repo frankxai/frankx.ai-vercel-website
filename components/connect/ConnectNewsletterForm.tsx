@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
+import Link from 'next/link'
 import { CheckCircle2, AlertCircle, Sparkles } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
@@ -49,9 +50,14 @@ export function ConnectNewsletterForm() {
         Weekly drops on AI architecture, music, and the systems behind FrankX. No noise.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
+        <label htmlFor="connect-newsletter-email" className="sr-only">
+          Email address
+        </label>
         <input
+          id="connect-newsletter-email"
           type="email"
           name="email"
+          autoComplete="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -68,6 +74,16 @@ export function ConnectNewsletterForm() {
           {status === 'submitting' ? '…' : status === 'success' ? 'Joined' : 'Join'}
         </button>
       </form>
+      <p className="mt-2 text-[11px] leading-5 text-white/55">
+        Occasional FrankX field notes. Unsubscribe anytime.{' '}
+        <Link
+          href="/privacy"
+          className="underline decoration-white/30 underline-offset-2 transition-colors hover:text-white"
+        >
+          Privacy details
+        </Link>
+        .
+      </p>
       <div
         id="connect-newsletter-status"
         role="status"
