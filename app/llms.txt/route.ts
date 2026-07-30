@@ -106,7 +106,7 @@ ${researchLinks}
 
 ## LLM Provider Hub (the decision layer over the frontier model landscape)
 - [LLM Hub](${SITE_URL}/llm-hub): Every frontier provider, model, and agentic platform — categorized, priced, with verdicts
-- [LLM Arena](${SITE_URL}/llm-hub/arena): Interactive side-by-side comparison — pick any two models, see the head-to-head
+- [Starlight Model Arena](${SITE_URL}/research/model-arena): First-party measured model rounds with published run receipts
 - [Sources & Provenance](${SITE_URL}/llm-hub/sources): Where every number comes from — primary, independent, aggregator
 - [LLM Hub JSON](${SITE_URL}/llm-hub.json): Machine-readable registry + verdicts + decision matrix for agents
 ${llmModelLinks}

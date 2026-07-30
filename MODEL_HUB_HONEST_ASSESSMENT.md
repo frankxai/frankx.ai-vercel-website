@@ -52,7 +52,7 @@ It's not "more models in the table." It's three concrete things:
 
 - Registry refresh: Opus 4.8, Opus 4.7, GPT-5.4, GPT-5.5; fill missing sources; mark superseded models correctly.
 - `verification` block added to the schema; UI badges on model cards.
-- `/llm-hub/arena` — interactive side-by-side comparison picker (the actual arena).
+- ~~`/llm-hub/arena` — interactive side-by-side comparison picker~~ Superseded (2026-07): the measured Starlight Model Arena shipped at `/research/model-arena` (receipts from SIS `tools/arena/runs/`); the registry-spec picker was dropped to avoid two competing arenas.
 - `/llm-hub/sources` — honest provenance + freshness dashboard, public.
 - Cross-link the arena from every model page, the hub, and `/ai-ops/models-2026`.
 

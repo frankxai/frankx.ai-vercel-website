@@ -354,9 +354,9 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
 
         <section className="mb-10 rounded-2xl border border-purple-500/30 bg-purple-500/[0.04] p-6">
           <h2 className="mb-2 text-lg font-bold text-white">Put {model.name} head-to-head</h2>
-          <p className="mb-4 text-sm text-white/60">Pick a contender and see the spec deltas, pricing deltas, capability overlap, and verdict — live.</p>
-          <Link href="/llm-hub/arena" className="inline-flex items-center gap-2 rounded-lg bg-purple-500/20 px-4 py-2 text-sm font-medium text-purple-200 transition-colors hover:bg-purple-500/30">
-            Open the Arena <ArrowRight className="h-4 w-4" />
+          <p className="mb-4 text-sm text-white/60">The Starlight Model Arena runs real task rounds with published receipts — first-party measured, not vendor-reported.</p>
+          <Link href="/research/model-arena" className="inline-flex items-center gap-2 rounded-lg bg-purple-500/20 px-4 py-2 text-sm font-medium text-purple-200 transition-colors hover:bg-purple-500/30">
+            Open the Model Arena <ArrowRight className="h-4 w-4" />
           </Link>
         </section>
 

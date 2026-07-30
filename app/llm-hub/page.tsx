@@ -143,10 +143,10 @@ export default async function LlmHubPage() {
                 <Compass className="h-4 w-4" /> Explore all models
               </Link>
               <Link
-                href="/llm-hub/arena"
+                href="/research/model-arena"
                 className="inline-flex items-center gap-2 rounded-lg border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm text-purple-300 transition-colors hover:border-purple-500/50"
               >
-                <Compass className="h-4 w-4" /> Open the Arena
+                <Compass className="h-4 w-4" /> Starlight Model Arena
               </Link>
               <Link
                 href="/llm-hub/sources"
