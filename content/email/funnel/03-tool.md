@@ -48,7 +48,7 @@ The schema isn't documentation. It's runtime validation that prevents the model 
 
 ## Today's exercise (10 minutes)
 
-Open `src/tools/web-search.ts` in the starter repo. Add a second tool — anything you want. A `calculate` tool that does basic math. A `wikipedia` tool that fetches a summary. A `define` tool that returns dictionary entries.
+In your example project, add a second tool beside `src/tools/web-search.ts` — anything narrow enough to test. A `calculate` tool that does basic math. A `wikipedia` tool that fetches a summary. A `define` tool that returns dictionary entries.
 
 Register it in `src/agent/loop.ts` next to `web_search`:
 

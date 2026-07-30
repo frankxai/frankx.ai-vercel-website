@@ -9,7 +9,7 @@ tags: ["AI Agents", "Vercel AI SDK", "Agent Card", "Getting Started"]
 
 # First Agent Primer
 
-This is the written version of the [Build Your First AI Agent workshop](/workshops/build-first-ai-agent). If you prefer live delivery, the 90-minute workshop is faster. If you want the book, read on.
+This guide shares the same six-part curriculum as the [Build Your First AI Agent workshop format](/workshops/build-first-ai-agent), but keeps every implementation boundary visible on the page.
 
 **By the end of this guide you will have:**
 
@@ -18,8 +18,6 @@ This is the written version of the [Build Your First AI Agent workshop](/worksho
 - A valid Google A2A Agent Card served at `/.well-known/agent.json`
 - A 3-case eval harness that tells you when your agent misbehaves
 - The six-primitive mental model you can re-apply to every future agent framework
-
-Read time: ~30 minutes. Build time: ~60-90 minutes. Total afternoon: comfortable.
 
 ---
 
@@ -40,11 +38,10 @@ You can read the full argument for why these six (and not five or seven) in [The
 
 ## Part 2 — Set up the environment
 
-You need three things:
+You need two things:
 
 - **Node 20+** and `pnpm` (or `npm`). Verify with `node -v` and `pnpm -v`.
 - **An LLM API key.** Anthropic is recommended for the best reasoning-per-dollar. OpenAI or Google also work.
-- **A GitHub account** (only needed if you want to fork the starter repo).
 
 If you don't have Node 20, install via `nvm`:
 
@@ -61,16 +58,11 @@ npm install -g pnpm
 
 ---
 
-## Part 3 — Clone the starter
+## Part 3 — Prepare a project you control
 
-The [starter repo](https://github.com/frankxai/first-agent-vercel-aisdk) has every primitive scaffolded. We'll walk through what's in it and then build on top.
-
-```bash
-git clone https://github.com/frankxai/first-agent-vercel-aisdk
-cd first-agent-vercel-aisdk
-pnpm install
-cp .env.example .env
-```
+Use an existing Next.js TypeScript project that you can safely change. This guide does not currently
+claim a cloneable starter repository; the implementation that follows is shown inline so you can
+review each boundary before adding it to your own project.
 
 Open `.env` in your editor and set at least one API key:
 
@@ -331,7 +323,7 @@ Vercel logs stream into the dashboard automatically. One line per step is enough
 
 ## Part 10 — Pick your next branch
 
-You've shipped your first agent. The [workshop's six branches](/workshops/build-first-ai-agent) tell you where to go next:
+At this point, verify the agent against the acceptance checklist. The [workshop's six branches](/workshops/build-first-ai-agent) describe possible next areas:
 
 - **B1 — Claude Agent SDK + MCP.** Best reasoning, growing tool ecosystem, Managed Agents for durability.
 - **B2 — OpenAI Agents SDK + AgentKit.** Largest install base, AgentKit visual workflow layer.
@@ -358,13 +350,13 @@ Different models have different reliability for structured output. Claude Sonnet
 
 Three common causes:
 
-1. Every request is re-sending a huge system prompt. Use Claude's prompt caching (Claude Agent SDK exposes it cleanly; Vercel AI SDK has caching as of v5 — check docs).
+1. Every request is re-sending a huge system prompt. Check the current provider and SDK documentation for supported caching behavior.
 2. `maxSteps` is too high and the agent is looping. Cap at 5 for a simple agent.
-3. Session memory is unbounded. The starter's `memory.ts` prunes at 20 turns — make sure yours does too.
+3. Session memory is unbounded. Set an explicit retention bound in your own `memory.ts`.
 
 ### "The Agent Card isn't discoverable from another origin"
 
-CORS. Check `next.config.mjs` has the `Access-Control-Allow-Origin: *` header on `/.well-known/agent.json`. The starter does this by default.
+CORS. Configure the required origin policy explicitly for `/.well-known/agent.json`; do not assume a template has done it for you.
 
 ---
 
@@ -374,10 +366,7 @@ CORS. Check `next.config.mjs` has the `Access-Control-Allow-Origin: *` header on
 - [Why Vercel AI SDK is the right first-agent stack in 2026](/blog/vercel-ai-sdk-first-agent-stack) — why this stack
 - [Agent Card (A2A) spec](/guides/agent-card-a2a-spec) — the portability contract
 - [Build Your First AI Agent workshop](/workshops/build-first-ai-agent) — the live version
-- [Starter repo](https://github.com/frankxai/first-agent-vercel-aisdk) — the code
 
 ## License and attribution
 
-This guide is CC-BY-NC 4.0 licensed. The starter repo is MIT licensed — use commercially, fork freely.
-
-When you ship your agent, drop the URL and your Agent Card at `frankx.ai/workshops/build-first-ai-agent#gallery` (coming soon) and we'll feature it.
+This guide is CC-BY-NC 4.0 licensed.

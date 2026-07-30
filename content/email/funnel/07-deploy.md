@@ -89,7 +89,7 @@ Pick one. Don't ship without it.
 
 Two parts:
 
-**Part 1:** Deploy the starter repo to Vercel. Set environment variables in the Vercel dashboard. Verify your agent is live at `https://your-name.vercel.app`.
+**Part 1:** Deploy your example project to your chosen host. Set environment variables through the provider's protected configuration. Verify the agent is live at the URL you control.
 
 **Part 2:** Add a log line to `src/agent/loop.ts`:
 

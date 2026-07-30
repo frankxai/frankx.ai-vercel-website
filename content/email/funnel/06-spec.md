@@ -20,7 +20,7 @@ Here's the Card from the workshop starter:
 {
   "name": "First Agent — Research Assistant",
   "description": "A research assistant that answers questions with cited sources.",
-  "url": "https://first-agent-vercel-aisdk.vercel.app",
+  "url": "https://agent.example.com",
   "provider": { "name": "Frank Riemer", "url": "https://frankx.ai" },
   "version": "0.1.0",
   "capabilities": { "streaming": false },
@@ -58,7 +58,7 @@ If no — your agent is a private tool, not a component.
 
 ## Today's exercise (10 minutes)
 
-If you cloned the starter repo, the Agent Card is already at `public/.well-known/agent.json`. Update three fields:
+In your example project, place the Agent Card at `public/.well-known/agent.json`. Then verify three fields:
 
 ```json
 {

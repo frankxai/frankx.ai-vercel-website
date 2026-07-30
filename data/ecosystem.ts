@@ -257,9 +257,9 @@ export const ecosystemEntries: EcosystemEntry[] = [
     repoUrl: null,
     status: 'scaffolded',
     shipped: '2026-04-25',
-    summary: '5-tier premium funnel — €0 Primer to €2,997 Founder Circle.',
+    summary: 'Public Six Primitives path with a fail-closed Toolkit release status.',
     description:
-      "Test-branch funnel: Primer → Pack → Toolkit → Mastery → Architect → Founder's Circle. Lemon Squeezy + Claude Managed Agents customer service. Routes /start-here, /build, /build/[slug], /founders-circle. Lives on funnel/build-first-ai-agent-v1 branch.",
+      "Legacy test-branch funnel, superseded by the public /start-here path and a fail-closed Toolkit status route. No Six Primitives paid checkout is open.",
     relatedSystems: ['workshop-os', 'unified-crm'],
     commands: [],
     color: 'fuchsia',

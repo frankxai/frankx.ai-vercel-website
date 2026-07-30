@@ -37,7 +37,7 @@ Frank Riemer is an AI Architect. FrankX is an independent project and is not aff
 ## Build status
 - [Build release board](${SITE_URL}/build): Current availability and release gates
 - [Six Primitives Toolkit](${SITE_URL}/build/six-primitives-toolkit): Planned price €197; checkout is not open while files, access, and refund terms are verified
-- [Six Primitives Primer](${SITE_URL}/start-here): Free starting route linked from the release board
+- [Six Primitives public path](${SITE_URL}/start-here): Public essay and inline build guide; no form or checkout
 
 ## Systems and field work
 - [AI Architecture](${SITE_URL}/ai-architecture): Architecture guides and patterns

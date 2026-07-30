@@ -28,7 +28,7 @@ If you have to think, you have a bug waiting to happen.
 
 ## In code
 
-The starter repo has session memory only — that's all a 90-minute workshop needs:
+The guide's example project uses session memory only:
 
 ```ts
 const conversations = new Map<string, CoreMessage[]>()
@@ -60,7 +60,7 @@ Without a specific reason, long-term memory becomes a vector-DB junk drawer that
 
 ## Today's exercise (10 minutes)
 
-In the starter repo, ask your agent the same question twice in different sessions:
+In your example project, ask the agent the same question twice in different sessions:
 
 ```bash
 curl -X POST http://localhost:3000/api/chat \
@@ -80,6 +80,6 @@ That's session memory working as designed. Now imagine if Alice's questions star
 
 Day 5 — Primitive 4: **The Loop**. Where most agent bugs live, and how `maxSteps` saves you from runaway costs.
 
-(I'll also mention the Six Primitives Pack on Day 5 — €7 — for builders who want the polished pocket book and the templates. Not pushing it; just letting you know it exists.)
+(Tomorrow includes a reminder that the public essay and inline build guide remain the current path. Paid Six Primitives offers are not available.)
 
 — Frank

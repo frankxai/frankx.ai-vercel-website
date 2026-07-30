@@ -144,12 +144,12 @@ export const osModules: OSModule[] = [
     color: 'fuchsia',
     iconName: 'Zap',
     shipped: '2026-04-25',
-    oneLine: '5-tier premium funnel — €0 Primer to €2,997 Founder Circle.',
+    oneLine: 'Public Six Primitives path with a fail-closed Toolkit release status.',
     description:
-      'Test-branch funnel: Primer → Pack → Toolkit → Mastery → Architect → Founder\'s Circle. Lemon Squeezy + Claude Managed Agents customer service. Routes /start-here, /build, /build/[slug], /founders-circle. Ramps the operational systems above into a clear commercial offering.',
+      'Legacy test-branch funnel superseded by the public /start-here path. The Toolkit route records unavailable status; no Six Primitives paid checkout is open.',
     phases: ['funnel'],
     connectsTo: ['workshop-os', 'aco'],
-    artifacts: ['Primer', 'Pack', 'Toolkit', 'Mastery', 'Architect', 'Founder Circle'],
+    artifacts: ['Public learning path', 'Toolkit release status'],
     commands: [],
   },
   {

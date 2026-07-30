@@ -1,7 +1,7 @@
 ---
 day: 5
 subject: "Primitive 4 — The Loop (where most agent bugs actually live)"
-preheader: "Reading time: 6 min. Plus a brief note on the €7 Pack."
+preheader: "Reading time: 6 min. Plus the current public build path."
 ---
 
 Five days in. You're past the warm-up — today's the dense one.
@@ -59,7 +59,7 @@ If you can't state your loop's termination condition, you don't own your loop. T
 
 ## Today's exercise (10 minutes)
 
-In the starter repo, set `maxSteps: 1` (deliberately too low) and ask a question that needs web search:
+In your example project, set `maxSteps: 1` (deliberately too low) and ask a question that needs web search:
 
 ```ts
 maxSteps: 1
@@ -77,18 +77,17 @@ A customer agent at FrankX once started looping because their `fetch_user_profil
 
 The fix took 20 minutes once we knew what to look for: lower `maxSteps`, return tools as `{ ok: false, retryAfter: 60 }`, log every step. The post-mortem took 3 hours because they didn't have observability — which is Day 7's topic.
 
-## A brief note — the Six Primitives Pack
+## A brief note — what is public now
 
-Halfway through the course feels like the honest place to mention this. If you'd like:
+The current Six Primitives path is public and inspectable:
 
-- The 60-page polished pocket book (PDF + EPUB) of all six primitives
-- A 5-card Agent Card library you can fork
-- A 15-case eval harness
-- The Vercel deploy checklist
+- The architectural essay
+- The first-agent build guide
+- The inline first-agent guide
 
-It's all in the **Six Primitives Pack** at €7 — [frankx.ai/build/six-primitives-pack](https://frankx.ai/build/six-primitives-pack). 30-day refund. Many readers buy it just to have something to print and re-read.
+Start at [frankx.ai/start-here](https://frankx.ai/start-here). There is no form or checkout. Paid Six Primitives offers are not available while the next release is being verified.
 
-If the email course is enough, it's enough. The Pack is convenience, not gating.
+If the public path is enough, it is enough.
 
 ## Tomorrow
 

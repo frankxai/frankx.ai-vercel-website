@@ -24,7 +24,7 @@ The point isn't memorization. The point is to have a **place to put** every line
 
 ## Minute 10-20 — Model
 
-Clone the starter repo. Add Anthropic API key. Run `pnpm dev`. Verify a query returns something.
+Open your example project, configure one provider key through a local environment file, run the development server, and verify a query returns a bounded response.
 
 Then change `AGENT_PROVIDER=openai` and watch the same agent run on a different model.
 
@@ -96,7 +96,7 @@ You can paste the URL into a Slack channel. Other people can use it. Other agent
 
 You've covered all six primitives — independently and synthesized. You have the mental model. If you've done the exercises, you have a working artifact.
 
-This is what the 90-minute live workshop teaches in person. If you want the full live experience: [frankx.ai/workshops/build-first-ai-agent](https://frankx.ai/workshops/build-first-ai-agent). It's free and we run it monthly.
+The workshop page describes the same guided format: [frankx.ai/workshops/build-first-ai-agent](https://frankx.ai/workshops/build-first-ai-agent). Treat scheduling and availability as unconfirmed unless the page states a current date.
 
 ## Tomorrow
 

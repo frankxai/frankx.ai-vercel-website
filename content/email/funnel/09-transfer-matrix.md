@@ -49,47 +49,36 @@ You don't need to pick today. Most builders use Vercel AI SDK as the learning st
 
 ## Where you go from here
 
-You've finished the email course. You have the mental model and (if you did the exercises) a working artifact. Three honest paths forward:
+You've finished the email course. You have the mental model and (if you did the exercises) a working artifact. Four honest paths forward:
 
 ### Path 1: keep the free version, build on what you have
 
-The starter repo is yours forever. The handout is yours. The mental model is yours. Many builders ship real production agents on just this. **Pay nothing else.** That's a fine outcome.
+The public essay and inline guide are available without a form or checkout. Build on those for as long as they are useful.
 
-### Path 2: get the polished bundle (€7 — Six Primitives Pack)
+### Path 2: inspect the public implementation
 
 If you want:
-- The 60-page polished pocket book (PDF + EPUB)
-- A 5-card Agent Card library (research / triage / scheduling / sales qual / code review)
-- A 15-case eval harness with judge templates
-- The Vercel deploy checklist
+- The full architectural argument
+- A guided TypeScript build
+- The inline implementation sequence
 
-→ [frankx.ai/build/six-primitives-pack](https://frankx.ai/build/six-primitives-pack)
+→ [frankx.ai/start-here](https://frankx.ai/start-here)
 
-€7. Lifetime. 30-day no-questions refund. Most readers buy it just for the polished pocket book.
+These resources are public now. There is no form or checkout.
 
-### Path 3: go deeper with the Toolkit (€197 — most chosen)
+### Path 3: watch the planned Toolkit release
 
-If you ship agents in your work and want:
-- Six branch deep-dive videos (Claude / OpenAI / Google / no-code / AI-builds-AI / Oracle)
-- 30+ Agent Card library
-- A 50-pattern production cookbook
-- A 100-case eval cookbook
-- Observability templates
-- Discord community (90 days, then €19/mo)
+The Toolkit is a possible future release for builders working on production concerns. It is not currently available.
 
 → [frankx.ai/build/six-primitives-toolkit](https://frankx.ai/build/six-primitives-toolkit)
 
-€197. Lifetime. 30-day refund. This is where most working builders settle.
+The status page is not a checkout. Final contents, delivery, and terms are not yet asserted.
 
-### Path 4: enterprise / advisory
+### Path 4: discuss a real workflow
 
-If you're building agents inside a company with governance / compliance / multi-stakeholder needs:
+If you are responsible for a recurring workflow and need bounded implementation help, use the current service path:
 
-- The €497 **Mastery** tier adds a structured 6-week cohort + AI-assisted code review queue.
-- The €997 **Architect** tier adds Frank's enterprise AI Center of Excellence framework, public Oracle ADK learning material, and compliance-oriented templates.
-- The €2,997 **Founder's Circle** adds 4 hours of Frank's actual time per quarter, by application only.
-
-→ [frankx.ai/build](https://frankx.ai/build)
+→ [frankx.ai/work-with-me](https://frankx.ai/work-with-me)
 
 ## Whatever you do next, you have the map
 
@@ -101,6 +90,6 @@ Thanks for reading the course. Reply to this email if you have a question — I 
 
 — Frank
 
-P.S. If you'd rather build live, the 90-minute workshop runs monthly: [frankx.ai/workshops/build-first-ai-agent](https://frankx.ai/workshops/build-first-ai-agent). It's free.
+P.S. The workshop page describes a guided format: [frankx.ai/workshops/build-first-ai-agent](https://frankx.ai/workshops/build-first-ai-agent). Treat scheduling and availability as unconfirmed unless the page states a current date.
 
-P.P.S. If you'd rather just ship a paid agent on someone else's stack and skip building your own — Founder's Circle exists for that. By application only. [frankx.ai/founders-circle](https://frankx.ai/founders-circle).
+P.P.S. Paid Six Primitives offers remain unavailable until their release evidence is complete.

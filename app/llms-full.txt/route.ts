@@ -67,7 +67,7 @@ The primary service starts with one recurring workflow that still returns to a c
 - **Toolkit status:** Checkout is not open
 - **Toolkit planned price:** €197 one-time
 - **Toolkit release gate:** Verify files, access path, and refund terms before taking payment
-- [Six Primitives Primer](${SITE_URL}/start-here): Free starting route
+- [Six Primitives public path](${SITE_URL}/start-here): Public essay and inline build guide; no form or checkout
 
 ## Public systems
 

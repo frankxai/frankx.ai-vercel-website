@@ -7,7 +7,7 @@ import { products, getProductBySlug } from '@/data/products'
 
 export async function generateStaticParams() {
   return products
-    .filter((product) => product.tier !== 'free' && product.tier !== 'founders')
+    .filter((product) => product.tier !== 'free')
     .map((product) => ({ slug: product.slug }))
 }
 
@@ -113,11 +113,11 @@ function ToolkitReleaseStatus() {
               href="/start-here"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
             >
-              Get the free Six Primitives Primer
+              Open the public Six Primitives path
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <p className="mt-4 max-w-2xl text-xs leading-5 text-white/70">
-              Toolkit checkout is not open. This link goes to the free Primer; no payment is
+              Toolkit checkout is not open. This link goes to public resources; no payment is
               collected.
             </p>
           </div>

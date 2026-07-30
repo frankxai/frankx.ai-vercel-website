@@ -113,7 +113,7 @@ test('the Toolkit and paid product pages fail closed until checkout is verified'
     'Checkout is not open.',
     'No payment is collected on this page.',
     'Planned price: €197, one-time.',
-    'Get the free Six Primitives Primer',
+    'Open the public Six Primitives path',
     'Toolkit checkout is not open.',
   ]) {
     assert.ok(normalizedProductPage.includes(copy), `missing Toolkit release copy: ${copy}`)
@@ -129,11 +129,11 @@ test('the Toolkit and paid product pages fail closed until checkout is verified'
   assert.doesNotMatch(buildHub, /Founder’s Circle|Founder's Circle/)
 
   const toolkitStart = products.indexOf("slug: 'six-primitives-toolkit'")
-  const toolkitEnd = products.indexOf("slug: 'six-primitives-mastery'", toolkitStart)
-  const toolkit = products.slice(toolkitStart, toolkitEnd)
+  const toolkit = products.slice(toolkitStart)
 
   assert.match(toolkit, /outcomes: \[\]/)
   assert.match(toolkit, /includes: \[\]/)
+  assert.match(toolkit, /releaseStatus: 'unavailable'/)
   assert.match(toolkit, /featured: false/)
   for (const stoppedClaim of [
     'Most buyers',
@@ -146,6 +146,73 @@ test('the Toolkit and paid product pages fail closed until checkout is verified'
     'no-questions refund',
   ]) {
     assert.doesNotMatch(toolkit, new RegExp(stoppedClaim), `Toolkit still contains: ${stoppedClaim}`)
+  }
+})
+
+test('the promoted Six Primitives path exposes only public artifacts and unavailable paid status', async () => {
+  const sources = await Promise.all(
+    [
+      'app/start-here/page.tsx',
+      'app/build/page.tsx',
+      'app/build/[slug]/page.tsx',
+      'data/products.ts',
+      'data/workshops.ts',
+      'content/blog/six-primitives-ai-agent.mdx',
+      'content/blog/vercel-ai-sdk-first-agent-stack.mdx',
+      'content/guides/first-agent-primer.mdx',
+      'content/guides/agent-card-a2a-spec.mdx',
+      'content/email/funnel/00-welcome.md',
+      'content/email/funnel/02-model.md',
+      'content/email/funnel/03-tool.md',
+      'content/email/funnel/04-memory.md',
+      'content/email/funnel/05-loop.md',
+      'content/email/funnel/06-spec.md',
+      'content/email/funnel/07-deploy.md',
+      'content/email/funnel/08-walkthrough.md',
+      'content/email/funnel/09-transfer-matrix.md',
+      'content/email/funnel/README.md',
+    ].map(readRepoFile),
+  )
+  const publicClaims = sources.join('\n')
+  const startHere = sources[0]
+
+  assert.match(startHere, /Public now · No form · No checkout/)
+  assert.match(startHere, /One mental model\. Two public artifacts\./)
+  assert.match(startHere, /href: '\/blog\/six-primitives-ai-agent'/)
+  assert.match(startHere, /href: '\/guides\/first-agent-primer'/)
+  assert.match(startHere, /No paid Six Primitives offer is available today/)
+  assert.match(startHere, /final contents, delivery, or refund terms/)
+  assert.doesNotMatch(startHere, /EmailSignup|courses-waitlist/)
+  assert.doesNotMatch(
+    publicClaims,
+    /first-agent-vercel-aisdk|downloads\/six-primitives-primer\.pdf|cloneable starter repository is available/i,
+  )
+
+  for (const stoppedClaim of [
+    'six-primitives-pack',
+    'Six Primitives Pack',
+    'six-primitives-mastery',
+    'Six Primitives Mastery',
+    'six-primitives-architect',
+    'Six Primitives Architect',
+    'most builders settle',
+    'most working builders settle',
+    '30-day refund',
+    'no-questions refund',
+    '30+ Agent',
+    '50-pattern',
+    '100-case',
+    'Discord community',
+    'five tiers',
+    '€497',
+    '€997',
+    '€2,997',
+  ]) {
+    assert.doesNotMatch(
+      publicClaims,
+      new RegExp(stoppedClaim, 'i'),
+      `promoted Six Primitives source still contains: ${stoppedClaim}`,
+    )
   }
 })
 

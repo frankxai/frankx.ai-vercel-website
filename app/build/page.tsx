@@ -5,7 +5,7 @@ import { createMetadata } from '@/lib/seo'
 export const metadata = createMetadata({
   title: 'Build — Current release status',
   description:
-    'Start with the free Six Primitives Primer or inspect the planned Toolkit release. Paid checkout remains closed until contents, delivery, and refund terms are verified.',
+    'Use the public Six Primitives learning path or inspect the planned Toolkit release. No paid Six Primitives offer is currently available.',
   path: '/build',
 })
 
@@ -31,7 +31,7 @@ export default function BuildHubPage() {
           Build from what is ready.
         </h1>
         <p className="mt-7 max-w-2xl text-lg leading-8 text-white/75">
-          The Primer is the current starting point. The paid Toolkit stays in release review until
+          The public learning path is ready to inspect. The planned Toolkit stays unavailable until
           its contents, access path, and terms can be verified end to end.
         </p>
       </section>
@@ -44,17 +44,16 @@ export default function BuildHubPage() {
               Available starting point
             </div>
             <h2 className="mt-8 text-3xl font-semibold tracking-[-0.03em]">
-              Six Primitives Primer
+              Six Primitives public path
             </h2>
             <p className="mt-4 max-w-lg text-base leading-7 text-white/75">
-              Begin with the free Primer when you need a clear model for one agent loop before
-              choosing a stack.
+              Read the argument and follow the inline build guide before choosing a larger stack.
             </p>
             <Link
               href="/start-here"
               className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
             >
-              Get the free Primer
+              Open the public path
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </article>

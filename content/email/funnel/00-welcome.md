@@ -9,7 +9,7 @@ Hi —
 
 Thanks for grabbing the Six Primitives Primer. Here's the handout:
 
-**[Download the 8-page PDF →](https://frankx.ai/downloads/six-primitives-primer.pdf)**
+**[Open the public Six Primitives path →](https://frankx.ai/start-here)**
 
 If the link doesn't work, just reply and I'll resend.
 
@@ -24,10 +24,10 @@ What you can expect:
 
 Most people read these in 5-10 minutes per day. Some skim. Both are fine.
 
-If at any point you'd rather build live with me, the 90-minute workshop is here:
+The workshop page describes the guided format. Treat scheduling and availability as unconfirmed unless the page states a current date:
 
 → [Build Your First AI Agent (free workshop page)](https://frankx.ai/workshops/build-first-ai-agent)
 
 — Frank
 
-P.S. The starter repo I mention through the course lives here: [github.com/frankxai/first-agent-vercel-aisdk](https://github.com/frankxai/first-agent-vercel-aisdk). Clone it whenever you're ready. MIT-licensed.
+P.S. The implementation is shown inline in the public guide: [frankx.ai/guides/first-agent-primer](https://frankx.ai/guides/first-agent-primer). No cloneable starter repository is currently asserted.

@@ -38,14 +38,14 @@ Every production agent I've shipped is made of six primitives:
 Learn these six, and the next framework you pick up is a 30-minute exercise — not a month-long investment. The syntax changes; the primitives don't. That's the whole argument of this post, and it's the curriculum spine of the [Build Your First AI Agent workshop](/workshops/build-first-ai-agent).
 
 <Callout type="tip">
-**The workshop version.** If you want to ship all six primitives in a working agent with a public URL by the end of the afternoon, the workshop is the fastest path. This post is the written reference you can come back to afterwards.
+**The workshop format.** The workshop page describes a guided version of the same six-part build. This post remains the written architectural reference.
 </Callout>
 
 ## Primitive 1: The model
 
 The model is the reasoning substrate. Claude Sonnet 4.6, GPT-5, Gemini 2.5 Pro, an open-weight Llama, a local Ollama — they are all candidates. What matters for your agent is **how well the model follows tool-use protocols** and **how cleanly it produces structured output**.
 
-The naive view: "a model is where the AI lives." The architectural view: **a model is a pluggable component behind an interface.** In the [Vercel AI SDK starter repo](https://github.com/frankxai/first-agent-vercel-aisdk), that interface is five lines:
+The naive view: "a model is where the AI lives." The architectural view: **a model is a pluggable component behind an interface.** In the reference implementation below, that interface is five lines:
 
 ```ts
 import { anthropic } from '@ai-sdk/anthropic'
@@ -172,13 +172,13 @@ Two specs worth knowing:
 
 The [Google Agent-to-Agent (A2A) protocol](https://a2a-protocol.org/) defines an "Agent Card" — a JSON document describing identity, capabilities, and skills. It's served at `/.well-known/agent.json` on your agent's domain. Any A2A-compatible client can discover your agent and know what to do with it.
 
-Here's the Agent Card from the workshop starter:
+Here's an illustrative Agent Card for the same research-assistant example:
 
 ```json
 {
   "name": "First Agent — Research Assistant",
   "description": "A minimal research-assistant agent...",
-  "url": "https://first-agent-vercel-aisdk.vercel.app",
+  "url": "https://agent.example.com",
   "provider": { "name": "Frank Riemer", "url": "https://frankx.ai" },
   "version": "0.1.0",
   "capabilities": { "streaming": false },
@@ -258,16 +258,15 @@ Twenty minutes of this and you know whether to invest a month in the framework. 
 
 ## Go build
 
-- **Ship your first agent in 90 minutes** — [Build Your First AI Agent workshop](/workshops/build-first-ai-agent)
+- **Inspect the guided format** — [Build Your First AI Agent workshop](/workshops/build-first-ai-agent)
 - **Read the written guide** — [/guides/first-agent-primer](/guides/first-agent-primer)
 - **See the Agent Card spec** — [/guides/agent-card-a2a-spec](/guides/agent-card-a2a-spec)
-- **Clone the starter** — [github.com/frankxai/first-agent-vercel-aisdk](https://github.com/frankxai/first-agent-vercel-aisdk)
 
-The six primitives are the map. The workshop is the trip. The starter repo is the receipt.
+The six primitives are the map. The guide shows the implementation boundaries inline.
 
 ---
 
-**Want this as an 8-page handout + 10-day email primer course?** [Get the free Six Primitives Primer](/start-here) — no card, no fluff. We follow up with one short, opinionated email per day for ten days, each teaching one primitive with code samples. Unsubscribe in one click whenever.
+**Want the shortest public sequence?** [Use the Six Primitives path](/start-here) — the essay first, then the inline build guide. No form and no checkout.
 
 ---
 
