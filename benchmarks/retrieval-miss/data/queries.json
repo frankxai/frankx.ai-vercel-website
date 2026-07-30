@@ -1,0 +1,22 @@
+[
+  { "id": "q01", "query": "how do I push the most relevant results to the top of a candidate set", "gold": "p01" },
+  { "id": "q02", "query": "combine keyword search with vector search for retrieval", "gold": "p02" },
+  { "id": "q03", "query": "when does walking a knowledge graph beat plain similarity search", "gold": "p05" },
+  { "id": "q04", "query": "a standard way to plug external tools into an agent so one failure does not crash everything", "gold": "p06" },
+  { "id": "q05", "query": "answer quality falls off when the input gets very long", "gold": "p08" },
+  { "id": "q06", "query": "measure whether a change actually helped instead of guessing", "gold": "p09" },
+  { "id": "q07", "query": "put one endpoint in front of many model providers", "gold": "p11" },
+  { "id": "q08", "query": "let the model decide when to look things up and when it has enough", "gold": "p13" },
+  { "id": "q09", "query": "stop an agent from calling tools forever and draining the budget", "gold": "p16" },
+  { "id": "q10", "query": "why does the bill scale with how many steps the agent takes", "gold": "p20" },
+  { "id": "q11", "query": "make a person confirm before the agent does something irreversible", "gold": "p19" },
+  { "id": "q12", "query": "fast nearest-neighbour lookups over stored vectors", "gold": "p04" },
+  { "id": "q13", "query": "how big should the pieces of a document be when you split it for search", "gold": "p03" },
+  { "id": "q14", "query": "reuse a long unchanging preamble across calls to cut cost", "gold": "p14" },
+  { "id": "q15", "query": "the difference between returning every relevant document and only the relevant ones", "gold": "p22" },
+  { "id": "q16", "query": "keep the working state of one run apart from facts remembered across runs", "gold": "p24" },
+  { "id": "q17", "query": "block prompt injection and remove personal data around a model", "gold": "p15" },
+  { "id": "q18", "query": "force the model to emit parseable json that matches a schema", "gold": "p18" },
+  { "id": "q19", "query": "keep regulated data inside a specific region or on specific infrastructure", "gold": "p23" },
+  { "id": "q20", "query": "resume a long job after a crash without redoing the finished work", "gold": "p21" }
+]
