@@ -7,11 +7,7 @@
 
 export type ProductTier =
   | 'free'
-  | 'pack'
   | 'toolkit'
-  | 'mastery'
-  | 'architect'
-  | 'founders'
 
 export interface ProductInclusion {
   label: string
@@ -19,7 +15,7 @@ export interface ProductInclusion {
 }
 
 export interface ProductPricing {
-  eur: number
+  eur?: number
   plannedEur?: number
   usd?: number
   cadence: 'public' | 'unavailable' | 'one-time' | 'subscription' | 'application'
@@ -38,7 +34,6 @@ export interface Product {
   includes: ProductInclusion[]
   featured: boolean
   color: 'cyan' | 'violet' | 'amber' | 'emerald' | 'rose' | 'zinc'
-  seatsPerQuarter?: number
 }
 
 export const products: Product[] = [
@@ -75,7 +70,7 @@ export const products: Product[] = [
     title: 'Six Primitives Toolkit',
     subtitle:
       'A planned production-pattern release. Checkout remains closed while the offer is verified.',
-    pricing: { eur: 197, plannedEur: 197, cadence: 'unavailable' },
+    pricing: { plannedEur: 197, cadence: 'unavailable' },
     releaseStatus: 'unavailable',
     outcomes: [],
     includes: [],
@@ -86,10 +81,6 @@ export const products: Product[] = [
 
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find((product) => product.slug === slug)
-}
-
-export function productsByStage(): Product[] {
-  return [...products]
 }
 
 export function paidProducts(): Product[] {

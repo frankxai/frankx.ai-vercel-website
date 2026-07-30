@@ -192,7 +192,7 @@ test('build products use their canonical release state and stay in route discove
   )
   assert.ok(
     productPage.indexOf('permanentRedirect(product.canonicalPath)') <
-      productPage.indexOf('if (!product.pricing.lemonSqueezyVariantId)'),
+      productPage.indexOf('if (!product.pricing.lemonSqueezyVariantId ||'),
     'the verified public redirect must run before the fail-closed checkout fallback',
   )
 

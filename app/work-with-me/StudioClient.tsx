@@ -571,6 +571,7 @@ function InquiryForm() {
                     id="name"
                     name="name"
                     type="text"
+                    autoComplete="name"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -586,6 +587,7 @@ function InquiryForm() {
                     id="email"
                     name="email"
                     type="email"
+                    autoComplete="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -601,6 +603,7 @@ function InquiryForm() {
                     id="company"
                     name="company"
                     type="text"
+                    autoComplete="organization"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#AB47C7]/40 focus:border-transparent transition-all"
@@ -628,6 +631,17 @@ function InquiryForm() {
                     {errorMessage}
                   </p>
                 )}
+                <p className="text-xs leading-5 text-slate-400">
+                  By sending this form, you ask FrankX to store these details only to review and
+                  respond to your inquiry. No marketing is added without a separate opt-in.{' '}
+                  <Link
+                    href="/privacy"
+                    className="font-medium text-slate-200 underline decoration-white/30 underline-offset-4 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                  >
+                    Privacy details
+                  </Link>
+                  .
+                </p>
                 <PremiumButton
                   type="submit"
                   variant="primary"

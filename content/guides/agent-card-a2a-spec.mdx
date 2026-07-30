@@ -1,6 +1,6 @@
 ---
-title: "Agent Card (A2A) spec — the portability contract"
-description: "Field-by-field walkthrough of the Google A2A Agent Card — the JSON document that describes your agent's identity, capabilities, and skills. Used by BCG's enterprise agent playbook and every multi-agent mesh worth shipping."
+title: "Agent Card (A2A) 1.0 — the public interoperability contract"
+description: "A field-by-field walkthrough of the current Agent2Agent 1.0 Agent Card: supported interfaces, capabilities, security requirements, media types, and skills."
 date: "2026-04-24"
 author: "Frank"
 category: "AI Agents"
@@ -9,15 +9,15 @@ tags: ["AI Agents", "A2A", "Agent Card", "Interoperability", "Oracle OAS"]
 
 # The Agent Card
 
-The Google [Agent-to-Agent (A2A) protocol](https://a2a-protocol.org/) defines a JSON document called an **Agent Card** that describes an AI agent's identity, capabilities, and how to talk to it. It's served at `/.well-known/agent.json` on the agent's domain. Any A2A-compatible client can fetch it, understand the agent's skills, and know how to make a request.
+The [Agent2Agent (A2A) protocol](https://a2a-protocol.org/latest/specification/) defines a JSON document called an **Agent Card** that describes an AI agent's identity, supported interfaces, capabilities, security requirements, and skills. A public Card is discoverable at `/.well-known/agent-card.json` on the agent's domain.
 
 This is the portability contract. Ship an Agent Card with your agent and:
 
-- Other agents can discover and call yours.
-- A multi-agent orchestrator can route requests to you.
-- When you re-implement the agent on a different stack (Claude SDK, Google ADK, n8n), **the Agent Card stays the same.**
+- Compatible clients can discover the interfaces and skills you actually expose.
+- An orchestrator can decide whether it supports one of your declared protocol bindings.
+- You can change the implementation stack without changing the public Card when the advertised behavior and interfaces remain compatible.
 
-BCG's enterprise agent playbook treats the Agent Card as the discovery contract between agents in a mesh. It is, right now in 2026, the cleanest standardized spec for agent identity.
+This guide targets the current A2A 1.0 shape. Older examples with a top-level `url`, an `authentication` object, or a pre-1.0 discovery filename should not be copied into a new deployment.
 
 This guide walks every field of the A2A Agent Card, with examples, gotchas, and production notes.
 
@@ -29,22 +29,24 @@ This guide walks every field of the A2A Agent Card, with examples, gotchas, and 
 {
   "name": "First Agent — Research Assistant",
   "description": "A research assistant that answers questions with cited sources.",
-  "url": "https://agent.example.com",
+  "supportedInterfaces": [
+    {
+      "url": "https://agent.example.com/a2a/v1",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ],
   "provider": {
-    "name": "Frank Riemer",
+    "organization": "Frank Riemer",
     "url": "https://frankx.ai"
   },
   "version": "0.1.0",
   "capabilities": {
     "streaming": false,
-    "pushNotifications": false,
-    "stateTransitionHistory": false
+    "pushNotifications": false
   },
-  "authentication": {
-    "schemes": []
-  },
-  "defaultInputModes": ["text"],
-  "defaultOutputModes": ["text", "application/json"],
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain", "application/json"],
   "skills": [
     {
       "id": "research-with-sources",
@@ -52,14 +54,14 @@ This guide walks every field of the A2A Agent Card, with examples, gotchas, and 
       "description": "Given a question, searches the web and returns a structured Research object.",
       "tags": ["research", "search"],
       "examples": ["What changed in the Vercel AI SDK v5 release?"],
-      "inputModes": ["text"],
+      "inputModes": ["text/plain"],
       "outputModes": ["application/json"]
     }
   ]
 }
 ```
 
-This is a valid A2A Agent Card. Every field is either required or strongly recommended. Let's walk them one by one.
+This is a minimal public A2A 1.0 Agent Card with no declared authentication requirement. The required fields are present; optional production fields can be added as the service boundary becomes more sophisticated.
 
 ---
 
@@ -84,26 +86,36 @@ One paragraph, 100-400 characters. Describes what the agent does and — importa
 
 Be specific about **what it's for AND what it's not for.** Saving future callers from misrouted requests is an architectural courtesy.
 
-### `url` (required)
+### `supportedInterfaces` (required)
 
-Base URL of the agent. This is where A2A clients send requests. Should be HTTPS in production.
+An ordered list of the endpoints and protocol bindings the agent supports. The first entry is the preferred interface.
 
-**Important:** this is the **agent's URL**, not your company's homepage. If your agent lives at `https://agents.acme.com/support-triage`, that's the `url`.
+```json
+"supportedInterfaces": [
+  {
+    "url": "https://agents.acme.com/support-triage/a2a/v1",
+    "protocolBinding": "HTTP+JSON",
+    "protocolVersion": "1.0"
+  }
+]
+```
+
+The core binding identifiers are `JSONRPC`, `GRPC`, and `HTTP+JSON`. Use an absolute HTTPS URL in production and declare only interfaces your server actually implements.
 
 ### `provider` (recommended)
 
-Who's behind this agent. `{ name, url }`. Used for attribution, trust, and escalation paths.
+Who's behind this agent. `{ organization, url }`. Used for attribution, trust, and escalation paths.
 
 ```json
 "provider": {
-  "name": "Acme Corp",
+  "organization": "Acme Corp",
   "url": "https://acme.com"
 }
 ```
 
-### `version` (recommended)
+### `version` (required)
 
-Semver string. Increment when you change behavior (new tools, new skills, breaking schema changes). Agents consuming your Card can pin to a known version.
+A version string for the agent. Semantic versioning is a practical convention: increment it when advertised behavior, skills, or response contracts change.
 
 ### `documentationUrl` (optional)
 
@@ -115,36 +127,48 @@ Link to human-readable docs. Saves callers from having to guess how your agent w
 
 ### `capabilities.streaming` (bool)
 
-Does your agent support streamed responses? Most do in 2026; the default is `true` for modern agents. Set to `false` if your agent buffers the full response before replying.
+Does your agent support the protocol's streaming operation on the declared interface? Set this to `true` only when the server implements it; otherwise omit it or use `false`.
 
 ### `capabilities.pushNotifications` (bool)
 
 Can the agent push status updates to a callback URL during long-running tasks? Typically `false` for simple agents. Set to `true` if you expose a `taskId` and allow clients to register webhook callbacks.
 
-### `capabilities.stateTransitionHistory` (bool)
+### `capabilities.extendedAgentCard` (bool)
 
-Does the agent track its internal state history and expose it via an API? `false` for most first agents.
+Can an authenticated caller retrieve a richer Agent Card through the protocol's extended-card operation? Leave this unset or `false` unless that operation is implemented and protected.
 
 ---
 
-## Auth fields
+## Security fields
 
-### `authentication.schemes` (array)
+### `securitySchemes` and `securityRequirements`
 
-How does the agent authenticate callers? Each entry is one of:
+These optional fields declare how callers authenticate. `securitySchemes` names and defines the available mechanisms; `securityRequirements` selects which named schemes are required for the agent or a specific skill.
 
-- `"none"` — public agent, no auth
-- `"apiKey"` — header-based API key
-- `"oauth2"` — OAuth 2.0
-- `"bearer"` — bearer token
+For a header API key:
 
 ```json
-"authentication": {
-  "schemes": ["apiKey"]
-}
+"securitySchemes": {
+  "apiKey": {
+    "apiKeySecurityScheme": {
+      "description": "Workspace-scoped API key",
+      "location": "header",
+      "name": "X-API-Key"
+    }
+  }
+},
+"securityRequirements": [
+  {
+    "schemes": {
+      "apiKey": {
+        "list": []
+      }
+    }
+  }
+]
 ```
 
-For a workshop-shipped agent, `"schemes": []` (public) is fine. For production, **add auth before you expose**. An open agent endpoint with a web_search tool is a DoS vector the first time someone notices it.
+The current schema also supports HTTP authentication, OAuth 2.0, OpenID Connect, and mutual TLS. A deliberately public agent can omit both fields, but that does not remove the need for rate limits, abuse controls, and bounded tool permissions.
 
 ---
 
@@ -154,14 +178,14 @@ For a workshop-shipped agent, `"schemes": []` (public) is fine. For production, 
 
 Default MIME types or content modes the agent accepts. Typical values:
 
-- `"text"` — plain text
+- `"text/plain"` — plain text
 - `"application/json"` — structured JSON input
 - `"image/png"`, `"image/jpeg"` — multimodal
 - `"audio/wav"` — for voice agents
 
 ### `defaultOutputModes` (array)
 
-What the agent returns. Same value set as inputs. For a structured-output agent, typically `["text", "application/json"]`.
+What the agent returns. Same value set as inputs. For a structured-output agent, typically `["text/plain", "application/json"]`.
 
 ---
 
@@ -180,7 +204,7 @@ A skill is a single capability the agent exposes. One agent, one or more skills.
       "What changed in the Vercel AI SDK v5 release?",
       "Compare Claude Sonnet 4.6 and GPT-5 for tool use."
     ],
-    "inputModes": ["text"],
+    "inputModes": ["text/plain"],
     "outputModes": ["application/json"]
   }
 ]
@@ -188,27 +212,27 @@ A skill is a single capability the agent exposes. One agent, one or more skills.
 
 ### Per-skill fields
 
-- `id` (required) — stable identifier. Used in API calls to target a specific skill.
+- `id` (required) — unique, stable identifier for this skill in the Card.
 - `name` (required) — human-readable.
 - `description` (required) — what this skill does and what it's for.
-- `tags` (recommended) — an array of short strings for discovery. Think of these as categories an orchestrator uses to match skills to requests.
+- `tags` (required) — an array of short strings for discovery. Think of these as categories an orchestrator can use to match skills to requests.
 - `examples` (recommended) — 3-5 example inputs. Critical for other agents that want to decide if you're the right router target.
 - `inputModes` / `outputModes` — override the agent-level defaults if this specific skill has different requirements.
 
 ### Skill IDs are a contract
 
-Once you publish a skill with `id: "research-with-sources"`, keep it stable. Other agents are routing on that ID. If you change it, you break their workflows. If you need to change behavior, **bump the version** of the agent and consider keeping the old skill ID as a deprecation alias for a release cycle.
+Once you publish a skill with `id: "research-with-sources"`, keep it stable when the capability remains compatible. Catalogs and routing systems may retain that identifier even though A2A does not define skill IDs as direct invocation endpoints. If the contract changes materially, bump the agent version and document the migration.
 
 ---
 
 ## Publishing the Agent Card
 
-Two requirements:
+Two baseline requirements:
 
-1. **Serve it at `/.well-known/agent.json`** on the agent's domain. This is convention; don't put it anywhere else.
-2. **Set the right headers.** Content-Type `application/json` and `Access-Control-Allow-Origin: *` (so cross-origin A2A clients can discover it).
+1. **Serve the public Card at `/.well-known/agent-card.json`** on the agent's domain.
+2. **Return JSON over HTTPS.** Use `Content-Type: application/json`. If browser-based clients on other origins must fetch this public Card, add an explicit CORS policy; server-to-server A2A clients do not rely on browser CORS.
 
-In Next.js:
+For a deliberately public Card that browser clients may discover, a Next.js header rule can be:
 
 ```ts
 // next.config.mjs
@@ -216,7 +240,7 @@ export default {
   async headers() {
     return [
       {
-        source: '/.well-known/agent.json',
+        source: '/.well-known/agent-card.json',
         headers: [
           { key: 'Content-Type', value: 'application/json' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
@@ -227,7 +251,7 @@ export default {
 }
 ```
 
-And the file itself goes in `public/.well-known/agent.json`.
+And the file itself goes in `public/.well-known/agent-card.json`.
 
 ---
 
@@ -235,8 +259,8 @@ And the file itself goes in `public/.well-known/agent.json`.
 
 Before shipping, validate your Card:
 
-- **Online:** paste into [a2a-protocol.org/validator](https://a2a-protocol.org/) (if available) or any JSON Schema validator against the A2A schema.
-- **Local:** run the Agent Card through `zod` parsing:
+- **Authoritative:** validate with the [current A2A specification](https://a2a-protocol.org/latest/specification/) and an official A2A SDK for the protocol version declared in each interface.
+- **Local shape guard:** a small `zod` schema can catch missing fields before the protocol-level validator runs:
 
 ```ts
 import { z } from 'zod'
@@ -244,27 +268,32 @@ import { z } from 'zod'
 const AgentCardSchema = z.object({
   name: z.string(),
   description: z.string(),
-  url: z.string().url(),
-  provider: z.object({
-    name: z.string(),
+  supportedInterfaces: z.array(z.object({
     url: z.string().url(),
-  }).optional(),
+    protocolBinding: z.enum(['JSONRPC', 'GRPC', 'HTTP+JSON']),
+    protocolVersion: z.string(),
+  })).min(1),
+  provider: z
+    .object({
+      organization: z.string(),
+      url: z.string().url(),
+    })
+    .optional(),
   version: z.string(),
   capabilities: z.object({
-    streaming: z.boolean(),
-    pushNotifications: z.boolean(),
-    stateTransitionHistory: z.boolean(),
+    streaming: z.boolean().optional(),
+    pushNotifications: z.boolean().optional(),
+    extendedAgentCard: z.boolean().optional(),
   }),
-  authentication: z.object({
-    schemes: z.array(z.enum(['none', 'apiKey', 'oauth2', 'bearer'])),
-  }),
+  securitySchemes: z.record(z.string(), z.unknown()).optional(),
+  securityRequirements: z.array(z.unknown()).optional(),
   defaultInputModes: z.array(z.string()),
   defaultOutputModes: z.array(z.string()),
   skills: z.array(z.object({
     id: z.string(),
     name: z.string(),
     description: z.string(),
-    tags: z.array(z.string()).optional(),
+    tags: z.array(z.string()),
     examples: z.array(z.string()).optional(),
     inputModes: z.array(z.string()).optional(),
     outputModes: z.array(z.string()).optional(),
@@ -275,22 +304,20 @@ const AgentCardSchema = z.object({
 AgentCardSchema.parse(agentCardJson)
 ```
 
-If it parses, you're good.
+Passing this local guard proves only that the basic 1.0 shape is present. Protocol semantics, binding support, security requirements, and signatures still need validation against the declared A2A version.
 
 ---
 
 ## The Oracle Open Agent Specification connection
 
-The Agent Card is one half of the portability story. The other half is the [Oracle Open Agent Specification (OAS)](https://docs.oracle.com/) — a framework-agnostic YAML/JSON spec that describes **the agent's internals** (tools, memory, workflows), not just its external interface.
+The Agent Card and [Oracle Open Agent Specification (Agent Spec)](https://oracle.github.io/agent-spec/) solve different portability problems. The Card is a public A2A discovery and interaction contract. Agent Spec is a framework-agnostic declarative language for describing executable agents and structured workflows.
 
 Relationship:
 
-- **Agent Card** = external contract. What callers see. Fields: name, description, skills, capabilities.
-- **OAS** = internal definition. What developers maintain. Fields: tools, memory stores, workflows, model routing, observability.
+- **Agent Card** = external interoperability contract. It names supported interfaces, security requirements, media types, capabilities, and skills.
+- **Agent Spec** = portable implementation description. Compatible runtimes and adapters interpret its agent and flow components.
 
-In practice: your Agent Card is a **subset** of what an OAS file contains. Generate the Agent Card from the OAS file and both stay in sync.
-
-This is especially valuable for enterprise deployments where one team owns the OAS definition and another team consumes the Agent Card. It's the same pattern as OpenAPI specs generating client libraries across languages.
+They can complement each other, but neither specification guarantees an automatic mapping to the other. If your platform generates a Card from an Agent Spec definition, test that mapping as release code and keep the public Card aligned with the endpoint that actually runs.
 
 The [enterprise branch of the workshop (B6)](/workshops/build-first-ai-agent) covers OAS in depth. For your first agent, the Card alone is enough.
 
@@ -300,11 +327,11 @@ The [enterprise branch of the workshop (B6)](/workshops/build-first-ai-agent) co
 
 ### 1. Don't put secrets in the Card
 
-The Card is public. API keys, internal URLs, customer IDs do not belong in it. The `authentication` field describes the auth **scheme** — it never contains the credentials themselves.
+The public Card must not contain API keys, internal URLs, customer IDs, or other secrets. `securitySchemes` describes authentication mechanisms; credentials are acquired and transmitted out of band.
 
-### 2. `url` must be reachable
+### 2. Interface URLs must be reachable
 
-If you put `https://internal.corp.com/my-agent` in the Card and publish it on the public internet, any A2A client that tries to call your agent will fail. Keep the Card and the agent's reachability aligned.
+If a public Card advertises `https://internal.corp.com/my-agent`, outside clients cannot use that interface. Keep each `supportedInterfaces[].url` aligned with the audience that can fetch the Card.
 
 ### 3. Skill IDs aren't display strings
 
@@ -314,9 +341,9 @@ If you put `https://internal.corp.com/my-agent` in the Card and publish it on th
 
 Callers use `examples` to decide if your skill is the right match for their intent. If you ship misleading examples, you get misrouted requests. Pick examples that are representative of the actual skill.
 
-### 5. CORS is a common gotcha
+### 5. Browser discovery needs an explicit CORS decision
 
-If another agent on a different origin tries to fetch your Agent Card and gets a CORS error, they can't discover you. Set `Access-Control-Allow-Origin: *` on `/.well-known/agent.json` unless you have a specific reason not to.
+Server-to-server A2A clients are not governed by browser CORS. If a browser application on another origin must fetch a public Card, allow only the origins your use case requires—or use `*` only when the Card is intentionally public to every origin.
 
 ---
 
@@ -324,13 +351,14 @@ If another agent on a different origin tries to fetch your Agent Card and gets a
 
 Before exposing an Agent Card in production:
 
-- [ ] All required fields populated (`name`, `description`, `url`, `version`, `capabilities`, `authentication`, `defaultInputModes`, `defaultOutputModes`, `skills`)
-- [ ] At least one skill with `id`, `name`, `description`, and 2+ examples
-- [ ] `url` is reachable from the public internet
-- [ ] Served at `/.well-known/agent.json` with `Content-Type: application/json` and CORS headers
-- [ ] Validated against the A2A schema
+- [ ] All required fields populated (`name`, `description`, `supportedInterfaces`, `version`, `capabilities`, `defaultInputModes`, `defaultOutputModes`, `skills`)
+- [ ] At least one skill with `id`, `name`, `description`, and `tags`; representative examples are strongly recommended
+- [ ] Every declared interface URL is reachable by its intended audience and implements its declared binding/version
+- [ ] Public Card served at `/.well-known/agent-card.json` with `Content-Type: application/json`
+- [ ] Browser CORS policy added only if cross-origin browser discovery is intended
+- [ ] Validated against the exact A2A version declared by each interface
 - [ ] No secrets in the Card
-- [ ] Auth scheme is documented — `"none"` is acceptable for open agents but means you **must** add rate limits at a network layer
+- [ ] Security schemes and requirements match the server, or their omission is an intentional public-access decision with network-layer limits
 - [ ] Version bumped if behavior changed since last publish
 - [ ] Documentation URL points to real docs, not your company homepage
 
@@ -340,7 +368,6 @@ Before exposing an Agent Card in production:
 
 - [The six primitives of an AI agent](/blog/six-primitives-ai-agent) — the mental model
 - [First Agent Primer](/guides/first-agent-primer) — ship your first agent end-to-end
-- [Google A2A protocol](https://a2a-protocol.org/) — the authoritative spec
+- [Current A2A specification](https://a2a-protocol.org/latest/specification/) — the authoritative protocol contract
+- [Oracle Agent Spec](https://oracle.github.io/agent-spec/) — portable agent and flow definitions
 - [Build Your First AI Agent workshop](/workshops/build-first-ai-agent) — live version
-
-When you publish your Card, drop the URL at `frankx.ai/workshops/build-first-ai-agent` (gallery section — coming soon) and we'll feature agents with well-crafted Cards.

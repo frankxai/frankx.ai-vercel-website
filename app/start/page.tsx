@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 
 import JsonLd from '@/components/seo/JsonLd'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { createMetadata, siteConfig } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -122,8 +123,13 @@ export default function StartPage() {
               <p className="mt-4 max-w-lg text-sm leading-6 text-white/75">
                 {route.description}
               </p>
-              <Link
+              <TrackedLink
                 href={route.href}
+                eventName="creator_funnel_step"
+                eventProperties={{
+                  surface: 'start_state_router',
+                  step: route.state.toLowerCase().replaceAll(' ', '_'),
+                }}
                 className="mt-auto inline-flex min-h-11 items-center gap-2 pt-8 text-sm font-semibold text-emerald-200 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
               >
                 {route.action}
@@ -131,7 +137,7 @@ export default function StartPage() {
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none"
                   aria-hidden="true"
                 />
-              </Link>
+              </TrackedLink>
             </article>
           ))}
         </div>

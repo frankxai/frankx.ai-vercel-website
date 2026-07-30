@@ -8,6 +8,7 @@ import {
   Network,
   ShieldCheck,
 } from 'lucide-react'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 
 type LatestPost = {
   slug: string
@@ -98,8 +99,10 @@ export default function FrankXProductionHome({
           </p>
 
           <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-            <Link
+            <TrackedLink
               href="/work-with-me#contact"
+              eventName="creator_funnel_step"
+              eventProperties={{ surface: 'home_hero', step: 'map_workflow' }}
               className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
             >
               Map the workflow that waits on me
@@ -107,14 +110,16 @@ export default function FrankXProductionHome({
                 className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none"
                 aria-hidden="true"
               />
-            </Link>
-            <Link
+            </TrackedLink>
+            <TrackedLink
               href="/build/six-primitives-toolkit"
+              eventName="creator_funnel_step"
+              eventProperties={{ surface: 'home_hero', step: 'inspect_toolkit_status' }}
               className="inline-flex min-h-11 max-w-md items-center gap-2 px-1 text-sm font-medium leading-6 text-white/75 underline decoration-white/40 underline-offset-8 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             >
               Already shipping agents? See the Toolkit’s release status.
               <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
-            </Link>
+            </TrackedLink>
           </div>
 
           <div className="mt-12 max-w-2xl border-t border-white/15 pt-5">
@@ -232,20 +237,24 @@ export default function FrankXProductionHome({
                 recurring queue can safely leave your daily path.
               </p>
               <div className="mt-8 flex flex-col items-start gap-4">
-                <Link
+                <TrackedLink
                   href="/work-with-me#contact"
+                  eventName="creator_funnel_step"
+                  eventProperties={{ surface: 'home_engagement', step: 'map_workflow' }}
                   className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                 >
                   Map the workflow
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
+                </TrackedLink>
+                <TrackedLink
                   href="/workspace"
+                  eventName="creator_funnel_step"
+                  eventProperties={{ surface: 'home_engagement', step: 'inspect_workspace' }}
                   className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-white/75 underline decoration-white/35 underline-offset-8 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                 >
                   See how the human-directed workspace runs
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
+                </TrackedLink>
               </div>
             </div>
 
@@ -363,18 +372,22 @@ export default function FrankXProductionHome({
             first agent to production reliability, operations, or a creator system.
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
+            <TrackedLink
               href="/work-with-me#contact"
+              eventName="creator_funnel_step"
+              eventProperties={{ surface: 'home_closing', step: 'map_workflow' }}
               className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
             >
               Map the workflow <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
+            </TrackedLink>
+            <TrackedLink
               href="/start"
+              eventName="creator_funnel_step"
+              eventProperties={{ surface: 'home_closing', step: 'choose_current_state' }}
               className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/35 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             >
               Choose by current state <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>

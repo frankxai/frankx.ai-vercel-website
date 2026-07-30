@@ -11,7 +11,8 @@ const COLOR_MAP: Record<NonNullable<Product['color']>, { ring: string; accent: s
   rose: { ring: 'ring-rose-500/30', accent: 'text-rose-400', bg: 'bg-rose-500/[0.04]' },
 }
 
-function formatPrice(eur: number): string {
+function formatPrice(eur: number | undefined): string {
+  if (eur === undefined) return 'Unavailable'
   if (eur === 0) return 'Free'
   return `€${eur.toLocaleString('en-IE')}`
 }
@@ -30,6 +31,11 @@ export function PricingTable({ products }: { products: Product[] }) {
       {products.map((p) => {
         const colors = COLOR_MAP[p.color]
         const isFeatured = p.featured ?? false
+        const isUnavailable = p.releaseStatus === 'unavailable'
+        const displayedPrice =
+          isUnavailable && p.pricing.plannedEur !== undefined
+            ? `Planned €${p.pricing.plannedEur.toLocaleString('en-IE')}`
+            : formatPrice(p.pricing.eur)
         return (
           <article
             key={p.slug}
@@ -52,8 +58,8 @@ export function PricingTable({ products }: { products: Product[] }) {
 
             <div className="mb-5">
               <p className="text-3xl font-bold text-white tracking-tight">
-                {formatPrice(p.pricing.eur)}
-                {p.pricing.eur > 0 && (
+                {displayedPrice}
+                {!isUnavailable && (p.pricing.eur ?? 0) > 0 && (
                   <span className="ml-1 text-xs font-normal text-zinc-500 align-baseline">
                     {p.pricing.cadence === 'application' ? 'per quarter' : 'lifetime'}
                   </span>
@@ -62,10 +68,8 @@ export function PricingTable({ products }: { products: Product[] }) {
               {p.pricing.usd && (
                 <p className="text-xs text-zinc-500 mt-0.5">~${p.pricing.usd.toLocaleString('en-US')} USD</p>
               )}
-              {p.seatsPerQuarter && (
-                <p className="text-xs text-rose-400/80 mt-1.5">
-                  {p.seatsPerQuarter} seats per quarter · application only
-                </p>
+              {isUnavailable && (
+                <p className="text-xs text-zinc-500 mt-1.5">Checkout is not open.</p>
               )}
             </div>
 
@@ -79,7 +83,7 @@ export function PricingTable({ products }: { products: Product[] }) {
             </ul>
 
             <Link
-              href={p.tier === 'founders' ? '/founders-circle' : `/build/${p.slug}`}
+              href={p.canonicalPath}
               className={`inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-lg text-sm font-medium transition-colors border ${
                 isFeatured
                   ? 'bg-cyan-500/15 hover:bg-cyan-500/25 border-cyan-500/30 text-cyan-300'

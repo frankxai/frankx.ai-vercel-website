@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 861,
+    "total": 862,
     "aliases": 50,
     "byType": {
       "core": 22,
-      "section": 401,
+      "section": 402,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -4714,6 +4714,17 @@
       "type": "community"
     },
     {
+      "href": "/founders-circle/apply",
+      "title": "Apply",
+      "tags": [
+        "founders",
+        "circle",
+        "apply"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
       "href": "/foundry",
       "title": "Foundry",
       "tags": [
@@ -4935,8 +4946,8 @@
     },
     {
       "href": "/guides/agent-card-a2a-spec",
-      "title": "Agent Card (A2A) spec — the portability contract",
-      "description": "Field-by-field walkthrough of the Google A2A Agent Card — the JSON document that describes your agent's identity, capabilities, and skills. Used by BCG's enterprise agent playbook and every multi-agent mesh worth shipping.",
+      "title": "Agent Card (A2A) 1.0 — the public interoperability contract",
+      "description": "A field-by-field walkthrough of the current Agent2Agent 1.0 Agent Card: supported interfaces, capabilities, security requirements, media types, and skills.",
       "tags": [
         "AI Agents",
         "A2A",

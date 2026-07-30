@@ -19,14 +19,18 @@ test('primary public routes emit direct www canonicals', async () => {
       'app/(landing)/connect/page.tsx',
       'app/vault/(index)/page.tsx',
     ]
-  const criticalRoutes = await Promise.all(criticalRoutePaths.map(readRepoFile))
+  const criticalRoutes = Object.fromEntries(
+    await Promise.all(
+      criticalRoutePaths.map(async (path) => [path, await readRepoFile(path)]),
+    ),
+  )
 
   assert.match(seo, /const siteUrl = 'https:\/\/www\.frankx\.ai'/)
-  for (const source of criticalRoutes) {
+  for (const source of Object.values(criticalRoutes)) {
     assert.doesNotMatch(source, /https:\/\/frankx\.ai/)
   }
   assert.match(
-    criticalRoutes[criticalRoutePaths.indexOf('app/work-with-me/page.tsx')],
+    criticalRoutes['app/work-with-me/page.tsx'],
     /canonical: 'https:\/\/www\.frankx\.ai\/work-with-me'/,
   )
 })

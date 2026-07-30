@@ -205,7 +205,7 @@ export const workshops: Workshop[] = [
     objectives: [
       'Name the six primitives of any AI agent — model, tool, memory, loop, spec, deploy',
       'Ship a working research-assistant agent on the Vercel AI SDK with tool use, memory, and a public URL',
-      'Publish a valid Google A2A Agent Card at /.well-known/agent.json and understand where Oracle Open Agent Specification fits',
+      'Publish a valid A2A 1.0 Agent Card at /.well-known/agent-card.json and understand where Oracle Open Agent Specification fits',
       'Write a 3-case evaluation suite and 2 refusal rails for your agent',
       'Pick the right branch (Claude / OpenAI / Google ADK / no-code / AI-builds-AI / Oracle) for your next agent based on the transfer matrix',
     ],
@@ -277,7 +277,7 @@ export const workshops: Workshop[] = [
         title: 'Agent Card — the portability contract',
         duration: '15 min',
         description:
-          'Draft a Google A2A Agent Card describing your agent. Validate it. Serve it at /.well-known/agent.json. Ninety seconds on Oracle Open Agent Specification (OAS) for those going enterprise. By the end, your agent has an identity other agents can discover.',
+          'Draft an A2A 1.0 Agent Card describing your agent. Validate it. Serve it at /.well-known/agent-card.json. Ninety seconds on Oracle Open Agent Specification (Agent Spec) for those going enterprise. By the end, your agent has an identity compatible clients can discover.',
         instructorNotes:
           'The Agent Card is the artifact that makes the portability lesson concrete. Use the inline template so participants fill fields rather than writing JSON from scratch.',
         resources: [

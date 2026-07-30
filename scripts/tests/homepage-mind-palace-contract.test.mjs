@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
 const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
+const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 test('the public homepage is the Human Proof Studio release', async () => {
   const page = await readRepoFile('app/page.tsx')
@@ -113,17 +114,21 @@ test('the Toolkit and paid product pages fail closed until checkout is verified'
   const normalizedProductPage = productPage.replace(/\s+/g, ' ')
 
   for (const copy of [
-    'Release status · Planned price €197',
     'Checkout is not open.',
     'No payment is collected on this page.',
-    'Planned price: €197, one-time.',
     'Open the public Six Primitives path',
     'Toolkit checkout is not open.',
   ]) {
     assert.ok(normalizedProductPage.includes(copy), `missing Toolkit release copy: ${copy}`)
   }
 
-  assert.match(productPage, /if \(!product\.pricing\.lemonSqueezyVariantId\)/)
+  assert.match(productPage, /product\.pricing\.plannedEur/)
+  assert.match(productPage, /Planned price: €\$\{plannedPrice\}, one-time/)
+  assert.match(
+    productPage,
+    /!product\.pricing\.lemonSqueezyVariantId \|\|\s*product\.pricing\.eur === undefined/,
+  )
+  assert.match(productPage, /noindex: true/)
   assert.match(productPage, /noindex: !isCheckoutOpen/)
   assert.doesNotMatch(productPage, /<BuyButton/)
   assert.doesNotMatch(productPage, /<OutcomeList/)
@@ -149,7 +154,11 @@ test('the Toolkit and paid product pages fail closed until checkout is verified'
     'Lifetime access',
     'no-questions refund',
   ]) {
-    assert.doesNotMatch(toolkit, new RegExp(stoppedClaim), `Toolkit still contains: ${stoppedClaim}`)
+    assert.doesNotMatch(
+      toolkit,
+      new RegExp(escapeRegex(stoppedClaim)),
+      `Toolkit still contains: ${stoppedClaim}`,
+    )
   }
 })
 

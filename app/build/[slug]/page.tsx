@@ -3,7 +3,9 @@ import { notFound, permanentRedirect } from 'next/navigation'
 import { ArrowLeft, ArrowRight, CheckCircle2, CircleDashed } from 'lucide-react'
 import type { Metadata } from 'next'
 import { createMetadata } from '@/lib/seo'
-import { products, getProductBySlug } from '@/data/products'
+import { products, getProductBySlug, type Product } from '@/data/products'
+import { commerceLinks } from '@/lib/commerce-links'
+import { SIX_PRIMITIVES_RELEASE_GATES } from '@/lib/release-gates'
 
 export async function generateStaticParams() {
   return products
@@ -32,16 +34,23 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     })
   }
 
-  if (product.slug === 'six-primitives-toolkit') {
+  if (product.slug === 'six-primitives-toolkit' && product.releaseStatus === 'unavailable') {
+    const plannedPrice =
+      product.pricing.plannedEur !== undefined
+        ? ` Planned price: €${product.pricing.plannedEur}.`
+        : ''
+
     return createMetadata({
-      title: 'Six Primitives Toolkit — Release status',
-      description:
-        'Production patterns for builders with a working agent. Planned price: €197. Checkout is not open while contents, delivery, and refund terms are being verified.',
+      title: `${product.title} — Release status`,
+      description: `${product.subtitle}${plannedPrice} Checkout is not open while contents, delivery, and refund terms are being verified.`,
       path: `/build/${product.slug}`,
+      noindex: true,
     })
   }
 
-  const isCheckoutOpen = Boolean(product.pricing.lemonSqueezyVariantId)
+  const isCheckoutOpen = Boolean(
+    product.pricing.lemonSqueezyVariantId && product.pricing.eur !== undefined,
+  )
   return createMetadata({
     title: `${product.title} — ${isCheckoutOpen ? `€${product.pricing.eur}` : 'Checkout closed'}`,
     description: isCheckoutOpen
@@ -52,7 +61,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   })
 }
 
-function ToolkitReleaseStatus() {
+function ToolkitReleaseStatus({ product }: { product: Product }) {
+  const plannedPrice = product.pricing.plannedEur
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#0a0a0b] text-white">
       <div
@@ -69,14 +80,13 @@ function ToolkitReleaseStatus() {
           Build release board
         </Link>
         <p className="mt-12 font-mono text-[11px] uppercase tracking-[0.22em] text-cyan-200">
-          Release status · Planned price €197
+          Release status{plannedPrice !== undefined ? ` · Planned price €${plannedPrice}` : ''}
         </p>
         <h1 className="mt-6 text-5xl font-bold leading-[1] tracking-[-0.045em] sm:text-6xl">
-          Six Primitives Toolkit
+          {product.title}
         </h1>
         <p className="mt-7 max-w-2xl text-lg leading-8 text-white/75">
-          For builders with a working agent and production gaps in evaluation, observability,
-          cost, or deployment.
+          {product.subtitle}
         </p>
       </section>
 
@@ -95,17 +105,13 @@ function ToolkitReleaseStatus() {
               payment is collected on this page.
             </p>
             <p className="mt-5 text-sm font-medium text-white">
-              Planned price: €197, one-time. The final offer will list only contents that are ready
-              to deliver.
+              {plannedPrice !== undefined ? `Planned price: €${plannedPrice}, one-time. ` : ''}
+              The final offer will list only contents that are ready to deliver.
             </p>
           </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {[
-              'Verify the final files against the contents list.',
-              'Test the access and delivery path anonymously.',
-              'Publish the final refund terms before checkout.',
-            ].map((item) => (
+            {SIX_PRIMITIVES_RELEASE_GATES.map((item) => (
               <div
                 key={item}
                 className="flex gap-3 rounded-2xl border border-white/15 bg-white/[0.035] p-5"
@@ -179,11 +185,11 @@ export default async function BuildProductPage({ params }: { params: Params }) {
     permanentRedirect(product.canonicalPath)
   }
 
-  if (product.slug === 'six-primitives-toolkit') {
-    return <ToolkitReleaseStatus />
+  if (product.slug === 'six-primitives-toolkit' && product.releaseStatus === 'unavailable') {
+    return <ToolkitReleaseStatus product={product} />
   }
 
-  if (!product.pricing.lemonSqueezyVariantId) {
+  if (!product.pricing.lemonSqueezyVariantId || product.pricing.eur === undefined) {
     return <ClosedProductStatus title={product.title} />
   }
 
@@ -200,7 +206,7 @@ export default async function BuildProductPage({ params }: { params: Params }) {
         <h1 className="mt-12 text-5xl font-bold leading-[1] tracking-[-0.045em]">{product.title}</h1>
         <p className="mt-7 max-w-2xl text-lg leading-8 text-white/75">{product.subtitle}</p>
         <a
-          href={`https://frankx.lemonsqueezy.com/buy/${product.pricing.lemonSqueezyVariantId}`}
+          href={`${commerceLinks.lemonSqueezyStorefront}/buy/${product.pricing.lemonSqueezyVariantId}`}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-10 inline-flex min-h-12 items-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-[#071218] transition-colors hover:bg-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"

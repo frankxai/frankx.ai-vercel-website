@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -10,5 +10,5 @@ export const metadata = createMetadata({
 })
 
 export default function FoundersCirclePage() {
-  redirect('/work-with-me#contact')
+  permanentRedirect('/work-with-me#contact')
 }

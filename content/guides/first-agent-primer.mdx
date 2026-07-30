@@ -15,7 +15,7 @@ This guide shares the same six-part curriculum as the [Build Your First AI Agent
 
 - A working research-assistant agent running on your laptop
 - The same agent deployed to a public Vercel URL
-- A valid Google A2A Agent Card served at `/.well-known/agent.json`
+- A valid A2A 1.0 Agent Card served at `/.well-known/agent-card.json`
 - A 3-case eval harness that tells you when your agent misbehaves
 - The six-primitive mental model you can re-apply to every future agent framework
 
@@ -85,7 +85,7 @@ If you see an error about a missing key, double-check `.env`. If the API returns
 
 ## Part 4 — Read the code
 
-Before modifying anything, read the six primitives as they appear in the starter:
+Before modifying anything, read the six primitives as they appear in the reference implementation:
 
 ### Model (src/agent/provider.ts)
 
@@ -156,9 +156,9 @@ export async function runAgent({ question, sessionId, provider }) {
 
 The loop is `generateObject` + memory management. `maxSteps: 5` prevents runaway.
 
-### Spec (public/.well-known/agent.json)
+### Spec (public/.well-known/agent-card.json)
 
-A Google A2A Agent Card — JSON describing the agent's identity, skills, and endpoint. See the [Agent Card guide](/guides/agent-card-a2a-spec) for field-by-field coverage.
+An A2A 1.0 Agent Card—JSON describing the agent's identity, supported interfaces, skills, and security boundary. See the [Agent Card guide](/guides/agent-card-a2a-spec) for field-by-field coverage.
 
 ### Deploy (next.config.mjs + vercel.json)
 
@@ -168,7 +168,7 @@ A Google A2A Agent Card — JSON describing the agent's identity, skills, and en
 
 ## Part 5 — Build your own agent
 
-The starter is a research-assistant. To make it yours, three changes:
+The inline reference is a research assistant. To make the pattern yours, make three changes:
 
 ### Change 1: the system prompt
 
@@ -199,7 +199,7 @@ Update the `generateObject` call in `src/agent/loop.ts` to use the new schema.
 
 ### Change 3: add a second tool
 
-The starter has one tool (`web_search`). Add a second one specific to your domain. Examples:
+The inline reference has one tool (`web_search`). Add a second one specific to your domain. Examples:
 
 - **Cooking agent:** a `unit_convert` tool that converts cups to grams, Fahrenheit to Celsius
 - **Investment agent:** a `fetch_price` tool that queries a stock price API
@@ -247,26 +247,46 @@ Aim for 5-10 cases before you ship to production. More is better, but diminishin
 
 ## Part 7 — Publish the Agent Card
 
-The starter ships an Agent Card template at `public/.well-known/agent.json`. Update three fields for your deploy:
+Add an Agent Card at `public/.well-known/agent-card.json`. This minimal public example declares one HTTP+JSON interface and no authentication scheme:
 
 ```json
 {
   "name": "Your agent name",
   "description": "Your one-paragraph description",
-  "url": "https://your-vercel-url.vercel.app"
+  "supportedInterfaces": [
+    {
+      "url": "https://your-vercel-url.vercel.app/a2a/v1",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "version": "0.1.0",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "research-with-sources",
+      "name": "Research with sources",
+      "description": "Researches a question and returns a cited response.",
+      "tags": ["research", "sources"]
+    }
+  ]
 }
 ```
 
 After deploy, verify:
 
 ```bash
-curl https://your-url.vercel.app/.well-known/agent.json | jq
+curl https://your-url.vercel.app/.well-known/agent-card.json | jq
 ```
 
 Should return valid JSON matching the A2A spec. If you want to validate against the spec:
 
-- Use the online validator at [a2a-protocol.org/validator](https://a2a-protocol.org/)
-- Or run your Card through a JSON Schema validator against the [A2A schema](https://a2a-protocol.org/spec)
+- Validate it with the SDK for your declared protocol version and the [current A2A specification](https://a2a-protocol.org/latest/specification/)
 
 See the [Agent Card guide](/guides/agent-card-a2a-spec) for the full field-by-field walkthrough.
 
@@ -323,7 +343,9 @@ Vercel logs stream into the dashboard automatically. One line per step is enough
 
 ## Part 10 — Pick your next branch
 
-At this point, verify the agent against the acceptance checklist. The [workshop's six branches](/workshops/build-first-ai-agent) describe possible next areas:
+At this point, require all three eval cases to pass, validate the deployed Agent Card, and confirm
+the public endpoint responds before choosing a next branch. The [workshop's six branches](/workshops/build-first-ai-agent)
+describe possible next areas:
 
 - **B1 — Claude Agent SDK + MCP.** Best reasoning, growing tool ecosystem, Managed Agents for durability.
 - **B2 — OpenAI Agents SDK + AgentKit.** Largest install base, AgentKit visual workflow layer.
@@ -356,7 +378,7 @@ Three common causes:
 
 ### "The Agent Card isn't discoverable from another origin"
 
-CORS. Configure the required origin policy explicitly for `/.well-known/agent.json`; do not assume a template has done it for you.
+CORS. Configure the required origin policy explicitly for `/.well-known/agent-card.json`; do not assume a template has done it for you.
 
 ---
 
