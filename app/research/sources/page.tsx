@@ -224,7 +224,7 @@ export default function SourceBrowserPage() {
               placeholder="Search by title, publisher, or domain..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder:text-white/60 focus:outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-3 pl-11 pr-4 text-sm text-white placeholder:text-white/60 transition-[border-color,background-color,box-shadow] focus-visible:border-white/20 focus-visible:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             />
             {searchQuery && (
               <button

@@ -990,7 +990,7 @@ export function ThreeArenaScene() {
             id="arena-model-focus"
             value={selectedModel?.id ?? ''}
             onChange={(event) => focusModelById(event.target.value)}
-            className="w-full bg-slate-900 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white/90 focus:border-cyan-400 outline-none cursor-pointer"
+            className="w-full cursor-pointer rounded-lg border border-white/10 bg-slate-900 px-2.5 py-1.5 text-xs text-white/90 outline-none transition-[border-color,box-shadow] focus-visible:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             <option value="">Overview</option>
             {MODEL_DATA.map((model) => (

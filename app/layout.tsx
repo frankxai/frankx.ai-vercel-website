@@ -170,7 +170,7 @@ export default function RootLayout({
           <OrganizationJsonLd />
           <a
             href="#main"
-            className="skip-to-content"
+            className="skip-to-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
           >
             Skip to content
           </a>

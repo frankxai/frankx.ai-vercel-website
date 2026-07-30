@@ -235,7 +235,7 @@ export default function LibraryPage() {
       <section className="max-w-6xl mx-auto px-6 pb-12">
         <Link
           href="/library/rockstar-energy"
-          className="group block rounded-2xl border border-emerald-500/[0.18] bg-gradient-to-br from-emerald-500/[0.06] via-cyan-500/[0.03] to-transparent p-6 sm:p-7 transition-all hover:border-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+          className="group block rounded-2xl border border-emerald-500/[0.18] bg-gradient-to-br from-emerald-500/[0.06] via-cyan-500/[0.03] to-transparent p-6 sm:p-7 transition-colors hover:border-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
         >
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
             <div className="flex-1 min-w-0">

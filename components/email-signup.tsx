@@ -120,7 +120,7 @@ export function EmailSignup({
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
             disabled={status === 'loading' || status === 'success'}
-            className="min-w-0 flex-1 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300 disabled:opacity-50"
+            className="min-w-0 flex-1 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
           />
           <button
             type="submit"
