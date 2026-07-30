@@ -15,14 +15,17 @@ export const kyndryl: Partner = {
   name: 'Kyndryl',
   shortName: 'Kyndryl',
   tier: 'services',
-  status: 'active',
-  lastUpdated: '2026-05-16',
+  status: 'placeholder',
+  publicationBasis: 'independent-proposal',
+  consentStatus: 'not-requested',
+  privacyClassification: 'public-only',
+  lastUpdated: '2026-07-30',
 
-  title: 'Agentic AI Architecture & Enablement Partner',
+  title: 'Proposed agentic AI architecture and enablement collaborator',
   tagline:
     'A coding-agent-native agentic AI practice that compresses how Kyndryl Consult designs, demonstrates, and ships enterprise AI.',
   subTagline:
-    "Kyndryl (NYSE: KD) is the 2021 spin-off of IBM's managed infrastructure business — roughly $16B in revenue, 80,000+ practitioners, and a fast-growing Consult arm building agentic AI on Kyndryl Bridge, the Agentic AI Framework, and Kyndryl Vital.",
+    "Kyndryl (NYSE: KD) is the 2021 spin-off of IBM's managed infrastructure business, with 80,000+ practitioners and a Consult arm building on Kyndryl Bridge, the Agentic AI Framework, and Kyndryl Vital.",
 
   contextWindow: `Kyndryl runs mission-critical infrastructure for many of the world's largest enterprises across six global practices — Cloud; Core Enterprise & zCloud; Applications, Data & AI; Digital Workplace; Network & Edge; and Security & Resiliency. The growth engine is Kyndryl Consult, and the public AI story now centres on Kyndryl Bridge, the Agentic AI Framework, and Kyndryl Vital — agentic AI productised and sold into modernization and AI-readiness engagements.
 
@@ -252,7 +255,7 @@ That is the layer FrankX brings — an AI Architect Academy curriculum, a workin
   accent: 'tech',
 
   seo: {
-    title: 'FrankX × Kyndryl — Agentic AI Architecture Partnership',
+    title: 'FrankX on Kyndryl — Independent Agentic AI Opportunity Brief',
     description:
       'A coding-agent-native agentic AI practice for Kyndryl Consult — architecture advisory, consultant enablement, and AI-readiness thought leadership.',
   },

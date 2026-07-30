@@ -57,7 +57,7 @@ export function ProgramStack({ programs }: ProgramStackProps) {
               </p>
 
               <div className="mb-4 flex-1">
-                <p className="text-[11px] tracking-[0.15em] uppercase text-white/40 font-medium mb-2">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-white/65 font-medium mb-2">
                   Produces
                 </p>
                 <ul className="space-y-1.5">
@@ -76,7 +76,7 @@ export function ProgramStack({ programs }: ProgramStackProps) {
               </div>
 
               <div className="pt-4 border-t border-white/[0.06]">
-                <p className="text-[11px] tracking-[0.15em] uppercase text-white/40 font-medium mb-1">
+                <p className="text-[11px] tracking-[0.15em] uppercase text-white/65 font-medium mb-1">
                   Pricing posture
                 </p>
                 <p className="text-sm text-zinc-300 leading-relaxed">

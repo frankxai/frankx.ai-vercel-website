@@ -14,22 +14,34 @@ export const arrow: Partner = {
   name: 'Arrow Electronics ECS',
   shortName: 'Arrow',
   tier: 'distribution',
-  status: 'active',
-  lastUpdated: '2026-05-16',
+  status: 'placeholder',
+  publicationBasis: 'independent-proposal',
+  consentStatus: 'not-requested',
+  privacyClassification: 'public-only',
+  lastUpdated: '2026-07-30',
 
   title: 'AI Architect — EMEA distribution alignment proposal',
   tagline:
     'A coding-agent-native AI CoE practice for EMEA distribution.',
   subTagline:
-    'Arrow ECS is the 2025 Oracle Global Distributor of the Year and Oracle Global Cloud Partner. The Global AI Accelerator program launched September 2025.',
+    'Arrow announced its Global AI Accelerator on April 1, 2025. This independent FrankX brief asks what a useful EMEA enablement pilot could look like.',
 
-  contextWindow: `Arrow ECS won the 2025 Oracle Global Distributor Partner Award and Oracle Global Cloud Partner Award. The Global AI Accelerator program launched September 2025. The Oracle x NVIDIA AI accelerator pack wave is moving through the EMEA channel. Arrow's German leadership anchors the Oracle channel with three decades of relationships and an HPC, GPU, and AI infrastructure narrative already in market.
+  contextWindow: `Arrow publicly announced its Global AI Accelerator on April 1, 2025. That public program creates a relevant context for this independent FrankX proposal, but it does not establish a relationship, conversation, application, or endorsement.
 
-The gap I see: a coding-agent-native AI CoE methodology that lets Arrow's solution architects and partner resellers compress the reference-architecture and PoC build cycle from weeks to days using Claude Code, Codex, Gemini, and the agentic patterns now standard at frontier AI labs.
+The opportunity I see: test whether a coding-agent-native AI CoE method could help solution architects and partner resellers shorten reference-architecture and proof-of-concept work using Claude Code, Codex, Gemini, and inspectable agent patterns.
 
-That is the layer FrankX brings: former enterprise AI architecture experience, AI Architect Academy curriculum, a working coding-agent toolkit, and public reference implementations that partner teams can inspect before any conversation becomes formal.`,
+FrankX brings enterprise AI architecture experience, AI Architect Academy material, a coding-agent toolkit, and public repositories that a partner team can inspect before deciding whether a bounded pilot is worth discussing.`,
 
   workingReality: [
+    {
+      label: 'Arrow Global AI Accelerator',
+      detail:
+        'Arrow publicly announced the program on April 1, 2025. That establishes the program context for this independent proposal; it does not imply a FrankX relationship with Arrow.',
+      evidence: {
+        label: 'Arrow newsroom — April 1, 2025',
+        href: 'https://news.arrow.com/news-releases/news-details/2025/Arrow-Electronics-Introduces-Global-AI-Accelerator-Program/default.aspx',
+      },
+    },
     {
       label: 'Former enterprise AI architecture practice',
       detail:
@@ -73,16 +85,6 @@ That is the layer FrankX brings: former enterprise AI architecture experience, A
       label: 'OCI Claude Code skill pack',
       href: 'https://github.com/oci-ai-architects/claude-code-oci-ai-architect-skills',
     },
-    {
-      label: 'Top LinkedIn posts (highest-engagement)',
-      href: '#linkedin-todo',
-      metric: 'Three URLs — Frank fills',
-    },
-    {
-      label: 'Oracle x NVIDIA partner event 2025',
-      href: '#nvidia-event-todo',
-      metric: 'Reference URL — Frank fills',
-    },
   ],
 
   proposalIntro:
@@ -95,9 +97,9 @@ That is the layer FrankX brings: former enterprise AI architecture experience, A
       metric: 'Practice',
     },
     {
-      title: 'Solution Architect coaching track record',
-      body: 'Coached Oracle solution architects through agent-native workflows. Cohort testimonial base is available on request through the conversation.',
-      metric: 'Coached cohort',
+      title: 'Solution-architect learning path',
+      body: 'A proposed coaching path that applies agent-native workflows to reference architectures, proof-of-concept work, and evidence review.',
+      metric: 'Proposed curriculum',
     },
     {
       title: 'Public distribution surface',
@@ -111,8 +113,8 @@ That is the layer FrankX brings: former enterprise AI architecture experience, A
     },
     {
       title: 'Live agentic body of work',
-      body: 'Open architecture (ACOS) and a 31-tool MCP server (SIS) including MCP-to-Oracle-Autonomous-Database connectivity. Public, reviewable, running.',
-      metric: '85+ repos / 31 tools',
+      body: 'Public ACOS and SIS repositories give a prospective partner concrete architecture and MCP artifacts to inspect before a conversation.',
+      metric: 'Public repositories',
     },
   ],
 
@@ -264,14 +266,13 @@ That is the layer FrankX brings: former enterprise AI architecture experience, A
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/arrow.svg',
-  ogImagePath: '/images/partnerships/arrow-og.png',
   visualSummaryUrl: '/images/partnerships/arrow-compounding-loop.svg',
   visualSummaryAlt:
     'Twelve-month compounding loop showing the FrankX coding-agent AI CoE practice with Arrow ECS — Month 0 foundations, Month 3 first publications, Month 6 cohort certified, Month 12 practice mature.',
 
   seo: {
-    title: 'FrankX × Arrow Electronics ECS — Coding-Agent AI CoE Partnership',
+    title: 'FrankX Proposal for Arrow ECS — Coding-Agent AI CoE',
     description:
-      "A coding-agent-native AI CoE practice for EMEA distribution. How I'd build with Arrow ECS — methodology, toolkit, audience funnel, NVIDIA bridge.",
+      "Frank Riemer’s independently authored proposal for a coding-agent-native AI CoE practice with Arrow ECS. Proposal status is explicit; endorsement is not implied.",
   },
 }

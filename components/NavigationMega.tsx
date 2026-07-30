@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import {
   Menu,
@@ -23,8 +23,6 @@ import {
   Layers,
   ArrowRight,
   ExternalLink,
-  Wand2,
-  Star,
   Network,
   Microscope,
   Building,
@@ -32,7 +30,6 @@ import {
   Download,
   Compass,
   Gamepad2,
-  Brain,
   Scroll,
   Map,
   Flame,
@@ -45,29 +42,11 @@ import {
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
 
-// Navigation: 5 megas + Blog + Journal. Blog is the long-form archive, Journal
-// the short dated notes — two destinations, deliberately not merged.
-// Invest merged into Build (AI Architecture covers enterprise + investor tooling).
+// Four primary doors keep the workspace legible. The long-form archive, journal,
+// music, and other deep routes remain available inside the relevant menu.
 const navigation = {
-  music: {
-    label: 'Music',
-    href: '/music',
-    featured: {
-      title: 'AI Music Portfolio',
-      description: '12,000+ songs created with Suno AI. Explore the catalog.',
-      href: '/music',
-      badge: '12K+ Tracks',
-    },
-    items: [
-      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
-      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
-      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Full curriculum: theory to production' },
-      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
-    ],
-  },
   gencreators: {
-    label: 'GenCreators',
+    label: 'Create',
     href: '/gencreator',
     featured: {
       title: 'The GenCreator Framework',
@@ -83,6 +62,11 @@ const navigation = {
       { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '130+ curated prompts' },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Behind the build' },
       { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
+      { name: 'Music Showcase', href: '/music', icon: Music, description: 'Original releases and experiments' },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
+      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
+      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory through production' },
+      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Listen on Suno', external: true },
     ],
   },
   learn: {
@@ -149,42 +133,39 @@ const navigation = {
     ],
   },
   explore: {
-    label: 'Explore',
-    href: '/resources',
+    label: 'Workspace',
+    href: '/workspace',
     featured: {
-      title: 'The FrankX Ecosystem',
-      description: 'Research, products, world-building, and the story behind it all.',
-      href: '/resources',
-      badge: 'Ecosystem',
+      title: 'The Agentic Workspace',
+      description: 'Frank sets the direction. Specialist agents research, challenge, and build.',
+      href: '/workspace',
+      badge: 'How it works',
     },
     items: [
-      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
-      { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Intelligence operations' },
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
-      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
-      { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
-      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
-      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
-      { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
+      { name: 'Workspace', href: '/workspace', icon: Workflow, description: 'Source → agents → Frank → artifact' },
+      { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
+      { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
+      { name: 'Essays', href: '/blog', icon: BookOpen, description: 'Researched articles and systems' },
+      { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status' },
       { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
-      { name: 'About', href: '/about', icon: Users, description: 'Story & mission' },
-      { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
-      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
-      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
-      { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
+      { name: 'Partnerships', href: '/partnerships', icon: Users, description: 'Systems built around real missions' },
+      { name: 'Journal', href: '/journal', icon: Scroll, description: 'Short notes from work in progress' },
+      { name: 'About Frank', href: '/about', icon: Users, description: 'Person, principles, and boundaries' },
+      { name: 'Connect', href: '/connect', icon: Compass, description: 'Bring a real question' },
     ],
     groups: [
       {
-        label: 'Research & Knowledge',
-        items: ['Research Hub', 'Intelligence Atlas', 'Downloads'],
+        label: 'Current work',
+        items: ['Workspace', 'Research', 'Library', 'Guides', 'Essays'],
       },
       {
-        label: 'Products & Systems',
-        items: ['Starlight IS', 'ACOS', 'Design System', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
+        label: 'The system',
+        items: ['Agent Catalog', 'Design System'],
       },
       {
         label: 'Connect',
-        items: ['About', 'Bio', 'Media Kit', 'Licensing', 'Contact'],
+        items: ['Partnerships', 'Journal', 'About Frank', 'Connect'],
       },
     ],
   },
@@ -199,8 +180,13 @@ function Logo() {
       className="rounded-lg px-2 py-1.5 transition-all duration-300 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
       aria-label="FrankX.AI - Home"
     >
-      <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-        FrankX.AI
+      <span className="flex flex-col">
+        <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+          FrankX.AI
+        </span>
+        <span className="hidden font-mono text-[8px] font-medium uppercase tracking-[0.16em] text-emerald-300/60 xl:block">
+          Public agentic workspace
+        </span>
       </span>
     </Link>
   )
@@ -227,9 +213,9 @@ function MenuLink({ item }: { item: (typeof navigation)[NavKey]['items'][0] }) {
           <div className="flex-1 min-w-0">
             <span className="flex items-center gap-1.5 text-[13px] font-medium text-white">
               {item.name}
-              {isExternal && <ExternalLink className="h-3 w-3 text-slate-500" />}
+              {isExternal && <ExternalLink className="h-3 w-3 text-slate-400" />}
             </span>
-            <p className="text-[11px] leading-tight text-slate-500">{item.description}</p>
+            <p className="text-[11px] leading-tight text-slate-400">{item.description}</p>
           </div>
         </LinkComponent>
       </NavigationMenu.Link>
@@ -243,7 +229,7 @@ function FeaturedCard({ data }: { data: (typeof navigation)[NavKey] }) {
       href={data.featured.href}
       className="group relative flex flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/50 to-slate-900/80 p-5 transition-all hover:from-slate-800/70 hover:to-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-violet-500/10 opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <span className="mb-2 inline-block w-fit rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
         {data.featured.badge}
       </span>
@@ -274,7 +260,7 @@ function MegaMenuContent({ section }: { section: NavKey }) {
                 .filter(Boolean) as (typeof data.items)[0][]
               return (
                 <div key={group.label}>
-                  <h5 className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">
+                  <h5 className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">
                     {group.label}
                   </h5>
                   <ul className="space-y-0.5">
@@ -330,12 +316,10 @@ function MegaMenuContent({ section }: { section: NavKey }) {
   )
 }
 
-// Click = navigate to hub page. Hover still opens menu (Radix pointer-enter is independent of click).
-function NavTrigger({ children, href }: { children: React.ReactNode; href: string }) {
-  const router = useRouter()
+function NavTrigger({ children }: { children: React.ReactNode }) {
   return (
     <NavigationMenu.Trigger
-      onClick={() => router.push(href)}
+      aria-label={`${children} menu`}
       className="group flex items-center gap-1 rounded-md px-2.5 py-1.5 text-[13px] font-semibold text-slate-300 outline-none transition-all hover:bg-white/5 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712] data-[state=open]:bg-white/5 data-[state=open]:text-white"
     >
       {children}
@@ -415,12 +399,7 @@ export default function NavigationMega() {
   // Ctrl+K hotkey lives in CommandPalette (single source of truth). Having it here too caused a race:
   // NavigationMega dispatched the event → palette opened → palette's own keydown toggled it closed in the same tick.
 
-  const isActive = (href: string) => {
-    if (href === '/') return pathname === '/'
-    return pathname.startsWith(href)
-  }
-
-  const desktopSections: NavKey[] = ['music', 'gencreators', 'learn', 'build', 'explore']
+  const desktopSections: NavKey[] = ['explore', 'build', 'learn', 'gencreators']
 
   return (
     <>
@@ -444,40 +423,12 @@ export default function NavigationMega() {
             <NavigationMenu.List className="flex items-center gap-0.5">
               {desktopSections.map((section) => (
                 <NavigationMenu.Item key={section}>
-                  <NavTrigger href={navigation[section].href}>{navigation[section].label}</NavTrigger>
+                  <NavTrigger>{navigation[section].label}</NavTrigger>
                   <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
                     <MegaMenuContent section={section} />
                   </NavigationMenu.Content>
                 </NavigationMenu.Item>
               ))}
-
-              <NavigationMenu.Item>
-                <Link
-                  href="/blog"
-                  className={cn(
-                    'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]',
-                    isActive('/blog')
-                      ? 'text-white bg-white/5'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
-                  )}
-                >
-                  Blog
-                </Link>
-              </NavigationMenu.Item>
-
-              <NavigationMenu.Item>
-                <Link
-                  href="/journal"
-                  className={cn(
-                    'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]',
-                    isActive('/journal')
-                      ? 'text-white bg-white/5'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
-                  )}
-                >
-                  Journal
-                </Link>
-              </NavigationMenu.Item>
 
               <NavigationMenu.Indicator className="top-full z-10 flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
                 <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-800 shadow-lg" />

@@ -35,9 +35,8 @@ export function listStrategicAlignment(): Partner[] {
   return listPartners().filter((p) => p.status === 'strategic-alignment')
 }
 
-export function listOpenConversations(): Partner[] {
+export function listOpenOpportunities(): Partner[] {
   return listPartners().filter(
     (p) => p.status === 'placeholder' || p.status === 'in-conversation'
   )
 }
-

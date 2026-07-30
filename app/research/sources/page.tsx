@@ -18,26 +18,41 @@ import {
   type ResearchSource,
 } from '@/lib/research/sources'
 
-interface SourceWithDomain extends ResearchSource {
-  domainSlug: string
-  domainTitle: string
+interface SourceDomain {
+  slug: string
+  title: string
 }
 
-// Build flat list of all sources with domain info
-const allSources: SourceWithDomain[] = Object.entries(domainSources).flatMap(
-  ([slug, sources]) => {
-    const domain = researchDomains.find((d) => d.slug === slug)
-    return sources.map((src) => ({
-      ...src,
-      domainSlug: slug,
-      domainTitle: domain?.title || slug,
-    }))
-  }
-)
+interface SourceWithDomains extends ResearchSource {
+  domains: SourceDomain[]
+}
 
-// Deduplicate by URL (some sources appear in multiple domains)
-const uniqueSources = allSources.filter(
-  (src, idx, arr) => arr.findIndex((s) => s.url === src.url) === idx
+// A source can support several domains. Preserve every membership when URLs
+// are deduplicated so domain filters remain accurate.
+const sourceMap = new Map<string, SourceWithDomains>()
+Object.entries(domainSources).forEach(([slug, sources]) => {
+  const domain = researchDomains.find((item) => item.slug === slug)
+  const domainRef = { slug, title: domain?.title || slug }
+
+  sources.forEach((source) => {
+    const existing = sourceMap.get(source.url)
+    if (existing) {
+      if (!existing.domains.some((item) => item.slug === slug)) {
+        existing.domains.push(domainRef)
+      }
+      return
+    }
+
+    sourceMap.set(source.url, {
+      ...source,
+      domains: [domainRef],
+    })
+  })
+})
+
+const uniqueSources = Array.from(sourceMap.values())
+const domainsWithSources = researchDomains.filter(
+  (domain) => (domainSources[domain.slug]?.length ?? 0) > 0
 )
 
 const sourceTypes: SourceType[] = [
@@ -53,15 +68,15 @@ const sourceTypes: SourceType[] = [
 ]
 
 const typeColors: Record<SourceType, string> = {
-  'industry-report': 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-  journal: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  conference: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
-  book: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
+  'industry-report': 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20',
+  journal: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
+  conference: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20',
+  book: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
   official: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  news: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
-  blog: 'bg-violet-500/10 text-violet-400 border-violet-500/20',
+  news: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20',
+  blog: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
   benchmark: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  preprint: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+  preprint: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20',
 }
 
 export default function SourceBrowserPage() {
@@ -77,7 +92,9 @@ export default function SourceBrowserPage() {
     }
 
     if (activeDomain !== 'all') {
-      results = results.filter((s) => s.domainSlug === activeDomain)
+      results = results.filter((s) =>
+        s.domains.some((domain) => domain.slug === activeDomain)
+      )
     }
 
     if (searchQuery.trim()) {
@@ -86,7 +103,7 @@ export default function SourceBrowserPage() {
         (s) =>
           s.title.toLowerCase().includes(q) ||
           s.name.toLowerCase().includes(q) ||
-          s.domainTitle.toLowerCase().includes(q)
+          s.domains.some((domain) => domain.title.toLowerCase().includes(q))
       )
     }
 
@@ -132,7 +149,7 @@ export default function SourceBrowserPage() {
       <div className="relative pt-28 pb-20 md:pt-36">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-white/40 mb-8">
+          <div className="flex items-center gap-2 text-sm text-white/65 mb-8">
             <Link
               href="/research"
               className="hover:text-white transition-colors flex items-center gap-1.5"
@@ -154,8 +171,8 @@ export default function SourceBrowserPage() {
                 <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">
                   Source Browser
                 </h1>
-                <p className="text-white/40 mt-1">
-                  Every source backing our research, searchable and transparent
+                <p className="text-white/65 mt-1">
+                  Source references currently registered across the research hub
                 </p>
               </div>
             </div>
@@ -178,9 +195,9 @@ export default function SourceBrowserPage() {
               </div>
               <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
                 <p className="text-2xl font-bold text-white">
-                  {researchDomains.length}
+                  {domainsWithSources.length}
                 </p>
-                <p className="text-xs text-violet-400 font-medium">
+                <p className="text-xs text-emerald-300 font-medium">
                   Domains Covered
                 </p>
               </div>
@@ -188,7 +205,7 @@ export default function SourceBrowserPage() {
                 <p className="text-2xl font-bold text-white">
                   {sourceTypes.length}
                 </p>
-                <p className="text-xs text-amber-400 font-medium">
+                <p className="text-xs text-cyan-300 font-medium">
                   Source Types
                 </p>
               </div>
@@ -197,18 +214,24 @@ export default function SourceBrowserPage() {
 
           {/* Search */}
           <div className="relative mb-4">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+            <label htmlFor="source-search" className="sr-only">
+              Search sources by title, publisher, or research domain
+            </label>
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/60" />
             <input
+              id="source-search"
               type="text"
               placeholder="Search by title, publisher, or domain..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all"
+              className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder:text-white/60 focus:outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all"
             />
             {searchQuery && (
               <button
+                type="button"
+                aria-label="Clear source search"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-white/30 hover:text-white/60 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-white/60 hover:text-white transition-colors"
               >
                 Clear
               </button>
@@ -220,13 +243,15 @@ export default function SourceBrowserPage() {
             {/* Type filter */}
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <Filter className="w-3 h-3 text-white/30" />
-                <span className="text-[10px] font-semibold text-white/25 uppercase tracking-wider">
+                <Filter className="w-3 h-3 text-white/60" />
+                <span className="text-[10px] font-semibold text-white/65 uppercase tracking-wider">
                   Source Type
                 </span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 <button
+                  type="button"
+                  aria-pressed={activeType === 'all'}
                   onClick={() => setActiveType('all')}
                   className={`text-xs px-3 py-1.5 rounded-full transition-all ${
                     activeType === 'all'
@@ -239,6 +264,8 @@ export default function SourceBrowserPage() {
                 {sourceTypes.map((type) => (
                   <button
                     key={type}
+                    type="button"
+                    aria-pressed={activeType === type}
                     onClick={() =>
                       setActiveType(activeType === type ? 'all' : type)
                     }
@@ -258,13 +285,15 @@ export default function SourceBrowserPage() {
           {/* Domain filter */}
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-2">
-              <ShieldCheck className="w-3 h-3 text-white/30" />
-              <span className="text-[10px] font-semibold text-white/25 uppercase tracking-wider">
+              <ShieldCheck className="w-3 h-3 text-white/60" />
+              <span className="text-[10px] font-semibold text-white/65 uppercase tracking-wider">
                 Research Domain
               </span>
             </div>
             <div className="flex flex-wrap gap-1.5">
               <button
+                type="button"
+                aria-pressed={activeDomain === 'all'}
                 onClick={() => setActiveDomain('all')}
                 className={`text-xs px-3 py-1.5 rounded-full transition-all ${
                   activeDomain === 'all'
@@ -274,9 +303,11 @@ export default function SourceBrowserPage() {
               >
                 All Domains
               </button>
-              {researchDomains.map((d) => (
+              {domainsWithSources.map((d) => (
                 <button
                   key={d.slug}
+                  type="button"
+                  aria-pressed={activeDomain === d.slug}
                   onClick={() =>
                     setActiveDomain(
                       activeDomain === d.slug ? 'all' : d.slug
@@ -295,18 +326,19 @@ export default function SourceBrowserPage() {
           </div>
 
           {/* Results count */}
-          <p className="text-xs text-white/30 mb-4">
+          <p className="text-xs text-white/60 mb-4" aria-live="polite">
             Showing {filtered.length} of {uniqueSources.length} sources
           </p>
 
           {/* Source list */}
           {filtered.length === 0 ? (
             <div className="text-center py-16">
-              <Search className="w-8 h-8 text-white/20 mx-auto mb-4" />
-              <p className="text-white/40 text-sm">
+              <Search className="w-8 h-8 text-white/55 mx-auto mb-4" />
+              <p className="text-white/65 text-sm">
                 No sources match your filters.
               </p>
               <button
+                type="button"
                 onClick={() => {
                   setSearchQuery('')
                   setActiveType('all')
@@ -324,7 +356,7 @@ export default function SourceBrowserPage() {
                   key={`${src.url}-${idx}`}
                   className="flex gap-3 p-4 rounded-xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.03] transition-colors"
                 >
-                  <span className="text-xs font-mono text-white/20 flex-shrink-0 mt-0.5 w-8 text-right">
+                  <span className="text-xs font-mono text-white/60 flex-shrink-0 mt-0.5 w-8 text-right">
                     {idx + 1}
                   </span>
                   <div className="flex-1 min-w-0">
@@ -338,7 +370,7 @@ export default function SourceBrowserPage() {
                       <ArrowUpRight className="w-3 h-3 flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </a>
                     <div className="flex flex-wrap items-center gap-2 mt-1.5">
-                      <span className="text-[10px] text-white/30 font-medium">
+                      <span className="text-[10px] text-white/65 font-medium">
                         {src.name}
                       </span>
                       <span
@@ -346,12 +378,15 @@ export default function SourceBrowserPage() {
                       >
                         {sourceTypeLabels[src.type]}
                       </span>
-                      <Link
-                        href={`/research/${src.domainSlug}`}
-                        className="text-[10px] text-white/20 hover:text-white/50 transition-colors"
-                      >
-                        {src.domainTitle}
-                      </Link>
+                      {src.domains.map((domain) => (
+                        <Link
+                          key={domain.slug}
+                          href={`/research/${domain.slug}`}
+                          className="text-[10px] text-white/60 hover:text-white transition-colors"
+                        >
+                          {domain.title}
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -363,7 +398,7 @@ export default function SourceBrowserPage() {
           <div className="pt-8 mt-8 border-t border-white/[0.04]">
             <Link
               href="/research"
-              className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Research Hub

@@ -9,12 +9,31 @@ type PlaceholderStateProps = {
 
 /**
  * Rendered in place of Tier 2 (proposal) when partner.status is
- * 'placeholder' or 'in-conversation'. Honest signal: conversation exists,
- * page comes online when both sides are ready.
+ * 'strategic-alignment', 'placeholder', or 'in-conversation'. The copy states
+ * exactly what FrankX can evidence without implying reciprocal involvement.
  *
  * No promises. No fake "coming soon" countdown. Just a calm placeholder.
  */
 export function PlaceholderState({ partner }: PlaceholderStateProps) {
+  const state =
+    partner.status === 'strategic-alignment'
+      ? {
+          eyebrow: 'Independent alignment brief',
+          title: `A FrankX brief about ${partner.shortName}.`,
+          body: `This page documents public artifacts and, where specifically evidenced, FrankX’s own use or prior experience. It is not a record of a formal ${partner.shortName} partnership, reciprocal conversation, or endorsement.`,
+        }
+      : partner.status === 'in-conversation'
+        ? {
+            eyebrow: 'Conversation noted by FrankX',
+            title: `An exploratory conversation with ${partner.shortName}.`,
+            body: `FrankX records this conversation as open. No formal partnership or endorsement is claimed, and no proposal is presented as jointly approved.`,
+          }
+        : {
+            eyebrow: 'Independent opportunity note',
+            title: `A possible direction involving ${partner.shortName}.`,
+            body: `This is a FrankX-authored opportunity note. It does not claim that a conversation, partnership, or endorsement exists.`,
+          }
+
   return (
     <section
       aria-labelledby="placeholder-state-heading"
@@ -23,22 +42,20 @@ export function PlaceholderState({ partner }: PlaceholderStateProps) {
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         <div className="rounded-3xl bg-white/[0.02] border border-white/[0.08] p-8 sm:p-12">
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-            Conversation open
+            {state.eyebrow}
           </p>
           <h2
             id="placeholder-state-heading"
             className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-4 leading-snug"
           >
-            A deeper conversation with {partner.shortName} is in motion.
+            {state.title}
           </h2>
           <p className="text-base text-zinc-400 mb-3 leading-relaxed">
-            The proposal page comes online when both sides are ready to
-            publish. Until then, the working partnerships hub explains how I
-            collaborate at this depth.
+            {state.body}
           </p>
           <p className="text-base text-zinc-400 mb-8 leading-relaxed">
-            If you&apos;re reading this and the conversation is yours to open
-            on the {partner.shortName} side, the calendar link is below.
+            If this direction is relevant to your work at {partner.shortName},
+            the calendar link is below.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
@@ -60,7 +77,7 @@ export function PlaceholderState({ partner }: PlaceholderStateProps) {
         </div>
 
         {partner.lastUpdated ? (
-          <p className="mt-12 text-center text-xs text-white/30">
+          <p className="mt-12 text-center text-xs text-white/60">
             Last updated{' '}
             <time dateTime={partner.lastUpdated}>
               {new Date(partner.lastUpdated + 'T00:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}

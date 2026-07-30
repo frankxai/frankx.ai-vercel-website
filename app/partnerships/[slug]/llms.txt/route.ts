@@ -3,7 +3,7 @@ import { getPartner, listPartners } from '@/content/partnerships'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 import { SURFACE_HREFS } from '@/lib/cross-links'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = 'https://www.frankx.ai'
 
 export function generateStaticParams() {
   return listPartners().map((p) => ({ slug: p.slug }))
@@ -27,14 +27,20 @@ export async function GET(
     return new NextResponse('Partner not found', { status: 404 })
   }
 
-  const isProposalTier = partner.status === 'active'
+  const hasPublishedProposal = partner.status === 'active'
   const lines: string[] = []
 
-  lines.push(`# FrankX × ${partner.name} — Partnership`)
+  lines.push(`# FrankX brief for ${partner.name}`)
   lines.push('')
   lines.push(`URL: ${SITE_URL}/partnerships/${partner.slug}`)
   lines.push(`Tier: ${partner.tier}`)
   lines.push(`Status: ${partner.status}`)
+  lines.push(`Publication basis: ${partner.publicationBasis}`)
+  lines.push(`Consent status: ${partner.consentStatus}`)
+  lines.push(`Privacy classification: ${partner.privacyClassification}`)
+  lines.push(
+    `Disclosure: Authored independently by FrankX. This page does not by itself evidence endorsement or a formal relationship with ${partner.name}.`
+  )
   lines.push('')
 
   lines.push('## Positioning')
@@ -65,7 +71,7 @@ export async function GET(
     lines.push('')
   }
 
-  if (isProposalTier) {
+  if (hasPublishedProposal) {
     lines.push('## Proposal — operating modes')
     for (const program of partner.programs) {
       lines.push(
@@ -102,9 +108,19 @@ export async function GET(
     }
   } else {
     lines.push('## State')
-    lines.push(
-      `A deeper conversation with ${partner.shortName} is in motion. The full proposal page comes online when both sides are ready to publish.`
-    )
+    if (partner.status === 'strategic-alignment') {
+      lines.push(
+        `FrankX documents platform use and possible alignment. No formal ${partner.shortName} relationship is claimed.`
+      )
+    } else if (partner.status === 'in-conversation') {
+      lines.push(
+        `FrankX records an open conversation with ${partner.shortName}; no formal partnership is claimed.`
+      )
+    } else {
+      lines.push(
+        `This is an independent FrankX opportunity note. No conversation or partnership with ${partner.shortName} is claimed.`
+      )
+    }
     lines.push('')
   }
 

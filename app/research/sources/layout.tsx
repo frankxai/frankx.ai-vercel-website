@@ -7,9 +7,9 @@ const uniqueCount = new Set(
 ).size
 
 export const metadata: Metadata = {
-  title: 'Source Browser | Research Hub | FrankX.AI',
+  title: 'Research Source Browser',
   description:
-    `Browse all ${uniqueCount}+ verified research sources across 20 AI domains. Filter by type, domain, or publisher. Every claim in our research hub is backed by transparent, verifiable evidence.`,
+    `Browse ${uniqueCount}+ source references across the FrankX research domains and filter them by type, topic, or publisher.`,
   keywords: [
     'AI research sources',
     'verified AI research',
@@ -19,19 +19,19 @@ export const metadata: Metadata = {
     'research bibliography',
   ],
   openGraph: {
-    title: 'Source Browser | FrankX Research Hub',
+    title: 'FrankX Research Source Browser',
     description:
-      `${uniqueCount}+ verified sources across 20 AI research domains. Transparent, searchable evidence.`,
+      `${uniqueCount}+ visible source references across the FrankX research domains.`,
     type: 'website',
-    url: 'https://frankx.ai/research/sources',
+    url: 'https://www.frankx.ai/research/sources',
   },
   twitter: {
     card: 'summary',
-    title: 'Source Browser | FrankX Research Hub',
-    description: `${uniqueCount}+ verified sources across 20 AI research domains.`,
+    title: 'FrankX Research Source Browser',
+    description: `${uniqueCount}+ visible source references across the FrankX research domains.`,
   },
   alternates: {
-    canonical: 'https://frankx.ai/research/sources',
+    canonical: 'https://www.frankx.ai/research/sources',
   },
 }
 
@@ -44,19 +44,19 @@ const breadcrumbLd = JSON.stringify({
       '@type': 'ListItem',
       position: 1,
       name: 'Home',
-      item: 'https://frankx.ai',
+      item: 'https://www.frankx.ai',
     },
     {
       '@type': 'ListItem',
       position: 2,
       name: 'Research Hub',
-      item: 'https://frankx.ai/research',
+      item: 'https://www.frankx.ai/research',
     },
     {
       '@type': 'ListItem',
       position: 3,
       name: 'Source Browser',
-      item: 'https://frankx.ai/research/sources',
+      item: 'https://www.frankx.ai/research/sources',
     },
   ],
 })
@@ -65,23 +65,23 @@ const collectionLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: 'Source Browser',
-  description: `Browse ${uniqueCount}+ verified research sources across 20 AI domains.`,
-  url: 'https://frankx.ai/research/sources',
+  description: `Browse ${uniqueCount}+ source references across the FrankX research domains.`,
+  url: 'https://www.frankx.ai/research/sources',
   isPartOf: {
     '@type': 'WebPage',
     name: 'Research Hub',
-    url: 'https://frankx.ai/research',
+    url: 'https://www.frankx.ai/research',
   },
   author: {
     '@type': 'Person',
     name: 'Frank Riemer',
-    url: 'https://frankx.ai',
+    url: 'https://www.frankx.ai',
     jobTitle: 'AI Architect',
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: 'https://www.frankx.ai',
   },
   numberOfItems: uniqueCount,
 })

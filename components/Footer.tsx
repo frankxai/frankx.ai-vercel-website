@@ -4,13 +4,25 @@ import Link from 'next/link'
 import { ExternalLink, ArrowUp, Mail } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
 import Image from 'next/image'
+import { sitePositioning } from '@/data/site-positioning'
 import { socialLinks } from '@/lib/social-links'
 
 function BackToTop() {
+  const scrollToTop = () => {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    })
+  }
+
   return (
     <button
       type="button"
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      onClick={scrollToTop}
       className="group flex items-center gap-1.5 text-xs text-white/55 hover:text-white transition-colors"
       aria-label="Back to top"
     >
@@ -55,22 +67,23 @@ const NAV_COLUMNS = [
     ],
   },
   {
-    label: 'Build',
+    label: 'Workspace',
     links: [
+      { label: 'How it works', href: '/workspace', accent: 'emerald' },
+      { label: 'Research', href: '/research' },
+      { label: 'Library', href: '/library' },
+      { label: 'Guides', href: '/guides' },
       { label: 'Architecture Hub', href: '/ai-architecture' },
-      { label: 'Blueprints', href: '/ai-architecture/blueprints' },
-      { label: 'AI World', href: '/ai-world' },
-      { label: 'Research Hub', href: '/research' },
-      { label: 'Products', href: '/products' },
+      { label: 'Agent Catalog', href: '/agents' },
     ],
   },
   {
     label: 'Work with me',
     links: [
       { label: 'Start Here', href: '/start' },
-      { label: 'Foundry', href: '/foundry', accent: 'emerald' },
-      { label: "Founder's Circle", href: '/founders-circle', accent: 'rose' },
-      { label: 'Coaching', href: '/coaching' },
+      { label: 'Connect', href: '/connect', accent: 'emerald' },
+      { label: 'Partnerships', href: '/partnerships' },
+      { label: 'Work with Frank', href: '/work-with-me' },
       { label: 'Licensing', href: '/licensing' },
       { label: 'Newsletter', href: '/newsletter' },
       { label: 'About', href: '/about' },
@@ -145,12 +158,11 @@ export default function Footer() {
               />
               <div>
                 <span className="block text-base sm:text-lg font-semibold text-white">FrankX.AI</span>
-                <span className="block text-[10px] sm:text-xs text-white/55">AI Systems &amp; Music</span>
+                <span className="block text-[10px] sm:text-xs text-white/55">Public agentic workspace</span>
               </div>
             </Link>
-            <p className="text-xs sm:text-sm text-white/60 leading-relaxed max-w-xs">
-              AI architect by day. Music creator by night.
-              Building systems, making music, sharing everything.
+            <p className="max-w-xs text-xs leading-relaxed text-white/65 sm:text-sm">
+              {sitePositioning.shortDescription}
             </p>
             {/* Email — direct contact signal */}
             <a
@@ -210,8 +222,8 @@ export default function Footer() {
           />
           <div className="relative flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white">Weekly dispatch — AI architecture &amp; creative systems</p>
-              <p className="text-xs text-white/55 mt-0.5">One email per week. No fluff. Unsubscribe anytime.</p>
+              <p className="text-sm font-semibold text-white">One reviewed note from the workspace each week</p>
+              <p className="mt-0.5 text-xs text-white/60">Research, builds, field notes, and decisions worth carrying forward.</p>
             </div>
             <div className="w-full sm:w-auto sm:min-w-[300px]">
               <EmailSignup listType="newsletter" placeholder="your@email.com" buttonText="Subscribe" compact />

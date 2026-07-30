@@ -184,7 +184,7 @@ export default function RootLayout({
           </div>
           <NavigationMega />
           <CommandPaletteProvider />
-          <div id="main" className="relative z-10 min-h-screen overflow-x-hidden">
+          <div id="main" tabIndex={-1} className="relative z-10 min-h-screen overflow-x-hidden outline-none">
             {children}
           </div>
           <Footer />

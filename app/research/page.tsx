@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import {
   Activity,
@@ -33,6 +32,7 @@ import {
 } from 'lucide-react'
 import { researchDomains, researchAgents, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
+import { domainSources } from '@/lib/research/sources'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { MODEL_MAKER_PORTALS } from '@/lib/learn/related-portals'
 import { EmailSignup } from '@/components/email-signup'
@@ -65,38 +65,37 @@ const featuredDomains = [...researchDomains]
   .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
   .slice(0, 3)
 
-const totalSources = researchDomains.reduce((sum, d) => sum + d.sourceCount, 0)
-const totalFindings = researchDomains.reduce((sum, d) => sum + d.keyFindings.length, 0)
+const totalSources = new Set(
+  Object.values(domainSources).flat().map((source) => source.url),
+).size
+const sourcedDomainCount = researchDomains.filter(
+  (domain) => (domainSources[domain.slug]?.length ?? 0) > 0,
+).length
+const sourceCountFor = (slug: string) => domainSources[slug]?.length ?? 0
 
 function HeroSection() {
-  const shouldReduceMotion = useReducedMotion()
-
   return (
     <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl"
-        >
+        <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             <span className="text-xs font-semibold text-emerald-400 tracking-wider uppercase">
-              Active Research
+              Research from the workspace
             </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-            Research Intelligence
-            <span className="block bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
-              Hub
+            Questions, sources,
+            <span className="block bg-gradient-to-r from-emerald-400 to-cyan-300 bg-clip-text text-transparent">
+              and the decisions they changed.
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-white/60 mb-8 leading-relaxed max-w-3xl">
-            Research across enterprise AI, production patterns, multi-agent systems,
-            and emerging technology &mdash; with dates, citations, and source links kept visible.
+          <p className="text-lg md:text-xl text-white/70 mb-8 leading-relaxed max-w-3xl">
+            My agent team maps primary sources, competing interpretations, and open questions
+            across AI systems and emerging technology. I review the synthesis and publish the
+            evidence, confidence, and remaining uncertainty together.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -104,7 +103,7 @@ function HeroSection() {
               href="#featured"
               className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-all"
             >
-              Explore Research
+              Browse the research
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
@@ -114,55 +113,44 @@ function HeroSection() {
               Methodology
             </Link>
           </div>
-        </motion.div>
+        </div>
 
         {/* Stats */}
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3, duration: 0.8 }}
-          className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4"
-        >
+        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: 'Research Domains', value: String(researchDomains.length), icon: Layers },
-            { label: 'Validated Findings', value: `${totalFindings}+`, icon: ShieldCheck },
-            { label: 'Sources Cross-Referenced', value: `${totalSources}+`, icon: Search },
-            { label: 'Research Agents', value: String(researchAgents.length), icon: Radar },
+            { label: 'Research domains', value: String(researchDomains.length), icon: Layers },
+            { label: 'Domains with sources', value: String(sourcedDomainCount), icon: ShieldCheck },
+            { label: 'Source references', value: `${totalSources}+`, icon: Search },
+            { label: 'Specialist agent roles', value: String(researchAgents.length), icon: Radar },
           ].map((stat, i) => (
             <div key={i} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-xl p-4">
-              <stat.icon className="w-4 h-4 text-white/30 mb-2" />
+              <stat.icon className="w-4 h-4 text-white/60 mb-2" />
               <p className="text-2xl font-bold text-white mb-0.5">{stat.value}</p>
-              <p className="text-xs text-white/40">{stat.label}</p>
+              <p className="text-xs text-white/60">{stat.label}</p>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
 }
 
 function FeaturedSpotlight() {
-  const shouldReduceMotion = useReducedMotion()
-
   return (
     <section id="featured" className="py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
-          className="mb-8"
-        >
+        <div className="mb-8">
           <div className="flex items-center gap-3 mb-3">
             <Sparkles className="w-5 h-5 text-amber-400" />
             <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Recently Updated
+              Recently refreshed
             </h2>
           </div>
-          <p className="text-white/50 max-w-2xl">
-            Our most recently refreshed research domains with the latest data and analysis.
+          <p className="text-white/60 max-w-2xl">
+            The domains I have most recently revisited, with source dates and unresolved questions
+            kept close to the synthesis.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-4">
           {featuredDomains.map((domain, index) => {
@@ -170,12 +158,7 @@ function FeaturedSpotlight() {
             const colors = colorConfig[domain.color] || colorConfig.emerald
 
             return (
-              <motion.div
-                key={domain.slug}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 + index * 0.08 }}
-              >
+              <div key={domain.slug}>
                 <Link
                   href={`/research/${domain.slug}`}
                   className={`
@@ -196,7 +179,7 @@ function FeaturedSpotlight() {
                         <Icon className={`w-6 h-6 ${colors.text}`} />
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="flex items-center gap-1 text-[10px] text-white/30">
+                        <span className="flex items-center gap-1 text-[10px] text-white/55">
                           <Calendar className="w-3 h-3" />
                           {domain.lastUpdated}
                         </span>
@@ -206,30 +189,22 @@ function FeaturedSpotlight() {
                     <h3 className="text-lg font-bold text-white mb-1.5">
                       {domain.title}
                     </h3>
-                    <p className="text-sm text-white/40 mb-4">
+                    <p className="text-sm text-white/60 mb-4">
                       {domain.subtitle}
                     </p>
 
-                    {/* TL;DR preview */}
-                    <p className="text-xs text-white/35 leading-relaxed line-clamp-3 mb-4">
-                      {domain.tldr}
+                    {/* Scope preview — avoid lifting provisional claims out of context */}
+                    <p className="text-xs text-white/60 leading-relaxed line-clamp-3 mb-4">
+                      {domain.description}
                     </p>
-
-                    {/* Highlights */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {domain.highlights.slice(0, 2).map((h, i) => (
-                        <span
-                          key={i}
-                          className={`text-[10px] px-2 py-1 rounded-full ${colors.bg} ${colors.text} font-medium`}
-                        >
-                          {h.stat} {h.label}
-                        </span>
-                      ))}
-                    </div>
 
                     {/* Footer */}
                     <div className="flex items-center justify-between pt-3 border-t border-white/[0.04]">
-                      <span className="text-[10px] text-white/25">{domain.sourceCount} sources</span>
+                      <span className="text-[10px] text-white/55">
+                        {sourceCountFor(domain.slug) > 0
+                          ? `${sourceCountFor(domain.slug)} source references`
+                          : 'Source registry pending'}
+                      </span>
                       <span className={`inline-flex items-center gap-1 text-xs font-medium ${colors.text} group-hover:gap-2 transition-all`}>
                         Read Brief
                         <ArrowRight className="w-3 h-3" />
@@ -237,7 +212,7 @@ function FeaturedSpotlight() {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             )
           })}
         </div>
@@ -249,7 +224,6 @@ function FeaturedSpotlight() {
 const categoryKeys: (DomainCategory | 'all')[] = ['all', 'ai-systems', 'models-tools', 'creative-productivity', 'health-science', 'policy-systems']
 
 function DomainsGrid() {
-  const shouldReduceMotion = useReducedMotion()
   const [activeCategory, setActiveCategory] = useState<DomainCategory | 'all'>('all')
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -276,28 +250,34 @@ function DomainsGrid() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            All Research Domains
+            All research domains
           </h2>
-          <p className="text-white/50 max-w-2xl">
-            {researchDomains.length} research areas organized by topic. Each domain synthesizes
-            validated findings from multiple sources into actionable intelligence.
+          <p className="text-white/60 max-w-2xl">
+            {researchDomains.length} research areas organized by topic. Specialist agents map the
+            evidence and contradictions; I review what the page can responsibly conclude.
           </p>
         </div>
 
         {/* Search */}
         <div className="relative mb-6">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+          <label htmlFor="research-domain-search" className="sr-only">
+            Search research domains, findings, and insights
+          </label>
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/60" />
           <input
+            id="research-domain-search"
             type="text"
             placeholder="Search domains, findings, insights..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all"
+            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder:text-white/50 focus:outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all"
           />
           {searchQuery && (
             <button
+              type="button"
+              aria-label="Clear research search"
               onClick={() => setSearchQuery('')}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-white/30 hover:text-white/60 transition-colors"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-white/50 hover:text-white/70 transition-colors"
             >
               Clear
             </button>
@@ -316,6 +296,8 @@ function DomainsGrid() {
             return (
               <button
                 key={key}
+                type="button"
+                aria-pressed={isActive}
                 onClick={() => setActiveCategory(key)}
                 className={`
                   inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium
@@ -337,16 +319,17 @@ function DomainsGrid() {
 
         {/* Results count */}
         {(searchQuery || activeCategory !== 'all') && (
-          <p className="text-xs text-white/30 mb-4">
+          <p className="text-xs text-white/50 mb-4">
             Showing {filteredDomains.length} of {researchDomains.length} domains
           </p>
         )}
 
         {filteredDomains.length === 0 ? (
           <div className="text-center py-16">
-            <Search className="w-8 h-8 text-white/20 mx-auto mb-4" />
-            <p className="text-white/40 text-sm">No domains match your search.</p>
+            <Search className="w-8 h-8 text-white/55 mx-auto mb-4" />
+            <p className="text-white/60 text-sm">No domains match your search.</p>
             <button
+              type="button"
               onClick={() => { setSearchQuery(''); setActiveCategory('all') }}
               className="mt-3 text-xs text-emerald-400 hover:text-emerald-300 transition-colors"
             >
@@ -355,17 +338,12 @@ function DomainsGrid() {
           </div>
         ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredDomains.map((domain, index) => {
+          {filteredDomains.map((domain) => {
             const Icon = iconMap[domain.icon] || Layers
             const colors = colorConfig[domain.color] || colorConfig.emerald
 
             return (
-              <motion.div
-                key={domain.slug}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: Math.min(index * 0.04, 0.3) }}
-              >
+              <div key={domain.slug}>
                 <Link
                   href={`/research/${domain.slug}`}
                   className="group relative block rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:bg-white/[0.04] hover:border-white/[0.12]"
@@ -380,33 +358,30 @@ function DomainsGrid() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
-                          {domain.sourceCount} sources
+                          {sourceCountFor(domain.slug) > 0
+                            ? `${sourceCountFor(domain.slug)} sources`
+                            : 'Sources pending'}
                         </span>
-                        <ArrowUpRight className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" />
+                        <ArrowUpRight className="w-4 h-4 text-white/55 group-hover:text-white/50 transition-colors" />
                       </div>
                     </div>
 
                     <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-white transition-colors">
                       {domain.title}
                     </h3>
-                    <p className="text-sm text-white/40 mb-4 line-clamp-2">
+                    <p className="text-sm text-white/60 mb-4 line-clamp-2">
                       {domain.subtitle}
                     </p>
 
-                    {/* Key highlights */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {domain.highlights.slice(0, 2).map((h, i) => (
-                        <span
-                          key={i}
-                          className="text-[10px] px-2 py-1 bg-white/[0.04] border border-white/[0.06] rounded-full text-white/50"
-                        >
-                          <span className="font-semibold text-white/70">{h.stat}</span> {h.label}
-                        </span>
-                      ))}
-                    </div>
+                    <p className="text-xs leading-5 text-white/50">
+                      {sourceCountFor(domain.slug) > 0
+                        ? `Evidence grade ${domain.evidenceGrade ?? 'pending'}`
+                        : 'Evidence review pending'}
+                      {' · '}Updated {domain.lastUpdated}
+                    </p>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             )
           })}
         </div>
@@ -417,33 +392,27 @@ function DomainsGrid() {
 }
 
 function ResearchTeamSection() {
-  const shouldReduceMotion = useReducedMotion()
-
   return (
     <section id="team" className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Research Operations Team
+            Specialist research roles
           </h2>
-          <p className="text-white/50 max-w-2xl">
-            The five agent roles this research runs through — scanning, validation,
-            synthesis, and publishing happen in working sessions with these specialists,
-            not in an autonomous pipeline.
+          <p className="text-white/60 max-w-2xl">
+            Five bounded roles support scanning, evidence review, synthesis, and production.
+            They work inside directed sessions; none has authority to publish on its own.
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-          {researchAgents.map((agent, index) => {
+          {researchAgents.map((agent) => {
             const Icon = iconMap[agent.icon] || Layers
             const colors = colorConfig[agent.color] || colorConfig.emerald
 
             return (
-              <motion.div
+              <div
                 key={agent.name}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: index * 0.08 }}
                 className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 hover:bg-white/[0.04] transition-all group"
               >
                 <div className={`p-2.5 ${colors.bg} rounded-xl w-fit mb-3 group-hover:shadow-lg ${colors.glow} transition-all`}>
@@ -451,8 +420,8 @@ function ResearchTeamSection() {
                 </div>
                 <h3 className="text-sm font-bold text-white mb-0.5">{agent.name}</h3>
                 <p className={`text-xs ${colors.text} mb-2`}>{agent.role}</p>
-                <p className="text-xs text-white/40 leading-relaxed">{agent.specialty}</p>
-              </motion.div>
+                <p className="text-xs text-white/60 leading-relaxed">{agent.specialty}</p>
+              </div>
             )
           })}
         </div>
@@ -462,31 +431,29 @@ function ResearchTeamSection() {
 }
 
 function MethodologySection() {
-  const shouldReduceMotion = useReducedMotion()
-
   const phases = [
     {
       number: '01',
-      title: 'Signal Detection',
-      description: 'Continuous scanning of research papers, industry reports, press releases, and expert discussions across all domains',
+      title: 'Directed scan',
+      description: 'A defined question guides the search across primary material, research papers, official releases, and credible expert analysis',
       icon: Search,
     },
     {
       number: '02',
-      title: 'Deep Analysis',
-      description: 'Multi-agent investigation of promising signals with cross-referencing across primary and secondary sources',
+      title: 'Specialist passes',
+      description: 'Separate agents compare sources, inspect contradictions, and distinguish reported fact from interpretation',
       icon: Brain,
     },
     {
       number: '03',
-      title: 'Validation',
-      description: 'Evidence quality assessment, confidence rating, and claims validation with minimum 2 cross-references for high confidence',
+      title: 'Evidence review',
+      description: 'Claims are checked against the available sources, given a confidence level, and narrowed when the evidence is incomplete',
       icon: ShieldCheck,
     },
     {
       number: '04',
-      title: 'Publication',
-      description: 'Synthesis into SEO-optimized briefs with TL;DR summaries, FAQ schema, and structured data for AI citations',
+      title: 'Human decision',
+      description: 'Frank reviews the synthesis, changes or rejects weak claims, and decides whether the artifact is useful enough to publish',
       icon: FileText,
     },
   ]
@@ -496,11 +463,11 @@ function MethodologySection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Research Methodology
+            Research methodology
           </h2>
-          <p className="text-white/50 max-w-2xl">
-            Every claim is validated against primary sources. High-confidence ratings
-            require 2+ independent cross-references.
+          <p className="text-white/60 max-w-2xl">
+            Primary sources are preferred. High-confidence claims require independent support;
+            uncertainty stays visible when the material cannot justify certainty.
           </p>
         </div>
 
@@ -508,11 +475,8 @@ function MethodologySection() {
           {phases.map((phase, index) => {
             const Icon = phase.icon
             return (
-              <motion.div
+              <div
                 key={phase.number}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: index * 0.1 }}
                 className="relative bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5"
               >
                 {/* Connector line */}
@@ -523,11 +487,11 @@ function MethodologySection() {
                   <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">
                     {phase.number}
                   </span>
-                  <Icon className="w-4 h-4 text-white/30" />
+                  <Icon className="w-4 h-4 text-white/60" />
                 </div>
                 <h3 className="text-sm font-bold text-white mb-2">{phase.title}</h3>
-                <p className="text-xs text-white/40 leading-relaxed">{phase.description}</p>
-              </motion.div>
+                <p className="text-xs text-white/60 leading-relaxed">{phase.description}</p>
+              </div>
             )
           })}
         </div>
@@ -544,7 +508,7 @@ function MethodologySection() {
             href="/research/sources"
             className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
           >
-            Browse All {totalSources}+ Sources
+            Browse {totalSources} Registered Sources
             <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
@@ -600,7 +564,6 @@ function CTASection() {
 }
 
 function FlagshipArticles() {
-  const shouldReduceMotion = useReducedMotion()
   const articles = [
     {
       kanji: '長',
@@ -613,43 +576,33 @@ function FlagshipArticles() {
     },
     {
       kanji: '識',
-      label: 'sovereign ai · architecture',
-      title: 'Sovereign AI Operating Systems',
+      label: 'human agency · architecture',
+      title: 'Human-Centered AI Operating Systems',
       href: '/research/conscious-ai-operating-systems',
       blurb:
-        'Sovereign AI architectures that integrate biometrics, persistent memory, and ethical guardrails.',
+        'Architectures that combine biometrics, persistent memory, and explicit ethical boundaries without erasing human agency.',
       readingTime: '15 min',
     },
   ]
   return (
     <section className="py-12 md:py-16 border-b border-white/[0.04]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
-          className="mb-8"
-        >
+        <div className="mb-8">
           <div className="flex items-center gap-3 mb-3">
-            <FileText className="w-5 h-5 text-violet-400" />
+            <FileText className="w-5 h-5 text-cyan-300" />
             <h2 className="text-2xl md:text-3xl font-bold text-white">Flagship Articles</h2>
           </div>
-          <p className="text-white/50 max-w-2xl">
-            Deep editorial pieces &mdash; sourced, FAQ&rsquo;d, schema-marked, designed to be cited.
-            The longform thinking beneath the domain navigation.
+          <p className="text-white/60 max-w-2xl">
+            Long-form investigations that preserve sources, questions, and the distinction
+            between reported evidence and my interpretation.
           </p>
-        </motion.div>
+        </div>
         <div className="grid md:grid-cols-2 gap-4">
-          {articles.map((a, i) => (
-            <motion.div
-              key={a.href}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 + i * 0.08 }}
-            >
+          {articles.map((a) => (
+            <div key={a.href}>
               <Link
                 href={a.href}
-                className="group relative block rounded-2xl border border-violet-500/[0.18] bg-violet-500/[0.03] hover:bg-violet-500/[0.06] hover:border-violet-500/[0.32] p-6 h-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="group relative block rounded-2xl border border-cyan-500/[0.18] bg-cyan-500/[0.03] hover:bg-cyan-500/[0.06] hover:border-cyan-500/[0.32] p-6 h-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <span
@@ -659,20 +612,20 @@ function FlagshipArticles() {
                   >
                     {a.kanji}
                   </span>
-                  <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-violet-300 group-hover:text-white transition-colors flex-shrink-0 mt-1" />
+                  <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-cyan-300 group-hover:text-white transition-colors flex-shrink-0 mt-1" />
                 </div>
-                <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-2">
+                <p className="text-[10px] uppercase tracking-[0.24em] text-white/55 mb-2">
                   {a.label}
                 </p>
                 <h3 className="text-lg font-semibold text-white mb-2 leading-snug">
                   {a.title}
                 </h3>
                 <p className="text-sm text-white/70 leading-relaxed mb-3">{a.blurb}</p>
-                <p className="text-[11px] text-white/40 uppercase tracking-wider">
+                <p className="text-[11px] text-white/55 uppercase tracking-wider">
                   {a.readingTime} read
                 </p>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

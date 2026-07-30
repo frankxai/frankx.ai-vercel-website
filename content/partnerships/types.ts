@@ -25,6 +25,21 @@ export type PartnerTier =
 
 export type PartnerAccent = 'tech' | 'soul' | 'bridge'
 
+export type PublicationBasis =
+  | 'public-evidence'
+  | 'independent-proposal'
+  | 'confirmed-conversation'
+  | 'formal-partnership'
+
+export type ConsentStatus =
+  | 'not-required-public-analysis'
+  | 'not-requested'
+  | 'confirmed'
+
+export type PrivacyClassification =
+  | 'public-only'
+  | 'sanitized-private-context'
+
 export type WorkingRealityBlock = {
   label: string
   detail: string
@@ -85,6 +100,9 @@ export type Partner = {
   shortName: string
   tier: PartnerTier
   status: PartnerStatus
+  publicationBasis: PublicationBasis
+  consentStatus: ConsentStatus
+  privacyClassification: PrivacyClassification
 
   // Hero
   title: string
@@ -107,8 +125,9 @@ export type Partner = {
 
   /**
    * Optional program-pursuit status (for strategic-alignment tier).
-   * Examples: 'Vercel Partner Program — application in flight',
-   * 'NVIDIA Inception nominee pathway', 'Anthropic Claude for Work — pursuing'.
+   * This must describe only a publicly evidenced or explicitly qualified state.
+   * Never imply an application, conversation, endorsement, or program entry
+   * without direct evidence.
    * Rendered as a quiet status badge on the hub card.
    */
   programStatus?: string
