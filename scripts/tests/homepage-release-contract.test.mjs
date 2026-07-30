@@ -3,43 +3,32 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
 const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
-const OVERLAY_OPEN_TAG_PATTERN = /<div\b(?=[^>]*\bdata-home-proof-overlay\b)[^>]*>/
-const DIV_TAG_PATTERN = /<\/?div\b[^>]*>/
+const PROOF_OPEN_TAG_PATTERN = /<figcaption\b(?=[^>]*\bdata-home-proof-overlay\b)[^>]*>/
 const CLASS_NAME_PATTERN = /\bclassName="([^"]+)"/
-const PARAGRAPH_TAG_PATTERN = /<p\b[^>]*>/g
 const WHITESPACE_PATTERN = /\s+/
 
-const extractElementSource = (source, openingPattern) => {
-  const openingMatch = source.match(openingPattern)
+const extractProofCaption = (source) => {
+  const openingMatch = source.match(PROOF_OPEN_TAG_PATTERN)
   if (openingMatch?.index === undefined) return undefined
-
-  let depth = 0
-  let cursor = openingMatch.index
-
-  while (cursor < source.length) {
-    const tag = source.slice(cursor).match(DIV_TAG_PATTERN)
-    if (tag?.index === undefined) break
-
-    const tagStart = cursor + tag.index
-    const tagEnd = tagStart + tag[0].length
-    depth += tag[0].startsWith('</') ? -1 : 1
-    if (depth === 0) return source.slice(openingMatch.index, tagEnd)
-    cursor = tagEnd
-  }
-
-  return undefined
+  const closingIndex = source.indexOf('</figcaption>', openingMatch.index)
+  if (closingIndex === -1) return undefined
+  return source.slice(openingMatch.index, closingIndex + '</figcaption>'.length)
 }
 
-test('homepage repository proof derives from the canonical social registry', async () => {
+test('homepage proof routes are internal, explicit, and stable', async () => {
   const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
 
-  assert.match(homepage, /import \{ socialLinks \} from '@\/lib\/social-links'/)
-  assert.match(homepage, /href: `\$\{socialLinks\.github\}\/agentic-creator-os`/)
+  assert.match(homepage, /href: '\/blog\/production-agentic-ai-systems'/)
+  assert.match(homepage, /href: '\/ai-architecture\/blueprints'/)
+  assert.match(homepage, /href: '\/journal'/)
+  assert.doesNotMatch(homepage, /target="_blank"/)
   assert.doesNotMatch(homepage, /https:\/\/github\.com\/frankxai/)
 })
 
 test('homepage release evidence is portable and records the verified ship state', async () => {
-  const rawEvidence = await readRepoFile('docs/premium-web-os/frankx-production-home-design-loop-evidence.json')
+  const rawEvidence = await readRepoFile(
+    'docs/premium-web-os/frankx-production-home-design-loop-evidence.json',
+  )
   const evidence = JSON.parse(rawEvidence)
   const mobileCheck = evidence.checks.find((check) => check.name === 'mobile-first-viewport')
 
@@ -51,17 +40,14 @@ test('homepage release evidence is portable and records the verified ship state'
   assert.ok(evidence.artifacts.every((artifact) => !artifact.path_or_url.startsWith('file:')))
 })
 
-test('portrait proof overlay is bounded by the card at narrow widths', async () => {
+test('portrait proof caption is bounded by the card at narrow widths', async () => {
   const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
-  const overlayMarkup = extractElementSource(homepage, OVERLAY_OPEN_TAG_PATTERN)
-  const overlayOpenTag = overlayMarkup?.match(OVERLAY_OPEN_TAG_PATTERN)?.[0]
-  const overlayClasses = overlayOpenTag?.match(CLASS_NAME_PATTERN)?.[1].split(WHITESPACE_PATTERN) ?? []
-  const copyClasses = Array.from(overlayMarkup?.matchAll(PARAGRAPH_TAG_PATTERN) ?? [], (match) =>
-    (match[0].match(CLASS_NAME_PATTERN)?.[1] ?? '').split(WHITESPACE_PATTERN),
-  )
-    .find((classes) => classes.includes('text-base'))
+  const captionMarkup = extractProofCaption(homepage)
+  const captionOpenTag = captionMarkup?.match(PROOF_OPEN_TAG_PATTERN)?.[0]
+  const captionClasses =
+    captionOpenTag?.match(CLASS_NAME_PATTERN)?.[1].split(WHITESPACE_PATTERN) ?? []
 
-  assert.ok(overlayMarkup, 'proof overlay must remain addressable')
+  assert.ok(captionMarkup, 'proof caption must remain addressable')
   for (const token of [
     'absolute',
     'inset-x-0',
@@ -72,31 +58,21 @@ test('portrait proof overlay is bounded by the card at narrow widths', async () 
     'min-[360px]:p-6',
     'sm:p-8',
   ]) {
-    assert.ok(overlayClasses.includes(token), `proof overlay must retain ${token}`)
+    assert.ok(captionClasses.includes(token), `proof caption must retain ${token}`)
   }
-  assert.ok(copyClasses?.includes('max-w-full'), 'proof copy must stay bounded at narrow widths')
-  assert.ok(copyClasses?.includes('sm:max-w-sm'), 'proof copy must preserve its desktop measure')
+  assert.match(captionMarkup, /max-w-full text-base/)
+  assert.match(captionMarkup, /sm:max-w-sm/)
 })
 
-test('overlay source extraction includes nested divs and stops at the matching close', () => {
-  const source = `<section>
-    <div className="proof" data-home-proof-overlay>
-      <p className="copy">Proof</p>
-      <div className="nested"><p>Nested detail</p></div>
-    </div>
-    <div>Unrelated sibling</div>
-  </section>`
-  const overlayMarkup = extractElementSource(source, OVERLAY_OPEN_TAG_PATTERN)
+test('primary actions expose focus states and reduced-motion-safe transforms', async () => {
+  const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
+  const start = await readRepoFile('app/start/page.tsx')
+  const footer = await readRepoFile('components/Footer.tsx')
 
-  assert.match(overlayMarkup, /Nested detail/)
-  assert.doesNotMatch(overlayMarkup, /Unrelated sibling/)
-})
-
-test('overlay source extraction has no shared state between calls', () => {
-  const firstSource = '<div data-home-proof-overlay><p>First</p></div>'
-  const secondSource = '<div data-home-proof-overlay><div><p>Second</p></div></div>'
-
-  assert.match(extractElementSource(firstSource, OVERLAY_OPEN_TAG_PATTERN), /First/)
-  assert.match(extractElementSource(secondSource, OVERLAY_OPEN_TAG_PATTERN), /Second/)
-  assert.match(extractElementSource(firstSource, OVERLAY_OPEN_TAG_PATTERN), /First/)
+  for (const source of [homepage, start, footer]) {
+    assert.match(source, /focus-visible:ring-2/)
+  }
+  assert.match(homepage, /motion-reduce:transform-none/)
+  assert.match(start, /motion-reduce:transform-none/)
+  assert.match(footer, /prefers-reduced-motion: reduce/)
 })

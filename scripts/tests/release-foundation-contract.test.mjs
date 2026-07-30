@@ -58,13 +58,12 @@ test('shared navigation exposes one named navigation landmark', async () => {
 })
 
 test('verified contrast and MVU link-name regressions stay closed', async () => {
-  const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+  const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
   const mvu = await readRepoFile('app/mvu/page.tsx')
 
-  assert.match(homepage, /font-serif text-lg italic leading-7 text-white\/70/)
-  assert.match(homepage, /max-w-xl text-\[11px\] leading-5 text-white\/70/)
-  assert.doesNotMatch(homepage, /function ScrollProgress/)
-  assert.doesNotMatch(homepage, /<ScrollProgress \/>/)
+  assert.match(homepage, /text-lg leading-8 text-white\/75/)
+  assert.match(homepage, /text-xs leading-5 text-white\/70/)
+  assert.doesNotMatch(homepage, /text-white\/(?:28|30|32|34|40|42|44|45|46|48|52|55|58|60|62|65)/)
   assert.match(mvu, /aria-label="Read Your Mind Is a Temporary Library"/)
 })
 
@@ -79,7 +78,7 @@ test('connect schema describes the page without claiming third-party events', as
 test('primary spine keeps verified contrast and scroll-region failures closed', async () => {
   const [homepage, start, blog, blogCard, carousel, journal, mvu, mdx] = await Promise.all(
     [
-      'components/home/HomePageElite.tsx',
+      'components/home/FrankXProductionHome.tsx',
       'app/start/page.tsx',
       'app/blog/BlogPageClient.tsx',
       'components/blog/BlogCard.tsx',
@@ -90,10 +89,10 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
     ].map(readRepoFile),
   )
 
-  assert.match(homepage, /bg-emerald-500 hover:bg-emerald-600 text-black/)
-  assert.match(homepage, /max-w-md text-xs leading-5 text-white\/60/)
-  assert.match(start, /bg-emerald-500 px-7 py-4 text-sm font-semibold text-black/)
-  assert.match(start, /tracking-\[0\.2em\] text-white\/60/)
+  assert.match(homepage, /bg-emerald-400 px-6 py-3 text-sm font-semibold text-\[#07120d\]/)
+  assert.match(homepage, /max-w-xl text-xs leading-5 text-white\/70/)
+  assert.match(start, /tracking-\[0\.2em\] text-emerald-200/)
+  assert.match(start, /text-sm leading-6 text-white\/75/)
   assert.match(blog, /bg-emerald-500 hover:bg-emerald-600 text-black/)
   assert.match(blogCard, /text-white\/75 leading-relaxed/)
   assert.match(blogCard, /text-xs text-white\/75 group-hover:text-white\/85/)

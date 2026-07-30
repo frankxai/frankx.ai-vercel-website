@@ -4,106 +4,177 @@ import test from 'node:test'
 
 const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
 
-test('the public homepage leads with ICP outcomes while retaining music as living proof', async () => {
+test('the public homepage is the Human Proof Studio release', async () => {
   const page = await readRepoFile('app/page.tsx')
-  const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+  const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
 
-  assert.match(page, /import HomePageElite from '@\/components\/home\/HomePageElite'/)
-  assert.match(page, /import \{ getPublishedBooks \} from '@\/app\/books\/lib\/books-registry'/)
-  assert.match(page, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
-  assert.match(page, /featuredTrack=\{homepageFeaturedRelease\}/)
-  assert.match(page, /const books = getPublishedBooks\(\)/)
-  assert.match(page, /books=\{books\}/)
-  assert.doesNotMatch(page, /<FrankXProductionHome\b/)
-  assert.doesNotMatch(page, /Why does the homepage begin with music\?/)
-  assert.doesNotMatch(page, /Music is often the shortest path/)
-  assert.match(page, /How does music fit into FrankX\?/)
+  assert.match(
+    page,
+    /import FrankXProductionHome from '@\/components\/home\/FrankXProductionHome'/,
+  )
+  assert.match(page, /<FrankXProductionHome latestPosts=\{latestPosts\} \/>/)
+  assert.match(page, /FrankX — Agentic Systems for Creator-Operators/)
+  assert.match(
+    page,
+    /Frank Riemer maps the approvals, replies, research, reporting, and handoffs that still return to creator-operators/,
+  )
+  assert.doesNotMatch(page, /HomePageElite/)
+  assert.doesNotMatch(page, /homepageFeaturedRelease/)
+  assert.doesNotMatch(page, /getPublishedBooks/)
+  assert.doesNotMatch(page, /FAQPageJsonLd/)
 
-  assert.match(homepage, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
-  assert.match(homepage, /https:\/\/suno\.com\/embed\/\$\{track\.sunoId\}/)
-  assert.match(homepage, /loading="eager"/)
-  assert.match(homepage, /featuredTrack \?\? homepageFeaturedRelease/)
-  assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
-  assert.doesNotMatch(homepage, /Music first\./)
-  assert.doesNotMatch(homepage, /begin with music/)
-  assert.match(homepage, /Explore your highest-leverage AI move\./)
-  assert.match(homepage, /Architect your AI operating system\./)
-  assert.match(homepage, /Build your AI Center of Excellence\./)
-  assert.match(homepage, /Orchestrate agents around real work\./)
-  assert.match(homepage, /Ship products that compound\./)
-  assert.match(homepage, /function RotatingHeroOutcome\(\)/)
-  assert.match(homepage, /useSyncExternalStore/)
-  assert.match(homepage, /if \(!hasHydrated \|\| shouldReduceMotion\)/)
-  assert.match(homepage, /Pause changing headline/)
-  assert.match(homepage, /Play changing headline/)
-  assert.match(homepage, /<AnimatePresence mode="wait" initial=\{false\}>/)
-  assert.match(homepage, /Latest studio release · optional listening/)
-  assert.match(homepage, /<MindPalaceAtlas \/>/)
-  assert.doesNotMatch(homepage, /autoplay=(?:1|true)/i)
+  assert.match(homepage, /Agentic systems for creator-operators/)
+  assert.match(homepage, /Remove one recurring workflow/)
+  assert.match(homepage, /from your daily path\./)
+  assert.match(
+    homepage,
+    /You already use AI\. The approvals, replies, research, reporting, and handoffs still/,
+  )
+  assert.match(homepage, /Map the workflow that waits on me/)
+  assert.match(homepage, /href="\/work-with-me#contact"/)
+  assert.match(homepage, /Already shipping agents\? See the Toolkit’s release status\./)
+  assert.match(homepage, /Frank Riemer · AI Architect · Independent practice/)
+  assert.match(homepage, /not affiliated with, endorsed by, or sponsored by Oracle/)
 })
 
-test('the long-form homepage cannot silently lose its restored rooms and glow cards', async () => {
-  const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+test('homepage proof is factual, bounded, and inspectable', async () => {
+  const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
 
-  for (const section of [
-    '<TrustedByBlock />',
-    '<MindPalaceAtlas />',
-    '<ProductsTools />',
-    '<CreativeWorlds />',
-    '<DesignLab />',
-    '<BooksShowcase books={books} />',
-    '<LibraryShowcase libraryBooks={libraryBooks} />',
-    '<LatestArticles posts={latestPosts} />',
-    '<LearningHub />',
-    '<DigitalTwin />',
-    '<EmailCTA />',
-    '<FAQSection faqs={faqs} />',
-    '<FinalCTA />',
+  assert.match(homepage, /Frank Riemer presenting an AI architecture session, 2025\./)
+  assert.match(
+    homepage,
+    /A useful system makes its decisions visible: what it may do, when a person/,
+  )
+  assert.match(homepage, /how output is evaluated, what it may cost, and how it is stopped\./)
+
+  for (const route of [
+    '/blog/production-agentic-ai-systems',
+    '/ai-architecture/blueprints',
+    '/journal',
   ]) {
-    assert.ok(homepage.includes(section), `missing homepage section: ${section}`)
+    assert.ok(homepage.includes(`href: '${route}'`), `missing proof route: ${route}`)
   }
 
-  assert.match(homepage, /import \{ GlowCard \} from '@\/components\/ui\/glow-card'/)
-  assert.match(homepage, /<section id="books" className="scroll-mt-24/)
-  assert.ok((homepage.match(/<GlowCard\b/g) ?? []).length >= 4, 'expected multiple glow-card surfaces')
+  assert.doesNotMatch(homepage, /Focused handoffs/)
+  assert.doesNotMatch(homepage, /ecosystemRoutes/)
+  assert.doesNotMatch(homepage, /Evidence before adjectives/)
+  assert.doesNotMatch(homepage, /Scope confirmed before work begins/)
+  assert.doesNotMatch(homepage, /Worked example/)
+  assert.doesNotMatch(homepage, /client work/i)
 })
 
-test('the featured release stays human-reviewed instead of following the raw catalog', async () => {
-  const release = await readRepoFile('data/homepage-featured-release.ts')
+test('the start page routes by current state without contradictory entry spines', async () => {
+  const start = await readRepoFile('app/start/page.tsx')
 
-  assert.match(release, /reviewStatus: 'approved'/)
-  assert.match(release, /Raw Suno catalog entries must never replace this object automatically/)
-  assert.match(release, /reviewedAt: '\d{4}-\d{2}-\d{2}'/)
-  assert.match(release, /sunoId: '[0-9a-f-]+'/)
-  assert.doesNotMatch(release, /Music is the first door/)
-  assert.match(release, /one creative artifact among the architecture/)
-})
-
-test('the mind palace scene has a complete accessible fallback and scoped cleanup', async () => {
-  const atlas = await readRepoFile('components/home/MindPalaceAtlas.tsx')
-
-  for (const route of ['/ai-architecture', '/acos', '/products/vibe-os', '/library']) {
-    assert.match(atlas, new RegExp(`href: '${route.replace('/', '\\/')}'`))
-  }
-  assert.match(atlas, /href="\/ecosystem"/)
-
-  for (const venture of [
-    'https://starlightintelligence.org',
-    'https://gencreator.ai',
-    'https://www.arcanea.ai',
-    'https://www.agenticincome.ai',
+  for (const copy of [
+    'Choose by current state',
+    'Start with the work that is stuck.',
+    'I need a clear model before I build.',
+    'I have a working agent. Reliability is the problem.',
+    'Approvals and handoffs still return to me.',
+    'I have expertise, but no repeatable publishing loop.',
+    'Get the free Primer',
+    'Check Toolkit status',
+    'Map the workflow',
+    'Explore GenCreator',
+    'I’m here to study the work.',
+    'Durable essays',
+    'Dated field notes',
   ]) {
-    assert.ok(atlas.includes(venture), `missing verified public venture: ${venture}`)
+    assert.ok(start.includes(copy), `missing start-page copy: ${copy}`)
   }
 
-  assert.match(atlas, /useGSAP\(/)
-  assert.match(atlas, /gsap\.matchMedia\(\)/)
-  assert.match(atlas, /prefers-reduced-motion: reduce/)
-  assert.match(atlas, /pointer: coarse/)
-  assert.match(atlas, /return \(\) => media\.revert\(\)/)
-  assert.match(atlas, /data-palace-room/)
-  assert.match(atlas, /data-palace-corridor/)
-  assert.match(atlas, /focus-visible:ring-2/)
-  assert.doesNotMatch(atlas, /pin:\s*true/)
-  assert.doesNotMatch(atlas, /Music stays first/)
+  for (const route of [
+    '/start-here',
+    '/build/six-primitives-toolkit',
+    '/work-with-me#contact',
+    '/gencreator',
+    '/blog',
+    '/journal',
+  ]) {
+    assert.ok(start.includes(route), `missing start-page route: ${route}`)
+  }
+
+  assert.doesNotMatch(start, /Join Signal Loop/)
+  assert.doesNotMatch(start, /Music Lab/)
+  assert.doesNotMatch(start, /Peak State Systems/)
+  assert.doesNotMatch(start, /12,000\+/)
+  assert.doesNotMatch(start, /For agents and search systems/)
+})
+
+test('the Toolkit and paid product pages fail closed until checkout is verified', async () => {
+  const productPage = await readRepoFile('app/build/[slug]/page.tsx')
+  const buildHub = await readRepoFile('app/build/page.tsx')
+  const products = await readRepoFile('data/products.ts')
+  const normalizedProductPage = productPage.replace(/\s+/g, ' ')
+
+  for (const copy of [
+    'Release status · Planned price €197',
+    'Checkout is not open.',
+    'No payment is collected on this page.',
+    'Planned price: €197, one-time.',
+    'Get the free Six Primitives Primer',
+    'Toolkit checkout is not open.',
+  ]) {
+    assert.ok(normalizedProductPage.includes(copy), `missing Toolkit release copy: ${copy}`)
+  }
+
+  assert.match(productPage, /if \(!product\.pricing\.lemonSqueezyVariantId\)/)
+  assert.match(productPage, /noindex: !isCheckoutOpen/)
+  assert.doesNotMatch(productPage, /<BuyButton/)
+  assert.doesNotMatch(productPage, /<OutcomeList/)
+  assert.doesNotMatch(productPage, /<ValueStack/)
+  assert.doesNotMatch(productPage, /<RefundGuarantee/)
+  assert.doesNotMatch(buildHub, /<PricingTable/)
+  assert.doesNotMatch(buildHub, /Founder’s Circle|Founder's Circle/)
+
+  const toolkitStart = products.indexOf("slug: 'six-primitives-toolkit'")
+  const toolkitEnd = products.indexOf("slug: 'six-primitives-mastery'", toolkitStart)
+  const toolkit = products.slice(toolkitStart, toolkitEnd)
+
+  assert.match(toolkit, /outcomes: \[\]/)
+  assert.match(toolkit, /includes: \[\]/)
+  assert.match(toolkit, /featured: false/)
+  for (const stoppedClaim of [
+    'Most buyers',
+    '30+ Agent',
+    '50 patterns',
+    '100 cases',
+    'Discord',
+    'Private GitHub',
+    'Lifetime access',
+    'no-questions refund',
+  ]) {
+    assert.doesNotMatch(toolkit, new RegExp(stoppedClaim), `Toolkit still contains: ${stoppedClaim}`)
+  }
+})
+
+test('footer and machine-readable surfaces share the canonical proposition', async () => {
+  const footer = await readRepoFile('components/Footer.tsx')
+  const llms = await readRepoFile('app/llms.txt/route.ts')
+  const llmsFull = await readRepoFile('app/llms-full.txt/route.ts')
+  const machineCopy = `${llms}\n${llmsFull}`
+
+  assert.match(footer, /Agentic systems and field notes/)
+  assert.match(footer, /maps founder-routed work and builds bounded agent systems/)
+  assert.doesNotMatch(footer, /Weekly dispatch|One email per week|Foundry|Founder’s Circle|Coaching/)
+
+  for (const source of [llms, llmsFull]) {
+    assert.match(source, /independent studio for bounded agent systems/)
+    assert.match(source, /maps one recurring founder-routed workflow/)
+    assert.match(source, /Checkout is not open|checkout is not open/)
+  }
+
+  for (const stoppedClaim of [
+    '12,000+',
+    'enterprise-grade',
+    '5-tier',
+    '10 seats',
+    'application-only quarterly cohort',
+    '1:1 advisory',
+    'multi-agent research operation',
+    'MIT-licensed',
+  ]) {
+    assert.doesNotMatch(machineCopy, new RegExp(stoppedClaim), `machine copy still contains: ${stoppedClaim}`)
+  }
 })

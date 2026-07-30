@@ -1,117 +1,64 @@
 import { getAllBlogPosts } from '@/lib/blog'
 import { getJournalEntrySummaries } from '@/lib/journal'
-import { bookReviews } from '@/data/book-reviews'
-import { osModules } from '@/data/os-modules'
-import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
-import { askQuestions } from '@/data/ask-questions'
 
 const SITE_URL = siteConfig.url
 
 /**
- * /llms.txt — May 2026 AEO surface for AI search engines and agentic crawlers.
- * Spec: https://llmstxt.org/ (concise, link-rich, machine-readable site map)
- *
- * Sibling: /llms-full.txt (comprehensive, includes per-page summaries)
+ * Concise, source-bound map for AI search systems and agents.
+ * Product status and the primary proposition mirror the human-facing pages.
  */
 export async function GET() {
-  const recentPosts = getAllBlogPosts().slice(0, 20)
-  const featuredBooks = bookReviews.slice(0, 12)
-
-  const blogLinks = recentPosts
-    .map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.description}`)
+  const blogLinks = getAllBlogPosts()
+    .slice(0, 20)
+    .map((post) => `- [${post.title}](${SITE_URL}/blog/${post.slug}): ${post.description}`)
     .join('\n')
 
-  // Private and unpublished entries are filtered out by the loader before they
-  // reach here, so this never leaks a note that is not on the public site.
   const journalLinks = getJournalEntrySummaries()
     .slice(0, 20)
-    .map((e) => `- [${e.title}](${SITE_URL}/journal/${e.slug}): ${e.summary || e.title}`)
-    .join('\n')
-
-  const osLinks = osModules
-    .map((m) => `- [${m.name}](${SITE_URL}${m.route}): ${m.oneLine}`)
-    .join('\n')
-
-  const libraryLinks = featuredBooks
-    .map((b) => `- [${b.title} — ${b.author}](${SITE_URL}/library/${b.slug}): ${b.tldr || ''}`)
-    .join('\n')
-
-  const researchLinks = researchDomains
-    .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
-    .join('\n')
-
-  const askLinks = askQuestions
-    .map((q) => `- [${q.question}](${SITE_URL}/ask/${q.slug}): ${q.tldr}`)
+    .map(
+      (entry) =>
+        `- [${entry.title}](${SITE_URL}/journal/${entry.slug}): ${entry.summary || entry.title}`,
+    )
     .join('\n')
 
   const content = `# FrankX
 
-> Personal hub of Frank X. Riemer — AI Architect & Creator. 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+> FrankX is Frank Riemer’s independent studio for bounded agent systems, production patterns, and field notes for creator-operators. The primary service maps one recurring founder-routed workflow and defines its agent decisions, human approvals, evaluations, cost limits, failure paths, and handover.
 
-The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, practical creator workflows). Frank translates lessons from enterprise-scale AI/cloud work into free, personal-scale tooling for creators, individuals, and families. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+Frank Riemer is an AI Architect. FrankX is an independent project and is not affiliated with, endorsed by, or sponsored by Oracle.
 
-## Foundations
-- [Homepage](${SITE_URL}/): Hub with recent work and primary funnels
-- [Frank Riemer](${SITE_URL}/frank-riemer): Canonical founder/entity page for Frank Riemer and FrankX
-- [About Frank](${SITE_URL}/about): Story, identity, and work patterns
-- [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, proof points, boundaries, and contact
-- [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
-- [Signal Loop](${SITE_URL}/newsletter): Main weekly letter on AI architecture, creator systems, music experiments, and peak-state notes
-- [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, and work-review system; not medical advice
-- [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer to €2,997 Founder's Circle)
-- [Founder's Circle](${SITE_URL}/founders-circle): Application-only quarterly cohort
+## Start
+- [Homepage](${SITE_URL}/): Primary proposition, operating method, and public proof routes
+- [Choose by current state](${SITE_URL}/start): Routes for a first agent, production reliability, founder-routed operations, or a creator publishing system
+- [Work with Frank](${SITE_URL}/work-with-me): Bounded workflow mapping and contact
+- [Frank Riemer](${SITE_URL}/frank-riemer): Canonical person page
 
-## Operating Systems (the FrankX OS spine)
-${osLinks}
+## Build status
+- [Build release board](${SITE_URL}/build): Current availability and release gates
+- [Six Primitives Toolkit](${SITE_URL}/build/six-primitives-toolkit): Planned price €197; checkout is not open while files, access, and refund terms are verified
+- [Six Primitives Primer](${SITE_URL}/start-here): Free starting route linked from the release board
 
-## Library OS (book intelligence)
-- [Library Index](${SITE_URL}/library): All book reviews, sorted by recency
-- [Library Approach](${SITE_URL}/library/approach): The manifesto — why books matter for creators
-- [Library Build](${SITE_URL}/library/build): How to build your own library OS
-- [Library Quotes](${SITE_URL}/library/quotes): Curated quotation collection
-${libraryLinks}
+## Systems and field work
+- [AI Architecture](${SITE_URL}/ai-architecture): Architecture guides and patterns
+- [Blueprints](${SITE_URL}/ai-architecture/blueprints): Reference architecture library
+- [MVU field journal](${SITE_URL}/mvu): Public Tallinn field notes and research pages
+- [Research](${SITE_URL}/research): Public research index
+- [GenCreator](${SITE_URL}/gencreator): Creator-system route
 
-## Research Hub
-- [Research Index](${SITE_URL}/research): All research domains
-- [Research Sources](${SITE_URL}/research/sources): How research is sourced
-- [Research Methodology](${SITE_URL}/research/methodology): Validation rigor
-${researchLinks}
-
-## Workshops (live, application or open)
-- [Build First AI Agent](${SITE_URL}/workshops/build-first-ai-agent): Multi-path workshop with Vercel AI SDK + 6 branches
-- [Ikigai Branding](${SITE_URL}/workshops/ikigai-branding): Brand discovery wizard with Coach GPT
-- [AI 2026 Graduates](${SITE_URL}/workshops/ai-2026-graduates): Career path workshop
-- [AI Music Masterclass](${SITE_URL}/workshops/ai-music-masterclass): Suno-grade music production
-
-## Ask FrankX (Q&A)
-- [Ask FrankX Hub](${SITE_URL}/ask): Practical answers on AI architecture, music production, and creator workflows
-${askLinks}
-
-## Tools
-- [ROI Calculator](${SITE_URL}/tools/roi-calculator): AI ROI estimator for enterprise
-- [Strategy Canvas](${SITE_URL}/tools/strategy-canvas): One-page AI strategy template
-- [Builder](${SITE_URL}/tools/builder): Interactive system designer
-- [AI Assessment](${SITE_URL}/assessment): Adaptive multi-track quiz
-
-## Personal
-- [Papa](${SITE_URL}/papa): Witali Riemer (1969-2018) — Frank's father, Wolgadeutsche, family witness page
-- [Familie](${SITE_URL}/familie): Family hub (German + English)
-- [Chronicle](${SITE_URL}/chronicle): The reflective layer — weekly Palace, monthly Survey, quarterly Census, annual Audit
-
-## Recent Writing (long-form articles)
+## Durable essays
 ${blogLinks}
 
-## Journal (short, dated working notes)
-- [Journal](${SITE_URL}/journal): Short dated notes written as the work happens — the unedited counterpart to the long-form articles above
+## Dated field notes
+- [Journal](${SITE_URL}/journal): Notes written as the work happens
 ${journalLinks}
 
-## Optional
-- [llms-full.txt](${SITE_URL}/llms-full.txt): Comprehensive site map with per-page tldrs (longer; ~50KB)
-- [sitemap.xml](${SITE_URL}/sitemap.xml): Full URL inventory
-- [rss.xml](${SITE_URL}/rss.xml): Latest 50 posts as RSS 2.0
-- [journal/feed.xml](${SITE_URL}/journal/feed.xml): Journal entries as RSS 2.0
-- [Open Source Repos](https://github.com/frankxai): Library OS, SIS, ACOS, and more
+## Feeds and machine-readable surfaces
+- [Comprehensive map](${SITE_URL}/llms-full.txt): Longer site map and editorial boundaries
+- [Sitemap](${SITE_URL}/sitemap.xml): Public URL inventory
+- [Blog feed](${SITE_URL}/rss.xml): Recent essays
+- [Journal feed](${SITE_URL}/journal/feed.xml): Recent field notes
+- [GitHub profile](https://github.com/frankxai): Public repositories; verify each repository’s own status and license before reuse
 `
 
   return new Response(content, {
