@@ -28,6 +28,7 @@ export interface ProductPricing {
 
 export interface Product {
   slug: string
+  canonicalPath: `/${string}`
   tier: ProductTier
   title: string
   subtitle: string
@@ -43,6 +44,7 @@ export interface Product {
 export const products: Product[] = [
   {
     slug: 'six-primitives-primer',
+    canonicalPath: '/start-here',
     tier: 'free',
     title: 'Six Primitives public path',
     subtitle: 'A public essay and inline build guide',
@@ -68,6 +70,7 @@ export const products: Product[] = [
   },
   {
     slug: 'six-primitives-toolkit',
+    canonicalPath: '/build/six-primitives-toolkit',
     tier: 'toolkit',
     title: 'Six Primitives Toolkit',
     subtitle:

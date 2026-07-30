@@ -48,15 +48,15 @@ The schema isn't documentation. It's runtime validation that prevents the model 
 
 ## Today's exercise (10 minutes)
 
-In your example project, add a second tool beside `src/tools/web-search.ts` — anything narrow enough to test. A `calculate` tool that does basic math. A `wikipedia` tool that fetches a summary. A `define` tool that returns dictionary entries.
+In your own agent project, create a second tool wherever that project keeps its tool definitions — anything narrow enough to test. A `calculate` tool that does basic math. A `wikipedia` tool that fetches a summary. A `define` tool that returns dictionary entries.
 
-Register it in `src/agent/loop.ts` next to `web_search`:
+Export it, then add it to the tool map passed to your agent loop. For example:
 
 ```ts
 tools: { web_search: webSearch, your_tool: yourTool }
 ```
 
-Restart `pnpm dev`. Ask a question that needs your new tool. Watch the model decide whether to call it.
+Restart your project's local development command. Ask a question that needs your new tool. Watch the model decide whether to call it.
 
 The first time you see a model correctly route a question to a tool you wrote, the agentic paradigm clicks. That moment is what this email course is for.
 

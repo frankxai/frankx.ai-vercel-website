@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 860,
+    "total": 861,
     "aliases": 50,
     "byType": {
       "core": 22,
@@ -10,13 +10,13 @@
       "tool": 54,
       "static": 15,
       "blog": 214,
+      "product": 22,
       "workshop": 12,
       "guide": 23,
       "library": 56,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
-      "product": 21,
       "research": 3,
       "video": 3
     }
@@ -3758,6 +3758,16 @@
       "href": "/build",
       "title": "Build",
       "type": "section"
+    },
+    {
+      "href": "/build/six-primitives-toolkit",
+      "title": "Six Primitives Toolkit",
+      "tags": [
+        "six",
+        "primitives",
+        "toolkit"
+      ],
+      "type": "product"
     },
     {
       "href": "/build/template-pack",

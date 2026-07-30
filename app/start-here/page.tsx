@@ -116,7 +116,7 @@ export default function StartHerePage() {
               const contents = (
                 <>
                   <div className="flex items-center gap-3 sm:block">
-                    <span className="font-mono text-[10px] tracking-[0.18em] text-white/45">
+                    <span className="font-mono text-xs tracking-[0.18em] text-white/70">
                       {artifact.number}
                     </span>
                     <Icon className="mt-0 h-5 w-5 text-cyan-200 sm:mt-4" aria-hidden="true" />

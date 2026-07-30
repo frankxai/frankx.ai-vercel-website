@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { ArrowLeft, ArrowRight, CheckCircle2, CircleDashed } from 'lucide-react'
 import type { Metadata } from 'next'
 import { createMetadata } from '@/lib/seo'
@@ -21,6 +21,14 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       title: 'Product not found',
       description: '',
       path: `/build/${slug}`,
+    })
+  }
+
+  if (product.releaseStatus === 'public' && product.pricing.cadence === 'public') {
+    return createMetadata({
+      title: product.title,
+      description: product.subtitle,
+      path: product.canonicalPath,
     })
   }
 
@@ -162,6 +170,14 @@ export default async function BuildProductPage({ params }: { params: Params }) {
   const { slug } = await params
   const product = getProductBySlug(slug)
   if (!product) notFound()
+
+  if (
+    product.releaseStatus === 'public' &&
+    product.pricing.cadence === 'public' &&
+    product.canonicalPath !== `/build/${product.slug}`
+  ) {
+    permanentRedirect(product.canonicalPath)
+  }
 
   if (product.slug === 'six-primitives-toolkit') {
     return <ToolkitReleaseStatus />

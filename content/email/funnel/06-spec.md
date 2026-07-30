@@ -12,9 +12,9 @@ The spec primitive is what makes your agent **discoverable and callable by other
 
 ## The Agent Card
 
-Google's Agent-to-Agent (A2A) protocol defines an "Agent Card" — a JSON document describing your agent's identity, capabilities, and skills. You serve it at `/.well-known/agent.json` on your domain.
+The Agent-to-Agent (A2A) protocol defines an "Agent Card" — a JSON document describing your agent's identity, capabilities, and skills. You serve it at `/.well-known/agent-card.json` on your domain.
 
-Here's the Card from the workshop starter:
+Here's an illustrative Card you can adapt:
 
 ```json
 {
@@ -58,7 +58,7 @@ If no — your agent is a private tool, not a component.
 
 ## Today's exercise (10 minutes)
 
-In your example project, place the Agent Card at `public/.well-known/agent.json`. Then verify three fields:
+In a project that serves `public/` files from the domain root, place the Agent Card at `public/.well-known/agent-card.json`. If your stack uses a different static-file convention, configure the equivalent route. Then verify three fields:
 
 ```json
 {
@@ -71,7 +71,7 @@ In your example project, place the Agent Card at `public/.well-known/agent.json`
 Deploy (`vercel --prod`). Then:
 
 ```bash
-curl https://your-url.vercel.app/.well-known/agent.json | jq
+curl https://your-url.vercel.app/.well-known/agent-card.json | jq
 ```
 
 Should return valid JSON. Validate against the A2A schema if you want to be thorough — there's a guide here: [frankx.ai/guides/agent-card-a2a-spec](https://frankx.ai/guides/agent-card-a2a-spec).
