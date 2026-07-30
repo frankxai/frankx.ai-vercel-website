@@ -60,6 +60,8 @@ test('verified contrast and MVU link-name regressions stay closed', async () => 
 
   assert.match(homepage, /font-serif text-lg italic leading-7 text-white\/70/)
   assert.match(homepage, /max-w-xl text-\[11px\] leading-5 text-white\/70/)
+  assert.doesNotMatch(homepage, /function ScrollProgress/)
+  assert.doesNotMatch(homepage, /<ScrollProgress \/>/)
   assert.match(mvu, /aria-label="Read Your Mind Is a Temporary Library"/)
 })
 
