@@ -13,8 +13,8 @@ const rootDirectory = fileURLToPath(new URL('../..', import.meta.url))
 const expectedTitle = 'Visual Vault | AI Asset Library | FrankX'
 const expectedDescription =
   'Browse the FrankX visual asset library: AI-generated blog heroes, mascot concepts, ecosystem infographics, and architecture diagrams.'
-const expectedCanonical = 'https://frankx.ai/vault'
-const expectedImage = 'https://frankx.ai/images/ecosystem/01-frankx-ecosystem-overview.png'
+const expectedCanonical = 'https://www.frankx.ai/vault'
+const expectedImage = 'https://www.frankx.ai/images/ecosystem/01-frankx-ecosystem-overview.png'
 
 const delay = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 

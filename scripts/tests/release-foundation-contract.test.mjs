@@ -16,6 +16,7 @@ test('primary public routes emit direct www canonicals', async () => {
       'app/mvu/[slug]/page.tsx',
       'app/mvu/lab/page.tsx',
       'app/(landing)/connect/page.tsx',
+      'app/vault/(index)/page.tsx',
     ].map(readRepoFile),
   )
 
