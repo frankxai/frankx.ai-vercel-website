@@ -8,8 +8,8 @@ const sourceCount = new Set(
 ).size
 
 export const metadata: Metadata = {
-  title: 'Research Intelligence Hub | FrankX.AI',
-  description: `Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology. 135+ cross-referenced findings, ${domainCount} active research domains, ${sourceCount}+ verified sources.`,
+  title: 'Research from the Workspace',
+  description: `Source-aware research across AI systems and emerging technology, with ${domainCount} domains and ${sourceCount}+ source references kept close to the synthesis.`,
   keywords: [
     'AI research',
     'enterprise AI architecture',
@@ -25,29 +25,30 @@ export const metadata: Metadata = {
     'AI neuroscience',
   ],
   openGraph: {
-    title: 'Research Intelligence Hub | FrankX.AI',
-    description: 'Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology.',
+    title: 'Research from the FrankX Workspace',
+    description:
+      'Source-aware investigations that distinguish reported evidence, synthesis, uncertainty, and Frank Riemer’s interpretation.',
     type: 'website',
-    url: 'https://frankx.ai/research',
+    url: 'https://www.frankx.ai/research',
     images: [
       {
-        url: '/images/brand/og-template.png',
+        url: '/images/brand/frankx-public-workspace-og-1200x630.png',
         width: 1200,
         height: 630,
-        alt: 'FrankX Research Intelligence Hub',
+        alt: 'Research from the FrankX agentic workspace',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Research Intelligence Hub | FrankX.AI',
-    description: `${domainCount} research domains. 135+ validated findings. ${sourceCount}+ verified sources.`,
-    images: ['/images/brand/og-template.png'],
+    title: 'Research from the FrankX Workspace',
+    description: `${domainCount} research domains with ${sourceCount}+ visible source references.`,
+    images: ['/images/brand/frankx-public-workspace-og-1200x630.png'],
   },
   alternates: {
-    canonical: 'https://frankx.ai/research',
+    canonical: 'https://www.frankx.ai/research',
     types: {
-      'application/rss+xml': 'https://frankx.ai/research/feed',
+      'application/rss+xml': 'https://www.frankx.ai/research/feed',
     },
   },
 }
@@ -56,19 +57,19 @@ export const metadata: Metadata = {
 const websiteLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'Research Intelligence Hub',
-  description: `Validated AI research across ${domainCount} domains with ${sourceCount}+ verified sources.`,
-  url: 'https://frankx.ai/research',
+  name: 'Research from the FrankX Workspace',
+  description: `Source-aware AI research across ${domainCount} domains with ${sourceCount}+ source references.`,
+  url: 'https://www.frankx.ai/research',
   author: {
     '@type': 'Person',
     name: 'Frank Riemer',
-    url: 'https://frankx.ai',
+    url: 'https://www.frankx.ai',
     jobTitle: 'AI Architect',
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: 'https://www.frankx.ai',
   },
   breadcrumb: {
     '@type': 'BreadcrumbList',
@@ -77,13 +78,13 @@ const websiteLd = JSON.stringify({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://frankx.ai',
+        item: 'https://www.frankx.ai',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Research Hub',
-        item: 'https://frankx.ai/research',
+        item: 'https://www.frankx.ai/research',
       },
     ],
   },

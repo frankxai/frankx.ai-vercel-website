@@ -1,30 +1,42 @@
 import { learningPaths } from '@/data/learning-paths'
+import { recommendedCourses } from '@/data/learning-catalog'
 import JsonLd from '@/components/seo/JsonLd'
 import LearnShell from '@/components/learn/LearnShell'
 
-// The listing UI lives in components/learn/LearnShell.tsx (category-grouped).
-// This page owns the structured data and renders the shell — the flat inline
-// grid that used to live here was superseded by LearnShell and is gone.
 export default function LearnPage() {
-  const learningPathSchema = {
-    name: 'FrankX AI Learning Portals',
+  const learningCollectionSchema = {
+    name: 'FrankX Learn',
     description:
-      'Curated, free learning portals for the AI platforms that matter — Claude, Gemini, ChatGPT, Codex, and Antigravity, plus the enterprise clouds (AWS Bedrock, Azure AI Foundry, Oracle OCI GenAI). Each bundles the best videos, official docs, and expert channels.',
-    numberOfItems: learningPaths.length,
-    itemListElement: learningPaths.map((path, index) => ({
+      'Independent AI course selections, official resources, and capability-based learning paths.',
+    url: 'https://frankx.ai/learn',
+    hasPart: learningPaths.map((path) => ({
+      '@type': 'LearningResource',
+      name: path.title,
+      description: path.description,
+      url: `https://frankx.ai/learn/${path.slug}`,
+      educationalLevel:
+        path.difficulty === 'beginner'
+          ? 'Beginner'
+          : path.difficulty === 'intermediate'
+            ? 'Intermediate'
+            : 'Advanced',
+      timeRequired: `PT${path.estimatedHours}H`,
+    })),
+  }
+
+  const courseListSchema = {
+    name: 'FrankX independent AI course selections',
+    numberOfItems: recommendedCourses.length,
+    itemListElement: recommendedCourses.map((course, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
         '@type': 'Course',
-        name: path.title,
-        description: path.description,
-        url: `https://frankx.ai/learn/${path.slug}`,
-        provider: { '@type': 'Organization', name: 'FrankX.AI', url: 'https://frankx.ai' },
-        educationalLevel:
-          path.difficulty === 'beginner' ? 'Beginner' : path.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced',
-        learningResourceType: 'Course',
-        timeRequired: `PT${path.estimatedHours}H`,
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        name: course.title,
+        description: course.verdict,
+        url: course.canonicalUrl,
+        provider: { '@type': 'Organization', name: course.provider },
+        educationalLevel: course.level,
       },
     })),
   }
@@ -38,7 +50,8 @@ export default function LearnPage() {
 
   return (
     <>
-      <JsonLd type="ItemList" data={learningPathSchema} />
+      <JsonLd type="CollectionPage" data={learningCollectionSchema} />
+      <JsonLd type="ItemList" data={courseListSchema} />
       <JsonLd type="BreadcrumbList" data={breadcrumbSchema} />
       <LearnShell />
     </>

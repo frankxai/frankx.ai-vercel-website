@@ -92,17 +92,27 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                 <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={40} height={40} className="rounded-xl" sizes="40px" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                   <Sparkles className="w-4 h-4 text-emerald-400" />
-                  <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
+                  <span className="text-xs font-medium text-emerald-400">Blog</span>
                 </div>
               </div>
               <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
                 Inside the build.
               </h1>
-              <p className="mt-2 text-base text-white/40">
+              <p className="mt-2 text-base text-white/60">
                 AI systems, creative workflows, and what&apos;s actually shipping.
               </p>
+              <p className="mt-3 text-sm text-white/60">
+                Writing shorter and more often over in the{' '}
+                <Link
+                  href="/journal"
+                  className="text-emerald-400/80 underline decoration-emerald-400/25 underline-offset-4 transition-colors hover:text-emerald-400 hover:decoration-emerald-400/60"
+                >
+                  journal
+                </Link>
+                .
+              </p>
             </div>
-            <div className="hidden md:flex items-center gap-5 text-sm text-white/40">
+            <div className="hidden md:flex items-center gap-5 text-sm text-white/60">
               <span><span className="font-semibold text-white">{posts.length}</span> articles</span>
               <span aria-hidden="true">·</span>
               <span><span className="font-semibold text-white">{categories.length}</span> topics</span>
@@ -117,7 +127,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               transition={{ delay: 0.12, duration: 0.6 }}
             >
               <Link href={`/blog/${latestPost.slug}`} className="group block">
-                <div className="relative rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-emerald-500/30 hover:bg-white/[0.05]">
+                <div className="relative rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden transition-colors duration-300 hover:border-emerald-500/30 hover:bg-white/[0.05]">
                   {latestPost.image ? (
                     <div className="grid md:grid-cols-2 gap-0">
                       <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[280px] overflow-hidden p-1">
@@ -125,13 +135,14 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                           src={latestPost.image}
                           alt={latestPost.title}
                           fill
+                          sizes="(max-width: 767px) 100vw, 50vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       </div>
                       <div className="p-6 md:p-8 flex flex-col justify-center">
                         <div className="flex items-center gap-3 mb-4">
                           <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[11px] font-medium text-emerald-400">{latestPost.category}</span>
-                          <span className="text-xs text-white/30">{latestPost.readingTime}</span>
+                          <span className="text-xs text-white/60">{latestPost.readingTime}</span>
                         </div>
                         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 tracking-tight leading-tight">
                           {latestPost.title}
@@ -149,7 +160,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                     <div className="p-6 md:p-10">
                       <div className="flex items-center gap-3 mb-4">
                         <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[11px] font-medium text-emerald-400">{latestPost.category}</span>
-                        <span className="text-xs text-white/30">{latestPost.readingTime}</span>
+                        <span className="text-xs text-white/60">{latestPost.readingTime}</span>
                       </div>
                       <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 tracking-tight leading-tight">
                         {latestPost.title}
@@ -188,7 +199,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             />
 
             <div className="hidden md:flex items-center gap-2 border-l border-white/10 pl-4 ml-4">
-              <span className="text-xs font-medium text-white/40 uppercase tracking-wider">Frameworks:</span>
+              <span className="text-xs font-medium text-white/60 uppercase tracking-wider">Frameworks:</span>
               <Link 
                 href="/youtube" 
                 className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 hover:bg-white/10 transition-colors flex items-center gap-1.5"
@@ -210,7 +221,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               animate={{ opacity: 1, x: 0 }}
               className="hidden md:flex items-center gap-3"
             >
-              <span className="text-sm text-white/40">
+              <span className="text-sm text-white/60">
                 {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
               </span>
             </motion.div>
@@ -252,7 +263,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
                 {selectedCategory}
               </h2>
-              <span className="text-xs text-white/30">
+              <span className="text-xs text-white/60">
                 • {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
               </span>
             </div>
@@ -263,7 +274,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
                 All Articles
               </h2>
-              <span className="text-xs text-white/30">
+              <span className="text-xs text-white/60">
                 • {regularPosts.length} {regularPosts.length === 1 ? 'article' : 'articles'}
               </span>
             </div>
@@ -324,11 +335,21 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
           </p>
           <Link
             href="/newsletter"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black font-semibold shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow] hover:shadow-xl hover:shadow-emerald-500/30"
           >
             Start Here
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
+          <p className="mt-8 text-sm text-white/60">
+            Prefer the raw version?{' '}
+            <Link
+              href="/journal"
+              className="text-emerald-400/80 underline decoration-emerald-400/25 underline-offset-4 transition-colors hover:text-emerald-400 hover:decoration-emerald-400/60"
+            >
+              Read the journal
+            </Link>{' '}
+            — short, dated notes written as the work happens.
+          </p>
         </div>
       </section>
     </main>

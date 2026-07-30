@@ -14,6 +14,7 @@ import {
   Palette,
   FileText,
   BookOpen,
+  PenLine,
   Users,
   GraduationCap,
   Target,
@@ -22,14 +23,10 @@ import {
   Workflow,
   Bot,
   Layers,
-  Wand2,
-  Star,
-  Brain,
   Network,
   Microscope,
   Building,
   TrendingUp,
-  Download,
   Compass,
   Gamepad2,
   Scroll,
@@ -64,33 +61,14 @@ type NavSection = {
   items: NavItem[]
 }
 
-type SectionKey = 'music' | 'gencreators' | 'learn' | 'build' | 'explore'
+type SectionKey = 'gencreators' | 'learn' | 'build' | 'explore'
 
 const sections: NavSection[] = [
   {
-    key: 'music',
-    label: 'Music',
-    icon: Music,
-    tagline: 'Original releases, Vibe OS, music learning',
-    featured: {
-      title: 'AI Music Portfolio',
-      description: 'Original releases and the systems behind the music.',
-      href: '/music',
-      badge: 'Studio',
-    },
-    items: [
-      { name: 'Music Showcase', href: '/music', icon: Music, description: 'Listen to the evolving catalog' },
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
-      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
-      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory to production' },
-      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
-    ],
-  },
-  {
     key: 'gencreators',
-    label: 'GenCreators',
+    label: 'Create',
     icon: Flame,
-    tagline: 'Principles, handbook, blueprints',
+    tagline: 'Creator systems, music, prompts, templates',
     featured: {
       title: 'The GenCreator Framework',
       description: 'The operating system for generative creators.',
@@ -102,9 +80,14 @@ const sections: NavSection[] = [
       { name: 'Principles', href: '/gencreator/principles', icon: Compass, description: '12 GenCreator principles' },
       { name: 'Handbook', href: '/gencreator/handbook', icon: BookOpen, description: 'Practical playbook' },
       { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: 'Ship-ready systems' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: 'Battle-tested prompts' },
+      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: 'Prompts Frank uses and publishes' },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Build logs + stories' },
       { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-ship templates' },
+      { name: 'Music Showcase', href: '/music', icon: Music, description: 'Original releases and experiments' },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
+      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
+      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory through production' },
+      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Listen on Suno', external: true },
     ],
   },
   {
@@ -122,6 +105,7 @@ const sections: NavSection[] = [
       { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning paths' },
       { name: 'Guides', href: '/guides', icon: BookOpen, description: 'Deep how-tos' },
       { name: 'Books', href: '/books', icon: BookOpen, description: 'Long-form reading' },
+      { name: 'Library', href: '/library', icon: Layers, description: 'Book intelligence and system maps' },
       { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Benchmark your AI skills' },
       { name: 'Student Hub', href: '/students', icon: Users, description: 'For students + educators' },
       { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Playful learning experiments' },
@@ -136,7 +120,7 @@ const sections: NavSection[] = [
     tagline: 'Architecture, blueprints, prototypes, agents',
     featured: {
       title: 'AI Architecture Hub',
-      description: 'Enterprise-grade systems, personal scale.',
+      description: 'Public systems for real work.',
       href: '/ai-architecture',
       badge: 'CoE Playbook',
     },
@@ -147,33 +131,35 @@ const sections: NavSection[] = [
       { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Drop-in scaffolds' },
       { name: 'AI World', href: '/ai-world', icon: Workflow, description: 'The wider AI landscape' },
       { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'For builders + engineers' },
-      { name: 'AI Studio', href: '/consulting', icon: Briefcase, description: 'Work with Frank' },
+      { name: 'AI Studio', href: '/work-with-me', icon: Briefcase, description: 'Work with Frank' },
       { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'Market + investor signal' },
       { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Shipping agent packs' },
+      { name: 'Workshops', href: '/workshops', icon: Users, description: 'Sessions built around a shipped result' },
+      { name: 'Coaching', href: '/coaching', icon: Target, description: 'Application-based architecture coaching' },
+      { name: 'Shop', href: '/shop', icon: FileText, description: 'Templates, systems, and skills' },
     ],
   },
   {
     key: 'explore',
-    label: 'Explore',
-    icon: Sparkles,
-    tagline: 'Research, resources, ACOS, about',
+    label: 'Workspace',
+    icon: Workflow,
+    tagline: 'How Frank and the agent team build in public',
     featured: {
-      title: 'Resource Hub',
-      description: 'Research, atlas, vault, and more.',
-      href: '/resources',
-      badge: 'Library',
+      title: 'The Agentic Workspace',
+      description: 'Source material, specialist passes, Frank’s decision, public artifact.',
+      href: '/workspace',
+      badge: 'How it works',
     },
     items: [
-      { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
-      { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
-      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'Curated resources' },
-      { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Signals + analysis' },
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Mapped intelligence' },
-      { name: 'Downloads', href: '/downloads', icon: Download, description: 'Free artifacts' },
-      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Deep research vault' },
-      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Ultraworld mythology' },
-      { name: 'About', href: '/about', icon: Users, description: 'About Frank' },
-      { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
+      { name: 'Workspace', href: '/workspace', icon: Workflow, description: 'The source-to-artifact workflow' },
+      { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
+      { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
+      { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status' },
+      { name: 'Partnerships', href: '/partnerships', icon: Users, description: 'Systems built around real missions' },
+      { name: 'Journal', href: '/journal', icon: PenLine, description: 'Notes from work in progress' },
+      { name: 'About Frank', href: '/about', icon: Users, description: 'Person, principles, and boundaries' },
+      { name: 'Connect', href: '/connect', icon: Compass, description: 'Bring a real question' },
     ],
   },
 ]
@@ -286,12 +272,13 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
           <h2 id="mobile-navigation-title" className="sr-only">Site navigation</h2>
           {/* Top bar */}
           <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 px-4">
-            <Link
-              href="/"
-              onClick={onClose}
-              className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-[17px] font-semibold tracking-tight text-transparent"
-            >
-              FrankX.AI
+            <Link href="/" onClick={onClose} className="flex flex-col">
+              <span className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-[17px] font-semibold tracking-tight text-transparent">
+                FrankX.AI
+              </span>
+              <span className="font-mono text-[8px] font-medium uppercase tracking-[0.14em] text-emerald-300/60">
+                Public agentic workspace
+              </span>
             </Link>
             <button
               type="button"
@@ -327,7 +314,12 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
               transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
             >
               {/* Home view */}
-              <div data-mobile-nav-view="home" className="h-full w-1/2 overflow-y-auto overscroll-contain">
+              <div
+                data-mobile-nav-view="home"
+                aria-hidden={activeSection !== null}
+                inert={activeSection !== null}
+                className="h-full w-1/2 overflow-y-auto overscroll-contain"
+              >
                 <HomeView
                   onSelectSection={(key) => setActiveSection(key)}
                   onClose={onClose}
@@ -335,7 +327,12 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
               </div>
 
               {/* Section view */}
-              <div data-mobile-nav-view="section" className="h-full w-1/2 overflow-y-auto overscroll-contain">
+              <div
+                data-mobile-nav-view="section"
+                aria-hidden={activeSection === null}
+                inert={activeSection === null}
+                className="h-full w-1/2 overflow-y-auto overscroll-contain"
+              >
                 {current && (
                   <SectionView
                     section={current}
@@ -359,8 +356,6 @@ function HomeView({
   onSelectSection: (key: SectionKey) => void
   onClose: () => void
 }) {
-  const shouldReduceMotion = useReducedMotion()
-
   return (
     <div
       className="flex min-h-full flex-col px-4 pt-6"
@@ -371,15 +366,13 @@ function HomeView({
       </h2>
 
       <div className="flex flex-col gap-2">
-        {sections.map((section, i) => {
+        {sections.map((section) => {
           const Icon = section.icon
           return (
-            <motion.button
+            <button
               key={section.key}
               type="button"
               onClick={() => onSelectSection(section.key)}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0, transition: { delay: 0.03 * i, duration: 0.2 } }}
               className={tileBase}
             >
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-200">
@@ -392,7 +385,7 @@ function HomeView({
                 </span>
               </span>
               <ChevronRight className="h-4 w-4 shrink-0 text-slate-500 transition group-hover:text-slate-300" />
-            </motion.button>
+            </button>
           )
         })}
       </div>
@@ -410,7 +403,20 @@ function HomeView({
         <span className="min-w-0 flex-1">
           <span className="block text-[15px] font-semibold text-white">Blog</span>
           <span className="mt-0.5 block truncate text-[12px] leading-tight text-slate-400">
-            Essays, fieldnotes, and signal
+            Researched articles and systems
+          </span>
+        </span>
+        <ChevronRight className="h-4 w-4 shrink-0 text-slate-500" />
+      </Link>
+
+      <Link href="/journal" onClick={onClose} className={tileBase}>
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-200">
+          <PenLine className="h-4 w-4" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[15px] font-semibold text-white">Journal</span>
+          <span className="mt-0.5 block truncate text-[12px] leading-tight text-slate-400">
+            Short daily notes from the build
           </span>
         </span>
         <ChevronRight className="h-4 w-4 shrink-0 text-slate-500" />

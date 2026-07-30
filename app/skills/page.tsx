@@ -3,9 +3,9 @@ import { ArrowRight, ClipboardList, Sparkles, Wand2 } from 'lucide-react'
 
 const triggerPhrases = [
   'Activate Technical Translator',
-  'Channel Frequency Alchemist',
+  'Run Release Notes Writer',
   'Engage Creation Engine',
-  'Consult Soul Strategist',
+  'Consult System Architect',
 ]
 
 const workflowSteps = [

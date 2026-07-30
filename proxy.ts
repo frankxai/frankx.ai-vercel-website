@@ -46,7 +46,15 @@ export async function proxy(request: NextRequest) {
   // /api/admin/upload and /api/admin/verify implement their own ADMIN_SECRET
   // header/body check — they stay out of the session gate below.
   const selfGatedApiPaths = ['/api/admin/upload', '/api/admin/verify']
-  const protectedPaths = ['/dashboard', '/admin', '/api/dashboard', '/api/leads', '/api/admin']
+  const protectedPaths = [
+    '/dashboard',
+    '/admin',
+    '/api/dashboard',
+    '/api/leads',
+    '/api/admin',
+    '/partnerships/proposal',
+    '/partnerships/van-ede',
+  ]
   // Exact-segment match — `startsWith` alone would also catch a future
   // public route like /admin-settings or /dashboard-assets.
   const matchesPath = (path: string) => pathname === path || pathname.startsWith(path + '/')

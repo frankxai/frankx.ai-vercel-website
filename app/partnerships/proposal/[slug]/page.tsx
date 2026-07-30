@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { getProposal } from '@/content/partnerships/proposals'
 import { getPartner } from '@/content/partnerships'
 import { ProposalContext } from '@/components/partnerships/ProposalContext'
@@ -26,6 +27,21 @@ import { ProposalAsk } from '@/components/partnerships/ProposalAsk'
  */
 export const dynamic = 'force-dynamic'
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const proposal = getProposal(slug)
+  if (!proposal) return {}
+
+  return {
+    title: { absolute: proposal.title },
+    description: proposal.intro,
+  }
+}
+
 export default async function ProposalPage({
   params,
 }: {
@@ -38,7 +54,7 @@ export default async function ProposalPage({
   const partner = getPartner(proposal.partnerSlug)
 
   return (
-    <>
+    <main className="bg-[#0a0a0b] text-white">
       <ProposalContext
         recipientRole={proposal.recipientRole}
         sentDate={proposal.sentDate}
@@ -57,6 +73,12 @@ export default async function ProposalPage({
           <p className="text-lg text-zinc-300 leading-relaxed">
             {proposal.intro}
           </p>
+          {proposal.status === 'draft' ? (
+            <p className="mt-6 border-l border-cyan-300/30 pl-4 text-sm leading-relaxed text-zinc-400">
+              Unsent FrankX draft. The named company has not reviewed, approved,
+              or endorsed this proposal.
+            </p>
+          ) : null}
           {partner ? (
             <p className="mt-6 text-sm text-zinc-500">
               Public context page:{' '}
@@ -134,6 +156,6 @@ export default async function ProposalPage({
           ) : null}
         </div>
       </section>
-    </>
+    </main>
   )
 }

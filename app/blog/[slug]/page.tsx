@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!post) {
     return createMetadata({
-      title: 'Post Not Found - FrankX Journal',
-      description: 'The requested FrankX Journal story could not be located.',
+      title: 'Post Not Found - FrankX Blog',
+      description: 'The requested FrankX blog article could not be located.',
       path: `/blog/${slug}`,
     })
   }
@@ -170,7 +170,7 @@ export default async function BlogPostPage({
           <div className="mx-auto max-w-4xl">
             <Breadcrumbs
               items={[
-                { label: 'Creation Chronicles', href: '/blog' },
+                { label: 'Blog', href: '/blog' },
                 { label: post.title, href: `/blog/${post.slug}` },
               ]}
             />
@@ -377,6 +377,5 @@ export default async function BlogPostPage({
     </main>
   )
 }
-
 
 

@@ -413,8 +413,8 @@ export default function ResourcesPage() {
                 <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/20 blur-3xl opacity-70" />
                 <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6">
                   <Image
-                    src="/images/blog/frankx-resources-universe-hero.png"
-                    alt="FrankX Resources Universe — intelligence hub, playbooks, prompt library, agents, visuals, and tools"
+                    src="/images/blog/frankx-intelligence-ecosystem-complete-guide-hero-premium.png"
+                    alt="FrankX intelligence ecosystem — intelligence hub, playbooks, prompt library, agents, visuals, and tools"
                     width={640}
                     height={640}
                     className="h-auto w-full"

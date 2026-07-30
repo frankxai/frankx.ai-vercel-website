@@ -3,10 +3,9 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 import { Mail, ArrowLeft, QrCode } from 'lucide-react'
 
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { CONTACT_INFO } from '@/lib/social-links'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
-import { CONNECT_EVENTS } from '@/lib/connect/events'
 
 import { ConnectHero } from '@/components/connect/ConnectHero'
 import { EventRibbon } from '@/components/connect/EventRibbon'
@@ -16,13 +15,11 @@ import { ConnectSocialsRow } from '@/components/connect/ConnectSocialsRow'
 import { ConnectNewsletterForm } from '@/components/connect/ConnectNewsletterForm'
 import { ConnectLandedTracker } from '@/components/connect/ConnectLandedTracker'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const CONNECT_URL = `${SITE_URL}/connect`
 
 // Revalidate hourly so the date-aware event ribbon picks up window
-// transitions without redeploys during events. The Event schema below is
-// rebuilt from CONNECT_EVENTS on each ISR regeneration, so newly-added
-// events surface in structured data within the cache window.
+// transitions without redeploys during events.
 export const revalidate = 3600
 
 function ConnectJsonLd() {
@@ -44,24 +41,6 @@ function ConnectJsonLd() {
         url: CONNECT_URL,
         isPartOf: { '@type': 'WebSite', name: 'FrankX', url: SITE_URL },
       },
-      ...CONNECT_EVENTS.map((event) => ({
-        '@type': 'Event',
-        name: event.label,
-        startDate: event.start,
-        endDate: event.end,
-        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-        eventStatus: 'https://schema.org/EventScheduled',
-        ...(event.location && {
-          location: {
-            '@type': 'Place',
-            name: event.location,
-            address: event.location,
-          },
-        }),
-        url: CONNECT_URL,
-        organizer: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
-        performer: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
-      })),
     ],
   }
 

@@ -1,223 +1,400 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   ArrowRight,
-  Clock,
+  ArrowUpRight,
   BookOpen,
-  Play,
-  GraduationCap,
+  Bot,
+  Braces,
+  BriefcaseBusiness,
+  Building2,
+  Check,
+  Cloud,
+  Code2,
+  Compass,
+  Layers3,
+  Palette,
+  Radar,
+  ShieldCheck,
+  Sparkles,
 } from 'lucide-react'
+import { learningPaths, type LearningPath } from '@/data/learning-paths'
 import {
-  learningPaths,
-  featuredCreators,
-  type LearningPath,
-  type LearningPathCategory,
-} from '@/data/learning-paths'
-import { iconMap, colorMap } from '@/lib/learn/portal-display'
+  learningFieldNotes,
+  learningOutcomes,
+  recommendedCourses,
+} from '@/data/learning-catalog'
+import CourseRecommendationCard from '@/components/learn/CourseRecommendationCard'
 
-// Genuinely not-yet-built portals. AWS Bedrock, Azure AI Foundry, Oracle OCI
-// GenAI, and ChatGPT already shipped — they must not appear here as "coming".
-const upcomingPortals: string[] = [
-  'Suno AI Music',
-  'Midjourney',
-  'NotebookLM Deep Work',
-]
+const outcomeIcons = [BriefcaseBusiness, Code2, Building2, Compass, Palette]
 
-const categoryLabels: Record<LearningPathCategory, { title: string; blurb: string }> = {
-  'model-maker': {
-    title: 'Frontier model makers',
-    blurb: "The labs that ship the models themselves — Anthropic, Google, OpenAI.",
-  },
-  cloud: {
-    title: 'Cloud AI surfaces',
-    blurb: 'Managed model gateways on AWS, Azure, and Oracle Cloud — where production runs.',
-  },
-  consumer: {
-    title: 'Consumer & creative tools',
-    blurb: 'Specialist products for music, video, image, and research workflows.',
-  },
+const pathIcons: Record<string, typeof Bot> = {
+  'claude-mastery': Bot,
+  'codex-mastery': Braces,
+  'chatgpt-mastery': Sparkles,
+  'gemini-mastery': Compass,
+  'antigravity-mastery': Layers3,
+  'aws-bedrock-mastery': Cloud,
+  'azure-ai-foundry-mastery': Cloud,
+  'oracle-oci-genai-mastery': Cloud,
 }
 
-const CATEGORY_ORDER: LearningPathCategory[] = ['model-maker', 'cloud', 'consumer']
+const modelPaths = learningPaths.filter((path) => path.category === 'model-maker')
+const cloudPaths = learningPaths.filter((path) => path.category === 'cloud')
 
-function PathCard({ path }: { path: LearningPath }) {
-  const Icon = iconMap[path.icon] || BookOpen
-  const colors = colorMap[path.color]
+function PathRow({ path }: { path: LearningPath }) {
+  const Icon = pathIcons[path.slug] ?? BookOpen
 
   return (
     <Link
       href={`/learn/${path.slug}`}
-      className={`group relative block p-6 rounded-2xl border bg-gradient-to-br ${colors} hover:border-white/20 transition-all hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
+      className="group grid gap-5 border-t border-white/[0.07] py-6 transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-300 sm:grid-cols-[48px_1fr_auto] sm:items-center sm:px-4"
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className={`p-3 rounded-xl bg-white/5`}>
-          <Icon className="w-6 h-6" />
-        </div>
-        <span className="text-xs font-medium px-2 py-1 rounded-full bg-white/10 text-white/60 capitalize">
-          {path.difficulty}
+      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-emerald-200">
+        <Icon className="h-5 w-5" aria-hidden="true" />
+      </span>
+      <span>
+        <span className="block font-display text-xl font-semibold tracking-[-0.02em] text-white">
+          {path.title}
         </span>
-      </div>
-
-      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-white/90">
-        {path.title}
-      </h3>
-      <p className="text-sm text-white/50 mb-4 line-clamp-2">
-        {path.description}
-      </p>
-
-      <div className="flex items-center gap-4 text-xs text-white/40">
-        <div className="flex items-center gap-1.5">
-          <Clock className="w-3.5 h-3.5" />
-          {path.estimatedHours} hours
-        </div>
-        <div className="flex items-center gap-1.5">
-          <Play className="w-3.5 h-3.5" />
-          {path.videos.length} videos
-        </div>
-      </div>
-
-      <ArrowRight className="absolute bottom-6 right-6 w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+        <span className="mt-1 block max-w-2xl text-sm leading-6 text-[#98989f]">
+          {path.description}
+        </span>
+      </span>
+      <span className="flex items-center gap-4 sm:justify-end">
+        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#98989f]">
+          {path.estimatedHours}h path
+        </span>
+        <ArrowRight
+          className="h-4 w-4 text-[#98989f] transition-transform group-hover:translate-x-1 group-hover:text-white"
+          aria-hidden="true"
+        />
+      </span>
     </Link>
   )
 }
 
-
 export default function LearnShell() {
   return (
-    <div className="min-h-screen bg-[#0a0a0b]">
-      {/* Hero */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-cyan-500/10" />
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
+      <section className="relative overflow-hidden border-b border-white/[0.06] pt-32">
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden="true"
+          style={{
+            background:
+              'radial-gradient(circle at 18% 12%, rgba(16,185,129,0.11), transparent 31%), radial-gradient(circle at 82% 28%, rgba(6,182,212,0.07), transparent 28%)',
+          }}
+        />
+        <div className="relative mx-auto max-w-6xl px-5 pb-20 sm:px-6 lg:pb-28">
+          <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-emerald-300/75">
+            FrankX Learn
+          </p>
+          <h1 className="mt-7 max-w-5xl font-display text-5xl font-bold leading-[0.98] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl">
+            The shortest credible path through AI.
+          </h1>
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-[#b8b8bd] sm:text-xl">
+            Independent course selections, official resources, and build paths mapped to what
+            you want to become capable of doing.
+          </p>
 
-        <div className="relative max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
-              <GraduationCap className="w-4 h-4" />
-              Curated Learning Paths
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#choose-path"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              Choose your learning path
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <Link
+              href="/courses"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              Browse course picks
+            </Link>
+          </div>
+
+          <div className="mt-14 grid gap-3 border-t border-white/[0.07] pt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-[#98989f] sm:grid-cols-3">
+            <p className="inline-flex items-center gap-2">
+              <Check className="h-3.5 w-3.5 text-emerald-300" aria-hidden="true" />
+              Independent selection
+            </p>
+            <p className="inline-flex items-center gap-2">
+              <Check className="h-3.5 w-3.5 text-emerald-300" aria-hidden="true" />
+              Affiliate links labeled
+            </p>
+            <p className="inline-flex items-center gap-2">
+              <Check className="h-3.5 w-3.5 text-emerald-300" aria-hidden="true" />
+              Recommendations dated
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="choose-path" className="scroll-mt-24 py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-emerald-300/70">
+                Start with the outcome
+              </p>
+              <h2 className="mt-5 max-w-md font-display text-4xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">
+                Choose what you want to be able to do.
+              </h2>
+              <p className="mt-5 max-w-md text-[16px] leading-7 text-[#b8b8bd]">
+                Tools change faster than curricula. Capability is the stable way to choose what
+                deserves your next ten hours.
+              </p>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-6">
-              Learn AI the{' '}
-              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                Right Way
-              </span>
-            </h1>
+            <div className="border-b border-white/[0.07]">
+              {learningOutcomes.map((outcome, index) => {
+                const Icon = outcomeIcons[index] ?? BookOpen
 
-            <p className="text-[17px] leading-relaxed text-white/80 max-w-2xl mx-auto">
-              Curated learning portals for the AI ecosystems that matter. Each one bundles
-              official launches, the sharpest expert walkthroughs, and the structure to move
-              from first prompt to production.
-            </p>
-            <p className="mt-5 text-sm text-white/50">
-              Pick a portal · watch the free path · ship the first project. No account, no cost.
-            </p>
-          </motion.div>
+                return (
+                  <Link
+                    key={outcome.id}
+                    href={outcome.href}
+                    className="group grid gap-5 border-t border-white/[0.07] py-7 transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-300 sm:grid-cols-[48px_1fr_auto] sm:items-start sm:px-4"
+                  >
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-emerald-200">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <span>
+                      <span className="block font-display text-2xl font-semibold tracking-[-0.025em] text-white">
+                        {outcome.title}
+                      </span>
+                      <span className="mt-1 block text-xs font-medium uppercase tracking-[0.1em] text-emerald-200/75">
+                        {outcome.audience}
+                      </span>
+                      <span className="mt-3 block max-w-xl text-sm leading-6 text-[#b8b8bd]">
+                        {outcome.capability}
+                      </span>
+                    </span>
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-[#98989f] transition-colors group-hover:text-white">
+                      {outcome.routeLabel}
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Learning Paths Grid — grouped by category (required field on every portal). */}
-      <section className="max-w-6xl mx-auto px-6 pb-12">
-        <div className="space-y-12">
-          {CATEGORY_ORDER.map((cat) => {
-            const inCat = learningPaths.filter((p) => p.category === cat)
-            // Skip an empty category entirely UNLESS it's consumer — the only
-            // one with a known roadmap roster (upcomingPortals are all consumer).
-            // This stops the in-build chips showing under the wrong header if a
-            // model-maker/cloud category ever empties.
-            if (inCat.length === 0 && cat !== 'consumer') return null
-            const meta = categoryLabels[cat]
-            return (
-              <div key={cat}>
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-white mb-1">{meta.title}</h2>
-                  <p className="text-sm text-white/50">{meta.blurb}</p>
-                </div>
-                {inCat.length > 0 ? (
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {inCat.map((path, i) => (
-                      <motion.div
-                        key={path.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: Math.min(i, 4) * 0.05 }}
-                      >
-                        <PathCard path={path} />
-                      </motion.div>
-                    ))}
-                  </div>
-                ) : (
-                  // Visible in-build state — a roadmap signal, not a dead gap.
-                  <div className="rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-6">
-                    <p className="text-sm text-white/50 mb-3">
-                      In build — {upcomingPortals.length} portals, same depth and curation.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {upcomingPortals.map((portal) => (
-                        <span
-                          key={portal}
-                          className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 text-white/60 border border-white/5"
-                        >
-                          {portal}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )
-          })}
-        </div>
-      </section>
-
-      {/* Featured Creators */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-white mb-2">Featured Creators</h2>
-          <p className="text-white/50">Learn from the best in the AI education space</p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {featuredCreators.map((creator) => (
-            <a
-              key={creator.name}
-              href={creator.channel}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+      <section id="course-picks" className="scroll-mt-24 border-y border-white/[0.06] bg-[#0d0d0f] py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan-300/70">
+                Editor&apos;s course shelf
+              </p>
+              <h2 className="mt-5 max-w-3xl font-display text-4xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">
+                Five courses that earn the time.
+              </h2>
+            </div>
+            <Link
+              href="/courses"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             >
-              <h3 className="font-semibold text-white mb-1">{creator.name}</h3>
-              <p className="text-xs text-white/50 mb-2">{creator.specialty}</p>
-              <p className="text-xs text-emerald-400">{creator.subscribers} subscribers</p>
-            </a>
-          ))}
+              See the full course shelf
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+
+          <p className="mt-6 max-w-3xl text-[16px] leading-7 text-[#b8b8bd]">
+            These are direct provider links today. If affiliate tracking is activated, the
+            relevant card will say so. Payment never changes selection or placement.
+          </p>
+
+          <div className="mt-12 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+            <CourseRecommendationCard course={recommendedCourses[0]} featured />
+            <div className="grid gap-5">
+              {recommendedCourses.slice(1, 3).map((course) => (
+                <CourseRecommendationCard key={course.slug} course={course} />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="max-w-4xl mx-auto px-6 pb-24">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 p-8 md:p-12 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
-            Want Structured Guidance?
-          </h2>
-          <p className="text-[17px] leading-relaxed text-white/80 mb-8 max-w-xl mx-auto">
-            Free resources are great for exploration.
-            For a structured path with hands-on projects, check out our guides.
-          </p>
-          <Link
-            href="/guides"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-          >
-            Explore Guides
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+      <section className="py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-emerald-300/70">
+                Free ecosystem maps
+              </p>
+              <h2 className="mt-5 font-display text-4xl font-semibold tracking-[-0.035em] text-white">
+                Learn from the source.
+              </h2>
+              <p className="mt-5 text-[16px] leading-7 text-[#b8b8bd]">
+                Eight free FrankX portals organize official material, strong walkthroughs, and
+                original architecture notes around the platforms people actually use.
+              </p>
+            </div>
+
+            <div>
+              <div className="mb-6 flex items-center gap-3">
+                <Bot className="h-5 w-5 text-emerald-300" aria-hidden="true" />
+                <h3 className="font-display text-xl font-semibold text-white">Model makers</h3>
+              </div>
+              <div className="border-b border-white/[0.07]">
+                {modelPaths.map((path) => (
+                  <PathRow key={path.id} path={path} />
+                ))}
+              </div>
+
+              <div className="mb-6 mt-12 flex items-center gap-3">
+                <Cloud className="h-5 w-5 text-cyan-300" aria-hidden="true" />
+                <h3 className="font-display text-xl font-semibold text-white">Cloud AI</h3>
+              </div>
+              <div className="border-b border-white/[0.07]">
+                {cloudPaths.map((path) => (
+                  <PathRow key={path.id} path={path} />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-    </div>
+
+      <section className="border-y border-white/[0.06] bg-[#0d0d0f] py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="grid overflow-hidden rounded-3xl border border-white/[0.09] bg-[#111113] lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="p-7 sm:p-10 lg:p-14">
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-emerald-300/70">
+                FrankX original
+              </p>
+              <h2 className="mt-5 max-w-2xl font-display text-4xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">
+                AI Architect Academy
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#b8b8bd]">
+                The technical school for moving from prototypes to production: architecture
+                patterns, Claude skills, multi-cloud reference systems, and five core paths.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/ai-architect-academy"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#06110d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113]"
+                >
+                  Enter the Academy
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <a
+                  href="https://github.com/frankxai/ai-architect-academy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113]"
+                  aria-label="Open the AI Architect Academy repository on GitHub (opens in a new tab)"
+                >
+                  View the open-source work
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+
+            <div className="border-t border-white/[0.08] p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#98989f]">
+                Academy proof
+              </p>
+              <ul className="mt-6 space-y-5">
+                {[
+                  'Five documented learning paths',
+                  'Enterprise architecture pattern library',
+                  'Multi-cloud implementation references',
+                  'Open-source repository and reusable skills',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm leading-6 text-[#b8b8bd]">
+                    <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan-300/70">
+                FrankX field notes
+              </p>
+              <h2 className="mt-5 font-display text-4xl font-semibold tracking-[-0.035em] text-white">
+                Read before you enroll.
+              </h2>
+              <p className="mt-5 text-[16px] leading-7 text-[#b8b8bd]">
+                The blog is the editorial layer: comparisons, learning orders, and practical
+                tradeoffs that a marketplace description cannot give you.
+              </p>
+            </div>
+
+            <div className="border-b border-white/[0.07]">
+              {learningFieldNotes.map((note) => (
+                <Link
+                  key={note.href}
+                  href={note.href}
+                  className="group grid gap-4 border-t border-white/[0.07] py-7 transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-300 sm:grid-cols-[1fr_auto] sm:px-4"
+                >
+                  <span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-emerald-300/70">
+                      {note.label} / {note.readingTime}
+                    </span>
+                    <span className="mt-3 block font-display text-2xl font-semibold tracking-[-0.025em] text-white">
+                      {note.title}
+                    </span>
+                    <span className="mt-3 block max-w-2xl text-sm leading-6 text-[#b8b8bd]">
+                      {note.description}
+                    </span>
+                  </span>
+                  <ArrowRight
+                    className="h-4 w-4 self-center text-[#98989f] transition-transform group-hover:translate-x-1 group-hover:text-white"
+                    aria-hidden="true"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/[0.06] py-24">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-6 lg:grid-cols-[1fr_0.78fr] lg:items-center">
+          <div>
+            <div className="flex items-center gap-3">
+              <Radar className="h-5 w-5 text-emerald-300" aria-hidden="true" />
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-emerald-300/70">
+                AI Learning Radar
+              </p>
+            </div>
+            <h2 className="mt-5 max-w-3xl font-display text-4xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">
+              One signal a week. No course landfill.
+            </h2>
+            <p className="mt-5 max-w-2xl text-[16px] leading-7 text-[#b8b8bd]">
+              The course, model update, or build path that is worth your time—plus the reason it
+              earned a place.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 lg:items-end">
+            <Link
+              href="/newsletter"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              Join the Learning Radar
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/courses#method"
+              className="inline-flex min-h-11 items-center justify-center text-sm font-medium text-[#b8b8bd] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              Read the selection method
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
   )
 }

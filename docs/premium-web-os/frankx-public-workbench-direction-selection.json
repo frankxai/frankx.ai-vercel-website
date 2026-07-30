@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "artifact": "frankx-public-workbench-direction-selection",
+  "created_on": "2026-07-30",
+  "queen_job": {
+    "recipient": "A technically literate founder, creator, researcher, or potential partner",
+    "job": "Understand FrankX in ten seconds, trust the authorship model, and choose one inspectable path",
+    "promise": "See how Frank turns questions and source material into reviewed research, architecture, guides, products, and partnership systems with bounded specialist agents",
+    "primary_action": "Explore current work",
+    "required_understanding": "Frank directs the work and owns the judgment; agents expand research, critique, synthesis, implementation, and verification capacity"
+  },
+  "taste_profile": {
+    "human_authorship": 25,
+    "proposition_clarity": 20,
+    "inspectable_proof": 20,
+    "visual_hierarchy": 15,
+    "action_coherence": 10,
+    "distinctive_warmth": 10
+  },
+  "directions": [
+    {
+      "id": "public-workbench",
+      "name": "Public Workbench",
+      "thesis": "Lead with Frank, the source-to-artifact workflow, and current inspectable work",
+      "differentiation": "A human-led workspace whose division of labor is visible",
+      "risk": "Can feel procedural unless Frank's voice and real artifacts remain prominent",
+      "decision": "selected"
+    },
+    {
+      "id": "field-journal",
+      "name": "Field Journal",
+      "thesis": "Lead with dated observations, personal essays, and the evolution of the work",
+      "differentiation": "A warmer editorial relationship with a visibly changing practice",
+      "risk": "The operating model and breadth of useful artifacts become harder to understand quickly",
+      "decision": "not-selected"
+    },
+    {
+      "id": "systems-observatory",
+      "name": "Systems Observatory",
+      "thesis": "Lead with a visual map of architectures, agents, research domains, and outputs",
+      "differentiation": "A striking systems-level view of a large body of work",
+      "risk": "The interface can eclipse the person and repeat the site's existing complexity",
+      "decision": "not-selected"
+    }
+  ],
+  "decision": {
+    "selected": "public-workbench",
+    "confidence": 0.91,
+    "reason": "It best explains who is responsible, what the agents do, what visitors can inspect, and where to act without reducing FrankX to an agency or content machine."
+  },
+  "baseline": {
+    "desktop": {
+      "url": "https://www.frankx.ai/",
+      "viewport": "1363x936",
+      "status": "captured",
+      "findings": [
+        "The first viewport did not show Frank or the source-to-artifact workflow",
+        "An eager third-party music embed occupied high-value hero space",
+        "The top-level navigation presented too many competing doors"
+      ]
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "Responsive release evidence must be captured from the deployed preview before production merge"
+    }
+  },
+  "release_status": "build",
+  "production_receipt": "not-created"
+}

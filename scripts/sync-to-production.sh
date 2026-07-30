@@ -59,7 +59,7 @@ rsync -av --delete "${RSYNC_COMMON_EXCLUDES[@]}" \
   --exclude='.worktrees' \
   "${FRANKX_ROOT}/data/" "${PROD_ROOT}/data/" 2>/dev/null || true
 
-for file in package.json package-lock.json tsconfig.json next.config.mjs postcss.config.js tailwind.config.js VIDEO_VAULT.md BRAND_IDENTITY.md DESIGN_SYSTEM.md; do
+for file in package.json pnpm-lock.yaml tsconfig.json next.config.mjs postcss.config.js tailwind.config.js VIDEO_VAULT.md BRAND_IDENTITY.md DESIGN_SYSTEM.md; do
   if [ -f "${FRANKX_ROOT}/${file}" ]; then
     cp "${FRANKX_ROOT}/${file}" "${PROD_ROOT}/${file}"
   fi

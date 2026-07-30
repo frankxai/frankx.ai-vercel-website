@@ -1,4 +1,5 @@
 # Branch cleanup queue.
-# Add branch names below (one per line) and commit to main.
-# The Branch Cleanup workflow will delete them and clear this file.
+# Replace the entries below in a pull request; do not append a new batch to stale entries.
+# The Branch Cleanup workflow deletes exactly the non-comment lines after merge.
+# Clear a completed queue through a follow-up pull request because main is PR-protected.
 # See BRANCH_AUDIT.md for the canonical safe-delete list.

@@ -214,7 +214,7 @@ export const segmentProfiles: SegmentProfile[] = [
     keywords: ['ai learning system', 'student ai tools', 'personal ai assistant'],
     ctas: [
       { label: 'Enter Student Hub', href: '/students' },
-      { label: 'Start Learning', href: '/courses' }
+      { label: 'Start Learning', href: '/learn' }
     ]
   },
   {

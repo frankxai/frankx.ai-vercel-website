@@ -64,6 +64,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'a.storyblok.com',
       },
+      // Official Mindvalley brand mark, shown only beside the independence disclosure.
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/mindvalley/**',
+      },
       // Suno track covers and playlist art (music inventory imageUrl fields)
       {
         protocol: 'https',

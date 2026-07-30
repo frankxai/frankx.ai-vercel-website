@@ -17,6 +17,8 @@ import { GEN_COMPARISONS } from '@/lib/models-hub/comparisons'
 // deploy ERRORs after build).
 import routeIndex from '@/data/route-index.json'
 import { learningPaths } from '@/data/learning-paths'
+import { getMvuEntrySummaries } from '@/lib/mvu'
+import { getJournalEntrySummaries } from '@/lib/journal'
 
 const BASE_URL = siteConfig.url
 
@@ -129,6 +131,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/journal', priority: 0.8, changeFrequency: 'daily' as const },
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
@@ -284,6 +287,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Section pages (important navigation destinations)
   const sectionPages = [
     { url: '/vision', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/manifestation', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/manifestation/quest', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/the-secret', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/think-and-grow-rich', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/ai-world', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/see-through-the-noise', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -395,6 +402,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Get dynamic content
   const blogEntries = getBlogEntries()
+  const mvuEntries = getMvuEntrySummaries()
+  const journalEntries = getJournalEntrySummaries()
   const guideSlugs = getGuideSlugs()
   const productSlugs = getProductSlugs()
 
@@ -654,8 +663,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // LLM Hub — interactive Arena + provenance (JSON endpoints live in llms.txt, not the sitemap)
-  entries.push({ url: `${BASE_URL}/llm-hub/arena`, lastModified: currentDate, changeFrequency: 'daily', priority: 0.9 })
+  // LLM Hub — provenance page (the measured arena lives at /research/model-arena)
   entries.push({ url: `${BASE_URL}/llm-hub/sources`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.7 })
 
   // Generative Model Hub — umbrella + categories + per-model + comparisons
@@ -668,6 +676,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
   })
   GEN_COMPARISONS.forEach((c) => {
     entries.push({ url: `${BASE_URL}/models/compare/${c.slug}`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.8 })
+  })
+
+  // MVU journey hub + event page + journal entries
+  entries.push(
+    { url: `${BASE_URL}/mvu`, lastModified: currentDate, changeFrequency: 'daily', priority: 0.8 },
+    { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.7 },
+  )
+  mvuEntries.forEach(entry => {
+    entries.push({
+      url: `${BASE_URL}/mvu/${entry.slug}`,
+      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    })
+  })
+
+  // Journal entries (private/unpublished ones are filtered by the loader).
+  // Frontmatter dates are free text, so a typo like "2026-13-45" parses to an
+  // Invalid Date whose toISOString() throws — which would take out sitemap.xml
+  // for the whole site, not just journal. Fall back instead of throwing.
+  journalEntries.forEach(entry => {
+    const parsed = entry.date ? new Date(entry.date) : null
+    entries.push({
+      url: `${BASE_URL}/journal/${entry.slug}`,
+      lastModified:
+        parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    })
   })
 
   // Library OS — hub + manifesto + build + quotes

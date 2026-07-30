@@ -597,10 +597,12 @@
   width: auto;
   height: auto;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #ab47c7, #43bfe3);
-  color: #ffffff;
+  background: #ffffff;
+  color: #0a0a0b;
   border-radius: 0.5rem;
   box-shadow: 0 12px 40px rgba(14, 165, 233, 0.45);
+  outline: 2px solid #43bfe3;
+  outline-offset: 2px;
   z-index: 9999;
   text-decoration: none;
 }

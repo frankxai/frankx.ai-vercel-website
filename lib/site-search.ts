@@ -29,7 +29,15 @@ type RouteIndexRoute = {
 
 const ROUTES = (routeIndex as { routes: RouteIndexRoute[] }).routes
 
-const BLOCKED_PREFIXES = ['/admin', '/api', '/auth', '/studio', '/papa']
+const BLOCKED_PREFIXES = [
+  '/admin',
+  '/api',
+  '/auth',
+  '/studio',
+  '/papa',
+  '/partnerships/proposal',
+  '/partnerships/van-ede',
+]
 const BLOCKED_EXACT = new Set(['/thank-you', '/unsubscribe'])
 
 const MANUAL_ITEMS: SiteSearchItem[] = [
@@ -56,6 +64,7 @@ const MANUAL_ITEMS: SiteSearchItem[] = [
 const CURATED_HREFS = [
   '/start',
   '/blog',
+  '/journal',
   '/prompt-library',
   '/ai-architecture',
   '/music',
@@ -77,7 +86,14 @@ function titleFromHref(href: string) {
 function groupForRoute(route: RouteIndexRoute): SiteSearchGroup {
   const href = route.href
 
-  if (href === '/' || href === '/start' || href === '/blog' || href === '/search') return 'Shortcuts'
+  if (
+    href === '/' ||
+    href === '/start' ||
+    href === '/blog' ||
+    href === '/journal' ||
+    href === '/search'
+  )
+    return 'Shortcuts'
   if (href.startsWith('/music') || href.startsWith('/vibe') || href.startsWith('/products/vibe-os')) return 'Music'
   if (
     href.startsWith('/gencreator') ||

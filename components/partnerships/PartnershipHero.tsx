@@ -8,17 +8,35 @@ type PartnershipHeroProps = {
 }
 
 const STATUS_LABEL: Record<Partner['status'], string> = {
-  active: 'Working partnership',
-  'strategic-alignment': 'Strategic alignment',
-  'in-conversation': 'In conversation',
-  placeholder: 'Conversation open',
+  active: 'Published FrankX proposal',
+  'strategic-alignment': 'Independent alignment',
+  'in-conversation': 'Conversation noted by FrankX',
+  placeholder: 'Independent opportunity note',
+}
+
+const PUBLICATION_LABEL: Record<Partner['publicationBasis'], string> = {
+  'public-evidence': 'Public evidence',
+  'independent-proposal': 'Independent proposal',
+  'confirmed-conversation': 'Confirmed conversation',
+  'formal-partnership': 'Formal partnership',
+}
+
+const CONSENT_LABEL: Record<Partner['consentStatus'], string> = {
+  'not-required-public-analysis': 'Public analysis',
+  'not-requested': 'Consent not requested',
+  confirmed: 'Consent confirmed',
+}
+
+const PRIVACY_LABEL: Record<Partner['privacyClassification'], string> = {
+  'public-only': 'Public sources only',
+  'sanitized-private-context': 'Private context sanitized',
 }
 
 export function PartnershipHero({
   partner,
   secondaryCta,
 }: PartnershipHeroProps) {
-  const isProposalTier = partner.status === 'active'
+  const hasPublishedProposal = partner.status === 'active'
 
   return (
     <section
@@ -54,13 +72,13 @@ export function PartnershipHero({
           </span>
         </div>
 
-        {/* Brand pairing — FrankX × Partner, equal weight */}
+        {/* Authorship pairing — explicitly a FrankX proposal, not an endorsement */}
         <div className="flex items-center gap-4 mb-10">
           <span className="text-lg font-semibold tracking-tight text-white">
-            FrankX
+            FrankX proposal
           </span>
           <span className="text-white/30 text-lg" aria-hidden>
-            ×
+            /
           </span>
           {partner.partnerLogoUrl ? (
             // Partner logos vary in aspect ratio (SVG from press kits).
@@ -99,9 +117,37 @@ export function PartnershipHero({
         <p className="text-lg text-zinc-400 leading-relaxed mb-10 max-w-2xl">
           {partner.subTagline}
         </p>
+        <p className="mb-8 max-w-2xl border-l border-cyan-300/30 pl-4 text-xs leading-6 text-white/52">
+          This page is authored by FrankX. It documents demonstrated use, prior work, or a
+          proposed direction; it does not by itself show endorsement or a formal relationship
+          with {partner.shortName}.
+        </p>
+        <dl
+          aria-label="Publication and relationship basis"
+          className="mb-10 grid max-w-2xl gap-2 text-xs text-white/62 sm:grid-cols-3"
+        >
+          <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] px-3 py-2.5">
+            <dt className="mb-1 text-[10px] uppercase tracking-[0.16em] text-emerald-300/70">
+              Publication
+            </dt>
+            <dd>{PUBLICATION_LABEL[partner.publicationBasis]}</dd>
+          </div>
+          <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] px-3 py-2.5">
+            <dt className="mb-1 text-[10px] uppercase tracking-[0.16em] text-emerald-300/70">
+              Consent
+            </dt>
+            <dd>{CONSENT_LABEL[partner.consentStatus]}</dd>
+          </div>
+          <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] px-3 py-2.5">
+            <dt className="mb-1 text-[10px] uppercase tracking-[0.16em] text-emerald-300/70">
+              Evidence
+            </dt>
+            <dd>{PRIVACY_LABEL[partner.privacyClassification]}</dd>
+          </div>
+        </dl>
 
         {/* CTAs — primary emerald, secondary ghost; never two equal weights */}
-        {isProposalTier ? (
+        {hasPublishedProposal ? (
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
               href={partner.cta.href}
@@ -121,8 +167,11 @@ export function PartnershipHero({
           </div>
         ) : (
           <p className="text-sm text-zinc-500 max-w-2xl">
-            A deeper conversation is open with {partner.shortName}. The proposal
-            page comes online when both sides are ready to publish.
+            {partner.status === 'strategic-alignment'
+              ? `This is FrankX’s independent record of platform use and possible alignment. No formal ${partner.shortName} relationship is claimed.`
+              : partner.status === 'in-conversation'
+                ? `FrankX records an open conversation with ${partner.shortName}; no formal partnership is claimed.`
+                : `This is an independent opportunity note. No conversation or partnership with ${partner.shortName} is claimed.`}
           </p>
         )}
       </div>

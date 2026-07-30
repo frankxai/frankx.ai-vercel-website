@@ -170,7 +170,7 @@ export default function RootLayout({
           <OrganizationJsonLd />
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
+            className="skip-to-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
           >
             Skip to content
           </a>
@@ -184,7 +184,7 @@ export default function RootLayout({
           </div>
           <NavigationMega />
           <CommandPaletteProvider />
-          <div id="main" className="relative z-10 min-h-screen overflow-x-hidden">
+          <div id="main" tabIndex={-1} className="relative z-10 min-h-screen overflow-x-hidden outline-none">
             {children}
           </div>
           <Footer />

@@ -4,7 +4,7 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import {
   listActivePartners,
   listStrategicAlignment,
-  listOpenConversations,
+  listOpenOpportunities,
 } from '@/content/partnerships'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 import { SovereignNodeBand } from '@/components/partnerships/SovereignNodeBand'
@@ -17,9 +17,9 @@ import {
 import type { Partner } from '@/content/partnerships/types'
 
 export const metadata = createMetadata({
-  title: 'Partnerships — Sovereign-node AI Architect collaborations | FrankX',
+  title: 'Partnerships and Applied Work',
   description:
-    'Active strategic conversations and operating alignments with Anthropic, Vercel, NVIDIA, Google, Arrow, and the infrastructure behind the practice. Peer-architect collaboration from Amsterdam, EMEA reach.',
+    'See how Frank Riemer approaches bounded AI architecture, research, workshops, and partnership systems—and how each relationship is represented.',
   path: '/partnerships',
 })
 
@@ -37,8 +37,8 @@ const TIER_LABEL: Record<Partner['tier'], string> = {
 export default function PartnershipsHubPage() {
   const active = listActivePartners()
   const strategicAlignment = listStrategicAlignment()
-  const conversations = listOpenConversations()
-  const all = [...active, ...strategicAlignment, ...conversations]
+  const opportunities = listOpenOpportunities()
+  const all = [...active, ...strategicAlignment, ...opportunities]
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -62,9 +62,9 @@ export default function PartnershipsHubPage() {
   const collectionLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'FrankX partnerships',
+    name: 'FrankX partnership proposals and platform briefs',
     description:
-      'How Frank Riemer collaborates with strategic partners — active proposals, strategic alignments, and the infrastructure behind the practice.',
+      'Independently authored FrankX proposals, documented platform use, and exploratory alignment briefs with endorsement status kept explicit.',
     url: `${SITE_URL}/partnerships`,
     hasPart: all.map((p: Partner) => ({
       '@type': 'WebPage',
@@ -84,6 +84,7 @@ export default function PartnershipsHubPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
       />
 
+      <main className="bg-[#0a0a0b] text-white">
       {/* Hero */}
       <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20">
         <div
@@ -114,10 +115,10 @@ export default function PartnershipsHubPage() {
             </MotionHeroItem>
             <MotionHeroItem delay={0.2}>
               <p className="text-lg text-zinc-300 leading-[1.7] max-w-2xl">
-                Active strategic conversations and operating alignments with
-                model providers, clouds, distributors, and silicon partners.
-                One human operator, an army of agents, shipping a
-                coding-agent-native AI CoE practice from Amsterdam.
+                I build bounded research, architecture, workshop, and product
+                systems around real partner questions. Specialist agents handle
+                much of the research and production work; I own the relationship,
+                the judgment, and the result.
               </p>
             </MotionHeroItem>
           </MotionHero>
@@ -127,7 +128,7 @@ export default function PartnershipsHubPage() {
       {/* Operator profile band */}
       <SovereignNodeBand />
 
-      {/* Active strategic conversation — featured */}
+      {/* Independently authored proposals currently in progress */}
       {active.length > 0 && (
         <MotionSection
           aria-labelledby="active-heading"
@@ -136,18 +137,19 @@ export default function PartnershipsHubPage() {
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <MotionItem className="mb-12 max-w-2xl">
               <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-                Active strategic conversation
+                Active FrankX proposal
               </p>
               <h2
                 id="active-heading"
                 className="text-2xl sm:text-3xl font-semibold text-white mb-3"
                 style={{ letterSpacing: '-0.02em' }}
               >
-                In motion this quarter.
+                A public proposal, clearly labeled.
               </h2>
               <p className="text-base text-zinc-300 leading-[1.7]">
-                Where the proposal page is online, the calendar is open, and the
-                conversation is real.
+                FrankX records this work as active. That describes the state of
+                the proposal—not a partner endorsement or a formal relationship.
+                The detail page separates evidence from the proposed next step.
               </p>
             </MotionItem>
             <div className="flex flex-col gap-5">
@@ -161,7 +163,7 @@ export default function PartnershipsHubPage() {
         </MotionSection>
       )}
 
-      {/* Strategic alignment — Anthropic, Vercel, NVIDIA, Google */}
+      {/* Independent platform alignment — use and proposals, not endorsement */}
       {strategicAlignment.length > 0 && (
         <MotionSection
           aria-labelledby="strategic-heading"
@@ -170,19 +172,19 @@ export default function PartnershipsHubPage() {
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <MotionItem className="mb-12 max-w-2xl">
               <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-                Strategic alignment
+                Independent platform alignment
               </p>
               <h2
                 id="strategic-heading"
                 className="text-2xl sm:text-3xl font-semibold text-white mb-3"
                 style={{ letterSpacing: '-0.02em' }}
               >
-                Operating with the platforms behind the practice.
+                Independent briefs about these platforms.
               </h2>
               <p className="text-base text-zinc-300 leading-[1.7]">
-                Daily delivery on these stacks. Pursuing the formal program
-                lane where it exists. Each page is the proposal frame for
-                deepening.
+                These pages document public artifacts and, where a linked artifact supports
+                it, my own use or prior work. Each possible next step is independently
+                authored—not evidence of a partnership, conversation, or endorsement.
               </p>
             </MotionItem>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
@@ -196,8 +198,8 @@ export default function PartnershipsHubPage() {
         </MotionSection>
       )}
 
-      {/* Deepening conversations (any remaining placeholders) */}
-      {conversations.length > 0 && (
+      {/* Independent opportunities and explicitly disclosed conversations */}
+      {opportunities.length > 0 && (
         <MotionSection
           aria-labelledby="conversations-heading"
           className="border-t border-white/5 py-24 lg:py-32"
@@ -205,22 +207,22 @@ export default function PartnershipsHubPage() {
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <MotionItem className="mb-12 max-w-2xl">
               <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-                Deepening
+                Open notes
               </p>
               <h2
                 id="conversations-heading"
                 className="text-2xl sm:text-3xl font-semibold text-white mb-3"
                 style={{ letterSpacing: '-0.02em' }}
               >
-                Conversations in motion.
+                Opportunities, with relationship status stated.
               </h2>
               <p className="text-base text-zinc-300 leading-[1.7]">
-                Open relationships where the proposal page comes online when
-                both sides are ready.
+                Independent opportunity notes stay distinct from conversations and formal
+                relationships. Each card and detail page states which one it is.
               </p>
             </MotionItem>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-              {conversations.map((p) => (
+              {opportunities.map((p) => (
                 <MotionItem key={p.slug}>
                   <CompactPartnerCard partner={p} />
                 </MotionItem>
@@ -230,7 +232,7 @@ export default function PartnershipsHubPage() {
         </MotionSection>
       )}
 
-      {/* Operating with — daily delivery substrate */}
+      {/* Current toolkit — declared use and public learning surfaces */}
       <MotionSection
         aria-labelledby="operating-with-heading"
         className="border-t border-white/5 py-24 lg:py-32"
@@ -238,79 +240,79 @@ export default function PartnershipsHubPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <MotionItem className="mb-12 max-w-2xl">
             <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-              Operating with
+              Current toolkit
             </p>
             <h2
               id="operating-with-heading"
               className="text-2xl sm:text-3xl font-semibold text-white mb-3"
               style={{ letterSpacing: '-0.02em' }}
             >
-              The infrastructure behind every shipment.
+              The tools and platforms visible in the work.
             </h2>
             <p className="text-base text-zinc-300 leading-[1.7]">
-              The daily build stack. The models in delivery. The clouds and
-              silicon the practice ships on — today and through the former
-              Oracle EMEA AI CoE work that informs it.
+              This is a map of declared use, public artifacts, and relevant prior
+              experience—not a claim that every tool powers every project or that
+              every company listed here has worked with FrankX.
             </p>
           </MotionItem>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
             <MotionItem className="rounded-2xl bg-white/[0.025] border border-white/[0.08] p-6 transition-colors duration-300 hover:border-emerald-500/20">
               <p className="text-[11px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium mb-3">
-                Daily build
+                Public build practice
               </p>
               <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-                What ships every project, every day.
+                Tools Frank identifies in his own build workflow.
               </p>
               <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>Anthropic Claude Code &mdash; build harness</li>
-                <li>Cursor &mdash; paired sessions</li>
-                <li>Vercel &mdash; production deploy target</li>
-                <li>GitHub &mdash; open source of truth</li>
+                <li>Claude Code and Cursor &mdash; coding workflows</li>
+                <li>GitHub &mdash; public repositories and review surface</li>
+                <li>Vercel &mdash; current frankx.ai deployment</li>
+                <li>Tool choice varies by task and is not exclusive</li>
               </ul>
             </MotionItem>
 
             <MotionItem className="rounded-2xl bg-white/[0.025] border border-white/[0.08] p-6 transition-colors duration-300 hover:border-emerald-500/20">
               <p className="text-[11px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium mb-3">
-                Models in delivery
+                Public model-learning surface
               </p>
               <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-                What runs inside the agents and the architectures.
+                Models covered in public workshops, guides, or research.
               </p>
               <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>Claude (Anthropic) &mdash; primary reasoning + agent work</li>
-                <li>Gemini (Google) &mdash; multi-modal + ADK</li>
-                <li>Codex / GPT (OpenAI) &mdash; comparison + workshop track</li>
-                <li>Llama (Meta), Cohere, Grok (xAI), Mistral &mdash; from CoE work</li>
+                <li>Claude, Gemini, and Codex &mdash; public learning paths</li>
+                <li>ADK, A2A, and MCP &mdash; architecture topics</li>
+                <li>Model comparisons are labeled as research or experiments</li>
+                <li>Inclusion does not imply production use or endorsement</li>
               </ul>
             </MotionItem>
 
             <MotionItem className="rounded-2xl bg-white/[0.025] border border-white/[0.08] p-6 transition-colors duration-300 hover:border-emerald-500/20">
               <p className="text-[11px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium mb-3">
-                Cloud
+                Cloud context
               </p>
               <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-                Where the workloads land.
+                Current public deployment and disclosed prior experience.
               </p>
               <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>Oracle Cloud Infrastructure &mdash; EMEA AI CoE delivery</li>
-                <li>OCI Generative AI &mdash; production patterns</li>
-                <li>Oracle Database 23ai &mdash; vector + agent integration</li>
-                <li>Vercel &mdash; every public surface</li>
+                <li>Vercel &mdash; inspectable frankx.ai deployment</li>
+                <li>Oracle Cloud &mdash; non-confidential prior experience</li>
+                <li>Multi-cloud patterns &mdash; public curriculum topic</li>
+                <li>No current OCI, GCP, or AWS workload count is claimed</li>
               </ul>
             </MotionItem>
 
             <MotionItem className="rounded-2xl bg-white/[0.025] border border-white/[0.08] p-6 transition-colors duration-300 hover:border-emerald-500/20">
               <p className="text-[11px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium mb-3">
-                Silicon
+                Accelerated-computing research
               </p>
               <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-                Where the GPU + accelerator narrative anchors.
+                Public reference material, kept separate from delivery claims.
               </p>
               <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>NVIDIA &mdash; Munich EBC contacts, NIM hands-on</li>
-                <li>Co-architect of the Oracle &times; NVIDIA partner event 2025</li>
-                <li>Oracle &times; NVIDIA AI accelerator pack EMEA delivery</li>
+                <li>NVIDIA NIM and accelerator patterns appear as research topics</li>
+                <li>GPU-aware architecture is translated into public learning material</li>
+                <li>No NVIDIA relationship, hands-on delivery, or event work is claimed</li>
               </ul>
             </MotionItem>
           </div>
@@ -353,7 +355,7 @@ export default function PartnershipsHubPage() {
               Open a partnership conversation.
             </h2>
             <p className="text-sm text-zinc-300 mb-8 max-w-md mx-auto leading-[1.7]">
-              30 minutes. Peer-level. We walk through where your team is going,
+              In 30 minutes, we walk through where your team is going,
               what is bottlenecked, and which of the operating modes (if any)
               fits this quarter. No deck. No follow-up sequence unless we both
               want one.
@@ -371,6 +373,7 @@ export default function PartnershipsHubPage() {
           </MotionItem>
         </div>
       </MotionSection>
+      </main>
     </>
   )
 }
@@ -410,7 +413,7 @@ function FeaturedPartnerCard({ partner }: { partner: Partner }) {
                 className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"
                 style={{ animationDuration: '3s' }}
               />
-              Active conversation
+              Active FrankX proposal
             </span>
             <span className="text-[11px] tracking-[0.2em] uppercase text-emerald-400/60 font-medium">
               {TIER_LABEL[partner.tier]}
@@ -426,11 +429,11 @@ function FeaturedPartnerCard({ partner }: { partner: Partner }) {
             {partner.tagline}
           </p>
           <p className="text-sm text-zinc-500 leading-relaxed mb-6 max-w-2xl">
-            6 operating modes · 12-month compounding model · calendar open ·
-            proposal page live
+            Independently authored · evidence separated from proposal ·
+            no endorsement implied
           </p>
           <span className="inline-flex items-center gap-1.5 text-sm text-emerald-300 group-hover:text-emerald-200 font-medium">
-            View the partnership conversation
+            Review the proposal and its evidence
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </span>
         </div>
@@ -483,7 +486,7 @@ function StrategicAlignmentCard({ partner }: { partner: Partner }) {
           </p>
         ) : null}
         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
-          Strategic alignment · open to deepening
+          Independent alignment · no endorsement implied
         </span>
       </div>
     </Link>
@@ -519,7 +522,9 @@ function CompactPartnerCard({ partner }: { partner: Partner }) {
         {partner.tagline}
       </p>
       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-white/[0.05] text-white/60 border border-white/10">
-        In conversation
+        {partner.status === 'in-conversation'
+          ? 'Exploratory conversation · no formal relationship'
+          : 'Independent opportunity note · no conversation claimed'}
       </span>
     </Link>
   )

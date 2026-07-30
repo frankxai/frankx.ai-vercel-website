@@ -73,7 +73,6 @@ RELEVANT_PATHS=(
   scripts
   styles
   package.json
-  package-lock.json
   pnpm-lock.yaml
   next.config.mjs
   vercel.json

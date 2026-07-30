@@ -1,9 +1,9 @@
 'use client'
 
 import { useSyncExternalStore } from 'react'
-import { track as trackVercelEvent } from '@vercel/analytics'
 
 import { hasDoNotTrack, sanitizeAnalyticsProperties } from '@/lib/analytics-policy'
+import { trackPrivacySafeAnalyticsEvent } from '@/lib/privacy-safe-analytics-client'
 
 type AnalyticsEvent = {
   name: string
@@ -19,6 +19,13 @@ function emitUpdate() {
 }
 
 export function trackEvent(name: string, params: Record<string, any> = {}) {
+  if (
+    typeof window !== 'undefined' &&
+    hasDoNotTrack(window.navigator.doNotTrack)
+  ) {
+    return
+  }
+
   const safeParams = sanitizeAnalyticsProperties(params)
   const payload: AnalyticsEvent = {
     name,
@@ -29,13 +36,8 @@ export function trackEvent(name: string, params: Record<string, any> = {}) {
   eventBuffer.push(payload)
 
   if (typeof window !== 'undefined') {
-    if (hasDoNotTrack(window.navigator.doNotTrack)) {
-      emitUpdate()
-      return
-    }
-
     try {
-      trackVercelEvent(name, safeParams)
+      trackPrivacySafeAnalyticsEvent(name, safeParams)
     } catch {
       /* analytics must never break the page */
     }

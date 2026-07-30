@@ -1,29 +1,26 @@
-import HomePageElite from '@/components/home/HomePageElite'
-import { getPublishedBooks } from '@/app/books/lib/books-registry'
+import FrankXProductionHome from '@/components/home/FrankXProductionHome'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { bookReviews } from '@/data/book-reviews'
-import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 import { getAllBlogPosts } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
-  title: 'FrankX — Music, Systems & A Living Studio',
+  title: 'Public Agentic Workspace',
   description:
-    'Enter Frank Riemer\'s living studio: music, agent systems, books, field notes, and practical tools shared for creators, builders, friends, and family.',
+    'Frank Riemer\'s public agentic workspace for source-led research, book intelligence, AI architecture, partnership systems, guides, products, and field notes.',
   keywords: [
     'Frank Riemer',
     'FrankX',
-    'living studio',
-    'AI creator systems',
-    'AI music creation',
-    'Suno music',
+    'public agentic workspace',
+    'multi-agent systems',
+    'agent research workflows',
+    'book intelligence',
+    'partnership systems',
     'agentic workflows',
     'personal AI operating system',
     'AI architecture',
     'creator tools',
     'Claude Code',
-    'multi-agent systems',
     'field notes',
     'digital products',
   ],
@@ -38,7 +35,7 @@ const websiteSchema = {
   alternateName: ['FrankX.AI', 'Frank Riemer'],
   url: siteUrl,
   description:
-    'FrankX is Frank Riemer\'s living studio for music, agent systems, books, field notes, and practical tools.',
+    'FrankX is Frank Riemer\'s public agentic workspace for research, book intelligence, AI architecture, partnership systems, guides, products, and field notes.',
   publisher: {
     '@id': `${siteUrl}/#organization`,
   },
@@ -54,7 +51,7 @@ const websiteSchema = {
 const personSchema = {
   '@id': `${siteUrl}/#frank-riemer`,
   name: 'Frank Riemer',
-  jobTitle: 'AI Architect and Creator',
+  jobTitle: 'AI Architect',
   url: `${siteUrl}/frank-riemer`,
   image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
   mainEntityOfPage: {
@@ -91,39 +88,39 @@ const organizationSchema = {
   },
   sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno],
   description:
-    'FrankX publishes music, inspectable creator systems, agent-workflow labs, books, and practical field notes from Frank Riemer.',
+    'FrankX publishes source-led research, inspectable AI architectures, book intelligence, partnership systems, guides, products, music, and field notes under Frank Riemer\'s review.',
 }
 
 const homepageFAQs = [
   {
     question: 'What is FrankX?',
     answer:
-      'FrankX is Frank Riemer\'s independent living studio: a public home for music, agent systems, books, experiments, and field notes. It is a personal project and is not affiliated with, endorsed by, or sponsored by Oracle.',
+      'FrankX is Frank Riemer\'s public agentic workspace. Frank sets the questions, context, standards, and final judgment; specialist agents research, compare, challenge, structure, and build. The reviewed results become public research, book intelligence, AI architectures, partnership systems, guides, products, music, and field notes. It is independent and is not affiliated with, endorsed by, or sponsored by Oracle.',
   },
   {
     question: 'Where should I begin?',
     answer:
-      'Begin with what you need now. Listen for music, Learn for practical pathways, Build for open systems, Reflect for books and questions, Acquire for paid tools, or Explore for the wider FrankX ecosystem.',
+      'Begin with the current work: open the research hub, Library, AI Architecture, partnership systems, guides, or journal. The Start page narrows those routes around the question you are carrying.',
+  },
+  {
+    question: 'How do AI agents contribute to the site?',
+    answer:
+      'Specialist agents gather and compare sources, challenge claims, structure drafts, test implementations, and build first versions. Frank chooses the direction, edits the synthesis, and remains responsible for what is published. A generated draft is not a FrankX position.',
   },
   {
     question: 'How does music fit into FrankX?',
     answer:
-      'Music is one of the studio\'s living practices and a form of creative AI experimentation. Listening is optional; the architecture, systems, products, books, and wider ecosystem are equally direct ways into the work.',
+      'Music is one of Frank\'s creative AI practices and a source of repeatable lessons about taste, iteration, state, and release craft. Its studio route brings the releases and process notes together so you can follow how creative judgment develops through iteration.',
   },
   {
     question: 'Can I use the systems and tools?',
     answer:
-      'Yes. FrankX includes public guides and open systems you can inspect first, plus paid packs and guided paths for people who want a more complete or supported route. Each offer should state its scope before asking for a purchase.',
+      'Yes. Start with public guides and open systems you can inspect. Paid packs and guided paths are available when you want a more complete implementation or direct support, with the scope stated clearly before purchase.',
   },
   {
     question: 'Is FrankX an agency or coaching business?',
     answer:
-      'FrankX is a founder studio rather than a conventional client agency. Some bounded architecture work, programs, or private access may open when the fit is mutual, but the public work and usefulness come first.',
-  },
-  {
-    question: 'How are new music and studio updates chosen?',
-    answer:
-      'A weekly process can prepare candidates, but nothing is featured automatically from a catalog or social feed. Music, copy, links, and rights state are reviewed before a homepage update or public send.',
+      'FrankX is primarily Frank\'s public workspace and body of work, not an autonomous AI agency. Frank also offers a small set of bounded architecture, coaching, workshop, and partnership engagements when a real problem fits the work.',
   },
 ]
 
@@ -139,40 +136,9 @@ export default function Page() {
       date: post.date,
     }))
 
-  const books = getPublishedBooks()
-    .filter(
-      (book): book is typeof book & { coverImage: string } => Boolean(book.coverImage),
-    )
-    .slice(0, 6)
-    .map((book) => ({
-      slug: book.slug,
-      title: book.title,
-      subtitle: book.subtitle,
-      coverImage: book.coverImage,
-    }))
-
-  const libraryBooks = bookReviews
-    .filter((review) => (review.quotes?.length ?? 0) > 0 && (review.chapters?.length ?? 0) > 0)
-    .sort((a, b) => (b.quotes?.length ?? 0) - (a.quotes?.length ?? 0))
-    .slice(0, 5)
-    .map((review) => ({
-      slug: review.slug,
-      title: review.title,
-      author: review.author,
-      coverImage: review.coverImage,
-      quoteCount: review.quotes?.length ?? 0,
-      chapterCount: review.chapters?.length ?? 0,
-    }))
-
   return (
     <>
-      <HomePageElite
-        latestPosts={latestPosts}
-        faqs={homepageFAQs}
-        books={books}
-        libraryBooks={libraryBooks}
-        featuredTrack={homepageFeaturedRelease}
-      />
+      <FrankXProductionHome latestPosts={latestPosts} />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />
