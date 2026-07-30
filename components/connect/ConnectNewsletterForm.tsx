@@ -1,13 +1,16 @@
 'use client'
 
-import { useState, type FormEvent } from 'react'
+import { useId, useState, type FormEvent } from 'react'
+import Link from 'next/link'
 import { CheckCircle2, AlertCircle, Sparkles } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
 export function ConnectNewsletterForm() {
+  const honeypotId = useId()
   const [email, setEmail] = useState('')
+  const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -22,7 +25,7 @@ export function ConnectNewsletterForm() {
       const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, listType: 'inner-circle' }),
+        body: JSON.stringify({ email, website, listType: 'inner-circle' }),
       })
 
       if (!response.ok) {
@@ -48,10 +51,30 @@ export function ConnectNewsletterForm() {
       <p className="mb-3 text-xs leading-relaxed text-white/60">
         Weekly drops on AI architecture, music, and the systems behind FrankX. No noise.
       </p>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
+      <form onSubmit={handleSubmit} className="relative flex flex-col gap-2 sm:flex-row">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden"
+        >
+          <input
+            id={honeypotId}
+            aria-hidden="true"
+            type="text"
+            name="website"
+            autoComplete="off"
+            tabIndex={-1}
+            value={website}
+            onChange={(event) => setWebsite(event.target.value)}
+          />
+        </div>
+        <label htmlFor="connect-newsletter-email" className="sr-only">
+          Email address
+        </label>
         <input
+          id="connect-newsletter-email"
           type="email"
           name="email"
+          autoComplete="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -68,6 +91,16 @@ export function ConnectNewsletterForm() {
           {status === 'submitting' ? '…' : status === 'success' ? 'Joined' : 'Join'}
         </button>
       </form>
+      <p className="mt-2 text-[11px] leading-5 text-white/55">
+        Occasional FrankX field notes. Unsubscribe anytime.{' '}
+        <Link
+          href="/privacy"
+          className="underline decoration-white/30 underline-offset-2 transition-colors hover:text-white"
+        >
+          Privacy details
+        </Link>
+        .
+      </p>
       <div
         id="connect-newsletter-status"
         role="status"

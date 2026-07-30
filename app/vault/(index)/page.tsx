@@ -7,7 +7,7 @@ import { VaultHubClient } from '../VaultHubClient'
 const title = 'Visual Vault | AI Asset Library | FrankX'
 const description =
   'Browse the FrankX visual asset library: AI-generated blog heroes, mascot concepts, ecosystem infographics, and architecture diagrams.'
-const canonicalUrl = 'https://frankx.ai/vault'
+const canonicalUrl = `${siteConfig.url}/vault`
 const image = '/images/ecosystem/01-frankx-ecosystem-overview.png'
 
 export const metadata: Metadata = {

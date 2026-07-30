@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 
 import { socialHandles } from './social-links'
 
-const siteUrl = 'https://frankx.ai'
+// Vercel serves `www` as the primary production host and redirects the apex.
+// Canonicals, route-owned metadata, and structured data must point directly at
+// the primary host rather than asking crawlers to follow a redirect.
+const siteUrl = 'https://www.frankx.ai'
 
 export const siteConfig = {
   name: 'FrankX — Executive AI Architecture',

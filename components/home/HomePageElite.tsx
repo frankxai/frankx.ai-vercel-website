@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState, useSyncExternalStore } from 'react'
@@ -143,23 +143,6 @@ function AuroraBackground() {
 }
 
 // ============================================================================
-// SCROLL PROGRESS
-// ============================================================================
-
-function ScrollProgress() {
-  const shouldReduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-500 origin-left z-50"
-      style={{ scaleX: shouldReduceMotion ? 1 : scaleX }}
-    />
-  )
-}
-
-// ============================================================================
 // FEATURED TRACK (inline player for hero)
 // ============================================================================
 
@@ -185,16 +168,16 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
             <p className="text-[11px] font-semibold tracking-[0.08em] text-emerald-300/60">
               {track.kicker}
             </p>
-            <p className="mt-2 max-w-md text-xs leading-5 text-white/40">{track.studioNote}</p>
+            <p className="mt-2 max-w-md text-xs leading-5 text-white/60">{track.studioNote}</p>
           </div>
-          <span className="shrink-0 font-mono text-[10px] text-white/25">{track.duration}</span>
+          <span className="shrink-0 font-mono text-[10px] text-white/60">{track.duration}</span>
         </div>
 
         <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3">
-          <span className="text-[11px] text-white/30">{track.genre.join(' · ')}</span>
+          <span className="text-[11px] text-white/60">{track.genre.join(' · ')}</span>
           <Link
             href="/music"
-            className="inline-flex items-center gap-1.5 text-xs text-white/40 transition-colors hover:text-emerald-300"
+            className="inline-flex items-center gap-1.5 text-xs text-white/60 transition-colors hover:text-emerald-300"
           >
             Enter Music
             <ArrowRight className="h-3 w-3" />
@@ -313,7 +296,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <div className="flex items-center gap-3">
                 <FrankOmegaAvatar size="xs" />
-                <p className="max-w-lg font-serif text-lg italic leading-7 text-white/30">
+                <p className="max-w-lg font-serif text-lg italic leading-7 text-white/70">
                   &ldquo;I build to understand. I document so the people I love can build after me.&rdquo;
                 </p>
               </div>
@@ -324,7 +307,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/ai-architecture"
                 onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Explore AI Architecture
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -339,7 +322,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </Link>
             </div>
 
-            <p className="max-w-xl text-[11px] leading-5 text-white/25">
+            <p className="max-w-xl text-[11px] leading-5 text-white/70">
               Independent project by former Oracle AI architect Frank Riemer. Not affiliated with,
               endorsed by, or sponsored by Oracle.
             </p>
@@ -383,7 +366,7 @@ function AuthorityBar() {
           {credentials.map((item, i) => (
             <div key={item} className="flex items-center">
               {i > 0 && <div className="hidden md:block w-px h-4 bg-white/10 mx-6 lg:mx-8" />}
-              <span className="text-sm md:text-base text-white/40 font-medium tracking-wide">
+              <span className="text-sm md:text-base text-white/60 font-medium tracking-wide">
                 {item}
               </span>
             </div>
@@ -453,7 +436,7 @@ function ProductsTools() {
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Ways to go further
           </h2>
-          <p className="text-base text-white/40 max-w-2xl mx-auto">
+          <p className="text-base text-white/60 max-w-2xl mx-auto">
             Start with the open work. Choose a paid tool only when its scope fits the capability you
             are ready to build next.
           </p>
@@ -476,7 +459,7 @@ function ProductsTools() {
                 <p className="text-sm text-white/50 leading-relaxed">
                   {product.description}
                 </p>
-                <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                <div className="mt-4 flex items-center gap-1.5 text-xs text-white/60 group-hover:text-white/75 transition-colors">
                   <span>Learn more</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                 </div>
@@ -782,7 +765,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
                 <h3 className="text-sm font-medium text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
                   {book.title}
                 </h3>
-                <p className="text-xs text-white/40 line-clamp-1">{book.subtitle}</p>
+                <p className="text-xs text-white/60 line-clamp-1">{book.subtitle}</p>
               </Link>
             </motion.div>
           ))}
@@ -868,7 +851,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
                 <h3 className="text-sm font-medium text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
                   {book.title}
                 </h3>
-                <p className="text-xs text-white/40 line-clamp-1">{book.author}</p>
+                <p className="text-xs text-white/60 line-clamp-1">{book.author}</p>
               </Link>
             </motion.div>
           ))}
@@ -878,7 +861,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-white/40"
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-white/60"
         >
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> MIT-licensed</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> Cross-AI portable</span>
@@ -945,7 +928,7 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
                     <span className="rounded-full bg-white/5 px-2 py-0.5 text-[11px] font-medium tracking-[0.04em] text-white/50 sm:text-xs">
                       {post.category}
                     </span>
-                    <span className="text-xs text-white/30">{post.readingTime}</span>
+                    <span className="text-xs text-white/60">{post.readingTime}</span>
                   </div>
                   <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
                     {post.title}
@@ -1044,7 +1027,7 @@ function LearningHub() {
                     {card.title}
                   </h3>
                   <p className="text-sm text-white/50 leading-relaxed">{card.description}</p>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                  <div className="mt-3 flex items-center gap-1.5 text-xs text-white/60 group-hover:text-white/75 transition-colors">
                     <span>Explore</span>
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </div>
@@ -1095,7 +1078,7 @@ function EmailCTA() {
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Stay in the Signal Loop
             </h2>
-            <p className="text-sm text-white/40 mb-8 max-w-xs mx-auto">
+            <p className="text-sm text-white/60 mb-8 max-w-xs mx-auto">
               One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
@@ -1106,7 +1089,7 @@ function EmailCTA() {
                 compact
               />
             </div>
-            <p className="mt-4 text-xs text-white/30">
+            <p className="mt-4 text-xs text-white/60">
               Unsubscribe anytime. No spam.
             </p>
           </div>
@@ -1263,7 +1246,7 @@ function DigitalTwin() {
               </Link>
               <Link
                 href="/frankx"
-                className="inline-flex items-center gap-2 text-sm font-medium text-white/40 hover:text-white/60 transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white/80 transition-colors"
               >
                 The full story
                 <ArrowRight className="w-4 h-4" />
@@ -1296,10 +1279,10 @@ function FinalCTA() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
               Take what helps. Build what matters.
             </h2>
-            <p className="font-serif italic text-lg text-white/30 mb-2">
+            <p className="font-serif italic text-lg text-white/60 mb-2">
               You do not have to become someone else to begin.
             </p>
-            <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
+            <p className="text-base text-white/60 mb-8 md:mb-12 max-w-md mx-auto">
               Choose one honest next step. The music, maps, and tools will still be here when you
               are ready for another.
             </p>
@@ -1307,14 +1290,14 @@ function FinalCTA() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Find My Starting Point
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/newsletter"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-colors"
               >
                 Get the Newsletter
               </Link>
@@ -1340,7 +1323,6 @@ export default function HomePageElite({
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden">
       <AuroraBackground />
-      <ScrollProgress />
 
       <div className="relative z-10 overflow-x-hidden">
         {/* 1-3. Hero with featured track */}

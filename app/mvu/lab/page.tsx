@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, Check, Clock, MapPin, Users } from 'lucide-react'
 
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { MVU_LAB } from '@/lib/mvu/lab'
 import { LabRsvp } from '@/components/mvu/LabRsvp'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export const metadata: Metadata = createMetadata({
   title: `${MVU_LAB.title} — an independent lab in Tallinn`,

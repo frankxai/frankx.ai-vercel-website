@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { getMvuEntries, getMvuEntry } from '@/lib/mvu'
 import { MDXContent } from '@/components/blog/MDXContent'
 import { MvuResearchArticle } from '@/components/mvu/MvuResearchArticle'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export function generateStaticParams() {
   return getMvuEntries().map((entry) => ({ slug: entry.slug }))

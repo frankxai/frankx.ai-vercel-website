@@ -16,11 +16,11 @@ import {
 
 import { EventRibbon } from '@/components/connect/EventRibbon'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { getMvuEntrySummaries, type MvuKind } from '@/lib/mvu'
 import { MVU_LAB } from '@/lib/mvu/lab'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const MVU_URL = SITE_URL + '/mvu'
 const OFFICIAL_EVENT_URL = 'https://www.mindvalley.com/u/schedule'
 const FEATURED_ARTICLE_URL = '/blog/your-mind-is-a-temporary-library'
@@ -225,7 +225,7 @@ export default function MvuPage() {
             </span>
           </a>
 
-          <p className="max-w-xl text-sm leading-6 text-white/45 md:text-right">
+          <p className="max-w-xl text-sm leading-6 text-white/60 md:text-right">
             Participant field journal · independently written and published by
             FrankX · not organized, sponsored, or endorsed by Mindvalley.
           </p>
@@ -278,12 +278,14 @@ export default function MvuPage() {
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
           <Link
             href={FEATURED_ARTICLE_URL}
+            aria-label="Read Your Mind Is a Temporary Library"
             className="group relative block aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-space focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
           >
             <Image
               src={FEATURED_ARTICLE_IMAGE}
               alt=""
               fill
+              loading="eager"
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-cover transition duration-500 group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none"
             />
@@ -350,7 +352,7 @@ export default function MvuPage() {
 
       <section id="field-journal" className="py-20 sm:py-24 scroll-mt-24">
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-white/40">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-white/60">
             Research, journals & essays
           </h2>
 
@@ -367,7 +369,7 @@ export default function MvuPage() {
                       href={'/mvu/' + entry.slug}
                       className="group flex flex-col gap-2 py-6 transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
                     >
-                      <div className="flex flex-wrap items-center gap-3 text-xs text-white/40">
+                      <div className="flex flex-wrap items-center gap-3 text-xs text-white/60">
                         <span className="inline-flex items-center gap-1.5 text-tech-light/80">
                           <Icon className="h-3.5 w-3.5" aria-hidden />
                           {meta.label}

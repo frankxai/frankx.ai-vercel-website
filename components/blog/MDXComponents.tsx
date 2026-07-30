@@ -122,7 +122,7 @@ function CustomImage({ src, alt, ...props }: any) {
         />
       </div>
       {alt && alt !== 'image' && (
-        <figcaption className="mt-3 text-center text-sm text-white/40">
+        <figcaption className="mt-3 text-center text-sm text-white/60">
           {alt}
         </figcaption>
       )}
@@ -228,7 +228,12 @@ export const mdxComponents: MDXComponents = {
 
   // ── Tables ────────────────────────────────────────────────────────────
   table: ({ children, ...props }: ComponentPropsWithoutRef<'table'>) => (
-    <div className="my-8 overflow-x-auto rounded-xl border border-white/[0.08]">
+    <div
+      role="region"
+      aria-label="Scrollable data table"
+      tabIndex={0}
+      className="my-8 overflow-x-auto rounded-xl border border-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-400"
+    >
       <table className="min-w-full text-sm" {...props}>
         {children}
       </table>

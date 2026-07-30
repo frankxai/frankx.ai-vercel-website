@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useId, FormEvent } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
@@ -26,6 +27,8 @@ export function EmailSignup({
 }: EmailSignupProps) {
   const router = useRouter()
   const hpId = useId()
+  const emailId = useId()
+  const nameId = useId()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   // Honeypot — a hidden field real users never see. Bots that auto-fill inputs
@@ -84,9 +87,9 @@ export function EmailSignup({
 
   const honeypotField = (
     <div aria-hidden="true" className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden">
-      <label htmlFor={hpId}>Leave this field blank</label>
       <input
         id={hpId}
+        aria-hidden="true"
         type="text"
         name="website"
         tabIndex={-1}
@@ -101,9 +104,16 @@ export function EmailSignup({
     return (
       <form onSubmit={handleSubmit} className={cn('relative', className)}>
         {honeypotField}
+        <label htmlFor={emailId} className="sr-only">
+          Email address
+        </label>
         <div className="flex gap-2">
           <input
+            id={emailId}
             type="email"
+            name="email"
+            autoComplete="email"
+            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
@@ -118,6 +128,13 @@ export function EmailSignup({
             {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓' : buttonText}
           </button>
         </div>
+        <p className="mt-2 text-xs leading-5 text-slate-400">
+          Occasional FrankX field notes. Unsubscribe anytime.{' '}
+          <Link href="/privacy" className="underline decoration-slate-600 underline-offset-2 hover:text-white">
+            Privacy details
+          </Link>
+          .
+        </p>
 
         <AnimatePresence>
           {status === 'error' && errorMessage && (
@@ -151,12 +168,14 @@ export function EmailSignup({
         {honeypotField}
         {showName && (
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
+            <label htmlFor={nameId} className="block text-sm font-medium text-slate-300 mb-2">
               First Name (optional)
             </label>
             <input
               type="text"
-              id="name"
+              id={nameId}
+              name="name"
+              autoComplete="given-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your first name"
@@ -167,12 +186,14 @@ export function EmailSignup({
         )}
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+          <label htmlFor={emailId} className="block text-sm font-medium text-slate-300 mb-2">
             Email Address
           </label>
           <input
             type="email"
-            id="email"
+            id={emailId}
+            name="email"
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
@@ -224,7 +245,11 @@ export function EmailSignup({
       </form>
 
       <p className="mt-4 text-xs text-slate-500 text-center">
-        No spam, ever. Unsubscribe anytime.
+        Occasional FrankX field notes. Unsubscribe anytime.{' '}
+        <Link href="/privacy" className="underline decoration-slate-600 underline-offset-2 hover:text-slate-300">
+          Privacy details
+        </Link>
+        .
       </p>
     </div>
   )
