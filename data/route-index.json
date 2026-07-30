@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 860,
+    "total": 861,
     "aliases": 49,
     "byType": {
       "core": 22,
@@ -12,7 +12,7 @@
       "blog": 214,
       "workshop": 12,
       "guide": 23,
-      "library": 56,
+      "library": 57,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
@@ -5612,6 +5612,17 @@
         "girl",
         "in",
         "band"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/handbook-to-higher-consciousness",
+      "title": "Handbook to Higher Consciousness — Complete System Map",
+      "tags": [
+        "ken-keyes",
+        "consciousness",
+        "living-love",
+        "non-attachment"
       ],
       "type": "library"
     },
