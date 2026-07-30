@@ -1009,7 +1009,7 @@ export function ThreeArenaScene() {
                   <span className="flex items-start justify-between gap-3">
                     <span>
                       <span className="block text-sm font-semibold text-white">{model.name}</span>
-                      <span className="mt-0.5 block text-[11px] text-white/45">{model.org}</span>
+                      <span className="mt-0.5 block text-[11px] text-white/60">{model.org}</span>
                     </span>
                     <span
                       className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full shadow-[0_0_16px_currentColor]"
@@ -1020,7 +1020,7 @@ export function ThreeArenaScene() {
                   <span className="mt-4 grid grid-cols-3 gap-2">
                     {values.map((metric) => (
                       <span key={metric.label} className="rounded-lg bg-black/25 px-2 py-2">
-                        <span className="block font-mono text-[9px] uppercase text-white/40">{metric.label}</span>
+                        <span className="block font-mono text-[9px] uppercase text-white/60">{metric.label}</span>
                         <span className="mt-0.5 block font-mono text-xs font-semibold" style={{ color: metric.color }}>
                           {metric.value.toFixed(2)}
                         </span>
