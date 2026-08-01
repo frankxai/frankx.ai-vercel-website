@@ -32,10 +32,19 @@ export default function OpenGraphImage() {
           <div style={{ color: '#67e8f9', fontSize: 18, fontWeight: 700, letterSpacing: 4 }}>
             FRANKX.AI · STARLIGHT LABS
           </div>
-          <div style={{ marginTop: 24, fontSize: 58, lineHeight: 1.02, fontWeight: 760, letterSpacing: -2.8 }}>
-            Expert Authority
-            <br />
-            Intelligence System
+          <div
+            style={{
+              marginTop: 24,
+              display: 'flex',
+              flexDirection: 'column',
+              fontSize: 58,
+              lineHeight: 1.02,
+              fontWeight: 760,
+              letterSpacing: -2.8,
+            }}
+          >
+            <div>Expert Authority</div>
+            <div>Intelligence System</div>
           </div>
           <div style={{ marginTop: 18, color: '#a1a1aa', fontSize: 23 }}>
             One persistent system. Five governed engines. One compounding learning loop.
