@@ -5,12 +5,12 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 const engines = [
-  ['01', 'Expert', 'Canon'],
-  ['02', 'Audience', 'Signal'],
-  ['03', 'Authority', 'Synthesis'],
-  ['04', 'Product', 'Offer'],
-  ['05', 'Funnel', 'Growth'],
-]
+  ['01', 'Expert', 'Canon Engine'],
+  ['02', 'Audience', 'Signal Engine'],
+  ['03', 'Authority', 'Synthesis Engine'],
+  ['04', 'Product', 'Offer Engine'],
+  ['05', 'Funnel', 'Growth Engine'],
+] as const
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -29,8 +29,16 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ color: '#67e8f9', fontSize: 18, fontWeight: 700, letterSpacing: 4 }}>
-            FRANKX.AI · STARLIGHT LABS
+          <div
+            style={{
+              display: 'flex',
+              color: '#67e8f9',
+              fontSize: 18,
+              fontWeight: 700,
+              letterSpacing: 4,
+            }}
+          >
+            {'FRANKX.AI · STARLIGHT LABS'}
           </div>
           <div
             style={{
@@ -43,11 +51,18 @@ export default function OpenGraphImage() {
               letterSpacing: -2.8,
             }}
           >
-            <div>Expert Authority</div>
-            <div>Intelligence System</div>
+            <div style={{ display: 'flex' }}>{'Expert Authority'}</div>
+            <div style={{ display: 'flex' }}>{'Intelligence System'}</div>
           </div>
-          <div style={{ marginTop: 18, color: '#a1a1aa', fontSize: 23 }}>
-            One persistent system. Five governed engines. One compounding learning loop.
+          <div
+            style={{
+              marginTop: 18,
+              display: 'flex',
+              color: '#a1a1aa',
+              fontSize: 23,
+            }}
+          >
+            {'One persistent system. Five governed engines. One compounding learning loop.'}
           </div>
         </div>
 
@@ -67,10 +82,28 @@ export default function OpenGraphImage() {
                 background: 'rgba(255,255,255,.045)',
               }}
             >
-              <div style={{ color: '#67e8f9', fontSize: 16, fontWeight: 800 }}>{index}</div>
+              <div
+                style={{
+                  display: 'flex',
+                  color: '#67e8f9',
+                  fontSize: 16,
+                  fontWeight: 800,
+                }}
+              >
+                {index}
+              </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ fontSize: 25, fontWeight: 760 }}>{name}</div>
-                <div style={{ marginTop: 4, color: '#c4b5fd', fontSize: 16 }}>{engine} Engine</div>
+                <div style={{ display: 'flex', fontSize: 25, fontWeight: 760 }}>{name}</div>
+                <div
+                  style={{
+                    marginTop: 4,
+                    display: 'flex',
+                    color: '#c4b5fd',
+                    fontSize: 16,
+                  }}
+                >
+                  {engine}
+                </div>
               </div>
             </div>
           ))}
