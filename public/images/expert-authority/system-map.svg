@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="88" y1="40" x2="1490" y2="850" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07131B"/>
+      <stop offset="0.5" stop-color="#09090B"/>
+      <stop offset="1" stop-color="#150B25"/>
+    </linearGradient>
+    <linearGradient id="line" x1="170" y1="0" x2="1430" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67E8F9"/>
+      <stop offset="0.5" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#F0ABFC"/>
+    </linearGradient>
+    <linearGradient id="title" x1="310" y1="0" x2="1290" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CFFAFE"/>
+      <stop offset="0.5" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F5D0FE"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feComposite in="blur" in2="SourceGraphic" operator="over"/>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.42"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" rx="48" fill="url(#bg)"/>
+  <circle cx="170" cy="120" r="150" fill="#06B6D4" fill-opacity="0.08" filter="url(#glow)"/>
+  <circle cx="1420" cy="770" r="190" fill="#A855F7" fill-opacity="0.08" filter="url(#glow)"/>
+
+  <text x="800" y="102" text-anchor="middle" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="5">FRANKX.AI · STARLIGHT LABS</text>
+  <text x="800" y="171" text-anchor="middle" fill="url(#title)" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="750" letter-spacing="-2">Expert Authority Intelligence System</text>
+  <text x="800" y="217" text-anchor="middle" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="23">One persistent system. Five governed engines. One compounding learning loop.</text>
+
+  <path d="M210 455H1390" stroke="url(#line)" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+  <path d="M1372 434L1398 455L1372 476" stroke="#F0ABFC" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g filter="url(#shadow)">
+    <rect x="100" y="300" width="260" height="310" rx="28" fill="#0C151B" stroke="#22D3EE" stroke-opacity="0.45"/>
+    <circle cx="150" cy="352" r="23" fill="#164E63"/>
+    <text x="150" y="360" text-anchor="middle" fill="#CFFAFE" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">01</text>
+    <text x="130" y="412" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="750">Expert</text>
+    <text x="130" y="447" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="750">Intelligence</text>
+    <text x="130" y="487" fill="#A5B4FC" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="650">Canon Engine</text>
+    <text x="130" y="532" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">Knowledge · methods</text>
+    <text x="130" y="559" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">stories · proof · decisions</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="385" y="300" width="260" height="310" rx="28" fill="#0D121C" stroke="#38BDF8" stroke-opacity="0.45"/>
+    <circle cx="435" cy="352" r="23" fill="#0C4A6E"/>
+    <text x="435" y="360" text-anchor="middle" fill="#E0F2FE" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">02</text>
+    <text x="415" y="412" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="750">Audience</text>
+    <text x="415" y="447" fill="#7DD3FC" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="750">Intelligence</text>
+    <text x="415" y="487" fill="#C4B5FD" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="650">Signal Engine</text>
+    <text x="415" y="532" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">Language · objections</text>
+    <text x="415" y="559" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">demand · urgency · evidence</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="670" y="280" width="260" height="350" rx="30" fill="#131020" stroke="#A78BFA" stroke-opacity="0.55"/>
+    <circle cx="720" cy="334" r="23" fill="#4C1D95"/>
+    <text x="720" y="342" text-anchor="middle" fill="#EDE9FE" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">03</text>
+    <text x="700" y="404" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="750">Authority</text>
+    <text x="700" y="443" fill="#C4B5FD" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="750">Engine</text>
+    <text x="700" y="486" fill="#F0ABFC" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="650">Synthesis Engine</text>
+    <text x="700" y="535" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">Position · point of view</text>
+    <text x="700" y="562" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">mechanism · proof · category</text>
+    <rect x="700" y="588" width="200" height="4" rx="2" fill="url(#line)"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="955" y="300" width="260" height="310" rx="28" fill="#17101D" stroke="#C084FC" stroke-opacity="0.45"/>
+    <circle cx="1005" cy="352" r="23" fill="#581C87"/>
+    <text x="1005" y="360" text-anchor="middle" fill="#F3E8FF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">04</text>
+    <text x="985" y="412" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="750">Product</text>
+    <text x="985" y="447" fill="#D8B4FE" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="750">Intelligence</text>
+    <text x="985" y="487" fill="#F0ABFC" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="650">Offer Engine</text>
+    <text x="985" y="532" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">Transformation · ladder</text>
+    <text x="985" y="559" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">curriculum · pricing · proof</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1240" y="300" width="260" height="310" rx="28" fill="#1A101D" stroke="#E879F9" stroke-opacity="0.45"/>
+    <circle cx="1290" cy="352" r="23" fill="#701A75"/>
+    <text x="1290" y="360" text-anchor="middle" fill="#FAE8FF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">05</text>
+    <text x="1270" y="412" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="750">Funnel</text>
+    <text x="1270" y="447" fill="#F0ABFC" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="750">Intelligence</text>
+    <text x="1270" y="487" fill="#F5D0FE" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="650">Growth Engine</text>
+    <text x="1270" y="532" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">Traffic · diagnosis · email</text>
+    <text x="1270" y="559" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">conversion · cross-sell · tests</text>
+  </g>
+
+  <path d="M1370 650C1370 758 1250 798 1080 798H520C350 798 230 758 230 650" stroke="url(#line)" stroke-width="3" stroke-dasharray="10 12" opacity="0.65"/>
+  <path d="M222 673L230 650L252 662" stroke="#67E8F9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="550" y="735" width="500" height="86" rx="24" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <text x="800" y="772" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Evidence returns to the system</text>
+  <text x="800" y="802" text-anchor="middle" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="17">outcomes · objections · conversions · completion · proof · new decisions</text>
+
+  <text x="800" y="867" text-anchor="middle" fill="#71717A" font-family="Inter, Arial, sans-serif" font-size="16" letter-spacing="1.2">EXPERTISE → DEMAND → AUTHORITY → PRODUCTS → GROWTH → LEARNING</text>
+</svg>
