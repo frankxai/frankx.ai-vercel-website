@@ -83,7 +83,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
 
           {/* Blog Identity Bar */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             className="flex items-end justify-between mb-10"
           >
@@ -122,7 +122,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
           {/* Latest Post Hero */}
           {latestPost && (
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.12, duration: 0.6 }}
             >
@@ -135,6 +135,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                           src={latestPost.image}
                           alt={latestPost.title}
                           fill
+                          priority
                           sizes="(max-width: 767px) 100vw, 50vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
@@ -217,7 +218,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             </div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
+              initial={false}
               animate={{ opacity: 1, x: 0 }}
               className="hidden md:flex items-center gap-3"
             >
@@ -243,7 +244,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               {featuredPosts.map((post, i) => (
                 <motion.div
                   key={post.slug}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={false}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.15, type: 'spring', stiffness: 100 }}
                 >
@@ -282,7 +283,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
 
           {filteredPosts.length === 0 ? (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               className="py-20 text-center"
             >
@@ -303,7 +304,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               {(selectedCategory ? filteredPosts : regularPosts).map((post, i) => (
                 <motion.div
                   key={post.slug}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={false}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{

@@ -15,7 +15,7 @@
 | 3 | `03-os-unified-hero` | /os (FrankX OS unification page) | `frankx/3d-isometric` | ok | $0.17 | `public/images/priority-2026-04-25/03-os-unified-hero.jpg` |
 | 4 | `04-sis-substrate-hero` | /starlight-intelligence-system (SIS standalone hub) | `frankx/focused-futuristic` | ok | $0.17 | `public/images/priority-2026-04-25/04-sis-substrate-hero.jpg` |
 | 5 | `05-library-approach-manifesto` | /library/approach (Library OS manifesto) | `frankx/da-vinci-technical` | ok | $0.17 | `public/images/priority-2026-04-25/05-library-approach-manifesto.jpg` |
-| 6 | `06-founders-circle-hero` | /founders-circle (€2,997 inner circle tier) | `frankx/business-professional` | ok | $0.17 | `public/images/priority-2026-04-25/06-founders-circle-hero.jpg` |
+| 6 | `06-founders-circle-hero` | archived advisory concept | `frankx/business-professional` | ok | $0.17 | `public/images/priority-2026-04-25/06-founders-circle-hero.jpg` |
 | 7 | `07-start-here-threshold` | /start-here (entry point) | `frankx/premium-gradient` | ok | $0.17 | `public/images/priority-2026-04-25/07-start-here-threshold.jpg` |
 | 8 | `08-agent-frameworks-triptych` | /research/agent-frameworks (Starlight Agent Lab brief) | `community/blueprint-technical` | ok | $0.30 | `public/images/priority-2026-04-25/08-agent-frameworks-triptych.jpg` |
 
@@ -23,7 +23,7 @@
 
 ### 01-build-hero — /build (Build Your First AI Agent funnel)
 
-**Thesis:** Five tiers, one ascent — premium SaaS funnel hero
+**Thesis:** Archived multi-tier funnel study
 **Preset:** `frankx/premium-gradient` · **Model:** `gemini-3-pro-image-preview` · **Thinking:** `high`
 
 Generated: `public/images/priority-2026-04-25/01-build-hero.jpg` in 24.7s
@@ -32,8 +32,8 @@ Generated: `public/images/priority-2026-04-25/01-build-hero.jpg` in 24.7s
 
 ```
 Create a 16:9 photograph for /build (Build Your First AI Agent funnel).
-THESIS: Five tiers, one ascent — premium SaaS funnel hero
-TOPIC: the Build Your First AI Agent five-tier ascent — Primer to Founder's Circle
+THESIS: Archived multi-tier funnel study
+TOPIC: an abstract progression of learning stages
 VISUAL STYLE: Premium gradient hero composition. Background flows from deep navy (#0F172A) through royal purple (#AB47C7) with luminous cyan (#43BFE3) glow accents. Soft glowing orbs and translucent glassmorphism panels with subtle blur. Modern minimalist composition with generous negative space. Selective gold (#F59E0B) highlights only on critical focal points. Premium luxury feel — looks like an Apple keynote backdrop or Stripe press product photo.
 CREATIVE DIRECTION: Photograph of five sculptural glass-and-brushed-metal platforms ascending against a deep navy void, each platform faintly larger and higher than the last, the topmost catching warm gold light from above. Subtle cyan rim light on platform edges. The ascent reads as deliberate craftsmanship, not a stairway. Generous negative space above for headline overlay. Studio product photography, soft shadows, no clutter. Material: brushed titanium, matched glass, no plastic.
 BRAND PALETTE (must honor): #0F172A, #AB47C7, #43BFE3, #F59E0B
@@ -136,7 +136,7 @@ Premium product photography quality. Sharp, intentional, considered. Text labels
 
 </details>
 
-### 06-founders-circle-hero — /founders-circle (€2,997 inner circle tier)
+### 06-founders-circle-hero — archived advisory concept
 
 **Thesis:** Inner circle, no spectacle
 **Preset:** `frankx/business-professional` · **Model:** `gemini-3-pro-image-preview` · **Thinking:** `medium`
@@ -146,9 +146,9 @@ Generated: `public/images/priority-2026-04-25/06-founders-circle-hero.jpg` in 22
 <details><summary>Full prompt</summary>
 
 ```
-Create a 16:9 photograph for /founders-circle (€2,997 inner circle tier).
+Create a 16:9 photograph for an archived advisory concept.
 THESIS: Inner circle, no spectacle
-TOPIC: the Founders Circle — exclusive inner cohort, restrained luxury
+TOPIC: a restrained advisory relationship study
 VISUAL STYLE: Corporate elegance. Clean white or light-grey background with deep navy (#0F172A) accents and subtle gold (#F59E0B) highlights. Professional graphs, charts, or organizational diagrams. Executive-presentation quality. Confident and trustworthy. Subtle glassmorphism panels. Stripe Press / McKinsey case-study aesthetic. NO consumer-tech vibe.
 CREATIVE DIRECTION: Photograph of a single thin gold (#F59E0B) ring resting on dark navy (#0F172A) brushed-leather surface, lit by soft directional light from upper right. The ring is unadorned, perfectly machined, with subtle wear suggesting use. No engravings, no jewels, no logo. Negative space dominates the composition — the ring sits in the lower-third. Hermès / Patek Philippe product photography aesthetic. Quiet confidence, restraint, IYKYK. Material quality: 18k gold over navy chromium leather.
 BRAND PALETTE (must honor): #0F172A, #F59E0B, #FFFFFF, #E5E7EB neutral grey

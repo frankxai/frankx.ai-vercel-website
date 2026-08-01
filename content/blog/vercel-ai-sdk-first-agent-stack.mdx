@@ -60,7 +60,7 @@ Vercel AI SDK hits all five.
 
 ## The portability demo
 
-Here's the whole argument in 15 lines. This is the exact code in the [workshop starter repo](https://github.com/frankxai/first-agent-vercel-aisdk):
+Here's the whole argument in 15 lines. This is the provider boundary used throughout the inline guide:
 
 ```ts
 import { anthropic } from '@ai-sdk/anthropic'
@@ -147,30 +147,25 @@ Each of these is a one- to two-week project. Each of them re-uses the tools, sch
 
 ## How to actually start
 
-Three paths, in order of fastest to thoroughest:
+Three ways to use the material:
 
-### Fastest: clone the starter
+### Start with the inline guide
 
-```bash
-git clone https://github.com/frankxai/first-agent-vercel-aisdk
-cd first-agent-vercel-aisdk
-pnpm install
-cp .env.example .env
-# add an Anthropic API key
-pnpm dev
-```
+The [First Agent Primer](/guides/first-agent-primer) shows the implementation boundaries in
+sequence. It does not currently claim a cloneable starter repository.
 
-You're ready in 10 minutes. Ship it to Vercel in another 60 seconds.
+### Use the workshop format
 
-### Medium: the workshop
+The [Build Your First AI Agent workshop page](/workshops/build-first-ai-agent) describes a guided
+format for teaching the same six boundaries.
 
-90 minutes of guided build, with every primitive explained as you go. The [Build Your First AI Agent workshop](/workshops/build-first-ai-agent) ships the same agent as the starter repo, but you leave with the mental model and the five branch paths for where to go next.
+### Read the architectural argument
 
-### Thorough: the primer
+If you want the reasoning before the implementation, start with
+[The six primitives of an AI agent](/blog/six-primitives-ai-agent).
 
-If you prefer long-form reading over live delivery, the [First Agent Primer guide](/guides/first-agent-primer) is the 30-minute written version. Same content, different medium.
-
-All three paths land you with the same artifact: a working research-assistant agent, a valid Google A2A Agent Card, a 3-case eval harness, and the six primitives as a mental model you can apply to every future agent framework.
+The target artifact is a small research-assistant agent with an explicit tool boundary, bounded
+loop, Agent Card, and eval cases. Verify each part in your own project.
 
 ## The bet
 
@@ -182,16 +177,9 @@ Vercel AI SDK is the cleanest teacher of the primitives I've found. That's why i
 
 ---
 
-**Ready to ship?** Three honest paths from here:
+**Ready to ship?** Two honest paths from here:
 
-- **Free** — [Get the Six Primitives Primer](/start-here): 8-page handout + 10-day email course teaching each primitive with code. Many builders ship on just this.
-- **€7 — [Six Primitives Pack](/build/six-primitives-pack):** the polished 60-page pocket book + 5 Agent Card templates + 15 eval cases + Vercel deploy checklist. Lifetime, 30-day refund.
-- **€197 — [Six Primitives Toolkit](/build/six-primitives-toolkit):** six branch deep-dives, 30+ Agent Cards, 50-pattern cookbook, 100-case evals, Discord community. The workhorse tier most builders settle at.
+- **Public now** — [Use the Six Primitives path](/start-here): read the architectural argument and follow the inline build guide without a form or checkout.
+- **Not available** — [Six Primitives Toolkit status](/build/six-primitives-toolkit): a future paid release is under review. Checkout is closed, and final contents, delivery, and terms are not yet asserted.
 
-Or just clone the [MIT-licensed starter](https://github.com/frankxai/first-agent-vercel-aisdk) and ship with what you read above. Both are valid paths.
-
----
-
-<Callout type="insight">
-**The workshop is the fastest path.** 90 minutes, one working agent, six branches to pick from. [/workshops/build-first-ai-agent](/workshops/build-first-ai-agent) — free.
-</Callout>
+The paid release remains separate from the public learning path and unavailable until its evidence is complete.

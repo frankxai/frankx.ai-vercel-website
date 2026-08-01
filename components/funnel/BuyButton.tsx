@@ -1,6 +1,7 @@
 'use client'
 
 import { ArrowRight } from 'lucide-react'
+import { commerceLinks } from '@/lib/commerce-links'
 
 /**
  * BuyButton — primary CTA on a product detail page.
@@ -25,7 +26,7 @@ export function BuyButton({
   fallbackHref?: string
 }) {
   const checkoutUrl = lemonSqueezyVariantId
-    ? `https://frankx.lemonsqueezy.com/buy/${lemonSqueezyVariantId}?checkout[discount_code]=`
+    ? `${commerceLinks.lemonSqueezyStorefront}/buy/${lemonSqueezyVariantId}?checkout[discount_code]=`
     : null
 
   const href = checkoutUrl ?? fallbackHref

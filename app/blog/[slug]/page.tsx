@@ -182,7 +182,7 @@ export default async function BlogPostPage({
                   <Tag className="h-3.5 w-3.5" />
                   {post.category}
                 </span>
-                <span className="inline-flex items-center gap-2 text-white/40">
+                <span className="inline-flex items-center gap-2 text-white/60">
                   <Calendar className="h-4 w-4" />
                   {new Date(post.date).toLocaleDateString('en-US', {
                     month: 'long',
@@ -190,7 +190,7 @@ export default async function BlogPostPage({
                     year: 'numeric',
                   })}
                 </span>
-                <span className="inline-flex items-center gap-2 text-white/40">
+                <span className="inline-flex items-center gap-2 text-white/60">
                   <Clock className="h-4 w-4" />
                   {post.readingTime}
                 </span>
@@ -213,7 +213,7 @@ export default async function BlogPostPage({
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
                     <div className="text-sm text-white/50">AI Architect & Creator</div>
-                    <div className="text-xs text-white/35">Former Oracle AI architect · independent FrankX builder</div>
+                    <div className="text-xs text-white/60">Former Oracle AI architect · independent FrankX builder</div>
                   </div>
                 </div>
 
@@ -223,6 +223,7 @@ export default async function BlogPostPage({
                     href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Share ${post.title} on X`}
                     className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
                   >
                     <Twitter className="h-4 w-4" aria-hidden="true" />
@@ -232,6 +233,7 @@ export default async function BlogPostPage({
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Share ${post.title} on LinkedIn`}
                     className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
                   >
                     <Linkedin className="h-4 w-4" aria-hidden="true" />
@@ -348,8 +350,8 @@ export default async function BlogPostPage({
                 height={36}
                 className="rounded-lg opacity-60"
               />
-              <p className="text-xs text-white/30">
-                Read on <span className="text-white/50">FrankX.AI</span> — AI Architecture, Music & Creator Intelligence
+              <p className="text-xs text-white/60">
+                Read on <span className="text-white/75">FrankX.AI</span> — AI Architecture, Music & Creator Intelligence
               </p>
             </div>
           </div>
@@ -377,5 +379,4 @@ export default async function BlogPostPage({
     </main>
   )
 }
-
 

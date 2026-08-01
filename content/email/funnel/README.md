@@ -4,7 +4,11 @@ sequence: six-primitives-primer
 trigger: subscription to courses-waitlist with stream=six-primitives-primer
 ---
 
-# Six Primitives Primer — 10-day email course
+# Six Primitives Primer — draft email sequence
+
+Status: draft-only. This folder is not a verified delivery path and must not be promised by a
+public signup until subscription, send, unsubscribe, and every linked artifact pass end-to-end
+release checks.
 
 A daily-cadence drip course for free Primer subscribers. Each email teaches one
 primitive with a code sample, a concrete exercise, and one short case study.
@@ -18,11 +22,11 @@ primitive with a code sample, a concrete exercise, and one short case study.
 | 2 | Primitive 1: Model | model | — |
 | 3 | Primitive 2: Tool | tool | — |
 | 4 | Primitive 3: Memory (and why it's three primitives in disguise) | memory | — |
-| 5 | Primitive 4: The Loop | loop | First mention of €7 Pack |
+| 5 | Primitive 4: The Loop | loop | Current public path |
 | 6 | Primitive 5: The Spec — your Agent Card | spec | — |
 | 7 | Primitive 6: Deploy | deploy | — |
 | 8 | Real example: shipping a research assistant in 90 minutes | (synthesis) | Workshop reminder |
-| 9 | The transfer matrix — what changes between stacks | (mastery preview) | €7 Pack offer (gentle) |
+| 9 | The transfer matrix — what changes between stacks | transfer | Public path + unavailable Toolkit status |
 
 ## Voice rules
 

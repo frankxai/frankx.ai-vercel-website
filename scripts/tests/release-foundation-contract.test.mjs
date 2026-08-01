@@ -6,10 +6,11 @@ const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url
 
 test('primary public routes emit direct www canonicals', async () => {
   const seo = await readRepoFile('lib/seo.ts')
-  const criticalRoutes = await Promise.all(
+  const criticalRoutePaths =
     [
       'app/page.tsx',
       'app/start/page.tsx',
+      'app/work-with-me/page.tsx',
       'app/blog/[slug]/page.tsx',
       'app/journal/page.tsx',
       'app/mvu/page.tsx',
@@ -17,13 +18,21 @@ test('primary public routes emit direct www canonicals', async () => {
       'app/mvu/lab/page.tsx',
       'app/(landing)/connect/page.tsx',
       'app/vault/(index)/page.tsx',
-    ].map(readRepoFile),
+    ]
+  const criticalRoutes = Object.fromEntries(
+    await Promise.all(
+      criticalRoutePaths.map(async (path) => [path, await readRepoFile(path)]),
+    ),
   )
 
   assert.match(seo, /const siteUrl = 'https:\/\/www\.frankx\.ai'/)
-  for (const source of criticalRoutes) {
+  for (const source of Object.values(criticalRoutes)) {
     assert.doesNotMatch(source, /https:\/\/frankx\.ai/)
   }
+  assert.match(
+    criticalRoutes['app/work-with-me/page.tsx'],
+    /canonical: 'https:\/\/www\.frankx\.ai\/work-with-me'/,
+  )
 })
 
 test('shared email capture has a named, labelled field and an inline privacy boundary', async () => {
@@ -58,13 +67,12 @@ test('shared navigation exposes one named navigation landmark', async () => {
 })
 
 test('verified contrast and MVU link-name regressions stay closed', async () => {
-  const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+  const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
   const mvu = await readRepoFile('app/mvu/page.tsx')
 
-  assert.match(homepage, /font-serif text-lg italic leading-7 text-white\/70/)
-  assert.match(homepage, /max-w-xl text-\[11px\] leading-5 text-white\/70/)
-  assert.doesNotMatch(homepage, /function ScrollProgress/)
-  assert.doesNotMatch(homepage, /<ScrollProgress \/>/)
+  assert.match(homepage, /text-lg leading-8 text-white\/75/)
+  assert.match(homepage, /text-xs leading-5 text-white\/70/)
+  assert.doesNotMatch(homepage, /text-white\/(?:28|30|32|34|40|42|44|45|46|48|52|55|58|60|62|65)/)
   assert.match(mvu, /aria-label="Read Your Mind Is a Temporary Library"/)
 })
 
@@ -79,7 +87,7 @@ test('connect schema describes the page without claiming third-party events', as
 test('primary spine keeps verified contrast and scroll-region failures closed', async () => {
   const [homepage, start, blog, blogCard, carousel, journal, mvu, mdx] = await Promise.all(
     [
-      'components/home/HomePageElite.tsx',
+      'components/home/FrankXProductionHome.tsx',
       'app/start/page.tsx',
       'app/blog/BlogPageClient.tsx',
       'components/blog/BlogCard.tsx',
@@ -90,10 +98,10 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
     ].map(readRepoFile),
   )
 
-  assert.match(homepage, /bg-emerald-500 hover:bg-emerald-600 text-black/)
-  assert.match(homepage, /max-w-md text-xs leading-5 text-white\/60/)
-  assert.match(start, /bg-emerald-400 px-6 py-3 text-sm font-semibold text-\[#07120d\]/)
-  assert.match(start, /tracking-\[0\.24em\] text-emerald-300\/80/)
+  assert.match(homepage, /bg-emerald-400 px-6 py-3 text-sm font-semibold text-\[#07120d\]/)
+  assert.match(homepage, /max-w-xl text-xs leading-5 text-white\/70/)
+  assert.match(start, /tracking-\[0\.2em\] text-emerald-200/)
+  assert.match(start, /text-sm leading-6 text-white\/75/)
   assert.match(blog, /bg-emerald-500 hover:bg-emerald-600 text-black/)
   assert.match(blogCard, /text-white\/75 leading-relaxed/)
   assert.match(blogCard, /text-xs text-white\/75 group-hover:text-white\/85/)

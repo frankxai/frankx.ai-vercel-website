@@ -207,6 +207,7 @@ export const mdxComponents: MDXComponents = {
       <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
       <pre
         className="overflow-x-auto bg-[#0d1117] p-5 text-sm leading-relaxed text-white/80 font-mono"
+        tabIndex={0}
         {...props}
       >
         {children}

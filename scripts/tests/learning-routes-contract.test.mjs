@@ -7,6 +7,7 @@ import {
   recommendedCourses,
   resolveCourseDestination,
 } from '../../data/learning-catalog.ts'
+import { getProductBySlug } from '../../data/products.ts'
 import { enumerateRoutes } from '../../lib/route-enumeration.mjs'
 
 const root = process.cwd()
@@ -162,6 +163,43 @@ test('course recommendations fail closed unless an affiliate URL is explicitly a
     assert.equal(course.relationship, 'affiliate')
     assert.equal(course.affiliateApproval?.status, 'approved')
   }
+})
+
+test('build products use their canonical release state and stay in route discovery', () => {
+  const productPage = fs.readFileSync(
+    path.join(root, 'app/build/[slug]/page.tsx'),
+    'utf8',
+  )
+  const generatedIndex = JSON.parse(
+    fs.readFileSync(path.join(root, 'data/route-index.json'), 'utf8'),
+  )
+  const indexedRoutes = new Set(generatedIndex.routes.map((route) => route.href))
+  const enumeratedRoutes = new Set(enumerateRoutes().map((route) => route.href))
+  const primer = getProductBySlug('six-primitives-primer')
+  const toolkit = getProductBySlug('six-primitives-toolkit')
+
+  assert.equal(primer?.releaseStatus, 'public')
+  assert.equal(primer?.pricing.cadence, 'public')
+  assert.equal(primer?.canonicalPath, '/start-here')
+  assert.equal(toolkit?.releaseStatus, 'unavailable')
+  assert.equal(toolkit?.pricing.cadence, 'unavailable')
+  assert.equal(toolkit?.canonicalPath, '/build/six-primitives-toolkit')
+
+  assert.match(productPage, /import \{ notFound, permanentRedirect \} from 'next\/navigation'/)
+  assert.match(
+    productPage,
+    /product\.releaseStatus === 'public'[\s\S]*?product\.pricing\.cadence === 'public'[\s\S]*?permanentRedirect\(product\.canonicalPath\)/,
+  )
+  assert.ok(
+    productPage.indexOf('permanentRedirect(product.canonicalPath)') <
+      productPage.indexOf('if (!product.pricing.lemonSqueezyVariantId ||'),
+    'the verified public redirect must run before the fail-closed checkout fallback',
+  )
+
+  assert.equal(enumeratedRoutes.has('/build/six-primitives-toolkit'), true)
+  assert.equal(indexedRoutes.has('/build/six-primitives-toolkit'), true)
+  assert.equal(enumeratedRoutes.has('/build/six-primitives-primer'), false)
+  assert.equal(indexedRoutes.has('/build/six-primitives-primer'), false)
 })
 
 test('recipient-specific pages stay live but out of generated discovery surfaces', () => {

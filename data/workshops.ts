@@ -201,11 +201,11 @@ export const workshops: Workshop[] = [
     provenance: 'delivered-studio-assisted',
     intakeEnabled: true,
     overview:
-      'A hands-on technical workshop. Every participant ships a working AI agent on the Vercel AI SDK — our central path — and leaves with a portable Agent Card (Google A2A) that works across Claude, OpenAI, Google ADK, and no-code stacks. The point is not the framework; the point is the six primitives (model, tool, memory, loop, spec, deploy) that transfer to every agent you will ever build. Six optional branch modules then re-build the same agent on Claude, OpenAI, Google ADK, Oracle ADK, no-code (n8n/Notion/Dify), and AI-builds-AI (Claude Code) stacks.',
+      'A hands-on technical workshop. Every participant ships a working AI agent on the Vercel AI SDK — our central path — and leaves with an A2A 1.0 Agent Card that compatible A2A clients can discover. Other stacks need native A2A client support or an adapter; the Card does not make Claude, OpenAI, Google ADK, or no-code tools interoperable by itself. The point is not the framework; the point is the six primitives (model, tool, memory, loop, spec, deploy) that transfer to every agent you will ever build. Six optional branch modules then re-build the same agent on Claude, OpenAI, Google ADK, Oracle ADK, no-code (n8n/Notion/Dify), and AI-builds-AI (Claude Code) stacks.',
     objectives: [
       'Name the six primitives of any AI agent — model, tool, memory, loop, spec, deploy',
       'Ship a working research-assistant agent on the Vercel AI SDK with tool use, memory, and a public URL',
-      'Publish a valid Google A2A Agent Card at /.well-known/agent.json and understand where Oracle Open Agent Specification fits',
+      'Publish a valid A2A 1.0 Agent Card at /.well-known/agent-card.json and understand where Oracle Open Agent Specification fits',
       'Write a 3-case evaluation suite and 2 refusal rails for your agent',
       'Pick the right branch (Claude / OpenAI / Google ADK / no-code / AI-builds-AI / Oracle) for your next agent based on the transfer matrix',
     ],
@@ -248,7 +248,7 @@ export const workshops: Workshop[] = [
           'Show the schema first, the call site second. Emphasize: "If you can define this tool once in zod, you can call it from Vercel AI SDK, Claude Agent SDK, OpenAI Agents, or Google ADK with near-identical glue."',
         resources: [
           { label: 'Prompt Library', href: '/prompt-library' },
-          { label: 'Starter repo — first-agent-vercel-aisdk', href: 'https://github.com/frankxai/first-agent-vercel-aisdk' },
+          { label: 'Inline first-agent build guide', href: '/guides/first-agent-primer' },
         ],
       },
       {
@@ -259,7 +259,7 @@ export const workshops: Workshop[] = [
         instructorNotes:
           'This is the peak of the energy curve. Pair slow participants with fast ones. Keep the demo agent ultra-minimal — a loop around a single tool is enough. Advanced attendees can add a second tool while others catch up.',
         resources: [
-          { label: 'Starter repo — first-agent-vercel-aisdk', href: 'https://github.com/frankxai/first-agent-vercel-aisdk' },
+          { label: 'Inline first-agent build guide', href: '/guides/first-agent-primer' },
         ],
       },
       {
@@ -268,20 +268,20 @@ export const workshops: Workshop[] = [
         description:
           'Three eval cases (success, edge case, refusal) and two refusal patterns. Show how to read a trace. Discussion: what does "correct" mean for an LLM? This module is short on purpose — the professor track goes deeper.',
         instructorNotes:
-          'Use a pre-baked eval harness from the starter repo. The teaching point is the discipline of writing tests for non-deterministic systems, not any specific framework.',
+          'Use the eval harness shown in the inline guide. The teaching point is the discipline of writing tests for non-deterministic systems, not any specific framework.',
         resources: [
-          { label: 'Eval harness (starter repo)', href: 'https://github.com/frankxai/first-agent-vercel-aisdk' },
+          { label: 'Eval harness (inline guide)', href: '/guides/first-agent-primer' },
         ],
       },
       {
         title: 'Agent Card — the portability contract',
         duration: '15 min',
         description:
-          'Draft a Google A2A Agent Card describing your agent. Validate it. Serve it at /.well-known/agent.json. Ninety seconds on Oracle Open Agent Specification (OAS) for those going enterprise. By the end, your agent has an identity other agents can discover.',
+          'Draft an A2A 1.0 Agent Card describing your agent. Validate it. Serve it at /.well-known/agent-card.json. Ninety seconds on Oracle Open Agent Specification (Agent Spec) for those going enterprise. By the end, your agent has an identity compatible clients can discover.',
         instructorNotes:
-          'The Agent Card is the artifact that makes the portability lesson concrete. Have a pre-baked template in the starter repo; participants fill fields rather than writing JSON from scratch. Mention BCG\'s enterprise agent playbook uses the same A2A spec — the concept is industry standard, not a toy.',
+          'The Agent Card is the artifact that makes the portability lesson concrete. Use the inline template so participants fill fields rather than writing JSON from scratch.',
         resources: [
-          { label: 'Google A2A Agent Card spec', href: 'https://a2a-protocol.org/' },
+          { label: 'A2A Protocol 1.0 specification', href: 'https://a2a-protocol.org/latest/specification/' },
           { label: 'Oracle Open Agent Specification', href: '/ai-architecture' },
         ],
       },
@@ -650,7 +650,7 @@ export const workshops: Workshop[] = [
         description:
           'Each team scaffolds with Claude Code or equivalent, chooses deployment target, and sets up their LLM keys. Facilitator drops in for any team stuck on setup — usually auth or API keys.',
         instructorNotes:
-          'Provide a starter repo that handles the deploy plumbing (Vercel + Claude Code template). Teams that insist on from-scratch setup usually burn 45 min before they realize they should have used the template. Enforce the template for all teams.',
+          'Prepare a verified project shell that handles the deploy plumbing. Do not advertise a public template until its anonymous clone and deploy path have passed release checks.',
         resources: [
           { label: 'workshop-os public starter', href: 'https://github.com/frankxai/workshop-os' },
           { label: 'Claude Code docs', href: 'https://docs.claude.com/en/docs/claude-code' },

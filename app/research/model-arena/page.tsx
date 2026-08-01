@@ -189,12 +189,12 @@ export default function ModelArenaPage() {
 
       {/* Grid Background Effect */}
       <div className="absolute inset-0 bg-[#020617] pointer-events-none" />
-      <div 
-        className="absolute inset-0 opacity-[0.02] pointer-events-none animate-pulse motion-reduce:animate-none" 
-        style={{ 
-          backgroundImage: `linear-gradient(rgba(168,85,247,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.3) 1px, transparent 1px)`, 
-          backgroundSize: '50px 50px' 
-        }} 
+      <div
+        className="absolute inset-0 opacity-[0.02] pointer-events-none animate-pulse motion-reduce:animate-none"
+        style={{
+          backgroundImage: `linear-gradient(rgba(168,85,247,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.3) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}
       />
       <div className="absolute top-0 right-0 w-[55%] h-[45%] bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-transparent filter blur-[140px] pointer-events-none" />
 
@@ -532,7 +532,12 @@ export default function ModelArenaPage() {
                           {RECEIPT_LOGS[activeReceiptTab].modelA.status.toUpperCase()}
                         </span>
                       </div>
-                      <div className="p-4 flex-1 font-mono text-[11px] text-zinc-300 overflow-x-auto whitespace-pre bg-[#020617] min-h-[140px] leading-relaxed">
+                      <div
+                        role="region"
+                        aria-label={`${RECEIPT_LOGS[activeReceiptTab].modelA.name} completion output`}
+                        tabIndex={0}
+                        className="p-4 flex-1 font-mono text-[11px] text-zinc-300 overflow-x-auto whitespace-pre bg-[#020617] min-h-[140px] leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#a855f7]/70"
+                      >
                         {RECEIPT_LOGS[activeReceiptTab].modelA.completion}
                       </div>
                       <div className="p-3.5 bg-slate-900/30 border-t border-white/5 text-[11px] text-zinc-400 leading-relaxed">
@@ -555,7 +560,12 @@ export default function ModelArenaPage() {
                           {RECEIPT_LOGS[activeReceiptTab].modelB.status.toUpperCase()}
                         </span>
                       </div>
-                      <div className="p-4 flex-1 font-mono text-[11px] text-zinc-300 overflow-x-auto whitespace-pre bg-[#020617] min-h-[140px] leading-relaxed">
+                      <div
+                        role="region"
+                        aria-label={`${RECEIPT_LOGS[activeReceiptTab].modelB.name} completion output`}
+                        tabIndex={0}
+                        className="p-4 flex-1 font-mono text-[11px] text-zinc-300 overflow-x-auto whitespace-pre bg-[#020617] min-h-[140px] leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#a855f7]/70"
+                      >
                         {RECEIPT_LOGS[activeReceiptTab].modelB.completion}
                       </div>
                       <div className="p-3.5 bg-slate-900/30 border-t border-white/5 text-[11px] text-zinc-400 leading-relaxed">

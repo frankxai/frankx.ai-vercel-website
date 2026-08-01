@@ -38,14 +38,14 @@ Every production agent I've shipped is made of six primitives:
 Learn these six, and the next framework you pick up is a 30-minute exercise — not a month-long investment. The syntax changes; the primitives don't. That's the whole argument of this post, and it's the curriculum spine of the [Build Your First AI Agent workshop](/workshops/build-first-ai-agent).
 
 <Callout type="tip">
-**The workshop version.** If you want to ship all six primitives in a working agent with a public URL by the end of the afternoon, the workshop is the fastest path. This post is the written reference you can come back to afterwards.
+**The workshop format.** The workshop page describes a guided version of the same six-part build. This post remains the written architectural reference.
 </Callout>
 
 ## Primitive 1: The model
 
 The model is the reasoning substrate. Claude Sonnet 4.6, GPT-5, Gemini 2.5 Pro, an open-weight Llama, a local Ollama — they are all candidates. What matters for your agent is **how well the model follows tool-use protocols** and **how cleanly it produces structured output**.
 
-The naive view: "a model is where the AI lives." The architectural view: **a model is a pluggable component behind an interface.** In the [Vercel AI SDK starter repo](https://github.com/frankxai/first-agent-vercel-aisdk), that interface is five lines:
+The naive view: "a model is where the AI lives." The architectural view: **a model is a pluggable component behind an interface.** In the reference implementation below, that interface is five lines:
 
 ```ts
 import { anthropic } from '@ai-sdk/anthropic'
@@ -168,20 +168,28 @@ The spec is the contract. Who is this agent? What can it do? How do other agents
 
 Two specs worth knowing:
 
-### The Google A2A Agent Card
+### The A2A Agent Card
 
-The [Google Agent-to-Agent (A2A) protocol](https://a2a-protocol.org/) defines an "Agent Card" — a JSON document describing identity, capabilities, and skills. It's served at `/.well-known/agent.json` on your agent's domain. Any A2A-compatible client can discover your agent and know what to do with it.
+The [Agent2Agent (A2A) protocol](https://a2a-protocol.org/latest/specification/) defines an "Agent Card"—a JSON document describing identity, supported interfaces, capabilities, security requirements, media types, and skills. A public Card is discoverable at `/.well-known/agent-card.json` on your agent's domain.
 
-Here's the Agent Card from the workshop starter:
+Here's an illustrative Agent Card for the same research-assistant example:
 
 ```json
 {
   "name": "First Agent — Research Assistant",
   "description": "A minimal research-assistant agent...",
-  "url": "https://first-agent-vercel-aisdk.vercel.app",
-  "provider": { "name": "Frank Riemer", "url": "https://frankx.ai" },
+  "supportedInterfaces": [
+    {
+      "url": "https://agent.example.com/a2a/v1",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "provider": { "organization": "Frank Riemer", "url": "https://frankx.ai" },
   "version": "0.1.0",
   "capabilities": { "streaming": false },
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["application/json"],
   "skills": [
     {
       "id": "research-with-sources",
@@ -194,13 +202,13 @@ Here's the Agent Card from the workshop starter:
 }
 ```
 
-BCG's enterprise agent playbook references this spec as the discovery contract between agents in a multi-agent mesh. It is the industry-standard way to describe an agent to other systems.
+The Card is a public interoperability contract, not an implementation description. Declare only interfaces and skills your server actually supports, and validate against the exact protocol version in each interface.
 
 ### The Oracle Open Agent Specification
 
-The [Oracle Open Agent Specification (OAS)](https://docs.oracle.com/) goes further: a portable YAML definition that describes the whole agent — not just its external interface but its tools, memory, and workflows. A single OAS file can generate stacks for Oracle ADK, LangGraph, or roll-your-own — the way an OpenAPI spec generates client libraries across languages.
+The [Oracle Open Agent Specification (Agent Spec)](https://oracle.github.io/agent-spec/) is a portable, declarative language for describing agents and structured workflows. Compatible runtimes and adapters can interpret those definitions; that is a different contract from A2A discovery.
 
-In the workshop, OAS gets a 90-second mention. In the [enterprise branch of the workshop](/workshops/build-first-ai-agent#branches), it earns a full module — because once you're shipping agents into a regulated environment, defining the agent in a portable spec that other stacks can consume is the difference between "one more codebase to maintain" and "a single definition that compiles to multiple targets."
+The two specifications can complement each other, but neither guarantees an automatic mapping to the other. Treat any generated Agent Card as release code and verify it against the endpoint that actually runs.
 
 **The test:** can another system discover your agent and know how to talk to it, without reading your source code? If yes, you have a spec. If no, your agent is a private tool, not a component in a larger system.
 
@@ -258,16 +266,15 @@ Twenty minutes of this and you know whether to invest a month in the framework. 
 
 ## Go build
 
-- **Ship your first agent in 90 minutes** — [Build Your First AI Agent workshop](/workshops/build-first-ai-agent)
+- **Inspect the guided format** — [Build Your First AI Agent workshop](/workshops/build-first-ai-agent)
 - **Read the written guide** — [/guides/first-agent-primer](/guides/first-agent-primer)
 - **See the Agent Card spec** — [/guides/agent-card-a2a-spec](/guides/agent-card-a2a-spec)
-- **Clone the starter** — [github.com/frankxai/first-agent-vercel-aisdk](https://github.com/frankxai/first-agent-vercel-aisdk)
 
-The six primitives are the map. The workshop is the trip. The starter repo is the receipt.
+The six primitives are the map. The guide shows the implementation boundaries inline.
 
 ---
 
-**Want this as an 8-page handout + 10-day email primer course?** [Get the free Six Primitives Primer](/start-here) — no card, no fluff. We follow up with one short, opinionated email per day for ten days, each teaching one primitive with code samples. Unsubscribe in one click whenever.
+**Want the shortest public sequence?** [Use the Six Primitives path](/start-here) — the essay first, then the inline build guide. No form and no checkout.
 
 ---
 

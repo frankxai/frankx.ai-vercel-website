@@ -1,22 +1,22 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 861,
-    "aliases": 49,
+    "total": 862,
+    "aliases": 50,
     "byType": {
       "core": 22,
-      "section": 401,
+      "section": 402,
       "community": 17,
       "tool": 54,
       "static": 15,
       "blog": 214,
+      "product": 22,
       "workshop": 12,
       "guide": 23,
-      "library": 57,
+      "library": 56,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
-      "product": 21,
       "research": 3,
       "video": 3
     }
@@ -3760,6 +3760,16 @@
       "type": "section"
     },
     {
+      "href": "/build/six-primitives-toolkit",
+      "title": "Six Primitives Toolkit",
+      "tags": [
+        "six",
+        "primitives",
+        "toolkit"
+      ],
+      "type": "product"
+    },
+    {
       "href": "/build/template-pack",
       "title": "Template Pack",
       "tags": [
@@ -4711,7 +4721,8 @@
         "circle",
         "apply"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/foundry",
@@ -4935,8 +4946,8 @@
     },
     {
       "href": "/guides/agent-card-a2a-spec",
-      "title": "Agent Card (A2A) spec — the portability contract",
-      "description": "Field-by-field walkthrough of the Google A2A Agent Card — the JSON document that describes your agent's identity, capabilities, and skills. Used by BCG's enterprise agent playbook and every multi-agent mesh worth shipping.",
+      "title": "Agent Card (A2A) 1.0 — the public interoperability contract",
+      "description": "A field-by-field walkthrough of the current Agent2Agent 1.0 Agent Card: supported interfaces, capabilities, security requirements, media types, and skills.",
       "tags": [
         "AI Agents",
         "A2A",
@@ -5054,7 +5065,7 @@
     {
       "href": "/guides/first-agent-primer",
       "title": "First Agent Primer — build, deploy, and share an AI agent in an afternoon",
-      "description": "The canonical long-form guide to building your first AI agent. Covers the six primitives, a working TypeScript build on Vercel AI SDK, a Google A2A Agent Card, and three eval cases you can run today.",
+      "description": "The canonical long-form guide to building your first AI agent. Covers the six primitives, a working TypeScript build on Vercel AI SDK, an A2A 1.0 Agent Card, and three eval cases you can run today.",
       "tags": [
         "AI Agents",
         "Vercel AI SDK",
@@ -5617,14 +5628,15 @@
     },
     {
       "href": "/library/handbook-to-higher-consciousness",
-      "title": "Handbook to Higher Consciousness — Complete System Map",
+      "title": "Handbook TO Higher Consciousness",
       "tags": [
-        "ken-keyes",
-        "consciousness",
-        "living-love",
-        "non-attachment"
+        "library",
+        "handbook",
+        "to",
+        "higher",
+        "consciousness"
       ],
-      "type": "library"
+      "type": "section"
     },
     {
       "href": "/library/how-music-works",
@@ -7052,17 +7064,6 @@
       "type": "partnership"
     },
     {
-      "href": "/partnerships/van-ede",
-      "title": "Van Ede",
-      "tags": [
-        "partnerships",
-        "van",
-        "ede"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
       "href": "/partnerships/vercel",
       "title": "Vercel",
       "tags": [
@@ -8464,6 +8465,14 @@
       "type": "workshop"
     },
     {
+      "href": "/workspace",
+      "title": "Workspace",
+      "tags": [
+        "workspace"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/year-of-the-fire-horse",
       "title": "Year OF The Fire Horse",
       "tags": [
@@ -8544,6 +8553,7 @@
     "/llm-hub": "/ai-ops/models-2026",
     "/mindvalley-university": "/mvu",
     "/mindvalleyuniversity": "/mvu",
+    "/mvu/breathwork-dan-brule": "/mvu/dan-brule-breathwork",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/signal": "/ai-architecture",
     "/soul-frequency-assessment": "/soul-frequency-quiz",

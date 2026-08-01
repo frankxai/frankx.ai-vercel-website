@@ -1,41 +1,36 @@
 import FrankXProductionHome from '@/components/home/FrankXProductionHome'
-import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
+import JsonLd from '@/components/seo/JsonLd'
 import { getAllBlogPosts } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
-  title: 'Public Agentic Workspace',
+  title: 'FrankX — Agentic Systems for Creator-Operators',
   description:
-    'Frank Riemer\'s public agentic workspace for source-led research, book intelligence, AI architecture, partnership systems, guides, products, and field notes.',
+    'Frank Riemer maps the approvals, replies, research, reporting, and handoffs that still return to creator-operators, then installs one bounded agent workflow with explicit human control.',
   keywords: [
     'Frank Riemer',
     'FrankX',
-    'public agentic workspace',
-    'multi-agent systems',
-    'agent research workflows',
-    'book intelligence',
-    'partnership systems',
-    'agentic workflows',
-    'personal AI operating system',
+    'agentic systems',
+    'creator-operator',
+    'human approval workflows',
     'AI architecture',
-    'creator tools',
-    'Claude Code',
-    'field notes',
-    'digital products',
+    'agent evaluation',
+    'AI operating systems',
   ],
   path: '/',
 })
 
 const siteUrl = siteConfig.url
+const canonicalDescription =
+  'FrankX is Frank Riemer’s independent studio for bounded agent systems, production patterns, and field notes for creator-operators.'
 
 const websiteSchema = {
   '@id': `${siteUrl}/#website`,
   name: 'FrankX',
   alternateName: ['FrankX.AI', 'Frank Riemer'],
   url: siteUrl,
-  description:
-    'FrankX is Frank Riemer\'s public agentic workspace for research, book intelligence, AI architecture, partnership systems, guides, products, and field notes.',
+  description: canonicalDescription,
   publisher: {
     '@id': `${siteUrl}/#organization`,
   },
@@ -48,6 +43,7 @@ const websiteSchema = {
     'query-input': 'required name=search_term_string',
   },
 }
+
 const personSchema = {
   '@id': `${siteUrl}/#frank-riemer`,
   name: 'Frank Riemer',
@@ -67,13 +63,11 @@ const personSchema = {
   sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno, socialLinks.twitter],
   knowsAbout: [
     'AI Architecture',
-    'Personal AI Operating Systems',
-    'AI Creator Systems',
-    'AI Music Creation',
-    'Agentic Workflows',
+    'Agentic Systems',
+    'Human Approval Workflows',
+    'Agent Evaluation',
     'Multi-Agent Systems',
-    'Creator Education',
-    'Creative Technology',
+    'Creator Operations',
   ],
 }
 
@@ -87,53 +81,18 @@ const organizationSchema = {
     '@id': `${siteUrl}/#frank-riemer`,
   },
   sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno],
-  description:
-    'FrankX publishes source-led research, inspectable AI architectures, book intelligence, partnership systems, guides, products, music, and field notes under Frank Riemer\'s review.',
+  description: canonicalDescription,
 }
-
-const homepageFAQs = [
-  {
-    question: 'What is FrankX?',
-    answer:
-      'FrankX is Frank Riemer\'s public agentic workspace. Frank sets the questions, context, standards, and final judgment; specialist agents research, compare, challenge, structure, and build. The reviewed results become public research, book intelligence, AI architectures, partnership systems, guides, products, music, and field notes. It is independent and is not affiliated with, endorsed by, or sponsored by Oracle.',
-  },
-  {
-    question: 'Where should I begin?',
-    answer:
-      'Begin with the current work: open the research hub, Library, AI Architecture, partnership systems, guides, or journal. The Start page narrows those routes around the question you are carrying.',
-  },
-  {
-    question: 'How do AI agents contribute to the site?',
-    answer:
-      'Specialist agents gather and compare sources, challenge claims, structure drafts, test implementations, and build first versions. Frank chooses the direction, edits the synthesis, and remains responsible for what is published. A generated draft is not a FrankX position.',
-  },
-  {
-    question: 'How does music fit into FrankX?',
-    answer:
-      'Music is one of Frank\'s creative AI practices and a source of repeatable lessons about taste, iteration, state, and release craft. Its studio route brings the releases and process notes together so you can follow how creative judgment develops through iteration.',
-  },
-  {
-    question: 'Can I use the systems and tools?',
-    answer:
-      'Yes. Start with public guides and open systems you can inspect. Paid packs and guided paths are available when you want a more complete implementation or direct support, with the scope stated clearly before purchase.',
-  },
-  {
-    question: 'Is FrankX an agency or coaching business?',
-    answer:
-      'FrankX is primarily Frank\'s public workspace and body of work, not an autonomous AI agency. Frank also offers a small set of bounded architecture, coaching, workshop, and partnership engagements when a real problem fits the work.',
-  },
-]
 
 export default function Page() {
   const latestPosts = getAllBlogPosts()
-    .slice(0, 6)
+    .slice(0, 3)
     .map((post) => ({
       slug: post.slug,
       title: post.title,
       description: post.description,
       category: post.category,
       readingTime: post.readingTime,
-      date: post.date,
     }))
 
   return (
@@ -142,7 +101,6 @@ export default function Page() {
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />
-      <FAQPageJsonLd faqs={homepageFAQs} id="homepage-faq" />
     </>
   )
 }

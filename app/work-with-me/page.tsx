@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'AI Architecture Studio — FrankX',
   description:
     'AI Architecture Studio. I architect systems, coach builders, and create what doesn\'t exist yet.',
+  alternates: {
+    canonical: 'https://www.frankx.ai/work-with-me',
+  },
   keywords: [
     'AI architecture studio',
     'enterprise AI',
@@ -18,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Architecture Studio — FrankX',
     description: 'AI Architecture Studio. I architect systems, coach builders, and create what doesn\'t exist yet.',
-    url: 'https://frankx.ai/work-with-me',
+    url: 'https://www.frankx.ai/work-with-me',
     type: 'website',
   },
   twitter: {

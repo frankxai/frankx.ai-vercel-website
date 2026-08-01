@@ -8,7 +8,7 @@ The most common mistake with first agents is treating the model as the architect
 
 It isn't. The model is a **pluggable component behind an interface**.
 
-Here's the entire model primitive in the Vercel AI SDK starter repo:
+Here's the model primitive used in the guide's reference implementation:
 
 ```ts
 import { anthropic } from '@ai-sdk/anthropic'
@@ -39,19 +39,9 @@ If no — your provider-specific code has bled into your loop, your tools, or yo
 
 ## Today's exercise (10 minutes)
 
-Clone the starter repo and try the swap yourself:
-
-```bash
-git clone https://github.com/frankxai/first-agent-vercel-aisdk
-cd first-agent-vercel-aisdk
-pnpm install
-cp .env.example .env
-# add ANTHROPIC_API_KEY=...
-# (and optionally OPENAI_API_KEY=...)
-pnpm dev
-```
-
-Visit http://localhost:3000. Ask any question. Then change `AGENT_PROVIDER=openai` in `.env`, restart, ask again. You're now running the same agent on a different provider.
+Add the same boundary to a project you control. Configure at least two providers using their
+current official documentation, ask the same question with each provider, and verify the rest of
+the agent does not change.
 
 Most people who do this never go back to "I'll just pick a model and commit to it." The portability lesson lands once you feel it.
 

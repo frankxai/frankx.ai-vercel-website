@@ -1,222 +1,120 @@
-import Link from 'next/link'
-import { ArrowRight, Shield, Heart, Layers } from 'lucide-react'
+import { ArrowRight, CheckCircle2, CircleDashed } from 'lucide-react'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
+import { getProductBySlug } from '@/data/products'
+import { SIX_PRIMITIVES_RELEASE_GATES } from '@/lib/release-gates'
 import { createMetadata } from '@/lib/seo'
-import { products, paidProducts } from '@/data/products'
-import { PricingTable } from '@/components/funnel/PricingTable'
 
 export const metadata = createMetadata({
-  title: 'Build — The Six Primitives Stack',
+  title: 'Build — Current release status',
   description:
-    'Five tiers of the Build Your First AI Agent stack — from the €7 Pack to the €2,997 Founder\'s Circle. Built on the open Starlight Intelligence Protocol.',
+    'Use the public Six Primitives learning path or inspect the planned Toolkit release. No paid Six Primitives offer is currently available.',
   path: '/build',
 })
 
-const free = products.find((p) => p.tier === 'free')
-
 export default function BuildHubPage() {
+  const publicPath = getProductBySlug('six-primitives-primer')
+  const toolkit = getProductBySlug('six-primitives-toolkit')
+
+  if (!publicPath || !toolkit) {
+    throw new Error('The Six Primitives release registry is incomplete.')
+  }
+
+  const toolkitIsUnavailable = toolkit.releaseStatus === 'unavailable'
+  const toolkitPrice = toolkit.pricing.plannedEur ?? toolkit.pricing.eur
+
   return (
-    <div className="min-h-screen bg-[#0a0a0b]">
-      {/* Hero — restraint */}
-      <section className="relative pt-32 pb-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/[0.03] to-transparent" />
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-medium text-cyan-400 uppercase tracking-wider mb-4">
-            Build · Five tiers · Built on Starlight Intelligence Protocol
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-5 leading-[1.1]">
-            Pay only when paying saves you time.
-          </h1>
-          <p className="text-lg text-zinc-300 leading-relaxed mb-3">
-            Every product below is a superset of the one before. The free Primer is real
-            — many builders ship on it. The paid tiers exist because curation, depth, and
-            community are what convert "I read about agents" into "I deploy production agents."
-          </p>
-          <p className="text-sm text-zinc-500">
-            One-time payment per tier. Lifetime access. 30-day no-questions refund on every
-            paid tier. No subscriptions except community access (which renews monthly + cancels
-            anytime).
-          </p>
-        </div>
+    <main className="relative min-h-screen overflow-hidden bg-[#0a0a0b] text-white">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[620px] bg-[radial-gradient(circle_at_20%_4%,rgba(34,211,238,0.1),transparent_32%),radial-gradient(circle_at_82%_12%,rgba(16,185,129,0.1),transparent_28%)]"
+        aria-hidden="true"
+      />
+
+      <section className="relative mx-auto max-w-5xl px-5 pb-14 pt-32 sm:px-8 sm:pb-20 sm:pt-40">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan-200">
+          Build · Release board
+        </p>
+        <h1 className="mt-6 max-w-3xl text-5xl font-bold leading-[1] tracking-[-0.045em] sm:text-6xl">
+          Build from what is ready.
+        </h1>
+        <p className="mt-7 max-w-2xl text-lg leading-8 text-white/75">
+          The public learning path is ready to inspect. The planned Toolkit stays unavailable until
+          its contents, access path, and terms can be verified end to end.
+        </p>
       </section>
 
-      {/* Free tier separately */}
-      {free && (
-        <section className="pb-12">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.03] p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-5">
-              <div className="flex-1">
-                <p className="text-xs font-medium text-emerald-400 uppercase tracking-wider mb-2">
-                  Start here · Free · No card required
-                </p>
-                <h2 className="text-2xl font-semibold text-white mb-2 tracking-tight">{free.title}</h2>
-                <p className="text-sm text-zinc-300 leading-relaxed mb-4">{free.positioning}</p>
-                <ul className="space-y-1.5 mb-1">
-                  {free.outcomes.slice(0, 3).map((o, i) => (
-                    <li key={i} className="text-sm text-zinc-400 flex gap-2">
-                      <span className="text-emerald-400 flex-shrink-0">·</span>
-                      <span>{o}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <Link
-                href="/start-here"
-                className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg text-sm font-medium bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 whitespace-nowrap transition-colors flex-shrink-0"
-              >
-                Get the free primer
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+      <section className="relative border-y border-white/10 bg-white/[0.02] py-16 sm:py-20">
+        <div className="mx-auto grid max-w-5xl gap-5 px-5 sm:px-8 lg:grid-cols-2">
+          <article className="flex min-h-[360px] flex-col rounded-[1.75rem] border border-emerald-300/25 bg-emerald-300/[0.055] p-6 sm:p-8">
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-emerald-200">
+              <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+              Available starting point
             </div>
-          </div>
-        </section>
-      )}
-
-      {/* The paid ladder */}
-      <section className="pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-3 tracking-tight">
-              The paid ladder
+            <h2 className="mt-8 text-3xl font-semibold tracking-[-0.03em]">
+              {publicPath.title}
             </h2>
-            <p className="text-sm text-zinc-400 leading-relaxed">
-              Each tier is a superset of the one below. Buy once at the level that fits — you
-              can always upgrade later (we credit your previous purchase). Most builders find
-              their match in the Toolkit.
+            <p className="mt-4 max-w-lg text-base leading-7 text-white/75">
+              {publicPath.subtitle}. Read the argument and follow the inline build guide before
+              choosing a larger stack.
             </p>
-          </div>
-          <PricingTable products={paidProducts()} />
+            <TrackedLink
+              href={publicPath.canonicalPath}
+              eventName="creator_funnel_step"
+              eventProperties={{ surface: 'build_release_board', step: 'open_public_path' }}
+              className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              Open the public path
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </TrackedLink>
+          </article>
+
+          <article className="flex min-h-[360px] flex-col rounded-[1.75rem] border border-white/15 bg-[#0d0f10] p-6 sm:p-8">
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-200">
+              <CircleDashed className="h-4 w-4" aria-hidden="true" />
+              {toolkitIsUnavailable ? 'Release review' : 'Available'}
+              {toolkitPrice !== undefined
+                ? ` · ${toolkitIsUnavailable ? 'Planned price' : 'Price'} €${toolkitPrice}`
+                : ''}
+            </div>
+            <h2 className="mt-8 text-3xl font-semibold tracking-[-0.03em]">{toolkit.title}</h2>
+            <p className="mt-4 max-w-lg text-base leading-7 text-white/75">
+              {toolkit.subtitle}
+            </p>
+            <p className="mt-4 text-sm font-medium text-white">
+              {toolkitIsUnavailable ? 'Checkout is not open.' : 'The release is available.'}
+            </p>
+            <TrackedLink
+              href={toolkit.canonicalPath}
+              eventName="creator_funnel_step"
+              eventProperties={{ surface: 'build_release_board', step: 'inspect_toolkit_status' }}
+              className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/35 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+            >
+              Inspect release status
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </TrackedLink>
+          </article>
         </div>
       </section>
 
-      {/* Why paying is honest */}
-      <section className="pb-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-3 gap-4">
-            <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
-              <Shield className="w-5 h-5 text-emerald-400 mb-3" />
-              <h3 className="text-sm font-semibold text-white mb-1.5">30-day refund, every tier</h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                If a paid tier doesn't earn its price back in saved time within 30 days, you
-                don't pay for it. No questions, no friction.
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
-              <Layers className="w-5 h-5 text-cyan-400 mb-3" />
-              <h3 className="text-sm font-semibold text-white mb-1.5">Built on open foundations</h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                The Starlight Intelligence Protocol is open and free. What you pay for is
-                curation, depth, community, and the time we save you.
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
-              <Heart className="w-5 h-5 text-rose-400 mb-3" />
-              <h3 className="text-sm font-semibold text-white mb-1.5">No upgrade pressure</h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                We don't push the next tier in your inbox. Upgrade when you've outgrown your
-                current one — not because we manufactured urgency.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The decoupling note */}
-      <section className="pb-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8">
-            <h2 className="text-xl font-semibold text-white mb-3 tracking-tight">
-              Why these products work without Frank's live involvement
-            </h2>
-            <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-              The €7 / €197 / €497 / €997 tiers are designed to ship without Frank in the loop.
-              You get your artifacts instantly, the community is practitioner-led, code review
-              is AI-assisted with sanity checks, and the Architect tier templates are
-              productized — not consultancy hours.
-            </p>
-            <p className="text-sm text-zinc-300 leading-relaxed mb-3">
-              That's not a downgrade. That's why the price is honest at this scale. You get
-              the same Oracle EMEA AI Center of Excellence framework used in enterprise work:
-              productized, reviewed, kept current.
-            </p>
-            <p className="text-sm text-zinc-400 leading-relaxed">
-              For the cases where Frank's actual judgment is the value (strategic decisions,
-              hard board-level calls, network introductions), there's the{' '}
-              <Link href="/founders-circle" className="text-rose-400 hover:text-rose-300 underline">
-                Founder's Circle
-              </Link>{' '}
-              at €2,997 per quarter. 10 seats. Application only. Real scarcity.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison table */}
-      <section className="pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-semibold text-white mb-5 tracking-tight">
-            What's in each tier
+      <section className="py-20">
+        <div className="mx-auto max-w-5xl px-5 sm:px-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">
+            Checkout gate
+          </p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-[-0.03em]">
+            Payment opens only after the offer can be delivered as written.
           </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse min-w-[720px]">
-              <thead>
-                <tr className="border-b border-white/[0.08]">
-                  <th className="text-left py-3 px-3 font-medium text-zinc-300 w-[260px]">Capability</th>
-                  {paidProducts().map((p) => (
-                    <th key={p.slug} className="text-center py-3 px-3 font-medium text-zinc-300">
-                      {p.title.replace('Six Primitives ', '')}
-                      <div className="text-xs text-zinc-500 font-normal mt-1">€{p.pricing.eur.toLocaleString('en-IE')}</div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  { label: 'Six Primitives pocket book', tiers: ['pack', 'toolkit', 'mastery', 'architect', 'founders'] },
-                  { label: 'Agent Card library', tiers: ['pack', 'toolkit', 'mastery', 'architect', 'founders'], note: ['5', '30+', '30+', '30+', '30+'] },
-                  { label: 'Eval cases library', tiers: ['pack', 'toolkit', 'mastery', 'architect', 'founders'], note: ['15', '100', '100', '100', '100'] },
-                  { label: '6 branch deep-dive videos', tiers: ['toolkit', 'mastery', 'architect', 'founders'] },
-                  { label: 'Production patterns cookbook (50 patterns)', tiers: ['toolkit', 'mastery', 'architect', 'founders'] },
-                  { label: 'Observability templates', tiers: ['toolkit', 'mastery', 'architect', 'founders'] },
-                  { label: 'Discord community', tiers: ['toolkit', 'mastery', 'architect', 'founders'], note: ['—', '90 days', 'lifetime', 'lifetime', 'lifetime'] },
-                  { label: '6-week structured cohort', tiers: ['mastery', 'architect', 'founders'] },
-                  { label: 'AI-assisted code review queue', tiers: ['mastery', 'architect', 'founders'] },
-                  { label: 'Custom Agent Card consulting', tiers: ['mastery', 'architect', 'founders'] },
-                  { label: 'Office Hours archive (lifetime)', tiers: ['mastery', 'architect', 'founders'] },
-                  { label: 'AI CoE template suite (6 pillars)', tiers: ['architect', 'founders'] },
-                  { label: 'Oracle ADK + OAS deep-dive', tiers: ['architect', 'founders'] },
-                  { label: 'Compliance + governance templates', tiers: ['architect', 'founders'] },
-                  { label: 'Architects Slack (curated)', tiers: ['architect', 'founders'] },
-                  { label: 'Personalized AI advisor agent', tiers: ['architect', 'founders'] },
-                  { label: 'Quarterly intelligence reports', tiers: ['architect', 'founders'] },
-                  { label: '4 hours/quarter of Frank\'s time', tiers: ['founders'] },
-                  { label: '30-day async support per call', tiers: ['founders'] },
-                  { label: 'Quarterly strategic AI retainer', tiers: ['founders'] },
-                  { label: 'Direct email — 48h reply', tiers: ['founders'] },
-                ].map((row, i) => (
-                  <tr key={i} className="border-b border-white/[0.04]">
-                    <td className="py-2.5 px-3 text-zinc-300">{row.label}</td>
-                    {paidProducts().map((p, ti) => {
-                      const has = row.tiers.includes(p.tier)
-                      const note = (row.note as string[] | undefined)?.[ti]
-                      return (
-                        <td key={p.slug} className="text-center py-2.5 px-3">
-                          {note ? (
-                            <span className={`text-xs ${has ? 'text-cyan-400' : 'text-zinc-600'}`}>{note}</span>
-                          ) : has ? (
-                            <span className="text-cyan-400">✓</span>
-                          ) : (
-                            <span className="text-zinc-700">—</span>
-                          )}
-                        </td>
-                      )
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-3">
+            {SIX_PRIMITIVES_RELEASE_GATES.map((check) => (
+              <li
+                key={check}
+                className="rounded-2xl border border-white/15 bg-white/[0.035] p-5 text-sm leading-6 text-white/75"
+              >
+                {check}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
-    </div>
+    </main>
   )
 }

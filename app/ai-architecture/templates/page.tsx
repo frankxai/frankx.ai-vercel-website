@@ -16,6 +16,7 @@ import {
   Shield,
   ExternalLink,
 } from 'lucide-react'
+import { commerceLinks } from '@/lib/commerce-links'
 
 // Template products — status drives button state.
 // Set status to 'active' + add lemonSqueezyVariantId when ready to sell.
@@ -271,7 +272,7 @@ function TemplateCard({
         {/* Purchase / Coming Soon Button */}
         {template.status === 'active' && template.lemonSqueezyVariantId ? (
           <a
-            href={`https://frankx.lemonsqueezy.com/checkout/buy/${template.lemonSqueezyVariantId}?checkout[custom][template_id]=${template.id}`}
+            href={`${commerceLinks.lemonSqueezyStorefront}/checkout/buy/${template.lemonSqueezyVariantId}?checkout[custom][template_id]=${template.id}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-2.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/25"
