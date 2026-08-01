@@ -4,84 +4,106 @@ import test from 'node:test'
 
 const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
 
-test('the public homepage explains the human-directed agentic workspace before any portfolio detour', async () => {
+test('the public homepage leads with ICP outcomes while retaining music as living proof', async () => {
   const page = await readRepoFile('app/page.tsx')
-  const homepage = await readRepoFile('components/home/FrankXProductionHome.tsx')
-  const positioning = await readRepoFile('data/site-positioning.ts')
-  const featuredCase = await readRepoFile('data/featured-workspace-case.ts')
+  const homepage = await readRepoFile('components/home/HomePageElite.tsx')
 
-  assert.match(page, /import FrankXProductionHome from '@\/components\/home\/FrankXProductionHome'/)
-  assert.match(page, /<FrankXProductionHome latestPosts=\{latestPosts\} \/>/)
-  assert.doesNotMatch(page, /HomePageElite/)
-  assert.doesNotMatch(page, /homepageFeaturedRelease/)
-  assert.doesNotMatch(page, /getPublishedBooks/)
+  assert.match(page, /import HomePageElite from '@\/components\/home\/HomePageElite'/)
+  assert.match(page, /import \{ getPublishedBooks \} from '@\/app\/books\/lib\/books-registry'/)
+  assert.match(page, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
+  assert.match(page, /featuredTrack=\{homepageFeaturedRelease\}/)
+  assert.match(page, /const books = getPublishedBooks\(\)/)
+  assert.match(page, /books=\{books\}/)
+  assert.doesNotMatch(page, /<FrankXProductionHome\b/)
+  assert.doesNotMatch(page, /Why does the homepage begin with music\?/)
+  assert.doesNotMatch(page, /Music is often the shortest path/)
+  assert.match(page, /How does music fit into FrankX\?/)
 
-  assert.match(positioning, /Public agentic workspace/)
-  assert.match(positioning, /I bring the question and point of view/)
-  assert.match(positioning, /I choose what becomes public/)
-  assert.match(positioning, /Sets the question, context, standard, and final decision/)
-  assert.match(positioning, /Specialist agents/)
-  assert.match(positioning, /Human review/)
-  assert.match(positioning, /Explore current work/)
-  assert.match(positioning, /See how the workspace runs/)
+  assert.match(homepage, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
+  assert.match(homepage, /https:\/\/suno\.com\/embed\/\$\{track\.sunoId\}/)
+  assert.match(homepage, /loading="eager"/)
+  assert.match(homepage, /featuredTrack \?\? homepageFeaturedRelease/)
+  assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
+  assert.doesNotMatch(homepage, /Music first\./)
+  assert.doesNotMatch(homepage, /begin with music/)
+  assert.match(homepage, /Explore your highest-leverage AI move\./)
+  assert.match(homepage, /Architect your AI operating system\./)
+  assert.match(homepage, /Build your AI Center of Excellence\./)
+  assert.match(homepage, /Orchestrate agents around real work\./)
+  assert.match(homepage, /Ship products that compound\./)
+  assert.match(homepage, /function RotatingHeroOutcome\(\)/)
+  assert.match(homepage, /useSyncExternalStore/)
+  assert.match(homepage, /if \(!hasHydrated \|\| shouldReduceMotion\)/)
+  assert.match(homepage, /Pause changing headline/)
+  assert.match(homepage, /Play changing headline/)
+  assert.match(homepage, /<AnimatePresence mode="wait" initial=\{false\}>/)
+  assert.match(homepage, /Latest studio release · optional listening/)
+  assert.match(homepage, /<MindPalaceAtlas \/>/)
+  assert.doesNotMatch(homepage, /autoplay=(?:1|true)/i)
+})
 
-  assert.match(homepage, /src="\/images\/portraits\/frank-presenting-oracle-2025\.jpg"/)
-  assert.match(homepage, /data-home-proof-overlay/)
-  assert.match(homepage, /Source material/)
-  assert.match(homepage, /Specialist passes/)
-  assert.match(homepage, /Frank decides/)
-  assert.match(homepage, /Public result/)
-  assert.match(homepage, /featuredWorkspaceCase/)
-  assert.match(featuredCase, /Intent Architecture/)
-  assert.match(featuredCase, /evidence grade at C/)
-  assert.match(homepage, /sitePositioning\.currentWork\.map/)
-  assert.match(homepage, /href="\/workspace"/)
-  assert.match(homepage, /A generated draft is not a published FrankX position/)
+test('the long-form homepage cannot silently lose its restored rooms and glow cards', async () => {
+  const homepage = await readRepoFile('components/home/HomePageElite.tsx')
 
-  for (const forbidden of [
-    /framer-motion/,
-    /<iframe\b/,
-    /suno\.com\/embed/,
-    /loading="eager"/,
-    /RotatingHeroOutcome/,
-    /AnimatePresence/,
-    /TrustedByBlock/,
-    /MindPalaceAtlas/,
-    /ScrollProgress/,
-    /AuroraBackground/,
+  for (const section of [
+    '<TrustedByBlock />',
+    '<MindPalaceAtlas />',
+    '<ProductsTools />',
+    '<CreativeWorlds />',
+    '<DesignLab />',
+    '<BooksShowcase books={books} />',
+    '<LibraryShowcase libraryBooks={libraryBooks} />',
+    '<LatestArticles posts={latestPosts} />',
+    '<LearningHub />',
+    '<DigitalTwin />',
+    '<EmailCTA />',
+    '<FAQSection faqs={faqs} />',
+    '<FinalCTA />',
   ]) {
-    assert.doesNotMatch(homepage, forbidden)
+    assert.ok(homepage.includes(section), `missing homepage section: ${section}`)
   }
+
+  assert.match(homepage, /import \{ GlowCard \} from '@\/components\/ui\/glow-card'/)
+  assert.match(homepage, /<section id="books" className="scroll-mt-24/)
+  assert.ok((homepage.match(/<GlowCard\b/g) ?? []).length >= 4, 'expected multiple glow-card surfaces')
 })
 
-test('the workspace page makes the responsibility chain and stop conditions inspectable', async () => {
-  const workspace = await readRepoFile('app/workspace/page.tsx')
+test('the featured release stays human-reviewed instead of following the raw catalog', async () => {
+  const release = await readRepoFile('data/homepage-featured-release.ts')
 
-  assert.match(workspace, /A question becomes useful/)
-  assert.match(workspace, /by surviving the passes/)
-  assert.match(workspace, /Source to publication/)
-  assert.match(workspace, /Four stages\. One accountable chain\./)
-  assert.match(workspace, /Review can stop publication/)
-  assert.match(workspace, /which are Frank’s judgment/)
-  assert.match(workspace, /featuredWorkspaceCase\.href/)
-  assert.match(workspace, /Frank’s decision/)
-  assert.match(workspace, /sitePositioning\.workflow\.map/)
-  assert.match(workspace, /sitePositioning\.currentWork\.map/)
-  assert.doesNotMatch(workspace, /framer-motion/)
+  assert.match(release, /reviewStatus: 'approved'/)
+  assert.match(release, /Raw Suno catalog entries must never replace this object automatically/)
+  assert.match(release, /reviewedAt: '\d{4}-\d{2}-\d{2}'/)
+  assert.match(release, /sunoId: '[0-9a-f-]+'/)
+  assert.doesNotMatch(release, /Music is the first door/)
+  assert.match(release, /one creative artifact among the architecture/)
 })
 
-test('the global header leads with the workspace and keeps four primary doors', async () => {
-  const navigation = await readRepoFile('components/NavigationMega.tsx')
-  const mobile = await readRepoFile('components/MobileNavOverlay.tsx')
+test('the mind palace scene has a complete accessible fallback and scoped cleanup', async () => {
+  const atlas = await readRepoFile('components/home/MindPalaceAtlas.tsx')
 
-  assert.match(navigation, /label: 'Workspace'/)
-  assert.match(navigation, /Public agentic workspace/)
-  assert.match(navigation, /const desktopSections: NavKey\[\] = \['explore', 'build', 'learn', 'gencreators'\]/)
-  assert.match(navigation, /label: 'Create'/)
-  assert.doesNotMatch(navigation, /onClick=\{\(\) => router\.push/)
+  for (const route of ['/ai-architecture', '/acos', '/products/vibe-os', '/library']) {
+    assert.match(atlas, new RegExp(`href: '${route.replace('/', '\\/')}'`))
+  }
+  assert.match(atlas, /href="\/ecosystem"/)
 
-  assert.match(mobile, /Public agentic workspace/)
-  assert.match(mobile, /How Frank and the agent team build in public/)
-  assert.match(mobile, /label: 'Create'/)
-  assert.match(mobile, /Source material, specialist passes, Frank’s decision, public artifact/)
+  for (const venture of [
+    'https://starlightintelligence.org',
+    'https://gencreator.ai',
+    'https://www.arcanea.ai',
+    'https://www.agenticincome.ai',
+  ]) {
+    assert.ok(atlas.includes(venture), `missing verified public venture: ${venture}`)
+  }
+
+  assert.match(atlas, /useGSAP\(/)
+  assert.match(atlas, /gsap\.matchMedia\(\)/)
+  assert.match(atlas, /prefers-reduced-motion: reduce/)
+  assert.match(atlas, /pointer: coarse/)
+  assert.match(atlas, /return \(\) => media\.revert\(\)/)
+  assert.match(atlas, /data-palace-room/)
+  assert.match(atlas, /data-palace-corridor/)
+  assert.match(atlas, /focus-visible:ring-2/)
+  assert.doesNotMatch(atlas, /pin:\s*true/)
+  assert.doesNotMatch(atlas, /Music stays first/)
 })
