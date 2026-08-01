@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { recordExpertAuthoritySignal } from '@/lib/expert-authority-intelligence'
 import { getClientIdentifier, leadRatelimit } from '@/lib/ratelimit'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
@@ -150,6 +151,21 @@ export async function POST(request: NextRequest) {
           `<tr><td style="padding:6px 0;color:#94a3b8;text-transform:capitalize;">${key}</td><td style="padding:6px 0;color:#ffffff;text-align:right;">${answers[key]}/4</td></tr>`
       )
       .join('')
+
+    // Build the Audience Intelligence layer from anonymized evidence. This is
+    // deliberately separated from contact storage: no name or email enters KV.
+    try {
+      await recordExpertAuthoritySignal({
+        score,
+        stage,
+        weakestEngine,
+        foundingInterest,
+        answers,
+        source,
+      })
+    } catch (error) {
+      console.error('Expert authority signal capture failed (continuing):', error)
+    }
 
     await resend(`/audiences/${AUDIENCE_ID}/contacts`, {
       email: cleanEmail,
