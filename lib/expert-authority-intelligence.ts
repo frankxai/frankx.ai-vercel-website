@@ -1,4 +1,4 @@
-import { kv } from '@vercel/kv'
+import { list, put } from '@vercel/blob'
 
 export const expertAuthorityEngineKeys = [
   'expert',
@@ -48,25 +48,55 @@ export type ExpertAuthoritySnapshot = {
   updatedAt: string
 }
 
-const KEYS = {
-  responses: 'expert-authority:responses:v1',
-  total: 'expert-authority:response-count:v1',
-  stages: 'expert-authority:stage-counts:v1',
-  constraints: 'expert-authority:constraint-counts:v1',
-  scoreSums: 'expert-authority:engine-score-sums:v1',
-  foundingInterest: 'expert-authority:founding-interest-count:v1',
-  updatedAt: 'expert-authority:updated-at:v1',
-} as const
+const SIGNAL_PREFIX = 'intelligence/expert-authority/responses/v1/'
+const MAX_SIGNALS = 1000
 
-function normalizeHash(value: Record<string, unknown> | null) {
-  return Object.fromEntries(
-    Object.entries(value ?? {}).map(([key, count]) => [key, Number(count) || 0])
+function emptySnapshot(): ExpertAuthoritySnapshot {
+  return {
+    total: 0,
+    stages: Object.fromEntries(expertAuthorityStages.map((stage) => [stage, 0])),
+    constraints: Object.fromEntries(
+      expertAuthorityConstraints.map((constraint) => [constraint, 0])
+    ),
+    averageScores: Object.fromEntries(
+      expertAuthorityEngineKeys.map((key) => [key, 0])
+    ) as Record<ExpertAuthorityEngineKey, number>,
+    foundingInterest: 0,
+    updatedAt: new Date(0).toISOString(),
+  }
+}
+
+function isSignal(value: unknown): value is ExpertAuthoritySignal {
+  if (!value || typeof value !== 'object') return false
+
+  const candidate = value as Partial<ExpertAuthoritySignal>
+  return Boolean(
+    typeof candidate.id === 'string' &&
+      typeof candidate.capturedAt === 'string' &&
+      typeof candidate.score === 'number' &&
+      expertAuthorityStages.includes(candidate.stage as ExpertAuthorityStage) &&
+      expertAuthorityConstraints.includes(
+        candidate.weakestEngine as ExpertAuthorityConstraint
+      ) &&
+      typeof candidate.foundingInterest === 'boolean' &&
+      candidate.answers &&
+      expertAuthorityEngineKeys.every(
+        (key) =>
+          typeof candidate.answers?.[key] === 'number' &&
+          Number.isInteger(candidate.answers[key]) &&
+          candidate.answers[key] >= 0 &&
+          candidate.answers[key] <= 4
+      ) &&
+      typeof candidate.source === 'string'
   )
 }
 
 /**
  * Persist only anonymized diagnostic evidence. Names and email addresses stay
  * in Resend and the operator inbox; they are intentionally excluded here.
+ *
+ * Every response is an immutable Blob event. This append-only shape avoids
+ * counter races and preserves the evidence needed to recompute any aggregate.
  */
 export async function recordExpertAuthoritySignal(
   input: Omit<ExpertAuthoritySignal, 'id' | 'capturedAt'>
@@ -77,52 +107,72 @@ export async function recordExpertAuthoritySignal(
     capturedAt: new Date().toISOString(),
   }
 
-  const transaction = kv.multi()
-  transaction.lpush(KEYS.responses, JSON.stringify(signal))
-  transaction.ltrim(KEYS.responses, 0, 999)
-  transaction.incr(KEYS.total)
-  transaction.hincrby(KEYS.stages, signal.stage, 1)
-  transaction.hincrby(KEYS.constraints, signal.weakestEngine, 1)
-  transaction.set(KEYS.updatedAt, signal.capturedAt)
+  const sortableTimestamp = signal.capturedAt.replaceAll(':', '-').replaceAll('.', '-')
+  await put(
+    `${SIGNAL_PREFIX}${sortableTimestamp}-${signal.id}.json`,
+    JSON.stringify(signal),
+    {
+      access: 'public',
+      contentType: 'application/json',
+      addRandomSuffix: false,
+      cacheControlMaxAge: 60,
+    }
+  )
 
-  if (signal.foundingInterest) {
-    transaction.incr(KEYS.foundingInterest)
-  }
-
-  for (const key of expertAuthorityEngineKeys) {
-    transaction.hincrby(KEYS.scoreSums, key, signal.answers[key])
-  }
-
-  await transaction.exec()
   return signal.id
 }
 
-export async function getExpertAuthoritySnapshot(): Promise<ExpertAuthoritySnapshot> {
-  const [totalValue, stagesValue, constraintsValue, scoreSumsValue, foundingValue, updatedAtValue] =
-    await Promise.all([
-      kv.get<number>(KEYS.total),
-      kv.hgetall<Record<string, unknown>>(KEYS.stages),
-      kv.hgetall<Record<string, unknown>>(KEYS.constraints),
-      kv.hgetall<Record<string, unknown>>(KEYS.scoreSums),
-      kv.get<number>(KEYS.foundingInterest),
-      kv.get<string>(KEYS.updatedAt),
-    ])
+async function loadSignals(): Promise<ExpertAuthoritySignal[]> {
+  const result = await list({ prefix: SIGNAL_PREFIX, limit: MAX_SIGNALS })
+  const responses = await Promise.all(
+    result.blobs.map(async (blob) => {
+      try {
+        const response = await fetch(blob.url, { cache: 'no-store' })
+        if (!response.ok) return null
+        const value: unknown = await response.json()
+        return isSignal(value) ? value : null
+      } catch (error) {
+        console.error(`Unable to read Expert Authority signal ${blob.pathname}:`, error)
+        return null
+      }
+    })
+  )
 
-  const total = Number(totalValue) || 0
-  const scoreSums = normalizeHash(scoreSumsValue)
-  const averageScores = Object.fromEntries(
+  return responses.filter((signal): signal is ExpertAuthoritySignal => signal !== null)
+}
+
+export async function getExpertAuthoritySnapshot(): Promise<ExpertAuthoritySnapshot> {
+  const signals = await loadSignals()
+  if (signals.length === 0) return emptySnapshot()
+
+  const snapshot = emptySnapshot()
+  const scoreSums = Object.fromEntries(
+    expertAuthorityEngineKeys.map((key) => [key, 0])
+  ) as Record<ExpertAuthorityEngineKey, number>
+
+  for (const signal of signals) {
+    snapshot.total += 1
+    snapshot.stages[signal.stage] = (snapshot.stages[signal.stage] ?? 0) + 1
+    snapshot.constraints[signal.weakestEngine] =
+      (snapshot.constraints[signal.weakestEngine] ?? 0) + 1
+
+    if (signal.foundingInterest) snapshot.foundingInterest += 1
+
+    for (const key of expertAuthorityEngineKeys) {
+      scoreSums[key] += signal.answers[key]
+    }
+
+    if (signal.capturedAt > snapshot.updatedAt) {
+      snapshot.updatedAt = signal.capturedAt
+    }
+  }
+
+  snapshot.averageScores = Object.fromEntries(
     expertAuthorityEngineKeys.map((key) => [
       key,
-      total > 0 ? Number(((scoreSums[key] ?? 0) / total).toFixed(2)) : 0,
+      Number((scoreSums[key] / snapshot.total).toFixed(2)),
     ])
   ) as Record<ExpertAuthorityEngineKey, number>
 
-  return {
-    total,
-    stages: normalizeHash(stagesValue),
-    constraints: normalizeHash(constraintsValue),
-    averageScores,
-    foundingInterest: Number(foundingValue) || 0,
-    updatedAt: updatedAtValue || new Date(0).toISOString(),
-  }
+  return snapshot
 }
