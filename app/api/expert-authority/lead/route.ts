@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getClientIdentifier, leadRatelimit } from '@/lib/ratelimit'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -7,6 +8,14 @@ const NOTIFY_EMAIL = process.env.OPERATOR_EMAIL || 'frank@frankx.ai'
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const validEngines = ['expert', 'audience', 'authority', 'product', 'funnel'] as const
+const validStages = ['Hidden Expert', 'Emerging Authority', 'Market Machine', 'Intelligence Operator'] as const
+const validWeakestEngines = [
+  'Expert Intelligence',
+  'Audience Intelligence',
+  'Authority Engine',
+  'Product Intelligence',
+  'Funnel Intelligence',
+] as const
 
 type EngineKey = (typeof validEngines)[number]
 type Answers = Record<EngineKey, number>
@@ -48,6 +57,20 @@ async function resend(path: string, body: Record<string, unknown>) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Public QR traffic can spike. Reuse the repository's governed lead limiter.
+    // Fail open so a temporary KV outage never blocks a legitimate participant.
+    try {
+      const { success } = await leadRatelimit.limit(getClientIdentifier(request))
+      if (!success) {
+        return NextResponse.json(
+          { error: 'Too many submissions. Please try again later.' },
+          { status: 429 }
+        )
+      }
+    } catch (error) {
+      console.error('Expert authority rate-limit check failed (continuing open):', error)
+    }
+
     const payload = await request.json()
     const {
       name,
@@ -58,22 +81,51 @@ export async function POST(request: NextRequest) {
       foundingInterest = false,
       answers,
       source = 'expert-authority',
+      website = '',
     } = payload
 
-    if (!name || typeof name !== 'string' || name.trim().length < 2) {
+    // Honeypot: legitimate clients leave this field empty. Return a neutral
+    // success to bots so the endpoint does not teach them how detection works.
+    if (typeof website === 'string' && website.trim() !== '') {
+      return NextResponse.json({ success: true })
+    }
+
+    if (!name || typeof name !== 'string' || name.trim().length < 2 || name.trim().length > 200) {
       return NextResponse.json({ error: 'Please enter your full name.' }, { status: 400 })
     }
-    if (!email || typeof email !== 'string' || !EMAIL_PATTERN.test(email.trim())) {
+    if (
+      !email ||
+      typeof email !== 'string' ||
+      email.trim().length > 254 ||
+      !EMAIL_PATTERN.test(email.trim())
+    ) {
       return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
-    }
-    if (typeof score !== 'number' || score < 0 || score > 20) {
-      return NextResponse.json({ error: 'The diagnostic score is invalid.' }, { status: 400 })
-    }
-    if (!stage || typeof stage !== 'string' || !weakestEngine || typeof weakestEngine !== 'string') {
-      return NextResponse.json({ error: 'The diagnostic result is incomplete.' }, { status: 400 })
     }
     if (!isValidAnswers(answers)) {
       return NextResponse.json({ error: 'The engine scores are invalid.' }, { status: 400 })
+    }
+
+    const computedScore = validEngines.reduce((total, key) => total + answers[key], 0)
+    if (
+      typeof score !== 'number' ||
+      !Number.isInteger(score) ||
+      score < 0 ||
+      score > 20 ||
+      score !== computedScore
+    ) {
+      return NextResponse.json({ error: 'The diagnostic score is invalid.' }, { status: 400 })
+    }
+    if (!validStages.includes(stage)) {
+      return NextResponse.json({ error: 'The authority stage is invalid.' }, { status: 400 })
+    }
+    if (!validWeakestEngines.includes(weakestEngine)) {
+      return NextResponse.json({ error: 'The primary constraint is invalid.' }, { status: 400 })
+    }
+    if (typeof foundingInterest !== 'boolean') {
+      return NextResponse.json({ error: 'The founding-cohort preference is invalid.' }, { status: 400 })
+    }
+    if (typeof source !== 'string' || source.length > 100) {
+      return NextResponse.json({ error: 'The source value is invalid.' }, { status: 400 })
     }
     if (!RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not configured')
@@ -93,7 +145,10 @@ export async function POST(request: NextRequest) {
     const safeWeakest = escapeHtml(weakestEngine)
     const safeSource = escapeHtml(source)
     const engineRows = validEngines
-      .map((key) => `<tr><td style="padding:6px 0;color:#94a3b8;text-transform:capitalize;">${key}</td><td style="padding:6px 0;color:#ffffff;text-align:right;">${answers[key]}/4</td></tr>`)
+      .map(
+        (key) =>
+          `<tr><td style="padding:6px 0;color:#94a3b8;text-transform:capitalize;">${key}</td><td style="padding:6px 0;color:#ffffff;text-align:right;">${answers[key]}/4</td></tr>`
+      )
       .join('')
 
     await resend(`/audiences/${AUDIENCE_ID}/contacts`, {
