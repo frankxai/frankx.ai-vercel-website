@@ -28,6 +28,8 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.match(player, /src=\{track\.imageUrl\}/)
   assert.match(player, /href=\{track\.sunoUrl\}/)
   assert.match(player, /preload="metadata"/)
+  assert.match(player, /useState\\(\\(\\) => parseDuration\\(track\\.duration\\)\\)/)
+  assert.match(player, /nextDuration : currentDuration/)
   assert.doesNotMatch(player, /<iframe\b/)
   assert.match(homepage, /featuredTrack \?\? homepageFeaturedRelease/)
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
