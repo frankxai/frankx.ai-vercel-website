@@ -7,6 +7,7 @@ const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url
 test('the public homepage leads with ICP outcomes while retaining music as living proof', async () => {
   const page = await readRepoFile('app/page.tsx')
   const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+  const player = await readRepoFile('components/home/FeaturedTrackPlayer.tsx')
 
   assert.match(page, /import HomePageElite from '@\/components\/home\/HomePageElite'/)
   assert.match(page, /import \{ getPublishedBooks \} from '@\/app\/books\/lib\/books-registry'/)
@@ -20,8 +21,14 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.match(page, /How does music fit into FrankX\?/)
 
   assert.match(homepage, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
-  assert.match(homepage, /https:\/\/suno\.com\/embed\/\$\{track\.sunoId\}/)
-  assert.match(homepage, /loading="eager"/)
+  assert.match(homepage, /import \{ FeaturedTrackPlayer \} from '@\/components\/home\/FeaturedTrackPlayer'/)
+  assert.match(homepage, /<FeaturedTrackPlayer track=\{track\} \/>/)
+  assert.doesNotMatch(homepage, /suno\.com\/embed/)
+  assert.match(player, /src=\{track\.audioUrl\}/)
+  assert.match(player, /src=\{track\.imageUrl\}/)
+  assert.match(player, /href=\{track\.sunoUrl\}/)
+  assert.match(player, /preload="metadata"/)
+  assert.doesNotMatch(player, /<iframe\b/)
   assert.match(homepage, /featuredTrack \?\? homepageFeaturedRelease/)
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
   assert.doesNotMatch(homepage, /Music first\./)
@@ -40,6 +47,7 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.match(homepage, /Latest studio release · optional listening/)
   assert.match(homepage, /<MindPalaceAtlas \/>/)
   assert.doesNotMatch(homepage, /autoplay=(?:1|true)/i)
+  assert.doesNotMatch(player, /autoPlay/)
 })
 
 test('the long-form homepage cannot silently lose its restored rooms and glow cards', async () => {
@@ -75,6 +83,9 @@ test('the featured release stays human-reviewed instead of following the raw cat
   assert.match(release, /Raw Suno catalog entries must never replace this object automatically/)
   assert.match(release, /reviewedAt: '\d{4}-\d{2}-\d{2}'/)
   assert.match(release, /sunoId: '[0-9a-f-]+'/)
+  assert.match(release, /sunoUrl: 'https:\/\/suno\.com\/song\//)
+  assert.match(release, /audioUrl:\s*\n\s*'https:\/\/vbmwpibfe0yzx3fd\.public\.blob\.vercel-storage\.com\//)
+  assert.match(release, /imageUrl:\s*\n\s*'https:\/\/cdn2\.suno\.ai\//)
   assert.doesNotMatch(release, /Music is the first door/)
   assert.match(release, /one creative artifact among the architecture/)
 })
