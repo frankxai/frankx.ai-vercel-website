@@ -18,6 +18,13 @@ export type FeaturedTrackPlayerTrack = {
   studioNote: string
 }
 
+const parseDuration = (value: string) => {
+  const [minutes, seconds] = value.split(':').map(Number)
+  if (!Number.isFinite(minutes) || !Number.isFinite(seconds)) return 0
+
+  return minutes * 60 + seconds
+}
+
 const formatTime = (seconds: number) => {
   if (!Number.isFinite(seconds) || seconds < 0) return '0:00'
 
@@ -30,7 +37,7 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
+  const [duration, setDuration] = useState(() => parseDuration(track.duration))
   const [playbackError, setPlaybackError] = useState(false)
 
   const togglePlayback = async () => {
@@ -61,7 +68,9 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
   }
 
   const syncDuration = (nextDuration: number) => {
-    setDuration(Number.isFinite(nextDuration) && nextDuration > 0 ? nextDuration : 0)
+    setDuration((currentDuration) =>
+      Number.isFinite(nextDuration) && nextDuration > 0 ? nextDuration : currentDuration,
+    )
   }
 
   const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0
