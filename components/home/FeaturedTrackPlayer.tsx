@@ -89,7 +89,7 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
           sizes="(max-width: 1024px) 100vw, 48vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/20 via-[#0a0a0b]/45 to-[#0a0a0b]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-void/20 via-void/45 to-void" />
 
         {/* Original music; no spoken-word caption track applies. */}
         <audio
@@ -113,26 +113,26 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
 
         <div className="relative z-10 flex min-h-[300px] flex-col justify-between p-5 sm:min-h-[340px] sm:p-6 lg:min-h-[380px]">
           <div className="flex items-center justify-between gap-4">
-            <span className="rounded-full border border-white/15 bg-[#0a0a0b]/70 px-3 py-1.5 text-[11px] font-medium tracking-[0.08em] text-white/70">
+            <span className="rounded-full border border-white/15 bg-void/70 px-3 py-1.5 text-[11px] font-medium tracking-[0.08em] text-white/70">
               Latest studio release
             </span>
             <a
               href={track.sunoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-[#0a0a0b]/70 px-3 py-1.5 text-[11px] font-medium text-white/70 transition-colors hover:border-emerald-300/40 hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-void/70 px-3 py-1.5 text-[11px] font-medium text-white/70 transition-colors hover:border-emerald-300/40 hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
             >
               Open on Suno
               <ExternalLink className="h-3 w-3" aria-hidden="true" />
             </a>
           </div>
 
-          <div className="rounded-[1.75rem] border border-white/10 bg-[#0a0a0b]/85 p-4 sm:p-5">
+          <div className="rounded-[1.75rem] border border-white/10 bg-void/85 p-4 sm:p-5">
             <div className="flex items-center gap-4">
               <button
                 type="button"
                 onClick={togglePlayback}
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-[#07110d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
                 aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
               >
                 {isPlaying ? (
@@ -177,7 +177,7 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
             </div>
 
             {playbackError ? (
-              <p className="mt-3 text-xs text-amber-200/80">
+              <p role="status" aria-live="polite" className="mt-3 text-xs text-amber-200/80">
                 Playback could not start here. The verified Suno source remains available above.
               </p>
             ) : null}
