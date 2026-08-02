@@ -12,6 +12,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
+import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
 // ============================================================================
@@ -37,7 +38,9 @@ interface FeaturedTrackData {
   id: string
   title: string
   sunoId: string
+  sunoUrl: string
   audioUrl: string
+  imageUrl: string
   genre: string[]
   duration: string
   kicker: string
@@ -147,45 +150,7 @@ function AuroraBackground() {
 // ============================================================================
 
 function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
-  return (
-    <GlowCard color="emerald" className="overflow-hidden p-0">
-      {/* Suno embed — shows cover art, title, waveform + controls */}
-      <div id="studio-release" className="overflow-hidden rounded-2xl">
-        <iframe
-          src={`https://suno.com/embed/${track.sunoId}`}
-          className="h-[300px] w-full sm:h-[340px] lg:h-[380px]"
-          style={{ border: 'none' }}
-          allow="autoplay; clipboard-write"
-          loading="eager"
-          title={track.title}
-          sandbox="allow-scripts allow-same-origin"
-        />
-      </div>
-
-      <div className="border-t border-white/[0.07] px-5 py-4">
-        <div className="flex items-start justify-between gap-5">
-          <div>
-            <p className="text-[11px] font-semibold tracking-[0.08em] text-emerald-300/60">
-              {track.kicker}
-            </p>
-            <p className="mt-2 max-w-md text-xs leading-5 text-white/60">{track.studioNote}</p>
-          </div>
-          <span className="shrink-0 font-mono text-[10px] text-white/60">{track.duration}</span>
-        </div>
-
-        <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3">
-          <span className="text-[11px] text-white/60">{track.genre.join(' · ')}</span>
-          <Link
-            href="/music"
-            className="inline-flex items-center gap-1.5 text-xs text-white/60 transition-colors hover:text-emerald-300"
-          >
-            Enter Music
-            <ArrowRight className="h-3 w-3" />
-          </Link>
-        </div>
-      </div>
-    </GlowCard>
-  )
+  return <FeaturedTrackPlayer track={track} />
 }
 
 // ============================================================================
