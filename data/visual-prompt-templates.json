@@ -33,6 +33,10 @@
             "dark-premium-glass:davinci-dark",
             "dark-premium-glass:cinematic-studio",
             "dark-premium-glass:holographic-command",
+            "infogenius-blueprint",
+            "tactile-analog-studio",
+            "minimal-industrial-model",
+            "editorial-magazine",
             "davinci-codex",
             "light-workshop"
           ],
@@ -119,7 +123,7 @@
           "type": "string",
           "required": true,
           "description": "What to explicitly exclude. Always include standard anti-patterns.",
-          "default": "clay, claymorphic, pastel colors, cartoon, cute, toy, Play-Doh, bright white background, childish, emoji, flat icons, clip art, generic brain illustration, oversaturated single color, stock photo, watermark, blurry text, chrome robot, sterile, cold metallic without organic warmth"
+          "default": "floating glass orb, generic 3D sphere, glowing purple particle cloud, sci-fi stock slop, clay, claymorphic, pastel colors, cartoon, cute, toy, Play-Doh, bright white background, childish, emoji, flat icons, clip art, generic brain illustration, oversaturated single color, stock photo, watermark, blurry text, chrome robot, sterile, cold metallic without organic warmth"
         }
       }
     },
