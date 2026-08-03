@@ -129,6 +129,7 @@
     "journal:new": "node scripts/new-journal-entry.mjs"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
     "@mdx-js/loader": "^3.1.0",
@@ -163,12 +164,12 @@
     "framer-motion": "^11.15.0",
     "fuse.js": "^7.3.0",
     "glob": "^10.5.0",
-    "@gsap/react": "^2.1.2",
-    "lenis": "^1.1.18",
     "gray-matter": "^4.0.3",
     "isomorphic-dompurify": "^2.35.0",
+    "lenis": "^1.1.18",
     "lucide-react": "^0.468.0",
     "lunr": "^2.3.9",
+    "maplibre-gl": "^5.24.0",
     "marked": "12.0.2",
     "mermaid": "^11.16.0",
     "next": "^16.1.6",

@@ -1,0 +1,282 @@
+{
+  "city": "Zadar & Split",
+  "country": "Croatia",
+  "generated": "2026-07-13",
+  "source_register": "https://startupecosystem.hr/",
+  "doctrine": "Buy people, not desks. Dalmatian sun is free, office is utility.",
+  "decision_matrix": {
+    "scale": "0 to 5",
+    "weights": {
+      "ai_deeptech_fit": 3,
+      "music_creative_fit": 2,
+      "cost_efficiency": 2,
+      "free_low_commitment": 2,
+      "events_density": 2,
+      "global_travel_value": 1,
+      "enterprise_credibility": 1
+    },
+    "max_score": 65,
+    "candidates": [
+      {
+        "name": "Code Hub Zadar",
+        "ai_deeptech_fit": 3,
+        "music_creative_fit": 2,
+        "cost_efficiency": 5,
+        "free_low_commitment": 5,
+        "events_density": 3,
+        "global_travel_value": 2,
+        "enterprise_credibility": 1,
+        "total": 47,
+        "tier": "free_start_immediately",
+        "note": "Unbeatable €0 price, student developer energy"
+      },
+      {
+        "name": "The Works Split",
+        "ai_deeptech_fit": 3,
+        "music_creative_fit": 3,
+        "cost_efficiency": 3,
+        "free_low_commitment": 4,
+        "events_density": 4,
+        "global_travel_value": 4,
+        "enterprise_credibility": 3,
+        "total": 45,
+        "tier": "pay_now_matrix_winner",
+        "note": "Top nomad-builder connection point in Split"
+      },
+      {
+        "name": "COIN Coworking Zadar",
+        "ai_deeptech_fit": 2,
+        "music_creative_fit": 2,
+        "cost_efficiency": 4,
+        "free_low_commitment": 3,
+        "events_density": 3,
+        "global_travel_value": 3,
+        "enterprise_credibility": 3,
+        "total": 36,
+        "tier": "pay_now_matrix_winner",
+        "note": "Best overall office work setup in Zadar"
+      },
+      {
+        "name": "WIP Coworking Split",
+        "ai_deeptech_fit": 2,
+        "music_creative_fit": 2,
+        "cost_efficiency": 3,
+        "free_low_commitment": 3,
+        "events_density": 3,
+        "global_travel_value": 4,
+        "enterprise_credibility": 2,
+        "total": 33,
+        "tier": "secondary_option",
+        "note": "Znjan beach location, good call booths"
+      }
+    ]
+  },
+  "recommended_tiers": {
+    "free_start_immediately": [
+      "Code Hub Zadar"
+    ],
+    "pay_now_matrix_winner": [
+      "COIN Coworking Zadar",
+      "The Works Split"
+    ]
+  },
+  "uva_science_park_cluster": [
+    {
+      "name": "Digital Dalmatia Hub",
+      "type": "Regional Tech Hub",
+      "focus": "IT/Developer support",
+      "notes": "County-backed organization funding developer bootcamps and startup incubations.",
+      "source": "digitaldalmatia.com"
+    },
+    {
+      "name": "Innovative Zadar (InZad)",
+      "type": "Public Incubator",
+      "focus": "Hardware/IT Spinouts",
+      "notes": "Offers subsidized offices and access to maker tools in Zadar's Bili Brig area.",
+      "source": "inzad.hr"
+    }
+  ],
+  "demonstrator_lab": {
+    "what": "Innovative Zadar Incubator Program",
+    "eligibility_gate": "Open to technology startups and digital nomads in Zadar County.",
+    "locations": [
+      {
+        "campus": "Bili Brig",
+        "address": "Put Murvice 16, 23000 Zadar"
+      }
+    ],
+    "application_process": [
+      "Submit application outlining innovation",
+      "Pitch presentation to selection committee"
+    ],
+    "stages": {
+      "Incubation": {
+        "duration": "6 months",
+        "focus": "MVP building and pilot test launch"
+      }
+    },
+    "track_record": {
+      "active_projects_at_a_time": 15,
+      "pct_become_bv": 40,
+      "notes": "Subsidized offices and workspace access for up to 3 years."
+    },
+    "cost": "Subsidized",
+    "not_a_workspace_choice": "Must remain enrolled in incubation milestone tracking",
+    "recruiting_playbook_for_qualifying_teammate": [
+      "Target University of Zadar student boards",
+      "Engage with Split Tech City network channels"
+    ],
+    "open_question": "How to sustain local software developer retention beyond seasonal tourism?",
+    "upcoming_event": {
+      "name": "InZad Demo Day 2026",
+      "date": "Oct 15, 2026",
+      "time": "18:00",
+      "location": "InZad Hub, Zadar",
+      "cost": "Free",
+      "open_to_non_affiliates": true
+    },
+    "sources": [
+      "Innovative Zadar website"
+    ]
+  },
+  "adam_toren": {
+    "public_venues_no_membership_needed": [
+      {
+        "name": "Znjan Beach cafes",
+        "type": "Beachfront work spots",
+        "location": "Znjan, Split"
+      }
+    ],
+    "coworking_membership": {
+      "operator": "The Works Split",
+      "flex_desk_eur_month": 180,
+      "flex_min_commitment": "1 month",
+      "dedicated_desk_eur_month": 250,
+      "dedicated_min_commitment": "3 months",
+      "includes": [
+        "24/7 Access",
+        "Fast Wi-Fi",
+        "Meeting room allocation"
+      ],
+      "source": "theworks.rocks"
+    },
+    "confirmed_tenants": [
+      {
+        "name": "Split Tech City",
+        "status": "Community Partner",
+        "focus": "Split tech ecosystem coordination & meetups",
+        "collab_angle": "Host joint workshops for local freelancers"
+      }
+    ]
+  },
+  "free_circuit": [
+    {
+      "name": "Code Hub Zadar",
+      "address": "Ulica dr. Franje Tudmana 24D",
+      "cost": "Free",
+      "hours": "08:00 - 20:00",
+      "notes": "University-backed, zero cost default workspace in Zadar."
+    },
+    {
+      "name": "Split University Library",
+      "address": "Rudera Boskovica 31",
+      "cost": "Free",
+      "hours": "08:00 - 22:00",
+      "notes": "Spacious, modern study halls in Split 3 student area."
+    }
+  ],
+  "events_rail": [
+    {
+      "name": "Digital Dalmatia StartIT",
+      "cadence": "Annual",
+      "notes": "The primary startup bootcamp and pitching contest for Dalmatian ventures."
+    },
+    {
+      "name": "Split Tech City Meetups",
+      "cadence": "Monthly",
+      "notes": "Excellent community-led networking events connecting local devs, expats, and nomads."
+    }
+  ],
+  "spaces": [
+    {
+      "name": "COIN Coworking Zadar",
+      "address": "Put Murvice 14, 23000 Zadar",
+      "model": "Member",
+      "notes": "The central professional coworking hub of Zadar. Mix of open desks, dedicated desks, and private offices. Meeting rooms and lounge areas.",
+      "price": "from €150/mo",
+      "district": "Zadar",
+      "latitude": 44.1090782,
+      "longitude": 15.2393763
+    },
+    {
+      "name": "Code Hub Zadar",
+      "address": "Ulica dr. Franje Tudmana 24D, 23000 Zadar",
+      "model": "Free",
+      "notes": "University of Zadar student/freelancer hub. Free-to-use collaborative workspace equipped with fast internet and modular tables.",
+      "price": "Free",
+      "district": "Zadar",
+      "latitude": 44.1130682,
+      "longitude": 15.237854
+    },
+    {
+      "name": "InZad Incubator",
+      "address": "Bili Brig, 23000 Zadar",
+      "model": "Member",
+      "notes": "City-supported startup incubator managed by Innovative Zadar. Office units and coworking spaces, plus maker tools like 3D printers.",
+      "price": "subsidized",
+      "district": "Zadar",
+      "latitude": 44.121464,
+      "longitude": 15.256367
+    },
+    {
+      "name": "The Works Split",
+      "address": "Ulica slobode 37, 21000 Split",
+      "model": "Member",
+      "notes": "Premium 24/7 coworking space in Split, very popular among remote workers. Full amenities, meeting rooms, and active community events.",
+      "price": "from €180/mo",
+      "district": "Split",
+      "latitude": 43.5151586,
+      "longitude": 16.4482493
+    },
+    {
+      "name": "WIP Coworking Split",
+      "address": "Velebitska ulica 147, 21000 Split",
+      "model": "Member",
+      "notes": "Beachfront-oriented coworking near Znjan beach. Features modern call booths, silent zones, and strong digital nomad network.",
+      "price": "from €200/mo",
+      "district": "Split",
+      "latitude": 43.5035398,
+      "longitude": 16.4766501
+    },
+    {
+      "name": "Amosfera Coworking Split",
+      "address": "Rudera Boskovica 20, 21000 Split",
+      "model": "Member",
+      "notes": "Split 3 student district coworking. High community focus, connected to local non-profit and educational networks.",
+      "price": "on request",
+      "district": "Split",
+      "latitude": 43.5081417,
+      "longitude": 16.4674638
+    },
+    {
+      "name": "Scaleup Office Split",
+      "address": "Put Brodarice 6, 21000 Split",
+      "model": "Member",
+      "notes": "Modern business center offering shared desks, private offices, and state-of-the-art conference rooms near Jokey center.",
+      "price": "from €150/mo",
+      "district": "Split",
+      "latitude": 43.5201505,
+      "longitude": 16.4466599
+    },
+    {
+      "name": "Smartspace Split",
+      "address": "Tonciceva ulica 3, 21000 Split",
+      "model": "Hourly",
+      "notes": "Intimate boutique workspace and gallery in the heart of Split Old Town. Great for workshops, hourly drops, or creative meetings.",
+      "price": "hourly / daily",
+      "district": "Split",
+      "latitude": 43.5097,
+      "longitude": 16.4385
+    }
+  ]
+}

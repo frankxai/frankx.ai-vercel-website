@@ -1,18 +1,18 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 861,
-    "aliases": 49,
+    "total": 864,
+    "aliases": 50,
     "byType": {
       "core": 22,
-      "section": 401,
+      "section": 405,
       "community": 17,
       "tool": 54,
       "static": 15,
       "blog": 214,
       "workshop": 12,
       "guide": 23,
-      "library": 57,
+      "library": 56,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
@@ -4448,6 +4448,14 @@
       "type": "section"
     },
     {
+      "href": "/ecosystems",
+      "title": "Ecosystems",
+      "tags": [
+        "ecosystems"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/enterprise",
       "title": "Enterprise",
       "tags": [
@@ -5617,14 +5625,15 @@
     },
     {
       "href": "/library/handbook-to-higher-consciousness",
-      "title": "Handbook to Higher Consciousness — Complete System Map",
+      "title": "Handbook TO Higher Consciousness",
       "tags": [
-        "ken-keyes",
-        "consciousness",
-        "living-love",
-        "non-attachment"
+        "library",
+        "handbook",
+        "to",
+        "higher",
+        "consciousness"
       ],
-      "type": "library"
+      "type": "section"
     },
     {
       "href": "/library/how-music-works",
@@ -6689,6 +6698,28 @@
       "type": "section"
     },
     {
+      "href": "/mvu/expert-authority",
+      "title": "Expert Authority",
+      "tags": [
+        "mvu",
+        "expert",
+        "authority"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/mvu/expert-authority/insights",
+      "title": "Insights",
+      "tags": [
+        "mvu",
+        "expert",
+        "authority",
+        "insights"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
       "href": "/mvu/lab",
       "title": "Lab",
       "tags": [
@@ -7050,17 +7081,6 @@
         "nvidia"
       ],
       "type": "partnership"
-    },
-    {
-      "href": "/partnerships/van-ede",
-      "title": "Van Ede",
-      "tags": [
-        "partnerships",
-        "van",
-        "ede"
-      ],
-      "type": "section",
-      "sitemap": false
     },
     {
       "href": "/partnerships/vercel",
@@ -8464,6 +8484,14 @@
       "type": "workshop"
     },
     {
+      "href": "/workspace",
+      "title": "Workspace",
+      "tags": [
+        "workspace"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/year-of-the-fire-horse",
       "title": "Year OF The Fire Horse",
       "tags": [
@@ -8544,6 +8572,7 @@
     "/llm-hub": "/ai-ops/models-2026",
     "/mindvalley-university": "/mvu",
     "/mindvalleyuniversity": "/mvu",
+    "/mvu/breathwork-dan-brule": "/mvu/dan-brule-breathwork",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
     "/signal": "/ai-architecture",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
