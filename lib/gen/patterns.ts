@@ -86,6 +86,19 @@ export const promptPatterns: PromptPattern[] = [
     provenance: 'frankx-original',
   },
   {
+    id: 'hero-infogenius-blueprint-web',
+    name: 'InfoGenius CAD blueprint hero',
+    useCase: 'hero',
+    format: 'web-wide',
+    laneId: 'infogenius-blueprint',
+    template:
+      '## CONCEPT\nHigh-precision CAD schematic blueprint for {subject}.\n## SCENE\n{context}\n## COMPOSITION\nStructural CAD diagram with concentric ring nodes and modular circuit blocks on fine 1px grid lines.\n## LIGHTING\nFlat ultra-clean studio lighting, high-contrast crisp edge clarity, zero shiny 3D plastic.',
+    recommendedBackend: 'infogenius',
+    aspectRatio: ASPECT['web-wide'],
+    imageSize: '2K',
+    provenance: 'frankx-original',
+  },
+  {
     id: 'social-card-anime-square',
     name: 'Anime social card',
     useCase: 'social-card',

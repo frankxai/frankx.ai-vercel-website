@@ -21,6 +21,7 @@ export type LaneId =
   | 'cinematic'
   | 'noir-tech'
   | 'studio-organic'
+  | 'infogenius-blueprint'
 
 export interface LaneReference {
   name: string
@@ -308,6 +309,46 @@ export const aestheticLanes: AestheticLane[] = [
     ],
     bestBackends: ['infogenius', 'higgsfield', 'fal'],
     bestFor: ['About/personal pages', 'Music studio content', 'Workshop warmth', 'Lifestyle social'],
+  },
+  {
+    id: 'infogenius-blueprint',
+    name: 'InfoGenius CAD Blueprint',
+    spectrum: 'tech',
+    essence:
+      'Architectural CAD precision — dark matte slate, crisp white and emerald hairlines, technical typography, zero 3D sci-fi stock slop.',
+    references: [
+      { name: 'Vercel Architecture & Infrastructure Diagrams', why: 'Technical precision presented as architectural inevitability.' },
+      { name: 'Stripe Press / Engineering System Schematics', why: 'Crisp vector grid alignment with high editorial legibility.' },
+      { name: 'Teenage Engineering CAD Blueprints', why: 'Tactile mechanical precision, micro-dimensioning, restrained elegance.' },
+    ],
+    palette: { base: '#0a0a0b', accents: ['#10b981', '#f59e0b', '#38bdf8'], ink: '#F5F5F7' },
+    lighting: 'flat ultra-clean studio light, high-contrast crisp edge clarity, zero lens flare, zero motion blur',
+    composition: 'structural CAD diagram, concentric ring nodes, interlocking module blocks, precise 1px grid alignment',
+    texture: 'dark matte slate background with subtle 1px dimensioning grid, crisp vector hairlines, zero shiny 3D plastic',
+    promptFragments: [
+      'technical CAD schematic blueprint, architectural system diagram',
+      'dark matte slate #0a0a0b void stage with fine 1px grid lines',
+      'concentric structural ring nodes and modular circuit blocks',
+      'precision white hairlines with micro-hits of emerald and warm amber',
+      'clean authoritative engineering illustration, magazine-grade resolution',
+    ],
+    negativePrompt:
+      'floating glass sphere, generic 3D orb, sci-fi stock slop, glowing purple particle cloud, cartoon, anime, claymorphic, shiny plastic 3D render, blurry lines, watermark',
+    refusals: [
+      'Generic 3D floating spheres or abstract glass balls',
+      'Sci-fi stock slop particle clouds or generic glowing wireframe gears',
+      'Soft shiny plastic 3D renders with oversaturated gradients',
+      'Illegible decorative text or blurred technical lines',
+    ],
+    qualityBar: [
+      'System architecture is depicted as crisp CAD modules or structural nodes',
+      'Background is dark matte slate (#0a0a0b) with fine 1px grid lines',
+      'No generic 3D floating glass orbs or particle clouds',
+      'Line quality is ultra-crisp with high-contrast studio clarity',
+      'Reads like a Vercel / Stripe engineering architectural schematic',
+    ],
+    bestBackends: ['infogenius', 'gpt-image-2', 'fal'],
+    bestFor: ['Architecture diagrams', 'Systems blog heroes', 'Technical guides', 'Infographics'],
   },
 ]
 
