@@ -37,6 +37,10 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
+          # setup-node defaults package-manager-cache to true, sees
+          # packageManager: pnpm in package.json, and then fails looking for a
+          # pnpm binary this job deliberately never installs.
+          package-manager-cache: false
 
       # No install step on purpose — the check uses only node builtins and git,
       # so it returns a verdict in seconds rather than after a dependency install.
