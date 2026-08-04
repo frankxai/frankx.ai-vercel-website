@@ -4,7 +4,7 @@ import { useState, FormEvent } from 'react'
 
 /**
  * Native RSVP for the MVU lab — hosted entirely on frankx.ai, no third-party
- * event tool. Posts to /api/subscribe (mvu-tallinn-2026), which segments the
+ * event tool. Posts to /api/subscribe (mvu-porto-2027), which segments the
  * contact, records the intention, and emails Frank for the by-hand approval.
  *
  * The intention line is the point: asking someone to name what they want to
@@ -29,7 +29,7 @@ export function LabRsvp({ confirmed }: { confirmed: boolean }) {
           email,
           name,
           intention,
-          listType: 'mvu-tallinn-2026',
+          listType: 'mvu-porto-2027',
           source: 'mvu-lab-page',
         }),
       })

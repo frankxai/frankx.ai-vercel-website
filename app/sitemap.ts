@@ -634,14 +634,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // MVU journey hub + event page + journal entries
   entries.push(
-    { url: `${BASE_URL}/mvu`, lastModified: currentDate, changeFrequency: 'daily', priority: 0.8 },
-    { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/mvu`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.7 },
   )
+  // Tallinn is closed; these entries are a finished archive, not a live feed.
   mvuEntries.forEach(entry => {
     entries.push({
       url: `${BASE_URL}/mvu/${entry.slug}`,
       lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
-      changeFrequency: 'weekly',
+      changeFrequency: 'yearly',
       priority: 0.6,
     })
   })

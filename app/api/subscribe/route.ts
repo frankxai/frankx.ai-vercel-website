@@ -36,6 +36,7 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'ikigai-branding': { topics: [TOPICS.newsletter] },
   'premium-packs': { topics: [TOPICS.newsletter, TOPICS['product-updates']] },
   'mvu-tallinn-2026': { topics: [TOPICS.newsletter] },
+  'mvu-porto-2027': { topics: [TOPICS.newsletter] },
   all: { topics: [TOPICS.newsletter, TOPICS['music-suno'], TOPICS['product-updates']] },
 }
 
@@ -99,11 +100,12 @@ async function sendWelcomeEmail(
 ) {
   if (!RESEND_API_KEY) return
 
-  // Native RSVP for the Tallinn lab (frankx.ai/mvu/lab). Plain text — it lands
-  // right after a personal decision, and it echoes the person's own words back.
-  // The RSVP also pings Frank directly for the by-hand approve/decline call,
-  // since he's at a summit and won't be watching a dashboard.
-  if (listType === 'mvu-tallinn-2026') {
+  // Native RSVP for the independent MVU lab (frankx.ai/mvu/lab). Plain text —
+  // it lands right after a personal decision, and it echoes the person's own
+  // words back. The RSVP also pings Frank directly for the by-hand
+  // approve/decline call. 'mvu-tallinn-2026' stays routed so the 2026
+  // registrations already in the list keep resolving.
+  if (listType === 'mvu-porto-2027' || listType === 'mvu-tallinn-2026') {
     const confirmation = mvuRsvpConfirmation({ name, intention })
     await sendEmail({ to: email, subject: confirmation.subject, text: confirmation.plainText })
 

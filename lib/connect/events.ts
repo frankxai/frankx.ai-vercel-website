@@ -40,6 +40,16 @@ export const CONNECT_EVENTS: ConnectEvent[] = [
     accent: 'violet',
     location: 'Tallinn',
   },
+  // Dates per mindvalley.com/u. Same participant framing as Tallinn.
+  {
+    id: 'mindvalley-u-2027',
+    label: 'Mindvalley University',
+    shortLabel: 'Mindvalley U',
+    start: '2027-07-12',
+    end: '2027-08-18',
+    accent: 'violet',
+    location: 'Porto',
+  },
 ]
 
 function inWindow(now: Date, startISO: string, endISO: string): boolean {
