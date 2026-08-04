@@ -77,9 +77,10 @@ test('connect schema describes the page without claiming third-party events', as
 })
 
 test('primary spine keeps verified contrast and scroll-region failures closed', async () => {
-  const [homepage, start, blog, blogCard, carousel, journal, mvu, mdx] = await Promise.all(
+  const [homepage, player, start, blog, blogCard, carousel, journal, mvu, mdx] = await Promise.all(
     [
       'components/home/HomePageElite.tsx',
+      'components/home/FeaturedTrackPlayer.tsx',
       'app/start/page.tsx',
       'app/blog/BlogPageClient.tsx',
       'components/blog/BlogCard.tsx',
@@ -91,7 +92,8 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
   )
 
   assert.match(homepage, /bg-emerald-500 hover:bg-emerald-600 text-black/)
-  assert.match(homepage, /max-w-md text-xs leading-5 text-white\/60/)
+  // The studio note moved into FeaturedTrackPlayer in #416; assert where it lives.
+  assert.match(player, /max-w-md text-xs leading-5 text-white\/60/)
   assert.match(start, /bg-emerald-400 px-6 py-3 text-sm font-semibold text-\[#07120d\]/)
   assert.match(start, /tracking-\[0\.24em\] text-emerald-300\/80/)
   assert.match(blog, /bg-emerald-500 hover:bg-emerald-600 text-black/)

@@ -157,6 +157,11 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // HERO
 // ============================================================================
 
+// The rotating verb lives inside the H1 — one moving element in the hero, not two.
+// Serif italic on a two-stop emerald→cyan wash is the premium tell; the outcome
+// sentences below sit static so the eye has somewhere to land.
+const heroVerbs = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
+
 const heroOutcomes = [
   'Explore your highest-leverage AI move.',
   'Architect your AI operating system.',
@@ -167,7 +172,7 @@ const heroOutcomes = [
 
 const subscribeToHydration = () => () => undefined
 
-function RotatingHeroOutcome() {
+function RotatingHeroVerb() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const shouldReduceMotion = useReducedMotion()
@@ -181,49 +186,49 @@ function RotatingHeroOutcome() {
     if (!hasHydrated || shouldReduceMotion || isPaused) return
 
     const interval = window.setInterval(() => {
-      setCurrentIndex((index) => (index + 1) % heroOutcomes.length)
+      setCurrentIndex((index) => (index + 1) % heroVerbs.length)
     }, 3200)
 
     return () => window.clearInterval(interval)
   }, [hasHydrated, isPaused, shouldReduceMotion])
 
+  const verbClassName =
+    'bg-gradient-to-r from-emerald-200 to-cyan-200 bg-clip-text font-serif italic font-normal tracking-[-0.02em] text-transparent'
+
   if (!hasHydrated || shouldReduceMotion) {
     return (
-      <span className="mt-5 block max-w-2xl bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl" aria-hidden="true">
-        {heroOutcomes[0]}
+      <span className={verbClassName} aria-hidden="true">
+        {heroVerbs[0]}
       </span>
     )
   }
 
   return (
-    <div className="mt-5 flex max-w-2xl items-start gap-3">
-      <span
-        className="relative block min-h-[2.3em] flex-1 overflow-hidden bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl"
-        aria-hidden="true"
-      >
+    <span className="relative inline-flex items-baseline gap-3">
+      <span className="relative inline-block overflow-hidden align-bottom" aria-hidden="true">
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
-            key={heroOutcomes[currentIndex]}
-            className="block"
-            initial={{ opacity: 0, y: '58%' }}
+            key={heroVerbs[currentIndex]}
+            className={`inline-block ${verbClassName}`}
+            initial={{ opacity: 0, y: '55%' }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '-42%' }}
+            exit={{ opacity: 0, y: '-45%' }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            {heroOutcomes[currentIndex]}
+            {heroVerbs[currentIndex]}
           </motion.span>
         </AnimatePresence>
       </span>
       <button
         type="button"
         onClick={() => setIsPaused((paused) => !paused)}
-        className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition-colors hover:border-emerald-200/30 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+        className="inline-flex h-7 w-7 shrink-0 translate-y-[-0.35em] items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/40 transition-colors hover:border-emerald-200/30 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
         aria-label={isPaused ? 'Play changing headline' : 'Pause changing headline'}
         aria-pressed={isPaused}
       >
-        {isPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+        {isPaused ? <Play className="h-3 w-3" aria-hidden="true" /> : <Pause className="h-3 w-3" aria-hidden="true" />}
       </button>
-    </div>
+    </span>
   )
 }
 
@@ -242,8 +247,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <h1
                 className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
+                aria-label="Building intelligence that compounds."
               >
-                Turn AI capability into an operating advantage.
+                <RotatingHeroVerb /> intelligence
+                <br />
+                that compounds.
               </h1>
 
               <span className="sr-only">
@@ -251,7 +259,9 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 your AI Center of Excellence, orchestrate agents around real work, and ship products
                 that compound.
               </span>
-              <RotatingHeroOutcome />
+              <p className="mt-5 max-w-2xl text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-white/80 sm:text-3xl">
+                {heroOutcomes[0]}
+              </p>
 
               <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
                 FrankX is the working studio for founders, creators, and AI leaders building an AI

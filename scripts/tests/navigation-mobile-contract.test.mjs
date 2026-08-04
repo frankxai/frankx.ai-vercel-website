@@ -43,10 +43,51 @@ test('desktop and mobile navigation expose the workspace authorship model', asyn
   assert.match(navigation, /Public agentic workspace/)
   assert.match(navigation, /label: 'Workspace'/)
   assert.match(navigation, /Source → agents → Frank → artifact/)
-  assert.match(navigation, /const desktopSections: NavKey\[\] = \['explore', 'build', 'learn', 'gencreators'\]/)
+  assert.match(navigation, /const desktopSections: NavKey\[\] = \['explore', 'build', 'learn', 'gencreators', 'music'\]/)
   assert.doesNotMatch(navigation, /router\.push/)
 
   assert.match(overlay, /Public agentic workspace/)
   assert.match(overlay, /Source material, specialist passes, Frank’s decision, public artifact/)
   assert.match(overlay, /How Frank and the agent team build in public/)
+})
+
+// PR #409 collapsed the nav to four doors and set the logo tagline in all-caps
+// mono without being asked. Both are Frank's calls, so they are pinned here.
+test('site chrome keeps Music as its own door and never sets the logo tagline in caps', async () => {
+  const navigation = await readRepoFile('components/NavigationMega.tsx')
+  const overlay = await readRepoFile('components/MobileNavOverlay.tsx')
+
+  assert.match(navigation, /label: 'Music'/)
+  assert.match(overlay, /key: 'music'/)
+
+  for (const [name, source] of [
+    ['NavigationMega', navigation],
+    ['MobileNavOverlay', overlay],
+  ]) {
+    const taglineClasses = source.match(/className="([^"]*)"\s*>\s*\n?\s*Public agentic workspace/)?.[1] ?? ''
+    assert.doesNotMatch(taglineClasses, /uppercase/, `${name} logo tagline must not be all-caps`)
+    assert.match(taglineClasses, /font-serif/, `${name} logo tagline must use the serif`)
+  }
+})
+
+// Routes #409 orphaned by dropping them from the menu. They all still exist, so
+// unlinking them only made them unreachable.
+test('the workspace door still reaches the routes #409 orphaned', async () => {
+  const navigation = await readRepoFile('components/NavigationMega.tsx')
+
+  for (const href of [
+    '/intelligence-atlas',
+    '/starlight-intelligence-system',
+    '/acos',
+    '/resources',
+    '/downloads',
+    '/vault',
+    '/magic',
+    '/bio',
+    '/media-kit',
+    '/licensing',
+    '/contact',
+  ]) {
+    assert.ok(navigation.includes(`href: '${href}'`), `navigation must link ${href}`)
+  }
 })

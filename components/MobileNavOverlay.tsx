@@ -36,6 +36,10 @@ import {
   Play,
   Zap,
   ArrowRight,
+  Wand2,
+  Star,
+  Brain,
+  Download,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -61,9 +65,28 @@ type NavSection = {
   items: NavItem[]
 }
 
-type SectionKey = 'gencreators' | 'learn' | 'build' | 'explore'
+type SectionKey = 'gencreators' | 'learn' | 'build' | 'explore' | 'music'
 
 const sections: NavSection[] = [
+  {
+    key: 'music',
+    label: 'Music',
+    icon: Music,
+    tagline: 'The catalog, the method, the school',
+    featured: {
+      title: 'AI Music Portfolio',
+      description: '12,000+ songs created with Suno AI.',
+      href: '/music',
+      badge: '12K+ Tracks',
+    },
+    items: [
+      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
+      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
+      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory through production' },
+      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
+    ],
+  },
   {
     key: 'gencreators',
     label: 'Create',
@@ -153,13 +176,25 @@ const sections: NavSection[] = [
     items: [
       { name: 'Workspace', href: '/workspace', icon: Workflow, description: 'The source-to-artifact workflow' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
       { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
+      { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
+      { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
       { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status' },
+      { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
+      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
+      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
+      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
       { name: 'Partnerships', href: '/partnerships', icon: Users, description: 'Systems built around real missions' },
       { name: 'Journal', href: '/journal', icon: PenLine, description: 'Notes from work in progress' },
       { name: 'About Frank', href: '/about', icon: Users, description: 'Person, principles, and boundaries' },
+      { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
+      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
+      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
       { name: 'Connect', href: '/connect', icon: Compass, description: 'Bring a real question' },
+      { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
   },
 ]
@@ -276,7 +311,7 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
               <span className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-[17px] font-semibold tracking-tight text-transparent">
                 FrankX.AI
               </span>
-              <span className="font-mono text-[8px] font-medium uppercase tracking-[0.14em] text-emerald-300/60">
+              <span className="font-serif text-[12px] italic leading-none text-white/40">
                 Public agentic workspace
               </span>
             </Link>

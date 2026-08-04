@@ -200,7 +200,7 @@ export default function Footer() {
           {/* Nav columns */}
           {NAV_COLUMNS.map((col) => (
             <nav key={col.label} aria-label={col.label}>
-              <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/50 mb-3 sm:mb-4">
+              <h3 className="font-serif text-sm sm:text-base italic text-white/50 mb-3 sm:mb-4">
                 {col.label}
               </h3>
               <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">

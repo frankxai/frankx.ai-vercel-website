@@ -23,6 +23,9 @@ import {
   Layers,
   ArrowRight,
   ExternalLink,
+  Wand2,
+  Star,
+  Brain,
   Network,
   Microscope,
   Building,
@@ -42,9 +45,26 @@ import {
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
 
-// Four primary doors keep the workspace legible. The long-form archive, journal,
-// music, and other deep routes remain available inside the relevant menu.
+// Five doors. Music is its own door because the catalog is primary work, not a
+// sub-item of Create — #409 demoted it and that was never Frank's call.
 const navigation = {
+  music: {
+    label: 'Music',
+    href: '/music',
+    featured: {
+      title: 'AI Music Portfolio',
+      description: '12,000+ songs created with Suno AI. Explore the catalog.',
+      href: '/music',
+      badge: '12K+ Tracks',
+    },
+    items: [
+      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
+      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
+      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Full curriculum: theory to production' },
+      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
+    ],
+  },
   gencreators: {
     label: 'Create',
     href: '/gencreator',
@@ -144,28 +164,43 @@ const navigation = {
     items: [
       { name: 'Workspace', href: '/workspace', icon: Workflow, description: 'Source → agents → Frank → artifact' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
       { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
       { name: 'Essays', href: '/blog', icon: BookOpen, description: 'Researched articles and systems' },
+      { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
+      { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
       { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status' },
       { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
+      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
+      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
+      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
       { name: 'Partnerships', href: '/partnerships', icon: Users, description: 'Systems built around real missions' },
       { name: 'Journal', href: '/journal', icon: Scroll, description: 'Short notes from work in progress' },
       { name: 'About Frank', href: '/about', icon: Users, description: 'Person, principles, and boundaries' },
+      { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
+      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
+      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
       { name: 'Connect', href: '/connect', icon: Compass, description: 'Bring a real question' },
+      { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
       {
         label: 'Current work',
-        items: ['Workspace', 'Research', 'Library', 'Guides', 'Essays'],
+        items: ['Workspace', 'Research', 'Intelligence Atlas', 'Library', 'Guides', 'Essays'],
       },
       {
-        label: 'The system',
-        items: ['Agent Catalog', 'Design System'],
+        label: 'Systems & products',
+        items: ['Starlight IS', 'ACOS', 'Agent Catalog', 'Design System', 'Resource Hub', 'Downloads'],
+      },
+      {
+        label: 'Worlds',
+        items: ['ArcaneaVault', 'Arcanea'],
       },
       {
         label: 'Connect',
-        items: ['Partnerships', 'Journal', 'About Frank', 'Connect'],
+        items: ['Partnerships', 'Journal', 'About Frank', 'Bio', 'Media Kit', 'Licensing', 'Connect', 'Contact'],
       },
     ],
   },
@@ -184,7 +219,7 @@ function Logo() {
         <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
           FrankX.AI
         </span>
-        <span className="hidden font-mono text-[8px] font-medium uppercase tracking-[0.16em] text-emerald-300/60 xl:block">
+        <span className="hidden font-serif text-[13px] italic leading-none text-white/40 xl:block">
           Public agentic workspace
         </span>
       </span>
@@ -260,7 +295,7 @@ function MegaMenuContent({ section }: { section: NavKey }) {
                 .filter(Boolean) as (typeof data.items)[0][]
               return (
                 <div key={group.label}>
-                  <h5 className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                  <h5 className="mb-2 px-2 font-serif text-[13px] italic text-slate-400">
                     {group.label}
                   </h5>
                   <ul className="space-y-0.5">
@@ -399,7 +434,7 @@ export default function NavigationMega() {
   // Ctrl+K hotkey lives in CommandPalette (single source of truth). Having it here too caused a race:
   // NavigationMega dispatched the event → palette opened → palette's own keydown toggled it closed in the same tick.
 
-  const desktopSections: NavKey[] = ['explore', 'build', 'learn', 'gencreators']
+  const desktopSections: NavKey[] = ['explore', 'build', 'learn', 'gencreators', 'music']
 
   return (
     <>

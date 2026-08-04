@@ -59,6 +59,13 @@ const ASSET_EXT_RE = /\.(png|jpg|jpeg|gif|svg|webp|avif|ico|pdf|zip|mp4|mp3|wav|
 // Hrefs that are template placeholders, not real paths
 const TEMPLATE_RE = /\$\{|\{\{|\$\(|<%/
 
+const PUBLIC_DIR = path.join(ROOT, 'public')
+const existsInPublic = (href) => {
+  const target = path.resolve(PUBLIC_DIR, '.' + href)
+  if (!target.startsWith(PUBLIC_DIR)) return false
+  return fs.existsSync(target) && fs.statSync(target).isFile()
+}
+
 // ─── load route corpus ──────────────────────────────────────
 let idx
 try {
@@ -130,6 +137,10 @@ function scanFile(file) {
 
         // Direct hit
         if (validHrefs.has(cleanHref)) continue
+        // A file under public/ is served at that exact path. ASSET_EXT_RE covers
+        // the common binary types; this catches everything else we actually ship
+        // (e.g. downloadable .md skill packs).
+        if (existsInPublic(cleanHref)) continue
         // Alias hit (also fine — redirects work)
         if (validAliases.has(cleanHref)) continue
         // Trailing-slash variant
