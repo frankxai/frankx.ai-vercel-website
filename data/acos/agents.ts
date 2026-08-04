@@ -1,7 +1,9 @@
 /**
- * ACOS Agent Catalog — 99-agent architecture
+ * ACOS Agent Catalog — public operating registry
  *
- * Structure: 11 pillars × 9 specialists = 99 agent-slots.
+ * Structure: 11 pillars with 100 declared capability slots. Pillar sizes vary
+ * because the registry reflects the operating surface instead of padding every
+ * pillar to a marketing number.
  * Each slot maps to a shipped subagent/command/skill/MCP OR is marked as a gap.
  *
  * Status discipline (enforced 2026-04-23 by docs/acos/agent-audit-2026-04-23.md):
@@ -280,7 +282,7 @@ export const PILLARS: Pillar[] = [
       { name: 'Handover', kind: 'agent', ref: 'meta-handover', status: 'shipped', one_liner: 'Cross-session handover doc writer: gathers git state + UNFINISHED-*.md + critical context → docs/ops/HANDOVER-<date>.md. For different agents, not next-day Frank. Pass 2 (2026-05-15).' },
       { name: 'EOD Capture', kind: 'agent', ref: 'meta-eod', status: 'shipped', one_liner: '7-step session wrap-up: git audit + Vercel build + delivered table + unfinished capture + memory update + next-session brief + quality gates. Never auto-commits. Pass 2 (2026-05-15).' },
       { name: 'Sync Repos', kind: 'agent', ref: 'meta-sync-repos', status: 'shipped', one_liner: 'Publishes ~/.claude/{agents,commands,skills} to claude-code-config + claude-skills-library repos. Dry-run support, target-dirty abort, push-failure surfacing. Pass 2 (2026-05-15).' },
-      { name: 'ACOS Score', kind: 'agent', ref: 'meta-acos-score', status: 'shipped', one_liner: 'L99-era flagship wrapper: trajectory + SIS 4-component + 99-agent catalog L99 rollup with deterministic JSON + memory recall. Pass 1 exemplar (2026-05-14).' },
+      { name: 'ACOS Score', kind: 'agent', ref: 'meta-acos-score', status: 'shipped', one_liner: 'L99-era flagship wrapper: trajectory + SIS 4-component + current catalog L99 rollup with deterministic JSON + memory recall. Pass 1 exemplar (2026-05-14).' },
     ],
   },
 ]

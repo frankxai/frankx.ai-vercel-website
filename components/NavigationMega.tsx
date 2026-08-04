@@ -142,6 +142,7 @@ const navigation = {
       badge: 'How it works',
     },
     items: [
+      { name: 'Ask Frank', href: '/agent', icon: Sparkles, description: 'Source-grounded public intelligence' },
       { name: 'Workspace', href: '/workspace', icon: Workflow, description: 'Source → agents → Frank → artifact' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
@@ -157,7 +158,7 @@ const navigation = {
     groups: [
       {
         label: 'Current work',
-        items: ['Workspace', 'Research', 'Library', 'Guides', 'Essays'],
+        items: ['Ask Frank', 'Workspace', 'Research', 'Library', 'Guides', 'Essays'],
       },
       {
         label: 'The system',
@@ -455,10 +456,10 @@ export default function NavigationMega() {
               <span className="hidden xl:inline text-[11px] font-medium">Search</span>
             </button>
             <Link
-              href="/start"
+              href="/agent"
               className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-1.5 text-[13px] font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
-              Start Here
+              Ask Frank
             </Link>
           </div>
 

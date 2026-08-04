@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { GlowCard } from '@/components/ui/glow-card'
+import { pillarCounts } from '@/data/acos/agents'
 
 /* ──────────────────────────────────────────────
    CHECKOUT URLS — update when LemonSqueezy store is live
@@ -27,9 +28,10 @@ const CHECKOUT = {
   pro: '/newsletter?ref=acos-pro-system',
 }
 
+const registryCounts = pillarCounts()
 const stats = [
   { label: 'Skills', value: '35+', icon: Sparkles, color: 'from-cyan-500 to-blue-500' },
-  { label: 'Agents', value: '99', icon: Users, color: 'from-purple-500 to-violet-500' },
+  { label: 'Capabilities', value: String(registryCounts.total), icon: Users, color: 'from-purple-500 to-violet-500' },
   { label: 'Commands', value: '117+', icon: Command, color: 'from-amber-500 to-orange-500' },
   { label: 'Pillars', value: '11', icon: Layers, color: 'from-emerald-500 to-teal-500' },
 ]
@@ -173,7 +175,7 @@ export default function ACOSPage() {
           <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
             The operating system for generative creators.
             <br className="hidden sm:block" />
-            99 agents. 35+ skills. 117+ commands. 11 pillars. One entry point.
+            {registryCounts.total} capability slots. {registryCounts.shipped} shipped. 11 pillars. One honest registry.
           </p>
 
           <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-xs text-emerald-200">

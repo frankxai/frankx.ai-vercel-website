@@ -74,6 +74,7 @@ const NAV_COLUMNS = [
       { label: 'Library', href: '/library' },
       { label: 'Guides', href: '/guides' },
       { label: 'Architecture Hub', href: '/ai-architecture' },
+      { label: 'Frank Intelligence', href: '/agent', accent: 'emerald' },
       { label: 'Agent Catalog', href: '/agents' },
     ],
   },

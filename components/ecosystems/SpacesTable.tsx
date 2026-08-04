@@ -59,11 +59,6 @@ export default function SpacesTable({ spaces }: SpacesTableProps) {
     })
   }, [spaces, search, selectedDistrict, selectedModel])
 
-  // Reset page when filters change
-  useMemo(() => {
-    setCurrentPage(1)
-  }, [search, selectedDistrict, selectedModel])
-
   const totalPages = Math.ceil(filteredSpaces.length / itemsPerPage)
   
   const paginatedSpaces = useMemo(() => {
@@ -107,7 +102,10 @@ export default function SpacesTable({ spaces }: SpacesTableProps) {
           <input
             type="text"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value)
+              setCurrentPage(1)
+            }}
             placeholder="Search by name, street, or notes..."
             className="w-full bg-[#0a0a0b] border border-white/[0.08] rounded-lg px-4 py-2.5 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
           />
@@ -117,7 +115,10 @@ export default function SpacesTable({ spaces }: SpacesTableProps) {
         <div className="w-full md:w-56">
           <select
             value={selectedDistrict}
-            onChange={(e) => setSelectedDistrict(e.target.value)}
+            onChange={(e) => {
+              setSelectedDistrict(e.target.value)
+              setCurrentPage(1)
+            }}
             className="w-full bg-[#0a0a0b] border border-white/[0.08] rounded-lg px-4 py-2.5 text-sm text-zinc-300 focus:outline-none focus:border-emerald-500/50 transition-colors"
           >
             {DISTRICTS.map((dist) => (
@@ -132,7 +133,10 @@ export default function SpacesTable({ spaces }: SpacesTableProps) {
         <div className="w-full md:w-44">
           <select
             value={selectedModel}
-            onChange={(e) => setSelectedModel(e.target.value)}
+            onChange={(e) => {
+              setSelectedModel(e.target.value)
+              setCurrentPage(1)
+            }}
             className="w-full bg-[#0a0a0b] border border-white/[0.08] rounded-lg px-4 py-2.5 text-sm text-zinc-300 focus:outline-none focus:border-emerald-500/50 transition-colors"
           >
             {MODELS.map((m) => (

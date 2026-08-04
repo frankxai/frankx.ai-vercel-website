@@ -12,8 +12,8 @@
  *   - status='in-progress' → score 0 (no agent to gate)
  *   - status='shipped'     → score 0.25–1.00 by gates
  *
- * Pillar L99 = mean slot score across its 9 specialists.
- * Total L99   = mean slot score across all 99 slots.
+ * Pillar L99 = mean slot score across its declared specialists.
+ * Total L99   = mean slot score across all declared slots.
  *
  * Output is a number in [0, 1]; multiply by 100 to display "L<n>".
  */
@@ -38,7 +38,7 @@ export interface PillarL99 {
   id: string
   number: number
   title: string
-  /** Mean score across the pillar's 9 specialists, 0–1 */
+  /** Mean score across the pillar's declared specialists, 0–1 */
   score: number
   /** Mean as integer 0–99 — what the badge shows */
   level: number
@@ -83,7 +83,7 @@ export function pillarL99(pillar: Pillar): PillarL99 {
 }
 
 export interface CatalogL99 {
-  /** Mean slot score across all 99 slots, 0–1 */
+  /** Mean slot score across all declared slots, 0–1 */
   score: number
   /** Integer 0–99 — the headline number */
   level: number

@@ -151,6 +151,7 @@ const sections: NavSection[] = [
       badge: 'How it works',
     },
     items: [
+      { name: 'Ask Frank', href: '/agent', icon: Sparkles, description: 'Source-grounded public intelligence' },
       { name: 'Workspace', href: '/workspace', icon: Workflow, description: 'The source-to-artifact workflow' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
@@ -396,6 +397,19 @@ function HomeView({
         Go directly
       </h2>
 
+      <Link href="/agent" onClick={onClose} className={tileBase}>
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-400/10 text-emerald-200">
+          <Sparkles className="h-4 w-4" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[15px] font-semibold text-white">Ask Frank</span>
+          <span className="mt-0.5 block truncate text-[12px] leading-tight text-slate-400">
+            Public, source-grounded intelligence
+          </span>
+        </span>
+        <ChevronRight className="h-4 w-4 shrink-0 text-slate-500" />
+      </Link>
+
       <Link href="/blog" onClick={onClose} className={tileBase}>
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-200">
           <BookOpen className="h-4 w-4" />
@@ -426,11 +440,11 @@ function HomeView({
 
       <div className="pt-6">
         <Link
-          href="/start"
+          href="/agent"
           onClick={onClose}
           className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 px-5 py-3.5 text-[15px] font-semibold text-slate-900 shadow-lg shadow-emerald-500/20 transition hover:brightness-110 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 min-h-[44px]"
         >
-          Start Here
+          Ask Frank
           <ArrowRight className="h-4 w-4" />
         </Link>
       </div>

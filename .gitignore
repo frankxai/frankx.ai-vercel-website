@@ -42,6 +42,15 @@ pnpm-debug.log*
 # Vercel
 .vercel
 
+# Eve runtime output + deterministic public-corpus build artifacts
+.eve/
+.output/
+.frank-agent-runtime/
+/agent/lib/public-corpus.generated.ts
+/agent/lib/agent-registry.generated.ts
+/agent/lib/public-corpus.json
+/data/frank-intelligence-corpus.json
+
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts

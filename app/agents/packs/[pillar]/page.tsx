@@ -173,7 +173,7 @@ export default async function PackPage({ params }: PageProps) {
                   <Sparkles className="h-3 w-3" /> L{pillarLevel}
                 </span>
                 <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-semibold text-white">
-                  9 specialists
+                  {p.specialists.length} specialists
                 </span>
                 {shipped > 0 && (
                   <span className="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 font-semibold text-emerald-300">
@@ -246,7 +246,7 @@ rm -rf tmp-acos`}
       {/* Specialists list */}
       <section className="border-t border-white/5 py-12">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-2xl font-bold text-white">9 specialists in this pack</h2>
+          <h2 className="text-2xl font-bold text-white">{p.specialists.length} specialists in this pack</h2>
           <p className="mt-2 text-sm text-slate-400">
             Status badges reflect what&rsquo;s shipped in the current catalog. In-progress slots ship as Frank writes them.
             Buyers get all updates as the pack evolves.
@@ -341,7 +341,7 @@ rm -rf tmp-acos`}
           <p className="mx-auto mt-3 max-w-xl text-slate-400">
             {pricing.tier === 'free'
               ? 'No card, no waitlist. The Foundation pack is free because every other pack composes it.'
-              : `The ${p.title} pack is in active development — ${shipped} of 9 specialists already shipped. Join the waitlist and you'll be first to install it the day it lands, with the build notes along the way.`}
+              : `The ${p.title} pack is in active development — ${shipped} of ${p.specialists.length} specialists already shipped. Join the waitlist and you'll be first to install it the day it lands, with the build notes along the way.`}
           </p>
 
           {pricing.tier === 'free' ? (
