@@ -126,7 +126,8 @@
     "sync:fix": "bash scripts/pre-deploy-sync-check.sh --sync",
     "sync:diff": "bash scripts/pre-deploy-sync-check.sh --diff",
     "predeploy": "npm run merge:gate && npm run sync:check",
-    "journal:new": "node scripts/new-journal-entry.mjs"
+    "journal:new": "node scripts/new-journal-entry.mjs",
+    "test:contract-guard": "node scripts/check-contract-guard.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
