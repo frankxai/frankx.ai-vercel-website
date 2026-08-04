@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import type { Space } from '@/data/ecosystems'
 
 interface SpacesTableProps {
@@ -60,7 +60,7 @@ export default function SpacesTable({ spaces }: SpacesTableProps) {
   }, [spaces, search, selectedDistrict, selectedModel])
 
   // Reset page when filters change
-  useMemo(() => {
+  useEffect(() => {
     setCurrentPage(1)
   }, [search, selectedDistrict, selectedModel])
 
