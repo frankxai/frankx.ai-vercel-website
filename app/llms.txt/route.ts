@@ -56,6 +56,8 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Frank Riemer](${SITE_URL}/frank-riemer): Canonical founder/entity page for Frank Riemer and FrankX
 - [About Frank](${SITE_URL}/about): Story, identity, and work patterns
 - [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, proof points, boundaries, and contact
+- [Frank Intelligence](${SITE_URL}/agent): Public, source-grounded AI interface to FrankX writing and operating knowledge; not Frank himself
+- [Agent Registry](${SITE_URL}/agents): Canonical source-computed registry with implementation states and quality gates
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
 - [Signal Loop](${SITE_URL}/newsletter): Main weekly letter on AI architecture, creator systems, music experiments, and peak-state notes
 - [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, and work-review system; not medical advice

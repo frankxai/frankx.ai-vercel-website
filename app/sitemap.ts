@@ -195,6 +195,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // AI and agent pages
   const aiPages = [
+    '/agent',
     '/agents',
     '/agent-team',
     '/ai-architect',

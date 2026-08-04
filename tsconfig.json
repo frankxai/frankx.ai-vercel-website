@@ -44,6 +44,8 @@
     "data/**/*.ts",
     "data/**/*.tsx",
     "types/**/*.ts",
+    "agent/**/*.ts",
+    "evals/**/*.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],

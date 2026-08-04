@@ -95,10 +95,10 @@ export const osModules: OSModule[] = [
     artifacts: ['Skills', 'Agents', 'Trajectory logs', 'Intelligence scores'],
     commands: ['/acos', '/acos-flow', '/acos-monitor', '/agentic-jujutsu'],
     deepDive: {
-      route: '/acos/agents',
-      label: 'Browse the 99-agent catalog',
+      route: '/agents',
+      label: 'Browse the agent registry',
       description:
-        '11 pillars × 9 specialists. The full ACOS agent + skill + command catalog with shipped / in-progress / gap status per slot.',
+        'The full source-computed ACOS agent + skill + command + MCP registry with shipped / in-progress / gap status and quality gates per slot.',
     },
   },
   {

@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import { readFileSync, existsSync } from 'fs'
+import { withEve } from 'eve/next'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -463,4 +464,6 @@ const nextConfig = {
   },
 }
 
-export default nextConfig
+export default withEve(nextConfig, {
+  eveRoot: '.frank-agent-runtime',
+})
