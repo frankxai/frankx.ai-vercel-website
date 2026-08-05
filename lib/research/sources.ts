@@ -66,6 +66,7 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'Meta', title: 'Llama 4 Model Card', url: 'https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md', date: '2025-04-05', type: 'official' },
     { name: 'Meta', title: 'Llama 4 Acceptable Use Policy', url: 'https://github.com/meta-llama/llama-models/blob/main/models/llama4/USE_POLICY.md', type: 'official' },
     { name: 'Meta', title: 'Llama Fine-Tuning Overview', url: 'https://github.com/meta-llama/llama-cookbook/blob/main/getting-started/finetuning/LLM_finetuning_overview.md', type: 'official' },
+    { name: 'Meta AI', title: 'Introducing Muse Spark 1.1', url: 'https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/', date: '2026-07-09', type: 'official' },
     { name: 'Mistral AI', title: 'Introducing Mistral 3', url: 'https://mistral.ai/news/mistral-3/', date: '2025-12-02', type: 'official' },
     { name: 'Mistral AI', title: 'Mistral Small 4', url: 'https://mistral.ai/news/mistral-small-4/', date: '2026-03-16', type: 'official' },
     { name: 'Mistral AI', title: 'Mistral Forge', url: 'https://mistral.ai/news/forge/', date: '2026-03-17', type: 'official' },
