@@ -36,7 +36,11 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'ikigai-branding': { topics: [TOPICS.newsletter] },
   'premium-packs': { topics: [TOPICS.newsletter, TOPICS['product-updates']] },
   'mvu-tallinn-2026': { topics: [TOPICS.newsletter] },
-  'mvu-porto-2027': { topics: [TOPICS.newsletter] },
+  // No topics on purpose. The lab RSVP form states "Nothing else, ever", so
+  // subscribing these people to newsletter messaging would be a promise broken
+  // in code. `properties.source` still segments them for the one email they
+  // did consent to: the confirm-or-cancel note about the lab.
+  'mvu-porto-2027': { topics: [] },
   all: { topics: [TOPICS.newsletter, TOPICS['music-suno'], TOPICS['product-updates']] },
 }
 
@@ -103,9 +107,13 @@ async function sendWelcomeEmail(
   // Native RSVP for the independent MVU lab (frankx.ai/mvu/lab). Plain text —
   // it lands right after a personal decision, and it echoes the person's own
   // words back. The RSVP also pings Frank directly for the by-hand
-  // approve/decline call. 'mvu-tallinn-2026' stays routed so the 2026
-  // registrations already in the list keep resolving.
-  if (listType === 'mvu-porto-2027' || listType === 'mvu-tallinn-2026') {
+  // approve/decline call.
+  //
+  // Deliberately Porto-only. 'mvu-tallinn-2026' must NOT reach this branch: a
+  // retried or delayed submission from the old form would receive a Porto 2027
+  // confirmation for an event the person never opted into. Contacts already
+  // stored from 2026 never call this function, so nothing needs the alias.
+  if (listType === 'mvu-porto-2027') {
     const confirmation = mvuRsvpConfirmation({ name, intention })
     await sendEmail({ to: email, subject: confirmation.subject, text: confirmation.plainText })
 

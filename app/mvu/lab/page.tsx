@@ -41,16 +41,23 @@ const RUN_OF_SHOW = [
  * which we cannot supply) and tells search engines a session exists that does
  * not. So while `confirmed` is false this page describes itself as a WebPage
  * and nothing more. The Event node returns when Frank locks the room.
+ *
+ * When it does return it uses `sessionStart`/`sessionEnd`, never the
+ * `eventStart`/`eventEnd` conference window — publishing a 90-minute lab as a
+ * five-week event would be worse than publishing no Event at all. Both guards
+ * are required, so an incomplete config degrades to WebPage rather than lying.
  */
 function LabJsonLd() {
-  const data = MVU_LAB.confirmed
-    ? {
+  const hasSession = Boolean(MVU_LAB.sessionStart && MVU_LAB.sessionEnd)
+  const data =
+    MVU_LAB.confirmed && hasSession
+      ? {
         '@context': 'https://schema.org',
         '@type': 'Event',
         name: MVU_LAB.title,
         description: MVU_LAB.tagline,
-        startDate: MVU_LAB.eventStart,
-        endDate: MVU_LAB.eventEnd,
+        startDate: MVU_LAB.sessionStart,
+        endDate: MVU_LAB.sessionEnd,
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
         eventStatus: 'https://schema.org/EventScheduled',
         location: {

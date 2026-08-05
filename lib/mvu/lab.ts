@@ -30,9 +30,20 @@ export interface MvuLab {
   city: string
   capacity: number
   price: string
-  /** Official Mindvalley U window the lab sits alongside. */
+  /**
+   * The official Mindvalley U window this lab sits alongside. Context only —
+   * never emit these as the lab's own Event dates: a 90-minute session must not
+   * be published as running for five weeks.
+   */
   eventStart: string
   eventEnd: string
+  /**
+   * The lab session itself, as full ISO-8601 datetimes with offset. Empty until
+   * the room is locked, and required before `confirmed` may be set to true —
+   * schema.org Event needs a real startDate, not the conference window.
+   */
+  sessionStart: string
+  sessionEnd: string
 }
 
 export const MVU_LAB: MvuLab = {
@@ -48,4 +59,6 @@ export const MVU_LAB: MvuLab = {
   price: 'Free — approval-gated',
   eventStart: '2027-07-12',
   eventEnd: '2027-08-18',
+  sessionStart: '', // e.g. '2027-07-22T17:00:00+01:00' — set with dateLabel
+  sessionEnd: '', // e.g. '2027-07-22T18:30:00+01:00'
 }
