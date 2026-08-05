@@ -46,7 +46,7 @@
     "music:index": "node scripts/generate-music-index.mjs",
     "music:asset-registry": "node scripts/music/build-asset-registry.mjs",
     "sync-ais": "node scripts/sync-ais.mjs",
-    "content:check": "node scripts/check-mdx-safety.mjs && node scripts/check-content-integrity.mjs",
+    "content:check": "node scripts/check-mdx-safety.mjs && node scripts/check-content-integrity.mjs && node scripts/check-publish-holds.mjs",
     "prebuild": "npm run content:check && npm run sync-ais && node scripts/prebuild-cache.mjs && node scripts/build-route-index.mjs",
     "postbuild": "npm run test:build-artifact-integrity && npm run test:vault-metadata:rendered",
     "routes:build": "node scripts/build-route-index.mjs",
