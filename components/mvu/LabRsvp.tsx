@@ -51,10 +51,12 @@ export function LabRsvp({ confirmed }: { confirmed: boolean }) {
     return (
       <div className="rounded-2xl border border-tech-primary/30 bg-tech-primary/5 p-6" role="status">
         <p className="font-medium text-tech-light">You’re on the list — check your email.</p>
+        {/* Must not imply a room exists while `confirmed` is false; the
+            confirmation email says explicitly that nothing is locked yet. */}
         <p className="mt-2 text-sm leading-relaxed text-white/60">
-          I approve each seat by hand to keep the room small. If there’s a place for
-          you, you’ll get the time, the address, and one thing to bring. If it fills
-          first, I’ll tell you straight — no waitlist theatre.
+          {confirmed
+            ? 'I approve each seat by hand to keep the room small. If there’s a place for you, you’ll get the time, the address, and one thing to bring. If it fills first, I’ll tell you straight — no waitlist theatre.'
+            : 'Nothing is booked yet — this tells me whether to run it at all. You’ll hear from me either way, well before Porto: a date and a place, or a straight cancellation.'}
         </p>
       </div>
     )

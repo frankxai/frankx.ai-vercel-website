@@ -40,16 +40,11 @@ export const CONNECT_EVENTS: ConnectEvent[] = [
     accent: 'violet',
     location: 'Tallinn',
   },
-  // Dates per mindvalley.com/u. Same participant framing as Tallinn.
-  {
-    id: 'mindvalley-u-2027',
-    label: 'Mindvalley University',
-    shortLabel: 'Mindvalley U',
-    start: '2027-07-12',
-    end: '2027-08-18',
-    accent: 'violet',
-    location: 'Porto',
-  },
+  // Mindvalley U 2027 (Porto, 12 Jul – 18 Aug 2027 per mindvalley.com/u) is
+  // deliberately NOT listed here. CONNECT_EVENTS drives EventRibbon, and the
+  // only future entry becomes "See you at <event>" across /connect — a public
+  // attendance commitment. Frank has not said he is attending 2027. Add this
+  // back when he decides to go, not because the event exists.
 ]
 
 function inWindow(now: Date, startISO: string, endISO: string): boolean {

@@ -35,39 +35,53 @@ const RUN_OF_SHOW = [
   { t: '75–90', what: 'The one commitment you leave with — and how to keep the spine standing after Porto.' },
 ]
 
+/**
+ * There is no confirmed event yet — no date, no venue, no room. Emitting an
+ * Event node in that state produces an invalid one (Google requires startDate,
+ * which we cannot supply) and tells search engines a session exists that does
+ * not. So while `confirmed` is false this page describes itself as a WebPage
+ * and nothing more. The Event node returns when Frank locks the room.
+ */
 function LabJsonLd() {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'Event',
-    name: MVU_LAB.title,
-    description: MVU_LAB.tagline,
-    ...(MVU_LAB.dateLabel && { startDate: MVU_LAB.eventStart }),
-    endDate: MVU_LAB.eventEnd,
-    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-    // Nothing is locked until Frank confirms a room, so the schema must not
-    // claim a scheduled event the way the Tallinn version did.
-    eventStatus: MVU_LAB.confirmed
-      ? 'https://schema.org/EventScheduled'
-      : 'https://schema.org/EventPostponed',
-    location: {
-      '@type': 'Place',
-      name: MVU_LAB.venueLabel || `${MVU_LAB.city}, Portugal`,
-      address: `${MVU_LAB.city}, Portugal`,
-    },
-    // Frank runs THIS independent lab — organizer is correct here, unlike the
-    // third-party events on /connect where he is only an attendee.
-    organizer: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'EUR',
-      availability: 'https://schema.org/LimitedAvailability',
-      url: `${SITE_URL}/mvu/lab`,
-    },
-    url: `${SITE_URL}/mvu/lab`,
-    isAccessibleForFree: true,
-    maximumAttendeeCapacity: MVU_LAB.capacity,
-  }
+  const data = MVU_LAB.confirmed
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: MVU_LAB.title,
+        description: MVU_LAB.tagline,
+        startDate: MVU_LAB.eventStart,
+        endDate: MVU_LAB.eventEnd,
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        eventStatus: 'https://schema.org/EventScheduled',
+        location: {
+          '@type': 'Place',
+          name: MVU_LAB.venueLabel || `${MVU_LAB.city}, Portugal`,
+          address: `${MVU_LAB.city}, Portugal`,
+        },
+        // Frank runs THIS independent lab — organizer is correct here, unlike
+        // the third-party events on /connect where he is only an attendee.
+        organizer: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'EUR',
+          availability: 'https://schema.org/LimitedAvailability',
+          url: `${SITE_URL}/mvu/lab`,
+        },
+        url: `${SITE_URL}/mvu/lab`,
+        isAccessibleForFree: true,
+        maximumAttendeeCapacity: MVU_LAB.capacity,
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: MVU_LAB.title,
+        description: MVU_LAB.tagline,
+        url: `${SITE_URL}/mvu/lab`,
+        isPartOf: { '@type': 'WebSite', name: 'FrankX', url: SITE_URL },
+        author: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
+      }
+
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
   )
@@ -76,7 +90,7 @@ function LabJsonLd() {
 export default function MvuLabPage() {
   const facts = [
     { icon: Clock, label: MVU_LAB.timeLabel ? `${MVU_LAB.dateLabel} · ${MVU_LAB.timeLabel}` : '90 minutes · during Mindvalley U' },
-    { icon: MapPin, label: MVU_LAB.venueLabel || `${MVU_LAB.city} — address in your confirmation` },
+    { icon: MapPin, label: MVU_LAB.venueLabel || `${MVU_LAB.city} — venue not booked yet` },
     { icon: Users, label: `${MVU_LAB.capacity} people · ${MVU_LAB.price}` },
   ]
 

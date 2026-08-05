@@ -110,6 +110,13 @@ function MvuJsonLd({ entryCount }: { entryCount: number }) {
 export default function MvuPage() {
   const entries = getMvuEntrySummaries()
 
+  // Derived, not hardcoded — entries are held and released by frontmatter, so a
+  // fixed date range goes stale the moment one is toggled.
+  const dates = entries.map((e) => e.date).filter(Boolean).sort()
+  const first = dates[0] ? formatDate(dates[0]) : ''
+  const last = dates[dates.length - 1] ? formatDate(dates[dates.length - 1]) : ''
+  const dateRange = first && last ? (first === last ? first : `${first} and ${last}`) : ''
+
   return (
     <main className="min-h-screen overflow-hidden bg-void text-white">
       <MvuJsonLd entryCount={entries.length} />
@@ -254,9 +261,10 @@ export default function MvuPage() {
               memorable statistic that arrived with no source attached.
             </p>
             <p>
-              None of it reports what any speaker said. Their work is theirs to
-              publish. These are notes on my own thinking, in rooms they happened
-              to shape.
+              Where an entry draws on a speaker’s public material, it says so and
+              links the source. The rest is my own thinking, in rooms they
+              happened to shape. The full daily run is still being edited before
+              it goes up.
             </p>
           </div>
         </div>
@@ -334,7 +342,9 @@ export default function MvuPage() {
             The Tallinn archive.
           </h2>
           <p className="mt-4 text-base leading-7 text-white/55">
-            {entries.length} entries written between 20 July and 2 August 2026.
+            {entries.length}{' '}
+            {entries.length === 1 ? 'entry' : 'entries'}
+            {dateRange ? ` written between ${dateRange}` : ''}.
           </p>
 
           {entries.length === 0 ? (
