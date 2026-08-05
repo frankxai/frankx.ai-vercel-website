@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import type { Space } from '@/data/ecosystems'
 
 interface SpacesTableProps {
@@ -59,10 +59,16 @@ export default function SpacesTable({ spaces }: SpacesTableProps) {
     })
   }, [spaces, search, selectedDistrict, selectedModel])
 
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [search, selectedDistrict, selectedModel])
+
   const totalPages = Math.max(1, Math.ceil(filteredSpaces.length / itemsPerPage))
 
-  // Filtering can shrink the result set below the page the user is on. Clamping
-  // during render keeps the view correct without resetting state from a hook.
+  // The effect above lands one commit after the filtered set changes, so render
+  // with a clamped page instead of the raw state — otherwise a narrowing filter
+  // paints one empty frame before the reset arrives.
   const page = Math.min(currentPage, totalPages)
 
   const paginatedSpaces = useMemo(() => {
