@@ -74,7 +74,7 @@ export const researchDomains: ResearchDomain[] = [
     highlights: [
       { stat: '7 layers', label: 'API to new capability training', source: 'FrankX synthesis' },
       { stat: '6 gates', label: 'Outcome, data, capital, control, operations, law', source: 'Decision framework' },
-      { stat: '74', label: 'Official primary sources', source: 'Labs, providers, regulators' },
+      { stat: '75', label: 'Official primary sources', source: 'Labs, providers, regulators' },
       { stat: '1 metric', label: 'Cost per verified successful outcome', source: 'Economic framework' },
     ],
     sections: [
@@ -176,7 +176,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedBlogPosts: ['/blog/build-fine-tune-or-buy-ai-model'],
     publishedAt: '2026-08-06',
     lastUpdated: '2026-08-06',
-    sourceCount: 74,
+    sourceCount: 75,
     status: 'active',
     evidenceGrade: 'B',
     evidenceNote: 'FrankX synthesis grounded in official lab, provider, standards, and regulator sources; vendor benchmarks are treated as vendor evidence, not independent validation',
