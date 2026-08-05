@@ -71,6 +71,24 @@ const validHrefs = new Set(idx.routes.map((r) => r.href))
 const aliasMap = idx.aliases || {}
 const validAliases = new Set(Object.keys(aliasMap))
 
+const PUBLIC_DIR = path.join(ROOT, 'public')
+
+/**
+ * Files under public/ are served at the site root but are not routes, so they
+ * never appear in route-index. Resolve them against the filesystem instead of
+ * extending SKIP_PREFIXES: an allowlist only covers the directories someone
+ * remembered, and silently reports a real, working asset as broken the first
+ * time a new one appears. That is how /skills/ started failing.
+ */
+function isPublicAsset(href) {
+  const rel = href.replace(/^\/+/, '')
+  if (!rel) return false
+  const resolved = path.resolve(PUBLIC_DIR, rel)
+  // Never let a '../' in source escape public/.
+  if (resolved !== PUBLIC_DIR && !resolved.startsWith(PUBLIC_DIR + path.sep)) return false
+  return fs.existsSync(resolved) && fs.statSync(resolved).isFile()
+}
+
 // ─── walk source tree ───────────────────────────────────────
 /** @type {{file: string, line: number, href: string}[]} */
 const findings = []
@@ -144,6 +162,9 @@ function scanFile(file) {
           // (e.g. unreadable frontmatter). Logged at --warn level.
           continue
         }
+
+        // A real file under public/ is a working link, not a broken route.
+        if (isPublicAsset(cleanHref)) continue
 
         findings.push({
           file: path.relative(ROOT, file).replace(/\\/g, '/'),
