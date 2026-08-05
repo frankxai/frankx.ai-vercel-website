@@ -1,0 +1,139 @@
+[
+  {
+    "tier": 0,
+    "id": "tier-free",
+    "name": "The Sovereign Lead Vault",
+    "badge": "100% FREE ACCESS",
+    "price": 0,
+    "priceDisplay": "Free",
+    "billingPeriod": "Forever Free",
+    "icp": "All Creators, Builders, & AI Architects",
+    "headline": "12 Flagship PDF Blueprints, Notion Vaults, & Interactive Diagnostics",
+    "subheadline": "The foundational intelligence stack for building autonomous systems and high-velocity content engines.",
+    "deliverables": [
+      "12 Complete PDF Blueprints (Agent Swarms, Writing Systems, Top 50 Prompts)",
+      "Interactive AI Agentic Readiness Diagnostic (/assess/ai-readiness)",
+      "5-Day Autonomous Content Engine Challenge Workbooks",
+      "Machine-Readable Agent Card & OpenAPI Specs (/.well-known/agent-card)"
+    ],
+    "roiArgument": "Instant zero-friction leverage. Establishes core AI concepts without spending a dime.",
+    "ctaText": "Explore Free Downloads",
+    "ctaHref": "/downloads",
+    "highlight": false
+  },
+  {
+    "tier": 1,
+    "id": "tier-starter-97",
+    "name": "The Agentic Creator OS Starter Bundle",
+    "badge": "POPULAR FOR CREATORS",
+    "price": 97,
+    "priceDisplay": "€97",
+    "billingPeriod": "One-Time Payment",
+    "icp": "Solopreneurs, AI Writers, & Digital Creators",
+    "headline": "The Complete ACOS Starter Kit & Prompt Engineering Vault",
+    "subheadline": "90+ skills, 65+ commands, 500+ production prompts, and Notion Life & Content OS templates.",
+    "deliverables": [
+      "Full Agentic Creator OS (ACOS) Starter Code Package & CLI Config",
+      "500+ Production System Prompts (Coding, Writing, Research, Strategy)",
+      "Notion Life OS & Content Command Center Templates",
+      "Generative Media Recipe Book (Nano Banana 2 & Suno v4.5 Prompts)",
+      "Lifetime updates to Tier 1 prompt vaults"
+    ],
+    "roiArgument": "Saves 15+ hours/week of manual prompt creation and formatting. Full ROI achieved in under 7 days.",
+    "ctaText": "Get Starter Bundle — €97",
+    "ctaHref": "/checkout?product=acos-starter-97",
+    "highlight": false
+  },
+  {
+    "tier": 2,
+    "id": "tier-systems-297",
+    "name": "Autonomous Agent Swarm Engineering Suite",
+    "badge": "FOR TECHNICAL BUILDERS",
+    "price": 297,
+    "priceDisplay": "€297",
+    "billingPeriod": "One-Time Payment",
+    "icp": "AI Engineers, Technical Founders, & Systems Architects",
+    "headline": "Multi-Agent Swarm Orchestration, Memory Patterns, & Codebase",
+    "subheadline": "Production-ready multi-agent codebase with Claude SDK, LangGraph, AgentDB memory, and WSL2 safety.",
+    "deliverables": [
+      "Complete Multi-Agent Swarm Codebase (Mesh, Hierarchical, & Blackboard topologies)",
+      "AgentDB Vector Memory & ReasoningBank Reinforcement Learning patterns",
+      "Subagent Suite: Research Scout, 5-Gate Integrity Guard, & SEO Specialist",
+      "2-Hour Video Masterclass on Agent Swarm Architecture & WSL2 Memory Protection",
+      "Private GitHub repository access with code samples"
+    ],
+    "roiArgument": "Replaces $5,000+ in custom agency development. Build production agent swarms in days instead of months.",
+    "ctaText": "Unlock Engineering Suite — €297",
+    "ctaHref": "/checkout?product=agent-swarm-297",
+    "highlight": true
+  },
+  {
+    "tier": 3,
+    "id": "tier-accelerator-997",
+    "name": "Sovereign Creator Enterprise Engine",
+    "badge": "COMPLETE CONTENT ENGINE",
+    "price": 997,
+    "priceDisplay": "€997",
+    "billingPeriod": "One-Time Payment",
+    "icp": "High-Growth Creators, Product Publishers, & Digital Agencies",
+    "headline": "Zero-Headcount Automated Content Engine & Media Foundry",
+    "subheadline": "Turn voice notes and screen records into blogs, newsletters, social threads, and B-roll video automatically.",
+    "deliverables": [
+      "Complete Audio & Video Atomization Engine (Whisper + Descript + HyperFrames)",
+      "Custom Brand Voice Calibration Engine & Anti-AI Slop Quality Gates",
+      "Private Notion Command Center & Content Pipeline Automation",
+      "4-Module Video Video Workshop: From Concept to Auto-Publishing",
+      "Monthly Group Strategy & Code Review Calls with Frank Riemer"
+    ],
+    "roiArgument": "Replaces a €3,500/month content marketing agency retainer. 1-person teams operate like a 5-person studio.",
+    "ctaText": "Join Enterprise Engine — €997",
+    "ctaHref": "/checkout?product=creator-engine-997",
+    "highlight": false
+  },
+  {
+    "tier": 4,
+    "id": "tier-intensive-2997",
+    "name": "Private AI Architecture Transformation",
+    "badge": "DONE-WITH-YOU INTENSIVE",
+    "price": 2997,
+    "priceDisplay": "€2,997",
+    "billingPeriod": "One-Time Intensive",
+    "icp": "Funded Founders, Agency Owners, & Enterprise AI Leads",
+    "headline": "3-Week Custom Agent Swarm & MCP Server Architecture Sprint",
+    "subheadline": "Direct 1-on-1 architecture sessions with Frank Riemer to design, build, and deploy your custom AI infrastructure.",
+    "deliverables": [
+      "3 x 90-Minute Private Architecture Sessions with Frank X. Riemer",
+      "Custom Model Context Protocol (MCP) Server Development for your internal databases",
+      "Custom Subagent Swarm tailored specifically to your company workflows",
+      "Internal Data Mesh & Security Policy Integration",
+      "90-Day Direct Slack Access to Frank & the Starlight Engineering Team"
+    ],
+    "roiArgument": "Eliminates 3-6 months of costly engineering trial-and-error. Unlocks €50,000+ in annual operational savings.",
+    "ctaText": "Apply for Private Intensive — €2,997",
+    "ctaHref": "/work-with-me?type=intensive",
+    "highlight": false
+  },
+  {
+    "tier": 5,
+    "id": "tier-advisory-9997",
+    "name": "Sovereign Empire Advisory & Custom Swarm Deployment",
+    "badge": "ENTERPRISE & VIP PARTNER",
+    "price": 9997,
+    "priceDisplay": "€9,997",
+    "billingPeriod": "Annual Retainer / Major Sprint",
+    "icp": "7-Figure Founders, Enterprise Executives, & VIP Creators",
+    "headline": "Full Done-For-You Sovereign AI Infrastructure & Advisory",
+    "subheadline": "Complete enterprise-grade ACOS deployment, custom MCP tollbooths, and ongoing AI Chief-of-Staff advisory.",
+    "deliverables": [
+      "Full Done-For-You Custom ACOS Deployment across your enterprise codebases",
+      "Enterprise MCP Server Tollbooths & Agent-to-Agent Payment Integration",
+      "Quarterly On-Site or Virtual Strategic Mastermind Sessions with Frank Riemer",
+      "Dedicated Private Subagent Fleet tailored to your C-Suite operations",
+      "24/7 Priority Emergency Channel & Ongoing Technical Stewardship"
+    ],
+    "roiArgument": "Replaces a €150,000+ VP of AI / Engineering salary with a sovereign, autonomous agentic infrastructure.",
+    "ctaText": "Request Advisory Consultation — €9,997",
+    "ctaHref": "/work-with-me?type=advisory",
+    "highlight": false
+  }
+]
