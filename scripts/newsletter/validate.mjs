@@ -6,11 +6,13 @@
  * Usage: node scripts/newsletter/validate.mjs [issueNumber]
  */
 
+import fs from 'node:fs'
 import { readAllIssues, getIssue, REQUIRED_FIELDS, STATUSES } from './lib.mjs'
 
 const AI_SLOP = ['delve', 'dive into', "it's worth noting", 'in today’s fast-paced', 'unlock the power', 'game-changer']
 
 function validate(issue) {
+  const rawText = fs.readFileSync(issue.file, 'utf8')
   const errors = []
   const warnings = []
   const { data, content, basename } = issue
@@ -34,9 +36,30 @@ function validate(issue) {
   // Dates were only checked for presence, so `date: "next Friday sometime"`
   // passed and shipped verbatim into the email header.
   for (const key of ['date', 'sendAt', 'sentAt']) {
-    if (data[key] !== undefined && Number.isNaN(new Date(data[key]).getTime())) {
+    if (data[key] === undefined) continue
+    const parsed = new Date(data[key])
+    if (Number.isNaN(parsed.getTime())) {
       errors.push(`\`${key}\` is not a parseable date: ${JSON.stringify(String(data[key]))}`)
+      continue
     }
+    // Date() silently rolls impossible calendar days forward, so 2026-02-30
+    // parsed clean and rendered as March 2. Require a round-trip.
+    // The YAML parser already rolled an impossible day forward before we see it
+    // (2026-02-30 arrives as a Date for March 2), so the round-trip has to be
+    // checked against the literal text in the file, not the parsed value.
+    const literal = rawText.match(new RegExp(`^${key}:\\s*"?(\\d{4}-\\d{2}-\\d{2})`, 'm'))
+    if (literal) {
+      const [y, m, d] = literal[1].split('-').map(Number)
+      const probe = new Date(Date.UTC(y, m - 1, d))
+      if (probe.getUTCMonth() + 1 !== m || probe.getUTCDate() !== d) {
+        errors.push(`\`${key}\` is not a real calendar date: ${literal[1]} silently becomes ${probe.toISOString().slice(0, 10)}`)
+      }
+    }
+  }
+
+  // A future receipt makes health.mjs compute a negative age and report ok.
+  if (data.sentAt && new Date(data.sentAt).getTime() > Date.now() + 60_000) {
+    errors.push(`\`sentAt\` is in the future (${data.sentAt}) — a delivery receipt cannot postdate now`)
   }
 
   // `status: sent` is a claim that an email reached people. Require the receipt,
@@ -88,7 +111,16 @@ if (!issues.length) {
   process.exit(1)
 }
 
+// Ownership must come from the full set, not the selected issue — otherwise
+// `validate.mjs 8` (how the workflow calls it) passes while issue-8.md and
+// issue-8.mdx both claim number 8.
 const seen = new Map()
+for (const i of readAllIssues()) {
+  const n = i.data.issue
+  if (typeof n !== 'number') continue
+  if (seen.has(n)) seen.set(n, `${seen.get(n)}, ${i.basename}`)
+  else seen.set(n, i.basename)
+}
 // Slugs, not numbers, route the archive URLs — and numbers are already unique by
 // construction via the filename check, so guarding only numbers guarded nothing.
 // A duplicate slug makes /newsletter/archive/<slug> resolve to the wrong issue.
@@ -103,9 +135,10 @@ let failed = 0
 
 for (const issue of issues) {
   const { errors, warnings } = validate(issue)
-  const n = issue.data.issue
-  if (seen.has(n)) errors.push(`duplicate issue number ${n} (also ${seen.get(n)})`)
-  else seen.set(n, issue.basename)
+  const numberOwners = seen.get(issue.data.issue)
+  if (numberOwners && numberOwners.includes(',')) {
+    errors.push(`duplicate issue number ${issue.data.issue} across: ${numberOwners}`)
+  }
 
   const owners = slugs.get(issue.data.slug)
   if (owners && owners.includes(',')) {

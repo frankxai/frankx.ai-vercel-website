@@ -15,10 +15,34 @@
  */
 
 import 'dotenv/config'
-import { renderIssue } from './render.mjs'
+import { execFileSync } from 'node:child_process'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { renderIssue, requirePostal } from './render.mjs'
 import { getIssue, updateFrontmatter, IDENTITY } from './lib.mjs'
 
 const API = 'https://api.resend.com'
+const HERE = path.dirname(fileURLToPath(import.meta.url))
+
+/**
+ * `gateStatus: pass` is a mutable field in a file anyone can edit — including the
+ * agent that just drafted it. Between approval and send the MDX can change, and
+ * the send path deliberately re-renders current bytes, so the gate would be
+ * approving content nobody reviewed. Re-run the deterministic validator against
+ * the actual file immediately before any irreversible call.
+ */
+function revalidate(n) {
+  try {
+    execFileSync(process.execPath, [path.join(HERE, 'validate.mjs'), String(n)], {
+      encoding: 'utf8',
+      stdio: 'pipe',
+    })
+  } catch (err) {
+    console.error(`Validation failed for issue ${n} — refusing to proceed.\n`)
+    console.error(err.stdout || err.message)
+    process.exit(1)
+  }
+}
 
 function requireKey() {
   const key = process.env.RESEND_API_KEY
@@ -105,6 +129,7 @@ if (mode === 'preview') {
 }
 
 if (mode === 'test') {
+  requirePostal()
   const to = rest[0] || process.env.NEWSLETTER_TEST_EMAIL
   if (!to) {
     console.error('Usage: send.mjs test <n> <email>')
@@ -127,6 +152,19 @@ if (mode === 'test') {
 }
 
 if (mode === 'stage') {
+  requirePostal()
+  // Staging writes `status: staged`, which the validator only accepts on a
+  // gate-passed issue — so staging a pending draft would leave the repo failing
+  // its own merge gate. Enforce the same precondition the status implies.
+  if (issue.data.gateStatus !== 'pass') {
+    console.error(`gateStatus is "${issue.data.gateStatus || 'unset'}" — run the integrity gate before staging.`)
+    process.exit(1)
+  }
+  if (['scheduled', 'sent'].includes(issue.data.status)) {
+    console.error(`Issue ${num} is already ${issue.data.status} — staging would create a second broadcast.`)
+    process.exit(1)
+  }
+  revalidate(num)
   const { issue: data, broadcastId } = await createBroadcast(num)
   updateFrontmatter(num, { status: 'staged', broadcastId })
   console.log(`Broadcast draft created for issue ${data.issue}: ${broadcastId}`)
@@ -136,6 +174,7 @@ if (mode === 'stage') {
 }
 
 if (mode === 'send') {
+  requirePostal()
   if (!rest.includes('--confirm')) {
     console.error('Refusing to broadcast without --confirm. This sends to the full audience.')
     process.exit(1)
@@ -144,10 +183,22 @@ if (mode === 'send') {
     console.error(`gateStatus is "${issue.data.gateStatus || 'unset'}" — integrity gate must pass before a blast.`)
     process.exit(1)
   }
-  if (issue.data.status === 'sent') {
-    console.error(`Issue ${num} is already marked sent (${issue.data.sentAt}). Refusing to send twice.`)
+  // `scheduled` is the ambiguous state: the provider may have accepted the send
+  // and the response or the final write was lost. Retrying would create a second
+  // broadcast, so the double-send guard has to cover it too. Reconcile by hand.
+  if (['sent', 'scheduled'].includes(issue.data.status)) {
+    console.error(
+      `Issue ${num} is already ${issue.data.status}` +
+        (issue.data.sentAt ? ` (${issue.data.sentAt})` : '') +
+        `. Refusing — a send may already be in flight.`
+    )
+    if (issue.data.broadcastId) {
+      console.error(`Reconcile first: https://resend.com/broadcasts/${issue.data.broadcastId}`)
+    }
     process.exit(1)
   }
+
+  revalidate(num)
 
   // Always build a fresh broadcast from the current MDX. Reusing a staged id
   // would send whatever was rendered at stage time — silently stale if the issue

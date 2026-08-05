@@ -28,10 +28,22 @@ const RULE = '#e4e1db'
 const PAPER = '#faf9f7'
 const ACCENT = '#0e7490'
 
-// CAN-SPAM and the EU equivalents require a real postal identity in every
-// commercial email. City + country is the minimum that is actually true today;
-// set NEWSLETTER_POSTAL to the full registered address once the BV filing lands.
-const POSTAL = process.env.NEWSLETTER_POSTAL || 'FrankX &middot; Amsterdam, Netherlands'
+// CAN-SPAM and the EU equivalents require a real, deliverable postal address in
+// every commercial email. "Amsterdam, Netherlands" is a city, not an address, so
+// the old fallback produced a non-compliant footer while looking compliant.
+// Preview renders locally without it; anything that leaves the machine fails closed.
+const POSTAL = process.env.NEWSLETTER_POSTAL || ''
+
+export function requirePostal() {
+  if (!POSTAL.trim()) {
+    console.error(
+      'NEWSLETTER_POSTAL is not set. A deliverable postal address is legally required in\n' +
+        'every commercial email (CAN-SPAM §5, and the EU equivalents). Set it before sending:\n' +
+        '  NEWSLETTER_POSTAL="FrankX, <street> <no>, <postcode> Amsterdam, Netherlands"'
+    )
+    process.exit(1)
+  }
+}
 
 /** YAML parses unquoted dates into Date objects — normalise before display. */
 function formatDate(value) {
@@ -41,7 +53,11 @@ function formatDate(value) {
 }
 
 function absolutize(html) {
-  return html.replace(/href="\/([^"]*)"/g, `href="${SITE}/$1"`)
+  // Email clients have no frankx.ai base, so a root-relative image src is simply
+  // a broken image — href was covered, src was not.
+  return html
+    .replace(/href="\/([^"]*)"/g, `href="${SITE}/$1"`)
+    .replace(/src="\/([^"]*)"/g, `src="${SITE}/$1"`)
 }
 
 /**
@@ -97,7 +113,10 @@ function bodyToHtml(md) {
     .replace(/<pre>/g, `<pre style="font-family:Consolas,Monaco,monospace;font-size:13px;line-height:1.5;background:#f4f2ee;border:1px solid ${RULE};border-radius:3px;padding:14px;margin:0 0 18px;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;">`)
     .replace(/<code>/g, `<code style="font-family:Consolas,Monaco,monospace;font-size:13px;background:#f4f2ee;padding:1px 4px;border-radius:2px;">`)
     .replace(/<img /g, `<img style="max-width:100%;height:auto;display:block;margin:0 0 18px;" `)
-    .replace(/<table>/g, `<table role="presentation" width="100%" style="border-collapse:collapse;font-family:${SANS};font-size:14px;margin:0 0 18px;">`)
+    // No role="presentation" here: these come from markdown tables in the body,
+    // so they carry real data and header relationships a screen reader needs.
+    // That role belongs only on the outer layout tables below.
+    .replace(/<table>/g, `<table width="100%" style="border-collapse:collapse;font-family:${SANS};font-size:14px;margin:0 0 18px;">`)
     .replace(/<(th|td)>/g, (_, t) => `<${t} style="border:1px solid ${RULE};padding:8px 10px;text-align:left;color:${INK};">`)
     .replace(/<strong>/g, `<strong style="font-weight:600;color:${INK};">`)
     .replace(/<h2>/g, `<h2 style="font-family:${SERIF};font-size:24px;line-height:1.3;font-weight:600;color:${INK};margin:40px 0 12px;">`)

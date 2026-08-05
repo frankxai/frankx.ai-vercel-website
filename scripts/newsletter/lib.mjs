@@ -109,14 +109,23 @@ export function updateFrontmatter(n, patch) {
  * sendAt already in the past.
  */
 export function nextFridayISO(from = new Date()) {
-  const d = new Date(from)
-  const delta = (5 - d.getUTCDay() + 7) % 7 || 7
-  d.setUTCDate(d.getUTCDate() + delta)
+  // The weekday must be read in Berlin, not UTC. At 22:30 UTC on a Thursday it is
+  // already Friday in Berlin, and a UTC calculation would date the issue for a
+  // day that has effectively started — or skip a week.
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Berlin',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'short',
+  }).formatToParts(from)
+  const part = (t) => parts.find((p) => p.type === t).value
+  const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(part('weekday'))
 
-  const yyyy = d.getUTCFullYear()
-  const mm = String(d.getUTCMonth() + 1).padStart(2, '0')
-  const dd = String(d.getUTCDate()).padStart(2, '0')
-  const date = `${yyyy}-${mm}-${dd}`
+  // Anchored at noon UTC so day arithmetic can't slip across a date boundary.
+  const d = new Date(`${part('year')}-${part('month')}-${part('day')}T12:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + ((5 - weekday + 7) % 7 || 7))
+  const date = d.toISOString().slice(0, 10)
 
   // Ask the runtime what Berlin's UTC offset is on that specific date.
   const noon = new Date(`${date}T12:00:00Z`)

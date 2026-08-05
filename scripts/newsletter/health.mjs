@@ -20,7 +20,17 @@ import { readAllIssues } from './lib.mjs'
 
 const args = process.argv.slice(2)
 const asJson = args.includes('--json')
-const maxDays = Number(args[args.indexOf('--max-days') + 1]) || 10
+// `Number(x) || 10` silently swallowed typos and turned an explicit `0` into 10,
+// so an operator could ask for a strict threshold and get a lenient answer.
+const maxDaysIdx = args.indexOf('--max-days')
+let maxDays = 10
+if (maxDaysIdx !== -1) {
+  maxDays = Number(args[maxDaysIdx + 1])
+  if (!Number.isFinite(maxDays) || maxDays < 0) {
+    console.error(`--max-days needs a non-negative number, got ${JSON.stringify(args[maxDaysIdx + 1])}`)
+    process.exit(2)
+  }
+}
 
 const HEARTBEAT = path.join(os.homedir(), 'starlight/logs/heartbeats/heartbeat-newsletter.json')
 

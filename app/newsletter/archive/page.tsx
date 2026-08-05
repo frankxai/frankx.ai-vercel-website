@@ -28,8 +28,15 @@ function formatDate(iso: string): string {
 export default function NewsletterArchivePage() {
   const allIssues = getAllIssues()
   const publishedIssues = getPublishedIssues()
+  // "Next up" must mean genuinely next. Showing every unsent draft advertised a
+  // June-dated issue as upcoming through August — a public liveness claim the
+  // pipeline could not back. Only future-dated drafts qualify.
+  const startOfToday = new Date()
+  startOfToday.setHours(0, 0, 0, 0)
   const upcomingIssues = allIssues.filter(
-    (i) => i.status === 'draft' || i.status === 'staged' || i.status === 'scheduled'
+    (i) =>
+      (i.status === 'draft' || i.status === 'staged' || i.status === 'scheduled') &&
+      new Date(i.sendAt || i.date).getTime() >= startOfToday.getTime()
   )
 
   const itemListSchema = {

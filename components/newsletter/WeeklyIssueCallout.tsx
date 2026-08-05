@@ -24,6 +24,11 @@ export default function WeeklyIssueCallout({ latest }: WeeklyIssueCalloutProps) 
   const shipDatePassed = Boolean(sendAt) && new Date(sendAt).getTime() < Date.now()
   const sendLabel = shipDatePassed ? '' : formatDate(sendAt)
 
+  // Blanking the date wasn't enough: an unsent draft whose date has passed was
+  // still headlining the page as "Coming soon" seven weeks later. A promise the
+  // pipeline can't keep is worse than no banner.
+  if (isUpcoming && shipDatePassed) return null
+
   return (
     <section className="relative border-b border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5">
