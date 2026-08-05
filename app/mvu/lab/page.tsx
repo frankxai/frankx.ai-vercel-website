@@ -87,7 +87,7 @@ export default function MvuLabPage() {
       <div className="mx-auto w-full max-w-2xl px-5 py-16 sm:py-24">
         <Link
           href="/mvu"
-          className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-tech-light"
+          className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
           MVU journal
@@ -195,7 +195,7 @@ export default function MvuLabPage() {
 
         <hr className="my-12 border-white/10" />
 
-        <p className="text-sm leading-relaxed text-white/45">
+        <p className="text-sm leading-relaxed text-white/55">
           This is an independent session I host — not organized, sponsored, or
           endorsed by Mindvalley, and not part of the official program. Mindvalley U
           runs in Porto from 12 July to 18 August 2027. This lab would sit alongside

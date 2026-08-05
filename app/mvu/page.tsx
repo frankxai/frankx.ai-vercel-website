@@ -320,7 +320,7 @@ export default function MvuPage() {
               Start the conversation
               <ArrowRight className="h-4 w-4" aria-hidden />
             </TrackedLink>
-            <p className="mt-4 text-sm leading-6 text-white/45">
+            <p className="mt-4 text-sm leading-6 text-white/55">
               Tell me what you want still standing after Porto. I answer these
               myself.
             </p>

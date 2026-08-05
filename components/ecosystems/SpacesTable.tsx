@@ -59,17 +59,16 @@ export default function SpacesTable({ spaces }: SpacesTableProps) {
     })
   }, [spaces, search, selectedDistrict, selectedModel])
 
-  // Reset page when filters change
-  useMemo(() => {
-    setCurrentPage(1)
-  }, [search, selectedDistrict, selectedModel])
+  const totalPages = Math.max(1, Math.ceil(filteredSpaces.length / itemsPerPage))
 
-  const totalPages = Math.ceil(filteredSpaces.length / itemsPerPage)
-  
+  // Filtering can shrink the result set below the page the user is on. Clamping
+  // during render keeps the view correct without resetting state from a hook.
+  const page = Math.min(currentPage, totalPages)
+
   const paginatedSpaces = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage
+    const start = (page - 1) * itemsPerPage
     return filteredSpaces.slice(start, start + itemsPerPage)
-  }, [filteredSpaces, currentPage])
+  }, [filteredSpaces, page])
 
   // Get color tokens for model badges
   const getBadgeStyle = (model: string) => {
@@ -181,19 +180,19 @@ export default function SpacesTable({ spaces }: SpacesTableProps) {
       {totalPages > 1 && (
         <div className="flex justify-between items-center pt-4 text-xs font-mono text-zinc-500">
           <div>
-            Showing {(currentPage - 1) * itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, filteredSpaces.length)} of {filteredSpaces.length} spaces
+            Showing {(page - 1) * itemsPerPage + 1} - {Math.min(page * itemsPerPage, filteredSpaces.length)} of {filteredSpaces.length} spaces
           </div>
           <div className="flex gap-2">
             <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(Math.max(1, page - 1))}
+              disabled={page === 1}
               className="px-3 py-1.5 rounded border border-white/[0.08] hover:border-white/20 disabled:opacity-30 disabled:hover:border-white/[0.08] transition-colors"
             >
               Previous
             </button>
             <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(Math.min(totalPages, page + 1))}
+              disabled={page === totalPages}
               className="px-3 py-1.5 rounded border border-white/[0.08] hover:border-white/20 disabled:opacity-30 disabled:hover:border-white/[0.08] transition-colors"
             >
               Next
