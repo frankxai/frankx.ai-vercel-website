@@ -8,15 +8,23 @@ name: Contract Guard
 
 on:
   pull_request:
+    # 'edited' matters: the override is read from the pull request title, so
+    # without it, adding [contract-change] after a red run would not re-run the
+    # check, and removing it after a green one would leave the check green while
+    # the reviewer signal quietly disappeared.
+    types: [opened, synchronize, reopened, edited]
     branches: [main, staging]
+    # Broad on purpose. A contract can guard a script or a public asset as well
+    # as a component, so narrowing this would silently skip the check on exactly
+    # the pull requests that pair such a surface with its contract.
     paths:
       - 'app/**'
       - 'components/**'
       - 'lib/**'
       - 'data/**'
       - 'content/**'
-      - 'scripts/tests/**'
-      - 'scripts/check-contract-guard.mjs'
+      - 'public/**'
+      - 'scripts/**'
       - '.github/workflows/contract-guard.yml'
 
 concurrency:

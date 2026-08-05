@@ -13,8 +13,22 @@
  * that same test asserts against.
  *
  * The guard→guarded mapping is not hardcoded. It is derived by reading each
- * test for the repo-relative paths it references, so it stays accurate as
- * tests are added or their assertions move.
+ * test for the paths it references and keeping the ones that resolve to a
+ * tracked file, so it stays accurate as tests are added or assertions move.
+ *
+ * Three things this deliberately does NOT assume:
+ *
+ *   1. That the test still exists. A pull request that DELETES a contract test
+ *      while changing the surface it guarded is the strongest form of the #409
+ *      failure — the seatbelt is not loosened, it is removed. Candidate tests
+ *      therefore include paths that only exist in the base revision.
+ *   2. That the test's current text still names the surface. A pull request can
+ *      strip the asserted literal and change the surface in one commit, so
+ *      guarded paths are the UNION of what the test referenced at the base
+ *      revision and at HEAD.
+ *   3. That references are written repo-relative. Several tests use
+ *      '../../app/…' relative to scripts/tests/, and Next route groups put
+ *      parentheses in real paths. Both are normalised before lookup.
  *
  * Deliberately changing a contract alongside its surface is legitimate — the
  * point is that it must be deliberate and visible to a reviewer, not silent.
@@ -26,48 +40,115 @@ import { readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 
 const TEST_DIR = 'scripts/tests'
-const GUARDED_PREFIXES = ['app/', 'components/', 'lib/', 'data/', 'content/']
-const SOURCE_RE = /['"`]((?:app|components|lib|data|content)\/[A-Za-z0-9_@./[\]-]+\.(?:tsx|ts|mjs|js|json))['"`]/g
+const TEST_SUFFIX = 'contract.test.mjs'
+
+// Any quoted literal that looks like a path: contains a slash and an extension.
+// Deliberately not an allowlist of prefixes or extensions — a contract can
+// guard a script, a public asset or an .mdx file just as much as a component,
+// and the tracked-file lookup below is what decides whether it is real.
+const PATH_RE = /['"`]([^'"`\n\s]*\/[^'"`\n\s]*\.[A-Za-z0-9]+)['"`]/g
 
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim()
 
-function changedFiles() {
-  const base = process.env.GITHUB_BASE_REF || 'main'
-  let range
+const isContractTest = (p) => p.startsWith(`${TEST_DIR}/`) && p.endsWith(TEST_SUFFIX)
+
+/** Changed paths plus the base revision they were measured against. */
+function changeSet() {
+  const baseRef = process.env.GITHUB_BASE_REF || 'main'
+  let base
   try {
-    range = git('merge-base', `origin/${base}`, 'HEAD')
+    base = git('merge-base', `origin/${baseRef}`, 'HEAD')
   } catch {
     // Shallow clone or missing remote ref — fall back to the last commit.
-    return git('diff', '--name-only', 'HEAD~1', 'HEAD').split('\n').filter(Boolean)
+    try {
+      base = git('rev-parse', 'HEAD~1')
+    } catch {
+      return { base: null, files: [] }
+    }
   }
-  return git('diff', '--name-only', range, 'HEAD').split('\n').filter(Boolean)
+  // --no-renames so a renamed test shows up as both its old and its new path,
+  // which keeps the old path in the candidate set.
+  const files = git('diff', '--name-only', '--no-renames', base, 'HEAD').split('\n').filter(Boolean)
+  return { base, files }
 }
 
-/** Which source files does this contract test assert against? */
-function guardedBy(testPath) {
-  const src = readFileSync(testPath, 'utf8')
+/** File contents at a revision, or null if it does not exist there. */
+function readAt(filePath, rev) {
+  try {
+    return rev === null ? readFileSync(filePath, 'utf8') : git('show', `${rev}:${filePath}`)
+  } catch {
+    return null
+  }
+}
+
+/** Which tracked files does this contract test reference, at one revision? */
+function guardedBy(testPath, rev, tracked) {
+  const src = readAt(testPath, rev)
+  if (src === null) return new Set()
   const out = new Set()
-  for (const m of src.matchAll(SOURCE_RE)) {
-    if (GUARDED_PREFIXES.some((p) => m[1].startsWith(p))) out.add(m[1])
+  for (const m of src.matchAll(PATH_RE)) {
+    const literal = m[1]
+    const resolved = literal.startsWith('.')
+      ? path.posix.normalize(path.posix.join(path.posix.dirname(testPath), literal))
+      : path.posix.normalize(literal)
+    // A test referencing itself or a sibling test is not a guarded surface.
+    if (resolved === testPath || isContractTest(resolved)) continue
+    if (tracked.has(resolved)) out.add(resolved)
   }
   return out
 }
 
-const contractTests = readdirSync(TEST_DIR)
-  .filter((f) => f.endsWith('contract.test.mjs'))
-  .map((f) => path.posix.join(TEST_DIR, f))
+const { base, files } = changeSet()
+const changed = new Set(files)
 
-const changed = new Set(changedFiles())
+// Tracked at HEAD, plus anything this pull request touched — so a source file
+// the pull request deletes still counts as a guarded surface.
+const tracked = new Set(git('ls-files').split('\n').filter(Boolean))
+for (const f of changed) tracked.add(f)
+
+// Candidates: tests present now, plus test paths this pull request changed —
+// which is how a deleted or renamed test stays in scope.
+const candidates = new Set()
+try {
+  for (const f of readdirSync(TEST_DIR)) {
+    if (f.endsWith(TEST_SUFFIX)) candidates.add(path.posix.join(TEST_DIR, f))
+  }
+} catch {
+  // Test directory absent at HEAD — the change set is the only source.
+}
+for (const f of changed) if (isContractTest(f)) candidates.add(f)
+
 const violations = []
+const unguarded = []
 
-for (const test of contractTests) {
+for (const test of [...candidates].sort()) {
+  const targets = new Set([
+    ...guardedBy(test, null, tracked),
+    ...(base ? guardedBy(test, base, tracked) : []),
+  ])
+  if (targets.size === 0) unguarded.push(test)
   if (!changed.has(test)) continue
-  const overlap = [...guardedBy(test)].filter((s) => changed.has(s)).sort()
-  if (overlap.length > 0) violations.push({ test, overlap })
+  const overlap = [...targets].filter((s) => changed.has(s)).sort()
+  if (overlap.length > 0) {
+    violations.push({ test, overlap, deleted: readAt(test, null) === null })
+  }
+}
+
+const guarding = candidates.size - unguarded.length
+
+if (unguarded.length > 0) {
+  console.log(
+    `[contract-guard] ${unguarded.length} of ${candidates.size} contract tests reference no tracked file, ` +
+      'so this check cannot protect them:'
+  )
+  for (const t of unguarded) console.log(`    ${t}`)
+  console.log('[contract-guard] That is a coverage gap, not a failure. Fix by asserting against a real path.')
 }
 
 if (violations.length === 0) {
-  console.log(`[contract-guard] ${contractTests.length} contract tests checked — no guard edited alongside what it guards.`)
+  console.log(
+    `[contract-guard] ${guarding} contract tests guard a tracked surface — none was edited alongside what it guards.`
+  )
   process.exit(0)
 }
 
@@ -78,7 +159,7 @@ console.error('')
 console.error('[contract-guard] A contract test was changed in the same pull request as a surface it guards:')
 console.error('')
 for (const v of violations) {
-  console.error(`  ${v.test}`)
+  console.error(`  ${v.test}${v.deleted ? '   (DELETED by this pull request)' : ''}`)
   for (const s of v.overlap) console.error(`      also changed: ${s}`)
 }
 console.error('')
