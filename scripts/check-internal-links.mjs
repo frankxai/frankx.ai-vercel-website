@@ -89,6 +89,24 @@ function isPublicAsset(href) {
   return fs.existsSync(resolved) && fs.statSync(resolved).isFile()
 }
 
+const APP_DIR = path.join(ROOT, 'app')
+const ROUTE_HANDLER_FILES = ['route.ts', 'route.tsx', 'route.js', 'route.mjs']
+
+/**
+ * Some paths that end in a file extension are not files at all — they are Next
+ * route handlers. /rss.xml is app/rss.xml/route.ts; /journal/feed.xml is
+ * app/journal/feed.xml/route.ts. They serve real content and are not all
+ * present in route-index, so neither the public/ lookup nor the index finds
+ * them. Resolve them against the app tree rather than reporting them broken.
+ */
+function isRouteHandler(href) {
+  const rel = href.replace(/^\/+/, '')
+  if (!rel) return false
+  const dir = path.resolve(APP_DIR, rel)
+  if (dir !== APP_DIR && !dir.startsWith(APP_DIR + path.sep)) return false
+  return ROUTE_HANDLER_FILES.some((f) => fs.existsSync(path.join(dir, f)))
+}
+
 // ─── walk source tree ───────────────────────────────────────
 /** @type {{file: string, line: number, href: string}[]} */
 const findings = []
@@ -139,7 +157,6 @@ function scanFile(file) {
         const href = m[1]
         if (!href.startsWith('/')) continue
         if (SKIP_PREFIXES.some((p) => href.startsWith(p))) continue
-        if (ASSET_EXT_RE.test(href)) continue
         if (TEMPLATE_RE.test(href)) continue
 
         // Strip query string + hash for matching
@@ -152,6 +169,21 @@ function scanFile(file) {
         if (validAliases.has(cleanHref)) continue
         // Trailing-slash variant
         if (validHrefs.has(cleanHref.replace(/\/$/, ''))) continue
+
+        // Anything ending in a file extension is an asset or a file-shaped
+        // route: resolve it, do not wave it through. This used to skip on the
+        // extension alone, so a missing /hero.png passed silently — the same
+        // guess-instead-of-look mistake as the old SKIP_PREFIXES list, one
+        // line higher up.
+        if (ASSET_EXT_RE.test(cleanHref)) {
+          if (isPublicAsset(cleanHref) || isRouteHandler(cleanHref)) continue
+          findings.push({
+            file: path.relative(ROOT, file).replace(/\\/g, '/'),
+            line: i + 1,
+            href: cleanHref,
+          })
+          continue
+        }
         // Dynamic-segment heuristic: if the href matches a known prefix like
         // /blog/<something>, /workshops/<something> and we have the listing
         // page, assume the dynamic page exists (we can't fully resolve every slug)

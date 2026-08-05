@@ -41,6 +41,11 @@ concurrency:
   group: merge-gate-${{ github.ref }}
   cancel-in-progress: true
 
+# The job only reads the tree: checkout, install, run checks. Nothing writes
+# back to the repository, so the token needs nothing beyond contents:read.
+permissions:
+  contents: read
+
 env:
   NODE_VERSION: '22'
 
