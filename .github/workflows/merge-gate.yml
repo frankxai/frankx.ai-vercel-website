@@ -1,0 +1,88 @@
+name: Merge Gate
+
+# The contract, claims, content and internal-link checks that `merge:gate`
+# defines but no workflow ran.
+#
+# Until 2026-08-05 these existed only as npm scripts. CI ran install,
+# test:build-integrity, type-check, lint, ai-slop:audit:strict and build —
+# nothing else. 14 of 15 contract tests, claims:audit:strict, content:check and
+# both link checkers never executed on a pull request. The homepage contract sat
+# broken on main for three days as a direct result.
+#
+# Deliberately does NOT re-run what ci.yml already covers (type-check, lint,
+# ai-slop:audit:strict, build, test:build-integrity). Running them twice would
+# double the minutes and give two places to fix one red check.
+#
+# Steps are grouped so a failure names its own category in the checks UI rather
+# than surfacing as one opaque "merge:gate failed".
+
+on:
+  pull_request:
+    branches: [main, staging]
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'content/**'
+      - 'lib/**'
+      - 'data/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/merge-gate.yml'
+
+concurrency:
+  group: merge-gate-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '22'
+
+jobs:
+  merge-gate:
+    name: Merge Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      # First, and cheap. A contract test that does not parse cannot protect
+      # anything, and that failure is invisible to every check that follows.
+      - name: Contract test syntax
+        run: node scripts/check-test-syntax.mjs
+
+      - name: Contract tests
+        run: |
+          pnpm run test:homepage-release
+          pnpm run test:collaboration-release
+          pnpm run test:ai-architecture
+          pnpm run test:email-safety
+          pnpm run test:agentic-life-research
+          pnpm run test:community-platform-guide
+          pnpm run test:learning-routes
+
+      - name: Content and claims integrity
+        run: |
+          pnpm run research:agentic-life:audit
+          pnpm run content:check
+          pnpm run claims:audit:strict
+          pnpm run learn:check
+
+      - name: Internal links
+        run: pnpm run links:check:static
+
+      - name: Workflow definitions
+        run: |
+          pnpm run workflow:validate
+          pnpm run workflow:test
