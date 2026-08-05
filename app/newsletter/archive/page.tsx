@@ -111,7 +111,9 @@ export default function NewsletterArchivePage() {
               <FileText className="w-10 h-10 text-white/20 mx-auto mb-4" />
               <p className="text-white/60 mb-2">No issues archived yet.</p>
               <p className="text-sm text-white/40">
-                The first issue ships Friday May 22, 2026. Subscribe to be there when it lands.
+                {upcomingIssues.length > 0
+                  ? `${upcomingIssues.length} ${upcomingIssues.length === 1 ? 'issue is' : 'issues are'} in the pipeline above. Subscribe to get the next one the Friday it ships.`
+                  : 'Subscribe to get the next issue the Friday it ships.'}
               </p>
               <Link
                 href="/newsletter"

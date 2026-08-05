@@ -74,8 +74,8 @@
     "diagrams:guard": "node scripts/diagrams/guard.mjs",
     "diagrams:baseline": "node scripts/diagrams/guard.mjs --update-baseline",
     "ci:check": "npm run merge:gate && npm run lint && npm run content:validate && npm run diagrams:guard",
-    "merge:gate": "npm run test:build-integrity && npm run test:homepage-release && npm run test:collaboration-release && npm run test:ai-architecture && npm run test:email-safety && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run learn:check && npm run links:check:static && npm run links:check:ci && npm run workflow:validate && npm run workflow:test",
-    "merge:gate:ci": "npm run test:build-integrity && npm run test:homepage-release && npm run test:collaboration-release && npm run test:ai-architecture && npm run test:email-safety && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run learn:check && npm run links:check:static && npm run workflow:validate && npm run workflow:test",
+    "merge:gate": "npm run test:build-integrity && npm run test:homepage-release && npm run test:collaboration-release && npm run test:ai-architecture && npm run test:email-safety && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run learn:check && npm run links:check:static && npm run links:check:ci && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
+    "merge:gate:ci": "npm run test:build-integrity && npm run test:homepage-release && npm run test:collaboration-release && npm run test:ai-architecture && npm run test:email-safety && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run learn:check && npm run links:check:static && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
     "learn:check": "node scripts/check-learning-paths.mjs",
     "links:check": "node scripts/check-links.mjs",
     "links:check:ci": "bash scripts/run-links-check-with-dev.sh",
@@ -126,7 +126,14 @@
     "sync:fix": "bash scripts/pre-deploy-sync-check.sh --sync",
     "sync:diff": "bash scripts/pre-deploy-sync-check.sh --diff",
     "predeploy": "npm run merge:gate && npm run sync:check",
-    "journal:new": "node scripts/new-journal-entry.mjs"
+    "journal:new": "node scripts/new-journal-entry.mjs",
+    "newsletter:validate": "node scripts/newsletter/validate.mjs",
+    "newsletter:render": "node scripts/newsletter/render.mjs",
+    "newsletter:health": "node scripts/newsletter/health.mjs",
+    "newsletter:preview": "node scripts/newsletter/send.mjs preview",
+    "newsletter:test": "node scripts/newsletter/send.mjs test",
+    "newsletter:stage": "node scripts/newsletter/send.mjs stage",
+    "newsletter:send": "node scripts/newsletter/send.mjs send"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
