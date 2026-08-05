@@ -84,6 +84,7 @@ jobs:
           pnpm run content:check
           pnpm run claims:audit:strict
           pnpm run learn:check
+          pnpm run newsletter:validate
 
       # check-internal-links.mjs validates against data/route-index.json and
       # documents routes:build as its preflight. `prebuild` regenerates the

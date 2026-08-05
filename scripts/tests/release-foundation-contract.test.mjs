@@ -65,7 +65,7 @@ test('verified contrast and MVU link-name regressions stay closed', async () => 
   assert.match(homepage, /max-w-xl text-\[11px\] leading-5 text-white\/70/)
   assert.doesNotMatch(homepage, /function ScrollProgress/)
   assert.doesNotMatch(homepage, /<ScrollProgress \/>/)
-  assert.match(mvu, /aria-label="Read Your Mind Is a Temporary Library"/)
+  assert.match(mvu, /aria-label="Read the essay: Your Mind Is a Temporary Library"/)
 })
 
 test('connect schema describes the page without claiming third-party events', async () => {
@@ -105,8 +105,15 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
   assert.match(blog, /sizes="\(max-width: 767px\) 100vw, 50vw"/)
   assert.match(carousel, /text-white\/60 tracking-widest">Drag to browse/)
   assert.doesNotMatch(journal, /text-white\/(?:30|35|40)/)
-  assert.match(mvu, /tracking-widest text-white\/60/)
-  assert.match(mvu, /loading="eager"/)
+  // /mvu no longer uses all-caps tracking eyebrows or a duplicated eager
+  // image; it uses the homepage display/serif register and a single priority
+  // hero. Guard the new intent rather than the markup it replaced.
+  assert.doesNotMatch(mvu, /uppercase tracking-/)
+  assert.match(mvu, /font-display text-4xl font-bold/)
+  assert.match(mvu, /font-serif text-lg italic/)
+  assert.match(mvu, /priority/)
+  // contrast floor: /45 measured 4.50:1 on void, exactly the AA cutoff
+  assert.doesNotMatch(mvu, /text-white\/(?:30|35|40|45)/)
   assert.match(mdx, /role="region"/)
   assert.match(mdx, /aria-label="Scrollable data table"/)
   assert.match(mdx, /tabIndex=\{0\}/)
