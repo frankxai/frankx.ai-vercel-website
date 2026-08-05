@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { Music4, Workflow, BookOpen, Sparkles, ArrowUpRight, type LucideIcon } from 'lucide-react'
+import { Bot, Workflow, BookOpen, Network, ArrowUpRight, type LucideIcon } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
 interface FeaturedWork {
-  id: 'music-lab' | 'acos' | 'blog' | 'gemini-mastery'
+  id: 'agents' | 'architecture' | 'acos' | 'blog'
   title: string
   subtitle: string
   href: string
@@ -15,36 +15,36 @@ interface FeaturedWork {
 
 const FEATURED: FeaturedWork[] = [
   {
-    id: 'gemini-mastery',
-    title: 'Gemini & Google AI',
-    subtitle: 'Curated portal — 8 videos, ecosystem grid, I/O 2026 timeline, FAQ.',
-    href: '/learn/gemini-mastery',
-    icon: Sparkles,
-    badge: 'Live Madrid',
+    id: 'agents',
+    title: '99-agent operating system',
+    subtitle: 'Inspect the specialist agents running across the local estate.',
+    href: '/agents?from=connect',
+    icon: Bot,
+    badge: 'Running locally',
   },
   {
-    id: 'music-lab',
-    title: 'Music Lab',
-    subtitle: '12K+ AI tracks, generative sessions, sonic rituals.',
-    href: '/music-lab',
-    icon: Music4,
-    badge: 'Suno',
+    id: 'architecture',
+    title: 'AI Architecture Field Guide',
+    subtitle: 'Patterns for systems that can be operated, governed, and improved.',
+    href: '/ai-architecture',
+    icon: Network,
+    badge: 'Reference',
   },
   {
     id: 'acos',
     title: 'Agentic Creator OS',
-    subtitle: 'The full operating system for AI-native creators and architects.',
+    subtitle: 'An open system for AI-native creators and architects.',
     href: '/acos',
     icon: Workflow,
-    badge: 'Flagship',
+    badge: 'Open source',
   },
   {
     id: 'blog',
-    title: 'Creation Chronicles',
-    subtitle: 'Tutorials on AI architecture, music, and shipping at the edge.',
+    title: 'Inside the build',
+    subtitle: 'Field notes on AI architecture, creative systems, and shipping.',
     href: '/blog',
     icon: BookOpen,
-    badge: 'Weekly',
+    badge: 'Field notes',
   },
 ]
 

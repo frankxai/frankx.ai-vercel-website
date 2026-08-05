@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 827,
+    "total": 839,
     "aliases": 33,
     "byType": {
       "core": 21,
-      "section": 398,
+      "section": 399,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 203,
+      "blog": 214,
       "workshop": 12,
       "guide": 20,
       "library": 41,
@@ -734,6 +734,19 @@
       "type": "core"
     },
     {
+      "href": "/blog/_overnight-10-preview-2026-07-15",
+      "title": "_overnight 10 Preview 2026 07 15",
+      "tags": [
+        "_overnight",
+        "10",
+        "preview",
+        "2026",
+        "07",
+        "15"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/01-ai-doesnt-have-to-be-soulless",
       "title": "AI Doesn't Have To Be Soulless (And Here's How I Know)",
       "description": "A 15-year architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
@@ -1274,6 +1287,21 @@
       "type": "blog"
     },
     {
+      "href": "/blog/best-ai-image-generators-2026-production-stack",
+      "title": "Best AI Image Generators 2026: A Production Stack for Founders",
+      "description": "Not another random ranking. A production-minded stack for 2026 image models — Midjourney, FLUX, Ideogram, GPT Image, Grok Imagine — and when each wins for brand work.",
+      "tags": [
+        "AI Image",
+        "Midjourney",
+        "FLUX",
+        "Ideogram",
+        "Grok Imagine",
+        "Brand Image System",
+        "GenAI Tools"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/best-ai-logo-maker-2026",
       "title": "Best AI Logo Maker 2026: Looka vs Canva vs Ideogram vs Recraft",
       "description": "A results-first comparison of the best AI logo makers in 2026 — Looka, Canva, Ideogram, and Recraft — judged on vector export, brand kit, licensing, and price. Recraft wins for the file you actually own.",
@@ -1374,7 +1402,7 @@
     {
       "href": "/blog/best-ai-superpowers-stack-2026",
       "title": "The AI Superpowers Stack 2026: The Best Tool and MCP for Every Creator Job",
-      "description": "A curated stack — the single best AI tool and the MCP server that gives an agent that power — for content, websites, research, image, video, music, automation, coding, and voice.",
+      "description": "Best AI tool and MCP server for every creator job in 2026: content, websites, research, image, video, music, automation, coding, and voice.",
       "tags": [
         "AI Tools",
         "MCP",
@@ -1409,6 +1437,21 @@
         "adobe-premiere",
         "runway",
         "creator-tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-video-generators-2026-kling-veo-sora-higgsfield",
+      "title": "Best AI Video Generators 2026: Kling, Veo, Sora, Higgsfield",
+      "description": "A production comparison of 2026 AI video models — Kling, Veo, Sora, Seedance, Runway — and how founders route jobs through Higgsfield-class platforms without burning budget.",
+      "tags": [
+        "AI Video",
+        "Kling",
+        "Veo",
+        "Sora",
+        "Higgsfield",
+        "Runway",
+        "GenAI Tools"
       ],
       "type": "blog"
     },
@@ -1514,6 +1557,19 @@
       "title": "Brand Evolution: From Consciousness to Systems",
       "description": "How FrankX shifted from 'soul-aligned AI' language to a systems architect identity. A transparent look at brand iteration for creators.",
       "tags": [],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/build-vs-buy-agentic-infrastructure-2026",
+      "title": "Build vs Buy Agentic Infrastructure in 2026",
+      "description": "When to assemble your own agent stack versus buying platforms. Decision matrix for founders: TCO, control, speed, and sovereignty.",
+      "tags": [
+        "Build vs Buy",
+        "Agentic Infrastructure",
+        "ACOS",
+        "SaaS",
+        "Architecture"
+      ],
       "type": "blog"
     },
     {
@@ -1773,6 +1829,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/creative-os-business-models-tools-to-outcomes",
+      "title": "Creative OS Business Models: From Tools to Outcomes",
+      "description": "How Creative Operating Systems monetize in 2026 — tools, studios, CoEs, communities, and outcome retainers that compound brand equity.",
+      "tags": [
+        "Creative OS",
+        "GenCreator",
+        "Business Models",
+        "Creator Economy",
+        "ACOS"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/creator-intelligence-systems-2026",
       "title": "Why Every Creator Needs an Intelligence System in 2026",
       "description": "The creators who thrive in 2026 won't be those with the best tools—they'll be those with the best systems. Here's why personal AI intelligence systems are the new competitive advantage.",
@@ -1815,7 +1884,7 @@
     {
       "href": "/blog/cursor-vs-claude-code-vs-windsurf-2026",
       "title": "Cursor vs Claude Code vs Windsurf in 2026: Which AI Coding Agent for Which Job",
-      "description": "A practitioner's head-to-head: Claude Code, Cursor, and Windsurf (now Devin Desktop) compared on agentic capability, IDE vs terminal, MCP support, and 2026 pricing — plus where Copilot and Codex fit.",
+      "description": "Practitioner head-to-head of Claude Code, Cursor, and Windsurf (Devin Desktop): agentic work, IDE vs terminal, MCP support, and 2026 pricing.",
       "tags": [
         "Coding Agents",
         "Claude Code",
@@ -2053,6 +2122,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/genai-tool-router-image-video-agents-2026",
+      "title": "The GenAI Tool Router: Image, Video, and Agents (2026)",
+      "description": "A practical router for when to use which GenAI tool — image models, video models, coding agents, research agents — with cost, quality, and brand risk controls.",
+      "tags": [
+        "Tool Router",
+        "GenAI",
+        "Model Routing",
+        "ACOS",
+        "Workflow"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/gencreator-3-tier-shipping-system",
       "title": "The 3-Tier Shipping System: How GenCreators Build Creative Momentum",
       "description": "Full Ship, Quick Ship, Micro Ship — energy-aware daily output. The system that turns sporadic creation into unstoppable momentum.",
@@ -2226,6 +2308,33 @@
       "type": "blog"
     },
     {
+      "href": "/blog/hybrid-image-video-pipelines-cinematic-brands-2026",
+      "title": "Hybrid Image–Video Pipelines for Cinematic Brands (2026)",
+      "description": "End-to-end pipeline from still keyframes to motion: image models, video generators, audio, edit, and brand QA for cinematic founder and fitness brands.",
+      "tags": [
+        "Image to Video",
+        "Cinematic Brand",
+        "Higgsfield",
+        "Brand Image System",
+        "Pipeline"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/hybrid-multi-plane-architecture-creator-coe-2026",
+      "title": "Hybrid Multi-Plane Architecture for Creator CoEs (2026)",
+      "description": "A practical multi-plane architecture for Personal AI CoEs: strategy, governance, talent, technology, data, and ethics planes that ship weekly without chaos.",
+      "tags": [
+        "AI Architecture",
+        "Personal AI CoE",
+        "Multi-Plane",
+        "ACOS",
+        "Sovereign Agents",
+        "Creator OS"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/iacos-investment-research-os",
       "title": "IACOS: How to Configure Claude Code as Your Investment Research OS",
       "description": "Turn Claude Code into a dedicated investment research platform with custom skills, agent profiles, MCP servers, and visual intelligence. The complete IACOS setup guide.",
@@ -2248,6 +2357,19 @@
         "self-leadership",
         "ifs",
         "decision hygiene"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/innovation-loops-agentic-teams-weekly-shipping",
+      "title": "Innovation Loops: How Agentic Teams Ship Weekly",
+      "description": "A weekly innovation loop for agentic teams: signal → brief → build → gate → ship → learn. Cadence that compounds without chaos.",
+      "tags": [
+        "Innovation",
+        "Agentic Teams",
+        "Weekly Cadence",
+        "ACOS",
+        "Content Ops"
       ],
       "type": "blog"
     },
@@ -2408,6 +2530,20 @@
         "ifs",
         "self-led ai",
         "agent architecture"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/memory-native-agent-architecture-2026",
+      "title": "Memory-Native Agent Architecture (2026)",
+      "description": "How to design agents that remember: short-term run state, long-term hub memory, evaluation loops, and failure recovery without context collapse.",
+      "tags": [
+        "Memory",
+        "Agent Architecture",
+        "Starlight",
+        "ACOS",
+        "RAG",
+        "Orchestration"
       ],
       "type": "blog"
     },
@@ -2630,6 +2766,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/outcome-based-pricing-ai-agents-2026",
+      "title": "Outcome-Based Pricing for AI Agents (2026 Playbook)",
+      "description": "SaaS seats break under agentic load. Here is a practical pricing playbook for AI agents: outcome tiers, hybrid usage, TCO math, and founder packaging that survives production.",
+      "tags": [
+        "AI Business Models",
+        "Agent Pricing",
+        "SaaS",
+        "Outcome Pricing",
+        "GenCreator",
+        "ACOS"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/personal-ai-assistant-setup-workshop",
       "title": "Build Your Personal AI Assistant: The Complete Setup Workshop",
       "description": "Create a customized AI development environment from scratch. Learn to configure Claude Code, build CLAUDE.md files, create custom skills, and connect MCP servers to your workflow.",
@@ -2646,7 +2796,7 @@
     {
       "href": "/blog/personal-ai-coe-under-100-2026",
       "title": "How to Build a Personal AI Center of Excellence for Under $100 a Month (2026)",
-      "description": "Enterprise AI Centers of Excellence run on a 6-pillar architecture. The same architecture works for one person at roughly 1/5000th the cost. Here is the exact under-$100 stack, the budget table, and the daily ritual that wires it together.",
+      "description": "Build a personal AI Center of Excellence under $100/month with the same 6-pillar enterprise architecture — stack, budget table, and daily ritual.",
       "tags": [
         "AI Center of Excellence",
         "personal AI stack",
@@ -3620,6 +3770,18 @@
     {
       "href": "/books/arcanea-creator-principles/chapter-07-advanced-partnership",
       "title": "Ch 7 — Advanced Partnership",
+      "type": "section"
+    },
+    {
+      "href": "/books/series/the-wordless-laws",
+      "title": "The Wordless Laws",
+      "tags": [
+        "books",
+        "series",
+        "the",
+        "wordless",
+        "laws"
+      ],
       "type": "section"
     },
     {

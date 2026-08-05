@@ -82,54 +82,103 @@ const staggerContainer = {
 /* ─── Data ─── */
 const services = [
   {
-    title: 'AI Architecture Assessment',
+    title: 'The Leverage Map',
     duration: '1 — 2 days',
     price: 'From EUR 3,000',
     icon: Target,
     color: 'violet' as const,
     description:
-      'Comprehensive review of your current AI landscape, infrastructure readiness, and strategic alignment. Delivered with a prioritized roadmap.',
-    deliverables: ['Current-state analysis', 'Gap assessment', 'Prioritized roadmap', 'Executive summary'],
+      'Find where your expertise, proprietary data, and recurring decisions can create the greatest practical advantage.',
+    deliverables: ['Knowledge and workflow map', 'Opportunity portfolio', 'Risk assessment', 'Prioritized roadmap'],
   },
   {
-    title: 'Architecture Sprint',
+    title: 'The Intelligence Blueprint',
     duration: '1 — 2 weeks',
     price: 'From EUR 8,000',
     icon: Layers,
     color: 'cyan' as const,
     description:
-      'End-to-end solution architecture for a specific AI use case. Includes technology selection, cost modeling, and production-ready design.',
-    deliverables: ['Solution architecture', 'Technology selection', 'Cost model', 'Implementation plan'],
+      'Design one high-value intelligence system around a real business outcome, with the knowledge, agents, controls, and delivery path specified.',
+    deliverables: ['Intelligence architecture', 'Knowledge model', 'Agent workflow', 'Implementation plan'],
   },
   {
-    title: 'AI Practice Builder',
+    title: 'The Sovereign System Build',
     duration: '4 — 8 weeks',
     price: 'From EUR 25,000',
     icon: Building2,
     color: 'emerald' as const,
     description:
-      'Build your internal AI Center of Excellence. Governance frameworks, reusable patterns, team enablement, and toolchain configuration.',
-    deliverables: ['Governance framework', 'Pattern library', 'Team training', 'Toolchain setup'],
+      'Install the system behind the business: memory, specialist agents, quality gates, operating workflows, and a team-ready adoption model.',
+    deliverables: ['Owned AI operating system', 'Agent and skill library', 'Quality gates', 'Team activation'],
   },
   {
-    title: 'Architecture Partner',
+    title: 'AI Architecture Partner',
     duration: 'Monthly',
     price: 'From EUR 3,000/mo',
     icon: Shield,
     color: 'amber' as const,
     description:
-      'Ongoing AI architecture partnership. Architecture reviews, design sessions, team coaching, and strategic guidance — like having a fractional AI Architect on your team.',
-    deliverables: ['Architecture reviews', 'Design sessions', 'Team coaching', 'Strategic guidance'],
+      'Ongoing architecture, product exploration, and system improvement for leaders who want a fractional AI Architect beside them.',
+    deliverables: ['Architecture reviews', 'Opportunity sessions', 'Team coaching', 'System evolution'],
   },
   {
-    title: 'AI Strategy Session',
+    title: 'Leadership Possibility Lab',
     duration: '1 day',
     price: 'From EUR 5,000',
     icon: Lightbulb,
     color: 'rose' as const,
     description:
-      'Hands-on workshop for leadership teams. Demystify AI, identify high-value use cases, and align on an actionable AI strategy.',
-    deliverables: ['AI landscape briefing', 'Use case identification', 'Strategy alignment', 'Action plan'],
+      'A working session for founders or leadership teams to expose hidden leverage, test new offers, and align on a practical AI direction.',
+    deliverables: ['Capability briefing', 'Opportunity design', 'Strategic alignment', '90-day action plan'],
+  },
+]
+
+const audiences = [
+  {
+    title: 'Established experts',
+    fit: 'Primary',
+    description:
+      'You have an audience, courses, frameworks, or years of client work. The next constraint is turning what only you can do into a system without flattening your voice.',
+  },
+  {
+    title: 'Founder-led businesses',
+    fit: 'Primary',
+    description:
+      'Your business has valuable customer knowledge, operating patterns, and data, but AI still lives in isolated tools instead of the way the company works.',
+  },
+  {
+    title: 'Builders becoming experts',
+    fit: 'Pathway',
+    description:
+      'You are still assembling proof and a category. Start with the open systems and Academy pathways, then use a focused sprint when the business case is real.',
+  },
+]
+
+const intelligenceLayers = [
+  {
+    label: 'Knowledge',
+    icon: Brain,
+    description: 'Your frameworks, evidence, language, decisions, customer insight, and proprietary data.',
+  },
+  {
+    label: 'Agents',
+    icon: Layers,
+    description: 'Specialist roles and skills that apply your standards to research, decisions, and delivery.',
+  },
+  {
+    label: 'Operations',
+    icon: Factory,
+    description: 'Repeatable workflows across delivery, sales, marketing, administration, and quality control.',
+  },
+  {
+    label: 'Creation',
+    icon: Sparkles,
+    description: 'Content, music, media, social assets, and product prototypes built from one coherent source.',
+  },
+  {
+    label: 'Growth',
+    icon: Rocket,
+    description: 'New niches, offers, digital products, and go-to-market experiments informed by real signals.',
   },
 ]
 
@@ -145,11 +194,12 @@ const industries = [
 ]
 
 const methodology = [
-  { step: '01', label: 'Discover', icon: Microscope, description: 'Understand the landscape, stakeholders, and constraints' },
-  { step: '02', label: 'Architect', icon: Layers, description: 'Design the solution with validated patterns and pricing' },
-  { step: '03', label: 'Visualize', icon: Sparkles, description: 'Communicate through architecture diagrams and prototypes' },
-  { step: '04', label: 'Prototype', icon: Rocket, description: 'Build working proof-of-concepts that demonstrate value' },
-  { step: '05', label: 'Deliver', icon: CheckCircle2, description: 'Hand over production-ready designs and documentation' },
+  { step: '01', label: 'Discover', icon: Microscope, description: 'Listen deeply and map the business, ambitions, assets, and constraints' },
+  { step: '02', label: 'Distill', icon: Brain, description: 'Extract the knowledge, judgment, evidence, language, and repeatable methods' },
+  { step: '03', label: 'Architect', icon: Layers, description: 'Design memory, agents, workflows, controls, and the human operating model' },
+  { step: '04', label: 'Activate', icon: Zap, description: 'Apply the system to operations, sales, marketing, creation, and delivery' },
+  { step: '05', label: 'Productize', icon: Rocket, description: 'Turn new capability into offers, products, niches, and distribution experiments' },
+  { step: '06', label: 'Compound', icon: CheckCircle2, description: 'Capture outcomes and decisions so every cycle starts more intelligently' },
 ]
 
 const proofPoints = [
@@ -175,36 +225,118 @@ function HeroSection() {
         >
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-sm text-slate-400">Open to build together</span>
+            <span className="text-sm text-slate-400">AI Architecture Studio · Sovereign Intelligence</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
             <span className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-              AI Architecture
+              Turn what only you know
             </span>
             <br />
             <span className="bg-gradient-to-r from-[#AB47C7] via-blue-400 to-[#43BFE3] bg-clip-text text-transparent">
-              Studio
+              into what your business can do.
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mb-10 leading-relaxed">
-            I architect AI systems, coach builders, and create what doesn&apos;t exist yet.
-            <br className="hidden sm:block" />
-            GenAI, RAG, Agentic AI, and Cloud-Native architectures.
+            I help experts and founder-led teams capture their knowledge, judgment, and methods,
+            then build an AI-powered operating system around them — so the business can make
+            sharper decisions, create stronger work, serve more people, and launch new products.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <PremiumButton href="#contact" variant="primary" size="lg" glow>
-              Let&apos;s Build Something
+              Design My Advantage
               <ArrowRight className="ml-2 h-5 w-5" />
             </PremiumButton>
-            <PremiumButton href="/research" variant="ghost" size="lg">
-              View Research
+            <PremiumButton href="/foundry" variant="ghost" size="lg">
+              Inspect the Foundry
               <ArrowRight className="ml-2 h-5 w-5" />
             </PremiumButton>
           </div>
         </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function PositioningSection() {
+  return (
+    <section className="border-t border-white/5 py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div>
+            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/60">
+              The Advantage
+            </p>
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Your expertise should become infrastructure.
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-slate-400">
+              Personal branding makes expertise visible. Sovereign Intelligence makes it usable.
+              It preserves how you think, equips agents to work by your standards, and connects
+              that intelligence to the parts of the business where it creates value.
+            </p>
+            <p className="mt-5 text-base leading-relaxed text-slate-500">
+              Sovereign means the context, memory, agents, and workflows remain under your
+              direction. The result is not a generic chatbot or a pile of automations. It is an
+              architecture your team can inspect, operate, and improve.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {audiences.map((audience) => (
+              <div
+                key={audience.title}
+                className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="text-lg font-semibold text-white">{audience.title}</h3>
+                  <span className="rounded-full border border-white/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-white/40">
+                    {audience.fit}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-slate-400">{audience.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function IntelligenceSystemSection() {
+  return (
+    <section className="border-t border-white/5 py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/60">
+          One System
+        </p>
+        <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          One source of truth. Five forms of leverage.
+        </h2>
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-400">
+          Starlight is the intelligence engine. Sovereign Intelligence is the principle. The
+          FrankX Foundry is how both become yours — connected to agents, creator workflows,
+          business operations, and learning loops.
+        </p>
+
+        <div className="mt-12 grid gap-4 md:grid-cols-5">
+          {intelligenceLayers.map((layer, index) => (
+            <div
+              key={layer.label}
+              className="relative rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5"
+            >
+              <div className="flex items-center justify-between">
+                <layer.icon className="h-5 w-5 text-emerald-400" aria-hidden="true" />
+                <span className="font-mono text-[10px] text-white/25">0{index + 1}</span>
+              </div>
+              <h3 className="mt-5 text-base font-semibold text-white">{layer.label}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-400">{layer.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -224,7 +356,8 @@ function ServicesSection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">How I Work</h2>
           <p className="text-slate-400 text-lg max-w-2xl">
-            Focused engagements designed to move your AI ambitions from vision to production.
+            Start with the smallest engagement that can expose real leverage. Build further only
+            when the evidence supports it.
           </p>
         </motion.div>
 
@@ -285,12 +418,13 @@ function FoundrySection() {
             Beyond Advisory
           </p>
           <h2 className="text-3xl font-bold text-white tracking-tight mb-3">
-            Some businesses need an operating system, not a session.
+            Build the system. Keep the intelligence.
           </h2>
           <p className="text-white/60 text-base mb-6">
-            The FrankX Foundry installs the full architecture — site, agent harness, quality
-            gates, compounding business memory — derived for your brand and owned by you.
-            Application-only, a small number of installs per quarter.
+            The FrankX Foundry installs the full architecture — knowledge base, agent harness,
+            brand and quality contracts, operating workflows, and compounding business memory —
+            derived for your business and kept under your direction. Application-only, with a
+            small number of installs per quarter.
           </p>
           <Link
             href="/foundry"
@@ -357,7 +491,7 @@ function MethodologySection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Methodology</h2>
           <p className="text-slate-400 text-lg max-w-2xl">
-            A proven five-phase approach refined across 110+ solution designs.
+            From signal to system to scale: six phases that turn hidden expertise into working leverage.
           </p>
         </motion.div>
 
@@ -371,7 +505,7 @@ function MethodologySection() {
           {/* Connecting line */}
           <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-y-1/2" />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {methodology.map((m, i) => (
               <motion.div key={m.step} variants={shouldReduceMotion ? {} : fadeUp} custom={i}>
                 <div className="relative flex flex-col items-center text-center p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.14] hover:bg-white/[0.05] transition-all duration-300 group">
@@ -440,11 +574,12 @@ function ContactSection() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Let&apos;s Build Something Great
+              Bring the problem you cannot stop thinking about.
             </h2>
             <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-              Every engagement starts with a conversation. Share your challenge, and
-              I&apos;ll outline how we can solve it together.
+              Share the business, the expertise, and where you suspect AI could change the
+              trajectory. I&apos;ll tell you whether an assessment, a sprint, a Foundry build, or
+              no engagement at all is the right next move.
             </p>
 
             <div className="space-y-4 mb-8">
@@ -544,7 +679,7 @@ function ContactSection() {
                     rows={4}
                     required
                     className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#AB47C7]/40 focus:border-transparent transition-all resize-none"
-                    placeholder="Describe your AI challenge or project..."
+                    placeholder="What do you know, own, or repeatedly do that should become more valuable with AI?"
                   />
                 </div>
                 <PremiumButton type="submit" variant="primary" size="lg" className="w-full">
@@ -595,6 +730,8 @@ export default function StudioClient() {
       <StudioBackground />
       <main className="relative">
         <HeroSection />
+        <PositioningSection />
+        <IntelligenceSystemSection />
         <ServicesSection />
         <FoundrySection />
         <IndustriesSection />

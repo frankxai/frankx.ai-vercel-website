@@ -195,3 +195,5 @@ link-checker-report.txt
 
 # /learn video-intelligence pipeline draft outputs (review artifacts)
 data/learn-enrichment/
+
+.env*

@@ -8,9 +8,9 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
-  title: 'FrankX — Music, Systems & A Living Studio',
+  title: 'FrankX — AI Architect for Expert-Led Businesses',
   description:
-    'Enter Frank Riemer\'s living studio: music, agent systems, books, field notes, and practical tools shared for creators, builders, friends, and family.',
+    'Frank Riemer helps experts and founder-led businesses turn what they know into an AI-powered operating advantage they own.',
   keywords: [
     'Frank Riemer',
     'FrankX',
@@ -38,7 +38,7 @@ const websiteSchema = {
   alternateName: ['FrankX.AI', 'Frank Riemer'],
   url: siteUrl,
   description:
-    'FrankX is Frank Riemer\'s living studio for music, agent systems, books, field notes, and practical tools.',
+    'FrankX is Frank Riemer\'s AI architecture and creative studio for sovereign intelligence, agent workflows, music, books, and practical tools.',
   publisher: {
     '@id': `${siteUrl}/#organization`,
   },
@@ -91,7 +91,7 @@ const organizationSchema = {
   },
   sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno],
   description:
-    'FrankX publishes music, inspectable creator systems, agent-workflow labs, books, and practical field notes from Frank Riemer.',
+    'FrankX publishes inspectable AI systems, agent-workflow labs, music, books, and practical field notes from Frank Riemer.',
 }
 
 const homepageFAQs = [
