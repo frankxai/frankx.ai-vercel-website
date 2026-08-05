@@ -2,7 +2,7 @@
 title: "The cost of an insight you never live"
 date: "2026-07-22"
 kind: "essay"
-summary: "The value of an event doesn't fade because you forget. It fades because nothing was standing by to catch it. The thesis behind the lab I might run here."
+summary: "The value of an event doesn't fade because you forget. It fades because nothing was standing by to catch it. The thesis behind the lab I hoped to run there."
 tags: ["essay", "second-brain", "thesis"]
 published: true
 ---
@@ -42,7 +42,7 @@ commitments. One place those commitments resurface when they're useful. That's
 most of it. The tooling matters far less than the loop — I've run versions of
 this on paper, and paper-first is often the best way to actually learn it.
 
-This is the thesis behind the one lab I may host in week two:
+This is the thesis behind the one lab I hoped to host that week (it never ran — the idea now points at Porto 2027):
 [Second Brain That Survives the Summit](/mvu/lab). Ninety minutes, paper first,
 and you leave with a working spine instead of a promise to build one later.
 

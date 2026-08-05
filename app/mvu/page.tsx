@@ -5,16 +5,11 @@ import {
   ArrowRight,
   ArrowUpRight,
   BookOpen,
-  Globe2,
-  GraduationCap,
-  Mic2,
   Microscope,
   PenLine,
-  Sparkles,
   StickyNote,
 } from 'lucide-react'
 
-import { EventRibbon } from '@/components/connect/EventRibbon'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { getMvuEntrySummaries, type MvuKind } from '@/lib/mvu'
@@ -22,22 +17,31 @@ import { MVU_LAB } from '@/lib/mvu/lab'
 
 const SITE_URL = siteConfig.url
 const MVU_URL = SITE_URL + '/mvu'
-const OFFICIAL_EVENT_URL = 'https://www.mindvalley.com/u/schedule'
+const OFFICIAL_EVENT_URL = 'https://www.mindvalley.com/u'
 const FEATURED_ARTICLE_URL = '/blog/your-mind-is-a-temporary-library'
 const FEATURED_ARTICLE_IMAGE =
   '/images/blog/editorial/headers/your-mind-is-a-temporary-library-hero.webp'
 const MINDVALLEY_LOGO_URL =
   'https://res.cloudinary.com/mindvalley/image/upload/v1640746015/mvcom/mv-logo.svg'
 
-// Revalidate hourly so newly committed journal entries and the live event
-// ribbon surface without a redeploy during the two-week window.
-export const revalidate = 3600
+// The Tallinn window is closed, so nothing here changes hourly any more. Daily
+// revalidation still surfaces newly committed entries without a redeploy, at a
+// fraction of the previous rebuild rate.
+export const revalidate = 86400
 
 export const metadata: Metadata = createMetadata({
-  title: 'MVU Tallinn Field Journal & AI Service Layer',
+  title: 'Mindvalley University — Tallinn 2026 field notes, Porto 2027',
   description:
-    'An independent field journal from Mindvalley University 2026 in Tallinn: honest notes, practical guides, and AI architecture for students, speakers, authors, and people beyond the room.',
+    'An independent participant’s field journal from Mindvalley University 2026 in Tallinn: what I wrote down, what held up afterwards, and what I am building before Porto in 2027.',
   path: '/mvu',
+  keywords: [
+    'Mindvalley University 2026',
+    'Mindvalley U Tallinn',
+    'Mindvalley University 2027',
+    'Mindvalley U Porto',
+    'Mindvalley University field notes',
+    'Mindvalley University review',
+  ],
 })
 
 const KIND_META: Record<MvuKind, { label: string; icon: typeof BookOpen }> = {
@@ -46,30 +50,6 @@ const KIND_META: Record<MvuKind, { label: string; icon: typeof BookOpen }> = {
   note: { label: 'Note', icon: StickyNote },
   research: { label: 'Research', icon: Microscope },
 }
-
-const SERVICE_PATHS = [
-  {
-    title: 'For students and attendees',
-    description:
-      'Field notes, practical models, and a small independent lab that help turn an intense week into choices and practices that survive ordinary life.',
-    output: 'Journals · guides · independent lab',
-    icon: GraduationCap,
-  },
-  {
-    title: 'For speakers and authors',
-    description:
-      'A respectful path from a substantial body of work to creator-owned knowledge architecture: source maps, AI companions, reusable tools, and living learning systems.',
-    output: 'Knowledge maps · AI architecture · prototypes',
-    icon: Mic2,
-  },
-  {
-    title: 'For people beyond Tallinn',
-    description:
-      'Public essays and distilled guides for anyone who could not attend, with clear provenance so a useful idea can travel without pretending to replace the room.',
-    output: 'Open journal · explainers · field-tested playbooks',
-    icon: Globe2,
-  },
-] as const
 
 function formatDate(date: string): string {
   if (!date) return ''
@@ -87,23 +67,30 @@ function MvuJsonLd({ entryCount }: { entryCount: number }) {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'MVU Tallinn Field Journal & AI Service Layer',
+    name: 'Mindvalley University — Tallinn 2026 field notes',
     description:
-      'Independent field notes, public guides, and AI architecture inspired by participation in Mindvalley University 2026 in Tallinn.',
+      'Independent participant field notes and essays written during Mindvalley University 2026 in Tallinn, and preparation for Porto 2027.',
     url: MVU_URL,
     isPartOf: { '@type': 'WebSite', name: 'FrankX', url: SITE_URL },
     author: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
-    about: {
-      '@type': 'Event',
-      name: 'Mindvalley University 2026',
-      url: OFFICIAL_EVENT_URL,
-      startDate: '2026-07-20',
-      endDate: '2026-08-02',
-      location: {
-        '@type': 'Place',
-        name: 'Tallinn, Estonia',
+    about: [
+      {
+        '@type': 'Event',
+        name: 'Mindvalley University 2026',
+        url: OFFICIAL_EVENT_URL,
+        startDate: '2026-07-20',
+        endDate: '2026-08-02',
+        location: { '@type': 'Place', name: 'Tallinn, Estonia' },
       },
-    },
+      {
+        '@type': 'Event',
+        name: 'Mindvalley University 2027',
+        url: OFFICIAL_EVENT_URL,
+        startDate: MVU_LAB.eventStart,
+        endDate: MVU_LAB.eventEnd,
+        location: { '@type': 'Place', name: 'Porto, Portugal' },
+      },
+    ],
     mainEntity: { '@type': 'ItemList', numberOfItems: entryCount },
     hasPart: {
       '@type': 'Article',
@@ -123,6 +110,13 @@ function MvuJsonLd({ entryCount }: { entryCount: number }) {
 export default function MvuPage() {
   const entries = getMvuEntrySummaries()
 
+  // Derived, not hardcoded — entries are held and released by frontmatter, so a
+  // fixed date range goes stale the moment one is toggled.
+  const dates = entries.map((e) => e.date).filter(Boolean).sort()
+  const first = dates[0] ? formatDate(dates[0]) : ''
+  const last = dates[dates.length - 1] ? formatDate(dates[dates.length - 1]) : ''
+  const dateRange = first && last ? (first === last ? first : `${first} and ${last}`) : ''
+
   return (
     <main className="min-h-screen overflow-hidden bg-void text-white">
       <MvuJsonLd entryCount={entries.length} />
@@ -135,67 +129,83 @@ export default function MvuPage() {
 
         <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-16 lg:px-8 lg:py-28">
           <div>
-            <div className="flex flex-wrap items-center gap-3">
-              <EventRibbon />
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-tech-light/80">
-                Tallinn · 20 Jul – 2 Aug 2026
-              </p>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-xl">
+              <span className="text-sm text-white/60">
+                Tallinn, Jul–Aug 2026 · next stop Porto, Jul 2027
+              </span>
             </div>
 
-            <h1 className="mt-8 max-w-3xl text-4xl font-semibold leading-[1.04] tracking-[-0.035em] text-white sm:text-6xl">
-              What happens here should keep helping after Tallinn.
+            <h1 className="mt-7 max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl">
+              Two weeks in Tallinn, written down.
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/70">
-              I came to Mindvalley University as a participant: to learn, meet
-              people, and let the experience change my mind. My contribution is
-              the craft I already practise—turning lived insight into honest
-              journals, useful guides, and AI systems that help knowledge keep
-              serving after the room has emptied.
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/55">
+              I went to Mindvalley University 2026 as a participant, not a
+              speaker. No stage, no session, no booth. What I did instead was
+              write — every day, in public, while it was still fresh enough to be
+              honest.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              {/* This used to point at /journal back when that path redirected to
-                  the article archive. /journal is now the site-wide daily-notes
-                  journal, which has nothing to do with Tallinn — so this CTA goes
-                  to the MVU field journal it actually means, further down the page. */}
+            <p className="mt-6 max-w-2xl font-serif text-lg italic leading-8 text-white/70">
+              This is the whole record, kept up after the room emptied — and the
+              open door to Porto.
+            </p>
+
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
               <TrackedLink
-                href="#field-journal"
+                href="/connect?ref=mvu-porto"
                 eventName="mvu_navigation"
-                eventProperties={{ destination: 'field_journal', placement: 'hero_cta' }}
+                eventProperties={{ destination: 'porto_collaboration', placement: 'hero_cta' }}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-tech-light px-6 py-3 text-sm font-semibold text-void transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
               >
-                Read the field journal
+                Build something before Porto
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </TrackedLink>
-              <Link
-                href="/connect?ref=mvu"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white/80 transition-colors hover:border-white/30 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
+              <TrackedLink
+                href="#archive"
+                eventName="mvu_navigation"
+                eventProperties={{ destination: 'archive', placement: 'hero_secondary' }}
+                className="inline-flex items-center justify-center gap-1.5 text-sm text-white/50 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
               >
-                Continue the conversation
-              </Link>
+                Read the {entries.length} entries
+              </TrackedLink>
             </div>
           </div>
 
           <figure className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-space shadow-2xl shadow-tech-primary/10">
-              <Image
-                src={FEATURED_ARTICLE_IMAGE}
-                alt="A luminous library merging with a night city, representing ideas becoming living public memory"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className="object-cover"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-void/80 via-transparent to-transparent"
-              />
-              <figcaption className="absolute inset-x-0 bottom-0 p-6 text-xs leading-5 text-white/55">
-                Original FrankX editorial artwork for “Your Mind Is a Temporary
-                Library.”
-              </figcaption>
-            </div>
+            <Link
+              href={FEATURED_ARTICLE_URL}
+              aria-label="Read the essay: Your Mind Is a Temporary Library"
+              className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-space shadow-2xl shadow-tech-primary/10">
+                <Image
+                  src={FEATURED_ARTICLE_IMAGE}
+                  alt="A luminous library merging with a night city, representing ideas becoming living public memory"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="object-cover transition duration-500 group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/20 to-transparent"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 p-6">
+                  <span className="text-sm text-white/50">The essay underneath all of it</span>
+                  <span className="mt-1.5 block font-display text-xl font-semibold tracking-tight text-white">
+                    Your Mind Is a Temporary Library
+                  </span>
+                  <span className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-tech-light">
+                    Read it
+                    <ArrowRight
+                      className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
+                      aria-hidden
+                    />
+                  </span>
+                </figcaption>
+              </div>
+            </Link>
           </figure>
         </div>
       </section>
@@ -207,7 +217,7 @@ export default function MvuPage() {
             target="_blank"
             rel="noreferrer"
             className="group inline-flex w-fit items-center gap-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
-            aria-label="Visit the official Mindvalley University 2026 schedule"
+            aria-label="Visit the official Mindvalley University site"
           >
             <span className="inline-flex rounded-lg bg-white px-3 py-2">
               <Image
@@ -220,146 +230,127 @@ export default function MvuPage() {
               />
             </span>
             <span className="inline-flex items-center gap-1.5 text-sm text-white/65 transition-colors group-hover:text-white">
-              Official event schedule
+              The official event
               <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
             </span>
           </a>
 
           <p className="max-w-xl text-sm leading-6 text-white/60 md:text-right">
-            Participant field journal · independently written and published by
-            FrankX · not organized, sponsored, or endorsed by Mindvalley.
+            A participant’s journal, written and published independently by
+            FrankX. Not organized, sponsored, or endorsed by Mindvalley.
           </p>
         </div>
       </section>
 
       <section className="border-b border-white/10 py-20 sm:py-24">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-tech-light/80">
-              My purpose here
+        <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
+          <h2 className="font-display text-3xl font-bold tracking-[-0.03em] text-white sm:text-4xl">
+            What I actually did there.
+          </h2>
+          <div className="mt-7 space-y-5 text-base leading-8 text-white/60">
+            <p>
+              I sat in rooms and took notes. That is the whole claim. I did not
+              teach, host, or sell anything in Tallinn — I floated one small
+              independent lab, never locked a venue, and so it never ran.
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Make the value travel—without claiming the stage.
-            </h2>
-            <p className="mt-6 text-base leading-7 text-white/65">
-              The speakers own their work. The students own their stories.
-              Mindvalley owns the official event experience. I document what I
-              personally learn, separate observation from interpretation, and
-              use my AI architecture skills to make the resulting knowledge
-              easier to revisit, apply, and share.
+            <p>
+              What I could do was the craft I already practise: turn two weeks of
+              heavy input into something that still reads well a year later. Every
+              entry below separates what I observed from what I think it means,
+              and leaves out anything I could not stand behind — including a
+              memorable statistic that arrived with no source attached.
             </p>
-          </div>
-
-          <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 lg:grid-cols-3">
-            {SERVICE_PATHS.map((path) => {
-              const Icon = path.icon
-              return (
-                <article key={path.title} className="bg-void p-7 sm:p-8">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-tech-light/20 bg-tech-light/5 text-tech-light">
-                    <Icon className="h-5 w-5" aria-hidden />
-                  </span>
-                  <h3 className="mt-7 text-xl font-semibold tracking-tight text-white">
-                    {path.title}
-                  </h3>
-                  <p className="mt-4 text-sm leading-6 text-white/60">
-                    {path.description}
-                  </p>
-                  <p className="mt-6 border-t border-white/10 pt-5 text-xs font-medium uppercase tracking-[0.16em] text-tech-light/65">
-                    {path.output}
-                  </p>
-                </article>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-white/10 py-20 sm:py-24">
-        <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
-          <Link
-            href={FEATURED_ARTICLE_URL}
-            aria-label="Read Your Mind Is a Temporary Library"
-            className="group relative block aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-space focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
-          >
-            <Image
-              src={FEATURED_ARTICLE_IMAGE}
-              alt=""
-              fill
-              loading="eager"
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-cover transition duration-500 group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-void/75 via-transparent to-transparent"
-            />
-          </Link>
-
-          <div>
-            <p className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-tech-light/80">
-              <Sparkles className="h-4 w-4" aria-hidden />
-              Featured field essay
+            <p>
+              Where an entry draws on a speaker’s public material, it says so and
+              links the source. The rest is my own thinking, in rooms they
+              happened to shape. The full daily run is still being edited before
+              it goes up.
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Your Mind Is a Temporary Library
-            </h2>
-            <p className="mt-5 text-base leading-7 text-white/65">
-              A reflection on mortality, memory, and the responsibility to turn
-              what we know into something another person can use. It is also the
-              clearest statement of why this journal exists.
-            </p>
-            <Link
-              href={FEATURED_ARTICLE_URL}
-              className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
-            >
-              Read the essay
-              <ArrowRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
-                aria-hidden
-              />
-            </Link>
           </div>
         </div>
       </section>
 
       <section className="border-b border-white/10 py-20 sm:py-24">
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
-          <Link
-            href="/mvu/lab"
-            className="group block rounded-3xl border border-tech-primary/25 bg-gradient-to-br from-tech-primary/[0.08] to-transparent p-7 transition-colors hover:border-tech-primary/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light sm:p-8"
-          >
-            <p className="text-xs font-medium uppercase tracking-widest text-tech-primary">
-              {MVU_LAB.confirmed
-                ? 'Independent lab · Week 2'
-                : 'Independent lab · gauging interest'}
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold text-white">
-              {MVU_LAB.title}
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-white/60">
-              {MVU_LAB.tagline}
-            </p>
-            <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-tech-light">
-              {MVU_LAB.confirmed ? 'See details & RSVP' : 'Register interest'}
-              <ArrowRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
-                aria-hidden
-              />
-            </span>
-          </Link>
-        </div>
-      </section>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-xl">
+            <span className="text-sm text-white/60">Porto · 12 Jul – 18 Aug 2027</span>
+          </div>
 
-      <section id="field-journal" className="py-20 sm:py-24 scroll-mt-24">
-        <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-white/60">
-            Research, journals & essays
+          <h2 className="mt-6 font-display text-3xl font-bold tracking-[-0.03em] text-white sm:text-4xl">
+            A year is enough time to do it properly.
           </h2>
 
+          <p className="mt-6 text-base leading-8 text-white/60">
+            The useful window was never the week of the event. It is now. If you
+            are speaking, teaching, or publishing into Porto 2027 — or going and
+            would rather arrive with something built than hope to assemble it
+            afterwards — that work starts about eleven months out.
+          </p>
+
+          <div className="mt-10 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 sm:grid-cols-2">
+            <article className="bg-void p-7">
+              <h3 className="font-display text-lg font-semibold tracking-tight text-white">
+                If you have a body of work
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-white/55">
+                Speakers, authors, and teachers with years of material and no
+                durable structure around it. I build the knowledge architecture:
+                source maps, an AI companion trained on your own corpus, tools
+                your audience keeps using. You own all of it.
+              </p>
+            </article>
+            <article className="bg-void p-7">
+              <h3 className="font-display text-lg font-semibold tracking-tight text-white">
+                If you are going as a participant
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-white/55">
+                The gap is never the insight, it is the catch. I am gauging
+                interest in one small independent lab in Porto — ninety minutes
+                building the system that keeps what you find there.
+              </p>
+              <Link
+                href="/mvu/lab"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
+              >
+                See the lab
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+              </Link>
+            </article>
+          </div>
+
+          <div className="mt-10">
+            <TrackedLink
+              href="/connect?ref=mvu-porto"
+              eventName="mvu_navigation"
+              eventProperties={{ destination: 'porto_collaboration', placement: 'porto_section' }}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-tech-light px-6 py-3 text-sm font-semibold text-void transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
+            >
+              Start the conversation
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </TrackedLink>
+            <p className="mt-4 text-sm leading-6 text-white/55">
+              Tell me what you want still standing after Porto. I answer these
+              myself.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="archive" className="py-20 scroll-mt-24 sm:py-24">
+        <div className="mx-auto w-full max-w-3xl px-5 sm:px-6">
+          <h2 className="font-display text-3xl font-bold tracking-[-0.03em] text-white sm:text-4xl">
+            The Tallinn archive.
+          </h2>
+          <p className="mt-4 text-base leading-7 text-white/55">
+            {entries.length}{' '}
+            {entries.length === 1 ? 'entry' : 'entries'}
+            {dateRange ? ` written between ${dateRange}` : ''}.
+          </p>
+
           {entries.length === 0 ? (
-            <p className="mt-6 text-white/50">First entries land here shortly.</p>
+            <p className="mt-8 text-white/50">Entries land here shortly.</p>
           ) : (
-            <ul className="mt-6 divide-y divide-white/10">
+            <ul className="mt-8 divide-y divide-white/10">
               {entries.map((entry) => {
                 const meta = KIND_META[entry.kind]
                 const Icon = meta.icon
@@ -383,7 +374,7 @@ export default function MvuPage() {
                           </>
                         )}
                       </div>
-                      <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-tech-light">
+                      <h3 className="font-display text-lg font-semibold tracking-tight text-white transition-colors group-hover:text-tech-light">
                         {entry.title}
                       </h3>
                       {entry.summary && (
@@ -397,26 +388,6 @@ export default function MvuPage() {
               })}
             </ul>
           )}
-
-          <div className="mt-14 rounded-3xl border border-white/10 bg-space p-7 text-center sm:p-9">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-tech-light/75">
-              Met me in Tallinn?
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white">
-              Let the conversation become something useful.
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-white/60">
-              If you are a student, speaker, author, or builder with work worth
-              preserving, tell me what you want to keep alive after the event.
-            </p>
-            <Link
-              href="/connect?ref=mvu"
-              className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-tech-light px-6 py-3 text-sm font-semibold text-void transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
-            >
-              Continue the conversation
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
-          </div>
         </div>
       </section>
     </main>
