@@ -45,12 +45,17 @@ const NAV_COLUMNS = [
   {
     label: 'Create',
     links: [
+      {
+        label: 'GenCreator.AI',
+        href: 'https://gencreator.ai/?utm_source=frankx&utm_medium=footer&utm_campaign=r1_bridge',
+        external: true,
+        accent: 'emerald',
+      },
       { label: 'GenCreator Hub', href: '/gencreator' },
       { label: 'Prompt Library', href: '/prompt-library' },
       { label: 'ACOS', href: '/acos' },
       { label: 'Templates', href: '/templates' },
       { label: 'Creation Chronicles', href: '/creation-chronicles' },
-      { label: 'GenCreator.AI', href: 'https://gencreator.ai', external: true, accent: 'emerald' },
     ],
   },
   {

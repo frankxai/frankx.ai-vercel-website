@@ -49,13 +49,21 @@ const navigation = {
     label: 'Create',
     href: '/gencreator',
     featured: {
-      title: 'The GenCreator Framework',
-      description: 'Principles. Handbook. Blueprints. The operating system for generative creators.',
-      href: '/gencreator',
-      badge: 'Framework',
+      title: 'Open GenCreator.AI',
+      description: 'Enter the product workspace. On-site hub stays for principles, handbook, and blueprints.',
+      href: 'https://gencreator.ai/?utm_source=frankx&utm_medium=nav&utm_campaign=r1_bridge',
+      badge: 'Product',
+      external: true,
     },
     items: [
-      { name: 'GenCreator Hub', href: '/gencreator', icon: Flame, description: 'The complete creator OS' },
+      {
+        name: 'Open GenCreator.AI',
+        href: 'https://gencreator.ai/?utm_source=frankx&utm_medium=nav&utm_campaign=r1_bridge',
+        icon: Flame,
+        description: 'Product domain — start creating',
+        external: true,
+      },
+      { name: 'GenCreator Hub', href: '/gencreator', icon: Flame, description: 'On-site framework & education' },
       { name: 'Principles', href: '/gencreator/principles', icon: Compass, description: '12 GenCreator principles' },
       { name: 'Handbook', href: '/gencreator/handbook', icon: BookOpen, description: '8 chapters: identity to legacy' },
       { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: '12 actionable frameworks' },
@@ -224,20 +232,40 @@ function MenuLink({ item }: { item: (typeof navigation)[NavKey]['items'][0] }) {
 }
 
 function FeaturedCard({ data }: { data: (typeof navigation)[NavKey] }) {
-  return (
-    <Link
-      href={data.featured.href}
-      className="group relative flex flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/50 to-slate-900/80 p-5 transition-all hover:from-slate-800/70 hover:to-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
-    >
+  const featured = data.featured as {
+    title: string
+    description: string
+    href: string
+    badge: string
+    external?: boolean
+  }
+  const isExternal = Boolean(featured.external)
+  const className =
+    'group relative flex flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/50 to-slate-900/80 p-5 transition-colors hover:from-slate-800/70 hover:to-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70'
+  const body = (
+    <>
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <span className="mb-2 inline-block w-fit rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
-        {data.featured.badge}
+        {featured.badge}
       </span>
-      <h4 className="text-base font-semibold text-white">{data.featured.title}</h4>
-      <p className="mt-1 text-xs leading-relaxed text-slate-400">
-        {data.featured.description}
-      </p>
+      <h4 className="flex items-center gap-1.5 text-base font-semibold text-white">
+        {featured.title}
+        {isExternal && <ExternalLink className="h-3.5 w-3.5 text-white/50" />}
+      </h4>
+      <p className="mt-1 text-xs leading-relaxed text-slate-400">{featured.description}</p>
       <ArrowRight className="mt-3 h-4 w-4 text-white/50 transition-transform group-hover:translate-x-1 group-hover:text-white" />
+    </>
+  )
+  if (isExternal) {
+    return (
+      <a href={featured.href} target="_blank" rel="noopener noreferrer" className={className}>
+        {body}
+      </a>
+    )
+  }
+  return (
+    <Link href={featured.href} className={className}>
+      {body}
     </Link>
   )
 }
