@@ -136,15 +136,15 @@ export default async function MvuEntryPage({
       <article className="mx-auto w-full max-w-2xl px-5 py-16 sm:py-24">
         <Link
           href="/mvu"
-          className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-tech-light"
+          className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
           MVU journal
         </Link>
 
         <header className="mt-8">
-          <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-white/40">
-            <span className="text-tech-light/80">{entry.kind}</span>
+          <div className="flex items-center gap-3 text-sm text-white/55">
+            <span className="capitalize text-tech-light/80">{entry.kind}</span>
             <span aria-hidden>·</span>
             <time dateTime={entry.date}>{formatDate(entry.date)}</time>
             {entry.readingTime && (
@@ -154,7 +154,7 @@ export default async function MvuEntryPage({
               </>
             )}
           </div>
-          <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+          <h1 className="mt-4 font-display text-3xl font-bold leading-[1.06] tracking-[-0.035em] text-white sm:text-4xl">
             {entry.title}
           </h1>
         </header>
@@ -165,14 +165,15 @@ export default async function MvuEntryPage({
 
         <hr className="my-12 border-white/10" />
 
-        <p className="text-sm leading-relaxed text-white/45">
-          Independent journal. I attend Mindvalley University as a participant —
-          not affiliated with, sponsored by, or endorsed by Mindvalley.{' '}
+        <p className="text-sm leading-relaxed text-white/55">
+          Independent journal. I attended Mindvalley University 2026 as a
+          participant — not affiliated with, sponsored by, or endorsed by
+          Mindvalley.{' '}
           <Link
-            href="/connect"
-            className="text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-tech-light"
+            href="/connect?ref=mvu-porto"
+            className="text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
           >
-            Met me in Tallinn? Stay in touch.
+            Porto in 2027? Let’s build something first.
           </Link>
         </p>
       </article>

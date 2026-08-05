@@ -9,9 +9,9 @@ published: true
 
 I build calm operating systems for creators — the quiet spine that keeps an idea
 alive after the room empties and everyone flies home. That's the whole reason
-I'm in Tallinn.
+I went to Tallinn.
 
-Mindvalley University runs 20 July to 2 August 2026. I'm here as a participant,
+Mindvalley University ran 20 July to 2 August 2026. I was there as a participant,
 not a vendor. Nothing I write here is organized, sponsored, or endorsed by
 Mindvalley — this is my own journal, kept in the open because writing it down
 is how I make sure the two weeks change me and not just my calendar.
@@ -43,8 +43,8 @@ Three commitments, in order:
 
 ## What this hub is
 
-Everything I write across these two weeks lands here — journal entries, short
-essays, a decision I want on the record. It's the public face of a private
-working system, and you're reading the integration happen in real time.
+Everything I wrote across those two weeks lands here — journal entries, short
+essays, a decision I wanted on the record. It's the public face of a private
+working system.
 
-If we meet in Tallinn and want to keep the thread, [it's here](/connect).
+If we met in Tallinn and you want to keep the thread, [it's here](/connect).
