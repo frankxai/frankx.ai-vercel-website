@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 865,
+    "total": 864,
     "aliases": 50,
     "byType": {
       "core": 22,
-      "section": 405,
+      "section": 404,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -6719,18 +6719,6 @@
         "authority"
       ],
       "type": "section"
-    },
-    {
-      "href": "/mvu/expert-authority/insights",
-      "title": "Insights",
-      "tags": [
-        "mvu",
-        "expert",
-        "authority",
-        "insights"
-      ],
-      "type": "section",
-      "sitemap": false
     },
     {
       "href": "/mvu/lab",

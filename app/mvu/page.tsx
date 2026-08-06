@@ -274,7 +274,7 @@ export default function MvuPage() {
               hold, not lost or quietly presented as fact.
             </p>
             {dateRange && (
-              <p className="mt-5 text-sm leading-6 text-white/45">
+              <p className="mt-5 text-sm leading-6 text-white/55">
                 Public entries dated {dateRange}.
               </p>
             )}
@@ -294,7 +294,7 @@ export default function MvuPage() {
                       href={`/mvu/${entry.slug}`}
                       className="group grid gap-4 py-7 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light sm:grid-cols-[2.5rem_1fr_auto] sm:items-start"
                     >
-                      <span className="font-display text-sm font-semibold text-white/35">
+                      <span className="font-display text-sm font-semibold text-white/55">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                       <span>
@@ -322,7 +322,7 @@ export default function MvuPage() {
                         )}
                       </span>
                       <ArrowRight
-                        className="mt-1 hidden h-4 w-4 text-white/30 transition group-hover:translate-x-1 group-hover:text-tech-light motion-reduce:transform-none sm:block"
+                        className="mt-1 hidden h-4 w-4 text-white/55 transition group-hover:translate-x-1 group-hover:text-tech-light motion-reduce:transform-none sm:block"
                         aria-hidden
                       />
                     </Link>
@@ -466,7 +466,7 @@ export default function MvuPage() {
             </article>
           </div>
 
-          <p className="mt-9 text-sm leading-6 text-white/45">
+          <p className="mt-9 text-sm leading-6 text-white/55">
             Dates and event details can change. The official event site remains
             the source of truth.
           </p>
