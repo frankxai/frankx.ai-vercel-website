@@ -3,6 +3,8 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
 const pagePath = new URL('../../app/mvu/expert-authority/page.tsx', import.meta.url)
+const rootLayoutPath = new URL('../../app/layout.tsx', import.meta.url)
+const seoPath = new URL('../../lib/seo.ts', import.meta.url)
 const experiencePath = new URL('../../components/expert-authority/ExpertAuthorityExperience.tsx', import.meta.url)
 const leadRoutePath = new URL('../../app/api/expert-authority/lead/route.ts', import.meta.url)
 const intelligencePath = new URL('../../lib/expert-authority-intelligence.ts', import.meta.url)
@@ -11,8 +13,10 @@ const qrRoutePath = new URL('../../app/api/qr/expert-authority/route.ts', import
 const skillPath = new URL('../../public/skills/expert-authority/SKILL.md', import.meta.url)
 const promptPackPath = new URL('../../public/skills/expert-authority/PROMPT-PACK.md', import.meta.url)
 
-const [page, experience, leadRoute, intelligence, insights, qrRoute, skill, promptPack] = await Promise.all([
+const [page, rootLayout, seo, experience, leadRoute, intelligence, insights, qrRoute, skill, promptPack] = await Promise.all([
   readFile(pagePath, 'utf8'),
+  readFile(rootLayoutPath, 'utf8'),
+  readFile(seoPath, 'utf8'),
   readFile(experiencePath, 'utf8'),
   readFile(leadRoutePath, 'utf8'),
   readFile(intelligencePath, 'utf8'),
@@ -29,6 +33,10 @@ test('public route has canonical metadata and social image', () => {
   assert.match(page, /Expert Authority Intelligence System/)
   assert.doesNotMatch(page, /Expert Authority Intelligence System \| FrankX/)
   assert.doesNotMatch(page, /https:\/\/frankx\.ai\/mvu\/expert-authority/)
+  assert.match(seo, /const siteUrl = 'https:\/\/www\.frankx\.ai'/)
+  assert.match(rootLayout, /metadataBase: new URL\(siteConfig\.url\)/)
+  assert.match(rootLayout, /template: `%s \| \$\{siteConfig\.shortName\}`/)
+  assert.match(seo, /const url = new URL\(path, siteConfig\.url\)\.toString\(\)/)
 })
 
 test('experience presents one system with five governed engines', () => {
