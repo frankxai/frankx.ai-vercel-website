@@ -67,6 +67,41 @@ test('site chrome keeps Music as its own door and never sets the logo tagline in
     const taglineClasses = source.match(/className="([^"]*)"\s*>\s*\n?\s*Public agentic workspace/)?.[1] ?? ''
     assert.doesNotMatch(taglineClasses, /uppercase/, `${name} logo tagline must not be all-caps`)
     assert.match(taglineClasses, /font-serif/, `${name} logo tagline must use the serif`)
+    // white/40 on #030712 computes to ~3.7:1 and fails WCAG 1.4.3 at this size.
+    assert.match(taglineClasses, /text-white\/(?:5[0-9]|[6-9][0-9]|100)\b/, `${name} logo tagline needs >=white/50 for AA contrast`)
+  }
+
+  // The serif is the scarce premium accent, not a replacement tic. It stays out
+  // of dense UI (menu columns, footer columns) per WEB_EXPERIENCE_STANDARD.
+  const menuGroupHeading = navigation.match(/<h5 className="([^"]*)"/)?.[1] ?? ''
+  assert.doesNotMatch(menuGroupHeading, /uppercase|font-serif/, 'menu group headings: no caps, no serif')
+})
+
+// All-caps is near-banned. The chrome renders on every page, so it is the one
+// place the rule is absolute — a sitewide sweep of the remaining ~640 violations
+// is tracked separately.
+test('global chrome carries no all-caps at all', async () => {
+  for (const path of [
+    'components/NavigationMega.tsx',
+    'components/MobileNavOverlay.tsx',
+    'components/Footer.tsx',
+    'components/CommandPalette.tsx',
+  ]) {
+    const source = await readRepoFile(path)
+    const offenders = source.match(/className="[^"]*\buppercase\b[^"]*"/g) ?? []
+    assert.deepEqual(offenders, [], `${path} must not use uppercase`)
+  }
+})
+
+// A door this wide needs wayfinding on mobile too — a flat 20+ item list is 20+
+// uninterrupted tab stops for keyboard and screen-reader users.
+test('the widest mobile door renders grouped, not as one flat list', async () => {
+  const overlay = await readRepoFile('components/MobileNavOverlay.tsx')
+
+  assert.match(overlay, /groups\?: \{ label: string; items: string\[\] \}\[\]/)
+  assert.match(overlay, /section\.groups \? \(/)
+  for (const label of ['Current work', 'Systems & products', 'Worlds', 'Connect']) {
+    assert.ok(overlay.includes(`label: '${label}'`), `mobile explore door needs the ${label} group`)
   }
 })
 

@@ -39,19 +39,23 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.doesNotMatch(homepage, /Music first\./)
   assert.doesNotMatch(homepage, /begin with music/)
   assert.match(homepage, /Explore your highest-leverage AI move\./)
-  assert.match(homepage, /Architect your AI operating system\./)
-  assert.match(homepage, /Build your AI Center of Excellence\./)
-  assert.match(homepage, /Orchestrate agents around real work\./)
-  assert.match(homepage, /Ship products that compound\./)
   // The rotation belongs in the H1 on a serif gradient — Frank's call, and the
   // hero carries exactly one moving element so the outcome line stays static.
-  assert.match(homepage, /function RotatingHeroVerb\(\)/)
-  assert.doesNotMatch(homepage, /function RotatingHeroOutcome\(\)/)
+  assert.match(homepage, /function RotatingHeroVerb\(/)
+  assert.doesNotMatch(homepage, /function RotatingHeroOutcome\(/)
   assert.match(homepage, /const heroVerbs = \['Building', 'Designing', 'Architecting', 'Creating', 'Shipping'\]/)
   assert.match(homepage, /font-serif italic/)
-  assert.match(homepage, /<RotatingHeroVerb \/> intelligence/)
+  assert.match(homepage, /<RotatingHeroVerb isRotating=\{isRotating\} isPaused=\{isHeadlinePaused\} \/>/)
+  // The verb owns line one so a width change never reflows the sentence, and the
+  // clip box is extended so the Playfair descender on every verb is not cut.
+  assert.match(homepage, /<br \/>\s*intelligence that compounds\./)
+  assert.match(homepage, /-mb-\[0\.15em\] overflow-hidden pb-\[0\.15em\]/)
+  // The pause control sits outside the H1 and always reserves its space, so
+  // hydration cannot shift the headline.
+  assert.doesNotMatch(homepage, /<button[^>]*>[\s\S]{0,400}?<\/h1>/)
+  assert.match(homepage, /isRotating \? 'visible' : 'invisible'/)
   assert.match(homepage, /useSyncExternalStore/)
-  assert.match(homepage, /if \(!hasHydrated \|\| shouldReduceMotion\)/)
+  assert.match(homepage, /const isRotating = hasHydrated && !shouldReduceMotion/)
   assert.match(homepage, /Pause changing headline/)
   assert.match(homepage, /Play changing headline/)
   assert.match(homepage, /<AnimatePresence mode="wait" initial=\{false\}>/)
