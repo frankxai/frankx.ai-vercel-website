@@ -111,7 +111,7 @@ When the visual feels off, it usually means the voice is off. Re-read the copy a
 Frozen choices. Don't relitigate without explicit cause.
 
 - **Dark-first.** Light mode is not on the roadmap. Most readers find FrankX at night, on a phone, between work and craft. The brand is for that hour.
-- **One serif.** Playfair Display for italic quotes only. Not for headings, not for body. We are not a literary magazine.
+- **One serif, used scarcely.** Playfair Display for italic quotes, the hero's single accent word, and the logo tagline. Never for body, never for a full heading, and never for dense UI — no menu columns, footer columns, buttons, or labels. The tell only works because it is rare; if serif italic appears more than twice in a viewport it has become the new all-caps.
 - **One mono.** JetBrains Mono everywhere code, command, terminal output appears.
 - **Inter for body, Poppins for display ≥18px.** This pairing is solved. Do not propose alternatives.
 - **`rounded-full` primary CTAs.** This is the recognizable FrankX button shape. Don't square them.

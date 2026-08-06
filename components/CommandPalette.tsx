@@ -185,7 +185,7 @@ export default function CommandPalette({ open, onOpenChange }: CommandPalettePro
               ) : (
                 grouped.map(([group, entries]) => (
                   <div key={group} className="px-2 pb-2">
-                    <div className="px-3 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                    <div className="px-3 pb-1 pt-2 text-[11px] font-medium tracking-[0.01em] text-slate-400">
                       {group}
                     </div>
                     {entries.map(({ item, index }) => {

@@ -23,6 +23,9 @@ import {
   Layers,
   ArrowRight,
   ExternalLink,
+  Wand2,
+  Star,
+  Brain,
   Network,
   Microscope,
   Building,
@@ -42,9 +45,26 @@ import {
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
 
-// Four primary doors keep the workspace legible. The long-form archive, journal,
-// music, and other deep routes remain available inside the relevant menu.
+// Five doors. Music is its own door because the catalog is primary work, not a
+// sub-item of Create — #409 demoted it and that was never Frank's call.
 const navigation = {
+  music: {
+    label: 'Music',
+    href: '/music',
+    featured: {
+      title: 'AI Music Portfolio',
+      description: '12,000+ songs created with Suno AI. Explore the catalog.',
+      href: '/music',
+      badge: '12K+ Tracks',
+    },
+    items: [
+      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
+      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
+      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Full curriculum: theory to production' },
+      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
+    ],
+  },
   gencreators: {
     label: 'Create',
     href: '/gencreator',
@@ -104,8 +124,12 @@ const navigation = {
       { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)' },
       { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
       { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Starter kits ($29-199)' },
+      { name: 'Build Stack', href: '/build', icon: Layers, description: 'The six primitives stack' },
+      { name: 'Template Pack', href: '/build/template-pack', icon: FileText, description: 'AGENTS.md, prompt packs, eval harness' },
+      { name: 'Builder Lab', href: '/agentic-builder-lab', icon: Terminal, description: 'Spec-driven agent building' },
       { name: 'AI World', href: '/ai-world', icon: Workflow, description: 'Live architecture demos' },
       { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Tools & workflows' },
+      { name: 'Consulting', href: '/consulting', icon: Briefcase, description: 'Advisory engagements' },
       { name: 'AI Studio', href: '/work-with-me', icon: Briefcase, description: 'Studio engagements (\u20ac3k\u2013\u20ac25k)' },
       { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'AI-powered investing' },
       { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Automated analysis agents' },
@@ -120,11 +144,11 @@ const navigation = {
       },
       {
         label: 'Deep Dives',
-        items: ['AI World', 'Developer Hub'],
+        items: ['Build Stack', 'Template Pack', 'Builder Lab', 'AI World', 'Developer Hub'],
       },
       {
         label: 'Work with Frank',
-        items: ['AI Studio', 'Workshops', 'Coaching', 'Shop'],
+        items: ['AI Studio', 'Consulting', 'Workshops', 'Coaching', 'Shop'],
       },
       {
         label: 'Invest',
@@ -143,29 +167,46 @@ const navigation = {
     },
     items: [
       { name: 'Workspace', href: '/workspace', icon: Workflow, description: 'Source → agents → Frank → artifact' },
+      { name: 'Ecosystem', href: '/ecosystem', icon: Network, description: 'The complete system map' },
+      { name: 'Universe Map', href: '/map', icon: Map, description: 'Every surface, one view' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
       { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
       { name: 'Essays', href: '/blog', icon: BookOpen, description: 'Researched articles and systems' },
+      { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
+      { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
       { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status' },
       { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
+      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
+      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
+      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
       { name: 'Partnerships', href: '/partnerships', icon: Users, description: 'Systems built around real missions' },
       { name: 'Journal', href: '/journal', icon: Scroll, description: 'Short notes from work in progress' },
       { name: 'About Frank', href: '/about', icon: Users, description: 'Person, principles, and boundaries' },
+      { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
+      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
+      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
       { name: 'Connect', href: '/connect', icon: Compass, description: 'Bring a real question' },
+      { name: 'Contact', href: '/contact', icon: Compass, description: 'Press, licensing, and direct email' },
     ],
     groups: [
       {
         label: 'Current work',
-        items: ['Workspace', 'Research', 'Library', 'Guides', 'Essays'],
+        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Intelligence Atlas', 'Library', 'Guides', 'Essays', 'Journal'],
       },
       {
-        label: 'The system',
-        items: ['Agent Catalog', 'Design System'],
+        label: 'Systems & products',
+        items: ['Starlight IS', 'ACOS', 'Agent Catalog', 'Design System', 'Resource Hub', 'Downloads'],
+      },
+      {
+        label: 'Worlds',
+        items: ['ArcaneaVault', 'Arcanea'],
       },
       {
         label: 'Connect',
-        items: ['Partnerships', 'Journal', 'About Frank', 'Connect'],
+        items: ['Partnerships', 'About Frank', 'Bio', 'Media Kit', 'Licensing', 'Connect', 'Contact'],
       },
     ],
   },
@@ -225,7 +266,7 @@ function FeaturedCard({ data }: { data: (typeof navigation)[NavKey] }) {
       className="group relative flex flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/50 to-slate-900/80 p-5 transition-all hover:from-slate-800/70 hover:to-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-      <span className="mb-2 inline-block w-fit rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
+      <span className="mb-2 inline-block w-fit rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-medium tracking-[0.02em] text-white/70">
         {data.featured.badge}
       </span>
       <h4 className="text-base font-semibold text-white">{data.featured.title}</h4>
@@ -255,7 +296,7 @@ function MegaMenuContent({ section }: { section: NavKey }) {
                 .filter(Boolean) as (typeof data.items)[0][]
               return (
                 <div key={group.label}>
-                  <h5 className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                  <h5 className="mb-2 px-2 text-xs font-medium text-slate-400">
                     {group.label}
                   </h5>
                   <ul className="space-y-0.5">
@@ -394,7 +435,7 @@ export default function NavigationMega() {
   // Ctrl+K hotkey lives in CommandPalette (single source of truth). Having it here too caused a race:
   // NavigationMega dispatched the event → palette opened → palette's own keydown toggled it closed in the same tick.
 
-  const desktopSections: NavKey[] = ['explore', 'build', 'learn', 'gencreators']
+  const desktopSections: NavKey[] = ['explore', 'build', 'learn', 'gencreators', 'music']
 
   return (
     <>
