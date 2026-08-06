@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         </Link>
 
         <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
-        <p className="text-white/60 mb-8">Last updated: July 2026</p>
+        <p className="text-white/60 mb-8">Last updated: August 2026</p>
 
         <div className="prose prose-invert prose-sm max-w-none space-y-8">
           <section>
@@ -34,7 +34,8 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-semibold mb-4">Information We Collect</h2>
             <p className="text-white/70 leading-relaxed mb-4">We may collect the following types of information:</p>
             <ul className="list-disc list-inside text-white/70 space-y-2">
-              <li>Email address (when you subscribe to our newsletter or make a purchase)</li>
+              <li>Email address (when you request a resource, subscribe to the newsletter, or make a purchase)</li>
+              <li>Name and assessment answers when you ask us to email a diagnostic result</li>
               <li>Aggregate page-view data (page path, referrer category, browser, device, and approximate region)</li>
               <li>Performance data (such as Core Web Vitals)</li>
               <li>Payment information (processed securely through third-party providers)</li>
@@ -60,6 +61,8 @@ export default function PrivacyPage() {
             <ul className="list-disc list-inside text-white/70 space-y-2">
               <li>To provide and improve our services</li>
               <li>To send newsletters and updates (with your consent)</li>
+              <li>To generate and deliver a transactional assessment result you request</li>
+              <li>To send one product-research invitation only when you explicitly opt in</li>
               <li>To process transactions</li>
               <li>To analyze website usage and optimize user experience</li>
             </ul>
@@ -71,6 +74,11 @@ export default function PrivacyPage() {
               We use Vercel for hosting and the aggregate measurement described above, Resend for newsletter
               subscriptions and delivery, and payment processors when you choose to make a purchase. These
               services process only the information needed for their role and maintain their own privacy terms.
+            </p>
+            <p className="mt-4 text-white/70 leading-relaxed">
+              For the Expert Authority diagnostic, your answers are used to compute and email your result. They
+              are not added to a public response dataset or newsletter. Frank receives your name, email, and
+              answers only when you select the optional research-invitation consent.
             </p>
           </section>
 

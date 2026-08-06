@@ -40,13 +40,20 @@ test('desktop and mobile navigation expose the workspace authorship model', asyn
   const navigation = await readRepoFile('components/NavigationMega.tsx')
   const overlay = await readRepoFile('components/MobileNavOverlay.tsx')
 
-  assert.match(navigation, /Public agentic workspace/)
+  // The "Public agentic workspace" micro-caps under the wordmark are gone —
+  // 8px uppercase mono at 60% opacity, in both the desktop nav and the mobile
+  // overlay. The authorship model is still asserted below, by the parts that
+  // carry it at a legible size. A tagline is not the contract; the Workspace
+  // section and the source→artifact line are.
+  assert.doesNotMatch(navigation, /Public agentic workspace/)
+  assert.doesNotMatch(navigation, /text-\[8px\]/)
   assert.match(navigation, /label: 'Workspace'/)
   assert.match(navigation, /Source → agents → Frank → artifact/)
   assert.match(navigation, /const desktopSections: NavKey\[\] = \['explore', 'build', 'learn', 'gencreators'\]/)
   assert.doesNotMatch(navigation, /router\.push/)
 
-  assert.match(overlay, /Public agentic workspace/)
+  assert.doesNotMatch(overlay, /Public agentic workspace/)
+  assert.doesNotMatch(overlay, /text-\[8px\]/)
   assert.match(overlay, /Source material, specialist passes, Frank’s decision, public artifact/)
   assert.match(overlay, /How Frank and the agent team build in public/)
 })

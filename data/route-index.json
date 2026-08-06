@@ -1,16 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 864,
+    "total": 856,
     "aliases": 50,
     "byType": {
       "core": 22,
-      "section": 405,
+      "section": 400,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 214,
-      "workshop": 12,
+      "blog": 215,
       "guide": 23,
       "library": 56,
       "newsletter": 1,
@@ -18,7 +17,8 @@
       "partnership": 7,
       "product": 21,
       "research": 3,
-      "video": 3
+      "video": 3,
+      "workshop": 8
     }
   },
   "routes": [
@@ -1497,6 +1497,19 @@
       "title": "Brand Evolution: From Consciousness to Systems",
       "description": "How FrankX shifted from 'soul-aligned AI' language to a systems architect identity. A transparent look at brand iteration for creators.",
       "tags": [],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/build-fine-tune-or-buy-ai-model",
+      "title": "Build, Fine-Tune, or Buy an AI Model?",
+      "description": "A capital-aware decision system for choosing APIs, open weights, fine-tuning, domain adaptation, or training an AI model from scratch.",
+      "tags": [
+        "ai-strategy",
+        "model-strategy",
+        "fine-tuning",
+        "open-models",
+        "ai-architecture"
+      ],
       "type": "blog"
     },
     {
@@ -4469,97 +4482,6 @@
       "type": "section"
     },
     {
-      "href": "/experiences/mindvalley-university-tallinn-2026",
-      "title": "Mindvalley University Tallinn 2026",
-      "tags": [
-        "experiences",
-        "mindvalley",
-        "university",
-        "tallinn",
-        "2026"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
-      "href": "/experiences/mvu-tallinn-2026",
-      "title": "Mvu Tallinn 2026",
-      "tags": [
-        "experiences",
-        "mvu",
-        "tallinn",
-        "2026"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
-      "href": "/experiences/tallinn-2026",
-      "title": "Tallinn 2026",
-      "tags": [
-        "experiences",
-        "tallinn",
-        "2026"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/experiences/tallinn-2026/agentic-builder-lab",
-      "title": "Build Your First AI Agent",
-      "tags": [
-        "agentic",
-        "builder",
-        "lab"
-      ],
-      "type": "workshop"
-    },
-    {
-      "href": "/experiences/tallinn-2026/ai-music-creation-lab",
-      "title": "AI Music Creation Lab",
-      "tags": [
-        "ai",
-        "music",
-        "creation",
-        "lab"
-      ],
-      "type": "workshop"
-    },
-    {
-      "href": "/experiences/tallinn-2026/purpose-to-practice",
-      "title": "Purpose to Practice",
-      "tags": [
-        "purpose",
-        "to",
-        "practice"
-      ],
-      "type": "workshop"
-    },
-    {
-      "href": "/experiences/tallinn-2026/purpose-to-practice/map",
-      "title": "Map",
-      "tags": [
-        "experiences",
-        "tallinn",
-        "2026",
-        "purpose",
-        "to",
-        "practice",
-        "map"
-      ],
-      "type": "section",
-      "sitemap": false
-    },
-    {
-      "href": "/experiences/tallinn-2026/speaker-session-amplifier",
-      "title": "Speaker Session Amplifier",
-      "tags": [
-        "speaker",
-        "session",
-        "amplifier"
-      ],
-      "type": "workshop"
-    },
-    {
       "href": "/experiments",
       "title": "Experiments",
       "tags": [
@@ -6706,18 +6628,6 @@
         "authority"
       ],
       "type": "section"
-    },
-    {
-      "href": "/mvu/expert-authority/insights",
-      "title": "Insights",
-      "tags": [
-        "mvu",
-        "expert",
-        "authority",
-        "insights"
-      ],
-      "type": "section",
-      "sitemap": false
     },
     {
       "href": "/mvu/lab",

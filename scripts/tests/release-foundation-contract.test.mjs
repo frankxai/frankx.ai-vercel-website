@@ -65,7 +65,9 @@ test('verified contrast and MVU link-name regressions stay closed', async () => 
   assert.match(homepage, /max-w-xl text-\[11px\] leading-5 text-white\/70/)
   assert.doesNotMatch(homepage, /function ScrollProgress/)
   assert.doesNotMatch(homepage, /<ScrollProgress \/>/)
-  assert.match(mvu, /aria-label="Read the essay: Your Mind Is a Temporary Library"/)
+  // Each note's visible title remains inside its link, so the accessible name
+  // is specific without replacing the richer card content with aria-label.
+  assert.match(mvu, /href=\{`\/mvu\/\$\{entry\.slug\}`\}[\s\S]*?\{entry\.title\}/)
 })
 
 test('connect schema describes the page without claiming third-party events', async () => {
@@ -77,9 +79,12 @@ test('connect schema describes the page without claiming third-party events', as
 })
 
 test('primary spine keeps verified contrast and scroll-region failures closed', async () => {
-  const [homepage, start, blog, blogCard, carousel, journal, mvu, mdx] = await Promise.all(
+  const [homepage, player, start, blog, blogCard, carousel, journal, mvu, mdx] = await Promise.all(
     [
       'components/home/HomePageElite.tsx',
+      // The featured-track studio note moved here in #416. The verified-contrast
+      // assertion follows the markup, not the file it used to live in.
+      'components/home/FeaturedTrackPlayer.tsx',
       'app/start/page.tsx',
       'app/blog/BlogPageClient.tsx',
       'components/blog/BlogCard.tsx',
@@ -91,7 +96,7 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
   )
 
   assert.match(homepage, /bg-emerald-500 hover:bg-emerald-600 text-black/)
-  assert.match(homepage, /max-w-md text-xs leading-5 text-white\/60/)
+  assert.match(player, /max-w-md text-xs leading-5 text-white\/60/)
   assert.match(start, /bg-emerald-400 px-6 py-3 text-sm font-semibold text-\[#07120d\]/)
   assert.match(start, /tracking-\[0\.24em\] text-emerald-300\/80/)
   assert.match(blog, /bg-emerald-500 hover:bg-emerald-600 text-black/)
@@ -102,14 +107,15 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
   assert.match(blog, /sizes="\(max-width: 767px\) 100vw, 50vw"/)
   assert.match(carousel, /text-white\/60 tracking-widest">Drag to browse/)
   assert.doesNotMatch(journal, /text-white\/(?:30|35|40)/)
-  // /mvu no longer uses all-caps tracking eyebrows or a duplicated eager
-  // image; it uses the homepage display/serif register and a single priority
-  // hero. Guard the new intent rather than the markup it replaced.
+  // /mvu no longer uses all-caps tracking eyebrows or a generic event image;
+  // it uses the homepage display/serif register and an honest corpus-derived
+  // field-record panel. Guard the new intent rather than the old markup.
   assert.doesNotMatch(mvu, /uppercase tracking-/)
-  assert.match(mvu, /font-display text-4xl font-bold/)
+  assert.match(mvu, /font-display text-3xl font-bold/)
   assert.match(mvu, /font-serif text-lg italic/)
-  assert.match(mvu, /priority/)
-  // contrast floor: /45 measured 4.50:1 on void, exactly the AA cutoff
+  assert.match(mvu, /The field record/)
+  assert.match(mvu, /getMvuCorpusStats\(\)/)
+  // Keep normal and decorative foregrounds above the previous low-opacity floor.
   assert.doesNotMatch(mvu, /text-white\/(?:30|35|40|45)/)
   assert.match(mdx, /role="region"/)
   assert.match(mdx, /aria-label="Scrollable data table"/)

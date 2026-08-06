@@ -1,25 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { recordExpertAuthoritySignal } from '@/lib/expert-authority-intelligence'
-import { getClientIdentifier, leadRatelimit } from '@/lib/ratelimit'
+import {
+  deriveExpertAuthorityResult,
+  expertAuthorityEngineKeys,
+  isExpertAuthorityAnswers,
+} from '@/lib/expert-authority-intelligence'
+import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
 const FROM_EMAIL = 'Frank <frank@mail.frankx.ai>'
 const NOTIFY_EMAIL = process.env.OPERATOR_EMAIL || 'frank@frankx.ai'
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-const validEngines = ['expert', 'audience', 'authority', 'product', 'funnel'] as const
-const validStages = ['Hidden Expert', 'Emerging Authority', 'Market Machine', 'Intelligence Operator'] as const
-const validWeakestEngines = [
-  'Expert Intelligence',
-  'Audience Intelligence',
-  'Authority Engine',
-  'Product Intelligence',
-  'Funnel Intelligence',
-] as const
-
-type EngineKey = (typeof validEngines)[number]
-type Answers = Record<EngineKey, number>
+const SUBMISSION_ID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
 function escapeHtml(value: unknown) {
   return String(value ?? '')
@@ -30,25 +22,22 @@ function escapeHtml(value: unknown) {
     .replaceAll("'", '&#039;')
 }
 
-function isValidAnswers(value: unknown): value is Answers {
-  if (!value || typeof value !== 'object') return false
-  return validEngines.every((key) => {
-    const score = (value as Record<string, unknown>)[key]
-    return typeof score === 'number' && Number.isInteger(score) && score >= 0 && score <= 4
-  })
-}
-
-async function resend(path: string, body: Record<string, unknown>) {
+async function resend(
+  path: string,
+  body: Record<string, unknown>,
+  idempotencyKey?: string,
+) {
   const response = await fetch(`https://api.resend.com${path}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${RESEND_API_KEY}`,
       'Content-Type': 'application/json',
+      ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
     },
     body: JSON.stringify(body),
   })
 
-  if (!response.ok && response.status !== 409) {
+  if (!response.ok) {
     const errorBody = await response.text()
     throw new Error(`Resend request failed (${response.status}): ${errorBody}`)
   }
@@ -58,10 +47,26 @@ async function resend(path: string, body: Record<string, unknown>) {
 
 export async function POST(request: NextRequest) {
   try {
-    // Public QR traffic can spike. Reuse the repository's governed lead limiter.
-    // Fail open so a temporary KV outage never blocks a legitimate participant.
+    const payload = await request.json()
+    const {
+      name,
+      email,
+      researchInvitationOptIn = false,
+      answers,
+      submissionId,
+      website = '',
+    } = payload
+
+    // Check the honeypot before consuming rate-limit capacity. Automated form
+    // fillers receive a neutral success without touching KV or any email path.
+    if (typeof website === 'string' && website.trim() !== '') {
+      return NextResponse.json({ success: true })
+    }
+
+    // This endpoint sends email. If the limiter cannot make a decision, fail
+    // closed rather than turning a KV outage into an unbounded send surface.
     try {
-      const { success } = await leadRatelimit.limit(getClientIdentifier(request))
+      const { success } = await emailRatelimit.limit(getClientIdentifier(request))
       if (!success) {
         return NextResponse.json(
           { error: 'Too many submissions. Please try again later.' },
@@ -69,26 +74,11 @@ export async function POST(request: NextRequest) {
         )
       }
     } catch (error) {
-      console.error('Expert authority rate-limit check failed (continuing open):', error)
-    }
-
-    const payload = await request.json()
-    const {
-      name,
-      email,
-      score,
-      stage,
-      weakestEngine,
-      foundingInterest = false,
-      answers,
-      source = 'expert-authority',
-      website = '',
-    } = payload
-
-    // Honeypot: legitimate clients leave this field empty. Return a neutral
-    // success to bots so the endpoint does not teach them how detection works.
-    if (typeof website === 'string' && website.trim() !== '') {
-      return NextResponse.json({ success: true })
+      console.error('Expert authority rate-limit check failed:', error)
+      return NextResponse.json(
+        { error: 'Email delivery is temporarily unavailable. Please try again shortly.' },
+        { status: 503 },
+      )
     }
 
     if (!name || typeof name !== 'string' || name.trim().length < 2 || name.trim().length > 200) {
@@ -102,31 +92,14 @@ export async function POST(request: NextRequest) {
     ) {
       return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
     }
-    if (!isValidAnswers(answers)) {
+    if (!isExpertAuthorityAnswers(answers)) {
       return NextResponse.json({ error: 'The engine scores are invalid.' }, { status: 400 })
     }
-
-    const computedScore = validEngines.reduce((total, key) => total + answers[key], 0)
-    if (
-      typeof score !== 'number' ||
-      !Number.isInteger(score) ||
-      score < 0 ||
-      score > 20 ||
-      score !== computedScore
-    ) {
-      return NextResponse.json({ error: 'The diagnostic score is invalid.' }, { status: 400 })
+    if (typeof researchInvitationOptIn !== 'boolean') {
+      return NextResponse.json({ error: 'The research preference is invalid.' }, { status: 400 })
     }
-    if (!validStages.includes(stage)) {
-      return NextResponse.json({ error: 'The authority stage is invalid.' }, { status: 400 })
-    }
-    if (!validWeakestEngines.includes(weakestEngine)) {
-      return NextResponse.json({ error: 'The primary constraint is invalid.' }, { status: 400 })
-    }
-    if (typeof foundingInterest !== 'boolean') {
-      return NextResponse.json({ error: 'The founding-cohort preference is invalid.' }, { status: 400 })
-    }
-    if (typeof source !== 'string' || source.length > 100) {
-      return NextResponse.json({ error: 'The source value is invalid.' }, { status: 400 })
+    if (typeof submissionId !== 'string' || !SUBMISSION_ID_PATTERN.test(submissionId)) {
+      return NextResponse.json({ error: 'The submission identifier is invalid.' }, { status: 400 })
     }
     if (!RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not configured')
@@ -139,40 +112,19 @@ export async function POST(request: NextRequest) {
     const cleanName = name.trim()
     const cleanEmail = email.trim().toLowerCase()
     const firstName = cleanName.split(/\s+/)[0]
-    const lastName = cleanName.split(/\s+/).slice(1).join(' ')
+    const { score, stage, weakestEngine } = deriveExpertAuthorityResult(answers)
+    const source = 'mvu-expert-authority'
     const safeName = escapeHtml(cleanName)
     const safeEmail = escapeHtml(cleanEmail)
     const safeStage = escapeHtml(stage)
     const safeWeakest = escapeHtml(weakestEngine)
     const safeSource = escapeHtml(source)
-    const engineRows = validEngines
+    const engineRows = expertAuthorityEngineKeys
       .map(
         (key) =>
           `<tr><td style="padding:6px 0;color:#94a3b8;text-transform:capitalize;">${key}</td><td style="padding:6px 0;color:#ffffff;text-align:right;">${answers[key]}/4</td></tr>`
       )
       .join('')
-
-    // Build the Audience Intelligence layer from anonymized evidence. This is
-    // deliberately separated from contact storage: no name or email enters KV.
-    try {
-      await recordExpertAuthoritySignal({
-        score,
-        stage,
-        weakestEngine,
-        foundingInterest,
-        answers,
-        source,
-      })
-    } catch (error) {
-      console.error('Expert authority signal capture failed (continuing):', error)
-    }
-
-    await resend(`/audiences/${AUDIENCE_ID}/contacts`, {
-      email: cleanEmail,
-      first_name: firstName,
-      last_name: lastName || undefined,
-      unsubscribed: false,
-    })
 
     const operatorHtml = `
 <!doctype html>
@@ -185,7 +137,7 @@ export async function POST(request: NextRequest) {
     <table style="width:100%;border-collapse:collapse;border-top:1px solid #27272a;border-bottom:1px solid #27272a;padding:12px 0;">${engineRows}</table>
     <div style="margin-top:22px;color:#a1a1aa;line-height:1.7;">
       <div><strong style="color:#ffffff;">Email:</strong> <a href="mailto:${safeEmail}" style="color:#67e8f9;">${safeEmail}</a></div>
-      <div><strong style="color:#ffffff;">Founding cohort:</strong> ${foundingInterest ? 'Interested' : 'Not selected'}</div>
+      <div><strong style="color:#ffffff;">Research invitation:</strong> Opted in</div>
       <div><strong style="color:#ffffff;">Source:</strong> ${safeSource}</div>
       <div><strong style="color:#ffffff;">Captured:</strong> ${new Date().toISOString()}</div>
     </div>
@@ -217,21 +169,30 @@ export async function POST(request: NextRequest) {
 </body>
 </html>`
 
-    await Promise.all([
-      resend('/emails', {
-        from: FROM_EMAIL,
-        to: NOTIFY_EMAIL,
-        reply_to: cleanEmail,
-        subject: `${stage}: ${cleanName} — ${weakestEngine}`,
-        html: operatorHtml,
-      }),
+    const deliveries = await Promise.allSettled([
       resend('/emails', {
         from: FROM_EMAIL,
         to: cleanEmail,
         subject: `Your Expert Authority Map: ${stage}`,
         html: participantHtml,
-      }),
+      }, `expert-authority-result/${submissionId}`),
+      researchInvitationOptIn
+        ? resend('/emails', {
+            from: FROM_EMAIL,
+            to: NOTIFY_EMAIL,
+            reply_to: cleanEmail,
+            subject: `Research opt-in: ${stage} — ${cleanName}`,
+            html: operatorHtml,
+          }, `expert-authority-research/${submissionId}`)
+        : Promise.resolve(null),
     ])
+
+    if (deliveries[0].status === 'rejected') {
+      throw deliveries[0].reason
+    }
+    if (deliveries[1].status === 'rejected') {
+      console.error('Expert authority research notification failed:', deliveries[1].reason)
+    }
 
     return NextResponse.json({ success: true })
   } catch (error) {

@@ -1,0 +1,59 @@
+name: Contract Guard
+
+# Fails a pull request that edits a contract test and a surface that same test
+# guards. See scripts/check-contract-guard.mjs for why.
+#
+# Deliberately separate from ci.yml: this needs full history for merge-base,
+# and ci.yml's checkout stays shallow so the build job is not slowed down.
+
+on:
+  pull_request:
+    # 'edited' matters: the override is read from the pull request title, so
+    # without it, adding [contract-change] after a red run would not re-run the
+    # check, and removing it after a green one would leave the check green while
+    # the reviewer signal quietly disappeared.
+    types: [opened, synchronize, reopened, edited]
+    branches: [main, staging]
+    # Broad on purpose. A contract can guard a script or a public asset as well
+    # as a component, so narrowing this would silently skip the check on exactly
+    # the pull requests that pair such a surface with its contract.
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'data/**'
+      - 'content/**'
+      - 'public/**'
+      - 'scripts/**'
+      - '.github/workflows/contract-guard.yml'
+
+concurrency:
+  group: contract-guard-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract-guard:
+    name: Contract Guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # merge-base against the base branch needs real history.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          # setup-node defaults package-manager-cache to true, sees
+          # packageManager: pnpm in package.json, and then fails looking for a
+          # pnpm binary this job deliberately never installs.
+          package-manager-cache: false
+
+      # No install step on purpose — the check uses only node builtins and git,
+      # so it returns a verdict in seconds rather than after a dependency install.
+      - name: Check contract guards
+        run: node scripts/check-contract-guard.mjs
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+          PR_TITLE: ${{ github.event.pull_request.title }}

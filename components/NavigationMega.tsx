@@ -180,13 +180,8 @@ function Logo() {
       className="rounded-lg px-2 py-1.5 transition-all duration-300 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
       aria-label="FrankX.AI - Home"
     >
-      <span className="flex flex-col">
-        <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-          FrankX.AI
-        </span>
-        <span className="hidden font-mono text-[8px] font-medium uppercase tracking-[0.16em] text-emerald-300/60 xl:block">
-          Public agentic workspace
-        </span>
+      <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+        FrankX.AI
       </span>
     </Link>
   )
