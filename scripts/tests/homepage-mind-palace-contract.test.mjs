@@ -28,10 +28,10 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.match(player, /src=\{track\.imageUrl\}/)
   assert.match(player, /href=\{track\.sunoUrl\}/)
   assert.match(player, /preload="metadata"/)
-  assert.match(player, /useState\\(\\(\\) => parseDuration\\(track\\.duration\\)\\)/)
+  assert.match(player, /useState\(\(\) => parseDuration\(track\.duration\)\)/)
   assert.match(player, /nextDuration : currentDuration/)
   assert.match(player, /role="status" aria-live="polite"/)
-  assert.match(player, /from-void\\/20/)
+  assert.match(player, /from-void\/20/)
   assert.doesNotMatch(player, /#0a0a0b|#07110d/)
   assert.doesNotMatch(player, /<iframe\b/)
   assert.match(homepage, /featuredTrack \?\? homepageFeaturedRelease/)
@@ -57,6 +57,10 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
 
 test('the long-form homepage cannot silently lose its restored rooms and glow cards', async () => {
   const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+  // #416 extracted the featured-track block out of HomePageElite into its own
+  // component, taking one glow-card surface with it. The homepage still renders
+  // four; counting only one file undercounts after any such extraction.
+  const player = await readRepoFile('components/home/FeaturedTrackPlayer.tsx')
 
   for (const section of [
     '<TrustedByBlock />',
@@ -78,7 +82,11 @@ test('the long-form homepage cannot silently lose its restored rooms and glow ca
 
   assert.match(homepage, /import \{ GlowCard \} from '@\/components\/ui\/glow-card'/)
   assert.match(homepage, /<section id="books" className="scroll-mt-24/)
-  assert.ok((homepage.match(/<GlowCard\b/g) ?? []).length >= 4, 'expected multiple glow-card surfaces')
+  const glowCards = [homepage, player].reduce(
+    (total, source) => total + (source.match(/<GlowCard\b/g) ?? []).length,
+    0,
+  )
+  assert.ok(glowCards >= 4, `expected multiple glow-card surfaces, found ${glowCards}`)
 })
 
 test('the featured release stays human-reviewed instead of following the raw catalog', async () => {

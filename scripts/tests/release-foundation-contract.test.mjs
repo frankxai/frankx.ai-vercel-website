@@ -77,9 +77,12 @@ test('connect schema describes the page without claiming third-party events', as
 })
 
 test('primary spine keeps verified contrast and scroll-region failures closed', async () => {
-  const [homepage, start, blog, blogCard, carousel, journal, mvu, mdx] = await Promise.all(
+  const [homepage, player, start, blog, blogCard, carousel, journal, mvu, mdx] = await Promise.all(
     [
       'components/home/HomePageElite.tsx',
+      // The featured-track studio note moved here in #416. The verified-contrast
+      // assertion follows the markup, not the file it used to live in.
+      'components/home/FeaturedTrackPlayer.tsx',
       'app/start/page.tsx',
       'app/blog/BlogPageClient.tsx',
       'components/blog/BlogCard.tsx',
@@ -91,7 +94,7 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
   )
 
   assert.match(homepage, /bg-emerald-500 hover:bg-emerald-600 text-black/)
-  assert.match(homepage, /max-w-md text-xs leading-5 text-white\/60/)
+  assert.match(player, /max-w-md text-xs leading-5 text-white\/60/)
   assert.match(start, /bg-emerald-400 px-6 py-3 text-sm font-semibold text-\[#07120d\]/)
   assert.match(start, /tracking-\[0\.24em\] text-emerald-300\/80/)
   assert.match(blog, /bg-emerald-500 hover:bg-emerald-600 text-black/)

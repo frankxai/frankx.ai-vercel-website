@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 864,
+    "total": 865,
     "aliases": 50,
     "byType": {
       "core": 22,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 214,
+      "blog": 215,
       "workshop": 12,
       "guide": 23,
       "library": 56,
@@ -1497,6 +1497,19 @@
       "title": "Brand Evolution: From Consciousness to Systems",
       "description": "How FrankX shifted from 'soul-aligned AI' language to a systems architect identity. A transparent look at brand iteration for creators.",
       "tags": [],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/build-fine-tune-or-buy-ai-model",
+      "title": "Build, Fine-Tune, or Buy an AI Model?",
+      "description": "A capital-aware decision system for choosing APIs, open weights, fine-tuning, domain adaptation, or training an AI model from scratch.",
+      "tags": [
+        "ai-strategy",
+        "model-strategy",
+        "fine-tuning",
+        "open-models",
+        "ai-architecture"
+      ],
       "type": "blog"
     },
     {
