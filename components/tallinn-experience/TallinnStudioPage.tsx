@@ -268,10 +268,10 @@ export function TallinnStudioPage({
                 A useful room is more than an address. These profiles help venue hosts and facilitators compare the work, scale, access, sound, and equipment before anyone makes a promise.
               </p>
               <Link
-                href="/experiences/tallinn-2026?role=venue&outcome=new-workshop#interest"
+                href="/contact?intent=workshop"
                 className="mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-emerald-200 underline decoration-emerald-300/30 underline-offset-4 transition-colors hover:text-white motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
               >
-                Share a possible venue
+                Share the room brief
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>

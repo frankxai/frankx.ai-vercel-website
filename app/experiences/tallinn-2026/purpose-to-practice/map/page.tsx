@@ -64,8 +64,8 @@ export default function HumanAiPracticeMapPage() {
 
       <div className="mx-auto mb-6 flex max-w-[210mm] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between print:hidden">
         <div>
-          <TrackedLink href="/experiences/tallinn-2026/purpose-to-practice" eventName="tallinn_worksheet_back" eventProperties={{ destination: 'purpose_to_practice' }} className="text-sm text-slate-400 underline decoration-white/20 underline-offset-4 hover:text-white">
-            ← Purpose to Practice
+          <TrackedLink href="/mvu" eventName="tallinn_worksheet_back" eventProperties={{ destination: 'mvu_field_record' }} className="text-sm text-slate-400 underline decoration-white/20 underline-offset-4 hover:text-white">
+            ← Tallinn field record
           </TrackedLink>
           <p className="mt-2 text-xs text-slate-500">Review or print two A4 working pages. No participant data is stored.</p>
         </div>

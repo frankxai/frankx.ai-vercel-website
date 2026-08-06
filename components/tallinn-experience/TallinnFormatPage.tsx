@@ -16,13 +16,13 @@ export function TallinnFormatPage({ format }: TallinnFormatPageProps) {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] bg-tallinn-aurora" />
         <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-28 sm:px-8 sm:pt-36 lg:px-10 lg:pb-28 lg:pt-44">
           <TrackedLink
-            href="/experiences/tallinn-2026"
+            href="/mvu"
             eventName="tallinn_format_cta_clicked"
             eventProperties={{ action: 'return_to_studio', format_slug: format.slug }}
             className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-white motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Tallinn Session Studio
+            Tallinn field record
           </TrackedLink>
 
           <div className="mt-12 grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
@@ -34,7 +34,7 @@ export function TallinnFormatPage({ format }: TallinnFormatPageProps) {
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">{format.promise}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <TrackedGlowButton
-                  href="/experiences/tallinn-2026#interest"
+                  href="/contact?intent=workshop"
                   size="lg"
                   color={format.accent}
                   eventName="tallinn_format_cta_clicked"
@@ -115,7 +115,7 @@ export function TallinnFormatPage({ format }: TallinnFormatPageProps) {
             </p>
           </div>
           <TrackedGlowButton
-            href="/experiences/tallinn-2026#interest"
+            href="/contact?intent=workshop"
             size="lg"
             color="emerald"
             eventName="tallinn_format_cta_clicked"
