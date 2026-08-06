@@ -23,9 +23,12 @@ const [page, experience, leadRoute, intelligence, insights, qrRoute, skill, prom
 ])
 
 test('public route has canonical metadata and social image', () => {
-  assert.match(page, /https:\/\/frankx\.ai\/mvu\/expert-authority/)
-  assert.match(page, /opengraph-image/)
+  assert.match(page, /createMetadata/)
+  assert.match(page, /path: '\/mvu\/expert-authority'/)
+  assert.match(page, /image: '\/mvu\/expert-authority\/opengraph-image'/)
   assert.match(page, /Expert Authority Intelligence System/)
+  assert.doesNotMatch(page, /Expert Authority Intelligence System \| FrankX/)
+  assert.doesNotMatch(page, /https:\/\/frankx\.ai\/mvu\/expert-authority/)
 })
 
 test('experience presents one system with five governed engines', () => {
