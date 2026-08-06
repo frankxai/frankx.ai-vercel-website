@@ -18,7 +18,16 @@ export default function WeeklyIssueCallout({ latest }: WeeklyIssueCalloutProps) 
 
   const isLive = latest.status === 'sent' || latest.status === 'archived'
   const isUpcoming = !isLive
-  const sendLabel = latest.sendAt ? formatDate(latest.sendAt) : formatDate(latest.date)
+  const sendAt = latest.sendAt || latest.date
+  // A draft whose ship date has passed must not keep advertising it — the page
+  // spent seven weeks promising "Ships June 19" for an issue that never sent.
+  const shipDatePassed = Boolean(sendAt) && new Date(sendAt).getTime() < Date.now()
+  const sendLabel = shipDatePassed ? '' : formatDate(sendAt)
+
+  // Blanking the date wasn't enough: an unsent draft whose date has passed was
+  // still headlining the page as "Coming soon" seven weeks later. A promise the
+  // pipeline can't keep is worse than no banner.
+  if (isUpcoming && shipDatePassed) return null
 
   return (
     <section className="relative border-b border-white/[0.06]">

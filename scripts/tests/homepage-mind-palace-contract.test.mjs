@@ -67,6 +67,9 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
 
 test('the long-form homepage cannot silently lose its restored rooms and glow cards', async () => {
   const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+  // #416 extracted the featured-track block out of HomePageElite into its own
+  // component, taking one glow-card surface with it. The homepage still renders
+  // four; counting only one file undercounts after any such extraction.
   const player = await readRepoFile('components/home/FeaturedTrackPlayer.tsx')
 
   for (const section of [
@@ -89,10 +92,11 @@ test('the long-form homepage cannot silently lose its restored rooms and glow ca
 
   assert.match(homepage, /import \{ GlowCard \} from '@\/components\/ui\/glow-card'/)
   assert.match(homepage, /<section id="books" className="scroll-mt-24/)
-  // #416 moved the featured-release card into FeaturedTrackPlayer, so the hero
-  // surface spans two files now. Count both rather than shrinking the bar.
-  const glowCards = [homepage, player].flatMap((source) => source.match(/<GlowCard\b/g) ?? [])
-  assert.ok(glowCards.length >= 4, 'expected multiple glow-card surfaces')
+  const glowCards = [homepage, player].reduce(
+    (total, source) => total + (source.match(/<GlowCard\b/g) ?? []).length,
+    0,
+  )
+  assert.ok(glowCards >= 4, `expected multiple glow-card surfaces, found ${glowCards}`)
 })
 
 test('the featured release stays human-reviewed instead of following the raw catalog', async () => {

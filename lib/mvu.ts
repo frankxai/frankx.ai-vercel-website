@@ -47,6 +47,12 @@ export interface MvuEntry {
 
 export type MvuEntrySummary = Omit<MvuEntry, 'content'>
 
+export interface MvuCorpusStats {
+  total: number
+  published: number
+  held: number
+}
+
 function buildEntry(slug: string, data: Record<string, unknown>, content: string): MvuEntry {
   const kind = (data.kind as MvuKind) || 'note'
   return {
@@ -95,6 +101,18 @@ export const getMvuEntries = cache((): MvuEntry[] =>
 export const getMvuEntrySummaries = cache((): MvuEntrySummary[] =>
   getMvuEntries().map(({ content: _content, ...rest }) => rest),
 )
+
+/** Editorial state for the complete MVU corpus, including held drafts. */
+export const getMvuCorpusStats = cache((): MvuCorpusStats => {
+  const entries = readAll()
+  const published = entries.filter((entry) => entry.published).length
+
+  return {
+    total: entries.length,
+    published,
+    held: entries.length - published,
+  }
+})
 
 export const getMvuEntry = cache((slug: string): MvuEntry | null => {
   const entry = readAll().find((e) => e.slug === slug && e.published)

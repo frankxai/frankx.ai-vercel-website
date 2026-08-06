@@ -40,6 +40,11 @@ export const CONNECT_EVENTS: ConnectEvent[] = [
     accent: 'violet',
     location: 'Tallinn',
   },
+  // Mindvalley U 2027 (Porto, 12 Jul – 18 Aug 2027 per mindvalley.com/u) is
+  // deliberately NOT listed here. CONNECT_EVENTS drives EventRibbon, and the
+  // only future entry becomes "See you at <event>" across /connect — a public
+  // attendance commitment. Frank has not said he is attending 2027. Add this
+  // back when he decides to go, not because the event exists.
 ]
 
 function inWindow(now: Date, startISO: string, endISO: string): boolean {

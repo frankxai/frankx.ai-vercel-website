@@ -334,12 +334,9 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
           <h2 id="mobile-navigation-title" className="sr-only">Site navigation</h2>
           {/* Top bar */}
           <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 px-4">
-            <Link href="/" onClick={onClose} className="flex flex-col">
+            <Link href="/" onClick={onClose}>
               <span className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-[17px] font-semibold tracking-tight text-transparent">
                 FrankX.AI
-              </span>
-              <span className="font-serif text-[12px] italic leading-none text-white/50">
-                Public agentic workspace
               </span>
             </Link>
             <button
