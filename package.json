@@ -134,6 +134,7 @@
     "newsletter:test": "node scripts/newsletter/send.mjs test",
     "newsletter:stage": "node scripts/newsletter/send.mjs stage",
     "newsletter:send": "node scripts/newsletter/send.mjs send",
+    "test:contract-guard": "node scripts/check-contract-guard.mjs",
     "test:syntax": "node scripts/check-test-syntax.mjs"
   },
   "dependencies": {
