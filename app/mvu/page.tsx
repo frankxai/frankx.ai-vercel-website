@@ -30,6 +30,7 @@ export const metadata: Metadata = createMetadata({
   description:
     'Frank Riemer’s independent field notes from Mindvalley University 2026 in Tallinn: five public essays, a governed editorial record, and the work continuing toward Porto 2027.',
   path: '/mvu',
+  image: '/mvu/opengraph-image',
   keywords: [
     'Mindvalley University 2026',
     'Mindvalley U Tallinn',

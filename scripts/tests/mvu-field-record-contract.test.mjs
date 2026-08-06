@@ -57,6 +57,8 @@ test('known stale or unsupported MVU claims do not return', () => {
 
 test('MVU has route-specific social packaging and static public routes', () => {
   assert.match(ogImage, /What stayed after Tallinn/)
+  assert.match(hub, /image: '\/mvu\/opengraph-image'/)
+  assert.doesNotMatch(hub, /frankx-public-workspace-og/)
   assert.match(hub, /export const dynamic = 'force-static'/)
   assert.match(entryRoute, /export const dynamic = 'force-static'/)
   assert.match(entryRoute, /export const dynamicParams = false/)
