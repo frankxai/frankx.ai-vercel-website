@@ -74,6 +74,25 @@ test('lead route derives scores server-side and delivers idempotently', () => {
   assert.doesNotMatch(leadRoute, /recordExpertAuthoritySignal/)
 })
 
+test('honeypot exits before rate limiting and every email path', () => {
+  const jsonIndex = leadRoute.indexOf('const payload = await request.json()')
+  const honeypotIndex = leadRoute.indexOf("if (typeof website === 'string'")
+  const limiterIndex = leadRoute.indexOf('await emailRatelimit.limit')
+  const deliveryIndex = leadRoute.indexOf("resend('/emails'")
+
+  assert.ok(jsonIndex >= 0, 'request JSON must be parsed')
+  assert.ok(honeypotIndex > jsonIndex, 'honeypot must be checked after JSON parsing')
+  assert.ok(limiterIndex > honeypotIndex, 'honeypot must return before rate limiting')
+  assert.ok(deliveryIndex > limiterIndex, 'rate limiting must still precede email delivery')
+})
+
+test('honeypot stays bot-fillable but is absent from assistive navigation', () => {
+  assert.match(
+    experience,
+    /<label[\s\S]{0,160}aria-hidden="true"[\s\S]{0,240}<input[\s\S]{0,120}name="website"[\s\S]{0,120}type="text"[\s\S]{0,120}tabIndex=\{-1\}/,
+  )
+})
+
 test('individual response data is not publicly persisted or aggregated', () => {
   assert.match(intelligence, /deriveExpertAuthorityResult/)
   assert.doesNotMatch(intelligence, /@vercel\/blob|access:\s*'public'|capturedAt|loadSignals/)

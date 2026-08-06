@@ -529,7 +529,10 @@ export default function ExpertAuthorityExperience() {
                   Get the skill, prompt pack, architecture map, and your diagnostic result in one email.
                 </p>
 
-                <label className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden">
+                <label
+                  aria-hidden="true"
+                  className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden"
+                >
                   Website
                   <input
                     name="website"

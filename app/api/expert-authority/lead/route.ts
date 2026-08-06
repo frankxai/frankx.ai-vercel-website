@@ -47,6 +47,22 @@ async function resend(
 
 export async function POST(request: NextRequest) {
   try {
+    const payload = await request.json()
+    const {
+      name,
+      email,
+      researchInvitationOptIn = false,
+      answers,
+      submissionId,
+      website = '',
+    } = payload
+
+    // Check the honeypot before consuming rate-limit capacity. Automated form
+    // fillers receive a neutral success without touching KV or any email path.
+    if (typeof website === 'string' && website.trim() !== '') {
+      return NextResponse.json({ success: true })
+    }
+
     // This endpoint sends email. If the limiter cannot make a decision, fail
     // closed rather than turning a KV outage into an unbounded send surface.
     try {
@@ -63,22 +79,6 @@ export async function POST(request: NextRequest) {
         { error: 'Email delivery is temporarily unavailable. Please try again shortly.' },
         { status: 503 },
       )
-    }
-
-    const payload = await request.json()
-    const {
-      name,
-      email,
-      researchInvitationOptIn = false,
-      answers,
-      submissionId,
-      website = '',
-    } = payload
-
-    // Honeypot: legitimate clients leave this field empty. Return a neutral
-    // success to bots so the endpoint does not teach them how detection works.
-    if (typeof website === 'string' && website.trim() !== '') {
-      return NextResponse.json({ success: true })
     }
 
     if (!name || typeof name !== 'string' || name.trim().length < 2 || name.trim().length > 200) {
