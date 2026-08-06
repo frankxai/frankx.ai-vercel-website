@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import {
   ArrowRight,
   Brain,
@@ -99,7 +99,7 @@ const engines: Engine[] = [
       'Product outcomes continuously update curriculum, positioning, and agent behavior.',
     ],
     artifact: 'Product stepladder + transformation architecture',
-    nextAction: 'Design one free diagnostic, one paid activation, one core transformation, and one implementation tier around the same mechanism.',
+    nextAction: 'Design one free diagnostic, one paid activation, one core transformation, and one deployable operating kit around the same mechanism.',
   },
   {
     key: 'funnel',
@@ -144,11 +144,11 @@ const stages = [
 ]
 
 const productLadder = [
-  ['Diagnose', 'Authority Map', 'Free', 'Segment the real constraint and deliver an immediate next move.'],
-  ['Activate', 'Authority Sprint', '€27–€97', 'Create the first visible asset, proof event, or named mechanism.'],
-  ['Systemize', 'Expert Product Blueprint', '€197–€497', 'Build the canon, audience graph, offer ladder, and conversion path.'],
-  ['Transform', 'Expert-to-Authority Cohort', '€1,500–€5,000', 'Ship the complete authority business with accountable implementation.'],
-  ['Implement', 'Sovereign Authority System', '€15,000–€100,000+', 'Custom intelligence graph, agents, workflows, governance, and growth instrumentation.'],
+  ['Diagnose', 'Authority Map', 'Live', 'Segment the real constraint and deliver an immediate next move.'],
+  ['Activate', 'Authority Sprint', 'Next', 'Create the first visible asset, proof event, or named mechanism.'],
+  ['Systemize', 'Expert Product Blueprint', 'Planned', 'Build the canon, audience graph, offer ladder, and conversion path.'],
+  ['Transform', 'Expert-to-Authority Cohort', 'Evidence-gated', 'Test the complete method with accountable, consent-based learning.'],
+  ['Operate', 'Sovereign Authority Kit', 'Research track', 'Package the graphs, skills, workflows, and governance as a deployable operating layer.'],
 ]
 
 const stack = [
@@ -199,7 +199,7 @@ const prompts = [
   },
   {
     title: 'Engineer the Product Ladder',
-    body: `Convert the authority position into a product stepladder. Define the free diagnosis, paid activation, core transformation, premium implementation, and continuity layer. For each: buyer state, promised transition, mechanism, time-to-value, evidence required, delivery model, price logic, next purchase, and the metric that proves the offer works.`,
+    body: `Convert the authority position into a product stepladder. Define the free diagnosis, paid activation, core transformation, deployable operating kit, and continuity layer. For each: buyer state, promised transition, mechanism, time-to-value, evidence required, delivery model, price logic, next purchase, and the metric that proves the offer works.`,
   },
   {
     title: 'Design the Funnel Learning Loop',
@@ -220,10 +220,12 @@ export default function ExpertAuthorityExperience() {
   const [submitted, setSubmitted] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [foundingInterest, setFoundingInterest] = useState(false)
+  const [researchInvitationOptIn, setResearchInvitationOptIn] = useState(false)
+  const [website, setWebsite] = useState('')
   const [leadStatus, setLeadStatus] = useState<LeadStatus>('idle')
   const [leadMessage, setLeadMessage] = useState('')
   const [copied, setCopied] = useState<string | null>(null)
+  const submissionIdRef = useRef<string | null>(null)
 
   const complete = engines.every((engine) => answers[engine.key] >= 0)
   const score = useMemo(
@@ -236,10 +238,20 @@ export default function ExpertAuthorityExperience() {
   )
   const stage = stages.find((item) => score <= item.max) ?? stages[stages.length - 1]
 
+  function resetDeliveryAttempt() {
+    submissionIdRef.current = null
+    setLeadStatus('idle')
+    setLeadMessage('')
+  }
+
   function submitDiagnostic() {
     if (!complete) return
     setSubmitted(true)
-    window.setTimeout(() => document.getElementById('authority-result')?.scrollIntoView({ behavior: 'smooth' }), 50)
+    window.setTimeout(() => {
+      const result = document.getElementById('authority-result')
+      result?.focus()
+      result?.scrollIntoView({ behavior: 'smooth' })
+    }, 50)
   }
 
   function downloadBlueprint() {
@@ -281,6 +293,8 @@ export default function ExpertAuthorityExperience() {
 
     setLeadStatus('loading')
     setLeadMessage('')
+    const submissionId = submissionIdRef.current ?? crypto.randomUUID()
+    submissionIdRef.current = submissionId
 
     try {
       const response = await fetch('/api/expert-authority/lead', {
@@ -289,12 +303,10 @@ export default function ExpertAuthorityExperience() {
         body: JSON.stringify({
           name,
           email,
-          score,
-          stage: stage.name,
-          weakestEngine: weakest.publicName,
-          foundingInterest,
+          researchInvitationOptIn,
           answers,
-          source: 'mvu-expert-authority',
+          submissionId,
+          website,
         }),
       })
       const payload = await response.json()
@@ -320,7 +332,7 @@ export default function ExpertAuthorityExperience() {
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
               <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-              MVU Tallinn field release
+              FrankX field system
             </div>
             <h1 className="max-w-5xl text-4xl font-semibold tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
               Turn what you know into an authority business that learns.
@@ -379,7 +391,7 @@ export default function ExpertAuthorityExperience() {
                 <h3 className="mt-4 text-xl font-semibold text-white">{engine.publicName}</h3>
                 <p className="mt-1 text-sm font-medium text-violet-300">{engine.engineName}</p>
                 <p className="mt-4 text-sm leading-6 text-zinc-400">{engine.purpose}</p>
-                <div className="mt-5 border-t border-white/10 pt-4 text-xs leading-5 text-zinc-500">
+                <div className="mt-5 border-t border-white/10 pt-4 text-xs leading-5 text-zinc-400">
                   Output: {engine.artifact}
                 </div>
               </article>
@@ -413,24 +425,31 @@ export default function ExpertAuthorityExperience() {
                   {engine.options.map((option, optionIndex) => {
                     const selected = answers[engine.key] === optionIndex
                     return (
-                      <button
+                      <label
                         key={option}
-                        type="button"
-                        onClick={() => {
-                          setAnswers((current) => ({ ...current, [engine.key]: optionIndex }))
-                          setSubmitted(false)
-                        }}
-                        className={`flex w-full items-start gap-4 rounded-2xl border p-4 text-left transition ${
+                        className={`flex min-h-14 w-full cursor-pointer items-start gap-4 rounded-2xl border p-4 text-left transition focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-cyan-200 ${
                           selected
                             ? 'border-cyan-300/70 bg-cyan-300/10 text-white'
                             : 'border-white/10 bg-zinc-950/50 text-zinc-400 hover:border-white/25 hover:text-zinc-200'
                         }`}
                       >
-                        <span className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold ${selected ? 'bg-cyan-200 text-zinc-950' : 'bg-white/5 text-zinc-500'}`}>
+                        <input
+                          type="radio"
+                          name={`engine-${engine.key}`}
+                          value={optionIndex}
+                          checked={selected}
+                          onChange={() => {
+                            setAnswers((current) => ({ ...current, [engine.key]: optionIndex }))
+                            setSubmitted(false)
+                            resetDeliveryAttempt()
+                          }}
+                          className="sr-only"
+                        />
+                        <span className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold ${selected ? 'bg-cyan-200 text-zinc-950' : 'bg-white/5 text-zinc-400'}`}>
                           {optionIndex}
                         </span>
                         <span className="text-sm leading-6 sm:text-base">{option}</span>
-                      </button>
+                      </label>
                     )
                   })}
                 </div>
@@ -442,7 +461,7 @@ export default function ExpertAuthorityExperience() {
             type="button"
             onClick={submitDiagnostic}
             disabled={!complete}
-            className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-sm font-semibold text-zinc-950 transition enabled:hover:bg-cyan-100 disabled:cursor-not-allowed disabled:opacity-40"
+            className="mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-sm font-semibold text-zinc-950 transition enabled:hover:bg-cyan-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Generate my authority map
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -451,7 +470,11 @@ export default function ExpertAuthorityExperience() {
       </section>
 
       {submitted && (
-        <section id="authority-result" className="scroll-mt-8 border-b border-white/10 bg-cyan-950/10">
+        <section
+          id="authority-result"
+          tabIndex={-1}
+          className="scroll-mt-8 border-b border-white/10 bg-cyan-950/10 focus:outline-none"
+        >
           <div className="mx-auto max-w-6xl px-6 py-20">
             <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr]">
               <div className="rounded-[2rem] border border-cyan-300/25 bg-zinc-950 p-7 sm:p-10">
@@ -461,8 +484,8 @@ export default function ExpertAuthorityExperience() {
                     <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">{stage.name}</h2>
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-center">
-                    <div className="text-3xl font-semibold text-white">{score}<span className="text-base text-zinc-500">/20</span></div>
-                    <div className="mt-1 text-xs uppercase tracking-[0.16em] text-zinc-500">System score</div>
+                    <div className="text-3xl font-semibold text-white">{score}<span className="text-base text-zinc-400">/20</span></div>
+                    <div className="mt-1 text-xs uppercase tracking-[0.16em] text-zinc-400">System score</div>
                   </div>
                 </div>
 
@@ -479,10 +502,15 @@ export default function ExpertAuthorityExperience() {
                   {engines.map((engine) => (
                     <div key={engine.key} className="rounded-2xl border border-white/10 bg-white/[0.025] p-4 text-center">
                       <div className="text-2xl font-semibold text-white">{answers[engine.key]}</div>
-                      <div className="mt-2 text-xs leading-4 text-zinc-500">{engine.publicName.replace(' Intelligence', '')}</div>
+                      <div className="mt-2 text-xs leading-4 text-zinc-400">{engine.publicName.replace(' Intelligence', '')}</div>
                     </div>
                   ))}
                 </div>
+
+                <p className="mt-4 text-xs leading-5 text-zinc-400">
+                  Scores run from 0 to 4. If two engines share the lowest score,
+                  the earlier upstream engine becomes the first constraint to resolve.
+                </p>
 
                 <button
                   type="button"
@@ -498,14 +526,31 @@ export default function ExpertAuthorityExperience() {
                 <Mail className="h-7 w-7 text-cyan-300" aria-hidden="true" />
                 <h3 className="mt-5 text-2xl font-semibold text-white">Receive the complete build kit.</h3>
                 <p className="mt-3 leading-7 text-zinc-400">
-                  Get the skill, prompt pack, architecture map, and your diagnostic result. Your stage also determines the follow-up sequence.
+                  Get the skill, prompt pack, architecture map, and your diagnostic result in one email.
                 </p>
+
+                <label className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden">
+                  Website
+                  <input
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(event) => setWebsite(event.target.value)}
+                  />
+                </label>
 
                 <label className="mt-7 block text-sm font-medium text-zinc-300">
                   Name
                   <input
+                    name="name"
+                    autoComplete="name"
                     value={name}
-                    onChange={(event) => setName(event.target.value)}
+                    onChange={(event) => {
+                      setName(event.target.value)
+                      resetDeliveryAttempt()
+                    }}
                     required
                     className="mt-2 w-full rounded-xl border border-white/10 bg-zinc-950 px-4 py-3 text-white outline-none transition placeholder:text-zinc-700 focus:border-cyan-300/60"
                     placeholder="Your name"
@@ -514,8 +559,13 @@ export default function ExpertAuthorityExperience() {
                 <label className="mt-4 block text-sm font-medium text-zinc-300">
                   Email
                   <input
+                    name="email"
+                    autoComplete="email"
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    onChange={(event) => {
+                      setEmail(event.target.value)
+                      resetDeliveryAttempt()
+                    }}
                     required
                     type="email"
                     className="mt-2 w-full rounded-xl border border-white/10 bg-zinc-950 px-4 py-3 text-white outline-none transition placeholder:text-zinc-700 focus:border-cyan-300/60"
@@ -525,23 +575,42 @@ export default function ExpertAuthorityExperience() {
                 <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-2xl border border-white/10 bg-zinc-950/60 p-4 text-sm leading-6 text-zinc-400">
                   <input
                     type="checkbox"
-                    checked={foundingInterest}
-                    onChange={(event) => setFoundingInterest(event.target.checked)}
+                    name="research-invitation-opt-in"
+                    checked={researchInvitationOptIn}
+                    onChange={(event) => {
+                      setResearchInvitationOptIn(event.target.checked)
+                      resetDeliveryAttempt()
+                    }}
                     className="mt-1 h-4 w-4 accent-cyan-300"
                   />
-                  I want to be considered for the founding Expert-to-Authority build cohort.
+                  Frank may receive my name, email, and answers and contact me once about product research. This is optional.
                 </label>
 
                 <button
                   type="submit"
-                  disabled={leadStatus === 'loading'}
+                  disabled={leadStatus === 'loading' || leadStatus === 'success'}
                   className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-200 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-white disabled:opacity-60"
                 >
-                  {leadStatus === 'loading' ? 'Saving result...' : 'Send my build kit'}
-                  {leadStatus !== 'loading' && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
+                  {leadStatus === 'loading'
+                    ? 'Sending result...'
+                    : leadStatus === 'success'
+                      ? 'Build kit sent'
+                      : 'Send my build kit'}
+                  {leadStatus === 'idle' || leadStatus === 'error' ? <ArrowRight className="h-4 w-4" aria-hidden="true" /> : null}
                 </button>
+                <p className="mt-4 text-xs leading-5 text-zinc-400">
+                  One results email. No newsletter. Frank receives your details
+                  only if you opt into the research invitation. See the{' '}
+                  <Link href="/privacy" className="underline underline-offset-4 hover:text-zinc-300">
+                    privacy policy
+                  </Link>
+                  .
+                </p>
                 {leadMessage && (
-                  <p className={`mt-4 text-sm ${leadStatus === 'success' ? 'text-emerald-300' : 'text-rose-300'}`}>
+                  <p
+                    role={leadStatus === 'success' ? 'status' : 'alert'}
+                    className={`mt-4 text-sm ${leadStatus === 'success' ? 'text-emerald-300' : 'text-rose-300'}`}
+                  >
                     {leadMessage}
                   </p>
                 )}
@@ -562,11 +631,11 @@ export default function ExpertAuthorityExperience() {
           </div>
 
           <div className="mt-12 overflow-hidden rounded-3xl border border-white/10">
-            {productLadder.map(([stageName, product, price, purpose], index) => (
+            {productLadder.map(([stageName, product, status, purpose], index) => (
               <div key={product} className={`grid gap-3 p-6 md:grid-cols-[0.65fr_1.1fr_0.6fr_2fr] md:items-center ${index > 0 ? 'border-t border-white/10' : ''}`}>
                 <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">{stageName}</div>
                 <div className="font-semibold text-white">{product}</div>
-                <div className="text-sm text-violet-300">{price}</div>
+                <div className="text-sm text-violet-300">{status}</div>
                 <div className="text-sm leading-6 text-zinc-400">{purpose}</div>
               </div>
             ))}
@@ -602,7 +671,7 @@ export default function ExpertAuthorityExperience() {
                   <div>
                     <h3 className="text-xl font-semibold text-white">Shared conversion spine</h3>
                     <p className="mt-3 leading-7 text-zinc-300">
-                      Diagnostic → personalized result → free agent or skill → challenge or webinar → entry offer → core transformation → implementation → evidence returned to the system.
+                      Diagnostic → personalized result → free skill → activation → core transformation → operating kit → consented evidence returned to the system.
                     </p>
                   </div>
                 </div>
@@ -633,10 +702,10 @@ export default function ExpertAuthorityExperience() {
               >
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <Github className="h-5 w-5 text-zinc-500 group-hover:text-cyan-300" aria-hidden="true" />
+                    <Github className="h-5 w-5 text-zinc-400 group-hover:text-cyan-300" aria-hidden="true" />
                     <h3 className="font-semibold text-white">{item.name}</h3>
                   </div>
-                  <ExternalLink className="h-4 w-4 text-zinc-600 group-hover:text-cyan-300" aria-hidden="true" />
+                  <ExternalLink className="h-4 w-4 text-zinc-400 group-hover:text-cyan-300" aria-hidden="true" />
                 </div>
                 <p className="mt-4 text-sm leading-6 text-zinc-400">{item.role}</p>
               </a>
@@ -691,7 +760,7 @@ export default function ExpertAuthorityExperience() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">Live field test</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-5xl">Put the diagnostic in the room.</h2>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-400">
-              Every completion creates value for the participant and structured evidence for the next version of the product. That is the first compounding loop.
+              Every completion creates a private result for the participant. Only consented, minimized signals should inform the next version of the product.
             </p>
           </div>
           <div className="rounded-3xl border border-white/10 bg-white p-4">
@@ -707,7 +776,7 @@ export default function ExpertAuthorityExperience() {
         </div>
       </section>
 
-      <footer className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-10 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+      <footer className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-10 text-sm text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
         <p>FrankX.ai presents the Expert Authority Intelligence System. Powered by Starlight Labs.</p>
         <div className="flex gap-5">
           <Link href="/research" className="transition hover:text-white">Research</Link>

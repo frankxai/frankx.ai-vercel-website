@@ -10,6 +10,10 @@ import { MvuResearchArticle } from '@/components/mvu/MvuResearchArticle'
 
 const SITE_URL = siteConfig.url
 
+export const dynamic = 'force-static'
+export const dynamicParams = false
+export const revalidate = 86400
+
 export function generateStaticParams() {
   return getMvuEntries().map((entry) => ({ slug: entry.slug }))
 }
@@ -170,10 +174,10 @@ export default async function MvuEntryPage({
           participant — not affiliated with, sponsored by, or endorsed by
           Mindvalley.{' '}
           <Link
-            href="/connect?ref=mvu-porto"
+            href="/mvu#what-followed"
             className="text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
           >
-            Porto in 2027? Let’s build something first.
+            See what the Tallinn notes became.
           </Link>
         </p>
       </article>

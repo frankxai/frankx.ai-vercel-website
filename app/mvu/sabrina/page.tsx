@@ -367,13 +367,13 @@ export default function SabrinaMvuPage() {
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/60">
             Thirty minutes is enough to inspect the overlap, choose one real
-            founder for a pilot, or close the idea cleanly.
+            founder for a pilot, or close the idea cleanly after Tallinn.
           </p>
           <Link
             href="/connect?ref=mvu-sabrina"
             className="mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-tech-light px-7 py-3.5 text-sm font-semibold text-void transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
           >
-            Continue this in Tallinn
+            Continue the architecture
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
 
