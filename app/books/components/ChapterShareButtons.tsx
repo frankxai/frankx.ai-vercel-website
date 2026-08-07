@@ -28,10 +28,10 @@ export default function ChapterShareButtons({
 
   const shareText = epigraph 
     ? `"${epigraph.text}" — ${epigraph.author}\n\nReading "${chapterTitle}" from ${bookTitle}`
-    : `Reading "${chapterTitle}" from ${bookTitle} by @frankxeth\n\n${chapterDescription}`;
+    : `Reading "${chapterTitle}" from ${bookTitle} by @frankx_ai\n\n${chapterDescription}`;
 
   const handleShareX = () => {
-    const url = SHARE_URLS.twitter(shareText, chapterUrl, 'frankxeth');
+    const url = SHARE_URLS.twitter(shareText, chapterUrl, 'frankx_ai');
     window.open(url, '_blank', 'noopener,noreferrer,width=600,height=400');
   };
 
