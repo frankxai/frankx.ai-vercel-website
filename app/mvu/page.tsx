@@ -261,6 +261,37 @@ export default function MvuPage() {
         </div>
       </section>
 
+      <section className="border-b border-white/10 py-14 sm:py-16">
+        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          <div className="grid gap-8 rounded-[2rem] border border-tech-light/25 bg-gradient-to-br from-space to-void p-8 sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div>
+              <p className="text-sm font-medium text-tech-light">
+                Started in Tallinn
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
+                Founder Signal OS.
+              </h2>
+              <p className="mt-4 max-w-xl text-base leading-7 text-white/65">
+                My entry to the Social Media Mastery 7 Days Launch Challenge. A
+                free two-minute diagnostic that scores four dimensions of founder
+                signal, plus the creator-owned intelligence layer underneath it.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <TrackedLink
+                href="/founder-signal#scan"
+                eventName="mvu_navigation"
+                eventProperties={{ destination: 'founder_signal', placement: 'launch_band' }}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-tech-light px-6 py-3 text-sm font-semibold text-void transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
+              >
+                Run the signal scan
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </TrackedLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="archive" className="scroll-mt-24 border-b border-white/10 py-20 sm:py-28">
         <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 sm:px-6 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20 lg:px-8">
           <div>

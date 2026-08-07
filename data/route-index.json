@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 853,
+    "total": 855,
     "aliases": 50,
     "byType": {
       "core": 22,
-      "section": 400,
+      "section": 402,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -4605,6 +4605,15 @@
       "type": "section"
     },
     {
+      "href": "/founder-signal",
+      "title": "Founder Signal",
+      "tags": [
+        "founder",
+        "signal"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/founders-circle",
       "title": "Founder's Circle",
       "type": "community"
@@ -6376,6 +6385,14 @@
       "tags": [
         "media",
         "kit"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/mind",
+      "title": "Mind",
+      "tags": [
+        "mind"
       ],
       "type": "section"
     },

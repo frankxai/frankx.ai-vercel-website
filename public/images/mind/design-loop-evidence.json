@@ -1,0 +1,177 @@
+{
+  "version": "2026-07-01",
+  "task": "Build a premium FrankX /mind page with generated visual system, 3D metaphor, motion restraint, and production QA.",
+  "surface": "FrankX public website page at /mind",
+  "audience": "AI builders, AI Architects, technical creators, and founders using agents in serious work.",
+  "first_read": "The human operator is the first operating system behind every AI workflow.",
+  "standards": [
+    "DESIGN_TASTE.md",
+    "WEB_EXPERIENCE_STANDARD.md",
+    "MOTION_TASTE_RUBRIC.md",
+    "MULTI_AGENT_DESIGN_COUNCIL.md",
+    "VISUAL_QA_GATE.md",
+    "_intelligence/operating-system.md",
+    "_intelligence/quality-gates.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/OUTCOMES.md",
+    "starlight-design-intelligence/brand-packs/frankx"
+  ],
+  "skill_route": [
+    "starlight-swarm-ops:starlight-swarm",
+    "motion-design-studio:motion-media-producer",
+    "motion-design-studio:site-motion-integrator",
+    "motion-design-studio:motion-taste-critic",
+    "premium visual design standards from the local estate"
+  ],
+  "multi_agent_review": [
+    {
+      "role": "creative direction critic",
+      "result": "Reframed /mind as an operator-system page, not self-help. Required concrete system objects, no brains/faces/robots, diagnostic AI-as-mirror framing, and quiet signal-routing motion."
+    },
+    {
+      "role": "frontend implementation critic",
+      "result": "Required server metadata, NoSSR R3F route, capped DPR, reduced-motion fallback, static route generation, and existing FrankX link targets."
+    }
+  ],
+  "references": [
+    {
+      "label": "FrankX design.md",
+      "source": "C:/Users/frank/starlight/repos/frankx-mind-page/design.md",
+      "reason": "Local FrankX colors, typography, and forbidden aesthetics."
+    },
+    {
+      "label": "FrankX taste.md",
+      "source": "C:/Users/frank/starlight/repos/frankx-mind-page/taste.md",
+      "reason": "Brand restraint, copy rules, no text animation, and image generation taste rules."
+    },
+    {
+      "label": "Premium Web OS",
+      "source": "C:/Users/frank/starlight/repos/_intelligence",
+      "reason": "Scene brief, asset provenance, WebGL fallback, and QA process."
+    },
+    {
+      "label": "Motion Design Studio",
+      "source": "motion-design-studio plugin skills",
+      "reason": "Motion job, reduced-motion route, site integration, and taste critique."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Obsidian command-layer surfaces with emerald and cyan signal lines.",
+      "Tactile cognitive workshop imagery: lenses, memory plates, architecture models, notes, and work surfaces.",
+      "Human presence through evidence of work rather than portraits.",
+      "Stable typography, calm spacing, and one signature visual metaphor."
+    ],
+    "avoid": [
+      "Brains, heads, faces, robots, cute assistants, and generic neural orbs.",
+      "Spiritual, guru, clinical, or self-help language.",
+      "In-image text, fake UI, fake logos, fake charts, and warped hands.",
+      "Purple-blue SaaS fog, decorative gradients, and motion on readable text."
+    ],
+    "signature": "Mind Lattice: a quiet 3D operating diagram where attention, memory, taste, and review route noisy input into shipped systems.",
+    "system": [
+      "Hero uses a full-bleed generated workbench image with stable copy over it.",
+      "All ten generated assets have prompt sidecars and specific page roles.",
+      "R3F scene is isolated, lazily loaded, DPR capped, and paired with a static fallback.",
+      "Reduced motion disables canvas animation and uses static explanatory states."
+    ]
+  },
+  "asset_quality": {
+    "tier": "B",
+    "source_method": "Codex native image generation fallback after Nano Banana CLI reported no Gemini API key",
+    "provenance": "generated-owned",
+    "why_premium": "The image system is custom art-directed for FrankX, has explicit page roles, avoids stock/AI cliches, carries one coherent material language, and was inspected in page context.",
+    "shortcut_risk": "low",
+    "context_tested": true
+  },
+  "artifacts": [
+    {
+      "path_or_url": "app/mind/page.tsx",
+      "kind": "page",
+      "inspected": true,
+      "notes": "Static server route with metadata and OG image."
+    },
+    {
+      "path_or_url": "components/mind/MindPageClient.tsx",
+      "kind": "ui",
+      "inspected": true,
+      "notes": "Responsive page composition, 10-image gallery, restrained copy, and no text motion."
+    },
+    {
+      "path_or_url": "components/mind/MindLatticeScene.tsx",
+      "kind": "motion",
+      "inspected": true,
+      "notes": "Unframed R3F lattice, DPR capped at 1.5, no GLB, no postprocessing, preserveDrawingBuffer for QA."
+    },
+    {
+      "path_or_url": "public/images/mind",
+      "kind": "generated-assets",
+      "inspected": true,
+      "notes": "10 generated PNG exports plus prompt sidecars and page spec."
+    },
+    {
+      "path_or_url": "browser QA transcript for local production URL http://127.0.0.1:3107/mind",
+      "kind": "qa-evidence",
+      "inspected": true,
+      "notes": "Screenshot files were generated locally for inspection and intentionally not committed to avoid repository bloat."
+    }
+  ],
+  "checks": [
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "All 10 image exports inspected for crop, artifacts, brand fit, no faces, no brains, no text, and coherent emerald/cyan command-layer style."
+    },
+    {
+      "name": "type-check",
+      "status": "pass",
+      "evidence": "npm run type-check passed earlier in the final loop; final npm run build also completed TypeScript."
+    },
+    {
+      "name": "lint",
+      "status": "pass-with-existing-warnings",
+      "evidence": "npm run lint returned 0 errors. Existing warnings remain in unrelated files."
+    },
+    {
+      "name": "design-check",
+      "status": "pass-with-existing-warning",
+      "evidence": "npm run design:check passed with the repo's existing design.md YAML warning."
+    },
+    {
+      "name": "production-build",
+      "status": "pass",
+      "evidence": "npm run build passed. /mind generated as a static route."
+    },
+    {
+      "name": "internal-links",
+      "status": "pass",
+      "evidence": "npm run links:check:static scanned 1999 files and all internal hrefs resolved."
+    },
+    {
+      "name": "claims-audit",
+      "status": "pass",
+      "evidence": "npm run claims:audit:strict reported no high-risk claim patterns."
+    },
+    {
+      "name": "ai-slop-audit",
+      "status": "pass-for-scope",
+      "evidence": "npm run ai-slop:audit remains non-blocking with existing site-wide hits; no new /mind file hits were reported."
+    },
+    {
+      "name": "browser-visual-qa",
+      "status": "pass",
+      "evidence": "Local production QA at 1440x1100 and 390x844 found 10 unique /images/mind files, zero broken mind images, one H1, seven sections, no horizontal overflow, nonblank canvas data lengths of 34678 and 30018, and zero canvases under reduced motion."
+    }
+  ],
+  "score": {
+    "total": 28,
+    "max": 30,
+    "notes": "Ships above the 26/30 gate. Strengths: coherent custom asset system, concrete operator thesis, restrained motion, responsive checks, and no generic self-help framing. Remaining risk: generated imagery used Codex native fallback because the preferred Nano Banana provider key was unavailable locally."
+  },
+  "decision": "ship",
+  "known_risks": [
+    "Vercel production promotion should happen after the pushed branch/preview is verified.",
+    "The repository has existing non-blocking AI-slop audit hits outside this /mind change."
+  ]
+}

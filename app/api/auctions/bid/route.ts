@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import auctions from '@/data/auctions.json'
+import { escapeHtml } from '@/lib/escape-html'
+import { mailtoHref } from '@/lib/email-links'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -105,15 +107,15 @@ export async function POST(request: NextRequest) {
     <table style="width: 100%; border-collapse: collapse;">
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; width: 120px; vertical-align: top;">Item</td>
-        <td style="padding: 8px 0; color: #ffffff; font-weight: bold;">${auction.title}</td>
+        <td style="padding: 8px 0; color: #ffffff; font-weight: bold;">${escapeHtml(auction.title)}</td>
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Name</td>
-        <td style="padding: 8px 0; color: #ffffff;">${name.trim()}</td>
+        <td style="padding: 8px 0; color: #ffffff;">${escapeHtml(name.trim())}</td>
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Email</td>
-        <td style="padding: 8px 0; color: #ffffff;"><a href="mailto:${email.trim()}" style="color: #AB47C7;">${email.trim()}</a></td>
+        <td style="padding: 8px 0; color: #ffffff;"><a href="${mailtoHref(email.trim())}" style="color: #AB47C7;">${escapeHtml(email.trim())}</a></td>
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Bid Amount</td>
@@ -121,12 +123,12 @@ export async function POST(request: NextRequest) {
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Proposal / Needs</td>
-        <td style="padding: 8px 0; color: #ffffff; white-space: pre-wrap;">${proposal.trim()}</td>
+        <td style="padding: 8px 0; color: #ffffff; white-space: pre-wrap;">${escapeHtml(proposal.trim())}</td>
       </tr>
     </table>
 
     <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
-      <a href="mailto:${email.trim()}" style="display: inline-block; background: linear-gradient(to right, #AB47C7, #43BFE3); color: white; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;">Reply to Bidder</a>
+      <a href="${mailtoHref(email.trim())}" style="display: inline-block; background: linear-gradient(to right, #AB47C7, #43BFE3); color: white; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;">Reply to Bidder</a>
     </div>
   </div>
 </body>
@@ -161,7 +163,7 @@ export async function POST(request: NextRequest) {
   <div style="max-width: 560px; margin: 0 auto; background: #1a1a1b; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px;">
     <h1 style="font-size: 24px; margin: 0 0 16px; color: #ffffff;">Proposal Received</h1>
     <p style="color: #94a3b8; line-height: 1.6; margin: 0 0 16px;">
-      Hi ${name.trim().split(' ')[0]}, thanks for submitting your proposal and silent bid of $${parsedBid} for <strong>${auction.title}</strong>.
+      Hi ${escapeHtml(name.trim().split(' ')[0])}, thanks for submitting your proposal and silent bid of $${parsedBid} for <strong>${escapeHtml(auction.title)}</strong>.
     </p>
     <p style="color: #94a3b8; line-height: 1.6; margin: 0 0 24px;">
       I review every proposal personally to ensure we are aligned. If your proposal is selected, I'll get back to you with the next steps to coordinate.

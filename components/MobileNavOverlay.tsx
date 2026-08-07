@@ -36,6 +36,10 @@ import {
   Play,
   Zap,
   ArrowRight,
+  Wand2,
+  Star,
+  Brain,
+  Download,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -59,11 +63,33 @@ type NavSection = {
   tagline: string
   featured: { title: string; description: string; href: string; badge: string }
   items: NavItem[]
+  // Mirrors the desktop mega-menu columns. Without it a 22-item door renders as
+  // one flat list — 22 uninterrupted tab stops with no wayfinding.
+  groups?: { label: string; items: string[] }[]
 }
 
-type SectionKey = 'gencreators' | 'learn' | 'build' | 'explore'
+type SectionKey = 'gencreators' | 'learn' | 'build' | 'explore' | 'music'
 
 const sections: NavSection[] = [
+  {
+    key: 'music',
+    label: 'Music',
+    icon: Music,
+    tagline: 'The catalog, the method, the school',
+    featured: {
+      title: 'AI Music Portfolio',
+      description: '12,000+ songs created with Suno AI.',
+      href: '/music',
+      badge: '12K+ Tracks',
+    },
+    items: [
+      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
+      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
+      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory through production' },
+      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
+    ],
+  },
   {
     key: 'gencreators',
     label: 'Create',
@@ -129,9 +155,13 @@ const sections: NavSection[] = [
       { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Reference architectures' },
       { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Working proofs' },
       { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Drop-in scaffolds' },
+      { name: 'Build Stack', href: '/build', icon: Layers, description: 'The six primitives stack' },
+      { name: 'Template Pack', href: '/build/template-pack', icon: FileText, description: 'AGENTS.md, prompt packs, eval harness' },
+      { name: 'Builder Lab', href: '/agentic-builder-lab', icon: Terminal, description: 'Spec-driven agent building' },
       { name: 'AI World', href: '/ai-world', icon: Workflow, description: 'The wider AI landscape' },
       { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'For builders + engineers' },
       { name: 'AI Studio', href: '/work-with-me', icon: Briefcase, description: 'Work with Frank' },
+      { name: 'Consulting', href: '/consulting', icon: Briefcase, description: 'Advisory engagements' },
       { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'Market + investor signal' },
       { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Shipping agent packs' },
       { name: 'Workshops', href: '/workshops', icon: Users, description: 'Sessions built around a shipped result' },
@@ -152,14 +182,46 @@ const sections: NavSection[] = [
     },
     items: [
       { name: 'Workspace', href: '/workspace', icon: Workflow, description: 'The source-to-artifact workflow' },
+      { name: 'Ecosystem', href: '/ecosystem', icon: Network, description: 'The complete system map' },
+      { name: 'Universe Map', href: '/map', icon: Map, description: 'Every surface, one view' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
       { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
+      { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
+      { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
       { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status' },
+      { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
+      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
+      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
+      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
       { name: 'Partnerships', href: '/partnerships', icon: Users, description: 'Systems built around real missions' },
       { name: 'Journal', href: '/journal', icon: PenLine, description: 'Notes from work in progress' },
       { name: 'About Frank', href: '/about', icon: Users, description: 'Person, principles, and boundaries' },
+      { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
+      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
+      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
       { name: 'Connect', href: '/connect', icon: Compass, description: 'Bring a real question' },
+      { name: 'Contact', href: '/contact', icon: Compass, description: 'Press, licensing, and direct email' },
+    ],
+    groups: [
+      {
+        label: 'Current work',
+        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Intelligence Atlas', 'Library', 'Guides', 'Journal'],
+      },
+      {
+        label: 'Systems & products',
+        items: ['Starlight IS', 'ACOS', 'Agent Catalog', 'Design System', 'Resource Hub', 'Downloads'],
+      },
+      {
+        label: 'Worlds',
+        items: ['ArcaneaVault', 'Arcanea'],
+      },
+      {
+        label: 'Connect',
+        items: ['Partnerships', 'About Frank', 'Bio', 'Media Kit', 'Licensing', 'Connect', 'Contact'],
+      },
     ],
   },
 ]
@@ -486,45 +548,66 @@ function SectionView({
         All in {section.label}
       </h2>
 
-      <div className="flex flex-col gap-2">
-        {section.items.map((item) => {
-          const Icon = item.icon
-          const content = (
-            <>
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-200">
-                <Icon className="h-4 w-4" />
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-[15px] font-semibold text-white">{item.name}</span>
-                <span className="mt-0.5 block truncate text-[12px] leading-tight text-slate-400">
-                  {item.description}
-                </span>
-              </span>
-              <ChevronRight className="h-4 w-4 shrink-0 text-slate-500" />
-            </>
-          )
-          if (item.external) {
-            return (
-              <a
-                key={item.href}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={onClose}
-                className={tileBase}
-              >
-                {content}
-              </a>
-            )
-          }
-          return (
-            <Link key={item.href} href={item.href} onClick={onClose} className={tileBase}>
-              {content}
-            </Link>
-          )
-        })}
-      </div>
+      {section.groups ? (
+        section.groups.map((group) => (
+          <div key={group.label} className="mb-5">
+            <h3 className="mb-2 text-[12px] font-semibold text-slate-400">{group.label}</h3>
+            <div className="flex flex-col gap-2">
+              {group.items
+                .map((name) => section.items.find((item) => item.name === name))
+                .filter((item): item is NavItem => Boolean(item))
+                .map((item) => (
+                  <NavTile key={item.href} item={item} onClose={onClose} />
+                ))}
+            </div>
+          </div>
+        ))
+      ) : (
+        <div className="flex flex-col gap-2">
+          {section.items.map((item) => (
+            <NavTile key={item.href} item={item} onClose={onClose} />
+          ))}
+        </div>
+      )}
     </div>
+  )
+}
+
+function NavTile({ item, onClose }: { item: NavItem; onClose: () => void }) {
+  const Icon = item.icon
+  const content = (
+    <>
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-200">
+        <Icon className="h-4 w-4" />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-[15px] font-semibold text-white">{item.name}</span>
+        <span className="mt-0.5 block truncate text-[12px] leading-tight text-slate-400">
+          {item.description}
+        </span>
+      </span>
+      <ChevronRight className="h-4 w-4 shrink-0 text-slate-500" />
+    </>
+  )
+
+  if (item.external) {
+    return (
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onClose}
+        className={tileBase}
+      >
+        {content}
+      </a>
+    )
+  }
+
+  return (
+    <Link href={item.href} onClick={onClose} className={tileBase}>
+      {content}
+    </Link>
   )
 }
 
