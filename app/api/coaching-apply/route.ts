@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { escapeHtml } from '@/lib/escape-html'
+import { mailtoHref } from '@/lib/email-links'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -106,7 +107,7 @@ export async function POST(request: NextRequest) {
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Email</td>
-        <td style="padding: 8px 0; color: #ffffff;"><a href="mailto:${escapeHtml(email.trim())}" style="color: #AB47C7;">${escapeHtml(email.trim())}</a></td>
+        <td style="padding: 8px 0; color: #ffffff;"><a href="${mailtoHref(email.trim())}" style="color: #AB47C7;">${escapeHtml(email.trim())}</a></td>
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Company/Role</td>
@@ -123,7 +124,7 @@ export async function POST(request: NextRequest) {
     </table>
 
     <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
-      <a href="mailto:${escapeHtml(email.trim())}" style="display: inline-block; background: linear-gradient(to right, #AB47C7, #43BFE3); color: white; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;">Reply to Applicant</a>
+      <a href="${mailtoHref(email.trim())}" style="display: inline-block; background: linear-gradient(to right, #AB47C7, #43BFE3); color: white; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;">Reply to Applicant</a>
     </div>
   </div>
 </body>
