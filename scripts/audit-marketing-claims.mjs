@@ -20,6 +20,12 @@ const ignore = [
   'data/model-registry.json',
   'data/vault-manifest.json',
   'data/templates.json',
+  // Machine-generated git attribution dump. Commit emails like
+  // "132689939+frankxai@users.noreply.github.com" trip the vanity-metric rule.
+  'data/blog-ops/**',
+  // Per-testimonial ratings are legitimate when the testimonial is real;
+  // authenticity is a human check, not a regex one.
+  'data/testimonials.json',
 ]
 
 function normalize(relPath) {
@@ -62,6 +68,13 @@ const checks = [
     label: 'Numeric ROI/revenue/efficiency claim',
     regex:
       /(?:\b\d+(?:\.\d+)?%|\$[0-9]+(?:\.[0-9]+)?[MK]?|\b\d+(?:\.\d+)?x)\s*(?:ROI|revenue|efficiency|productivity|gains?)/i,
+  },
+  {
+    id: 'fabricated-social-proof',
+    label: 'Structured social-proof field without a source',
+    // Ratings and download/enrollment counters written straight into data files
+    // read as verified proof on the page but have no provenance behind them.
+    regex: /"(rating|ratings|downloadsCount|downloadCount|reviewCount|reviews|students|enrollments|subscribers)"\s*:\s*[0-9]/i,
   },
   {
     id: 'large-vanity-metric',

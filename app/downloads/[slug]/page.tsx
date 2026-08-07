@@ -10,18 +10,14 @@ interface LeadMagnet {
   subtitle: string
   description: string
   icp: string
-  type: string
+  category: string
   format: string[]
   slug: string
   coverImage: string
   badgeText: string
-  pdfUrl: string
-  notionUrl: string
   features: string[]
-  splitTest?: {
-    experimentId: string
-    variants: Record<string, { headline: string; ctaText: string; offerType: string }>
-  }
+  status: string
+  pdfUrl?: string
 }
 
 export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -32,7 +28,8 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
 
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [unlocked, setUnlocked] = useState(false)
+  const [unlocked, setUnlocked] = useState<{ pdfUrl?: string; pending: boolean } | null>(null)
+  const [error, setError] = useState('')
 
   if (!leadMagnet) {
     return (
@@ -46,37 +43,29 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
     )
   }
 
-  // Variant A vs B default handling
-  const variantKey = 'A'
-  const variantConfig = leadMagnet.splitTest?.variants[variantKey] || {
-    headline: leadMagnet.title,
-    ctaText: 'Get Instant Access & Download',
-    offerType: 'standard',
-  }
+  const isPending = leadMagnet.status !== 'published'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email || !email.includes('@')) return
 
     setIsSubmitting(true)
+    setError('')
     try {
       const res = await fetch('/api/v1/lead-ingest', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          leadMagnetId: leadMagnet.id,
-          icp: leadMagnet.icp,
-          variantId: variantKey,
-          source: 'lead_magnet_page',
-        }),
+        body: JSON.stringify({ email, leadMagnetId: leadMagnet.id }),
       })
+      const data = await res.json()
 
       if (res.ok) {
-        setUnlocked(true)
+        setUnlocked({ pdfUrl: data.pdfUrl, pending: Boolean(data.pending) })
+      } else {
+        setError(data.error || 'Something went wrong. Please try again.')
       }
-    } catch (err) {
-      console.error('Lead submission failed:', err)
+    } catch {
+      setError('Could not reach the server. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -105,7 +94,7 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              {variantConfig.headline}
+              {leadMagnet.title}
             </h1>
 
             <p className="text-base sm:text-lg text-neutral-300">
@@ -140,8 +129,12 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
                 <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl" />
 
                 <div className="text-center mb-6">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1">Instant Digital Access</div>
-                  <h3 className="text-xl font-bold text-white">Unlock Free Download</h3>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1">
+                    {isPending ? 'Not Released Yet' : 'Instant Digital Access'}
+                  </div>
+                  <h3 className="text-xl font-bold text-white">
+                    {isPending ? 'Join the waitlist' : 'Unlock Free Download'}
+                  </h3>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -162,12 +155,24 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
                     disabled={isSubmitting}
                     className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold hover:brightness-110 transition-all shadow-lg shadow-amber-500/20 text-sm disabled:opacity-50"
                   >
-                    {isSubmitting ? 'Unlocking Access...' : variantConfig.ctaText}
+                    {isSubmitting
+                      ? 'Sending...'
+                      : isPending
+                        ? 'Notify me when it ships'
+                        : 'Get the PDF'}
                   </button>
                 </form>
 
+                {error && (
+                  <div className="mt-3 text-center text-xs text-red-400" role="alert">
+                    {error}
+                  </div>
+                )}
+
                 <div className="mt-4 text-center text-xs text-neutral-500">
-                  Instant PDF & Notion access provided immediately.
+                  {isPending
+                    ? "We'll email you the moment this is available."
+                    : 'The download link appears here and is emailed to you.'}
                 </div>
               </div>
             ) : (
@@ -176,28 +181,26 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
                   ✓
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Access Unlocked!</h3>
-                  <p className="text-xs text-neutral-400 mt-1">Resource dispatched to {email}</p>
+                  <h3 className="text-2xl font-bold text-white">
+                    {unlocked.pending ? "You're on the list" : 'Access unlocked'}
+                  </h3>
+                  <p className="text-xs text-neutral-400 mt-1">
+                    {unlocked.pending
+                      ? `We'll email ${email} when this is ready.`
+                      : `Also sent to ${email}`}
+                  </p>
                 </div>
 
-                <div className="space-y-3">
+                {unlocked.pdfUrl && (
                   <a
-                    href={leadMagnet.pdfUrl}
+                    href={unlocked.pdfUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="block w-full py-3 px-4 rounded-xl bg-amber-500 text-black font-bold text-sm hover:bg-amber-400 transition-colors"
                   >
-                    Download PDF Package
+                    Download the PDF
                   </a>
-                  <a
-                    href={leadMagnet.notionUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block w-full py-3 px-4 rounded-xl bg-white/10 border border-white/20 text-white font-semibold text-sm hover:bg-white/15 transition-colors"
-                  >
-                    Open Notion Workspace
-                  </a>
-                </div>
+                )}
               </div>
             )}
           </div>

@@ -209,7 +209,7 @@ export default function AIReadinessQuizPage() {
             </div>
 
             <p className="text-sm text-neutral-400 max-w-lg mx-auto mb-8">
-              Enter your email to unlock your full diagnostic breakdown + download the <strong>Autonomous AI Agent Swarm Architecture Blueprint (PDF)</strong> and Notion template.
+              Enter your email to unlock your full diagnostic breakdown and download the <strong>Autonomous AI Agent Swarm Architecture Blueprint (PDF)</strong>.
             </p>
 
             <form onSubmit={handleSubmitLead} className="max-w-md mx-auto space-y-4">
@@ -231,7 +231,7 @@ export default function AIReadinessQuizPage() {
             </form>
 
             <div className="mt-4 text-xs text-neutral-500">
-              Instant PDF download + Notion link sent immediately. No spam ever.
+              The download appears here and is emailed to you. No spam ever.
             </div>
           </div>
         )}
@@ -246,10 +246,10 @@ export default function AIReadinessQuizPage() {
               Report Unlocked & Access Granted!
             </h2>
             <p className="text-sm text-neutral-300 max-w-md mx-auto mb-8">
-              We have dispatched your custom <strong>{resultData.level}</strong> analysis to <strong>{email}</strong>. You can also download your materials directly below:
+              We have sent your <strong>{resultData.level}</strong> analysis to <strong>{email}</strong>. You can also download the blueprint directly:
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+            <div className="flex items-center justify-center max-w-md mx-auto">
               <a
                 href={resultData.pdfUrl}
                 target="_blank"
@@ -257,14 +257,6 @@ export default function AIReadinessQuizPage() {
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-amber-500 text-black font-bold hover:bg-amber-400 transition-colors text-sm"
               >
                 Download PDF Blueprint
-              </a>
-              <a
-                href="https://frankx.notion.site/FrankX-Agent-Architecture-Hub"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/15 transition-colors text-sm"
-              >
-                Open Notion Workspace
               </a>
             </div>
           </div>

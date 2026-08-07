@@ -107,7 +107,7 @@ export default function FiveDayChallengePage() {
             <div className="bg-neutral-900/80 backdrop-blur-xl border border-amber-500/30 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold text-white">Join the Next Cohort</h3>
-                <p className="text-xs text-neutral-400 mt-1">Includes Daily Email Guides + Notion Sprint Workspace</p>
+                <p className="text-xs text-neutral-400 mt-1">Be first to know when the next cohort opens</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -124,12 +124,12 @@ export default function FiveDayChallengePage() {
                   disabled={isSubmitting}
                   className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold hover:brightness-110 transition-all shadow-lg shadow-amber-500/25 text-sm disabled:opacity-50"
                 >
-                  {isSubmitting ? 'Joining Challenge...' : 'Join 5-Day Challenge Free →'}
+                  {isSubmitting ? 'Joining...' : 'Join the waitlist — free'}
                 </button>
               </form>
 
               <div className="mt-4 text-center text-xs text-neutral-500">
-                100% Free. Instant access to Day 1 workbook + Notion workspace.
+                Free. We'll email you when the challenge opens. No spam ever.
               </div>
             </div>
           ) : (
@@ -138,19 +138,17 @@ export default function FiveDayChallengePage() {
                 ✓
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white">You're In! Welcome to the Challenge.</h3>
+                <h3 className="text-2xl font-bold text-white">You're on the list</h3>
                 <p className="text-sm text-neutral-300 mt-2">
-                  Day 1 instructions have been dispatched to <strong>{email}</strong>.
+                  We'll email <strong>{email}</strong> as soon as the next cohort opens.
                 </p>
               </div>
-              <a
-                href="https://frankx.notion.site/FrankX-5Day-Challenge-Workspace"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/downloads"
                 className="inline-block px-6 py-3.5 rounded-xl bg-amber-500 text-black font-bold text-sm hover:bg-amber-400 transition-colors"
               >
-                Open Challenge Workspace (Notion)
-              </a>
+                Browse the free guides
+              </Link>
             </div>
           )}
         </div>
