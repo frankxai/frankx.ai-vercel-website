@@ -3,3 +3,28 @@
 # The Branch Cleanup workflow deletes exactly the non-comment lines after merge.
 # Clear a completed queue through a follow-up pull request because main is PR-protected.
 # See BRANCH_AUDIT.md for the canonical safe-delete list.
+
+# --- Batch: redundant archive/* duplicates (2026-08-04) ---
+# Every branch below is an archive/* snapshot whose tip commit is still
+# reachable from a live non-archive branch, verified with:
+#   git for-each-ref --contains <archive-tip> <all non-archive refs>
+# Deleting these loses no history: the original branch still carries the commit.
+# The 11 archive/* refs NOT listed here are sole copies of deleted branches and
+# must stay.
+
+archive/agent-codex-frankx-earbuds-2026-2026-06-26
+archive/agent-codex-vault-refresh-388-2026-07-28
+archive/agent-codex-vault-refresh-388-v2-2026-07-28
+archive/agent-gemini-auctions-upgrade-2026-07-14
+archive/agent-gemini-tallinn-reconciliation-main-prod-2026-07-15
+archive/agent-worktree-sync-2026-06-18
+archive/claude-fable-cover-v3-spiral-2026-07-04
+archive/claude-gifted-pasteur-9LsID-2026-06-10
+archive/claude-multi-agent-newsletter-system-anKSZ-2026-06-10
+archive/codex-blog-2026-07-15
+archive/codex-openai-devday-resource-2026-07-03
+archive/codex-x-2026-07-15
+archive/feat-ikigai-branding-workshop-2026-06-14
+archive/feat-map-v1-v2-v3-upgrades-2026-07-15
+archive/multi-agent-newsletter-system-anKSZ
+archive/recovery-sibling-2026-04-20
