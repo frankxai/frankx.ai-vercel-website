@@ -4,27 +4,48 @@
 # Clear a completed queue through a follow-up pull request because main is PR-protected.
 # See BRANCH_AUDIT.md for the canonical safe-delete list.
 
-# --- Batch: redundant archive/* duplicates (2026-08-04) ---
-# Every branch below is an archive/* snapshot whose tip commit is still
-# reachable from a live non-archive branch, verified with:
-#   git for-each-ref --contains <archive-tip> <all non-archive refs>
-# Deleting these loses no history: the original branch still carries the commit.
-# The 11 archive/* refs NOT listed here are sole copies of deleted branches and
-# must stay.
+# --- Batch: provably-redundant refs (2026-08-07) ---
+# The previous batch (16 archive/* duplicates) was merged as #425 and the
+# workflow deleted all 16; verified against the live remote afterwards. Those
+# lines are replaced here rather than appended, per the rule above.
+#
+# Every ref below is redundant under one of three mechanical proofs, re-run
+# against main 696b2b547 immediately before this commit. No ref below has an
+# open pull request — checked against the live open-PR head list.
+#
+#   (A) SQUASH-MERGED — the branch tip's tree hash appears verbatim in main's
+#       own history, so main once contained exactly this content:
+#           git log --format=%T origin/main | grep -x $(git rev-parse origin/<b>^{tree})
+#       git's own --merged finds only one of these, because a squash merge
+#       rewrites the commit and breaks ancestry while preserving the tree.
+#
+#   (B) EXACT DUPLICATE — two refs point at the identical tip commit. The
+#       surviving name is recorded per line.
+#
+#   (C) STRICT ANCESTOR — every commit on the branch is already contained in a
+#       live branch that carries more:
+#           git merge-base --is-ancestor origin/<b> origin/<survivor>
+#
+# Deleting these loses no reachable commit: in every case the content is still
+# carried by main or by a named live branch.
+#
+# NOT queued, though the earlier audit proposed them: codex/x and
+# feat/map-v1-v2-v3-upgrades are exact duplicates of each other, but nothing in
+# the repo indicates which name is intended to survive — that needs a human.
+# codex/best-ai-hardware, agent/codex/tallinn-tribe-studio-20260714 and
+# agent/claude/v0-blueprint are all strictly contained in other branches but
+# each has an OPEN PR (#284, #278, #336), so they stay.
 
-archive/agent-codex-frankx-earbuds-2026-2026-06-26
-archive/agent-codex-vault-refresh-388-2026-07-28
-archive/agent-codex-vault-refresh-388-v2-2026-07-28
-archive/agent-gemini-auctions-upgrade-2026-07-14
-archive/agent-gemini-tallinn-reconciliation-main-prod-2026-07-15
-archive/agent-worktree-sync-2026-06-18
-archive/claude-fable-cover-v3-spiral-2026-07-04
-archive/claude-gifted-pasteur-9LsID-2026-06-10
-archive/claude-multi-agent-newsletter-system-anKSZ-2026-06-10
-archive/codex-blog-2026-07-15
-archive/codex-openai-devday-resource-2026-07-03
-archive/codex-x-2026-07-15
-archive/feat-ikigai-branding-workshop-2026-06-14
-archive/feat-map-v1-v2-v3-upgrades-2026-07-15
-archive/multi-agent-newsletter-system-anKSZ
-archive/recovery-sibling-2026-04-20
+# (A) squash-merged — tree present in main's history
+agent/codex/vault-refresh-388-v2
+agent/premium-expert-authority-v2
+archive/rails-phase-0
+
+# (B) exact duplicate tip commit
+probe-archive-test
+codex/blog
+
+# (C) strict ancestor of a live branch
+archive/ikigai-upgrade-2-2026-W20
+codex/ConnectConnect
+codex/frankx-v-template-studio
