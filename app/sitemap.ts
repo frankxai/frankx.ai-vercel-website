@@ -637,6 +637,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/mvu`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.7 },
   )
+
+  // Founder Signal OS launch surface. /mvu/sabrina stays out: it is noindex.
+  entries.push({
+    url: `${BASE_URL}/founder-signal`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  })
+
   // Tallinn is closed; these entries are a finished archive, not a live feed.
   mvuEntries.forEach(entry => {
     entries.push({
