@@ -13,6 +13,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { EmailSignup } from '@/components/email-signup'
+
 import { getLivePatterns } from '@/lib/prompt-hub/fetch-library'
 import type { Category, Lane, Pattern } from '@/lib/prompt-hub/types'
 
@@ -206,6 +208,22 @@ export default async function PromptLibraryPage(props: {
             )}
           </nav>
         )}
+
+        {/* Capture */}
+        <section className="mt-20 rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+          <h2 className="text-xl font-bold text-white">New patterns land here first</h2>
+          <p className="mt-2 max-w-xl text-sm text-slate-400">
+            The corpus grows every week. One email when a meaningful batch ships &mdash; what
+            was added, what changed, and the lab notes behind it. No schedule padding.
+          </p>
+          <EmailSignup
+            listType="newsletter"
+            compact
+            placeholder="you@example.com"
+            buttonText="Get pattern updates"
+            className="mt-4 max-w-md"
+          />
+        </section>
 
         {/* Footer */}
         <footer className="mt-20 border-t border-slate-800 pt-10 text-sm text-slate-500">

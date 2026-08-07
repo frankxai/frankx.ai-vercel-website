@@ -1,3 +1,8 @@
+---
+name: nextjs-agent-team
+description: "Multi-agent workflow for larger Next.js features — splits work across architecture, implementation, review, and testing roles with defined handoffs. Use when a Next.js feature is too large for a single pass, or when coordinating parallel work across routes, components, and API layers."
+---
+
 # Next.js Agent Team System
 
 **Version:** 1.0

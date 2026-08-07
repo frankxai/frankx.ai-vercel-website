@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Sparkles, BookOpen, Code2, Layers } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
 import { createMetadata } from '@/lib/seo'
@@ -60,6 +61,22 @@ export default function StartHerePage() {
             </Link>
             . The Primer is CC-BY-SA. The starter repo is MIT. We never sell your email.
           </p>
+        </div>
+      </section>
+
+      {/* The six primitives, visualized */}
+      <section className="pb-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
+            <Image
+              src="/images/blog/generated/six-primitives-ai-agent-premium-hero.png"
+              alt="Six glowing glass modules connected to a central core — the six primitives of an AI agent: model, tool, memory, loop, spec, deploy"
+              width={1672}
+              height={941}
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="w-full h-auto"
+            />
+          </div>
         </div>
       </section>
 

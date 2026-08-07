@@ -1,4 +1,5 @@
 import { getAllBlogPosts } from '@/lib/blog'
+import { getJournalEntrySummaries } from '@/lib/journal'
 import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
@@ -19,6 +20,13 @@ export async function GET() {
 
   const blogLinks = recentPosts
     .map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.description}`)
+    .join('\n')
+
+  // Private and unpublished entries are filtered out by the loader before they
+  // reach here, so this never leaks a note that is not on the public site.
+  const journalLinks = getJournalEntrySummaries()
+    .slice(0, 20)
+    .map((e) => `- [${e.title}](${SITE_URL}/journal/${e.slug}): ${e.summary || e.title}`)
     .join('\n')
 
   const osLinks = osModules
@@ -91,13 +99,18 @@ ${askLinks}
 - [Familie](${SITE_URL}/familie): Family hub (German + English)
 - [Chronicle](${SITE_URL}/chronicle): The reflective layer — weekly Palace, monthly Survey, quarterly Census, annual Audit
 
-## Recent Writing
+## Recent Writing (long-form articles)
 ${blogLinks}
+
+## Journal (short, dated working notes)
+- [Journal](${SITE_URL}/journal): Short dated notes written as the work happens — the unedited counterpart to the long-form articles above
+${journalLinks}
 
 ## Optional
 - [llms-full.txt](${SITE_URL}/llms-full.txt): Comprehensive site map with per-page tldrs (longer; ~50KB)
 - [sitemap.xml](${SITE_URL}/sitemap.xml): Full URL inventory
 - [rss.xml](${SITE_URL}/rss.xml): Latest 50 posts as RSS 2.0
+- [journal/feed.xml](${SITE_URL}/journal/feed.xml): Journal entries as RSS 2.0
 - [Open Source Repos](https://github.com/frankxai): Library OS, SIS, ACOS, and more
 `
 

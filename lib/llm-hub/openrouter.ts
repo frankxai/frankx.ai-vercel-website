@@ -11,6 +11,7 @@
  * OpenRouter wherever live pricing is shown.
  */
 
+import { connection } from 'next/server'
 import { MODEL_EDITORIAL } from './editorial'
 
 const OPENROUTER_MODELS_URL = 'https://openrouter.ai/api/v1/models'
@@ -54,6 +55,11 @@ function toPer1m(perToken?: string): number | null {
  * fall back to static registry pricing.
  */
 export async function fetchLivePricing(): Promise<LivePricingMap> {
+  // Live pricing is request-time enrichment. Waiting for a connection keeps
+  // every caller out of deploy-time prerendering while preserving the hourly
+  // Next Data Cache at runtime.
+  await connection()
+
   // Build reverse lookup: openrouter slug -> registry id
   const slugToId: Record<string, string> = {}
   for (const [id, ed] of Object.entries(MODEL_EDITORIAL)) {

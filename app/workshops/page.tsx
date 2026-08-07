@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check, FlaskConical, Sparkles, Users } from 'lucide-react'
 
@@ -58,38 +59,51 @@ export default function WorkshopsPage() {
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </TrackedGlowButton>
                 <TrackedGlowButton
-                  href="/experiences/tallinn-2026#amplifier"
+                  href="#bring-your-room"
                   size="lg"
                   variant="secondary"
                   color="cyan"
                   eventName="workshop_studio_cta_clicked"
-                  eventProperties={{ action: 'open_session_amplifier', placement: 'hero' }}
+                  eventProperties={{ action: 'bring_a_room', placement: 'hero' }}
                 >
-                  Amplify your session
+                  Bring a room
                 </TrackedGlowButton>
               </div>
             </div>
 
-            <div className="border-y border-white/10 py-7">
-              <p className="text-sm font-semibold text-white">The provenance line is explicit</p>
-              <div className="mt-6 grid gap-6 sm:grid-cols-3">
-                <div>
-                  <p className="text-xs font-semibold text-amber-200">Personally developed + delivered</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">
-                    Ikigai &amp; Branding is Frank’s personally developed and facilitated foundation.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-emerald-200">Delivered, studio-assisted</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">
-                    Build Your First AI Agent has a delivery record; its architecture was built with the agentic studio.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-cyan-200">Studio drafts</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">
-                    The remaining formats are prepared architectures to tailor and pilot—not past delivery claims.
-                  </p>
+            <div>
+              <div className="overflow-hidden rounded-2xl border border-white/10">
+                <Image
+                  src="/images/workshops/workshop-os-hero.jpg"
+                  alt="Sunlit workshop room with laptops and notebooks around a shared table and a system diagram sketched on the whiteboard"
+                  width={2752}
+                  height={1536}
+                  priority
+                  sizes="(max-width: 1023px) 100vw, 55vw"
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="mt-8 border-y border-white/10 py-7">
+                <p className="text-sm font-semibold text-white">The provenance line is explicit</p>
+                <div className="mt-6 grid gap-6 sm:grid-cols-3">
+                  <div>
+                    <p className="text-xs font-semibold text-amber-200">Personally developed + delivered</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">
+                      Ikigai &amp; Branding is Frank’s personally developed and facilitated foundation.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-emerald-200">Delivered, studio-assisted</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">
+                      Build Your First AI Agent has a delivery record; its architecture was built with the agentic studio.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-cyan-200">Studio drafts</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">
+                      The remaining formats are prepared architectures to tailor and pilot—not past delivery claims.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -235,7 +249,7 @@ export default function WorkshopsPage() {
         </div>
       </section>
 
-      <section className="relative">
+      <section id="bring-your-room" className="relative scroll-mt-24">
         <div className="pointer-events-none absolute inset-0 bg-studio-continuation" />
         <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <GlowCard color="cyan" className="rounded-[2.25rem]">
@@ -243,20 +257,20 @@ export default function WorkshopsPage() {
               <div>
                 <p className="text-sm font-medium text-cyan-300">Bring your own room</p>
                 <h2 className="mt-4 max-w-3xl font-display text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
-                  Already have a talk, method, tribe, or venue?
+                  Already have a talk, method, community, or venue?
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
-                  Use the Tallinn Session Amplifier to turn it into a before, in-room, and after plan—then share whether you want Frank to help shape the pilot.
+                  Share the room, the people, and the result they should carry home. Frank will reply with the right format—or tell you plainly when it is not a fit.
                 </p>
               </div>
               <TrackedGlowButton
-                href="/experiences/tallinn-2026#amplifier"
+                href="/contact?intent=workshop"
                 size="lg"
                 color="cyan"
                 eventName="workshop_studio_cta_clicked"
-                eventProperties={{ action: 'open_session_amplifier', placement: 'closing' }}
+                eventProperties={{ action: 'start_workshop_brief', placement: 'closing' }}
               >
-                Open the Session Amplifier
+                Share the room brief
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </TrackedGlowButton>
             </div>

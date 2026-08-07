@@ -11,7 +11,7 @@ const BEATS: Beat[] = [
   {
     Icon: Globe,
     label: 'Amsterdam · EMEA reach',
-    body: 'Sovereign node in Amsterdam. Travel-ready across EMEA, US, APAC for keynotes and partner workshops.',
+    body: 'Based in Amsterdam, with experience supporting AI architecture, workshops, and partner work across EMEA.',
   },
   {
     Icon: Users,
@@ -20,13 +20,13 @@ const BEATS: Beat[] = [
   },
   {
     Icon: Mic2,
-    label: 'Keynote-tier delivery',
+    label: 'Speaking and workshops',
     body: 'Workshop and speaking formats across AI architecture, creator systems, and human-centered agent workflows.',
   },
   {
     Icon: Cpu,
-    label: 'Army of agents',
-    body: '99-agent ACOS catalog across 11 pillars. One human operator, coding-agent native — every project ships inside Claude Code, Codex, and Gemini harnesses.',
+    label: 'Bounded agent roles',
+    body: 'A public catalog of specialist roles across research, architecture, production, critique, and verification—with Frank accountable for the final decision.',
   },
   {
     Icon: GitBranch,
@@ -35,13 +35,13 @@ const BEATS: Beat[] = [
   },
   {
     Icon: Music2,
-    label: 'Creator-scale operations',
-    body: '12,000+ AI songs catalog, Watch OS, Workshop OS, Library OS, Studio. The practice is also a daily production house.',
+    label: 'Daily creative practice',
+    body: 'Music, publishing, research, workshops, and product systems keep the architecture grounded in repeated production work.',
   },
 ]
 
 /**
- * Sovereign-node positioning band on the /partnerships hub.
+ * Operator profile band on the /partnerships hub.
  *
  * Sits between hero and the active-partnership card. Surfaces the operator
  * profile that earns the right to claim peer-tier partnerships — every beat
@@ -53,7 +53,7 @@ const BEATS: Beat[] = [
 export function SovereignNodeBand() {
   return (
     <MotionSection
-      aria-labelledby="sovereign-node-heading"
+      aria-labelledby="operator-profile-heading"
       className="border-t border-white/5 py-24 lg:py-32"
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -62,19 +62,19 @@ export function SovereignNodeBand() {
             Operator profile
           </p>
           <h2
-            id="sovereign-node-heading"
+            id="operator-profile-heading"
             className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-3"
             style={{
               fontFamily: 'var(--font-poppins, Poppins), Inter, sans-serif',
               letterSpacing: '-0.02em',
             }}
           >
-            Sovereign node. Coding-agent native.
+            A human-led, agent-powered practice.
           </h2>
           <p className="text-base text-zinc-400 leading-relaxed">
-            One human operator. An army of agents. Operating from Amsterdam,
-            shipping across EMEA — the substrate behind every partnership on
-            this page.
+            I direct the work from Amsterdam. Specialist agents expand the
+            research and production capacity; the relationship, judgment, and
+            final accountability remain mine.
           </p>
         </MotionItem>
 

@@ -7,6 +7,7 @@ const readRepoFile = (path) => readFile(new URL(`../../${path}`, import.meta.url
 test('the public homepage leads with ICP outcomes while retaining music as living proof', async () => {
   const page = await readRepoFile('app/page.tsx')
   const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+  const player = await readRepoFile('components/home/FeaturedTrackPlayer.tsx')
 
   assert.match(page, /import HomePageElite from '@\/components\/home\/HomePageElite'/)
   assert.match(page, /import \{ getPublishedBooks \} from '@\/app\/books\/lib\/books-registry'/)
@@ -20,30 +21,56 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.match(page, /How does music fit into FrankX\?/)
 
   assert.match(homepage, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
-  assert.match(homepage, /https:\/\/suno\.com\/embed\/\$\{track\.sunoId\}/)
-  assert.match(homepage, /loading="eager"/)
+  assert.match(homepage, /import \{ FeaturedTrackPlayer \} from '@\/components\/home\/FeaturedTrackPlayer'/)
+  assert.match(homepage, /<FeaturedTrackPlayer track=\{track\} \/>/)
+  assert.doesNotMatch(homepage, /suno\.com\/embed/)
+  assert.match(player, /src=\{track\.audioUrl\}/)
+  assert.match(player, /src=\{track\.imageUrl\}/)
+  assert.match(player, /href=\{track\.sunoUrl\}/)
+  assert.match(player, /preload="metadata"/)
+  assert.match(player, /useState\(\(\) => parseDuration\(track\.duration\)\)/)
+  assert.match(player, /nextDuration : currentDuration/)
+  assert.match(player, /role="status" aria-live="polite"/)
+  assert.match(player, /from-void\/20/)
+  assert.doesNotMatch(player, /#0a0a0b|#07110d/)
+  assert.doesNotMatch(player, /<iframe\b/)
   assert.match(homepage, /featuredTrack \?\? homepageFeaturedRelease/)
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
   assert.doesNotMatch(homepage, /Music first\./)
   assert.doesNotMatch(homepage, /begin with music/)
   assert.match(homepage, /Explore your highest-leverage AI move\./)
-  assert.match(homepage, /Architect your AI operating system\./)
-  assert.match(homepage, /Build your AI Center of Excellence\./)
-  assert.match(homepage, /Orchestrate agents around real work\./)
-  assert.match(homepage, /Ship products that compound\./)
-  assert.match(homepage, /function RotatingHeroOutcome\(\)/)
+  // The rotation belongs in the H1 on a serif gradient — Frank's call, and the
+  // hero carries exactly one moving element so the outcome line stays static.
+  assert.match(homepage, /function RotatingHeroVerb\(/)
+  assert.doesNotMatch(homepage, /function RotatingHeroOutcome\(/)
+  assert.match(homepage, /const heroVerbs = \['Building', 'Designing', 'Architecting', 'Creating', 'Shipping'\]/)
+  assert.match(homepage, /font-serif italic/)
+  assert.match(homepage, /<RotatingHeroVerb isRotating=\{isRotating\} isPaused=\{isHeadlinePaused\} \/>/)
+  // The verb owns line one so a width change never reflows the sentence, and the
+  // clip box is extended so the Playfair descender on every verb is not cut.
+  assert.match(homepage, /<br \/>\s*intelligence that compounds\./)
+  assert.match(homepage, /-mb-\[0\.15em\] overflow-hidden pb-\[0\.15em\]/)
+  // The pause control sits outside the H1 and always reserves its space, so
+  // hydration cannot shift the headline.
+  assert.doesNotMatch(homepage, /<button[^>]*>[\s\S]{0,400}?<\/h1>/)
+  assert.match(homepage, /isRotating \? 'visible' : 'invisible'/)
   assert.match(homepage, /useSyncExternalStore/)
-  assert.match(homepage, /if \(!hasHydrated \|\| shouldReduceMotion\)/)
+  assert.match(homepage, /const isRotating = hasHydrated && !shouldReduceMotion/)
   assert.match(homepage, /Pause changing headline/)
   assert.match(homepage, /Play changing headline/)
   assert.match(homepage, /<AnimatePresence mode="wait" initial=\{false\}>/)
   assert.match(homepage, /Latest studio release · optional listening/)
   assert.match(homepage, /<MindPalaceAtlas \/>/)
   assert.doesNotMatch(homepage, /autoplay=(?:1|true)/i)
+  assert.doesNotMatch(player, /autoPlay/)
 })
 
 test('the long-form homepage cannot silently lose its restored rooms and glow cards', async () => {
   const homepage = await readRepoFile('components/home/HomePageElite.tsx')
+  // #416 extracted the featured-track block out of HomePageElite into its own
+  // component, taking one glow-card surface with it. The homepage still renders
+  // four; counting only one file undercounts after any such extraction.
+  const player = await readRepoFile('components/home/FeaturedTrackPlayer.tsx')
 
   for (const section of [
     '<TrustedByBlock />',
@@ -65,7 +92,11 @@ test('the long-form homepage cannot silently lose its restored rooms and glow ca
 
   assert.match(homepage, /import \{ GlowCard \} from '@\/components\/ui\/glow-card'/)
   assert.match(homepage, /<section id="books" className="scroll-mt-24/)
-  assert.ok((homepage.match(/<GlowCard\b/g) ?? []).length >= 4, 'expected multiple glow-card surfaces')
+  const glowCards = [homepage, player].reduce(
+    (total, source) => total + (source.match(/<GlowCard\b/g) ?? []).length,
+    0,
+  )
+  assert.ok(glowCards >= 4, `expected multiple glow-card surfaces, found ${glowCards}`)
 })
 
 test('the featured release stays human-reviewed instead of following the raw catalog', async () => {
@@ -75,6 +106,15 @@ test('the featured release stays human-reviewed instead of following the raw cat
   assert.match(release, /Raw Suno catalog entries must never replace this object automatically/)
   assert.match(release, /reviewedAt: '\d{4}-\d{2}-\d{2}'/)
   assert.match(release, /sunoId: '[0-9a-f-]+'/)
+  assert.match(release, /sunoUrl: 'https:\/\/suno\.com\/song\//)
+  // The cover must be served by us. Pinning it to cdn2.suno.ai is what shipped a
+  // 403 cover to production — Suno rotates CDN variants without notice.
+  assert.match(release, /imageUrl: '\/images\/music\/[a-z0-9-]+\.(?:jpg|jpeg|png|webp)'/)
+  assert.doesNotMatch(release, /imageUrl: 'https:\/\/cdn\d?\.suno\.ai\//)
+  // Audio should be mirrored to Vercel Blob for the same reason. It is not yet,
+  // because the local BLOB_READ_WRITE_TOKEN points at a deleted store — until
+  // that is reissued the Suno CDN is the only reachable source.
+  assert.match(release, /audioUrl: 'https:\/\/(?:cdn1\.suno\.ai|[a-z0-9]+\.public\.blob\.vercel-storage\.com)\//)
   assert.doesNotMatch(release, /Music is the first door/)
   assert.match(release, /one creative artifact among the architecture/)
 })

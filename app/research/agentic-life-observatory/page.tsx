@@ -5,7 +5,7 @@ import { SITE_CONFIG } from '@/lib/schema-builders'
 import { ldJson } from '@/lib/seo/jsonld'
 
 export const metadata: Metadata = {
-  title: 'Agentic Life Observatory | Research Hub | FrankX.AI',
+  title: 'Agentic Life Observatory',
   description: 'A living market map for agentic memory, orchestration, sovereignty, evaluation, protocols, automation, and coding harnesses—classified by what to build, integrate, partner with, compete against, or watch.',
   keywords: [
     'agentic life infrastructure',
@@ -16,12 +16,12 @@ export const metadata: Metadata = {
     'agent operating system',
     'Frank Riemer',
   ],
-  alternates: { canonical: 'https://frankx.ai/research/agentic-life-observatory' },
+  alternates: { canonical: 'https://www.frankx.ai/research/agentic-life-observatory' },
   openGraph: {
     title: 'Agentic Life Observatory | FrankX Research',
     description: '29 systems mapped across context, composition, sovereignty, verifiability, and multi-domain fit.',
     type: 'article',
-    url: 'https://frankx.ai/research/agentic-life-observatory',
+    url: 'https://www.frankx.ai/research/agentic-life-observatory',
   },
   twitter: {
     card: 'summary_large_image',
@@ -58,8 +58,8 @@ export default function AgenticLifeObservatoryPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai/' },
-      { '@type': 'ListItem', position: 2, name: 'Research Hub', item: 'https://frankx.ai/research' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.frankx.ai/' },
+      { '@type': 'ListItem', position: 2, name: 'Research Hub', item: 'https://www.frankx.ai/research' },
       { '@type': 'ListItem', position: 3, name: 'Agentic Life Observatory', item: agenticLifeMarketRegistry.canonicalUrl },
     ],
   }

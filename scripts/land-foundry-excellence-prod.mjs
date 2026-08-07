@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
  * land-foundry-excellence-prod.mjs — open the Foundry excellence-pass PR on
- * frankx.ai-vercel-website via Trees API (prod main is un-checkoutable on
- * Windows; see land-foundry-prod.mjs). Mirrors FrankX 70218574.
+ * frankx.ai-vercel-website via Trees API (prod main was un-checkoutable on
+ * Windows: it carried invalid `public/reading/C:\...` paths). Mirrors FrankX
+ * 70218574. Its companion land-foundry-prod.mjs was retired once the Foundry
+ * files it created had landed on main.
  */
 import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'

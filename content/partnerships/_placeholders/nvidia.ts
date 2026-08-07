@@ -8,13 +8,9 @@ import { MEET_AND_GROW_URL } from '@/lib/cta-links'
  * Working reality is limited to public, non-confidential AI architecture
  * practice, GPU-aware reference patterns, and open-source agentic systems.
  *
- * Proposal tier is a peer-architect shape — not a claim of formal NVIDIA
- * partnership and not a claim of NVIDIA Inception membership. Inception is
- * the nominee pathway, stated as such.
- *
- * Named NVIDIA contacts and the Munich EBC briefing trail live in
- * `.frankx/private/partnerships/nvidia-brief.md` (gitignored). Never put
- * named individuals in this file.
+ * The proposal is independently authored from public-only evidence. No
+ * Inception application, reciprocal conversation, event, endorsement, or
+ * formal NVIDIA relationship is claimed.
  */
 export const nvidia: Partner = {
   slug: 'nvidia',
@@ -22,7 +18,10 @@ export const nvidia: Partner = {
   shortName: 'NVIDIA',
   tier: 'silicon',
   status: 'strategic-alignment',
-  lastUpdated: '2026-05-16',
+  publicationBasis: 'independent-proposal',
+  consentStatus: 'not-requested',
+  privacyClassification: 'public-only',
+  lastUpdated: '2026-07-30',
 
   title: 'AI Architect — GPU-aware AI CoE practice',
   tagline:
@@ -95,9 +94,9 @@ The strategic alignment is about GPU-aware agent systems and independent educati
 
   asymmetricValue: [
     {
-      title: 'Oracle x NVIDIA 2025 co-architect history',
-      body: 'Already co-architected joint EMEA go-to-market with NVIDIA inside the Oracle partnership. The collaboration muscle is built, the shape is known, and the second event is a lower-friction conversation than the first.',
-      metric: 'On the record',
+      title: 'Enterprise accelerator architecture experience',
+      body: 'Frank brings prior enterprise architecture experience and discusses only public, non-confidential accelerator patterns here. No NVIDIA relationship is inferred from that experience.',
+      metric: 'Public-only',
     },
     {
       title: 'Briefing-ready architecture material',
@@ -115,23 +114,23 @@ The strategic alignment is about GPU-aware agent systems and independent educati
       metric: 'Public channels',
     },
     {
-      title: 'Open-source body of work running on accelerated infrastructure',
-      body: 'ACOS, SIS, and the AI Architect Academy curriculum are public, reviewable, and designed to run on accelerated infrastructure. The body of work is itself a reference deployment.',
-      metric: '85+ repos',
+      title: 'Open-source body of agentic work',
+      body: 'ACOS, SIS, and the AI Architect Academy curriculum are public and reviewable. They are not presented as NVIDIA deployments or endorsements.',
+      metric: 'Open source',
     },
   ],
 
   programs: [
     {
       number: 1,
-      name: 'NVIDIA Inception — Nominee Pathway Pursuit',
-      cadence: 'Application in flight, milestone-tracked',
+      name: 'Applicable ecosystem pathway review',
+      cadence: 'One-time fit review',
       whatItIs:
-        'Active pursuit of the NVIDIA Inception nominee pathway as the operating-tier alignment vehicle. This is not a membership claim — it is the pathway, named honestly.',
+        'If there is mutual interest, identify an appropriate NVIDIA ecosystem pathway without presuming eligibility, nomination, timing, or acceptance.',
       whatItProduces: [
-        'Inception application package — company profile, technical narrative, accelerated-infrastructure usage',
-        'Nominator conversation tracked through Munich EBC bridge',
-        'Public status update once nominee status confirmed',
+        'A confirmed fit or no-fit decision',
+        'A written scope for any next step',
+        'A public status update only after both sides can verify it',
       ],
       pricingPosture: 'Pathway, not pricing. Status reported transparently.',
     },
@@ -192,30 +191,30 @@ The strategic alignment is about GPU-aware agent systems and independent educati
   compoundingModel: [
     {
       month: 0,
-      title: 'Foundations',
-      body: 'NVIDIA Inception nominee pathway application in flight. First joint EMEA event scoped on the calendar. Munich EBC briefing on the books.',
+      title: 'Independent proposal published',
+      body: 'Public architecture work and possible future collaboration are labeled as distinct things.',
     },
     {
       month: 3,
-      title: 'NIM reference architecture published',
-      body: 'First NIM-pattern reference architecture published on /ai-architecture with Deploy-to-OCI-with-GPU CTAs. Munich EBC briefing delivered. Inception nominee status tracked publicly.',
+      title: 'Possible reference architecture pilot',
+      body: 'If mutually approved, test one sourced NIM-pattern architecture with a working implementation and explicit attribution.',
     },
     {
       month: 6,
-      title: 'Second event + content stream live',
-      body: 'Second joint EMEA event delivered. Oracle x NVIDIA accelerator pack content stream live on /research with first two quarterly publications shipped. GPU-aware Academy module in pilot.',
+      title: 'Possible education pilot',
+      body: 'If the architecture proves useful, test a small education or research module before discussing a broader collaboration.',
     },
     {
       month: 12,
-      title: 'Referenceable EMEA practice',
-      body: 'NVIDIA-aligned EMEA AI CoE practice operating as a referenceable independent voice. Inception status earned or its successor stage in motion. Renewal conversation scoped at expanded EMEA reach.',
+      title: 'Evidence-based continuation decision',
+      body: 'Review real implementation use, learning outcomes, and editorial value before deciding whether any formal relationship makes sense.',
     },
   ],
 
   crossLinks: [
     crossLink(
       'ai-coe',
-      'The AI CoE blueprint where the GPU-to-agent methodology lives in public — the substrate every NVIDIA-aligned conversation builds on.',
+      'The public AI CoE blueprint where FrankX documents GPU-to-agent methodology.',
       'The methodology, in public'
     ),
     crossLink(
@@ -245,7 +244,7 @@ The strategic alignment is about GPU-aware agent systems and independent educati
     'Not a hardware reseller pitch or a GPU-resale play',
     'Not deep CUDA, kernel-engineering, or low-level GPU-systems specialist work',
     'Not exclusive of AMD, Intel, or other accelerators where the workload calls for it',
-    'Not a Munich-resident relationship — operating from Amsterdam, travelling for EBC and EMEA events',
+    'Not evidence of an Inception application, briefing, event, or reciprocal conversation',
   ],
 
   cta: {
@@ -253,7 +252,7 @@ The strategic alignment is about GPU-aware agent systems and independent educati
     href: MEET_AND_GROW_URL,
   },
 
-  programStatus: 'NVIDIA Inception — nominee pathway',
+  programStatus: 'Independent proposal — no formal NVIDIA relationship claimed',
 
   alreadyShared: [
     'GPU-aware AI architecture material is being developed as public, non-confidential reference content.',
@@ -265,15 +264,15 @@ The strategic alignment is about GPU-aware agent systems and independent educati
   ],
 
   formalizationAsk:
-    "What's left to formalize. The CoE methodology is productized and public. The conversation is Inception pathway clarity, possible briefing surfaces, event slots, and verified accelerator-infrastructure content sponsorship.",
+    'If this independent proposal is relevant, the next step is a scoped fit conversation. Until that happens, no application, briefing, event, endorsement, or formal relationship is claimed.',
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/nvidia.svg',
   // ogImagePath: '/images/partnerships/nvidia-og.png', // TODO: generate, falls back to site default
 
   seo: {
-    title: 'FrankX × NVIDIA — GPU-Aware AI CoE Practice | FrankX',
+    title: 'FrankX on NVIDIA — Independent GPU-Aware AI CoE Brief',
     description:
-      'Co-architect of the Oracle × NVIDIA 2025 partner event. Munich EBC bridge, NIM hands-on practice, GPU-to-agent CoE methodology for the EMEA accelerator channel.',
+      'Frank Riemer’s independent GPU-aware AI CoE brief, based on prior enterprise work and public NVIDIA technology. No formal NVIDIA partnership or endorsement is claimed.',
   },
 }

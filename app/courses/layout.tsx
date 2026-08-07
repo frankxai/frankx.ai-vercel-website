@@ -1,8 +1,9 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Courses | AI Architecture & Creator Systems | FrankX',
-  description: 'Structured courses on AI architecture, agentic systems, and creative AI. From foundations to production-grade implementations.',
+  title: 'Best AI Courses | Independent FrankX Course Picks',
+  description:
+    'A small, independently selected shelf of AI courses—mapped to learner goals, explained in plain language, and verified for freshness.',
   path: '/courses',
 })
 

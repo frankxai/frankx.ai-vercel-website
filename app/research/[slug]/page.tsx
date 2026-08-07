@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!domain) return {}
 
   return {
-    title: `${domain.title} | Research Hub | FrankX.AI`,
+    title: `${domain.title} — Research`,
     description: domain.tldr,
     keywords: [
       domain.title.toLowerCase(),
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${domain.title} | FrankX Research`,
       description: domain.description,
       type: 'article',
-      url: `https://frankx.ai/research/${domain.slug}`,
+      url: `https://www.frankx.ai/research/${domain.slug}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: domain.tldr,
     },
     alternates: {
-      canonical: `https://frankx.ai/research/${domain.slug}`,
+      canonical: `https://www.frankx.ai/research/${domain.slug}`,
     },
   }
 }
@@ -89,33 +89,33 @@ export default async function Page({ params }: PageProps) {
     author: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: 'https://www.frankx.ai',
       jobTitle: 'AI Architect',
     },
     publisher: {
       '@type': 'Organization',
       name: 'FrankX',
-      url: 'https://frankx.ai',
+      url: 'https://www.frankx.ai',
     },
     dateModified: domain.lastUpdated,
     datePublished: domain.publishedAt ?? '2026-01-27',
-    mainEntityOfPage: `https://frankx.ai/research/${domain.slug}`,
+    mainEntityOfPage: `https://www.frankx.ai/research/${domain.slug}`,
     about: domain.keyFindings.slice(0, 3).join('. '),
     keywords: [domain.title, ...domain.highlights.map(h => h.label)].join(', '),
-    citation: domainSources.length > 0
-      ? domainSources.map(src => ({
+    ...(domainSources.length > 0 ? {
+      citation: domainSources.map(src => ({
           '@type': 'CreativeWork',
           name: src.title,
           url: src.url,
           ...(src.date && { datePublished: src.date }),
-        }))
-      : `${domain.sourceCount} validated sources`,
+        })),
+    } : {}),
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-        { '@type': 'ListItem', position: 2, name: 'Research Hub', item: 'https://frankx.ai/research' },
-        { '@type': 'ListItem', position: 3, name: domain.title, item: `https://frankx.ai/research/${domain.slug}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.frankx.ai' },
+        { '@type': 'ListItem', position: 2, name: 'Research Hub', item: 'https://www.frankx.ai/research' },
+        { '@type': 'ListItem', position: 3, name: domain.title, item: `https://www.frankx.ai/research/${domain.slug}` },
       ],
     },
   })

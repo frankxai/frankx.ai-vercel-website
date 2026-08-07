@@ -64,6 +64,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'a.storyblok.com',
       },
+      // Official Mindvalley brand mark, shown only beside the independence disclosure.
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/mindvalley/**',
+      },
       // Suno track covers and playlist art (music inventory imageUrl fields)
       {
         protocol: 'https',
@@ -89,6 +95,35 @@ const nextConfig = {
       // Includes /ikigai → /workshops/ikigai-branding and the rest of the
       // legacy URL recovery set. Operator + agent additions land here on approval.
       ...REDIRECT_ALIASES,
+      // Tallinn 2026 is complete. Retire the prospective Session Studio route
+      // family so every event-era link resolves to the canonical field record.
+      {
+        source: '/experiences/tallinn-2026',
+        destination: '/mvu',
+        permanent: true,
+      },
+      {
+        source: '/experiences/tallinn-2026/:path*',
+        destination: '/mvu',
+        permanent: true,
+      },
+      {
+        source: '/experiences/mvu-tallinn-2026',
+        destination: '/mvu',
+        permanent: true,
+      },
+      {
+        source: '/experiences/mindvalley-university-tallinn-2026',
+        destination: '/mvu',
+        permanent: true,
+      },
+      // Individual diagnostic events were never suitable for public small-n
+      // aggregation. Keep the product, retire the public insights surface.
+      {
+        source: '/mvu/expert-authority/insights',
+        destination: '/mvu/expert-authority',
+        permanent: false,
+      },
       // Arcanea domain canonicalization
       {
         source: '/arcanea',

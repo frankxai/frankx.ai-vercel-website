@@ -4,6 +4,7 @@ export type HomepageFeaturedRelease = {
   sunoId: string
   sunoUrl: string
   audioUrl: string
+  imageUrl: string
   genre: string[]
   duration: string
   kicker: string
@@ -20,17 +21,20 @@ export type HomepageFeaturedRelease = {
  * need an explicit review before this file changes.
  */
 export const homepageFeaturedRelease: HomepageFeaturedRelease = {
-  id: 'vibe-os-track',
-  title: 'Vibe O S',
-  sunoId: '9cbad174-9276-427f-9aed-1ba00c7db3db',
-  sunoUrl: 'https://suno.com/song/9cbad174-9276-427f-9aed-1ba00c7db3db',
-  audioUrl:
-    'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/9cbad174-9276-427f-9aed-1ba00c7db3db/9cbad174-9276-427f-9aed-1ba00c7db3db.mp3',
-  genre: ['female hip hop', 'bass-heavy', 'lyrical'],
-  duration: '4:00',
-  kicker: 'Studio opening track',
+  id: 'star-show-us',
+  title: 'Star Show Us',
+  sunoId: 'e7d082d3-8ecd-4fdb-a8fa-582026554153',
+  sunoUrl: 'https://suno.com/song/e7d082d3-8ecd-4fdb-a8fa-582026554153',
+  // Cover is repo-hosted on purpose: the previous entry hotlinked cdn2.suno.ai and
+  // that URL now 403s, so the homepage shipped a broken cover. Suno rotates CDN
+  // variants without notice.
+  audioUrl: 'https://cdn1.suno.ai/e7d082d3-8ecd-4fdb-a8fa-582026554153.mp3',
+  imageUrl: '/images/music/star-show-us.jpg',
+  genre: ['latin progressive house', 'violin', 'jazz'],
+  duration: '4:26',
+  kicker: 'Latest studio release',
   studioNote:
     'A current studio release—one creative artifact among the architecture, systems, books, and field notes built here.',
-  reviewedAt: '2026-07-11',
+  reviewedAt: '2026-08-05',
   reviewStatus: 'approved',
 }

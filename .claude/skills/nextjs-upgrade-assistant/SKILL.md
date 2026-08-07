@@ -1,3 +1,8 @@
+---
+name: nextjs-upgrade-assistant
+description: "Guided Next.js major-version upgrade (15 to 16) — pre-upgrade checklist, codemods, breaking-change migration, async request APIs, caching-default changes, and post-upgrade verification. Use when upgrading Next.js, when a build breaks after a version bump, or when auditing a codebase for deprecated Next.js APIs."
+---
+
 # Next.js Upgrade Assistant
 
 **Version:** 1.0 (Next.js 15 → 16)

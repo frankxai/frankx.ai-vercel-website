@@ -3,6 +3,7 @@ import { musicPromptsEmail } from '@/lib/email-templates'
 import { welcomeEmail1 } from '@/lib/email-templates-welcome'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 import { innerCircleWaitlistEmail } from '@/lib/email-templates-inner-circle'
+import { mvuRsvpConfirmation, mvuRsvpAlert } from '@/lib/email-templates-mvu'
 
 export const runtime = 'nodejs'
 
@@ -34,6 +35,12 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'courses-waitlist': { topics: [TOPICS.newsletter] },
   'ikigai-branding': { topics: [TOPICS.newsletter] },
   'premium-packs': { topics: [TOPICS.newsletter, TOPICS['product-updates']] },
+  'mvu-tallinn-2026': { topics: [TOPICS.newsletter] },
+  // No topics on purpose. The lab RSVP form states "Nothing else, ever", so
+  // subscribing these people to newsletter messaging would be a promise broken
+  // in code. `properties.source` still segments them for the one email they
+  // did consent to: the confirm-or-cancel note about the lab.
+  'mvu-porto-2027': { topics: [] },
   all: { topics: [TOPICS.newsletter, TOPICS['music-suno'], TOPICS['product-updates']] },
 }
 
@@ -89,8 +96,35 @@ async function sendEmail(payload: Record<string, unknown>) {
   })
 }
 
-async function sendWelcomeEmail(email: string, name: string, listType: string) {
+async function sendWelcomeEmail(
+  email: string,
+  name: string,
+  listType: string,
+  intention = '',
+) {
   if (!RESEND_API_KEY) return
+
+  // Native RSVP for the independent MVU lab (frankx.ai/mvu/lab). Plain text —
+  // it lands right after a personal decision, and it echoes the person's own
+  // words back. The RSVP also pings Frank directly for the by-hand
+  // approve/decline call.
+  //
+  // Deliberately Porto-only. 'mvu-tallinn-2026' must NOT reach this branch: a
+  // retried or delayed submission from the old form would receive a Porto 2027
+  // confirmation for an event the person never opted into. Contacts already
+  // stored from 2026 never call this function, so nothing needs the alias.
+  if (listType === 'mvu-porto-2027') {
+    const confirmation = mvuRsvpConfirmation({ name, intention })
+    await sendEmail({ to: email, subject: confirmation.subject, text: confirmation.plainText })
+
+    const alert = mvuRsvpAlert({ email, name, intention })
+    await sendEmail({
+      to: process.env.MVU_ALERT_EMAIL || 'friemerx@gmail.com',
+      subject: alert.subject,
+      text: alert.plainText,
+    }).catch((err) => console.error('MVU RSVP alert error:', err))
+    return
+  }
 
   // Plain-text confirmations for the waitlist tiers — no HTML wrapper, no chrome.
   if (listType === 'inner-circle') {
@@ -162,6 +196,7 @@ export async function POST(request: NextRequest) {
     const email = String(raw.email ?? '').trim().toLowerCase()
     const name = String(raw.name ?? '').trim().slice(0, MAX_NAME_LEN)
     const source = String(raw.source ?? '').trim().slice(0, MAX_SOURCE_LEN)
+    const intention = String(raw.intention ?? '').trim().slice(0, 280)
     const listType = resolveListType(raw.listType)
 
     if (!email || email.length > MAX_EMAIL_LEN || !EMAIL_RE.test(email)) {
@@ -186,6 +221,9 @@ export async function POST(request: NextRequest) {
     const properties: Record<string, string> = { source: listType }
     if (config.topics.length) properties.topics = config.topics.join(',')
     if (source) properties.referrer = source
+    // Persist the RSVP intention so the approve/decline decision and the room's
+    // makeup are backed by a queryable segment, not only the alert emails.
+    if (intention) properties.intention = intention
 
     const fullBody: ContactBody = {
       email,
@@ -226,7 +264,7 @@ export async function POST(request: NextRequest) {
 
     // Welcome/delivery email is non-blocking — a delivery hiccup must not fail
     // the subscription itself.
-    sendWelcomeEmail(email, name, listType).catch((err) =>
+    sendWelcomeEmail(email, name, listType, intention).catch((err) =>
       console.error('Welcome email error:', err),
     )
 

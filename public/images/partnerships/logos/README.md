@@ -1,8 +1,10 @@
 # Partner logo attributions
 
 Each logo is the trademark of its respective owner and is used here strictly to
-indicate the existence of a partnership conversation. We never re-host these
-logos on a CDN; they live locally with this attribution file.
+identify the company discussed on an independently authored analysis or
+proposal page. Logo use does not imply a conversation, endorsement, consent,
+or formal relationship. We never re-host these logos on a CDN; they live
+locally with this attribution file.
 
 | Slug | Brand | Source | Retrieved | License / Notice |
 |---|---|---|---|---|
@@ -14,7 +16,7 @@ logos on a CDN; they live locally with this attribution file.
 
 ## Replacing with official press-kit assets
 
-For any partner conversation that crosses into formal contract, swap the
+For any relationship that is independently verified as formal, swap the
 Simple-Icons / Wikipedia-sourced logo for the official press-kit asset:
 
 - **Arrow** — https://www.arrow.com/en/about-arrow/press-room

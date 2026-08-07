@@ -1,16 +1,18 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import { socialLinks } from '@/lib/social-links'
 import {
   ArrowRight,
   Brain,
   Building2,
-  Calendar,
   Car,
   CheckCircle2,
   Clock,
+  Loader2,
   Factory,
   Flame,
   Globe,
@@ -166,7 +168,7 @@ function HeroSection() {
   const shouldReduceMotion = useReducedMotion()
   return (
     <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -205,6 +207,29 @@ function HeroSection() {
             </PremiumButton>
           </div>
         </motion.div>
+
+        <motion.figure
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="hidden lg:block"
+        >
+          <div className="relative overflow-hidden rounded-2xl border border-white/10">
+            <Image
+              src="/images/portraits/frank-presenting-oracle-2025.jpg"
+              alt="Frank Riemer on stage presenting the shift from static AI models to autonomous, AI-driven actions at an enterprise AI event"
+              width={1920}
+              height={1440}
+              priority
+              sizes="(max-width: 1023px) 0px, 45vw"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/40 to-transparent" />
+          </div>
+          <figcaption className="mt-3 text-xs text-slate-500">
+            Presenting the shift from static AI models to autonomous agents, 2025.
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   )
@@ -478,7 +503,7 @@ function ContactSection() {
 
             <PremiumButton href="mailto:frank@frankx.ai" variant="primary" size="lg" glow>
               Start a Conversation
-              <Calendar className="ml-2 h-5 w-5" />
+              <Mail className="ml-2 h-5 w-5" />
             </PremiumButton>
           </motion.div>
 
@@ -490,12 +515,60 @@ function ContactSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <GlowCard color="violet" className="h-full">
-              <form
-                action="mailto:frank@frankx.ai"
-                method="POST"
-                encType="text/plain"
-                className="p-6 sm:p-8 space-y-5"
-              >
+              <InquiryForm />
+            </GlowCard>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function InquiryForm() {
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' })
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setFormState('submitting')
+    setErrorMessage('')
+
+    try {
+      const res = await fetch('/api/studio-inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setErrorMessage(data.error || 'Something went wrong. Please try again.')
+        setFormState('error')
+        return
+      }
+      setFormState('success')
+    } catch {
+      setErrorMessage('Network error. Please check your connection and try again.')
+      setFormState('error')
+    }
+  }
+
+  if (formState === 'success') {
+    return (
+      <div className="p-6 sm:p-8 flex h-full flex-col items-center justify-center text-center">
+        <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20">
+          <CheckCircle2 className="h-7 w-7 text-emerald-400" />
+        </div>
+        <h3 className="mb-2 text-xl font-bold text-white">Message received</h3>
+        <p className="max-w-sm text-slate-400">
+          Frank reads every inquiry personally and replies within a few business days.
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-1.5">
                     Name
@@ -505,6 +578,8 @@ function ContactSection() {
                     name="name"
                     type="text"
                     required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#AB47C7]/40 focus:border-transparent transition-all"
                     placeholder="Your name"
                   />
@@ -518,6 +593,8 @@ function ContactSection() {
                     name="email"
                     type="email"
                     required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#AB47C7]/40 focus:border-transparent transition-all"
                     placeholder="you@company.com"
                   />
@@ -530,6 +607,8 @@ function ContactSection() {
                     id="company"
                     name="company"
                     type="text"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#AB47C7]/40 focus:border-transparent transition-all"
                     placeholder="Company name"
                   />
@@ -543,20 +622,38 @@ function ContactSection() {
                     name="message"
                     rows={4}
                     required
+                    minLength={20}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#AB47C7]/40 focus:border-transparent transition-all resize-none"
                     placeholder="Describe your AI challenge or project..."
                   />
                 </div>
-                <PremiumButton type="submit" variant="primary" size="lg" className="w-full">
-                  Send Message
-                  <Send className="ml-2 h-5 w-5" />
+                {formState === 'error' && (
+                  <p className="text-sm text-rose-400" role="alert">
+                    {errorMessage}
+                  </p>
+                )}
+                <PremiumButton
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full"
+                  disabled={formState === 'submitting'}
+                >
+                  {formState === 'submitting' ? (
+                    <>
+                      Sending
+                      <Loader2 className="ml-2 h-5 w-5 animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 h-5 w-5" />
+                    </>
+                  )}
                 </PremiumButton>
-              </form>
-            </GlowCard>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+    </form>
   )
 }
 

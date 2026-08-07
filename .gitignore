@@ -117,6 +117,9 @@ frankxai/
 frankx/
 frankx-os/
 ai-architect-academy/
+!app/ai-architect-academy/
+!app/ai-architect-academy/patterns/
+!app/ai-architect-academy/patterns/page.tsx
 education/context-engineering-for-creators/
 claude-skills/
 products/mcp-doctor/
@@ -191,6 +194,17 @@ link-checker-report.txt
 
 # Starlight/ACOS temporary files
 .starlight/
+!.starlight/
+.starlight/*
+!.starlight/design-contract.json
+!.starlight/release-evidence/
+!.starlight/release-evidence/**
 .gemini/
 
 .vercel
+
+# web-excellence pack — local evidence, not repo artifacts
+.visual-proof/
+.lighthouse.json
+.extract-design-system/
+.claude/skills/.replaced/

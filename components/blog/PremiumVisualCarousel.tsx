@@ -114,7 +114,7 @@ export default function PremiumVisualCarousel() {
         ))}
       </div>
 
-      <div className="text-center mt-3 text-[10px] text-white/30 tracking-widest">Drag to browse</div>
+      <div className="text-center mt-3 text-[10px] text-white/60 tracking-widest">Drag to browse</div>
     </div>
   )
 }

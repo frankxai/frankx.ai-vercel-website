@@ -4,6 +4,7 @@
  * Add new entries when publishing articles that relate to research domains.
  */
 export const blogDomainMap: Record<string, string[]> = {
+  'build-fine-tune-or-buy-ai-model': ['ai-model-strategy', 'model-arena', 'agentic-evals', 'enterprise-ai', 'production-patterns'],
   'agentic-creator-os-complete-guide': ['multi-agent-systems', 'production-patterns'],
   'agentic-creator-os': ['multi-agent-systems', 'production-patterns', 'prompt-engineering'],
   'agentic-workflows-save-hours': ['production-patterns', 'ai-personal-productivity'],

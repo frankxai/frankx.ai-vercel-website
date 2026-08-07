@@ -2,20 +2,25 @@ import type { Metadata } from 'next'
 
 import { socialHandles } from './social-links'
 
-const siteUrl = 'https://frankx.ai'
+// Vercel serves `www` as the primary production host and redirects the apex.
+// Canonicals and structured data should point directly at the primary host.
+const siteUrl = 'https://www.frankx.ai'
 
 export const siteConfig = {
-  name: 'FrankX — Executive AI Architecture',
+  name: 'FrankX — Public Agentic Workspace',
   shortName: 'FrankX',
   description:
-    'Executive AI architecture, agent workflows, and operator systems for founders and teams.',
+    'Frank Riemer’s public agentic workspace for source-led research, book intelligence, AI architecture, partnership systems, guides, products, and field notes.',
   url: siteUrl,
   twitter: socialHandles.twitter,
   // Static fallback. /api/og dynamic route has empty-body issues in Next 16
   // + next/og — using a real file ensures social shares always have an image.
-  ogImage: '/hero-homepage.png',
+  ogImage: '/images/brand/frankx-public-workspace-og-1200x630.png',
   keywords: [
     'ai architect',
+    'public agentic workspace',
+    'human-led multi-agent systems',
+    'book intelligence',
     'ai music creation',
     'suno ai',
     'ai architecture',

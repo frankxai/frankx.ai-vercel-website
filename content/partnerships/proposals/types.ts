@@ -10,7 +10,12 @@
  * timeline-specific, ask-specific, sender/recipient context preserved.
  */
 
-import type { Partner } from '../types'
+import type {
+  ConsentStatus,
+  Partner,
+  PrivacyClassification,
+  PublicationBasis,
+} from '../types'
 
 export type ProposalStatus =
   | 'draft'
@@ -35,6 +40,9 @@ export type PartnerProposal = {
   recipientRole: string // e.g., "Partner Program Lead, EMEA" — NEVER named individual
   sentDate: string // ISO date or "draft"
   status: ProposalStatus
+  publicationBasis: PublicationBasis
+  consentStatus: ConsentStatus
+  privacyClassification: PrivacyClassification
 
   // Hero (proposal-specific)
   title: string

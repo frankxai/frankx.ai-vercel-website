@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState, useSyncExternalStore } from 'react'
@@ -12,6 +12,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
+import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
 // ============================================================================
@@ -37,7 +38,9 @@ interface FeaturedTrackData {
   id: string
   title: string
   sunoId: string
+  sunoUrl: string
   audioUrl: string
+  imageUrl: string
   genre: string[]
   duration: string
   kicker: string
@@ -143,143 +146,84 @@ function AuroraBackground() {
 }
 
 // ============================================================================
-// SCROLL PROGRESS
-// ============================================================================
-
-function ScrollProgress() {
-  const shouldReduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-500 origin-left z-50"
-      style={{ scaleX: shouldReduceMotion ? 1 : scaleX }}
-    />
-  )
-}
-
-// ============================================================================
 // FEATURED TRACK (inline player for hero)
 // ============================================================================
 
 function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
-  return (
-    <GlowCard color="emerald" className="overflow-hidden p-0">
-      {/* Suno embed — shows cover art, title, waveform + controls */}
-      <div id="studio-release" className="overflow-hidden rounded-2xl">
-        <iframe
-          src={`https://suno.com/embed/${track.sunoId}`}
-          className="h-[300px] w-full sm:h-[340px] lg:h-[380px]"
-          style={{ border: 'none' }}
-          allow="autoplay; clipboard-write"
-          loading="eager"
-          title={track.title}
-          sandbox="allow-scripts allow-same-origin"
-        />
-      </div>
-
-      <div className="border-t border-white/[0.07] px-5 py-4">
-        <div className="flex items-start justify-between gap-5">
-          <div>
-            <p className="text-[11px] font-semibold tracking-[0.08em] text-emerald-300/60">
-              {track.kicker}
-            </p>
-            <p className="mt-2 max-w-md text-xs leading-5 text-white/40">{track.studioNote}</p>
-          </div>
-          <span className="shrink-0 font-mono text-[10px] text-white/25">{track.duration}</span>
-        </div>
-
-        <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3">
-          <span className="text-[11px] text-white/30">{track.genre.join(' · ')}</span>
-          <Link
-            href="/music"
-            className="inline-flex items-center gap-1.5 text-xs text-white/40 transition-colors hover:text-emerald-300"
-          >
-            Enter Music
-            <ArrowRight className="h-3 w-3" />
-          </Link>
-        </div>
-      </div>
-    </GlowCard>
-  )
+  return <FeaturedTrackPlayer track={track} />
 }
 
 // ============================================================================
 // HERO
 // ============================================================================
 
-const heroOutcomes = [
-  'Explore your highest-leverage AI move.',
-  'Architect your AI operating system.',
-  'Build your AI Center of Excellence.',
-  'Orchestrate agents around real work.',
-  'Ship products that compound.',
-]
+// The rotating verb owns the first line of the H1 so a width change (Building vs
+// Architecting differ by ~150px at 7xl) only moves that line's ragged right edge
+// instead of reflowing the sentence every 3.2s.
+const heroVerbs = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
+
+const heroOutcome = 'Explore your highest-leverage AI move.'
+
+// Serif italic on a two-stop emerald→cyan wash is the premium tell.
+const heroVerbClassName =
+  'bg-gradient-to-r from-emerald-200 to-cyan-200 bg-clip-text font-serif italic font-normal tracking-[-0.02em] text-transparent'
 
 const subscribeToHydration = () => () => undefined
 
-function RotatingHeroOutcome() {
+function RotatingHeroVerb({ isRotating, isPaused }: { isRotating: boolean; isPaused: boolean }) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
+
+  useEffect(() => {
+    if (!isRotating || isPaused) return
+
+    const interval = window.setInterval(() => {
+      setCurrentIndex((index) => (index + 1) % heroVerbs.length)
+    }, 3200)
+
+    return () => window.clearInterval(interval)
+  }, [isRotating, isPaused])
+
+  if (!isRotating) {
+    return (
+      <span className={heroVerbClassName} aria-hidden="true">
+        {heroVerbs[0]}
+      </span>
+    )
+  }
+
+  // pb/-mb extends the clip box below the 1.02 line box without shifting layout —
+  // every verb ends in "g" and the Playfair descender would otherwise be cut.
+  return (
+    <span
+      className="relative inline-block -mb-[0.15em] overflow-hidden pb-[0.15em] align-bottom"
+      aria-hidden="true"
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={heroVerbs[currentIndex]}
+          className={`inline-block ${heroVerbClassName}`}
+          initial={{ opacity: 0, y: '55%' }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: '-45%' }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {heroVerbs[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
+function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
+  const [isHeadlinePaused, setIsHeadlinePaused] = useState(false)
   const shouldReduceMotion = useReducedMotion()
   const hasHydrated = useSyncExternalStore(
     subscribeToHydration,
     () => true,
     () => false,
   )
+  const isRotating = hasHydrated && !shouldReduceMotion
 
-  useEffect(() => {
-    if (!hasHydrated || shouldReduceMotion || isPaused) return
-
-    const interval = window.setInterval(() => {
-      setCurrentIndex((index) => (index + 1) % heroOutcomes.length)
-    }, 3200)
-
-    return () => window.clearInterval(interval)
-  }, [hasHydrated, isPaused, shouldReduceMotion])
-
-  if (!hasHydrated || shouldReduceMotion) {
-    return (
-      <span className="mt-5 block max-w-2xl bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl" aria-hidden="true">
-        {heroOutcomes[0]}
-      </span>
-    )
-  }
-
-  return (
-    <div className="mt-5 flex max-w-2xl items-start gap-3">
-      <span
-        className="relative block min-h-[2.3em] flex-1 overflow-hidden bg-gradient-to-r from-emerald-200 via-cyan-200 to-sky-200 bg-clip-text text-2xl font-semibold leading-[1.15] tracking-[-0.025em] text-transparent sm:text-3xl"
-        aria-hidden="true"
-      >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={heroOutcomes[currentIndex]}
-            className="block"
-            initial={{ opacity: 0, y: '58%' }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '-42%' }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {heroOutcomes[currentIndex]}
-          </motion.span>
-        </AnimatePresence>
-      </span>
-      <button
-        type="button"
-        onClick={() => setIsPaused((paused) => !paused)}
-        className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition-colors hover:border-emerald-200/30 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
-        aria-label={isPaused ? 'Play changing headline' : 'Pause changing headline'}
-        aria-pressed={isPaused}
-      >
-        {isPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
-      </button>
-    </div>
-  )
-}
-
-function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
   return (
     <section className="relative flex min-h-[92svh] items-center overflow-hidden pb-16 pt-24 md:pb-20 md:pt-28">
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
@@ -294,16 +238,37 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <h1
                 className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
+                aria-label="Building intelligence that compounds."
               >
-                Turn AI capability into an operating advantage.
+                <RotatingHeroVerb isRotating={isRotating} isPaused={isHeadlinePaused} />
+                <br />
+                intelligence that compounds.
               </h1>
 
-              <span className="sr-only">
-                Explore your highest-leverage AI move, architect your AI operating system, build
-                your AI Center of Excellence, orchestrate agents around real work, and ship products
-                that compound.
-              </span>
-              <RotatingHeroOutcome />
+              <div className="mt-5 flex max-w-2xl items-center gap-3">
+                <p className="text-xl font-medium leading-[1.25] tracking-[-0.02em] text-white/75 sm:text-2xl">
+                  {heroOutcome}
+                </p>
+                {/* Always rendered so hydration never shifts the headline; only
+                    interactive while the verb is actually rotating (WCAG 2.2.2). */}
+                <button
+                  type="button"
+                  onClick={() => setIsHeadlinePaused((paused) => !paused)}
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/50 transition-colors hover:border-emerald-200/30 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70 ${
+                    isRotating ? 'visible' : 'invisible'
+                  }`}
+                  aria-label={isHeadlinePaused ? 'Play changing headline' : 'Pause changing headline'}
+                  aria-pressed={isHeadlinePaused}
+                  aria-hidden={isRotating ? undefined : true}
+                  tabIndex={isRotating ? undefined : -1}
+                >
+                  {isHeadlinePaused ? (
+                    <Play className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <Pause className="h-4 w-4" aria-hidden="true" />
+                  )}
+                </button>
+              </div>
 
               <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
                 FrankX is the working studio for founders, creators, and AI leaders building an AI
@@ -313,7 +278,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <div className="flex items-center gap-3">
                 <FrankOmegaAvatar size="xs" />
-                <p className="max-w-lg font-serif text-lg italic leading-7 text-white/30">
+                <p className="max-w-lg font-serif text-lg italic leading-7 text-white/70">
                   &ldquo;I build to understand. I document so the people I love can build after me.&rdquo;
                 </p>
               </div>
@@ -324,7 +289,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/ai-architecture"
                 onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Explore AI Architecture
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -339,7 +304,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </Link>
             </div>
 
-            <p className="max-w-xl text-[11px] leading-5 text-white/25">
+            <p className="max-w-xl text-[11px] leading-5 text-white/70">
               Independent project by former Oracle AI architect Frank Riemer. Not affiliated with,
               endorsed by, or sponsored by Oracle.
             </p>
@@ -383,7 +348,7 @@ function AuthorityBar() {
           {credentials.map((item, i) => (
             <div key={item} className="flex items-center">
               {i > 0 && <div className="hidden md:block w-px h-4 bg-white/10 mx-6 lg:mx-8" />}
-              <span className="text-sm md:text-base text-white/40 font-medium tracking-wide">
+              <span className="text-sm md:text-base text-white/60 font-medium tracking-wide">
                 {item}
               </span>
             </div>
@@ -453,7 +418,7 @@ function ProductsTools() {
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Ways to go further
           </h2>
-          <p className="text-base text-white/40 max-w-2xl mx-auto">
+          <p className="text-base text-white/60 max-w-2xl mx-auto">
             Start with the open work. Choose a paid tool only when its scope fits the capability you
             are ready to build next.
           </p>
@@ -476,7 +441,7 @@ function ProductsTools() {
                 <p className="text-sm text-white/50 leading-relaxed">
                   {product.description}
                 </p>
-                <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                <div className="mt-4 flex items-center gap-1.5 text-xs text-white/60 group-hover:text-white/75 transition-colors">
                   <span>Learn more</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                 </div>
@@ -782,7 +747,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
                 <h3 className="text-sm font-medium text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
                   {book.title}
                 </h3>
-                <p className="text-xs text-white/40 line-clamp-1">{book.subtitle}</p>
+                <p className="text-xs text-white/60 line-clamp-1">{book.subtitle}</p>
               </Link>
             </motion.div>
           ))}
@@ -868,7 +833,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
                 <h3 className="text-sm font-medium text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
                   {book.title}
                 </h3>
-                <p className="text-xs text-white/40 line-clamp-1">{book.author}</p>
+                <p className="text-xs text-white/60 line-clamp-1">{book.author}</p>
               </Link>
             </motion.div>
           ))}
@@ -878,7 +843,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-white/40"
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-white/60"
         >
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> MIT-licensed</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> Cross-AI portable</span>
@@ -945,7 +910,7 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
                     <span className="rounded-full bg-white/5 px-2 py-0.5 text-[11px] font-medium tracking-[0.04em] text-white/50 sm:text-xs">
                       {post.category}
                     </span>
-                    <span className="text-xs text-white/30">{post.readingTime}</span>
+                    <span className="text-xs text-white/60">{post.readingTime}</span>
                   </div>
                   <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
                     {post.title}
@@ -1044,7 +1009,7 @@ function LearningHub() {
                     {card.title}
                   </h3>
                   <p className="text-sm text-white/50 leading-relaxed">{card.description}</p>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                  <div className="mt-3 flex items-center gap-1.5 text-xs text-white/60 group-hover:text-white/75 transition-colors">
                     <span>Explore</span>
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </div>
@@ -1095,7 +1060,7 @@ function EmailCTA() {
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Stay in the Signal Loop
             </h2>
-            <p className="text-sm text-white/40 mb-8 max-w-xs mx-auto">
+            <p className="text-sm text-white/60 mb-8 max-w-xs mx-auto">
               One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
@@ -1106,7 +1071,7 @@ function EmailCTA() {
                 compact
               />
             </div>
-            <p className="mt-4 text-xs text-white/30">
+            <p className="mt-4 text-xs text-white/60">
               Unsubscribe anytime. No spam.
             </p>
           </div>
@@ -1263,7 +1228,7 @@ function DigitalTwin() {
               </Link>
               <Link
                 href="/frankx"
-                className="inline-flex items-center gap-2 text-sm font-medium text-white/40 hover:text-white/60 transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white/80 transition-colors"
               >
                 The full story
                 <ArrowRight className="w-4 h-4" />
@@ -1296,10 +1261,10 @@ function FinalCTA() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
               Take what helps. Build what matters.
             </h2>
-            <p className="font-serif italic text-lg text-white/30 mb-2">
+            <p className="font-serif italic text-lg text-white/60 mb-2">
               You do not have to become someone else to begin.
             </p>
-            <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
+            <p className="text-base text-white/60 mb-8 md:mb-12 max-w-md mx-auto">
               Choose one honest next step. The music, maps, and tools will still be here when you
               are ready for another.
             </p>
@@ -1307,14 +1272,14 @@ function FinalCTA() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Find My Starting Point
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/newsletter"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-colors"
               >
                 Get the Newsletter
               </Link>
@@ -1340,7 +1305,6 @@ export default function HomePageElite({
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden">
       <AuroraBackground />
-      <ScrollProgress />
 
       <div className="relative z-10 overflow-x-hidden">
         {/* 1-3. Hero with featured track */}

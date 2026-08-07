@@ -28,8 +28,15 @@ function formatDate(iso: string): string {
 export default function NewsletterArchivePage() {
   const allIssues = getAllIssues()
   const publishedIssues = getPublishedIssues()
+  // "Next up" must mean genuinely next. Showing every unsent draft advertised a
+  // June-dated issue as upcoming through August — a public liveness claim the
+  // pipeline could not back. Only future-dated drafts qualify.
+  const startOfToday = new Date()
+  startOfToday.setHours(0, 0, 0, 0)
   const upcomingIssues = allIssues.filter(
-    (i) => i.status === 'draft' || i.status === 'staged' || i.status === 'scheduled'
+    (i) =>
+      (i.status === 'draft' || i.status === 'staged' || i.status === 'scheduled') &&
+      new Date(i.sendAt || i.date).getTime() >= startOfToday.getTime()
   )
 
   const itemListSchema = {
@@ -111,7 +118,9 @@ export default function NewsletterArchivePage() {
               <FileText className="w-10 h-10 text-white/20 mx-auto mb-4" />
               <p className="text-white/60 mb-2">No issues archived yet.</p>
               <p className="text-sm text-white/40">
-                The first issue ships Friday May 22, 2026. Subscribe to be there when it lands.
+                {upcomingIssues.length > 0
+                  ? `${upcomingIssues.length} ${upcomingIssues.length === 1 ? 'issue is' : 'issues are'} in the pipeline above. Subscribe to get the next one the Friday it ships.`
+                  : 'Subscribe to get the next issue the Friday it ships.'}
               </p>
               <Link
                 href="/newsletter"

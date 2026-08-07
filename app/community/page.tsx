@@ -49,7 +49,7 @@ const communitySpaces = [
     color: '#F59E0B',
     gradient: 'from-[#F59E0B] to-[#EF4444]',
     badge: 'Active',
-    href: '/start',
+    href: '/newsletter',
   },
   {
     icon: Zap,

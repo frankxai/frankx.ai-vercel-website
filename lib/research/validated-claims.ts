@@ -178,7 +178,7 @@ const domainCategoryMap: Record<string, string[]> = {
   'mcp-ecosystem': ['MCP Ecosystem', 'Company Metrics'],
   'ai-ops': ['Production Patterns', 'Oracle OCI'],
   'ai-neuroscience': ['Brain-Computer Interfaces', 'Neuromorphic Computing', 'Thought Decoding', 'Organoid Intelligence', 'Consciousness Research', 'Cognitive Enhancement', 'Landmark Research'],
-  'ai-mental-health': ['AI Mental Health'],
+  'ai-mental-health': [],
   'generative-ai': ['Model Performance', 'Company Metrics'],
   'ai-agent-config': ['MCP Ecosystem', 'Framework Adoption'],
   'coding-assistants': ['Model Performance'],
@@ -613,28 +613,6 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     category: 'Neuromorphic Computing',
     crossRefCount: 1
   },
-  'ai-depression-reduction': {
-    id: 'ai-depression-reduction',
-    claim: 'AI therapy platform depression symptom reduction',
-    value: '34%',
-    sources: [
-      { name: 'NEJM AI', url: 'https://ai.nejm.org/doi/abs/10.1056/AIoa2400802', date: '2026', type: 'journal' },
-      { name: 'APA Monitor', url: 'https://www.apa.org/monitor/2026/01-02/trends-personalized-mental-health-care', date: '2026-01', type: 'news' }
-    ],
-    validatedDate: '2026-01-27',
-    confidence: 'high',
-    category: 'AI Mental Health',
-    crossRefCount: 2,
-    evidenceQuality: 'rct',
-    consensusLevel: 'emerging',
-    limitations: [
-      '4-week follow-up only; long-term efficacy unknown',
-      'Control group showed 20% reduction, so active placebo effects possible',
-      'Most effective as supplement to human therapy, not replacement',
-      'Sample demographics may limit generalizability'
-    ],
-    replicationStatus: 'replicated'
-  },
   'consciousness-endorsement': {
     id: 'consciousness-endorsement',
     claim: 'Large language models endorsing consciousness statements',
@@ -645,18 +623,6 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     validatedDate: '2026-01-27',
     confidence: 'medium-high',
     category: 'Consciousness Research',
-    crossRefCount: 1
-  },
-  'ai-anxiety-reduction': {
-    id: 'ai-anxiety-reduction',
-    claim: 'AI therapy platform anxiety symptom reduction',
-    value: '29%',
-    sources: [
-      { name: 'NEJM AI', url: 'https://ai.nejm.org/doi/abs/10.1056/AIoa2400802', date: '2026' }
-    ],
-    validatedDate: '2026-01-27',
-    confidence: 'high',
-    category: 'AI Mental Health',
     crossRefCount: 1
   },
   'sleep-cognition-impact': {
@@ -767,39 +733,6 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     category: 'Brain-Computer Interfaces',
     crossRefCount: 2
   },
-  'ai-depression-prediction-accuracy': {
-    id: 'ai-depression-prediction-accuracy',
-    claim: 'AI prediction of depressive episodes using wearables',
-    value: '91% accuracy',
-    sources: [
-      { name: 'PMC', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12604579/', date: '2025', type: 'journal' }
-    ],
-    validatedDate: '2026-01-27',
-    confidence: 'high',
-    category: 'AI Mental Health',
-    crossRefCount: 1,
-    evidenceQuality: 'observational',
-    consensusLevel: 'preliminary',
-    limitations: [
-      'Retrospective data analysis, not prospective prediction',
-      'Small sample sizes in most studies',
-      'Accuracy varies significantly by population and device',
-      'Clinical utility in real-world settings unproven'
-    ],
-    replicationStatus: 'mixed'
-  },
-  'digital-therapeutics-growth': {
-    id: 'digital-therapeutics-growth',
-    claim: 'Digital therapeutics user growth projection',
-    value: '44M (2021) → 652M (2025)',
-    sources: [
-      { name: 'UT Health Houston', url: 'https://med.uth.edu/psychiatry/2025/07/28/ai-in-mind-can-digital-therapeutics-reshape-mental-healthcares-future/', date: '2025-07' }
-    ],
-    validatedDate: '2026-01-27',
-    confidence: 'high',
-    category: 'AI Mental Health',
-    crossRefCount: 1
-  },
   'neurofeedback-adhd-efficacy': {
     id: 'neurofeedback-adhd-efficacy',
     claim: 'Neurofeedback efficacy rating for ADHD (SMR/TBR protocols)',
@@ -856,8 +789,8 @@ export const researchBriefs: Record<string, ResearchBrief> = {
   'ai-neuroscience-2026': {
     slug: 'ai-neuroscience-2026',
     title: 'AI & Neuroscience: The State of What\'s Possible',
-    description: 'Landmark research confirms adult neurogenesis, BCIs reach production scale with 65K+ electrodes, AI therapy shows 34% depression reduction in clinical trials, and neuromorphic computing hits 1,000x efficiency.',
-    tldr: 'Adult neurogenesis confirmed (July 2025 Karolinska study). BCIs now clinical: Synchron completed FDA trial, Neuralink has 5+ patients, Columbia achieved 65,536 electrodes. AI therapy shows 34% depression reduction in RCTs. Neuromorphic chips hit 1,000x efficiency. Brain reorganizes at ages 9, 23, 32, 66, 83.',
+    description: 'A research brief on adult neurogenesis, clinical brain-computer interfaces, neuromorphic computing, and the limits of today’s evidence.',
+    tldr: 'Adult-neurogenesis evidence strengthened in 2025. BCIs remain early clinical systems, while neuromorphic chips continue to improve inference efficiency. The field is moving quickly, but small samples and uneven replication still matter.',
     category: 'Frontier Technology',
     lastValidated: '2026-01-27',
     methodology: 'Cross-referenced 25+ sources including Science/AAAS, Nature, NEJM AI, MIT Technology Review, Scientific American, and peer-reviewed papers. Focus on landmark studies that shifted scientific consensus or demonstrated clinical breakthroughs.',
@@ -867,9 +800,6 @@ export const researchBriefs: Record<string, ResearchBrief> = {
       validatedClaims['columbia-bci-electrode-count'],
       validatedClaims['neuralink-patient-count-2025'],
       validatedClaims['synchron-fda-trial-complete'],
-      validatedClaims['ai-depression-reduction'],
-      validatedClaims['ai-depression-prediction-accuracy'],
-      validatedClaims['digital-therapeutics-growth'],
       validatedClaims['neuromorphic-efficiency'],
       validatedClaims['thought-decoding-accuracy'],
       validatedClaims['neurofeedback-adhd-efficacy'],
@@ -880,10 +810,6 @@ export const researchBriefs: Record<string, ResearchBrief> = {
       {
         question: 'Does the adult brain make new neurons?',
         answer: 'Yes. The July 2025 Karolinska Institute study using RNA sequencing on subjects aged 0-78 confirmed adult neurogenesis in the hippocampus, settling a decades-long scientific debate.'
-      },
-      {
-        question: 'How effective is AI therapy for depression?',
-        answer: 'Randomized controlled trials published in NEJM AI show 34% symptom reduction over 4 weeks using AI-powered CBT platforms, compared to 20% in control groups. AI can also predict depressive episodes with 91% accuracy using wearable data.'
       },
       {
         question: 'What is the current state of brain-computer interfaces?',
@@ -901,7 +827,6 @@ export const researchBriefs: Record<string, ResearchBrief> = {
     implications: [
       'Adult neurogenesis is real—the July 2025 Karolinska study settled decades of debate with RNA sequencing proof',
       'BCIs hit clinical reality—Synchron completed FDA trial, Neuralink has 5+ patients, Columbia achieved 65K electrodes',
-      'AI therapy works—34% depression reduction, 91% prediction accuracy, 652M projected users by 2025',
       'The brain reorganizes at specific ages (9, 23, 32, 66, 83)—implications for learning and intervention timing',
       'Neuromorphic computing offers 1,000x efficiency—IBM NorthPole achieves 72.7x for LLM inference',
       'Neurofeedback rated Level 1 Efficacious for ADHD—no longer experimental for specific conditions',
@@ -914,14 +839,12 @@ export const researchBriefs: Record<string, ResearchBrief> = {
     ],
     limitations: [
       'Most neurogenesis research uses post-mortem tissue, not longitudinal tracking',
-      'AI therapy RCTs have only 4-week follow-up; long-term efficacy unknown',
       'BCI data comes from early feasibility trials with small sample sizes',
       'Market projections from industry reports may have conflict of interest',
       'Effect sizes for interventions vary significantly by population'
     ],
     whatWeDontKnow: [
       'Does adult neurogenesis meaningfully affect learning capacity?',
-      'Will AI therapy work long-term (>6 months)?',
       'When will BCIs be available for healthy users (if ever)?',
       'Which brain training approaches (if any) transfer to real-world cognition?',
       'What is the optimal sleep protocol specifically for creative work?'
