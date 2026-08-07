@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 856,
+    "total": 857,
     "aliases": 50,
     "byType": {
       "core": 22,
-      "section": 400,
+      "section": 401,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -4625,6 +4625,15 @@
       "tags": [
         "founder",
         "playbook"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/founder-signal",
+      "title": "Founder Signal",
+      "tags": [
+        "founder",
+        "signal"
       ],
       "type": "section"
     },
