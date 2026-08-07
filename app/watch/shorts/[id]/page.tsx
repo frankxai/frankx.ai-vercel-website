@@ -298,12 +298,12 @@ export default async function ShortDetailPage({
                   compress a non-obvious insight on AI, creative craft, or peak
                   performance into under a minute? DM{' '}
                   <a
-                    href="https://x.com/frankxeth"
+                    href="https://x.com/frankx_ai"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-emerald-400 hover:underline"
                   >
-                    @frankxeth
+                    @frankx_ai
                   </a>
                   .
                 </p>

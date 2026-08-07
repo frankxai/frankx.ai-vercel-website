@@ -380,7 +380,7 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                         </td>
                         <td style="color: #475569;">&bull;</td>
                         <td style="padding: 0 12px;">
-                          <a href="https://x.com/frankxeth" style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; color: #22d3ee; text-decoration: none;">X</a>
+                          <a href="https://x.com/frankx_ai" style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; color: #22d3ee; text-decoration: none;">X</a>
                         </td>
                         <td style="color: #475569;">&bull;</td>
                         <td style="padding: 0 12px;">

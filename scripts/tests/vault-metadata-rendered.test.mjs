@@ -109,7 +109,7 @@ test('Vault renders only its route-owned production metadata', { timeout: 30_000
 
     assert.match(
       head,
-      /<meta[^>]+name="twitter:creator"[^>]+content="@frankxeth"[^>]*>/i,
+      /<meta[^>]+name="twitter:creator"[^>]+content="@frankx_ai"[^>]*>/i,
       'Twitter creator must use the configured FrankX identity',
     )
     assert.doesNotMatch(head, /Arcanea(?:Vault)?|FrankX \| AI Architect|hero-homepage\.png/i)
