@@ -187,7 +187,7 @@
     "next-auth": "^5.0.0-beta.30",
     "next-mdx-remote": "^6.0.0",
     "next-themes": "^0.4.4",
-    "pdfjs-dist": "^5.4.530",
+    "pdfjs-dist": "^6.2.108",
     "postcss": "^8.5.1",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
