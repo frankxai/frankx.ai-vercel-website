@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { escapeHtml } from '@/lib/escape-html'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -101,28 +102,28 @@ export async function POST(request: NextRequest) {
     <table style="width: 100%; border-collapse: collapse;">
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; width: 120px; vertical-align: top;">Name</td>
-        <td style="padding: 8px 0; color: #ffffff;">${name.trim()}</td>
+        <td style="padding: 8px 0; color: #ffffff;">${escapeHtml(name.trim())}</td>
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Email</td>
-        <td style="padding: 8px 0; color: #ffffff;"><a href="mailto:${email.trim()}" style="color: #AB47C7;">${email.trim()}</a></td>
+        <td style="padding: 8px 0; color: #ffffff;"><a href="mailto:${escapeHtml(email.trim())}" style="color: #AB47C7;">${escapeHtml(email.trim())}</a></td>
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Company/Role</td>
-        <td style="padding: 8px 0; color: #ffffff;">${company?.trim() || 'Not provided'}</td>
+        <td style="padding: 8px 0; color: #ffffff;">${escapeHtml(company?.trim() || 'Not provided')}</td>
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Focus Area</td>
-        <td style="padding: 8px 0; color: #ffffff;">${focus}</td>
+        <td style="padding: 8px 0; color: #ffffff;">${escapeHtml(focus)}</td>
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #94a3b8; vertical-align: top;">Situation</td>
-        <td style="padding: 8px 0; color: #ffffff; white-space: pre-wrap;">${situation.trim()}</td>
+        <td style="padding: 8px 0; color: #ffffff; white-space: pre-wrap;">${escapeHtml(situation.trim())}</td>
       </tr>
     </table>
 
     <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
-      <a href="mailto:${email.trim()}" style="display: inline-block; background: linear-gradient(to right, #AB47C7, #43BFE3); color: white; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;">Reply to Applicant</a>
+      <a href="mailto:${escapeHtml(email.trim())}" style="display: inline-block; background: linear-gradient(to right, #AB47C7, #43BFE3); color: white; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;">Reply to Applicant</a>
     </div>
   </div>
 </body>
@@ -158,7 +159,7 @@ export async function POST(request: NextRequest) {
   <div style="max-width: 560px; margin: 0 auto; background: #1a1a1b; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px;">
     <h1 style="font-size: 24px; margin: 0 0 16px; color: #ffffff;">Application Received</h1>
     <p style="color: #94a3b8; line-height: 1.6; margin: 0 0 16px;">
-      Hi ${name.trim().split(' ')[0]}, thanks for applying for coaching. I review every application personally and will get back to you within a few business days.
+      Hi ${escapeHtml(name.trim().split(' ')[0])}, thanks for applying for coaching. I review every application personally and will get back to you within a few business days.
     </p>
     <p style="color: #94a3b8; line-height: 1.6; margin: 0 0 24px;">
       In the meantime, feel free to explore <a href="https://frankx.ai/research" style="color: #AB47C7;">my research</a> and <a href="https://frankx.ai/newsletter" style="color: #AB47C7;">subscribe to the newsletter</a> if you haven't already.
