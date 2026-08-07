@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
+import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
+
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
 const FROM_EMAIL = 'Frank <frank@mail.frankx.ai>'
@@ -18,7 +20,10 @@ const ApplicationSchema = z.object({
     .string()
     .trim()
     .url('Please enter a link starting with https://')
-    .max(400),
+    .max(400)
+    .refine((value) => value.startsWith('https://'), {
+      message: 'Please enter a link starting with https://',
+    }),
   campaign: z
     .string()
     .trim()
@@ -31,6 +36,9 @@ const ApplicationSchema = z.object({
     .max(2000),
   scanPercent: z.number().int().min(0).max(100).optional(),
   scanBand: z.string().trim().max(40).optional(),
+  // Honeypot — real browsers leave this empty. Bots that fill every field get a
+  // neutral success without touching Resend or rate-limit capacity.
+  website: z.string().max(200).optional().or(z.literal('')),
 })
 
 function escapeHtml(value: string): string {
@@ -66,8 +74,42 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const { name, email, company, bodyOfWork, campaign, drift, scanPercent, scanBand } =
-    parsed.data
+  const {
+    name,
+    email,
+    company,
+    bodyOfWork,
+    campaign,
+    drift,
+    scanPercent,
+    scanBand,
+    website,
+  } = parsed.data
+
+  // Honeypot first — do not burn rate-limit budget on obvious bots.
+  if (typeof website === 'string' && website.trim() !== '') {
+    return NextResponse.json({ success: true })
+  }
+
+  // Public email surface: fail closed if KV cannot decide.
+  try {
+    const { success } = await emailRatelimit.limit(getClientIdentifier(request))
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Too many submissions. Please try again later.' },
+        { status: 429 }
+      )
+    }
+  } catch (error) {
+    console.error('founder-signal/apply: rate-limit check failed', error)
+    return NextResponse.json(
+      {
+        error:
+          'The application service is temporarily unavailable. Please try again shortly or email frank@frankx.ai.',
+      },
+      { status: 503 }
+    )
+  }
 
   if (!RESEND_API_KEY) {
     console.error('founder-signal/apply: RESEND_API_KEY not configured')
@@ -169,20 +211,32 @@ export async function POST(request: NextRequest) {
 </body>
 </html>`
 
-    // Fire and forget: a failed confirmation must not fail the application.
-    fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: email,
-        subject: 'Your Founder Signal OS application has been received',
-        html: confirmationHtml,
-      }),
-    }).catch((error) => console.error('founder-signal/apply: confirmation error', error))
+    // Await confirmation on the serverless request lifetime. A failed
+    // confirmation must not fail the application after the operator notify
+    // already succeeded — log and still return success.
+    try {
+      const confirmationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: FROM_EMAIL,
+          to: email,
+          subject: 'Your Founder Signal OS application has been received',
+          html: confirmationHtml,
+        }),
+      })
+      if (!confirmationResponse.ok) {
+        console.error(
+          'founder-signal/apply: confirmation error',
+          await confirmationResponse.text()
+        )
+      }
+    } catch (error) {
+      console.error('founder-signal/apply: confirmation error', error)
+    }
 
     return NextResponse.json({ success: true })
   } catch (error) {

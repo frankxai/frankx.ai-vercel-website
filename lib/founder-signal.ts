@@ -255,3 +255,11 @@ export function readStoredScan(): StoredScan | null {
     return null
   }
 }
+
+export function clearStoredScan(): void {
+  try {
+    sessionStorage.removeItem(SCAN_STORAGE_KEY)
+  } catch {
+    // Private-mode or storage-disabled browsers just skip the clear.
+  }
+}

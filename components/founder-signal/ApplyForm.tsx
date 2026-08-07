@@ -34,6 +34,7 @@ export function ApplyForm() {
           bodyOfWork: String(data.get('bodyOfWork') ?? ''),
           campaign: String(data.get('campaign') ?? ''),
           drift: String(data.get('drift') ?? ''),
+          website: String(data.get('website') ?? ''),
           ...(scan ? { scanPercent: scan.percent, scanBand: scan.band } : {}),
         }),
       })
@@ -151,6 +152,18 @@ export function ApplyForm() {
         <p className="mt-2 text-xs text-white/55">
           Be specific. The honest answer here decides who gets selected.
         </p>
+      </div>
+
+      {/* Honeypot — hidden from humans, filled by many bots */}
+      <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+        <label htmlFor="fs-website">Website</label>
+        <input
+          id="fs-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
 
       {error && (

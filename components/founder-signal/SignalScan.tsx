@@ -8,6 +8,7 @@ import {
   DIMENSIONS,
   SCALE,
   TOTAL_QUESTIONS,
+  clearStoredScan,
   scoreScan,
   storeScan,
   type ScanResult,
@@ -65,6 +66,7 @@ export function SignalScan({ applyHref }: { applyHref: string }) {
   }, [])
 
   const restart = useCallback(() => {
+    clearStoredScan()
     setAnswers({})
     setStage(0)
     window.requestAnimationFrame(() => headingRef.current?.focus())
