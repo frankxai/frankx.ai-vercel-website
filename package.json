@@ -47,6 +47,7 @@
     "heroes:scan": "node scripts/generate-blog-heroes.mjs",
     "music:index": "node scripts/generate-music-index.mjs",
     "music:asset-registry": "node scripts/music/build-asset-registry.mjs",
+    "test:music-release-registry": "node --experimental-strip-types --test scripts/tests/music-release-registry.test.mjs",
     "sync-ais": "node scripts/sync-ais.mjs",
     "content:check": "node scripts/check-mdx-safety.mjs && node scripts/check-content-integrity.mjs && node scripts/check-publish-holds.mjs",
     "prebuild": "npm run content:check && npm run sync-ais && node scripts/prebuild-cache.mjs && node scripts/build-route-index.mjs",
