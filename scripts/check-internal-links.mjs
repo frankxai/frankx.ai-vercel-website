@@ -28,8 +28,9 @@ const args = new Set(process.argv.slice(2))
 const WARN_ONLY = args.has('--warn')
 const JSON_OUT = args.has('--json')
 
-// File globs we scan
-const SCAN_DIRS = ['content', 'components', 'app']
+// File globs we scan. lib/ and data/ carry the nav configs, product ladders and
+// link registries that render as real <Link>s — they are not "just data".
+const SCAN_DIRS = ['content', 'components', 'app', 'lib', 'data']
 const EXTENSIONS = new Set(['.mdx', '.md', '.tsx', '.ts'])
 
 // Hrefs we deliberately exclude from validation
@@ -107,6 +108,23 @@ function isRouteHandler(href) {
   return ROUTE_HANDLER_FILES.some((f) => fs.existsSync(path.join(dir, f)))
 }
 
+const PAGE_FILES = ['page.tsx', 'page.ts', 'page.js', 'page.jsx', 'page.mdx']
+
+/**
+ * Some real pages are pure redirect stubs — `app/consulting/page.tsx` is a
+ * three-line `redirect('/work-with-me')`. They serve a working URL but the
+ * route-index omits them, so widening the scan surfaced them as "broken".
+ * They are not broken: resolve them against the app tree the same way route
+ * handlers are, rather than adding names to an allowlist that goes stale.
+ */
+function isAppPage(href) {
+  const rel = href.replace(/^\/+/, '')
+  if (!rel) return false
+  const dir = path.resolve(APP_DIR, rel)
+  if (dir !== APP_DIR && !dir.startsWith(APP_DIR + path.sep)) return false
+  return PAGE_FILES.some((f) => fs.existsSync(path.join(dir, f)))
+}
+
 // ─── walk source tree ───────────────────────────────────────
 /** @type {{file: string, line: number, href: string}[]} */
 const findings = []
@@ -135,6 +153,12 @@ function walk(dir) {
 // fragments are stripped before lookup.
 const PATTERNS = [
   /\bhref=["']([^"']+)["']/g,
+  // Object-literal form: `href: '/x'`. Every nav config, product ladder and
+  // linktree entry in this repo is written this way, and the JSX-attribute
+  // pattern above (href=) structurally cannot see any of them — so a broken
+  // link in data/ or a nav config passed the gate for as long as it existed.
+  // Adding this surfaced 9 real breaks, two of them in the global nav.
+  /\bhref:\s*["']([^"']+)["']/g,
   /\bto=["']([^"']+)["']/g,
   /\]\((\/[^)\s]+)\)/g, // markdown link
 ]
@@ -197,6 +221,9 @@ function scanFile(file) {
 
         // A real file under public/ is a working link, not a broken route.
         if (isPublicAsset(cleanHref)) continue
+        // A real page.tsx in the app tree serves this URL even when the
+        // route-index omits it (redirect stubs, most commonly).
+        if (isAppPage(cleanHref)) continue
 
         findings.push({
           file: path.relative(ROOT, file).replace(/\\/g, '/'),

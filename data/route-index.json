@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 857,
+    "total": 858,
     "aliases": 50,
     "byType": {
       "core": 22,
-      "section": 401,
+      "section": 402,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -6409,6 +6409,14 @@
       "tags": [
         "media",
         "kit"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/mind",
+      "title": "Mind",
+      "tags": [
+        "mind"
       ],
       "type": "section"
     },
