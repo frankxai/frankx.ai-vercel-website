@@ -207,7 +207,15 @@ function relativeOutputPath(file) {
 function shouldSkipDirectory(fullPath, dirname) {
   if (EXCLUDE_DIRS.has(dirname)) return true;
   const rel = path.relative(ROOT, fullPath).replace(/\\/g, '/');
-  return EXCLUDE_REL_PATHS.has(rel);
+  if (EXCLUDE_REL_PATHS.has(rel)) return true;
+  // Never ingest this generator's own output at ANY depth. The exact-path check
+  // above only covers the top-level public/reading; a nested repo copy (e.g. a
+  // sibling clone accidentally inside the tree) would expose its own
+  // public/reading at a different rel path, get re-wrapped, and start the
+  // recursive public/reading/public/reading/... nesting again (the pre-#349 bug
+  // happened because EXCLUDE_DIRS held 'public/reading' but the walk compared
+  // it against bare directory names, so the exclusion never matched).
+  return rel === 'public/reading' || rel.endsWith('/public/reading');
 }
 
 function outPathFor(file) {
