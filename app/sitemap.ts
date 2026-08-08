@@ -5,6 +5,17 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
+import { getAllModels } from '@/lib/llm-hub/registry'
+import { COMPARISONS } from '@/lib/llm-hub/comparisons'
+import { getAllGenModels, getCategories as getGenCategories } from '@/lib/models-hub/registry'
+import { GEN_COMPARISONS } from '@/lib/models-hub/comparisons'
+// Pre-baked at build time by scripts/build-route-index.mjs (which uses
+// lib/route-enumeration.mjs). Importing the JSON keeps the sitemap lambda
+// small — calling enumerateRoutes() at request time forces Turbopack to
+// bundle every file under content/, data/, lib/research/ etc. into the
+// function (42k+ files → blows past Vercel's 250MB lambda limit and the
+// deploy ERRORs after build).
+import routeIndex from '@/data/route-index.json'
 import { learningPaths } from '@/data/learning-paths'
 import { getMvuEntrySummaries } from '@/lib/mvu'
 import { getJournalEntrySummaries } from '@/lib/journal'
@@ -630,6 +641,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     })
+  })
+
+  // LLM Hub — per-model pages (dynamic, keyed by registry slug)
+  getAllModels().forEach((m) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/${m.id}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.75,
+    })
+  })
+
+  // LLM Hub — head-to-head comparison pages (dynamic)
+  COMPARISONS.forEach((c) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/compare/${c.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    })
+  })
+
+  // LLM Hub — provenance page (the measured arena lives at /research/model-arena)
+  entries.push({ url: `${BASE_URL}/llm-hub/sources`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.7 })
+
+  // Generative Model Hub — umbrella + categories + per-model + comparisons
+  entries.push({ url: `${BASE_URL}/models`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.9 })
+  getGenCategories().forEach((c) => {
+    entries.push({ url: `${BASE_URL}/models/${c.id}`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.85 })
+  })
+  getAllGenModels().forEach((m) => {
+    entries.push({ url: `${BASE_URL}/models/${m.category}/${m.id}`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.75 })
+  })
+  GEN_COMPARISONS.forEach((c) => {
+    entries.push({ url: `${BASE_URL}/models/compare/${c.slug}`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.8 })
   })
 
   // MVU journey hub + event page + journal entries

@@ -239,7 +239,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
   'mistral-large-3': {
     tagline: 'Europe’s 675B open-weight frontier: Apache 2.0, runs on one node, sovereign by design.',
     bestFor: ['EU data-residency / GDPR-bound workloads', 'Multilingual knowledge work and RAG', 'Self-hosted frontier inference (FP8 on 8x H200)'],
-    watchOut: 'Trails dedicated reasoners on hard reasoning (GPQA Diamond ~44%); reasoning variant promised but not yet shipped as of June 2026.',
+    watchOut: 'Trails dedicated reasoners on hard reasoning (GPQA Diamond ~44%); reasoning variant promised but not yet shipped as of July 2026.',
     creatorUse: 'Run a sovereign, frontier-class assistant on your own hardware at $0 per-token, or call the API at $0.50/$1.50.',
     openrouterId: 'mistralai/mistral-large-2512',
   },
