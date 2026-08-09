@@ -35,6 +35,45 @@ const RUN_RE = /\b(?:npm|pnpm) run ([a-zA-Z0-9:_-]+)/g
 
 const runScripts = (text) => new Set(Array.from(text.matchAll(RUN_RE), (m) => m[1]))
 
+/**
+ * Return only executable `run:` values from a workflow. Scanning the whole YAML
+ * lets a commented-out `pnpm run ...` satisfy this guard while executing
+ * nothing — the exact false-green class this check exists to prevent.
+ *
+ * This deliberately supports the two GitHub Actions forms used in this repo:
+ * a scalar `run: command` and an indented `run: |` / `run: >` block. It is not
+ * a general YAML parser; an unfamiliar shape fails closed by contributing no
+ * covered scripts.
+ */
+function workflowRunText(text) {
+  const lines = text.split(/\r?\n/)
+  const commands = []
+
+  for (let i = 0; i < lines.length; i += 1) {
+    const match = lines[i].match(/^(\s*)run:\s*(.*?)\s*$/)
+    if (!match) continue
+
+    const indent = match[1].length
+    const value = match[2]
+    if (value && value !== '|' && value !== '>') {
+      commands.push(value)
+      continue
+    }
+
+    for (let j = i + 1; j < lines.length; j += 1) {
+      const line = lines[j]
+      if (!line.trim()) continue
+      const lineIndent = line.match(/^\s*/)[0].length
+      if (lineIndent <= indent) break
+      if (/^\s*#/.test(line)) continue
+      commands.push(line.trim())
+      i = j
+    }
+  }
+
+  return commands.join('\n')
+}
+
 const pkg = JSON.parse(readFileSync('package.json', 'utf8'))
 const gate = pkg.scripts?.['merge:gate']
 if (!gate) {
@@ -45,7 +84,8 @@ if (!gate) {
 const workflows = readdirSync(WORKFLOW_DIR).filter((f) => /\.ya?ml$/.test(f))
 const covered = new Set()
 for (const file of workflows) {
-  for (const s of runScripts(readFileSync(path.join(WORKFLOW_DIR, file), 'utf8'))) {
+  const executable = workflowRunText(readFileSync(path.join(WORKFLOW_DIR, file), 'utf8'))
+  for (const s of runScripts(executable)) {
     covered.add(s)
   }
 }
