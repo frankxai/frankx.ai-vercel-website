@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os'
 import path from 'node:path'
 import test from 'node:test'
 import { closeAgentDB } from '../../lib/acos/memory/agentdb.mjs'
+import { activeDriver, getStore, resetStore } from '../../lib/acos/memory/store.mjs'
 
 test('AgentDB close always attempts database cleanup and surfaces close failures', async () => {
   const calls = []
@@ -22,6 +23,49 @@ test('AgentDB close always attempts database cleanup and surfaces close failures
 
   await assert.rejects(() => closeAgentDB(db), vectorCloseError)
   assert.deepEqual(calls, ['vector', 'database'])
+})
+
+test('AgentDB close preserves both cleanup failures', async () => {
+  const vectorCloseError = new Error('vector backend close failed')
+  const databaseCloseError = new Error('database close failed')
+  const db = {
+    vectorBackend: {
+      async close() {
+        throw vectorCloseError
+      },
+    },
+    async close() {
+      throw databaseCloseError
+    },
+  }
+
+  await assert.rejects(
+    () => closeAgentDB(db),
+    (error) =>
+      error instanceof AggregateError &&
+      error.errors[0] === vectorCloseError &&
+      error.errors[1] === databaseCloseError,
+  )
+})
+
+test('resetStore serializes with in-flight initialization', async () => {
+  const previousDriver = process.env.ACOS_MEMORY_DRIVER
+  process.env.ACOS_MEMORY_DRIVER = 'in-memory'
+
+  await resetStore()
+  try {
+    const initializing = getStore()
+    const resetting = resetStore()
+    const [{ store: firstStore }] = await Promise.all([initializing, resetting])
+
+    assert.equal(activeDriver(), null)
+    const { store: secondStore } = await getStore()
+    assert.notEqual(secondStore, firstStore)
+  } finally {
+    await resetStore()
+    if (previousDriver === undefined) delete process.env.ACOS_MEMORY_DRIVER
+    else process.env.ACOS_MEMORY_DRIVER = previousDriver
+  }
 })
 
 test('AgentDB satisfies the production memory adapter contract', async () => {
@@ -66,7 +110,6 @@ test('AgentDB satisfies the production memory adapter contract', async () => {
     assert.equal(statistics.totalPatterns, 1)
     assert.ok(statistics.avgUses >= 1)
 
-    const { getStore } = await import('../../lib/acos/memory/store.mjs')
     const { store } = await getStore()
     const closeError = new Error('public memory close failed')
     const closeStore = store.close.bind(store)
