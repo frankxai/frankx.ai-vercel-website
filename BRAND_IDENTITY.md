@@ -57,7 +57,7 @@ Independent project. Not affiliated with, endorsed by, or sponsored by Oracle. O
 
 | Platform | Username | Full URL | Primary Use |
 |----------|----------|----------|-------------|
-| **X (Twitter)** | `@frankxeth` | `https://x.com/frankxeth` | Daily thoughts, AI insights, creator tips |
+| **X (Twitter)** | `@frankx_ai` | `https://x.com/frankx_ai` | Daily thoughts, AI insights, creator tips |
 | **LinkedIn** | `frank-x-riemer` | `https://www.linkedin.com/in/frank-x-riemer/` | Professional content, enterprise AI, networking |
 | **Instagram** | `@frank_riemer` | `https://www.instagram.com/frank_riemer/` | Personal journey, studio life, visual storytelling |
 | **Suno** | `@frankx` | `https://suno.com/@frankx` | AI music creation, Vibe OS sessions, sonic rituals |
@@ -99,7 +99,7 @@ x.com/frankxai                    ❌ WRONG
 ```
 linkedin.com/in/frank-x-riemer/   ✅ CORRECT
 suno.com/@frankx                  ✅ CORRECT
-x.com/frankxeth                   ✅ CORRECT
+x.com/frankx_ai                   ✅ CORRECT
 instagram.com/frank_riemer/       ✅ CORRECT
 linktr.ee/frankx.ai              ✅ CORRECT
 ```
@@ -113,7 +113,7 @@ linktr.ee/frankx.ai              ✅ CORRECT
 - `frankx.com` (redirect to .ai if owned)
 
 ### Social Media Handle Strategy
-- X/Twitter: `@frankxeth` (eth = crypto/tech focus)
+- X/Twitter: `@frankx_ai` (canonical AI identity)
 - LinkedIn: Professional full name `frank-x-riemer`
 - Instagram: Personal name `@frank_riemer`
 - Suno: Creator name `@frankx`
@@ -228,7 +228,7 @@ Translate Frank's musician-technologist and enterprise AI experience into langua
 ### ✅ Must Have Social Links
 
 **Footer (All Pages)**
-- X/Twitter: `https://x.com/frankxeth`
+- X/Twitter: `https://x.com/frankx_ai`
 - LinkedIn: `https://www.linkedin.com/in/frank-x-riemer/`
 - Instagram: `https://www.instagram.com/frank_riemer/`
 - Suno: `https://suno.com/@frankx`

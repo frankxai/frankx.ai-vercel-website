@@ -77,7 +77,7 @@ export default function SharePopover({
   const handleShareX = () => {
     const quote = truncateForTweet(selectedText, 200);
     const tweetText = `"${quote}"\n\n— ${bookTitle}, Ch.${chapterNumber}`;
-    const url = SHARE_URLS.twitter(tweetText, chapterUrl, 'frankxeth');
+    const url = SHARE_URLS.twitter(tweetText, chapterUrl, 'frankx_ai');
     window.open(url, '_blank', 'noopener,noreferrer,width=600,height=400');
     setVisible(false);
   };

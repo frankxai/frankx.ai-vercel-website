@@ -86,7 +86,7 @@ export function PDFDeliveryEmail({ name, pdfTitle, pdfUrl, guideSlug }: PDFDeliv
           frankx.ai
         </a>
         <span style="color: #64748b;">|</span>
-        <a href="https://x.com/frankxeth" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
+        <a href="https://x.com/frankx_ai" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
           X
         </a>
         <span style="color: #64748b;">|</span>

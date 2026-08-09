@@ -209,7 +209,7 @@ function generateNewsletterHTML(recipientName: string = "Creator"): string {
           frankx.ai
         </a>
         <span style="color: #64748b;">•</span>
-        <a href="https://x.com/frankxeth" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">
+        <a href="https://x.com/frankx_ai" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">
           X
         </a>
         <span style="color: #64748b;">•</span>

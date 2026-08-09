@@ -9,6 +9,7 @@ import { ArrowRight, Sparkles, Filter } from 'lucide-react'
 import BlogCard from '@/components/blog/BlogCard'
 import CategoryDropdown from '@/components/blog/CategoryDropdown'
 import PremiumVisualCarousel from '@/components/blog/PremiumVisualCarousel'
+import { buildBlogIndex } from '@/lib/blog-index'
 import { cn } from '@/lib/utils'
 
 // ============================================================================
@@ -46,18 +47,10 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
     return posts.filter((post) => post.category?.toLowerCase() === category.toLowerCase()).length
   }
 
-  // Latest ORIGINAL post shown as hero (curated/recap content excluded)
-  const latestPost = !selectedCategory
-    ? posts.find(p => p.category?.toLowerCase() !== 'curated') ?? null
-    : null
-  const remainingPosts = posts.filter(p => p !== latestPost)
-
-  const filteredPosts = selectedCategory
-    ? remainingPosts.filter((post) => post.category?.toLowerCase() === selectedCategory.toLowerCase())
-    : remainingPosts.filter((post) => post.category?.toLowerCase() !== 'curated')
-
-  const featuredPosts = filteredPosts.filter((post) => post.featured).slice(0, 2)
-  const regularPosts = filteredPosts.filter((post) => !post.featured)
+  const { latestPost, featuredPosts, gridPosts, visiblePosts } = buildBlogIndex(
+    posts,
+    selectedCategory,
+  )
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
@@ -222,7 +215,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               className="hidden md:flex items-center gap-3"
             >
               <span className="text-sm text-white/60">
-                {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
+                {visiblePosts.length} {visiblePosts.length === 1 ? 'article' : 'articles'}
               </span>
             </motion.div>
           </div>
@@ -264,23 +257,23 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                 {selectedCategory}
               </h2>
               <span className="text-xs text-white/60">
-                • {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
+                • {visiblePosts.length} {visiblePosts.length === 1 ? 'article' : 'articles'}
               </span>
             </div>
           )}
 
-          {!selectedCategory && regularPosts.length > 0 && (
+          {!selectedCategory && gridPosts.length > 0 && (
             <div className="flex items-center gap-2 mb-8">
               <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
-                All Articles
+                More Articles
               </h2>
               <span className="text-xs text-white/60">
-                • {regularPosts.length} {regularPosts.length === 1 ? 'article' : 'articles'}
+                • {gridPosts.length} {gridPosts.length === 1 ? 'article' : 'articles'}
               </span>
             </div>
           )}
 
-          {filteredPosts.length === 0 ? (
+          {visiblePosts.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -300,7 +293,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             </motion.div>
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {(selectedCategory ? filteredPosts : regularPosts).map((post, i) => (
+              {gridPosts.map((post, i) => (
                 <motion.div
                   key={post.slug}
                   initial={{ opacity: 0, y: 30 }}
