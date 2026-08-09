@@ -1,9 +1,9 @@
 allowBuilds:
-  'agentdb@3.0.0-alpha.14': false
+  'agentdb@3.0.0-alpha.20': false
   'argon2@0.44.0': false
   'better-sqlite3@11.10.0': false
   'hnswlib-node@3.0.0': false
-  'protobufjs@6.11.6 || 7.5.6': false
+  'protobufjs@6.11.6 || 7.6.5': false
   'puppeteer@24.43.0': false
   'sharp@0.32.6': false
   'sharp@0.34.5': true

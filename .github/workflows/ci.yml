@@ -75,6 +75,9 @@ jobs:
       - name: Build integrity contract
         run: pnpm run test:build-integrity
 
+      - name: AgentDB runtime smoke
+        run: pnpm run test:agentdb-runtime
+
       - name: Type Check
         run: pnpm run type-check
 
