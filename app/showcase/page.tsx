@@ -16,7 +16,7 @@ const features = [
     name: 'AI Music Production',
     description: '500+ Suno sessions tested and refined for professional-quality AI music generation.',
     Icon: Music,
-    href: '/ai-music-academy',
+    href: '/music/learn',
     cta: 'Start Creating',
     className: 'col-span-3 lg:col-span-2',
     background: (
@@ -27,7 +27,7 @@ const features = [
     name: 'Vibe OS',
     description: 'Transform your creative state with AI-generated soundscapes.',
     Icon: Zap,
-    href: '/vibe-os',
+    href: '/products/vibe-os',
     cta: 'Experience It',
     className: 'col-span-3 lg:col-span-1',
     background: (
