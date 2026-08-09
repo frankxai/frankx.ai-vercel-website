@@ -3,6 +3,26 @@ import { mkdtemp, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import test from 'node:test'
+import { closeAgentDB } from '../../lib/acos/memory/agentdb.mjs'
+
+test('AgentDB close always attempts database cleanup and surfaces close failures', async () => {
+  const calls = []
+  const vectorCloseError = new Error('vector backend close failed')
+  const db = {
+    vectorBackend: {
+      async close() {
+        calls.push('vector')
+        throw vectorCloseError
+      },
+    },
+    async close() {
+      calls.push('database')
+    },
+  }
+
+  await assert.rejects(() => closeAgentDB(db), vectorCloseError)
+  assert.deepEqual(calls, ['vector', 'database'])
+})
 
 test('AgentDB satisfies the production memory adapter contract', async () => {
   const tempDir = await mkdtemp(path.join(tmpdir(), 'frankx-agentdb-runtime-'))
@@ -46,13 +66,18 @@ test('AgentDB satisfies the production memory adapter contract', async () => {
     assert.equal(statistics.totalPatterns, 1)
     assert.ok(statistics.avgUses >= 1)
   } finally {
-    await memory?.close().catch(() => {})
-    process.chdir(previousCwd)
-    await rm(tempDir, { recursive: true, force: true })
-
-    for (const [key, value] of Object.entries(previousEnv)) {
-      if (value === undefined) delete process.env[key]
-      else process.env[key] = value
+    try {
+      await memory?.close()
+    } finally {
+      try {
+        process.chdir(previousCwd)
+        await rm(tempDir, { recursive: true, force: true })
+      } finally {
+        for (const [key, value] of Object.entries(previousEnv)) {
+          if (value === undefined) delete process.env[key]
+          else process.env[key] = value
+        }
+      }
     }
   }
 })
