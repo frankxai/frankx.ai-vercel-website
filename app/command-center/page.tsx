@@ -179,7 +179,7 @@ const MIND_MAP_NODES: MindMapNode[] = [
 
 const QUICK_ACTIONS = [
   [
-    { label: 'Generate Social', icon: <Share2 className="w-4 h-4" />, href: '/generate-social', color: 'violet' },
+    { label: 'Generate Social', icon: <Share2 className="w-4 h-4" />, href: '/studio/social', color: 'violet' },
     { label: 'Write Blog', icon: <PenTool className="w-4 h-4" />, href: '/admin/content', color: 'emerald' },
     { label: 'Send Newsletter', icon: <Send className="w-4 h-4" />, href: 'https://n8n.frankx.ai', color: 'cyan', external: true },
     { label: 'Check Analytics', icon: <LineChart className="w-4 h-4" />, href: 'https://vercel.com/frankxai', color: 'amber', external: true },

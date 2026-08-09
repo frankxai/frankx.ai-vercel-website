@@ -33,14 +33,14 @@ No blocking public wiring findings.
 | --- | --- | --- | --- |
 | /music-school | /music/learn | verified | Music School is a public label; /music/learn is the existing route. |
 | /agentic-creator-os | /products/agentic-creator-os | verified | Legacy product shorthand now resolves to the canonical Agentic Creator OS product page. |
-| /ai-music-academy | /music/learn | verified | AI Music Academy CTAs now land on the public music learning hub. |
+| /ai-music-academy | /music/learn | landed 2026-08-07 | AI Music Academy CTAs now land on the public music learning hub. |
 | /ai-architectures | /ai-architecture | verified | Permanent redirect already exists in next.config.mjs. |
 | /ai-architect | /ai-architecture | verified | Permanent redirect already exists in next.config.mjs. |
 | /links | /linktree | verified | Proxy redirects /links to /linktree. |
 | /learning-paths | /learn | verified | Learning-path label now resolves to the consolidated Learn hub. |
-| /for/founders | /for/creators | verified | Founder workshop CTAs now land on the existing creator audience page. |
-| /toolkit | /products/creative-ai-toolkit | verified | Creator Toolkit ladder CTA now resolves to the existing Creative AI Toolkit product page. |
+| /for/founders | /for/creators | landed 2026-08-07 | Founder workshop CTAs now land on the existing creator audience page. |
+| /toolkit | /products/creative-ai-toolkit | landed 2026-08-07 | Creator Toolkit ladder CTA now resolves to the existing Creative AI Toolkit product page. |
 | /soul-frequency-assessment | /soul-frequency-quiz | verified | Redirect alias exists and quiz page is live. |
 | /products/soulbook | /soulbook | verified | Permanent redirect already exists in next.config.mjs. |
-| /vibe-os | /products/vibe-os | verified | Legacy shorthand now resolves to the canonical Vibe OS product page. |
+| /vibe-os | /products/vibe-os | landed 2026-08-07 | Legacy shorthand now resolves to the canonical Vibe OS product page. |
 
