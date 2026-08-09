@@ -117,11 +117,6 @@ const sections: NavSection[] = [
       { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: 'Prompts Frank uses and publishes' },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Build logs + stories' },
       { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-ship templates' },
-      { name: 'Music Showcase', href: '/music', icon: Music, description: 'Original releases and experiments' },
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
-      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
-      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory through production' },
-      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Listen on Suno', external: true },
     ],
   },
   {
