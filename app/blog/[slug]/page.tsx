@@ -12,6 +12,7 @@ import Recommendations from '@/components/recommendations/Recommendations'
 import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
 import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
+import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import HeroImage from '@/components/ui/HeroImage'
@@ -110,10 +111,11 @@ export default async function BlogPostPage({
         name: 'Oracle',
       },
       sameAs: [
-        'https://x.com/frankxeth',
-        'https://www.linkedin.com/in/frank-x-riemer/',
-        'https://github.com/frankxai',
-        'https://www.youtube.com/@frankxai',
+        socialLinks.x,
+        socialLinks.linkedin,
+        socialLinks.github,
+        socialLinks.youtube,
+        socialLinks.instagram,
       ],
     },
     publisher: {

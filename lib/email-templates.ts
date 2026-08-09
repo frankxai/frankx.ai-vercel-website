@@ -140,7 +140,7 @@ function emailWrapper(content: string, preheader: string = '', recipientEmail?: 
                           <a href="https://frankx.ai" style="color: #22d3ee; text-decoration: none; font-size: 13px; font-weight: 500;">frankx.ai</a>
                         </td>
                         <td style="padding: 8px 12px;">
-                          <a href="https://x.com/frankxeth" style="color: #64748b; text-decoration: none; font-size: 13px; font-weight: 500;">X / Twitter</a>
+                          <a href="https://x.com/frankx_ai" style="color: #64748b; text-decoration: none; font-size: 13px; font-weight: 500;">X / Twitter</a>
                         </td>
                         <td style="padding: 8px 12px;">
                           <a href="${socialLinks.linkedin}" style="color: #64748b; text-decoration: none; font-size: 13px; font-weight: 500;">LinkedIn</a>

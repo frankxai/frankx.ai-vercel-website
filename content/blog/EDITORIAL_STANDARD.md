@@ -14,7 +14,7 @@ Frank Riemer is an **AI Architect & Creator**. He is now independent, building a
 
 Canonical bio (short): *AI Architect & Creator. Now builds agentic systems independently and makes music with AI.*
 
-Profiles (use for `sameAs` / links): x.com/frankxeth · linkedin.com/in/frank-x-riemer · github.com/frankxai · youtube.com/@frankxai
+Profiles (use for `sameAs` / links): x.com/frankx_ai · linkedin.com/in/frank-x-riemer · github.com/frankxai · youtube.com/@frankxai
 
 ---
 
