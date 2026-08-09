@@ -67,8 +67,6 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
-      - run: pnpm install --frozen-lockfile
-
       # Cheapest check in the job, and the one that protects the rest: a
       # merge:gate step this workflow forgets to run is enforced on Frank's
       # machine and nowhere else. Node builtins only, so it needs no install.
@@ -80,6 +78,8 @@ jobs:
       # check — or the production build — runs at all. Also node builtins only.
       - name: Deploy and PR path coverage
         run: node scripts/check-deploy-path-coverage.mjs
+
+      - run: pnpm install --frozen-lockfile
 
       # First, and cheap. A contract test that does not parse cannot protect
       # anything, and that failure is invisible to every check that follows.
