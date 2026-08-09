@@ -53,11 +53,11 @@ test('pnpm lifecycle scripts stay denied by default with two version-pinned appr
   assert.doesNotMatch(workspace, /dangerouslyAllowAllBuilds/)
 
   for (const denied of [
-    'agentdb@3.0.0-alpha.14',
+    'agentdb@3.0.0-alpha.20',
     'argon2@0.44.0',
     'better-sqlite3@11.10.0',
     'hnswlib-node@3.0.0',
-    'protobufjs@6.11.6 || 7.5.6',
+    'protobufjs@6.11.6 || 7.6.5',
     'puppeteer@24.43.0',
     'sharp@0.32.6',
   ]) {
@@ -68,7 +68,7 @@ test('pnpm lifecycle scripts stay denied by default with two version-pinned appr
   }
 })
 
-test('CI runs the boundary contract when dependency policy changes', async () => {
+test('CI runs the dependency boundary and AgentDB runtime contracts', async () => {
   const workflow = await read('.github/workflows/ci.yml')
   const packageJson = JSON.parse(await read('package.json'))
 
@@ -78,6 +78,14 @@ test('CI runs the boundary contract when dependency policy changes', async () =>
   assert.match(
     workflow,
     /- name: Build integrity contract\s+run: pnpm run test:build-integrity/,
+  )
+  assert.match(
+    workflow,
+    /- name: AgentDB runtime smoke\s+run: pnpm run test:agentdb-runtime/,
+  )
+  assert.equal(
+    packageJson.scripts['test:agentdb-runtime'],
+    'node --test scripts/tests/agentdb-runtime.test.mjs',
   )
   assert.equal(
     packageJson.scripts.postbuild,
