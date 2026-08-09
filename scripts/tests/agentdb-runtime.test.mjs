@@ -65,6 +65,18 @@ test('AgentDB satisfies the production memory adapter contract', async () => {
     const statistics = await memory.stats()
     assert.equal(statistics.totalPatterns, 1)
     assert.ok(statistics.avgUses >= 1)
+
+    const { getStore } = await import('../../lib/acos/memory/store.mjs')
+    const { store } = await getStore()
+    const closeError = new Error('public memory close failed')
+    const closeStore = store.close.bind(store)
+    store.close = async () => {
+      await closeStore()
+      throw closeError
+    }
+
+    await assert.rejects(() => memory.close(), closeError)
+    assert.equal(memory.currentDriver(), null)
   } finally {
     try {
       await memory?.close()
