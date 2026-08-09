@@ -1,12 +1,20 @@
 # Branch Audit — frankx.ai-vercel-website
 
-**As of:** 2026-08-09
-**Baseline:** `main` @ `ebc955073`
-**Scope:** 67 remote refs at snapshot time — `main` plus 66 branches. 29 branches back an open pull request; 37 are orphans.
+**Data gathered at:** `main` @ `3cc8d66cb`, 2026-08-09
+**Scope:** 67 remote refs at that moment — `main` plus 66 branches. 29 branches back an open pull request; 37 are orphans.
 
-The branch data below was gathered at `main` @ `3cc8d66cb` and re-baselined to `ebc955073` without regathering, because the only file differing between those two commits is `.github/cleanup-queue.txt` (#448) and that merge deleted zero branches — verified by re-checking all 66 snapshot refs against the remote afterwards. Every count therefore still holds.
+**When this file goes stale.** This audit describes *branch* state, so only a change to branch state invalidates it — not every commit on `main`. Commits that touch workflows, docs or app code move `main` without moving a single ref, and re-pinning a baseline SHA after each one is churn that adds no information. The check that matters is:
 
-Branches created after the snapshot are not listed: `agent/claude/refresh-branch-audit` (this change) and `agent/claude/frankx-four-hour-20260809`. `agent/claude/clear-completed-cleanup-queue` was auto-deleted when #448 merged.
+```
+git fetch origin --prune
+git branch -r --list 'origin/*' | grep -v origin/HEAD | wc -l    # expect 66 + refs created since
+```
+
+If a ref in the tables below has disappeared, or an orphan has gained commits, regather. If the only difference is new branches and new `main` commits, the tiers still hold.
+
+Verified under that rule twice since gathering: `ebc955073` (#448, `.github/cleanup-queue.txt` only, deleted zero branches — re-checked all 66 refs afterwards) and `cad386237` (#451, CI workflows and scripts only). Neither changed branch state.
+
+Refs that changed after the snapshot and are therefore absent from the tables: `agent/claude/refresh-branch-audit` (this change), `agent/claude/frankx-four-hour-20260809` and its successor work; `agent/claude/clear-completed-cleanup-queue` was auto-deleted when #448 merged.
 
 Deletion is reversible until GitHub garbage-collects the ref (typically weeks). Revive with `git checkout origin/<branch>`.
 
