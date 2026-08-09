@@ -27,6 +27,7 @@ on:
       - 'data/**'
       - 'public/**'
       - 'scripts/**'
+      - 'types/**'
       # workflow-validate.mjs reads .claude/workflows and resolves agentType
       # against .claude/agents. Without these, a pull request touching only a
       # workflow or a referenced agent skips this job — the validation step
@@ -66,6 +67,18 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
+      # Cheapest check in the job, and the one that protects the rest: a
+      # merge:gate step this workflow forgets to run is enforced on Frank's
+      # machine and nowhere else. Node builtins only, so it needs no install.
+      - name: merge:gate CI coverage
+        run: node scripts/check-merge-gate-coverage.mjs
+
+      # Same class, other direction: the coverage check above protects the list
+      # of checks, this protects the list of paths that decides whether any
+      # check — or the production build — runs at all. Also node builtins only.
+      - name: Deploy and PR path coverage
+        run: node scripts/check-deploy-path-coverage.mjs
+
       - run: pnpm install --frozen-lockfile
 
       # First, and cheap. A contract test that does not parse cannot protect
@@ -73,15 +86,24 @@ jobs:
       - name: Contract test syntax
         run: pnpm run test:syntax
 
+      # Keep this list in sync with the merge:gate script in package.json. The
+      # coverage step below fails the job if it drifts again: test:expert-authority
+      # was never listed here, and #441 added test:blog-discoverability and
+      # test:social-identity to merge:gate without adding them to this workflow —
+      # so the contract that #441 shipped to stop a blog-discoverability
+      # regression was itself unenforced on every pull request.
       - name: Contract tests
         run: |
           pnpm run test:homepage-release
           pnpm run test:collaboration-release
+          pnpm run test:expert-authority
           pnpm run test:ai-architecture
           pnpm run test:email-safety
           pnpm run test:agentic-life-research
           pnpm run test:community-platform-guide
           pnpm run test:learning-routes
+          pnpm run test:blog-discoverability
+          pnpm run test:social-identity
 
       - name: Content and claims integrity
         run: |
