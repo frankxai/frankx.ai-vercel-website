@@ -1,149 +1,144 @@
 # Branch Audit — frankx.ai-vercel-website
 
-**As of:** 2026-07-27
-**Baseline:** `main` @ 93849c62 (all CI gates verified green locally: build-integrity, type-check, lint, ai-slop)
-**Method:** every branch diffed against `main` with `public/reading/` excluded, then cross-referenced against its pull-request outcome. "Unlanded" = files the branch touched that still differ from `main` today.
+**As of:** 2026-08-09
+**Baseline:** `main` @ `3cc8d66cb`
+**Scope:** 67 remote refs — `main` plus 66 branches. 29 branches back an open pull request; 37 are orphans.
 
 Deletion is reversible until GitHub garbage-collects the ref (typically weeks). Revive with `git checkout origin/<branch>`.
 
-## Why the old audit was replaced
+## Why the previous audit was replaced
 
-The previous version of this file was dated 2026-06-01 and listed seven branches that no longer exist (`chore/normalize-line-endings-2026-05`, `feat/smart-404-routing`, `hotfix/mobile-nav-restore`, `feat/newsletter-launch-v1`, `claude/focused-gauss-IdjMf`, `feat/birthday-tribe-page`, `feat/acos-pillar-9-10-agents`). An audit that describes a repo state that no longer exists cannot gate deletions, so it was regenerated from scratch.
+The prior version was dated 2026-07-27 against `main` @ `93849c62`. Since then main advanced by 61 commits, 56 of them pull-request merges; the 16-ref Tier A batch was queued and executed as #425; and a further six refs were deleted by hand. Its counts (13 / 9 / 14 / 14 / 31) no longer describe any repo state that exists.
 
-## One thing to know before merging anything old
+That file opened by arguing that *"an audit that describes a repo state that no longer exists cannot gate deletions."* The same standard applied to itself is why it was regenerated rather than patched.
 
-`main` untracked `public/reading/` on 2026-07-26 (#349) — 17,880 files, ~508MB of recursive generator output. Every branch created before that date still carries those files at its tip.
+## Method — what counts as proof
 
-**This does not block merging.** A three-way merge preserves `main`'s deletion, because the branches never modified those paths after the merge base. Verified by test-merging all 31 open PRs: **zero** of them stage a single `public/reading/` file. What it does mean is that `git diff main <branch>` reports a ~6.6M-line delta on almost every branch — that number is an artifact, not unlanded work, and should be ignored.
+Squash merges are the reason this cannot be done with `git branch --merged`. A squash rewrites the commit and breaks ancestry while preserving the tree, so `--merged` reports 1 of 66 branches here. Three mechanical proofs are used instead, in descending strength:
+
+- **(A) Tree present in main's history** — the branch tip's tree hash appears verbatim somewhere in main's own history, so main once contained exactly this content:
+  `git log --format=%T origin/main | grep -x $(git rev-parse origin/<b>^{tree})`
+- **(B) Contained in a live branch** — `git merge-base --is-ancestor origin/<b> origin/<survivor>`, with the survivor named.
+- **(C) Exact duplicate** — two refs at the identical tip commit.
+
+Anything not carrying one of these three proofs is treated as unlanded, regardless of how old or abandoned it looks.
+
+### One trap worth naming
+
+**A merge conflict is not evidence that work is unlanded.** 36 of the 37 orphans now conflict with main. That is a consequence of main moving, not a statement about their content — a squash-merged branch whose files main later edited will conflict just as loudly as one that never landed. Conflict status is recorded below because it tells you the *cost of recovering* a branch. It is never used here as a landing proof.
 
 ## Summary
 
 | Tier | Meaning | Count | Action |
 |---|---|---|---|
-| A | Verified fully landed in `main` | 13 | Delete now — queued in `.github/cleanup-queue.txt` |
-| B | PR was closed unmerged | 9 | Frank's call — work was deliberately declined |
-| C | `archive/*` save-point snapshots | 14 | Frank's call — retention policy decision |
-| D | Orphaned work, never opened as a PR | 14 | Needs triage — real work, at risk of being lost |
-| E | Backs an open PR | 31 | Keep until the PR resolves |
+| A | Content proven present in main's history | 1 | Safe to delete — but see the hold below |
+| B | Strictly contained in another live branch | 1 | Safe to delete — but see the hold below |
+| C | Exact-duplicate pair, one name should survive | 2 refs | Pick a survivor, delete the other |
+| D | Orphan whose pull request was closed | 5 | Frank's call — reviewed once already |
+| E | Orphan that never had a pull request | 32 | Highest risk — nobody has ever reviewed this |
+| F | Backs an open pull request | 29 | Keep until the pull request resolves |
 
-## Tier A — safe to delete (queued)
+Tiers A, B, C and D are subsets of the 37 orphans; F is disjoint from all of them.
 
-Each row was proved individually: for every file the branch touched, the branch's version is byte-identical to `main`'s, or the branch's PR was merged and the only remaining difference is `main` moving forward afterwards.
+## Tier A — content proven in main's history
 
-| Branch | PR | Last commit | Unlanded | Proof |
-|---|---|---|---|---|
-| `codex/production-excellence-sweep-20260619` | — | 2026-06-19 | 0 | every touched file byte-identical to `main` |
-| `codex/ana-ai-business-kit` | — | 2026-06-24 | 0 | every touched file byte-identical to `main` |
-| `codex/jojo-hospitality-intelligence` | — | 2026-06-25 | 0 | every touched file byte-identical to `main` |
-| `agent/claude/content-integrity-gate` | — | 2026-06-27 | 0 | every touched file byte-identical to `main` |
-| `codex/property-work-showcase` | — | 2026-06-30 | 0 | every touched file byte-identical to `main` |
-| `agent/claude/sonnet5-content-swarm` | — | 2026-07-01 | 0 | every touched file byte-identical to `main` |
-| `codex/mvu-service-layer-clean-20260722` | — | 2026-07-22 | 0 | 2 touched files, both byte-identical to `main` |
-| `observability/vercel-cost-2026-W25` | 181 | 2026-06-15 | 0 | PR #181 closed; its 1 file is byte-identical to `main` |
-| `codex/frankx-home-overlay-hotfix-20260711` | 259 | 2026-07-11 | 0 | PR #259 **merged**; 0 residual delta |
-| `codex/frankx-music-learning-canonical-v3-20260710` | 258 | 2026-07-11 | 0 | PR #258 **merged**; 0 residual delta |
-| `codex/frankx-dnt-privacy-hotfix-20260711` | 260 | 2026-07-11 | 2 | PR #260 **merged**; residual delta is `main` moving on (main 2026-07-24 > branch 2026-07-11) |
-| `codex/frankx-production-proof-2026-07-10` | 257 | 2026-07-11 | 12 | PR #257 **merged**; residual delta is `main` moving on (main 2026-07-22 > branch 2026-07-11) |
-| `fix/footer` | — | 2026-06-27 | 1 | sole change is a `package-lock.json` resync; this PR deletes that file, so the branch is moot |
+| Branch | Proof |
+|---|---|
+| `archive/rails-phase-0` | tip tree `114e4a38` appears in main at commit `9cc6748af` |
 
-## Tier B — PR closed without merging (9)
+**Held by Frank.** He reported the proof did not reproduce for him. It does reproduce against the current remote, and the likely explanation is that the earlier `--contains` method cannot see squash merges and was scoped to non-archive refs. The proof is recorded; the hold stands. Do not queue this without asking him.
 
-Someone opened a PR for this work and then closed it. That is a decision, not an accident — but the branches still hold unlanded files, so they are listed rather than queued.
+## Tier B — contained in a live branch
 
-| Branch | PR | Last commit | Unlanded files |
+| Branch | Contained in | Survivor carries |
+|---|---|---|
+| `archive/ikigai-upgrade-2-2026-W20` | `archive/ikigai-upgrade-3-2026-W20` | +1 commit |
+
+**Held by Frank**, same conversation as Tier A. Same standing instruction: do not queue.
+
+Three further containment relations exist but the contained branch has an **open pull request**, so they stay regardless:
+
+- `agent/claude/v0-blueprint` ⊂ `agent/claude/v0-products` (#336 is deliberately stacked under #338)
+- `agent/codex/tallinn-tribe-studio-20260714` ⊂ `agent/antigravity/lead-funnels-v1`, `agent/gemini/tallinn-reconciliation-main-prod`, `codex/best-ai-hardware` (#278)
+- `codex/best-ai-hardware` ⊂ `agent/antigravity/lead-funnels-v1` (#284)
+
+## Tier C — exact duplicate
+
+`codex/x` and `feat/map-v1-v2-v3-upgrades` point at the identical tip commit `bc21b3f78`, pushed at the same second on 2026-07-15. 18 commits, 132 files.
+
+**Recommendation: keep `feat/map-v1-v2-v3-upgrades`, delete `codex/x`.** The tip commit's own subject is `feat(map): implement dynamic selection hub and specialized v1/v2/v3 visual consoles`, which the surviving name describes and `x` does not. A previous version of this audit said nothing distinguished them; that was an oversight — the commit subject does.
+
+## Tier D — orphan whose pull request was closed
+
+These were opened for review at least once and are no longer open. Whether each was merged-then-superseded or declined outright is **not** recorded here: the GitHub list API returned an unpopulated `merged` field for every closed pull request in this repo, so that distinction was not mechanically verifiable and has not been guessed.
+
+| Branch | Closed PR | Unique commits | Files vs main |
 |---|---|---|---|
-| `claude/newsletter-doi-revival-ruxnO` | 169 | 2026-06-10 | 10 |
-| `codex/remove-acos-agentdb` | 186 | 2026-06-18 | 2 |
-| `claude/remove-personal-info-1DgLs` | 190 | 2026-06-22 | 44 |
-| `claude/frankx-freemium-experience-hJuk4` | 204 | 2026-06-24 | 5 |
-| `agent/claude/homepage-music-email-fixes` | 209 | 2026-06-28 | 23 |
-| `claude/ecosystem-audit-strategy-7ovdli` | 196 | 2026-07-01 | 83 |
-| `claude/fable-cover-v3-spiral` | 225 | 2026-07-04 | 2 |
-| `agent/claude/remove-test-email-endpoint` | 218 | 2026-07-14 | 1 |
-| `codex/frankx-v-template-studio` | 233 | 2026-07-14 | 92 |
+| `agent/c940/r1-primary-cta-20260803` | #419 | 2 | 3 |
+| `agent/book/r1-cta` | #384 | 1 | 3 |
+| `agent/claude/lint-config-and-audit-refresh` | #395 | 4 | 3 |
+| `agent/codex/mvu-day8-unhooking` | #377 | 3 | 15 |
+| `blog-structure-and-content` | #221 | 3 | 12 |
 
-## Tier C — `archive/*` snapshots (14)
+## Tier E — orphan that never had a pull request
 
-Explicit save-points from April–June. `archive/recovery-*` and `archive/staging-madrid-*` are the large recovery snapshots the 2026-06-01 audit marked `KEEP_BACKUP`.
+32 branches carrying commits main does not have, that no pull request has ever covered. This is where work actually gets lost. Ordered by size.
 
-| Branch | PR | Last commit | Unlanded files |
+| Branch | Unique commits | Files vs main | Note |
 |---|---|---|---|
-| `archive/recovery-nested-2026-04-20` | — | 2026-04-14 | 664 |
-| `archive/recovery-sibling-2026-04-20` | — | 2026-04-16 | 42 |
-| `archive/rails-phase-0` | — | 2026-05-03 | 58 |
-| `archive/normalize-line-endings-2026-W20` | — | 2026-05-11 | 1 |
-| `archive/ikigai-upgrade-2-2026-W20` | — | 2026-05-14 | 5 |
-| `archive/ikigai-upgrade-3-2026-W20` | — | 2026-05-14 | 5 |
-| `archive/sync-prompt-hub-from-frankx` | — | 2026-05-16 | 14 |
-| `archive/feat-newsletter-launch-v1` | — | 2026-05-19 | 12 |
-| `archive/multi-agent-newsletter-system-anKSZ` | — | 2026-05-19 | 30 |
-| `archive/staging-madrid-2026-05-25` | — | 2026-05-25 | 331 |
-| `archive/claude-frankx-freemium-experience-hJuk4` | — | 2026-05-29 | 27 |
-| `archive/normalize-line-endings-2026-05` | — | 2026-05-29 | 3 |
-| `archive/observability-vercel-cost-2026-W21` | — | 2026-05-29 | 1 |
-| `archive/claude-build-llm-research-hub-75ba8` | — | 2026-06-01 | 51 |
+| `archive/recovery-nested-2026-04-20` | 169 | 1021 | largest orphan; blog + mascot + scripts |
+| `archive/rails-phase-0` | 58 | 58 | also Tier A — content is in main |
+| `codex/x` | 18 | 132 | also Tier C — duplicate |
+| `feat/map-v1-v2-v3-upgrades` | 18 | 132 | also Tier C — recommended survivor |
+| `feat/ikigai-branding-workshop` | 16 | 71 | |
+| `archive/staging-madrid-2026-05-25` | 15 | 796 | blog + image-ingest pipeline |
+| `agent/antigravity/lead-funnels-v1` | 15 | 717 | carries `.agents/skills/vercel-optimize/` |
+| `archive/claude-frankx-freemium-experience-hJuk4` | 8 | 27 | |
+| `archive/sync-prompt-hub-from-frankx` | 7 | 35 | partnerships + work components |
+| `agent/gemini/tallinn-reconciliation-main-prod` | 7 | 61 | |
+| `claude/ecosystem-audit-strategy-7ovdli` | 6 | 202 | mostly `new-landing-page-backup/` |
+| `archive/claude-build-llm-research-hub-75ba8` | 5 | 63 | |
+| `claude/remove-personal-info-1DgLs` | 4 | 1486 | largest file delta of any orphan |
+| `claude/multi-agent-newsletter-system-anKSZ` | 4 | 34 | |
+| `agent/codex/vault-refresh-388` | 4 | 4 | |
+| `archive/observability-vercel-cost-2026-W21` | 3 | 3 | |
+| `agent/claude/remove-test-email-endpoint` | 3 | 3 | **superseded** — see below |
+| `claude/newsletter-doi-revival-ruxnO` | 2 | 10 | |
+| `claude/gifted-pasteur-9LsID` | 2 | 64 | |
+| `claude/frankx-freemium-experience-hJuk4` | 2 | 6 | |
+| `archive/ikigai-upgrade-3-2026-W20` | 2 | 11 | survivor of the Tier B pair |
+| `agent/codex/frankx-earbuds-2026` | 2 | 486 | |
+| `agent/claude/homepage-music-email-fixes` | 2 | 44 | |
+| `archive/ikigai-upgrade-2-2026-W20` | 1 | 10 | also Tier B |
+| `codex/remove-acos-agentdb` | 1 | 3 | |
+| `codex/openai-devday-resource` | 1 | 17 | |
+| `claude/fable-cover-v3-spiral` | 1 | 2 | **the only orphan that still merges clean** |
+| `archive/normalize-line-endings-2026-W20` | 1 | 5 | |
+| `archive/normalize-line-endings-2026-05` | 1 | 52 | |
+| `archive/feat-newsletter-launch-v1` | 1 | 12 | |
+| `agent/worktree-sync` | 1 | 1 | `.gitignore` only |
+| `agent/gemini/auctions-upgrade` | 1 | 6 | |
 
-## Tier D — orphaned work, never opened as a PR (14)
+### `agent/claude/remove-test-email-endpoint` is superseded
 
-This is the tier that actually loses work. Each branch holds committed changes that were never proposed for review and are not in `main`. Nothing here is queued for deletion.
+Its three commits gate `/api/test-email` behind a shared secret. Main already ships that route as an unconditional 404 on both `GET` and `POST` (`app/api/test-email/route.ts`), which is strictly stronger. Nothing is lost by dropping this branch. It is listed in Tier E rather than Tier A because the *content* is not in main — the outcome is simply better there.
 
-| Branch | PR | Last commit | Unlanded files | Note |
-|---|---|---|---|---|
-| `claude/gifted-pasteur-9LsID` | — | 2026-06-10 | 64 |  |
-| `claude/multi-agent-newsletter-system-anKSZ` | — | 2026-06-10 | 34 |  |
-| `feat/ikigai-branding-workshop` | — | 2026-06-14 | 48 |  |
-| `agent/worktree-sync` | — | 2026-06-18 | 1 | Only change strips 25 lines from `.gitignore` — inspect before reviving. |
-| `agent/codex/frankx-earbuds-2026` | — | 2026-06-26 | 61 |  |
-| `agent/codex/mind-page` | — | 2026-07-01 | 26 |  |
-| `codex/openai-devday-resource` | — | 2026-07-03 | 17 |  |
-| `agent/witali-father-code` | — | 2026-07-09 | 2 | **Family memorial** — adds `/witali` + `/father-code` (759 lines). Do not delete. |
-| `agent/gemini/auctions-upgrade` | — | 2026-07-14 | 2 |  |
-| `agent/gemini/tallinn-reconciliation-main-prod` | — | 2026-07-15 | 10 |  |
-| `codex/blog` | — | 2026-07-15 | 35 |  |
-| `codex/x` | — | 2026-07-15 | 94 |  |
-| `feat/map-v1-v2-v3-upgrades` | — | 2026-07-15 | 94 |  |
-| `agent/book/r1-cta` | — | 2026-07-16 | 3 | Primary nav + homepage CTA → gencreator.ai. |
+## Tier F — backs an open pull request
 
-## Tier E — open pull requests (31)
+29 branches. Keep every one until its pull request merges or closes. The list is not duplicated here because it goes stale the moment a pull request resolves; read it live:
 
-Merge-cleanliness was measured by actually test-merging each PR head into `main` @ 93849c62.
+```
+gh pr list --state open --json number,headRefName
+```
 
-| PR | State | Head last commit | Merge | Title |
-|---|---|---|---|---|
-| #375 | draft | 2026-07-27 | clean | obs(vercel-cost): 2026-W31 snapshot — YELLOW |
-| #374 | ready | 2026-07-27 | clean | Separate the journal from the blog |
-| #373 | draft | 2026-07-27 | clean | feat(claude): install web-excellence pack — enforced gate  |
-| #368 | ready | 2026-07-25 | clean | fix: preserve essential metadata identity |
-| #356 | draft | 2026-07-23 | clean | feat(starlight): /starlight/gravity page + gravity-engine  |
-| #355 | draft | 2026-07-26 | clean | docs(mvu): continue rolling Tallinn field intelligence |
-| #352 | ready | 2026-07-22 | **conflicts** | Elevate the FrankX constellation without reducing its brea |
-| #351 | draft | 2026-07-22 | **conflicts** | feat: productionize v0 template OS and Visual Foundry |
-| #346 | draft | 2026-07-22 | **conflicts** | feat(music): add fail-closed Studio Ledger release gate |
-| #344 | draft | 2026-07-21 | clean | feat(business): align portfolio around recurring value |
-| #341 | draft | 2026-07-20 | clean | obs(vercel-cost): 2026-W30 snapshot — RED |
-| #340 | draft | 2026-07-19 | clean | Campaign C1: /agentic-company — Starlight Intelligence Blu |
-| #338 | draft | 2026-07-18 | clean | feat(v0): The Products + wave-2 intelligence (stacked on # |
-| #337 | draft | 2026-07-17 | clean | feat(blog): Coherence Is an Engineering Property — Benevol |
-| #336 | ready | 2026-07-18 | clean | feat(v0): /v0 Blueprint — best-of-v0 + FrankX blueprints + |
-| #335 | draft | 2026-07-17 | clean | feat(blog): Magnifica Humanitas flagship upgrade — first p |
-| #334 | draft | 2026-07-17 | clean | feat(challenge): harden First €100 Weekend |
-| #326 | draft | 2026-07-16 | clean | feat(challenge): launch the First €100 Weekend |
-| #321 | draft | 2026-07-16 | clean | feat(accelerator): Venture Fabric + Portfolio OS public co |
-| #284 | ready | 2026-07-15 | **conflicts** | feat: launch AI hardware intelligence hub |
-| #278 | ready | 2026-07-15 | **conflicts** | feat: launch public Tallinn session studio |
-| #276 | draft | 2026-07-14 | **conflicts** | Starlight Retreats: founding vision experience |
-| #271 | draft | 2026-07-12 | **conflicts** | feat: verified AI architecture deployment atlas |
-| #266 | draft | 2026-07-13 | **conflicts** | feat(family): launch the governed Family Intelligence foun |
-| #243 | draft | 2026-07-15 | clean | fix(revenue): wire $47 kit CTA to real Stripe checkout, re |
-| #231 | draft | 2026-07-17 | clean | Hosted investment-intelligence council — Sonnet+Opus swarm |
-| #221 | ready | 2026-07-03 | **conflicts** | Update website metadata and job title for Agentic Founder  |
-| #210 | ready | 2026-07-19 | **conflicts** | Elevate /ai-architecture to 2026 SOTA: SOTA blueprints, li |
-| #202 | ready | 2026-07-02 | **conflicts** | feat(premium): five doors framework + Strategic Advisor do |
-| #168 | ready | 2026-06-10 | **conflicts** | fix(claims+voice): #107 standard on lab/build pages + voic |
-| #166 | ready | 2026-07-17 | **conflicts** | Model Hub expansion: multimodal /models, LLM Arena, proven |
+## Recovery cost
 
-**18 merge clean. 13 conflict.** The conflicts cluster on a handful of shared files — `app/sitemap.ts`, `package.json`, `.gitignore`, `components/Navigation*.tsx`, `app/friends/ana/page.tsx` — which is the signature of several agents editing the same index files in parallel over the same weeks.
+Only `claude/fable-cover-v3-spiral` (2 files) still merges clean against main. Every other orphan needs a real rebase, so "open a pull request to rescue it" is no longer a cheap operation for any of them. Verified with `git merge-tree --write-tree origin/main origin/<b>` against `3cc8d66cb`.
 
-## Keeping this file true
+## How to act on this
 
-Regenerate whenever branches are deleted or a batch of PRs lands. The three measurements that matter, in order: PR outcome per branch, unlanded-file count with `public/reading/` excluded, and a real test-merge for anything still open.
+1. Put verified names in `.github/cleanup-queue.txt` in a pull request — **replace** the contents, never append to a previous batch.
+2. Merge it. The Branch Cleanup workflow deletes exactly those refs.
+3. Clear the queue in a follow-up pull request. Main is PR-protected, so the workflow cannot push that commit itself.
+
+Skipping step 3 is what left a completed 16-ref batch sitting on main reading as pending; that is the failure mode the "replace, do not append" rule exists to prevent.
