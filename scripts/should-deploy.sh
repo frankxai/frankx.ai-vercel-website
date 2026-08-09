@@ -72,6 +72,10 @@ RELEVANT_PATHS=(
   public
   scripts
   styles
+  # Exports runtime constants (CATEGORY_META, AI_PROVIDER_META, ...), not only
+  # type declarations, and is imported by checkout and product routes. Omitting
+  # it made a types-only commit skip the production build.
+  types
   package.json
   pnpm-lock.yaml
   next.config.mjs

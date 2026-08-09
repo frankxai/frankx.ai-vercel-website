@@ -25,6 +25,7 @@ on:
       - 'content/**'
       - 'public/**'
       - 'scripts/**'
+      - 'types/**'
       - '.github/workflows/contract-guard.yml'
 
 concurrency:

@@ -27,6 +27,7 @@ on:
       - 'data/**'
       - 'public/**'
       - 'scripts/**'
+      - 'types/**'
       # workflow-validate.mjs reads .claude/workflows and resolves agentType
       # against .claude/agents. Without these, a pull request touching only a
       # workflow or a referenced agent skips this job — the validation step
@@ -73,6 +74,12 @@ jobs:
       # machine and nowhere else. Node builtins only, so it needs no install.
       - name: merge:gate CI coverage
         run: node scripts/check-merge-gate-coverage.mjs
+
+      # Same class, other direction: the coverage check above protects the list
+      # of checks, this protects the list of paths that decides whether any
+      # check — or the production build — runs at all. Also node builtins only.
+      - name: Deploy and PR path coverage
+        run: node scripts/check-deploy-path-coverage.mjs
 
       # First, and cheap. A contract test that does not parse cannot protect
       # anything, and that failure is invisible to every check that follows.
