@@ -1,8 +1,12 @@
 # Branch Audit — frankx.ai-vercel-website
 
 **As of:** 2026-08-09
-**Baseline:** `main` @ `3cc8d66cb`
-**Scope:** 67 remote refs — `main` plus 66 branches. 29 branches back an open pull request; 37 are orphans.
+**Baseline:** `main` @ `ebc955073`
+**Scope:** 67 remote refs at snapshot time — `main` plus 66 branches. 29 branches back an open pull request; 37 are orphans.
+
+The branch data below was gathered at `main` @ `3cc8d66cb` and re-baselined to `ebc955073` without regathering, because the only file differing between those two commits is `.github/cleanup-queue.txt` (#448) and that merge deleted zero branches — verified by re-checking all 66 snapshot refs against the remote afterwards. Every count therefore still holds.
+
+Branches created after the snapshot are not listed: `agent/claude/refresh-branch-audit` (this change) and `agent/claude/frankx-four-hour-20260809`. `agent/claude/clear-completed-cleanup-queue` was auto-deleted when #448 merged.
 
 Deletion is reversible until GitHub garbage-collects the ref (typically weeks). Revive with `git checkout origin/<branch>`.
 
