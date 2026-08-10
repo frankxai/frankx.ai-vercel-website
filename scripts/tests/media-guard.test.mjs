@@ -125,6 +125,20 @@ test("rejects dangling symlinks in controlled media paths", async (t) => {
   assert.match(result.stderr, /media paths must not be symbolic links/u)
 })
 
+test("rejects type-changed regular file replaced by dangling symlink", async (t) => {
+  const { root, base } = await repository(t)
+  await write(root, "public/images/hero.png", Buffer.alloc(MIB))
+  commit(root)
+  const typeBase = git(root, "rev-parse", "HEAD").trim()
+  await rm(join(root, "public/images/hero.png"))
+  await symlink("missing-target.png", join(root, "public/images/hero.png"))
+  commit(root, "typechange to symlink")
+
+  const result = run(root, typeBase)
+  assert.equal(result.status, 1, result.stderr)
+  assert.match(result.stderr, /media paths must not be symbolic links/u)
+})
+
 test("escapes workflow-command messages derived from hostile extensions", async (t) => {
   const { root, base } = await repository(t)
   const filename = "public/images/asset.\n::error::injected"

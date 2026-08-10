@@ -98,7 +98,7 @@ function changedFiles() {
   const base = requestedBase || (githubBase && hasRef(githubBase) ? githubBase : null) || (hasRef("HEAD^") ? "HEAD^" : null)
 
   const args = base
-    ? ["diff", "--no-renames", "--name-only", "--diff-filter=AM", "-z", `${base}...HEAD`]
+    ? ["diff", "--no-renames", "--name-only", "--diff-filter=AMT", "-z", `${base}...HEAD`]
     : ["diff-tree", "--root", "--no-renames", "--no-commit-id", "--name-only", "-r", "-z", "HEAD"]
 
   return execFileSync("git", args)

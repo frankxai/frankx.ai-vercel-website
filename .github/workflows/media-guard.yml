@@ -29,4 +29,6 @@ jobs:
         run: node --test scripts/tests/media-guard.test.mjs
 
       - name: Reject repository media debt
-        run: node scripts/media-guard.mjs --base ${{ github.event.pull_request.base.sha }}
+        env:
+          MEDIA_GUARD_BASE: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/media-guard.mjs --base "$MEDIA_GUARD_BASE"
