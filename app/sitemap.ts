@@ -124,6 +124,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
     { url: '/journal', priority: 0.8, changeFrequency: 'daily' as const },
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: '/arrival', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/resources', priority: 0.8, changeFrequency: 'weekly' as const },
