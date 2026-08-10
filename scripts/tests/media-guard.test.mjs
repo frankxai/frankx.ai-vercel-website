@@ -114,35 +114,6 @@ test("rejects unclassified files in plural controlled media paths", async (t) =>
   assert.match(result.stderr, /\.jxl is not a classified web-media format/u)
 })
 
-test("rejects unclassified files at controlled media roots", async (t) => {
-  const { root, base } = await repository(t)
-  await write(root, "public/root.jxl", "unclassified")
-  await write(root, "generated_imgs/root.jxl", "unclassified")
-  await write(root, "generated_audio/root.jxl", "unclassified")
-  await write(root, "content/music/source/root.jxl", "unclassified")
-  commit(root)
-
-  const result = run(root, base)
-  assert.equal(result.status, 1)
-  assert.match(result.stderr, /public\/root\.jxl/u)
-  assert.match(result.stderr, /generated_imgs\/root\.jxl/u)
-  assert.match(result.stderr, /generated_audio\/root\.jxl/u)
-  assert.match(result.stderr, /content\/music\/source\/root\.jxl/u)
-})
-
-test("allows explicit sidecars at controlled media roots", async (t) => {
-  const { root, base } = await repository(t)
-  await write(root, "public/robots.txt", "User-agent: *")
-  await write(root, "generated_imgs/manifest.json", "{}")
-  await write(root, "generated_audio/captions.vtt", "WEBVTT")
-  await write(root, "content/music/source/README.md", "# local source")
-  commit(root)
-
-  const result = run(root, base)
-  assert.equal(result.status, 0, result.stderr)
-  assert.match(result.stdout, /passed for 4 changed file/u)
-})
-
 test("rejects dangling symlinks in controlled media paths", async (t) => {
   const { root, base } = await repository(t)
   await mkdir(join(root, "public/images"), { recursive: true })
@@ -175,4 +146,33 @@ test("falls back to HEAD^ when the GitHub base ref is unavailable", async (t) =>
   assert.equal(result.status, 1)
   assert.match(result.stderr, /\.mp4 exceeds the 2\.00 MiB Git limit/u)
   assert.doesNotMatch(result.stderr, /unknown revision|ambiguous argument/u)
+})
+
+for (const filename of [
+  "public/root.jxl",
+  "generated_imgs/root.jxl",
+  "generated_audio/root.jxl",
+  "content/music/source/root.jxl",
+]) {
+  test(`rejects unclassified media at controlled root ${filename}`, async (t) => {
+    const { root, base } = await repository(t)
+    await write(root, filename, "unclassified media")
+    commit(root)
+
+    const result = run(root, base)
+    assert.equal(result.status, 1)
+    assert.match(result.stderr, /\.jxl is not a classified web-media format/u)
+  })
+}
+
+test("allows explicit text and config sidecars at controlled roots", async (t) => {
+  const { root, base } = await repository(t)
+  await write(root, "public/manifest.webmanifest", "{}")
+  await write(root, "generated_audio/catalog.json", "{}")
+  await write(root, "generated_imgs/README.md", "metadata\n")
+  await write(root, "content/music/source/lyrics.lrc", "[00:00.00]Instrumental\n")
+  commit(root)
+
+  const result = run(root, base)
+  assert.equal(result.status, 0, result.stderr)
 })
