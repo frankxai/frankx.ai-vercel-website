@@ -141,7 +141,7 @@
     "newsletter:send": "node scripts/newsletter/send.mjs send",
     "test:contract-guard": "node scripts/check-contract-guard.mjs",
     "test:syntax": "node scripts/check-test-syntax.mjs",
-    "test:media-guard": "node --test scripts/tests/media-guard.test.mjs"
+    "test:media-guard": "node --test scripts/tests/media-guard.contract.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
