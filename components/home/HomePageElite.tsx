@@ -162,7 +162,7 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // instead of reflowing the sentence every 3.2s.
 const heroVerbs = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
 
-const heroOutcome = 'A working studio, not a landing page — inspect the systems before you copy them.'
+const heroOutcome = 'A working studio, not a landing page.'
 
 // Serif italic on a two-stop emerald→cyan wash is the premium tell.
 const heroVerbClassName =
