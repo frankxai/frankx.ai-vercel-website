@@ -46,7 +46,8 @@ The AI-slop checklist. If a draft contains any of these, send it back.
 
 - ❌ **Stock-photo people on laptops.** If we can't generate or commission imagery, leave it out.
 - ❌ **Decorative gradients with no purpose.** A gradient frames meaning or it leaves the page.
-- ❌ **Generic SaaS hero language** — *"Empower your team"*, *"Unlock your potential"*, *"Take your X to the next level"*. Strike on sight.
+- ❌ **Generic SaaS hero language** — *"Empower your team"*, *"Unlock your potential"*, *"Take your X to the next level"*. Strike on sight. Note: casual *"level up"* in a resource blurb is not the same phrase as the SaaS cliché *"to the next level"* — do not auto-ban it.
+- ❌ **Binary antithesis AI copy** — *"A working studio, not a landing page"*, *"Not another X — a Y"*, *"X without the Y"*. Default model move. Prefer a concrete claim over contrast theatre.
 - ❌ **Walls of identical cards** — three rows of nine cards is a sitemap, not a section.
 - ❌ **Spinning loaders longer than 400ms** — pre-render, stream, or skeleton; never spin.
 - ❌ **Confetti animations.** Once. Ever. Earned.
