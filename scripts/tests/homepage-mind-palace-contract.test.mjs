@@ -38,7 +38,10 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
   assert.doesNotMatch(homepage, /Music first\./)
   assert.doesNotMatch(homepage, /begin with music/)
-  assert.match(homepage, /Explore your highest-leverage AI move\./)
+  assert.match(homepage, /A working studio, not a landing page\./)
+  assert.doesNotMatch(homepage, /Explore your highest-leverage AI move\./)
+  assert.doesNotMatch(homepage, /everything you need to level up\./)
+  assert.match(homepage, /the practical path from first project to/)
   // The rotation belongs in the H1 on a serif gradient — Frank's call, and the
   // hero carries exactly one moving element so the outcome line stays static.
   assert.match(homepage, /function RotatingHeroVerb\(/)
