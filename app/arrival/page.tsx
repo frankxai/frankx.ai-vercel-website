@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -29,7 +30,7 @@ export const metadata = createMetadata({
     'FrankX',
     'Reality Architect',
   ],
-  image: '/images/golden-age/hero-golden-age.png',
+  image: '/images/arrival/hero-pier-xai.png',
 })
 
 const loop = [
@@ -125,14 +126,22 @@ export default function ArrivalPage() {
       {/* Hero */}
       <section className="relative overflow-hidden pt-32">
         <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/arrival/hero-dawn-xai.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center opacity-[0.55]"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/55 via-[#0a0a0b]/78 to-[#0a0a0b]" />
           <div
-            className="absolute inset-0 opacity-40"
+            className="absolute inset-0 opacity-30"
             style={{
               background:
-                'radial-gradient(ellipse 80% 50% at 70% -10%, rgba(240,198,116,0.16), transparent 55%), radial-gradient(ellipse 60% 40% at 10% 20%, rgba(91,140,255,0.12), transparent 50%), radial-gradient(ellipse 50% 30% at 50% 100%, rgba(52,211,153,0.06), transparent 40%)',
+                'radial-gradient(ellipse 70% 45% at 70% 20%, rgba(240,198,116,0.12), transparent 55%)',
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/70 via-[#0a0a0b]/90 to-[#0a0a0b]" />
         </div>
 
         <div className="mx-auto max-w-6xl px-6 pb-20">
