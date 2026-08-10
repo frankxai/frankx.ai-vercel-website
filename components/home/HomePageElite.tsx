@@ -162,7 +162,7 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // instead of reflowing the sentence every 3.2s.
 const heroVerbs = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
 
-const heroOutcome = 'A working studio, not a landing page.'
+const heroOutcome = 'Explore your highest-leverage AI move.'
 
 // Serif italic on a two-stop emerald→cyan wash is the premium tell.
 const heroVerbClassName =
@@ -980,8 +980,7 @@ function LearningHub() {
             Learn & Explore
           </h2>
           <p className="text-base text-white/50 max-w-lg">
-            Guides, courses, video tutorials, and tools — the practical path from first project to
-            production system.
+            Guides, courses, video tutorials, and tools — everything you need to level up.
           </p>
         </motion.div>
 
