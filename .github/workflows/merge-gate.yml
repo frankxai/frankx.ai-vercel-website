@@ -94,6 +94,7 @@ jobs:
       # regression was itself unenforced on every pull request.
       - name: Contract tests
         run: |
+          pnpm run test:media-guard
           pnpm run test:homepage-release
           pnpm run test:collaboration-release
           pnpm run test:expert-authority
