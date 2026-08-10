@@ -164,7 +164,7 @@ export async function POST(request: NextRequest) {
           🏠 frankx.ai
         </a>
         <span style="color: #64748b;">•</span>
-        <a href="https://x.com/frankx_ai" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">
+        <a href="${socialLinks.x}" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">
           𝕏 X
         </a>
         <span style="color: #64748b;">•</span>

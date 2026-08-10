@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { SHARE_URLS } from '@/lib/social-links';
+import { SHARE_URLS, socialHandles } from '@/lib/social-links';
 
 interface ChapterShareButtonsProps {
   bookTitle: string;
@@ -28,10 +28,10 @@ export default function ChapterShareButtons({
 
   const shareText = epigraph 
     ? `"${epigraph.text}" — ${epigraph.author}\n\nReading "${chapterTitle}" from ${bookTitle}`
-    : `Reading "${chapterTitle}" from ${bookTitle} by @frankx_ai\n\n${chapterDescription}`;
+    : `Reading "${chapterTitle}" from ${bookTitle} by ${socialHandles.x}\n\n${chapterDescription}`;
 
   const handleShareX = () => {
-    const url = SHARE_URLS.twitter(shareText, chapterUrl, 'frankx_ai');
+    const url = SHARE_URLS.twitter(shareText, chapterUrl);
     window.open(url, '_blank', 'noopener,noreferrer,width=600,height=400');
   };
 
