@@ -6,10 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight,
   Sparkles,
-  Music,
-  BookOpen,
-  Building2,
-  Cpu,
   CheckCircle2,
   Package,
   Shield,
@@ -24,8 +20,15 @@ import Image from 'next/image'
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
+import {
+  getHubProducts,
+  doorCopy,
+  compassCta,
+  type HubProduct,
+} from '@/components/products/portfolio-hub-data'
 
 // Product characters removed — mascot-first strategy (Feb 21)
+// Catalog: legacy live cards + portfolio-registry SKUs (Launch OS)
 
 // Premium background
 function ProductsBackground() {
@@ -69,122 +72,7 @@ function ProductsBackground() {
   )
 }
 
-// Product data - structured for premium display
-const products = [
-  {
-    id: 'vibe-os',
-    icon: Music,
-    name: 'Vibe OS',
-    tagline: 'Suno Music Mastery',
-    description:
-      'Prompt packs, emotion mapping, and production checklists for Suno creators.',
-    status: 'active',
-    href: '/products/vibe-os',
-    color: 'emerald',
-    highlights: [
-      '50+ genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
-      'Emotion-to-sound mapping system',
-      'Production enhancement and mastering guide',
-    ],
-    featured: true,
-  },
-  {
-    id: 'creators-soulbook',
-    icon: BookOpen,
-    name: 'The Creator\'s Soulbook',
-    tagline: 'Life Architecture OS',
-    description:
-      'Life operating system with 7 pillars, frameworks, and AI coaching prompts. Complete Obsidian vault included.',
-    status: 'active',
-    href: '/soulbook',
-    color: 'amber',
-    highlights: [
-      '7 Life Pillars framework with reflection exercises',
-      '3 transformational perspectives (Life Symphony, Golden Path, 7 Pillars)',
-      '25+ AI coaching prompts + ready-to-use Obsidian vault',
-    ],
-  },
-  {
-    id: 'suno-prompts-bundle',
-    icon: Sparkles,
-    name: '5 Suno Prompt Bundles',
-    tagline: 'Genre-Specific Music Generation',
-    description:
-      'Five curated prompt bundles for specific genres: electronic, hip-hop, ambient, cinematic, and lo-fi.',
-    status: 'active',
-    href: '/products/suno-prompt-library',
-    color: 'cyan',
-    highlights: [
-      '50+ battle-tested prompts across 5 genres',
-      'Emotion and tempo mapping for each genre',
-      'Production tips and remixing guides',
-    ],
-  },
-  {
-    id: 'creative-ai-toolkit',
-    icon: Sparkles,
-    name: 'Creative AI Toolkit',
-    tagline: 'Prompt library + workflow rituals',
-    description:
-      'A digital kit with prompts, templates, and rollout rituals for consistent output.',
-    status: 'early-access',
-    href: '/newsletter?ref=creative-ai-toolkit-early-access',
-    color: 'emerald',
-    highlights: [
-      '100+ validated prompts across storytelling, marketing, and operations',
-      '12 ready-to-deploy workflow automations',
-      '30/60/90 day implementation roadmaps',
-    ],
-  },
-  {
-    id: 'creation-chronicles',
-    icon: BookOpen,
-    name: 'Creation Chronicles',
-    tagline: 'Strategic Storytelling OS',
-    description:
-      'Story frameworks, editorial calendars, and prompt stacks to build authority.',
-    status: 'early-access',
-    href: '/newsletter?ref=creation-chronicles-early-access',
-    color: 'cyan',
-    highlights: [
-      'Strategic story architecture and messaging frameworks',
-      'AI-assisted content creation workflows',
-      'Omnichannel distribution templates',
-    ],
-  },
-  {
-    id: 'generative-creator-os',
-    icon: Cpu,
-    name: 'Generative Creator OS',
-    tagline: 'Multi-modal AI Studio',
-    description:
-      'Multi-modal templates, prompts, and guardrails for a reliable studio system.',
-    status: 'early-access',
-    href: '/newsletter?ref=generative-creator-os-early-access',
-    color: 'emerald',
-    highlights: [
-      'Multi-modal asset generation pipelines',
-      'Brand intelligence and compliance system',
-      'Team enablement and performance analytics',
-    ],
-  },
-  {
-    id: 'agentic-creator-os',
-    icon: Building2,
-    name: 'Agentic Creator OS',
-    tagline: 'Developer AI Mastery',
-    description:
-      'Agentic playbooks, prompt stacks, and governance checklists for builders.',
-    status: 'early-access',
-    href: '/newsletter?ref=agentic-creator-os-early-access',
-    color: 'cyan',
-    highlights: [
-      'Claude Code and Cursor mastery systems',
-      'Agentic workflow and automation patterns',
-      'Production-grade agent development',
-    ],
-  },
-]
+const products = getHubProducts()
 
 const colorMap = {
   emerald: {
@@ -211,6 +99,21 @@ const colorMap = {
     button: 'bg-amber-600 hover:bg-amber-500',
     glow: 'group-hover:shadow-lg group-hover:shadow-amber-500/10',
   },
+  violet: {
+    bg: 'bg-white/[0.03]',
+    border: 'border-white/[0.08] hover:border-violet-500/30',
+    icon: 'bg-violet-500/10 text-violet-400',
+    accent: 'text-violet-400',
+    button: 'bg-violet-600 hover:bg-violet-500',
+    glow: 'group-hover:shadow-lg group-hover:shadow-violet-500/10',
+  },
+}
+
+function statusLabel(status: HubProduct['status']): string {
+  if (status === 'active') return 'Available'
+  if (status === 'free') return 'Free'
+  if (status === 'preorder') return 'Preorder'
+  return 'Early Access'
 }
 
 // Early Access Modal Component
@@ -346,6 +249,54 @@ export default function ProductsPage() {
           </div>
         </section>
 
+        {/* Four doors — buyer identity router */}
+        <section className="pb-4">
+          <div className="mx-auto max-w-6xl px-6">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+              Choose your door
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {doorCopy.map((door) => {
+                const DoorIcon = door.icon
+                return (
+                  <div
+                    key={door.id}
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5"
+                  >
+                    <DoorIcon className="mb-3 h-5 w-5 text-emerald-400" />
+                    <h2 className="mb-1 text-base font-semibold text-white">{door.title}</h2>
+                    <p className="text-sm leading-relaxed text-slate-400">{door.body}</p>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-emerald-500/15 bg-emerald-500/[0.04] p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3">
+                <compassCta.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400" />
+                <div>
+                  <p className="font-medium text-white">{compassCta.title}</p>
+                  <p className="text-sm text-slate-400">{compassCta.body}</p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href={compassCta.primary.href}
+                  className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-500"
+                >
+                  {compassCta.primary.label}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href={compassCta.secondary.href}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-slate-300 transition hover:border-white/20 hover:text-white"
+                >
+                  {compassCta.secondary.label}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Products Grid */}
         <section className="py-12">
           <div className="mx-auto max-w-6xl px-6">
@@ -353,22 +304,23 @@ export default function ProductsPage() {
               {products.map((product, index) => {
                 const Icon = product.icon
                 const colors = colorMap[product.color as keyof typeof colorMap]
-                const isActive = product.status === 'active'
+                const isDirect = product.status === 'active' || product.status === 'free'
+                const label = statusLabel(product.status)
 
                 return (
                   <motion.div
                     key={product.id}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                    transition={{ duration: 0.5, delay: 0.2 + index * 0.05 }}
                     className={product.featured ? 'md:col-span-2 lg:col-span-1' : ''}
                   >
-                    <GlowCard color={product.color as GlowColor} className={`p-8 h-full flex flex-col ${isActive ? 'cursor-pointer hover:-translate-y-1' : ''}`}>
+                    <GlowCard color={product.color as GlowColor} className={`p-8 h-full flex flex-col ${isDirect ? 'cursor-pointer hover:-translate-y-1' : ''}`}>
                         {/* Featured badge */}
                         {product.featured && (
                           <div className="absolute right-6 top-6">
                             <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-medium text-emerald-400">
-                              Available Now
+                              {product.status === 'free' ? 'Free' : 'Featured'}
                             </span>
                           </div>
                         )}
@@ -388,9 +340,12 @@ export default function ProductsPage() {
                             {product.tagline}
                           </p>
                           <h3 className="mb-3 text-2xl font-bold text-white">{product.name}</h3>
-                          <p className="mb-6 leading-relaxed text-slate-400">
+                          <p className="mb-4 leading-relaxed text-slate-400">
                             {product.description}
                           </p>
+                          {product.priceLabel && (
+                            <p className={`mb-6 text-sm font-medium ${colors.accent}`}>{product.priceLabel}</p>
+                          )}
 
                           {/* Highlights */}
                           <ul className="mb-8 space-y-3">
@@ -409,19 +364,19 @@ export default function ProductsPage() {
                         {/* Status and CTA */}
                         <div className="flex items-center justify-between border-t border-white/5 pt-6">
                           <div className="flex items-center gap-2">
-                            {isActive ? (
+                            {isDirect ? (
                               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium">
                                 <CheckCircle2 className="w-3.5 h-3.5" />
-                                Available
+                                {label}
                               </span>
                             ) : (
                               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
                                 <Sparkles className="w-3.5 h-3.5" />
-                                Early Access
+                                {label}
                               </span>
                             )}
                           </div>
-                          {isActive ? (
+                          {isDirect ? (
                             <Link
                               href={product.href}
                               onClick={() =>
@@ -440,7 +395,9 @@ export default function ProductsPage() {
                               }}
                               className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
                             >
-                              <span className="text-sm font-medium">Join</span>
+                              <span className="text-sm font-medium">
+                                {product.status === 'preorder' ? 'Preorder list' : 'Join'}
+                              </span>
                               <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </button>
                           )}
@@ -650,7 +607,7 @@ export default function ProductsPage() {
       {/* Early Access Modals */}
       <AnimatePresence>
         {products
-          .filter((p) => p.status === 'early-access' && p.id === openModal)
+          .filter((p) => (p.status === 'early-access' || p.status === 'preorder') && p.id === openModal)
           .map((product) => (
             <EarlyAccessModal
               key={product.id}
