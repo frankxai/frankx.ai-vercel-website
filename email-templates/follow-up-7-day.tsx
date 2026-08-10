@@ -1,5 +1,7 @@
 // 7-Day Follow-up Email Template
 
+import { socialLinks } from '@/lib/social-links'
+
 interface FollowUp7DayEmailProps {
   name: string
   pdfTitle: string
@@ -153,7 +155,7 @@ export function FollowUp7DayEmail({ name, pdfTitle, guideSlug }: FollowUp7DayEma
           frankx.ai
         </a>
         <span style="color: #64748b;">|</span>
-        <a href="https://x.com/frankx_ai" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
+        <a href="${socialLinks.x}" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
           X
         </a>
         <span style="color: #64748b;">|</span>

@@ -27,7 +27,20 @@ test('blog metadata and sharing use the canonical FrankX identity', () => {
 })
 
 test('active source and metadata contain no retired FrankX X identity', () => {
-  const patterns = ['*.ts', '*.tsx', '*.js', '*.mjs', '*.md', '*.mdx', '*.json', '*.yaml', '*.yml']
+  const patterns = [
+    '*.ts',
+    '*.tsx',
+    '*.js',
+    '*.mjs',
+    '*.sh',
+    '*.html',
+    '*.txt',
+    '*.md',
+    '*.mdx',
+    '*.json',
+    '*.yaml',
+    '*.yml',
+  ]
   const trackedFiles = execFileSync('git', ['ls-files', '-z', '--', ...patterns])
     .toString('utf8')
     .split('\0')

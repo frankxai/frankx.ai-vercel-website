@@ -25,6 +25,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useRef, useState } from "react";
+import { socialHandles } from "@/lib/social-links";
 
 // Network visualization component
 const NetworkVisualization = () => {
@@ -199,7 +200,7 @@ export default function CommunityPage() {
   const socialChannels = [
     {
       name: "Twitter/X",
-      handle: "@frankx_ai",
+      handle: socialHandles.x,
       icon: Twitter,
       followers: "24.5K",
       color: "hover:text-[#43BFE3]",

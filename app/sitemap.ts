@@ -9,6 +9,7 @@ import { learningPaths } from '@/data/learning-paths'
 import { getMvuEntrySummaries } from '@/lib/mvu'
 import { getJournalEntrySummaries } from '@/lib/journal'
 import { getChangelogUpdates } from '@/lib/changelog'
+import { isCanonicalBlogSlug } from '@/lib/blog-redirects.mjs'
 
 const BASE_URL = siteConfig.url
 
@@ -26,6 +27,7 @@ function getBlogEntries(): { slug: string; date: string }[] {
     const seen = new Set<string>()
     return files
       .filter(file => file.endsWith('.mdx'))
+      .filter(file => isCanonicalBlogSlug(getSlugFromFilename(file)))
       .map(file => {
         const slug = getSlugFromFilename(file)
         if (seen.has(slug)) return null

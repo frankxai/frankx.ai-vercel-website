@@ -5,6 +5,7 @@ import readingTime from 'reading-time'
 import { cache } from 'react'
 import imageNeeds from '@/data/tools/image-needs.json'
 import blogHeroManifest from '@/data/blog-hero-manifest.json'
+import { isCanonicalBlogSlug } from './blog-redirects.mjs'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
 const blogImageFallback = '/images/blog/editorial/headers/best-ai-tools-for-creators-2026-hero.webp'
@@ -148,6 +149,7 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
     .filter((name) => name.endsWith('.mdx'))
+    .filter((name) => isCanonicalBlogSlug(name.replace(/\.mdx$/, '')))
     .map((fileName) => {
       const slug = fileName.replace(/\.mdx$/, '')
       const fullPath = path.join(blogDirectory, fileName)
@@ -164,6 +166,8 @@ export const getAllBlogPostSummaries = cache((): BlogPostSummary[] => {
 })
 
 export const getBlogPost = cache((slug: string): BlogPost | null => {
+  if (!isCanonicalBlogSlug(slug)) return null
+
   try {
     const fullPath = path.join(blogDirectory, `${slug}.mdx`)
 

@@ -66,7 +66,7 @@ echo "🔗 Testing Social Links..."
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 # Check if correct social URLs are in the page
-check_content "/links" "x.com/frankxeth" "X/Twitter link"
+check_content "/links" "x.com/frankx_ai" "X/Twitter link"
 check_content "/links" "linkedin.com/in/frank-x-riemer" "LinkedIn link"
 check_content "/links" "suno.com/@frankx" "Suno link"
 
