@@ -1,12 +1,13 @@
 'use client'
 
-import { use, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Clock, Shield, Gavel, Check, AlertCircle, Loader2 } from 'lucide-react'
 import CountdownTimer from '@/components/auctions/CountdownTimer'
 import auctions from '@/data/auctions.json'
+import { isAuctionWindowOpen } from '@/lib/auctions'
 import { notFound } from 'next/navigation'
 
 export default function AuctionDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -24,9 +25,21 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  // The advertised start/end window gates the form as well as the API, so a
+  // drop stops accepting proposals when its countdown ends. Re-checked every
+  // minute; the API remains the authoritative gate.
+  const [inWindow, setInWindow] = useState(() => (auction ? isAuctionWindowOpen(auction) : false))
+  useEffect(() => {
+    if (!auction) return
+    const tick = () => setInWindow(isAuctionWindowOpen(auction))
+    tick()
+    const timer = setInterval(tick, 60_000)
+    return () => clearInterval(timer)
+  }, [auction])
+
   if (!auction) return notFound()
 
-  const isCompleted = auction.status === 'completed'
+  const isClosed = auction.status !== 'active' || !inWindow
   const currentPrice = auction.startingBid
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -90,7 +103,7 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
               transition={{ duration: 0.5 }}
             >
               <div className={`relative aspect-[16/10] rounded-2xl overflow-hidden border ${
-                isCompleted ? 'border-white/5 opacity-70 grayscale' : 'border-white/10'
+                isClosed ? 'border-white/5 opacity-70 grayscale' : 'border-white/10'
               }`}>
                 <Image
                   src={auction.item.images[0]}
@@ -130,14 +143,18 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
               </p>
 
               {/* Countdown or Acquisition Details */}
-              {isCompleted ? (
+              {isClosed ? (
                 <div className="mb-8 p-5 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
                   <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold mb-1">
                     <Check className="w-4 h-4" />
                     Drop Closed
                   </div>
                   <p className="text-sm text-white/65 leading-relaxed">
-                    This drop is no longer accepting proposals. Join the newsletter for upcoming drops.
+                    This drop is no longer accepting proposals.{' '}
+                    <Link href="/newsletter" className="text-amber-400 hover:underline">
+                      Join the newsletter
+                    </Link>{' '}
+                    for upcoming drops.
                   </p>
                 </div>
               ) : (
@@ -160,14 +177,14 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
                   <div className="text-right">
                     <span className="text-xs text-white/40">Drop Status</span>
                     <div className={`text-lg font-semibold font-mono ${
-                      isCompleted ? 'text-emerald-400' : 'text-amber-400'
+                      isClosed ? 'text-emerald-400' : 'text-amber-400'
                     }`}>
-                      {isCompleted ? 'Closed' : 'Accepting Proposals'}
+                      {isClosed ? 'Closed' : 'Accepting Proposals'}
                     </div>
                   </div>
                 </div>
 
-                {isCompleted ? (
+                {isClosed ? (
                   <div className="p-4 rounded-lg bg-white/[0.02] border border-white/[0.06] text-center">
                     <p className="text-sm text-white/40">
                       To suggest a similar custom project or inquire about upcoming drops, reach out to{' '}
@@ -277,13 +294,16 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
                 )}
               </div>
 
-              {/* Item details */}
-              <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
-                <h3 className="text-sm font-semibold text-white mb-3">Item Details</h3>
-                <p className="text-sm text-white/45 leading-relaxed">
-                  {auction.item.details}
-                </p>
-              </div>
+              {/* Item details — delivery/scheduling instructions only make sense
+                  while the drop is open, so hide them once it closes. */}
+              {!isClosed && (
+                <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
+                  <h3 className="text-sm font-semibold text-white mb-3">Item Details</h3>
+                  <p className="text-sm text-white/45 leading-relaxed">
+                    {auction.item.details}
+                  </p>
+                </div>
+              )}
             </motion.div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import auctions from '@/data/auctions.json'
+import { isAuctionWindowOpen } from '@/lib/auctions'
 import { escapeHtml } from '@/lib/escape-html'
 import { mailtoHref } from '@/lib/email-links'
 
@@ -55,6 +56,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'The specified auction item could not be found.' },
         { status: 404 }
+      )
+    }
+
+    if (auction.status !== 'active' || !isAuctionWindowOpen(auction)) {
+      return NextResponse.json(
+        { error: 'This drop is not accepting proposals.' },
+        { status: 400 }
+      )
+    }
+
+    if (parsedBid < auction.startingBid) {
+      return NextResponse.json(
+        { error: `The minimum bid for this drop is $${auction.startingBid}.` },
+        { status: 400 }
       )
     }
 

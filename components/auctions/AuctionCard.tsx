@@ -1,8 +1,10 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import CountdownTimer from './CountdownTimer'
+import { isAuctionWindowOpen } from '@/lib/auctions'
 import { Check } from 'lucide-react'
 
 interface AuctionCardProps {
@@ -20,6 +22,7 @@ interface AuctionCardProps {
     buyNowPrice?: number
     currentBid?: number
     bidCount?: number
+    startTime?: string
     endTime: string
     status: string
     featured?: boolean
@@ -28,9 +31,19 @@ interface AuctionCardProps {
 }
 
 export default function AuctionCard({ auction }: AuctionCardProps) {
-  const isActive = auction.status === 'active'
+  // The advertised window gates the card state, not just `status`, so a drop
+  // whose countdown ended reads as closed. Re-checked every minute.
+  const [inWindow, setInWindow] = useState(() => isAuctionWindowOpen(auction))
+  useEffect(() => {
+    const tick = () => setInWindow(isAuctionWindowOpen(auction))
+    tick()
+    const timer = setInterval(tick, 60_000)
+    return () => clearInterval(timer)
+  }, [auction])
+
+  const isActive = auction.status === 'active' && inWindow
   const isUpcoming = auction.status === 'upcoming'
-  const isCompleted = auction.status === 'completed'
+  const isCompleted = !isActive && !isUpcoming
 
   return (
     <Link
