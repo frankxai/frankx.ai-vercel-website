@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 855,
+    "total": 852,
     "aliases": 50,
     "byType": {
       "core": 22,
-      "section": 402,
+      "section": 400,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 212,
+      "blog": 211,
       "guide": 23,
       "library": 56,
       "newsletter": 1,
@@ -715,43 +715,6 @@
       "href": "/blog",
       "title": "Blog",
       "type": "core"
-    },
-    {
-      "href": "/blog/01-ai-doesnt-have-to-be-soulless",
-      "title": "AI Doesn't Have To Be Soulless (And Here's How I Know)",
-      "description": "A 15-year architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
-      "tags": [
-        "AI",
-        "Creativity",
-        "Technology",
-        "Personal Story"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/02-the-soul-frequency-framework",
-      "title": "The Creative Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age",
-      "description": "Everyone has a unique creative frequency — a way of expressing that's authentically yours. Here's how to discover yours and use AI to amplify it, not mask it.",
-      "tags": [
-        "Creativity",
-        "Personal Development",
-        "AI Tools",
-        "Framework"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/08-golden-age-of-intelligence",
-      "title": "The Golden Age of Intelligence: Flagship Atlas for Agentic Marketing Teams",
-      "description": "A 15,000-word masterwork that fuses SEO strategy, agentic operations, and automation to anchor FrankX.ai as the definitive intelligence partner for high-velocity creators and enterprises.",
-      "tags": [
-        "ai strategy",
-        "agentic operations",
-        "seo",
-        "publishing systems",
-        "automation"
-      ],
-      "type": "blog"
     },
     {
       "href": "/blog/30-minute-creator-os-quick-start",
@@ -2281,14 +2244,17 @@
     },
     {
       "href": "/blog/intelligence-revolution-2025",
-      "title": "Intelligence Revolution 2025",
+      "title": "The Intelligence Revolution Playbook: Navigating the $10T Shift",
+      "description": "A practical blueprint for enterprise technologists, founders, and creators to capture value as intelligence, automation, and intentional design converge.",
       "tags": [
-        "blog",
-        "intelligence",
-        "revolution",
-        "2025"
+        "AI Strategy",
+        "Autonomous Agents",
+        "Future of Work",
+        "Economics",
+        "Enterprise AI",
+        "Creative Technology"
       ],
-      "type": "section"
+      "type": "blog"
     },
     {
       "href": "/blog/intent-architecture-agentic-delegation",
@@ -3022,14 +2988,15 @@
     },
     {
       "href": "/blog/soul-frequency-framework",
-      "title": "Soul Frequency Framework",
+      "title": "The Creative Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age",
+      "description": "Everyone has a unique creative frequency — a way of expressing that's authentically yours. Here's how to discover yours and use AI to amplify it, not mask it.",
       "tags": [
-        "blog",
-        "soul",
-        "frequency",
-        "framework"
+        "Creativity",
+        "Personal Development",
+        "AI Tools",
+        "Framework"
       ],
-      "type": "section"
+      "type": "blog"
     },
     {
       "href": "/blog/starlight-intelligence-system-how-ai-agents-learn",
