@@ -28,7 +28,7 @@ npm run gen:feed
 
 **Locations:**
 - `/feed` → `data/feed-entries.json`
-- `/changelog` → `data/changelog-entries.json`
+- `/changelog` → `data/changelog-updates.json` (curated release notes with merged-PR evidence)
 
 **Status:** ⚠️ Requires manual JSON editing
 
