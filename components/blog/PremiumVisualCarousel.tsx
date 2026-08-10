@@ -68,6 +68,8 @@ export default function PremiumVisualCarousel({ items }: { items: VisualItem[] }
                   <img
                     src={item.image}
                     alt={item.title}
+                    width={672}
+                    height={378}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
                   />
                 )}

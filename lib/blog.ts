@@ -166,6 +166,8 @@ export const getAllBlogPostSummaries = cache((): BlogPostSummary[] => {
 })
 
 export const getBlogPost = cache((slug: string): BlogPost | null => {
+  if (!isCanonicalBlogSlug(slug)) return null
+
   try {
     const fullPath = path.join(blogDirectory, `${slug}.mdx`)
 

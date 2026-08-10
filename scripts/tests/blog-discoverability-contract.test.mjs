@@ -5,7 +5,7 @@ import test from 'node:test'
 
 import { buildBlogIndex } from '../../lib/blog-index.ts'
 import { BLOG_REDIRECTS } from '../../lib/blog-redirects.mjs'
-import { enumerateRoutes } from '../../lib/route-enumeration.mjs'
+import { enumerateRoutes, loadAliases } from '../../lib/route-enumeration.mjs'
 
 const post = (slug, { category = 'Architecture', featured = false } = {}) => ({
   slug,
@@ -100,7 +100,26 @@ test('every canonical top-level blog MDX file has one blog route and redirect so
   for (const slug of redirectSources) {
     assert.equal(routeBySlug.has(slug), false, `/blog/${slug} is a redirect source, not canonical content`)
   }
+})
 
-  const blogLoader = fs.readFileSync(path.join(process.cwd(), 'lib/blog.ts'), 'utf8')
-  assert.match(blogLoader, /isCanonicalBlogSlug/, 'the runtime blog loader must share redirect eligibility')
+test('the direct blog loader rejects redirect-source slugs before reading MDX', () => {
+  const blogSource = fs.readFileSync(path.join(process.cwd(), 'lib/blog.ts'), 'utf8')
+  const loaderStart = blogSource.indexOf('export const getBlogPost')
+  const loaderEnd = blogSource.indexOf('export function getFeaturedPosts', loaderStart)
+  const loaderSource = blogSource.slice(loaderStart, loaderEnd)
+
+  assert.ok(loaderStart >= 0 && loaderEnd > loaderStart, 'getBlogPost loader must be present')
+  assert.match(
+    loaderSource,
+    /if \(!isCanonicalBlogSlug\(slug\)\) return null/,
+    'getBlogPost must reject redirect sources before constructing or reading an MDX path',
+  )
+})
+
+test('the shared alias projection includes every permanent blog redirect', () => {
+  const aliases = loadAliases()
+
+  for (const { source, destination } of BLOG_REDIRECTS) {
+    assert.equal(aliases[source], destination, `${source} must project to ${destination}`)
+  }
 })
