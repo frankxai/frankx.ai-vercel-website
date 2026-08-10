@@ -345,7 +345,7 @@ function footer(): string {
                   </td>
                   <td style="color: ${T.textFaint}; font-size: 10px;">&bull;</td>
                   <td style="padding: 0 10px;">
-                    <a href="https://x.com/frankx_ai" style="font-family: ${T.fontStack}; font-size: 13px; color: ${T.textDim}; text-decoration: none; font-weight: 500;">X</a>
+                    <a href="${socialLinks.x}" style="font-family: ${T.fontStack}; font-size: 13px; color: ${T.textDim}; text-decoration: none; font-weight: 500;">X</a>
                   </td>
                   <td style="color: ${T.textFaint}; font-size: 10px;">&bull;</td>
                   <td style="padding: 0 10px;">

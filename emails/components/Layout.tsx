@@ -25,6 +25,7 @@ import {
   Column,
 } from '@react-email/components'
 import * as React from 'react'
+import { socialLinks } from '@/lib/social-links'
 
 // ─── Design Tokens ───────────────────────────────────────────────
 
@@ -123,7 +124,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
             <Section style={{ textAlign: 'center', paddingBottom: '20px' }}>
               <Link href="https://frankx.ai" style={{ fontFamily: t.font, fontSize: '13px', color: t.accentCyan, textDecoration: 'none', fontWeight: 500 }}>frankx.ai</Link>
               <Text style={{ display: 'inline', color: t.textFaint, fontSize: '10px', margin: '0 8px' }}>&bull;</Text>
-              <Link href="https://x.com/frankx_ai" style={{ fontFamily: t.font, fontSize: '13px', color: t.textDim, textDecoration: 'none', fontWeight: 500 }}>X</Link>
+              <Link href={socialLinks.x} style={{ fontFamily: t.font, fontSize: '13px', color: t.textDim, textDecoration: 'none', fontWeight: 500 }}>X</Link>
               <Text style={{ display: 'inline', color: t.textFaint, fontSize: '10px', margin: '0 8px' }}>&bull;</Text>
               <Link href="https://www.linkedin.com/in/frank-x-riemer/" style={{ fontFamily: t.font, fontSize: '13px', color: t.textDim, textDecoration: 'none', fontWeight: 500 }}>LinkedIn</Link>
             </Section>
