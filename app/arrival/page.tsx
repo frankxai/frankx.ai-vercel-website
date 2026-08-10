@@ -30,7 +30,7 @@ export const metadata = createMetadata({
     'FrankX',
     'Reality Architect',
   ],
-  image: '/images/arrival/hero-pier-xai.png',
+  image: '/images/arrival/hero-agy-dawn.png',
 })
 
 const loop = [
@@ -127,7 +127,7 @@ export default function ArrivalPage() {
       <section className="relative overflow-hidden pt-32">
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/images/arrival/hero-dawn-xai.png"
+            src="/images/arrival/hero-agy-dawn.png"
             alt=""
             fill
             priority
