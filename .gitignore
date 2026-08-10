@@ -9,6 +9,7 @@ coverage/
 # Music source audio + beat grids (local working files — never commit binaries)
 /content/music/source/
 /generated_audio/
+/generated_imgs/
 /staging/
 
 # Next.js

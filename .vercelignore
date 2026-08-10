@@ -62,6 +62,8 @@
 
 # Generated artifacts that should never be in build context.
 # Anchored to root or specific subtrees to avoid the unanchored gitignore trap.
+/generated_audio/
+/generated_imgs/
 /.gh-api-body.json
 /ruvector.db
 /nul

@@ -1,0 +1,21 @@
+name: Media Guard
+
+on:
+  pull_request:
+    branches: [main, staging]
+
+permissions:
+  contents: read
+
+jobs:
+  media-guard:
+    name: Media Guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Reject repository media debt
+        run: node scripts/media-guard.mjs --base origin/${{ github.base_ref }}
