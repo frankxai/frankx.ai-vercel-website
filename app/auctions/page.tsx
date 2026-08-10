@@ -113,7 +113,7 @@ export default function AuctionsPage() {
         <section className="max-w-7xl mx-auto px-6 pb-24 border-t border-white/[0.06] pt-16">
           <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
             <CheckCircle className="w-5 h-5 text-emerald-400" />
-            Completed Drops & Acquisitions
+            Closed Drops
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-75">
             {completedAuctions.map((auction, index) => (

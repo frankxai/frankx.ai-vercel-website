@@ -20,8 +20,6 @@ interface AuctionCardProps {
     buyNowPrice?: number
     currentBid?: number
     bidCount?: number
-    winningBid?: number
-    acquiredBy?: string
     endTime: string
     status: string
     featured?: boolean
@@ -70,7 +68,7 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
           {isCompleted && (
             <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-medium backdrop-blur-sm flex items-center gap-1">
               <Check className="w-3.5 h-3.5" />
-              Acquired
+              Closed
             </span>
           )}
           {auction.featured && !isCompleted && (
@@ -117,8 +115,8 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
           {isCompleted ? (
             <>
               <div>
-                <span className="text-xs text-white/40">Acquisition Price</span>
-                <div className="text-xl font-bold text-white/70">${auction.winningBid}</div>
+                <span className="text-xs text-white/40">Starting Bid</span>
+                <div className="text-xl font-bold text-white/70">${auction.startingBid}</div>
               </div>
               <div className="text-right">
                 <span className="text-xs text-white/40">Status</span>

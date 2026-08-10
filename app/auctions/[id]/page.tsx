@@ -27,7 +27,7 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
   if (!auction) return notFound()
 
   const isCompleted = auction.status === 'completed'
-  const currentPrice = auction.winningBid || auction.startingBid
+  const currentPrice = auction.startingBid
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -134,10 +134,10 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
                 <div className="mb-8 p-5 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
                   <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold mb-1">
                     <Check className="w-4 h-4" />
-                    Drop Completed & Acquired
+                    Drop Closed
                   </div>
                   <p className="text-sm text-white/65 leading-relaxed">
-                    This limited edition item was successfully acquired by an anonymous creator. Follow the page or join the newsletter for upcoming drops.
+                    This drop is no longer accepting proposals. Join the newsletter for upcoming drops.
                   </p>
                 </div>
               ) : (
@@ -154,9 +154,7 @@ export default function AuctionDetailPage({ params }: { params: Promise<{ id: st
               <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 mb-6">
                 <div className="flex items-center justify-between mb-6 pb-6 border-b border-white/[0.06]">
                   <div>
-                    <span className="text-xs text-white/40">
-                      {isCompleted ? 'Final Valuation' : 'Starting Price'}
-                    </span>
+                    <span className="text-xs text-white/40">Starting Price</span>
                     <div className="text-3xl font-bold text-white">${currentPrice}</div>
                   </div>
                   <div className="text-right">
