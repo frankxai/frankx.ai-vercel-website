@@ -138,37 +138,38 @@ export default function ArrivalPage() {
         <div className="mx-auto max-w-6xl px-6 pb-20">
           <div className="max-w-3xl">
             <p className="mb-4 text-xs font-medium uppercase tracking-[0.28em] text-amber-200/70">
-              Golden Age · Arrival
+              Golden Age Systems · Arrival
             </p>
             <h1 className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-              The age is open.
+              One meaningful aim.
               <span className="block bg-gradient-to-r from-white via-amber-50 to-amber-200/90 bg-clip-text text-transparent">
-                Arrival is how you enter it.
+                Seven days. One real beginning.
               </span>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-white/60 sm:text-xl">
-              A seven-day practice for creator-operators and founders who stall on one meaningful aim.
-              Leave with a written aim, a named Gate, a when-then plan, and a Keystone experiment
-              dated within fourteen days — without motivation theater or magical thinking.
+              The 7-Day Arrival Sprint helps creator-operators and founders turn a stalled aim into a
+              named Gate, a when-then plan, and a dated Keystone you can prove — without motivation
+              theater or magical thinking.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#sprint"
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-400 px-7 py-4 text-sm font-semibold text-[#0a0a0b] shadow-lg shadow-amber-500/20 transition hover:bg-amber-300"
               >
-                Begin the 7-Day Arrival Sprint
+                Begin the Arrival Sprint
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </a>
               <Link
                 href="/golden-age"
                 className="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] px-7 py-4 text-sm font-semibold text-white/80 backdrop-blur transition hover:bg-white/10"
               >
-                Read the Golden Age
+                The Golden Age
               </Link>
             </div>
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/40">
-              Human judgment. Machine leverage. Work worth inheriting. — Part of the Golden Age
-              movement on FrankX. Not medical advice. No guaranteed outcomes.
+              A life worth arriving in, built one honest act at a time. Golden Age Systems makes a
+              self-directed life more possible — without pretending the work can happen for you.
+              Not medical advice. No guaranteed outcomes.
             </p>
           </div>
         </div>
@@ -393,12 +394,12 @@ export default function ArrivalPage() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-10 max-w-2xl">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-amber-200/60">
-              Golden Age family
+              Golden Age Systems
             </p>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">One sky. Clear doors.</h2>
             <p className="mt-4 text-base leading-relaxed text-white/50">
-              Abundant products around the Golden Age — sequenced so nothing competes with your first
-              Keystone.
+              The Golden Age is the era thesis. Golden Age Systems is the product family — sequenced
+              so nothing competes with your first Keystone.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -435,10 +436,10 @@ export default function ArrivalPage() {
                 body: 'Six primitives stack when you want production agents.',
               },
               {
-                title: 'Field · Studio · Circle',
+                title: 'Fieldbook · Studio · Signal',
                 status: 'After activation',
                 href: '/newsletter',
-                body: 'Guided depth and multi-agent craft open after Sprint proof — not before.',
+                body: 'Guided depth, one-system builds, and weekly evidence — only after Sprint proof.',
               },
             ].map((card) => {
               const className =
@@ -507,7 +508,7 @@ export default function ArrivalPage() {
               href="#sprint"
               className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-400 px-7 py-4 text-sm font-semibold text-[#0a0a0b] transition hover:bg-amber-300"
             >
-              Begin the 7-Day Arrival Sprint
+              Begin the Arrival Sprint
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
             </a>
             <Link
