@@ -104,6 +104,7 @@ jobs:
           pnpm run test:learning-routes
           pnpm run test:blog-discoverability
           pnpm run test:social-identity
+          pnpm run test:media-guard
 
       - name: Content and claims integrity
         run: |
