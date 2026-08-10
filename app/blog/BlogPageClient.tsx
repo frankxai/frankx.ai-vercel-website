@@ -9,7 +9,7 @@ import { ArrowRight, Sparkles, Filter } from 'lucide-react'
 import BlogCard from '@/components/blog/BlogCard'
 import CategoryDropdown from '@/components/blog/CategoryDropdown'
 import PremiumVisualCarousel from '@/components/blog/PremiumVisualCarousel'
-import { buildBlogIndex } from '@/lib/blog-index'
+import { buildBlogIndex, PREMIUM_VISUAL_SLUGS } from '@/lib/blog-index'
 import { cn } from '@/lib/utils'
 
 // ============================================================================
@@ -47,9 +47,10 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
     return posts.filter((post) => post.category?.toLowerCase() === category.toLowerCase()).length
   }
 
-  const { latestPost, featuredPosts, gridPosts, visiblePosts } = buildBlogIndex(
+  const { latestPost, carouselPosts, featuredPosts, gridPosts, visiblePosts } = buildBlogIndex(
     posts,
     selectedCategory,
+    PREMIUM_VISUAL_SLUGS,
   )
 
   return (
@@ -174,10 +175,12 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
         </div>
       </section>
 
-      {/* Premium Visual Carousel — Ultra experience with new architectural headers + motion */}
-      <div className="max-w-6xl mx-auto px-6">
-        <PremiumVisualCarousel />
-      </div>
+      {/* Premium Visual Carousel — a partition of the canonical article set */}
+      {carouselPosts.length > 0 && (
+        <div className="max-w-6xl mx-auto px-6">
+          <PremiumVisualCarousel items={carouselPosts} />
+        </div>
+      )}
 
       {/* Category Dropdown & Filter Section */}
       <section className="pb-8 px-6 sticky top-20 z-40 bg-[#0a0a0b]/80 backdrop-blur-xl border-b border-white/5">

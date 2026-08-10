@@ -26,6 +26,7 @@ import {
 import Image from 'next/image'
 import { UniversalEmbed } from '@/components/embeds/UniversalEmbed'
 import { ShortDetailClient } from '@/components/watch/ShortDetailClient'
+import { socialHandles, socialLinks } from '@/lib/social-links'
 
 // Static params for SSG — all known Shorts pre-rendered at build time
 export async function generateStaticParams() {
@@ -298,12 +299,12 @@ export default async function ShortDetailPage({
                   compress a non-obvious insight on AI, creative craft, or peak
                   performance into under a minute? DM{' '}
                   <a
-                    href="https://x.com/frankx_ai"
+                    href={socialLinks.x}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-emerald-400 hover:underline"
                   >
-                    @frankx_ai
+                    {socialHandles.x}
                   </a>
                   .
                 </p>

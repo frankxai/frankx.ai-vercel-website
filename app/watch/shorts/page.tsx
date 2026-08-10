@@ -12,6 +12,7 @@ import {
   SITE_CONFIG,
 } from '@/lib/schema-builders'
 import ShortsClient from './ShortsClient'
+import { socialHandles } from '@/lib/social-links'
 
 const PAGE_URL = `${SITE_CONFIG.url}/watch/shorts`
 
@@ -35,7 +36,7 @@ const shortsFAQ = [
   {
     question: 'Can I submit a Short to be featured?',
     answer:
-      'Yes \u2014 send any YouTube Short link via the contact form or @frankx_ai on X. The bar: compresses a non-obvious insight on AI, creative craft, or peak performance into under 60 seconds.',
+      `Yes \u2014 send any YouTube Short link via the contact form or ${socialHandles.x} on X. The bar: compresses a non-obvious insight on AI, creative craft, or peak performance into under 60 seconds.`,
   },
   {
     question: 'How do Shorts fit into FrankX\u2019s broader learning system?',
