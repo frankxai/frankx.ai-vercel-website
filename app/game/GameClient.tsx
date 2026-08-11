@@ -279,7 +279,13 @@ export default function GameClient() {
                 {state.quests.map((quest) => <QuestCard key={quest.id} quest={quest} onClear={clearQuest} />)}
               </div>
               <div className="mt-4 flex gap-2 rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-2">
-                <input value={questDraft} onChange={(event) => setQuestDraft(event.target.value)} onKeyDown={(event) => event.key === 'Enter' && addQuest()} placeholder="Add a concrete quest…" className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm outline-none placeholder:text-white/25" />
+                <input
+                  value={questDraft}
+                  onChange={(event) => setQuestDraft(event.target.value)}
+                  onKeyDown={(event) => event.key === 'Enter' && addQuest()}
+                  placeholder="Add a concrete quest…"
+                  className="min-w-0 flex-1 rounded-lg bg-transparent px-3 py-2 text-sm placeholder:text-white/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#43BFE3]"
+                />
                 <button onClick={addQuest} className="inline-flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-sm font-semibold text-black hover:bg-white/90"><Plus className="h-4 w-4" /> Add</button>
               </div>
             </div>
@@ -337,7 +343,13 @@ export default function GameClient() {
               <h2 className="mt-5 text-2xl font-semibold">Explorer Vault</h2>
               <p className="mt-3 text-sm leading-relaxed text-white/55">Novelty goes here when it arrives at the wrong time. Capture it without letting it steal the active campaign.</p>
               <div className="mt-6 flex gap-2 rounded-2xl border border-white/10 bg-black/20 p-2">
-                <input value={ideaDraft} onChange={(event) => setIdeaDraft(event.target.value)} onKeyDown={(event) => event.key === 'Enter' && vaultIdea()} placeholder="Capture the tempting idea…" className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm outline-none placeholder:text-white/25" />
+                <input
+                  value={ideaDraft}
+                  onChange={(event) => setIdeaDraft(event.target.value)}
+                  onKeyDown={(event) => event.key === 'Enter' && vaultIdea()}
+                  placeholder="Capture the tempting idea…"
+                  className="min-w-0 flex-1 rounded-lg bg-transparent px-3 py-2 text-sm placeholder:text-white/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#43BFE3]"
+                />
                 <button onClick={vaultIdea} className="rounded-xl bg-white px-3 py-2 text-sm font-semibold text-black hover:bg-white/90">Vault it</button>
               </div>
             </div>
