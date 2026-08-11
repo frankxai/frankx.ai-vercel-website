@@ -143,8 +143,12 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
                 <div className="text-xl font-bold text-white">${auction.startingBid}</div>
               </div>
               <div className="text-right">
-                <span className="text-xs text-white/40 font-medium text-amber-400">Silent Bid Open</span>
-                <div className="text-xs text-white/30 font-medium">Reviewing Proposals</div>
+                <span className="text-xs font-medium text-amber-400">
+                  {isUpcoming ? 'Upcoming' : 'Silent Bid Open'}
+                </span>
+                <div className="text-xs text-white/30 font-medium">
+                  {isUpcoming ? 'Not yet open' : 'Reviewing Proposals'}
+                </div>
               </div>
             </>
           )}
