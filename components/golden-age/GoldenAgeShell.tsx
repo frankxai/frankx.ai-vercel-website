@@ -117,7 +117,7 @@ export default function GoldenAgeShell() {
 
               <Link
                 href="/arrival"
-                className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-amber-400/40 text-amber-50 rounded-full font-medium hover:border-amber-300/70 hover:bg-amber-400/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-all backdrop-blur-sm cursor-pointer"
+                className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-amber-400/40 text-amber-50 rounded-full font-medium hover:border-amber-300/70 hover:bg-amber-400/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 transition-[border-color,background-color] backdrop-blur-sm cursor-pointer"
               >
                 <span>Practice · Arrival Sprint</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
