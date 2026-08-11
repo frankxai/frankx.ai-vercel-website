@@ -164,9 +164,15 @@ export async function POST(request: NextRequest) {
       }),
     })
 
+    // The notify email IS the bid reaching Frank — if it did not send, the
+    // proposal was not submitted, so fail closed instead of reporting success.
     if (!emailResponse.ok) {
-      const errorData = await emailResponse.json()
+      const errorData = await emailResponse.json().catch(() => null)
       console.error('Resend notify email error:', errorData)
+      return NextResponse.json(
+        { error: 'Your proposal could not be submitted. Please try again.' },
+        { status: 502 }
+      )
     }
 
     // 3. Send confirmation email to bidder
@@ -190,7 +196,10 @@ export async function POST(request: NextRequest) {
 </body>
 </html>`
 
-    fetch('https://api.resend.com/emails', {
+    // Awaited on purpose: a fire-and-forget send can be abandoned when the
+    // serverless execution ends with the response, silently skipping the
+    // bidder's confirmation while the API reports success.
+    const confirmationResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${RESEND_API_KEY}`,
@@ -202,7 +211,19 @@ export async function POST(request: NextRequest) {
         subject: `Your proposal for ${auction.title} has been received`,
         html: confirmationHtml,
       }),
-    }).catch((err) => console.error('Confirmation email error:', err))
+    })
+
+    if (!confirmationResponse.ok) {
+      const errorData = await confirmationResponse.json().catch(() => null)
+      console.error('Resend confirmation email error:', errorData)
+      return NextResponse.json(
+        {
+          error:
+            'Your proposal reached us, but the confirmation email could not be sent. Do not resubmit — if you hear nothing within a few days, contact frank@frankx.ai.',
+        },
+        { status: 502 }
+      )
+    }
 
     return NextResponse.json({
       success: true,
