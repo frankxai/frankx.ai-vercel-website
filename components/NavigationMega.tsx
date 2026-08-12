@@ -173,6 +173,7 @@ const navigation = {
       { name: 'Ecosystem', href: '/ecosystem', icon: Network, description: 'The complete system map' },
       { name: 'Universe Map', href: '/map', icon: Map, description: 'Every surface, one view' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Core Qualities', href: '/qualities', icon: Compass, description: 'Freedom, mastery, meaning & connection' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
       { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
@@ -197,7 +198,7 @@ const navigation = {
     groups: [
       {
         label: 'Current work',
-        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Intelligence Atlas', 'Library', 'Guides', 'Essays', 'Journal'],
+        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Core Qualities', 'Intelligence Atlas', 'Library', 'Guides', 'Essays', 'Journal'],
       },
       {
         label: 'Systems & products',

@@ -61,6 +61,145 @@ export const domainCategories: Record<DomainCategory, { label: string; descripti
 
 export const researchDomains: ResearchDomain[] = [
   {
+    slug: 'core-qualities-and-human-drives',
+    title: 'Core Qualities & Human Drives',
+    subtitle: 'What autonomy, mastery, meaning, and connection can — and cannot — explain',
+    description:
+      'A research program beneath the FrankX qualities system. It separates Frank Riemer\'s autobiographical commitments from general evidence about autonomy, deliberate practice, meaning, belonging, and collective intelligence.',
+    tldr:
+      'Freedom, Mastery, Meaning, and Connection are personal commitments, not a universal personality model. Research does, however, offer useful adjacent evidence: autonomy, competence, and relatedness are central to self-determination theory; deliberate practice is important but not sufficient for expertise; meaning is associated with coherence, purpose, and significance; and belonging shapes health, motivation, and collective work. The FrankX constitution uses those findings as lenses, keeps its limitations visible, and tests the practical questions in public.',
+    icon: 'DraftingCompass',
+    color: 'emerald',
+    category: 'creative-productivity',
+    highlights: [
+      { stat: '4 lenses', label: 'Autonomy, craft, purpose, belonging', source: 'FrankX synthesis' },
+      { stat: '10 sources', label: 'Foundational and review literature', source: 'Source registry' },
+      { stat: 'No score', label: 'Not a personality test', source: 'Method boundary' },
+      { stat: 'Living', label: 'Revised as evidence and practice change', source: 'Research posture' },
+    ],
+    sections: [
+      {
+        title: 'A constitution, not a universal taxonomy',
+        content:
+          'The four qualities come from one person\'s life, inheritance, tensions, and ambitions. They are not presented as the four true human needs, a diagnostic instrument, or a validated psychological scale. The research question is narrower and more useful: what established evidence can help sharpen these commitments, and where must personal conviction remain clearly personal?',
+        items: [
+          { title: 'Autobiography stays autobiographical', description: 'Construction-site memories, creative ambitions, and personal definitions are evidence about Frank, not claims about everyone.', badge: 'Boundary' },
+          { title: 'General claims need sources', description: 'Claims about motivation, expertise, health, belonging, or group performance belong in this research layer with citations and limitations.', badge: 'Method' },
+          { title: 'Practice generates new questions', description: 'Books, products, workshops, and communities become field observations, not automatic proof of a general theory.', badge: 'Loop' },
+        ],
+      },
+      {
+        title: 'Freedom through the lens of autonomy',
+        content:
+          'Self-determination theory distinguishes autonomous motivation from mere independence: a person can freely endorse a commitment, including one that involves others. This sharpens the FrankX definition of freedom. The relevant question is not simply whether constraints disappear, but whether people experience meaningful choice, understand the reasons for action, and can participate without coercive control.',
+        items: [
+          { title: 'Agency over isolation', description: 'Autonomy concerns volition and self-endorsement; it does not require detachment from relationships or responsibility.', badge: 'Finding' },
+          { title: 'Dependency audit', description: 'AI can reduce effort while increasing platform, skill, or decision dependence. Both sides need measurement.', badge: 'Question' },
+          { title: 'Multiple freedoms', description: 'Time, location, attention, economic optionality, and psychological agency can move in different directions.', badge: 'Design' },
+        ],
+      },
+      {
+        title: 'Mastery through the lens of expertise',
+        content:
+          'Research on deliberate practice supports sustained, goal-directed practice with feedback as one contributor to expertise, while meta-analyses caution against treating it as a complete explanation. Prior knowledge, opportunity, coaching, cognition, motivation, and the structure of a domain also matter. Mastery is therefore better framed as a long practice of judgment than a promise that repetitions alone guarantee elite performance.',
+        items: [
+          { title: 'Practice must target weakness', description: 'Repetition becomes deliberate when goals, feedback, and correction are specific.', badge: 'Finding' },
+          { title: 'Judgment remains central', description: 'As AI accelerates execution, choosing standards and diagnosing weak work become more valuable.', badge: 'Hypothesis' },
+          { title: 'Shipping is part of feedback', description: 'Reality supplies consequences that private refinement cannot reproduce.', badge: 'Practice' },
+        ],
+      },
+      {
+        title: 'Meaning through coherence, purpose, and significance',
+        content:
+          'Psychological literature often distinguishes coherence (life makes sense), purpose (life has direction), and significance (life feels worth living). FrankX adds an architecture question: how can goals, attention, memory, relationships, and action remain coherent as AI expands available options? The system cannot settle what matters; it can make stated values, trade-offs, and drift more visible.',
+        items: [
+          { title: 'Meaning is multidimensional', description: 'Purpose alone does not capture whether a life feels intelligible or significant.', badge: 'Finding' },
+          { title: 'AI can support reflection', description: 'A system can retrieve memories, expose conflicts, and rank signals without claiming moral authority.', badge: 'Design' },
+          { title: 'Outcomes need time', description: 'Coherence and life direction rarely show up in short-term productivity metrics.', badge: 'Limit' },
+        ],
+      },
+      {
+        title: 'Connection through belonging and collective intelligence',
+        content:
+          'Belonging is a well-established human motive, and social connection is associated with health and resilience. Research on collective intelligence suggests group performance cannot be reduced to the smartest individual in the room; coordination and social processes matter. These findings support the design question behind Connection without proving that every community, collaboration, or network is beneficial.',
+        items: [
+          { title: 'Quality over reach', description: 'Connection depends on trust, reciprocity, and fit, not the number of contacts.', badge: 'Lens' },
+          { title: 'Boundaries preserve consent', description: 'Belonging becomes coercive when difference or exit is punished.', badge: 'Boundary' },
+          { title: 'Structure shapes collaboration', description: 'Roles, turn-taking, shared objects, and decision rules affect what groups can build.', badge: 'Design' },
+        ],
+      },
+      {
+        title: 'The public research loop',
+        content:
+          'The qualities page records the current constitution. This hub records the evidence, uncertainty, and next questions. Essays translate specific arguments. Books carry ideas across a longer narrative. Products, workshops, communities, and operating decisions reveal where the principles survive contact with constraints. The ambition is revision, not doctrinal completion.',
+        items: [
+          { title: 'Version the claims', description: 'Dates and limitations make it possible to see what changed and why.', badge: 'Research' },
+          { title: 'Trace the artifacts', description: 'Every related essay or chapter needs an explicit sentence explaining its relationship.', badge: 'Editorial' },
+          { title: 'Invite application', description: 'Readers should leave with questions they can use, not a new label to adopt.', badge: 'Practice' },
+        ],
+      },
+    ],
+    keyFindings: [
+      'The FrankX qualities are a personal constitution, not a validated or universal model of personality',
+      'Autonomy is better understood as volition and self-endorsement than isolation or the removal of all constraints',
+      'Deliberate practice contributes to expertise but does not explain mastery by itself across every domain',
+      'Meaning can be examined through coherence, purpose, and significance rather than reduced to productivity or mood',
+      'Belonging and social connection matter, while healthy connection still requires consent, boundaries, and the ability to differ',
+      'Collective performance depends on social and coordination processes, not only individual capability',
+      'AI systems can make values, trade-offs, memory, and drift more visible without possessing authority to decide what matters for a person',
+    ],
+    faq: [
+      {
+        question: 'Are Freedom, Mastery, Meaning, and Connection a scientific personality model?',
+        answer: 'No. They are Frank Riemer\'s current governing commitments, shaped by biography and practice. This research domain studies adjacent evidence and keeps the boundary between personal conviction and general claims explicit.',
+      },
+      {
+        question: 'Is autonomy the same as doing whatever you want?',
+        answer: 'No. In self-determination theory, autonomy concerns volition and self-endorsement. A person can autonomously choose difficult commitments, responsibilities, and interdependence.',
+      },
+      {
+        question: 'Does deliberate practice guarantee mastery?',
+        answer: 'No. Structured practice and feedback matter, but research does not support practice as a complete explanation of expertise across all domains. Opportunity, prior knowledge, coaching, motivation, cognition, and domain structure also contribute.',
+      },
+      {
+        question: 'Can AI determine what is meaningful?',
+        answer: 'This program does not make that claim. AI can support retrieval, reflection, comparison, and memory. The authority to decide what matters remains human and situated.',
+      },
+      {
+        question: 'How will this research change the FrankX site?',
+        answer: 'It will maintain a traceable relationship between the public qualities, research sources, essays, books, and real builds. Claims, limitations, and open questions will be revised as evidence and practice change.',
+      },
+    ],
+    relatedDomains: ['meaning-os', 'creator-economy-ai', 'ai-personal-productivity', 'agentic-life-architecture', 'embodied-cognition'],
+    relatedBlogPosts: [
+      '/blog/meaning-as-operating-system',
+      '/blog/creators-life-architecture-guide',
+      '/blog/coherence-is-an-engineering-property',
+      '/blog/the-great-transition-build-your-own-business',
+    ],
+    publishedAt: '2026-08-12',
+    lastUpdated: '2026-08-12',
+    sourceCount: 10,
+    status: 'foundational',
+    evidenceGrade: 'B',
+    evidenceNote:
+      'Foundational theory, peer-reviewed reviews, and meta-analyses are used as adjacent evidence; the four-quality synthesis remains a FrankX editorial framework.',
+    limitations: [
+      'The four-quality selection is autobiographical and has not been developed or validated as a psychometric instrument',
+      'The cited research traditions use constructs that overlap with, but are not identical to, FrankX definitions',
+      'Evidence about motivation and meaning is culturally and contextually dependent and should not be universalized without care',
+      'Research on collective intelligence does not imply that more collaboration is always better or that group outcomes are inherently ethical',
+      'The practical effects of AI on autonomy, mastery, meaning, and connection require longitudinal observation beyond current product metrics',
+    ],
+    whatWeDontKnow: [
+      'Which measures can distinguish genuine agency gains from convenience that increases long-term dependence',
+      'How AI-assisted practice changes the formation and transfer of expert judgment over years',
+      'How to measure personal coherence without turning a living value system into another optimization target',
+      'Which human–AI collaboration structures strengthen trust and collective capability without eroding voice, consent, or accountability',
+    ],
+    lastVerified: '2026-08-12',
+  },
+  {
     slug: 'ai-model-strategy',
     title: 'Build, Fine-Tune, or Buy an AI Model?',
     subtitle: 'A capital-aware decision system for owning the right layer of intelligence',

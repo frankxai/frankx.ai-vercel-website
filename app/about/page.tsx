@@ -249,6 +249,15 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
+          <div className="lg:col-start-2">
+            <Link
+              href="/qualities"
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-emerald-300 underline decoration-emerald-300/30 underline-offset-8 transition-colors hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              Read the four governing qualities
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 
