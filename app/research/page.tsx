@@ -34,9 +34,11 @@ import {
 import { researchDomains, researchAgents, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
 import { domainSources } from '@/lib/research/sources'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { MODEL_MAKER_PORTALS } from '@/lib/learn/related-portals'
 import { EmailSignup } from '@/components/email-signup'
+import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -669,19 +671,29 @@ function QualitiesResearchBridge() {
               ))}
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link
+              <TrackedLink
                 href="/research/core-qualities-and-human-drives"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-emerald-300 px-5 text-sm font-semibold text-[#07110d] transition-colors hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                {...coreQualitiesNavigationEvent({
+                  source: 'research_hub',
+                  placement: 'qualities_bridge_primary',
+                  destination: 'research_program',
+                })}
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-emerald-300 px-5 text-sm font-semibold text-void transition-colors hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
               >
                 Inspect sources and limits
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-              <Link
+                <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+              </TrackedLink>
+              <TrackedLink
                 href="/qualities"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/12 px-5 text-sm font-medium text-white/70 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+                {...coreQualitiesNavigationEvent({
+                  source: 'research_hub',
+                  placement: 'qualities_bridge_secondary',
+                  destination: 'overview',
+                })}
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.12] px-5 text-sm font-medium text-white/70 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
               >
                 Read the personal constitution
-              </Link>
+              </TrackedLink>
             </div>
           </div>
         </div>

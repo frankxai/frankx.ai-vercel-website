@@ -1,16 +1,20 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, FlaskConical } from 'lucide-react'
 import { notFound } from 'next/navigation'
 
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import JsonLd from '@/components/seo/JsonLd'
 import QualityEvidence from '@/components/qualities/QualityEvidence'
 import QualityFrame from '@/components/qualities/QualityFrame'
+import {
+  coreQualitiesEvidenceEvent,
+  coreQualitiesNavigationEvent,
+} from '@/lib/core-qualities-analytics'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { getQuality, qualities, qualitySlugs } from '@/lib/qualities'
 
-type PageProps = {
+interface PageProps {
   params: Promise<{ slug: string }>
 }
 
@@ -85,20 +89,26 @@ export default async function QualityPage({ params }: PageProps) {
   }
 
   return (
-    <main id="main" className="min-h-screen overflow-hidden bg-[#0a0a0b] text-white">
+    <main id="main" className="min-h-screen overflow-hidden bg-void text-white">
       <JsonLd type="Article" data={articleSchema} id={`quality-${quality.slug}-article`} />
       <JsonLd type="BreadcrumbList" data={breadcrumbSchema} id={`quality-${quality.slug}-breadcrumb`} />
 
       <section className="relative border-b border-white/[0.07] pt-24 sm:pt-28">
         <div className="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-10">
           <nav aria-label="Breadcrumb" className="py-6">
-            <Link
+            <TrackedLink
               href="/qualities"
+              {...coreQualitiesNavigationEvent({
+                source: 'detail',
+                placement: 'breadcrumb',
+                destination: 'overview',
+                quality_slug: quality.slug,
+              })}
               className="inline-flex min-h-11 items-center gap-2 text-sm text-white/45 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
             >
               <ArrowLeft className="h-4 w-4" />
               The four qualities
-            </Link>
+            </TrackedLink>
           </nav>
 
           <div className="grid items-stretch border-x border-t border-white/[0.08] lg:min-h-[42rem] lg:grid-cols-[0.9fr_1.1fr]">
@@ -113,13 +123,19 @@ export default async function QualityPage({ params }: PageProps) {
                 {quality.axiom}
               </p>
               <p className="mt-6 max-w-xl text-base leading-8 text-white/60 sm:text-lg">{quality.thesis}</p>
-              <a
+              <TrackedLink
                 href="#practice"
-                className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/12 px-5 text-sm font-medium text-white/70 transition-colors hover:border-emerald-300/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+                {...coreQualitiesNavigationEvent({
+                  source: 'detail',
+                  placement: 'hero_cta',
+                  destination: 'practice',
+                  quality_slug: quality.slug,
+                })}
+                className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/[0.12] px-5 text-sm font-medium text-white/70 transition-colors hover:border-emerald-300/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
               >
                 See it in practice
-                <ArrowRight className="h-4 w-4" />
-              </a>
+                <ArrowRight aria-hidden="true" className="h-4 w-4" />
+              </TrackedLink>
             </div>
             <div className="relative min-h-[28rem] overflow-hidden border-t border-white/[0.08] lg:border-l lg:border-t-0">
               <Image
@@ -130,7 +146,7 @@ export default async function QualityPage({ params }: PageProps) {
                 sizes="(max-width: 1024px) 100vw, 55vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/55 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-void/55 via-transparent to-transparent" />
             </div>
           </div>
         </div>
@@ -145,10 +161,10 @@ export default async function QualityPage({ params }: PageProps) {
             </div>
           </div>
           <div>
-            <p className="text-xl leading-9 text-white/78 sm:text-2xl sm:leading-10">{quality.definition}</p>
+            <p className="text-xl leading-9 text-white/[0.78] sm:text-2xl sm:leading-10">{quality.definition}</p>
             <div className="mt-10 border-l border-amber-200/35 pl-6">
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-200/60">Where it came from</p>
-              <p className="mt-4 text-base leading-8 text-white/58">{quality.origin}</p>
+              <p className="mt-4 text-base leading-8 text-white/[0.58]">{quality.origin}</p>
             </div>
           </div>
         </div>
@@ -164,7 +180,7 @@ export default async function QualityPage({ params }: PageProps) {
               </h2>
               <div className="mt-9 space-y-5">
                 {quality.practice.map((practice) => (
-                  <div key={practice} className="flex gap-4 text-sm leading-7 text-white/62">
+                  <div key={practice} className="flex gap-4 text-sm leading-7 text-white/[0.62]">
                     <Check className="mt-1 h-4 w-4 shrink-0 text-emerald-300/70" />
                     <p>{practice}</p>
                   </div>
@@ -172,7 +188,7 @@ export default async function QualityPage({ params }: PageProps) {
               </div>
             </div>
 
-            <div className="rounded-[1.5rem] border border-white/10 bg-[#0c0c0d] p-6 sm:p-8">
+            <div className="surface-1 rounded-[1.5rem] border border-white/10 p-6 sm:p-8">
               <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/50">Decision filter</p>
               <ol className="mt-6 divide-y divide-white/10 border-y border-white/10">
                 {quality.decisionQuestions.map((question, questionIndex) => (
@@ -186,7 +202,7 @@ export default async function QualityPage({ params }: PageProps) {
               </ol>
               <div className="mt-7 border-l border-amber-200/35 pl-5">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-200/60">The shadow</p>
-                <p className="mt-3 text-sm leading-7 text-white/58">{quality.shadow}</p>
+                <p className="mt-3 text-sm leading-7 text-white/[0.58]">{quality.shadow}</p>
               </div>
             </div>
           </div>
@@ -200,18 +216,18 @@ export default async function QualityPage({ params }: PageProps) {
             <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
               Where {quality.name.toLowerCase()} enters the work.
             </h2>
-            <p className="mt-6 text-base leading-8 text-white/58">
+            <p className="mt-6 text-base leading-8 text-white/[0.58]">
               These are not random recommendations. Each artifact records a different part of the argument:
               source-led inquiry, lived practice, or the longer construction of a book.
             </p>
           </div>
-          <QualityEvidence items={quality.evidence} />
+          <QualityEvidence items={quality.evidence} source="detail" qualitySlug={quality.slug} />
         </div>
       </section>
 
       <section className="border-y border-white/[0.07] bg-white/[0.015] px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-center lg:gap-24">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-emerald-300/25 bg-emerald-300/8 text-emerald-200">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-emerald-300/25 bg-emerald-300/[0.08] text-emerald-200">
             <FlaskConical className="h-6 w-6" />
           </div>
           <div>
@@ -223,13 +239,20 @@ export default async function QualityPage({ params }: PageProps) {
               The Research Hub holds claims to a different standard than this personal page: sources,
               limitations, uncertainty, and revision dates stay visible.
             </p>
-            <Link
+            <TrackedLink
               href="/research/core-qualities-and-human-drives"
+              {...coreQualitiesEvidenceEvent({
+                source: 'detail',
+                placement: 'research_question',
+                destination: '/research/core-qualities-and-human-drives',
+                evidence_kind: 'research',
+                quality_slug: quality.slug,
+              })}
               className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-emerald-300 transition-colors hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
             >
               Inspect the research program
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+            </TrackedLink>
           </div>
         </div>
       </section>
@@ -247,8 +270,15 @@ export default async function QualityPage({ params }: PageProps) {
       </section>
 
       <nav aria-label="Other qualities" className="grid border-t border-white/[0.07] sm:grid-cols-2">
-        <Link
+        <TrackedLink
           href={`/qualities/${previous.slug}`}
+          {...coreQualitiesNavigationEvent({
+            source: 'detail',
+            placement: 'pagination',
+            destination: 'quality_detail',
+            quality_slug: previous.slug,
+            direction: 'previous',
+          })}
           className="group border-b border-white/[0.07] px-5 py-10 transition-colors hover:bg-white/[0.025] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-300 sm:border-b-0 sm:border-r sm:px-10"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">Previous quality</span>
@@ -256,9 +286,16 @@ export default async function QualityPage({ params }: PageProps) {
             <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
             {previous.name}
           </span>
-        </Link>
-        <Link
+        </TrackedLink>
+        <TrackedLink
           href={`/qualities/${next.slug}`}
+          {...coreQualitiesNavigationEvent({
+            source: 'detail',
+            placement: 'pagination',
+            destination: 'quality_detail',
+            quality_slug: next.slug,
+            direction: 'next',
+          })}
           className="group px-5 py-10 text-right transition-colors hover:bg-white/[0.025] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-300 sm:px-10"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">Next quality</span>
@@ -266,7 +303,7 @@ export default async function QualityPage({ params }: PageProps) {
             {next.name}
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </span>
-        </Link>
+        </TrackedLink>
       </nav>
     </main>
   )

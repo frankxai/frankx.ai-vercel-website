@@ -20,14 +20,44 @@ const routeIndex = JSON.parse(read('data/route-index.json'))
 
 const slugs = ['freedom', 'mastery', 'meaning', 'connection']
 
+const extractScopedBlock = (source, startMarker, endMarker, label) => {
+  const start = source.indexOf(startMarker)
+  assert.notEqual(start, -1, `${label} start marker is missing`)
+
+  const contentStart = start + startMarker.length
+  const end = source.indexOf(endMarker, contentStart)
+  assert.notEqual(end, -1, `${label} end marker is missing`)
+
+  return source.slice(contentStart, end)
+}
+
+const extractIndentedObjects = (source, indent) => {
+  const pattern = new RegExp(`^${indent}\\{([\\s\\S]*?)^${indent}\\},?$`, 'gm')
+  return [...source.matchAll(pattern)].map((match) => match[1])
+}
+
+const qualityRecords = () =>
+  extractIndentedObjects(
+    extractScopedBlock(
+      registry,
+      'export const qualities: Quality[] = [\n',
+      '\n]\n\nexport const qualitiesBySlug',
+      'qualities registry',
+    ),
+    '  ',
+  )
+
 test('the canonical qualities registry has exactly four unique slugs', () => {
   const declared = registry
     .match(/qualitySlugs = \[([^\]]+)\]/s)?.[1]
     ?.match(/'([a-z-]+)'/g)
     ?.map((slug) => slug.slice(1, -1))
+  const records = qualityRecords()
+  const recordSlugs = records.map((record) => record.match(/^    slug: '([a-z-]+)'/m)?.[1])
 
   assert.deepEqual(declared, slugs)
-  assert.equal(new Set(declared).size, 4)
+  assert.deepEqual(recordSlugs, slugs)
+  assert.equal(new Set(recordSlugs).size, slugs.length)
 })
 
 test('overview and detail routes expose metadata and structured data', () => {
@@ -68,10 +98,43 @@ test('all commissioned quality images exist', () => {
 })
 
 test('research domain and source registry stay in parity', () => {
-  assert.match(researchDomains, /slug: 'core-qualities-and-human-drives'/)
-  assert.match(researchSources, /'core-qualities-and-human-drives': \[/)
-  assert.match(researchSources, /'meaning-os': \[/)
-  assert.match(researchDomains, /sourceCount: 10/)
+  const domainRecords = extractIndentedObjects(
+    extractScopedBlock(
+      researchDomains,
+      'export const researchDomains: ResearchDomain[] = [\n',
+      '\n]\n\n// Helper functions',
+      'research domain registry',
+    ),
+    '  ',
+  )
+  const coreDomain = domainRecords.find((record) =>
+    /^    slug: 'core-qualities-and-human-drives'/m.test(record),
+  )
+  assert.ok(coreDomain, 'cross-quality research domain is missing')
+
+  const declaredSourceCount = Number(coreDomain.match(/^    sourceCount: (\d+),?$/m)?.[1])
+  const coreSources = extractIndentedObjects(
+    extractScopedBlock(
+      researchSources,
+      "  'core-qualities-and-human-drives': [\n",
+      '\n  ],',
+      'cross-quality research sources',
+    ),
+    '    ',
+  )
+  const meaningSources = extractIndentedObjects(
+    extractScopedBlock(
+      researchSources,
+      "  'meaning-os': [\n",
+      '\n  ],',
+      'meaning research sources',
+    ),
+    '    ',
+  )
+
+  assert.equal(declaredSourceCount, 10)
+  assert.equal(coreSources.length, declaredSourceCount)
+  assert.ok(meaningSources.length > 0, 'meaning research sources are missing')
   assert.ok(
     routeIndex.routes.some((route) => route.href === '/research/core-qualities-and-human-drives'),
     'cross-quality research route is missing from the generated route index',
@@ -85,9 +148,24 @@ test('legacy six-value article points to the canonical four-quality system', () 
 })
 
 test('quality relationships are explained, not merely linked', () => {
-  const noteCount = (registry.match(/note:/g) || []).length
-  assert.ok(noteCount >= 12, `expected at least 12 editorial relationship notes, found ${noteCount}`)
-  assert.match(registry, /shadow:/)
-  assert.match(registry, /researchQuestion:/)
-  assert.match(registry, /ambition:/)
+  const relationshipNotes = qualityRecords().flatMap((record) => {
+    const slug = record.match(/^    slug: '([a-z-]+)'/m)?.[1]
+    const evidenceRecords = extractIndentedObjects(
+      extractScopedBlock(record, '    evidence: [\n', '\n    ],', `${slug} evidence`),
+      '      ',
+    )
+
+    assert.equal(evidenceRecords.length, 3, `${slug} must have three evidence relationships`)
+    assert.match(record, /^    shadow: /m, `${slug} shadow is missing`)
+    assert.match(record, /^    researchQuestion:/m, `${slug} research question is missing`)
+    assert.match(record, /^    ambition:/m, `${slug} ambition is missing`)
+
+    return evidenceRecords.map((evidence, index) => {
+      const note = evidence.match(/^        note: '(.+)',$/m)?.[1]
+      assert.ok(note, `${slug} evidence relationship ${index + 1} needs an editorial note`)
+      return note
+    })
+  })
+
+  assert.equal(relationshipNotes.length, 12)
 })

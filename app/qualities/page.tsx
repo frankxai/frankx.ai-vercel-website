@@ -3,10 +3,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react'
 
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import JsonLd from '@/components/seo/JsonLd'
 import QualitiesMap from '@/components/qualities/QualitiesMap'
 import QualityEvidence from '@/components/qualities/QualityEvidence'
 import QualityReflection from '@/components/qualities/QualityReflection'
+import {
+  coreQualitiesEvidenceEvent,
+  coreQualitiesNavigationEvent,
+} from '@/lib/core-qualities-analytics'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { qualities, qualitySystem } from '@/lib/qualities'
 
@@ -52,7 +57,7 @@ const breadcrumbSchema = {
 
 export default function QualitiesPage() {
   return (
-    <main id="main" className="min-h-screen overflow-hidden bg-[#0a0a0b] text-white">
+    <main id="main" className="min-h-screen overflow-hidden bg-void text-white">
       <JsonLd type="CollectionPage" data={collectionSchema} id="qualities-collection-schema" />
       <JsonLd type="BreadcrumbList" data={breadcrumbSchema} id="qualities-breadcrumb-schema" />
 
@@ -72,20 +77,30 @@ export default function QualitiesPage() {
               the books I write, and the life I am still choosing.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <a
+              <TrackedLink
                 href="#map-your-qualities"
-                className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-300 px-6 text-sm font-semibold text-[#07110d] transition-colors hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                {...coreQualitiesNavigationEvent({
+                  source: 'overview',
+                  placement: 'hero_primary',
+                  destination: 'reflection',
+                })}
+                className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-300 px-6 text-sm font-semibold text-void transition-colors hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
               >
                 Map your own qualities
-                <ArrowDown className="h-4 w-4" />
-              </a>
-              <a
+                <ArrowDown aria-hidden="true" className="h-4 w-4" />
+              </TrackedLink>
+              <TrackedLink
                 href="#evidence"
+                {...coreQualitiesNavigationEvent({
+                  source: 'overview',
+                  placement: 'hero_secondary',
+                  destination: 'evidence',
+                })}
                 className="inline-flex min-h-12 items-center gap-2 rounded-full px-4 text-sm font-medium text-white/65 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
               >
                 Follow the evidence
-                <ArrowRight className="h-4 w-4" />
-              </a>
+                <ArrowRight aria-hidden="true" className="h-4 w-4" />
+              </TrackedLink>
             </div>
           </div>
 
@@ -98,7 +113,7 @@ export default function QualitiesPage() {
               sizes="(max-width: 1024px) 100vw, 54vw"
               className="object-cover object-[55%_center] grayscale-[18%] contrast-[1.06]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/5 to-transparent lg:bg-gradient-to-r lg:from-[#0a0a0b] lg:via-transparent lg:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-void via-void/5 to-transparent lg:bg-gradient-to-r lg:from-void lg:via-transparent lg:to-transparent" />
             <div className="absolute inset-x-5 bottom-6 border-l border-emerald-300/40 pl-4 sm:inset-x-8 sm:bottom-8">
               <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/45">Current material</p>
               <p className="mt-2 max-w-md text-sm leading-6 text-white/75">
@@ -121,7 +136,7 @@ export default function QualitiesPage() {
             <p className="font-serif-italic text-2xl leading-[1.55] text-white/85 sm:text-3xl">
               “Measure carefully. Make it sturdy. Leave it better.”
             </p>
-            <p className="mt-7 max-w-2xl text-base leading-8 text-white/62 sm:text-lg">
+            <p className="mt-7 max-w-2xl text-base leading-8 text-white/[0.62] sm:text-lg">
               I grew up beside my father on construction sites. He was a master craftsman. Across hours,
               weeks, months, and years, the work made its own demands. My materials are different now —
               AI systems, software, writing, music, workshops, communities, brands, and businesses. The
@@ -156,7 +171,7 @@ export default function QualitiesPage() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/75 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-void/75 via-transparent to-transparent" />
                 <p className="absolute bottom-6 left-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
                   {quality.number} · {quality.shortRole}
                 </p>
@@ -169,17 +184,23 @@ export default function QualitiesPage() {
                 <h2 className="mt-5 max-w-xl font-display text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                   {quality.axiom}
                 </h2>
-                <p className="mt-6 max-w-xl text-base leading-8 text-white/62">{quality.definition}</p>
-                <p className="mt-7 border-l border-amber-200/35 pl-5 text-sm leading-7 text-white/52">
+                <p className="mt-6 max-w-xl text-base leading-8 text-white/[0.62]">{quality.definition}</p>
+                <p className="mt-7 border-l border-amber-200/35 pl-5 text-sm leading-7 text-white/[0.52]">
                   <span className="font-medium text-white/80">The tension:</span> {quality.shadow}
                 </p>
-                <Link
+                <TrackedLink
                   href={`/qualities/${quality.slug}`}
-                  className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/12 px-5 text-sm font-medium text-white/75 transition-colors hover:border-emerald-300/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+                  {...coreQualitiesNavigationEvent({
+                    source: 'overview',
+                    placement: 'quality_chapter',
+                    destination: 'quality_detail',
+                    quality_slug: quality.slug,
+                  })}
+                  className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/[0.12] px-5 text-sm font-medium text-white/75 transition-colors hover:border-emerald-300/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
                 >
                   Explore {quality.name}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                </TrackedLink>
               </div>
             </div>
           </article>
@@ -194,21 +215,30 @@ export default function QualitiesPage() {
               <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                 The writing is where the qualities get tested.
               </h2>
-              <p className="mt-6 text-base leading-8 text-white/58">
+              <p className="mt-6 text-base leading-8 text-white/[0.58]">
                 Each link below earns its place by showing a concrete relationship. The Research Hub
                 separates general claims from personal conviction. Essays make the argument. Books hold
                 the longer arc. Builds reveal whether the principle survives contact with reality.
               </p>
             </div>
             <div>
-              <QualityEvidence items={qualities.flatMap((quality) => quality.evidence.slice(0, 1))} />
-              <Link
+              <QualityEvidence
+                items={qualities.flatMap((quality) => quality.evidence.slice(0, 1))}
+                source="overview"
+              />
+              <TrackedLink
                 href="/research/core-qualities-and-human-drives"
+                {...coreQualitiesEvidenceEvent({
+                  source: 'overview',
+                  placement: 'evidence_footer',
+                  destination: '/research/core-qualities-and-human-drives',
+                  evidence_kind: 'research',
+                })}
                 className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-emerald-300 transition-colors hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
               >
                 Open the cross-quality research program
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
+                <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+              </TrackedLink>
             </div>
           </div>
         </div>
@@ -238,7 +268,7 @@ export default function QualitiesPage() {
             <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
               A value matters when it changes a decision.
             </h2>
-            <p className="mt-5 text-base leading-8 text-white/58">
+            <p className="mt-5 text-base leading-8 text-white/[0.58]">
               Use the four prompts to name the architecture beneath your own work. The answers stay on your device.
             </p>
           </div>
@@ -260,14 +290,14 @@ export default function QualitiesPage() {
           <div className="mt-9 flex flex-wrap justify-center gap-4">
             <Link
               href="/research"
-              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-300 px-6 text-sm font-semibold text-[#07110d] transition-colors hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-300 px-6 text-sm font-semibold text-void transition-colors hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
             >
               Enter the Research Hub
               <ArrowUpRight className="h-4 w-4" />
             </Link>
             <Link
               href="/books"
-              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/12 px-6 text-sm font-medium text-white/70 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/[0.12] px-6 text-sm font-medium text-white/70 transition-colors hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
             >
               Explore the books
             </Link>

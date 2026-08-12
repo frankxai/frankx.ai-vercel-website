@@ -30,7 +30,8 @@ Direction 1 was independently approved because its metaphor is earned by Frank's
 - Every evidence link carries an editorial sentence explaining why the research, article, or book chapter belongs.
 - `/research/core-qualities-and-human-drives` separates Frank's autobiographical claims from general evidence on autonomy, expertise, meaning, belonging, and collective intelligence.
 - Related-quality blocks are derived from the same registry on blog articles and book chapters.
-- The four-question field sheet stays in the browser and is not a newsletter gate.
+- The four-question field sheet stays in the browser and is not a newsletter gate. Analytics record only aggregate actions such as save, clear, and download; answers and prompt text never enter event properties.
+- A shared privacy-safe event contract measures overview/detail navigation, evidence openings, and discovery from Research, About, navigation, footer, articles, and book chapters while honoring Do Not Track.
 
 ## Visual system
 
@@ -52,5 +53,6 @@ Local gates before publication:
 - Internal-link audit: passing.
 - Production build and post-build artifact tests: passing.
 - Runtime route probes: `/qualities`, all four detail pages, and `/research` returned rendered HTML.
+- Review-hardening pass: explicit component prop interfaces, scoped registry/source relationship contracts, semantic neutral surfaces, supported opacity values, decorative icon labeling, and privacy-safe journey analytics.
 
 The pre-release production commit is `6b41af359559`. If the merged release fails a production gate, restore that commit through a GitHub revert so Vercel's native Git integration produces an auditable rollback deployment.

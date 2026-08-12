@@ -42,6 +42,8 @@ import {
   Download,
   type LucideIcon,
 } from 'lucide-react'
+import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
+import { trackEvent } from '@/lib/analytics'
 
 export interface MobileNavOverlayProps {
   isOpen: boolean
@@ -634,8 +636,20 @@ function NavTile({ item, onClose }: { item: NavItem; onClose: () => void }) {
     )
   }
 
+  const handleSelect = () => {
+    if (item.href === '/qualities') {
+      const event = coreQualitiesNavigationEvent({
+        source: 'mobile_nav',
+        placement: 'workspace_group',
+        destination: 'overview',
+      })
+      trackEvent(event.eventName, event.eventProperties)
+    }
+    onClose()
+  }
+
   return (
-    <Link href={item.href} onClick={onClose} className={tileBase}>
+    <Link href={item.href} onClick={handleSelect} className={tileBase}>
       {content}
     </Link>
   )
