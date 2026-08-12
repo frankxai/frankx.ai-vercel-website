@@ -93,7 +93,7 @@ export function FutureEssay({
             Read the founder position
           </Link>
           <a
-            href="https://starlight-intelligence.vercel.app/constitution"
+            href="https://starlightintelligence.org/constitution"
             className="text-sm font-semibold text-slate-300 underline decoration-white/20 underline-offset-8"
           >
             Read the Starlight Accord

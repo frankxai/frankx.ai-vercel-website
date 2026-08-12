@@ -28,7 +28,7 @@ const ventures = [
     "Starlight Intelligence",
     "The constitutional and intelligence layer",
     "A mission house for portable context, human capability, plural intelligence, education, and public standards.",
-    "https://starlight-intelligence.vercel.app/constitution",
+    "https://starlightintelligence.org/constitution",
   ],
   [
     "GenCreator",
