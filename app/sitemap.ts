@@ -119,6 +119,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages = [
     { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/the-future-we-choose', priority: 0.95, changeFrequency: 'monthly' as const },
+    { url: '/insights/meta-the-future-is-for-everyone', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/insights/from-personal-superintelligence-to-human-sovereignty', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
