@@ -373,7 +373,10 @@ const nextConfig = {
               "img-src 'self' data: blob: https: http:",
               "media-src 'self' https:",
               "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
-              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app",
+              // tonejs.github.io serves the Salamander grand piano samples fetched by
+              // /music-lab/piano, /music-lab/games/rhythm-duel and /valentines-day/tien/piano.
+              // Without it those pages silently fall back to synthesis.
+              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io",
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",
