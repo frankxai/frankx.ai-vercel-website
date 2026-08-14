@@ -97,6 +97,9 @@ jobs:
       # test:social-identity to merge:gate without adding them to this workflow —
       # so the contract that #441 shipped to stop a blog-discoverability
       # regression was itself unenforced on every pull request.
+      # It happened a third time on 2026-08-14: #471 added test:checkout-sku and
+      # test:auction-bid to merge:gate only, which left main red on this job for
+      # every pull request until they were added below.
       - name: Contract tests
         run: |
           pnpm run test:homepage-release
@@ -104,6 +107,8 @@ jobs:
           pnpm run test:expert-authority
           pnpm run test:ai-architecture
           pnpm run test:email-safety
+          pnpm run test:checkout-sku
+          pnpm run test:auction-bid
           pnpm run test:agentic-life-research
           pnpm run test:community-platform-guide
           pnpm run test:learning-routes
