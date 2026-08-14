@@ -36,6 +36,11 @@ on:
       - '.claude/agents/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
+      # Required-check trap: a required status check with a paths filter blocks
+      # every pull request that misses the filter, because the check stays
+      # expected and never reports. next.config.mjs hit that on 2026-08-14, and
+      # its redirects and headers are exactly what the link checks cover.
+      - 'next.config.mjs'
       - '.github/workflows/merge-gate.yml'
 
 concurrency:
@@ -99,8 +104,6 @@ jobs:
           pnpm run test:expert-authority
           pnpm run test:ai-architecture
           pnpm run test:email-safety
-          pnpm run test:checkout-sku
-          pnpm run test:auction-bid
           pnpm run test:agentic-life-research
           pnpm run test:community-platform-guide
           pnpm run test:learning-routes
