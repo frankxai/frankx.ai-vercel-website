@@ -7,20 +7,25 @@
     "item": {
       "type": "digital",
       "category": "Instrument Design",
-      "images": ["/images/gallery/instruments/biotech-grand-piano.png"],
+      "images": [
+        "/images/gallery/instruments/biotech-grand-piano.png"
+      ],
       "details": "High-resolution digital print (4096x2304) with certificate of authenticity. Generated with Gemini 3 Pro via Nano Banana MCP. Edition 1 of 10."
     },
     "startingBid": 47,
     "reservePrice": 97,
     "buyNowPrice": 197,
-    "winningBid": 187,
-    "acquiredBy": "Anonymous Creator",
-    "startTime": "2026-02-15T00:00:00Z",
-    "endTime": "2026-02-22T00:00:00Z",
-    "status": "completed",
+    "startTime": "2026-08-10T00:00:00Z",
+    "endTime": "2026-08-31T00:00:00Z",
+    "status": "active",
     "featured": true,
     "edition": "1 of 10",
-    "tags": ["instrument", "piano", "biotech", "limited-edition"]
+    "tags": [
+      "instrument",
+      "piano",
+      "biotech",
+      "limited-edition"
+    ]
   },
   {
     "id": "auction-002",
@@ -30,20 +35,25 @@
     "item": {
       "type": "digital",
       "category": "Instrument Design",
-      "images": ["/images/gallery/instruments/biotech-violin-blueprint.png"],
+      "images": [
+        "/images/gallery/instruments/biotech-violin-blueprint.png"
+      ],
       "details": "High-resolution digital blueprint (4096x2304) with full technical annotations. Edition 1 of 10."
     },
     "startingBid": 47,
     "reservePrice": 97,
     "buyNowPrice": 197,
-    "winningBid": 197,
-    "acquiredBy": "Anonymous Developer",
-    "startTime": "2026-02-15T00:00:00Z",
-    "endTime": "2026-02-22T00:00:00Z",
-    "status": "completed",
+    "startTime": "2026-08-10T00:00:00Z",
+    "endTime": "2026-08-31T00:00:00Z",
+    "status": "active",
     "featured": true,
     "edition": "1 of 10",
-    "tags": ["instrument", "violin", "blueprint", "limited-edition"]
+    "tags": [
+      "instrument",
+      "violin",
+      "blueprint",
+      "limited-edition"
+    ]
   },
   {
     "id": "auction-003",
@@ -53,7 +63,9 @@
     "item": {
       "type": "experience",
       "category": "Coaching",
-      "images": ["/images/blog/build-your-own-jarvis-hero.png"],
+      "images": [
+        "/images/portraits/frank-presenting-oracle-2025.jpg"
+      ],
       "details": "90-minute video call. Agenda tailored to your needs. Includes recording and follow-up action plan document. Schedule within 30 days of purchase."
     },
     "startingBid": 297,
@@ -63,7 +75,12 @@
     "status": "active",
     "featured": true,
     "edition": "1 of 1",
-    "tags": ["coaching", "architecture", "1on1", "exclusive"]
+    "tags": [
+      "coaching",
+      "architecture",
+      "1on1",
+      "exclusive"
+    ]
   },
   {
     "id": "auction-004",
@@ -73,7 +90,9 @@
     "item": {
       "type": "experience",
       "category": "Custom Build",
-      "images": ["/images/blog/agentic-creator-os-complete-guide-hero.png"],
+      "images": [
+        "/images/downloads/acos-skills-pack.png"
+      ],
       "details": "Complete custom ACOS setup delivered as a .claude/ directory you drop into your project. Includes 2 revision rounds and documentation."
     },
     "startingBid": 497,
@@ -83,7 +102,12 @@
     "status": "active",
     "featured": false,
     "edition": "1 of 3",
-    "tags": ["acos", "custom", "build", "exclusive"]
+    "tags": [
+      "acos",
+      "custom",
+      "build",
+      "exclusive"
+    ]
   },
   {
     "id": "auction-005",
@@ -93,19 +117,24 @@
     "item": {
       "type": "digital",
       "category": "Instrument Design",
-      "images": ["/images/gallery/instruments/biotech-future-lab.png"],
+      "images": [
+        "/images/gallery/instruments/biotech-future-lab.png"
+      ],
       "details": "High-resolution panoramic print (4096x2304). The crown jewel of the Bio-Tech Instruments collection. Edition 1 of 10."
     },
     "startingBid": 67,
     "reservePrice": 147,
     "buyNowPrice": 297,
-    "winningBid": 297,
-    "acquiredBy": "Anonymous Architect",
-    "startTime": "2026-02-15T00:00:00Z",
-    "endTime": "2026-02-22T00:00:00Z",
-    "status": "completed",
+    "startTime": "2026-08-10T00:00:00Z",
+    "endTime": "2026-08-31T00:00:00Z",
+    "status": "active",
     "featured": true,
     "edition": "1 of 10",
-    "tags": ["instrument", "laboratory", "panoramic", "limited-edition"]
+    "tags": [
+      "instrument",
+      "laboratory",
+      "panoramic",
+      "limited-edition"
+    ]
   }
 ]
