@@ -30,7 +30,7 @@ export class RhythmAudio {
   private samples = new Map<string, AudioBuffer>()
 
   samplesReady = false
-  private onReady: (() => void)[] = []
+  private disposed = false
 
   get context() { return this.ctx }
   get now() { return this.ctx ? this.ctx.currentTime : 0 }
@@ -41,7 +41,14 @@ export class RhythmAudio {
       return
     }
 
-    const ctx = new AudioContext({ sampleRate: 44100 })
+    // Some Android and iOS devices refuse a forced sample rate and throw; the
+    // hardware default is fine, everything here is rate-agnostic.
+    let ctx: AudioContext
+    try {
+      ctx = new AudioContext({ sampleRate: 44100 })
+    } catch {
+      ctx = new AudioContext()
+    }
     this.ctx = ctx
 
     const limiter = ctx.createDynamicsCompressor()
@@ -113,27 +120,20 @@ export class RhythmAudio {
     if (!ctx) return
     const batch = 5
     for (let i = 0; i < SAMPLE_NOTES.length; i += batch) {
+      if (this.disposed) return
       await Promise.all(SAMPLE_NOTES.slice(i, i + batch).map(async s => {
         try {
           const res = await fetch(`${SAMPLE_CDN}${s.name}.mp3`)
-          if (!res.ok) return
+          if (!res.ok || this.disposed) return
           this.samples.set(s.name, await ctx.decodeAudioData(await res.arrayBuffer()))
         } catch {
           // Synth lead covers it.
         }
       }))
+      // Playable as soon as any of the range has landed; the rest fills in.
+      this.samplesReady = this.samples.size > 0
     }
-    this.samplesReady = this.samples.size > 0
-    this.onReady.forEach(cb => cb())
-    this.onReady = []
   }
-
-  whenSamplesSettled(cb: () => void) {
-    if (this.samples.size >= SAMPLE_NOTES.length || this.samplesReady) cb()
-    else this.onReady.push(cb)
-  }
-
-  get sampleProgress() { return this.samples.size / SAMPLE_NOTES.length }
 
   setMasterVolume(v: number) {
     if (this.master) this.master.gain.value = Math.max(0, Math.min(1, v)) * 0.85
@@ -436,10 +436,13 @@ export class RhythmAudio {
   async resume() { if (this.ctx && this.ctx.state === 'suspended') await this.ctx.resume() }
 
   destroy() {
+    this.disposed = true
     if (this.ctx) { try { void this.ctx.close() } catch { /* already closed */ } }
     this.ctx = null
     this.master = null
     this.reverbIn = null
     this.buses.clear()
+    this.samples.clear()
+    this.samplesReady = false
   }
 }

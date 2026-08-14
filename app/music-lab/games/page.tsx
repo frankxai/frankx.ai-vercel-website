@@ -10,7 +10,7 @@ const GAMES = [
     tag: '1–2 players',
     accent: '#22d3ee',
     facts: [
-      { icon: Users, text: 'Two people, one keyboard or one tablet' },
+      { icon: Users, text: 'Two people, one keyboard or a landscape tablet' },
       { icon: Keyboard, text: 'A S D F and J K L ; — or arrow keys' },
       { icon: Smartphone, text: 'Touch pads on phone and tablet' },
     ],
@@ -29,7 +29,7 @@ export default function MusicGamesPage() {
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 md:py-28">
         <Link
           href="/music-lab"
-          className="inline-flex items-center gap-2 text-sm text-white/35 hover:text-white/70 transition-colors mb-10"
+          className="inline-flex items-center gap-2 text-sm text-white/55 hover:text-white/70 transition-colors mb-10"
         >
           <ArrowLeft className="w-4 h-4" />
           Music Lab
@@ -43,7 +43,7 @@ export default function MusicGamesPage() {
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-5">
           Games you <span className="font-serif-italic text-white/70">play with sound</span>
         </h1>
-        <p className="text-lg text-white/45 max-w-2xl leading-relaxed mb-14">
+        <p className="text-lg text-white/60 max-w-2xl leading-relaxed mb-14">
           The rest of the Music Lab is instruments you play alone. This is the part
           you hand to someone else. Browser only — nothing to install, no account.
         </p>
@@ -59,7 +59,7 @@ export default function MusicGamesPage() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <span className="w-2 h-2 rounded-full" style={{ background: game.accent }} />
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-white/35">{game.tag}</span>
+                    <span className="text-[10px] tracking-[0.2em] uppercase text-white/55">{game.tag}</span>
                   </div>
                   <h2 className="text-2xl font-semibold">{game.title}</h2>
                 </div>
@@ -69,12 +69,12 @@ export default function MusicGamesPage() {
                 </span>
               </div>
 
-              <p className="text-white/45 leading-relaxed max-w-2xl mb-6">{game.blurb}</p>
+              <p className="text-white/60 leading-relaxed max-w-2xl mb-6">{game.blurb}</p>
 
               <ul className="flex flex-wrap gap-x-6 gap-y-2">
                 {game.facts.map(fact => (
-                  <li key={fact.text} className="flex items-center gap-2 text-sm text-white/35">
-                    <fact.icon className="w-4 h-4 text-white/25" />
+                  <li key={fact.text} className="flex items-center gap-2 text-sm text-white/55">
+                    <fact.icon className="w-4 h-4 text-white/60" />
                     {fact.text}
                   </li>
                 ))}
@@ -83,10 +83,10 @@ export default function MusicGamesPage() {
           ))}
         </div>
 
-        <p className="text-sm text-white/25 mt-12 leading-relaxed max-w-2xl">
+        <p className="text-sm text-white/60 mt-12 leading-relaxed max-w-2xl">
           More games are planned — an ear-training duel and a call-and-response
           memory game are next. If you want one in particular, tell me on the{' '}
-          <Link href="/contact" className="text-white/45 underline underline-offset-4 hover:text-white/70">
+          <Link href="/contact" className="text-white/60 underline underline-offset-4 hover:text-white/70">
             contact page
           </Link>.
         </p>

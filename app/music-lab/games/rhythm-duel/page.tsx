@@ -155,7 +155,6 @@ export default function RhythmDuelPage() {
   const [paused, setPaused] = useState(false)
   const [results, setResults] = useState<PlayerResult[] | null>(null)
   const [wideEnough, setWideEnough] = useState(true)
-  const [loadProgress, setLoadProgress] = useState(0)
 
   const audioRef = useRef<RhythmAudio | null>(null)
   const runRef = useRef<Run | null>(null)
@@ -165,6 +164,7 @@ export default function RhythmDuelPage() {
   const pausedRef = useRef(false)
   const offsetRef = useRef(0)
   const scrollRef = useRef(SPEEDS[1].scroll)
+  const pauseAnchor = useRef(0)
 
   const song = useMemo(() => SONGS.find(s => s.id === songId) ?? SONGS[0], [songId])
 
@@ -309,6 +309,9 @@ export default function RhythmDuelPage() {
       ended: false,
     }
     runRef.current = run
+    // A run started from the pause overlay would otherwise inherit the old
+    // anchor and have the resume handler shift its clock by a stale gap.
+    pauseAnchor.current = 0
     setResults(null)
     setPaused(false)
     setScreen('playing')
@@ -401,7 +404,6 @@ export default function RhythmDuelPage() {
   }, [screen])
 
   // Pausing has to move the song clock, or the chart races on while suspended.
-  const pauseAnchor = useRef(0)
   useEffect(() => {
     const audio = audioRef.current
     const run = runRef.current
@@ -417,14 +419,6 @@ export default function RhythmDuelPage() {
       })
     }
   }, [paused, screen])
-
-  useEffect(() => {
-    if (screen !== 'menu') return
-    const a = audioRef.current
-    if (!a) return
-    const tick = setInterval(() => setLoadProgress(a.sampleProgress), 300)
-    return () => clearInterval(tick)
-  }, [screen])
 
   const stats = useMemo(() => {
     const built = buildSong(song, difficulty, 1)
@@ -457,7 +451,6 @@ export default function RhythmDuelPage() {
           onOffset={setOffsetMs}
           noteCount={stats.total}
           holdCount={stats.holds}
-          loadProgress={loadProgress}
           onStart={() => void start(song, difficulty, players)}
         />
       )}
@@ -748,7 +741,6 @@ function MenuScreen(props: {
   onOffset: (v: number) => void
   noteCount: number
   holdCount: number
-  loadProgress: number
   onStart: () => void
 }) {
   const {
@@ -761,13 +753,13 @@ function MenuScreen(props: {
     <div className="relative z-10 flex-1 px-5 py-8 md:py-12">
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-10">
-          <Link href="/music-lab/games" className="text-[10px] tracking-[0.3em] uppercase text-white/25 hover:text-white/50 transition-colors">
+          <Link href="/music-lab/games" className="text-[10px] tracking-[0.3em] uppercase text-white/60 hover:text-white/85 transition-colors">
             FrankX Music Lab &middot; Games
           </Link>
           <h1 className="text-3xl md:text-5xl font-semibold tracking-tight mt-3">
             Rhythm <span className="font-serif-italic text-white/70">Duel</span>
           </h1>
-          <p className="text-white/45 mt-4 max-w-xl mx-auto leading-relaxed">
+          <p className="text-white/60 mt-4 max-w-xl mx-auto leading-relaxed">
             Notes fall, you catch them on the line. Every note you hit is a real
             note in the arrangement &mdash; play it clean and the song plays back
             clean. Two people can share one keyboard or one tablet.
@@ -791,6 +783,7 @@ function MenuScreen(props: {
           <div className="grid md:grid-cols-3 gap-3">
             {SONGS.map(s => (
               <button
+                type="button"
                 key={s.id}
                 onClick={() => onSong(s.id)}
                 className={`text-left p-4 rounded-2xl border transition-colors ${
@@ -801,10 +794,10 @@ function MenuScreen(props: {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2 h-2 rounded-full" style={{ background: s.accent }} />
-                  <span className="text-[10px] tracking-[0.18em] uppercase text-white/35">{s.bpm} BPM</span>
+                  <span className="text-[10px] tracking-[0.18em] uppercase text-white/55">{s.bpm} BPM</span>
                 </div>
                 <p className="font-semibold">{s.title}</p>
-                <p className="text-sm text-white/40 mt-1 leading-relaxed">{s.blurb}</p>
+                <p className="text-sm text-white/60 mt-1 leading-relaxed">{s.blurb}</p>
               </button>
             ))}
           </div>
@@ -827,14 +820,15 @@ function MenuScreen(props: {
         <Section label="Setup">
           <div className="grid md:grid-cols-3 gap-5 p-5 rounded-2xl bg-white/[0.02] border border-white/10">
             <div>
-              <p className="text-xs text-white/40 mb-2">Note speed</p>
+              <p className="text-xs text-white/60 mb-2">Note speed</p>
               <div className="flex gap-2">
                 {SPEEDS.map((s, i) => (
                   <button
+                    type="button"
                     key={s.label}
                     onClick={() => onSpeed(i)}
                     className={`flex-1 py-2 rounded-lg text-xs transition-colors ${
-                      i === speedIndex ? 'bg-white/15 text-white' : 'bg-white/[0.03] text-white/45 hover:text-white/70'
+                      i === speedIndex ? 'bg-white/15 text-white' : 'bg-white/[0.03] text-white/60 hover:text-white/70'
                     }`}
                   >
                     {s.label}
@@ -843,7 +837,7 @@ function MenuScreen(props: {
               </div>
             </div>
             <div>
-              <label className="text-xs text-white/40 mb-2 block" htmlFor="rd-volume">
+              <label className="text-xs text-white/60 mb-2 block" htmlFor="rd-volume">
                 Volume &middot; {Math.round(volume * 100)}%
               </label>
               <input
@@ -854,7 +848,7 @@ function MenuScreen(props: {
               />
             </div>
             <div>
-              <label className="text-xs text-white/40 mb-2 block" htmlFor="rd-offset">
+              <label className="text-xs text-white/60 mb-2 block" htmlFor="rd-offset">
                 Audio offset &middot; {offsetMs}ms
               </label>
               <input
@@ -863,7 +857,7 @@ function MenuScreen(props: {
                 onChange={e => onOffset(parseInt(e.target.value, 10))}
                 className="w-full accent-cyan-400"
               />
-              <p className="text-[11px] text-white/25 mt-1 leading-snug">
+              <p className="text-[11px] text-white/60 mt-1 leading-snug">
                 Raise it if your hits feel early. Bluetooth headphones usually need 120&ndash;200ms.
               </p>
             </div>
@@ -872,12 +866,13 @@ function MenuScreen(props: {
 
         <div className="mt-10 flex flex-col items-center gap-4">
           <button
+            type="button"
             onClick={onStart}
             className="px-10 py-4 rounded-full bg-white text-black font-semibold text-lg transition-[background-color,box-shadow] hover:bg-white/90 hover:shadow-[0_0_50px_rgba(255,255,255,0.18)]"
           >
             Start
           </button>
-          <p className="text-xs text-white/30 text-center leading-relaxed">
+          <p className="text-xs text-white/55 text-center leading-relaxed">
             Player 1 &mdash; <Kbd>A</Kbd><Kbd>S</Kbd><Kbd>D</Kbd><Kbd>F</Kbd>
             {players === 2 && <> &nbsp;&middot;&nbsp; Player 2 &mdash; <Kbd>J</Kbd><Kbd>K</Kbd><Kbd>L</Kbd><Kbd>;</Kbd> or arrow keys</>}
             {players === 1 && <> &nbsp;or arrow keys</>}
@@ -908,8 +903,9 @@ function PlayScreen(props: {
   return (
     <div className="fixed inset-0 z-40 flex flex-col min-h-0 bg-[#07080d]">
       <div className="flex items-center justify-between px-4 py-2">
-        <p className="text-[10px] tracking-[0.25em] uppercase text-white/25">{songTitle}</p>
+        <p className="text-[10px] tracking-[0.25em] uppercase text-white/60">{songTitle}</p>
         <button
+          type="button"
           onClick={onPauseToggle}
           className="px-3 py-1.5 rounded-full border border-white/12 text-xs text-white/55 hover:text-white hover:bg-white/5 transition-colors"
         >
@@ -927,6 +923,7 @@ function PlayScreen(props: {
             <div className="grid grid-cols-4 gap-1.5 p-1.5 bg-black/30">
               {LANES.map((lane, l) => (
                 <button
+                  type="button"
                   key={l}
                   aria-label={`Player ${i + 1} lane ${l + 1}`}
                   onPointerDown={e => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); onPress(i, l) }}
@@ -950,13 +947,18 @@ function PlayScreen(props: {
       </div>
 
       {paused && (
-        <div className="fixed inset-0 z-20 flex items-center justify-center bg-black/70 backdrop-blur-sm px-6">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="rd-paused-title"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-6"
+        >
           <div className="w-full max-w-sm rounded-3xl border border-white/12 bg-[#0b0d14] p-8 text-center">
-            <p className="text-lg font-semibold mb-6">Paused</p>
+            <p id="rd-paused-title" className="text-lg font-semibold mb-6">Paused</p>
             <div className="flex flex-col gap-3">
-              <button onClick={onPauseToggle} className="py-3 rounded-full bg-white text-black font-semibold">Resume</button>
-              <button onClick={onRestart} className="py-3 rounded-full border border-white/15 text-white/70 hover:bg-white/5">Restart</button>
-              <button onClick={onQuit} className="py-3 rounded-full border border-white/10 text-white/45 hover:bg-white/5">Back to menu</button>
+              <button type="button" autoFocus onClick={onPauseToggle} className="py-3 rounded-full bg-white text-black font-semibold">Resume</button>
+              <button type="button" onClick={onRestart} className="py-3 rounded-full border border-white/15 text-white/70 hover:bg-white/5 transition-colors">Restart</button>
+              <button type="button" onClick={onQuit} className="py-3 rounded-full border border-white/10 text-white/60 hover:bg-white/5 transition-colors">Back to menu</button>
             </div>
           </div>
         </div>
@@ -982,7 +984,7 @@ function ResultsScreen(props: {
     <div className="relative z-10 flex-1 px-5 py-12">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <p className="text-[10px] tracking-[0.3em] uppercase text-white/25">{songTitle} &middot; {DIFFICULTY_SPEC[difficulty].label}</p>
+          <p className="text-[10px] tracking-[0.3em] uppercase text-white/60">{songTitle} &middot; {DIFFICULTY_SPEC[difficulty].label}</p>
           <h2 className="text-3xl md:text-4xl font-semibold mt-3">
             {duel
               ? winner === null ? 'Dead heat' : `${results[winner].name} takes it`
@@ -1018,13 +1020,13 @@ function ResultsScreen(props: {
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 mt-10">
-          <button onClick={onRetry} className="px-8 py-3.5 rounded-full bg-white text-black font-semibold hover:bg-white/90 transition-colors">
+          <button type="button" onClick={onRetry} className="px-8 py-3.5 rounded-full bg-white text-black font-semibold hover:bg-white/90 transition-colors">
             Play again
           </button>
-          <button onClick={onMenu} className="px-8 py-3.5 rounded-full border border-white/15 text-white/70 hover:bg-white/5 transition-colors">
+          <button type="button" onClick={onMenu} className="px-8 py-3.5 rounded-full border border-white/15 text-white/70 hover:bg-white/5 transition-colors">
             Change track
           </button>
-          <Link href="/music-lab" className="px-8 py-3.5 rounded-full border border-white/10 text-white/45 hover:bg-white/5 transition-colors">
+          <Link href="/music-lab" className="px-8 py-3.5 rounded-full border border-white/10 text-white/60 hover:bg-white/5 transition-colors">
             Music Lab
           </Link>
         </div>
@@ -1038,7 +1040,7 @@ function ResultsScreen(props: {
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <section className="mb-7">
-      <p className="text-[10px] tracking-[0.25em] uppercase text-white/25 mb-3">{label}</p>
+      <p className="text-[10px] tracking-[0.25em] uppercase text-white/60 mb-3">{label}</p>
       {children}
     </section>
   )
@@ -1048,6 +1050,7 @@ function Choice(props: { active: boolean; onClick: () => void; title: string; su
   const { active, onClick, title, sub, disabled } = props
   return (
     <button
+      type="button"
       onClick={onClick}
       disabled={disabled}
       className={`p-4 rounded-2xl border text-left transition-colors ${
@@ -1059,7 +1062,7 @@ function Choice(props: { active: boolean; onClick: () => void; title: string; su
       }`}
     >
       <p className="font-semibold">{title}</p>
-      {sub && <p className="text-xs text-white/40 mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-white/60 mt-1">{sub}</p>}
     </button>
   )
 }
@@ -1075,7 +1078,7 @@ function Kbd({ children }: { children: React.ReactNode }) {
 function Row({ k, v }: { k: string; v: string }) {
   return (
     <div className="flex justify-between">
-      <dt className="text-white/40">{k}</dt>
+      <dt className="text-white/60">{k}</dt>
       <dd className="text-white/80 tabular-nums">{v}</dd>
     </div>
   )

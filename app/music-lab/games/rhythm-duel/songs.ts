@@ -218,12 +218,12 @@ export function buildSong(def: SongDef, difficulty: Difficulty, players: number)
   for (let b = 0; b < totalBars; b++) {
     const barStart = b * bar
     const chord = def.progression[b % def.progression.length]
+    // The lead-in counts you in with pulse only — kick and hats, no backbeat,
+    // no bass, no pad — so the first real downbeat is unmistakable.
     const playing = b >= LEAD_IN_BARS
-    // Second lead-in bar drops the shaker so the downbeat lands clearly.
-    const introOnly = b < LEAD_IN_BARS
 
     for (const [kind, steps] of Object.entries(drums) as [BackingKind, number[]][]) {
-      if (introOnly && kind !== 'kick' && kind !== 'hat' && kind !== 'shaker') continue
+      if (!playing && kind !== 'kick' && kind !== 'hat' && kind !== 'shaker') continue
       for (const s of steps) {
         backing.push({
           t: barStart + s * step,
@@ -298,7 +298,8 @@ function buildChart(
   for (let b = 0; b < def.bars; b++) {
     const barStart = leadIn + b * bar
     const chord = def.progression[b % def.progression.length]
-    // Four bars of breathing room at the top so players can read the highway.
+    // The first two bars come in at about half density, so players get a look
+    // at the highway before it fills up.
     const warmup = b < 2 ? 0.55 : 1
 
     for (let s = 0; s < slotsPerBar; s++) {
