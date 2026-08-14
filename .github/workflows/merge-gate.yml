@@ -99,6 +99,7 @@ jobs:
           pnpm run test:expert-authority
           pnpm run test:ai-architecture
           pnpm run test:email-safety
+          pnpm run test:auction-bid
           pnpm run test:agentic-life-research
           pnpm run test:community-platform-guide
           pnpm run test:learning-routes

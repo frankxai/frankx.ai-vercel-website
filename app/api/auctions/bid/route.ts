@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import auctions from '@/data/auctions.json'
+import { isAuctionWindowOpen } from '@/lib/auctions'
 import { escapeHtml } from '@/lib/escape-html'
 import { mailtoHref } from '@/lib/email-links'
 
@@ -34,8 +35,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const parsedBid = parseFloat(bidAmount)
-    if (isNaN(parsedBid) || parsedBid <= 0) {
+    // Number() + isFinite rejects what parseFloat would let through:
+    // "Infinity", "1e309", and trailing-garbage amounts like "1abc".
+    const parsedBid = Number(bidAmount)
+    if (!Number.isFinite(parsedBid) || parsedBid <= 0) {
       return NextResponse.json(
         { error: 'Please enter a valid bid amount greater than 0.' },
         { status: 400 }
@@ -55,6 +58,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'The specified auction item could not be found.' },
         { status: 404 }
+      )
+    }
+
+    if (auction.status !== 'active' || !isAuctionWindowOpen(auction)) {
+      return NextResponse.json(
+        { error: 'This drop is not accepting proposals.' },
+        { status: 400 }
+      )
+    }
+
+    if (parsedBid < auction.startingBid) {
+      return NextResponse.json(
+        { error: `The minimum bid for this drop is $${auction.startingBid}.` },
+        { status: 400 }
       )
     }
 
@@ -134,24 +151,41 @@ export async function POST(request: NextRequest) {
 </body>
 </html>`
 
-    const emailResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: NOTIFY_EMAIL,
-        subject: `Silent Bid: ${name.trim()} — $${parsedBid} on ${auction.title}`,
-        html: emailHtml,
-        reply_to: email.trim(),
-      }),
-    })
+    // Caught at the call site so a rejected request (network failure) returns
+    // the same 502 as a non-OK response instead of the generic 500.
+    let emailResponse: Response
+    try {
+      emailResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: FROM_EMAIL,
+          to: NOTIFY_EMAIL,
+          subject: `Silent Bid: ${name.trim()} — $${parsedBid} on ${auction.title}`,
+          html: emailHtml,
+          reply_to: email.trim(),
+        }),
+      })
+    } catch (err) {
+      console.error('Resend notify email request failed:', err)
+      return NextResponse.json(
+        { error: 'Your proposal could not be submitted. Please try again.' },
+        { status: 502 }
+      )
+    }
 
+    // The notify email IS the bid reaching Frank — if it did not send, the
+    // proposal was not submitted, so fail closed instead of reporting success.
     if (!emailResponse.ok) {
-      const errorData = await emailResponse.json()
+      const errorData = await emailResponse.json().catch(() => null)
       console.error('Resend notify email error:', errorData)
+      return NextResponse.json(
+        { error: 'Your proposal could not be submitted. Please try again.' },
+        { status: 502 }
+      )
     }
 
     // 3. Send confirmation email to bidder
@@ -175,19 +209,48 @@ export async function POST(request: NextRequest) {
 </body>
 </html>`
 
-    fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: email.trim(),
-        subject: `Your proposal for ${auction.title} has been received`,
-        html: confirmationHtml,
-      }),
-    }).catch((err) => console.error('Confirmation email error:', err))
+    // Awaited on purpose: a fire-and-forget send can be abandoned when the
+    // serverless execution ends with the response, silently skipping the
+    // bidder's confirmation while the API reports success. Caught at the call
+    // site so a rejected request cannot fall through to the generic 500,
+    // whose "please try again" copy would invite a duplicate submission.
+    let confirmationResponse: Response
+    try {
+      confirmationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: FROM_EMAIL,
+          to: email.trim(),
+          subject: `Your proposal for ${auction.title} has been received`,
+          html: confirmationHtml,
+        }),
+      })
+    } catch (err) {
+      console.error('Resend confirmation email request failed:', err)
+      return NextResponse.json(
+        {
+          error:
+            'Your proposal reached us, but the confirmation email could not be sent. Do not resubmit — if you hear nothing within a few days, contact frank@frankx.ai.',
+        },
+        { status: 502 }
+      )
+    }
+
+    if (!confirmationResponse.ok) {
+      const errorData = await confirmationResponse.json().catch(() => null)
+      console.error('Resend confirmation email error:', errorData)
+      return NextResponse.json(
+        {
+          error:
+            'Your proposal reached us, but the confirmation email could not be sent. Do not resubmit — if you hear nothing within a few days, contact frank@frankx.ai.',
+        },
+        { status: 502 }
+      )
+    }
 
     return NextResponse.json({
       success: true,
