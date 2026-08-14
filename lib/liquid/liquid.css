@@ -1,0 +1,339 @@
+/* Vendored from starlight-liquid v0.1.0. Do not edit here —
+   change repos/starlight-liquid/src and re-run scripts/sync.mjs. */
+/**
+ * starlight-liquid — glass + bubble surface layer.
+ *
+ * Every value reads a host token first and falls back to a neutral dark
+ * default, so dropping this into frankx.ai, starlightintelligence.ai, or an
+ * Arcanea app inherits that brand's palette without a fork.
+ */
+
+:root {
+  --liquid-tint-1: var(--brand-purple, #ab47c7);
+  --liquid-tint-2: var(--brand-blue, #43bfe3);
+  --liquid-tint-3: var(--brand-emerald, #10b981);
+  --liquid-signal-valid: var(--brand-emerald, #10b981);
+  --liquid-signal-invalid: var(--brand-rose, #f43f5e);
+
+  --liquid-glass-bg: var(--surface-3, rgba(255, 255, 255, 0.06));
+  --liquid-glass-bg-strong: var(--surface-4, rgba(255, 255, 255, 0.09));
+  --liquid-glass-border: var(--border-default, rgba(255, 255, 255, 0.14));
+  --liquid-glass-blur: 18px;
+  --liquid-glass-saturate: 135%;
+
+  --liquid-text: var(--text-primary, rgba(255, 255, 255, 0.95));
+  --liquid-text-muted: var(--text-tertiary, rgba(255, 255, 255, 0.48));
+
+  --liquid-radius: 18px;
+  --liquid-radius-control: 12px;
+
+  --liquid-duration-fast: var(--motion-fast, 200ms);
+  --liquid-duration-base: var(--motion-normal, 350ms);
+  --liquid-duration-slow: var(--motion-slow, 500ms);
+  --liquid-ease: var(--ease-emphasized, cubic-bezier(0.2, 0, 0, 1));
+  --liquid-ease-out: var(--ease-emphasized-decelerate, cubic-bezier(0.05, 0.7, 0.1, 1));
+}
+
+/* ---------------------------------------------------------------- surfaces */
+
+.liquid-glass {
+  position: relative;
+  border-radius: var(--liquid-radius);
+  background: var(--liquid-glass-bg);
+  border: 1px solid var(--liquid-glass-border);
+  color: var(--liquid-text);
+  isolation: isolate;
+  transition:
+    background var(--liquid-duration-base) var(--liquid-ease),
+    border-color var(--liquid-duration-base) var(--liquid-ease),
+    transform var(--liquid-duration-base) var(--liquid-ease-out);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .liquid-glass {
+    background: color-mix(in srgb, var(--liquid-glass-bg) 70%, transparent);
+    -webkit-backdrop-filter: blur(var(--liquid-glass-blur)) saturate(var(--liquid-glass-saturate));
+    backdrop-filter: blur(var(--liquid-glass-blur)) saturate(var(--liquid-glass-saturate));
+  }
+}
+
+/* The meniscus: a single hairline that catches light at the top edge.
+   This is the detail that separates glass from a translucent rectangle. */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--liquid-tint-2) 45%, transparent),
+    transparent 38%,
+    transparent 62%,
+    color-mix(in srgb, var(--liquid-tint-1) 28%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.liquid-glass--interactive:hover {
+  background: var(--liquid-glass-bg-strong);
+  border-color: color-mix(in srgb, var(--liquid-tint-2) 35%, var(--liquid-glass-border));
+}
+
+.liquid-glass:focus-within {
+  border-color: color-mix(in srgb, var(--liquid-tint-2) 55%, var(--liquid-glass-border));
+}
+
+/* ------------------------------------------------------------------ field */
+
+.liquid-field {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.liquid-field__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.liquid-field > *:not(.liquid-field__canvas) {
+  position: relative;
+  z-index: 1;
+}
+
+/* No WebGL, low-power device, or a tripped frame budget: the same composition
+   survives as a static CSS gradient rather than disappearing. */
+.liquid-field[data-liquid-tier='lite']::before,
+.liquid-field[data-liquid-tier='static']::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background:
+    radial-gradient(38% 44% at 28% 32%, color-mix(in srgb, var(--liquid-tint-1) 55%, transparent), transparent 70%),
+    radial-gradient(42% 38% at 72% 44%, color-mix(in srgb, var(--liquid-tint-2) 50%, transparent), transparent 72%),
+    radial-gradient(34% 40% at 52% 74%, color-mix(in srgb, var(--liquid-tint-3) 40%, transparent), transparent 70%);
+  filter: blur(48px);
+}
+
+/* ------------------------------------------------------------------ inputs */
+
+.liquid-field-shell {
+  position: relative;
+  display: block;
+  border-radius: var(--liquid-radius-control);
+  isolation: isolate;
+}
+
+.liquid-field-shell > input,
+.liquid-field-shell > textarea,
+.liquid-field-shell > select {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--liquid-glass-bg) 80%, transparent);
+  border: 1px solid var(--liquid-glass-border);
+  color: var(--liquid-text);
+  font: inherit;
+  outline: none;
+  transition:
+    border-color var(--liquid-duration-fast) var(--liquid-ease),
+    background var(--liquid-duration-fast) var(--liquid-ease);
+}
+
+.liquid-field-shell > input::placeholder,
+.liquid-field-shell > textarea::placeholder {
+  color: var(--liquid-text-muted);
+}
+
+/* The focus bubble: a soft body of light that swells under the field and
+   tracks the pointer along its width via --liquid-x. */
+.liquid-field-shell::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: var(--liquid-x, 50%);
+  top: 50%;
+  width: 130%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--liquid-tint-2) 42%, transparent),
+    transparent 62%
+  );
+  opacity: 0;
+  scale: 0.45;
+  filter: blur(18px);
+  pointer-events: none;
+  transition:
+    opacity var(--liquid-duration-base) var(--liquid-ease-out),
+    scale var(--liquid-duration-slow) var(--liquid-ease-out),
+    left var(--liquid-duration-base) var(--liquid-ease-out);
+}
+
+.liquid-field-shell.is-focused::after {
+  opacity: 0.85;
+  scale: 1;
+}
+
+.liquid-field-shell.is-focused > input,
+.liquid-field-shell.is-focused > textarea,
+.liquid-field-shell.is-focused > select {
+  border-color: color-mix(in srgb, var(--liquid-tint-2) 65%, transparent);
+  background: color-mix(in srgb, var(--liquid-glass-bg-strong) 85%, transparent);
+}
+
+/* Validity is a hue shift on an already-visible surface, never the only
+   signal — aria-invalid and the form's own messages stay authoritative. */
+.liquid-field-shell.is-valid {
+  --liquid-tint-2: var(--liquid-signal-valid);
+}
+
+.liquid-field-shell.is-invalid {
+  --liquid-tint-2: var(--liquid-signal-invalid);
+}
+
+.liquid-field-shell.is-invalid > input,
+.liquid-field-shell.is-invalid > textarea {
+  border-color: color-mix(in srgb, var(--liquid-signal-invalid) 70%, transparent);
+}
+
+/* Keyboard focus must never be softer than pointer focus. */
+.liquid-field-shell > input:focus-visible,
+.liquid-field-shell > textarea:focus-visible,
+.liquid-field-shell > select:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--liquid-tint-2) 85%, transparent);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ button */
+
+.liquid-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--liquid-radius-control);
+  border: 1px solid color-mix(in srgb, var(--liquid-tint-2) 40%, var(--liquid-glass-border));
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--liquid-tint-1) 22%, transparent),
+    color-mix(in srgb, var(--liquid-tint-2) 18%, transparent)
+  );
+  color: var(--liquid-text);
+  padding: 0.85rem 1.6rem;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    border-color var(--liquid-duration-fast) var(--liquid-ease),
+    filter var(--liquid-duration-fast) var(--liquid-ease);
+}
+
+/* For CTAs that must stay high-contrast: keeps the host's own solid fill and
+   takes only the ripple. Glass is never worth a conversion surface's prominence. */
+.liquid-button--solid {
+  background: none;
+  border-color: transparent;
+}
+
+.liquid-button:hover {
+  filter: brightness(1.12);
+  border-color: color-mix(in srgb, var(--liquid-tint-2) 70%, transparent);
+}
+
+.liquid-button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--liquid-tint-2) 90%, transparent);
+  outline-offset: 2px;
+}
+
+.liquid-button::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: var(--liquid-ripple-x, 50%);
+  top: var(--liquid-ripple-y, 50%);
+  width: 12px;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--liquid-tint-2) 55%, transparent);
+  opacity: 0;
+  scale: 1;
+}
+
+.liquid-button.is-rippling::after {
+  animation: liquid-ripple var(--liquid-duration-slow) var(--liquid-ease-out) forwards;
+}
+
+@keyframes liquid-ripple {
+  from {
+    opacity: 0.7;
+    scale: 1;
+  }
+  to {
+    opacity: 0;
+    scale: 34;
+  }
+}
+
+/* ----------------------------------------------------------------- bubbles */
+
+.liquid-bubble {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 32% 28%,
+    color-mix(in srgb, #fff 32%, transparent),
+    color-mix(in srgb, var(--liquid-tint-2) 30%, transparent) 42%,
+    transparent 72%
+  );
+  border: 1px solid color-mix(in srgb, #fff 14%, transparent);
+  will-change: transform;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .liquid-bubble {
+    -webkit-backdrop-filter: blur(6px) saturate(140%);
+    backdrop-filter: blur(6px) saturate(140%);
+  }
+}
+
+/* --------------------------------------------------------- reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass,
+  .liquid-field-shell > input,
+  .liquid-field-shell > textarea,
+  .liquid-field-shell > select,
+  .liquid-field-shell::after,
+  .liquid-button {
+    transition-duration: 1ms;
+  }
+
+  .liquid-button.is-rippling::after {
+    animation: none;
+  }
+
+  .liquid-bubble,
+  [data-liquid-bubble] {
+    transform: none !important;
+  }
+}
