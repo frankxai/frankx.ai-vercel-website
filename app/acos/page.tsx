@@ -20,7 +20,8 @@ import CheckoutButton from '@/components/commerce/CheckoutButton'
 
 /* ──────────────────────────────────────────────
    CHECKOUT — Creator Kit sells via Stripe checkout
-   (/api/checkout, SKU acos-creator-kit).
+   (/api/checkout, SKU agentic-creator-os — the key in that route's PRODUCTS
+   map. A slug that is not a key there 404s the whole purchase).
    Pro System stays waitlist until its SKU exists.
    ────────────────────────────────────────────── */
 const CHECKOUT = {
@@ -68,7 +69,7 @@ const tiers = [
       'Priority email support',
       'Private Discord community',
     ],
-    checkoutId: 'acos-creator-kit',
+    checkoutId: 'agentic-creator-os',
     variant: 'primary' as const,
     featured: true,
   },
@@ -529,7 +530,7 @@ export default function ACOSPage() {
               View on GitHub
             </PremiumButton>
             <CheckoutButton
-              productId="acos-creator-kit"
+              productId="agentic-creator-os"
               price={47}
               label="Get Creator Kit"
               size="lg"
