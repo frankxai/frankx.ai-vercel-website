@@ -793,7 +793,7 @@ function MenuScreen(props: {
               <button
                 key={s.id}
                 onClick={() => onSong(s.id)}
-                className={`text-left p-4 rounded-2xl border transition-all ${
+                className={`text-left p-4 rounded-2xl border transition-colors ${
                   s.id === song.id
                     ? 'bg-white/[0.06] border-white/25'
                     : 'bg-white/[0.02] border-white/10 hover:border-white/20'
@@ -833,7 +833,7 @@ function MenuScreen(props: {
                   <button
                     key={s.label}
                     onClick={() => onSpeed(i)}
-                    className={`flex-1 py-2 rounded-lg text-xs transition-all ${
+                    className={`flex-1 py-2 rounded-lg text-xs transition-colors ${
                       i === speedIndex ? 'bg-white/15 text-white' : 'bg-white/[0.03] text-white/45 hover:text-white/70'
                     }`}
                   >
@@ -873,7 +873,7 @@ function MenuScreen(props: {
         <div className="mt-10 flex flex-col items-center gap-4">
           <button
             onClick={onStart}
-            className="px-10 py-4 rounded-full bg-white text-black font-semibold text-lg transition-all hover:bg-white/90 hover:shadow-[0_0_50px_rgba(255,255,255,0.18)]"
+            className="px-10 py-4 rounded-full bg-white text-black font-semibold text-lg transition-[background-color,box-shadow] hover:bg-white/90 hover:shadow-[0_0_50px_rgba(255,255,255,0.18)]"
           >
             Start
           </button>
@@ -911,7 +911,7 @@ function PlayScreen(props: {
         <p className="text-[10px] tracking-[0.25em] uppercase text-white/25">{songTitle}</p>
         <button
           onClick={onPauseToggle}
-          className="px-3 py-1.5 rounded-full border border-white/12 text-xs text-white/55 hover:text-white hover:bg-white/5 transition-all"
+          className="px-3 py-1.5 rounded-full border border-white/12 text-xs text-white/55 hover:text-white hover:bg-white/5 transition-colors"
         >
           {paused ? 'Resume' : 'Pause'}
         </button>
@@ -1018,13 +1018,13 @@ function ResultsScreen(props: {
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 mt-10">
-          <button onClick={onRetry} className="px-8 py-3.5 rounded-full bg-white text-black font-semibold hover:bg-white/90 transition-all">
+          <button onClick={onRetry} className="px-8 py-3.5 rounded-full bg-white text-black font-semibold hover:bg-white/90 transition-colors">
             Play again
           </button>
-          <button onClick={onMenu} className="px-8 py-3.5 rounded-full border border-white/15 text-white/70 hover:bg-white/5 transition-all">
+          <button onClick={onMenu} className="px-8 py-3.5 rounded-full border border-white/15 text-white/70 hover:bg-white/5 transition-colors">
             Change track
           </button>
-          <Link href="/music-lab" className="px-8 py-3.5 rounded-full border border-white/10 text-white/45 hover:bg-white/5 transition-all">
+          <Link href="/music-lab" className="px-8 py-3.5 rounded-full border border-white/10 text-white/45 hover:bg-white/5 transition-colors">
             Music Lab
           </Link>
         </div>
@@ -1050,7 +1050,7 @@ function Choice(props: { active: boolean; onClick: () => void; title: string; su
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`p-4 rounded-2xl border text-left transition-all ${
+      className={`p-4 rounded-2xl border text-left transition-colors ${
         disabled
           ? 'opacity-40 cursor-not-allowed border-white/8 bg-white/[0.01]'
           : active

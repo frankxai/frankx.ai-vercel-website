@@ -53,7 +53,7 @@ export default function MusicGamesPage() {
             <Link
               key={game.href}
               href={game.href}
-              className="group block p-7 md:p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all"
+              className="group block p-7 md:p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors"
             >
               <div className="flex items-start justify-between gap-6 mb-4">
                 <div>
@@ -63,7 +63,7 @@ export default function MusicGamesPage() {
                   </div>
                   <h2 className="text-2xl font-semibold">{game.title}</h2>
                 </div>
-                <span className="shrink-0 inline-flex items-center gap-2 text-sm text-cyan-400 group-hover:gap-3 transition-all">
+                <span className="shrink-0 inline-flex items-center gap-2 text-sm text-cyan-400 group-hover:gap-3 transition-[gap]">
                   Play
                   <ArrowRight className="w-4 h-4" />
                 </span>
