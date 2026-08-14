@@ -287,6 +287,15 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'American Hospital Association', title: '3 Ways AI Could Aid Behavioral Health Screenings', url: 'https://www.aha.org/2025-04-15-3-ways-ai-could-aid-behavioral-health-screenings', type: 'industry-report' },
   ],
 
+  'grok-4-6': [
+    { name: 'xAI', title: 'Introducing Grok 4.6', url: 'https://x.ai/news/grok-4-6', date: '2026-08-12', type: 'official' },
+    { name: 'xAI Docs', title: 'Grok 4.6 model overview', url: 'https://docs.x.ai/developers/grok-4-6', date: '2026-08-12', type: 'official' },
+    { name: 'xAI Docs', title: 'Release notes — Grok 4.6', url: 'https://docs.x.ai/developers/release-notes', date: '2026-08-12', type: 'official' },
+    { name: 'Artificial Analysis', title: 'Grok 4.6 returns to the intelligence frontier', url: 'https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis', date: '2026-08-12', type: 'benchmark' },
+    { name: 'xAI Docs', title: 'Grok 4.6 model card listing', url: 'https://docs.x.ai/developers/models/grok-4.6', date: '2026-08-12', type: 'official' },
+    { name: 'FrankX', title: 'Grok 4.6 sourced analysis', url: 'https://www.frankx.ai/blog/grok-4-6-analysis-2026', date: '2026-08-14', type: 'blog' },
+  ],
+
   'generative-ai': [
     { name: 'Anthropic', title: 'Claude 4 Introduction', url: 'https://www.anthropic.com/news/claude-4', type: 'official' },
     { name: 'Anthropic', title: 'Claude Opus 4.5 Announcement', url: 'https://www.anthropic.com/news/claude-opus-4-5', type: 'official' },

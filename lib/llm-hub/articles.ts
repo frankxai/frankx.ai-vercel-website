@@ -11,6 +11,7 @@ export const MODEL_ARTICLES: Record<string, string> = {
   'claude-opus-4-8': 'claude-opus-4-8-analysis-2026',
   'gpt-5-5': 'gpt-5-5-analysis-2026',
   'gemini-3-5-pro': 'gemini-3-5-pro-analysis-2026',
+  'grok-4-6': 'grok-4-6-analysis-2026',
   'grok-4-3': 'grok-4-3-analysis-2026',
   'deepseek-v4': 'deepseek-v4-analysis-2026',
   'qwen3-7-max': 'qwen3-max-analysis-2026',
