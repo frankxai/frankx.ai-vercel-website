@@ -1,3 +1,8 @@
+/* Liquid glass surface layer. Vendored from repos/starlight-liquid — it reads
+   the brand tokens defined below, so it inherits this palette automatically.
+   Must stay above the @tailwind directives: CSS requires @import to precede rules. */
+@import '../lib/liquid/liquid.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
