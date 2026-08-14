@@ -43,18 +43,18 @@ function CurrentForm() {
           type="text"
           placeholder="Your name (optional)"
           aria-label="Your name (optional)"
-          className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+          className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 transition-colors focus:border-cyan-500/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
         />
         <input
           type="email"
           placeholder="Enter your email"
           aria-label="Enter your email"
           required
-          className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+          className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 transition-colors focus:border-cyan-500/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
         />
         <button
           type="submit"
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-all hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/25"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
         >
           <Mail className="h-5 w-5" />
           Get Early Access
@@ -85,7 +85,7 @@ function LiquidFormPreview() {
         </span>
         <button
           type="submit"
-          className="liquid-button liquid-button--solid inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-all hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/25"
+          className="liquid-button liquid-button--solid inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
         >
           <Mail className="h-5 w-5" />
           Get Early Access
@@ -173,7 +173,7 @@ export default function LiquidComparison() {
           <button
             type="button"
             data-liquid-magnetic
-            className="liquid-button liquid-button--solid mt-9 rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-all hover:bg-cyan-400"
+            className="liquid-button liquid-button--solid mt-9 rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
           >
             Move your cursor here
           </button>
