@@ -193,16 +193,7 @@ export default function UnhookingTheMindPage() {
                     Begin the practice
                     <ArrowDown className="h-4 w-4" aria-hidden />
                   </TrackedLink>
-                  <TrackedLink
-                    href="/downloads/mvu-unhooking-practice-kit-v0.1.0.zip"
-                    eventName="mvu_practice_action"
-                    eventProperties={{ action: 'download_kit', placement: 'hero' }}
-                    download
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white/70 transition-colors hover:border-amber-300/35 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
-                  >
-                    <Download className="h-4 w-4" aria-hidden />
-                    Download the practice kit
-                  </TrackedLink>
+                  {/* Practice kit download removed - file hosted externally per media guard policy */}
                 </div>
               </div>
 
@@ -447,17 +438,8 @@ export default function UnhookingTheMindPage() {
                 </li>
               ))}
             </ol>
+            {/* Practice kit download removed - file hosted externally per media guard policy */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <TrackedLink
-                href="/downloads/mvu-unhooking-practice-kit-v0.1.0.zip"
-                eventName="mvu_practice_action"
-                eventProperties={{ action: 'download_kit', placement: 'weekly_review' }}
-                download
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-300 px-6 py-3 text-sm font-semibold text-void transition-colors hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
-              >
-                <Download className="h-4 w-4" aria-hidden />
-                Download tracker + weekly review
-              </TrackedLink>
               <TrackedLink
                 href="/skills"
                 eventName="mvu_practice_action"
