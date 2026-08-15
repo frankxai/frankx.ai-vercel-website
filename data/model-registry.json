@@ -1,7 +1,7 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-06-10",
+  "_updated": "2026-08-15",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
   "models": {
     "claude-fable-5": {
@@ -585,6 +585,95 @@
         "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
       ]
     },
+    "qwen3-8-max": {
+      "name": "Qwen3.8-Max",
+      "id": "qwen3.8-max",
+      "organization": "alibaba",
+      "family": "qwen",
+      "released": "2026-08-02",
+      "status": "ga",
+      "architecture": "moe",
+      "parameters": "2.4T total / 95B active (hosted model based on Qwen3.8-2.4T-A95B)",
+      "context_window": 1000000,
+      "max_output_tokens": 131072,
+      "modalities": [
+        "text",
+        "vision",
+        "code"
+      ],
+      "pricing": {
+        "input_per_1m": 2.0,
+        "output_per_1m": 6.0
+      },
+      "benchmarks": {
+        "vendor_terminal_bench_2_1": 86.6,
+        "vendor_swe_bench_pro": 67.7,
+        "vendor_paper_bench": 93.0,
+        "vendor_cowork_bench": 74.8,
+        "vendor_job_bench": 53.4,
+        "vendor_wide_search": 81.9,
+        "vendor_gpqa_diamond": 92.6,
+        "vendor_if_bench": 82.8
+      },
+      "key_capabilities": [
+        "Hosted native vision-language Qwen flagship at $2/$6 per 1M input/output tokens",
+        "1M-token service context and 131K maximum output",
+        "Thinking and non-thinking modes with adjustable reasoning effort",
+        "Official built-in tools for coding, research, and cowork agents",
+        "Based on the released 2.4T / 95B-active A95B backbone"
+      ],
+      "frankx_notes": "Frontier challenger, not an automatic default. Qwen's launch tables are vendor-reported and sometimes use in-house benchmarks, corrected task sets, or model judges; no Starlight Model Arena receipt exists yet. The managed Max service is based on Qwen3.8-2.4T-A95B but adds vision, non-thinking support, 1M context by default, and built-in tools. Do not describe the hosted service or the A95B checkpoint as Apache 2.0.",
+      "sources": [
+        "https://qwen.ai/blog?id=qwen3.8",
+        "https://www.qwencloud.com/",
+        "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+        "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B/blob/main/LICENSE"
+      ]
+    },
+    "qwen3-8-27b": {
+      "name": "Qwen3.8-27B",
+      "id": "Qwen/Qwen3.8-27B",
+      "organization": "alibaba",
+      "family": "qwen",
+      "released": "2026-08-14",
+      "status": "ga",
+      "architecture": "dense",
+      "parameters": "27B dense language model with vision encoder",
+      "context_window": 262144,
+      "max_output_tokens": 131072,
+      "modalities": [
+        "text",
+        "vision",
+        "video",
+        "code"
+      ],
+      "pricing": {
+        "input_per_1m": 0,
+        "output_per_1m": 0
+      },
+      "benchmarks": {
+        "vendor_terminal_bench_2_1": 73.0,
+        "vendor_swe_bench_pro": 61.7,
+        "vendor_nl2repo_bench": 42.3,
+        "vendor_deep_swe_1_1": 42.2,
+        "vendor_cowork_bench": 70.7,
+        "vendor_gpqa_diamond": 89.2,
+        "vendor_osworld_verified": 84.3,
+        "vendor_webarena_verified": 64.8
+      },
+      "key_capabilities": [
+        "Apache 2.0 open weights for commercial deployment and adaptation",
+        "Native image and video understanding in a dense 27B model",
+        "262K native context, extendable to 1M with YaRN",
+        "Thinking on by default, with direct-response mode and low/medium/xhigh effort",
+        "Official support for Transformers, vLLM, SGLang, and TokenSpeed"
+      ],
+      "frankx_notes": "The practical Qwen3.8 ownership lane: a multimodal 27B checkpoint under Apache 2.0. Vendor-reported SWE-bench Pro 61.7 and CoWorkBench 70.7 justify a controlled agent trial, not a winner claim. BF16 weights alone are roughly 54 GB before runtime overhead and KV cache, so deployment-friendly means high-memory GPU, multi-GPU, or quantization rather than a casual laptop install. The official managed 27B service with 1M context and tools was still listed as coming soon on 15 August 2026.",
+      "sources": [
+        "https://huggingface.co/Qwen/Qwen3.8-27B",
+        "https://huggingface.co/collections/Qwen/qwen38"
+      ]
+    },
     "qwen3-7-max": {
       "name": "Qwen3.7-Max",
       "id": "qwen3.7-max",
@@ -1026,8 +1115,11 @@
       "name": "Alibaba (Qwen)",
       "url": "https://qwen.ai",
       "models": [
+        "qwen3-8-max",
+        "qwen3-8-27b",
         "qwen3-7-max"
-      ]
+      ],
+      "flagship_model_id": "qwen3-8-max"
     },
     "moonshot": {
       "name": "Moonshot AI",
@@ -1050,5 +1142,5 @@
     "sonnet": "claude-sonnet-4-6",
     "haiku": "claude-haiku-4-5"
   },
-  "last_updated": "2026-06-05"
+  "last_updated": "2026-08-15"
 }

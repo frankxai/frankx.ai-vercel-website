@@ -302,6 +302,14 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'FrankX', title: 'Grok 4.6 sourced analysis', url: 'https://www.frankx.ai/blog/grok-4-6-analysis-2026', date: '2026-08-14', type: 'blog' },
   ],
 
+  'qwen-3-8': [
+    { name: 'Qwen', title: 'Qwen3.8-Max: A New Bar for Coding and Cowork', url: 'https://qwen.ai/blog?id=qwen3.8', date: '2026-08-02', type: 'official' },
+    { name: 'Qwen', title: 'Qwen3.8-27B Model Card', url: 'https://huggingface.co/Qwen/Qwen3.8-27B', date: '2026-08-14', type: 'official' },
+    { name: 'Qwen', title: 'Qwen3.8-2.4T-A95B Model Card', url: 'https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B', date: '2026-08-12', type: 'official' },
+    { name: 'Qwen', title: 'Qwen3.8-Max License', url: 'https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B/blob/main/LICENSE', date: '2026-08-12', type: 'official' },
+    { name: 'Qwen Cloud', title: 'Qwen3.8-Max Service Card and Pricing', url: 'https://www.qwencloud.com/', date: '2026-08-15', type: 'official' },
+  ],
+
   'generative-ai': [
     { name: 'Anthropic', title: 'Claude 4 Introduction', url: 'https://www.anthropic.com/news/claude-4', type: 'official' },
     { name: 'Anthropic', title: 'Claude Opus 4.5 Announcement', url: 'https://www.anthropic.com/news/claude-opus-4-5', type: 'official' },

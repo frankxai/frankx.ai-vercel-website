@@ -6,8 +6,8 @@
  * each link resolves to a pre-rendered /llm-hub/[key] page — the registry
  * canonicalizes every model's id to its registry key, which is the routing slug).
  *
- * Refreshed to the June 2026 frontier (Fable 5 / Opus 4.8 / GPT-5.5 / Grok 4.3 /
- * DeepSeek V4 / Qwen3.7-Max / Kimi K2.6 / Gemma 4 / gpt-oss / Phi-4).
+ * Refreshed to the August 2026 frontier (Fable 5 / Opus 4.8 / GPT-5.5 / Grok 4.6 /
+ * Qwen3.8 / DeepSeek V4 / Kimi K2.6 / Gemma 4 / gpt-oss / Phi-4).
  * Every reason cites a figure carried in the registry; verified-vs-vendor
  * distinctions live in the per-model pages.
  */
@@ -43,6 +43,12 @@ export const DECISION_MATRIX: DecisionRow[] = [
     primaryId: 'grok-4-6',
     altId: 'grok-4-3',
     reason: 'Current xAI flagship (AA Index 61, vendor/AA, 12 Aug 2026). Same $2/$6 list under 200k as 4.5; no SIS arena receipt yet.',
+  },
+  {
+    constraint: '1M-context value agents',
+    primaryId: 'qwen3-8-max',
+    altId: 'qwen3-7-max',
+    reason: 'Hosted 2.4T / 95B-active Qwen flagship at $2/$6. Strong launch coding/cowork tables, but vendor-reported and not yet SIS-receipted.',
   },
   {
     constraint: 'Lowest cost (closed frontier)',
@@ -91,6 +97,12 @@ export const DECISION_MATRIX: DecisionRow[] = [
     primaryId: 'deepseek-v4',
     altId: 'llama-4-maverick',
     reason: 'Open-weight MoE frontier; Llama 4 for a permissive license + native multimodality.',
+  },
+  {
+    constraint: 'Open-weight multimodal agents',
+    primaryId: 'qwen3-8-27b',
+    altId: 'gemma-4',
+    reason: 'Apache 2.0, native image/video understanding, 262K context, and vendor-reported SWE-bench Pro 61.7 in a dense 27B checkpoint.',
   },
   {
     constraint: 'Run on one consumer GPU',

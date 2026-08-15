@@ -236,6 +236,26 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     creatorUse: 'Cheap, self-hostable engine for code generation, UI/UX scaffolding, and multi-agent research swarms where you want frontier-ish quality without frontier pricing or data leaving your environment.',
     openrouterId: 'moonshotai/kimi-k2.6',
   },
+  'qwen3-8-max': {
+    tagline: 'Qwen’s $2/$6 hosted frontier challenger — 2.4T MoE, 1M context, strong vendor-reported coding and cowork results.',
+    bestFor: [
+      'Measured challenger runs for long-horizon coding and research agents',
+      '1M-context knowledge work at lower-than-premium-frontier list pricing',
+      'Teams that want Max-class Qwen capability without operating a 2.4T checkpoint',
+    ],
+    watchOut: 'Launch benchmarks are vendor-reported and no Starlight arena receipt exists. The hosted service is not open weights; the related A95B checkpoint uses a custom license, not Apache 2.0.',
+    creatorUse: 'Trial for research, production planning, and multi-file build loops. Keep an existing verified model as reviewer until accepted-result cost is measured.',
+  },
+  'qwen3-8-27b': {
+    tagline: 'The practical Qwen3.8 ownership lane — Apache 2.0, native vision-language, 262K context, and 27B dense weights.',
+    bestFor: [
+      'Private or sovereign multimodal document and video understanding',
+      'Commercial adaptation under a familiar Apache 2.0 license',
+      'High-volume agent, verifier, and extraction lanes on controlled infrastructure',
+    ],
+    watchOut: 'The 61.7 SWE-bench Pro and 70.7 CoWorkBench scores are vendor-reported. BF16 weights alone are roughly 54 GB before runtime and KV-cache overhead; 1M context is an extension mode.',
+    creatorUse: 'Own the model for private archives and multimodal production workflows; quantize deliberately and measure quality at the context lengths you use.',
+  },
   'qwen3-7-max': {
     tagline: 'Alibaba’s closed-weight agent flagship: top-5 intelligence, 1M context, and 35-hour autonomy at half the Western-frontier price.',
     bestFor: [

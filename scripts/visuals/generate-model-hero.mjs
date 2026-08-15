@@ -283,6 +283,20 @@ const CONFIGS = [
     footer: 'FrankX · Intelligence Dispatch · Verified via Artificial Analysis, NIST/CAISI, HuggingFace',
   },
   {
+    slug: 'qwen-3-8-analysis-2026',
+    orgKey: 'alibaba',
+    org: 'Alibaba · Qwen',
+    name: 'Qwen3.8',
+    subtitle: 'Open 27B or hosted Max — route by sovereignty, scale, and license',
+    tiles: [
+      { value: '27B', label: 'Apache 2.0 checkpoint' },
+      { value: '2.4T / 95B', label: 'Max total / active' },
+      { value: '262K → 1M', label: 'Open-model context' },
+      { value: '$2 / $6', label: 'Hosted Max per 1M' },
+    ],
+    footer: 'FrankX · Intelligence Dispatch · Vendor benchmarks labeled · No SIS arena receipt',
+  },
+  {
     slug: 'qwen3-max-analysis-2026',
     orgKey: 'alibaba',
     org: 'Alibaba · Qwen',
