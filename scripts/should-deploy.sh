@@ -93,6 +93,9 @@ RELEVANT_PATHS=(
   eslint.config.mjs
   .eslintrc.json
   instrumentation.ts
+  # Media Guard changes are release-critical policy changes. They need an
+  # exact-head preview receipt even though they do not alter rendered output.
+  .github/workflows/media-guard.yml
 )
 
 # 3. Run the diff. Capture the exit code explicitly so we can distinguish:
