@@ -9,6 +9,7 @@ import { learningPaths } from '@/data/learning-paths'
 import { getMvuEntrySummaries } from '@/lib/mvu'
 import { getJournalEntrySummaries } from '@/lib/journal'
 import { isCanonicalBlogSlug } from '@/lib/blog-redirects.mjs'
+import { askQuestions } from '@/data/ask-questions'
 
 const BASE_URL = siteConfig.url
 
@@ -547,6 +548,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.5,
+    })
+  })
+
+  // Ask Q&A detail pages (/ask/[slug]) — dynamic route generated from ask-questions data
+  askQuestions.forEach(q => {
+    const parsed = q.date ? new Date(q.date) : null
+    entries.push({
+      url: `${BASE_URL}/ask/${q.slug}`,
+      lastModified: parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.75,
     })
   })
 
