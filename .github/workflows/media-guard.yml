@@ -20,7 +20,10 @@ jobs:
           fetch-depth: 0
           path: trusted-base
           persist-credentials: false
-          ref: ${{ github.event.pull_request.base.sha }}
+          # pull_request_target loads this workflow from github.sha, the current
+          # trusted base tip. Copy policy from that same immutable commit so a
+          # stale PR payload can never select an older guard.
+          ref: ${{ github.sha }}
 
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
@@ -46,11 +49,14 @@ jobs:
           persist-credentials: false
           ref: ${{ github.event.pull_request.head.sha }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
+          # The PR tree is inspected only as Git data below; no PR-controlled
+          # workflow, script, dependency, or build step is ever executed.
+          allow-unsafe-pr-checkout: true
 
       - name: Verify immutable comparison commits
         working-directory: pr-head
         env:
-          EXPECTED_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          EXPECTED_BASE_SHA: ${{ github.sha }}
           EXPECTED_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD_SHA"
@@ -60,7 +66,7 @@ jobs:
       - name: Reject repository media debt with trusted policy
         working-directory: pr-head
         env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_SHA: ${{ github.sha }}
           # Break glass is exact-head: a maintainer must remove/reapply this
           # label after each push to an owner/member/collaborator policy PR.
           POLICY_UPDATE_APPROVED: ${{ github.event.action == 'labeled' && github.event.label.name == 'media-policy-change-approved' && (github.event.pull_request.author_association == 'OWNER' || github.event.pull_request.author_association == 'MEMBER' || github.event.pull_request.author_association == 'COLLABORATOR') }}
