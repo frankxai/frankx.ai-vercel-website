@@ -116,7 +116,7 @@ export default function MvuPage() {
               </p>
             </div>
 
-            <p className="mt-10 text-xs font-semibold uppercase tracking-[0.28em] text-white/40">
+            <p className="mt-10 text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
               A living field atlas
             </p>
             <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[4.5rem]">
@@ -261,7 +261,7 @@ export default function MvuPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200/70">
                 Start here · my words
               </p>
-              <p className="mt-5 text-sm leading-6 text-white/45">
+              <p className="mt-5 text-sm leading-6 text-white/50">
                 Dictated at 04:16 after the first week. Lightly edited, not
                 rewritten into a generic lesson.
               </p>
