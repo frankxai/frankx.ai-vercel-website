@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 852,
+    "total": 902,
     "aliases": 61,
     "byType": {
-      "core": 22,
-      "section": 400,
+      "core": 23,
+      "section": 408,
       "community": 17,
       "tool": 54,
       "static": 15,
@@ -16,7 +16,7 @@
       "os": 11,
       "partnership": 7,
       "product": 21,
-      "research": 3,
+      "research": 44,
       "video": 3,
       "workshop": 8
     }
@@ -1963,8 +1963,8 @@
     },
     {
       "href": "/blog/frankx-vision-mission-values",
-      "title": "FrankX Vision, Mission, and Values",
-      "description": "The core narrative that anchors every FrankX system, launch, and creator experience.",
+      "title": "FrankX Vision, Mission, and Values — An Earlier Brand Note",
+      "description": "A 2025 snapshot of the FrankX brand language, now superseded by the public four-quality constitution.",
       "tags": [
         "Vision",
         "Mission",
@@ -3708,6 +3708,46 @@
     {
       "href": "/books/arcanea-creator-principles/chapter-07-advanced-partnership",
       "title": "Ch 7 — Advanced Partnership",
+      "type": "section"
+    },
+    {
+      "href": "/books/great-transition/chapter-05-what-you-own",
+      "title": "What You Own",
+      "tags": [
+        "freedom",
+        "ownership",
+        "agency"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/books/self-development/chapter-03-soul",
+      "title": "Soul",
+      "tags": [
+        "meaning",
+        "purpose",
+        "self-development"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/books/self-development/chapter-04-craft",
+      "title": "Craft",
+      "tags": [
+        "mastery",
+        "craft",
+        "practice"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/books/the-wordless-laws-book-two/the-third-mind",
+      "title": "The Third Mind",
+      "tags": [
+        "connection",
+        "collective intelligence",
+        "relationship"
+      ],
       "type": "section"
     },
     {
@@ -7504,6 +7544,52 @@
       "type": "section"
     },
     {
+      "href": "/qualities",
+      "title": "Core Qualities",
+      "description": "Freedom, Mastery, Meaning, and Connection — the governing qualities behind FrankX",
+      "type": "core"
+    },
+    {
+      "href": "/qualities/connection",
+      "title": "Connection — The Multiplier",
+      "tags": [
+        "connection",
+        "belonging",
+        "collective intelligence"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/qualities/freedom",
+      "title": "Freedom — The Direction",
+      "tags": [
+        "freedom",
+        "agency",
+        "autonomy"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/qualities/mastery",
+      "title": "Mastery — The Method",
+      "tags": [
+        "mastery",
+        "craft",
+        "practice"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/qualities/meaning",
+      "title": "Meaning — The Compass",
+      "tags": [
+        "meaning",
+        "purpose",
+        "coherence"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/quest",
       "title": "Quest",
       "tags": [
@@ -7522,6 +7608,70 @@
       "type": "research"
     },
     {
+      "href": "/research/agent-benchmarks",
+      "title": "AI Agent Benchmarks",
+      "tags": [
+        "research",
+        "agent",
+        "benchmarks"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/agent-frameworks",
+      "title": "Agent Frameworks",
+      "tags": [
+        "research",
+        "agent",
+        "frameworks"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/agent-skills-operating-knowledge",
+      "title": "Agent Skills as Operating Knowledge",
+      "tags": [
+        "research",
+        "agent",
+        "skills",
+        "operating",
+        "knowledge"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/agentic-evals",
+      "title": "Agentic Evals",
+      "tags": [
+        "research",
+        "agentic",
+        "evals"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/agentic-game-development",
+      "title": "Agentic Game Development",
+      "tags": [
+        "research",
+        "agentic",
+        "game",
+        "development"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/agentic-life-architecture",
+      "title": "Agentic Life Architecture",
+      "tags": [
+        "research",
+        "agentic",
+        "life",
+        "architecture"
+      ],
+      "type": "research"
+    },
+    {
       "href": "/research/agentic-life-observatory",
       "title": "Agentic Life Observatory",
       "tags": [
@@ -7533,6 +7683,47 @@
       "type": "section"
     },
     {
+      "href": "/research/agentic-memory",
+      "title": "Agentic Memory",
+      "tags": [
+        "research",
+        "agentic",
+        "memory"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/agentic-sovereignty",
+      "title": "Agentic Sovereignty",
+      "tags": [
+        "research",
+        "agentic",
+        "sovereignty"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-adoption",
+      "title": "Enterprise AI Adoption",
+      "tags": [
+        "research",
+        "ai",
+        "adoption"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-agent-config",
+      "title": "AI Agent Configuration Patterns",
+      "tags": [
+        "research",
+        "ai",
+        "agent",
+        "config"
+      ],
+      "type": "research"
+    },
+    {
       "href": "/research/ai-contemplative-practice",
       "title": "AI Contemplative Practice",
       "tags": [
@@ -7542,6 +7733,100 @@
         "practice"
       ],
       "type": "section"
+    },
+    {
+      "href": "/research/ai-creative-tools",
+      "title": "AI Creative Tools",
+      "tags": [
+        "research",
+        "ai",
+        "creative",
+        "tools"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-education",
+      "title": "AI in Education",
+      "tags": [
+        "research",
+        "ai",
+        "education"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-healthcare",
+      "title": "AI Healthcare Applications",
+      "tags": [
+        "research",
+        "ai",
+        "healthcare"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-mental-health",
+      "title": "AI for Mental Health",
+      "tags": [
+        "research",
+        "ai",
+        "mental",
+        "health"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-model-strategy",
+      "title": "Build, Fine-Tune, or Buy an AI Model?",
+      "tags": [
+        "research",
+        "ai",
+        "model",
+        "strategy"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-neuroscience",
+      "title": "AI & Neuroscience Convergence",
+      "tags": [
+        "research",
+        "ai",
+        "neuroscience"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-ops",
+      "title": "AI Operations Architecture",
+      "tags": [
+        "research",
+        "ai",
+        "ops"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-personal-productivity",
+      "title": "AI Personal Productivity",
+      "tags": [
+        "research",
+        "ai",
+        "personal",
+        "productivity"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/ai-security",
+      "title": "AI Agent Security",
+      "tags": [
+        "research",
+        "ai",
+        "security"
+      ],
+      "type": "research"
     },
     {
       "href": "/research/blue-zones-ikigai-ai-era",
@@ -7557,6 +7842,16 @@
       "type": "section"
     },
     {
+      "href": "/research/coding-assistants",
+      "title": "AI Coding Assistants",
+      "tags": [
+        "research",
+        "coding",
+        "assistants"
+      ],
+      "type": "research"
+    },
+    {
       "href": "/research/conscious-ai-operating-systems",
       "title": "Conscious AI Operating Systems",
       "tags": [
@@ -7567,6 +7862,156 @@
         "systems"
       ],
       "type": "section"
+    },
+    {
+      "href": "/research/context-engineering",
+      "title": "Context Engineering",
+      "tags": [
+        "research",
+        "context",
+        "engineering"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/core-qualities-and-human-drives",
+      "title": "Core Qualities & Human Drives",
+      "tags": [
+        "research",
+        "core",
+        "qualities",
+        "and",
+        "human",
+        "drives"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/creator-economy-ai",
+      "title": "Creator Economy & AI Automation",
+      "tags": [
+        "research",
+        "creator",
+        "economy",
+        "ai"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/embodied-cognition",
+      "title": "Embodied Cognition",
+      "tags": [
+        "research",
+        "embodied",
+        "cognition"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/enterprise-ai",
+      "title": "Enterprise AI Architecture",
+      "tags": [
+        "research",
+        "enterprise",
+        "ai"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/generative-ai",
+      "title": "Frontier AI Models & Generative Intelligence",
+      "tags": [
+        "research",
+        "generative",
+        "ai"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/housing-crisis-decisions",
+      "title": "Solving the Housing Crisis: Managerial Decisions That Work",
+      "tags": [
+        "research",
+        "housing",
+        "crisis",
+        "decisions"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/intent-architecture",
+      "title": "Intent Architecture",
+      "tags": [
+        "research",
+        "intent",
+        "architecture"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/internal-family-systems",
+      "title": "Internal Family Systems",
+      "tags": [
+        "research",
+        "internal",
+        "family",
+        "systems"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/investment-intelligence",
+      "title": "AI Investment Intelligence",
+      "tags": [
+        "research",
+        "investment",
+        "intelligence"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/law-ai",
+      "title": "Law & AI: Regulation, Liability, and the Courts",
+      "tags": [
+        "research",
+        "law",
+        "ai"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/manifestation-law-of-attraction-ai-systems",
+      "title": "Manifestation, Law of Attraction & AI Systems",
+      "tags": [
+        "research",
+        "manifestation",
+        "law",
+        "of",
+        "attraction",
+        "ai",
+        "systems"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/mcp-ecosystem",
+      "title": "Model Context Protocol",
+      "tags": [
+        "research",
+        "mcp",
+        "ecosystem"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/meaning-os",
+      "title": "Meaning as an Operating System",
+      "tags": [
+        "research",
+        "meaning",
+        "os"
+      ],
+      "type": "research"
     },
     {
       "href": "/research/methodology",
@@ -7582,6 +8027,59 @@
         "arena"
       ],
       "type": "section"
+    },
+    {
+      "href": "/research/multi-agent-systems",
+      "title": "Multi-Agent Frameworks",
+      "tags": [
+        "research",
+        "multi",
+        "agent",
+        "systems"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/predictive-mind",
+      "title": "The Predictive Mind",
+      "tags": [
+        "research",
+        "predictive",
+        "mind"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/production-patterns",
+      "title": "Production AI Patterns",
+      "tags": [
+        "research",
+        "production",
+        "patterns"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/prompt-engineering",
+      "title": "Prompt Engineering & AI Orchestration",
+      "tags": [
+        "research",
+        "prompt",
+        "engineering"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/self-led-ai-architecture",
+      "title": "Self-Led AI Architecture",
+      "tags": [
+        "research",
+        "self",
+        "led",
+        "ai",
+        "architecture"
+      ],
+      "type": "research"
     },
     {
       "href": "/research/series/architecture-of-intelligence",
@@ -7612,6 +8110,16 @@
       "type": "section"
     },
     {
+      "href": "/research/vector-databases",
+      "title": "Vector Database Comparison",
+      "tags": [
+        "research",
+        "vector",
+        "databases"
+      ],
+      "type": "research"
+    },
+    {
       "href": "/research/visual-catalog",
       "title": "Visual Catalog",
       "tags": [
@@ -7620,6 +8128,17 @@
         "catalog"
       ],
       "type": "section"
+    },
+    {
+      "href": "/research/voice-tech-2026",
+      "title": "Voice AI Stack 2026",
+      "tags": [
+        "research",
+        "voice",
+        "tech",
+        "2026"
+      ],
+      "type": "research"
     },
     {
       "href": "/resources",

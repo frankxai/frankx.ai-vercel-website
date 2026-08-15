@@ -43,6 +43,108 @@ export const sourceTypeLabels: Record<SourceType, string> = {
  * Each domain slug maps to an array of validated sources.
  */
 export const domainSources: Record<string, ResearchSource[]> = {
+  'core-qualities-and-human-drives': [
+    {
+      name: 'Guilford Press',
+      title: 'Self-Determination Theory: Basic Psychological Needs in Motivation, Development, and Wellness',
+      url: 'https://www.guilford.com/books/Self-Determination-Theory/Ryan-Deci/9781462538966',
+      date: '2017',
+      type: 'official',
+    },
+    {
+      name: 'American Psychologist',
+      title: 'Self-Determination Theory and the Facilitation of Intrinsic Motivation, Social Development, and Well-Being',
+      url: 'https://doi.org/10.1037/0003-066X.55.1.68',
+      date: '2000',
+      type: 'journal',
+    },
+    {
+      name: 'Psychological Review',
+      title: 'The Role of Deliberate Practice in the Acquisition of Expert Performance',
+      url: 'https://doi.org/10.1037/0033-295X.100.3.363',
+      date: '1993',
+      type: 'journal',
+    },
+    {
+      name: 'Psychological Science',
+      title: 'Deliberate Practice and Performance in Music, Games, Sports, Education, and Professions: A Meta-Analysis',
+      url: 'https://doi.org/10.1177/0956797614535810',
+      date: '2014',
+      type: 'journal',
+    },
+    {
+      name: 'Review of General Psychology',
+      title: 'The Meanings of Meaning: A Tripartite Model of Meaning in Life',
+      url: 'https://doi.org/10.1037/a0032103',
+      date: '2013',
+      type: 'journal',
+    },
+    {
+      name: 'Journal of Positive Psychology',
+      title: 'The Meaning in Life Questionnaire: Assessing the Presence of and Search for Meaning in Life',
+      url: 'https://doi.org/10.1080/17439760500526170',
+      date: '2006',
+      type: 'journal',
+    },
+    {
+      name: 'Psychological Bulletin',
+      title: 'The Need to Belong: Desire for Interpersonal Attachments as a Fundamental Human Motivation',
+      url: 'https://doi.org/10.1037/0033-2909.117.3.497',
+      date: '1995',
+      type: 'journal',
+    },
+    {
+      name: 'PLOS Medicine',
+      title: 'Social Relationships and Mortality Risk: A Meta-analytic Review',
+      url: 'https://doi.org/10.1371/journal.pmed.1000316',
+      date: '2010',
+      type: 'journal',
+    },
+    {
+      name: 'Science',
+      title: 'Evidence for a Collective Intelligence Factor in the Performance of Human Groups',
+      url: 'https://doi.org/10.1126/science.1193147',
+      date: '2010',
+      type: 'journal',
+    },
+    {
+      name: 'National Academies of Sciences, Engineering, and Medicine',
+      title: 'Social Isolation and Loneliness in Older Adults: Opportunities for the Health Care System',
+      url: 'https://doi.org/10.17226/25663',
+      date: '2020',
+      type: 'book',
+    },
+  ],
+  'meaning-os': [
+    {
+      name: 'John Vervaeke',
+      title: 'Awakening from the Meaning Crisis',
+      url: 'https://www.youtube.com/playlist?list=PLND1JCRq8Vuh3f0P5qjrSdb5eC1ZfZwWJ',
+      date: '2019',
+      type: 'official',
+    },
+    {
+      name: 'Journal of Logic and Computation',
+      title: 'Relevance Realization and the Emerging Framework in Cognitive Science',
+      url: 'https://doi.org/10.1093/logcom/exab014',
+      date: '2021',
+      type: 'journal',
+    },
+    {
+      name: 'Review of General Psychology',
+      title: 'The Meanings of Meaning: A Tripartite Model of Meaning in Life',
+      url: 'https://doi.org/10.1037/a0032103',
+      date: '2013',
+      type: 'journal',
+    },
+    {
+      name: 'Journal of Positive Psychology',
+      title: 'The Meaning in Life Questionnaire',
+      url: 'https://doi.org/10.1080/17439760500526170',
+      date: '2006',
+      type: 'journal',
+    },
+  ],
   'ai-model-strategy': [
     { name: 'OpenAI', title: 'Optimizing LLM Accuracy', url: 'https://developers.openai.com/api/docs/guides/optimizing-llm-accuracy', type: 'official' },
     { name: 'OpenAI', title: 'Supervised Fine-Tuning', url: 'https://developers.openai.com/api/docs/guides/supervised-fine-tuning', type: 'official' },

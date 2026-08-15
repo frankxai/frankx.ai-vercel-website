@@ -41,6 +41,8 @@ import {
   Zap,
   Search,
 } from 'lucide-react'
+import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
+import { trackEvent } from '@/lib/analytics'
 
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
@@ -173,6 +175,7 @@ const navigation = {
       { name: 'Ecosystem', href: '/ecosystem', icon: Network, description: 'The complete system map' },
       { name: 'Universe Map', href: '/map', icon: Map, description: 'Every surface, one view' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Core Qualities', href: '/qualities', icon: Compass, description: 'Freedom, mastery, meaning & connection' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
       { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
@@ -197,7 +200,7 @@ const navigation = {
     groups: [
       {
         label: 'Current work',
-        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Intelligence Atlas', 'Library', 'Guides', 'Essays', 'Journal'],
+        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Core Qualities', 'Intelligence Atlas', 'Library', 'Guides', 'Essays', 'Journal'],
       },
       {
         label: 'Systems & products',
@@ -238,12 +241,22 @@ function MenuLink({ item }: { item: (typeof navigation)[NavKey]['items'][0] }) {
   const linkProps = isExternal
     ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
     : { href: item.href }
+  const handleClick = () => {
+    if (item.href !== '/qualities') return
+    const event = coreQualitiesNavigationEvent({
+      source: 'desktop_nav',
+      placement: 'workspace_group',
+      destination: 'overview',
+    })
+    trackEvent(event.eventName, event.eventProperties)
+  }
 
   return (
     <li>
       <NavigationMenu.Link asChild>
         <LinkComponent
           {...linkProps}
+          onClick={handleClick}
           className="group flex items-start gap-3 rounded-lg p-2 transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
         >
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white/5 text-slate-400 transition-colors group-hover:bg-white/10 group-hover:text-white">
