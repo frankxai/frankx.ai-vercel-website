@@ -15,10 +15,10 @@ import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { EventRibbon } from '@/components/connect/EventRibbon'
 import { getMvuEntrySummaries, type MvuLayer } from '@/lib/mvu'
 import { MVU_LAYER_META } from '@/lib/mvu-display'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { serializeJsonLd } from '@/lib/structured-data'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const MVU_URL = `${SITE_URL}/mvu`
 const OFFICIAL_EVENT_URL = 'https://www.mindvalley.com/u/schedule'
 const FEATURED_ARTICLE_URL = '/blog/your-mind-is-a-temporary-library'
