@@ -60,8 +60,8 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 })
 
-// Source Serif 4 for contemplative-rails register (only loaded on /on-*/ + /canon/ routes)
-const sourceSerif = Source_Serif_4({
+// Playfair Display for editorial/serif register (fallback from Source Serif 4 due to Google Fonts 404s)
+const sourceSerif = Playfair_Display({
   subsets: ['latin'],
   weight: ['400', '600', '700'],
   style: ['normal', 'italic'],

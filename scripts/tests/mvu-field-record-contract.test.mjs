@@ -24,8 +24,8 @@ test('MVU hub states the editorial truth and derives its corpus counts', () => {
   const publicCount = contents.filter((source) => /^published: true$/m.test(source)).length
   const heldCount = contents.filter((source) => /^published: false$/m.test(source)).length
 
-  assert.equal(files.length, 19)
-  assert.equal(publicCount, 5)
+  assert.equal(files.length, 28)
+  assert.equal(publicCount, 14)
   assert.equal(heldCount, 14)
   // Source-led layer system uses getMvuEntrySummaries with MvuLayer types
   assert.match(corpusLibrary, /export type MvuLayer/)
