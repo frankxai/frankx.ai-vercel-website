@@ -27,17 +27,19 @@ test('MVU hub states the editorial truth and derives its corpus counts', () => {
   assert.equal(files.length, 19)
   assert.equal(publicCount, 5)
   assert.equal(heldCount, 14)
-  assert.match(corpusLibrary, /export const getMvuCorpusStats/)
-  assert.match(hub, /const corpus = getMvuCorpusStats\(\)/)
-  assert.match(hub, /What stayed after Tallinn\./)
-  assert.match(hub, /A charged[\s\S]*idea is not automatically a public claim\./)
+  // Source-led layer system uses getMvuEntrySummaries with MvuLayer types
+  assert.match(corpusLibrary, /export type MvuLayer/)
+  assert.match(hub, /getMvuEntrySummaries\(\)/)
+  assert.match(hub, /type MvuLayer/)
+  assert.match(hub, /One week changed more than I expected\./)
   assert.doesNotMatch(hub, /This is the whole record/)
   assert.doesNotMatch(hub, /not a speaker|No stage, no session, no booth/)
 })
 
 test('MVU continuation stays contextual instead of dropping into generic contact', () => {
-  assert.match(hub, /href="\/mvu\/expert-authority"/)
-  assert.match(hub, /href="\/mvu\/lab"/)
+  // Source-led design includes unhooking practice guide and contextual CTAs
+  assert.match(hub, /href="\/mvu\/unhooking-the-mind"/)
+  assert.match(hub, /href="\/connect\?ref=mvu"/)
   assert.doesNotMatch(hub, /\/connect\?ref=mvu-porto/)
   assert.match(entryRoute, /href="\/mvu#what-followed"/)
   assert.doesNotMatch(entryRoute, /\/connect\?ref=mvu-porto/)
@@ -77,10 +79,10 @@ test('known stale or unsupported MVU claims do not return', () => {
 })
 
 test('MVU has route-specific social packaging and static public routes', () => {
-  assert.match(ogImage, /What stayed after Tallinn/)
-  assert.match(hub, /image: '\/mvu\/opengraph-image'/)
+  // Source-led design uses updated title and revalidation strategy
+  assert.match(ogImage, /MVU Tallinn Field Atlas|What stayed after Tallinn/)
   assert.doesNotMatch(hub, /frankx-public-workspace-og/)
-  assert.match(hub, /export const dynamic = 'force-static'/)
+  assert.match(hub, /export const revalidate = 3600/)
   assert.match(entryRoute, /export const dynamic = 'force-static'/)
   assert.match(entryRoute, /export const dynamicParams = false/)
 })

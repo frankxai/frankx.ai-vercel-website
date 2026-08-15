@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Poppins, Playfair_Display, JetBrains_Mono, Source_Serif_4 } from 'next/font/google'
+import { Inter, Poppins, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 import { readFileSync } from 'node:fs'
