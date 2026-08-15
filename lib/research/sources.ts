@@ -287,6 +287,12 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'American Hospital Association', title: '3 Ways AI Could Aid Behavioral Health Screenings', url: 'https://www.aha.org/2025-04-15-3-ways-ai-could-aid-behavioral-health-screenings', type: 'industry-report' },
   ],
 
+  'image-generation-bakeoff': [
+    { name: 'FrankX', title: 'Image bake-off receipt 2026-08-14', url: 'https://www.frankx.ai/research/image-bakeoff-2026-08-14/receipt.json', date: '2026-08-15', type: 'official' },
+    { name: 'FrankX', title: 'Grok Imagine bake-off article', url: 'https://www.frankx.ai/blog/grok-imagine-bakeoff-2026', date: '2026-08-15', type: 'blog' },
+    { name: 'xAI', title: 'Grok Imagine via Hermes image_generate (this run)', url: 'https://docs.x.ai', date: '2026-08-15', type: 'official' },
+  ],
+
   'grok-4-6': [
     { name: 'xAI', title: 'Introducing Grok 4.6', url: 'https://x.ai/news/grok-4-6', date: '2026-08-12', type: 'official' },
     { name: 'xAI Docs', title: 'Grok 4.6 model overview', url: 'https://docs.x.ai/developers/grok-4-6', date: '2026-08-12', type: 'official' },
