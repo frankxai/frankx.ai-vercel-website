@@ -327,7 +327,7 @@ export default function MvuPage() {
                       href={`/mvu/${entry.slug}`}
                       className="group grid gap-4 py-7 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light sm:grid-cols-[5.5rem_1fr_auto] sm:items-start sm:gap-6"
                     >
-                      <div className="flex items-center gap-3 text-xs text-white/35">
+                      <div className="flex items-center gap-3 text-xs text-white/50">
                         <span className="font-mono">{String(index + 1).padStart(2, '0')}</span>
                         <time dateTime={entry.date}>{formatShortDate(entry.date)}</time>
                       </div>

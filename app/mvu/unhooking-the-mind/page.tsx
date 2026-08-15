@@ -162,7 +162,7 @@ export default function UnhookingTheMindPage() {
           <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-10 sm:px-6 sm:pb-28 lg:px-8">
             <Link
               href="/mvu"
-              className="inline-flex items-center gap-2 text-sm text-white/45 transition-colors hover:text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
+              className="inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden />
               MVU field atlas
@@ -350,7 +350,7 @@ export default function UnhookingTheMindPage() {
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <h3 className="text-sm font-semibold text-white/85">{title}</h3>
-                    <p className="text-sm leading-6 text-white/45">{script}</p>
+                    <p className="text-sm leading-6 text-white/50">{script}</p>
                   </li>
                 ))}
               </ol>

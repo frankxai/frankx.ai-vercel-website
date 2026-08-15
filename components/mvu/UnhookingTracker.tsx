@@ -190,7 +190,7 @@ export function UnhookingTracker() {
             Trace one hook before it acts for you.
           </h3>
         </div>
-        <div className="flex items-center gap-2 text-xs text-white/45">
+        <div className="flex items-center gap-2 text-xs text-white/50">
           <ShieldCheck className="h-4 w-4 text-amber-300/70" aria-hidden />
           Saved only in this browser
         </div>
@@ -203,7 +203,7 @@ export function UnhookingTracker() {
               <span className="text-sm font-semibold text-white">
                 {String(index + 1).padStart(2, '0')} · {field.label}
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-wider text-white/30">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-white/50">
                 {entry[field.key].trim() ? 'noticed' : 'open'}
               </span>
             </span>
@@ -238,7 +238,7 @@ export function UnhookingTracker() {
               className="mt-3 w-full accent-amber-300"
             />
           </label>
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/35 sm:w-32 sm:text-right">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/50 sm:w-32 sm:text-right">
             {completed}/6 signals named
           </p>
         </div>
@@ -263,7 +263,7 @@ export function UnhookingTracker() {
           <button
             type="button"
             onClick={clearEntry}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm text-white/35 transition-colors hover:text-rose-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300 sm:ml-auto"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm text-white/50 transition-colors hover:text-rose-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300 sm:ml-auto"
           >
             <Trash2 className="h-4 w-4" aria-hidden />
             Delete local data
