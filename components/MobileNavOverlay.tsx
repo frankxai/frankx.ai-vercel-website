@@ -42,6 +42,8 @@ import {
   Download,
   type LucideIcon,
 } from 'lucide-react'
+import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
+import { trackEvent } from '@/lib/analytics'
 
 export interface MobileNavOverlayProps {
   isOpen: boolean
@@ -188,6 +190,7 @@ const sections: NavSection[] = [
       { name: 'Ecosystem', href: '/ecosystem', icon: Network, description: 'The complete system map' },
       { name: 'Universe Map', href: '/map', icon: Map, description: 'Every surface, one view' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Core Qualities', href: '/qualities', icon: Compass, description: 'Freedom, mastery, meaning & connection' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
       { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
@@ -211,7 +214,7 @@ const sections: NavSection[] = [
     groups: [
       {
         label: 'Current work',
-        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Intelligence Atlas', 'Library', 'Guides', 'Journal'],
+        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Core Qualities', 'Intelligence Atlas', 'Library', 'Guides', 'Journal'],
       },
       {
         label: 'Systems & products',
@@ -633,8 +636,20 @@ function NavTile({ item, onClose }: { item: NavItem; onClose: () => void }) {
     )
   }
 
+  const handleSelect = () => {
+    if (item.href === '/qualities') {
+      const event = coreQualitiesNavigationEvent({
+        source: 'mobile_nav',
+        placement: 'workspace_group',
+        destination: 'overview',
+      })
+      trackEvent(event.eventName, event.eventProperties)
+    }
+    onClose()
+  }
+
   return (
-    <Link href={item.href} onClick={onClose} className={tileBase}>
+    <Link href={item.href} onClick={handleSelect} className={tileBase}>
       {content}
     </Link>
   )
