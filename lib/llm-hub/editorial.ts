@@ -135,8 +135,19 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     bestFor: ['Routing and classification', 'Real-time chat', 'High-volume metadata tagging'],
     openrouterId: 'anthropic/claude-haiku-4.5',
   },
+  'grok-4-6': {
+    tagline: 'Current xAI flagship: same-scale agent refresh of 4.5, AA Index 61, $2/$6 under 200k. No Starlight arena receipt yet.',
+    bestFor: [
+      'Long-running coding and knowledge-work agents on the xAI API',
+      'First-pass app and visual structure work (vendor-stated focus)',
+      'Frontier-priced loops that must stay under the 200k prompt cliff',
+    ],
+    watchOut: 'Not a documented new base model. Cached input rose to $0.50. Price doubles past 200k prompt tokens. Do not treat vendor or AA tables as SIS Model Arena winners.',
+    creatorUse: 'Use as the default Grok API model for multi-step build loops; keep Claude on receipt-gated SIS arena work until a Grok 4.6 JSON receipt exists.',
+    openrouterId: 'x-ai/grok-4.6',
+  },
   'grok-4-3': {
-    tagline: 'Fourth-best frontier intelligence at roughly the cheapest frontier price, with the fastest output in its tier.',
+    tagline: 'Previous cheap-frontier Grok — superseded as flagship by Grok 4.6 on 12 August 2026.',
     bestFor: [
       'High-volume cost-sensitive inference (classification, extraction, summarization)',
       'Latency-sensitive agentic tool loops',
