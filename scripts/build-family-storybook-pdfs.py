@@ -603,7 +603,7 @@ def draw_colophon(canvas: Canvas, story: dict, locale: str, page_number: int) ->
 
 
 def build_pdf(locale: str, story: dict, output_path: Path, image_profile: dict) -> None:
-    canvas = Canvas(str(output_path), pagesize=A4, pageCompression=1)
+    canvas = Canvas(str(output_path), pagesize=A4, pageCompression=1, invariant=1)
     canvas.setTitle(story["title"])
     canvas.setAuthor("FrankX")
     canvas.setSubject(story["subtitle"])
