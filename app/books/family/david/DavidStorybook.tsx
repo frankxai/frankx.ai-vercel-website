@@ -653,8 +653,9 @@ export default function DavidStorybook() {
           </aside>
         )}
 
-        <p className="sr-only" aria-live="polite">
-          {narrationStatus}
+        <p className="sr-only" aria-live="polite" aria-atomic="true">
+          {pageLabel}
+          {narrationStatus ? `. ${narrationStatus}` : ''}
         </p>
       </section>
     </main>
