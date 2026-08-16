@@ -19,7 +19,7 @@ import { createMetadata } from '@/lib/seo'
 import { serializeJsonLd } from '@/lib/structured-data'
 
 const PAGE_PATH = '/mvu/unhooking-the-mind'
-const PAGE_URL = `https://frankx.ai${PAGE_PATH}`
+const PAGE_URL = `https://www.frankx.ai${PAGE_PATH}`
 
 export const metadata: Metadata = createMetadata({
   title: 'How to Stop Identifying With Thoughts',
@@ -133,10 +133,10 @@ function ArticleJsonLd() {
     description:
       'A grounded practice for seeing a thought without turning it into an instruction.',
     datePublished: '2026-07-27',
-    author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-    publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+    author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://www.frankx.ai' },
+    publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://www.frankx.ai' },
     mainEntityOfPage: PAGE_URL,
-    isPartOf: { '@type': 'CollectionPage', name: 'MVU Field Journal', url: 'https://frankx.ai/mvu' },
+    isPartOf: { '@type': 'CollectionPage', name: 'MVU Field Journal', url: 'https://www.frankx.ai/mvu' },
     about: ['self-inquiry', 'not-self', 'thought patterns', 'loving-kindness'],
   }
 

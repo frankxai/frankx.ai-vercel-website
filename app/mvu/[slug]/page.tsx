@@ -9,7 +9,7 @@ import { MVU_LAYER_META } from '@/lib/mvu-display'
 import { serializeJsonLd } from '@/lib/structured-data'
 import { MDXContent } from '@/components/blog/MDXContent'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = 'https://www.frankx.ai'
 
 export function generateStaticParams() {
   return getMvuEntries().map((entry) => ({ slug: entry.slug }))
