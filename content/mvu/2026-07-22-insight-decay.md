@@ -11,10 +11,9 @@ published: true
 ---
 
 Here's the pattern I've watched at every summit, retreat, and conference I've
-been to, including this one. An insight has a half-life of about seventy-two
-hours. By day three the charge is gone. By the second week the notes are
-archaeology — artifacts of a person who briefly saw further and then came back
-down.
+been to, including this one. An insight has an expiration date. Give it three
+days and the charge is gone. By the second week the notes are archaeology —
+artifacts of a person who briefly saw further and then came back down.
 
 The usual story is memory: *I forgot to follow up.* I think that's too kind to
 the problem. You didn't forget. There was simply nothing standing by to catch

@@ -11,6 +11,9 @@ import { MDXContent } from '@/components/blog/MDXContent'
 
 const SITE_URL = 'https://www.frankx.ai'
 
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
 export function generateStaticParams() {
   return getMvuEntries().map((entry) => ({ slug: entry.slug }))
 }
@@ -128,10 +131,10 @@ export default async function MvuEntryPage({
           Independent participant record. Not affiliated with, sponsored by, or
           endorsed by Mindvalley.{' '}
           <Link
-            href="/connect"
+            href="/mvu#what-followed"
             className="text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-tech-light"
           >
-            Met me in Tallinn? Stay in touch.
+            Return to the field atlas
           </Link>
         </p>
       </article>
