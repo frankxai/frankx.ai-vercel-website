@@ -1,0 +1,23 @@
+{
+  "id": "swarm-board-2026-08-16",
+  "asOf": "2026-08-16",
+  "authoringModel": "Grok 4.6",
+  "session": "Hermes default / xAI OAuth",
+  "humanGate": "Frank Riemer — not yet merged at write time",
+  "skills": [
+    "estate-design-excellence",
+    "seo-geo-public-contract-audit",
+    "content-swarm-production",
+    "claude-code (read-only 2026-08-14)",
+    "hermes-image-generation (bake-off 2026-08-15)"
+  ],
+  "executed": [
+    "Grok 4.6 sourced brief + hub compare (PR 475)",
+    "Grok Imagine locked-prompt bake-off n=1",
+    "Claude Code publish-path review"
+  ],
+  "notRun": [
+    "SIS Model Arena for Grok 4.6",
+    "Nano Banana / GPT Image / FAL pixels"
+  ]
+}
