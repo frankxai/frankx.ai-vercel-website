@@ -109,7 +109,7 @@ export default function Dream100Cockpit() {
               <label className="flex items-center gap-2 rounded-xl border border-white/10 bg-black/20 px-3">
                 <Search className="h-4 w-4 text-slate-500" />
                 <span className="sr-only">Search members</span>
-                <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search the registry" className="h-10 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-slate-600" />
+                <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search the registry" className="h-10 min-w-0 flex-1 bg-transparent text-sm placeholder:text-slate-600" />
               </label>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(['priority', 'active', 'horizon', 'all'] as const).map((value) => (
@@ -159,15 +159,15 @@ export default function Dream100Cockpit() {
 
               <label className="grid gap-2 text-xs font-semibold text-slate-300">
                 Last meaningful touch
-                <input value={draft.lastTouch} onChange={(event) => setDraft((current) => ({ ...current, lastTouch: event.target.value }))} placeholder="Date, artifact, or conversation" className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm font-normal text-white outline-none focus:border-amber-300/35" />
+                <input value={draft.lastTouch} onChange={(event) => setDraft((current) => ({ ...current, lastTouch: event.target.value }))} placeholder="Date, artifact, or conversation" className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm font-normal text-white focus:border-amber-300/35" />
               </label>
               <label className="grid gap-2 text-xs font-semibold text-slate-300">
                 Next useful contribution
-                <textarea value={draft.nextContribution} onChange={(event) => setDraft((current) => ({ ...current, nextContribution: event.target.value }))} rows={4} placeholder="What can we make, verify, improve, or amplify without asking for anything?" className="resize-y rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm font-normal leading-6 text-white outline-none focus:border-amber-300/35" />
+                <textarea value={draft.nextContribution} onChange={(event) => setDraft((current) => ({ ...current, nextContribution: event.target.value }))} rows={4} placeholder="What can we make, verify, improve, or amplify without asking for anything?" className="resize-y rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm font-normal leading-6 text-white focus:border-amber-300/35" />
               </label>
               <label className="grid gap-2 text-xs font-semibold text-slate-300">
                 Private context
-                <textarea value={draft.privateNotes} onChange={(event) => setDraft((current) => ({ ...current, privateNotes: event.target.value }))} rows={5} placeholder="Interests, boundaries, evidence, and relationship memory" className="resize-y rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm font-normal leading-6 text-white outline-none focus:border-amber-300/35" />
+                <textarea value={draft.privateNotes} onChange={(event) => setDraft((current) => ({ ...current, privateNotes: event.target.value }))} rows={5} placeholder="Interests, boundaries, evidence, and relationship memory" className="resize-y rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm font-normal leading-6 text-white focus:border-amber-300/35" />
               </label>
               <div className="flex items-center gap-4">
                 <button type="button" onClick={save} disabled={saveState === 'saving' || persistence === 'unavailable'} className="inline-flex items-center gap-2 rounded-full bg-amber-300 px-5 py-2.5 text-sm font-bold text-slate-950 disabled:cursor-not-allowed disabled:opacity-40">
@@ -210,4 +210,3 @@ export default function Dream100Cockpit() {
 function Metric({ value, label }: { value: string; label: string }) {
   return <div><span className="block text-lg font-bold text-white">{value}</span><span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-slate-600">{label}</span></div>
 }
-
