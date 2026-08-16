@@ -26,16 +26,16 @@ export const hubProvenance: ProvenanceStep[] = [
   {
     actor: 'Grok Imagine',
     role: 'Image backend (not Grok 4.6 text)',
-    did: 'Returned three locked-prompt JPEGs at 1280×720. Runtime model grok-imagine-image.',
+    did: 'Returned a curated still-life. Runtime model grok-imagine-image. Quality id still not in the tool result. Video not run.',
     skillOrTool: 'hermes image_generate, image-workflow-orchestrator',
     date: '2026-08-15',
   },
   {
-    actor: 'Nano Banana / GPT Image / FAL',
-    role: 'Attempted comparators',
-    did: 'HOLD. Gemini key present but invalid. OpenRouter/OpenAI and FAL keys absent.',
-    skillOrTool: 'scripts/lib/nb-image.mjs, gpt-image.mjs, fal-image.mjs',
-    date: '2026-08-15',
+    actor: 'Codex + Antigravity',
+    role: 'Native image peers',
+    did: 'Same still-life brief. Codex image_gen and agy generate_image both wrote real files that passed QA.',
+    skillOrTool: 'codex exec image_gen.imagegen · agy generate_image',
+    date: '2026-08-16',
   },
   {
     actor: 'Frank Riemer',

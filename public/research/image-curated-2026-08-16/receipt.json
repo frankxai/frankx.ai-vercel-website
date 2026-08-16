@@ -1,0 +1,39 @@
+{
+  "id": "image-curated-2026-08-16",
+  "runAt": "2026-08-16T03:40:00+02:00",
+  "question": "Same still-life brief on native generators we can actually call.",
+  "prompt": "A single matte-black precision cylinder on dark honed slate, one hairline gold ring at the equator, warm sidelight from the left, soft falloff, shallow focus, quiet product photograph, 16:9. No logos, no type, no people.",
+  "published": [
+    {
+      "path": "hermes-image_generate",
+      "reportedModel": "grok-imagine-image",
+      "file": "/research/image-curated-2026-08-16/grok-imagine-still-life.jpg",
+      "bytes": 151968,
+      "pixels": [1280, 720],
+      "decision": "publish"
+    },
+    {
+      "path": "codex image_gen.imagegen",
+      "file": "/research/image-curated-2026-08-16/codex-still-life.png",
+      "bytes": 1636753,
+      "pixels": [1672, 941],
+      "decision": "publish"
+    },
+    {
+      "path": "agy generate_image",
+      "file": "/research/image-curated-2026-08-16/agy-still-life.png",
+      "bytes": 1167823,
+      "pixels": [1376, 768],
+      "decision": "publish"
+    }
+  ],
+  "notRun": [
+    "grok-imagine-image-quality as a distinct runtime (tool reported grok-imagine-image)",
+    "Grok Imagine video (no video tool in this Hermes session)",
+    "FAL (not a native path for this work)"
+  ],
+  "notShown": [
+    "2026-08-15 Grok interior (extra chair, lamp looks on)",
+    "2026-08-15 Grok droid (mascot, not mechanical)"
+  ]
+}

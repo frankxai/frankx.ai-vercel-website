@@ -1538,12 +1538,12 @@ export const researchDomains: ResearchDomain[] = [
   },
   {
     slug: 'image-generation-bakeoff',
-    title: 'Image Generation Bake-off',
-    subtitle: 'Locked prompts, real pixels, failed backends recorded as holds',
+    title: 'Native Still-Life Samples',
+    subtitle: 'One brief. Grok Imagine, Codex, and Antigravity. Only QA-pass frames.',
     description:
       'A first-party media eval: three locked landscape briefs run through Hermes Grok Imagine on 15 August 2026, with Nano Banana, GPT Image, and FAL attempted and held. Includes prompt text, reported model, MIME/magic mismatch, and pixel QA.',
     tldr:
-      'Grok Imagine ran. Runtime model was grok-imagine-image, not the configured quality id. Still-life fit. Interior drifted (extra chair, lamp looks on). Droid became a mascot. Other estate image APIs did not return pixels in this run. No cross-model winner.',
+      'Same still-life on three native tools (16 Aug 2026). All three published. Missed interior/droid frames from the day before are not shown. FAL was not used. Grok video not run.',
     icon: 'Image',
     color: 'teal',
     category: 'models-tools',

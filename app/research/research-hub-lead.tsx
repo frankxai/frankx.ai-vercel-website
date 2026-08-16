@@ -90,13 +90,13 @@ export default function ResearchHubLead() {
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             <Link
-              href="/research/image-generation-bakeoff"
+              href="/blog/grok-imagine-bakeoff-2026"
               className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:bg-white/[0.04]"
             >
-              <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">First-party · 15 Aug 2026</p>
-              <h3 className="mt-2 text-lg font-semibold text-white">Grok Imagine bake-off</h3>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">First-party · 16 Aug 2026</p>
+              <h3 className="mt-2 text-lg font-semibold text-white">One still-life, three native generators</h3>
               <p className="mt-2 text-sm text-white/65">
-                Three locked landscape briefs. Still-life fit 5. Interior drifted. Droid became a mascot. Other APIs held.
+                Grok Imagine, Codex image_gen, and Antigravity generate_image. Only QA-pass frames. No FAL.
               </p>
             </Link>
             <Link

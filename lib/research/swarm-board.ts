@@ -37,15 +37,15 @@ export const swarmRecommendations: SwarmRecommendation[] = [
     href: '/research/model-arena',
   },
   {
-    job: 'Still-life and quiet interior images',
+    job: 'Quiet product still-life',
     architecture:
-      'Separate image backend from the text model. Inspect count and on/off states. Save files from magic bytes.',
-    primary: 'Grok Imagine (runtime grok-imagine-image)',
-    alternate: 'Nano Banana / GPT Image / FAL — HOLD until a valid key returns pixels',
-    doNot: 'Do not write “Grok 4.6 generated this image.”',
+      'Use a native image tool already in the session. Inspect the pixels. Show only frames that pass QA.',
+    primary: 'Grok Imagine, Codex image_gen, or Antigravity generate_image',
+    alternate: 'Pick the CLI you are already in',
+    doNot: 'Do not route this work through FAL. Do not publish missed briefs.',
     evidence: 'first-party',
-    evidenceNote: 'Locked three-prompt bake-off 15 Aug 2026. n=1. Quality config id was not the runtime model.',
-    href: '/research/image-generation-bakeoff',
+    evidenceNote: 'Same prompt, 16 Aug 2026. All three returned a publishable still-life. Quality id still did not appear in the Grok tool result. Video not run.',
+    href: '/blog/grok-imagine-bakeoff-2026',
   },
   {
     job: 'Catalog, price, and compare closed models',
