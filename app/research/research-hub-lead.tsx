@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react'
 import {
   SWARM_BOARD_AS_OF,
   swarmRecommendations,
+  flagshipModels,
   hubFaqs,
 } from '@/lib/research/swarm-board'
 import { hubProvenance } from '@/lib/research/hub-provenance'
@@ -78,6 +79,33 @@ export default function ResearchHubLead() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="flagships" className="py-12 md:py-16 border-b border-white/[0.04]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Flagship models</h2>
+          <p className="text-white/65 max-w-3xl mb-8">
+            Architecture and job, not a crown. Evidence kind is on every card. Registry notes
+            that were not re-run this week stay vendor-claim.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {flagshipModels.map((m) => (
+              <Link
+                key={m.id}
+                href={m.href}
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:bg-white/[0.04] transition-[background-color,border-color]"
+              >
+                <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">
+                  {m.status} · {evidenceLabel[m.evidence]}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-white">{m.name}</h3>
+                <p className="mt-1 text-sm text-cyan-200/80">{m.job}</p>
+                <p className="mt-2 text-sm text-white/65">{m.architecture}</p>
+                <p className="mt-3 text-xs text-white/45">{m.note}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

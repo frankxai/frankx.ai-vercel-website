@@ -11,6 +11,17 @@ export type SwarmRecommendation = {
   href: string
 }
 
+export type FlagshipModel = {
+  id: string
+  name: string
+  job: string
+  architecture: string
+  evidence: EvidenceKind
+  note: string
+  href: string
+  status: 'ga' | 'previous' | 'preview'
+}
+
 export const SWARM_BOARD_AS_OF = '2026-08-16'
 
 export const swarmRecommendations: SwarmRecommendation[] = [
@@ -70,6 +81,69 @@ export const swarmRecommendations: SwarmRecommendation[] = [
   },
 ]
 
+export const flagshipModels: FlagshipModel[] = [
+  {
+    id: 'grok-4-6',
+    name: 'Grok 4.6',
+    job: 'Long-running agents at mid price',
+    architecture: 'Same 1.5T-class base as 4.5; post-training / agent RL refresh. 500k context.',
+    evidence: 'independent-composite',
+    note: 'AA Index 61 (vendor + AA, 12 Aug 2026). No SIS arena receipt.',
+    href: '/research/grok-4-6',
+    status: 'ga',
+  },
+  {
+    id: 'claude-fable-5',
+    name: 'Claude Fable 5',
+    job: 'Receipt-gated arena + long-horizon Claude work',
+    architecture: '1M context. SIS arena can pin Fable. Use when the harness must write a JSON receipt.',
+    evidence: 'first-party',
+    note: 'Model Arena cards are Claude Code Agent receipts. Launch benches remain vendor-claim.',
+    href: '/research/model-arena',
+    status: 'ga',
+  },
+  {
+    id: 'claude-opus-4-8',
+    name: 'Claude Opus 4.8',
+    job: 'Cost-secondary coding and knowledge work',
+    architecture: '1M context. Point release after 4.7. Registry notes $5/$25 unchanged.',
+    evidence: 'vendor-claim',
+    note: 'From the in-repo model registry. Not re-benchmarked in this wave.',
+    href: '/llm-hub',
+    status: 'ga',
+  },
+  {
+    id: 'gpt-5-5',
+    name: 'GPT-5.5',
+    job: 'Long-context OpenAI agents',
+    architecture: '1M context. Registry: agentic/long-context step; narrow terminal-agent edge claimed by vendor.',
+    evidence: 'vendor-claim',
+    note: 'No first-party SIS receipt in this wave.',
+    href: '/llm-hub',
+    status: 'ga',
+  },
+  {
+    id: 'gemini-3-5-flash',
+    name: 'Gemini 3.5 Flash',
+    job: 'Shipped Google 3.5 line',
+    architecture: '1M context. Flash is the GA 3.5 model. Pro remains preview in the registry.',
+    evidence: 'vendor-claim',
+    note: 'Antigravity generate_image is a separate native image path, not this text model.',
+    href: '/llm-hub',
+    status: 'ga',
+  },
+  {
+    id: 'grok-4-3',
+    name: 'Grok 4.3',
+    job: 'Cheaper closed-frontier chat',
+    architecture: '1M context. Keep when 4.6 agent stamina is not required.',
+    evidence: 'vendor-claim',
+    note: 'Previous xAI flagship. Do not retire it only because 4.6 exists.',
+    href: '/blog/grok-4-3-analysis-2026',
+    status: 'previous',
+  },
+]
+
 export const hubFaqs = [
   {
     q: 'How does the FrankX swarm pick a model?',
@@ -81,10 +155,14 @@ export const hubFaqs = [
   },
   {
     q: 'Is Grok Imagine the same as Grok 4.6?',
-    a: 'No. Grok 4.6 is the reasoning model. Images in the bake-off came from the separate Grok Imagine backend. The Hermes tool reported grok-imagine-image, not the configured quality id.',
+    a: 'No. Grok 4.6 is the reasoning model. Still-lifes came from Grok Imagine, Codex image_gen, and Antigravity generate_image.',
   },
   {
     q: 'Who wrote the Grok 4.6 brief and this hub update?',
     a: 'Hermes default on Grok 4.6 drafted the packet and this board. Claude Code ran a read-only review of the publish path (no n8n, arena stays receipt-gated). Frank remains the human publish gate.',
+  },
+  {
+    q: 'Which flagship should I start with?',
+    a: 'Match the job. Long-running mid-price agents: Grok 4.6. Receipt-gated battles: Claude Fable or Opus via Model Arena. Cheap closed chat: Grok 4.3. Google 3.5 that shipped: Gemini 3.5 Flash. GPT-5.5 stays vendor-claim until we run it.',
   },
 ]
