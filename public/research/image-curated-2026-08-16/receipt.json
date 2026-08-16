@@ -14,15 +14,15 @@
     },
     {
       "path": "codex image_gen.imagegen",
-      "file": "/research/image-curated-2026-08-16/codex-still-life.png",
-      "bytes": 1636753,
+      "file": "/research/image-curated-2026-08-16/codex-still-life.jpg",
+      "bytes": 112664,
       "pixels": [1672, 941],
       "decision": "publish"
     },
     {
       "path": "agy generate_image",
-      "file": "/research/image-curated-2026-08-16/agy-still-life.png",
-      "bytes": 1167823,
+      "file": "/research/image-curated-2026-08-16/agy-still-life.jpg",
+      "bytes": 98646,
       "pixels": [1376, 768],
       "decision": "publish"
     }
