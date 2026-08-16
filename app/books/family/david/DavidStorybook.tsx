@@ -311,7 +311,7 @@ export default function DavidStorybook() {
                 ▾
               </span>
             </summary>
-            <div className="absolute left-1/2 top-[calc(100%+0.55rem)] max-h-[72svh] w-[min(92vw,34rem)] -translate-x-1/2 overflow-y-auto rounded-3xl border border-white/10 bg-[#151411]/95 p-3 shadow-2xl backdrop-blur-2xl">
+            <div className="fixed left-1/2 top-[8.05rem] max-h-[72svh] w-[min(92vw,34rem)] -translate-x-1/2 overflow-y-auto rounded-3xl border border-white/10 bg-[#151411]/95 p-3 shadow-2xl backdrop-blur-2xl sm:top-[8.55rem] lg:absolute lg:top-[calc(100%+0.55rem)]">
               <p className="px-3 pb-2 pt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-300/70">
                 {story.ui.contents}
               </p>
