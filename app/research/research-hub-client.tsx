@@ -105,20 +105,20 @@ function HeroSection() {
           <div className="flex flex-wrap gap-4">
             <Link
               href="#recommend"
-              className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-all"
+              className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-[background-color,color]"
             >
               Swarm recommendations
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/research/model-arena"
-              className="inline-flex items-center gap-2 bg-white/5 text-white px-6 py-3 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-all"
+              className="inline-flex items-center gap-2 bg-white/5 text-white px-6 py-3 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-[background-color,color,border-color]"
             >
               Model Arena
             </Link>
             <Link
               href="#methodology"
-              className="inline-flex items-center gap-2 bg-white/5 text-white px-6 py-3 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-all"
+              className="inline-flex items-center gap-2 bg-white/5 text-white px-6 py-3 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-[background-color,color,border-color]"
             >
               Methodology
             </Link>
@@ -173,7 +173,7 @@ function FeaturedSpotlight() {
                   href={`/research/${domain.slug}`}
                   className={`
                     group relative block rounded-2xl border bg-white/[0.02] p-6 h-full
-                    transition-all duration-300 hover:bg-white/[0.05]
+                    transition-[background-color,border-color,color,opacity,box-shadow] duration-300 hover:bg-white/[0.05]
                     ${index === 0
                       ? `${colors.border} border-opacity-50`
                       : 'border-white/[0.08]'
@@ -215,7 +215,7 @@ function FeaturedSpotlight() {
                           ? `${sourceCountFor(domain.slug)} source references`
                           : 'Source registry pending'}
                       </span>
-                      <span className={`inline-flex items-center gap-1 text-xs font-medium ${colors.text} group-hover:gap-2 transition-all`}>
+                      <span className={`inline-flex items-center gap-1 text-xs font-medium ${colors.text} group-hover:gap-2 transition-[gap,color]`}>
                         Read Brief
                         <ArrowRight className="w-3 h-3" />
                       </span>
@@ -311,7 +311,7 @@ function DomainsGrid() {
                 onClick={() => setActiveCategory(key)}
                 className={`
                   inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium
-                  transition-all duration-200
+                  transition-[background-color,border-color,color] duration-200
                   ${isActive
                     ? 'bg-white text-black'
                     : 'bg-white/[0.04] text-white/50 border border-white/[0.08] hover:bg-white/[0.08] hover:text-white/70'
@@ -356,7 +356,7 @@ function DomainsGrid() {
               <div key={domain.slug}>
                 <Link
                   href={`/research/${domain.slug}`}
-                  className="group relative block rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:bg-white/[0.04] hover:border-white/[0.12]"
+                  className="group relative block rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-[background-color,border-color,color,opacity,box-shadow] duration-300 hover:bg-white/[0.04] hover:border-white/[0.12]"
                 >
                   {/* Gradient overlay on hover */}
                   <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
@@ -423,9 +423,9 @@ function ResearchTeamSection() {
             return (
               <div
                 key={agent.name}
-                className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 hover:bg-white/[0.04] transition-all group"
+                className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 hover:bg-white/[0.04] transition-[background-color,box-shadow] group"
               >
-                <div className={`p-2.5 ${colors.bg} rounded-xl w-fit mb-3 group-hover:shadow-lg ${colors.glow} transition-all`}>
+                <div className={`p-2.5 ${colors.bg} rounded-xl w-fit mb-3 group-hover:shadow-lg ${colors.glow} transition-[box-shadow]`}>
                   <Icon className={`w-5 h-5 ${colors.text}`} />
                 </div>
                 <h3 className="text-sm font-bold text-white mb-0.5">{agent.name}</h3>
@@ -509,14 +509,14 @@ function MethodologySection() {
         <div className="flex flex-wrap gap-3 mt-6">
           <Link
             href="/research/methodology"
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-[background-color,color] hover:bg-white/[0.06]"
           >
             Full Methodology
             <ArrowRight className="w-3 h-3" />
           </Link>
           <Link
             href="/research/sources"
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-[background-color,color] hover:bg-white/[0.06]"
           >
             Browse {totalSources} Registered Sources
             <ArrowRight className="w-3 h-3" />
@@ -554,14 +554,14 @@ function CTASection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/inner-circle"
-                className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3.5 rounded-full font-semibold hover:bg-white/90 transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3.5 rounded-full font-semibold hover:bg-white/90 transition-[background-color,color]"
               >
                 Join Inner Circle
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/blog"
-                className="inline-flex items-center justify-center gap-2 bg-white/5 text-white px-8 py-3.5 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-white/5 text-white px-8 py-3.5 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-[background-color,color,border-color]"
               >
                 Read Latest Articles
               </Link>
