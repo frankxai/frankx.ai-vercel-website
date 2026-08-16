@@ -15,6 +15,7 @@ import {
   Map as MapIcon,
   Music,
   Radar,
+  Handshake,
   Scale,
   LayoutGrid,
   TrendingUp,
@@ -55,6 +56,7 @@ const groups: { label: string; tools: Tool[] }[] = [
   {
     label: 'Content & Community',
     tools: [
+      { name: 'Dream 100', href: '/admin/dream-100', description: 'Contribution and relationship cockpit', icon: Handshake },
       { name: 'Content', href: '/admin/content', description: 'Content pipeline & studio', icon: FileText },
       { name: 'Content Studio', href: '/admin/content-studio', description: 'Editorial production', icon: FileText },
       { name: 'Newsletter', href: '/admin/newsletter', description: 'Strategy, simulations, approval gates', icon: Mail },
