@@ -155,7 +155,11 @@ export default function DavidStorybook() {
       stopNarration(false);
       setNarrationStatus('');
       setPageIndex(clampedPage);
-      window.localStorage.setItem(davidProgressStorageKey, String(clampedPage));
+      try {
+        window.localStorage.setItem(davidProgressStorageKey, String(clampedPage));
+      } catch {
+        // Navigation remains available when browser persistence is blocked.
+      }
       contentsRef.current?.removeAttribute('open');
       window.requestAnimationFrame(() => {
         const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -170,10 +174,12 @@ export default function DavidStorybook() {
 
   useEffect(() => {
     setNarrationSupported('speechSynthesis' in window && 'SpeechSynthesisUtterance' in window);
-    const savedPage = Number.parseInt(
-      window.localStorage.getItem(davidProgressStorageKey) ?? '0',
-      10,
-    );
+    let savedPage = 0;
+    try {
+      savedPage = Number.parseInt(window.localStorage.getItem(davidProgressStorageKey) ?? '0', 10);
+    } catch {
+      // Start at the cover when persistence is unavailable.
+    }
     if (Number.isFinite(savedPage)) {
       setPageIndex(Math.max(0, Math.min(totalPages - 1, savedPage)));
     }

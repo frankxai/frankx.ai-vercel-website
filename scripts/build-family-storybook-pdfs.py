@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import io
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -27,12 +28,12 @@ WEB_PDF_MAX_BYTES = 2 * 1024 * 1024
 PRINT_IMAGE_PROFILE = {
     "cover": (1500, 2121, 91),
     "story": (1500, 840, 91),
-    "deeper": (1120, 520, 91),
+    "deeper": (1120, 334, 91),
 }
 WEB_IMAGE_PROFILE = {
     "cover": (1100, 1555, 72),
     "story": (1050, 588, 70),
-    "deeper": (900, 418, 68),
+    "deeper": (900, 268, 68),
 }
 
 INK = HexColor("#0D0C0A")
@@ -44,15 +45,49 @@ STONE = HexColor("#A89E8F")
 STONE_DARK = HexColor("#514A41")
 WHITE = HexColor("#FFFDF8")
 
-FONT_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-FONT_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-FONT_SERIF = "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
-FONT_SERIF_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
+FONT_FILES = {
+    "StorySans": "DejaVuSans.ttf",
+    "StorySansBold": "DejaVuSans-Bold.ttf",
+    "StorySerif": "DejaVuSerif.ttf",
+    "StorySerifBold": "DejaVuSerif-Bold.ttf",
+}
 
-pdfmetrics.registerFont(TTFont("StorySans", FONT_REGULAR))
-pdfmetrics.registerFont(TTFont("StorySansBold", FONT_BOLD))
-pdfmetrics.registerFont(TTFont("StorySerif", FONT_SERIF))
-pdfmetrics.registerFont(TTFont("StorySerifBold", FONT_SERIF_BOLD))
+
+def font_search_roots() -> list[Path]:
+    """Return deterministic, cross-platform locations for DejaVu fonts."""
+    roots: list[Path] = []
+    configured = os.environ.get("STORYBOOK_FONT_DIR")
+    if configured:
+        roots.append(Path(configured).expanduser())
+    roots.extend(
+        [
+            ROOT / "assets/fonts/dejavu",
+            Path("/usr/share/fonts/truetype/dejavu"),
+            Path("/usr/local/share/fonts/dejavu"),
+            Path.home() / ".local/share/fonts/dejavu",
+            Path.home() / "Library/Fonts",
+            Path("/Library/Fonts"),
+            Path(os.environ.get("WINDIR", "C:/Windows")) / "Fonts",
+        ]
+    )
+    return roots
+
+
+def resolve_font(filename: str) -> Path:
+    for root in font_search_roots():
+        candidate = root / filename
+        if candidate.is_file():
+            return candidate
+    searched = "\n  - ".join(str(root) for root in font_search_roots())
+    raise FileNotFoundError(
+        f"Could not find {filename}. Install the DejaVu font family or set "
+        f"STORYBOOK_FONT_DIR to its folder. Searched:\n  - {searched}"
+    )
+
+
+def register_fonts() -> None:
+    for font_name, filename in FONT_FILES.items():
+        pdfmetrics.registerFont(TTFont(font_name, str(resolve_font(filename))))
 
 
 def load_story_data() -> dict:
@@ -329,9 +364,11 @@ def draw_deeper_page(
         darken=0.84,
         quality=quality,
     )
-    canvas.drawImage(image, 46, PAGE_HEIGHT - 205, PAGE_WIDTH - 92, 150, mask="auto")
+    draw_width = PAGE_WIDTH - 92
+    draw_height = draw_width * height / width
+    canvas.drawImage(image, 46, PAGE_HEIGHT - 205, draw_width, draw_height, mask="auto")
     canvas.setFillColor(Color(0.03, 0.025, 0.02, 0.46))
-    canvas.rect(46, PAGE_HEIGHT - 205, PAGE_WIDTH - 92, 150, fill=1, stroke=0)
+    canvas.rect(46, PAGE_HEIGHT - 205, draw_width, draw_height, fill=1, stroke=0)
     canvas.setFont("StorySansBold", 8)
     canvas.setFillColor(AMBER_LIGHT)
     canvas.drawString(65, PAGE_HEIGHT - 91, f"{label.upper()}  ·  {story_number:02d}")
@@ -665,6 +702,7 @@ def build_pdf(locale: str, story: dict, output_path: Path, image_profile: dict) 
 
 
 def main() -> None:
+    register_fonts()
     stories = load_story_data()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
