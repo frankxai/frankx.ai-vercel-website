@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Build the two print-ready editions of David's family storybook."""
+"""Build print masters and Git-safe web editions of David's family storybook."""
 
 from __future__ import annotations
 
 import io
 import json
-import shutil
 import subprocess
 from pathlib import Path
 
@@ -24,6 +23,17 @@ IMAGE_DIR = ROOT / "public/images/books/family/david"
 OUTPUT_DIR = ROOT / "output/pdf"
 PUBLIC_DIR = ROOT / "public/books"
 PAGE_WIDTH, PAGE_HEIGHT = A4
+WEB_PDF_MAX_BYTES = 2 * 1024 * 1024
+PRINT_IMAGE_PROFILE = {
+    "cover": (1500, 2121, 91),
+    "story": (1500, 840, 91),
+    "deeper": (1120, 520, 91),
+}
+WEB_IMAGE_PROFILE = {
+    "cover": (1100, 1555, 72),
+    "story": (1050, 588, 70),
+    "deeper": (900, 418, 68),
+}
 
 INK = HexColor("#0D0C0A")
 PAPER = HexColor("#F3E8D3")
@@ -129,14 +139,20 @@ def draw_wrapped(
     )
 
 
-def fitted_image(path: Path, width: int, height: int, darken: float = 1.0) -> ImageReader:
+def fitted_image(
+    path: Path,
+    width: int,
+    height: int,
+    darken: float = 1.0,
+    quality: int = 91,
+) -> ImageReader:
     with Image.open(path) as image:
         image = image.convert("RGB")
         image = ImageOps.fit(image, (width, height), method=Image.Resampling.LANCZOS)
         if darken != 1.0:
             image = ImageEnhance.Brightness(image).enhance(darken)
         buffer = io.BytesIO()
-        image.save(buffer, format="JPEG", quality=91, optimize=True)
+        image.save(buffer, format="JPEG", quality=quality, optimize=True)
         buffer.seek(0)
         return ImageReader(buffer)
 
@@ -147,8 +163,15 @@ def draw_page_number(canvas: Canvas, number: int, light: bool = False) -> None:
     canvas.drawRightString(PAGE_WIDTH - 35, 25, f"{number:02d}")
 
 
-def draw_cover(canvas: Canvas, story: dict, locale: str) -> None:
-    cover = fitted_image(IMAGE_DIR / "cover.webp", 1500, 2121, darken=0.82)
+def draw_cover(canvas: Canvas, story: dict, locale: str, image_profile: dict) -> None:
+    width, height, quality = image_profile["cover"]
+    cover = fitted_image(
+        IMAGE_DIR / "cover.webp",
+        width,
+        height,
+        darken=0.82,
+        quality=quality,
+    )
     canvas.drawImage(cover, 0, 0, PAGE_WIDTH, PAGE_HEIGHT, mask="auto")
     canvas.setFillColor(Color(0.03, 0.025, 0.02, 0.74))
     canvas.rect(0, 0, PAGE_WIDTH, 330, fill=1, stroke=0)
@@ -247,11 +270,19 @@ def draw_story_page(
     image_path: Path,
     story_number: int,
     pdf_page_number: int,
+    image_profile: dict,
 ) -> None:
     canvas.setFillColor(INK)
     canvas.rect(0, 0, PAGE_WIDTH, PAGE_HEIGHT, fill=1, stroke=0)
     image_height = 333
-    image = fitted_image(image_path, 1500, 840, darken=0.92)
+    width, height, quality = image_profile["story"]
+    image = fitted_image(
+        image_path,
+        width,
+        height,
+        darken=0.92,
+        quality=quality,
+    )
     canvas.drawImage(image, 0, PAGE_HEIGHT - image_height, PAGE_WIDTH, image_height, mask="auto")
     canvas.setFillColor(Color(0.05, 0.045, 0.035, 0.76))
     canvas.rect(0, PAGE_HEIGHT - image_height - 28, PAGE_WIDTH, 72, fill=1, stroke=0)
@@ -284,12 +315,20 @@ def draw_deeper_page(
     story_number: int,
     pdf_page_number: int,
     label: str,
+    image_profile: dict,
 ) -> None:
     canvas.setFillColor(PAPER_LIGHT)
     canvas.rect(0, 0, PAGE_WIDTH, PAGE_HEIGHT, fill=1, stroke=0)
     canvas.setFillColor(PAPER)
     canvas.rect(0, PAGE_HEIGHT - 238, PAGE_WIDTH, 238, fill=1, stroke=0)
-    image = fitted_image(image_path, 1120, 520, darken=0.84)
+    width, height, quality = image_profile["deeper"]
+    image = fitted_image(
+        image_path,
+        width,
+        height,
+        darken=0.84,
+        quality=quality,
+    )
     canvas.drawImage(image, 46, PAGE_HEIGHT - 205, PAGE_WIDTH - 92, 150, mask="auto")
     canvas.setFillColor(Color(0.03, 0.025, 0.02, 0.46))
     canvas.rect(46, PAGE_HEIGHT - 205, PAGE_WIDTH - 92, 150, fill=1, stroke=0)
@@ -563,14 +602,14 @@ def draw_colophon(canvas: Canvas, story: dict, locale: str, page_number: int) ->
     draw_page_number(canvas, page_number, light=True)
 
 
-def build_pdf(locale: str, story: dict, output_path: Path) -> None:
+def build_pdf(locale: str, story: dict, output_path: Path, image_profile: dict) -> None:
     canvas = Canvas(str(output_path), pagesize=A4, pageCompression=1)
     canvas.setTitle(story["title"])
     canvas.setAuthor("FrankX")
     canvas.setSubject(story["subtitle"])
     canvas.setCreator("FrankX Family Library")
 
-    draw_cover(canvas, story, locale)
+    draw_cover(canvas, story, locale, image_profile)
     canvas.showPage()
     draw_intro(canvas, story, locale, 2)
     canvas.showPage()
@@ -588,12 +627,27 @@ def build_pdf(locale: str, story: dict, output_path: Path) -> None:
         "09-five-stones.webp",
     ]
     for index, (page, image_name) in enumerate(zip(story["pages"], image_names), start=1):
-        draw_story_page(canvas, page, IMAGE_DIR / image_name, index, index + 2)
+        draw_story_page(
+            canvas,
+            page,
+            IMAGE_DIR / image_name,
+            index,
+            index + 2,
+            image_profile,
+        )
         canvas.showPage()
 
     deeper_label = "For bigger readers" if locale == "en" else "Für größere Leser"
     for index, (page, image_name) in enumerate(zip(story["pages"], image_names), start=1):
-        draw_deeper_page(canvas, page, IMAGE_DIR / image_name, index, index + 12, deeper_label)
+        draw_deeper_page(
+            canvas,
+            page,
+            IMAGE_DIR / image_name,
+            index,
+            index + 12,
+            deeper_label,
+            image_profile,
+        )
         canvas.showPage()
 
     draw_lenses(canvas, story, locale, 23)
@@ -620,9 +674,17 @@ def main() -> None:
     }
     for locale, filename in targets.items():
         output = OUTPUT_DIR / filename
-        build_pdf(locale, stories[locale], output)
-        shutil.copy2(output, PUBLIC_DIR / filename)
-        print(f"built {output.relative_to(ROOT)}")
+        build_pdf(locale, stories[locale], output, PRINT_IMAGE_PROFILE)
+        public_output = PUBLIC_DIR / filename
+        build_pdf(locale, stories[locale], public_output, WEB_IMAGE_PROFILE)
+        if public_output.stat().st_size > WEB_PDF_MAX_BYTES:
+            raise RuntimeError(
+                f"Web PDF exceeds the {WEB_PDF_MAX_BYTES}-byte repository limit: {public_output}"
+            )
+        print(
+            f"built {output.relative_to(ROOT)} and {public_output.relative_to(ROOT)} "
+            f"({public_output.stat().st_size} bytes)"
+        )
 
 
 if __name__ == "__main__":
