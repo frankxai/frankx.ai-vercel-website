@@ -19,10 +19,10 @@ keywords:
   - truth-first content
   - quality standards
 readingGoal: "Understand why demand work must be held until the public surface is honest, and why matching costume numbers without sources is still a lie."
-tldr: "Demand work is held until the public surface is honest. Matching a costume number to another page is still a lie if the number is unsourced. A live homepage that reads 0K words / 0 repos cannot be campaigned; replacing zeros with 190K+ / 27 without a source is also rejected. Hold the campaign. Fix the surface. Then talk."
+tldr: "Demand work is held until the public surface is honest. Matching a costume number to another page is still a lie if the number is unsourced. Costume counters that look accurate but have no source are rejected. Hold the campaign. Fix the surface. Then talk."
 ---
 
-**TL;DR**: Do not campaign a lie. If the public surface says 0K words when you have 190K, do not campaign that page—fix it first. If you replace zeros with 190K+ but the number is unsourced, that is still a lie. Demand work (marketing, outreach, campaigns) must be held until the surface is honest. Fix the substrate, verify the claims, then talk.
+**TL;DR**: Do not campaign a lie. If the public surface shows placeholder counters that no longer match reality, do not campaign that page—fix it first. If you replace placeholders with costume numbers that have no source, that is still a lie. Demand work (marketing, outreach, campaigns) must be held until the surface is honest. Fix the substrate, verify the claims, then talk.
 
 ---
 
@@ -30,13 +30,13 @@ tldr: "Demand work is held until the public surface is honest. Matching a costum
 
 A costume number is a number that looks real but has no source. It matches the format of other numbers on the page. It sits in the same visual hierarchy. It might even be technically accurate—but if you cannot trace it back to a counted, auditable source, it is a lie dressed as a fact.
 
-Here's a real example from this estate: The homepage hero section showed `0K words published` and `0 repos managed`. Those zeros were placeholders—true at the time they were written, but never updated as content and code accumulated. The surface claimed no work had been done when the actual inventory was 190,000+ words and 27 repositories.
+Here's a real example: A site showed placeholder counters (`0K` for content, `0` for repositories) that were accurate when first written but never updated as work accumulated. The surface claimed nothing existed when the actual inventory had grown substantially.
 
-The obvious fix: replace the zeros with the real numbers.
+The obvious fix: replace the zeros with the current numbers.
 
 The correct fix: replace the zeros with real numbers *derived from a source you can audit*.
 
-The difference is integrity. If you hard-code `190K+` and `27` to match the visual spec, you have moved the problem, not solved it. Six months from now, the word count will be 250K, the repo count will be 32, and the homepage will still say 190K+ / 27. The number became a costume the moment it detached from its source.
+The difference is integrity. If you hard-code numbers to match the visual spec, you have moved the problem, not solved it. Six months from now, the inventory will have grown again, and the hard-coded numbers will still be frozen. The number became a costume the moment it detached from its source.
 
 A costume number is a lie, even when it happens to be accurate at the moment you publish it.
 
@@ -70,53 +70,46 @@ This is slower. It is also the only version that compounds trust instead of erod
 
 ---
 
-## First-Hand Signal: The 0K Words / 0 Repos Failure
+## First-Hand Signal: The Placeholder Counter Failure
 
-This estate hit this failure mode exactly. The FrankX homepage hero section showed:
+This estate hit this failure mode exactly. A public-facing surface showed placeholder counters for content inventory and repository counts. Those counters were accurate when first written but never updated as work accumulated.
 
-- `0K words published`
-- `0 repos managed`
-- `0 newsletter subscribers`
-
-None of those were accurate. The content/blog directory held 210 posts totaling 190K+ words. The GitHub org managed 27 repositories. The newsletter had over 2,000 subscribers. The zeros were placeholders from an early version of the site, never updated.
-
-The temptation was: replace the zeros with `190K+`, `27`, and `2K+`. Match the visual spec, ship it, and move on.
+The temptation was: replace the placeholders with hard-coded numbers that match current reality. Match the visual spec, ship it, and move on.
 
 That approach was rejected for two reasons:
 
-**It creates a maintenance burden.** Hard-coded numbers go stale the day after you publish them. Six months later, you are campaigning a homepage that says 190K words when the real number is 250K. The stat became a costume.
+**It creates a maintenance burden.** Hard-coded numbers go stale the day after you publish them. Months later, you are showing a stat that no longer matches reality. The stat became a costume.
 
-**It bypasses the actual problem.** The real failure was not "the zeros are wrong"—it was "there is no source of truth for these stats." Replacing zeros with costume numbers does not fix that. It moves the dishonesty one layer deeper.
+**It bypasses the actual problem.** The real failure was not "the placeholders are wrong"—it was "there is no source of truth for these stats." Replacing placeholders with costume numbers does not fix that. It moves the dishonesty one layer deeper.
 
 The correct fix:
 
-1. Write a script that counts words across all published blog posts. Store the result in a JSON file.
-2. Query the GitHub API for the repository count. Store it.
-3. Query the Resend API for the newsletter subscriber count. Store it.
-4. Import those numbers into the homepage component from the JSON file.
-5. Run the script in CI so the numbers update automatically on every deploy.
+1. Write a script that counts from the source of truth (files on disk, API responses, database queries).
+2. Store the results in a version-controlled data file.
+3. Import those numbers into UI components from the data file.
+4. Run the script in CI so the numbers update automatically on every deploy.
 
-Now the numbers are sourced, auditable, and self-updating. The homepage is honest. *Now* you can campaign it.
+Now the numbers are sourced, auditable, and self-updating. The surface is honest. *Then* you can consider demand work—but only if all public surfaces are honest, not just one.
 
 ---
 
 ## Matching Costume Numbers Is Still a Lie
 
-Here's a subtler failure mode: you fix the homepage to show sourced numbers, but you leave other pages with hard-coded "matching" numbers.
+Here's a subtler failure mode: you fix one page to show sourced numbers, but you leave other pages with hard-coded "matching" numbers.
 
-Example: The homepage now says `190K+ words published` (sourced from `blog-stats.json`). The About page says `"I've published over 190,000 words on AI architecture and creative systems"` (hard-coded prose).
+Example: The homepage shows a sourced word count (derived from a script). The About page repeats that same number in prose (hard-coded).
 
-Those numbers match today. Six months from now, the homepage will say `250K+` (auto-updated), and the About page will still say `190,000` (stale prose). You created coherence debt.
+Those numbers match today. Six months from now, the homepage will auto-update, and the About page will still show the old number. You created coherence debt.
 
 The rule: **if the number matters, it must be sourced or derived. If it is decoration, remove it.**
 
-For the About page, the correct fix is one of three options:
+For secondary pages, the correct fix is one of three options:
 
-1. Import the same `blog-stats.json` number and interpolate it into the prose.
-2. Replace the specific number with a durable claim: `"I've published extensively on AI architecture and creative systems"` (no number to go stale).
-3. Link to the blog archive instead of claiming a number: `"Read the full archive at frankx.ai/blog"` (the reader can count if they care).
+1. Import the same data file and interpolate the number into the prose.
+2. Replace the specific number with a durable claim that never goes stale (e.g., "extensively" instead of a count).
+3. Link to the canonical source instead of claiming a number (the reader can verify if they care).
 
-All three are honest. Hard-coding `190,000` is not, because it will drift.
+All three are honest. Hard-coding a number that will drift is not.
 
 ---
 
@@ -132,9 +125,9 @@ Here's the decision tree:
 
 **If the surface is honest:** Ship the campaign. The worst case is you grow faster than your infrastructure can handle. That is a good problem.
 
-**If the surface is dishonest but the lie is obvious:** Hold the campaign. Fix the surface. Then ship. Example: a homepage that says `0K words` when the blog archive has 210 posts.
+**If the surface is dishonest but the lie is obvious:** Hold the campaign. Fix the surface. Then ship. Example: a homepage that shows placeholder counters when the actual inventory is substantial and visible elsewhere on the site.
 
-**If the surface is dishonest but the lie is subtle:** Still hold. Subtle lies are worse than obvious ones because readers assume you did not notice. Example: a homepage that says `190K+ words` (sourced) next to `"12 case studies"` (costume number, never counted).
+**If the surface is dishonest but the lie is subtle:** Still hold. Subtle lies are worse than obvious ones because readers assume you did not notice. Example: a homepage that shows one sourced stat next to an unsourced costume number.
 
 The cost of holding is opportunity cost—you could have shipped today, you ship next week. The cost of lying is trust debt—you ship today, and some percentage of readers mark you as unreliable.
 

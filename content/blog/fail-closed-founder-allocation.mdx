@@ -28,9 +28,9 @@ tldr: "A multi-brand founder allocates one sequence at a time. Irreversible work
 
 ## The Multi-Brand Allocation Problem
 
-You're building three companies at once. FrankX (content and AI architecture). Arcanea (AI-powered music game). Vibe OS (sound healing platform). Each has its own codebase, content calendar, product roadmap, and user base.
+You're building multiple ventures at once. Each has its own codebase, content calendar, product roadmap, and constraints. When you run more than one brand, every decision splits attention across ventures.
 
-Every founder's allocation problem is hard. The multi-brand founder's allocation problem is harder by a multiplier: every decision splits attention across ventures. Saying yes to FrankX means saying no to Arcanea, at least for the next two hours. Context-switching between three products costs time and mental load. The naive solution—hire faster, delegate more, automate everything—fails because irreversible decisions cannot be delegated to agents who don't understand the strategy.
+Every founder's allocation problem is hard. The multi-brand founder's allocation problem is harder by a multiplier: every decision splits attention across ventures. Saying yes to one brand means saying no to another, at least for the next two hours. Context-switching between products costs time and mental load. The naive solution—hire faster, delegate more, automate everything—fails because irreversible decisions cannot be delegated to agents who don't understand the strategy.
 
 Here's the pattern I've learned after two years of running this estate: **fail-closed allocation.** One sequence at a time. Irreversible actions stay human. Agents draft, humans decide. The bottleneck is not "more AI"—it's permissions and honesty about what can actually run unattended.
 
@@ -46,7 +46,7 @@ Here's the mental model:
 
 **Reversible work can fail open.** Writing a draft blog post? If the agent gets the tone wrong, you rewrite it. Generating three logo concepts? If one is off-brand, you delete it. Low cost to undo.
 
-**Irreversible work must fail closed.** Merging to `main`? Deploying to production? Publishing a post to the live site? Spending budget on a campaign? Sending an email to 10,000 subscribers? These actions have external effects that cannot be undone by re-running the agent. They require a human decision.
+**Irreversible work must fail closed.** Merging to `main`? Deploying to production? Publishing a post to the live site? Spending budget on a campaign? Sending an outbound email to subscribers? These actions have external effects that cannot be undone by re-running the agent. They require a human decision.
 
 For a multi-brand founder, this distinction is load-bearing. You cannot monitor three ventures in real-time. If agents make irreversible decisions, you will find out after the damage is done. If agents draft and humans decide, you allocate once per decision and stay in control.
 
@@ -85,7 +85,7 @@ The correct answer is: **because green checks are not a merge decision.** CI che
 
 Those are human decisions. Copilot-required review is a speed bump to make sure someone thought about them.
 
-For a multi-brand founder, this is even more important. When you're context-switching between three products, it is very easy to approve a PR in "Arcanea brain" that should have been rejected in "FrankX brain." The extra checkpoint forces you to re-confirm: is this the right thing for *this* product, right now?
+For a multi-brand founder, this is even more important. When you're context-switching between multiple products, it is very easy to approve a PR in the wrong mental mode—approving work for Brand A when you're thinking about Brand B's priorities. The extra checkpoint forces you to re-confirm: is this the right thing for *this* product, right now?
 
 The temptation is to route around the checkpoint. Disable Copilot review. Give agents merge permissions. Treat every green PR as auto-merge. The correct move is the opposite: **one squash commit with a clear message.** Read the diff, confirm the intent, merge with full context.
 
