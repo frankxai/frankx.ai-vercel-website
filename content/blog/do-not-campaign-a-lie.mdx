@@ -70,17 +70,17 @@ This is slower. It is also the only version that compounds trust instead of erod
 
 ---
 
-## First-Hand Signal: The Placeholder Counter Failure
+## First-Hand Signal: The Arcanea Ticker Rejection
 
-This estate hit this failure mode exactly. A public-facing surface showed placeholder counters for content inventory and repository counts. Those counters were accurate when first written but never updated as work accumulated.
+This estate hit this failure mode exactly. The Arcanea site (arcanea.ai) showed `0K+ words of canon` and `0 public repos` in its hero ticker. Those zeros were accurate when first written but never updated as the world and codebase grew.
 
-The temptation was: replace the placeholders with hard-coded numbers that match current reality. Match the visual spec, ship it, and move on.
+The temptation was: replace the zeros with hard-coded numbers that match current reality. A proposed fix offered specific counts to replace the placeholders. That proposal was rejected—not because the numbers were wrong, but because they had no source.
 
-That approach was rejected for two reasons:
+The rejection happened for two reasons:
 
 **It creates a maintenance burden.** Hard-coded numbers go stale the day after you publish them. Months later, you are showing a stat that no longer matches reality. The stat became a costume.
 
-**It bypasses the actual problem.** The real failure was not "the placeholders are wrong"—it was "there is no source of truth for these stats." Replacing placeholders with costume numbers does not fix that. It moves the dishonesty one layer deeper.
+**It bypasses the actual problem.** The real failure was not "the zeros are wrong"—it was "there is no source of truth for these stats." Replacing placeholders with costume numbers does not fix that. It moves the dishonesty one layer deeper.
 
 The correct fix:
 
@@ -89,7 +89,7 @@ The correct fix:
 3. Import those numbers into UI components from the data file.
 4. Run the script in CI so the numbers update automatically on every deploy.
 
-Now the numbers are sourced, auditable, and self-updating. The surface is honest. *Then* you can consider demand work—but only if all public surfaces are honest, not just one.
+Until that fix lands, Arcanea demand work stays held. Do not campaign arcanea.ai. Do not point readers to a surface that still shows placeholder zeros or unsourced replacements.
 
 ---
 
