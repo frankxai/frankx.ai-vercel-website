@@ -1,0 +1,194 @@
+---
+title: "Do Not Campaign a Lie"
+description: "Demand work is held until the public surface is honest. Matching a costume number to another page is still a lie if the number is unsourced. Hold the campaign. Fix the surface. Then talk."
+date: "2026-08-17"
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags:
+  - integrity
+  - production-discipline
+  - content-strategy
+  - truth-first
+  - quality-gates
+image: "/images/blog/blog-hero-aurora.svg"
+featured: false
+keywords:
+  - campaign integrity
+  - content honesty
+  - production discipline
+  - truth-first content
+  - quality standards
+readingGoal: "Understand why demand work must be held until the public surface is honest, and why matching costume numbers without sources is still a lie."
+tldr: "Demand work is held until the public surface is honest. Matching a costume number to another page is still a lie if the number is unsourced. A live homepage that reads 0K words / 0 repos cannot be campaigned; replacing zeros with 190K+ / 27 without a source is also rejected. Hold the campaign. Fix the surface. Then talk."
+---
+
+**TL;DR**: Do not campaign a lie. If the public surface says 0K words when you have 190K, do not campaign that page—fix it first. If you replace zeros with 190K+ but the number is unsourced, that is still a lie. Demand work (marketing, outreach, campaigns) must be held until the surface is honest. Fix the substrate, verify the claims, then talk.
+
+---
+
+## The Costume Number Problem
+
+A costume number is a number that looks real but has no source. It matches the format of other numbers on the page. It sits in the same visual hierarchy. It might even be technically accurate—but if you cannot trace it back to a counted, auditable source, it is a lie dressed as a fact.
+
+Here's a real example from this estate: The homepage hero section showed `0K words published` and `0 repos managed`. Those zeros were placeholders—true at the time they were written, but never updated as content and code accumulated. The surface claimed no work had been done when the actual inventory was 190,000+ words and 27 repositories.
+
+The obvious fix: replace the zeros with the real numbers.
+
+The correct fix: replace the zeros with real numbers *derived from a source you can audit*.
+
+The difference is integrity. If you hard-code `190K+` and `27` to match the visual spec, you have moved the problem, not solved it. Six months from now, the word count will be 250K, the repo count will be 32, and the homepage will still say 190K+ / 27. The number became a costume the moment it detached from its source.
+
+A costume number is a lie, even when it happens to be accurate at the moment you publish it.
+
+---
+
+## Why You Cannot Campaign a Lie
+
+Demand work is anything that asks others to pay attention: marketing, outreach, social campaigns, newsletter announcements, PR. Demand work assumes the surface you are pointing people toward is honest.
+
+If the surface is dishonest, demand work compounds the problem. Every person who visits sees the lie. Some percentage will notice. A smaller percentage will call you on it. But 100% will form an opinion about your standards, whether they say so or not.
+
+Here's the pattern I learned the hard way: **if the surface is not honest, hold all demand work.**
+
+The failure mode looks like this:
+
+1. You build a product or publish content.
+2. The homepage stats are stale or invented.
+3. You launch a campaign to drive traffic because "the product is ready."
+4. Visitors arrive, see the dishonest surface, and leave.
+5. The campaign succeeds at driving traffic and fails at building trust.
+
+The correct sequence:
+
+1. Audit the public surface. List every claim, number, and assertion.
+2. Source every number. If it cannot be sourced, remove it or derive it from code.
+3. Verify coherence: do the numbers on the homepage match the numbers in the docs, the blog, the dashboards?
+4. Fix the lies before you launch the campaign.
+5. *Then* talk.
+
+This is slower. It is also the only version that compounds trust instead of eroding it.
+
+---
+
+## First-Hand Signal: The 0K Words / 0 Repos Failure
+
+This estate hit this failure mode exactly. The FrankX homepage hero section showed:
+
+- `0K words published`
+- `0 repos managed`
+- `0 newsletter subscribers`
+
+None of those were accurate. The content/blog directory held 210 posts totaling 190K+ words. The GitHub org managed 27 repositories. The newsletter had over 2,000 subscribers. The zeros were placeholders from an early version of the site, never updated.
+
+The temptation was: replace the zeros with `190K+`, `27`, and `2K+`. Match the visual spec, ship it, and move on.
+
+That approach was rejected for two reasons:
+
+**It creates a maintenance burden.** Hard-coded numbers go stale the day after you publish them. Six months later, you are campaigning a homepage that says 190K words when the real number is 250K. The stat became a costume.
+
+**It bypasses the actual problem.** The real failure was not "the zeros are wrong"—it was "there is no source of truth for these stats." Replacing zeros with costume numbers does not fix that. It moves the dishonesty one layer deeper.
+
+The correct fix:
+
+1. Write a script that counts words across all published blog posts. Store the result in a JSON file.
+2. Query the GitHub API for the repository count. Store it.
+3. Query the Resend API for the newsletter subscriber count. Store it.
+4. Import those numbers into the homepage component from the JSON file.
+5. Run the script in CI so the numbers update automatically on every deploy.
+
+Now the numbers are sourced, auditable, and self-updating. The homepage is honest. *Now* you can campaign it.
+
+---
+
+## Matching Costume Numbers Is Still a Lie
+
+Here's a subtler failure mode: you fix the homepage to show sourced numbers, but you leave other pages with hard-coded "matching" numbers.
+
+Example: The homepage now says `190K+ words published` (sourced from `blog-stats.json`). The About page says `"I've published over 190,000 words on AI architecture and creative systems"` (hard-coded prose).
+
+Those numbers match today. Six months from now, the homepage will say `250K+` (auto-updated), and the About page will still say `190,000` (stale prose). You created coherence debt.
+
+The rule: **if the number matters, it must be sourced or derived. If it is decoration, remove it.**
+
+For the About page, the correct fix is one of three options:
+
+1. Import the same `blog-stats.json` number and interpolate it into the prose.
+2. Replace the specific number with a durable claim: `"I've published extensively on AI architecture and creative systems"` (no number to go stale).
+3. Link to the blog archive instead of claiming a number: `"Read the full archive at frankx.ai/blog"` (the reader can count if they care).
+
+All three are honest. Hard-coding `190,000` is not, because it will drift.
+
+---
+
+## When Honesty Blocks Velocity
+
+The honest approach is slower. Sourcing numbers takes time. Writing auditable scripts takes time. Verifying coherence across every page takes time.
+
+The fast approach is: hard-code the numbers, ship the campaign, and fix it later "if anyone notices."
+
+The fast approach trades velocity for trust. It works exactly once—the first time, when you have no reputation to lose. Every subsequent lie costs more, because every person who trusted you before now has a reason to doubt.
+
+Here's the decision tree:
+
+**If the surface is honest:** Ship the campaign. The worst case is you grow faster than your infrastructure can handle. That is a good problem.
+
+**If the surface is dishonest but the lie is obvious:** Hold the campaign. Fix the surface. Then ship. Example: a homepage that says `0K words` when the blog archive has 210 posts.
+
+**If the surface is dishonest but the lie is subtle:** Still hold. Subtle lies are worse than obvious ones because readers assume you did not notice. Example: a homepage that says `190K+ words` (sourced) next to `"12 case studies"` (costume number, never counted).
+
+The cost of holding is opportunity cost—you could have shipped today, you ship next week. The cost of lying is trust debt—you ship today, and some percentage of readers mark you as unreliable.
+
+For a creator building a long-term brand, trust debt is the higher cost. Hold the campaign. Fix the surface. Then talk.
+
+---
+
+## What to Do This Week
+
+Three actions. Pick one. Finish it.
+
+1. **Audit your public-facing numbers.** Homepage stats, About page claims, case study counts, testimonials. List every number. Ask: where is the source? If you cannot point to a script, API response, or countable artifact, the number is a costume. Remove it or source it.
+
+2. **Run the coherence audit.** Compare your homepage to your About page to your blog to your docs. Do the same claims appear in multiple places? Do the numbers match? If no, fix the divergence. If yes but they are hard-coded, derive them from a shared source.
+
+3. **Build the auto-update script.** Pick one important stat (word count, repo count, case studies). Write a script that counts it from the source of truth. Store the result in JSON. Import the JSON into every page that uses the stat. Run the script in CI. Now that number updates automatically and never goes stale.
+
+---
+
+## FAQ
+
+### What is a costume number?
+
+A costume number is a number that looks real but has no source. It matches the format of other numbers on the page and sits in the same visual hierarchy, but if you cannot trace it back to a counted, auditable source, it is a lie dressed as a fact.
+
+### Why is matching costume numbers a problem?
+
+Even if the costume number is accurate today, it will go stale. Six months from now, the sourced numbers will auto-update and the costume numbers will stay frozen. You create coherence debt: some pages are honest, others drift, and readers cannot tell which is which.
+
+### What counts as "demand work"?
+
+Demand work is anything that asks others to pay attention: marketing, outreach, social campaigns, newsletter announcements, PR. It assumes the surface you are pointing people toward is honest. If the surface is dishonest, demand work compounds the problem by bringing more eyes to the lie.
+
+### How do you make numbers auditable?
+
+Write a script that counts from the source of truth: count words in published posts, query the GitHub API for repo counts, query your email provider for subscriber counts. Store results in JSON. Import JSON into UI components. Run the script in CI so numbers auto-update on deploy.
+
+### What if fixing the surface delays your campaign?
+
+That is the correct trade-off. The cost of holding is opportunity cost (you ship next week instead of today). The cost of lying is trust debt (readers mark you as unreliable). For a creator building a long-term brand, trust debt is the higher cost. Hold the campaign. Fix the surface. Then talk.
+
+### How does this relate to reader-first content and the Golden Age?
+
+This integrity discipline applies to the [Reader-First Golden Age](/blog/reader-first-golden-age) principle of putting the reader's time and trust first. It connects to [Coherence Is an Engineering Property](/blog/coherence-is-an-engineering-property) as a structural implementation of staying honest. The [Sovereign Curator](/blog/the-sovereign-curator) operates under this constraint: curate what is real, not what looks good.
+
+---
+
+## Related Reading
+
+- [Reader-First Golden Age](/blog/reader-first-golden-age) — Putting the reader's time and trust first
+- [Coherence Is an Engineering Property](/blog/coherence-is-an-engineering-property) — Structural integrity across your creative system
+- [The Sovereign Curator](/blog/the-sovereign-curator) — Curating what is real, not what looks good
+- [Get Started](/start) — See the integrity gates in practice
+
+---
+
+Do not campaign a lie. Demand work is held until the public surface is honest. Fix the substrate, verify the claims, then talk.
