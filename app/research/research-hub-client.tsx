@@ -593,15 +593,7 @@ function FlagshipArticles() {
         'Longevity research from Okinawa and Sardinia, read as a systems question: what keeps work meaningful when AI does more of it.',
       readingTime: '12 min',
     },
-    {
-      kanji: '識',
-      label: 'human agency · architecture',
-      title: 'Human-Centered AI Operating Systems',
-      href: '/research/conscious-ai-operating-systems',
-      blurb:
-        'Architectures that combine biometrics, persistent memory, and explicit ethical boundaries without erasing human agency.',
-      readingTime: '15 min',
-    },
+    // Human-Centered AI Operating Systems removed: no primary source on /research/conscious-ai-operating-systems (Estate Editor 17 Aug 2026)
   ]
   return (
     <section className="py-12 md:py-16 border-b border-white/[0.04]">
