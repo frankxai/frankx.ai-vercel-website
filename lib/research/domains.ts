@@ -1556,7 +1556,7 @@ export const researchDomains: ResearchDomain[] = [
     sections: [
       {
         title: 'How the image path actually works',
-        content: 'Grok 4.6 is the text model. Pictures come from Grok Imagine, Codex image_gen, or Antigravity generate_image. Hermes config can name grok-imagine-image-quality; this run's tool results named grok-imagine-image.',
+        content: "Grok 4.6 is the text model. Pictures come from Grok Imagine, Codex image_gen, or Antigravity generate_image. Hermes config can name grok-imagine-image-quality; this run's tool results named grok-imagine-image.",
         items: [
           { title: 'Call a native tool', description: 'Hermes image_generate, Codex image_gen, or agy generate_image.', badge: 'Runtime' },
           { title: 'Trust the tool result', description: 'Record the reported model, not config.yaml.', badge: 'Rule' },
