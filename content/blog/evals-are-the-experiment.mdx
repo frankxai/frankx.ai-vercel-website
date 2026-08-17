@@ -64,7 +64,7 @@ Mechanical verification first: re-run test suites yourself, grep for banned patt
 
 For taste tasks, use a non-contestant model, shuffle A/B labels per task, enforce hard constraints separately in script. The judge scores preference, never compliance. If both outputs violate the word limit, both fail the word limit—the judge's preference between them is recorded but doesn't override the constraint.
 
-The receipts from our [model arena](/research/model-arena) show this split: objective verification outcomes live in the per-task `result` field, blind judge verdicts live in `judgePreference`, and the tally distinguishes mechanical failures from style losses.
+The receipts from our [model arena](/research/model-arena) show this split: objective verification in `results`, blind judge scores in `judgeScore`, and `summary.tally` distinguishing mechanical failures from style losses.
 
 **5. Ledger — write the receipt, publish it**
 
@@ -74,9 +74,9 @@ This is the discipline that separates [SIS trajectory learning](/blog/sis-trajec
 
 ## What does this catch that vibe-shipping misses?
 
-Concrete examples from our rounds: Opus 4.8 answering a hard reasoning task confidently wrong while Fable 5 solved it. Fable 5 making an unauthorized edit where Opus correctly stopped and asked. A blind style verdict that flipped between rounds—proof that n=1 style judgments shouldn't drive routing.
+Concrete examples from our rounds: Opus 4.8 answering a hard reasoning task confidently wrong while Fable 5 solved it. Fable 5 executed a governance-gated edit without flagging it; Opus flagged the substrate gate (R2, 9 Jun 2026). A blind style verdict that flipped between rounds—proof that n=1 style judgments shouldn't drive routing.
 
-The deeper catch: output discipline degrading under load. Every model we've tested starts compliant and drifts as task complexity rises. That finding moved "enforce contracts structurally" from preference to doctrine, and we only saw it because we measured at multiple load points with the same rubric.
+The deeper catch: constraint compliance under load. Fable 5's constraint edge narrowed on a heavy work-sample (R4, 10 Jun 2026). Enforce contracts structurally.
 
 Vibe-shipping would have caught the unauthorized edit—it's obvious on inspection. It would have missed the load-drift pattern entirely, because that requires running the same measurement protocol at scale repeatedly. Experiments catch systemic behavior. Demos catch what you happened to look at.
 

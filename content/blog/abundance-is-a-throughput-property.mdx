@@ -86,9 +86,9 @@ Four layers, each designed for throughput:
 
 **3. Public receipts for claims**: Every eval produces a JSON receipt (contestants, judges, tasks, results, caveats). Every trajectory includes structured outcomes. Claims come with audit trails. "This agent solved X" is backed by a receipt you can verify.
 
-**4. Live consumer doors that enforce honesty**: [ACOS](/acos) and [GenCreator.ai](https://gencreator.ai) are products built on this substrate. If the substrate breaks promises—evals lie, memory corrupts, skills regress—the products break visibly. The consumer door is the accountability loop.
+**4. Products consume the substrate**: [GenCreator.ai](https://gencreator.ai) and other products are built on this open core. The substrate is the same for prototypes and production.
 
-The result: other teams fork SIS, extend the skill library, run their own eval harnesses, and report results we didn't anticipate. That's throughput. The alternative—closed platform, gated access, vendor-locked data—would have meant one team's capacity, forever.
+The result: MIT licensing means other teams can fork SIS, extend the skill library, and run their own eval harnesses. That's throughput. The alternative—closed platform, gated access, vendor-locked data—would have meant one team's capacity, forever.
 
 ## What's the difference between growth and throughput?
 
@@ -132,7 +132,7 @@ Knowledge compounds when shared, rots when hoarded. Help-first is anti-fragile: 
 
 ### How does Starlight implement this?
 
-Four layers: MIT licensing (fork without asking), TypeScript contracts (if it compiles it's correct), public receipts for claims (every eval produces JSON), live consumer products (ACOS, GenCreator) that break visibly if the substrate lies. Other teams fork, extend, and contribute—that's throughput.
+Four layers: MIT licensing (fork without asking), TypeScript contracts (if it compiles it's correct), public receipts for claims (every eval produces JSON), and products that consume this substrate. MIT licensing means other teams can fork, extend, and build—that's throughput.
 
 ### What's the difference between growth and throughput?
 
