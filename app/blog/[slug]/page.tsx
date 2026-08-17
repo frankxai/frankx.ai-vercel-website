@@ -44,6 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/blog/${post.slug}`,
     type: 'article',
     image:
+      post.socialImage ||
       post.image ||
       `/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.description)}`,
     publishedTime: post.date,
@@ -249,7 +250,7 @@ export default async function BlogPostPage({
                   src={post.image}
                   title={post.title}
                   subtitle={post.description}
-                  alt={post.title}
+                  alt={post.imageAlt || post.title}
                   priority
                 />
               </div>

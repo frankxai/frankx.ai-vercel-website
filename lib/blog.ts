@@ -39,6 +39,8 @@ export interface BlogPost {
   category: string
   tags: string[]
   image?: string
+  imageAlt?: string
+  socialImage?: string
   readingTime: string
   keywords?: string[]
   readingGoal?: string
@@ -142,6 +144,7 @@ function buildBlogPost(slug: string, data: Record<string, any>, content: string)
     readingTime: readTime.text,
     ...normalized,
     image: resolveBlogImage(normalized.image, slug),
+    socialImage: resolveBlogImage(normalized.socialImage, slug),
   } as BlogPost
 }
 
