@@ -3,17 +3,20 @@ type AnalyticsProperty = string | number | boolean | null | undefined
 const SENSITIVE_PROPERTY =
   /(^|_)(email|name|phone|address|message|text|person|user|customer|referrer|query|search|url|href)($|_)/i
 const EMAIL_LIKE_VALUE = /\b[^\s@]+@[^\s@]+\.[^\s@]+\b/
-const EXPLICIT_MEASUREMENT_VALUES = new Set(['0', 'no', 'unspecified'])
+const EXPLICIT_DO_NOT_TRACK_VALUES = new Set(['1', 'yes'])
 
 export function hasDoNotTrack(value: string | null | undefined): boolean {
   const normalized = value?.trim().toLowerCase()
   if (!normalized) return false
 
-  return !EXPLICIT_MEASUREMENT_VALUES.has(normalized)
+  return EXPLICIT_DO_NOT_TRACK_VALUES.has(normalized)
 }
 
-export function allowsAnalyticsMeasurement(value: string | null | undefined): boolean {
-  return !hasDoNotTrack(value)
+export function allowsAnalyticsMeasurement(
+  doNotTrack: string | null | undefined,
+  globalPrivacyControl = false,
+): boolean {
+  return !hasDoNotTrack(doNotTrack) && !globalPrivacyControl
 }
 
 export function sanitizeAnalyticsUrl(value: string): string {
