@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Books | FrankX',
   description:
-    'Six books on love, discipline, creativity, self-development, imagination, and manifestation. Read free online or download as PDF and EPUB.',
+    'Books on love, discipline, creativity, imagination, and a new illustrated family library. Read free online or download selected editions.',
   openGraph: {
     title: 'The FrankX Library',
     description: 'Six books. One voice. No filler.',
@@ -46,6 +46,48 @@ export default function BooksHubPage() {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* Family storybooks */}
+      <section className="mx-auto max-w-6xl px-6 pb-16 sm:pb-20">
+        <Link
+          href="/books/family"
+          className="group relative grid min-h-[320px] overflow-hidden rounded-[2rem] border border-amber-200/20 bg-[#12100c] shadow-[0_30px_80px_rgba(0,0,0,0.35)] transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-amber-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 lg:grid-cols-[0.85fr_1.15fr]"
+        >
+          <div className="relative min-h-[280px] overflow-hidden lg:min-h-[380px]">
+            <Image
+              src="/images/books/family/david/cover.webp"
+              alt="David and the Song Inside His Name"
+              fill
+              className="object-cover object-[50%_34%] transition-transform duration-700 group-hover:scale-[1.025]"
+              sizes="(max-width: 1024px) 100vw, 42vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12100c] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#12100c]" />
+          </div>
+          <div className="relative flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-300/75">
+              New · Family storybooks
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-4xl">
+              Four names. Four worlds waiting to open.
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-7 text-stone-300">
+              A bilingual, illustrated shelf for Amilina, Alea Sophia, David, and Adam - gentle
+              enough for bedtime, with deeper layers that grow alongside them.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-amber-300 px-5 text-sm font-bold text-stone-950">
+                Enter the family library
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
+              <span className="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-400">
+                English · Deutsch
+              </span>
+            </div>
+          </div>
+        </Link>
       </section>
 
       {/* Books Grid */}

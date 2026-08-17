@@ -190,6 +190,8 @@ const sections: NavSection[] = [
       { name: 'Ecosystem', href: '/ecosystem', icon: Network, description: 'The complete system map' },
       { name: 'Universe Map', href: '/map', icon: Map, description: 'Every surface, one view' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Signals', href: '/signals', icon: Flame, description: 'Source-backed architecture notes' },
+      { name: 'Dream 100', href: '/dream-100', icon: Users, description: 'Contribution before contact' },
       { name: 'Core Qualities', href: '/qualities', icon: Compass, description: 'Freedom, mastery, meaning & connection' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
@@ -214,7 +216,7 @@ const sections: NavSection[] = [
     groups: [
       {
         label: 'Current work',
-        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Core Qualities', 'Intelligence Atlas', 'Library', 'Guides', 'Journal'],
+        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Signals', 'Dream 100', 'Core Qualities', 'Intelligence Atlas', 'Library', 'Guides', 'Journal'],
       },
       {
         label: 'Systems & products',

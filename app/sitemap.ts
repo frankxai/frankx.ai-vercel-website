@@ -10,6 +10,7 @@ import { getMvuEntrySummaries } from '@/lib/mvu'
 import { getJournalEntrySummaries } from '@/lib/journal'
 import { isCanonicalBlogSlug } from '@/lib/blog-redirects.mjs'
 import { askQuestions } from '@/data/ask-questions'
+import { publishedSignals } from '@/lib/dream100'
 
 const BASE_URL = siteConfig.url
 
@@ -350,6 +351,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/signals', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/dream-100', priority: 0.82, changeFrequency: 'weekly' as const },
   ]
 
   // Library OS hub + manifesto/build/quotes funnels
@@ -430,6 +433,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: currentDate,
         changeFrequency: page.changeFrequency,
         priority: page.priority,
+      })
+    })
+
+    publishedSignals.forEach(signal => {
+      entries.push({
+        url: `${BASE_URL}/signals/${signal.slug}`,
+        lastModified: signal.updatedAt,
+        changeFrequency: 'weekly',
+        priority: 0.78,
       })
     })
   

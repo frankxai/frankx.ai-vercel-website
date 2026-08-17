@@ -410,6 +410,35 @@ const nextConfig = {
         ],
       },
       {
+        // Family storybooks are public-by-link, first-name-only experiences.
+        // Keep both the HTML and downloadable child editions out of search indexes.
+        source: '/books/family/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
+        source: '/books/david-and-the-song-inside-his-name.pdf',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
+        source: '/books/david-und-das-lied-in-seinem-namen.pdf',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
         // The 3D memory palace (Three.js / React-Three-Fiber) needs WebGL: unsafe-eval,
         // blob: workers, and Google Fonts. Scoped to /palace only — the strict
         // policy above still governs the rest of frankx.ai.

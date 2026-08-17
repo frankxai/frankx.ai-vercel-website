@@ -78,6 +78,8 @@ const NAV_COLUMNS = [
     links: [
       { label: 'How it works', href: '/workspace', accent: 'emerald' },
       { label: 'Research', href: '/research' },
+      { label: 'Signals', href: '/signals' },
+      { label: 'Dream 100', href: '/dream-100' },
       { label: 'Core Qualities', href: '/qualities' },
       { label: 'Library', href: '/library' },
       { label: 'Guides', href: '/guides' },
