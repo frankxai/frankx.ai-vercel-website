@@ -40,7 +40,7 @@ export const hubProvenance: ProvenanceStep[] = [
   {
     actor: 'Frank Riemer',
     role: 'Human publish gate',
-    did: 'Production merge of PR 475. This hub wave is a follow-on draft until he ships it.',
+    did: 'Human publish gate. This wave ships only after PR 483 merges to main and Vercel deploys.',
     skillOrTool: 'GitHub PR + Vercel git integration',
     date: '2026-08-15',
   },

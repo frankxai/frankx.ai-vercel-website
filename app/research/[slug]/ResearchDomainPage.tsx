@@ -117,8 +117,9 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
 
   // Build table of contents
   const tocItems = [
-    ...domain.sections.map((s, i) => ({ id: `section-${i}`, label: s.title })),
     ...(gallery.length > 0 ? [{ id: 'gallery', label: 'Frames' }] : []),
+    ...(showGrokPanel ? [{ id: 'grok46-panel', label: 'Grok 4.6 stack' }] : []),
+    ...domain.sections.map((s, i) => ({ id: `section-${i}`, label: s.title })),
     { id: 'findings', label: 'Key Findings' },
     ...((domain.limitations?.length || domain.whatWeDontKnow?.length) ? [{ id: 'transparency', label: 'Transparency' }] : []),
     ...(hasFaq ? [{ id: 'faq', label: 'FAQ' }] : []),

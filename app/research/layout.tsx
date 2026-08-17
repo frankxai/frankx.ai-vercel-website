@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { researchDomains } from '@/lib/research/domains'
 import { domainSources } from '@/lib/research/sources'
-import { hubFaqs } from '@/lib/research/swarm-board'
 
 const domainCount = researchDomains.length
 const sourceCount = new Set(
@@ -81,16 +80,6 @@ const websiteLd = JSON.stringify({
   },
 })
 
-const faqLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: hubFaqs.map((item) => ({
-    '@type': 'Question',
-    name: item.q,
-    acceptedAnswer: { '@type': 'Answer', text: item.a },
-  })),
-})
-
 export default function ResearchLayout({
   children,
 }: {
@@ -99,7 +88,6 @@ export default function ResearchLayout({
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: websiteLd }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqLd }} />
       {children}
     </>
   )

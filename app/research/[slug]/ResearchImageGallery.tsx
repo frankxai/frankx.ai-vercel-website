@@ -20,7 +20,7 @@ export default function ResearchImageGallery({ frames }: { frames: GalleryFrame[
             />
             <figcaption className="px-4 py-3 text-xs text-white/60">
               {f.caption}
-              <span className="block text-white/35 mt-0.5">{f.engine}</span>
+              <span className="block text-white/60 mt-0.5">{f.engine}</span>
             </figcaption>
           </figure>
         ))}
