@@ -7,17 +7,27 @@ import {
 } from '@vercel/analytics'
 
 import {
-  hasDoNotTrack,
+  allowsAnalyticsMeasurement,
   sanitizeAnalyticsProperties,
   sanitizeAnalyticsUrl,
 } from './analytics-policy.ts'
 
 let analyticsInitialized = false
 
+type PrivacyNavigator = Navigator & { globalPrivacyControl?: boolean }
+
+function browserAllowsAnalyticsMeasurement(): boolean {
+  if (typeof window === 'undefined') return false
+
+  const privacyNavigator = window.navigator as PrivacyNavigator
+  return allowsAnalyticsMeasurement(
+    privacyNavigator.doNotTrack,
+    privacyNavigator.globalPrivacyControl,
+  )
+}
+
 export function privacySafeBeforeSend(event: BeforeSendEvent): BeforeSendEvent | null {
-  if (hasDoNotTrack(typeof window === 'undefined' ? undefined : window.navigator.doNotTrack)) {
-    return null
-  }
+  if (!browserAllowsAnalyticsMeasurement()) return null
 
   return {
     ...event,
@@ -33,8 +43,7 @@ export function privacySafeBeforeSend(event: BeforeSendEvent): BeforeSendEvent |
  * the first event and keeps the provider script singleton.
  */
 export function initializePrivacySafeAnalytics(): boolean {
-  if (typeof window === 'undefined') return false
-  if (hasDoNotTrack(window.navigator.doNotTrack)) return false
+  if (!browserAllowsAnalyticsMeasurement()) return false
   if (analyticsInitialized) return true
 
   try {
