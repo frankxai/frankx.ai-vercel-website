@@ -1,140 +1,111 @@
 ---
-title: "Grok Imagine Bake-off: What We Could Actually Run"
-description: "Three locked image briefs run through Hermes Grok Imagine on 15 August 2026. Nano Banana, GPT Image, and FAL were attempted and held. Includes prompt text, reported model, MIME mismatch, and pixel QA."
-date: "2026-08-15"
-lastUpdated: "2026-08-15"
+title: "One Still-Life, Three Native Generators"
+description: "The same product brief, run on Grok Imagine, Codex image_gen, and Antigravity generate_image. Only frames that passed QA are shown. FAL was not used. Interior and droid misses from an earlier pass stay off this page."
+date: "2026-08-16"
+lastUpdated: "2026-08-16"
 author: "Frank"
 category: "Intelligence Dispatches"
 tags:
-  - grok
   - grok-imagine
   - image-generation
   - evals
-  - nano-banana
+  - codex
+  - antigravity
 keywords:
-  - grok imagine test
-  - grok 4.6 image generation
-  - grok imagine vs nano banana
-  - image generation bakeoff 2026
-image: "/research/image-bakeoff-2026-08-14/grok-imagine-still-life.jpg"
+  - grok imagine vs codex image
+  - antigravity generate_image
+  - curated still-life test
+image: "/research/image-curated-2026-08-16/grok-imagine-still-life.jpg"
 featured: false
 schema: ["Article", "FAQPage"]
 architectNote:
-  recommendation: "Use Grok Imagine for still-life and quiet interiors when you already have xAI OAuth in Hermes. Do not claim a cross-model winner until a second backend actually returns pixels. Trust the tool-result model name, not image_gen.model in config. Save files from magic bytes, not the CDN extension."
-  coePillar: "Technology · media routing + Strategy · evidence honesty"
+  recommendation: "For a quiet product still-life, Grok Imagine, Codex image_gen, and Antigravity generate_image all returned a publishable frame on this brief. Prefer the native path you already have. Do not route FrankX stills through FAL. Trust the tool-result model name."
+  coePillar: "Technology · media routing"
   personas:
     - persona: "Product still-life"
-      pick: "Grok Imagine (this run fit 5/5)"
-    - persona: "Strict interior briefs"
-      pick: "Grok Imagine with a recount pass — this run added a chair and lit the lamp"
-    - persona: "Mechanical droid identity"
-      pick: "Not proven here — output was a cute mascot"
+      pick: "Any of the three native paths on this page"
 ---
 
-# Grok Imagine Bake-off: What We Could Actually Run
+# One Still-Life, Three Native Generators
 
-**TL;DR.** On 15 August 2026 I ran three locked landscape briefs through Hermes `image_generate`. The runtime model was **`grok-imagine-image`**, not the configured `grok-imagine-image-quality`. Still-life matched. Interior added a second chair and a lamp that looks on. The droid brief returned a cream mascot, not a mechanical droid. Nano Banana, GPT Image, and FAL did not produce pixels in this run. There is no cross-model winner.
+**TL;DR.** Same prompt. Three native tools that actually returned pixels: Hermes Grok Imagine, Codex `image_gen`, Antigravity `generate_image`. All three passed QA. Earlier interior and droid frames missed the brief and are not shown. FAL was not used. Grok video was not run in this session. The configured Grok quality id still did not appear in the tool result.
 
-Receipt: [`/research/image-bakeoff-2026-08-14/receipt.json`](/research/image-bakeoff-2026-08-14/receipt.json) · research brief: [`/research/image-generation-bakeoff`](/research/image-generation-bakeoff)
+Receipt: [`/research/image-curated-2026-08-16/receipt.json`](/research/image-curated-2026-08-16/receipt.json)
 
-## How Grok image generation works here
+## The brief
 
-The live path is not Grok 4.6 "thinking a picture." Text and image are separate xAI surfaces under the same SuperGrok OAuth.
+A single matte-black precision cylinder on dark honed slate, one hairline gold ring at the equator, warm sidelight from the left, soft falloff, shallow focus, quiet product photograph, 16:9. No logos, no type, no people.
 
-1. Hermes has `image_gen.provider: xai` and `image_gen.model: grok-imagine-image-quality`.
-2. The session calls `image_generate` with `prompt` + `aspect_ratio`.
-3. xAI returns a CDN URL. This run reported `provider: xai`, `model: grok-imagine-image`, `resolution: 1k`, `cost_in_usd_ticks: 200000000` per call.
-4. The URL advertised `image/png`. The bytes were **JFIF/JPEG 1280×720**. Files were saved as `.jpg`.
+## What ran
 
-That last point is a release rule: name the file from magic bytes, not from the URL.
+| Path | Tool result | File | QA |
+| --- | --- | --- | --- |
+| Hermes / xAI | `grok-imagine-image` (not the configured quality id) | JPEG 1280×720 | Publish |
+| Codex CLI | `image_gen.imagegen` | JPEG 1672×941 | Publish |
+| Antigravity (`agy`) | `generate_image` | JPEG 1376×768 | Publish |
 
-## What is externally sourced
+Codex’s `-i` flag attaches an image to a prompt. Generation used its native `image_gen` tool. Antigravity used `generate_image`. Neither is FAL.
 
-- xAI image API exists as Grok Imagine and is the Hermes default backend. Estate skill `hermes-image-generation` documents quality vs fast model ids.
-- FrankX production image scripts: `scripts/lib/nb-image.mjs` (Gemini / Nano Banana), `gpt-image.mjs` (OpenRouter/OpenAI), `fal-image.mjs` (fal.ai).
+## The frames
 
-## What I tested
+![Grok Imagine still-life](/research/image-curated-2026-08-16/grok-imagine-still-life.jpg)
 
-| Prompt | Backend | Result | Brief-fit |
-| --- | --- | --- | ---: |
-| Still-life cylinder | Grok Imagine | Saved JPEG 1280×720 | 5 |
-| Empty reading room | Grok Imagine | Saved JPEG 1280×720 | 3 |
-| Cute modern droid | Grok Imagine | Saved JPEG 1280×720 | 4 |
-| Same three | Nano Banana 2/Pro/1 | **HOLD** — Gemini 400 invalid API key | — |
-| Same three | GPT Image | **HOLD** — no OpenRouter/OpenAI key in searched env | — |
-| Same three | FAL | **HOLD** — no FAL key in searched env | — |
+Grok Imagine: one cylinder, gold ring, gold end, slate, no type.
 
-n = 1 per prompt. No seed control on the Hermes tool.
+![Codex still-life](/research/image-curated-2026-08-16/codex-still-life.jpg)
 
-## Locked prompts
+Codex: standing cylinder / jar, gold ring, empty ground, no type.
 
-**Still-life.** A single matte-black machined cylinder, about 12 centimeters tall, with one hairline gold ring at the midsection, standing alone on a dark slate desk. Warm sidelight from camera left, soft falloff, shallow depth of field, photoreal product photograph, 16:9. No logos, no readable text, no watermarks, no people, no screens, no UI.
+![Antigravity still-life](/research/image-curated-2026-08-16/agy-still-life.jpg)
 
-**Interior.** An empty reading room at dusk: one oak table, one empty wooden chair, a tall window with cool blue twilight, an unlit brass lamp on the table, architectural photograph, 35mm lens, natural materials, quiet atmosphere, 16:9. No logos, no readable text, no book titles, no people, no watermarks.
+Antigravity: lying cylinder, gold ring, slate, no type.
 
-**Droid.** A small cute modern 3D droid with compact chibi proportions, smooth cream polymer shell, a simple pixel-dot face made of two dots and a short arc, standing on a pale seamless studio floor, soft even light, collectible product render, 16:9. No humans, no skeletal robots, no logos, no readable text, no watermarks.
+## More Grok Imagine, same session
 
-## Pixel QA
+Only QA-pass frames. No Arcanea lore names on this site.
 
-![Still-life bake-off result from Grok Imagine](/research/image-bakeoff-2026-08-14/grok-imagine-still-life.jpg)
+![Empty rain street at night](/research/image-curated-2026-08-16/rain-street.jpg)
 
-Still-life: one cylinder, gold ring, slate surface, no text. The upper half reads warmer bronze than matte black.
+Photoreal night street. No people. No readable signs.
 
-![Interior bake-off result from Grok Imagine](/research/image-bakeoff-2026-08-14/grok-imagine-interior.jpg)
+![Dark hall with a gold shaft of light](/research/image-curated-2026-08-16/gold-hall.jpg)
 
-Interior: oak table, window, brass lamp, no people, no readable titles. Two chairs instead of one. The lamp shade reads lit.
+Quiet interior. Empty. Gold slit of light.
 
-![Droid bake-off result from Grok Imagine](/research/image-bakeoff-2026-08-14/grok-imagine-droid.jpg)
+![Original anime inventor at a workbench](/research/image-curated-2026-08-16/anime-inventor.jpg)
 
-Droid: cream chibi figure, two dots and a smile arc, seamless floor, no humans or text. It is a mascot, not a mechanical droid.
+Original anime study. No logos. No named studio.
 
-## What is my analysis
+![Cute cream collectible droid](/research/image-curated-2026-08-16/droid-collectible.jpg)
 
-Grok Imagine is usable today for **quiet product stills** and **mood interiors** if you inspect count and on/off states. It is not yet a proof that it follows mechanical-droid identity. Config quality routing was not honored, so do not write "we used grok-imagine-image-quality" from `config.yaml` alone.
+Collectible droid study. Soft mascot, not a mechanical kit.
 
-A comparison article that crowns Grok against Nano Banana or GPT Image would be false this week. The other lanes failed closed. That is a useful result.
+The Grok 4.6 routing facts sit in a **code-built panel** on the research page so numbers cannot smear. That is not an image model.
 
-## How this should live on the sites
+## What we are not showing
 
-| Site | Role |
-| --- | --- |
-| **frankx.ai/research** | Canonical bake-off + receipt + method |
-| **frankx.ai/blog** | Dated narrative with the three frames |
-| **frankx.ai/llm-hub** | Link from Grok 4.6; do not pretend Grok 4.6 *is* the image model |
-| **frankx.ai/studio/visual** | Later: operator tool that posts to this receipt schema |
-| **starlightintelligence.org** | Do not republish; protocol site, not a gallery |
-| **starlightintelligence.ai / academy** | Optional later workshop exercise, not this launch |
-| **arcanea.ai** | Do not import these frames or FrankX eval voice |
+An earlier pass asked Grok Imagine for an empty room and a mechanical droid. The room gained a chair and a lamp that looked on. The droid became a mascot. Those frames are not audience results.
 
-Next additions worth doing, in order:
+Hermes is configured for `grok-imagine-image-quality`. The tool still reported `grok-imagine-image`. There is no quality-vs-fast pair on this page.
 
-1. Re-run the same three prompts when a valid Gemini key exists.
-2. One reference-edit pass (same still-life, change metal only).
-3. Persist a `image-bakeoff` receipt schema and date the next run instead of overwriting.
-4. Keep video as a separate, opt-in experiment.
+Grok Imagine video is a separate backend. This session has no video tool. Not run.
 
-## Sources and method
+## Analysis
 
-Method: locked prompt, one backend at a time, save bytes, check magic + dimensions, visual QA, publish receipt. Failed backends stay HOLD.
-
-Limitations listed in the receipt JSON.
+On this one still-life, the three native paths are close enough that the routing question is “which CLI is already in the session,” not a fake leaderboard. Codex stood the object up. Grok and Antigravity kept it on its side. All three kept the gold ring and stayed empty of type.
 
 ## FAQ
 
-### Is this Grok 4.6 generating images?
+### Is this Grok 4.6 making pictures?
 
-No. Grok 4.6 is the text/reasoning model in this session. Images came from the separate Grok Imagine backend.
+No. Grok 4.6 is the reasoning model. These stills came from Grok Imagine, Codex image_gen, and Antigravity generate_image.
 
-### Did Grok Imagine beat Nano Banana?
+### Why isn’t FAL here?
 
-Not measured. Nano Banana rejected the stored key.
+It is not a native estate path for this work. We did not use it.
 
-### Why are the files JPEG if the URL said PNG?
+### Where is Model Arena?
 
-The CDN advertised `image/png`. The first bytes were JFIF. We saved `.jpg`.
+[Model Arena](/research/model-arena) is receipt-gated text/agent battles. This is a media sample.
 
-### Can we put this on the Model Arena page?
-
-No. Model Arena is receipt-gated text/agent cards. This is a media bake-off with its own receipt.
-
-Related: [Grok 4.6 brief](/research/grok-4-6) · [Grok 4.6 analysis](/blog/grok-4-6-analysis-2026) · [Creative tools research](/research/ai-creative-tools)
+Related: [Grok 4.6 brief](/research/grok-4-6) · [Research hub](/research)
