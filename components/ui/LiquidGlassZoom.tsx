@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -88,16 +88,20 @@ export function LiquidGlassZoom({
       ? 'aspect-[4/3]'
       : 'aspect-square'
 
+  const handleClose = useCallback(() => {
+    setIsOpen(false)
+    setIsZoomed(false)
+  }, [])
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
-        setIsOpen(false)
-        setIsZoomed(false)
+        handleClose()
       }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen])
+  }, [isOpen, handleClose])
 
   const copyLink = async (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -123,7 +127,7 @@ export function LiquidGlassZoom({
   return (
     <>
       {/* Primary Card */}
-      <div className={`my-8 group relative rounded-2xl border border-white/10 bg-[#0c0d10] p-2 transition-all duration-500 hover:border-cyan-500/40 hover:shadow-[0_0_35px_-5px_rgba(6,182,212,0.15)] ${className}`}>
+      <div className={`my-8 group relative rounded-2xl border border-white/10 bg-[#0c0d10] p-2 transition-colors duration-500 hover:border-cyan-500/40 hover:shadow-[0_0_35px_-5px_rgba(6,182,212,0.15)] ${className}`}>
         {/* Specular Rim Light */}
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.04] via-transparent to-cyan-500/[0.02] pointer-events-none" />
 
@@ -138,6 +142,7 @@ export function LiquidGlassZoom({
               {title && <span className="text-xs font-semibold text-white/90 tracking-wide">{title}</span>}
             </div>
             <button
+              type="button"
               onClick={() => setIsOpen(true)}
               className="text-xs text-white/40 hover:text-white flex items-center gap-1 transition-colors px-2 py-1 rounded-md hover:bg-white/5"
               aria-label="Expand image"
@@ -148,10 +153,12 @@ export function LiquidGlassZoom({
           </div>
         )}
 
-        {/* Image Container with Hover Trigger */}
-        <div
+        {/* Image Container with Accessible Button Trigger */}
+        <button
+          type="button"
           onClick={() => setIsOpen(true)}
-          className={`relative w-full ${aspectClass} overflow-hidden rounded-xl bg-black/40 cursor-zoom-in group/img`}
+          className={`relative block w-full ${aspectClass} overflow-hidden rounded-xl bg-black/40 cursor-zoom-in group/img text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400`}
+          aria-label={`Expand ${title || alt} in high resolution`}
         >
           <Image
             src={src}
@@ -163,13 +170,13 @@ export function LiquidGlassZoom({
           />
 
           {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-2xl">
               <Maximize2 className="w-4 h-4 text-cyan-400" />
               Click to Zoom & Inspect High-Res
             </div>
           </div>
-        </div>
+        </button>
 
         {/* Caption */}
         {caption && (
@@ -182,21 +189,18 @@ export function LiquidGlassZoom({
       {/* Fullscreen Lightbox Modal */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={title || alt}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-2xl p-4 sm:p-8"
-            onClick={() => {
-              setIsOpen(false)
-              setIsZoomed(false)
+            onClick={handleClose}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') handleClose()
             }}
           >
             {/* Top Controls Bar */}
-            <div
-              className="absolute top-4 left-4 right-4 z-60 flex items-center justify-between max-w-7xl mx-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="absolute top-4 left-4 right-4 z-60 flex items-center justify-between max-w-7xl mx-auto pointer-events-auto">
               <div className="flex items-center gap-2">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border ${badge.bg} ${badge.border} ${badge.color}`}>
                   <BadgeIcon className="w-4 h-4" />
@@ -207,27 +211,27 @@ export function LiquidGlassZoom({
 
               <div className="flex items-center gap-2">
                 <button
+                  type="button"
                   onClick={copyLink}
-                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all border border-white/10"
+                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/10"
                   aria-label="Copy image link"
                   title="Copy link"
                 >
                   {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>
                 <button
+                  type="button"
                   onClick={downloadImage}
-                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all border border-white/10"
+                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/10"
                   aria-label="Download image"
                   title="Download asset"
                 >
                   <Download className="w-4 h-4" />
                 </button>
                 <button
-                  onClick={() => {
-                    setIsOpen(false)
-                    setIsZoomed(false)
-                  }}
-                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all border border-white/10"
+                  type="button"
+                  onClick={handleClose}
+                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/10"
                   aria-label="Close viewer"
                   title="Close (Esc)"
                 >
@@ -237,7 +241,8 @@ export function LiquidGlassZoom({
             </div>
 
             {/* Modal Image Display */}
-            <motion.div
+            <motion.button
+              type="button"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
@@ -246,7 +251,8 @@ export function LiquidGlassZoom({
                 e.stopPropagation()
                 setIsZoomed(!isZoomed)
               }}
-              className={`relative max-w-6xl max-h-[80vh] w-full ${aspectClass} overflow-hidden rounded-2xl border border-white/15 shadow-2xl bg-black cursor-${isZoomed ? 'zoom-out' : 'zoom-in'}`}
+              className={`relative max-w-6xl max-h-[80vh] w-full ${aspectClass} overflow-hidden rounded-2xl border border-white/15 shadow-2xl bg-black cursor-${isZoomed ? 'zoom-out' : 'zoom-in'} text-left focus:outline-none`}
+              aria-label={isZoomed ? 'Zoom out' : 'Zoom in'}
             >
               <Image
                 src={src}
@@ -256,20 +262,19 @@ export function LiquidGlassZoom({
                 sizes="100vw"
                 quality={95}
               />
-            </motion.div>
+            </motion.button>
 
             {/* Bottom Caption */}
             {caption && (
               <div
-                className="absolute bottom-6 left-4 right-4 text-center max-w-3xl mx-auto"
-                onClick={(e) => e.stopPropagation()}
+                className="absolute bottom-6 left-4 right-4 text-center max-w-3xl mx-auto pointer-events-none"
               >
                 <p className="text-xs sm:text-sm text-white/70 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 inline-block">
                   {caption}
                 </p>
               </div>
             )}
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
