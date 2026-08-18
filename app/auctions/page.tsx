@@ -1,15 +1,27 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Gavel, Clock, CheckCircle } from 'lucide-react'
 import AuctionCard from '@/components/auctions/AuctionCard'
 import auctions from '@/data/auctions.json'
+import { isAuctionWindowOpen } from '@/lib/auctions'
 
 export default function AuctionsPage() {
-  const activeAuctions = auctions.filter(a => a.status === 'active' || a.status === 'upcoming')
-  const completedAuctions = auctions.filter(a => a.status === 'completed')
-  
+  // Group by the advertised window as well as `status`, so a drop whose end
+  // time passed moves to Closed Drops instead of staying "Open for Proposals".
+  const [nowTs, setNowTs] = useState(() => Date.now())
+  useEffect(() => {
+    const timer = setInterval(() => setNowTs(Date.now()), 60_000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const activeAuctions = auctions.filter(
+    a => a.status === 'upcoming' || (a.status === 'active' && isAuctionWindowOpen(a, nowTs))
+  )
+  const completedAuctions = auctions.filter(a => !activeAuctions.includes(a))
+
   const featuredAuctions = activeAuctions.filter(a => a.featured)
   const otherAuctions = activeAuctions.filter(a => !a.featured)
 
@@ -113,7 +125,7 @@ export default function AuctionsPage() {
         <section className="max-w-7xl mx-auto px-6 pb-24 border-t border-white/[0.06] pt-16">
           <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
             <CheckCircle className="w-5 h-5 text-emerald-400" />
-            Completed Drops & Acquisitions
+            Closed Drops
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-75">
             {completedAuctions.map((auction, index) => (

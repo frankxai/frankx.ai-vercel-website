@@ -16,6 +16,7 @@ import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import HeroImage from '@/components/ui/HeroImage'
+import RelatedQualities from '@/components/qualities/RelatedQualities'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -340,6 +341,7 @@ export default async function BlogPostPage({
             )}
 
             <RelatedResearch blogSlug={slug} />
+            <RelatedQualities href={`/blog/${post.slug}`} />
 
             {/* Axi article footer accent */}
             <div className="mt-12 flex items-center gap-4 border-t border-white/10 pt-8">
@@ -379,5 +381,4 @@ export default async function BlogPostPage({
     </main>
   )
 }
-
 

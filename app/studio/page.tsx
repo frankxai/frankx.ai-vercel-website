@@ -20,7 +20,7 @@ import { INTAKE_VERSION, INTAKE_SHIPPED } from '@/lib/intake'
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'Studio — The Content Operations System | FrankX',
+  title: 'Studio — The Content Operations System',
   description:
     'Single capture → many ships. Eight L4 producer specialists serving three operator archetypes (Creator, Influencer, Solution Engineer) from one Android-native inbox. Phone-to-publish in under 2 hours.',
   alternates: { canonical: 'https://frankx.ai/studio' },

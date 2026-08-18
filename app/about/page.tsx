@@ -10,8 +10,10 @@ import {
   ShieldCheck,
 } from 'lucide-react'
 
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { sitePositioning } from '@/data/site-positioning'
+import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { createMetadata } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
@@ -218,7 +220,7 @@ export default function AboutPage() {
                 key={mode.title}
                 className="rounded-[1.5rem] border border-white/[0.1] bg-[#0c0e0e] p-7"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-300/15 bg-emerald-300/[0.055] text-emerald-300">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-300/[0.15] bg-emerald-300/[0.055] text-emerald-300">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <h3 className="mt-7 text-xl font-semibold">{mode.title}</h3>
@@ -249,6 +251,20 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
+          <div className="lg:col-start-2">
+            <TrackedLink
+              href="/qualities"
+              {...coreQualitiesNavigationEvent({
+                source: 'about',
+                placement: 'principles',
+                destination: 'overview',
+              })}
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-emerald-300 underline decoration-emerald-300/30 underline-offset-8 transition-colors hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              Read the four governing qualities
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </TrackedLink>
+          </div>
         </div>
       </section>
 

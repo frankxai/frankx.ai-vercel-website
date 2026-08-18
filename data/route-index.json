@@ -1,22 +1,22 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 871,
+    "total": 895,
     "aliases": 61,
     "byType": {
-      "core": 22,
-      "section": 403,
+      "core": 23,
+      "section": 413,
       "community": 17,
-      "tool": 54,
+      "tool": 56,
       "static": 15,
-      "blog": 227,
+      "blog": 229,
+      "research": 12,
       "guide": 23,
       "library": 56,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
       "product": 21,
-      "research": 3,
       "video": 3,
       "workshop": 8
     }
@@ -2033,8 +2033,8 @@
     },
     {
       "href": "/blog/frankx-vision-mission-values",
-      "title": "FrankX Vision, Mission, and Values",
-      "description": "The core narrative that anchors every FrankX system, launch, and creator experience.",
+      "title": "FrankX Vision, Mission, and Values — An Earlier Brand Note",
+      "description": "A 2025 snapshot of the FrankX brand language, now superseded by the public four-quality constitution.",
       "tags": [
         "Vision",
         "Mission",
@@ -2247,6 +2247,34 @@
         "ai-2026",
         "benchmarks",
         "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/grok-4-6-analysis-2026",
+      "title": "Grok 4.6: Same Scale, Stronger Agents",
+      "description": "xAI shipped Grok 4.6 on 12 August 2026 as a same-scale post-training refresh of Grok 4.5. Official and Artificial Analysis scores put it at 61 on the Intelligence Index, tied with GPT-5.6 Sol, with the largest gains on long-running agent work. This brief separates vendor numbers from independent measurement and states what the Starlight Model Arena has not yet run.",
+      "tags": [
+        "xai",
+        "grok",
+        "grok-4-6",
+        "frontier-models",
+        "benchmarks",
+        "agentic-ai",
+        "model-arena"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/grok-imagine-bakeoff-2026",
+      "title": "One Still-Life, Three Native Generators",
+      "description": "The same product brief, run on Grok Imagine, Codex image_gen, and Antigravity generate_image. Only frames that passed QA are shown. FAL was not used. Interior and droid misses from an earlier pass stay off this page.",
+      "tags": [
+        "grok-imagine",
+        "image-generation",
+        "evals",
+        "codex",
+        "antigravity"
       ],
       "type": "blog"
     },
@@ -3855,6 +3883,65 @@
       "type": "section"
     },
     {
+      "href": "/books/family",
+      "title": "Family",
+      "tags": [
+        "books",
+        "family"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/books/family/david",
+      "title": "David",
+      "tags": [
+        "books",
+        "family",
+        "david"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/books/great-transition/chapter-05-what-you-own",
+      "title": "What You Own",
+      "tags": [
+        "freedom",
+        "ownership",
+        "agency"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/books/self-development/chapter-03-soul",
+      "title": "Soul",
+      "tags": [
+        "meaning",
+        "purpose",
+        "self-development"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/books/self-development/chapter-04-craft",
+      "title": "Craft",
+      "tags": [
+        "mastery",
+        "craft",
+        "practice"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/books/the-wordless-laws-book-two/the-third-mind",
+      "title": "The Third Mind",
+      "tags": [
+        "connection",
+        "collective intelligence",
+        "relationship"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/build",
       "title": "Build",
       "type": "section"
@@ -4544,6 +4631,12 @@
         "os"
       ],
       "type": "section"
+    },
+    {
+      "href": "/dream-100",
+      "title": "Dream 100",
+      "description": "Contribution before contact",
+      "type": "research"
     },
     {
       "href": "/drops",
@@ -6262,6 +6355,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/compare/grok-4-6-vs-grok-4-3",
+      "title": "Grok 4 6 VS Grok 4 3 — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/compare/kimi-k2-6-vs-deepseek-v4",
       "title": "Kimi K2 6 VS Deepseek V4 — Comparison",
       "tags": [
@@ -6363,6 +6465,15 @@
     {
       "href": "/llm-hub/grok-4-3",
       "title": "Grok 4.3 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4-6",
+      "title": "Grok 4.6 — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -7681,6 +7792,52 @@
       "type": "section"
     },
     {
+      "href": "/qualities",
+      "title": "Core Qualities",
+      "description": "Freedom, Mastery, Meaning, and Connection — the governing qualities behind FrankX",
+      "type": "core"
+    },
+    {
+      "href": "/qualities/connection",
+      "title": "Connection — The Multiplier",
+      "tags": [
+        "connection",
+        "belonging",
+        "collective intelligence"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/qualities/freedom",
+      "title": "Freedom — The Direction",
+      "tags": [
+        "freedom",
+        "agency",
+        "autonomy"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/qualities/mastery",
+      "title": "Mastery — The Method",
+      "tags": [
+        "mastery",
+        "craft",
+        "practice"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/qualities/meaning",
+      "title": "Meaning — The Compass",
+      "tags": [
+        "meaning",
+        "purpose",
+        "coherence"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/quest",
       "title": "Quest",
       "tags": [
@@ -7866,6 +8023,47 @@
       "href": "/showcase",
       "title": "Showcase",
       "type": "section"
+    },
+    {
+      "href": "/signals",
+      "title": "Signals",
+      "description": "Source-backed AI architecture notes",
+      "type": "research"
+    },
+    {
+      "href": "/signals/daybreak-separates-capability-from-access",
+      "title": "Daybreak separates capability from access",
+      "type": "research"
+    },
+    {
+      "href": "/signals/grok-bot-makes-the-team-channel-an-agent-interface",
+      "title": "Grok Bot makes the team channel an agent interface",
+      "type": "research"
+    },
+    {
+      "href": "/signals/open-reproductions-turn-papers-into-inspectable-work",
+      "title": "Open reproductions turn papers into inspectable work",
+      "type": "research"
+    },
+    {
+      "href": "/signals/regional-inference-makes-geography-an-api-choice",
+      "title": "Regional inference makes geography an API choice",
+      "type": "research"
+    },
+    {
+      "href": "/signals/studio-2-closes-the-gap-between-prompt-and-performance",
+      "title": "Studio 2 closes the gap between prompt and performance",
+      "type": "research"
+    },
+    {
+      "href": "/signals/ultrafast-turns-latency-into-product-architecture",
+      "title": "Ultrafast turns latency into product architecture",
+      "type": "research"
+    },
+    {
+      "href": "/signals/watermarking-moves-provenance-into-generation",
+      "title": "Watermarking moves provenance into generation",
+      "type": "research"
     },
     {
       "href": "/sis",

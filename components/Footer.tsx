@@ -5,6 +5,8 @@ import { ExternalLink, ArrowUp, Mail } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
 import Image from 'next/image'
 import { sitePositioning } from '@/data/site-positioning'
+import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
+import { trackEvent } from '@/lib/analytics'
 import { socialLinks } from '@/lib/social-links'
 
 function BackToTop() {
@@ -76,6 +78,9 @@ const NAV_COLUMNS = [
     links: [
       { label: 'How it works', href: '/workspace', accent: 'emerald' },
       { label: 'Research', href: '/research' },
+      { label: 'Signals', href: '/signals' },
+      { label: 'Dream 100', href: '/dream-100' },
+      { label: 'Core Qualities', href: '/qualities' },
       { label: 'Library', href: '/library' },
       { label: 'Guides', href: '/guides' },
       { label: 'Architecture Hub', href: '/ai-architecture' },
@@ -126,8 +131,19 @@ function FooterLink({ link }: { link: NavLink }) {
       </a>
     )
   }
+
+  const handleClick = () => {
+    if (link.href !== '/qualities') return
+    const event = coreQualitiesNavigationEvent({
+      source: 'footer',
+      placement: 'workspace_column',
+      destination: 'overview',
+    })
+    trackEvent(event.eventName, event.eventProperties)
+  }
+
   return (
-    <Link href={link.href} className={`${base} ${color}`}>
+    <Link href={link.href} onClick={handleClick} className={`${base} ${color}`}>
       {link.label}
     </Link>
   )

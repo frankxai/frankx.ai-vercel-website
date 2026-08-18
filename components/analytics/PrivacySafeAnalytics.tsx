@@ -1,20 +1,37 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
-import { initializePrivacySafeAnalytics } from '@/lib/privacy-safe-analytics-client'
+import { allowsAnalyticsMeasurement } from '@/lib/analytics-policy'
+import { privacySafeBeforeSend } from '@/lib/privacy-safe-analytics-client'
+
+type PrivacyNavigator = Navigator & { globalPrivacyControl?: boolean }
 
 /**
  * Privacy-aware wrapper.
- * We now always attempt to initialize (the beforeSend inside handles explicit DNT/GPC).
- * SpeedInsights is always rendered so the scripts load reliably.
- * This fixes the previous overly-conservative gate that caused zero collection.
+ * We now render Analytics and SpeedInsights while respecting DNT and GPC signals.
  */
 export function PrivacySafeAnalytics() {
+  const [measurementAllowed, setMeasurementAllowed] = useState<boolean | null>(null)
+
   useEffect(() => {
-    initializePrivacySafeAnalytics()
+    const privacyNavigator = navigator as PrivacyNavigator
+    setMeasurementAllowed(
+      allowsAnalyticsMeasurement(
+        privacyNavigator.doNotTrack,
+        privacyNavigator.globalPrivacyControl,
+      ),
+    )
   }, [])
 
-  return <SpeedInsights />
+  if (measurementAllowed === false) return null
+
+  return (
+    <>
+      <Analytics beforeSend={privacySafeBeforeSend} />
+      <SpeedInsights />
+    </>
+  )
 }
