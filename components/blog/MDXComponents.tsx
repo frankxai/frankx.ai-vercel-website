@@ -226,7 +226,12 @@ export const mdxComponents: MDXComponents = {
 
   // ── Tables ────────────────────────────────────────────────────────────
   table: ({ children, ...props }: ComponentPropsWithoutRef<'table'>) => (
-    <div className="my-8 overflow-x-auto rounded-xl border border-white/[0.08]">
+    <div
+      role="region"
+      aria-label="Scrollable data table"
+      tabIndex={0}
+      className="my-8 overflow-x-auto rounded-xl border border-white/[0.08] focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+    >
       <table className="min-w-full text-sm" {...props}>
         {children}
       </table>
