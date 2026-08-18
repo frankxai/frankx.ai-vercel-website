@@ -25,11 +25,11 @@ import {
   Layers
 } from 'lucide-react'
 
-interface GameData {
+export interface GameData {
   slug: string
   title: string
   subtitle: string
-  brand: 'FrankX Mind' | 'Arcanea' | 'Starlight'
+  brand: 'FrankX Mind' | 'Arcanea' | 'Starlight' | 'FrankX Kids' | 'FrankX Party' | 'Deutsche Denkspiele'
   brandColor: string
   category: string
   cognitiveProtocol: string
