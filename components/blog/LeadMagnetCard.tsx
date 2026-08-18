@@ -55,7 +55,7 @@ export function LeadMagnetCard({ id, title: customTitle, subtitle: customSubtitl
   }
 
   return (
-    <div className="my-10 overflow-hidden rounded-2xl border border-white/10 bg-[#090D14]/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl transition-all duration-300 hover:border-amber-500/30">
+    <div className="my-10 overflow-hidden rounded-2xl border border-white/10 bg-[#090D14]/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl transition-colors duration-300 hover:border-amber-500/30">
       <div className="flex flex-col md:flex-row gap-6 items-center">
         {/* Cover Preview Image */}
         <div className="relative w-36 h-48 sm:w-44 sm:h-60 shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg shadow-black/60 group">
@@ -108,7 +108,7 @@ export function LeadMagnetCard({ id, title: customTitle, subtitle: customSubtitl
                 <a
                   href={magnet.pdfUrl}
                   download
-                  className="px-4 py-2 rounded-lg bg-amber-500 text-black text-xs font-bold hover:bg-amber-400 transition-all shadow-md shadow-amber-500/20 flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-lg bg-amber-500 text-black text-xs font-bold hover:bg-amber-400 transition-colors shadow-md shadow-amber-500/20 flex items-center gap-1.5"
                 >
                   <span>⬇ Download Executive PDF</span>
                 </a>
@@ -117,7 +117,7 @@ export function LeadMagnetCard({ id, title: customTitle, subtitle: customSubtitl
                     href={magnet.notionUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white text-xs font-medium hover:bg-white/15 transition-all"
+                    className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white text-xs font-medium hover:bg-white/15 transition-colors"
                   >
                     Duplicate Notion Hub ↗
                   </a>
@@ -136,12 +136,12 @@ export function LeadMagnetCard({ id, title: customTitle, subtitle: customSubtitl
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your executive email..."
                   required
-                  className="flex-1 rounded-xl bg-white/5 border border-white/15 px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                  className="flex-1 rounded-xl bg-white/5 border border-white/15 px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus-visible:outline-none focus-visible:border-amber-400 focus-visible:ring-1 focus-visible:ring-amber-400"
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-4 py-2.5 rounded-xl bg-amber-500 text-black text-xs font-bold hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20 shrink-0 disabled:opacity-50"
+                  className="px-4 py-2.5 rounded-xl bg-amber-500 text-black text-xs font-bold hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/20 shrink-0 disabled:opacity-50"
                 >
                   {loading ? 'Unlocking...' : 'Instant Download'}
                 </button>

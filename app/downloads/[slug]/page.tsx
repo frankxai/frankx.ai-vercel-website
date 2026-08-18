@@ -190,14 +190,14 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="architect@company.com"
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-neutral-500 focus:outline-none focus:border-amber-500 text-sm font-mono"
+                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:border-amber-500 text-sm font-mono"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-400 text-black font-bold hover:brightness-110 transition-all shadow-lg shadow-amber-500/20 text-xs uppercase tracking-wider font-mono disabled:opacity-50"
+                      className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-400 text-black font-bold hover:brightness-110 transition-transform hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-amber-500/20 text-xs uppercase tracking-wider font-mono disabled:opacity-50"
                     >
                       {isSubmitting ? 'Unlocking...' : variantConfig.ctaText}
                     </button>

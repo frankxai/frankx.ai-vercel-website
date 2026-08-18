@@ -231,7 +231,7 @@ export const mdxComponents: MDXComponents = {
       role="region"
       aria-label="Scrollable data table"
       tabIndex={0}
-      className="my-8 overflow-x-auto rounded-xl border border-white/[0.08] focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+      className="my-8 overflow-x-auto rounded-xl border border-white/[0.08] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500/50"
     >
       <table className="min-w-full text-sm" {...props}>
         {children}
