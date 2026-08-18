@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T11:20:57.739Z",
-  "totalAssets": 1600,
+  "generatedAt": "2026-08-18T15:24:37.140Z",
+  "totalAssets": 1610,
   "totalCollections": 59,
-  "totalSize": 1326427363,
+  "totalSize": 1335291960,
   "formats": {
     "png": 858,
     "svg": 356,
     "webp": 215,
-    "jpg": 161,
+    "jpg": 171,
     "jpeg": 10
   },
   "collections": [
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 577,
+      "count": 587,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -7408,6 +7408,206 @@
             "research"
           ],
           "createdAt": "2026-07-17"
+        },
+        {
+          "id": "blog/infographic-agentic-hierarchy",
+          "filename": "infographic-agentic-hierarchy.jpg",
+          "src": "/images/blog/generated/infographic-agentic-hierarchy.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 805578,
+          "title": "Infographic Agentic Hierarchy",
+          "tags": [
+            "blog",
+            "infographic",
+            "agentic",
+            "hierarchy"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infographic-ai-factory-thermodynamics",
+          "filename": "infographic-ai-factory-thermodynamics.jpg",
+          "src": "/images/blog/generated/infographic-ai-factory-thermodynamics.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 1171160,
+          "title": "Infographic Ai Factory Thermodynamics",
+          "tags": [
+            "blog",
+            "infographic",
+            "factory",
+            "thermodynamics"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infographic-context-compression-headroom",
+          "filename": "infographic-context-compression-headroom.jpg",
+          "src": "/images/blog/generated/infographic-context-compression-headroom.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 599591,
+          "title": "Infographic Context Compression Headroom",
+          "tags": [
+            "blog",
+            "infographic",
+            "context",
+            "compression",
+            "headroom"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infographic-cost-per-outcome-roi",
+          "filename": "infographic-cost-per-outcome-roi.jpg",
+          "src": "/images/blog/generated/infographic-cost-per-outcome-roi.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 900035,
+          "title": "Infographic Cost Per Outcome Roi",
+          "tags": [
+            "blog",
+            "infographic",
+            "cost",
+            "per",
+            "outcome",
+            "roi"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infographic-fsm-swarm-orchestration",
+          "filename": "infographic-fsm-swarm-orchestration.jpg",
+          "src": "/images/blog/generated/infographic-fsm-swarm-orchestration.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 860642,
+          "title": "Infographic Fsm Swarm Orchestration",
+          "tags": [
+            "blog",
+            "infographic",
+            "fsm",
+            "swarm",
+            "orchestration"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infographic-hyperscaler-mesh-topology",
+          "filename": "infographic-hyperscaler-mesh-topology.jpg",
+          "src": "/images/blog/generated/infographic-hyperscaler-mesh-topology.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 850704,
+          "title": "Infographic Hyperscaler Mesh Topology",
+          "tags": [
+            "blog",
+            "infographic",
+            "hyperscaler",
+            "mesh",
+            "topology"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infographic-liquid-cooling-dynamics",
+          "filename": "infographic-liquid-cooling-dynamics.jpg",
+          "src": "/images/blog/generated/infographic-liquid-cooling-dynamics.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 985007,
+          "title": "Infographic Liquid Cooling Dynamics",
+          "tags": [
+            "blog",
+            "infographic",
+            "liquid",
+            "cooling",
+            "dynamics"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infographic-mcp-zerotrust-mesh",
+          "filename": "infographic-mcp-zerotrust-mesh.jpg",
+          "src": "/images/blog/generated/infographic-mcp-zerotrust-mesh.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 876967,
+          "title": "Infographic Mcp Zerotrust Mesh",
+          "tags": [
+            "blog",
+            "infographic",
+            "mcp",
+            "zerotrust",
+            "mesh"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infographic-skill-standard-evals",
+          "filename": "infographic-skill-standard-evals.jpg",
+          "src": "/images/blog/generated/infographic-skill-standard-evals.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 718446,
+          "title": "Infographic Skill Standard Evals",
+          "tags": [
+            "blog",
+            "infographic",
+            "skill",
+            "standard",
+            "evals"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infographic-sram-wafer-scale-silicon",
+          "filename": "infographic-sram-wafer-scale-silicon.jpg",
+          "src": "/images/blog/generated/infographic-sram-wafer-scale-silicon.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 1096467,
+          "title": "Infographic Sram Wafer Scale Silicon",
+          "tags": [
+            "blog",
+            "infographic",
+            "sram",
+            "wafer",
+            "scale",
+            "silicon"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/inner-hr-ai-agent-hero",
