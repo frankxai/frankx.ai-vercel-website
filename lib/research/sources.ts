@@ -1407,50 +1407,6 @@ export const domainSources: Record<string, ResearchSource[]> = {
       "type": "preprint"
     }
   ],
-  "agentic-life-architecture": [
-    {
-      "name": "FrankX Personal Data Mesh Architecture",
-      "title": "Agentic Life Architecture & Personal Operating Systems — Unified decentralized data mesh across health, calendar, finance, and knowledge",
-      "url": "https://scholar.google.com/scholar?q=Agentic%20Life%20Architecture%20%26%20Personal%20Operating%20Systems%20Unified%20decentralized%20data%20mesh%20across%20health%2C%20calendar%2C%20finance%2C%20and%20knowledge",
-      "date": "2026-08-18",
-      "type": "journal"
-    },
-    {
-      "name": "Creator OS Case Studies",
-      "title": "Agentic Life Architecture & Personal Operating Systems — Cognitive load and administrative time reclaimed for sovereign deep creation",
-      "url": "https://scholar.google.com/scholar?q=Agentic%20Life%20Architecture%20%26%20Personal%20Operating%20Systems%20Cognitive%20load%20and%20administrative%20time%20reclaimed%20for%20sovereign%20deep%20creation",
-      "date": "2026-08-18",
-      "type": "journal"
-    },
-    {
-      "name": "Health Telemetry Integration",
-      "title": "Agentic Life Architecture & Personal Operating Systems — Adapting daily work schedules dynamically based on HRV recovery scores",
-      "url": "https://scholar.google.com/scholar?q=Agentic%20Life%20Architecture%20%26%20Personal%20Operating%20Systems%20Adapting%20daily%20work%20schedules%20dynamically%20based%20on%20HRV%20recovery%20scores",
-      "date": "2026-08-18",
-      "type": "journal"
-    },
-    {
-      "name": "Sovereign Privacy Standards",
-      "title": "Agentic Life Architecture & Personal Operating Systems — Local-first encrypted data storage protecting personal journals and finances",
-      "url": "https://scholar.google.com/scholar?q=Agentic%20Life%20Architecture%20%26%20Personal%20Operating%20Systems%20Local-first%20encrypted%20data%20storage%20protecting%20personal%20journals%20and%20finances",
-      "date": "2026-08-18",
-      "type": "journal"
-    },
-    {
-      "name": "Research Synthesis & Peer Review",
-      "title": "Agentic Life Architecture & Personal Operating Systems Technical Evaluation & Benchmark Report",
-      "url": "/research/agentic-life-architecture",
-      "date": "2026-08-18",
-      "type": "official"
-    },
-    {
-      "name": "Verified Citation Index",
-      "title": "Academic & Industry Literature Base: Personal Data Mesh, multi-agent life operating systems, cognitive load offloading, and sovereign personal AI",
-      "url": "https://arxiv.org/search/?query=Agentic%20Life%20Architecture%20%26%20Personal%20Operating%20Systems&searchtype=all",
-      "date": "2026-08-18",
-      "type": "preprint"
-    }
-  ],
   "gpu-architecture-blackwell-rubin": [
     {
       "name": "NVIDIA Blackwell Whitepaper",
@@ -4443,6 +4399,107 @@ export const domainSources: Record<string, ResearchSource[]> = {
       "type": "preprint"
     }
   ]
+,
+  'agentic-life-architecture': [
+    { name: 'FrankX', title: 'Agentic Operating System Standard (public)', url: 'https://github.com/frankxai/agentic-operating-system-standard', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Architecture Field Guide', url: 'https://github.com/frankxai/agentic-architecture-field-guide', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Creator Skills', url: 'https://github.com/frankxai/agentic-creator-skills', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Creator OS (ACOS)', url: 'https://github.com/frankxai/agentic-creator-os', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Intelligence System', url: 'https://github.com/frankxai/Starlight-Intelligence-System', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Memory — sovereign provider contract', url: 'https://github.com/frankxai/starlight-memory', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Evals', url: 'https://github.com/frankxai/starlight-evals', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Ops Hub', url: 'https://github.com/frankxai/agentic-ops-hub', type: 'official' },
+    { name: 'FrankX', title: 'Awesome Agent Operating Systems', url: 'https://github.com/frankxai/awesome-agent-operating-systems', type: 'official' },
+    { name: 'Anthropic', title: 'Effective context engineering for AI agents', url: 'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents', type: 'blog' },
+    { name: 'Anthropic', title: 'Multi-agent research system', url: 'https://www.anthropic.com/engineering/multi-agent-research-system', type: 'blog' },
+    { name: 'LangChain', title: 'Context engineering for agents (write/select/compress/isolate)', url: 'https://www.langchain.com/blog/context-engineering-for-agents', type: 'blog' },
+    { name: 'arXiv', title: 'Agent Skills for Large Language Models (skills composition survey)', url: 'https://arxiv.org/html/2602.12430', type: 'preprint' },
+    { name: 'arXiv', title: 'AgentOS: Personal Agent Operating System paradigm', url: 'https://arxiv.org/html/2603.08938', type: 'preprint' },
+    { name: 'OpenFang', title: 'Open-source Agent Operating System (Rust)', url: 'https://github.com/RightNow-AI/openfang', type: 'official' },
+    { name: 'GitHub', title: 'Agent Skills for Context Engineering', url: 'https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering', type: 'official' },
+    { name: 'Braintrust', title: 'AI agent evaluation framework (trajectory-aware)', url: 'https://www.braintrust.dev/articles/ai-agent-evaluation-framework', type: 'blog' },
+    { name: 'MorphLLM', title: 'AI Agent Evaluation Frameworks 2026 compared', url: 'https://www.morphllm.com/ai-agent-evaluation-frameworks', type: 'blog' },
+  ],
+
+  'agentic-memory': [
+    { name: 'Mem0', title: 'Universal memory layer for AI agents (GitHub)', url: 'https://github.com/mem0ai/mem0', type: 'official' },
+    { name: 'Graphiti / Zep', title: 'Temporal knowledge graphs for AI agents', url: 'https://github.com/getzep/graphiti', type: 'official' },
+    { name: 'Letta', title: 'Stateful agents with OS-tiered memory (formerly MemGPT)', url: 'https://github.com/letta-ai/letta', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Memory — local_core authority + adapters', url: 'https://github.com/frankxai/starlight-memory', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Intelligence System', url: 'https://github.com/frankxai/Starlight-Intelligence-System', type: 'official' },
+    { name: 'Anthropic', title: 'Effective context engineering for AI agents', url: 'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents', type: 'blog' },
+    { name: 'LangChain', title: 'Context engineering for agents', url: 'https://www.langchain.com/blog/context-engineering-for-agents', type: 'blog' },
+    { name: 'Redis', title: 'Long-Term Memory Architectures for AI Agents', url: 'https://redis.io/blog/long-term-memory-architectures-ai-agents/', type: 'blog' },
+    { name: 'arXiv', title: 'Memory for Autonomous LLM Agents (survey / mechanisms)', url: 'https://arxiv.org/html/2603.07670', type: 'preprint' },
+    { name: 'LongMemEval', title: 'LongMemEval benchmark project page', url: 'https://xiaowu0162.github.io/long-mem-eval/', type: 'benchmark' },
+    { name: 'LOCOMO', title: 'LOCOMO long multi-session memory benchmark', url: 'https://arxiv.org/abs/2402.17753', type: 'preprint' },
+    { name: 'Vectorize', title: 'Best AI Agent Memory Systems 2026 (comparative)', url: 'https://vectorize.io/articles/best-ai-agent-memory-systems', type: 'blog' },
+    { name: 'NiteAgent', title: 'Mem0 vs Zep vs LangMem vs Letta showdown 2026', url: 'https://niteagent.com/blog/ai-agent-memory-comparison-2026/', type: 'blog' },
+    { name: 'Developers Digest', title: 'Best AI Agent Memory Providers 2026', url: 'https://www.developersdigest.tech/blog/best-ai-agent-memory-providers-2026', type: 'blog' },
+    { name: 'Zep', title: 'Mem0 alternative — temporal memory positioning', url: 'https://www.getzep.com/mem0-alternative/', type: 'official' },
+    { name: 'Mem0 Blog', title: 'State of AI Agent Memory 2026', url: 'https://mem0.ai/blog/state-of-ai-agent-memory-2026', type: 'blog' },
+  ],
+
+'agentic-sovereignty': [
+    { name: 'FrankX', title: 'Starlight Memory — local_core authority + adapters', url: 'https://github.com/frankxai/starlight-memory', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Operating System Standard', url: 'https://github.com/frankxai/agentic-operating-system-standard', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Ops Hub', url: 'https://github.com/frankxai/agentic-ops-hub', type: 'official' },
+    { name: 'FrankX', title: 'Awesome Agent Operating Systems', url: 'https://github.com/frankxai/awesome-agent-operating-systems', type: 'official' },
+    { name: 'Mem0', title: 'Mem0 open-source memory layer', url: 'https://github.com/mem0ai/mem0', type: 'official' },
+    { name: 'Letta', title: 'Letta stateful agents (self-hostable memory blocks)', url: 'https://github.com/letta-ai/letta', type: 'official' },
+    { name: 'Graphiti / Zep', title: 'Temporal KG engine (OSS) vs managed platform split', url: 'https://github.com/getzep/graphiti', type: 'official' },
+    { name: 'OpenFang', title: 'Open-source Agent Operating System (Rust)', url: 'https://github.com/RightNow-AI/openfang', type: 'official' },
+    { name: 'Anthropic', title: 'Effective context engineering for AI agents', url: 'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents', type: 'blog' },
+    { name: 'LangChain', title: 'Context engineering for agents', url: 'https://www.langchain.com/blog/context-engineering-for-agents', type: 'blog' },
+    { name: 'Redis', title: 'Long-Term Memory Architectures for AI Agents', url: 'https://redis.io/blog/long-term-memory-architectures-ai-agents/', type: 'blog' },
+    { name: 'European Commission', title: 'EU AI Act — regulatory framework overview', url: 'https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai', type: 'official' },
+    { name: 'ICO / GDPR guidance class', title: 'Data subject rights & portability principles (privacy baseline)', url: 'https://gdpr.eu/right-to-data-portability/', type: 'official' },
+    { name: 'OWASP', title: 'OWASP Top 10 for LLM Applications', url: 'https://owasp.org/www-project-top-10-for-large-language-model-applications/', type: 'official' },
+    { name: 'arXiv', title: 'AgentOS: Personal Agent Operating System paradigm', url: 'https://arxiv.org/html/2603.08938', type: 'preprint' },
+    { name: 'arXiv', title: 'Memory for Autonomous LLM Agents', url: 'https://arxiv.org/html/2603.07670', type: 'preprint' },
+  ],
+
+  'agentic-evals': [
+    { name: 'Braintrust', title: 'AI agent evaluation framework (trajectory-aware)', url: 'https://www.braintrust.dev/articles/ai-agent-evaluation-framework', type: 'blog' },
+    { name: 'MorphLLM', title: 'AI Agent Evaluation Frameworks 2026 compared', url: 'https://www.morphllm.com/ai-agent-evaluation-frameworks', type: 'blog' },
+    { name: 'MorphLLM', title: 'AI Agent Evaluation 2026 — metrics & production', url: 'https://www.morphllm.com/ai-agent-evaluation', type: 'blog' },
+    { name: 'LangChain', title: 'LLM Evaluation Framework: Trajectories vs Outputs', url: 'https://www.langchain.com/resources/llm-evaluation-framework', type: 'blog' },
+    { name: 'LangSmith docs', title: 'Agent evaluation concepts (trajectory)', url: 'https://docs.smith.langchain.com/concepts/evaluation', type: 'official' },
+    { name: 'Arize Phoenix', title: 'Open inference / agent evaluation (self-host path)', url: 'https://github.com/Arize-ai/phoenix', type: 'official' },
+    { name: 'DeepEval', title: 'Pytest-style LLM/agent evaluation framework', url: 'https://github.com/confident-ai/deepeval', type: 'official' },
+    { name: 'Ragas', title: 'Reference-free RAG evaluation', url: 'https://github.com/explodinggradients/ragas', type: 'official' },
+    { name: 'MLflow', title: 'MLflow GenAI / agent evaluation overview', url: 'https://mlflow.org/docs/latest/llms/llm-evaluate/index.html', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Evals', url: 'https://github.com/frankxai/starlight-evals', type: 'official' },
+    { name: 'FrankX', title: 'SIS Model Arena methodology + receipts', url: 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md', type: 'official' },
+    { name: 'LongMemEval', title: 'LongMemEval benchmark', url: 'https://xiaowu0162.github.io/long-mem-eval/', type: 'benchmark' },
+    { name: 'LOCOMO', title: 'LOCOMO multi-session memory benchmark', url: 'https://arxiv.org/abs/2402.17753', type: 'preprint' },
+    { name: 'arXiv', title: 'MAESTRO multi-agent evaluation suite', url: 'https://arxiv.org/html/2601.00481v1', type: 'preprint' },
+    { name: 'Goodeye Labs', title: 'Top AI Agent Evaluation Tools 2026', url: 'https://www.goodeyelabs.com/articles/top-ai-agent-evaluation-tools-2026', type: 'blog' },
+    { name: 'Latitude', title: 'Agent-first evaluation comparison guide', url: 'https://latitude.so/blog/agent-first-comparison-guide-vs-braintrust', type: 'blog' },
+  ],
+
+  'agentic-life-observatory': [
+    { name: 'FrankX', title: 'Agentic Operating System Standard', url: 'https://github.com/frankxai/agentic-operating-system-standard', type: 'official' },
+    { name: 'FrankX', title: 'Agentic Architecture Field Guide', url: 'https://github.com/frankxai/agentic-architecture-field-guide', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Memory', url: 'https://github.com/frankxai/starlight-memory', type: 'official' },
+    { name: 'FrankX', title: 'Starlight Evals', url: 'https://github.com/frankxai/starlight-evals', type: 'official' },
+    { name: 'Nous Research', title: 'Hermes Agent Documentation', url: 'https://hermes-agent.nousresearch.com/docs', type: 'official' },
+    { name: 'Model Context Protocol', title: 'Model Context Protocol Documentation', url: 'https://modelcontextprotocol.io/', type: 'official' },
+    { name: 'A2A Project', title: 'Agent2Agent Protocol Documentation', url: 'https://a2a-protocol.org/latest/', type: 'official' },
+    { name: 'Mem0', title: 'Mem0 Documentation', url: 'https://docs.mem0.ai/', type: 'official' },
+    { name: 'Zep', title: 'Graphiti Documentation', url: 'https://help.getzep.com/graphiti/graphiti/overview', type: 'official' },
+    { name: 'Letta', title: 'Letta Documentation', url: 'https://docs.letta.com/', type: 'official' },
+    { name: 'LangChain', title: 'LangGraph Overview', url: 'https://docs.langchain.com/oss/python/langgraph/overview', type: 'official' },
+    { name: 'OpenAI', title: 'OpenAI Agents SDK', url: 'https://openai.github.io/openai-agents-python/', type: 'official' },
+    { name: 'Google', title: 'Agent Development Kit Documentation', url: 'https://google.github.io/adk-docs/', type: 'official' },
+    { name: 'OpenFang', title: 'OpenFang Agent Operating System', url: 'https://github.com/RightNow-AI/openfang', type: 'official' },
+    { name: 'n8n', title: 'n8n Documentation', url: 'https://docs.n8n.io/', type: 'official' },
+    { name: 'Braintrust', title: 'Braintrust Documentation', url: 'https://www.braintrust.dev/docs', type: 'official' },
+    { name: 'Arize AI', title: 'Phoenix Documentation', url: 'https://arize.com/docs/phoenix', type: 'official' },
+    { name: 'Langfuse', title: 'Langfuse Documentation', url: 'https://langfuse.com/docs', type: 'official' },
+    { name: 'Confident AI', title: 'DeepEval Documentation', url: 'https://deepeval.com/docs/getting-started', type: 'official' },
+    { name: 'Ragas', title: 'Ragas Documentation', url: 'https://docs.ragas.io/', type: 'official' },
+  ],
 }
 
 export function getSourcesForDomain(slug: string): ResearchSource[] {

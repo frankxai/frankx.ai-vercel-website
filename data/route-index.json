@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 895,
+    "total": 899,
     "aliases": 61,
     "byType": {
       "core": 23,
@@ -10,7 +10,7 @@
       "tool": 56,
       "static": 15,
       "blog": 229,
-      "research": 12,
+      "research": 16,
       "guide": 23,
       "library": 56,
       "newsletter": 1,
@@ -7856,6 +7856,27 @@
       "type": "research"
     },
     {
+      "href": "/research/agentic-evals",
+      "title": "Agentic Evals",
+      "tags": [
+        "research",
+        "agentic",
+        "evals"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/agentic-life-architecture",
+      "title": "Agentic Life Architecture",
+      "tags": [
+        "research",
+        "agentic",
+        "life",
+        "architecture"
+      ],
+      "type": "research"
+    },
+    {
       "href": "/research/agentic-life-observatory",
       "title": "Agentic Life Observatory",
       "tags": [
@@ -7865,6 +7886,26 @@
         "observatory"
       ],
       "type": "section"
+    },
+    {
+      "href": "/research/agentic-memory",
+      "title": "Agentic Memory",
+      "tags": [
+        "research",
+        "agentic",
+        "memory"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/agentic-sovereignty",
+      "title": "Agentic Sovereignty",
+      "tags": [
+        "research",
+        "agentic",
+        "sovereignty"
+      ],
+      "type": "research"
     },
     {
       "href": "/research/ai-contemplative-practice",

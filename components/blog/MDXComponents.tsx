@@ -7,6 +7,7 @@ import Diagram from '@/components/blog/Diagram'
 import { FunnelCTA } from '@/components/funnel/FunnelCTA'
 import { LeadMagnetCard } from '@/components/blog/LeadMagnetCard'
 import { buildInlineVideoSchema } from '@/lib/video-schema'
+import LearnHubCallout from '@/components/learn/LearnHubCallout'
 
 // Embed components for immersive media
 import {
@@ -290,6 +291,7 @@ export const mdxComponents: MDXComponents = {
   FunnelCTA,
   LeadMagnetCard,
   LeadMagnetInline: LeadMagnetCard,
+  LearnHubCallout,
   Link,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,

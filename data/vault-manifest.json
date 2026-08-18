@@ -1,13 +1,13 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T03:41:40.411Z",
-  "totalAssets": 1553,
-  "totalCollections": 58,
-  "totalSize": 1297728121,
+  "generatedAt": "2026-08-18T03:49:50.887Z",
+  "totalAssets": 1568,
+  "totalCollections": 59,
+  "totalSize": 1300040551,
   "formats": {
-    "png": 841,
+    "png": 842,
     "svg": 356,
-    "webp": 201,
+    "webp": 215,
     "jpg": 145,
     "jpeg": 10
   },
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 560,
+      "count": 561,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -7179,6 +7179,26 @@
             "hero"
           ],
           "createdAt": "2026-06-18"
+        },
+        {
+          "id": "blog/grok-4-6-analysis-2026-hero",
+          "filename": "grok-4-6-analysis-2026-hero.png",
+          "src": "/images/blog/grok-4-6-analysis-2026-hero.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 117306,
+          "title": "Grok 4 6 Analysis 2026",
+          "tags": [
+            "blog",
+            "grok",
+            "analysis",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/heygen-vs-synthesia-vs-argil-2026-hero-v8",
@@ -16733,12 +16753,166 @@
       "id": "books",
       "name": "Book Covers",
       "description": "Cover designs and promotional assets for published and upcoming books.",
-      "count": 31,
-      "coverImage": "/images/books/agentic-builder-cover.png",
+      "count": 41,
+      "coverImage": "/images/books/family/david/01-name.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
       "sortOrder": 11,
       "assets": [
+        {
+          "id": "books/01-name",
+          "filename": "01-name.webp",
+          "src": "/images/books/family/david/01-name.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 122348,
+          "title": "01 Name",
+          "tags": [
+            "books",
+            "name"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "books/02-hills",
+          "filename": "02-hills.webp",
+          "src": "/images/books/family/david/02-hills.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 284910,
+          "title": "02 Hills",
+          "tags": [
+            "books",
+            "hills"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "books/03-music",
+          "filename": "03-music.webp",
+          "src": "/images/books/family/david/03-music.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 180650,
+          "title": "03 Music",
+          "tags": [
+            "books",
+            "music"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "books/04-valley",
+          "filename": "04-valley.webp",
+          "src": "/images/books/family/david/04-valley.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 256096,
+          "title": "04 Valley",
+          "tags": [
+            "books",
+            "valley"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "books/05-friendship",
+          "filename": "05-friendship.webp",
+          "src": "/images/books/family/david/05-friendship.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 209944,
+          "title": "05 Friendship",
+          "tags": [
+            "books",
+            "friendship"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "books/06-lamb",
+          "filename": "06-lamb.webp",
+          "src": "/images/books/family/david/06-lamb.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 215322,
+          "title": "06 Lamb",
+          "tags": [
+            "books",
+            "lamb"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "books/07-songs",
+          "filename": "07-songs.webp",
+          "src": "/images/books/family/david/07-songs.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 165852,
+          "title": "07 Songs",
+          "tags": [
+            "books",
+            "songs"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "books/08-shard",
+          "filename": "08-shard.webp",
+          "src": "/images/books/family/david/08-shard.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 100258,
+          "title": "08 Shard",
+          "tags": [
+            "books",
+            "shard"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "books/09-five-stones",
+          "filename": "09-five-stones.webp",
+          "src": "/images/books/family/david/09-five-stones.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 149108,
+          "title": "09 Five Stones",
+          "tags": [
+            "books",
+            "five",
+            "stones"
+          ],
+          "createdAt": "2026-08-18"
+        },
         {
           "id": "books/agentic-builder-cover",
           "filename": "agentic-builder-cover.png",
@@ -16873,6 +17047,23 @@
             "cover"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "books/cover",
+          "filename": "cover.webp",
+          "src": "/images/books/family/david/cover.webp",
+          "thumbnail": null,
+          "collection": "books",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 191144,
+          "title": "Cover",
+          "tags": [
+            "books",
+            "cover"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "books/decentralized-creator-cover",
@@ -24253,6 +24444,86 @@
             "branding"
           ],
           "createdAt": "2026-05-28"
+        }
+      ]
+    },
+    {
+      "id": "qualities",
+      "name": "Qualities",
+      "description": "Visual assets from the Qualities collection.",
+      "count": 4,
+      "coverImage": "/images/qualities/connection.webp",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "qualities/connection",
+          "filename": "connection.webp",
+          "src": "/images/qualities/connection.webp",
+          "thumbnail": null,
+          "collection": "qualities",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 78886,
+          "title": "Connection",
+          "tags": [
+            "qualities",
+            "connection"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "qualities/freedom",
+          "filename": "freedom.webp",
+          "src": "/images/qualities/freedom.webp",
+          "thumbnail": null,
+          "collection": "qualities",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 65038,
+          "title": "Freedom",
+          "tags": [
+            "qualities",
+            "freedom"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "qualities/mastery",
+          "filename": "mastery.webp",
+          "src": "/images/qualities/mastery.webp",
+          "thumbnail": null,
+          "collection": "qualities",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 80490,
+          "title": "Mastery",
+          "tags": [
+            "qualities",
+            "mastery"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "qualities/meaning",
+          "filename": "meaning.webp",
+          "src": "/images/qualities/meaning.webp",
+          "thumbnail": null,
+          "collection": "qualities",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 95078,
+          "title": "Meaning",
+          "tags": [
+            "qualities",
+            "meaning"
+          ],
+          "createdAt": "2026-08-18"
         }
       ]
     },
