@@ -22,6 +22,7 @@ The gaming industry is undergoing its most profound technological transformation
 
 **Agentic Game Development** introduces living simulation architectures: autonomous non-player character (NPC) cognitive graphs, neural approximation of fluid and soft-body physics, and dynamic procedural world synthesis.
 
+<<<<<<< HEAD
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                 ASYNC COGNITIVE GAME ARCHITECTURE DUAL-LOOP                 │
@@ -39,6 +40,18 @@ The gaming industry is undergoing its most profound technological transformation
 │                                                                             │
 │  Render Target: Neural Physics & Spatial Audio Renderer                     │
 └─────────────────────────────────────────────────────────────────────────────┘
+=======
+```mermaid
+graph TD
+    A[Spatial Environment & Player Actions] --> B[Real-Time Game Loop 60 FPS]
+    B -->|Event Stream| C[Asynchronous Cognitive Engine 2 Hz]
+    C --> D[NPC Episodic Memory & Goal FSM]
+    C --> E[Local SLM / LPU Dialogue Generator]
+    D --> F[Intent & Action Dispatch]
+    E --> F
+    F -->|Target Velocity / Dynamic Dialogue| B
+    B --> G[Neural Physics & Spatial Audio Renderer]
+>>>>>>> origin/main
 ```
 
 ---

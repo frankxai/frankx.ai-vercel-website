@@ -23,6 +23,7 @@ The volume of scientific and technological literature has outstripped human cogn
 
 The solution is an automated, sovereign **100-Domain Research Engine** operating with the epistemic rigor of a top-tier research institution.
 
+<<<<<<< HEAD
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                 100-DOMAIN RESEARCH ENGINE INGESTION PIPELINE               │
@@ -43,6 +44,17 @@ The solution is an automated, sovereign **100-Domain Research Engine** operating
 │                                                       ▼                     │
 │                                          [100-Domain Research Hub / AEO]    │
 └─────────────────────────────────────────────────────────────────────────────┘
+=======
+```mermaid
+graph TD
+    A[Primary Literature Feed: arXiv, Nature, IEEE, ACM] --> B[Automated Ingestion & PDF Parser]
+    B --> C[Claim Extraction & Methodology Auditor]
+    C --> D{Epistemic Grading Gate}
+    D -->|Grade A: Peer-Reviewed / Formal Proof| E[Validated Claims Knowledge Graph]
+    D -->|Grade B: Industry Tech Report| E
+    D -->|Grade C: Editorial / Working Hypothesis| F[Emerging Frontiers Queue]
+    E --> G[100-Domain Research Hub UI + Schema.org AEO]
+>>>>>>> origin/main
 ```
 
 ---

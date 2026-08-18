@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 title: "The 4-Week Personal AI Center of Excellence: 2026 Rebuild Blueprint"
 description: "How to stand up an elite, sovereign Personal AI Center of Excellence (CoE) under $100/month with automated skills, safety gates, and memory infrastructure."
 date: "2026-08-18"
@@ -109,3 +110,142 @@ npm run merge:gate
 Once established, your Personal AI CoE turns every past project, decision, and writing piece into a queryable intellectual asset. You stop starting from scratch and begin every initiative with the accumulated leverage of your entire history.
 
 For operational templates, explore [The Sovereign Creator Wealth OS](/blog/sovereign-creator-wealth-operating-system-2026) and download our open-source templates from the [FrankX Downloads Portal](/downloads).
+=======
+title: "The 4-Week Personal AI CoE (2026 Rebuild)"
+description: "The March version organized by life domain. That was wrong. Rebuild it around four artifacts you can still open after every vendor goes dark."
+date: "2026-08-10"
+lastUpdated: "2026-08-18"
+author: "FrankX"
+category: "Creator Systems"
+tags: ["creator-systems", "ai-systems", "production"]
+image: "/images/blog/why-everyone-needs-personal-ai-coe-hero.webp"
+featured: true
+readingGoal: "Rebuild your personal AI setup around four artifacts that survive a vendor change, and price what each one costs you to lose."
+tldr: "In March I published a 7-domain Personal AI CoE organized by area of life. Five frontier models shipped in the six weeks that followed and the domain map did nothing to absorb it. The rebuild organizes around four artifacts instead — Rules, Library, Memory, Router — the Portable Core. Each gets an eviction price: how many hours to rebuild if the vendor holding it disappeared tonight. Four weeks, one artifact per week, and the governance layer the first version never had."
+keywords: ["creator systems", "creator-systems", "ai-systems", "production", "ai architecture", "frankx"]
+---
+**TL;DR** — In March I published a Personal AI Center of Excellence organized around seven life domains. Five frontier models shipped in the six weeks after, and not one line of that domain map helped me absorb the churn. The rebuild drops domains as the primary axis and organizes around four artifacts you own on disk: Rules, Library, Memory, Router. I call it the Portable Core. Each artifact carries an eviction price — the hours it costs you if the vendor holding it went dark tonight. Four weeks, one artifact per week.
+
+---
+
+## What actually broke in the March version?
+
+The [March framework](/blog/why-everyone-needs-personal-ai-coe) was not wrong about the translation. Enterprise CoEs really do reduce to six pillars, and those pillars really do map onto one person's work. That part held.
+
+What broke was the organizing axis. Seven domains — creative, knowledge, health, business, operations, financial, family — is a map of *where you apply AI*. It is silent on *what you keep*. So when the model layer churned hard through June and July, the map had nothing to say. Claude Opus 5 landed on July 24. GPT-5.6 shipped in three variants. Grok 4.5, Gemini 2.5 Pro Deep Think, Meta's Muse Spark 1.1 all landed inside the same window. Anthropic locked 300MW at Colossus 1 to feed the next one.
+
+Five frontier releases in six weeks, and the honest question a personal CoE has to answer is: *how much of my setup did I have to touch?* If the answer is "most of it," you did not build a Center of Excellence. You built a very organized set of habits inside somebody else's product, and the product moved.
+
+The March article also had a governance gap. It listed a "1-page personal AI rules doc" in the cost table and never said what goes on the page. That is the difference between naming a control and having one.
+
+## What is the Portable Core?
+
+Four artifacts. Each one is a file or a folder you can open with no vendor logged in. If it only exists inside a product UI, it is not in your core — it is in their retention strategy.
+
+**1. Rules.** One page. Not aspirations — decisions. What you never delegate. What always gets human review before it leaves your machine. What you will not train on, upload, or paste. What quality bar a draft has to clear. Mine includes a line that has killed more output than any other: *no AI or agentic in a hook — name the feeling instead.* A rule that has never cost you something you liked is not a rule, it is a description.
+
+**2. Library.** Your prompts, skills, and system definitions as text files under version control. Not saved chats. Not a folder of Projects. Files, with a diff history, so you can see what you changed and when it stopped working. The test: can you grep it? If not, you cannot maintain it, and an unmaintained library quietly rots into a graveyard of prompts written against a model that no longer exists.
+
+**3. Memory.** The context a fresh session does not have. Decisions and why you made them, what you already tried, what your standards are, the shape of your ongoing projects. This is the artifact everyone thinks they have and almost nobody does. The check is brutal and takes ten seconds: open a brand-new chat with no history and no custom instructions. If it gets you 90% of the way to your normal output, you never had memory. You had a good prompt, and a prompt is copyable from a single screenshot. [Persistent memory architecture](/blog/ai-agent-memory-persistent-systems) is the difference between a system that accumulates and one that resets nightly.
+
+**4. Router.** Which model does what, declared in one place. Not scattered across forty files and a browser habit. A [routing layer](/blog/ai-model-routing-guide) is the cheapest insurance available in a market with five frontier releases a quarter, and the only reason to skip it is that nothing has broken yet.
+
+Domains still exist in the rebuild. They just moved down a level — they are how you *organize* the Library, not the top-level architecture. Seven folders inside artifact two.
+
+## How do you price an eviction?
+
+This is the governance layer, and it is one question asked four times:
+
+> If the vendor holding this artifact terminated my account tonight, with no export, how many hours until I am back at full capability?
+
+Write the number down for each of the four. That is your eviction price. It is the only AI governance metric I have found that a single person can compute honestly in an afternoon.
+
+The numbers sort themselves into three bands:
+
+| Eviction price | What it means | What to do |
+| --- | --- | --- |
+| Under 1 hour | The artifact lives in files you own; the vendor was a renderer | Nothing. This is the target state. |
+| 1 hour – 1 day | Partially portable, some reconstruction from memory | Export it this week. It is cheap now and expensive later. |
+| Over 1 day | The vendor is not hosting your work, they *are* your work | Stop building here until it moves. |
+
+Run this before you buy anything. A tool with a low eviction price earns permission to become load-bearing. A tool with a high one is fine for experiments and disqualified from your core, no matter how good the demo was.
+
+The reason this works as governance where a rules doc alone does not: an eviction price is a number, and numbers degrade visibly. "Always review AI output" rots in silence. "Rebuilding my memory layer would cost me three days" gets worse every week you add to it, in public, on the page.
+
+## What does the 4-week rebuild look like?
+
+One artifact per week. The order matters — each week's output is the next week's input.
+
+**Week 1 — Rules.** Two hours, once. Write the page. Force yourself to include three things you will *not* do, and one quality bar specific enough that you could apply it to a piece you are already proud of and possibly fail. Then apply it to something you already published. If nothing fails, the bar is decorative — lower the tolerance and try again.
+
+**Week 2 — Library.** Move every prompt you actually use into a repo. Plain markdown, one file per prompt or skill, organized by domain — this is where the seven domains from the March version go. Delete anything you have not used in 30 days rather than migrating it; migration is how dead weight survives a reorganization. Expect this to be smaller than you think. Mine collapsed to a fraction of what I believed I was running.
+
+**Week 3 — Memory.** Write the context file a new collaborator would need on day one: current projects, standing decisions and their reasons, your standards, the things you have already tried and rejected. Then run the fresh-session test against it. Iterate until a cold start with that file attached produces work you would ship. This is the hardest week and the one that produces the most durable asset. Related: [skill libraries and the governance layer around them](/blog/skill-libraries-ai-coe-governance).
+
+**Week 4 — Router.** Declare your model assignments in one file: default, deep reasoning, fast/cheap, local, and one named fallback per slot. Then rehearse the failure. Switch your default to the fallback for a full working day. Whatever breaks in those hours is the real map of your coupling, and it will not match the map in your head. Anything you can run [locally](/blog/best-local-llm-2026) is an eviction price of zero by construction.
+
+At the end of week four you have four files, an eviction price for each, and a rehearsed failover. That is a smaller-sounding outcome than "seven domains at maturity level 4," and it is worth considerably more, because it is the part that survives the next release cluster.
+
+## Why does the maturity model need a second axis?
+
+The March maturity model ran one dimension: sophistication. Level 1 one-line prompts, Level 5 self-improving systems. It is a useful ladder and it is missing the axis that decides whether the climb is yours to keep.
+
+Sophistication and ownership are independent. You can be extremely sophisticated inside a product you do not control — elaborate multi-agent workflows, custom instructions everywhere, real results — and hold an eviction price measured in weeks. That is the most dangerous quadrant in the grid, because it feels like mastery right up until the terms change.
+
+| | Low ownership | High ownership |
+| --- | --- | --- |
+| **High sophistication** | Fluent renter. Fast now, exposed later. Most advanced users live here. | Compounding. The target. |
+| **Low sophistication** | Casual user. Little to lose, little gained. | Portable beginner. Slow, and everything you learn accrues to you. |
+
+The fluent renter and the compounder produce output that looks identical in a given week. They diverge the moment anything upstream changes — and upstream changes five times a quarter now.
+
+## What does this actually cost in 2026?
+
+The March post priced a personal CoE at $50–100/month against an enterprise equivalent of $500K–$5M. The ratio still holds. The composition changed.
+
+What is worth paying for in August 2026: one frontier subscription for depth, one API budget for automation, and whatever your local inference hardware already is. What is worth *not* paying for: a second frontier subscription bought as a hedge. Two subscriptions is not a router. A router with one paid model and one local fallback beats two paid models with no declared switching path, every time.
+
+The cost that does not appear on any invoice is the one to watch: hours spent re-prompting after a model release. Teams with a router changed a config line in late July and went back to work. Teams without spent two weeks re-benchmarking against a new API and finished in exactly the same competitive position, minus two weeks. That is unpaid QA, and it is billed in the only currency you cannot get more of.
+
+## What did I get wrong?
+
+I should not be able to write this article credibly, and the reason I can is unflattering.
+
+My own content system has 29 registered publishing surfaces, 16 linked databases, 10 brand voice profiles, and 20 staged pieces. It has published zero of them. Twenty drafts, not one with a publish date. The socialization rate across the whole apparatus was 3.7%.
+
+Every one of those surfaces was a sophistication move. None of them was an ownership move, and none of them was a shipping move. I had a Level 4 architecture running a Level 0 output rate, which is a very specific kind of failure: building the system is the most sophisticated available form of procrastination, and it is nearly invisible from the inside because it produces artifacts and momentum and the feeling of progress.
+
+The Portable Core is deliberately four things. Not seven, not twenty-nine. Four artifacts, four eviction prices, four weeks. The constraint is the feature. I am writing the full post-mortem on the 29-surface machine in two weeks; it is the least flattering thing I will publish this year.
+
+---
+
+## FAQ
+
+### What is the Portable Core?
+
+Four artifacts that constitute a personal AI Center of Excellence: Rules (a one-page decision document), Library (prompts and skills as version-controlled files), Memory (the context a fresh session lacks), and Router (declared model assignments with fallbacks). Each must exist as files you can open with no vendor logged in.
+
+### How is this different from the original 7-domain Personal AI CoE?
+
+The March 2026 framework organized around where you apply AI — seven life domains. The 2026 rebuild organizes around what you keep when the tooling changes. Domains still exist, but as the folder structure inside the Library artifact rather than the top-level architecture.
+
+### What is an eviction price?
+
+The number of hours it would take to return to full capability if the vendor holding a given artifact terminated your account tonight with no export. Under an hour is the target. Over a day means the vendor is not hosting your work — they are your work.
+
+### How long does the rebuild take?
+
+Four weeks, one artifact per week: roughly two hours for Rules, a few hours for Library, the largest block for Memory, and a day including the failover rehearsal for Router. It is deliberately smaller in scope than the original eight-week domain build.
+
+### Do I need to be technical to build a Portable Core?
+
+Rules, Library, and Memory are markdown files — no coding required, though version control makes the Library far more maintainable. The Router is the only artifact that benefits from technical comfort, and even it can start as a written table of which model you use for what, with a named fallback for each.
+
+### What is the fastest way to test whether I have real memory?
+
+Open a completely fresh session with no history, no custom instructions, and no attached context. If the output is within about 10% of your normal quality, you do not have a memory layer — you have a good prompt. Real memory is anything you could still read if every vendor went dark tomorrow.
+
+### Should I run local models as part of this?
+
+If your hardware supports it, one local model in the Router is worth more than its raw capability suggests, because its eviction price is zero by construction. It sets a floor on what an account termination or a pricing change can take from you.
+>>>>>>> origin/main

@@ -12,6 +12,7 @@ import { EcosystemBadge, EcosystemStack } from '@/components/blog/EcosystemBadge
 import { MascotInsight } from '@/components/blog/MascotInsight'
 import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
 
+
 // Embed components for immersive media
 import {
   YouTubeEmbed as BaseYouTubeEmbed,
@@ -112,12 +113,32 @@ function Callout({ children, type = 'info' }: CalloutProps) {
 
 function CustomImage({ src, alt, caption, ...props }: any) {
   return (
+<<<<<<< HEAD
     <LiquidGlassImage
       src={src}
       alt={alt}
       caption={caption}
       {...props}
     />
+=======
+    <figure className="my-10">
+      <div className="overflow-hidden rounded-xl border border-white/[0.08]">
+        <Image
+          src={src}
+          alt={alt}
+          width={1200}
+          height={630}
+          className="h-auto w-full"
+          {...props}
+        />
+      </div>
+      {alt && alt !== 'image' && (
+        <figcaption className="mt-3 text-center text-sm text-white/40">
+          {alt}
+        </figcaption>
+      )}
+    </figure>
+>>>>>>> origin/main
   )
 }
 

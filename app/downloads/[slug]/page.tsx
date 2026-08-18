@@ -138,7 +138,11 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
 
             {/* Feature List */}
             <div className="space-y-3 pt-4 border-t border-white/10">
+<<<<<<< HEAD
               <div className="text-xs text-neutral-400 font-semibold font-mono">Included in this 2026 Edition:</div>
+=======
+              <div className="text-xs uppercase tracking-wider text-neutral-400 font-semibold font-mono">What's Included in this Edition:</div>
+>>>>>>> origin/main
               {leadMagnet.features.map((feature, i) => (
                 <div key={i} className="flex items-start gap-3 text-sm text-neutral-200">
                   <span className="text-amber-400 font-bold shrink-0">✓</span>
@@ -173,7 +177,11 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
               {!unlocked ? (
                 <div className="bg-neutral-900/80 backdrop-blur-xl border border-white/15 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
                   <div className="text-center mb-6">
+<<<<<<< HEAD
                     <div className="text-xs font-semibold text-amber-400 mb-1 font-mono">
+=======
+                    <div className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1 font-mono">
+>>>>>>> origin/main
                       Zero-Friction Access
                     </div>
                     <h3 className="text-xl font-bold text-white">Unlock Free Executive Asset</h3>
@@ -190,14 +198,22 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="architect@company.com"
+<<<<<<< HEAD
                         className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-neutral-500 focus:outline-none focus:border-amber-500 text-sm font-mono"
+=======
+                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:border-amber-500 text-sm font-mono"
+>>>>>>> origin/main
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
+<<<<<<< HEAD
                       className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-400 text-black font-bold hover:brightness-110 transition-all shadow-lg shadow-amber-500/20 text-sm font-sans disabled:opacity-50"
+=======
+                      className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-400 text-black font-bold hover:brightness-110 transition-transform hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-amber-500/20 text-xs uppercase tracking-wider font-mono disabled:opacity-50"
+>>>>>>> origin/main
                     >
                       {isSubmitting ? 'Unlocking...' : variantConfig.ctaText}
                     </button>

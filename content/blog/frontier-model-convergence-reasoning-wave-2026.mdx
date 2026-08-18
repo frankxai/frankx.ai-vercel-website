@@ -24,6 +24,7 @@ The landscape of frontier artificial intelligence has undergone a fundamental ar
 
 This shift transforms how software architects, engineering leaders, and creators evaluate and route foundational models.
 
+<<<<<<< HEAD
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                    HYBRID TEST-TIME ROUTING ARCHITECTURE                    │
@@ -42,6 +43,18 @@ This shift transforms how software architects, engineering leaders, and creators
 │                 ▲                   │                                       │
 │                 └─ (Logic Reject) ──┘                                       │
 └─────────────────────────────────────────────────────────────────────────────┘
+=======
+```mermaid
+graph LR
+    A[User Intent / Task] --> B{Complexity Classifier}
+    B -->|System 1: High Velocity| C[Autoregressive Flash Model]
+    B -->|System 2: Formal Logic| D[Inference-Time Search Engine]
+    D --> E[MCTS / Best-of-N Sampling]
+    E --> F[Process Reward Model PRM]
+    F -->|Verified Pass| G[Deterministic Output]
+    F -->|Logic Fail| E
+    C --> G
+>>>>>>> origin/main
 ```
 
 ---
@@ -157,6 +170,7 @@ export function selectOptimalModel(policy: RoutingPolicy): string {
 - **Test-time compute is the new scaling frontier**: Spend compute at inference to solve complex logic rather than increasing model weights blindly.
 - **PRMs eliminate reasoning drift**: Dense step supervision guarantees each deduction holds before proceeding.
 - **Route by outcome verification**: Pair fast System 1 models for intuitive tasks with System 2 reasoning models for mission-critical software and mathematical verification.
+<<<<<<< HEAD
 
 ---
 
@@ -168,3 +182,5 @@ export function selectOptimalModel(policy: RoutingPolicy): string {
 - [AI Infrastructure Economics](/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026) — Blackwell NVL72, LPUs, and AI Factories.
 - [FrankX Open-Source Downloads](/downloads) — Download production-grade starter kits and architecture blueprints.
 
+=======
+>>>>>>> origin/main

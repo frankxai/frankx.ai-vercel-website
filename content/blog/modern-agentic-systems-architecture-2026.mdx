@@ -23,6 +23,7 @@ The early era of autonomous agents relied on naive **ReAct (Reason + Act)** prom
 
 Production agentic engineering has evolved into a disciplined branch of distributed systems architecture: **Autonomous Agent Operating Systems**.
 
+<<<<<<< HEAD
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                 AUTONOMOUS AGENT OPERATING SYSTEM ARCHITECTURE               │
@@ -44,6 +45,20 @@ Production agentic engineering has evolved into a disciplined branch of distribu
 │                 ▼      ▼                          │                         │
 │  [Memory Vault Substrate] ──► [Production Release] ─────────────────────────┘
 └─────────────────────────────────────────────────────────────────────────────┘
+=======
+```mermaid
+graph TD
+    A[User Goal / Dispatch] --> B[Supervisor Agent / Orchestrator]
+    B --> C{Context Compression & State Engine}
+    C --> D[Domain Subagent: Code Architect]
+    C --> E[Domain Subagent: Verification Sentinel]
+    C --> F[Domain Subagent: Research Scout]
+    D -->|Tool Call| G[MCP Protocol Mesh]
+    E -->|Audit Verdict| H{Quality Gate: PASS / REVISE}
+    H -->|PASS| I[Episodic-to-Semantic Memory Vault]
+    H -->|REVISE| D
+    I --> J[Production Release Artifact]
+>>>>>>> origin/main
 ```
 
 ---
@@ -142,6 +157,7 @@ export interface TrajectoryEvaluation {
 ```
 
 By enforcing automated gates—type-checking, strict linting, schema validation, and independent reviewer consensus—the agent operating system guarantees that shipped code is robust, documented, and production-ready.
+<<<<<<< HEAD
 
 ---
 
@@ -154,3 +170,5 @@ By enforcing automated gates—type-checking, strict linting, schema validation,
 - [Context Compression & Memory Vaults](/blog/context-compression-memory-vault-systems) — Headroom context compaction and memory tiers.
 - [FrankX Open-Source Downloads](/downloads) — Production templates and starter packs.
 
+=======
+>>>>>>> origin/main
