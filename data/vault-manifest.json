@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T11:05:52.481Z",
-  "totalAssets": 1591,
+  "generatedAt": "2026-08-18T11:17:18.576Z",
+  "totalAssets": 1600,
   "totalCollections": 59,
-  "totalSize": 1319363764,
+  "totalSize": 1326427363,
   "formats": {
     "png": 858,
     "svg": 356,
     "webp": 215,
-    "jpg": 152,
+    "jpg": 161,
     "jpeg": 10
   },
   "collections": [
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 568,
+      "count": 577,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -1144,6 +1144,28 @@
             "hero"
           ],
           "createdAt": "2026-06-18"
+        },
+        {
+          "id": "blog/agent-skill-standard-evaluated-workflows-2026",
+          "filename": "agent-skill-standard-evaluated-workflows-2026.jpg",
+          "src": "/images/blog/generated/agent-skill-standard-evaluated-workflows-2026.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 646151,
+          "title": "Agent Skill Standard Evaluated Workflows 2026",
+          "tags": [
+            "blog",
+            "agent",
+            "skill",
+            "standard",
+            "evaluated",
+            "workflows",
+            "2026"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/agentic-ai-roadmap-2026-hero-v2",
@@ -5111,6 +5133,49 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "blog/context-compression-memory-vault-systems",
+          "filename": "context-compression-memory-vault-systems.jpg",
+          "src": "/images/blog/generated/context-compression-memory-vault-systems.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 831856,
+          "title": "Context Compression Memory Vault Systems",
+          "tags": [
+            "blog",
+            "context",
+            "compression",
+            "memory",
+            "vault",
+            "systems"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/cost-per-verified-outcome-infrastructure-roi",
+          "filename": "cost-per-verified-outcome-infrastructure-roi.jpg",
+          "src": "/images/blog/generated/cost-per-verified-outcome-infrastructure-roi.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 550904,
+          "title": "Cost Per Verified Outcome Infrastructure Roi",
+          "tags": [
+            "blog",
+            "cost",
+            "per",
+            "verified",
+            "outcome",
+            "infrastructure",
+            "roi"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/creative-os",
           "filename": "creative-os.svg",
           "src": "/images/blog/creative-os.svg",
@@ -7307,6 +7372,26 @@
           "createdAt": "2026-06-18"
         },
         {
+          "id": "blog/hyperscaler-ai-cloud-matrix-2026",
+          "filename": "hyperscaler-ai-cloud-matrix-2026.jpg",
+          "src": "/images/blog/generated/hyperscaler-ai-cloud-matrix-2026.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 874804,
+          "title": "Hyperscaler Ai Cloud Matrix 2026",
+          "tags": [
+            "blog",
+            "hyperscaler",
+            "cloud",
+            "matrix",
+            "2026"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/iacos-research-os",
           "filename": "iacos-research-os.png",
           "src": "/images/blog/iacos-research-os.png",
@@ -7717,6 +7802,27 @@
           "createdAt": "2026-08-18"
         },
         {
+          "id": "blog/liquid-cooling-power-thermodynamics-ai-factories",
+          "filename": "liquid-cooling-power-thermodynamics-ai-factories.jpg",
+          "src": "/images/blog/generated/liquid-cooling-power-thermodynamics-ai-factories.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 822546,
+          "title": "Liquid Cooling Power Thermodynamics Ai Factories",
+          "tags": [
+            "blog",
+            "liquid",
+            "cooling",
+            "power",
+            "thermodynamics",
+            "factories"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/llama-4-analysis-2026-hero-premium",
           "filename": "llama-4-analysis-2026-hero-premium.png",
           "src": "/images/blog/llama-4-analysis-2026-hero-premium.png",
@@ -7930,6 +8036,28 @@
           "createdAt": "2026-06-18"
         },
         {
+          "id": "blog/lpu-wafer-scale-inference-economics-2026",
+          "filename": "lpu-wafer-scale-inference-economics-2026.jpg",
+          "src": "/images/blog/generated/lpu-wafer-scale-inference-economics-2026.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 883001,
+          "title": "Lpu Wafer Scale Inference Economics 2026",
+          "tags": [
+            "blog",
+            "lpu",
+            "wafer",
+            "scale",
+            "inference",
+            "economics",
+            "2026"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/magnifica-humanitas-benevolent-future-arcanea-hero",
           "filename": "magnifica-humanitas-benevolent-future-arcanea-hero.webp",
           "src": "/images/blog/editorial/headers/magnifica-humanitas-benevolent-future-arcanea-hero.webp",
@@ -8102,6 +8230,27 @@
             "hero"
           ],
           "createdAt": "2026-07-17"
+        },
+        {
+          "id": "blog/mcp-protocol-production-architecture-2026",
+          "filename": "mcp-protocol-production-architecture-2026.jpg",
+          "src": "/images/blog/generated/mcp-protocol-production-architecture-2026.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 821146,
+          "title": "Mcp Protocol Production Architecture 2026",
+          "tags": [
+            "blog",
+            "mcp",
+            "protocol",
+            "production",
+            "architecture",
+            "2026"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/mcp-server-architecture-workshop-hero",
@@ -10505,6 +10654,26 @@
           "createdAt": "2026-07-17"
         },
         {
+          "id": "blog/skills-vs-agents-vs-prompts-vs-mcp",
+          "filename": "skills-vs-agents-vs-prompts-vs-mcp.jpg",
+          "src": "/images/blog/generated/skills-vs-agents-vs-prompts-vs-mcp.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 730376,
+          "title": "Skills Vs Agents Vs Prompts Vs Mcp",
+          "tags": [
+            "blog",
+            "skills",
+            "agents",
+            "prompts",
+            "mcp"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/soul-frequency-framework-hero",
           "filename": "soul-frequency-framework-hero.webp",
           "src": "/images/blog/editorial/headers/soul-frequency-framework-hero.webp",
@@ -10647,6 +10816,27 @@
             "hero"
           ],
           "createdAt": "2026-06-18"
+        },
+        {
+          "id": "blog/subagent-swarm-orchestration-fsm-2026",
+          "filename": "subagent-swarm-orchestration-fsm-2026.jpg",
+          "src": "/images/blog/generated/subagent-swarm-orchestration-fsm-2026.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 902815,
+          "title": "Subagent Swarm Orchestration Fsm 2026",
+          "tags": [
+            "blog",
+            "subagent",
+            "swarm",
+            "orchestration",
+            "fsm",
+            "2026"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/suno-ai-12000-songs-production-lessons-premium-hero",

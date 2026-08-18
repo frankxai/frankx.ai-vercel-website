@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 901,
+    "total": 910,
     "aliases": 62,
     "byType": {
       "core": 23,
@@ -9,9 +9,9 @@
       "community": 17,
       "tool": 56,
       "static": 15,
-      "blog": 229,
+      "blog": 237,
       "research": 16,
-      "guide": 24,
+      "guide": 25,
       "library": 56,
       "newsletter": 1,
       "os": 11,
@@ -892,6 +892,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/agent-skill-standard-evaluated-workflows-2026",
+      "title": "The Agent Skill Standard: Evaluated Workflows in Production",
+      "description": "A guide to authoring testable AI skills under the Agent Skill Standard. Move from brittle prompt templates to reproducible code-grade operating knowledge.",
+      "tags": [
+        "ai-skills",
+        "agent-skill-standard",
+        "acos",
+        "evaluation",
+        "software-architecture"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/agentic-ai-roadmap-2025",
       "title": "Agentic AI Roadmap 2025: From Studio Rituals to Enterprise Governance",
       "description": "A strategic blueprint for creators, founders, and executives to deploy agentic AI systems in 2025, aligned with the FrankX Intelligence Atlas roadmap.",
@@ -1127,15 +1140,16 @@
     },
     {
       "href": "/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026",
-      "title": "AI Infrastructure & Hardware Economics: Blackwell, LPUs, and AI Factories",
-      "description": "Analysis of datacenter power constraints, liquid cooling manifolds, GB200 NVL72 architectures, Groq LPU economics, and OCI Superclusters.",
+      "title": "AI Infrastructure Economics: Blackwell, LPUs & Sovereign AI Factories",
+      "description": "Datacenter power scaling, liquid cooling manifolds, GB200 NVL72 clusters, Groq LPUs, Cerebras WSE-3, and multi-cloud hyperscaler compute economics across AWS, GCP, Azure, and CoreWeave.",
       "tags": [
         "ai-infrastructure",
         "blackwell-b200",
         "groq-lpus",
+        "cerebras-cs3",
         "ai-factories",
         "hardware-economics",
-        "oci-superclusters"
+        "liquid-cooling"
       ],
       "type": "blog"
     },
@@ -1837,6 +1851,32 @@
       "type": "blog"
     },
     {
+      "href": "/blog/context-compression-memory-vault-systems",
+      "title": "Context Compression & Memory Vaults: Scaling Long-Horizon AI Agents",
+      "description": "How Netflix Headroom, episodic-to-semantic compaction, and multi-tier memory vault hierarchies prevent context rot and allow autonomous agents to operate over weeks without memory degradation.",
+      "tags": [
+        "context-compression",
+        "headroom",
+        "memory-vaults",
+        "agentic-systems",
+        "long-horizon"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/cost-per-verified-outcome-infrastructure-roi",
+      "title": "The Cost-Per-Verified-Outcome: Enterprise AI Hardware TCO & ROI",
+      "description": "Why hourly GPU rental rates are a misleading financial metric. How to calculate true AI infrastructure ROI using latency, verification pass rates, and outcome-based token economics.",
+      "tags": [
+        "hardware-economics",
+        "roi",
+        "tco",
+        "ai-infrastructure",
+        "unit-economics"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/creator-intelligence-systems-2026",
       "title": "Why Every Creator Needs an Intelligence System in 2026",
       "description": "The creators who thrive in 2026 won't be those with the best tools—they'll be those with the best systems. Here's why personal AI intelligence systems are the new competitive advantage.",
@@ -2324,6 +2364,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/hyperscaler-ai-cloud-matrix-2026",
+      "title": "Hyperscaler AI Cloud Matrix: AWS vs. GCP vs. Azure vs. CoreWeave",
+      "description": "A comprehensive technical comparison of the 2026 AI cloud landscape. Evaluating AWS Trainium2, Google TPU v6e, Azure Maia, CoreWeave InfiniBand fabrics, and sovereign on-premise AI deployments.",
+      "tags": [
+        "cloud-infrastructure",
+        "aws-trainium",
+        "google-tpu",
+        "azure-maia",
+        "coreweave",
+        "sovereign-ai"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/iacos-investment-research-os",
       "title": "IACOS: How to Configure Claude Code as Your Investment Research OS",
       "description": "Turn Claude Code into a dedicated investment research platform with custom skills, agent profiles, MCP servers, and visual intelligence. The complete IACOS setup guide.",
@@ -2418,6 +2472,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/liquid-cooling-power-thermodynamics-ai-factories",
+      "title": "Datacenter Thermodynamics: Liquid Cooling Manifolds & 140kW Racks",
+      "description": "The physics of megawatt AI factories. Analyzing Direct-to-Chip cooling manifolds, CDUs, dielectric immersion, and high-voltage DC power distribution.",
+      "tags": [
+        "liquid-cooling",
+        "datacenter-thermodynamics",
+        "ai-factories",
+        "power-engineering",
+        "hardware-infrastructure"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/llama-4-analysis-2026",
       "title": "Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the ...",
       "description": "Llama 4 Maverick (400B total / 17B active MoE, 1M context, Llama 4 Community License) is still Meta's open-weight flagship in June 2026 — Behemoth never shipped.",
@@ -2442,6 +2509,19 @@
         "benchmarks",
         "ai-2026",
         "anthropic"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/lpu-wafer-scale-inference-economics-2026",
+      "title": "LPU & Wafer-Scale Economics: Why SRAM Beats HBM3e for Sub-10ms Agent Loops",
+      "description": "A silicon and architectural analysis of Groq LPUs, Cerebras WSE-3, and SRAM computing. How spatial compute and deterministic bandwidth break the memory wall for real-time swarms.",
+      "tags": [
+        "groq-lpus",
+        "cerebras-wse3",
+        "sram-architecture",
+        "inference-economics",
+        "real-time-ai"
       ],
       "type": "blog"
     },
@@ -2491,6 +2571,19 @@
         "intelligence-dispatches",
         "ai-systems",
         "production"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/mcp-protocol-production-architecture-2026",
+      "title": "MCP in Production: Zero-Trust Tool Meshes for AI Agents",
+      "description": "An architectural analysis of the Model Context Protocol (MCP). How to build, secure, and scale production-grade MCP servers with JSON-RPC streaming, OAuth tokens, and strict schema validation.",
+      "tags": [
+        "mcp",
+        "model-context-protocol",
+        "agentic-systems",
+        "security",
+        "distributed-systems"
       ],
       "type": "blog"
     },
@@ -3149,14 +3242,15 @@
     },
     {
       "href": "/blog/skills-vs-agents-vs-prompts-vs-mcp",
-      "title": "Skills vs Agents vs Prompts vs MCP: What Goes Where",
-      "description": "Four AI primitives that get confused constantly. Here is what each one is for, why they compose instead of compete, and how to decide which you actually need.",
+      "title": "Skills vs Agents vs Prompts vs MCP: The 2026 Agentic Hierarchy",
+      "description": "Four fundamental AI primitives that get confused constantly. An architectural breakdown of what each layer does, why they compose into a sovereign stack, and how to pick the right primitive for production software.",
       "tags": [
         "ai-skills",
         "agents",
         "mcp",
         "agent-skill-standard",
-        "agentic-systems"
+        "agentic-systems",
+        "software-architecture"
       ],
       "type": "blog"
     },
@@ -3208,6 +3302,19 @@
         "ai-strategy",
         "automation",
         "creator-os",
+        "agentic-systems"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/subagent-swarm-orchestration-fsm-2026",
+      "title": "Subagent Swarms & FSMs: Defeating State Divergence in Multi-Agent AI",
+      "description": "Why unbounded multi-agent chat loops fail and how Finite State Machine (FSM) supervisors, typed handoff schemas, and deterministic state graphs create resilient enterprise swarms.",
+      "tags": [
+        "subagents",
+        "swarm-orchestration",
+        "fsm",
+        "state-machines",
         "agentic-systems"
       ],
       "type": "blog"
@@ -5090,6 +5197,20 @@
         "Operations",
         "Systems",
         "Creative AI"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/agentic-engineering-mastery-2026",
+      "title": "The Agentic Engineering Master Guide: Designing Production AI Systems in 2026",
+      "description": "A complete curriculum for software architects and creators. From prompt engineering baselines to evaluated skills, MCP tool meshes, FSM subagents, and high-density liquid-cooled compute.",
+      "tags": [
+        "agentic-engineering",
+        "guide",
+        "mcp",
+        "skills",
+        "software-architecture",
+        "ai-factories"
       ],
       "type": "guide"
     },

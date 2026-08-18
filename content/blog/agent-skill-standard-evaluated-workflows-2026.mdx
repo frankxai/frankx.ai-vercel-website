@@ -1,0 +1,145 @@
+---
+title: "The Agent Skill Standard: Evaluated Workflows in Production"
+description: "A guide to authoring testable AI skills under the Agent Skill Standard. Move from brittle prompt templates to reproducible code-grade operating knowledge."
+date: "2026-08-18"
+category: "AI Architecture"
+tags:
+  - "ai-skills"
+  - "agent-skill-standard"
+  - "acos"
+  - "evaluation"
+  - "software-architecture"
+image: "/images/blog/generated/agent-skill-standard-evaluated-workflows-2026.jpg"
+featured: true
+flagship: true
+flagshipOrder: 5
+readingGoal: "Learn how to structure, version-control, evaluate, and publish production-grade AI skills that autonomous agents and human developers can execute reliably."
+tldr: "The Agent Skill Standard treats AI operational knowledge like software packages: structured directories containing trigger schemas, step-by-step workflow instructions, deterministic verification scripts, and automated evaluation suites. Standardized skills eliminate agent improvisation and enforce enterprise quality bars."
+architectNote: "Treat skills as immutable packages in git. Every skill must include explicit trigger boundaries, typed input/output interfaces, deterministic bash/node evaluation scripts, and a human-gated rollback path."
+publishedAt: "2026-08-18"
+lastUpdated: "2026-08-18"
+author: "Frank Riemer"
+series:
+  slug: "agentic-hierarchy-2026"
+  title: "The Agentic Architecture Hierarchy"
+  part: 2
+  total: 5
+---
+
+In software engineering, teams do not allow developers to copy-paste unstructured snippets across repositories without version control, unit tests, or linting. Yet in AI engineering, organizations routinely run mission-critical workflows by copying ad-hoc natural language prompts into chat boxes or embedding loose text strings inside agent orchestrators.
+
+The **Agent Skill Standard (ASS)** establishes a formal engineering specification for packaging operational AI knowledge into version-controlled, evaluated, and composable modules.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     THE AGENT SKILL DIRECTORY TOPOLOGY                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  skills/production-deploy-gate/                                             │
+│  ├── SKILL.md                 # Metadata, trigger conditions, workflow spec │
+│  ├── schema.json              # Typed JSON input and output contracts       │
+│  ├── scripts/                 # Deterministic local execution scripts       │
+│  │   ├── preflight-check.mjs  # Lint, type-check, and integrity validator   │
+│  │   └── deploy-webhook.mjs   # Production deployment trigger               │
+│  ├── evals/                   # Golden test trajectories and assertions     │
+│  │   ├── test-cases.json      # Evaluation scenarios and expected state     │
+│  │   └── run-eval.mjs         # Automated grading runner                    │
+│  └── references/              # Architecture docs, policies, brand guides   │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 1. Anatomy of a Production `SKILL.md`
+
+Every compliant skill requires a root `SKILL.md` file formatted with structured YAML frontmatter followed by deterministic execution steps:
+
+```markdown
+---
+name: production-deploy-gate
+version: 2.1.0
+description: "Pre-deploy validation gate enforcing TypeScript checks, strict AI-slop refusal, route indexing, and Vercel sync."
+author: "Frank Riemer"
+triggers:
+  - "deploy to production"
+  - "ship release"
+  - "pre-flight gate check"
+inputs:
+  targetRepo: string
+  branch: string
+outputs:
+  gateStatus: "PASS" | "WARN" | "FAIL"
+  auditReceipt: string
+tools:
+  - bash
+  - git
+---
+
+# Production Deploy Gate
+
+## 1. Pre-Execution Constraints
+- NEVER bypass the TypeScript compiler (`tsc --noEmit`).
+- Verify zero hits against the strict language refusal list (`audit-ai-slop.mjs`).
+
+## 2. Execution Sequence
+1. Run local validation: `node scripts/validate-blog-frontmatter.js`
+2. Run integrity audit: `node scripts/audit-ai-slop.mjs --strict`
+3. Execute compiler gate: `pnpm run type-check`
+4. If all pass, emit cryptographic deployment receipt.
+```
+
+---
+
+## 2. The 3-Tier Skill Evaluation Lifecycle
+
+A raw skill draft is not ready for production swarms. Under the standard, every skill progresses through three maturity tiers:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           SKILL MATURITY PIPELINE                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Tier 1: DRAFT                                                              │
+│  • Initial markdown instructions authored from expert trajectory.           │
+│  • Manual operator execution and edge-case discovery.                      │
+│       │                                                                     │
+│       ▼                                                                     │
+│  Tier 2: VALIDATED                                                          │
+│  • Deterministic shell scripts added for deterministic steps.               │
+│  • 10+ golden test trajectories verified with zero regressions.             │
+│       │                                                                     │
+│       ▼                                                                     │
+│  Tier 3: PRODUCTION CERTIFIED                                               │
+│  • Automated CI eval runner attached (`npm test`).                          │
+│  • Bound to supervisor agents as an autonomous execution unit.              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 3. Why Skills Precede Agents in System Design
+
+When organizations build autonomous multi-agent systems, the primary cause of hallucination is lack of operational boundaries. When an agent is told *"refactor our authentication system,"* it must invent every sub-step on the fly.
+
+When provided with a certified `refactor-auth-module` skill, the agent's job collapses from **inventing the workflow** to **executing the verified pipeline**:
+
+$$\text{Agent Reliability} = 1 - (1 - \text{Skill Pass Rate})^N$$
+
+By raising individual skill pass rates to **99%+ via deterministic scripts**, multi-turn agent chains achieve enterprise-grade reliability over hundreds of consecutive executions.
+
+---
+
+## Frequently Asked Questions
+
+### Where do skills live in a monorepo?
+Skills live in a top-level `.claude/skills/` or `skills/` directory at the repository root, checked directly into git alongside application source code.
+
+### How do agents find which skill to run?
+Supervisor agents read the `description` and `triggers` fields in each skill's frontmatter. When user intent matches a skill description, the agent binds that skill into its context window dynamically.
+
+---
+
+## Next Steps in the Hierarchy Series
+
+- [Part 1: Skills vs Agents vs Prompts vs MCP: The 2026 Agentic Hierarchy](/blog/skills-vs-agents-vs-prompts-vs-mcp)
+- [Part 3: MCP in Production: Building Zero-Trust Tool Meshes](/blog/mcp-protocol-production-architecture-2026)
+- [Part 4: Subagent Swarm Orchestration & FSM State Machines](/blog/subagent-swarm-orchestration-fsm-2026)
+- [Download the Agent Skill Standard Starter Pack](/downloads)

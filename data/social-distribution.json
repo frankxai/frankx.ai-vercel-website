@@ -1,58 +1,93 @@
 {
-  "version": "2026.1",
+  "version": "2026.2",
   "author": "Frank Riemer (@frankxai)",
   "posts": [
     {
-      "slug": "frontier-model-convergence-reasoning-wave-2026",
-      "title": "Frontier Model Convergence: Test-Time Compute and the Reasoning Wave",
-      "url": "https://frankx.ai/blog/frontier-model-convergence-reasoning-wave-2026",
+      "slug": "skills-vs-agents-vs-prompts-vs-mcp",
+      "title": "Skills vs Agents vs Prompts vs MCP: The 2026 Agentic Hierarchy",
+      "url": "https://frankx.ai/blog/skills-vs-agents-vs-prompts-vs-mcp",
       "x_thread": [
-        "Pre-training scaling laws (Kaplan, Chinchilla) hit a soft wall in 2026. The new frontier is inference compute budget C_infer: Test-Time Compute Scaling.\n\nHere is how Process Reward Models (PRMs), RLVR, and dynamic Monte Carlo tree search are reshaping AI architecture 🧵👇",
-        "1/ Classical LLMs emit tokens via greedy argmax sampling. They have no lookahead.\n\nReasoning models (o3, Claude 3.7, DeepSeek R1) treat inference as a search graph over candidate reasoning trajectories.",
-        "2/ Three pillars drive test-time compute:\n- Rollout Generation: K candidate intermediate reasoning branches\n- Step-Level PRM Value Scoring: Scoring intermediate logic, not just final answers\n- Dynamic Backtracking: Pruning contradictions and rewinding to parent nodes",
-        "3/ Why this matters for engineering:\nAccuracy scales with inference compute tokens. A 32B parameter model running 16,000 thinking tokens out-reasons a 700B parameter model answering in 200 tokens.",
-        "Full PhD-grade architecture breakdown + empirical scaling proofs on FrankX:\nhttps://frankx.ai/blog/frontier-model-convergence-reasoning-wave-2026"
+        "The #1 reason multi-agent systems fail in production is primitive confusion.\n\nTeams build unbounded autonomous agents when all they needed was a 5-step skill.\n\nHere is how Prompts, Skills, Agents, and MCP compose into a sovereign stack 🧵👇",
+        "1/ The 4-Layer Hierarchy:\n• Layer 1 (Prompt): Ephemeral request (what to say once)\n• Layer 2 (MCP): Universal JSON-RPC wire protocol (what the model can touch)\n• Layer 3 (Skill): Version-controlled, evaluated recipe (how to do recurring jobs)\n• Layer 4 (Agent): Stateful FSM loop pursuing a high-level goal",
+        "2/ If you remove the Skill layer, your agents improvise every run. If you remove MCP, your skills cannot touch real infrastructure securely.",
+        "3/ Decision Rule:\nOne-off idea? -> Prompt.\nRecurring job? -> Write a SKILL.md.\nExternal tool access? -> Build an MCP Server.\nDynamic path to goal? -> Deploy an Agent.",
+        "Full architectural breakdown, decision trees, and code schemas on FrankX:\nhttps://frankx.ai/blog/skills-vs-agents-vs-prompts-vs-mcp"
       ],
-      "linkedin_post": "Pre-training compute scaling is no longer the sole driver of artificial intelligence capability.\n\nThe industry has pivoted toward Test-Time Compute Scaling — allocating inference tokens to dynamic search, Step-Level Process Reward Models (PRMs), and Reinforcement Learning with Verifiable Rewards (RLVR).\n\nIn our latest architecture dispatch, we unpack:\n• The mathematics of test-time compute scaling laws\n• Why PRMs beat outcome-based rewards on complex logic\n• How reasoning tokens change enterprise procurement and latency budgets\n\nRead the full engineering analysis: https://frankx.ai/blog/frontier-model-convergence-reasoning-wave-2026"
-    },
-    {
-      "slug": "modern-agentic-systems-architecture-2026",
-      "title": "Modern Agentic Systems Architecture: From ReAct Loops to Trajectory Evals",
-      "url": "https://frankx.ai/blog/modern-agentic-systems-architecture-2026",
-      "x_thread": [
-        "Unconstrained while loops and naive ReAct chains are the primary reasons 80% of agent prototypes fail in production.\n\nHere is the 2026 Modern Agentic Operating System standard: FSM kernels, MCP 2026, and Trajectory Evals 🧵👇",
-        "1/ If your agent state is stored in raw markdown strings, it will derail after 10 turns.\n\nProduction agentic systems enforce Finite State Machine (FSM) state transitions with deterministic Zod schema validation at every tool boundary.",
-        "2/ Context Window Economics:\nNaive agents dump 50,000 tokens of file contents into memory. Modern agents use progressive disclosure:\n- Shallow schema discovery (<500 tokens)\n- Deep tool execution only on explicit intent match\n- Token compaction via AST tree pruning",
-        "3/ The golden rule of agentic reliability: Never evaluate an agent solely on the final answer. Evaluate the entire execution trajectory (tool selection, error recovery, API efficiency).",
-        "Explore the full production blueprint and state engine architecture:\nhttps://frankx.ai/blog/modern-agentic-systems-architecture-2026"
-      ],
-      "linkedin_post": "Why do 80% of multi-agent prototypes fail when moving from proof-of-concept to production?\n\nBecause naive loop architectures lack deterministic state machines, progressive tool discovery, and trajectory-level evaluation.\n\nIn our deep-dive architecture guide, we outline the exact 2026 standard for building mission-critical agentic systems:\n• FSM-based agent kernels and strict state transitions\n• Model Context Protocol (MCP) tool design patterns\n• Headroom context compression and token economics\n• Trajectory-aware evaluation pipelines (SWE-bench / τ-bench)\n\nFull guide: https://frankx.ai/blog/modern-agentic-systems-architecture-2026"
+      "linkedin_post": "Why do 80% of multi-agent prototypes collapse when moving from demo to production?\n\nBecause of primitive confusion. Engineering teams reach for an autonomous agent when they actually needed a version-controlled, evaluated skill.\n\nIn our latest architecture guide, we establish the 4-layer 2026 Agentic Hierarchy:\n1. Prompts (Ephemeral Intent)\n2. Model Context Protocol (Zero-Trust Tool Wire)\n3. Skills (Version-Controlled Operational Knowledge)\n4. Agents (Goal-Oriented Finite State Machines)\n\nRead the full blueprint: https://frankx.ai/blog/skills-vs-agents-vs-prompts-vs-mcp"
     },
     {
       "slug": "ai-infrastructure-blackwell-lpu-ai-factories-2026",
-      "title": "AI Infrastructure & Hardware Economics: Blackwell, LPUs, and AI Factories",
+      "title": "AI Infrastructure & Hardware Economics: Blackwell, LPUs, and Sovereign AI Factories",
       "url": "https://frankx.ai/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026",
       "x_thread": [
-        "Inference is the new manufacturing workload. But comparing GPUs purely on $/hr rental rates is flawed procurement.\n\nHere is the truth about NVIDIA GB200 NVL72, Groq LPUs, and the real metric: Cost per Verified Outcome 🧵👇",
-        "1/ GPUs (NVIDIA Blackwell) are bandwidth and compute monsters built for massive batch processing.\n\nLPUs (Groq Language Processing Units) use on-chip SRAM to achieve 80 TB/s bandwidth and sub-15ms Time-to-First-Token.",
+        "Inference is the new manufacturing workload. Comparing GPUs purely on $/hr rental rates is flawed procurement.\n\nHere is the truth about NVIDIA GB200 NVL72, Groq LPUs, Cerebras CS-3, and the real metric: Cost per Verified Outcome 🧵👇",
+        "1/ GPUs (NVIDIA Blackwell) are bandwidth and compute monsters built for massive batch processing and pre-training.\n\nLPUs (Groq) and Wafer-Scale Engines (Cerebras) use on-chip SRAM to deliver 80 to 21,000 TB/s bandwidth and sub-15ms Time-to-First-Token.",
         "2/ When an agent runs 15 multi-turn tool loops, 400ms GPU TTFT means a 10-second user delay. On an LPU, that same loop completes in 350 milliseconds.",
         "3/ Enterprise procurement must optimize for:\nCost per Outcome = (Compute Cost/Hr × Latency) / Verification Pass Rate.\n\nHardware with higher deterministic completion rates is cheaper overall.",
         "Full hardware architecture and AI Factory economics breakdown:\nhttps://frankx.ai/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026"
       ],
-      "linkedin_post": "Data centers are no longer passive server farms; they are dynamic AI Factories.\n\nAs reasoning models increase inference token demands by 10x–100x, enterprise infrastructure strategy must evolve beyond traditional GPU procurement.\n\nOur latest technical dispatch covers:\n• NVIDIA GB200 NVL72 liquid-cooled rack architectures (130kW per rack)\n• Groq LPU spatial compiler architectures and on-chip SRAM advantages\n• Why 'Cost per Million Verified Outcomes' is the only procurement metric that matters for autonomous agents\n\nRead the full report: https://frankx.ai/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026"
+      "linkedin_post": "Data centers are no longer passive server farms; they are dynamic AI Factories.\n\nAs reasoning models increase inference token demands by 10x–100x, enterprise infrastructure strategy must evolve beyond traditional GPU procurement.\n\nOur latest technical dispatch covers:\n• NVIDIA GB200 NVL72 liquid-cooled rack architectures (130kW per rack)\n• Groq LPU spatial compiler architectures and on-chip SRAM advantages\n• Cerebras CS-3 wafer-scale inference at 2,100+ tokens/sec\n• Why 'Cost per Million Verified Outcomes' is the only procurement metric that matters for autonomous agents\n\nRead the full report: https://frankx.ai/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026"
     },
     {
-      "slug": "quantum-reality-molecular-resonance-epigenetics-neuroscience",
-      "title": "Quantum Reality & Biological Resonance: The Molecular Architecture of Intent",
-      "url": "https://frankx.ai/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience",
+      "slug": "hyperscaler-ai-cloud-matrix-2026",
+      "title": "Hyperscaler AI Cloud Matrix: AWS vs. GCP vs. Azure vs. CoreWeave vs. Sovereign Mesh",
+      "url": "https://frankx.ai/blog/hyperscaler-ai-cloud-matrix-2026",
       "x_thread": [
-        "Is intention purely psychological, or does it leave measurable biophysical receipts?\n\nBridging Michael Levin’s bioelectricity, Joe Dispenza’s molecular epigenetics, and Karl Friston’s predictive processing 🧵👇",
-        "1/ The genome is not a micro-blueprint. Levin Lab at Tufts proved that somatic cells self-organize via endogenous bioelectric voltage gradients (V_mem) across gap junctions.",
-        "2/ Intention alters neurochemistry:\nElevated emotional coherence and disciplined meditation upregulate BDNF, downregulate inflammatory NF-κB, and lengthen telomeres through measurable epigenetic expression.",
-        "3/ In cognitive neuroscience (Friston's Free Energy Principle), the brain is a hierarchical prediction engine. Deep mental framing systematically shifts sensory precision weighting, physically rewiring dendritic spines.",
-        "Explore the scientific literature, bioelectric maps, and molecular pathways:\nhttps://frankx.ai/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience"
+        "Single-vendor cloud lock-in is dead in the AI era. You cannot run real-time voice, massive pre-training, and sovereign compliance on one generic cloud.\n\nEvaluating AWS Trainium2, Google TPU v6e, Azure Maia, and CoreWeave 🧵👇",
+        "1/ TPU v6e (Trillium) delivers 4.8 Tbps ICI interconnect for massive internal embeddings.\nTrainium2 UltraClusters scale to 100K chips for cost-optimized pre-training.",
+        "2/ CoreWeave and Lambda dominate pure-play InfiniBand GPU performance, while European sovereign providers (Nebius, Scaleway) guarantee EU AI Act compliance.",
+        "3/ Best practice: A sovereign routing mesh using LiteLLM/MCP to route baseline batch tasks to hyperscaler ASICs and burst reasoning to bare-metal GPU/LPU fabrics.",
+        "Full comparative matrix: https://frankx.ai/blog/hyperscaler-ai-cloud-matrix-2026"
       ],
-      "linkedin_post": "What happens when you examine human intention, focus, and state change through the lens of biophysics and molecular neuroscience?\n\nYou discover that consciousness and biology are interconnected informational networks.\n\nIn our deep synthesis, we review empirical findings across three major domains:\n1. Non-neural bioelectric morphogenetic fields (Dr. Michael Levin, Tufts)\n2. Molecular epigenetics and neurocardiac coherence (Dr. Joe Dispenza, Penrose/Hameroff)\n3. Hierarchical predictive processing & Free Energy minimization (Dr. Karl Friston)\n\nRead the full synthesis: https://frankx.ai/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience"
+      "linkedin_post": "How should enterprise architects evaluate cloud infrastructure in 2026?\n\nIt is no longer about generic VMs. It is about custom silicon (TPU v6e, Trainium2, Maia), interconnect bisection bandwidth (InfiniBand vs. RoCEv2), and data sovereignty.\n\nOur latest analysis compares:\n• Google Cloud TPU v6e vs. AWS Trainium2 vs. Azure Maia 100\n• Pure-play AI clouds (CoreWeave, Lambda) vs. Sovereign On-Premise Meshes\n• How to architect a vendor-neutral model router to prevent multi-cloud lock-in\n\nFull analysis: https://frankx.ai/blog/hyperscaler-ai-cloud-matrix-2026"
+    },
+    {
+      "slug": "mcp-protocol-production-architecture-2026",
+      "title": "MCP in Production: Building Zero-Trust Tool Meshes for Autonomous Agents",
+      "url": "https://frankx.ai/blog/mcp-protocol-production-architecture-2026",
+      "x_thread": [
+        "Model Context Protocol (MCP) is the universal wire protocol for AI agents. But running it in production requires strict zero-trust security.\n\nHere is the production blueprint for MCP servers, Stdio vs. SSE, and parameter validation 🧵👇",
+        "1/ MCP decouples model reasoning from system execution. One TypeScript MCP server serves Claude Code, Cursor, Antigravity, and custom swarms simultaneously.",
+        "2/ Four Security Rules:\n- Never expose raw shell execution without Docker/WASM sandboxing\n- Strict Zod schema parameter validation\n- Read-only database replicas by default\n- Cryptographic audit logging on all tool calls",
+        "Production code templates + architecture specs: https://frankx.ai/blog/mcp-protocol-production-architecture-2026"
+      ],
+      "linkedin_post": "The Model Context Protocol (MCP) has fundamentally standardized how AI models interact with enterprise data and tools.\n\nIn our latest engineering guide, we walk through building and securing production-grade MCP servers:\n• TypeScript server implementation with Zod validation\n• Stdio vs. Server-Sent Events (SSE) transport trade-offs\n• Zero-trust security architectures for autonomous agent tool access\n\nRead the complete guide: https://frankx.ai/blog/mcp-protocol-production-architecture-2026"
+    },
+    {
+      "slug": "subagent-swarm-orchestration-fsm-2026",
+      "title": "Subagent Swarms & FSM Orchestration: Defeating State Divergence in Multi-Agent Systems",
+      "url": "https://frankx.ai/blog/subagent-swarm-orchestration-fsm-2026",
+      "x_thread": [
+        "Unstructured multi-agent chat loops fail due to compounding mathematical entropy: P^(N×M).\n\nHere is how Finite State Machines (FSMs) and the Santa Loop make multi-agent swarms 99% reliable 🧵👇",
+        "1/ Replace free-form agent chat with deterministic state graphs.\nEach state transition must be validated by deterministic tools (compilers, linters, unit tests) before advancing.",
+        "2/ The Santa Loop: A drafting subagent creates the artifact; an independent adversarial review subagent audits it against strict rules. No ship without consensus.",
+        "Full state machine breakdown: https://frankx.ai/blog/subagent-swarm-orchestration-fsm-2026"
+      ],
+      "linkedin_post": "Why do unconstrained multi-agent swarms fail after 10 turns?\n\nBecause natural language communication across probabilistic models compounds state entropy exponentially.\n\nIn our new architecture post, we examine:\n• Mathematical proofs of agentic state decay\n• Finite State Machine (FSM) supervisor design patterns\n• Typed JSON subagent delegation contracts\n• The adversarial 'Santa Loop' for guaranteed code quality\n\nFull deep dive: https://frankx.ai/blog/subagent-swarm-orchestration-fsm-2026"
+    },
+    {
+      "slug": "context-compression-memory-vault-systems",
+      "title": "Context Compression & Memory Vaults: Scaling Long-Horizon AI Agents",
+      "url": "https://frankx.ai/blog/context-compression-memory-vault-systems",
+      "x_thread": [
+        "Million-token context windows don't prevent Context Rot. As agent context fills with raw tool logs, reasoning acuity degrades.\n\nHow semantic context compression and 4-tier memory vaults enable weeks of continuous agent execution 🧵👇",
+        "1/ The 4-Tier Memory Hierarchy:\n• Tier 1: Working memory (<128K active tokens)\n• Tier 2: Episodic session logs (JSONL)\n• Tier 3: Semantic knowledge vault (Local markdown)\n• Tier 4: Procedural memory (SKILL.md & MCP)",
+        "2/ Headroom Pattern: Truncate raw compiler outputs and evict intermediate observations while keeping static KV-cache prefixes locked.",
+        "Read the engineering analysis: https://frankx.ai/blog/context-compression-memory-vault-systems"
+      ],
+      "linkedin_post": "How do you keep autonomous AI agents operating across multi-day software projects without suffering from context dilution and memory degradation?\n\nBy implementing a structured 4-Tier Memory Hierarchy and deterministic context compression.\n\nOur latest dispatch breaks down:\n• The mechanics of semantic context eviction (Netflix Headroom pattern)\n• Episodic-to-semantic memory compaction into local markdown vaults\n• KV-cache prefix optimization for maximum inference efficiency\n\nRead the report: https://frankx.ai/blog/context-compression-memory-vault-systems"
+    },
+    {
+      "slug": "cost-per-verified-outcome-infrastructure-roi",
+      "title": "The Cost-Per-Verified-Outcome: A Mathematical Framework for Enterprise AI Hardware TCO",
+      "url": "https://frankx.ai/blog/cost-per-verified-outcome-infrastructure-roi",
+      "x_thread": [
+        "Procurement teams make a critical error renting the cheapest $/hr GPUs.\n\nIn agentic production, the math proves that hardware costing 3x more per hour is actually 80% CHEAPER in total spend 🧵👇",
+        "1/ CPVO Formula: (Compute Cost/Hr × Latency) / First-Pass Pass Rate.\n\nWhen budget hardware takes 120s and fails 30% of the time, retries multiply total capital spend exponentially.",
+        "2/ LPU and Blackwell meshes compress latency by 90% and increase first-pass success to 96%, slashing cost per verified outcome to pennies.",
+        "Full financial model and case study: https://frankx.ai/blog/cost-per-verified-outcome-infrastructure-roi"
+      ],
+      "linkedin_post": "Why is 'GPU hourly rental price' the wrong metric for enterprise AI procurement?\n\nBecause agentic software development is governed by multi-step latency and verification pass rates, not raw compute hours.\n\nIn our latest financial architecture paper, we present the Cost-Per-Verified-Outcome (CPVO) mathematical framework:\n• Why faster silicon drastically reduces total retry overhead\n• Empirical cost models comparing budget cloud GPUs vs. Blackwell/LPU meshes\n• How enterprise leaders can cut annual AI compute budgets while increasing reliability\n\nRead the full paper: https://frankx.ai/blog/cost-per-verified-outcome-infrastructure-roi"
     }
   ]
 }
