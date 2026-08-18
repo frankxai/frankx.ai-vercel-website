@@ -1,0 +1,135 @@
+---
+title: "Modern Agentic Systems Architecture: From ReAct Loops to Trajectory Evals"
+description: "A comprehensive teardown of production multi-agent systems, Model Context Protocol standards, context compression, and trajectory evaluation gates."
+date: "2026-08-18"
+category: "AI Architecture"
+tags:
+  - "agentic-systems"
+  - "mcp"
+  - "acos"
+  - "evals"
+  - "trajectory-learning"
+  - "context-engineering"
+image: "/images/blog/generated/modern-agentic-systems.jpg"
+readingGoal: "Understand the transition from fragile ReAct loops to deterministic multi-agent operating systems with structured memory and trajectory evaluation."
+tldr: "Simple ReAct loops degrade after 5 turns. Production agentic systems require state-machine orchestration, Model Context Protocol (MCP) standards, Headroom-style context compression, and episodic-to-semantic memory consolidation."
+architectNote: "Never allow agents to execute arbitrary unconstrained loops. Enforce circuit breakers, max tool call limits, and state machines with explicit transition invariants."
+publishedAt: "2026-08-18"
+lastUpdated: "2026-08-18"
+author: "Frank Riemer"
+---
+
+The early era of autonomous agents relied on naive **ReAct (Reason + Act)** prompt loops. While effective for simple three-step demos, unbounded autoregressive loops suffer from catastrophic context dilution, state divergence, and hallucinated tool calls over long horizons.
+
+Production agentic engineering has evolved into a disciplined branch of distributed systems architecture: **Autonomous Agent Operating Systems**.
+
+```mermaid
+graph TD
+    A[User Goal / Dispatch] --> B[Supervisor Agent / Orchestrator]
+    B --> C{Context Compression & State Engine}
+    C --> D[Domain Subagent: Code Architect]
+    C --> E[Domain Subagent: Verification Sentinel]
+    C --> F[Domain Subagent: Research Scout]
+    D -->|Tool Call| G[MCP Protocol Mesh]
+    E -->|Audit Verdict| H{Quality Gate: PASS / REVISE}
+    H -->|PASS| I[Episodic-to-Semantic Memory Vault]
+    H -->|REVISE| D
+    I --> J[Production Release Artifact]
+```
+
+---
+
+## 1. Why Simple ReAct Loops Fail in Production
+
+Standard ReAct implementations follow an unstructured text cycle: `Thought -> Action -> Observation -> Thought`. In production codebases, this architecture encounters four hard failure modes:
+
+1. **Context Window Saturation**: Tool outputs (e.g., massive file dumps, ASTs, raw JSON) consume 80%+ of the context window within 4 turns, displacing the original system prompt instructions.
+2. **State Drift & Goal Degradation**: Without an explicit state machine, intermediate tool errors lead agents down tangential rabbit holes.
+3. **Non-Deterministic Tool Execution**: Free-form parameter generation causes type mismatches, parameter omissions, and silent failure cascades.
+4. **Lack of Verifiable Handoffs**: Subagents fail to pass machine-validated artifacts to reviewer agents, leading to compounding errors.
+
+---
+
+## 2. The 6-Primitive Production Agent Architecture
+
+Enterprise-grade agentic frameworks (such as the Agentic Creator OS substrate) organize execution around six deterministic primitives:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│               SOVEREIGN AGENT OPERATING SYSTEM              │
+├─────────────────────────────────────────────────────────────┤
+│  1. SYSTEM KERNEL     → Deterministic State Machine Engine │
+│  2. PROTOCOL MESH     → Model Context Protocol (MCP) Mesh   │
+│  3. CONTEXT GOVERNOR  → Sliding Headroom & Dynamic Pruning  │
+│  4. MEMORY SUBSTRATE  → Two-Tier (Episodic & Semantic)      │
+│  5. VERIFICATION GATE → Adversarial Dual-Agent Review       │
+│  6. TRAJECTORY LOGGER → Structured JSONL Audit Trails       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Primitive Details
+
+| Primitive | Function | Technical Implementation |
+|---|---|---|
+| **System Kernel** | State transition validation | Finite State Machine (FSM) with explicit entry/exit hooks |
+| **Protocol Mesh** | Standardized tool interaction | Model Context Protocol (JSON-RPC 2.0 transport) |
+| **Context Governor** | Token conservation & focus | Sliding window compression, AST summarization, Headroom caching |
+| **Memory Substrate** | Long-term context compounding | SQLite/Vector hybrid (semantic patterns + episodic trajectories) |
+| **Verification Gate** | Independent quality assurance | Adversarial Creator-Verifier paired loops (The Santa Loop) |
+| **Trajectory Logger** | Observability & post-mortem | JSONL execution trees with step-level latency and token telemetry |
+
+---
+
+## 3. Model Context Protocol (MCP) as the Universal Substrate
+
+The adoption of the **Model Context Protocol (MCP)** represents the shift from proprietary tool wrappers to standardized client-server architectures.
+
+MCP decouples model logic from tool infrastructure:
+- **Lazy Tool Loading**: Agents inspect schema metadata without loading thousands of lines of tool definitions into active context.
+- **Resource Streaming**: Structured access to local and cloud file graphs, database connections, and browser automation endpoints.
+- **Observability Multiplexing**: Centralized telemetry routing for all tool invocations across distributed swarms.
+
+```typescript
+// MCP Tool Definition Contract
+export interface MCPToolDefinition {
+  name: string;
+  description: string;
+  parameters: {
+    type: 'object';
+    properties: Record<string, unknown>;
+    required: string[];
+  };
+  timeoutMs: number;
+  circuitBreakerThreshold: number;
+}
+```
+
+---
+
+## 4. Context Compression & Headroom Management
+
+Context is memory bandwidth. Dumping raw file systems or unparsed logs directly into agent context causes attention dispersion.
+
+Modern architectures use **Context Compression Layers**:
+- **Semantic Delta Extraction**: Passing unified diff blocks rather than entire files.
+- **Symbolic AST Extraction**: Generating high-level interface definitions (classes, method signatures, exports) before granting file edit tools.
+- **Ephemeral Scratchpads**: Writing intermediate calculation scratchpads to disk and loading only the consolidated output into working memory.
+
+---
+
+## 5. Trajectory Evals & Quality Gates
+
+An agentic task is only as reliable as its evaluation methodology. Evaluating final text outputs is insufficient; systems must audit the **entire execution trajectory**:
+
+```typescript
+// Trajectory Evaluation Metrics
+export interface TrajectoryEvaluation {
+  totalSteps: number;
+  unnecessaryToolCalls: number;
+  circuitBreakerTrips: number;
+  verificationPassRate: number; // 0.0 to 1.0
+  costPerOutcomeUSD: number;
+}
+```
+
+By enforcing automated gates—type-checking, strict linting, schema validation, and independent reviewer consensus—the agent operating system guarantees that shipped code is robust, documented, and production-ready.

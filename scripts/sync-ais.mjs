@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { existsSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, writeFileSync, readFileSync, mkdirSync } from 'node:fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const FRANKX_ROOT = resolve(__dirname, '..');
@@ -43,6 +43,28 @@ const emitPathsToTry = [
 const aisEmitPath = emitPathsToTry.find(p => existsSync(p)) || null;
 
 if (!aisCorePath || !aisEmitPath) {
+  // Check if static prebuilt files exist in AIS root
+  const fallbackAgents = resolve(AIS_ROOT, 'agents.json');
+  const fallbackLlms = resolve(AIS_ROOT, 'llms.txt');
+  const fallbackJsonLd = resolve(AIS_ROOT, 'jsonld.json');
+
+  if (existsSync(fallbackAgents) && existsSync(fallbackLlms)) {
+    mkdirSync(outDir, { recursive: true });
+    writeFileSync(resolve(outDir, 'llms.txt'), readFileSync(fallbackLlms, 'utf8'), 'utf8');
+    writeFileSync(resolve(outDir, 'llms-full.txt'), readFileSync(fallbackLlms, 'utf8'), 'utf8');
+    writeFileSync(resolve(outDir, 'agents.json'), readFileSync(fallbackAgents, 'utf8'), 'utf8');
+    if (existsSync(fallbackJsonLd)) {
+      writeFileSync(resolve(outDir, 'schema-graph.json'), readFileSync(fallbackJsonLd, 'utf8'), 'utf8');
+    }
+    console.log(`[sync-ais] Emitted AIS discovery assets from fallback files to ${outDir}`);
+    process.exit(0);
+  }
+
+  if (isCI) {
+    console.warn(`[sync-ais] Required packages not built; skipping optional AIS emission.`);
+    process.exit(0);
+  }
+
   console.error(
     `[sync-ais] Required packages not built. Run build in Agent-Intelligence-System first.`
   );

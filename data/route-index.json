@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 852,
+    "total": 871,
     "aliases": 61,
     "byType": {
       "core": 22,
-      "section": 400,
+      "section": 403,
       "community": 17,
       "tool": 54,
       "static": 15,
-      "blog": 211,
+      "blog": 227,
       "guide": 23,
       "library": 56,
       "newsletter": 1,
@@ -717,6 +717,20 @@
       "type": "core"
     },
     {
+      "href": "/blog/100-domain-scientific-research-engine-phd-hub",
+      "title": "The 100-Domain Research Engine: Building a PhD-Grade Intelligence Substrate",
+      "description": "How to structure automated literature synthesis, primary source registries, validated claims matrices, and answer engine optimization (AEO).",
+      "tags": [
+        "research-engine",
+        "knowledge-graphs",
+        "validated-claims",
+        "literature-synthesis",
+        "aeo",
+        "academic-rigor"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/30-minute-creator-os-quick-start",
       "title": "The 30-Minute Creator OS: Build Your Minimum Viable Creative System",
       "description": "Skip the theory. In 30 minutes, you'll have a working creative system with capture, create, and ship workflows. Everything else can wait.",
@@ -726,6 +740,17 @@
         "quick-start",
         "workflow",
         "ai-tools"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/4-week-personal-ai-coe-2026-rebuild",
+      "title": "The 4-Week Personal AI CoE (2026 Rebuild)",
+      "description": "The March version organized by life domain. That was wrong. Rebuild it around four artifacts you can still open after every vendor goes dark.",
+      "tags": [
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -819,10 +844,9 @@
       "title": "The 2026 AEO Knowledge Graph: From SEO to Entity-First Authority",
       "description": "Discover why Answer Engine Optimization (AEO) and Knowledge Graphs have replaced traditional SEO in 2026, and how to build topical authority clusters.",
       "tags": [
-        "aeo",
-        "knowledge",
-        "graph",
-        "2026"
+        "intelligence-dispatches",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -912,9 +936,22 @@
       "type": "blog"
     },
     {
+      "href": "/blog/agentic-game-dev-generative-neural-physics-2026",
+      "title": "Agentic Game Dev & Generative Physics: Next-Gen Interactive Worlds",
+      "description": "How autonomous NPC cognitive architectures, neural physics simulation, and real-time procedural generation transform interactive world development.",
+      "tags": [
+        "game-development",
+        "autonomous-npcs",
+        "neural-physics",
+        "spatial-compute",
+        "generative-ai"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/agentic-os-family-foundry-launch",
       "title": "The Agentic OS Family: One Architecture, Installed Into Real Businesses",
-      "description": "How a one-day install for a friend's company became agentic-business-os, a public template with a sync channel — and the Foundry, an application-only install service with priority for sustainable, healthcare, and meaningful businesses.",
+      "description": "How a one-day install for a friend's company became agentic-business-os, a public template with a sync channel — and the Foundry, an application-only install service with priority for s...",
       "tags": [
         "agentic-os",
         "business-os",
@@ -928,7 +965,7 @@
     {
       "href": "/blog/agentic-seo-publishing-masterplan",
       "title": "Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19",
-      "description": "Build a 15,000-word intelligence system that fuses Google's latest search dynamics with agentic AI production pipelines. This masterplan orchestrates the next twelve days of publishing, from flagship essays to automated supporting posts, distribution rituals, and crawl amplification.",
+      "description": "Build a 15,000-word intelligence system that fuses Google's latest search dynamics with agentic AI production pipelines.",
       "tags": [
         "seo",
         "agentic ai",
@@ -1074,8 +1111,8 @@
     },
     {
       "href": "/blog/ai-image-video-generation-playbook-2026",
-      "title": "The 2026 AI Image & Video Playbook: Which Model, Which Subscription, Zero Extra API Cost",
-      "description": "Most creators pay twice for AI images — once for the subscription, again for the API. Here's the decision table: which engine to use, which plan already includes it, and the rare times paying per-call is actually worth it.",
+      "title": "The 2026 AI Image & Video Playbook",
+      "description": "Most creators pay twice for AI images — once for the subscription, again for the API.",
       "tags": [
         "ai image generation",
         "ai video generation",
@@ -1087,9 +1124,23 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026",
+      "title": "AI Infrastructure & Hardware Economics: Blackwell, LPUs, and AI Factories",
+      "description": "Analysis of datacenter power constraints, liquid cooling manifolds, GB200 NVL72 architectures, Groq LPU economics, and OCI Superclusters.",
+      "tags": [
+        "ai-infrastructure",
+        "blackwell-b200",
+        "groq-lpus",
+        "ai-factories",
+        "hardware-economics",
+        "oci-superclusters"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ai-model-routing-guide",
       "title": "The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)",
-      "description": "The working AI Architect's routing matrix as a narrative: which frontier model runs your coding agents, review gates, fan-out workers, and sovereign stacks — with prices, evidence grades, and the persona map. Refreshed every quarter and after every arena round.",
+      "description": "The working AI Architect's routing matrix as a narrative: which frontier model runs your coding agents, review gates, fan-out workers, and sovereign stacks — with prices, evidence grade...",
       "tags": [
         "frontier-models",
         "model-routing",
@@ -1153,6 +1204,46 @@
       "type": "blog"
     },
     {
+      "href": "/blog/august-2026-frontier-model-wave-routing",
+      "title": "August 2026 Frontier Model Wave: Grok 4.6, Gemini 3.7 Flash, DeepSeek-V4-Pro",
+      "description": "Evidence-based routing table for Grok 4.6, Gemini 3.7 Flash, DeepSeek-V4-Pro, and Qwen3.8-27B. Production benchmarks and multi-agent fabric lanes.",
+      "tags": [
+        "ai-strategy",
+        "model-routing",
+        "frontier-models",
+        "multi-agent",
+        "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/autonomous-agentic-product-dev-ai-foundry-2026",
+      "title": "Autonomous Product Dev & The AI Foundry: Building Software with Swarms",
+      "description": "How sovereign creators and elite engineering teams design, scaffold, test, and ship autonomous micro-SaaS products using multi-agent swarms.",
+      "tags": [
+        "agentic-foundry",
+        "micro-saas",
+        "product-development",
+        "multi-agent",
+        "developer-experience",
+        "acos"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/autonomous-knowledge-graphs-rag-persistent-memory-2026",
+      "title": "Autonomous Knowledge Graphs: Graph RAG and Persistent Memory (2026)",
+      "description": "How to unify vector embeddings, knowledge graphs, and trajectory learning into a resilient persistent memory substrate for autonomous multi-agent swarms.",
+      "tags": [
+        "creator-os",
+        "knowledge-graphs",
+        "rag",
+        "persistent-memory",
+        "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/best-ai-affiliate-programs-2026",
       "title": "The Best AI and MCP Affiliate Programs in 2026 (Ranked by What Actually Pays)",
       "description": "A ranked, economics-first guide to AI and MCP affiliate programs in 2026 — recurring vs one-time, the honest dead-ends, and the 3-network setup that replaces signing up to 30 sites.",
@@ -1169,7 +1260,7 @@
     {
       "href": "/blog/best-ai-browser-2026",
       "title": "Best AI Browser 2026: ChatGPT Atlas vs Perplexity Comet vs Dia",
-      "description": "A current, honest comparison of the 2026 AI browsers — ChatGPT Atlas, Perplexity Comet (free since March), and Dia — on agentic browsing, assistant quality, privacy, price, and platform. Plus where Gemini-in-Chrome and Edge Copilot fit.",
+      "description": "A current, honest comparison of the 2026 AI browsers — ChatGPT Atlas, Perplexity Comet (free since March), and Dia — on agentic browsing, assistant quality, privacy, price, and platform.",
       "tags": [
         "AI browser",
         "ChatGPT Atlas",
@@ -1183,7 +1274,7 @@
     {
       "href": "/blog/best-ai-coding-tools-for-beginners-2026",
       "title": "Best AI Coding Tool for Beginners 2026: Cursor vs GitHub Copilot vs Replit Agent",
-      "description": "An honest comparison of Cursor, GitHub Copilot, and Replit Agent for people learning to code or shipping their first app — learning curve, free tiers, real prices, and which one a non-coder can actually use.",
+      "description": "An honest comparison of Cursor, GitHub Copilot, and Replit Agent for people learning to code or shipping their first app — learning curve, free tiers, real prices, and which one a non-c...",
       "tags": [
         "AI coding tools",
         "beginners",
@@ -1222,16 +1313,13 @@
     {
       "href": "/blog/best-ai-logo-maker-2026",
       "title": "Best AI Logo Maker 2026: Looka vs Canva vs Ideogram vs Recraft",
-      "description": "A results-first comparison of the best AI logo makers in 2026 — Looka, Canva, Ideogram, and Recraft — judged on vector export, brand kit, licensing, and price. Recraft wins for the file you actually own.",
+      "description": "A results-first comparison of the best AI logo makers in 2026 — Looka, Canva, Ideogram, and Recraft — judged on vector export, brand kit, licensing, and price.",
       "tags": [
         "AI logo maker",
-        "AI design tools",
         "Recraft",
         "Looka",
         "Canva",
-        "Ideogram",
-        "vector graphics",
-        "brand identity"
+        "vector graphics"
       ],
       "type": "blog"
     },
@@ -1251,8 +1339,8 @@
     },
     {
       "href": "/blog/best-ai-note-taking-tools-2026",
-      "title": "Best AI Note-Taking and Second-Brain Tools 2026: Notion AI vs Mem vs Reflect vs Obsidian",
-      "description": "A results-first comparison of the best AI note-taking and second-brain tools in June 2026 — Notion AI, Mem, Reflect, Obsidian, and meeting tools Granola and Otter — scored on AI quality, retrieval, transcription, privacy, and price.",
+      "title": "Best AI Note-Taking and Second-Brain Tools 2026: Notion AI vs Mem vs Reflect ...",
+      "description": "A results-first comparison of the best AI note-taking and second-brain tools in June 2026 — Notion AI, Mem, Reflect, Obsidian, and meeting tools Granola and Otter — scored on AI quality...",
       "tags": [
         "second brain",
         "AI note-taking",
@@ -1264,7 +1352,7 @@
     },
     {
       "href": "/blog/best-ai-presentation-maker-2026",
-      "title": "Best AI Presentation Maker 2026: Gamma vs Canva vs NotebookLM (and Why Tome Is Gone)",
+      "title": "Best AI Presentation Maker 2026",
       "description": "Gamma, Canva, Beautiful.ai, Plus AI, NotebookLM, and Presentations.ai compared on quality, editability, PPT/Slides export, and price — plus the Tome shutdown most guides still get wrong.",
       "tags": [
         "AI Presentations",
@@ -1278,7 +1366,7 @@
     {
       "href": "/blog/best-ai-product-photography-2026",
       "title": "Best AI Product Photography Tools 2026 for Amazon and Shopify Sellers",
-      "description": "A results-first comparison of the best AI product photography tools in 2026 — Photoroom, Pebblely, Flair.ai, Claid, plus Nano Banana Pro and GPT Image 2 — ranked on realism, product accuracy, batch power, and price.",
+      "description": "A results-first comparison of the best AI product photography tools in 2026 — Photoroom, Pebblely, Flair.",
       "tags": [
         "AI product photography",
         "ecommerce",
@@ -1293,7 +1381,7 @@
     {
       "href": "/blog/best-ai-resume-builder-2026",
       "title": "Best AI Resume Builder 2026: Teal vs Rezi vs Kickresume vs Just Using Claude",
-      "description": "An honest comparison of the top AI resume builders in 2026 — Teal, Rezi, Kickresume, Enhancv — against the $0 Claude-plus-template route. What ATS optimization actually means, real pricing, and when a paid builder is worth it.",
+      "description": "An honest comparison of the top AI resume builders in 2026 — Teal, Rezi, Kickresume, Enhancv — against the $0 Claude-plus-template route.",
       "tags": [
         "AI resume builder",
         "ATS optimization",
@@ -1306,7 +1394,7 @@
     },
     {
       "href": "/blog/best-ai-shorts-tiktok-tools-2026",
-      "title": "Best AI Tool for YouTube Shorts and TikTok 2026: Opus Clip vs AutoShorts vs Faceless",
+      "title": "Best AI Tool for YouTube Shorts and TikTok 2026",
       "description": "The best AI tools for automated YouTube Shorts and TikTok in 2026 — Opus Clip, AutoShorts, Faceless.so, Submagic, and CapCut compared on automation, quality, scheduling, and price.",
       "tags": [
         "AI Video",
@@ -1335,41 +1423,32 @@
       "title": "The Best AI Tools for Creators in 2026: A GenCreator's Production Stack",
       "description": "The complete AI creator toolkit — from Claude Code for development to Suno for music. Every tool battle-tested in daily production use.",
       "tags": [
-        "ai-tools",
-        "creator-stack",
-        "gencreator",
-        "ai-workflow",
-        "productivity",
-        "automation"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/best-ai-video-editor-2026",
       "title": "Best AI Video Editor 2026: CapCut vs Descript vs Premiere AI vs Runway",
-      "description": "The honest June 2026 comparison of the four AI video editors that matter — CapCut for short-form, Descript for talking-head and podcast video, Premiere with Firefly for pro long-form, Runway for AI-native generation. Picked by job, with verified pricing and a comparison table.",
+      "description": "The honest June 2026 comparison of the four AI video editors that matter — CapCut for short-form, Descript for talking-head and podcast video, Premiere with Firefly for pro long-form, R...",
       "tags": [
-        "ai-video-editor",
-        "capcut",
-        "descript",
-        "adobe-premiere",
-        "runway",
-        "creator-tools"
+        "intelligence-dispatches",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/best-ai-video-generators-2026-x-aggregated",
-      "title": "Best AI Video Generators June 2026: What Creators on X Are Actually Shipping With",
-      "description": "X-aggregated signals on Higgsfield, Seedance 2.0, Kling 3.0, Veo 3.1, Sora 2, Runway and the rest. Head-to-head on control, audio, value, consistency. Affiliate reality, slop warnings, and the FrankX/ACOS hybrid stack that actually ships.",
+      "title": "Best AI Video Generators June 2026",
+      "description": "X-aggregated signals on Higgsfield, Seedance 2.0, Kling 3.0, Veo 3.1, Sora 2, Runway and the rest. Head-to-head on control, audio, value, consistency.",
       "tags": [
         "AI Video",
         "Higgsfield",
-        "Seedance",
         "Kling",
         "Veo",
-        "Sora",
-        "Runway",
         "Creator Tools"
       ],
       "type": "blog"
@@ -1390,7 +1469,7 @@
     {
       "href": "/blog/best-cheap-ai-music-generator-2026",
       "title": "Best Cheap AI Music Generator 2026: Free Tiers and Commercial Rights Compared",
-      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that decides whether you can legally sell the output: commercial rights.",
+      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that de...",
       "tags": [
         "AI Music",
         "Suno",
@@ -1435,17 +1514,14 @@
         "no-code",
         "n8n",
         "automation",
-        "MCP",
-        "Lindy",
-        "Make",
-        "Zapier"
+        "MCP"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/best-open-local-llms-2026",
       "title": "The Best Open & Local LLMs in 2026: A Self-Host Field Guide",
-      "description": "Which open-weight model for which hardware — Gemma 4, gpt-oss, Phi-4, Mistral Large 3, Llama 4, DeepSeek V4, and Kimi K2.6 compared by VRAM, license, and use case. When self-hosting beats an API, with verified benchmarks.",
+      "description": "Which open-weight model for which hardware — Gemma 4, gpt-oss, Phi-4, Mistral Large 3, Llama 4, DeepSeek V4, and Kimi K2.6 compared by VRAM, license, and use case.",
       "tags": [
         "open-source",
         "local-llm",
@@ -1545,7 +1621,7 @@
     {
       "href": "/blog/chatgpt-vs-claude-vs-gemini-2026",
       "title": "ChatGPT vs Claude vs Gemini 2026: Which AI Assistant for Everyday Use?",
-      "description": "An honest, results-first comparison of the three $20 AI subscriptions — ChatGPT Plus, Claude Pro, and Google AI Pro — for writing, research, images, voice, memory, and everyday questions. Pick by use case.",
+      "description": "An honest, results-first comparison of the three $20 AI subscriptions — ChatGPT Plus, Claude Pro, and Google AI Pro — for writing, research, images, voice, memory, and everyday questions.",
       "tags": [
         "AI Assistants",
         "ChatGPT",
@@ -1558,7 +1634,7 @@
     },
     {
       "href": "/blog/cheapest-frontier-model-access-2026",
-      "title": "Cheapest Way to Access GPT-5.5, Claude Opus 4.8 and Gemini 3.1 in 2026 (Subscription vs API vs Gateway)",
+      "title": "Cheapest Way to Access GPT-5.5, Claude Opus 4.8 and Gemini 3.1 in 2026 (Subsc...",
       "description": "Verified June-2026 pricing for every route to GPT-5.5, Claude Opus 4.8 and Gemini 3.1 Pro — subscriptions, raw APIs, and gateways. The cheapest path per use case, with the exact break-even math.",
       "tags": [
         "AI pricing",
@@ -1572,7 +1648,7 @@
     },
     {
       "href": "/blog/claude-agent-sdk-credit-pause-agent-stack-2026",
-      "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.",
+      "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Sho...",
       "description": "Anthropic paused the Claude Agent SDK credit change. What it means for claude -p, OpenClaw, OpenCode, Codex, and agent pricing.",
       "tags": [
         "Claude",
@@ -1611,7 +1687,7 @@
     },
     {
       "href": "/blog/claude-code-pricing-explained-2026",
-      "title": "Claude Code Pricing Explained 2026: Pro vs Max 5x vs Max 20x vs API (When Each Wins)",
+      "title": "Claude Code Pricing Explained 2026",
       "description": "A verified 2026 breakdown of Claude Code pricing — Pro ($20), Max 5x ($100), Max 20x ($200), and pure API — with the usage-limit mechanics and a decision table for which plan wins at your usage level.",
       "tags": [
         "Claude Code",
@@ -1638,7 +1714,7 @@
     {
       "href": "/blog/claude-fable-5-analysis-2026",
       "title": "Claude Fable 5: Benchmarks, Pricing, and What Four Day-One Evals Actually Show",
-      "description": "Anthropic released Claude Fable 5 on June 9, 2026 — a Mythos-class model made generally available. Launch benchmarks: 95% SWE-bench Verified, ~80% SWE-bench Pro. We ran four first-party eval rounds against Opus 4.8 in Claude Code within 24 hours. Here are the receipts, the pricing math, and the routing guide.",
+      "description": "Anthropic released Claude Fable 5 on June 9, 2026 — a Mythos-class model made generally available. Launch benchmarks: 95% SWE-bench Verified, ~80% SWE-bench Pro.",
       "tags": [
         "anthropic",
         "claude-fable-5",
@@ -1653,7 +1729,7 @@
     {
       "href": "/blog/claude-fable-5-prompting-guide",
       "title": "Claude Fable 5 Prompting Guide: Seven Rules from Measured Behavior, Not Vibes",
-      "description": "How to prompt Claude Fable 5, derived from four receipted eval rounds — constraint stacking that works, the agreeable-execution trap, why output contracts belong in structure, and a system-prompt template for agentic pipelines.",
+      "description": "How to prompt Claude Fable 5, derived from four receipted eval rounds — constraint stacking that works, the agreeable-execution trap, why output contracts belong in structure, and a sys...",
       "tags": [
         "anthropic",
         "claude-fable-5",
@@ -1681,7 +1757,7 @@
     {
       "href": "/blog/claude-opus-4-8-analysis-2026",
       "title": "Claude Opus 4.8: A Modest Bump That Quietly Tops the Leaderboard",
-      "description": "Anthropic's Opus 4.8 lands 41 days after 4.7 with the same $5/$25 pricing, SWE-Bench Pro 69.2%, GDPval-AA 1890, dynamic workflows, and cheaper fast mode. Technical breakdown with verified benchmarks, what changed, and what it means for builders.",
+      "description": "Anthropic's Opus 4.8 lands 41 days after 4.7 with the same $5/$25 pricing, SWE-Bench Pro 69.2%, GDPval-AA 1890, dynamic workflows, and cheaper fast mode.",
       "tags": [
         "anthropic",
         "claude",
@@ -1825,7 +1901,7 @@
     {
       "href": "/blog/deepseek-v4-analysis-2026",
       "title": "DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price",
-      "description": "DeepSeek shipped V4-Pro (1.6T/49B active) and V4-Flash (284B/13B active) on April 24, 2026 under MIT license, open weights, 1M context. SWE-bench Verified 80.6%, AA Intelligence Index 52, V4-Pro API at $1.74/$3.48 per 1M. Technical breakdown with verified benchmarks, what changed vs V3.2, and the self-host vs API math.",
+      "description": "DeepSeek shipped V4-Pro (1.6T/49B active) and V4-Flash (284B/13B active) on April 24, 2026 under MIT license, open weights, 1M context. SWE-bench Verified 80.",
       "tags": [
         "deepseek",
         "open-weights",
@@ -1839,14 +1915,11 @@
     {
       "href": "/blog/design-sprint-week-10-visual-identity-competition",
       "title": "Design Sprint: Three AI Teams Compete to Define frankx.ai's Visual Identity",
-      "description": "How I used three competing AI design teams to build a visual identity strategy for frankx.ai — with WebGL shaders, glassmorphism hierarchies, and canvas physics. Real components, real code, real competition.",
+      "description": "How I used three competing AI design teams to build a visual identity strategy for frankx.ai — with WebGL shaders, glassmorphism hierarchies, and canvas physics.",
       "tags": [
-        "design-system",
-        "visual-identity",
-        "webgl",
-        "glassmorphism",
-        "ai-development",
-        "design-lab"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -1909,12 +1982,9 @@
       "title": "Best AI Tools for a Faceless YouTube Channel in 2026 (Full Stack Under $60/mo)",
       "description": "The verified best-in-class AI stack for a faceless YouTube channel in June 2026 — avatar, voice, script, repurposing, editing, music, thumbnails — with a real budget table that lands under $60/month.",
       "tags": [
-        "faceless-youtube",
-        "ai-video",
-        "creator-stack",
-        "ai-tools",
-        "youtube-automation",
-        "content-repurposing"
+        "intelligence-dispatches",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -1975,14 +2045,29 @@
     },
     {
       "href": "/blog/from-x-tweets-to-blog-gold-2026",
-      "title": "From Latest X Tweets to Blog Gold: How I Aggregate 'Best of X' Into Reference Pieces",
-      "description": "The exact process I use to turn real-time X signals (keyword + semantic searches, high-engagement threads, creator workflows) into evergreen, embed-rich, updateable blog posts that drive authority, AEO, and distribution.",
+      "title": "From Latest X Tweets to Blog Gold",
+      "description": "The exact process I use to turn real-time X signals (keyword + semantic searches, high-engagement threads, creator workflows) into evergreen, embed-rich, updateable blog posts that driv...",
       "tags": [
         "Content Strategy",
         "X Research",
         "Blog Workflow",
         "AEO",
         "Rich Embeds"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/frontier-model-convergence-reasoning-wave-2026",
+      "title": "Frontier Model Convergence: Test-Time Compute and the Reasoning Wave",
+      "description": "Architectural breakdown of inference-time search scaling, Process Reward Models, RLVR, and model routing across Claude 3.7, o3, Gemini 2.5, and DeepSeek R1.",
+      "tags": [
+        "frontier-models",
+        "reasoning",
+        "test-time-compute",
+        "rlvr",
+        "claude-3-7",
+        "deepseek-r1",
+        "model-routing"
       ],
       "type": "blog"
     },
@@ -2001,24 +2086,21 @@
     },
     {
       "href": "/blog/frontier-model-routing-without-fable-5",
-      "title": "You Don't Need Fable 5 to Work on the Frontier. You Need a Model Routing System.",
-      "description": "Kilo is right that model freedom matters after the Fable/Mythos shock. The next step is a routed frontier stack: Fable 5, Opus 4.8, GPT-5.5 in Kilo Code, Grok 4.3, Gemini 3.5 Flash in Antigravity, Kimi, MiniMax, and Nemotron with receipts.",
+      "title": "Frontier Model Routing: Beyond Single-Model Dependencies",
+      "description": "Why model freedom matters in production. Build a resilient routed frontier stack combining Opus 4.8, GPT-5.5, Grok 4.3, and Gemini 3.",
       "tags": [
         "model-routing",
-        "fable-5",
         "kilo-code",
-        "grok-4-3",
-        "gemini-3-5",
-        "antigravity",
-        "llm-evals",
-        "frontier-models"
+        "frontier-models",
+        "ai-architecture",
+        "llm-evals"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/gemini-3-5-pro-analysis-2026",
       "title": "Gemini 3.5 Pro: What We Actually Know Before GA",
-      "description": "Gemini 3.5 Pro is still in limited Vertex preview as of June 2026 — no model card, no benchmarks, no pricing. Here's the verifiable picture: what Flash already proved, what Google has committed to, and what to wait for at GA.",
+      "description": "Gemini 3.5 Pro is still in limited Vertex preview as of June 2026 — no model card, no benchmarks, no pricing.",
       "tags": [
         "google",
         "gemini",
@@ -2032,7 +2114,7 @@
     {
       "href": "/blog/gemma-3-analysis-2026",
       "title": "Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU",
-      "description": "Google's current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4. Self-host specifics, verified benchmarks, license analysis, and which size for which job.",
+      "description": "Google's current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4.",
       "tags": [
         "google",
         "gemma",
@@ -2048,11 +2130,9 @@
       "title": "The 3-Tier Shipping System: How GenCreators Build Creative Momentum",
       "description": "Full Ship, Quick Ship, Micro Ship — energy-aware daily output. The system that turns sporadic creation into unstoppable momentum.",
       "tags": [
-        "gencreator",
-        "shipping",
-        "productivity",
-        "creative-systems",
-        "daily-practice"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -2061,11 +2141,9 @@
       "title": "The 7 Dimensions of a GenCreator: A Complete Guide to Creative Self-Assessment",
       "description": "Energy, Mind, Craft, Voice, Capital, Circle, Legacy — the seven facets that define a complete GenCreator. Score yourself, find your superpower, unlock your growth edge.",
       "tags": [
-        "gencreator",
-        "self-assessment",
-        "soul-md",
-        "personal-development",
-        "creator-dimensions"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -2124,19 +2202,16 @@
       "title": "Compute-Aware AI: Inside Google AI Pro's 2026 Upgrade",
       "description": "Google AI Pro got smarter on May 20, 2026 — compute-aware usage in Gemini, AI credits across Flow and Antigravity, and a cleaner base plan. Here's how to build with the new model.",
       "tags": [
-        "Google Gemini",
-        "AI Pricing",
-        "AI Credits",
-        "Flow",
-        "Antigravity",
-        "AI Strategy"
+        "intelligence-dispatches",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/gpt-5-5-analysis-2026",
-      "title": "GPT-5.5 (\"Spud\"): What Actually Changed and Why It Matters",
-      "description": "OpenAI's GPT-5.5 leads GDPval at 84.9%, OSWorld at 78.7%, and Tau2 Telecom at 98% — at double the price of GPT-5.4. Technical breakdown with verified benchmarks, pricing, and what it means for builders.",
+      "title": "GPT-5.5 ('Spud'): What Actually Changed and Why It Matters",
+      "description": "OpenAI's GPT-5.5 leads GDPval at 84.9%, OSWorld at 78.7%, and Tau2 Telecom at 98% — at double the price of GPT-5.4.",
       "tags": [
         "openai",
         "gpt-5-5",
@@ -2150,7 +2225,7 @@
     {
       "href": "/blog/gpt-oss-analysis-2026",
       "title": "gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On",
-      "description": "OpenAI's gpt-oss-120b and gpt-oss-20b are Apache 2.0, free to download, and run on a single 80GB GPU or a 16GB laptop. The full self-host breakdown: VRAM, MXFP4 quantization, where to run, verified benchmarks, and how they stack up against Qwen, DeepSeek, and GLM in June 2026.",
+      "description": "OpenAI's gpt-oss-120b and gpt-oss-20b are Apache 2.0, free to download, and run on a single 80GB GPU or a 16GB laptop.",
       "tags": [
         "openai",
         "gpt-oss",
@@ -2164,7 +2239,7 @@
     {
       "href": "/blog/grok-4-3-analysis-2026",
       "title": "Grok 4.3: xAI Trades the Crown for the Price Tag",
-      "description": "xAI's Grok 4.3 scores 53 on the Artificial Analysis Intelligence Index, lifts GDPval-AA to 1500 Elo, ships a 1M context window with always-on reasoning, and cuts price ~40% to $1.25/$2.50. Technical breakdown with verified benchmarks and what it means for builders.",
+      "description": "xAI's Grok 4.3 scores 53 on the Artificial Analysis Intelligence Index, lifts GDPval-AA to 1500 Elo, ships a 1M context window with always-on reasoning, and cuts price ~40% to $1.25/$2.50.",
       "tags": [
         "xai",
         "grok",
@@ -2270,6 +2345,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/intent-compilers-dynamic-model-orchestration-2026",
+      "title": "Intent Compilers: Why Prompt Engineering Died and Dynamic Routing Won",
+      "description": "How deterministic intent compilers, AST validation, and multi-model consensus swarms replace fragile manual prompt engineering.",
+      "tags": [
+        "intent-compilers",
+        "model-routing",
+        "prompt-engineering",
+        "schema-validation",
+        "deterministic-ai"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/karpathys-ai-vision-deep-dive",
       "title": "Karpathy's AI Vision: A Deep Dive",
       "description": "Key takeaways from Karpathy's latest AI insights",
@@ -2284,8 +2372,8 @@
     },
     {
       "href": "/blog/kimi-k2-analysis-2026",
-      "title": "Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth the Price",
-      "description": "Moonshot AI's Kimi K2.6 is a 1T-parameter MoE (32B active) you can self-host. SWE-Bench Pro 58.6%, HLE-with-tools 54.0%, Agent Swarm to 300 sub-agents, $0.60/$2.50 per million. Technical breakdown with verified benchmarks, the open-weight angle, and what it means for builders.",
+      "title": "Kimi K2.6: The Open-Weight Model That Ties GPT-5.5 on Coding at One-Eighth th...",
+      "description": "Moonshot AI's Kimi K2.6 is a 1T-parameter MoE (32B active) you can self-host. SWE-Bench Pro 58.6%, HLE-with-tools 54.0%, Agent Swarm to 300 sub-agents, $0.60/$2.50 per million.",
       "tags": [
         "moonshot",
         "kimi",
@@ -2299,8 +2387,8 @@
     },
     {
       "href": "/blog/llama-4-analysis-2026",
-      "title": "Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the Pack",
-      "description": "Llama 4 Maverick (400B total / 17B active MoE, 1M context, Llama 4 Community License) is still Meta's open-weight flagship in June 2026 — Behemoth never shipped. Verified benchmarks, real VRAM and self-host requirements, how it stacks up against DeepSeek V4, Qwen 3.5, and Kimi K2.6, and what it means for builders.",
+      "title": "Llama 4 Maverick in 2026: Still Meta's Open Flagship, Now Running Behind the ...",
+      "description": "Llama 4 Maverick (400B total / 17B active MoE, 1M context, Llama 4 Community License) is still Meta's open-weight flagship in June 2026 — Behemoth never shipped.",
       "tags": [
         "meta",
         "llama",
@@ -2314,7 +2402,7 @@
     {
       "href": "/blog/llm-evals-claude-code-guide",
       "title": "How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)",
-      "description": "The complete tutorial for head-to-head model evals inside Claude Code: per-spawn model overrides, ground truth before dispatch, self-verifying tasks, blind judging, and JSON receipts. The exact harness behind our Fable 5 vs Opus 4.8 rounds.",
+      "description": "The complete tutorial for head-to-head model evals inside Claude Code: per-spawn model overrides, ground truth before dispatch, self-verifying tasks, blind judging, and JSON receipts.",
       "tags": [
         "claude-code",
         "llm-evals",
@@ -2327,8 +2415,8 @@
     },
     {
       "href": "/blog/magnifica-humanitas-benevolent-future-arcanea",
-      "title": "Magnifica Humanitas: The Pope, Anthropic, and the Architecture of a Benevolent Future",
-      "description": "Pope Leo XIV's Magnifica Humanitas and Anthropic co-founder Chris Olah's Vatican remarks make one argument: a benevolent AI future has to be designed, not hoped for. Here's why I'm building Arcanea and Starlight.",
+      "title": "Magnifica Humanitas: The Pope, Anthropic, and the Architecture of a Benevolen...",
+      "description": "Pope Leo XIV's Magnifica Humanitas and Anthropic co-founder Chris Olah's Vatican remarks make one argument: a benevolent AI future has to be designed, not hoped for.",
       "tags": [
         "AI Safety",
         "Anthropic",
@@ -2344,11 +2432,9 @@
       "title": "Manifestation, Honestly: How I Became a Reality Architect",
       "description": "What actually changed after I read The Secret and Think and Grow Rich — imagination, felt state, my own music, and AI as the loop that ships it.",
       "tags": [
-        "manifestation",
-        "reality-architecture",
-        "vibe-os",
         "creativity",
-        "ai-creation"
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -2370,11 +2456,9 @@
       "title": "MCP Server Guide 2026: ClawHub, Smithery, and What to Install",
       "description": "MCP servers, registries, and the protocol connecting AI assistants to databases, APIs, browsers, and developer tools. Includes my 21-server production stack.",
       "tags": [
-        "MCP",
-        "Model Context Protocol",
-        "Claude Code",
-        "AI Tools",
-        "Developer Tools"
+        "intelligence-dispatches",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -2408,7 +2492,7 @@
     {
       "href": "/blog/meaning-as-operating-system",
       "title": "Meaning as an Operating System: The Future of AI Is Not More Information",
-      "description": "AI generates infinite information. The new scarcity is relevance. A working framework for organizing goals, values, attention, and action into coherence — and for designing AI agents that know what matters, not just what is true.",
+      "description": "AI generates infinite information. The new scarcity is relevance.",
       "tags": [
         "meaning",
         "relevance realization",
@@ -2421,7 +2505,7 @@
     {
       "href": "/blog/memory-as-exile-ai",
       "title": "Memory as Exile: Why AI Systems Need Integration Loops",
-      "description": "Long-term memory without integration creates psychological debt inside AI systems. The IFS exile pattern, applied to agent memory architecture — and why most production stacks are accumulating it without knowing.",
+      "description": "Long-term memory without integration creates psychological debt inside AI systems.",
       "tags": [
         "ai memory",
         "agentic systems",
@@ -2460,7 +2544,7 @@
     {
       "href": "/blog/mistral-large-3-analysis-2026",
       "title": "Mistral Large 3: The 675B Open-Weight Frontier Model Europe Has Been Waiting For",
-      "description": "Mistral Large 3 (mistral-large-2512) is a 675B/41B-active MoE released under Apache 2.0, December 2025. 256K context, $0.50/$1.50 API pricing, runs on one 8xH200 node. Verified benchmarks, EU sovereignty angle, self-host specifics, and what it means for builders.",
+      "description": "Mistral Large 3 (mistral-large-2512) is a 675B/41B-active MoE released under Apache 2.0, December 2025. 256K context, $0.50/$1.50 API pricing, runs on one 8xH200 node.",
       "tags": [
         "mistral",
         "open-weight",
@@ -2468,6 +2552,46 @@
         "ai-2026",
         "benchmarks",
         "eu-sovereign-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/modern-agentic-systems-architecture-2026",
+      "title": "Modern Agentic Systems Architecture: From ReAct Loops to Trajectory Evals",
+      "description": "A comprehensive teardown of production multi-agent systems, Model Context Protocol standards, context compression, and trajectory evaluation gates.",
+      "tags": [
+        "agentic-systems",
+        "mcp",
+        "acos",
+        "evals",
+        "trajectory-learning",
+        "context-engineering"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/monday-operator-playbook-august-2026-models",
+      "title": "Monday Operator Playbook: Absorbing Grok 4.6, Gemini 3.7 Flash, DeepSeek-V4-Pro",
+      "description": "Concrete operational steps, eval contracts, routing changes, and human gates for the August 2026 frontier model wave. One-week implementation plan.",
+      "tags": [
+        "creator-os",
+        "multi-agent",
+        "production-ai",
+        "evals",
+        "operations"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/multi-agent-model-fabric-2026-wave",
+      "title": "Multi-Agent Model Fabric 2026: Routing, Evals, and Fallbacks",
+      "description": "Production architecture for absorbing Grok 4.6, Gemini 3.7 Flash, DeepSeek-V4-Pro, and Qwen3.8-27B. Lane-based routing, structural evals, cost caps, and handoff contracts.",
+      "tags": [
+        "multi-agent",
+        "model-routing",
+        "evals",
+        "ai-strategy",
+        "agentic-ai"
       ],
       "type": "blog"
     },
@@ -2498,8 +2622,22 @@
       "type": "blog"
     },
     {
+      "href": "/blog/music-intelligence-vibe-architecture-sonic-neuroscience",
+      "title": "Music Intelligence & Vibe Architecture: Sonic Neuroscience and Flow",
+      "description": "How sound frequency modulation, Suno AI v4 pipelines, and harmonic neuroscience engineer peak cognitive flow states and creative output.",
+      "tags": [
+        "music-intelligence",
+        "suno-ai",
+        "sonic-neuroscience",
+        "flow-state",
+        "vibe-os",
+        "frequency"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/music-intelligence-vibe-os-launch",
-      "title": "The Music Intelligence System: Research, Agents, and Free Tools Behind AI-Era Music",
+      "title": "The Music Intelligence System: Research, Agents, and Free Tools Behind AI-Era...",
       "description": "An open, interconnected system for AI-era music creation — a 25-state research library (Vibe OS), portable agents, an MCP server, and free Suno prompt templates. Built in public across GitHub.",
       "tags": [
         "music-intelligence",
@@ -2529,12 +2667,9 @@
       "title": "n8n Automation: 9 Workflows That Run My Creative Empire",
       "description": "Production n8n workflows for content atomization, newsletter automation, music catalog sync, research intelligence, and AI-orchestrated publishing pipelines.",
       "tags": [
-        "n8n",
-        "Automation",
-        "Workflows",
-        "AI Creators",
-        "Content Pipeline",
-        "Productivity"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -2553,7 +2688,7 @@
     {
       "href": "/blog/no-bad-parts-sovereign-ai",
       "title": "No Bad Parts: What Richard Schwartz Teaches Us About Building Sovereign AI",
-      "description": "Most AI agents are built around one voice, one objective, one persona. Human intelligence is not single-agent — and the next generation of agentic systems will not be either. The architectural lesson IFS gives AI.",
+      "description": "Most AI agents are built around one voice, one objective, one persona. Human intelligence is not single-agent — and the next generation of agentic systems will not be either.",
       "tags": [
         "ai architecture",
         "agentic systems",
@@ -2581,17 +2716,12 @@
     },
     {
       "href": "/blog/nvidia-gtc-2026-ai-architect-breakdown",
-      "title": "NVIDIA GTC 2026: An AI Architect's Breakdown of Vera Rubin, Groq LPUs, and the Agentic Infrastructure Shift",
+      "title": "NVIDIA GTC 2026: An AI Architect's Breakdown of Vera Rubin, Groq LPUs, and th...",
       "description": "Seven chips, five racks, one $1 trillion bet. A technical breakdown of NVIDIA GTC 2026 — Vera Rubin, Groq 3 LPUs, Dynamo, NemoClaw — and what enterprise AI architects should do next.",
       "tags": [
-        "nvidia",
-        "gtc 2026",
-        "vera rubin",
-        "agentic ai",
-        "enterprise ai",
-        "groq",
-        "ai architecture",
-        "inference"
+        "intelligence-dispatches",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -2680,7 +2810,7 @@
     {
       "href": "/blog/personal-ai-coe-under-100-2026",
       "title": "How to Build a Personal AI Center of Excellence for Under $100 a Month (2026)",
-      "description": "Enterprise AI Centers of Excellence run on a 6-pillar architecture. The same architecture works for one person at roughly 1/5000th the cost. Here is the exact under-$100 stack, the budget table, and the daily ritual that wires it together.",
+      "description": "Enterprise AI Centers of Excellence run on a 6-pillar architecture. The same architecture works for one person at roughly 1/5000th the cost.",
       "tags": [
         "AI Center of Excellence",
         "personal AI stack",
@@ -2693,7 +2823,7 @@
     {
       "href": "/blog/phi-analysis-2026",
       "title": "Microsoft Phi-4 in 2026: The Open-Weight Small Model That Runs on Your Laptop",
-      "description": "Microsoft's Phi-4 family — Phi-4 (14B), Phi-4-mini (3.8B), Phi-4-multimodal (5.6B), Phi-4-reasoning, and the March 2026 Phi-4-reasoning-vision-15B — are MIT-licensed, $0 to download, and run on consumer GPUs. Verified benchmarks, VRAM tables, and what the small-model angle means for builders.",
+      "description": "Microsoft's Phi-4 family — Phi-4 (14B), Phi-4-mini (3.8B), Phi-4-multimodal (5.",
       "tags": [
         "microsoft",
         "phi",
@@ -2707,7 +2837,7 @@
     {
       "href": "/blog/predictive-mind-reality-models",
       "title": "The Predictive Mind: Why You Don't See Reality, You See Your Model",
-      "description": "Predictive processing and active inference — Friston, Clark, Seth, Barrett — give a single framework for perception, emotion, trauma, belief, and AI. Why parts hold predictive models, and why transformation is model updating.",
+      "description": "Predictive processing and active inference — Friston, Clark, Seth, Barrett — give a single framework for perception, emotion, trauma, belief, and AI.",
       "tags": [
         "predictive processing",
         "active inference",
@@ -2830,9 +2960,23 @@
       "type": "blog"
     },
     {
+      "href": "/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience",
+      "title": "Quantum Reality & Biological Resonance: The Molecular Architecture of Intent",
+      "description": "Rigorous scientific synthesis of bioelectric morphogenetic fields (Michael Levin), molecular epigenetics of intention, and neuroplasticity.",
+      "tags": [
+        "quantum-biology",
+        "bioelectricity",
+        "epigenetics",
+        "michael-levin",
+        "neuroplasticity",
+        "reality-architecture"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/qwen3-max-analysis-2026",
-      "title": "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours",
-      "description": "Alibaba's Qwen3.7-Max lands May 2026 with a 1M-token context, $2.50/$7.50 pricing, SWE-Bench Pro 60.6, Terminal-Bench 69.7, and a verified 35-hour autonomous run. Technical breakdown with sourced benchmarks, what changed vs Qwen3.6, and what it means for builders.",
+      "title": "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for ...",
+      "description": "Alibaba's Qwen3.7-Max lands May 2026 with a 1M-token context, $2.50/$7.50 pricing, SWE-Bench Pro 60.6, Terminal-Bench 69.7, and a verified 35-hour autonomous run.",
       "tags": [
         "alibaba",
         "qwen",
@@ -2874,11 +3018,9 @@
       "title": "Reality Architecture: Imagination to Product, Faster with AI",
       "description": "Neuroscience of imagination meets generative AI. The 5-phase framework for turning mental models into shipped products — at machine speed.",
       "tags": [
-        "Reality Architecture",
-        "Neuroscience",
-        "Generative AI",
-        "AI Creation",
-        "Creativity"
+        "intelligence-dispatches",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -2999,6 +3141,33 @@
       "type": "blog"
     },
     {
+      "href": "/blog/sovereign-ai-operating-system-local-cloud-swarm",
+      "title": "The Sovereign AI Operating System: Local-Cloud Swarms (2026)",
+      "description": "Architecting a sovereign personal and enterprise AI operating system with local fallbacks, cost boundaries, zero vendor lock-in, and encrypted vaults.",
+      "tags": [
+        "creator-os",
+        "sovereign-ai",
+        "multi-agent",
+        "local-llm",
+        "ai-architecture"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/sovereign-creator-wealth-operating-system-2026",
+      "title": "The Sovereign Creator Wealth OS: Personal Data Mesh & Autonomous IP",
+      "description": "The architectural blueprint for creator sovereignty: Personal Data Mesh, autonomous revenue routing, algorithmic capital allocation, and digital assets.",
+      "tags": [
+        "sovereign-wealth",
+        "creator-economy",
+        "personal-data-mesh",
+        "capital-allocation",
+        "digital-assets",
+        "acos"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/starlight-intelligence-system-how-ai-agents-learn",
       "title": "How I Built a Learning System for AI Agents",
       "description": "Inside the Starlight Intelligence System — a federated behavioral engine that turns raw session data into concrete instructions AI agents actually follow.",
@@ -3015,11 +3184,9 @@
       "title": "Suno AI After 12,000 Songs: What I Actually Learned",
       "description": "Production lessons from creating 12K+ AI tracks — prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
       "tags": [
-        "Suno AI",
-        "Music Production",
-        "AI Music",
-        "Prompt Engineering",
-        "Creator"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -3041,7 +3208,7 @@
     {
       "href": "/blog/suno-music-production-workflow",
       "title": "How to Use Suno AI for Professional Music Production",
-      "description": "Move beyond \"hit and hope\" generation. A systematic workflow for using Suno AI to produce radio-ready tracks, from emotion mapping to stem mixing.",
+      "description": "Move beyond 'hit and hope' generation. A systematic workflow for using Suno AI to produce radio-ready tracks, from emotion mapping to stem mixing.",
       "tags": [
         "Suno AI",
         "Music Production",
@@ -3096,12 +3263,9 @@
       "title": "Terminal-First AI Development: Drop VS Code Tabs, Keep Your Laptop Alive",
       "description": "How to run Claude Code without 5 VS Code tabs killing your machine. glow + tmux + GitHub browser replaces the whole GUI stack.",
       "tags": [
-        "claude-code",
-        "terminal",
-        "workflow",
-        "tmux",
-        "developer-tools",
-        "ai-development"
+        "ai-architecture",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -3135,7 +3299,7 @@
     {
       "href": "/blog/the-higher-self-protocol",
       "title": "The Higher Self Protocol: What Happened When I Used AI to Get Closer to God",
-      "description": "A friend told me she wants to become a saint. So I started using AI the way you'd use a good study partner — to read scripture slowly, sit with hard questions, and show up for a practice. Here is what worked, what was cringe, and what I'd never hand a machine.",
+      "description": "A friend told me she wants to become a saint. So I started using AI the way you''d use a good study partner — to read scripture slowly, sit with hard questions, and show up for a practice.",
       "tags": [
         "higher-self-protocol",
         "spirituality",
@@ -3148,7 +3312,7 @@
     {
       "href": "/blog/the-light-within-protocol",
       "title": "The Light Within Protocol: A 20-Minute Morning Practice (and Where AI Helps)",
-      "description": "A concrete morning practice that stacks the levers with real evidence behind them — paced breath, gratitude, coherence, and vivid visualization — plus an honest account of where a model removes friction and where it must never go.",
+      "description": "A concrete morning practice that stacks the levers with real evidence behind them — paced breath, gratitude, coherence, and vivid visualization — plus an honest account of where a model...",
       "tags": [
         "the-light-within",
         "visualization",
@@ -3160,8 +3324,8 @@
     },
     {
       "href": "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
-      "title": "The Research + Generation Flywheel: Sandcastles-Style Analysis + Higgsfield/Grok Execution",
-      "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing). The exact weekend workflow that turns signals into shipped shorts, hooks, and reference content.",
+      "title": "The Research + Generation Flywheel",
+      "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing).",
       "tags": [
         "Short Form",
         "Sandcastles",
@@ -3204,18 +3368,15 @@
       "title": "How I Configured Claude Code with ACOS and 21 MCP Servers",
       "description": "Step-by-step guide to building a production-grade AI coding environment with ACOS, Claude Code, MCP servers, and custom agent workflows. From zero to shipping.",
       "tags": [
-        "ACOS",
-        "Claude Code",
-        "MCP",
-        "Coding Agents",
-        "AI Development",
-        "Setup Guide"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/ultimate-canva-ai-workflow-2026",
-      "title": "The Ultimate Canva AI Workflow in 2026: Magic Studio, Brand Kits, and the Creator Setup",
+      "title": "The Ultimate Canva AI Workflow in 2026",
       "description": "The complete Canva AI workflow for 2026: Magic Studio, Brand Kit, Bulk Create, and the repurposing pipeline that turns one asset into a week of content. Honest ROI and who it's for.",
       "tags": [
         "Canva",
@@ -3229,15 +3390,12 @@
     },
     {
       "href": "/blog/ultimate-capcut-workflow-2026",
-      "title": "The Ultimate CapCut Workflow in 2026: The AI Editing Setup for Short-Form and Faceless Channels",
-      "description": "The verified CapCut workflow for June 2026 — AI captions, auto-reframe, script-to-video, voiceover, and templates — plus the fast faceless pipeline, batch repurposing, and a plan table with honest pricing and ToS nuance.",
+      "title": "The Ultimate CapCut Workflow in 2026",
+      "description": "The verified CapCut workflow for June 2026 — AI captions, auto-reframe, script-to-video, voiceover, and templates — plus the fast faceless pipeline, batch repurposing, and a plan table ...",
       "tags": [
-        "capcut",
-        "short-form-video",
-        "faceless-channels",
-        "ai-video-editing",
-        "content-repurposing",
-        "creator-tools"
+        "intelligence-dispatches",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -3256,8 +3414,8 @@
     },
     {
       "href": "/blog/ultimate-elevenlabs-workflow-2026",
-      "title": "The Ultimate ElevenLabs Workflow in 2026: Voice Cloning, Agents, and the Setup That Wins",
-      "description": "The complete ElevenLabs workflow for 2026 — Eleven v3, instant vs professional voice cloning, the API, conversational agents, and dubbing. Real setups for podcasters, course creators, app builders, and AI architects, with honest ROI math.",
+      "title": "The Ultimate ElevenLabs Workflow in 2026",
+      "description": "The complete ElevenLabs workflow for 2026 — Eleven v3, instant vs professional voice cloning, the API, conversational agents, and dubbing.",
       "tags": [
         "ElevenLabs",
         "AI Voice",
@@ -3298,8 +3456,8 @@
     },
     {
       "href": "/blog/ultimate-heygen-workflow-2026",
-      "title": "The Ultimate HeyGen Workflow in 2026: Avatars, Cloning, and the Faceless Video Setup",
-      "description": "The complete 2026 HeyGen workflow — clone yourself from a 15-second selfie with Avatar V, localize into 175+ languages, automate sales video at scale via the API, and run a faceless channel. Setup, ROI, and who it's for.",
+      "title": "The Ultimate HeyGen Workflow in 2026",
+      "description": "The complete 2026 HeyGen workflow — clone yourself from a 15-second selfie with Avatar V, localize into 175+ languages, automate sales video at scale via the API, and run a faceless channel.",
       "tags": [
         "HeyGen",
         "AI avatars",
@@ -3313,8 +3471,8 @@
     },
     {
       "href": "/blog/ultimate-higgsfield-workflow-2026",
-      "title": "The Ultimate Higgsfield Workflow in 2026: Soul ID, Cinematic Video, and the Claude Code MCP Setup",
-      "description": "How I run Higgsfield in 2026: one subscription for 30+ video models, Soul ID for character-consistent series, and the MCP that lets Claude Code generate video directly. The full workflow, the ROI math, and who it's actually for.",
+      "title": "The Ultimate Higgsfield Workflow in 2026",
+      "description": "How I run Higgsfield in 2026: one subscription for 30+ video models, Soul ID for character-consistent series, and the MCP that lets Claude Code generate video directly.",
       "tags": [
         "Higgsfield",
         "AI Video",
@@ -3327,8 +3485,8 @@
     },
     {
       "href": "/blog/ultimate-n8n-workflow-2026",
-      "title": "The Ultimate n8n Workflow in 2026: AI Agents, MCP, and the Automation Backend That Wins",
-      "description": "The complete 2026 guide to building production n8n workflows: self-host vs cloud, the AI Agent node, MCP Server Trigger and Client Tool, content repurposing, RAG, and wiring n8n as the action backend for Claude Code.",
+      "title": "The Ultimate n8n Workflow in 2026",
+      "description": "The complete 2026 guide to building production n8n workflows: self-host vs cloud, the AI Agent node, MCP Server Trigger and Client Tool, content repurposing, RAG, and wiring n8n as the ...",
       "tags": [
         "n8n",
         "AI agents",
@@ -3343,7 +3501,7 @@
     {
       "href": "/blog/ultimate-opus-clip-workflow-2026",
       "title": "The Ultimate Opus Clip Workflow in 2026: Long Video to Viral Shorts on Autopilot",
-      "description": "A results-first Opus Clip workflow for 2026: turn one podcast or long video into 10 scored shorts, run the virality-score curation loop, and batch-schedule to TikTok, Reels, and Shorts. Verified features, current pricing, and who it's actually for.",
+      "description": "A results-first Opus Clip workflow for 2026: turn one podcast or long video into 10 scored shorts, run the virality-score curation loop, and batch-schedule to TikTok, Reels, and Shorts.",
       "tags": [
         "Opus Clip",
         "video repurposing",
@@ -3356,8 +3514,8 @@
     },
     {
       "href": "/blog/ultimate-perplexity-workflow-2026",
-      "title": "The Ultimate Perplexity Workflow in 2026: Deep Research Setup, Comet, and How to Actually Use It",
-      "description": "The full Perplexity setup that wins in 2026 — Pro vs free, model routing, Spaces, the free Comet browser, and Deep Research. The discover→ground→reason workflow, citation discipline, and who it's actually for.",
+      "title": "The Ultimate Perplexity Workflow in 2026",
+      "description": "The full Perplexity setup that wins in 2026 — Pro vs free, model routing, Spaces, the free Comet browser, and Deep Research.",
       "tags": [
         "Perplexity",
         "Comet browser",
@@ -3370,19 +3528,12 @@
     },
     {
       "href": "/blog/using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll",
-      "title": "The Ultimate Guide: Using ElevenLabs for Faceless YouTube Channels and Higgsfield for B-Roll",
+      "title": "The Ultimate Guide: Using ElevenLabs for Faceless YouTube Channels and Higgsf...",
       "description": "How to combine modern AI voice models with responsive video tools for high-retention faceless production.",
       "tags": [
-        "using",
-        "elevenlabs",
-        "for",
-        "faceless",
-        "youtube",
-        "channels",
-        "and",
-        "higgsfield",
-        "for",
-        "roll"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -3437,11 +3588,9 @@
       "title": "How I Built a Visual Intelligence System After Losing Track of 408 Images",
       "description": "I discovered 82% of my site's images were orphaned, flagship posts used placeholder SVGs, and 3 blog posts showed the same hero twice. Here's the system I built to fix it — and how you can use it too.",
       "tags": [
-        "visual-intelligence",
-        "acos",
-        "creator-tools",
-        "image-management",
-        "ai-images"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -3463,11 +3612,9 @@
       "title": "What Is a GenCreator? The New Breed of AI-Native Creator",
       "description": "GenCreators use AI as a creative force multiplier. 12 principles, soul.md, daily shipping — the complete framework for the AI-native creator.",
       "tags": [
-        "gencreator",
-        "creator-os",
-        "ai-strategy",
-        "framework",
-        "generative-creator"
+        "creator-systems",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -3488,12 +3635,9 @@
       "title": "Why Everyone Needs Their Own AI Center of Excellence",
       "description": "The same frameworks enterprises pay millions to build — strategy, governance, talent, technology — translate directly to personal AI adoption. Here is how to build yours in 4 weeks.",
       "tags": [
-        "AI Architecture",
-        "AI CoE",
-        "Personal AI",
-        "Enterprise AI",
-        "Center of Excellence",
-        "AI Strategy"
+        "intelligence-dispatches",
+        "ai-systems",
+        "production"
       ],
       "type": "blog"
     },
@@ -4231,6 +4375,17 @@
         "design"
       ],
       "type": "section"
+    },
+    {
+      "href": "/design-lab/liquid",
+      "title": "Liquid",
+      "tags": [
+        "design",
+        "lab",
+        "liquid"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/design-lab/nature",
@@ -6413,6 +6568,28 @@
         "for",
         "kids",
         "xylophone"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/music-lab/games",
+      "title": "Games",
+      "tags": [
+        "music",
+        "lab",
+        "games"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/music-lab/games/rhythm-duel",
+      "title": "Rhythm Duel",
+      "tags": [
+        "music",
+        "lab",
+        "games",
+        "rhythm",
+        "duel"
       ],
       "type": "section"
     },

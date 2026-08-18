@@ -606,3 +606,4 @@ export const domainSources: Record<string, ResearchSource[]> = {
 export function getSourcesForDomain(slug: string): ResearchSource[] {
   return domainSources[slug] || []
 }
+
