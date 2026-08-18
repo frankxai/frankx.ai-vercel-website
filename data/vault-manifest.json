@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T07:49:18.288Z",
-  "totalAssets": 1568,
+  "generatedAt": "2026-08-18T10:55:15.719Z",
+  "totalAssets": 1588,
   "totalCollections": 59,
-  "totalSize": 1300040551,
+  "totalSize": 1317890990,
   "formats": {
-    "png": 842,
+    "png": 858,
     "svg": 356,
     "webp": 215,
-    "jpg": 145,
+    "jpg": 149,
     "jpeg": 10
   },
   "collections": [
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 561,
+      "count": 565,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -6110,6 +6110,26 @@
           "createdAt": "2026-07-17"
         },
         {
+          "id": "blog/frontier-model-wave-routing",
+          "filename": "frontier-model-wave-routing.jpg",
+          "src": "/images/blog/generated/frontier-model-wave-routing.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 900367,
+          "title": "Frontier Model Wave Routing",
+          "tags": [
+            "blog",
+            "frontier",
+            "model",
+            "wave",
+            "routing"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/frontier-routing-availability-stack",
           "filename": "frontier-routing-availability-stack.svg",
           "src": "/images/blog/frontier-routing-availability-stack.svg",
@@ -7657,6 +7677,25 @@
             "hero"
           ],
           "createdAt": "2026-06-18"
+        },
+        {
+          "id": "blog/knowledge-graphs-memory-os",
+          "filename": "knowledge-graphs-memory-os.jpg",
+          "src": "/images/blog/generated/knowledge-graphs-memory-os.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 825283,
+          "title": "Knowledge Graphs Memory Os",
+          "tags": [
+            "blog",
+            "knowledge",
+            "graphs",
+            "memory"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/llama-4-analysis-2026-hero-premium",
@@ -9211,6 +9250,25 @@
           "createdAt": "2026-06-01"
         },
         {
+          "id": "blog/personal-ai-coe-blueprint",
+          "filename": "personal-ai-coe-blueprint.jpg",
+          "src": "/images/blog/generated/personal-ai-coe-blueprint.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 912188,
+          "title": "Personal Ai Coe Blueprint",
+          "tags": [
+            "blog",
+            "personal",
+            "coe",
+            "blueprint"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/phi-analysis-2026-hero",
           "filename": "phi-analysis-2026-hero.svg",
           "src": "/images/blog/phi-analysis-2026-hero.svg",
@@ -10465,6 +10523,25 @@
             "framework"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "blog/sovereign-ai-swarm-mesh",
+          "filename": "sovereign-ai-swarm-mesh.jpg",
+          "src": "/images/blog/generated/sovereign-ai-swarm-mesh.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 865546,
+          "title": "Sovereign Ai Swarm Mesh",
+          "tags": [
+            "blog",
+            "sovereign",
+            "swarm",
+            "mesh"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/starlight-intelligence-system-how-ai-agents-learn-hero",
@@ -14054,7 +14131,7 @@
       "id": "infographics",
       "name": "Educational Infographics",
       "description": "ACOS, Arcanea, and Vibe OS educational series — system architecture breakdowns and learning visualizations.",
-      "count": 113,
+      "count": 117,
       "coverImage": "/images/infographics/unsorted/1769252302972.webp",
       "accent": "from-blue-500/20 to-indigo-500/20",
       "borderAccent": "border-blue-500/30",
@@ -15608,6 +15685,25 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "infographics/acos-loop-diagram",
+          "filename": "acos-loop-diagram.png",
+          "src": "/images/infographics/acos-loop-diagram.png",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 617956,
+          "title": "Acos Loop Diagram",
+          "tags": [
+            "infographics",
+            "acos",
+            "loop",
+            "diagram"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "infographics/arcanea-infographic-2d",
           "filename": "arcanea-infographic-2d.webp",
           "src": "/images/infographics/arcanea/arcanea-infographic-2d.webp",
@@ -15661,6 +15757,25 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "infographics/founder-stack-diagram",
+          "filename": "founder-stack-diagram.png",
+          "src": "/images/infographics/founder-stack-diagram.png",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 683080,
+          "title": "Founder Stack Diagram",
+          "tags": [
+            "infographics",
+            "founder",
+            "stack",
+            "diagram"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "infographics/gemini-1gkbfs1gkbfs1gkb",
           "filename": "gemini-1gkbfs1gkbfs1gkb.webp",
           "src": "/images/infographics/ai-architecture/gemini-1gkbfs1gkbfs1gkb.webp",
@@ -15695,6 +15810,25 @@
             "4niw924niw924niw"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "infographics/prompt-architecture-diagram",
+          "filename": "prompt-architecture-diagram.png",
+          "src": "/images/infographics/prompt-architecture-diagram.png",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 539401,
+          "title": "Prompt Architecture Diagram",
+          "tags": [
+            "infographics",
+            "prompt",
+            "architecture",
+            "diagram"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "infographics/skill-anatomy",
@@ -15789,6 +15923,25 @@
             "tiers"
           ],
           "createdAt": "2026-08-10"
+        },
+        {
+          "id": "infographics/swarm-architecture-diagram",
+          "filename": "swarm-architecture-diagram.png",
+          "src": "/images/infographics/swarm-architecture-diagram.png",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 490123,
+          "title": "Swarm Architecture Diagram",
+          "tags": [
+            "infographics",
+            "swarm",
+            "architecture",
+            "diagram"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "infographics/v7-01-pillars-premium",
@@ -22634,12 +22787,30 @@
       "id": "lead-magnets",
       "name": "Lead Magnets",
       "description": "Visual assets from the Lead Magnets collection.",
-      "count": 12,
-      "coverImage": "/images/lead-magnets/a2a-spec-cover.png",
+      "count": 24,
+      "coverImage": "/images/lead-magnets/a2a-spec-3d.png",
       "accent": "from-gray-500/20 to-slate-500/20",
       "borderAccent": "border-gray-500/30",
       "sortOrder": 99,
       "assets": [
+        {
+          "id": "lead-magnets/a2a-spec-3d",
+          "filename": "a2a-spec-3d.png",
+          "src": "/images/lead-magnets/a2a-spec-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 710662,
+          "title": "A2a Spec 3d",
+          "tags": [
+            "lead-magnets",
+            "a2a",
+            "spec"
+          ],
+          "createdAt": "2026-08-18"
+        },
         {
           "id": "lead-magnets/a2a-spec-cover",
           "filename": "a2a-spec-cover.png",
@@ -22649,13 +22820,31 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 302622,
+          "fileSize": 765506,
           "title": "A2a Spec Cover",
           "tags": [
             "lead-magnets",
             "a2a",
             "spec",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/acos-playbook-3d",
+          "filename": "acos-playbook-3d.png",
+          "src": "/images/lead-magnets/acos-playbook-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 621999,
+          "title": "Acos Playbook 3d",
+          "tags": [
+            "lead-magnets",
+            "acos",
+            "playbook"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22668,13 +22857,31 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 313801,
+          "fileSize": 808638,
           "title": "Acos Playbook Cover",
           "tags": [
             "lead-magnets",
             "acos",
             "playbook",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/ai-agent-stack-3d",
+          "filename": "ai-agent-stack-3d.png",
+          "src": "/images/lead-magnets/ai-agent-stack-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 481454,
+          "title": "Ai Agent Stack 3d",
+          "tags": [
+            "lead-magnets",
+            "agent",
+            "stack"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22687,13 +22894,31 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 313472,
+          "fileSize": 599239,
           "title": "Ai Agent Stack Cover",
           "tags": [
             "lead-magnets",
             "agent",
             "stack",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/ai-writing-system-3d",
+          "filename": "ai-writing-system-3d.png",
+          "src": "/images/lead-magnets/ai-writing-system-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 574892,
+          "title": "Ai Writing System 3d",
+          "tags": [
+            "lead-magnets",
+            "writing",
+            "system"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22706,13 +22931,31 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 298472,
+          "fileSize": 758034,
           "title": "Ai Writing System Cover",
           "tags": [
             "lead-magnets",
             "writing",
             "system",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/challenge-5day-3d",
+          "filename": "challenge-5day-3d.png",
+          "src": "/images/lead-magnets/challenge-5day-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 559911,
+          "title": "Challenge 5day 3d",
+          "tags": [
+            "lead-magnets",
+            "challenge",
+            "5day"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22725,13 +22968,31 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 300447,
+          "fileSize": 612721,
           "title": "Challenge 5day Cover",
           "tags": [
             "lead-magnets",
             "challenge",
             "5day",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/founder-stack-3d",
+          "filename": "founder-stack-3d.png",
+          "src": "/images/lead-magnets/founder-stack-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 672192,
+          "title": "Founder Stack 3d",
+          "tags": [
+            "lead-magnets",
+            "founder",
+            "stack"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22744,13 +23005,31 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 264423,
+          "fileSize": 625771,
           "title": "Founder Stack Cover",
           "tags": [
             "lead-magnets",
             "founder",
             "stack",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/generative-media-3d",
+          "filename": "generative-media-3d.png",
+          "src": "/images/lead-magnets/generative-media-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 661935,
+          "title": "Generative Media 3d",
+          "tags": [
+            "lead-magnets",
+            "generative",
+            "media"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22763,13 +23042,31 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 300042,
+          "fileSize": 835267,
           "title": "Generative Media Cover",
           "tags": [
             "lead-magnets",
             "generative",
             "media",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/golden-age-3d",
+          "filename": "golden-age-3d.png",
+          "src": "/images/lead-magnets/golden-age-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 513098,
+          "title": "Golden Age 3d",
+          "tags": [
+            "lead-magnets",
+            "golden",
+            "age"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22782,13 +23079,30 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 274259,
+          "fileSize": 787254,
           "title": "Golden Age Cover",
           "tags": [
             "lead-magnets",
             "golden",
             "age",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/ifs-ai-3d",
+          "filename": "ifs-ai-3d.png",
+          "src": "/images/lead-magnets/ifs-ai-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 479926,
+          "title": "Ifs Ai 3d",
+          "tags": [
+            "lead-magnets",
+            "ifs"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22801,12 +23115,30 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 312694,
+          "fileSize": 606383,
           "title": "Ifs Ai Cover",
           "tags": [
             "lead-magnets",
             "ifs",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/spartan-mindset-3d",
+          "filename": "spartan-mindset-3d.png",
+          "src": "/images/lead-magnets/spartan-mindset-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 658278,
+          "title": "Spartan Mindset 3d",
+          "tags": [
+            "lead-magnets",
+            "spartan",
+            "mindset"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22819,13 +23151,31 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 283688,
+          "fileSize": 759037,
           "title": "Spartan Mindset Cover",
           "tags": [
             "lead-magnets",
             "spartan",
             "mindset",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/top-50-prompts-3d",
+          "filename": "top-50-prompts-3d.png",
+          "src": "/images/lead-magnets/top-50-prompts-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 663769,
+          "title": "Top 50 Prompts 3d",
+          "tags": [
+            "lead-magnets",
+            "top",
+            "prompts"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22838,13 +23188,31 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 282314,
+          "fileSize": 572697,
           "title": "Top 50 Prompts Cover",
           "tags": [
             "lead-magnets",
             "top",
             "prompts",
             "cover"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "lead-magnets/wordless-laws-3d",
+          "filename": "wordless-laws-3d.png",
+          "src": "/images/lead-magnets/wordless-laws-3d.png",
+          "thumbnail": null,
+          "collection": "lead-magnets",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 635561,
+          "title": "Wordless Laws 3d",
+          "tags": [
+            "lead-magnets",
+            "wordless",
+            "laws"
           ],
           "createdAt": "2026-08-18"
         },
@@ -22857,7 +23225,7 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 297484,
+          "fileSize": 595989,
           "title": "Wordless Laws Cover",
           "tags": [
             "lead-magnets",
