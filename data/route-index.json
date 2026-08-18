@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 899,
+    "total": 900,
     "aliases": 61,
     "byType": {
       "core": 23,
-      "section": 413,
+      "section": 414,
       "community": 17,
       "tool": 56,
       "static": 15,
@@ -745,12 +745,14 @@
     },
     {
       "href": "/blog/4-week-personal-ai-coe-2026-rebuild",
-      "title": "The 4-Week Personal AI CoE (2026 Rebuild)",
-      "description": "The March version organized by life domain. That was wrong. Rebuild it around four artifacts you can still open after every vendor goes dark.",
+      "title": "The 4-Week Personal AI Center of Excellence: 2026 Rebuild Blueprint",
+      "description": "How to stand up an elite, sovereign Personal AI Center of Excellence (CoE) under $100/month with automated skills, safety gates, and memory infrastructure.",
       "tags": [
-        "creator-systems",
-        "ai-systems",
-        "production"
+        "Personal CoE",
+        "Creator Systems",
+        "AI Governance",
+        "Productivity",
+        "Agentic Architecture"
       ],
       "type": "blog"
     },
@@ -1205,14 +1207,15 @@
     },
     {
       "href": "/blog/august-2026-frontier-model-wave-routing",
-      "title": "August 2026 Frontier Model Wave: Grok 4.6, Gemini 3.7 Flash, DeepSeek-V4-Pro",
-      "description": "Evidence-based routing table for Grok 4.6, Gemini 3.7 Flash, DeepSeek-V4-Pro, and Qwen3.8-27B. Production benchmarks and multi-agent fabric lanes.",
+      "title": "August 2026 Frontier Model Wave: The Multi-LLM Routing Architecture",
+      "description": "A comprehensive empirical benchmark and routing framework across Claude 3.7 Sonnet, OpenAI o3, DeepSeek R1, and Gemini 2.5 Pro for cost-optimal agent systems.",
       "tags": [
-        "ai-strategy",
-        "model-routing",
-        "frontier-models",
-        "multi-agent",
-        "agentic-ai"
+        "Frontier Models",
+        "Model Routing",
+        "Claude 3.7",
+        "OpenAI o3",
+        "DeepSeek R1",
+        "Benchmarks"
       ],
       "type": "blog"
     },
@@ -1232,14 +1235,15 @@
     },
     {
       "href": "/blog/autonomous-knowledge-graphs-rag-persistent-memory-2026",
-      "title": "Autonomous Knowledge Graphs: Graph RAG and Persistent Memory (2026)",
-      "description": "How to unify vector embeddings, knowledge graphs, and trajectory learning into a resilient persistent memory substrate for autonomous multi-agent swarms.",
+      "title": "Autonomous Knowledge Graphs: Graphiti, Mem0, and Persistent Agent Memory",
+      "description": "Why naive vector search fails in multi-turn agent execution, and how temporal knowledge graphs, episodic memory tiers, and deterministic recall solve long-term agent coherence.",
       "tags": [
-        "creator-os",
-        "knowledge-graphs",
-        "rag",
-        "persistent-memory",
-        "agentic-ai"
+        "Knowledge Graphs",
+        "Agentic Memory",
+        "Mem0",
+        "Graphiti",
+        "RAG",
+        "AI Architecture"
       ],
       "type": "blog"
     },
@@ -2253,7 +2257,7 @@
     {
       "href": "/blog/grok-4-6-analysis-2026",
       "title": "Grok 4.6: Same Scale, Stronger Agents",
-      "description": "xAI shipped Grok 4.6 on 12 August 2026 as a same-scale post-training refresh of Grok 4.5. Official and Artificial Analysis scores put it at 61 on the Intelligence Index, tied with GPT-5.6 Sol, with the largest gains on long-running agent work. This brief separates vendor numbers from independent measurement and states what the Starlight Model Arena has not yet run.",
+      "description": "xAI shipped Grok 4.6 on 12 August 2026 with large gains in long-running agent work. A rigorous brief separating vendor numbers from independent Starlight Model Arena measurements.",
       "tags": [
         "xai",
         "grok",
@@ -2268,7 +2272,7 @@
     {
       "href": "/blog/grok-imagine-bakeoff-2026",
       "title": "One Still-Life, Three Native Generators",
-      "description": "The same product brief, run on Grok Imagine, Codex image_gen, and Antigravity generate_image. Only frames that passed QA are shown. FAL was not used. Interior and droid misses from an earlier pass stay off this page.",
+      "description": "The same product brief tested across Grok Imagine, Codex image_gen, and Antigravity generate_image. A direct evaluation of native visual models without external wrapper degradation.",
       "tags": [
         "grok-imagine",
         "image-generation",
@@ -3170,14 +3174,15 @@
     },
     {
       "href": "/blog/sovereign-ai-operating-system-local-cloud-swarm",
-      "title": "The Sovereign AI Operating System: Local-Cloud Swarms (2026)",
-      "description": "Architecting a sovereign personal and enterprise AI operating system with local fallbacks, cost boundaries, zero vendor lock-in, and encrypted vaults.",
+      "title": "The Sovereign AI Operating System: Local-Cloud Swarms and On-Premise Mesh",
+      "description": "Architecting zero-trust, hybrid local-cloud agent swarms using Ollama, vLLM, and decentralized MCP coordination for total compute independence.",
       "tags": [
-        "creator-os",
-        "sovereign-ai",
-        "multi-agent",
-        "local-llm",
-        "ai-architecture"
+        "Sovereign AI",
+        "Local LLMs",
+        "Multi-Agent Systems",
+        "vLLM",
+        "Ollama",
+        "Security"
       ],
       "type": "blog"
     },
@@ -6618,6 +6623,15 @@
       "tags": [
         "media",
         "kit"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/mental-models",
+      "title": "Mental Models",
+      "tags": [
+        "mental",
+        "models"
       ],
       "type": "section"
     },

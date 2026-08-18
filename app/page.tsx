@@ -8,13 +8,17 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
-  title: 'FrankX — Music, Systems & A Living Studio',
+  title: 'FrankX — AI Architect for a More Free World',
   description:
-    'Enter Frank Riemer\'s living studio: music, agent systems, books, field notes, and practical tools shared for creators, builders, friends, and family.',
+    'AI Architect for a More Free World. Sovereign systems, modular business starter kits, production tools, and elite mental models for creators and builders who ship.',
   keywords: [
     'Frank Riemer',
     'FrankX',
-    'living studio',
+    'AI Architect for a More Free World',
+    'sovereign creator',
+    'mental models',
+    'peak performance',
+    'modular business templates',
     'AI creator systems',
     'AI music creation',
     'Suno music',

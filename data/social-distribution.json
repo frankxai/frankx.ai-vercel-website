@@ -1,0 +1,58 @@
+{
+  "version": "2026.1",
+  "author": "Frank Riemer (@frankxai)",
+  "posts": [
+    {
+      "slug": "frontier-model-convergence-reasoning-wave-2026",
+      "title": "Frontier Model Convergence: Test-Time Compute and the Reasoning Wave",
+      "url": "https://frankx.ai/blog/frontier-model-convergence-reasoning-wave-2026",
+      "x_thread": [
+        "Pre-training scaling laws (Kaplan, Chinchilla) hit a soft wall in 2026. The new frontier is inference compute budget C_infer: Test-Time Compute Scaling.\n\nHere is how Process Reward Models (PRMs), RLVR, and dynamic Monte Carlo tree search are reshaping AI architecture 🧵👇",
+        "1/ Classical LLMs emit tokens via greedy argmax sampling. They have no lookahead.\n\nReasoning models (o3, Claude 3.7, DeepSeek R1) treat inference as a search graph over candidate reasoning trajectories.",
+        "2/ Three pillars drive test-time compute:\n- Rollout Generation: K candidate intermediate reasoning branches\n- Step-Level PRM Value Scoring: Scoring intermediate logic, not just final answers\n- Dynamic Backtracking: Pruning contradictions and rewinding to parent nodes",
+        "3/ Why this matters for engineering:\nAccuracy scales with inference compute tokens. A 32B parameter model running 16,000 thinking tokens out-reasons a 700B parameter model answering in 200 tokens.",
+        "Full PhD-grade architecture breakdown + empirical scaling proofs on FrankX:\nhttps://frankx.ai/blog/frontier-model-convergence-reasoning-wave-2026"
+      ],
+      "linkedin_post": "Pre-training compute scaling is no longer the sole driver of artificial intelligence capability.\n\nThe industry has pivoted toward Test-Time Compute Scaling — allocating inference tokens to dynamic search, Step-Level Process Reward Models (PRMs), and Reinforcement Learning with Verifiable Rewards (RLVR).\n\nIn our latest architecture dispatch, we unpack:\n• The mathematics of test-time compute scaling laws\n• Why PRMs beat outcome-based rewards on complex logic\n• How reasoning tokens change enterprise procurement and latency budgets\n\nRead the full engineering analysis: https://frankx.ai/blog/frontier-model-convergence-reasoning-wave-2026"
+    },
+    {
+      "slug": "modern-agentic-systems-architecture-2026",
+      "title": "Modern Agentic Systems Architecture: From ReAct Loops to Trajectory Evals",
+      "url": "https://frankx.ai/blog/modern-agentic-systems-architecture-2026",
+      "x_thread": [
+        "Unconstrained while loops and naive ReAct chains are the primary reasons 80% of agent prototypes fail in production.\n\nHere is the 2026 Modern Agentic Operating System standard: FSM kernels, MCP 2026, and Trajectory Evals 🧵👇",
+        "1/ If your agent state is stored in raw markdown strings, it will derail after 10 turns.\n\nProduction agentic systems enforce Finite State Machine (FSM) state transitions with deterministic Zod schema validation at every tool boundary.",
+        "2/ Context Window Economics:\nNaive agents dump 50,000 tokens of file contents into memory. Modern agents use progressive disclosure:\n- Shallow schema discovery (<500 tokens)\n- Deep tool execution only on explicit intent match\n- Token compaction via AST tree pruning",
+        "3/ The golden rule of agentic reliability: Never evaluate an agent solely on the final answer. Evaluate the entire execution trajectory (tool selection, error recovery, API efficiency).",
+        "Explore the full production blueprint and state engine architecture:\nhttps://frankx.ai/blog/modern-agentic-systems-architecture-2026"
+      ],
+      "linkedin_post": "Why do 80% of multi-agent prototypes fail when moving from proof-of-concept to production?\n\nBecause naive loop architectures lack deterministic state machines, progressive tool discovery, and trajectory-level evaluation.\n\nIn our deep-dive architecture guide, we outline the exact 2026 standard for building mission-critical agentic systems:\n• FSM-based agent kernels and strict state transitions\n• Model Context Protocol (MCP) tool design patterns\n• Headroom context compression and token economics\n• Trajectory-aware evaluation pipelines (SWE-bench / τ-bench)\n\nFull guide: https://frankx.ai/blog/modern-agentic-systems-architecture-2026"
+    },
+    {
+      "slug": "ai-infrastructure-blackwell-lpu-ai-factories-2026",
+      "title": "AI Infrastructure & Hardware Economics: Blackwell, LPUs, and AI Factories",
+      "url": "https://frankx.ai/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026",
+      "x_thread": [
+        "Inference is the new manufacturing workload. But comparing GPUs purely on $/hr rental rates is flawed procurement.\n\nHere is the truth about NVIDIA GB200 NVL72, Groq LPUs, and the real metric: Cost per Verified Outcome 🧵👇",
+        "1/ GPUs (NVIDIA Blackwell) are bandwidth and compute monsters built for massive batch processing.\n\nLPUs (Groq Language Processing Units) use on-chip SRAM to achieve 80 TB/s bandwidth and sub-15ms Time-to-First-Token.",
+        "2/ When an agent runs 15 multi-turn tool loops, 400ms GPU TTFT means a 10-second user delay. On an LPU, that same loop completes in 350 milliseconds.",
+        "3/ Enterprise procurement must optimize for:\nCost per Outcome = (Compute Cost/Hr × Latency) / Verification Pass Rate.\n\nHardware with higher deterministic completion rates is cheaper overall.",
+        "Full hardware architecture and AI Factory economics breakdown:\nhttps://frankx.ai/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026"
+      ],
+      "linkedin_post": "Data centers are no longer passive server farms; they are dynamic AI Factories.\n\nAs reasoning models increase inference token demands by 10x–100x, enterprise infrastructure strategy must evolve beyond traditional GPU procurement.\n\nOur latest technical dispatch covers:\n• NVIDIA GB200 NVL72 liquid-cooled rack architectures (130kW per rack)\n• Groq LPU spatial compiler architectures and on-chip SRAM advantages\n• Why 'Cost per Million Verified Outcomes' is the only procurement metric that matters for autonomous agents\n\nRead the full report: https://frankx.ai/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026"
+    },
+    {
+      "slug": "quantum-reality-molecular-resonance-epigenetics-neuroscience",
+      "title": "Quantum Reality & Biological Resonance: The Molecular Architecture of Intent",
+      "url": "https://frankx.ai/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience",
+      "x_thread": [
+        "Is intention purely psychological, or does it leave measurable biophysical receipts?\n\nBridging Michael Levin’s bioelectricity, Joe Dispenza’s molecular epigenetics, and Karl Friston’s predictive processing 🧵👇",
+        "1/ The genome is not a micro-blueprint. Levin Lab at Tufts proved that somatic cells self-organize via endogenous bioelectric voltage gradients (V_mem) across gap junctions.",
+        "2/ Intention alters neurochemistry:\nElevated emotional coherence and disciplined meditation upregulate BDNF, downregulate inflammatory NF-κB, and lengthen telomeres through measurable epigenetic expression.",
+        "3/ In cognitive neuroscience (Friston's Free Energy Principle), the brain is a hierarchical prediction engine. Deep mental framing systematically shifts sensory precision weighting, physically rewiring dendritic spines.",
+        "Explore the scientific literature, bioelectric maps, and molecular pathways:\nhttps://frankx.ai/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience"
+      ],
+      "linkedin_post": "What happens when you examine human intention, focus, and state change through the lens of biophysics and molecular neuroscience?\n\nYou discover that consciousness and biology are interconnected informational networks.\n\nIn our deep synthesis, we review empirical findings across three major domains:\n1. Non-neural bioelectric morphogenetic fields (Dr. Michael Levin, Tufts)\n2. Molecular epigenetics and neurocardiac coherence (Dr. Joe Dispenza, Penrose/Hameroff)\n3. Hierarchical predictive processing & Free Energy minimization (Dr. Karl Friston)\n\nRead the full synthesis: https://frankx.ai/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience"
+    }
+  ]
+}

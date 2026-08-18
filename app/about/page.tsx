@@ -101,16 +101,14 @@ export default function AboutPage() {
         <div className="relative mx-auto grid min-h-[86svh] max-w-7xl items-center gap-14 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:px-10">
           <div className="max-w-3xl">
             <p className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80">
-              Frank Riemer · Amsterdam
+              Frank Riemer · Amsterdam · AI Architect for a More Free World
             </p>
             <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-              AI architect. Creator.
-              <span className="block text-white/55">Working in public.</span>
+              Architecting for a
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">More Free World.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-white/72 sm:text-xl">
-              I build systems for understanding and creating with AI. FrankX is where the
-              research, architectures, book intelligence, partnership work, guides, products,
-              music, and unfinished questions accumulate in public.
+              I build sovereign systems, turn-key business starter kits, and cognitive mental models so creators and builders can achieve true independence, build resilient businesses, and operate at peak performance at global scale.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/62">
               My agents complete many of the specialist passes. They do not inherit my voice,

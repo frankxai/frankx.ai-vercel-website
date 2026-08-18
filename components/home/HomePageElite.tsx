@@ -519,10 +519,10 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect & Creator',
-  'Independent living studio',
-  'Music, systems, books, and field notes',
-  'Built for people, not platforms',
+  'AI Architect for a More Free World',
+  'Former AI architect at Oracle',
+  '12,000+ AI Songs Created',
+  'Sovereign Creator OS & Starter Kits',
 ]
 
 function AuthorityBar() {
@@ -556,39 +556,39 @@ function AuthorityBar() {
 
 const products = [
   {
-    title: 'Agentic Creator OS',
-    description: 'An open creator operating system for agent skills, commands, and repeatable workflows.',
-    href: '/acos',
+    title: 'Sovereign Business Kits',
+    description: 'Turn-key modular starter kits (Micro-SaaS, Marketplace, Creator Hub) designed for builders to launch globally on their own terms.',
+    href: '/templates',
     color: 'emerald' as const,
   },
   {
-    title: 'Prompt Library',
-    description: 'Reusable prompts for writing, music, coding, and image generation, available to inspect and adapt.',
-    href: '/prompt-library',
-    color: 'violet' as const,
-  },
-  {
-    title: 'Creator Kit',
-    description: 'Premium templates and guided implementation resources for creators who want a faster start.',
-    href: '/products',
+    title: 'Mental Models & Peak OS',
+    description: 'The 8 Sovereign Mental Models, cognitive operating systems, and high-performance protocols for operating in Godmode.',
+    href: '/mental-models',
     color: 'cyan' as const,
   },
   {
+    title: 'Agentic Creator OS',
+    description: 'An open creator operating system for agent skills, commands, and repeatable workflows running on your own keys.',
+    href: '/acos',
+    color: 'violet' as const,
+  },
+  {
     title: 'AI Architecture Hub',
-    description: 'Patterns for agent workflows, orchestration, governance, and production-minded system design.',
+    description: 'Patterns for agent workflows, orchestration, governance, and production-minded system design. Built from Oracle to production.',
     href: '/ai-architecture',
     color: 'blue' as const,
   },
   {
     title: 'Music Lab',
-    description: 'An evolving music archive, Suno production workflows, and genre-focused field guides.',
+    description: 'An evolving music archive of 12,000+ tracks, Suno production workflows, and genre-focused frequency field guides.',
     href: '/music-lab',
     color: 'orange' as const,
   },
   {
-    title: 'Design Lab',
-    description: 'Generative art, visual experiments, nature-tech aesthetics.',
-    href: '/design-lab',
+    title: 'Sovereign Creator Blueprint',
+    description: 'The complete 4-layer architecture connecting local-first agents, digital assets, and independent revenue streams.',
+    href: '/gencreator/blueprints',
     color: 'magenta' as const,
   },
 ]
