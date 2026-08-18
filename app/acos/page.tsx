@@ -16,14 +16,15 @@ import {
 } from 'lucide-react'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { GlowCard } from '@/components/ui/glow-card'
+import CheckoutButton from '@/components/commerce/CheckoutButton'
 
 /* ──────────────────────────────────────────────
-   CHECKOUT URLS — update when LemonSqueezy store is live
-   https://app.lemonsqueezy.com/products
-   Until then: waitlist redirect to newsletter
+   CHECKOUT — Creator Kit sells via Stripe checkout
+   (/api/checkout, SKU agentic-creator-os — the key in that route's PRODUCTS
+   map. A slug that is not a key there 404s the whole purchase).
+   Pro System stays waitlist until its SKU exists.
    ────────────────────────────────────────────── */
 const CHECKOUT = {
-  starter: '/newsletter?ref=acos-creator-kit',
   pro: '/newsletter?ref=acos-pro-system',
 }
 
@@ -68,8 +69,7 @@ const tiers = [
       'Priority email support',
       'Private Discord community',
     ],
-    cta: 'Join Waitlist',
-    ctaHref: CHECKOUT.starter,
+    checkoutId: 'agentic-creator-os',
     variant: 'primary' as const,
     featured: true,
   },
@@ -431,7 +431,7 @@ export default function ACOSPage() {
               >
                 {tier.featured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white">
-                    Most Popular
+                    Start Here
                   </div>
                 )}
                 <div className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
@@ -451,7 +451,14 @@ export default function ACOSPage() {
                   ))}
                 </ul>
                 <div className="mt-8">
-                  {tier.ctaHref.startsWith('http') ? (
+                  {'checkoutId' in tier ? (
+                    <CheckoutButton
+                      productId={tier.checkoutId}
+                      price={47}
+                      label="Get Creator Kit"
+                      className="w-full"
+                    />
+                  ) : tier.ctaHref.startsWith('http') ? (
                     <a
                       href={tier.ctaHref}
                       target="_blank"
@@ -522,9 +529,12 @@ export default function ACOSPage() {
               <Github className="h-5 w-5" />
               View on GitHub
             </PremiumButton>
-            <PremiumButton variant="primary" size="lg" href={CHECKOUT.starter} target="_blank" rel="noopener noreferrer">
-              Get Creator Kit — $47
-            </PremiumButton>
+            <CheckoutButton
+              productId="agentic-creator-os"
+              price={47}
+              label="Get Creator Kit"
+              size="lg"
+            />
           </div>
         </div>
       </section>
