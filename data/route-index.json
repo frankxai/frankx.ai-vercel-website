@@ -3243,7 +3243,7 @@
     {
       "href": "/blog/skills-vs-agents-vs-prompts-vs-mcp",
       "title": "Skills vs Agents vs Prompts vs MCP: The 2026 Agentic Hierarchy",
-      "description": "Four fundamental AI primitives that get confused constantly. An architectural breakdown of what each layer does, why they compose into a sovereign stack, and how to pick the right primitive for production software.",
+      "description": "An architectural breakdown of the 4-layer 2026 agentic hierarchy: prompts, skills, autonomous agents, and MCP. Why they compose into a sovereign stack and how to pick the right primitive.",
       "tags": [
         "ai-skills",
         "agents",
