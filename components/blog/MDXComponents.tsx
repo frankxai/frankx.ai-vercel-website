@@ -8,6 +8,8 @@ import { FunnelCTA } from '@/components/funnel/FunnelCTA'
 import { LeadMagnetCard } from '@/components/blog/LeadMagnetCard'
 import { buildInlineVideoSchema } from '@/lib/video-schema'
 import LearnHubCallout from '@/components/learn/LearnHubCallout'
+import { EcosystemBadge, EcosystemStack } from '@/components/blog/EcosystemBadges'
+import { MascotInsight } from '@/components/blog/MascotInsight'
 
 // Embed components for immersive media
 import {
@@ -292,6 +294,10 @@ export const mdxComponents: MDXComponents = {
   LeadMagnetCard,
   LeadMagnetInline: LeadMagnetCard,
   LearnHubCallout,
+  EcosystemBadge,
+  EcosystemStack,
+  MascotInsight,
+  MascotCallout: MascotInsight,
   Link,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,

@@ -1,12 +1,12 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T15:36:12.417Z",
-  "totalAssets": 1613,
+  "generatedAt": "2026-08-18T15:49:50.227Z",
+  "totalAssets": 1620,
   "totalCollections": 59,
-  "totalSize": 1338722658,
+  "totalSize": 1338728976,
   "formats": {
     "png": 858,
-    "svg": 356,
+    "svg": 363,
     "webp": 215,
     "jpg": 174,
     "jpeg": 10
@@ -18495,7 +18495,7 @@
       "id": "logos",
       "name": "Logo Library",
       "description": "FrankX brand logos in various formats and configurations.",
-      "count": 12,
+      "count": 19,
       "coverImage": "/images/logos/anthropic.svg",
       "accent": "from-white/10 to-gray-500/20",
       "borderAccent": "border-white/20",
@@ -18519,6 +18519,40 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "logos/antigravity",
+          "filename": "antigravity.svg",
+          "src": "/images/logos/antigravity.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 1251,
+          "title": "Antigravity",
+          "tags": [
+            "logos",
+            "antigravity"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "logos/cerebras",
+          "filename": "cerebras.svg",
+          "src": "/images/logos/cerebras.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 1072,
+          "title": "Cerebras",
+          "tags": [
+            "logos",
+            "cerebras"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "logos/elevenlabs",
           "filename": "elevenlabs.svg",
           "src": "/images/logos/elevenlabs.svg",
@@ -18536,6 +18570,24 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "logos/frankx-omega",
+          "filename": "frankx-omega.svg",
+          "src": "/images/logos/frankx-omega.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 729,
+          "title": "Frankx Omega",
+          "tags": [
+            "logos",
+            "frankx",
+            "omega"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "logos/google",
           "filename": "google.svg",
           "src": "/images/logos/google.svg",
@@ -18551,6 +18603,40 @@
             "google"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "logos/groq",
+          "filename": "groq.svg",
+          "src": "/images/logos/groq.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 674,
+          "title": "Groq",
+          "tags": [
+            "logos",
+            "groq"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "logos/hermes",
+          "filename": "hermes.svg",
+          "src": "/images/logos/hermes.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 1182,
+          "title": "Hermes",
+          "tags": [
+            "logos",
+            "hermes"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "logos/huggingface",
@@ -18621,6 +18707,23 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "logos/nvidia",
+          "filename": "nvidia.svg",
+          "src": "/images/logos/nvidia.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 568,
+          "title": "Nvidia",
+          "tags": [
+            "logos",
+            "nvidia"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "logos/openai",
           "filename": "openai.svg",
           "src": "/images/logos/openai.svg",
@@ -18636,6 +18739,23 @@
             "openai"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "logos/openclaw",
+          "filename": "openclaw.svg",
+          "src": "/images/logos/openclaw.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 842,
+          "title": "Openclaw",
+          "tags": [
+            "logos",
+            "openclaw"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "logos/perplexity",
