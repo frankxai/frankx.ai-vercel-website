@@ -1,7 +1,4 @@
-'use client'
-
-import Image from 'next/image'
-
+import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
 import { cn } from '@/lib/utils'
 
 type HeroImageProps = {
@@ -23,21 +20,13 @@ export default function HeroImage({
 }: HeroImageProps) {
   if (src) {
     return (
-      <div
-        className={cn(
-          'relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/10 bg-white/5',
-          className
-        )}
-      >
-        <Image
-          src={src}
-          alt={alt || title}
-          fill
-          sizes="(max-width: 768px) 100vw, 960px"
-          className="object-cover"
-          priority={priority}
-        />
-      </div>
+      <LiquidGlassImage
+        src={src}
+        alt={alt || title}
+        caption={subtitle}
+        priority={priority}
+        className={className}
+      />
     )
   }
 

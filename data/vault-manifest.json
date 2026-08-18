@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T15:56:44.384Z",
-  "totalAssets": 1623,
+  "generatedAt": "2026-08-18T16:03:24.506Z",
+  "totalAssets": 1624,
   "totalCollections": 59,
-  "totalSize": 1341220603,
+  "totalSize": 1341770440,
   "formats": {
     "png": 858,
     "svg": 363,
     "webp": 215,
-    "jpg": 177,
+    "jpg": 178,
     "jpeg": 10
   },
   "collections": [
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 593,
+      "count": 594,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -10972,6 +10972,26 @@
             "map"
           ],
           "createdAt": "2026-07-17"
+        },
+        {
+          "id": "blog/skills-vs-agents-hero-omega-v2",
+          "filename": "skills-vs-agents-hero-omega-v2.jpg",
+          "src": "/images/blog/generated/skills-vs-agents-hero-omega-v2.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 549837,
+          "title": "Skills Vs Agents Hero Omega V2",
+          "tags": [
+            "blog",
+            "skills",
+            "agents",
+            "hero",
+            "omega"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/skills-vs-agents-vs-prompts-vs-mcp",
