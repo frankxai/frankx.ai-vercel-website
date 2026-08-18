@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T15:49:50.227Z",
-  "totalAssets": 1620,
+  "generatedAt": "2026-08-18T15:56:44.384Z",
+  "totalAssets": 1623,
   "totalCollections": 59,
-  "totalSize": 1338728976,
+  "totalSize": 1341220603,
   "formats": {
     "png": 858,
     "svg": 363,
     "webp": 215,
-    "jpg": 174,
+    "jpg": 177,
     "jpeg": 10
   },
   "collections": [
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 590,
+      "count": 593,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -7410,6 +7410,26 @@
           "createdAt": "2026-07-17"
         },
         {
+          "id": "blog/infogenius-arcanea-ten-gates",
+          "filename": "infogenius-arcanea-ten-gates.jpg",
+          "src": "/images/blog/generated/infogenius-arcanea-ten-gates.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 1033752,
+          "title": "Infogenius Arcanea Ten Gates",
+          "tags": [
+            "blog",
+            "infogenius",
+            "arcanea",
+            "ten",
+            "gates"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/infogenius-davinci-cognitive-engine",
           "filename": "infogenius-davinci-cognitive-engine.jpg",
           "src": "/images/blog/generated/infogenius-davinci-cognitive-engine.jpg",
@@ -7450,6 +7470,26 @@
           "createdAt": "2026-08-18"
         },
         {
+          "id": "blog/infogenius-frankx-sovereign-mesh",
+          "filename": "infogenius-frankx-sovereign-mesh.jpg",
+          "src": "/images/blog/generated/infogenius-frankx-sovereign-mesh.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 664768,
+          "title": "Infogenius Frankx Sovereign Mesh",
+          "tags": [
+            "blog",
+            "infogenius",
+            "frankx",
+            "sovereign",
+            "mesh"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/infogenius-photorealistic-silicon-die",
           "filename": "infogenius-photorealistic-silicon-die.jpg",
           "src": "/images/blog/generated/infogenius-photorealistic-silicon-die.jpg",
@@ -7466,6 +7506,26 @@
             "photorealistic",
             "silicon",
             "die"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infogenius-starlight-neural-cosmos",
+          "filename": "infogenius-starlight-neural-cosmos.jpg",
+          "src": "/images/blog/generated/infogenius-starlight-neural-cosmos.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 793107,
+          "title": "Infogenius Starlight Neural Cosmos",
+          "tags": [
+            "blog",
+            "infogenius",
+            "starlight",
+            "neural",
+            "cosmos"
           ],
           "createdAt": "2026-08-18"
         },

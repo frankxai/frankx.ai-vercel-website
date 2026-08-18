@@ -35,6 +35,16 @@ Every generation passes through the **3-Lens Visual Creation Council**:
 
 ---
 
+## 2b. Modular Brand Extensions & Ecosystem Routing
+
+InfoGenius is built as an open, universal standard with specialized brand modules:
+
+1. **Universal / Open Standard (`/infogenius`)**: General-purpose technical infographic synthesizer adaptable to any enterprise brand or design tokens.
+2. **FrankX Edition (`/infogenius-frankx`)**: Sovereign AI architecture, hardware economics, dark obsidian, emerald/cyan/amber, Da Vinci manuscripts, and FrankX Omega mascot.
+3. **Arcanea Edition (`/infogenius-arcanea`)**: Mythic worldbuilding, Ten Gates, Guardians, cosmic void `#070709`, sacred gold `#F59E0B`, and illuminated lore scrolls.
+4. **Starlight Edition (`/infogenius-starlight`)**: Starlight Intelligence Web OS, neural cosmos, golden spiral cerebrum manifolds, and cybernetic telemetry meshes.
+
+
 ## 3. The 3-Step Execution Pipeline
 
 ### Step 1: Research Grounding
