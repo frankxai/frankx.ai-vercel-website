@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T15:24:37.140Z",
-  "totalAssets": 1610,
+  "generatedAt": "2026-08-18T15:36:12.417Z",
+  "totalAssets": 1613,
   "totalCollections": 59,
-  "totalSize": 1335291960,
+  "totalSize": 1338722658,
   "formats": {
     "png": 858,
     "svg": 356,
     "webp": 215,
-    "jpg": 171,
+    "jpg": 174,
     "jpeg": 10
   },
   "collections": [
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 587,
+      "count": 590,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -7408,6 +7408,66 @@
             "research"
           ],
           "createdAt": "2026-07-17"
+        },
+        {
+          "id": "blog/infogenius-davinci-cognitive-engine",
+          "filename": "infogenius-davinci-cognitive-engine.jpg",
+          "src": "/images/blog/generated/infogenius-davinci-cognitive-engine.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 1265387,
+          "title": "Infogenius Davinci Cognitive Engine",
+          "tags": [
+            "blog",
+            "infogenius",
+            "davinci",
+            "cognitive",
+            "engine"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infogenius-davinci-thermodynamics-fluids",
+          "filename": "infogenius-davinci-thermodynamics-fluids.jpg",
+          "src": "/images/blog/generated/infogenius-davinci-thermodynamics-fluids.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 1212434,
+          "title": "Infogenius Davinci Thermodynamics Fluids",
+          "tags": [
+            "blog",
+            "infogenius",
+            "davinci",
+            "thermodynamics",
+            "fluids"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/infogenius-photorealistic-silicon-die",
+          "filename": "infogenius-photorealistic-silicon-die.jpg",
+          "src": "/images/blog/generated/infogenius-photorealistic-silicon-die.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 952877,
+          "title": "Infogenius Photorealistic Silicon Die",
+          "tags": [
+            "blog",
+            "infogenius",
+            "photorealistic",
+            "silicon",
+            "die"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/infographic-agentic-hierarchy",

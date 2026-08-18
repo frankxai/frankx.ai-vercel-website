@@ -62,15 +62,15 @@ Enterprise multi-agent architectures operate as **Deterministic Finite State Mac
 
 ---
 
-## 1. The Physics of Agent Entropy
+```
+System Success Rate = P^(N × M)
+```
 
-Let $P$ represent the probability of an individual agent step executing without hallucination or error ($P \approx 0.95$). In an unconstrained multi-agent loop with $N$ steps across $M$ agents:
+For a 20-step workflow across 3 agents (60 total turns), the success probability drops to:
 
-$$\text{System Success Rate} = P^{N \times M}$$
-
-For a 20-step workflow across 3 agents ($60$ total turns), the success probability drops to:
-
-$$0.95^{60} \approx 0.046 \quad (4.6\%)$$
+```
+0.95^60 ≈ 0.046 (4.6%)
+```
 
 To make multi-agent systems viable, software architects must bound execution within **Deterministic State Graphs** where each state transition is gated by programmatic validators (compilers, typecheckers, linters, and unit tests).
 

@@ -57,13 +57,16 @@ When 72 Blackwell GPUs and 36 Grace CPUs are packed into a single **NVIDIA GB200
 
 ## 1. Why Air Cooling Collapsed at 30 kW
 
-Traditional datacenter air cooling relies on giant Computer Room Air Handlers (CRAH) pushing chilled air through raised floor plenums. The thermal transfer capacity of air is governed by its specific heat capacity:
+```
+Q_dot = m_dot × Cp × ΔT
+```
 
-$$\dot{Q} = \dot{m} \cdot C_p \cdot \Delta T$$
-
-Because air has a very low density ($\approx 1.2 \, \text{kg/m}^3$) and specific heat capacity ($C_p \approx 1.005 \, \text{kJ/kg}\cdot\text{K}$), cooling a 140 kW rack with air requires moving massive volumes of air at near-hurricane speeds. The fan power required to push that much air exceeds 25 kW per rack, destroying efficiency.
+Because air has a very low density (~1.2 kg/m³) and specific heat capacity (Cp ~ 1.005 kJ/kg·K), cooling a 140 kW rack with air requires moving massive volumes of air at near-hurricane speeds. The fan power required to push that much air exceeds 25 kW per rack, destroying efficiency.
 
 **Liquid (water-glycol mixture)** has over **3,000 times the volumetric heat capacity of air**, allowing compact 1-inch tubes to absorb and transport hundreds of kilowatts silently with minimal pumping power.
+
+![Leonardo da Vinci Engineering Study: Hydraulic Screws, Vortex Flow Mechanics, and Micro-Channel Heat Transfer](/images/blog/generated/infogenius-davinci-thermodynamics-fluids.jpg)
+
 
 ---
 

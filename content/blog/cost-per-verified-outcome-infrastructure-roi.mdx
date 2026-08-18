@@ -51,16 +51,16 @@ If an inexpensive hardware tier takes 45 seconds per turn and has a 20% failure 
 
 ## 1. The Mathematical CPVO Framework
 
-Let the total cost of an agentic workflow be defined as:
-
-$$\text{CPVO} = \frac{\sum_{i=1}^{K} \left( T_i \cdot R_{\text{hw}} + C_{\text{api}, i} \right)}{P_{\text{pass}}}$$
+```
+CPVO = (Sum of Step Latencies × Hardware Rate + API Costs) / First-Pass Pass Rate
+```
 
 Where:
-- $K$ is the number of agentic execution steps in the workflow.
-- $T_i$ is the execution time (latency) of step $i$ in hours.
-- $R_{\text{hw}}$ is the effective hardware run-rate per hour.
-- $C_{\text{api}, i}$ is the external tool/database cost incurred during step $i$.
-- $P_{\text{pass}}$ is the empirical verification probability that the final artifact meets all schema, security, and unit-test contracts on the first pass.
+- K is the number of agentic execution steps in the workflow.
+- Ti is the execution time (latency) of step i in hours.
+- Rhw is the effective hardware run-rate per hour.
+- Capi is the external tool/database cost incurred during step i.
+- Ppass is the empirical verification probability that the final artifact meets all schema, security, and unit-test contracts on the first pass.
 
 ---
 

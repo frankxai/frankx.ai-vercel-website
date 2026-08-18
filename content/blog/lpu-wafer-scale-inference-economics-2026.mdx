@@ -70,6 +70,9 @@ SRAM (Static Random-Access Memory) is physically etched directly alongside compu
 └─────────────────────────────────────────────────────────────┘
 ```
 
+![Macro Industrial Photography: Micro-Etched Silicon Die with Luminescent Liquid Cooling Channels](/images/blog/generated/infogenius-photorealistic-silicon-die.jpg)
+
+
 ---
 
 ## 2. Cerebras CS-3: The 44GB Wafer-Scale Engine
@@ -96,10 +99,12 @@ Running frontier open-weight models (Llama 3.3 70B, Qwen 2.5 72B) on wafer-scale
 
 When building multi-agent architectures (like the **Agentic Creator OS**), an autonomous supervisor may dispatch 5 subagents, each running 3 sequential tool calls and a verification linter:
 
-$$\text{Total Turns} = 5 \text{ agents} \times 3 \text{ calls} = 15 \text{ sequential inference calls}$$
+```
+Total Turns = 5 agents × 3 calls = 15 sequential inference calls
+```
 
-- **On Traditional GPU Clusters**: $15 \text{ calls} \times 3.5\text{s} = 52.5\text{ seconds}$ (User experiences unacceptable sluggishness).
-- **On LPU/Wafer-Scale Fabrics**: $15 \text{ calls} \times 0.25\text{s} = 3.75\text{ seconds}$ (Real-time fluid interaction).
+- **On Traditional GPU Clusters**: 15 calls × 3.5s = 52.5 seconds (User experiences unacceptable sluggishness).
+- **On LPU/Wafer-Scale Fabrics**: 15 calls × 0.25s = 3.75 seconds (Real-time fluid interaction).
 
 ---
 
