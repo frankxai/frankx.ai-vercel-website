@@ -1,0 +1,134 @@
+[
+  {
+    "tier": 0,
+    "id": "animelegends-tier-0-free",
+    "name": "The AnimeLegends.ai Sovereign Starter Vault",
+    "badge": "100% FREE ACCESS",
+    "price": 0,
+    "priceDisplay": "Free",
+    "billingPeriod": "Forever Free",
+    "icp": "Anime Enthusiasts, Manga Creators, Visual Novel Builders, Art Collectors",
+    "headline": "Foundational Blueprints, Quickstarts, and Interactive Assessment for AnimeLegends.ai",
+    "subheadline": "Zero-friction entry into AnimeLegends.ai systems and methodologies.",
+    "deliverables": [
+      "3 Flagship AnimeLegends.ai PDF Guides & Framework Blueprints",
+      "Interactive Readiness Diagnostic Tool",
+      "Turnkey Starter Prompt / Config Templates",
+      "Weekly Intelligence Dispatch from AnimeLegends.ai"
+    ],
+    "roiArgument": "Instant zero-friction leverage. Establishes core AnimeLegends.ai concepts without spending a dime.",
+    "ctaText": "Access Free Blueprints",
+    "ctaHref": "/downloads",
+    "highlight": false
+  },
+  {
+    "tier": 1,
+    "id": "animelegends-tier-1-starter",
+    "name": "AnimeLegends.ai Tactical Starter Pack",
+    "badge": "MOST POPULAR STARTER",
+    "price": 97,
+    "priceDisplay": "€97",
+    "billingPeriod": "One-Time Payment",
+    "icp": "Anime Enthusiasts, Manga Creators, Visual Novel Builders, Art Collectors",
+    "headline": "The Complete AnimeLegends.ai Starter Kit & Template Vault",
+    "subheadline": "Production-ready configs, workflows, and prompts ready to fork and own.",
+    "deliverables": [
+      "Complete AnimeLegends.ai Starter Code / Config Repository",
+      "50+ High-Fidelity Domain Prompts & Workflows",
+      "Notion Command Center & Workflow Templates",
+      "Lifetime Updates to Tier 1 Vault Assets"
+    ],
+    "roiArgument": "Saves 20+ hours of setup time. Instant ROI in the first 48 hours.",
+    "ctaText": "Get Starter Pack — €97",
+    "ctaHref": "/checkout?product=animelegends-starter-97",
+    "highlight": false
+  },
+  {
+    "tier": 2,
+    "id": "animelegends-tier-2-systems",
+    "name": "AnimeLegends.ai Engineering & Systems Suite",
+    "badge": "CORE ARCHITECTURE",
+    "price": 297,
+    "priceDisplay": "€297",
+    "billingPeriod": "One-Time Payment",
+    "icp": "Anime Enthusiasts, Manga Creators, Visual Novel Builders, Art Collectors",
+    "headline": "Advanced Architecture, Multi-Agent Swarms & Codebase",
+    "subheadline": "Full source code, production pipeline integrations, and automation hooks.",
+    "deliverables": [
+      "Complete Systems Codebase & CLI Orchestration Engine",
+      "Automated Ingestion, Processing & Export Pipelines",
+      "Private Video Deep-Dive Masterclass (2+ Hours)",
+      "Private GitHub Repo Access with Live Code Examples"
+    ],
+    "roiArgument": "Replaces €4,000+ in custom consulting or development fees.",
+    "ctaText": "Unlock Systems Suite — €297",
+    "ctaHref": "/checkout?product=animelegends-systems-297",
+    "highlight": true
+  },
+  {
+    "tier": 3,
+    "id": "animelegends-tier-3-accelerator",
+    "name": "AnimeLegends.ai Sovereign Accelerator Engine",
+    "badge": "FULL ACCELERATOR",
+    "price": 997,
+    "priceDisplay": "€997",
+    "billingPeriod": "One-Time Payment",
+    "icp": "Anime Enthusiasts, Manga Creators, Visual Novel Builders, Art Collectors",
+    "headline": "Done-With-You Accelerator & Turnkey Foundry Integration",
+    "subheadline": "Automated end-to-end production pipelines with brand calibration and quality gates.",
+    "deliverables": [
+      "End-to-End Autonomous Engine Deployment",
+      "Custom Voice Calibration & Anti-Slop Quality Gates",
+      "4-Week Video Workshop Series & Implementation Support",
+      "Bi-Weekly Group Strategy & Code Review Calls"
+    ],
+    "roiArgument": "Operate with the throughput of a 5-person team with zero headcount.",
+    "ctaText": "Join Accelerator — €997",
+    "ctaHref": "/checkout?product=animelegends-accelerator-997",
+    "highlight": false
+  },
+  {
+    "tier": 4,
+    "id": "animelegends-tier-4-intensive",
+    "name": "AnimeLegends.ai Private Architecture Intensive",
+    "badge": "DONE-WITH-YOU SPRINT",
+    "price": 2997,
+    "priceDisplay": "€2,997",
+    "billingPeriod": "3-Week Sprint",
+    "icp": "Anime Enthusiasts, Manga Creators, Visual Novel Builders, Art Collectors",
+    "headline": "Private 1-on-1 Architecture Sprint & Custom System Build",
+    "subheadline": "Direct architecture sessions to design, build, and deploy custom infrastructure.",
+    "deliverables": [
+      "3 x 90-Minute Private 1-on-1 Architecture Sessions",
+      "Custom Pipeline & Tool Development tailored to your exact stack",
+      "Security Policy, Memory Patterns & Integration Bridge",
+      "60-Day Direct Priority Messaging Support"
+    ],
+    "roiArgument": "Eliminates 3-6 months of costly trial-and-error and builds a sovereign moat.",
+    "ctaText": "Apply for Intensive — €2,997",
+    "ctaHref": "/work-with-me?type=animelegends-intensive",
+    "highlight": false
+  },
+  {
+    "tier": 5,
+    "id": "animelegends-tier-5-advisory",
+    "name": "AnimeLegends.ai Sovereign Advisory & Enterprise Retainer",
+    "badge": "VIP PARTNERSHIP",
+    "price": 9997,
+    "priceDisplay": "€9,997",
+    "billingPeriod": "Annual Retainer / Major Sprint",
+    "icp": "Anime Enthusiasts, Manga Creators, Visual Novel Builders, Art Collectors",
+    "headline": "Full Done-For-You Sovereign Infrastructure & C-Suite Advisory",
+    "subheadline": "Ongoing technical stewardship, dedicated custom fleet, and executive strategy.",
+    "deliverables": [
+      "Full Done-For-You Custom System Deployment across all infrastructure",
+      "Quarterly On-Site or Virtual Strategic Mastermind Sessions",
+      "Dedicated Autonomous Subagent Fleet for your operations",
+      "24/7 Priority Emergency Channel & Technical Stewardship"
+    ],
+    "roiArgument": "Replaces €150,000+ full-time executive salary with an autonomous sovereign infrastructure.",
+    "ctaText": "Request Advisory Consultation — €9,997",
+    "ctaHref": "/work-with-me?type=animelegends-advisory",
+    "highlight": false
+  }
+]

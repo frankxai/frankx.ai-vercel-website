@@ -3,6 +3,7 @@ import { ArrowRight, Shield, Heart, Layers } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
 import { products, paidProducts } from '@/data/products'
 import { PricingTable } from '@/components/funnel/PricingTable'
+import { MultiTierValueLadder } from '@/components/conversion/MultiTierValueLadder'
 
 export const metadata = createMetadata({
   title: 'Build — The Six Primitives Stack',
@@ -149,6 +150,12 @@ export default function BuildHubPage() {
           </div>
         </div>
       </section>
+
+      {/* Interactive 6-Tier Architecture Explorer */}
+      <MultiTierValueLadder
+        title="Interactive 6-Tier Architecture Explorer"
+        subtitle="Compare technical deliverables, ROI calculations, and commercial pathways across all six tiers."
+      />
 
       {/* Comparison table */}
       <section className="pb-24">
