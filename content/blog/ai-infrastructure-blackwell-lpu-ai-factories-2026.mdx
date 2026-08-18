@@ -76,7 +76,7 @@ While GPUs dominate large-batch training and throughput, **LPUs (Language Proces
 | **Memory Architecture** | External High Bandwidth Memory | 230 MB ultra-fast on-chip SRAM |
 | **Memory Bandwidth** | 8 TB/s per chip | 80 TB/s per chip |
 | **Execution Model** | Non-deterministic dynamic scheduling | Fully deterministic spatial compiler scheduling |
-| **Time-to-First-Token** | 150ms – 500ms | < 15ms |
+| **Time-to-First-Token** | 150ms – 500ms | Under 15ms |
 | **Token Generation Velocity** | 50 – 120 tokens/sec | 500 – 800 tokens/sec |
 | **Ideal Workload** | Massive batch processing & training | Real-time voice agents, sub-second agent loops |
 
@@ -88,7 +88,9 @@ For multi-agent swarms executing dozens of sequential tool calls and trajectory 
 
 Evaluating infrastructure by GPU rental cost per hour ($/hr) is a flawed procurement strategy. Enterprise infrastructure architects evaluate **Cost per Million Verified Outcomes**:
 
-$$\text{Cost per Outcome} = \frac{\text{Infrastructure Cost/Hour} \times \text{Execution Time}}{\text{Verification Pass Rate}}$$
+```
+Cost per Outcome = (Infrastructure Cost/Hour × Execution Time) / Verification Pass Rate
+```
 
 When an agentic system uses faster hardware with higher deterministic verification rates, total operational expenditure decreases even if the hourly compute cost is higher.
 

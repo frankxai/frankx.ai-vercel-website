@@ -40,13 +40,15 @@ graph LR
 
 ## 1. The Physics of Test-Time Compute Scaling
 
-Classical scaling laws (Kaplan et al., Chinchilla) modeled compute scaling as a function of dataset token volume $D$ and parameter size $N$:
+Classical scaling laws (Kaplan et al., Chinchilla) modeled compute scaling as a function of dataset token volume D and parameter size N:
 
-$$L(N, D) = \left(\frac{N_c}{N}\right)^{\alpha_N} + \left(\frac{D_c}{D}\right)^{\alpha_D}$$
+```
+L(N, D) = (N_c / N)^α_N + (D_c / D)^α_D
+```
 
-Test-time compute scaling introduces an independent axis: **inference compute budget $C_{\text{infer}}$**. Instead of emitting tokens immediately via greedy argmax sampling, reasoning systems expand a search graph over candidate reasoning trajectories:
+Test-time compute scaling introduces an independent axis: **inference compute budget C_infer**. Instead of emitting tokens immediately via greedy argmax sampling, reasoning systems expand a search graph over candidate reasoning trajectories:
 
-1. **Rollout Generation**: Generating $K$ candidate intermediate reasoning branches.
+1. **Rollout Generation**: Generating K candidate intermediate reasoning branches.
 2. **Step-Level Value Scoring**: Evaluating intermediate logical leaps rather than whole-trajectory final outputs.
 3. **Dynamic Backtracking**: Identifying contradictory states and reverting to the nearest verified parent node.
 

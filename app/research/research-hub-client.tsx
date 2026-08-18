@@ -231,7 +231,16 @@ function FeaturedSpotlight() {
   )
 }
 
-const categoryKeys: (DomainCategory | 'all')[] = ['all', 'ai-systems', 'models-tools', 'creative-productivity', 'health-science', 'policy-systems']
+const categoryKeys: (DomainCategory | 'all')[] = [
+  'all',
+  'frontier-ai',
+  'agentic-systems',
+  'ai-infrastructure',
+  'quantum-technology',
+  'reality-architecture',
+  'agentic-products',
+  'enterprise-governance',
+]
 
 function DomainsGrid() {
   const [activeCategory, setActiveCategory] = useState<DomainCategory | 'all'>('all')
@@ -298,7 +307,7 @@ function DomainsGrid() {
         <div className="flex flex-wrap gap-2 mb-8">
           {categoryKeys.map((key) => {
             const isActive = activeCategory === key
-            const label = key === 'all' ? 'All Domains' : domainCategories[key].label
+            const label = key === 'all' ? 'All Domains' : (domainCategories[key]?.label || key)
             const count = key === 'all'
               ? researchDomains.length
               : researchDomains.filter(d => d.category === key).length
