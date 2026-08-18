@@ -3,13 +3,19 @@ import path from 'path'
 
 const ROOT = process.cwd()
 const OUTPUT = path.join(ROOT, 'public', 'reading', 'search-index.json')
-const EXCLUDE_DIRS = new Set(['.git', 'node_modules', '.next', 'reading-site', 'public'])
+const EXCLUDE_DIRS = new Set([
+  '.git', 'node_modules', '.next', 'reading-site', 'public',
+  'content-universe', '.archive', '.obsidian', 'backups',
+  'docs', 'affine-workspace', '_repo_remote_frankx_website',
+  'keystatic-frankx', 'sanity-frankx', 'tina-frankx',
+  'playwright-report', 'tmp', 'benchmarks', 'generated_audio', 'generated_imgs'
+])
 const TEXT_EXTS = new Set(['.md', '.markdown', '.txt', '.html'])
 
 function walk(dir, list = []) {
   const ents = fs.readdirSync(dir, { withFileTypes: true })
   for (const ent of ents) {
-    if (ent.name.startsWith('.DS_Store')) continue
+    if (ent.name.startsWith('.') || ent.name.startsWith('.DS_Store')) continue
     const full = path.join(dir, ent.name)
     if (ent.isDirectory()) {
       if (EXCLUDE_DIRS.has(ent.name)) continue

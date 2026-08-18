@@ -5,8 +5,9 @@ import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
 import Diagram from '@/components/blog/Diagram'
 import { FunnelCTA } from '@/components/funnel/FunnelCTA'
-import LearnHubCallout from '@/components/learn/LearnHubCallout'
+import { LeadMagnetCard } from '@/components/blog/LeadMagnetCard'
 import { buildInlineVideoSchema } from '@/lib/video-schema'
+import LearnHubCallout from '@/components/learn/LearnHubCallout'
 
 // Embed components for immersive media
 import {
@@ -91,8 +92,6 @@ function getCalloutIcon(type: CalloutKind) {
 }
 
 function Callout({ children, type = 'info' }: CalloutProps) {
-  // Defensive lookup — unknown `type` from a blog post falls back to 'info'
-  // instead of throwing during prerender (caught 'insight' on six-primitives 2026-05-07).
   const safeType: CalloutKind = (type in calloutStyles ? type : 'info') as CalloutKind
   const style = calloutStyles[safeType]
   return (
@@ -122,7 +121,7 @@ function CustomImage({ src, alt, ...props }: any) {
         />
       </div>
       {alt && alt !== 'image' && (
-        <figcaption className="mt-3 text-center text-sm text-white/60">
+        <figcaption className="mt-3 text-center text-sm text-white/40">
           {alt}
         </figcaption>
       )}
@@ -232,7 +231,7 @@ export const mdxComponents: MDXComponents = {
       role="region"
       aria-label="Scrollable data table"
       tabIndex={0}
-      className="my-8 overflow-x-auto rounded-xl border border-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-400"
+      className="my-8 overflow-x-auto rounded-xl border border-white/[0.08] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500/50"
     >
       <table className="min-w-full text-sm" {...props}>
         {children}
@@ -290,6 +289,8 @@ export const mdxComponents: MDXComponents = {
   Callout,
   AffiliateLink,
   FunnelCTA,
+  LeadMagnetCard,
+  LeadMagnetInline: LeadMagnetCard,
   LearnHubCallout,
   Link,
   // Embed components for immersive media in blog posts

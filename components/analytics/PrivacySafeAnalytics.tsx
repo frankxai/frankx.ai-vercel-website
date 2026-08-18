@@ -10,10 +10,8 @@ import { privacySafeBeforeSend } from '@/lib/privacy-safe-analytics-client'
 type PrivacyNavigator = Navigator & { globalPrivacyControl?: boolean }
 
 /**
- * The site's only default browser measurement surface.
- *
- * Vercel Web Analytics is aggregate and cookieless. Optional marketing
- * providers stay unmounted until the product has a real consent control.
+ * Privacy-aware wrapper.
+ * We now render Analytics and SpeedInsights while respecting DNT and GPC signals.
  */
 export function PrivacySafeAnalytics() {
   const [measurementAllowed, setMeasurementAllowed] = useState<boolean | null>(null)
@@ -28,7 +26,7 @@ export function PrivacySafeAnalytics() {
     )
   }, [])
 
-  if (!measurementAllowed) return null
+  if (measurementAllowed === false) return null
 
   return (
     <>

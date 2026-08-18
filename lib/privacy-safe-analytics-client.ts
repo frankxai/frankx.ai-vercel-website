@@ -35,13 +35,6 @@ export function privacySafeBeforeSend(event: BeforeSendEvent): BeforeSendEvent |
   }
 }
 
-/**
- * Establishes the provider queue and privacy middleware synchronously.
- *
- * Custom events may fire from descendant effects before the layout analytics
- * effect runs. Initializing here guarantees `beforeSend` is registered before
- * the first event and keeps the provider script singleton.
- */
 export function initializePrivacySafeAnalytics(): boolean {
   if (!browserAllowsAnalyticsMeasurement()) return false
   if (analyticsInitialized) return true
