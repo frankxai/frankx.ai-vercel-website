@@ -20,7 +20,7 @@ keywords: ["multi-agent model fabric 2026", "Grok 4.6 Gemini 3.7 routing", "agen
 
 A model fabric is the operational substrate that decouples your business logic from underlying AI model providers. Instead of hardcoding API calls directly to a specific LLM, the fabric routes tasks dynamically based on their computational shape, latency requirements, cost tolerance, and security constraints.
 
-<<<<<<< HEAD
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                   MULTI-AGENT MODEL FABRIC ROUTING TOPOLOGY                 │
@@ -39,18 +39,7 @@ A model fabric is the operational substrate that decouples your business logic f
 │                                                                               ▼
 │                                                                  [Verified Artifact]
 └─────────────────────────────────────────────────────────────────────────────┘
-=======
-```mermaid
-graph LR
-    User[Task Input] --> Router[Fabric Router]
-    Router --> Orchestrator[Orchestration Lane: Grok 4.6]
-    Orchestrator --> Workers[Worker Lane: Gemini 3.7 Flash]
-    Orchestrator --> Deep[Reasoning Lane: Claude Opus / Fable]
-    Orchestrator --> Local[Sovereign Lane: Qwen3.8-27B]
-    Workers --> Gate[Cross-Model Gate: Independent Verifier]
-    Deep --> Gate
-    Gate --> Output[Verified Artifact]
->>>>>>> origin/main
+
 ```
 
 By decoupling execution into distinct lanes, you ensure that high-velocity generation runs at ultra-low cost while high-stakes reasoning receives maximum cognitive depth without cross-contaminating contexts.
