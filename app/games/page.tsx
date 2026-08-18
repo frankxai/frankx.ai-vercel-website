@@ -29,6 +29,7 @@ import {
   Server,
   Palette,
   Bot,
+  ShieldAlert,
 } from 'lucide-react'
 
 // ============================================================================
@@ -170,32 +171,108 @@ function HeroSection() {
 
 function PlayNowSection() {
   const games = [
+    // FrankX Cognitive
     {
-      title: 'Memory Match',
-      description: 'Test your memory by matching pairs of cards. Three difficulty levels, star ratings, and a timer.',
-      href: '/games/memory-match',
-      badge: 'Play Now',
+      title: 'NeuroMatrix: Dual N-Back',
+      description: 'Scientifically proven Dual N-Back working memory and fluid IQ trainer with spatial grids and pitch cues.',
+      href: '/games/neuro-matrix',
+      badge: 'Cognitive IQ',
+      color: 'amber',
+      icon: Brain,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'ChronoFocus: Stroop Warp',
+      description: 'Hyper-speed Stroop interference reaction trainer testing executive inhibition and mental agility.',
+      href: '/games/chrono-focus',
+      badge: 'Speed Reflex',
+      color: 'amber',
+      icon: Zap,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'Quantum Prime: Factor Fusion',
+      description: 'Intuitive mental multiplication and prime factor fusion puzzle with particle chain reactions.',
+      href: '/games/quantum-prime',
+      badge: 'Mental Math',
+      color: 'amber',
+      icon: Target,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'Resonance: Bio-Flow HRV',
+      description: '4-7-8 guided breathing pacing with Solfeggio 432Hz/528Hz soundscapes for vagal tone coherence.',
+      href: '/games/resonance-flow',
+      badge: 'Zen Flow',
+      color: 'amber',
+      icon: Sparkles,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    // Arcanea Mythic
+    {
+      title: 'Arcanea: Realm of Legends',
+      description: 'Tactical 1v1 Guardian deck battler with dynamic 3D gold foil tilt shaders and AI strategist.',
+      href: '/games/arcanea-legends',
+      badge: 'Card Battler',
+      color: 'violet',
+      icon: Swords,
+      status: 'live' as const,
+      brand: 'Arcanea',
+    },
+    {
+      title: 'NeuroCosmos: Synapse Odyssey',
+      description: 'Tactile synaptic prism light routing with Solfeggio 528Hz harmonic chords across 5 lobes.',
+      href: '/games/neuro-cosmos',
+      badge: 'Light Puzzle',
       color: 'violet',
       icon: Puzzle,
       status: 'live' as const,
+      brand: 'Arcanea',
     },
+    // Starlight Cosmic
     {
-      title: 'AI Quiz',
-      description: 'AI-generated trivia questions across topics. Adaptive difficulty that learns your strengths.',
-      href: '/games',
-      badge: 'Coming Soon',
+      title: 'Chrono Shift: Void Breach',
+      description: 'Cyber-mythic roguelike bullet-hell with time-dilation matrix dodging and tech upgrades.',
+      href: '/games/chrono-shift',
+      badge: 'Roguelike',
       color: 'cyan',
-      icon: Brain,
-      status: 'coming' as const,
+      icon: Gamepad2,
+      status: 'live' as const,
+      brand: 'Starlight',
     },
     {
-      title: 'Word Forge',
-      description: 'Wordle-inspired word game with daily challenges and an unlimited practice mode.',
-      href: '/games',
-      badge: 'Coming Soon',
-      color: 'amber',
-      icon: Puzzle,
-      status: 'coming' as const,
+      title: 'Neon Drift: Cyber Horizon',
+      description: '120 FPS pseudo-3D synthwave highway racing with drift boosts and traffic hazards.',
+      href: '/games/neon-drift',
+      badge: 'Arcade Racer',
+      color: 'cyan',
+      icon: Trophy,
+      status: 'live' as const,
+      brand: 'Starlight',
+    },
+    {
+      title: 'Aetheria: Sky Islands',
+      description: 'Atmospheric glider exploration RPG with thermal updrafts and celestial relic harvesting.',
+      href: '/games/aetheria',
+      badge: 'Glider RPG',
+      color: 'cyan',
+      icon: Globe,
+      status: 'live' as const,
+      brand: 'Starlight',
+    },
+    {
+      title: 'Quantum Core: Reactor Defense',
+      description: 'Real-time tactical energy grid routing and modular plasma/cryo/singularity turret defense.',
+      href: '/games/quantum-core',
+      badge: 'Tower Defense',
+      color: 'cyan',
+      icon: ShieldAlert,
+      status: 'live' as const,
+      brand: 'Starlight',
     },
   ]
 
@@ -207,67 +284,71 @@ function PlayNowSection() {
 
   return (
     <section className="relative py-24 px-6 border-t border-white/[0.04]">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-            Play now
-          </h2>
-          <p className="text-white/50 max-w-2xl text-lg">
-            Games you can play right now in your browser. More coming soon.
-          </p>
-        </motion.div>
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold mb-3">
+              ✦ 10 PLAYABLE TITLES LIVE
+            </div>
+            <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-3">
+              Play now on frankx.ai
+            </h2>
+            <p className="text-white/60 max-w-2xl text-base">
+              Instant 60–120 FPS games running directly in your browser. Zero downloads, zero installs, pure WebAudio synthesis.
+            </p>
+          </motion.div>
 
-        <div className="grid sm:grid-cols-3 gap-4">
+          <Link
+            href="/games/hub.html"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-cyan-500 text-slate-950 font-bold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-amber-500/20 whitespace-nowrap self-start md:self-auto"
+          >
+            <Smartphone className="w-4 h-4" />
+            Launch Multi-Device Simulator Hub
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {games.map((game, i) => {
             const colors = colorMap[game.color]
-            const isLive = game.status === 'live'
-            const cardClasses = `block p-6 rounded-2xl border ${colors.border} bg-white/[0.02] transition-all ${
-              isLive ? 'hover:bg-white/[0.05] hover:scale-[1.02] cursor-pointer' : 'opacity-60'
-            }`
-
-            const cardContent = (
-              <>
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`p-2.5 rounded-xl ${colors.bg}`}>
-                    <game.icon className={`w-5 h-5 ${colors.text}`} />
-                  </div>
-                  <span className={`text-[10px] font-medium px-2 py-1 rounded-full ${
-                    isLive
-                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                      : 'bg-white/[0.04] text-white/30 border border-white/[0.06]'
-                  }`}>
-                    {game.badge}
-                  </span>
-                </div>
-                <h3 className="text-lg font-medium text-white mb-2">{game.title}</h3>
-                <p className="text-sm text-white/40 leading-relaxed">{game.description}</p>
-                {isLive && (
-                  <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-violet-400">
-                    Play
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                )}
-              </>
-            )
-
             return (
               <motion.div
                 key={game.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.05 }}
               >
-                {isLive ? (
-                  <Link href={game.href} className={cardClasses}>{cardContent}</Link>
-                ) : (
-                  <div className={cardClasses}>{cardContent}</div>
-                )}
+                <Link
+                  href={game.href}
+                  className={`block p-6 rounded-2xl border ${colors.border} bg-white/[0.02] hover:bg-white/[0.06] hover:scale-[1.02] transition-[background-color,transform,border-color] duration-200 cursor-pointer group h-full flex flex-col justify-between`}
+
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`p-2.5 rounded-xl ${colors.bg}`}>
+                        <game.icon className={`w-5 h-5 ${colors.text}`} />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-white/40 uppercase tracking-wider font-semibold">{game.brand}</span>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          {game.badge}
+                        </span>
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-amber-300 transition-colors">{game.title}</h3>
+                    <p className="text-sm text-white/50 leading-relaxed">{game.description}</p>
+                  </div>
+                  
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold text-white/80 group-hover:text-white">
+                    <span>PLAY IN BROWSER</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-amber-400" />
+                  </div>
+                </Link>
               </motion.div>
             )
           })}

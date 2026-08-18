@@ -72,7 +72,9 @@ export function LeadMagnetCard({ id, title: customTitle, subtitle: customSubtitl
         {/* Content & Form */}
         <div className="flex-1 text-left">
           <div className="flex flex-wrap items-center gap-2 mb-2">
+
             <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded border border-amber-400/20">
+
               {magnet.badgeText || 'Free Download'}
             </span>
             <span className="text-xs text-neutral-400 font-mono">

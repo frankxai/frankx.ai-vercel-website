@@ -82,6 +82,8 @@ tina-frankx/
 
 # Local artifacts (multi-agent + tooling)
 .worktrees/
+.hermes-worktrees/
+.codex-worktrees/
 .playwright-mcp/
 .claude-plugins-fcakyon/
 _archive/

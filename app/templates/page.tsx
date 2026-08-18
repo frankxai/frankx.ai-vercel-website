@@ -83,40 +83,58 @@ const freeTemplates = [
 
 const premiumTemplates = [
   {
-    title: 'Template Marketplace',
-    description: 'Paid template catalog with source code, deployment guides, and licenses.',
+    title: 'Agentic Micro-SaaS Starter Kit',
+    description: 'Turn-key Next.js 16 + Edge API + Stripe checkout + MCP bridge for launching sovereign AI tools.',
     href: '/shop/templates',
-    icon: Crown,
-    meta: 'Premium from $27',
-    color: 'text-amber-300',
-    gradient: 'from-amber-500/20 to-amber-500/5',
-  },
-  {
-    title: 'AI Architecture Templates',
-    description: 'Production architecture kits for RAG, multi-agent, and LLMOps systems.',
-    href: '/ai-architecture/templates',
-    icon: Workflow,
-    meta: 'Premium from $29',
-    color: 'text-violet-300',
-    gradient: 'from-violet-500/20 to-violet-500/5',
-  },
-  {
-    title: 'Vibe OS',
-    description: 'Music creation system with proven prompt architecture and workflows.',
-    href: '/products/vibe-os',
-    icon: Music,
-    meta: 'Flagship product',
+    icon: Rocket,
+    meta: 'Starter Kit · $47',
     color: 'text-emerald-300',
     gradient: 'from-emerald-500/20 to-emerald-500/5',
   },
   {
-    title: 'Suno Prompt Library',
-    description: 'Commercial-grade Suno prompts and session frameworks.',
-    href: '/products/suno-prompt-library',
-    icon: Sparkles,
-    meta: 'Premium product',
+    title: 'Digital Asset & Template Marketplace',
+    description: 'Zero-database markdown/JSON architecture with instant search, live previews, and automated delivery.',
+    href: '/shop/templates',
+    icon: Crown,
+    meta: 'Marketplace OS · $49',
+    color: 'text-amber-300',
+    gradient: 'from-amber-500/20 to-amber-500/5',
+  },
+  {
+    title: 'Creator Knowledge & Library OS',
+    description: 'Autonomous content engine, book reviews, quote networks, and GEO-optimized JSON-LD schemas.',
+    href: '/library/build',
+    icon: Workflow,
+    meta: 'Open & Premium · Free/$29',
     color: 'text-cyan-300',
     gradient: 'from-cyan-500/20 to-cyan-500/5',
+  },
+  {
+    title: 'Autonomous Swarm Workstation (ACOS Core)',
+    description: 'Multi-agent orchestration system with 38 specialized agents, 75+ skills, and deterministic test gates.',
+    href: '/products/agentic-creator-os',
+    icon: Sparkles,
+    meta: 'Flagship OS · $47/$197',
+    color: 'text-violet-300',
+    gradient: 'from-violet-500/20 to-violet-500/5',
+  },
+  {
+    title: 'AI Architecture Production Templates',
+    description: 'Enterprise RAG, multi-cloud LLMOps, and agent gateway blueprints battle-tested for production scale.',
+    href: '/ai-architecture/templates',
+    icon: Shield,
+    meta: 'Architecture Kit · $49',
+    color: 'text-blue-300',
+    gradient: 'from-blue-500/20 to-blue-500/5',
+  },
+  {
+    title: 'Vibe OS & Suno Prompt Architecture',
+    description: '12,000-track battle-tested prompt systems, 5-layer architecture, and frequency science production packs.',
+    href: '/products/vibe-os',
+    icon: Music,
+    meta: 'Music Creation · $37',
+    color: 'text-rose-300',
+    gradient: 'from-rose-500/20 to-rose-500/5',
   },
 ]
 
@@ -259,21 +277,22 @@ export default function TemplatesPage() {
             >
               {/* Breadcrumb */}
               <div className="mb-8">
-                <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
-                  Resources
+                <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/80">
+                  AI Architect for a More Free World · Starter Kits
                 </span>
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                Templates & Frameworks
-                <span className="block mt-2 text-white/60">Copy, adapt, ship.</span>
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+                Sovereign Business Starter Kits &amp; Templates
+                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
+                  Fork, Own, and Launch Globally.
+                </span>
               </h1>
 
               {/* Subtext */}
-              <p className="text-lg text-white/50 max-w-2xl leading-relaxed">
-                A clear monetization ladder: free templates to start, premium systems to ship,
-                and implementation offers when you want acceleration.
+              <p className="text-lg text-white/60 max-w-2xl leading-relaxed">
+                Turn-key modular architectures built on local-first principles. Launch micro-SaaS tools, digital asset marketplaces, autonomous swarms, and creator knowledge hubs with zero SaaS cage lock-in.
               </p>
             </motion.div>
           </div>
