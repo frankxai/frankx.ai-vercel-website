@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 900,
-    "aliases": 61,
+    "total": 901,
+    "aliases": 62,
     "byType": {
       "core": 23,
       "section": 414,
@@ -11,7 +11,7 @@
       "static": 15,
       "blog": 229,
       "research": 16,
-      "guide": 23,
+      "guide": 24,
       "library": 56,
       "newsletter": 1,
       "os": 11,
@@ -5227,6 +5227,23 @@
       "type": "guide"
     },
     {
+      "href": "/guides/higgsfield-ai-video-guide",
+      "title": "Higgsfield AI Video Masterclass: Cinema Studio, Soul ID, & Multi-Model Production",
+      "description": "Master Higgsfield AI for cinematic video production. Direct 70+ camera presets, maintain character consistency with Soul ID, orchestrate Seedance 2.0, Kling 3.0, and Veo 3.1, and build automated commercial video workflows.",
+      "tags": [
+        "ai",
+        "higgsfield",
+        "video-generation",
+        "cinema-studio",
+        "soul-id",
+        "kling",
+        "veo",
+        "fal-ai",
+        "creative-workflows"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/ifs-ai-agent-architecture",
       "title": "IFS as an AI Architecture Pattern",
       "description": "A practical guide to translating Internal Family Systems role structure into agentic system design — Self-orchestrator, manager / firefighter / protector parts, exile memory, and integration loops.",
@@ -8835,6 +8852,7 @@
     "/academy": "/ai-architect-academy",
     "/aco": "/agents",
     "/ai-coe": "/acos",
+    "/ai-computer": "/ai-architecture",
     "/aiarchitectacademy": "/ai-architect-academy",
     "/ais": "/allies/ana-cancino",
     "/alliance/cecilia": "/allies/ana-cancino",

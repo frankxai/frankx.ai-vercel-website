@@ -1,418 +1,171 @@
 FrankX.AI Link Checker Report
 ================================================================================
-Generated: 2026-08-18T03:58:19.646Z
-Total Issues Found: 35
+Generated: 2026-08-18T10:54:12.983Z
+Total Issues Found: 13
 ================================================================================
 
 === ISSUES BY TYPE ===
 
-Other errors: 35 issues
+404 - Not Found: 1 issues
 --------------------------------------------------------------------------------
 
 1. Page: Homepage
-   Href: /blog/ai-infrastructure-blackwell-lpu-ai-factories-2026
-   Link text: "AI Architecture4 min readAI Infrastructure &amp; Hardware Economics: Blackwell, LPUs, and AI Factori..."
-   Status code: 500
+   Href: /blueprint
+   Link text: "Sovereign Creator BlueprintThe complete 4-layer architecture connecting local-first agents, digital ..."
+   Status code: 404
 
-2. Page: Homepage
-   Href: /blog/frontier-model-convergence-reasoning-wave-2026
-   Link text: "AI Architecture5 min readFrontier Model Convergence: Test-Time Compute and the Reasoning WaveArchite..."
-   Status code: 500
+Other errors: 12 issues
+--------------------------------------------------------------------------------
 
-3. Page: Homepage
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page: Blog
+   Href: /blog
+   Link text: "/blog"
 
-4. Page: Homepage
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
+2. Page: Assessment
+   Href: /assessment
+   Link text: "/assessment"
 
-5. Page: Products
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+3. Page: Enterprise
+   Href: /enterprise
+   Link text: "/enterprise"
 
-6. Page: Products
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
+4. Page: Coaching
+   Href: /coaching
+   Link text: "/coaching"
 
-7. Page: Resources
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+5. Page: Courses
+   Href: /courses
+   Link text: "/courses"
 
-8. Page: Resources
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
+6. Page: Agentic AI Center
+   Href: /agentic-ai-center
+   Link text: "/agentic-ai-center"
 
-9. Page: Blog
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+7. Page: Founder Playbook
+   Href: /founder-playbook
+   Link text: "/founder-playbook"
 
-10. Page: Blog
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
+8. Page: Realm
+   Href: /realm
+   Link text: "/realm"
 
-11. Page: Blog
-   Href: /blog/ai-infrastructure-blackwell-lpu-ai-factories-2026
-   Link text: "AI ArchitectureAI Infrastructure &amp; Hardware Economics: Blackwell, LPUs, and AI FactoriesAnalysis..."
-   Status code: 500
+9. Page: Library
+   Href: /library
+   Link text: "/library"
 
-12. Page: Blog
-   Href: /blog/frontier-model-convergence-reasoning-wave-2026
-   Link text: "AI ArchitectureFrontier Model Convergence: Test-Time Compute and the Reasoning WaveArchitectural bre..."
-   Status code: 500
+10. Page: Library OS Approach
+   Href: /library/approach
+   Link text: "/library/approach"
 
-13. Page: Blog
-   Href: /blog/quantum-reality-molecular-resonance-epigenetics-neuroscience
-   Link text: "ConsciousnessQuantum Reality &amp; Biological Resonance: The Molecular Architecture of IntentRigorou..."
-   Status code: 500
+11. Page: Build Your Library
+   Href: /library/build
+   Link text: "/library/build"
 
-14. Page: Assessment
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-15. Page: Assessment
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-16. Page: Enterprise
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-17. Page: Enterprise
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-18. Page: Coaching
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-19. Page: Coaching
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-20. Page: Courses
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-21. Page: Courses
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-22. Page: Agentic AI Center
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-23. Page: Agentic AI Center
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-24. Page: Founder Playbook
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-25. Page: Founder Playbook
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-26. Page: Realm
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-27. Page: Realm
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-28. Page: Library
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-29. Page: Library
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-30. Page: Library OS Approach
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-31. Page: Library OS Approach
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-32. Page: Build Your Library
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-33. Page: Build Your Library
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-34. Page: Tao Te Ching Field Note
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-35. Page: Tao Te Ching Field Note
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
+12. Page: Tao Te Ching Field Note
+   Href: /library/tao-te-ching
+   Link text: "/library/tao-te-ching"
 
 
 === ISSUES BY PAGE ===
 
-Homepage: 4 issues
+Homepage: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /blog/ai-infrastructure-blackwell-lpu-ai-factories-2026
-   Link text: "AI Architecture4 min readAI Infrastructure &amp; Hardware Economics: Blackwell, LPUs, and AI Factori..."
-   Status code: 500
+1. Link returns 404 - Page not found
+   Href: /blueprint
+   Link text: "Sovereign Creator BlueprintThe complete 4-layer architecture connecting local-first agents, digital ..."
+   Status code: 404
 
-2. Link returns error status: 500
-   Href: /blog/frontier-model-convergence-reasoning-wave-2026
-   Link text: "AI Architecture5 min readFrontier Model Convergence: Test-Time Compute and the Reasoning WaveArchite..."
-   Status code: 500
-
-3. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-4. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Products: 2 issues
+Blog: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /blog
+   Link text: "/blog"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Resources: 2 issues
+Assessment: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /assessment
+   Link text: "/assessment"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Blog: 5 issues
+Enterprise: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /enterprise
+   Link text: "/enterprise"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-3. Link returns error status: 500
-   Href: /blog/ai-infrastructure-blackwell-lpu-ai-factories-2026
-   Link text: "AI ArchitectureAI Infrastructure &amp; Hardware Economics: Blackwell, LPUs, and AI FactoriesAnalysis..."
-   Status code: 500
-
-4. Link returns error status: 500
-   Href: /blog/frontier-model-convergence-reasoning-wave-2026
-   Link text: "AI ArchitectureFrontier Model Convergence: Test-Time Compute and the Reasoning WaveArchitectural bre..."
-   Status code: 500
-
-5. Link returns error status: 500
-   Href: /blog/quantum-reality-molecular-resonance-epigenetics-neuroscience
-   Link text: "ConsciousnessQuantum Reality &amp; Biological Resonance: The Molecular Architecture of IntentRigorou..."
-   Status code: 500
-
-Assessment: 2 issues
+Coaching: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /coaching
+   Link text: "/coaching"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Enterprise: 2 issues
+Courses: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /courses
+   Link text: "/courses"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Coaching: 2 issues
+Agentic AI Center: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /agentic-ai-center
+   Link text: "/agentic-ai-center"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Courses: 2 issues
+Founder Playbook: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /founder-playbook
+   Link text: "/founder-playbook"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Agentic AI Center: 2 issues
+Realm: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /realm
+   Link text: "/realm"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Founder Playbook: 2 issues
+Library: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /library
+   Link text: "/library"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Realm: 2 issues
+Library OS Approach: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /library/approach
+   Link text: "/library/approach"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Library: 2 issues
+Build Your Library: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /library/build
+   Link text: "/library/build"
 
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Library OS Approach: 2 issues
+Tao Te Ching Field Note: 1 issues
 --------------------------------------------------------------------------------
 
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Build Your Library: 2 issues
---------------------------------------------------------------------------------
-
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
-
-Tao Te Ching Field Note: 2 issues
---------------------------------------------------------------------------------
-
-1. Link returns error status: 500
-   Href: /research
-   Link text: "Research"
-   Status code: 500
-
-2. Link returns error status: 500
-   Href: /rss.xml
-   Link text: "RSS"
-   Status code: 500
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /library/tao-te-ching
+   Link text: "/library/tao-te-ching"
 
 
 === SUMMARY ===
 Total pages tested: 15
-Total unique internal URLs checked: 380
-Total issues found: 35
-  - 404 errors: 0
+Total unique internal URLs checked: 93
+Total issues found: 13
+  - 404 errors: 1
   - External link issues: 0
   - Redirects: 0
-  - Other errors: 35
+  - Other errors: 12
