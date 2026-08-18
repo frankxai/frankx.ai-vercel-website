@@ -89,7 +89,7 @@ Building production MCP servers requires:
 
 To defeat exponential state entropy across multi-agent systems:
 - Replace open-ended agent chat with **Finite State Machines (FSMs)**.
-- Enforce the **Santa Loop** (Generation Subagent $\leftrightarrow$ Adversarial Reviewer Subagent).
+- Enforce the **Santa Loop** (Generation Subagent ↔ Adversarial Reviewer Subagent).
 - Use typed JSON handoff payloads between supervisor and worker agents.
 
 👉 *Core Architecture Post:* [Subagent Swarms & FSM Orchestration](/blog/subagent-swarm-orchestration-fsm-2026)
@@ -100,7 +100,9 @@ To defeat exponential state entropy across multi-agent systems:
 
 Enterprise AI leaders evaluate hardware by **Cost-Per-Verified-Outcome (CPVO)**:
 
-$$\text{CPVO} = \frac{\text{Hourly Hardware Cost} \times \text{Latency}}{\text{First-Pass Pass Rate}}$$
+```
+CPVO = (Hourly Hardware Cost × Latency) / First-Pass Pass Rate
+```
 
 - **NVIDIA GB200 NVL72**: Massive multi-terabyte HBM3e for frontier reasoning and pre-training.
 - **Groq LPUs & Cerebras CS-3**: Pure on-chip SRAM for sub-15ms time-to-first-token interactive swarms.

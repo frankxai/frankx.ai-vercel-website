@@ -70,13 +70,13 @@ Consider an enterprise development team running 10,000 automated code refactorin
 
 | Parameter | Configuration A (Budget Cloud GPU) | Configuration B (Blackwell / LPU Mesh) |
 |---|---|---|
-| **Hourly Hardware Rate** | $1.80 / hour | $6.50 / hour |
-| **Average Task Duration** | 120 seconds ($0.0333$ hrs) | 8 seconds ($0.0022$ hrs) |
-| **Raw Compute Cost / Run** | $\$0.0600$ | $\$0.0144$ |
-| **First-Pass Verification ($P_{\text{pass}}$)** | $70\%$ | $96\%$ |
-| **Failed Trajectory Retry Overhead** | $\$0.0257$ | $\$0.0006$ |
-| **Effective Cost per Verified PR** | **$\$0.0857$** | **$\$0.0150$** |
-| **Monthly Spend (10,000 Verified PRs)** | **$\$857.00$** | **$\$150.00$** |
+| **Hourly Hardware Rate** | USD 1.80 / hour | USD 6.50 / hour |
+| **Average Task Duration** | 120 seconds (0.0333 hrs) | 8 seconds (0.0022 hrs) |
+| **Raw Compute Cost / Run** | USD 0.0600 | USD 0.0144 |
+| **First-Pass Verification (P_pass)** | 70% | 96% |
+| **Failed Trajectory Retry Overhead** | USD 0.0257 | USD 0.0006 |
+| **Effective Cost per Verified PR** | **USD 0.0857** | **USD 0.0150** |
+| **Monthly Spend (10,000 Verified PRs)** | **USD 857.00** | **USD 150.00** |
 
 **Conclusion**: Configuration B—despite using hardware that costs 3.6x more per hour—is **82.5% cheaper in production** because it eliminates latency and failed retry loops.
 
