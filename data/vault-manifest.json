@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T10:55:15.719Z",
-  "totalAssets": 1588,
+  "generatedAt": "2026-08-18T11:05:52.481Z",
+  "totalAssets": 1591,
   "totalCollections": 59,
-  "totalSize": 1317890990,
+  "totalSize": 1319363764,
   "formats": {
     "png": 858,
     "svg": 356,
     "webp": 215,
-    "jpg": 149,
+    "jpg": 152,
     "jpeg": 10
   },
   "collections": [
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 565,
+      "count": 568,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -119,7 +119,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 1024057,
+          "fileSize": 828057,
           "title": "100 Domain Research Engine",
           "tags": [
             "blog",
@@ -1394,7 +1394,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 783182,
+          "fileSize": 815116,
           "title": "Agentic Game Development",
           "tags": [
             "blog",
@@ -2150,7 +2150,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 982340,
+          "fileSize": 865377,
           "title": "Ai Infrastructure Factories",
           "tags": [
             "blog",
@@ -2432,7 +2432,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 842188,
+          "fileSize": 831538,
           "title": "Autonomous Agentic Foundry",
           "tags": [
             "blog",
@@ -6008,7 +6008,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 875058,
+          "fileSize": 566823,
           "title": "Frontier Model Convergence",
           "tags": [
             "blog",
@@ -6118,7 +6118,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 900367,
+          "fileSize": 611923,
           "title": "Frontier Model Wave Routing",
           "tags": [
             "blog",
@@ -7537,6 +7537,25 @@
           "createdAt": "2026-08-10"
         },
         {
+          "id": "blog/intent-compilers-orchestration",
+          "filename": "intent-compilers-orchestration.jpg",
+          "src": "/images/blog/generated/intent-compilers-orchestration.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 633526,
+          "title": "Intent Compilers Orchestration",
+          "tags": [
+            "blog",
+            "intent",
+            "compilers",
+            "orchestration"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
           "id": "blog/karpathys-ai-vision-deep-dive-hero",
           "filename": "karpathys-ai-vision-deep-dive-hero.png",
           "src": "/images/blog/karpathys-ai-vision-deep-dive-hero.png",
@@ -7687,7 +7706,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 825283,
+          "fileSize": 829225,
           "title": "Knowledge Graphs Memory Os",
           "tags": [
             "blog",
@@ -8550,7 +8569,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 765448,
+          "fileSize": 765481,
           "title": "Modern Agentic Systems",
           "tags": [
             "blog",
@@ -8761,6 +8780,26 @@
             "consciousness"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "blog/music-intelligence-sonic-neuroscience",
+          "filename": "music-intelligence-sonic-neuroscience.jpg",
+          "src": "/images/blog/generated/music-intelligence-sonic-neuroscience.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 752369,
+          "title": "Music Intelligence Sonic Neuroscience",
+          "tags": [
+            "blog",
+            "music",
+            "intelligence",
+            "sonic",
+            "neuroscience"
+          ],
+          "createdAt": "2026-08-18"
         },
         {
           "id": "blog/my-100-month-ai-stack-every-tool-i-actually-use-premium-hero",
@@ -9258,7 +9297,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 912188,
+          "fileSize": 925932,
           "title": "Personal Ai Coe Blueprint",
           "tags": [
             "blog",
@@ -10016,7 +10055,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 992700,
+          "fileSize": 972293,
           "title": "Quantum Reality Molecular Resonance",
           "tags": [
             "blog",
@@ -10533,13 +10572,32 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 865546,
+          "fileSize": 995775,
           "title": "Sovereign Ai Swarm Mesh",
           "tags": [
             "blog",
             "sovereign",
             "swarm",
             "mesh"
+          ],
+          "createdAt": "2026-08-18"
+        },
+        {
+          "id": "blog/sovereign-creator-wealth-os",
+          "filename": "sovereign-creator-wealth-os.jpg",
+          "src": "/images/blog/generated/sovereign-creator-wealth-os.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 847696,
+          "title": "Sovereign Creator Wealth Os",
+          "tags": [
+            "blog",
+            "sovereign",
+            "creator",
+            "wealth"
           ],
           "createdAt": "2026-08-18"
         },

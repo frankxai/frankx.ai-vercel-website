@@ -22,15 +22,32 @@ For three years, the industry operated under the premise that crafting magical E
 
 Production systems have transitioned from manual prompts to **Intent Compilers**.
 
-```mermaid
-graph LR
-    A[Natural Language Intent / Voice / CLI] --> B[Deterministic Lexer & Intent Parser]
-    B --> C[Abstract Syntax Tree AST Generator]
-    C --> D{Zod / JSON Schema Validator}
-    D -->|Schema Valid| E[Dynamic Multi-Model Orchestrator]
-    D -->|Schema Invalid| F[Deterministic Re-parsing Loop]
-    E --> G[Specialist Model Swarm: Flash / Reasoning / Tool]
-    G --> H[Verified Deterministic Execution]
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    THE INTENT COMPILER RUNTIME PIPELINE                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Natural Language Intent (Voice / CLI / API)                                │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Deterministic Lexer & Intent Parser]                                      │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Abstract Syntax Tree (AST) Generator]                                     │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Zod / Typed JSON Schema Validation Gate]                                  │
+│       ├──► (Schema Invalid) ──► Deterministic Re-parsing Loop               │
+│       └──► (Schema Valid)                                                   │
+│                 │                                                           │
+│                 ▼                                                           │
+│            [Dynamic Multi-Model Orchestrator & Dispatcher]                  │
+│                 │                                                           │
+│                 ▼                                                           │
+│            [Specialist Agent Swarm: Flash / Reasoning / Tools]              │
+│                 │                                                           │
+│                 ▼                                                           │
+│            [Verified Deterministic Execution State]                         │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---

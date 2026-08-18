@@ -230,7 +230,7 @@ export default async function BlogPostPage({
               </div>
 
               {/* Hero Image - 16/9 premium with proper margins, padding, sizing for overlays */}
-              <div className="mt-8 mb-8 rounded-3xl overflow-hidden border border-white/10">
+              <div className="mt-8 mb-8">
                 <HeroImage
                   src={post.image}
                   title={post.title}
@@ -271,13 +271,15 @@ export default async function BlogPostPage({
                     </div>
                     <div className="flex-1">
                       <span className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-400">AI Architect Recommendation</span>
-                      <p className="mt-2 text-sm leading-relaxed text-white/70">{post.architectNote.recommendation}</p>
-                      {post.architectNote.coePillar && (
+                      <p className="mt-2 text-sm leading-relaxed text-white/70">
+                        {typeof post.architectNote === 'string' ? post.architectNote : post.architectNote.recommendation}
+                      </p>
+                      {typeof post.architectNote === 'object' && post.architectNote?.coePillar && (
                         <p className="mt-3 text-xs text-white/40">
                           AI CoE pillar: <span className="text-white/65">{post.architectNote.coePillar}</span>
                         </p>
                       )}
-                      {post.architectNote.personas?.length ? (
+                      {typeof post.architectNote === 'object' && post.architectNote?.personas?.length ? (
                         <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
                           {post.architectNote.personas.map((pp) => (
                             <li key={pp.persona} className="text-xs leading-relaxed text-white/55">

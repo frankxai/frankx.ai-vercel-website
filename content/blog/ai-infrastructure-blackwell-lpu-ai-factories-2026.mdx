@@ -23,15 +23,25 @@ The industrialization of artificial intelligence is fundamentally a thermodynami
 
 This architectural analysis dissects the shift from isolated GPU clusters to multi-megawatt **AI Factories**.
 
-```mermaid
-graph TD
-    A[Power Substation / Grid 100MW+] --> B[Liquid Cooling Distribution Unit CDU]
-    B --> C[NVIDIA GB200 NVL72 Supercluster]
-    B --> D[Groq LPU Real-Time Inference Rack]
-    C --> E[NVLink 5 Switch Fabric 1.8TB/s per GPU]
-    D --> F[Deterministic SRAM Mesh <1ms Time-to-First-Token]
-    E --> G[Massive Foundation Model Training & Batch Reasoning]
-    F --> H[Interactive Voice & Ultra-Fast Agentic Tool Loops]
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    AI FACTORY INFRASTRUCTURE TOPOLOGY                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Power Substation & Grid Ingress (100MW+)                                   │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Cooling Distribution Units (CDUs) · Direct-to-Chip Liquid Loops]          │
+│       │                                                                     │
+│       ├──► [NVIDIA GB200 NVL72 Racks] ──► NVLink 5 Fabric (1.8 TB/s)        │
+│       │         │                              │                            │
+│       │         ▼                              ▼                            │
+│       │    [Massive Batch Inference]   [Frontier Pre-Training]              │
+│       │                                                                     │
+│       └──► [Groq LPU Inference Racks] ──► Deterministic SRAM Mesh (80 TB/s) │
+│                 │                                                           │
+│                 ▼                                                           │
+│            [Real-Time Voice & Sub-15ms Agentic Loops]                       │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---

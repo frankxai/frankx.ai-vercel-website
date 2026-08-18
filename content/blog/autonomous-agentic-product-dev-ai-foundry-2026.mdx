@@ -23,16 +23,26 @@ The economics of software production have fundamentally shifted. What once requi
 
 This operating model is **The AI Foundry**.
 
-```mermaid
-graph TD
-    A[Product PRD / Idea Spec] --> B[Architect Agent: System & Data Schema]
-    B --> C[Implementation Agent: Full-Stack Code]
-    B --> D[Design Agent: Design Tokens & UI/UX]
-    C --> E[Adversarial Security & Quality Sentinel]
-    D --> E
-    E -->|Pass Automated CI Gates| F[Deployment Pipeline: Vercel / Edge]
-    E -->|Failures / Lint Errors| C
-    F --> G[Live Micro-SaaS Product + Stripe Checkout]
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     THE AI FOUNDRY ORCHESTRATION PIPELINE                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Product PRD & Architecture Spec                                            │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Architect Agent: Typed Data Schema & Routing Rules]                       │
+│       │                                                                     │
+│       ├──► [Engineer Agent: Full-Stack Code & Edge Handlers]                │
+│       └──► [Design Agent: Token System & UI Components]                     │
+│                 │                                                           │
+│                 ▼                                                           │
+│            [Adversarial Security & Quality Gate Sentinel]                   │
+│                 │                                 ▲                         │
+│                 ├──► (Pass Automated CI)          │ (Lint / Type Errors)    │
+│                 │          │                      │                         │
+│                 ▼          ▼                      │                         │
+│  [Vercel Edge Deployment] ──► [Live Micro-SaaS Product] ────────────────────┘
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---

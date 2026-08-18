@@ -33,12 +33,24 @@ Before modifying any router configuration or agent prompt, establish clear basel
 
 ## What does the 5-day model adoption checklist look like?
 
-```mermaid
-graph TD
-    A[Monday: Mapping & Budgets] --> B[Tuesday: Canary Lane Swap]
-    B --> C[Wednesday: Eval Contracts & Schemas]
-    C --> D[Thursday: Fallbacks & Cost Caps]
-    D --> E[Friday: Telemetry Review & Promotion]
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                 5-DAY MODEL ADOPTION CANARY SPRINT CADENCE                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  [Monday: Lane Mapping & Budgets]                                           │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Tuesday: Canary Routing Swap (10-20% Traffic)]                            │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Wednesday: Eval Contracts & Schema Rigor]                                 │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Thursday: Circuit Breakers & Cost Caps]                                   │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Friday: Telemetry Review & Production Promotion]                          │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Monday — Mapping & Budgets

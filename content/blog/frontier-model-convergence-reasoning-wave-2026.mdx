@@ -24,16 +24,24 @@ The landscape of frontier artificial intelligence has undergone a fundamental ar
 
 This shift transforms how software architects, engineering leaders, and creators evaluate and route foundational models.
 
-```mermaid
-graph LR
-    A[User Intent / Task] --> B{Complexity Classifier}
-    B -->|System 1: High Velocity| C[Autoregressive Flash Model]
-    B -->|System 2: Formal Logic| D[Inference-Time Search Engine]
-    D --> E[MCTS / Best-of-N Sampling]
-    E --> F[Process Reward Model PRM]
-    F -->|Verified Pass| G[Deterministic Output]
-    F -->|Logic Fail| E
-    C --> G
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    HYBRID TEST-TIME ROUTING ARCHITECTURE                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  User Intent / Task Payload                                                 │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Dynamic Complexity Classifier]                                            │
+│       │                                                                     │
+│       ├──► [System 1: High Velocity] ──► Autoregressive Flash Model (8B)    │
+│       │                                       │                             │
+│       └──► [System 2: Formal Logic]           ▼                             │
+│                 │                      [Deterministic Output]               │
+│                 ▼                             ▲                             │
+│            [MCTS Search] ──► [PRM Verifier] ──┘ (Verified Pass)             │
+│                 ▲                   │                                       │
+│                 └─ (Logic Reject) ──┘                                       │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
