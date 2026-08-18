@@ -123,7 +123,7 @@ export default function GamePlayerClient({ game, allGames }: Props) {
           <div className="flex items-center gap-4">
             <Link
               href="/games"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 text-xs font-medium text-white/80 transition-all active:scale-95"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 text-xs font-medium text-white/80 transition-[background-color,border-color,transform] active:scale-95 duration-150"
             >
               <ArrowLeft className="w-4 h-4 text-cyan-400" />
               <span>All Games</span>
@@ -154,23 +154,29 @@ export default function GamePlayerClient({ game, allGames }: Props) {
           {/* Quick Actions */}
           <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={handleShare}
-              className="p-2 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white/70 hover:text-white transition-all active:scale-95"
+              className="p-2 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white/70 hover:text-white transition-[background-color,border-color,transform] active:scale-95 duration-150"
               title="Share Game URL"
+              aria-label="Share Game URL"
             >
               {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
             </button>
             <button
+              type="button"
               onClick={handleRestart}
-              className="p-2 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white/70 hover:text-white transition-all active:scale-95"
+              className="p-2 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white/70 hover:text-white transition-[background-color,border-color,transform] active:scale-95 duration-150"
               title="Restart Game"
+              aria-label="Restart Game"
             >
               <RotateCcw className="w-4 h-4 text-cyan-400" />
             </button>
             <button
+              type="button"
               onClick={toggleFullscreen}
-              className="p-2 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white/70 hover:text-white transition-all active:scale-95"
+              className="p-2 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white/70 hover:text-white transition-[background-color,border-color,transform] active:scale-95 duration-150"
               title="Toggle Fullscreen"
+              aria-label="Toggle Fullscreen"
             >
               {isFullscreen ? <Minimize2 className="w-4 h-4 text-amber-400" /> : <Maximize2 className="w-4 h-4" />}
             </button>
@@ -184,8 +190,9 @@ export default function GamePlayerClient({ game, allGames }: Props) {
         {/* Device Mode Switcher (Desktop view only) */}
         <div className="mb-4 flex items-center justify-center gap-2 bg-slate-900/60 p-1 rounded-2xl border border-white/10 backdrop-blur-md">
           <button
+            type="button"
             onClick={() => setDeviceMode('desktop')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-colors duration-150 ${
               deviceMode === 'desktop'
                 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
                 : 'text-white/50 hover:text-white'
@@ -195,8 +202,9 @@ export default function GamePlayerClient({ game, allGames }: Props) {
             <span>Full Canvas</span>
           </button>
           <button
+            type="button"
             onClick={() => setDeviceMode('iphone')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-colors duration-150 ${
               deviceMode === 'iphone'
                 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
                 : 'text-white/50 hover:text-white'
@@ -206,8 +214,9 @@ export default function GamePlayerClient({ game, allGames }: Props) {
             <span>iPhone 16 Pro</span>
           </button>
           <button
+            type="button"
             onClick={() => setDeviceMode('pixel')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-colors duration-150 ${
               deviceMode === 'pixel'
                 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
                 : 'text-white/50 hover:text-white'
@@ -217,8 +226,9 @@ export default function GamePlayerClient({ game, allGames }: Props) {
             <span>Pixel 9 Pro</span>
           </button>
           <button
+            type="button"
             onClick={() => setDeviceMode('tablet')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-colors duration-150 ${
               deviceMode === 'tablet'
                 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
                 : 'text-white/50 hover:text-white'
@@ -232,7 +242,7 @@ export default function GamePlayerClient({ game, allGames }: Props) {
         {/* Embedded Game Viewport */}
         <div
           ref={containerRef}
-          className={`relative overflow-hidden bg-slate-950 flex flex-col items-center justify-center transition-all duration-300 ${getDeviceStyle()} ${
+          className={`relative overflow-hidden bg-slate-950 flex flex-col items-center justify-center transition-[width,height,max-width,max-height,border-radius] duration-300 ${getDeviceStyle()} ${
             isFullscreen ? '!w-screen !h-screen !max-w-none !rounded-none !border-0' : ''
           }`}
         >
@@ -249,7 +259,7 @@ export default function GamePlayerClient({ game, allGames }: Props) {
         <div className="w-full max-w-5xl mt-8 grid md:grid-cols-3 gap-4">
           
           {/* Scientific Foundation Card */}
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all backdrop-blur-md">
+          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors duration-200 backdrop-blur-md">
             <div className="flex items-center gap-2 mb-3">
               <Brain className="w-4 h-4 text-cyan-400" />
               <h3 className="text-sm font-semibold text-white">Cognitive Target</h3>
@@ -259,7 +269,7 @@ export default function GamePlayerClient({ game, allGames }: Props) {
           </div>
 
           {/* Gameplay Instructions Card */}
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all backdrop-blur-md">
+          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors duration-200 backdrop-blur-md">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-4 h-4 text-amber-400" />
               <h3 className="text-sm font-semibold text-white">How to Play</h3>
@@ -275,7 +285,7 @@ export default function GamePlayerClient({ game, allGames }: Props) {
           </div>
 
           {/* Key Controls Card */}
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all backdrop-blur-md">
+          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors duration-200 backdrop-blur-md">
             <div className="flex items-center gap-2 mb-3">
               <Gamepad2 className="w-4 h-4 text-emerald-400" />
               <h3 className="text-sm font-semibold text-white">Controls</h3>
@@ -317,7 +327,7 @@ export default function GamePlayerClient({ game, allGames }: Props) {
                 <Link
                   key={otherGame.slug}
                   href={`/games/${otherGame.slug}`}
-                  className="group p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/25 hover:bg-white/[0.05] transition-all flex flex-col justify-between"
+                  className="group p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/25 hover:bg-white/[0.05] transition-[background-color,border-color] duration-200 flex flex-col justify-between"
                 >
                   <div>
                     <span className={`text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded border ${otherGame.brandColor} mb-2 inline-block`}>

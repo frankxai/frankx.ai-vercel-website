@@ -147,7 +147,7 @@ function GuideCard({ guide, index }: { guide: GuideDoc; index: number }) {
     >
       <Link
         href={`/guides/${guide.slug}`}
-        className="group block relative p-5 rounded-xl border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:-translate-y-0.5 bg-white/[0.02]"
+        className="group block relative p-5 rounded-xl border border-white/5 overflow-hidden hover:border-white/10 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 bg-white/[0.02]"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -156,7 +156,7 @@ function GuideCard({ guide, index }: { guide: GuideDoc; index: number }) {
             <h3 className="text-base font-medium text-white group-hover:text-white transition-colors leading-tight pr-4">
               {guide.title}
             </h3>
-            <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" />
+            <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-[color,transform] duration-200 flex-shrink-0 mt-0.5" />
           </div>
 
           <p className="text-sm text-white/40 leading-relaxed mb-3 line-clamp-2 group-hover:text-white/50 transition-colors">
@@ -239,7 +239,7 @@ function FeaturedGuide({ guide }: { guide: GuideDoc }) {
     >
       <Link
         href={`/guides/${guide.slug}`}
-        className="group block relative p-8 rounded-2xl border border-white/10 overflow-hidden hover:border-emerald-500/30 transition-all duration-500"
+        className="group block relative p-8 rounded-2xl border border-white/10 overflow-hidden hover:border-emerald-500/30 transition-[border-color,box-shadow] duration-500"
       >
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-blue-500/10 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />

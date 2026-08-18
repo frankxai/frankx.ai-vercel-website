@@ -39,7 +39,7 @@ const UI_EXT = /\.(tsx|jsx|vue|svelte|astro|css|scss|sass)$/;
 // interrupting a human about"; this is deciding "does this file contain markup
 // worth checking". A component that happens to live under lib/ still ships to a
 // browser, so it gets linted even though it does not get nagged about.
-const NOT_UI = /(^|\/)(api|__tests__)\/|\.(test|spec|d)\.(ts|tsx|js|jsx)$|(^|\/)route\.(ts|js)$/;
+const NOT_UI = /(^|\/)(api|__tests__)\/|\.(test|spec|d)\.(ts|tsx|js|jsx)$|(^|\/)route\.(ts|js)$|(^|\/)public\/(assets|games\/assets)\//;
 
 const args = process.argv.slice(2);
 const useChanged = args.includes('--changed');

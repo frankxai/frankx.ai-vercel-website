@@ -215,7 +215,8 @@ export default async function BlogPostPage({
               </p>
 
               {/* Author Card */}
-              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-6 md:flex-row md:items-center md:justify-between transition-all hover:border-white/[0.14]">
+              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-6 md:flex-row md:items-center md:justify-between transition-colors duration-200 hover:border-white/[0.14]">
+
                 <div className="flex items-center gap-4">
                   <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover border border-emerald-500/30" />
                   <div>

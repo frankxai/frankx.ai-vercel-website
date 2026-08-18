@@ -107,8 +107,9 @@ export function EcosystemBadge({
   const item = TECH_CATALOG[tech] || TECH_CATALOG.omega
   return (
     <div
-      className={`inline-flex items-center gap-3 px-3.5 py-2 rounded-xl border ${item.border} ${item.bg} backdrop-blur-md transition-all duration-300 shadow-sm hover:shadow-md`}
+      className={`inline-flex items-center gap-3 px-3.5 py-2 rounded-xl border ${item.border} ${item.bg} backdrop-blur-md transition-[box-shadow,border-color] duration-300 shadow-sm hover:shadow-md`}
     >
+
       <div className="relative w-5 h-5 shrink-0">
         <Image src={item.logo} alt={item.name} width={20} height={20} className="w-full h-full object-contain" />
       </div>

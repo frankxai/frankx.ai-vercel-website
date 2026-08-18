@@ -66,8 +66,9 @@ export function MascotInsight({
 
   return (
     <aside
-      className={`my-10 p-6 rounded-2xl border ${config.border} ${config.glow} backdrop-blur-xl relative overflow-hidden transition-all duration-300 hover:border-opacity-60 shadow-lg`}
+      className={`my-10 p-6 rounded-2xl border ${config.border} ${config.glow} backdrop-blur-xl relative overflow-hidden transition-[border-color,box-shadow] duration-300 hover:border-opacity-60 shadow-lg`}
     >
+
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-2xl bg-[#111113] p-1.5 border border-white/[0.08] shadow-inner flex items-center justify-center overflow-hidden">
           <Image

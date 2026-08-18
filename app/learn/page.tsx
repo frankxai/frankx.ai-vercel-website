@@ -49,36 +49,34 @@ function PathCard({ path }: { path: LearningPath }) {
   return (
     <Link
       href={`/learn/${path.slug}`}
-      className={`group relative block p-6 rounded-2xl border bg-gradient-to-br ${colors} hover:border-white/20 transition-all hover:-translate-y-1`}
+      className={`group relative block p-6 rounded-2xl border bg-gradient-to-br ${colors} hover:border-white/20 transition-[border-color,transform] duration-300 hover:-translate-y-1`}
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className={`p-3 rounded-xl bg-white/5`}>
-          <Icon className="w-6 h-6" />
+      <div className="flex items-center justify-between mb-4">
+        <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 w-fit">
+          <Icon className="w-6 h-6 text-white/80" />
         </div>
-        <span className="text-xs font-medium px-2 py-1 rounded-full bg-white/10 text-white/60 capitalize">
-          {path.difficulty}
+        <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-white/60">
+          {path.videos.length} videos
         </span>
       </div>
 
-      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-white/90">
+      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
         {path.title}
       </h3>
-      <p className="text-sm text-white/50 mb-4 line-clamp-2">
+      <p className="text-sm text-white/60 leading-relaxed mb-4">
         {path.description}
       </p>
 
-      <div className="flex items-center gap-4 text-xs text-white/40">
-        <div className="flex items-center gap-1.5">
-          <Clock className="w-3.5 h-3.5" />
+      <div className="flex flex-wrap gap-1.5 mb-8">
+        <span className="text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-white/40 border border-white/5 uppercase">
+          {path.difficulty}
+        </span>
+        <span className="text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-white/40 border border-white/5">
           {path.estimatedHours} hours
-        </div>
-        <div className="flex items-center gap-1.5">
-          <Play className="w-3.5 h-3.5" />
-          {path.videos.length} videos
-        </div>
+        </span>
       </div>
 
-      <ArrowRight className="absolute bottom-6 right-6 w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+      <ArrowRight className="absolute bottom-6 right-6 w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-[color,transform] duration-200" />
     </Link>
   )
 }
@@ -236,7 +234,7 @@ export default function LearnPage() {
               href={creator.channel}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all text-center"
+              className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-[background-color,border-color] duration-200 text-center"
             >
               <h3 className="font-semibold text-white mb-1">{creator.name}</h3>
               <p className="text-xs text-white/50 mb-2">{creator.specialty}</p>

@@ -249,7 +249,7 @@ export default function MentalModelsView() {
             <button
               key={tab.id}
               onClick={() => setActiveCategory(tab.id as any)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors ${
                 activeCategory === tab.id
                   ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20 font-semibold'
                   : 'text-white/60 hover:text-white hover:bg-white/5'
@@ -395,14 +395,14 @@ export default function MentalModelsView() {
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <Link
               href="/templates"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-600 font-semibold text-black text-sm shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-600 font-semibold text-black text-sm shadow-lg shadow-emerald-500/20 transition-[background-color,transform] duration-200 hover:scale-[1.02]"
             >
               Explore Business Starter Kits
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/acos"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-medium transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-medium transition-colors duration-200"
             >
               Agentic Creator OS
             </Link>

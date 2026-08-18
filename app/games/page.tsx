@@ -325,7 +325,8 @@ function PlayNowSection() {
               >
                 <Link
                   href={game.href}
-                  className={`block p-6 rounded-2xl border ${colors.border} bg-white/[0.02] hover:bg-white/[0.06] hover:scale-[1.02] transition-all cursor-pointer group h-full flex flex-col justify-between`}
+                  className={`block p-6 rounded-2xl border ${colors.border} bg-white/[0.02] hover:bg-white/[0.06] hover:scale-[1.02] transition-[background-color,transform,border-color] duration-200 cursor-pointer group h-full flex flex-col justify-between`}
+
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">

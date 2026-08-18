@@ -28,7 +28,7 @@ export function ArticleHeaderActions({ title, url }: ArticleHeaderActionsProps) 
       <button
         type="button"
         onClick={handleCopy}
-        className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3.5 py-2 text-xs font-medium text-white/80 hover:bg-white/[0.09] hover:border-emerald-500/30 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/30"
+        className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3.5 py-2 text-xs font-medium text-white/80 hover:bg-white/[0.09] hover:border-emerald-500/30 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/30"
         title="Copy article link"
       >
         {copied ? (
@@ -52,7 +52,7 @@ export function ArticleHeaderActions({ title, url }: ArticleHeaderActionsProps) 
         href={twitterShareUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3.5 py-2 text-xs font-medium text-white/80 hover:bg-white/[0.09] hover:border-cyan-500/30 hover:text-cyan-300 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/30"
+        className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3.5 py-2 text-xs font-medium text-white/80 hover:bg-white/[0.09] hover:border-cyan-500/30 hover:text-cyan-300 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/30"
         title="Share on X"
       >
         <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
@@ -65,7 +65,7 @@ export function ArticleHeaderActions({ title, url }: ArticleHeaderActionsProps) 
         href={linkedinShareUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3.5 py-2 text-xs font-medium text-white/80 hover:bg-white/[0.09] hover:border-blue-500/30 hover:text-blue-300 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/30"
+        className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3.5 py-2 text-xs font-medium text-white/80 hover:bg-white/[0.09] hover:border-blue-500/30 hover:text-blue-300 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/30"
         title="Share on LinkedIn"
       >
         <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
