@@ -519,10 +519,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect for a More Free World',
-  'Former AI architect at Oracle',
+  'AI Architect & Musician',
+  'Co-builder of 7-Figure Enterprises',
+  'Former AI Architect at Oracle',
   '12,000+ AI Songs Created',
-  'Sovereign Creator OS & Starter Kits',
+  'Autonomous AI Swarms & Sovereign Tools',
 ]
 
 function AuthorityBar() {

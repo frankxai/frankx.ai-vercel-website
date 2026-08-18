@@ -175,7 +175,7 @@ function PlayNowSection() {
     {
       title: 'NeuroMatrix: Dual N-Back',
       description: 'Scientifically proven Dual N-Back working memory and fluid IQ trainer with spatial grids and pitch cues.',
-      href: '/games/neuro-matrix/index.html',
+      href: '/games/neuro-matrix',
       badge: 'Cognitive IQ',
       color: 'amber',
       icon: Brain,
@@ -185,7 +185,7 @@ function PlayNowSection() {
     {
       title: 'ChronoFocus: Stroop Warp',
       description: 'Hyper-speed Stroop interference reaction trainer testing executive inhibition and mental agility.',
-      href: '/games/chrono-focus/index.html',
+      href: '/games/chrono-focus',
       badge: 'Speed Reflex',
       color: 'amber',
       icon: Zap,
@@ -195,7 +195,7 @@ function PlayNowSection() {
     {
       title: 'Quantum Prime: Factor Fusion',
       description: 'Intuitive mental multiplication and prime factor fusion puzzle with particle chain reactions.',
-      href: '/games/quantum-prime/index.html',
+      href: '/games/quantum-prime',
       badge: 'Mental Math',
       color: 'amber',
       icon: Target,
@@ -205,7 +205,7 @@ function PlayNowSection() {
     {
       title: 'Resonance: Bio-Flow HRV',
       description: '4-7-8 guided breathing pacing with Solfeggio 432Hz/528Hz soundscapes for vagal tone coherence.',
-      href: '/games/resonance-flow/index.html',
+      href: '/games/resonance-flow',
       badge: 'Zen Flow',
       color: 'amber',
       icon: Sparkles,
@@ -216,7 +216,7 @@ function PlayNowSection() {
     {
       title: 'Arcanea: Realm of Legends',
       description: 'Tactical 1v1 Guardian deck battler with dynamic 3D gold foil tilt shaders and AI strategist.',
-      href: '/games/arcanea-legends/index.html',
+      href: '/games/arcanea-legends',
       badge: 'Card Battler',
       color: 'violet',
       icon: Swords,
@@ -226,7 +226,7 @@ function PlayNowSection() {
     {
       title: 'NeuroCosmos: Synapse Odyssey',
       description: 'Tactile synaptic prism light routing with Solfeggio 528Hz harmonic chords across 5 lobes.',
-      href: '/games/neuro-cosmos/index.html',
+      href: '/games/neuro-cosmos',
       badge: 'Light Puzzle',
       color: 'violet',
       icon: Puzzle,
@@ -237,7 +237,7 @@ function PlayNowSection() {
     {
       title: 'Chrono Shift: Void Breach',
       description: 'Cyber-mythic roguelike bullet-hell with time-dilation matrix dodging and tech upgrades.',
-      href: '/games/chrono-shift/index.html',
+      href: '/games/chrono-shift',
       badge: 'Roguelike',
       color: 'cyan',
       icon: Gamepad2,
@@ -247,7 +247,7 @@ function PlayNowSection() {
     {
       title: 'Neon Drift: Cyber Horizon',
       description: '120 FPS pseudo-3D synthwave highway racing with drift boosts and traffic hazards.',
-      href: '/games/neon-drift/index.html',
+      href: '/games/neon-drift',
       badge: 'Arcade Racer',
       color: 'cyan',
       icon: Trophy,
@@ -257,7 +257,7 @@ function PlayNowSection() {
     {
       title: 'Aetheria: Sky Islands',
       description: 'Atmospheric glider exploration RPG with thermal updrafts and celestial relic harvesting.',
-      href: '/games/aetheria/index.html',
+      href: '/games/aetheria',
       badge: 'Glider RPG',
       color: 'cyan',
       icon: Globe,
@@ -267,7 +267,7 @@ function PlayNowSection() {
     {
       title: 'Quantum Core: Reactor Defense',
       description: 'Real-time tactical energy grid routing and modular plasma/cryo/singularity turret defense.',
-      href: '/games/quantum-core/index.html',
+      href: '/games/quantum-core',
       badge: 'Tower Defense',
       color: 'cyan',
       icon: ShieldAlert,
