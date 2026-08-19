@@ -1,9 +1,10 @@
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Updates | Latest News & Announcements | FrankX',
-  description: 'Stay current with FrankX platform updates, new features, product launches, and community announcements.',
+  title: 'FrankX Changelog',
+  description: 'FrankX updates now live in the canonical changelog and release ledger.',
   path: '/updates',
+  canonical: `${siteConfig.url}/changelog`,
 })
 
 export default function Layout({ children }: { children: React.ReactNode }) {

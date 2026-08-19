@@ -1,0 +1,29 @@
+changelog:
+  exclude:
+    labels:
+      - skip-changelog
+      - dependencies
+  categories:
+    - title: Security and trust
+      labels:
+        - security
+        - trust
+        - privacy
+    - title: Products and experiences
+      labels:
+        - feature
+        - product
+        - experience
+    - title: Research and publishing
+      labels:
+        - research
+        - content
+        - documentation
+    - title: Reliability and performance
+      labels:
+        - reliability
+        - performance
+        - bug
+    - title: Other merged changes
+      labels:
+        - '*'
