@@ -235,7 +235,7 @@
         "Default model on claude.ai free and Pro tiers"
       ],
       "acos_tier": "sonnet",
-      "frankx_notes": "The mid-tier that started eating the flagship's lunch — matches much of Opus 4.6 at $3/$15. The right default for production coding and content; route to Opus 4.8 only when the task genuinely needs it.",
+      "frankx_notes": "The mid-tier that started eating the flagship's lunch \u2014 matches much of Opus 4.6 at $3/$15. The right default for production coding and content; route to Opus 4.8 only when the task genuinely needs it.",
       "sources": [
         "https://www.anthropic.com/news/claude-sonnet-4-6",
         "https://techcrunch.com/2026/02/17/anthropic-releases-sonnet-4-6/",
@@ -292,7 +292,7 @@
       "organization": "xai",
       "family": "grok",
       "released": "2026-04-30",
-      "status": "ga",
+      "status": "previous",
       "architecture": "dense",
       "context_window": 1000000,
       "modalities": [
@@ -318,7 +318,7 @@
         "Agentic tool use (web search, Python sandbox, PDF/Excel/PPTX generation)",
         "Highest output throughput in its price tier (~181 tok/s)"
       ],
-      "frankx_notes": "Not a benchmark leader — sits ~8 points below Claude Opus 4.8 on the AA Intelligence Index. The play is intelligence-per-dollar: ~10x cheaper output than Opus-tier with the fastest throughput in its class. Context window shrank from 2M to 1M, and reasoning can no longer be turned off. SWE-bench Verified / ARC-AGI-2 scores specific to 4.3 were not independently published, so they are omitted rather than recycled from older Grok versions.",
+      "frankx_notes": "Not a benchmark leader \u2014 sits ~8 points below Claude Opus 4.8 on the AA Intelligence Index. The play is intelligence-per-dollar: ~10x cheaper output than Opus-tier with the fastest throughput in its class. Context window shrank from 2M to 1M, and reasoning can no longer be turned off. SWE-bench Verified / ARC-AGI-2 scores specific to 4.3 were not independently published, so they are omitted rather than recycled from older Grok versions.",
       "sources": [
         "https://artificialanalysis.ai/articles/xai-launches-grok-4-3-with-improved-agentic-performance-and-lower-pricing",
         "https://docs.x.ai/developers/models/grok-4.3",
@@ -384,7 +384,7 @@
         "~40% better output-token efficiency vs GPT-5.4 (Artificial Analysis)",
         "Drop-in API replacement for GPT-5.4 (same caching, tools, compaction)"
       ],
-      "frankx_notes": "Codename 'Spud'. A real step forward on agentic and long-context metrics, and it holds a narrow terminal-agent edge, but not a clean frontier sweep — Claude Opus 4.8 leads GDPval-AA (1890 vs 1769) and SWE-Bench Pro (69.2 vs 58.6). Price doubled to $5/$30; the token-efficiency offset only pays off on output-heavy workloads. SWE-Bench Verified and ARC-AGI-2 headline figures vary by source and are omitted pending corroboration.",
+      "frankx_notes": "Codename 'Spud'. A real step forward on agentic and long-context metrics, and it holds a narrow terminal-agent edge, but not a clean frontier sweep \u2014 Claude Opus 4.8 leads GDPval-AA (1890 vs 1769) and SWE-Bench Pro (69.2 vs 58.6). Price doubled to $5/$30; the token-efficiency offset only pays off on output-heavy workloads. SWE-Bench Verified and ARC-AGI-2 headline figures vary by source and are omitted pending corroboration.",
       "sources": [
         "https://openai.com/index/introducing-gpt-5-5/",
         "https://developers.openai.com/api/docs/models/gpt-5.5",
@@ -443,7 +443,7 @@
         "MCP-native tool use (83.6% MCP Atlas)",
         "Full multimodal: text, vision, audio, video"
       ],
-      "frankx_notes": "The one Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding (Terminal-Bench 2.1 76.2%) at Flash pricing — the new default agent runtime. Gemini 3.5 Pro remains in limited preview as of June 2026.",
+      "frankx_notes": "The one Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding (Terminal-Bench 2.1 76.2%) at Flash pricing \u2014 the new default agent runtime. Gemini 3.5 Pro remains in limited preview as of June 2026.",
       "sources": [
         "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
         "https://deepmind.google/models/model-cards/gemini-3-5-flash/",
@@ -469,7 +469,7 @@
         "Frontier multimodal: text/image/audio/video/PDF",
         "Positioned as Google's strongest agentic + coding model (vendor-stated)"
       ],
-      "frankx_notes": "Not GA as of June 5, 2026 — limited Vertex preview only, no model card, no benchmarks, no pricing. Announced at I/O May 19, 2026; GA targeted for June. Model id gemini-3.5-pro. Its real differentiation will need to show on hard reasoning (ARC-AGI-2, SWE-bench Pro) and 2M context. Do not architect on it until GA.",
+      "frankx_notes": "Not GA as of June 5, 2026 \u2014 limited Vertex preview only, no model card, no benchmarks, no pricing. Announced at I/O May 19, 2026; GA targeted for June. Model id gemini-3.5-pro. Its real differentiation will need to show on hard reasoning (ARC-AGI-2, SWE-bench Pro) and 2M context. Do not architect on it until GA.",
       "sources": [
         "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
         "https://deepmind.google/models/gemini/"
@@ -535,7 +535,7 @@
         "Coding-driven UI/UX generation",
         "Intelligence-per-dollar leader among open weights"
       ],
-      "frankx_notes": "Best open-weights model on the neutral Artificial Analysis index (54), ahead of DeepSeek V4. NOT the absolute frontier — Opus 4.8 (61) and GPT-5.5 (59-60) clear it, and Opus leads SWE-Bench Verified by ~8 pts. The real story is value + openness: ~1/8 the price of Opus, permissive license, self-hostable. Coding/reasoning rows beyond the AA index are Moonshot's own evals — treat as vendor-claimed. Architecture unchanged from K2.5; gains are post-training (swarm scaling).",
+      "frankx_notes": "Best open-weights model on the neutral Artificial Analysis index (54), ahead of DeepSeek V4. NOT the absolute frontier \u2014 Opus 4.8 (61) and GPT-5.5 (59-60) clear it, and Opus leads SWE-Bench Verified by ~8 pts. The real story is value + openness: ~1/8 the price of Opus, permissive license, self-hostable. Coding/reasoning rows beyond the AA index are Moonshot's own evals \u2014 treat as vendor-claimed. Architecture unchanged from K2.5; gains are post-training (swarm scaling).",
       "sources": [
         "https://artificialanalysis.ai/models/kimi-k2-6",
         "https://huggingface.co/moonshotai/Kimi-K2.6",
@@ -578,7 +578,7 @@
         "Dual variants: Pro for reasoning, Flash for high-throughput",
         "Self-hostable; NVFP4 quantization available"
       ],
-      "frankx_notes": "The open-weight price floor for frontier-adjacent intelligence, not the frontier itself. SWE-bench Verified (80.6%) and AA Index (52, #2 open-weights) are independently corroborated; NIST/CAISI puts it ~8 months behind GPT-5.5 with clear gaps on agentic SWE, security, and HLE (37.7%). MIT license + open weights is the structural advantage no closed model can match — cheap V4-Pro API or self-host Flash on your own GPUs. Most spec-sheet rows beyond SWE-bench and AA Index are vendor-claimed.",
+      "frankx_notes": "The open-weight price floor for frontier-adjacent intelligence, not the frontier itself. SWE-bench Verified (80.6%) and AA Index (52, #2 open-weights) are independently corroborated; NIST/CAISI puts it ~8 months behind GPT-5.5 with clear gaps on agentic SWE, security, and HLE (37.7%). MIT license + open weights is the structural advantage no closed model can match \u2014 cheap V4-Pro API or self-host Flash on your own GPUs. Most spec-sheet rows beyond SWE-bench and AA Index are vendor-claimed.",
       "sources": [
         "https://artificialanalysis.ai/models/deepseek-v4-pro",
         "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro",
@@ -622,7 +622,7 @@
         "90% cached-input discount, suited to context-heavy agents",
         "Top-5 Artificial Analysis Intelligence Index at roughly half Western-frontier price"
       ],
-      "frankx_notes": "Closed-weight, API-only — breaks the open-weight Qwen association. Leads its peer group (Kimi, DeepSeek V4) on hard agentic-coding benchmarks but trails Opus 4.8 on aggregate. Strong value for high-volume verifiable agentic work; not the pick when silent errors are expensive. Verbose reasoner, so effective cost-per-task runs above the rate card. Architecture undisclosed; the 35-hour run and several rows (HMMT, MCP-Atlas, Apex) are vendor-claimed.",
+      "frankx_notes": "Closed-weight, API-only \u2014 breaks the open-weight Qwen association. Leads its peer group (Kimi, DeepSeek V4) on hard agentic-coding benchmarks but trails Opus 4.8 on aggregate. Strong value for high-volume verifiable agentic work; not the pick when silent errors are expensive. Verbose reasoner, so effective cost-per-task runs above the rate card. Architecture undisclosed; the 35-hour run and several rows (HMMT, MCP-Atlas, Apex) are vendor-claimed.",
       "sources": [
         "https://qwen.ai/blog?id=qwen3.7",
         "https://artificialanalysis.ai/models/qwen3-7-max",
@@ -697,12 +697,12 @@
       "key_capabilities": [
         "Apache 2.0 license (replaces the custom Gemma Terms used through Gemma 3)",
         "31B dense flagship runs in ~18GB VRAM at Q4 on a single 24GB consumer GPU",
-        "26B A4B — Gemma's first MoE (~3.8B active, ~15.6GB int4) for agentic throughput",
+        "26B A4B \u2014 Gemma's first MoE (~3.8B active, ~15.6GB int4) for agentic throughput",
         "Encoder-free 12B multimodal (native audio) runs on a 16GB laptop",
         "E2B (~2GB) to E4B (~8GB) tiers for edge / on-device",
         "Up to 256K context; runs via Ollama / llama.cpp / LM Studio / vLLM / HF"
       ],
-      "frankx_notes": "Gemma 4 doesn't win on raw score — Qwen3.7-Max narrowly out-reasons it and DeepSeek V4 dominates the open frontier. Its edge is the whole package: top-tier quality that fits one consumer GPU, native multimodal, a clean Apache 2.0 license, and broad day-zero tooling. The 1452 LMArena Elo (human preference) is the trustworthy number; the academic jumps (AIME 89.2%, GPQA 84.3%) are largely Google's own evals — vendor-claimed until reproduced. Best for local-first / privacy-sensitive and cost-conscious agentic builds.",
+      "frankx_notes": "Gemma 4 doesn't win on raw score \u2014 Qwen3.7-Max narrowly out-reasons it and DeepSeek V4 dominates the open frontier. Its edge is the whole package: top-tier quality that fits one consumer GPU, native multimodal, a clean Apache 2.0 license, and broad day-zero tooling. The 1452 LMArena Elo (human preference) is the trustworthy number; the academic jumps (AIME 89.2%, GPQA 84.3%) are largely Google's own evals \u2014 vendor-claimed until reproduced. Best for local-first / privacy-sensitive and cost-conscious agentic builds.",
       "sources": [
         "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/",
         "https://ai.google.dev/gemma/docs/core/model_card_4",
@@ -736,11 +736,11 @@
       "key_capabilities": [
         "Native text+image multimodal input via early fusion",
         "1M-token context (Maverick); Scout sibling offers 10M",
-        "Llama 4 Community License — free commercial use under 700M MAU",
+        "Llama 4 Community License \u2014 free commercial use under 700M MAU",
         "Self-host: FP8 weights need an 8x H100 80GB node (~600GB); Scout (109B/17B) self-hosts on one H100 at ~55GB Q4",
         "Run via vLLM / Ollama (Scout) / HF, or hosted APIs (~$0.15/$0.60 per 1M)"
       ],
-      "frankx_notes": "Still Meta's open flagship in June 2026 only because nothing newer shipped — Behemoth (~2T) was paused May 2026 with no public weights, and there's no Llama 4.5 or Llama 5. Weights are free and the license is permissive, but verified benchmarks now trail DeepSeek V4, Qwen3.7-Max, Kimi K2.6 and even the much smaller Gemma 4. Maverick is a data-center model, not a laptop one — Scout is the realistically self-hostable sibling. The widely-cited 1417 LMArena Elo was an experimental chat-tuned variant, not the public weights (which ranked ~32nd).",
+      "frankx_notes": "Still Meta's open flagship in June 2026 only because nothing newer shipped \u2014 Behemoth (~2T) was paused May 2026 with no public weights, and there's no Llama 4.5 or Llama 5. Weights are free and the license is permissive, but verified benchmarks now trail DeepSeek V4, Qwen3.7-Max, Kimi K2.6 and even the much smaller Gemma 4. Maverick is a data-center model, not a laptop one \u2014 Scout is the realistically self-hostable sibling. The widely-cited 1417 LMArena Elo was an experimental chat-tuned variant, not the public weights (which ranked ~32nd).",
       "sources": [
         "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
         "https://www.llama.com/models/llama-4/",
@@ -774,7 +774,7 @@
         "aime_2025_reasoning_plus": 81.3
       },
       "key_capabilities": [
-        "MIT license — fully open weights, commercial use, fine-tune and redistribute",
+        "MIT license \u2014 fully open weights, commercial use, fine-tune and redistribute",
         "Runs on consumer hardware: 14B at Q4 needs ~8-10GB VRAM; 3.8B mini ~3-4GB",
         "STEM-dense: base 14B beats teacher GPT-4o on GPQA and MATH",
         "Phi-4-mini: 128K context, built-in function calling",
@@ -782,7 +782,7 @@
         "Phi-4-reasoning-vision-15B (Mar 2026): adaptive think/no-think",
         "Runs on Ollama / LM Studio / llama.cpp / ONNX / Foundry Local / HF"
       ],
-      "frankx_notes": "The honest small-model pick. $0 per token, MIT license, runs on a gaming laptop — ideal for high-volume, privacy-sensitive, or offline work. STEM-dense specialist, not a generalist: short 16K base context and weaker general multimodal breadth than Gemma 4. Route hard, broad tasks to a frontier API; run well-scoped local work on Phi. No GA Phi-5 exists as of June 2026; reasoning/vision numbers are largely vendor-claimed.",
+      "frankx_notes": "The honest small-model pick. $0 per token, MIT license, runs on a gaming laptop \u2014 ideal for high-volume, privacy-sensitive, or offline work. STEM-dense specialist, not a generalist: short 16K base context and weaker general multimodal breadth than Gemma 4. Route hard, broad tasks to a frontier API; run well-scoped local work on Phi. No GA Phi-5 exists as of June 2026; reasoning/vision numbers are largely vendor-claimed.",
       "sources": [
         "https://arxiv.org/pdf/2412.08905",
         "https://huggingface.co/microsoft/phi-4",
@@ -908,6 +908,51 @@
       "sources": [
         "https://www.linkedin.com/in/mustafa-suleyman"
       ]
+    },
+    "grok-4-6": {
+      "name": "Grok 4.6",
+      "id": "grok-4.6",
+      "organization": "xai",
+      "family": "grok",
+      "released": "2026-08-12",
+      "status": "ga",
+      "architecture": "dense",
+      "parameters": "1.5T-class (vendor family; count undisclosed)",
+      "context_window": 500000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "pricing": {
+        "input_per_1m": 2.0,
+        "output_per_1m": 6.0,
+        "cached_input_per_1m": 0.5,
+        "input_per_1m_over_200k": 4.0,
+        "output_per_1m_over_200k": 12.0
+      },
+      "benchmarks": {
+        "aa_intelligence_index": 61,
+        "gdpval_aa": 1753,
+        "aa_briefcase": 1577,
+        "apex_agents": 57.5,
+        "deepswe_v1_1": 65.9,
+        "terminal_bench_v3": 26.0,
+        "cursorbench_v3_2": 69.9
+      },
+      "key_capabilities": [
+        "Long-running agent stamina (vendor-stated focus)",
+        "500k context window",
+        "Configurable reasoning including xhigh",
+        "Text + image input, text output",
+        "Unchanged $2/$6 list price under 200k prompt tokens"
+      ],
+      "frankx_notes": "Same-scale post-training refresh of Grok 4.5. Official High AA Index 61 ties GPT-5.6 Sol. Largest published gains are agent/knowledge-work evals. Starlight Model Arena has no Grok 4.6 receipt as of 2026-08-14 \u2014 do not treat vendor or AA tables as SIS winners. Cached input rose to $0.50. Confirm the 200k price cliff.",
+      "sources": [
+        "https://x.ai/news/grok-4-6",
+        "https://docs.x.ai/developers/grok-4-6",
+        "https://docs.x.ai/developers/release-notes",
+        "https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis"
+      ]
     }
   },
   "organizations": {
@@ -947,9 +992,11 @@
       "name": "xAI",
       "url": "https://x.ai",
       "models": [
+        "grok-4-6",
         "grok-4-3",
         "grok-4-1"
-      ]
+      ],
+      "flagship_model_id": "grok-4-6"
     },
     "meta": {
       "name": "Meta AI",

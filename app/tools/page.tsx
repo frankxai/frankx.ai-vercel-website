@@ -153,7 +153,7 @@ const tools: Tool[] = [
     difficulty: 'beginner',
     timeEstimate: '25 minutes',
     icon: Users,
-    color: 'from-indigo-500 to-purple-500',
+    color: 'from-indigo-500 to-violet-600',
     features: ['Skills assessment', 'Training recommendations', 'Readiness scoring', 'Action plans'],
     href: '/tools/team-readiness',
     isNew: true,

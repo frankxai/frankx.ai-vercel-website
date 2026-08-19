@@ -8,6 +8,7 @@ import BookReader from '../../components/BookReaderNoSSR';
 import { booksRegistry, getBookBySlug } from '../../lib/books-registry';
 import { createMetadata } from '@/lib/seo';
 import JsonLd from '@/components/seo/JsonLd';
+import RelatedQualities from '@/components/qualities/RelatedQualities';
 
 interface PageProps {
   params: Promise<{
@@ -112,6 +113,11 @@ export default async function ChapterPage({ params }: PageProps) {
         previousChapter={previousChapter}
         nextChapter={nextChapter}
       />
+      <div className="bg-[#0a0a0b] px-6 pb-20 text-white">
+        <div className="mx-auto max-w-3xl">
+          <RelatedQualities href={`/books/${bookSlug}/${chapterSlug}`} />
+        </div>
+      </div>
     </>
   );
 }

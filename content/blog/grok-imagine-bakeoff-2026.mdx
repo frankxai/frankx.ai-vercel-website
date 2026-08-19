@@ -1,0 +1,112 @@
+---
+title: "One Still-Life, Three Native Generators"
+description: "The same product brief tested across Grok Imagine, Codex image_gen, and Antigravity generate_image. A direct evaluation of native visual models without external wrapper degradation."
+date: "2026-08-16"
+lastUpdated: "2026-08-16"
+author: "Frank"
+readingGoal: "Compare native AI image generators on real product still-life briefs and learn optimal visual routing."
+category: "Intelligence Dispatches"
+tags:
+  - grok-imagine
+  - image-generation
+  - evals
+  - codex
+  - antigravity
+keywords:
+  - grok imagine vs codex image
+  - antigravity generate_image
+  - curated still-life test
+image: "/research/image-curated-2026-08-16/grok-imagine-still-life.jpg"
+featured: false
+schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "For a quiet product still-life, Grok Imagine, Codex image_gen, and Antigravity generate_image all returned a publishable frame on this brief. Prefer the native path you already have. Do not route FrankX stills through FAL. Trust the tool-result model name."
+  coePillar: "Technology · media routing"
+  personas:
+    - persona: "Product still-life"
+      pick: "Any of the three native paths on this page"
+---
+
+# One Still-Life, Three Native Generators
+
+**TL;DR.** Same prompt. Three native tools that actually returned pixels: Hermes Grok Imagine, Codex `image_gen`, Antigravity `generate_image`. All three passed QA. Earlier interior and droid frames missed the brief and are not shown. FAL was not used. Grok video was not run in this session. The configured Grok quality id still did not appear in the tool result.
+
+Receipt: `/research/image-curated-2026-08-16/receipt.json`
+
+## The brief
+
+A single matte-black precision cylinder on dark honed slate, one hairline gold ring at the equator, warm sidelight from the left, soft falloff, shallow focus, quiet product photograph, 16:9. No logos, no type, no people.
+
+## What ran
+
+| Path | Tool result | File | QA |
+| --- | --- | --- | --- |
+| Hermes / xAI | `grok-imagine-image` (not the configured quality id) | JPEG 1280×720 | Publish |
+| Codex CLI | `image_gen.imagegen` | JPEG 1672×941 | Publish |
+| Antigravity (`agy`) | `generate_image` | JPEG 1376×768 | Publish |
+
+Codex’s `-i` flag attaches an image to a prompt. Generation used its native `image_gen` tool. Antigravity used `generate_image`. Neither is FAL.
+
+## The frames
+
+![Grok Imagine still-life](/research/image-curated-2026-08-16/grok-imagine-still-life.jpg)
+
+Grok Imagine: one cylinder, gold ring, gold end, slate, no type.
+
+![Codex still-life](/research/image-curated-2026-08-16/codex-still-life.jpg)
+
+Codex: standing cylinder / jar, gold ring, empty ground, no type.
+
+![Antigravity still-life](/research/image-curated-2026-08-16/agy-still-life.jpg)
+
+Antigravity: lying cylinder, gold ring, slate, no type.
+
+## More Grok Imagine, same session
+
+Only QA-pass frames. No Arcanea lore names on this site.
+
+![Empty rain street at night](/research/image-curated-2026-08-16/rain-street.jpg)
+
+Photoreal night street. No people. No readable signs.
+
+![Dark hall with a gold shaft of light](/research/image-curated-2026-08-16/gold-hall.jpg)
+
+Quiet interior. Empty. Gold slit of light.
+
+![Original anime inventor at a workbench](/research/image-curated-2026-08-16/anime-inventor.jpg)
+
+Original anime study. No logos. No named studio.
+
+![Cute cream collectible droid](/research/image-curated-2026-08-16/droid-collectible.jpg)
+
+Collectible droid study. Soft mascot, not a mechanical kit.
+
+The Grok 4.6 routing facts sit in a **code-built panel** on the research page so numbers cannot smear. That is not an image model.
+
+## What we are not showing
+
+An earlier pass asked Grok Imagine for an empty room and a mechanical droid. The room gained a chair and a lamp that looked on. The droid became a mascot. Those frames are not audience results.
+
+Hermes is configured for `grok-imagine-image-quality`. The tool still reported `grok-imagine-image`. There is no quality-vs-fast pair on this page.
+
+Grok Imagine video is a separate backend. This session has no video tool. Not run.
+
+## Analysis
+
+On this one still-life, the three native paths are close enough that the routing question is “which CLI is already in the session,” not a fake leaderboard. Codex stood the object up. Grok and Antigravity kept it on its side. All three kept the gold ring and stayed empty of type.
+
+## FAQ
+
+### Is this Grok 4.6 making pictures?
+
+No. Grok 4.6 is the reasoning model. These stills came from Grok Imagine, Codex image_gen, and Antigravity generate_image.
+
+### Why isn’t FAL here?
+
+It is not a native estate path for this work. We did not use it.
+
+### Where is Model Arena?
+
+[Model Arena](/research/model-arena) is receipt-gated text/agent battles. This is a media sample.
+
+Related: [Grok 4.6 brief](/research/grok-4-6) · [Research hub](/research)

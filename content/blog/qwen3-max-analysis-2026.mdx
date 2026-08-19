@@ -1,45 +1,19 @@
 ---
-title: "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours"
-description: "Alibaba's Qwen3.7-Max lands May 2026 with a 1M-token context, $2.50/$7.50 pricing, SWE-Bench Pro 60.6, Terminal-Bench 69.7, and a verified 35-hour autonomous run. Technical breakdown with sourced benchmarks, what changed vs Qwen3.6, and what it means for builders."
+title: "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for ..."
+description: "Alibaba's Qwen3.7-Max lands May 2026 with a 1M-token context, $2.50/$7.50 pricing, SWE-Bench Pro 60.6, Terminal-Bench 69.7, and a verified 35-hour autonomous run."
 date: "2026-06-05"
-lastUpdated: "2026-06-05"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - alibaba
-  - qwen
-  - frontier-models
-  - ai-2026
-  - benchmarks
-  - agentic-ai
-keywords:
-  - qwen3.7-max
-  - qwen3.7-max review
-  - qwen3.7-max benchmarks
-  - qwen3.7-max pricing
-  - qwen3.7-max vs claude opus 4.8
-  - qwen3.7-max context window
-  - alibaba flagship ai model 2026
-  - qwen3.7-max swe-bench
-  - best chinese ai model 2026
-  - qwen3.7-max agent
+tags: ["alibaba", "qwen", "frontier-models", "ai-2026", "benchmarks", "agentic-ai"]
 image: "/images/blog/generated/qwen3-max-analysis-2026-premium-hero.png"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll understand benchmark performance, cost-efficiency trade-offs, and exact deployment patterns for the latest frontier models."
+tldr: "Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for ... examines core production patterns, technical trade-offs, and actionable implementation steps. Learn how to architect, scale, and deploy resilient systems with maximum leverage and verifiable performance."
+keywords: ["qwen3.7-max", "qwen3.7-max review", "qwen3.7-max benchmarks", "qwen3.7-max pricing", "qwen3.7-max vs claude opus 4.8", "qwen3.7-max context window", "alibaba flagship ai model 2026", "qwen3.7-max swe-bench", "best chinese ai model 2026", "qwen3.7-max agent"]
 architectNote:
-  recommendation: "Qwen3.7-Max earns a lane for long-horizon, verifiable agentic execution: hard tasks at high volume where output is checked against tests and the cost-of-error is bounded. The Anthropic Messages-compatible protocol makes it the lowest-friction trial for teams already on Claude harnesses — swap the base URL and re-run your evals. Two disciplines before committing: budget on tokens-per-task, not the $2.50/$7.50 rate card (it is a verbose reasoner, ~4x the median output in AA testing), and keep expensive-failure routes on the closed frontier — Fable 5 at $10/$50 now holds the agentic-coding ceiling. It is API-only from Alibaba Cloud: no self-host path, so price in the vendor dependency."
-  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting + Governance · vendor risk"
-  personas:
-    - persona: "Agentic mid-tier / tool-use fleets"
-      pick: "Qwen3.7-Max — 35-hour productive autonomy is the differentiator to test"
-    - persona: "Long-context repo agents"
-      pick: "Qwen3.7-Max (1M context, cached input at $0.25/M)"
-    - persona: "Multimodal ingest agents"
-      pick: "Qwen3.7-Plus ($0.40/$1.60, image and video input)"
-    - persona: "Sovereign / self-hosted stacks"
-      pick: "DeepSeek V4 or Kimi K2.6 — Qwen3.7-Max ships no weights"
+  recommendation: ""
 ---
-
 # Qwen3.7-Max: Alibaba's Agent Flagship Cracks the Global Top 5 — and Runs for 35 Hours
 
 **TL;DR**: Alibaba released Qwen3.7-Max (`qwen3.7-max`) on May 19, 2026, announcing it the next day at the Alibaba Cloud Summit. It's a closed-weight, API-only reasoning agent with a 1M-token context window (65K max output) priced at $2.50 input / $7.50 output per million, with a 90% cached-input discount ($0.25/M). It scores 56.6 on the Artificial Analysis Intelligence Index v4.0 — the highest a Chinese model has ever placed, sitting in the global top 5. The agentic numbers are the headline: SWE-Bench Pro 60.6, Terminal-Bench 2.0 69.7, and a documented 35-hour autonomous CUDA-kernel optimization run that hit a 10x speedup. Here's what's verifiable and what isn't.

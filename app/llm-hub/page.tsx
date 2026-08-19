@@ -27,7 +27,7 @@ const SOURCES = [
 const FAQ = [
   {
     q: 'What is the best LLM in 2026?',
-    a: 'There is no single winner. Claude Opus 4.6 leads reasoning (68.8% ARC-AGI-2) and agentic coding. GPT-5.2 Pro dominates broad multimodal + voice. Gemini 3.5 Flash (Google I/O ’26) sets a new cost/intelligence frontier at less than half the cost of comparable flagships. Gemini 3.5 Pro ships next month for the highest-tier reasoning. Pick by task — use the decision matrix above.',
+    a: 'There is no single winner. As of 14 August 2026, Grok 4.6 is the current xAI flagship and scores 61 on the Artificial Analysis Intelligence Index, matching GPT-5.6 Sol on that composite. Other seats still depend on the task — see the decision matrix and dated model pages rather than a global crown.',
   },
   {
     q: 'How is this different from OpenRouter or Artificial Analysis?',

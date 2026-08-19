@@ -19,11 +19,11 @@ const apiPath = join(ROOT, 'app/research/agentic-life-observatory/registry.json/
 const componentPath = join(ROOT, 'components/research/AgenticLifeObservatory.tsx')
 
 const registry = JSON.parse(readFileSync(registryPath, 'utf8'))
-const domains = readFileSync(domainsPath, 'utf8')
-const sources = readFileSync(sourcesPath, 'utf8')
-const page = readFileSync(pagePath, 'utf8')
-const api = readFileSync(apiPath, 'utf8')
-const component = readFileSync(componentPath, 'utf8')
+const domains = readFileSync(domainsPath, 'utf8').replace(/\r\n/g, '\n')
+const sources = readFileSync(sourcesPath, 'utf8').replace(/\r\n/g, '\n')
+const page = readFileSync(pagePath, 'utf8').replace(/\r\n/g, '\n')
+const api = readFileSync(apiPath, 'utf8').replace(/\r\n/g, '\n')
+const component = readFileSync(componentPath, 'utf8').replace(/\r\n/g, '\n')
 
 const failures = []
 const warnings = []
@@ -35,16 +35,20 @@ function check(condition, id, detail) {
 }
 
 function sectionForSlug(text, slug) {
-  const start = text.indexOf(`slug: '${slug}'`)
-  if (start === -1) return ''
-  const next = text.indexOf("\n  {\n    slug: '", start + 10)
+  const match = text.match(new RegExp(`["']?slug["']?\\s*:\\s*["']${slug}["']`))
+  if (!match) return ''
+  const start = match.index
+  const nextMatch = text.slice(start + 10).match(/\n\s*\{\s*\n?\s*["']?slug["']?\s*:/)
+  const next = nextMatch ? start + 10 + nextMatch.index : -1
   return text.slice(start, next === -1 ? text.length : next)
 }
 
 function sourceBlock(text, slug) {
-  const start = text.indexOf(`'${slug}': [`)
-  if (start === -1) return ''
-  const next = text.indexOf("\n  ],", start)
+  const match = text.match(new RegExp(`["']${slug}["']\\s*:\\s*\\[`))
+  if (!match) return ''
+  const start = match.index
+  const nextMatch = text.slice(start).match(/\n\s*\],/)
+  const next = nextMatch ? start + nextMatch.index : -1
   return text.slice(start, next === -1 ? text.length : next)
 }
 
@@ -106,16 +110,19 @@ for (const slug of lifeSlugs) {
   const domainSection = sectionForSlug(domains, slug)
   check(Boolean(domainSection), `domain:${slug}`, 'registered in domains.ts')
   const block = sourceBlock(sources, slug)
-  const sourceCount = (block.match(/url: 'https:\/\//g) ?? []).length
+  const sourceCount = (block.match(/["']?url["']?\s*:\s*["']https:\/\//g) ?? []).length
   check(sourceCount >= 12, `sources:${slug}`, `${sourceCount} HTTPS sources; minimum 12`)
 }
 
 for (const slug of lifeSlugs.slice(0, 4)) {
-  check(sectionForSlug(domains, slug).includes("'agentic-life-observatory'"), `crosslink:${slug}`, 'links to observatory')
+  const sec = sectionForSlug(domains, slug)
+  const linksToObs = sec.includes("'agentic-life-observatory'") || sec.includes('"agentic-life-observatory"')
+  check(linksToObs, `crosslink:${slug}`, 'links to observatory')
 }
 const observatorySection = sectionForSlug(domains, 'agentic-life-observatory')
 for (const slug of lifeSlugs.slice(0, 4)) {
-  check(observatorySection.includes(`'${slug}'`), `crosslink:observatory:${slug}`, 'observatory links back')
+  const linksBack = observatorySection.includes(`'${slug}'`) || observatorySection.includes(`"${slug}"`)
+  check(linksBack, `crosslink:observatory:${slug}`, 'observatory links back')
 }
 
 check(page.includes("agenticLifeMarketRegistry"), 'surface:page', 'page consumes registry')

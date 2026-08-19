@@ -291,19 +291,26 @@ function MetricCard({
   icon: React.ReactNode
   label: string
   value: number
-  color: string
+  color: 'cyan' | 'purple' | 'green' | 'blue'
 }) {
-  const colorClasses = {
+  const cardStyles = {
     cyan: 'from-cyan-500/10 to-cyan-500/5 border-cyan-500/20 text-cyan-400',
-    purple: 'from-purple-500/10 to-purple-500/5 border-purple-500/20 text-purple-400',
-    green: 'from-green-500/10 to-green-500/5 border-green-500/20 text-green-400',
-    blue: 'from-blue-500/10 to-blue-500/5 border-blue-500/20 text-blue-400'
+    purple: 'from-violet-500/10 to-violet-500/5 border-violet-500/20 text-violet-400',
+    green: 'from-emerald-500/10 to-emerald-500/5 border-emerald-500/20 text-emerald-400',
+    blue: 'from-sky-500/10 to-sky-500/5 border-sky-500/20 text-sky-400'
+  }
+
+  const iconBgStyles = {
+    cyan: 'from-cyan-500/20 to-cyan-500/10',
+    purple: 'from-violet-500/20 to-violet-500/10',
+    green: 'from-emerald-500/20 to-emerald-500/10',
+    blue: 'from-sky-500/20 to-sky-500/10'
   }
 
   return (
-    <div className={`rounded-xl border bg-gradient-to-br p-6 ${colorClasses[color as keyof typeof colorClasses]}`}>
+    <div className={`rounded-xl border bg-gradient-to-br p-6 ${cardStyles[color] || cardStyles.cyan}`}>
       <div className="flex items-center justify-between mb-4">
-        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${color === 'cyan' ? 'from-cyan-500/20 to-cyan-500/10' : color === 'purple' ? 'from-purple-500/20 to-purple-500/10' : color === 'green' ? 'from-green-500/20 to-green-500/10' : 'from-blue-500/20 to-blue-500/10'} flex items-center justify-center`}>
+        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${iconBgStyles[color] || iconBgStyles.cyan} flex items-center justify-center`}>
           {icon}
         </div>
       </div>

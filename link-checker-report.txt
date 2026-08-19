@@ -1,7 +1,171 @@
 FrankX.AI Link Checker Report
 ================================================================================
-Generated: 2026-07-10T15:28:26.907Z
-Total Issues Found: 0
+Generated: 2026-08-18T10:54:12.983Z
+Total Issues Found: 13
 ================================================================================
 
-✅ No issues found! All links are working correctly.
+=== ISSUES BY TYPE ===
+
+404 - Not Found: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page: Homepage
+   Href: /blueprint
+   Link text: "Sovereign Creator BlueprintThe complete 4-layer architecture connecting local-first agents, digital ..."
+   Status code: 404
+
+Other errors: 12 issues
+--------------------------------------------------------------------------------
+
+1. Page: Blog
+   Href: /blog
+   Link text: "/blog"
+
+2. Page: Assessment
+   Href: /assessment
+   Link text: "/assessment"
+
+3. Page: Enterprise
+   Href: /enterprise
+   Link text: "/enterprise"
+
+4. Page: Coaching
+   Href: /coaching
+   Link text: "/coaching"
+
+5. Page: Courses
+   Href: /courses
+   Link text: "/courses"
+
+6. Page: Agentic AI Center
+   Href: /agentic-ai-center
+   Link text: "/agentic-ai-center"
+
+7. Page: Founder Playbook
+   Href: /founder-playbook
+   Link text: "/founder-playbook"
+
+8. Page: Realm
+   Href: /realm
+   Link text: "/realm"
+
+9. Page: Library
+   Href: /library
+   Link text: "/library"
+
+10. Page: Library OS Approach
+   Href: /library/approach
+   Link text: "/library/approach"
+
+11. Page: Build Your Library
+   Href: /library/build
+   Link text: "/library/build"
+
+12. Page: Tao Te Ching Field Note
+   Href: /library/tao-te-ching
+   Link text: "/library/tao-te-ching"
+
+
+=== ISSUES BY PAGE ===
+
+Homepage: 1 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /blueprint
+   Link text: "Sovereign Creator BlueprintThe complete 4-layer architecture connecting local-first agents, digital ..."
+   Status code: 404
+
+Blog: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /blog
+   Link text: "/blog"
+
+Assessment: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /assessment
+   Link text: "/assessment"
+
+Enterprise: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /enterprise
+   Link text: "/enterprise"
+
+Coaching: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /coaching
+   Link text: "/coaching"
+
+Courses: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /courses
+   Link text: "/courses"
+
+Agentic AI Center: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /agentic-ai-center
+   Link text: "/agentic-ai-center"
+
+Founder Playbook: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /founder-playbook
+   Link text: "/founder-playbook"
+
+Realm: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /realm
+   Link text: "/realm"
+
+Library: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /library
+   Link text: "/library"
+
+Library OS Approach: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /library/approach
+   Link text: "/library/approach"
+
+Build Your Library: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /library/build
+   Link text: "/library/build"
+
+Tao Te Ching Field Note: 1 issues
+--------------------------------------------------------------------------------
+
+1. Page failed to load - Status: 0 - fetch failed
+   Href: /library/tao-te-ching
+   Link text: "/library/tao-te-ching"
+
+
+=== SUMMARY ===
+Total pages tested: 15
+Total unique internal URLs checked: 93
+Total issues found: 13
+  - 404 errors: 1
+  - External link issues: 0
+  - Redirects: 0
+  - Other errors: 12
