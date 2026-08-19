@@ -2,6 +2,9 @@
 title: "Why I came to Tallinn — the approach"
 date: "2026-07-20"
 kind: "essay"
+layer: "field-intelligence"
+session: "Opening editorial"
+provenance: "Editorial synthesis from early Tallinn planning notes; not a verbatim journal entry."
 summary: "I build calm systems so what we find at events survives contact with normal life. Here is how I'm spending two weeks at Mindvalley University — and what I refuse to do with them."
 tags: ["approach", "second-brain", "integration"]
 published: true
