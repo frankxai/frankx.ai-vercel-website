@@ -1,45 +1,19 @@
 ---
 title: "gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On"
-description: "OpenAI's gpt-oss-120b and gpt-oss-20b are Apache 2.0, free to download, and run on a single 80GB GPU or a 16GB laptop. The full self-host breakdown: VRAM, MXFP4 quantization, where to run, verified benchmarks, and how they stack up against Qwen, DeepSeek, and GLM in June 2026."
+description: "OpenAI's gpt-oss-120b and gpt-oss-20b are Apache 2.0, free to download, and run on a single 80GB GPU or a 16GB laptop."
 date: "2026-06-05"
-lastUpdated: "2026-06-05"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - openai
-  - gpt-oss
-  - open-weight-models
-  - local-llms
-  - ai-2026
-  - benchmarks
-keywords:
-  - gpt-oss
-  - gpt-oss-120b
-  - gpt-oss-20b
-  - gpt-oss benchmarks
-  - gpt-oss self-host
-  - gpt-oss vram requirements
-  - openai open weight model
-  - gpt-oss vs qwen deepseek
-  - run gpt-oss locally ollama
-  - best open source llm 2026
+tags: ["openai", "gpt-oss", "open-weight-models", "local-llms", "ai-2026", "benchmarks"]
 image: "/images/blog/generated/gpt-oss-analysis-2026-premium-hero.png"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll understand benchmark performance, cost-efficiency trade-offs, and exact deployment patterns for the latest frontier models."
+tldr: "gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On examines core production patterns, technical trade-offs, and actionable implementation steps. Learn how to architect, scale, and deploy resilient systems with maximum leverage and verifiable performance."
+keywords: ["gpt-oss", "gpt-oss-120b", "gpt-oss-20b", "gpt-oss benchmarks", "gpt-oss self-host", "gpt-oss vram requirements", "openai open weight model", "gpt-oss vs qwen deepseek", "run gpt-oss locally ollama", "best open source llm 2026"]
 architectNote:
-  recommendation: "gpt-oss is the capability-per-VRAM play in your portfolio, not a leaderboard pick: the 20b makes local-first architecture real on a 16GB laptop, and the 120b is near-o4-mini-class on one 80GB card under a clean Apache 2.0 license. The routing discipline is make-or-buy: hosted endpoints serve the 120b for pennies per million, so self-host only at sustained volume or under a hard data-residency mandate. Route error-tolerant, high-volume agent steps to local gpt-oss and reserve the closed frontier — Fable 5 at $10/$50 is the current agentic-coding ceiling — for steps where a silent mistake is costly."
-  coePillar: "Technology · model routing + Governance · data sovereignty"
-  personas:
-    - persona: "Sovereign / self-hosted stacks"
-      pick: "gpt-oss-20b — 16GB, fully offline, Apache 2.0"
-    - persona: "Bulk fan-out workers"
-      pick: "gpt-oss-120b hosted (~$0.04/$0.19 per 1M at the cheapest providers)"
-    - persona: "Fine-tuned domain agents"
-      pick: "gpt-oss-safeguard — policy classification with an auditable chain of thought"
-    - persona: "Pipeline & coding agents"
-      pick: "Fable 5 — gpt-oss is near-o4-mini-class, not frontier, on hard agentic coding"
+  recommendation: ""
 ---
-
 # gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On
 
 **TL;DR**: gpt-oss-120b and gpt-oss-20b are OpenAI's open-weight models — Apache 2.0, free to download, no API key required. The 120b (116.8B total, 5.1B active, MoE) runs on a single 80GB GPU; the 20b (21B total, 3.6B active) runs in ~16GB of memory, including laptops. Both ship MXFP4-quantized with a 131,072-token (128K) context and low/medium/high reasoning effort levels. On OpenAI's own evals the 120b scores 80.1% GPQA Diamond and 97.9% AIME 2025 (with tools); the 20b posts 98.7% AIME 2025. They run on Ollama, vLLM, LM Studio, llama.cpp, and Hugging Face Transformers. As of June 2026 there's no "gpt-oss-2" — but the family has been busy: a safeguard variant shipped in October 2025, and gpt-oss-120b became an official MLPerf Inference v6.0 benchmark in March 2026. Here's the honest builder's take on what to run and when.

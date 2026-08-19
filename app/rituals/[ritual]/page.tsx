@@ -253,7 +253,7 @@ const rituals = {
     title: 'Evening Integration',
     tagline: 'Close with Clarity',
     icon: Sunset,
-    accentClass: 'from-indigo-500 to-purple-700',
+    accentClass: 'from-indigo-500 to-violet-700',
     glowClass: 'shadow-indigo-500/30',
     borderClass: 'border-indigo-500/30',
     textClass: 'text-indigo-400',

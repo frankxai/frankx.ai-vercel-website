@@ -1,45 +1,19 @@
 ---
 title: "Claude Opus 4.8: A Modest Bump That Quietly Tops the Leaderboard"
-description: "Anthropic's Opus 4.8 lands 41 days after 4.7 with the same $5/$25 pricing, SWE-Bench Pro 69.2%, GDPval-AA 1890, dynamic workflows, and cheaper fast mode. Technical breakdown with verified benchmarks, what changed, and what it means for builders."
+description: "Anthropic's Opus 4.8 lands 41 days after 4.7 with the same $5/$25 pricing, SWE-Bench Pro 69.2%, GDPval-AA 1890, dynamic workflows, and cheaper fast mode."
 date: "2026-06-05"
-lastUpdated: "2026-06-05"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - anthropic
-  - claude
-  - frontier-models
-  - ai-2026
-  - benchmarks
-  - agentic-ai
-keywords:
-  - claude opus 4.8
-  - claude opus 4.8 review
-  - claude opus 4.8 benchmarks
-  - anthropic opus 4.8 pricing
-  - claude opus 4.8 vs gpt 5.5
-  - claude opus 4.8 dynamic workflows
-  - claude opus 4.8 context window
-  - swe-bench pro opus 4.8
-  - gdpval-aa 1890
-  - best ai model 2026
-image: "/images/blog/claude-opus-4-8-analysis-2026-hero-v7.jpg"
+tags: ["anthropic", "claude", "frontier-models", "ai-2026", "benchmarks", "agentic-ai"]
+image: "/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll understand benchmark performance, cost-efficiency trade-offs, and exact deployment patterns for the latest frontier models."
+tldr: "Claude Opus 4.8: A Modest Bump That Quietly Tops the Leaderboard examines core production patterns, technical trade-offs, and actionable implementation steps. Learn how to architect, scale, and deploy resilient systems with maximum leverage and verifiable performance."
+keywords: ["claude opus 4.8", "claude opus 4.8 review", "claude opus 4.8 benchmarks", "anthropic opus 4.8 pricing", "claude opus 4.8 vs gpt 5.5", "claude opus 4.8 dynamic workflows", "claude opus 4.8 context window", "swe-bench pro opus 4.8", "gdpval-aa 1890", "best ai model 2026"]
 architectNote:
-  recommendation: "Opus 4.8 is the judgment layer of an AI Center of Excellence: the GDPval-AA lead (1890 Elo) and near-saturation USAMO score make it the default for review, synthesis, and knowledge work where silent errors are expensive — at an unchanged $5/$25 with 1M context. Since Fable 5 shipped on June 9 at double the price, route hard agentic coding there and keep Opus 4.8 on everything that needs judgment rather than constraint precision. Don't pay flagship rates for high-volume error-tolerant fan-out — the post's own routing math points at Gemini 3.5 Flash for that tier, and GPT-5.5 still edges Opus on terminal-heavy CLI work."
-  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting"
-  personas:
-    - persona: "Reviewer / judgment agents"
-      pick: "Opus 4.8"
-    - persona: "Research & synthesis agents"
-      pick: "Opus 4.8 (1M ctx, 128K output at $5/$25)"
-    - persona: "Pipeline & coding agents"
-      pick: "Fable 5 — Opus 4.8 if the budget says no"
-    - persona: "Bulk fan-out workers"
-      pick: "Gemini 3.5 Flash or Haiku-tier"
+  recommendation: ""
 ---
-
 # Claude Opus 4.8: A Modest Bump That Quietly Tops the Leaderboard
 
 **TL;DR**: Anthropic released Claude Opus 4.8 (`claude-opus-4-8`) on May 28, 2026 — just 41 days after Opus 4.7. Pricing is unchanged at $5/$25 per million tokens, context stays at 1M (128K output). The benchmark gains are real but incremental: SWE-Bench Pro 69.2% (from 64.3%), GDPval-AA 1890 Elo (from 1753), USAMO 2026 up 27 points to 96.7%. The headline features are product-side — Claude Code "dynamic workflows" that orchestrate up to 1,000 subagents, an effort control on claude.ai, and a fast mode that's now 3x cheaper. Simon Willison called it "a modest but tangible improvement." That's accurate. Here's what actually matters for builders.

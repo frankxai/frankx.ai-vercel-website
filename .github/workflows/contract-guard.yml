@@ -26,6 +26,12 @@ on:
       - 'public/**'
       - 'scripts/**'
       - 'types/**'
+      # Required-check trap: this job is a required status check, so a pull
+      # request touching only a path absent from this list can never merge —
+      # the check is expected and never reports. next.config.mjs reached that
+      # state on 2026-08-14. It also genuinely affects the guarded surfaces
+      # (headers, redirects, image config), so it belongs here on merit.
+      - 'next.config.mjs'
       - '.github/workflows/contract-guard.yml'
 
 concurrency:

@@ -103,12 +103,12 @@ export const ahmad: PortalPartner = {
   recommendations: [
     {
       kind: 'research',
-      slug: 'multi-agent-systems',
+      slug: 'multi-agent-orchestration-swarms',
       why: 'The agent-swarm layer of the founder system draws directly on multi-agent orchestration patterns.',
     },
     {
       kind: 'research',
-      slug: 'ai-ops',
+      slug: 'agentic-life-architecture',
       why: 'The local Jarvis lab is, functionally, a personal AI Ops stack — the 5-layer model applies at founder scale too.',
     },
     {

@@ -39,10 +39,16 @@ export const DECISION_MATRIX: DecisionRow[] = [
     reason: 'Best published computer-use scores (84.9% GDPval, 78.7% OSWorld, 98% Tau2 Telecom).',
   },
   {
+    constraint: 'Long-running xAI agents',
+    primaryId: 'grok-4-6',
+    altId: 'grok-4-3',
+    reason: 'Current xAI flagship (AA Index 61, vendor/AA, 12 Aug 2026). Same $2/$6 list under 200k as 4.5; no SIS arena receipt yet.',
+  },
+  {
     constraint: 'Lowest cost (closed frontier)',
     primaryId: 'grok-4-3',
     altId: 'gemini-3-5-flash',
-    reason: 'Fourth-best intelligence (AA 53) at the cheapest frontier price — $1.25/$2.50 per 1M.',
+    reason: 'Still the cheap Grok tier at $1.25/$2.50. Grok 4.6 is the flagship, not the bargain SKU.',
   },
   {
     constraint: 'Top open weights',

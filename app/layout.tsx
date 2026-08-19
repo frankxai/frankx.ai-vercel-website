@@ -14,8 +14,11 @@ import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
-import { PrivacySafeAnalytics } from '@/components/analytics/PrivacySafeAnalytics'
 
+
+import { PrivacySafeAnalytics } from "@/components/analytics/PrivacySafeAnalytics"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 // AIS Plan A Task 21 — Schema.org @graph injected into <head> for AEO/GEO
 const aisSchemaGraph = (() => {
   try {
@@ -144,6 +147,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
+        {/* Plausible - independent privacy-friendly web analytics (backup + cross-check) */}
+        <script defer data-domain="frankx.ai" src="https://plausible.io/js/script.js"></script>
+
         <link rel="alternate" hrefLang="en" href={siteConfig.url} />
         <link rel="alternate" hrefLang="x-default" href={siteConfig.url} />
         {aisSchemaGraph && (
@@ -188,6 +194,8 @@ export default function RootLayout({
             {children}
           </div>
           <Footer />
+          <Analytics />
+          <SpeedInsights />
           <PrivacySafeAnalytics />
         </SessionProvider>
       </body>

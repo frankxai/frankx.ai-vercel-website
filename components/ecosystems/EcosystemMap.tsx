@@ -15,8 +15,10 @@ const MapComponent = ({ spaces }: { spaces: Space[] }) => {
     if (!mapContainer.current || mapRef.current) return
 
     // Import maplibre-gl inside useEffect
+    // @ts-ignore
     import('maplibre-gl').then((maplibregl) => {
       // Import CSS dynamically
+      // @ts-ignore
       import('maplibre-gl/dist/maplibre-gl.css')
 
       // Center of Amsterdam

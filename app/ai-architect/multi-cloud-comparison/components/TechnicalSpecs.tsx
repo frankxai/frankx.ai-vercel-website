@@ -109,20 +109,20 @@ function InfrastructureTab() {
       ))}
 
       {/* Performance Benchmarks */}
-      <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-lg">
-        <h4 className="text-lg font-semibold text-gray-900 mb-4">Performance Benchmarks</h4>
+      <div className="bg-slate-900/60 border border-slate-800/80 backdrop-blur-md p-6 rounded-lg">
+        <h4 className="text-lg font-semibold text-slate-100 mb-4">Performance Benchmarks</h4>
         <div className="grid md:grid-cols-3 gap-4">
-          <div className="bg-white p-4 rounded-lg shadow-sm">
-            <div className="text-3xl font-bold text-purple-600">100K</div>
-            <div className="text-sm text-gray-600">Concurrent Users</div>
+          <div className="bg-slate-800/60 border border-slate-700/50 p-4 rounded-lg shadow-sm">
+            <div className="text-3xl font-bold text-cyan-400">100K</div>
+            <div className="text-sm text-slate-300">Concurrent Users</div>
           </div>
-          <div className="bg-white p-4 rounded-lg shadow-sm">
-            <div className="text-3xl font-bold text-blue-600">&lt;100ms</div>
-            <div className="text-sm text-gray-600">API Response Time (p95)</div>
+          <div className="bg-slate-800/60 border border-slate-700/50 p-4 rounded-lg shadow-sm">
+            <div className="text-3xl font-bold text-emerald-400">&lt;100ms</div>
+            <div className="text-sm text-slate-300">API Response Time (p95)</div>
           </div>
-          <div className="bg-white p-4 rounded-lg shadow-sm">
-            <div className="text-3xl font-bold text-green-600">99.99%</div>
-            <div className="text-sm text-gray-600">Uptime SLA</div>
+          <div className="bg-slate-800/60 border border-slate-700/50 p-4 rounded-lg shadow-sm">
+            <div className="text-3xl font-bold text-amber-400">99.99%</div>
+            <div className="text-sm text-slate-300">Uptime SLA</div>
           </div>
         </div>
       </div>
