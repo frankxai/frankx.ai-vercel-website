@@ -13,6 +13,7 @@
  */
 
 import { Resend } from 'resend'
+import { socialLinks } from '../lib/social-links'
 
 // ═══════════════════════════════════════════════════════════════════
 // NEWSLETTER CONTENT - Edit this section for each send
@@ -209,7 +210,7 @@ function generateNewsletterHTML(recipientName: string = "Creator"): string {
           frankx.ai
         </a>
         <span style="color: #64748b;">•</span>
-        <a href="https://x.com/frankxeth" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">
+        <a href="${socialLinks.x}" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">
           X
         </a>
         <span style="color: #64748b;">•</span>

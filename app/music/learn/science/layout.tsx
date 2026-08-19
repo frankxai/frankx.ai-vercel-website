@@ -1,22 +1,22 @@
-import { createMetadata } from '@/lib/seo'
+import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: 'Music Science & The Brain | Hz Frequencies, Flow States & Neuroscience | FrankX',
+  title: "Music, Sound & Evidence | Research and Claim Boundaries | FrankX",
   description:
-    'Explore the neuroscience of music — how Hz frequencies shape consciousness, trigger flow states, and rewire neural pathways. From 528Hz healing to binaural beats.',
-  path: '/music/learn/science',
+    "An evidence-aware guide to music, listening, practice, tuning, hearing safety, and the limits of frequency and health claims.",
+  path: "/music/learn/science",
   keywords: [
-    'music science brain',
-    'Hz frequency music',
-    'binaural beats',
-    '528Hz healing',
-    'music neuroscience',
-    'flow state music',
-    'solfeggio frequencies',
-    'neuro state engineering',
+    "music science brain",
+    "Hz frequency music",
+    "binaural beats",
+    "music frequency evidence",
+    "music neuroscience",
+    "safe listening",
+    "music health claims",
+    "standard musical pitch",
   ],
-})
+});
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children
+  return children;
 }

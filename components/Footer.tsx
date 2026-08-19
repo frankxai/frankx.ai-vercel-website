@@ -4,14 +4,28 @@ import Link from 'next/link'
 import { ExternalLink, ArrowUp, Mail } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
 import Image from 'next/image'
+import { sitePositioning } from '@/data/site-positioning'
+import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
+import { trackEvent } from '@/lib/analytics'
 import { socialLinks } from '@/lib/social-links'
 
 function BackToTop() {
+  const scrollToTop = () => {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    })
+  }
+
   return (
     <button
       type="button"
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="group flex items-center gap-1.5 text-xs text-white/30 hover:text-white/70 transition-colors"
+      onClick={scrollToTop}
+      className="group flex items-center gap-1.5 text-xs text-white/55 hover:text-white transition-colors"
       aria-label="Back to top"
     >
       <ArrowUp className="w-3 h-3 transition-transform group-hover:-translate-y-0.5" />
@@ -33,17 +47,22 @@ const NAV_COLUMNS = [
   {
     label: 'Create',
     links: [
-      { label: 'GenCreator Hub', href: '/gencreator' },
+      {
+        label: 'GenCreator.AI',
+        href: 'https://gencreator.ai/?utm_source=frankx&utm_medium=footer&utm_campaign=r1_bridge',
+        external: true,
+        accent: 'emerald',
+      },
+      { label: 'Starter Kits', href: '/templates', accent: 'emerald' },
       { label: 'Prompt Library', href: '/prompt-library' },
       { label: 'ACOS', href: '/acos' },
-      { label: 'Templates', href: '/templates' },
       { label: 'Creation Chronicles', href: '/creation-chronicles' },
-      { label: 'GenCreator.AI', href: 'https://gencreator.ai', external: true, accent: 'emerald' },
     ],
   },
   {
     label: 'Learn',
     links: [
+      { label: 'Mental Models', href: '/mental-models', accent: 'emerald' },
       { label: 'Courses', href: '/courses' },
       { label: 'Guides', href: '/guides' },
       { label: 'Books', href: '/books' },
@@ -51,25 +70,30 @@ const NAV_COLUMNS = [
       { label: 'Games Lab', href: '/games' },
       { label: 'Watch', href: '/watch' },
       { label: 'Blog', href: '/blog' },
+      { label: 'Journal', href: '/journal' },
     ],
   },
   {
-    label: 'Build',
+    label: 'Workspace',
     links: [
+      { label: 'How it works', href: '/workspace', accent: 'emerald' },
+      { label: 'Research', href: '/research' },
+      { label: 'Signals', href: '/signals' },
+      { label: 'Dream 100', href: '/dream-100' },
+      { label: 'Core Qualities', href: '/qualities' },
+      { label: 'Library', href: '/library' },
+      { label: 'Guides', href: '/guides' },
       { label: 'Architecture Hub', href: '/ai-architecture' },
-      { label: 'Blueprints', href: '/ai-architecture/blueprints' },
-      { label: 'AI World', href: '/ai-world' },
-      { label: 'Research Hub', href: '/research' },
-      { label: 'Products', href: '/products' },
+      { label: 'Agent Catalog', href: '/agents' },
     ],
   },
   {
     label: 'Work with me',
     links: [
       { label: 'Start Here', href: '/start' },
-      { label: 'Foundry', href: '/foundry', accent: 'emerald' },
-      { label: "Founder's Circle", href: '/founders-circle', accent: 'rose' },
-      { label: 'Coaching', href: '/coaching' },
+      { label: 'Connect', href: '/connect', accent: 'emerald' },
+      { label: 'Partnerships', href: '/partnerships' },
+      { label: 'Work with Frank', href: '/work-with-me' },
       { label: 'Licensing', href: '/licensing' },
       { label: 'Newsletter', href: '/newsletter' },
       { label: 'About', href: '/about' },
@@ -91,8 +115,8 @@ function FooterLink({ link }: { link: NavLink }) {
     link.accent === 'emerald'
       ? 'text-emerald-400/70 hover:text-emerald-300'
       : link.accent === 'rose'
-        ? 'text-rose-400/70 hover:text-rose-300'
-        : 'text-white/40'
+        ? 'text-rose-300/90 hover:text-rose-200'
+        : 'text-white/55'
 
   if (link.external) {
     return (
@@ -107,8 +131,19 @@ function FooterLink({ link }: { link: NavLink }) {
       </a>
     )
   }
+
+  const handleClick = () => {
+    if (link.href !== '/qualities') return
+    const event = coreQualitiesNavigationEvent({
+      source: 'footer',
+      placement: 'workspace_column',
+      destination: 'overview',
+    })
+    trackEvent(event.eventName, event.eventProperties)
+  }
+
   return (
-    <Link href={link.href} className={`${base} ${color}`}>
+    <Link href={link.href} onClick={handleClick} className={`${base} ${color}`}>
       {link.label}
     </Link>
   )
@@ -144,20 +179,19 @@ export default function Footer() {
               />
               <div>
                 <span className="block text-base sm:text-lg font-semibold text-white">FrankX.AI</span>
-                <span className="block text-[10px] sm:text-xs text-white/55">AI Systems &amp; Music</span>
+                <span className="block text-[10px] sm:text-xs text-white/55">Public agentic workspace</span>
               </div>
             </Link>
-            <p className="text-xs sm:text-sm text-white/60 leading-relaxed max-w-xs">
-              AI architect by day. Music creator by night.
-              Building systems, making music, sharing everything.
+            <p className="max-w-xs text-xs leading-relaxed text-white/65 sm:text-sm">
+              {sitePositioning.shortDescription}
             </p>
             {/* Email — direct contact signal */}
             <a
-              href="mailto:hello@frankx.ai"
-              className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-white transition-colors"
+              href="mailto:frank@frankx.ai"
+              className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/55 hover:text-white transition-colors"
             >
               <Mail className="w-3 h-3" />
-              hello@frankx.ai
+              frank@frankx.ai
             </a>
             {/* Social links */}
             <nav aria-label="Social profiles" className="mt-4 sm:mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5">
@@ -187,7 +221,7 @@ export default function Footer() {
           {/* Nav columns */}
           {NAV_COLUMNS.map((col) => (
             <nav key={col.label} aria-label={col.label}>
-              <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/50 mb-3 sm:mb-4">
+              <h3 className="text-xs sm:text-sm font-medium text-white/50 mb-3 sm:mb-4">
                 {col.label}
               </h3>
               <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
@@ -209,8 +243,8 @@ export default function Footer() {
           />
           <div className="relative flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white">Weekly dispatch — AI architecture &amp; creative systems</p>
-              <p className="text-xs text-white/40 mt-0.5">One email per week. No fluff. Unsubscribe anytime.</p>
+              <p className="text-sm font-semibold text-white">One reviewed note from the workspace each week</p>
+              <p className="mt-0.5 text-xs text-white/60">Research, builds, field notes, and decisions worth carrying forward.</p>
             </div>
             <div className="w-full sm:w-auto sm:min-w-[300px]">
               <EmailSignup listType="newsletter" placeholder="your@email.com" buttonText="Subscribe" compact />
@@ -219,7 +253,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
+        <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/55">
           <p>&copy; {new Date().getFullYear()} Frank Riemer. All rights reserved.</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1" aria-label="Legal">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>

@@ -1,653 +1,337 @@
-'use client'
-
 import Link from 'next/link'
-import Image from 'next/image'
-import { motion, useReducedMotion } from 'framer-motion'
-import { socialLinks } from '@/lib/social-links'
 import {
   ArrowRight,
-  Linkedin,
+  Bot,
   Github,
-  ExternalLink,
-  Mail,
+  Linkedin,
   MapPin,
   Music,
-  Code,
-  Globe,
-  Compass,
+  Network,
+  ShieldCheck,
 } from 'lucide-react'
+
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { EmailSignup } from '@/components/email-signup'
-import { GlowCard } from '@/components/ui/glow-card'
+import { sitePositioning } from '@/data/site-positioning'
+import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
+import { createMetadata } from '@/lib/seo'
+import { socialLinks } from '@/lib/social-links'
+
+export const metadata = createMetadata({
+  title: 'About Frank Riemer',
+  description:
+    'Meet Frank Riemer, the AI architect and creator behind FrankX, and see how he directs a specialist agent team without outsourcing judgment or accountability.',
+  path: '/about',
+  image: '/images/portraits/frank-presenting-oracle-2025.jpg',
+})
 
 const aboutFaqs = [
   {
-    question: 'Who is Frank and what is FrankX.AI?',
+    question: 'Who is Frank Riemer?',
     answer:
-      'Frank is a former AI architect at Oracle and a prolific AI music creator. FrankX.AI is his independent hub for public, non-confidential lessons from production AI systems, 12,000+ Suno experiments, and practical creator operating systems.',
+      'Frank Riemer is an AI architect and creator based in Amsterdam. His work spans AI architecture, multi-agent workflows, research, books, software, music, and public learning systems.',
   },
   {
-    question: 'What makes FrankX.AI different from other AI resources?',
+    question: 'What is FrankX?',
     answer:
-      'FrankX.AI combines enterprise-grade AI architecture expertise with hands-on creative AI experience. It bridges the gap between technical implementation and practical creative workflows, offering resources that work in the real world—not just in theory.',
+      'FrankX is Frank’s public agentic workspace. Frank sets the question, context, standard, and final decision while specialist agents support research, critique, synthesis, implementation, and verification.',
   },
   {
-    question: 'What kind of content can I find on FrankX.AI?',
+    question: 'Are the agents the authors of FrankX?',
     answer:
-      'The site offers AI implementation guides, prompt libraries for tools like Suno and Midjourney, enterprise AI architecture patterns, creative workflows, courses on AI music production, and frameworks for building goal-aligned AI systems.',
+      'No. Agents complete many specialist passes and produce first versions, but they cannot define Frank’s position or publish on their own. Frank owns the final published position and the standard the work is expected to meet.',
   },
   {
-    question: 'How can I get started with the resources on this site?',
+    question: 'What can I find on the site?',
     answer:
-      'Start with the /start page for a guided overview, explore the Music Lab for AI music creation, browse the Prompt Library for ready-to-use prompts, or open the blog for practical insights and tutorials.',
+      'The public work includes source-led research, book intelligence, AI architectures, field guides, open agent systems, creative workflows, music, products, partnership briefs, and dated working notes.',
   },
   {
-    question: 'Does Frank offer consulting or collaboration opportunities?',
+    question: 'Can I work with Frank?',
     answer:
-      'Yes, Frank is available for AI strategy consulting, enterprise AI implementations, speaking engagements, and creative AI projects. Visit the Contact page or reach out via LinkedIn to discuss collaboration opportunities.',
+      'Frank considers bounded architecture and partnership work when there is a real problem, useful source context, a decision owner, and a concrete result worth building. The Connect page is the direct route.',
   },
 ]
 
-// Premium background — static gradients for ambient depth
-function AboutBackground() {
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
-      <div
-        className="absolute -left-60 top-20 h-[600px] w-[600px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)', filter: 'blur(128px)' }}
-      />
-      <div
-        className="absolute -right-40 top-1/3 h-[500px] w-[500px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%)', filter: 'blur(128px)' }}
-      />
-      <div
-        className="absolute bottom-40 left-1/4 h-[400px] w-[400px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)', filter: 'blur(128px)' }}
-      />
-      <div
-        className="absolute inset-0 opacity-[0.015]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px',
-        }}
-      />
-    </div>
-  )
-}
+const workingModes = [
+  {
+    title: 'AI architecture',
+    detail:
+      'I translate enterprise experience into inspectable architectures, agent workflows, evaluation boundaries, and practical build decisions.',
+    Icon: Network,
+  },
+  {
+    title: 'The agentic workspace',
+    detail:
+      'Specialist agents expand how deeply and quickly I can research, challenge, structure, build, and verify. I keep the mandate and final judgment.',
+    Icon: Bot,
+  },
+  {
+    title: 'Creative practice',
+    detail:
+      'Books, software, music, and story work keep the technical systems connected to taste, repetition, emotion, and the difficulty of actually shipping.',
+    Icon: Music,
+  },
+] as const
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-}
+const principles = [
+  'Build something inspectable before making a large claim.',
+  'Keep sources, synthesis, and personal judgment visibly distinct.',
+  'Use AI to expand human capacity—not to disguise the absence of a human point of view.',
+  'Share the method generously, then let the work earn the invitation.',
+] as const
+
+const boundaries = [
+  'A generated draft is not a FrankX position.',
+  'Using a platform is not the same as being endorsed by that company.',
+  'A proposed partnership is labeled differently from an active relationship.',
+  'Former Oracle experience informs the work; FrankX is independent from Oracle.',
+] as const
 
 export default function AboutPage() {
-  const shouldReduceMotion = useReducedMotion()
-  const transition = shouldReduceMotion
-    ? { duration: 0 }
-    : { duration: 0.6 }
-
   return (
-    <>
-      <FAQPageJsonLd faqs={aboutFaqs} />
-      <AboutBackground />
-      <main id="main" className="relative min-h-screen">
-        {/* ── Hero ── */}
-        <section className="relative pt-32 pb-16">
-          {/* FRANK-Ω ghost accent */}
-          <div className="pointer-events-none absolute right-6 top-24 hidden w-52 opacity-[0.08] lg:block xl:w-64">
-            <Image
-              src="/images/mascot/frank-omega-hero-v1.png"
-              alt=""
-              width={256}
-              height={256}
-              className="object-contain"
-              aria-hidden="true"
-            />
-          </div>
-          <div className="mx-auto max-w-5xl px-6">
-            <div className="grid gap-8 lg:grid-cols-5 items-center">
-              <div className="lg:col-span-3">
-                <motion.div
-                  {...fadeIn}
-                  transition={transition}
-                  className="mb-6"
-                >
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
-                    <Compass className="w-4 h-4 text-emerald-400" />
-                    <span className="text-sm text-white/60">About</span>
-                  </div>
-                </motion.div>
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
+      <FAQPageJsonLd faqs={aboutFaqs} id="about-faq" />
 
-                <motion.h1
-                  {...fadeIn}
-                  transition={{ ...transition, delay: 0.1 }}
-                  className="mb-8 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
-                >
-                  The Architect.{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
-                    The Creator.
-                  </span>{' '}
-                  The Explorer.
-                </motion.h1>
-
-                <motion.div
-                  {...fadeIn}
-                  transition={{ ...transition, delay: 0.2 }}
-                  className="max-w-3xl space-y-5 text-lg leading-relaxed text-white/50"
-                >
-                  <p className="text-white/70 text-xl">
-                    Former Oracle AI architect. Creator of 12,000+ AI songs. Builder of
-                    the Agentic Creator OS. Based in Amsterdam, on the water.
-                  </p>
-                  <p>
-                    Everything I build goes here — not as a portfolio, but as a living
-                    system you can use. Open, documented, yours to adapt.
-                  </p>
-                </motion.div>
-              </div>
-
-              <motion.div
-                {...fadeIn}
-                transition={{ ...transition, delay: 0.15 }}
-                className="lg:col-span-2 hidden lg:flex justify-center"
+      <section className="relative overflow-hidden border-b border-white/[0.07]">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_16%,rgba(16,185,129,0.12),transparent_32%),radial-gradient(circle_at_10%_0%,rgba(6,182,212,0.07),transparent_28%)]"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto grid min-h-[86svh] max-w-7xl items-center gap-14 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:px-10">
+          <div className="max-w-3xl">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80">
+              Frank Riemer · Amsterdam · AI Architect &amp; Musician
+            </p>
+            <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+              Building sovereign systems for a
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">freer world.</span>
+            </h1>
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/80 sm:text-xl font-medium">
+              Builder since age 5. Co-builder of 7-figure enterprises. Former AI architect at Oracle. Prolific musician with 12,000+ tracks.
+            </p>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-white/60">
+              From pouring concrete on construction sites to architecting multi-agent AI swarms and sovereign business starter kits, my mission is singular: empower builders and creators to achieve total economic, creative, and technical independence.
+            </p>
+            <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <Link
+                href="/#current-work"
+                className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
               >
-                <div className="relative w-64 h-64 xl:w-72 xl:h-72">
-                  <Image
-                    src="/images/portraits/frankx-magical-forest.png"
-                    alt="Frank Riemer"
-                    fill
-                    className="object-cover rounded-2xl"
-                    sizes="(min-width: 1024px) 288px, 256px"
-                    priority
-                  />
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10" />
-                  <div className="absolute inset-0 -z-10 bg-emerald-500/10 rounded-2xl blur-[40px]" />
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Social links */}
-            <motion.div
-              {...fadeIn}
-              transition={{ ...transition, delay: 0.3 }}
-              className="mt-8 flex flex-wrap items-center gap-3"
-            >
-              <a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
+                Explore current work
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/workspace"
+                className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-white/72 underline decoration-white/25 underline-offset-8 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
               >
-                <Linkedin className="h-4 w-4" /> LinkedIn
-              </a>
-              <a
-                href="https://github.com/frankxai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
-              >
-                <Github className="h-4 w-4" /> GitHub
-              </a>
-              <a
-                href="https://suno.com/@frankx"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
-              >
-                <Music className="h-4 w-4" /> Suno
-              </a>
-              <a
-                href="mailto:frank@frankx.ai"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
-              >
-                <Mail className="h-4 w-4" /> Email
-              </a>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── The Origin ── */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
-                The origin
-              </h2>
-              <p className="text-white/30 mb-8">Where the building started</p>
-            </motion.div>
-
-            <div className="grid gap-8 lg:grid-cols-2">
-              <motion.div
-                {...fadeIn}
-                transition={{ ...transition, delay: 0.1 }}
-                className="space-y-5 text-base leading-relaxed text-white/50"
-              >
-                <p>
-                  My family are Volga Germans — descendants of German settlers
-                  invited to Russia&apos;s Volga River region by Katharina the Great
-                  in the 1700s. They built communities, churches, entire
-                  infrastructure from nothing. When Stalin displaced them, my
-                  grandparents survived in Kazakhstan.
-                </p>
-                <p>
-                  My parents came to Germany in the 1990s with almost nothing. My
-                  father Witali was a quiet, strong man who built houses and
-                  brought displaced families together. He created a foundation of
-                  properties through pure craftsmanship and will. He passed from
-                  cancer in 2019 — but not before teaching me and my brother Alex
-                  what it means to build something from nothing.
-                </p>
-                <p className="text-white/60">
-                  Alex built a seven-figure solar business. Same DNA: take nothing
-                  and turn it into infrastructure. My medium is different — AI
-                  systems and music — but the instinct is the same.
-                </p>
-              </motion.div>
-
-              <motion.div
-                {...fadeIn}
-                transition={{ ...transition, delay: 0.2 }}
-              >
-                <GlowCard color="violet" className="p-8">
-                  <p className="text-lg text-white/70 leading-relaxed italic font-serif">
-                    &ldquo;My family has been building in foreign lands for
-                    generations. We&apos;ve never stopped. We&apos;ve just upgraded
-                    the medium.&rdquo;
-                  </p>
-                  <p className="mt-4 text-sm text-white/30">
-                    — From Germany to Russia to Kazakhstan to Amsterdam. Explorer
-                    blood, not tourist behavior.
-                  </p>
-                </GlowCard>
-              </motion.div>
+                See how the workspace runs
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
-        </section>
 
-        {/* ── The Explorer ── */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
-                The explorer
-              </h2>
-              <p className="text-white/30 mb-8">
-                Where the worldview came from
+          <aside className="relative w-full max-w-[560px] lg:justify-self-end" aria-label="Why Frank builds">
+            <div className="absolute -inset-10 bg-emerald-400/[0.08] blur-[100px]" aria-hidden="true" />
+            <div className="relative rounded-[2rem] border border-white/10 bg-[#0d1111] p-7 shadow-[0_40px_120px_rgba(0,0,0,0.38)] sm:p-10">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-200/80">
+                Why I build
               </p>
-            </motion.div>
-
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  place: 'Australia',
-                  detail: 'Where it clicked. Sydney showed me what ambition looks like in the open.',
-                  icon: Globe,
-                },
-                {
-                  place: 'Southeast Asia',
-                  detail: 'Indonesia, Philippines, Vietnam. Learned that the best ideas come from stillness.',
-                  icon: Compass,
-                },
-                {
-                  place: 'Mediterranean',
-                  detail: 'Greece, Spain, Italy, Canary Islands. Where water meets creative freedom.',
-                  icon: MapPin,
-                },
-                {
-                  place: 'Amsterdam',
-                  detail: 'IJburg. Direct water access. Home base for the next chapter.',
-                  icon: MapPin,
-                },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.place}
-                  {...fadeIn}
-                  transition={{ ...transition, delay: i * 0.08 }}
-                >
-                  <GlowCard color="cyan" className="p-6 h-full">
-                    <item.icon className="w-5 h-5 text-cyan-400/60 mb-3" />
-                    <h3 className="text-base font-semibold text-white mb-1">
-                      {item.place}
-                    </h3>
-                    <p className="text-sm text-white/40 leading-relaxed">
-                      {item.detail}
+              <p className="mt-7 text-3xl font-semibold leading-tight tracking-[-0.03em] text-white sm:text-4xl">
+                The lesson I carried forward: make something sturdy enough that other people can
+                stand on it.
+              </p>
+              <p className="mt-7 text-base leading-7 text-white/66">
+                I learned that posture from my father, who built houses and helped displaced
+                families find footing. My materials are different. The responsibility is not.
+              </p>
+              <div className="mt-9 border-y border-white/[0.09]">
+                {[
+                  ['Inheritance', 'Migration, rebuilding, and practical care'],
+                  ['Craft', 'Architecture, software, books, and music'],
+                  ['Purpose', 'Human agency that grows with the systems'],
+                ].map(([label, detail]) => (
+                  <div
+                    key={label}
+                    className="grid gap-2 border-b border-white/[0.08] py-4 last:border-b-0 sm:grid-cols-[110px_1fr]"
+                  >
+                    <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-cyan-300/70">
+                      {label}
                     </p>
-                  </GlowCard>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── The Work ── */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
-                The work
-              </h2>
-              <p className="text-white/30 mb-8">Enterprise mind. Creator soul.</p>
-            </motion.div>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              <motion.div
-                {...fadeIn}
-                transition={{ ...transition, delay: 0.1 }}
-              >
-                <GlowCard color="emerald" className="p-8 h-full">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-5">
-                    <Code className="w-6 h-6 text-emerald-400" />
+                    <p className="text-sm leading-6 text-white/68">{detail}</p>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">
-                    Enterprise AI background
-                  </h3>
-                  <p className="text-white/50 leading-relaxed">
-                    4+ years working on production AI and cloud architecture in
-                    enterprise contexts. Public, non-confidential patterns across
-                    multi-cloud infrastructure, RAG architectures, agentic workflows,
-                    and multi-agent orchestration. The work here translates that
-                    judgment into independent creator systems.
-                  </p>
-                </GlowCard>
-              </motion.div>
-
-              <motion.div
-                {...fadeIn}
-                transition={{ ...transition, delay: 0.2 }}
-              >
-                <GlowCard color="cyan" className="p-8 h-full">
-                  <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-5">
-                    <Music className="w-6 h-6 text-cyan-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">
-                    By night — Music & creation
-                  </h3>
-                  <p className="text-white/50 leading-relaxed">
-                    12,000+ AI-generated songs with Suno. Not casual experiments — a
-                    deliberate practice of exploring what happens when humans and AI
-                    create together. Ambient, electronic, cinematic, meditative. Creation
-                    Season starts at midnight.
-                  </p>
-                </GlowCard>
-              </motion.div>
-            </div>
-
-            <motion.div
-              {...fadeIn}
-              transition={{ ...transition, delay: 0.3 }}
-              className="mt-6"
-            >
-              <GlowCard color="violet" className="p-8">
-                <h3 className="text-xl font-bold text-white mb-3">
-                  The bridge between both worlds
-                </h3>
-                <p className="text-white/50 leading-relaxed max-w-3xl">
-                  The Agentic Creator OS. 75+ skills, 38 specialist agents,
-                  35+ commands — enterprise patterns made accessible to every creator.
-                  The same rigor I use to build production AI systems, applied to
-                  creative workflows. Open source on GitHub. Free to use.
-                </p>
-              </GlowCard>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── The AI Team ── */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
-                The AI team
-              </h2>
-              <p className="text-white/30 mb-8">
-                These aren&apos;t just mascots. They&apos;re the AI team behind FrankX — each one a specialist in a different creative domain.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-3 gap-4 sm:gap-6">
-              {[
-                { name: 'Codex', role: 'AI Architect', src: '/images/team/codex-falcon.png', accent: '#10B981' },
-                { name: 'Echo', role: 'Sound Weaver', src: '/images/team/echo-leopard.png', accent: '#EC4899' },
-                { name: 'Nova', role: 'Content Catalyst', src: '/images/team/nova-fox.png', accent: '#F59E0B' },
-                { name: 'Stella', role: 'System Orchestrator', src: '/images/team/stella-owl.png', accent: '#8B5CF6' },
-                { name: 'Draconia', role: 'Product Forge', src: '/images/team/draconia-tiger.png', accent: '#EF4444' },
-                { name: 'Arion', role: 'Vision Keeper', src: '/images/team/arion-mamoru.png', accent: '#43BFE3' },
-                { name: 'Nero', role: 'Inner Circle', src: '/images/team/nero-umbra.png', accent: '#6366F1' },
-                { name: 'Shinkami', role: 'Premium Architect', src: '/images/team/shinkami.png', accent: '#14B8A6' },
-                { name: 'Lumina', role: 'Light Bringer', src: '/images/team/lumina-sol.png', accent: '#FBBF24' },
-              ].map((char, i) => (
-                <motion.div
-                  key={char.name}
-                  {...fadeIn}
-                  transition={{ ...transition, delay: i * 0.05 }}
-                >
-                  <GlowCard
-                    color={char.accent === '#10B981' ? 'emerald' : char.accent === '#EC4899' ? 'rose' : char.accent === '#F59E0B' ? 'amber' : char.accent === '#8B5CF6' ? 'violet' : char.accent === '#EF4444' ? 'rose' : char.accent === '#43BFE3' ? 'cyan' : char.accent === '#6366F1' ? 'indigo' : char.accent === '#14B8A6' ? 'teal' : char.accent === '#FBBF24' ? 'amber' : 'violet'}
-                    className="relative overflow-hidden"
-                  >
-                    <div className="relative aspect-square overflow-hidden">
-                      <Image
-                        src={char.src}
-                        alt={char.name}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 640px) 33vw, 200px"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
-                    </div>
-                    <div className="p-3 text-center">
-                      <p className="text-sm font-semibold text-white">{char.name}</p>
-                      <p className="text-xs text-white/40">{char.role}</p>
-                    </div>
-                    <div
-                      className="absolute bottom-0 left-0 right-0 h-px"
-                      style={{
-                        background: `linear-gradient(90deg, transparent, ${char.accent}60, transparent)`,
-                      }}
-                    />
-                  </GlowCard>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── The Digital Twin ── */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
-                The digital twin
-              </h2>
-              <p className="text-white/30 mb-8">
-                Two forms. One mind.
-              </p>
-            </motion.div>
-
-            <div className="grid gap-8 lg:grid-cols-5 items-center">
-              <motion.div
-                {...fadeIn}
-                transition={{ ...transition, delay: 0.1 }}
-                className="lg:col-span-2 relative"
-              >
-                <div className="relative aspect-square max-w-[280px] mx-auto">
-                  <Image
-                    src="/images/mascot/frank-omega-chill-v1.png"
-                    alt="FRANK-Ω — Digital Twin"
-                    fill
-                    className="object-contain"
-                    sizes="280px"
-                  />
-                  <div className="absolute inset-0 -z-10 bg-blue-500/10 rounded-full blur-[60px]" />
-                </div>
-              </motion.div>
-
-              <motion.div
-                {...fadeIn}
-                transition={{ ...transition, delay: 0.2 }}
-                className="lg:col-span-3 space-y-5"
-              >
-                <p className="text-base leading-relaxed text-white/50">
-                  FRANK-Ω is the final form — the intelligence that has absorbed everything Frank builds
-                  and just executes. Where Frank is the human who explores, creates, and iterates,
-                  FRANK-Ω is the completed version that delivers results without hesitation.
-                </p>
-
-                <GlowCard color="blue" className="p-5">
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-500/30 shrink-0 mt-0.5">
-                      <Image
-                        src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg"
-                        alt="FRANK-Ω"
-                        width={32}
-                        height={32}
-                        className="w-full h-full object-cover object-top"
-                      />
-                    </div>
-                    <div>
-                      <p className="text-[10px] text-blue-400 font-mono uppercase tracking-widest mb-1">
-                        FRANK-Ω
-                      </p>
-                      <p className="text-sm text-white/60 leading-relaxed italic">
-                        &ldquo;Ω means the endpoint. Not learning — done learning. I don&apos;t iterate.
-                        I execute. Drop me a topic, I&apos;ll return a result. That&apos;s the deal.&rdquo;
-                      </p>
-                    </div>
-                  </div>
-                </GlowCard>
-
-                <div className="flex flex-wrap gap-4">
-                  <Link
-                    href="/frankx"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
-                  >
-                    Meet FRANK-Ω <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    href="/lab"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-white/40 hover:text-white/60 transition-colors"
-                  >
-                    See what he builds <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── What I Believe ── */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div {...fadeIn} transition={transition}>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-8">
-                What I believe
-              </h2>
-            </motion.div>
-
-            <div className="grid gap-6 sm:grid-cols-2">
-              {[
-                'Everyone deserves their own AI Center of Excellence. Not just enterprises — every creator, every builder.',
-                'AI should amplify humanity, not replace it. The best tools disappear into your workflow.',
-                "We're living in the Golden Age of creation. The gap between idea and execution has never been smaller.",
-                'Share everything. The work speaks louder than the marketing. Build in public. Let people decide.',
-              ].map((belief, i) => (
-                <motion.div
-                  key={i}
-                  {...fadeIn}
-                  transition={{ ...transition, delay: i * 0.08 }}
-                >
-                  <GlowCard color="emerald" className="flex gap-4 p-6 h-full">
-                    <span className="shrink-0 mt-0.5 text-sm font-bold text-emerald-400/60">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <p className="text-base text-white/50 leading-relaxed">
-                      {belief}
-                    </p>
-                  </GlowCard>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Daily Practice ── */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div
-              {...fadeIn}
-              transition={transition}
-              className="max-w-3xl space-y-5 text-base text-white/50 leading-relaxed"
-            >
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
-                The daily practice
-              </h2>
-              <p>
-                Tony Robbins priming in the morning. Wim Hof breathing. Beach runs
-                along IJburg. Then the real work: architecture by day, music by
-                night. Peak creative hours: midnight to 3:30 AM — when the world is
-                quiet and the ideas flow clean.
-              </p>
-              <p>
-                The universe is too interesting not to explore deeply.
-                This site is my workshop and my notebook — take what&apos;s
-                useful, adapt it to your path.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── Newsletter + CTAs ── */}
-        <section className="py-16 pb-24 border-t border-white/5">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div {...fadeIn} transition={transition} className="text-center">
-              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
-                Stay in the loop
-              </h2>
-              <p className="text-white/40 mb-8 max-w-lg mx-auto">
-                Weekly insights on AI systems, music creation, and building in
-                public. No spam, no guru energy — just the work.
-              </p>
-
-              <div className="max-w-sm mx-auto mb-10">
-                <EmailSignup
-                  listType="newsletter"
-                  placeholder="your@email.com"
-                  buttonText="Subscribe"
-                  redirectTo="/newsletter/thank-you"
-                  compact
-                />
+                ))}
               </div>
+            </div>
+          </aside>
+        </div>
+      </section>
 
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/start"
-                  className="group inline-flex items-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
-                >
-                  Start Here
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Link
-                  href="/music-lab"
-                  className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
-                >
-                  Music Lab
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Link
-                  href="/blog"
-                  className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
-                >
-                  Read the Blog
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
+      <section className="py-24 lg:py-32" aria-labelledby="story-title">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-cyan-300/70">
+              The human thread
+            </p>
+            <h2 id="story-title" className="mt-5 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
+              Building is the family language.
+            </h2>
           </div>
-        </section>
-      </main>
-    </>
+          <div className="space-y-6 text-base leading-8 text-white/68">
+            <p>
+              I come from a Volga German family shaped by migration and rebuilding. My
+              grandparents survived displacement in Kazakhstan. My parents came to Germany in
+              the 1990s and started again with very little.
+            </p>
+            <p>
+              My father, Witali, built houses and helped displaced families find footing. He died
+              from cancer in 2019, but the lesson stayed: make something sturdy enough that other
+              people can stand on it.
+            </p>
+            <p>
+              My medium became AI systems, software, books, and music. Years in enterprise AI
+              taught me how architecture survives contact with consequence. Travel and creative
+              practice taught me that a technically correct system can still be lifeless. FrankX
+              is my attempt to hold both truths at once.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/[0.07] bg-white/[0.018] py-24 lg:py-32" aria-labelledby="work-title">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="max-w-3xl">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-emerald-300/70">
+              How I work
+            </p>
+            <h2 id="work-title" className="mt-5 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
+              One practice, three modes.
+            </h2>
+            <p className="mt-6 text-base leading-7 text-white/65">
+              The site looks broad because these modes constantly inform one another.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {workingModes.map(({ Icon, ...mode }) => (
+              <article
+                key={mode.title}
+                className="rounded-[1.5rem] border border-white/[0.1] bg-[#0c0e0e] p-7"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-300/[0.15] bg-emerald-300/[0.055] text-emerald-300">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h3 className="mt-7 text-xl font-semibold">{mode.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/65">{mode.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 lg:py-32" aria-labelledby="principles-title">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-cyan-300/70">
+              Principles
+            </p>
+            <h2 id="principles-title" className="mt-5 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
+              What I want the work to prove.
+            </h2>
+          </div>
+          <ol className="divide-y divide-white/[0.09] border-y border-white/[0.09]">
+            {principles.map((principle, index) => (
+              <li key={principle} className="grid gap-3 py-6 sm:grid-cols-[48px_1fr]">
+                <span className="font-mono text-xs text-emerald-300/80">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <p className="text-lg leading-8 text-white/75">{principle}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="lg:col-start-2">
+            <TrackedLink
+              href="/qualities"
+              {...coreQualitiesNavigationEvent({
+                source: 'about',
+                placement: 'principles',
+                destination: 'overview',
+              })}
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-emerald-300 underline decoration-emerald-300/30 underline-offset-8 transition-colors hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              Read the four governing qualities
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </TrackedLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/[0.07] bg-[#0c0e0e] py-24" aria-labelledby="boundaries-title">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+          <div>
+            <ShieldCheck className="h-6 w-6 text-emerald-300" aria-hidden="true" />
+            <h2 id="boundaries-title" className="mt-6 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
+              Trust needs clear boundaries.
+            </h2>
+            <p className="mt-6 max-w-md text-base leading-7 text-white/65">
+              The workspace becomes less useful when automation, affiliation, or intent is left
+              ambiguous.
+            </p>
+          </div>
+          <ul className="space-y-4">
+            {boundaries.map((boundary) => (
+              <li
+                key={boundary}
+                className="rounded-2xl border border-white/[0.09] bg-white/[0.025] px-6 py-5 text-base leading-7 text-white/72"
+              >
+                {boundary}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="py-24 lg:py-32">
+        <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
+          <MapPin className="mx-auto h-6 w-6 text-cyan-300" aria-hidden="true" />
+          <h2 className="mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+            The best introduction is still the work.
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/65">
+            Read something. Inspect a system. If the way I think is useful to a real question you
+            are carrying, bring the material and we can see whether there is a fit.
+          </p>
+          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/connect"
+              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              Tell me what you’re working on
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <a
+              href={socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-white/72 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              <Linkedin className="h-4 w-4" aria-hidden="true" />
+              LinkedIn
+            </a>
+            <a
+              href={socialLinks.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-white/72 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              <Github className="h-4 w-4" aria-hidden="true" />
+              GitHub
+            </a>
+          </div>
+          <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.18em] text-white/50">
+            {sitePositioning.shortDescription}
+          </p>
+        </div>
+      </section>
+    </main>
   )
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { Copy, Check, Share2, Twitter, Linkedin, Zap } from 'lucide-react'
+import { SHARE_URLS } from '@/lib/social-links'
 
 interface ShortDetailClientProps {
   shortId: string
@@ -72,7 +73,7 @@ export function ShortDetailClient({
           {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
         </button>
         <a
-          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}&via=frankxeth`}
+          href={SHARE_URLS.twitter(shareText, url)}
           target="_blank"
           rel="noopener noreferrer"
           className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/70 hover:text-white transition-all hover:scale-110"
@@ -104,7 +105,7 @@ export function ShortDetailClient({
           {copied ? 'Copied' : 'Copy link'}
         </button>
         <a
-          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}&via=frankxeth`}
+          href={SHARE_URLS.twitter(shareText, url)}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 text-white/80"

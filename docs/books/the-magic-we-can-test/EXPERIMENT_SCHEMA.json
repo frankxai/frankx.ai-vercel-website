@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frankx.ai/schemas/the-magic-we-can-test/experiment-v1.json",
+  "title": "The Magic We Can Test — Experiment Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "bookEdition",
+    "experimentNumber",
+    "startedAt",
+    "prediction",
+    "consent",
+    "preState",
+    "completed"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "bookEdition": { "type": "string", "pattern": "^v?[0-9]+\\.[0-9]+(\\.[0-9]+)?$" },
+    "experimentNumber": { "type": "integer", "minimum": 1, "maximum": 28 },
+    "participantId": { "type": "string", "description": "Pseudonymous identifier; never require legal name." },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "completedAt": { "type": ["string", "null"], "format": "date-time" },
+    "prediction": { "type": "string", "maxLength": 2000 },
+    "variableObserved": { "type": "string", "maxLength": 500 },
+    "confounds": { "type": "array", "items": { "type": "string", "maxLength": 500 }, "maxItems": 20 },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["storeLocally", "shareAnonymizedMetrics", "shareJournalText"],
+      "properties": {
+        "storeLocally": { "type": "boolean" },
+        "shareAnonymizedMetrics": { "type": "boolean" },
+        "shareJournalText": { "const": false, "description": "v1 cohorts never require raw journal sharing." }
+      }
+    },
+    "preState": { "$ref": "#/$defs/state" },
+    "postState": { "oneOf": [{ "$ref": "#/$defs/state" }, { "type": "null" }] },
+    "completed": { "type": "boolean" },
+    "durationMinutes": { "type": "number", "minimum": 0, "maximum": 240 },
+    "observation": { "type": "string", "maxLength": 5000 },
+    "behaviorChanged": { "type": "string", "maxLength": 2000 },
+    "externalEvidence": { "type": "string", "maxLength": 2000 },
+    "alternativeExplanations": { "type": "array", "items": { "type": "string", "maxLength": 1000 }, "maxItems": 10 },
+    "beliefBefore": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "beliefAfter": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "aiUsed": { "type": "boolean" },
+    "aiHelpfulness": { "type": ["integer", "null"], "minimum": 1, "maximum": 10 },
+    "aiModel": { "type": ["string", "null"], "maxLength": 200 },
+    "artifact": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "enum": ["image", "audio", "text", "video", "none"] },
+        "privateReference": { "type": ["string", "null"], "maxLength": 1000 },
+        "publicUrl": { "type": ["string", "null"], "format": "uri" }
+      }
+    },
+    "nightReflection": { "type": "string", "maxLength": 2000 },
+    "adverseExperience": { "type": ["string", "null"], "maxLength": 2000 },
+    "nextTest": { "type": ["string", "null"], "maxLength": 2000 }
+  },
+  "$defs": {
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["energy", "clarity", "mood", "agency"],
+      "properties": {
+        "energy": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "clarity": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "mood": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "agency": { "type": "integer", "minimum": 1, "maximum": 10 }
+      }
+    }
+  }
+}
+

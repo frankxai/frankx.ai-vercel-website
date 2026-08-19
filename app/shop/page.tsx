@@ -10,20 +10,22 @@ const sections = [
     id: 'templates',
     title: 'Templates & Skills',
     description: 'Claude Code skill packs, n8n workflows, Next.js starters, MCP configs, and AI architecture blueprints.',
-    image: '/images/blog/build-your-own-jarvis-hero.png',
+    image: '/images/downloads/acos-skills-pack.png',
+    imageAlt: 'ACOS Skills Pack cover art — agent council ring with skill definition blocks and a terminal command',
     href: '/shop/templates',
     count: 15,
     accent: 'from-cyan-500/20 to-blue-500/20',
     border: 'border-cyan-500/30',
     icon: Layers,
     badge: 'New',
-    priceRange: '$19 – $297',
+    priceRange: '$27 – $297',
   },
   {
     id: 'auctions',
     title: 'Live Auctions',
     description: 'Limited edition prints, 1:1 coaching sessions, custom ACOS builds, and exclusive experiences.',
     image: '/images/gallery/instruments/biotech-grand-piano.png',
+    imageAlt: 'Bio-tech grand piano design print — one of the limited editions currently at auction',
     href: '/auctions',
     count: 5,
     accent: 'from-amber-500/20 to-orange-500/20',
@@ -36,7 +38,8 @@ const sections = [
     id: 'collectibles',
     title: 'Collectibles',
     description: 'ACOS trading cards (40-card Genesis set), bio-tech instrument prints, and mixed drop packs.',
-    image: '/images/ecosystem/01-frankx-ecosystem-overview.png',
+    image: '/images/gallery/instruments/biotech-hex-drum-pads.png',
+    imageAlt: 'Bio-tech hexagonal drum pads design print from the collectible instrument series',
     href: '/collectibles',
     count: 40,
     accent: 'from-purple-500/20 to-pink-500/20',
@@ -49,7 +52,8 @@ const sections = [
     id: 'products',
     title: 'Digital Products',
     description: 'Full courses, toolkits, and operating systems. Soulbook, Vibe OS, ACOS, Creative AI Toolkit.',
-    image: '/images/blog/golden-age-of-intelligence-hero.png',
+    image: '/images/ecosystem/01-frankx-ecosystem-overview.png',
+    imageAlt: 'FrankX product ecosystem diagram — Vibe OS, ACOS, and GenCreator OS with the Starlight layer above',
     href: '/products',
     count: 10,
     accent: 'from-emerald-500/20 to-teal-500/20',
@@ -132,7 +136,7 @@ export default function ShopPage() {
                 <div className="relative aspect-[2/1] overflow-hidden">
                   <Image
                     src={section.image}
-                    alt={section.title}
+                    alt={section.imageAlt}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"

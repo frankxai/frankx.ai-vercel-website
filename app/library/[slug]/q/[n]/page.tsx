@@ -8,17 +8,9 @@ import { QuoteShareToolbar } from '@/components/share/QuoteShareToolbar';
 
 const SITE_URL = 'https://frankx.ai';
 
-export function generateStaticParams() {
-  const params: Array<{ slug: string; n: string }> = [];
-  for (const slug of getAllReviewSlugs()) {
-    const review = getReviewBySlug(slug);
-    if (!review?.quotes) continue;
-    for (let i = 0; i < review.quotes.length; i++) {
-      params.push({ slug, n: String(i + 1) });
-    }
-  }
-  return params;
-}
+// Quote share pages are rendered on demand — 373 individual quote URLs don't need
+// to be pre-built at deploy time. dynamicParams=true (the default) handles them.
+// Removing generateStaticParams saves ~370 pages from the build prerender surface.
 
 export async function generateMetadata({
   params,

@@ -1,8 +1,8 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'AI Architecture | System Design for Intelligent Applications | FrankX',
-  description: 'Practical reference for AI system architecture. Design patterns for LLM applications, agent orchestration, and production AI infrastructure.',
+  title: 'AI Architecture Field Guide | Vercel, Railway & GCP | FrankX',
+  description: 'Verified official AI architectures and working repositories for agent interfaces, persistent workers, enterprise RAG, MCP, durable workflows, and observability.',
   path: '/ai-architecture',
 })
 

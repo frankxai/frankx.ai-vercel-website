@@ -21,7 +21,7 @@ export const plannedCourses: PlannedCourse[] = [
     shortDescription: 'Human-centered AI principles, ethics, and implementation strategy.',
     summary:
       'A practical foundation for creators and teams who want to adopt AI without losing judgment, values, or human context.',
-    launchWindow: 'Target launch: Q2 2026',
+    launchWindow: 'Schedule under review',
     commitment: '4 weeks · ~2-3 focused hours per week',
     format: 'Self-paced lessons + implementation playbooks (planned)',
     audience: [
@@ -59,7 +59,7 @@ export const plannedCourses: PlannedCourse[] = [
     shortDescription: 'Design and deploy reliable multi-agent and MCP-powered workflows.',
     summary:
       'Technical training focused on production-ready agent patterns, orchestration decisions, and failure-safe execution.',
-    launchWindow: 'Target launch: Q3 2026',
+    launchWindow: 'Schedule under review',
     commitment: '6 weeks · ~3-4 focused hours per week',
     format: 'Hands-on labs + architecture reviews (planned)',
     audience: [
@@ -97,7 +97,7 @@ export const plannedCourses: PlannedCourse[] = [
     shortDescription: 'Build sustainable creator offers, funnels, and execution systems with AI.',
     summary:
       'A strategic program for turning creative output into consistent offers, launch cycles, and long-term revenue systems.',
-    launchWindow: 'Target launch: Q4 2026',
+    launchWindow: 'Schedule under review',
     commitment: '5 weeks · ~2-3 focused hours per week',
     format: 'Templates + live implementation sprints (planned)',
     audience: [
@@ -137,8 +137,8 @@ export const featuredCourse: PlannedCourse = {
   title: 'Build Your AI Creator OS',
   shortDescription: 'The complete blueprint for building an AI-powered creator business — from Claude Code to n8n automation to revenue.',
   summary:
-    'Learn how to replicate the exact system behind frankx.ai: 500+ AI skills, 47 automated workflows, multi-agent swarms, content pipelines, and revenue automation. Built by an AI Architect who ships this daily.',
-  launchWindow: 'Early Access: Q2 2026',
+    'Learn how to replicate the exact system behind frankx.ai: 500+ AI skills, 58 automated workflows, multi-agent systems, content pipelines, and revenue automation. Module 1 is available now; the remaining curriculum is in development.',
+  launchWindow: 'Module 1 available now',
   commitment: '8 weeks — 3-4 focused hours per week',
   format: 'Self-paced modules with live implementation sessions',
   audience: [

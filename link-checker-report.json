@@ -1,14 +1,92 @@
 [
   {
     "page": "Homepage",
-    "link": "Build your own",
-    "href": "/library/build",
-    "issue": "Failed to fetch link: fetch failed"
+    "link": "Sovereign Creator BlueprintThe complete 4-layer architecture connecting local-first agents, digital assets, and independent revenue streams.Learn more",
+    "href": "/blueprint",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Blog",
+    "link": "/blog",
+    "href": "/blog",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Assessment",
+    "link": "/assessment",
+    "href": "/assessment",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Enterprise",
+    "link": "/enterprise",
+    "href": "/enterprise",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Coaching",
+    "link": "/coaching",
+    "href": "/coaching",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Courses",
+    "link": "/courses",
+    "href": "/courses",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Agentic AI Center",
+    "link": "/agentic-ai-center",
+    "href": "/agentic-ai-center",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Founder Playbook",
+    "link": "/founder-playbook",
+    "href": "/founder-playbook",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
   },
   {
     "page": "Realm",
     "link": "/realm",
     "href": "/realm",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Library",
+    "link": "/library",
+    "href": "/library",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Library OS Approach",
+    "link": "/library/approach",
+    "href": "/library/approach",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Build Your Library",
+    "link": "/library/build",
+    "href": "/library/build",
+    "issue": "Page failed to load - Status: 0 - fetch failed",
+    "statusCode": 0
+  },
+  {
+    "page": "Tao Te Ching Field Note",
+    "link": "/library/tao-te-ching",
+    "href": "/library/tao-te-ching",
     "issue": "Page failed to load - Status: 0 - fetch failed",
     "statusCode": 0
   }

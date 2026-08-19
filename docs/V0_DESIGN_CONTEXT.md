@@ -8,7 +8,7 @@
 ## 1. CORE IDENTITY
 
 ### Who is FrankX?
-- **Frank** = former AI architect at Oracle + musician-technologist with 12,000+ AI-generated songs
+- **Frank** = AI Architect & Creator + musician-technologist with 12,000+ AI-generated songs
 - **NOT** a generic tech guru—a creator who bridges enterprise expertise with artistic expression
 - **Mission**: Transform creators and students from tech-overwhelmed to AI-empowered
 

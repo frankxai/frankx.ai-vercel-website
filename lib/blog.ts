@@ -4,6 +4,8 @@ import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { cache } from 'react'
 import imageNeeds from '@/data/tools/image-needs.json'
+import blogHeroManifest from '@/data/blog-hero-manifest.json'
+import { isCanonicalBlogSlug } from './blog-redirects.mjs'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
 const blogImageFallback = '/images/blog/editorial/headers/best-ai-tools-for-creators-2026-hero.webp'
@@ -84,13 +86,37 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   if (!normalized.keywords && normalized.seo?.keywords) {
     normalized.keywords = normalized.seo.keywords
   }
+  if (typeof normalized.architectNote === 'string') {
+    normalized.architectNote = {
+      recommendation: normalized.architectNote,
+    }
+  }
   return normalized
+}
+
+// Frontmatter frequently references hero files that were never generated
+// (~114 posts as of 2026-07-02). A missing local file must never reach the
+// client as a broken <img> — fall back to an existing category hero instead.
+//
+// Existence comes from data/blog-hero-manifest.json (written by
+// scripts/build-route-index.mjs in the prebuild slot), NOT a runtime
+// fs.existsSync: a dynamic path under public/ defeats Next's output file
+// tracing, which then bundles the whole public/images subtree into every
+// serverless function importing this module (api/md exceeded Vercel's
+// 250 MB function limit). A static JSON import traces to one small file.
+const blogHeroFiles = new Set<string>(blogHeroManifest as string[])
+
+function localImageExists(image: string): boolean {
+  // Only /images/blog/** is manifest-tracked; other local paths are trusted
+  // (pre-fallback behavior — nothing outside the blog tree was reported broken).
+  if (!image.startsWith('/images/blog/')) return true
+  return blogHeroFiles.has(image)
 }
 
 function resolveBlogImage(image: unknown, slug: string): string | undefined {
   if (typeof image !== 'string' || image.trim() === '') return undefined
   if (!image.startsWith('/')) return image
-  if (!pendingBlogHeroPaths.has(image)) return image
+  if (!pendingBlogHeroPaths.has(image) && localImageExists(image)) return image
 
   if (/video|short|youtube|image|photo|camera|canva|capcut|descript|heygen|higgsfield|opus|presentation|gamma/.test(slug)) {
     return '/images/blog/generated/ai-image-video-generation-playbook-2026-premium-hero.png'
@@ -128,6 +154,7 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
     .filter((name) => name.endsWith('.mdx'))
+    .filter((name) => isCanonicalBlogSlug(name.replace(/\.mdx$/, '')))
     .map((fileName) => {
       const slug = fileName.replace(/\.mdx$/, '')
       const fullPath = path.join(blogDirectory, fileName)
@@ -144,6 +171,8 @@ export const getAllBlogPostSummaries = cache((): BlogPostSummary[] => {
 })
 
 export const getBlogPost = cache((slug: string): BlogPost | null => {
+  if (!isCanonicalBlogSlug(slug)) return null
+
   try {
     const fullPath = path.join(blogDirectory, `${slug}.mdx`)
 

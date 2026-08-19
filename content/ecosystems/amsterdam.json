@@ -1,0 +1,985 @@
+{
+  "city": "Amsterdam",
+  "country": "Netherlands",
+  "generated": "2026-07-13",
+  "source_register": "https://www.iamsterdam.com/en/business/startupamsterdam/startup-ecosystem/coworking-spaces",
+  "doctrine": "Foundation phase: buy people, not desks. Free first, pay only for what's irreplaceable.",
+  "decision_matrix": {
+    "scale": "each criterion scored 0-5 by judgment call, not a third-party source",
+    "weights": {
+      "ai_deeptech_fit": 3,
+      "music_creative_fit": 2,
+      "cost_efficiency": 2,
+      "free_low_commitment": 2,
+      "events_density": 2,
+      "global_travel_value": 1,
+      "enterprise_credibility": 1
+    },
+    "max_score": 65,
+    "candidates": [
+      {
+        "name": "Lab42 Flex Desk",
+        "ai_deeptech_fit": 5,
+        "music_creative_fit": 1,
+        "cost_efficiency": 4,
+        "free_low_commitment": 4,
+        "events_density": 3,
+        "global_travel_value": 1,
+        "enterprise_credibility": 4,
+        "total": 44,
+        "tier": "pay_now_matrix_winner"
+      },
+      {
+        "name": "Startup Village (free)",
+        "ai_deeptech_fit": 4,
+        "music_creative_fit": 1,
+        "cost_efficiency": 5,
+        "free_low_commitment": 5,
+        "events_density": 3,
+        "global_travel_value": 1,
+        "enterprise_credibility": 2,
+        "total": 43,
+        "tier": "free_now"
+      },
+      {
+        "name": "TNW City",
+        "ai_deeptech_fit": 3,
+        "music_creative_fit": 2,
+        "cost_efficiency": 4,
+        "free_low_commitment": 3,
+        "events_density": 4,
+        "global_travel_value": 2,
+        "enterprise_credibility": 3,
+        "total": 40,
+        "tier": "opportunistic"
+      },
+      {
+        "name": "B. Amsterdam",
+        "ai_deeptech_fit": 2,
+        "music_creative_fit": 2,
+        "cost_efficiency": 4,
+        "free_low_commitment": 4,
+        "events_density": 4,
+        "global_travel_value": 1,
+        "enterprise_credibility": 3,
+        "total": 38,
+        "tier": "opportunistic"
+      },
+      {
+        "name": "Soho House Every House",
+        "ai_deeptech_fit": 1,
+        "music_creative_fit": 5,
+        "cost_efficiency": 2,
+        "free_low_commitment": 1,
+        "events_density": 5,
+        "global_travel_value": 5,
+        "enterprise_credibility": 3,
+        "total": 37,
+        "tier": "pay_now_non_substitutable",
+        "note": "Non-substitutable on music_creative_fit and global_travel_value — don't read raw score as a single ranking against Lab42."
+      },
+      {
+        "name": "Lab42 Private Office",
+        "ai_deeptech_fit": 5,
+        "music_creative_fit": 1,
+        "cost_efficiency": 2,
+        "free_low_commitment": 2,
+        "events_density": 3,
+        "global_travel_value": 1,
+        "enterprise_credibility": 5,
+        "total": 37,
+        "tier": "pay_later_on_trigger",
+        "trigger": "once a team exists to house, 2-35 people"
+      },
+      {
+        "name": "Hyperion Lab",
+        "ai_deeptech_fit": 5,
+        "music_creative_fit": 1,
+        "cost_efficiency": 3,
+        "free_low_commitment": 2,
+        "events_density": 2,
+        "global_travel_value": 2,
+        "enterprise_credibility": 4,
+        "total": 37,
+        "tier": "opportunistic",
+        "note": "NVIDIA + EscherCloud partner-rail relevance; pricing on request; bare domain serves junk pages, use /coworking path"
+      },
+      {
+        "name": "A'DAM Works",
+        "ai_deeptech_fit": 1,
+        "music_creative_fit": 5,
+        "cost_efficiency": 2,
+        "free_low_commitment": 3,
+        "events_density": 3,
+        "global_travel_value": 1,
+        "enterprise_credibility": 3,
+        "total": 33,
+        "tier": "pay_later_on_trigger",
+        "trigger": "specific sprint with a named tower collaborator"
+      },
+      {
+        "name": "OBA (free baseline)",
+        "ai_deeptech_fit": 1,
+        "music_creative_fit": 1,
+        "cost_efficiency": 5,
+        "free_low_commitment": 5,
+        "events_density": 1,
+        "global_travel_value": 1,
+        "enterprise_credibility": 1,
+        "total": 29,
+        "tier": "free_now"
+      }
+    ]
+  },
+  "recommended_tiers": {
+    "tier1_free_start_immediately": [
+      "Startup Village",
+      "OBA Oosterdok"
+    ],
+    "tier2_pay_now_matrix_winner": [
+      "Lab42 Flex Desk"
+    ],
+    "tier3_pay_now_non_substitutable": [
+      "Soho House Every House"
+    ],
+    "tier4_pay_later_on_trigger": [
+      "Lab42 Private Office",
+      "A'DAM Works flex month"
+    ],
+    "tier5_opportunistic_never_subscribe": [
+      "B. Amsterdam",
+      "TNW City",
+      "Hyperion Lab",
+      "StartDock",
+      "TSH Collab",
+      "Zoku"
+    ]
+  },
+  "uva_science_park_cluster": [
+    {
+      "name": "Lab42 - Flex Desk",
+      "type": "member",
+      "price_eur_month": 169,
+      "min_commitment": "start 1 day/week, short-notice cancel",
+      "focus": "AI & deep-tech",
+      "notes": "ICAI research center on-site; residents incl. UbiOps, Artera, Informatics Institute, Intelligent Robotics Lab. Building stacks students/companies/researchers deliberately.",
+      "source": "https://lab42.uva.nl/rent/flex-desk"
+    },
+    {
+      "name": "Lab42 - Private Office",
+      "type": "member",
+      "price_eur_month_from": 850,
+      "capacity": "2-35 people",
+      "notes": "Custom proposal via community manager; scale-up tier once a team exists.",
+      "source": "https://lab42.uva.nl/rent/private-office"
+    },
+    {
+      "name": "Startup Village",
+      "type": "free + paid",
+      "price_eur_month": 0,
+      "operator": "UvA Ventures + ACE Incubator + IXA",
+      "notes": "Free co-working areas; Venture Studio hosts meetups up to 200 people.",
+      "source": "https://startupvillage.nl/"
+    },
+    {
+      "name": "ACE Incubator",
+      "type": "program, not rentable",
+      "notes": "Training, coaching, investor/industry intros for students, academics, tech professionals. Operates inside Startup Village.",
+      "source": "https://ace-incubator.nl/about/what-we-do/"
+    },
+    {
+      "name": "IXA (Innovation Exchange Amsterdam)",
+      "type": "events engine, not rentable",
+      "notes": "Tech-transfer alliance across UvA+VU+HvA+Amsterdam UMC. Runs AmSIA award + workshops/webinars.",
+      "source": "https://www.ixa.nl/about/"
+    },
+    {
+      "name": "Matrix Innovation Center",
+      "type": "member",
+      "price": "on request",
+      "notes": "Co-owned by UvA, Rabobank, Municipality of Amsterdam, NWO, VU (since 2022) — adjacent to, not exclusive to, UvA. 7 buildings, 100+ scientific companies.",
+      "source": "https://www.matrixic.nl/en/about-us/"
+    }
+  ],
+  "demonstrator_lab": {
+    "what": "Free early-stage incubator run by VU, open to VU/UvA/HvA/Amsterdam UMC. Not deep-tech-exclusive — all faculties including AI.",
+    "eligibility_gate": "At least one team member must be a current student, staff member, or recent graduate of VU, UvA, HvA, or Amsterdam UMC. Idea must be ethically responsible and not contradict scientific consensus.",
+    "locations": [
+      {
+        "campus": "VU",
+        "address": "De Boelelaan 1085, 1081 HV Amsterdam (W&N building, P corridor, 2nd floor)"
+      },
+      {
+        "campus": "UvA / Science Park",
+        "address": "Science Park 904, 1098 XH Amsterdam (FNWI building, Building D)"
+      }
+    ],
+    "application_process": [
+      "online application (1 week response)",
+      "live intake session",
+      "online pitch session via Teams (1 week decision)",
+      "onboarding session",
+      "JUMP program: 3 workshops"
+    ],
+    "stages": {
+      "jump": {
+        "duration": "3-9 months",
+        "focus": "explore, startup fundamentals, founder roles, customer/problem validation"
+      },
+      "dive": {
+        "duration": "3-9 months",
+        "focus": "prototype, makerspace + lab facilities, user experimentation"
+      },
+      "swim": {
+        "duration": "3-18 months",
+        "focus": "grants, early-stage investment, expert network"
+      }
+    },
+    "track_record": {
+      "active_projects_at_a_time": 60,
+      "pct_become_bv": 25,
+      "notes": "some raise funding, win awards, or graduate to national incubators"
+    },
+    "cost": "free",
+    "not_a_workspace_choice": "This is a funding/validation program unlocked alongside whatever desk you already pick, not a competitor in the decision_matrix.",
+    "recruiting_playbook_for_qualifying_teammate": [
+      "Lab42 co-location: the building is already stacked with UvA AI students/researchers — daily proximity once you're a flex-desk regular",
+      "Offer a real UvA Informatics Institute Master's thesis project scoped to an actual initiative (interview-analysis tooling, AI-sonic-branding prototype) — the most institutionally legitimate recruiting channel",
+      "ICAI: the AI research center at Lab42/Science Park is industry-translation-oriented by mission; its researchers are DLAB-eligible by definition",
+      "Attend the open house directly and ask DLAB staff whether they informally matchmake outside founders with student technical cofounders"
+    ],
+    "open_question": "Which initiative is the actual DLAB-shaped idea (interview-flywheel tooling spinout, GenCreator/Second Brain OS component, or net-new) — not yet decided.",
+    "upcoming_event": {
+      "name": "Open House",
+      "date": "2026-11-19",
+      "time": "13:00-17:00",
+      "location": "De Boelelaan 1085 (W&N building, 2F, P corridor)",
+      "cost": "free",
+      "open_to_non_affiliates": true
+    },
+    "sources": [
+      "https://www.demonstratorlab.nl/how-to-apply",
+      "https://www.demonstratorlab.nl/how-it-works",
+      "https://www.demonstratorlab.nl/about/what-is-demonstrator-lab/",
+      "https://www.demonstratorlab.nl/events/demonstrator-lab-open-house-november-2026"
+    ]
+  },
+  "adam_toren": {
+    "public_venues_no_membership_needed": [
+      {
+        "name": "A'DAM LOOKOUT",
+        "type": "observation deck"
+      },
+      {
+        "name": "Moon",
+        "floor": 19,
+        "type": "rotating restaurant"
+      },
+      {
+        "name": "Madam",
+        "floor": 20,
+        "type": "bar/nightclub, Moon by night"
+      },
+      {
+        "name": "Shelter",
+        "location": "basement",
+        "type": "nightclub, open till 7am"
+      },
+      {
+        "name": "The Loft",
+        "type": "restaurant/bar"
+      },
+      {
+        "name": "The Butcher",
+        "type": "restaurant"
+      }
+    ],
+    "coworking_membership": {
+      "operator": "A'DAM Works (A'DAM&Co.work)",
+      "flex_desk_eur_month": 250,
+      "flex_min_commitment": "monthly cancel",
+      "dedicated_desk_eur_month": 400,
+      "dedicated_min_commitment": "6 months",
+      "includes": [
+        "gym",
+        "kickboxing",
+        "18th-floor members club access"
+      ],
+      "source": "http://adamworks.nl/memberships/"
+    },
+    "confirmed_tenants": [
+      {
+        "name": "MassiveMusic",
+        "status": "confirmed, HQ",
+        "focus": "global sonic branding — built TikTok's sound identity; clients incl. Canva, Leffe, Desperados",
+        "collab_angle": "best fit in the building — pitch an AI + sonic branding interview"
+      },
+      {
+        "name": "Sony Music Netherlands",
+        "status": "confirmed",
+        "focus": "full label operation, hosts public ADE programming",
+        "collab_angle": "long-game; watch for ADE (autumn)"
+      },
+      {
+        "name": "Sony Music Publishing",
+        "status": "confirmed",
+        "focus": "publishing arm, same floors as Sony Music NL",
+        "collab_angle": "relevant once Suno catalog has publishing-worthy compositions"
+      },
+      {
+        "name": "WINK",
+        "status": "confirmed, 8th floor",
+        "focus": "experiential marketing agency, clients incl. Corona, Budweiser, NFL",
+        "collab_angle": "brand-experience fit for Arcanea live events or AI-Architect activations"
+      },
+      {
+        "name": "ID&T",
+        "status": "unconfirmed — 2016-era mention, current registered address is Isolatorweg 36",
+        "focus": "Europe's top dance-festival promoter (Mysteryland, Sensation, Awakenings, Defqon.1)",
+        "collab_angle": "verify at reception before pitching"
+      },
+      {
+        "name": "Gibson",
+        "status": "unconfirmed — 2016-era mention only",
+        "focus": "guitar manufacturer",
+        "collab_angle": "treat as legacy until verified"
+      }
+    ]
+  },
+  "free_circuit": [
+    {
+      "name": "Startup Village",
+      "address": "Science Park 608",
+      "cost": "€0",
+      "notes": "Free co-working inside UvA Ventures AI & Quantum cluster"
+    },
+    {
+      "name": "OBA Oosterdok",
+      "address": "Oosterdokskade 143",
+      "cost": "€0",
+      "hours": "weekdays 8:00-22:00, weekends 10:00-20:00",
+      "notes": "Public library, no card needed"
+    },
+    {
+      "name": "Volkshotel Werkplaats",
+      "address": "Wibautstraat 150",
+      "cost": "€0"
+    },
+    {
+      "name": "Coffee & Coconuts",
+      "address": "Ceintuurbaan 282-284",
+      "cost": "€0 + coffee",
+      "hours": "9:00-17:00"
+    },
+    {
+      "name": "A Lab public events",
+      "address": "Overhoeksplein 2, Noord",
+      "cost": "€0",
+      "notes": "Open Labs + A Lab Cult music nights, free/donation"
+    },
+    {
+      "name": "Buro de Pijp",
+      "cost": "per visit",
+      "notes": "No membership required"
+    },
+    {
+      "name": "TSH Collab",
+      "cost": "€24/day"
+    },
+    {
+      "name": "Zoku rooftop",
+      "address": "Weesperstraat 105",
+      "cost": "€24-40/day"
+    }
+  ],
+  "events_rail": [
+    {
+      "name": "Lab42 / ICAI talks",
+      "cadence": "irregular",
+      "notes": "Own events page shows nothing scheduled as of Jul 2026; check in person"
+    },
+    {
+      "name": "IXA — AmSIA + workshops",
+      "cadence": "periodic + annual"
+    },
+    {
+      "name": "Startup Village — Venture Studio",
+      "cadence": "recurring",
+      "capacity": 200
+    },
+    {
+      "name": "Demonstrator Lab — Open House",
+      "dates": "2026-11-19",
+      "notes": "Free walk-in, open beyond VU/UvA affiliates"
+    },
+    {
+      "name": "AI Tinkerers Amsterdam",
+      "cadence": "monthly",
+      "notes": "Screened, demo-first, no-pitch builder room — highest-yield guest pipeline"
+    },
+    {
+      "name": "AI Native Netherlands",
+      "cadence": "recurring",
+      "venue": "Adyen HQ"
+    },
+    {
+      "name": "The AI Collective NL",
+      "cadence": "recurring"
+    },
+    {
+      "name": "HumanX Amsterdam",
+      "dates": "2026-09-22 to 2026-09-24"
+    },
+    {
+      "name": "World AI Week + World Summit AI",
+      "dates": "2026-10-05 to 2026-10-09",
+      "attendance": "~15,000"
+    },
+    {
+      "name": "TNW Conference (NDSM)",
+      "cadence": "June, annual"
+    }
+  ],
+  "spaces": [
+    {
+      "name": "Capital C",
+      "address": "Weesperplein 4B, 1018 XA Amsterdam",
+      "model": "Member",
+      "notes": "Four creative floors in the former diamond exchange; canal views, bespoke art; strong event venue.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.3617691,
+      "longitude": 4.9077187
+    },
+    {
+      "name": "CREA",
+      "address": "Nieuwe Achtergracht 170, 1018 WV Amsterdam",
+      "model": "Hourly",
+      "notes": "UvA cultural centre — theatre, music hall, rehearsal studios by the hour. Cheap rooms for creative production.",
+      "price": "hourly",
+      "district": "City Centre",
+      "latitude": 52.3633105,
+      "longitude": 4.9131125
+    },
+    {
+      "name": "De Bary",
+      "address": "Herengracht 437, 1017 BR Amsterdam",
+      "model": "Member",
+      "notes": "Luxury units, brasserie, vast hidden garden. Client-impressive.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.3670721,
+      "longitude": 4.8883852
+    },
+    {
+      "name": "De Staalkade 6",
+      "address": "Staalkade 6, 1011 JJ Amsterdam",
+      "model": "Member",
+      "notes": "Small Amstel-side space, well equipped.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.3677378,
+      "longitude": 4.8979639
+    },
+    {
+      "name": "De Weesper",
+      "address": "De Weesper Kledingreparatie & Stomerij, 11, Binnenveer, Weesp, Amsterdam, Noord-Holland, Nederland, 1381 BT, Nederland",
+      "model": "Member",
+      "notes": "Flexible growth-oriented offices near Weesperplein.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.3082257,
+      "longitude": 5.0391971
+    },
+    {
+      "name": "Equals Clubhouse",
+      "address": "Raamgracht 4, 1011 ZG Amsterdam",
+      "model": "Member",
+      "notes": "For women, non-binary, agender and gender non-conforming professionals.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.3699704,
+      "longitude": 4.8987326
+    },
+    {
+      "name": "Fosbury & Sons",
+      "address": "Prinsengracht 769, 1017 JZ Amsterdam",
+      "model": "Member",
+      "notes": "Prinsengracht; elegant premium floors + garden. Still operating despite parent-group turbulence.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.3638494,
+      "longitude": 4.8869378
+    },
+    {
+      "name": "Meet Berlage",
+      "address": "Oudebrugsteeg 9, 1012 JN Amsterdam",
+      "model": "Rooms",
+      "notes": "Beurs van Berlage — historic meeting theatre for startups.",
+      "price": "per room",
+      "district": "City Centre",
+      "latitude": 52.375356,
+      "longitude": 4.8971456
+    },
+    {
+      "name": "Rokin 75",
+      "address": "75, Rokin, Burgwallen-Oude Zijde, Centrum, Amsterdam, Noord-Holland, Nederland, 1012 KL, Nederland",
+      "model": "Member",
+      "notes": "Creative + tech tenant mix on the Rokin.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.3705304,
+      "longitude": 4.8929994
+    },
+    {
+      "name": "The Hacker Building",
+      "address": "The Hacker Building, 551, Herengracht, Grachtengordel, Centrum, Amsterdam, Noord-Holland, Nederland, 1017 BW, Nederland",
+      "model": "Member",
+      "notes": "Tech-only, strong community vibe — worth a visit for the network alone.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.3651017,
+      "longitude": 4.89513
+    },
+    {
+      "name": "The New Base",
+      "address": "Tolhuisweg 2, 1031 CL Amsterdam",
+      "model": "Member",
+      "notes": "VR/AR-specialised coworking + creative agency.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.38382,
+      "longitude": 4.90263
+    },
+    {
+      "name": "TNW City",
+      "address": "Singel 542, 1017 AZ Amsterdam",
+      "model": "Member",
+      "notes": "6,000 m² on the Singel, 75+ startups, investor talks, Friday drinks; 24/7 access, bar, phone booths.",
+      "price": "flex ≈€121/mo",
+      "district": "City Centre",
+      "latitude": 52.3665911,
+      "longitude": 4.8923532
+    },
+    {
+      "name": "Trust Spaces",
+      "address": "Herengracht 294, 1016 CD Amsterdam",
+      "model": "Member",
+      "notes": "Herengracht 294; therapy rooms + coworking for coaches/therapists.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.37213,
+      "longitude": 4.88782
+    },
+    {
+      "name": "Wheelhouse",
+      "address": "The Wheelhouse, 17-19, Achtergracht, Centrum, Amsterdam, Noord-Holland, Nederland, 1017 WL, Nederland",
+      "model": "Member",
+      "notes": "Canal-side space for creative startups; Instagram-only presence.",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.3614945,
+      "longitude": 4.9014351
+    },
+    {
+      "name": "Workspace6",
+      "address": "Tussen de Bogen 6, 1013 EX Amsterdam",
+      "model": "Member",
+      "notes": "280 m² for \"the creative and adventurous\".",
+      "price": "on request",
+      "district": "City Centre",
+      "latitude": 52.38289,
+      "longitude": 4.89115
+    },
+    {
+      "name": "Zoku",
+      "address": "Weesperstraat 105, 1018 VN Amsterdam",
+      "model": "Day pass",
+      "notes": "Rooftop coworking on a hotel; WorkZoku membership runs a waitlist.",
+      "price": "€24–40/day",
+      "district": "City Centre",
+      "latitude": 52.363941,
+      "longitude": 4.9067653
+    },
+    {
+      "name": "Contact Amsterdam",
+      "address": "Kaap de Goede Hoopstraat 7, 1013 DP Amsterdam",
+      "model": "Member",
+      "notes": "Interdisciplinary creative fusion hub.",
+      "price": "on request",
+      "district": "West",
+      "latitude": 52.3911504,
+      "longitude": 4.856146
+    },
+    {
+      "name": "MidWest",
+      "address": "Cabralstraat 1, 1057 CD Amsterdam",
+      "model": "Member",
+      "notes": "Former school building; civic mission, community-driven.",
+      "price": "on request",
+      "district": "West",
+      "latitude": 52.3697351,
+      "longitude": 4.8550369
+    },
+    {
+      "name": "MOMA&CO",
+      "address": "Bos en Lommerweg 387, 1061 DH Amsterdam",
+      "model": "Member",
+      "notes": "Collaborate-learn-work space in Bos en Lommer.",
+      "price": "on request",
+      "district": "West",
+      "latitude": 52.3785669,
+      "longitude": 4.838247
+    },
+    {
+      "name": "Plant22",
+      "address": "Wenslauerstraat 22, 1053 BB Amsterdam",
+      "model": "Member",
+      "notes": "Eight desks, designer community, usually full — waitlist energy.",
+      "price": "on request",
+      "district": "West",
+      "latitude": 52.3672216,
+      "longitude": 4.864351
+    },
+    {
+      "name": "B. Amsterdam",
+      "address": "Johan Huizingalaan 763a, 1066 VH Amsterdam",
+      "model": "Member",
+      "notes": "\"Largest startup ecosystem in Europe\" — 33,500 m², 3 buildings, 2,500 pros, gym, padel, rooftop restaurant, 25 events/yr, member app.",
+      "price": "€105/mo (5d) · €135 (8d) · €165 (12d) · €285 dedicated",
+      "district": "Nieuw-West",
+      "latitude": 52.3431689,
+      "longitude": 4.8291562
+    },
+    {
+      "name": "BounceSpace",
+      "address": "BounceSpace, 141, Overtoom, Oud-West, West, Amsterdam, Noord-Holland, Nederland, 1054 HG, Nederland",
+      "model": "Member",
+      "notes": "Freelancer/startup floors on the Overtoom (listed under Nieuw-West on the register).",
+      "price": "on request",
+      "district": "Nieuw-West",
+      "latitude": 52.3619605,
+      "longitude": 4.8729233
+    },
+    {
+      "name": "Pondok",
+      "address": "Parlevinkerpad 16, 1034 NX Amsterdam",
+      "model": "Member",
+      "notes": "Affordable space for social + cultural initiatives.",
+      "price": "low, on request",
+      "district": "Nieuw-West",
+      "latitude": 52.4114029,
+      "longitude": 4.9222013
+    },
+    {
+      "name": "Ape to Zebra Collective",
+      "address": "Ruysdaelkade 43, 1072 AD Amsterdam",
+      "model": "Member",
+      "notes": "De Pijp; bright space for communication professionals.",
+      "price": "on request",
+      "district": "Zuid",
+      "latitude": 52.3581746,
+      "longitude": 4.887133
+    },
+    {
+      "name": "Buro de Pijp",
+      "address": "Ceintuurbaan 211, 1073 EK Amsterdam",
+      "model": "Pay-per-use",
+      "notes": "No membership required; luxury coffee, natural light.",
+      "price": "per visit",
+      "district": "Zuid",
+      "latitude": 52.3553076,
+      "longitude": 4.902196
+    },
+    {
+      "name": "CreativeGrounds",
+      "address": "Schinkelhavenstraat 9, 1075 VP Amsterdam",
+      "model": "Member",
+      "notes": "Near Vondelpark; flexible desks + team offices, collaboration-focused.",
+      "price": "on request",
+      "district": "Zuid",
+      "latitude": 52.3544554,
+      "longitude": 4.8546913
+    },
+    {
+      "name": "EDGE Olympic",
+      "address": "Fred. Roeskestraat 115, 1076 EE Amsterdam",
+      "model": "Member",
+      "notes": "Sustainable, wellbeing-oriented smart building — the enterprise-credibility address.",
+      "price": "on request",
+      "district": "Zuid",
+      "latitude": 52.340691,
+      "longitude": 4.8584077
+    },
+    {
+      "name": "The Extra Mile",
+      "address": "Hessenbergweg 8, 1101 BT Amsterdam",
+      "model": "Member",
+      "notes": "Innovation environment + mentorship, masterclasses, networking.",
+      "price": "on request",
+      "district": "Zuidoost",
+      "latitude": 52.3045266,
+      "longitude": 4.9458711
+    },
+    {
+      "name": "ScaleHub",
+      "address": "Taurusavenue 1, 2132 LS Hoofddorp",
+      "model": "Member",
+      "notes": "150 workstations for scaling startups.",
+      "price": "on request",
+      "district": "Zuidoost",
+      "latitude": 52.291819,
+      "longitude": 4.6991915
+    },
+    {
+      "name": "House of Watt",
+      "address": "James Wattstraat 73, 1097 DL Amsterdam",
+      "model": "Mixed",
+      "notes": "Work + meetings + lunch + drinks; weekend kids' area.",
+      "price": "on request",
+      "district": "Oost",
+      "latitude": 52.3495593,
+      "longitude": 4.9221008
+    },
+    {
+      "name": "IJburg College",
+      "address": "Pamela Traversstraat 28, 1087 HP Amsterdam",
+      "model": "Member",
+      "notes": "Affordable desks inside a secondary school — startups repay in knowledge-sharing with students. Unusual, cheap, meaningful.",
+      "price": "low, on request",
+      "district": "Oost",
+      "latitude": 52.3512957,
+      "longitude": 5.0043355
+    },
+    {
+      "name": "Matrix Innovation Center",
+      "address": "Science Park 401, 1098 XH Amsterdam",
+      "model": "Member",
+      "notes": "Six buildings at Science Park; deep-tech tenant base.",
+      "price": "on request",
+      "district": "Oost",
+      "latitude": 52.35583,
+      "longitude": 4.95462
+    },
+    {
+      "name": "Open Kitchen Labs",
+      "address": "Science Park 406, 1098 XH Amsterdam",
+      "model": "Member",
+      "notes": "Lab-space subscriptions for sustainability/biotech startups.",
+      "price": "subscription",
+      "district": "Oost",
+      "latitude": 52.3564615,
+      "longitude": 4.9591237
+    },
+    {
+      "name": "Q-Factory",
+      "address": "Atlantisplein 1, 1093 GG Amsterdam",
+      "model": "Member",
+      "notes": "Music-entrepreneur building on Atlantisplein — rehearsal + office + stage.",
+      "price": "on request",
+      "district": "Oost",
+      "latitude": 52.3576656,
+      "longitude": 4.9304987
+    },
+    {
+      "name": "Startup Village",
+      "address": "Science Park 608, 1098 XH Amsterdam",
+      "model": "Free",
+      "notes": "Science Park containers; free co-working areas + paid flex/offices; AI &amp; Quantum focus, UvA Ventures-powered.",
+      "price": "€0 – flex paid",
+      "district": "Oost",
+      "latitude": 52.3543768,
+      "longitude": 4.9593106
+    },
+    {
+      "name": "De Werkplek",
+      "address": "Klaprozenweg 75G, 1033 NN Amsterdam",
+      "model": "Member",
+      "notes": "Affordable, personal, no-nonsense.",
+      "price": "low, on request",
+      "district": "Noord",
+      "latitude": 52.39958,
+      "longitude": 4.89312
+    },
+    {
+      "name": "The Concertgemaal",
+      "address": "Landsmeerderdijk 124, 1035 DP Amsterdam",
+      "model": "Member",
+      "notes": "Old pumping station; members volunteer at monthly classical concerts.",
+      "price": "on request",
+      "district": "Noord",
+      "latitude": 52.4124541,
+      "longitude": 4.9027511
+    },
+    {
+      "name": "Pand Noord",
+      "address": "Meeuwenlaan 98-100, 1021 JL Amsterdam",
+      "model": "Member",
+      "notes": "Creativity + focus + connection, common mingling spaces.",
+      "price": "on request",
+      "district": "Noord",
+      "latitude": 52.3854508,
+      "longitude": 4.9216254
+    },
+    {
+      "name": "Trashure",
+      "address": "Gedempt Hamerkanaal 96, 1021 KR Amsterdam",
+      "model": "Member",
+      "notes": "Peaceful studio aimed at professional and personal growth.",
+      "price": "on request",
+      "district": "Noord",
+      "latitude": 52.3841244,
+      "longitude": 4.9207261
+    },
+    {
+      "name": "Treehouse Tribe",
+      "address": "T.T. Neveritaweg 55-57, 1033 WB Amsterdam",
+      "model": "Member",
+      "notes": "\"Dreamers and enthusiasts — as long as you're kind and passionate.\"",
+      "price": "on request",
+      "district": "Noord",
+      "latitude": 52.40192,
+      "longitude": 4.89431
+    },
+    {
+      "name": "Prodock",
+      "address": "Moezelhavenweg 9, 1043 AM Amsterdam",
+      "model": "Member",
+      "notes": "Port of Amsterdam innovation hub for startups testing physical products; successor (Prodock 2.0) announced by the Port.",
+      "price": "on request",
+      "district": "Westpoort",
+      "latitude": 52.3935071,
+      "longitude": 4.8197418
+    },
+    {
+      "name": "HNK",
+      "address": "Stadhouderskade 85, 1073 AT Amsterdam",
+      "model": "Member",
+      "notes": "NSI-owned \"Het Nieuwe Kantoor\" — freelancer to enterprise.",
+      "price": "on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3577179,
+      "longitude": 4.8939641
+    },
+    {
+      "name": "Mindspace",
+      "address": "Nieuwezijds Voorburgwal 162, 1012 SJ Amsterdam",
+      "model": "Member",
+      "notes": "Global boutique operator; designed floors in the centre.",
+      "price": "on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3743906,
+      "longitude": 4.8909705
+    },
+    {
+      "name": "Nest",
+      "address": "Laan van Kronenburg 14, 1183 AS Amstelveen",
+      "model": "Member",
+      "notes": "Ambitious-people community workspaces.",
+      "price": "on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3213709,
+      "longitude": 4.8788884
+    },
+    {
+      "name": "Newday Offices",
+      "address": "Fred. Roeskestraat 100, 1076 ED Amsterdam",
+      "model": "Member",
+      "notes": "Serviced offices across NL.",
+      "price": "on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3413517,
+      "longitude": 4.8586787
+    },
+    {
+      "name": "Opus",
+      "address": "Keizersgracht 241, 1016 EA Amsterdam",
+      "model": "Subscription",
+      "notes": "Swedish app: one subscription unlocks hotel lobbies + partner spaces across town (incl. TSH Collab West) — the cheapest \"everywhere\" option; site gates pricing.",
+      "price": "app subscription",
+      "district": "Multi-location operators",
+      "latitude": 52.3720703,
+      "longitude": 4.8852219
+    },
+    {
+      "name": "Regus",
+      "address": "Rokin 92-96, 1012 KZ Amsterdam",
+      "model": "Member",
+      "notes": "40+ locations in the metro; hour-to-years flexibility, zero soul.",
+      "price": "from low €100s/mo",
+      "district": "Multi-location operators",
+      "latitude": 52.369701,
+      "longitude": 4.8920606
+    },
+    {
+      "name": "Spaces",
+      "address": "Herengracht 124-128, 1015 BD Amsterdam",
+      "model": "Member",
+      "notes": "IWG's design brand: Herengracht, Vijzelstraat, Zuidas and more.",
+      "price": "on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3772155,
+      "longitude": 4.8904586
+    },
+    {
+      "name": "Tribes",
+      "address": "Amstelplein 54, 1096 BC Amsterdam",
+      "model": "Member",
+      "notes": "Nomad-themed professional floors (Raamplein, Zuidas, Arena).",
+      "price": "on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3441317,
+      "longitude": 4.9174816
+    },
+    {
+      "name": "Werkstek",
+      "address": "Willem Fenengastraat 4B, 1096 AM Amsterdam",
+      "model": "Member",
+      "notes": "Two affordable, collaboration-minded locations.",
+      "price": "low, on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3350643,
+      "longitude": 4.9194222
+    },
+    {
+      "name": "WeWork",
+      "address": "Weteringschans 109, 1017 SB Amsterdam",
+      "model": "Member",
+      "notes": "Weteringschans + Zuidas Atrium; post-restructuring, stable in AMS.",
+      "price": "on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3608258,
+      "longitude": 4.8877966
+    },
+    {
+      "name": "Wicked Grounds",
+      "address": "Generaal Vetterstraat 76, 1059 BW Amsterdam",
+      "model": "Member",
+      "notes": "Purpose-driven office community.",
+      "price": "on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3436458,
+      "longitude": 4.8465728
+    },
+    {
+      "name": "#Workmode",
+      "address": "Herengracht 498, 1017 CB Amsterdam",
+      "model": "Member",
+      "notes": "All-women space for influencers + digital creatives.",
+      "price": "on request",
+      "district": "Multi-location operators",
+      "latitude": 52.3649131,
+      "longitude": 4.8930032
+    },
+    {
+      "name": "Soho House Amsterdam",
+      "address": "Spuistraat 210, 1012 VT Amsterdam",
+      "model": "Club",
+      "notes": "Not on the register (it's a members club, not coworking) — included because it's on the decision table. Spuistraat 210, rooftop pool, Cecconi's, House gym; application-based.",
+      "price": "≈€208/mo · U27 ≈€117/mo",
+      "district": "Multi-location operators",
+      "latitude": 52.3720757,
+      "longitude": 4.8892294
+    }
+  ]
+}

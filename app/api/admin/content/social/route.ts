@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { readFileSync, writeFileSync, existsSync } from 'fs'
 import { join } from 'path'
+import { writesUnavailable } from '@/lib/vercel-guard'
 
 export const dynamic = 'force-dynamic'
 
@@ -26,6 +27,9 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const blocked = writesUnavailable()
+  if (blocked) return blocked
+
   try {
     const body = await request.json()
     const { action, id, updates } = body

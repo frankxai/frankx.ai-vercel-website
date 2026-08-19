@@ -8,7 +8,7 @@ const REPO_URL = 'https://github.com/frankxai/library-os';
 export const metadata: Metadata = {
   title: 'The Library OS — How I Turn Every Book Into a Permanent Asset | FrankX',
   description:
-    'The open-source Library Intelligence System. Capture, extract, enrich, and publish every book you read into a permanent deep-dive on your own website. Works with Claude, ChatGPT, Codex, Gemini, or by hand.',
+    'The open-source Library Intelligence System. Capture privately, mark evidence, distil selectively, and publish the approved projection of every book you read on your own website. Works with Claude, ChatGPT, Codex, Gemini, or by hand.',
   keywords: [
     'Library OS',
     'library intelligence system',
@@ -87,14 +87,14 @@ const stages = [
     index: '01',
     title: 'Capture',
     accent: 'emerald',
-    body: 'Every signal belongs somewhere. A photo of handwritten margin notes, a Kindle highlights export, a voice memo after a walk, a book title in a text file. You are not yet organizing — you are refusing to let a thought leave the system.',
-    input: 'photo · text · audio · kindle export · ISBN',
+    body: 'Every signal belongs somewhere; not every signal belongs in public. A photo of handwritten margin notes, a Kindle highlights export, a voice memo, or a book title first enters a private capture inbox. Record what is actually visible, preserve the source, and decide what may leave the private system.',
+    input: 'photo · text · audio · kindle export · ISBN → /library-capture',
   },
   {
     index: '02',
     title: 'Extract',
     accent: 'amber',
-    body: 'The Library OS pulls structure from the raw: a TL;DR, five key insights, a Best-For audience, a starter FAQ. This is the baseline review. It already beats a Goodreads rating. You have now read the book twice — once with your eyes, once with your schema.',
+    body: 'The Library OS produces an approved public projection from the raw: source pages, a short TL;DR, five key insights, a Best-For audience, and a starter FAQ. A few photographed pages create a field note, not a fake whole-book summary. You have now read the book twice — once with your eyes, once with your schema.',
     input: '/library-add "Book Title"',
   },
   {
@@ -108,7 +108,7 @@ const stages = [
     index: '04',
     title: 'Publish',
     accent: 'cyan',
-    body: 'One commit, and the book becomes a permanent URL. TOC, anchor-linked sections, JSON-LD schema (BreadcrumbList · Article · Review · FAQPage · Quotation), Open Graph covers, canonical URLs. It will outlive the habit that produced it.',
+    body: 'After review, one commit turns the approved projection into a permanent URL. TOC, anchor-linked sections, JSON-LD schema (BreadcrumbList · Article · Review · FAQPage · Quotation), Open Graph, canonical URLs, and tested links make it durable without making the private capture public.',
     input: '/library/{slug}',
   },
 ];
@@ -116,9 +116,9 @@ const stages = [
 const workflowRows = [
   {
     signal: 'Handwritten note',
-    capture: 'Photo on phone',
-    extract: 'Claude mobile vision → structured fields',
-    publish: 'Deep-dive on your site',
+    capture: 'Phone photo → private inbox',
+    extract: 'Evidence ledger → approved field note',
+    publish: 'Public page after review',
   },
   {
     signal: 'Kindle highlights',
@@ -149,7 +149,7 @@ const aiAdapters = [
   {
     tool: 'ChatGPT / Claude.ai (web)',
     native: false,
-    note: 'Paste the command prompt from .claude/commands/library-*.md, paste the book details, get the structured TypeScript back, paste into data/book-reviews.ts.',
+    note: 'Start with the /library-capture prompt for photos and notes, then paste the approved public payload into data/book-reviews.ts. Keep private reflection and full source scans out of the repository.',
   },
   {
     tool: 'Cursor / Codex / Gemini CLI',
@@ -681,10 +681,7 @@ export default function LibraryApproachPage() {
               i
             </span>
             <p>
-              <strong className="text-white/85">Image ingestion.</strong> Handwritten
-              notes → photo → Claude mobile vision → structured extraction → handover to
-              Claude Code on desktop for implementation. The note never touches a
-              third-party tool that can delete it.
+              <strong className="text-white/85">Source-aware image ingestion.</strong> Photo → private capture → evidence ledger → approved field note. The public page receives provenance, short verified excerpts, an original application, and only an approved contextual image.
             </p>
           </div>
           <div className="flex gap-5 items-start">

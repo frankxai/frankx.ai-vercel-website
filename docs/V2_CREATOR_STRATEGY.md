@@ -3,7 +3,7 @@
 ## 🎯 Core Identity & Mission
 
 **Who Frank Is:**
-- Former AI architect at Oracle with 12,000+ AI-generated songs
+- AI Architect & Creator with 12,000+ AI-generated songs
 - Musician-technologist bridging enterprise expertise with creative expression
 - Personal hub for demonstrating AI-powered creativity transformation
 

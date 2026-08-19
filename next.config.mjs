@@ -59,16 +59,16 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.youtube.com',
       },
-      // Suno track covers and playlist art (music inventory imageUrl fields)
       {
         protocol: 'https',
-        hostname: 'cdn1.suno.ai',
+        hostname: 'i.ytimg.com',
       },
       {
         protocol: 'https',
-        hostname: 'cdn2.suno.ai',
+        hostname: 'a.storyblok.com',
       },
     ],
+
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -112,6 +112,12 @@ const nextConfig = {
         destination: '/visionaries',
         permanent: true,
       },
+      {
+        source: '/arena',
+        destination: '/research/model-arena',
+        permanent: true,
+      },
+
       {
         source: '/research/ai-evolution',
         destination: '/ai-evolution',
@@ -286,6 +292,27 @@ const nextConfig = {
       {
         source: '/cards',
         destination: '/collectibles/trading-cards',
+        permanent: true,
+      },
+      // Tallinn proposal retirement into canonical field record
+      {
+        source: '/experiences/tallinn-2026',
+        destination: '/mvu',
+        permanent: true,
+      },
+      {
+        source: '/experiences/tallinn-2026/:path*',
+        destination: '/mvu',
+        permanent: true,
+      },
+      {
+        source: '/experiences/mvu-tallinn-2026',
+        destination: '/mvu',
+        permanent: true,
+      },
+      {
+        source: '/experiences/mindvalley-university-tallinn-2026',
+        destination: '/mvu',
         permanent: true,
       },
     ]

@@ -1,9 +1,7 @@
 import { MetadataRoute } from 'next'
 
-import { siteConfig } from '@/lib/seo'
-
 export default function robots(): MetadataRoute.Robots {
-  const privatePaths = [
+  const commonDisallows = [
     '/api/',
     '/admin/',
     '/auth/',
@@ -12,12 +10,6 @@ export default function robots(): MetadataRoute.Robots {
     '/prototype/',
     '/onboarding/',
     '/command-center/',
-    '/checkout/',
-    '/vault/',
-    '/inner-circle/',
-    '/realm/',
-    '/partnerships/proposal/',
-    '/downloads/*',
   ]
 
   return {
@@ -25,23 +17,25 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: privatePaths,
+        disallow: commonDisallows,
       },
       {
         userAgent: [
           'GPTBot',
           'ChatGPT-User',
-          'CCBot',
           'ClaudeBot',
-          'Claude-User',
-          'Google-Extended',
+          'Claude-Web',
           'PerplexityBot',
-          'FacebookBot',
+          'Google-Extended',
+          'Applebot-Extended',
+          'Amazonbot',
+          'cohere-ai',
           'Meta-ExternalAgent',
         ],
-        disallow: '/',
+        allow: '/',
+        disallow: commonDisallows,
       },
     ],
-    sitemap: `${siteConfig.url}/sitemap.xml`,
+    sitemap: 'https://frankx.ai/sitemap.xml',
   }
 }

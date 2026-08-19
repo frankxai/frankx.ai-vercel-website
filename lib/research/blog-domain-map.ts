@@ -4,6 +4,7 @@
  * Add new entries when publishing articles that relate to research domains.
  */
 export const blogDomainMap: Record<string, string[]> = {
+  'build-fine-tune-or-buy-ai-model': ['ai-model-strategy', 'model-arena', 'agentic-evals', 'enterprise-ai', 'production-patterns'],
   'agentic-creator-os-complete-guide': ['multi-agent-systems', 'production-patterns'],
   'agentic-creator-os': ['multi-agent-systems', 'production-patterns', 'prompt-engineering'],
   'agentic-workflows-save-hours': ['production-patterns', 'ai-personal-productivity'],
@@ -44,6 +45,8 @@ export const blogDomainMap: Record<string, string[]> = {
   'suno-prompt-engineering-complete-guide': ['prompt-engineering', 'ai-creative-tools'],
   'building-custom-skills-acos': ['coding-assistants', 'production-patterns'],
   'agent-feed-privacy-first-ai-transparency': ['enterprise-ai', 'ai-security'],
+  'manifestation-reality-architect-ai-vibe': ['manifestation-law-of-attraction-ai-systems', 'ai-neuroscience', 'ai-creative-tools'],
+  'reality-architecture-generative-ai-neuroscience': ['manifestation-law-of-attraction-ai-systems', 'ai-neuroscience', 'ai-creative-tools'],
 }
 
 export function getRelatedDomainsForBlog(slug: string): string[] {

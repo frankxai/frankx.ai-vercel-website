@@ -12,7 +12,6 @@ import {
   Music2,
   Zap,
   ImageIcon,
-  Sparkles,
   Clock,
   BookOpen,
   Play,
@@ -28,7 +27,6 @@ const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   music: Music2,
   zap: Zap,
   image: ImageIcon,
-  sparkles: Sparkles,
 }
 
 const colorMap: Record<string, { bg: string; text: string; border: string; gradientFrom: string }> = {
@@ -49,6 +47,7 @@ const playButtonBgMap: Record<string, string> = {
 
 function VideoPlayer({ video, color }: { video: VideoResource; color: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [thumbUrl, setThumbUrl] = useState(`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`)
   const colors = colorMap[color]
   const playBtnClasses = playButtonBgMap[color] || playButtonBgMap.emerald
 
@@ -67,11 +66,12 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
         ) : (
           <>
             <Image
-              src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+              src={thumbUrl}
               alt={video.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
+              onError={() => setThumbUrl(`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`)}
             />
             <button
               onClick={() => setIsPlaying(true)}
@@ -145,7 +145,7 @@ export default function LearningPathPage() {
   }
 
   const Icon = iconMap[path.icon] || BookOpen
-  const colors = colorMap[path.color]
+  const colors = colorMap[path.color] || colorMap.emerald
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">

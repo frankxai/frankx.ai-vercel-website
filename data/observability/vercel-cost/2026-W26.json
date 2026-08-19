@@ -1,0 +1,36 @@
+{
+  "week": "2026-W26",
+  "generatedAt": "2026-06-22T07:12:57Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-06-15T07:12:57Z",
+  "windowEnd": "2026-06-22T07:12:57Z",
+  "metrics": {
+    "count_total": 38,
+    "count_production": 18,
+    "count_preview": 20,
+    "count_skipped": 1,
+    "count_error": 3,
+    "count_ready": 34,
+    "duration_p50_seconds": 526,
+    "duration_p95_seconds": 563,
+    "duration_max_seconds": 563,
+    "total_build_minutes": 291.5,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 9,
+    "ready_deploys_total": 34,
+    "duration_note": "9/34 READY deploys sampled via get_deployment (spanning full 7-day window); total_build_minutes extrapolated as avg(514.4s) × 34 = 291.5 min."
+  },
+  "deltas_vs_prior_week": {
+    "duration_p50_seconds": "+95",
+    "count_total": "-95",
+    "total_build_minutes": "-426.5",
+    "prior_week": "2026-W25"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "duration_p50=526s (>360s → RED, was 431s W25, +22%): Build times remain elevated above the RED threshold of 360s and have risen further vs last week. 9/34 READY deploys sampled via get_deployment; observed range 451–563s. Sampled range of 451s (W25-obs branch) to 563s (mid-week hotfixes) suggests growing page count (manifestation hub, 2 Wordless Laws books, Coherence, model arena, downloads) is expanding the Lambda prerender surface. Recommend build-time profiling — turbopack is active but p50 has drifted from ~430s (W25) to ~526s (W26).",
+    "count_error=3 (≥2 → RED): 3 build failures this week. (1) dpl_3WTcC2MYf1JsRKYhHJMQtze3ZAUP — PRODUCTION ERROR: 'feat: add social cockpit dashboard' (sha 32900c90) had TypeScript syntax corruption in downloads array; hotfixed same hour by dpl_7ztZXHjkreLkA1LYVQKZB1KkXUuL. (2) dpl_FDWiBps6RFNEspPvTHWf9ufwGFAR + (3) dpl_8W8UFdpR8cCv8CcLUBdRRduqBBs5 — PREVIEW ERRORs on PR#184 manifestation hub initial commit; resolved by dpl_9F7gQwQJF577ZqDGup7J6wi5xmoZ (prerender crash fix). Positive trend: down from 22 errors in W25 to 3 in W26.",
+    "count_total=38 (-95 vs W25=133, -71%): Much quieter deploy week with no burst-PR patterns. Positive signal. Active PRs: #184 manifestation hub (3 errors → fixed), #185 books redesign / Coherence, #186 ACOS database removal, #187 downloads syntax fix, #188 light-within guide. No ignoreCommand skips (count_skipped=1 from a worktree-sync branch push)."
+  ]
+}

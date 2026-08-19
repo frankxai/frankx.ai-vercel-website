@@ -1,17 +1,21 @@
 'use client'
 
-import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
+import { gsap } from 'gsap'
+import { SplitText } from 'gsap/SplitText'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useState, useEffect } from 'react'
-import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { ArrowRight, ChevronDown, Pause, Play, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
-import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
+import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
+import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
+import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
 // ============================================================================
 // TYPES
@@ -36,10 +40,14 @@ interface FeaturedTrackData {
   id: string
   title: string
   sunoId: string
+  sunoUrl: string
   audioUrl: string
+  imageUrl: string
   genre: string[]
-  plays: number
   duration: string
+  kicker: string
+  studioNote: string
+  reviewedAt: string
 }
 
 interface BookData {
@@ -140,243 +148,368 @@ function AuroraBackground() {
 }
 
 // ============================================================================
-// SCROLL PROGRESS
-// ============================================================================
-
-function ScrollProgress() {
-  const shouldReduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-500 origin-left z-50"
-      style={{ scaleX: shouldReduceMotion ? 1 : scaleX }}
-    />
-  )
-}
-
-// ============================================================================
-// ROTATING WORD
-// ============================================================================
-
-const heroWords = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
-
-function RotatingWord() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const shouldReduceMotion = useReducedMotion()
-
-  useEffect(() => {
-    if (shouldReduceMotion) return
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroWords.length)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [shouldReduceMotion])
-
-  if (shouldReduceMotion) {
-    return (
-      <span
-        className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
-        aria-hidden="true"
-      >
-        {heroWords[0]}
-      </span>
-    )
-  }
-
-  return (
-    <span className="inline-block relative" aria-hidden="true">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentIndex}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"
-          style={{ lineHeight: 1.3 }}
-        >
-          {heroWords[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  )
-}
-
-// ============================================================================
 // FEATURED TRACK (inline player for hero)
 // ============================================================================
 
 function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
-  return (
-    <GlowCard color="emerald" className="p-0 overflow-hidden">
-      {/* Suno embed — shows cover art, title, waveform + controls */}
-      <div className="rounded-2xl overflow-hidden">
-        <iframe
-          src={`https://suno.com/embed/${track.sunoId}`}
-          className="w-full h-[380px]"
-          style={{ border: 'none' }}
-          allow="autoplay; clipboard-write"
-          loading="lazy"
-          title={track.title}
-          sandbox="allow-scripts allow-same-origin"
-        />
-      </div>
-
-      <div className="px-5 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-emerald-400/70 font-medium uppercase tracking-wide">Vibe OS</span>
-          <span className="text-xs text-white/30">·</span>
-          <span className="text-xs text-white/40">{track.genre.join(', ')}</span>
-        </div>
-        <Link
-          href="/music"
-          className="inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-emerald-400 transition-colors"
-        >
-          All tracks
-          <ArrowRight className="w-3 h-3" />
-        </Link>
-      </div>
-    </GlowCard>
-  )
+  return <FeaturedTrackPlayer track={track} />
 }
 
 // ============================================================================
 // HERO
 // ============================================================================
 
-const staggerEase = [0.22, 1, 0.36, 1] as const
+// Both H1 lines rotate off one index, so there is one clock and one timer. The
+// Jan-2026 hero ran two desynced timers and crossed every verb with every tail;
+// that was only a problem because its tails were not all valid objects of its
+// verbs ("Create your golden age"). Here the constraint is explicit instead:
+//
+//   EVERY tail must read correctly after EVERY verb.
+//
+// Hold that and the cross-product is a feature — 3 x 7 gives 21 headlines from
+// ten lines of copy. Add to either list weekly; the only rule beyond the one
+// above is to keep the two lengths COPRIME, or the pairing repeats early
+// (4 verbs x 8 tails yields 8 combinations, not 32).
+//
+// Index 0 of each is the anchor headline: what SSR, no-JS, and reduced-motion
+// render, so it never depends on hydration. Keep the aria-label on the H1 in
+// sync with it.
+//
+// The verb owns line one alone so a width change (Build vs Architect differ by
+// ~120px at 7xl) only moves that line's ragged right edge; "your" rides on line
+// two with the noun it belongs to.
+const heroVerbs = ['Build', 'Design', 'Architect']
+const heroTails = [
+  'intelligence that compounds.',
+  'your AI Center of Excellence.',
+  'your AI Operating System.',
+  'your Agentic Creator OS.',
+  'your GenCreator OS.',
+  'your Music Production OS.',
+  'your Second Brain.',
+]
 
-function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
-  const shouldReduceMotion = useReducedMotion()
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  })
+const heroOutcome = 'Explore your highest-leverage AI move.'
 
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.8], [0, 30])
+// Serif italic on a two-stop emerald→cyan wash is the premium tell.
+const heroVerbClassName =
+  'bg-gradient-to-r from-emerald-200 to-cyan-200 bg-clip-text font-serif italic font-normal tracking-[-0.02em] text-transparent'
+
+// pb/-mb extends the clip box below the 1.02 line box without shifting layout —
+// every verb ends in "g" and the Playfair descender would otherwise be cut. This
+// wrapper is the mask, not SplitText's own `mask` option, whose per-char box is
+// exactly the tight line box and would reintroduce that clipping.
+const heroLineMaskClassName =
+  'relative inline-block -mb-[0.15em] overflow-hidden pb-[0.15em] align-bottom'
+
+const subscribeToHydration = () => () => undefined
+
+let splitTextRegistered = false
+
+// Phrases of similar character count can still wrap to different line counts —
+// "your AI Operating System." takes three lines in a 588px column where the
+// longer "your AI Center of Excellence." takes two, because its words are
+// longer. Left alone, that pushes everything below the H1 down 72px mid-
+// rotation. So reserve the tallest candidate's height up front.
+//
+// Measured rather than hard-coded, because which phrase is tallest depends on
+// the column width and the loaded font, and because the lists are meant to grow
+// weekly — a hard-coded min-height would silently go stale on the first
+// addition. Candidates are measured in a detached probe instead of being
+// rendered invisibly in the H1, which would put all seven tails into the
+// heading's text content for crawlers.
+function useReservedLineHeight(
+  ref: React.RefObject<HTMLSpanElement | null>,
+  candidates: readonly string[] | undefined,
+) {
+  const [reservedHeight, setReservedHeight] = useState<number>()
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el || !candidates?.length) return
+
+    // The heading is the wrapping context: the mask span is inline-block, so it
+    // shrinks to fit but still breaks at the heading's width.
+    const heading = el.closest('h1')
+    if (!heading) return
+
+    const probe = document.createElement('span')
+    probe.className = el.className
+    probe.setAttribute('aria-hidden', 'true')
+
+    const measure = () => {
+      probe.style.cssText = `position:absolute;visibility:hidden;pointer-events:none;width:${heading.clientWidth}px`
+      heading.appendChild(probe)
+      let tallest = 0
+      for (const candidate of candidates) {
+        probe.textContent = candidate
+        tallest = Math.max(tallest, probe.getBoundingClientRect().height)
+      }
+      probe.remove()
+      // minHeight lands on the padded mask wrapper under border-box, while the
+      // probe is styled like the inner span — without this the reservation is
+      // short by exactly the descender padding.
+      const wrapper = el.parentElement
+      const padding = wrapper
+        ? parseFloat(getComputedStyle(wrapper).paddingTop) +
+          parseFloat(getComputedStyle(wrapper).paddingBottom)
+        : 0
+      setReservedHeight(tallest ? tallest + padding : undefined)
+    }
+
+    measure()
+    // Fonts change the wrap points, and Playfair is not there on first paint.
+    void document.fonts?.ready.then(measure)
+
+    // Only width can change the wrap points. Gating on it also stops the
+    // observer from re-triggering on the height change this hook itself causes.
+    let lastWidth = heading.clientWidth
+    const remeasureIfResized = () => {
+      if (heading.clientWidth === lastWidth) return
+      lastWidth = heading.clientWidth
+      measure()
+    }
+
+    // Both instruments on purpose. The observer catches column changes no
+    // resize event fires for; the window listener still runs when observer
+    // delivery is starved, since callbacks are tied to the rendering lifecycle
+    // and a backgrounded tab stops driving it.
+    const observer = new ResizeObserver(remeasureIfResized)
+    observer.observe(heading)
+    window.addEventListener('resize', remeasureIfResized)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', remeasureIfResized)
+      probe.remove()
+    }
+  }, [ref, candidates])
+
+  return reservedHeight
+}
+
+// SplitText replaces the whole-word crossfade with a per-character wipe: the old
+// line leaves upward on a stagger while the new one arrives from below, so the
+// eye reads a rolling shutter instead of two words dissolving into each other.
+function SplitFlipLine({
+  text,
+  className,
+  animate,
+  delay = 0,
+  reserveFor,
+}: {
+  text: string
+  className: string
+  animate: boolean
+  delay?: number
+  reserveFor?: readonly string[]
+}) {
+  const ref = useRef<HTMLSpanElement>(null)
+  // React renders the first phrase and never touches this node again — every
+  // later swap is imperative, so SplitText's spans are never fighting a rerender.
+  const [initialText] = useState(text)
+  const renderedText = useRef(text)
+  const reservedHeight = useReservedLineHeight(ref, reserveFor)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el || renderedText.current === text) return
+
+    if (!animate) {
+      el.textContent = text
+      renderedText.current = text
+      return
+    }
+
+    if (!splitTextRegistered) {
+      gsap.registerPlugin(SplitText)
+      splitTextRegistered = true
+    }
+
+    renderedText.current = text
+    // tag: 'span' because SplitText defaults to <div>, and a div inside the H1's
+    // inline span is invalid nesting. GSAP sets display:inline-block either way,
+    // so the yPercent transform still renders.
+    let activeSplit: SplitText | null = SplitText.create(el, { type: 'words,chars', aria: 'none', tag: 'span' })
+
+    const tween = gsap.to(activeSplit.chars, {
+      yPercent: -115,
+      opacity: 0,
+      duration: 0.34,
+      delay,
+      ease: 'power3.in',
+      stagger: 0.014,
+      onComplete: () => {
+        activeSplit?.revert()
+        el.textContent = text
+        activeSplit = SplitText.create(el, { type: 'words,chars', aria: 'none', tag: 'span' })
+        gsap.from(activeSplit.chars, {
+          yPercent: 115,
+          opacity: 0,
+          duration: 0.52,
+          ease: 'power3.out',
+          stagger: 0.018,
+          onComplete: () => {
+            // Reverting leaves plain text behind, so nothing accumulates across
+            // rotations and copy/select still yields the sentence.
+            activeSplit?.revert()
+            activeSplit = null
+          },
+        })
+      },
+    })
+
+    return () => {
+      tween.kill()
+      activeSplit?.revert()
+      activeSplit = null
+      el.textContent = text
+    }
+  }, [text, animate, delay])
 
   return (
-    <section
-      ref={ref}
-      className="relative min-h-[90vh] flex items-center overflow-hidden pt-16 md:pt-20"
+    <span
+      className={heroLineMaskClassName}
+      style={reservedHeight ? { minHeight: reservedHeight } : undefined}
+      aria-hidden="true"
     >
-      <motion.div
-        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20"
-        style={shouldReduceMotion ? undefined : { opacity, y }}
-      >
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <span ref={ref} className={`inline-block ${className}`}>
+        {initialText}
+      </span>
+    </span>
+  )
+}
+
+function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
+  const [isHeadlinePaused, setIsHeadlinePaused] = useState(false)
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const shouldReduceMotion = useReducedMotion()
+  const hasHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  )
+  const isRotating = hasHydrated && !shouldReduceMotion
+
+  // 4.4s, not the old 3.2s: the per-character wipe plus the tail's 0.12s offset
+  // runs ~1.3s, and a phrase needs to sit still long enough to actually be read.
+  // The index wraps at the product of the two lengths so it stays a small int
+  // and returns to the anchor headline after a full pass through every pairing.
+  useEffect(() => {
+    if (!isRotating || isHeadlinePaused) return
+
+    const interval = window.setInterval(() => {
+      setPhraseIndex((index) => (index + 1) % (heroVerbs.length * heroTails.length))
+    }, 4400)
+
+    return () => window.clearInterval(interval)
+  }, [isRotating, isHeadlinePaused])
+
+  return (
+    <section className="relative flex min-h-[92svh] items-center overflow-hidden pb-16 pt-24 md:pb-20 md:pt-28">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
           {/* Left Column — Text Content */}
-          <div className="space-y-8">
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, ease: staggerEase }}
-              className="space-y-6"
-            >
+          <div className="order-1 space-y-8">
+            <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">AI Architect & Creator</span>
+                <span className="text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
               </div>
 
               <h1
-                className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white"
-                aria-label="Building intelligence that compounds."
+                className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
+                aria-label="Build intelligence that compounds."
               >
-                <RotatingWord /> intelligence
+                <SplitFlipLine
+                  text={heroVerbs[phraseIndex % heroVerbs.length]}
+                  className={heroVerbClassName}
+                  animate={isRotating}
+                />
                 <br />
-                that compounds.
+                <SplitFlipLine
+                  text={heroTails[phraseIndex % heroTails.length]}
+                  className="text-white"
+                  animate={isRotating}
+                  delay={0.12}
+                  reserveFor={heroTails}
+                />
               </h1>
 
-              <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
-                Former AI architect at Oracle. 12,000+ songs with Suno.
-                630+ AI skills shipped. Everything documented.
-              </p>
-              <p className="text-xs text-white/30 max-w-xl leading-relaxed">
-                Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
+              <div className="mt-5 flex max-w-2xl items-center gap-3">
+                <p className="text-xl font-medium leading-[1.25] tracking-[-0.02em] text-white/75 sm:text-2xl">
+                  {heroOutcome}
+                </p>
+                {/* Always rendered so hydration never shifts the headline; only
+                    interactive while the verb is actually rotating (WCAG 2.2.2). */}
+                <button
+                  type="button"
+                  onClick={() => setIsHeadlinePaused((paused) => !paused)}
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/50 transition-colors hover:border-emerald-200/30 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70 ${
+                    isRotating ? 'visible' : 'invisible'
+                  }`}
+                  aria-label={isHeadlinePaused ? 'Play changing headline' : 'Pause changing headline'}
+                  aria-pressed={isHeadlinePaused}
+                  aria-hidden={isRotating ? undefined : true}
+                  tabIndex={isRotating ? undefined : -1}
+                >
+                  {isHeadlinePaused ? (
+                    <Play className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <Pause className="h-4 w-4" aria-hidden="true" />
+                  )}
+                </button>
+              </div>
+
+              <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
+                FrankX is the working studio for founders, creators, and AI leaders building an AI
+                operating system, a Center of Excellence, or agentic products. Explore the
+                architecture, inspect the systems, and start from what already works.
               </p>
 
               <div className="flex items-center gap-3">
                 <FrankOmegaAvatar size="xs" />
-                <p className="font-serif italic text-lg text-white/30 max-w-lg">
-                  &ldquo;I create to understand. I share to teach.&rdquo;
+                <p className="max-w-lg font-serif text-lg italic leading-7 text-white/70">
+                  &ldquo;I build to understand. I document so the people I love can build after me.&rdquo;
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* CTAs */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4"
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.3, ease: staggerEase }}
-            >
+            <div className="flex flex-col gap-4 sm:flex-row">
               <Link
-                href="/start"
-                onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                href="/ai-architecture"
+                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Explore the Work
+                Explore AI Architecture
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
-                href="/blog"
-                onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
+                href="/ecosystem"
+                onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Read the Blog
+                Map the Ecosystem
               </Link>
-            </motion.div>
+            </div>
+
+            <p className="max-w-xl text-[11px] leading-5 text-white/70">
+              Independent project by former Oracle AI architect Frank Riemer. Not affiliated with,
+              endorsed by, or sponsored by Oracle.
+            </p>
           </div>
 
           {/* Right Column — Featured Track */}
-          <div className="relative hidden md:block">
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.7, delay: 0.2 }}
-            >
-              {featuredTrack ? (
-                <FeaturedTrack track={featuredTrack} />
-              ) : (
-                <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
-                  <iframe
-                    src="https://suno.com/embed/9cbad174-9276-427f-9aed-1ba00c7db3db"
-                    className="w-full h-[380px]"
-                    style={{ border: 'none' }}
-                    allow="autoplay; clipboard-write"
-                    loading="lazy"
-                    title="Vibe OS — Featured Track"
-                    sandbox="allow-scripts allow-same-origin"
-                  />
-                </div>
-              )}
-            </motion.div>
+          <div className="relative order-2">
+            <p className="mb-4 font-mono text-[11px] tracking-[0.08em] text-emerald-300/60 lg:hidden">
+              Latest studio release · optional listening
+            </p>
+            <FeaturedTrack track={featuredTrack ?? homepageFeaturedRelease} />
           </div>
         </div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={shouldReduceMotion ? { duration: 0 } : { delay: 1.5 }}
-      >
-        <motion.div
-          className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5"
-          animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
-          transition={shouldReduceMotion ? undefined : { duration: 2, repeat: Infinity }}
-        >
-          <div className="w-1 h-1.5 bg-white/40 rounded-full" />
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }
@@ -386,10 +519,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'Former AI architect at Oracle',
+  'AI Architect & Musician',
+  'Co-builder of 7-Figure Enterprises',
+  'Former AI Architect at Oracle',
   '12,000+ AI Songs Created',
-  '630+ AI Skills Shipped',
-  'Everything Documented',
+  'Autonomous AI Swarms & Sovereign Tools',
 ]
 
 function AuthorityBar() {
@@ -406,7 +540,7 @@ function AuthorityBar() {
           {credentials.map((item, i) => (
             <div key={item} className="flex items-center">
               {i > 0 && <div className="hidden md:block w-px h-4 bg-white/10 mx-6 lg:mx-8" />}
-              <span className="text-sm md:text-base text-white/40 font-medium tracking-wide">
+              <span className="text-sm md:text-base text-white/60 font-medium tracking-wide">
                 {item}
               </span>
             </div>
@@ -423,39 +557,39 @@ function AuthorityBar() {
 
 const products = [
   {
-    title: 'Agentic Creator OS',
-    description: 'Open-source operating system for Claude Code. 24+ specialized agents, 70+ skills, 15+ commands.',
-    href: '/acos',
+    title: 'Sovereign Business Kits',
+    description: 'Turn-key modular starter kits (Micro-SaaS, Marketplace, Creator Hub) designed for builders to launch globally on their own terms.',
+    href: '/templates',
     color: 'emerald' as const,
   },
   {
-    title: 'Prompt Library',
-    description: 'Battle-tested prompts for writing, music, coding, and image generation. Free to use.',
-    href: '/prompt-library',
-    color: 'violet' as const,
-  },
-  {
-    title: 'Creator Kit',
-    description: 'Premium templates, video guides, and direct support for ACOS. From $47.',
-    href: '/products',
+    title: 'Mental Models & Peak OS',
+    description: 'The 8 Sovereign Mental Models, cognitive operating systems, and high-performance protocols for operating in Godmode.',
+    href: '/mental-models',
     color: 'cyan' as const,
   },
   {
+    title: 'Agentic Creator OS',
+    description: 'An open creator operating system for agent skills, commands, and repeatable workflows running on your own keys.',
+    href: '/acos',
+    color: 'violet' as const,
+  },
+  {
     title: 'AI Architecture Hub',
-    description: 'Enterprise AI patterns, agent orchestration, system design. Built at Oracle.',
+    description: 'Patterns for agent workflows, orchestration, governance, and production-minded system design. Built from Oracle to production.',
     href: '/ai-architecture',
     color: 'blue' as const,
   },
   {
     title: 'Music Lab',
-    description: '12,000+ AI songs. Production workflows. Genre mastery guides.',
+    description: 'An evolving music archive of 12,000+ tracks, Suno production workflows, and genre-focused frequency field guides.',
     href: '/music-lab',
     color: 'orange' as const,
   },
   {
-    title: 'Design Lab',
-    description: 'Generative art, visual experiments, nature-tech aesthetics.',
-    href: '/design-lab',
+    title: 'Sovereign Creator Blueprint',
+    description: 'The complete 4-layer architecture connecting local-first agents, digital assets, and independent revenue streams.',
+    href: '/gencreator/blueprints',
     color: 'magenta' as const,
   },
 ]
@@ -470,14 +604,15 @@ function ProductsTools() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-4">
+          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
             Products & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Built for builders
+            Ways to go further
           </h2>
-          <p className="text-base text-white/40 max-w-2xl mx-auto">
-            Open-source tools, premium resources, and creative systems — built for builders who ship.
+          <p className="text-base text-white/60 max-w-2xl mx-auto">
+            Start with the open work. Choose a paid tool only when its scope fits the capability you
+            are ready to build next.
           </p>
         </motion.div>
 
@@ -498,7 +633,7 @@ function ProductsTools() {
                 <p className="text-sm text-white/50 leading-relaxed">
                   {product.description}
                 </p>
-                <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                <div className="mt-4 flex items-center gap-1.5 text-xs text-white/60 group-hover:text-white/75 transition-colors">
                   <span>Learn more</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                 </div>
@@ -567,7 +702,7 @@ function HubShowcase({
       transition={{ duration: 0.5, delay: 0.1 }}
       className="flex flex-col justify-center"
     >
-      <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-3">
+      <p className="mb-3 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
         {eyebrow}
       </p>
       <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
@@ -650,7 +785,7 @@ function CreativeWorlds() {
 
           {/* Overlay text */}
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-            <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/70 font-medium mb-2">
+            <p className="mb-2 text-xs font-medium tracking-[0.1em] text-amber-400/70">
               Creative Worlds
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
@@ -698,7 +833,7 @@ function DesignLab() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <p className="text-[11px] tracking-[0.25em] uppercase text-magenta-400/50 font-medium mb-3 text-fuchsia-400/50">
+          <p className="mb-3 text-xs font-medium tracking-[0.1em] text-fuchsia-400/50">
             Visual Experiments
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
@@ -752,7 +887,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
   if (!books || books.length === 0) return null
 
   return (
-    <section className="py-24 lg:py-32 border-t border-white/5">
+    <section id="books" className="scroll-mt-24 py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -761,7 +896,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
         >
           <div>
-            <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/50 font-medium mb-3">
+            <p className="mb-3 text-xs font-medium tracking-[0.1em] text-amber-400/50">
               Frank&apos;s Books
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
@@ -804,7 +939,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
                 <h3 className="text-sm font-medium text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
                   {book.title}
                 </h3>
-                <p className="text-xs text-white/40 line-clamp-1">{book.subtitle}</p>
+                <p className="text-xs text-white/60 line-clamp-1">{book.subtitle}</p>
               </Link>
             </motion.div>
           ))}
@@ -831,13 +966,13 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
         >
           <div>
-            <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-3">
+            <p className="mb-3 text-xs font-medium tracking-[0.1em] text-emerald-400/60">
               The Library OS · Open Source
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
               Every book, a permanent asset
             </h2>
-            <p className="text-base text-white/55 max-w-xl">
+            <p className="text-base text-white/50 max-w-xl">
               Curated deep-dives — quotes, chapter summaries, and the connections between ideas. Built on the open-source <Link href="/library/approach" className="text-white/80 underline decoration-white/20 underline-offset-4 hover:decoration-emerald-400/60 transition">Library OS</Link>. Clone it. Run it. Make your reading life public.
             </p>
           </div>
@@ -890,7 +1025,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
                 <h3 className="text-sm font-medium text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
                   {book.title}
                 </h3>
-                <p className="text-xs text-white/40 line-clamp-1">{book.author}</p>
+                <p className="text-xs text-white/60 line-clamp-1">{book.author}</p>
               </Link>
             </motion.div>
           ))}
@@ -900,7 +1035,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-white/40"
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-white/60"
         >
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> MIT-licensed</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> Cross-AI portable</span>
@@ -964,10 +1099,10 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
                 )}
                 <div className="p-5 sm:p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-white/5 text-white/50 uppercase tracking-wider">
+                    <span className="rounded-full bg-white/5 px-2 py-0.5 text-[11px] font-medium tracking-[0.04em] text-white/50 sm:text-xs">
                       {post.category}
                     </span>
-                    <span className="text-xs text-white/30">{post.readingTime}</span>
+                    <span className="text-xs text-white/60">{post.readingTime}</span>
                   </div>
                   <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
                     {post.title}
@@ -1030,7 +1165,7 @@ function LearningHub() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <p className="text-[11px] tracking-[0.25em] uppercase text-cyan-400/50 font-medium mb-3">
+          <p className="mb-3 text-xs font-medium tracking-[0.1em] text-cyan-400/50">
             Resources
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
@@ -1066,7 +1201,7 @@ function LearningHub() {
                     {card.title}
                   </h3>
                   <p className="text-sm text-white/50 leading-relaxed">{card.description}</p>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                  <div className="mt-3 flex items-center gap-1.5 text-xs text-white/60 group-hover:text-white/75 transition-colors">
                     <span>Explore</span>
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </div>
@@ -1117,7 +1252,7 @@ function EmailCTA() {
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Stay in the Signal Loop
             </h2>
-            <p className="text-sm text-white/40 mb-8 max-w-xs mx-auto">
+            <p className="text-sm text-white/60 mb-8 max-w-xs mx-auto">
               One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
@@ -1128,7 +1263,7 @@ function EmailCTA() {
                 compact
               />
             </div>
-            <p className="mt-4 text-xs text-white/30">
+            <p className="mt-4 text-xs text-white/60">
               Unsubscribe anytime. No spam.
             </p>
           </div>
@@ -1245,16 +1380,16 @@ function DigitalTwin() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="text-[11px] tracking-[0.25em] uppercase text-blue-400/60 font-medium mb-3">
+            <p className="mb-3 text-xs font-medium tracking-[0.1em] text-blue-400/60">
               Digital Twin
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
               Meet FRANK-Ω
             </h2>
             <p className="text-base text-white/50 leading-relaxed mb-6">
-              Two forms. One mind. FRANK-Ω is the completed intelligence — the version that has
-              absorbed everything and just executes. Research-grounded visuals in 60 seconds.
-              Creator scoring in real-time. Direct answers, no fluff.
+              FRANK-Ω is a playful digital-twin experiment: a way to turn Frank&apos;s accumulated
+              methods, questions, and creative patterns into a companion people can explore. The
+              lab documents what works, what still fails, and where human judgment stays essential.
             </p>
 
             <div className="p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 mb-6">
@@ -1269,8 +1404,8 @@ function DigitalTwin() {
                   />
                 </div>
                 <p className="text-sm text-white/60 leading-relaxed italic">
-                  &ldquo;Hello. I don&apos;t do small talk. Drop me a topic and I&apos;ll build it.
-                  Architecture, music, visuals — name it.&rdquo;
+                  &ldquo;Bring me a question, a half-built idea, or something you cannot quite name yet.
+                  We will look for the smallest useful next experiment.&rdquo;
                 </p>
               </div>
             </div>
@@ -1285,7 +1420,7 @@ function DigitalTwin() {
               </Link>
               <Link
                 href="/frankx"
-                className="inline-flex items-center gap-2 text-sm font-medium text-white/40 hover:text-white/60 transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white/80 transition-colors"
               >
                 The full story
                 <ArrowRight className="w-4 h-4" />
@@ -1316,26 +1451,27 @@ function FinalCTA() {
 
           <div className="relative text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-              Start building.
+              Take what helps. Build what matters.
             </h2>
-            <p className="font-serif italic text-lg text-white/30 mb-2">
-              The best way to predict the future is to create it.
+            <p className="font-serif italic text-lg text-white/60 mb-2">
+              You do not have to become someone else to begin.
             </p>
-            <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
-              Pick your path — architecture, music, or products.
+            <p className="text-base text-white/60 mb-8 md:mb-12 max-w-md mx-auto">
+              Choose one honest next step. The music, maps, and tools will still be here when you
+              are ready for another.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Start Here
+                Find My Starting Point
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/newsletter"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-colors"
               >
                 Get the Newsletter
               </Link>
@@ -1361,7 +1497,6 @@ export default function HomePageElite({
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden">
       <AuroraBackground />
-      <ScrollProgress />
 
       <div className="relative z-10 overflow-x-hidden">
         {/* 1-3. Hero with featured track */}
@@ -1373,8 +1508,8 @@ export default function HomePageElite({
         {/* 4b. AI Stack — tool logos with guide links */}
         <TrustedByBlock />
 
-        {/* 4c. Signal route selector — homepage decision layer */}
-        <SignalRouteSelector />
+        {/* 4c. Signature route atlas — one earned GSAP scene */}
+        <MindPalaceAtlas />
 
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />
@@ -1383,7 +1518,7 @@ export default function HomePageElite({
         <HubShowcase
           eyebrow="Enterprise AI"
           title="AI Architecture"
-          description="Enterprise AI systems built at Oracle. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
+          description="Production-minded AI architecture, agentic workflows, and orchestration patterns documented with the decisions, constraints, and human controls still visible."
           imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
           imageAlt="Production Agentic AI Systems"
           links={[
@@ -1401,7 +1536,7 @@ export default function HomePageElite({
         <HubShowcase
           eyebrow="Music Production"
           title="Music Lab"
-          description="12,000+ AI songs produced with Suno. Genre mastery from orchestral to hip hop. Prompt engineering that creates radio-ready tracks."
+          description="An evolving Suno music archive with production notes, genre experiments, and prompt methods shared from the studio as they are learned."
           imageSrc="/images/blog/suno-prompt-engineering-complete-guide-hero.png"
           imageAlt="Suno Prompt Engineering Guide"
           links={[

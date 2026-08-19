@@ -13,11 +13,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { EmailSignup } from '@/components/email-signup'
+
 import { getLivePatterns } from '@/lib/prompt-hub/fetch-library'
 import type { Category, Lane, Pattern } from '@/lib/prompt-hub/types'
 
 export const metadata: Metadata = {
-  title: 'Prompt Library — 98 patterns evaluated, attributed, lab-tagged | FrankX',
+  title: 'Prompt Library — 130+ patterns evaluated, attributed, lab-tagged | FrankX',
   description:
     'Live OSS prompt corpus. Every pattern in the frankxai/prompt-library repo, ranked, attributed, and lab-tagged. Filter by Claude / GPT / Gemini / OSS lane, by category, or search across titles.',
   alternates: { canonical: 'https://www.frankx.ai/prompt-library' },
@@ -115,7 +117,8 @@ export default async function PromptLibraryPage(props: {
         {/* Header */}
         <header className="mb-12">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400/80">
-            Live corpus · {snapshot.patterns.length} patterns · cached 1h
+            Live corpus · {snapshot.patterns.length}{' '}
+            {snapshot.patterns.length === 1 ? 'pattern' : 'patterns'} · cached 1h
           </p>
           <h1 className="mb-6 text-4xl font-semibold tracking-tight text-white md:text-5xl">
             The Prompt Library
@@ -205,6 +208,22 @@ export default async function PromptLibraryPage(props: {
             )}
           </nav>
         )}
+
+        {/* Capture */}
+        <section className="mt-20 rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+          <h2 className="text-xl font-bold text-white">New patterns land here first</h2>
+          <p className="mt-2 max-w-xl text-sm text-slate-400">
+            The corpus grows every week. One email when a meaningful batch ships &mdash; what
+            was added, what changed, and the lab notes behind it. No schedule padding.
+          </p>
+          <EmailSignup
+            listType="newsletter"
+            compact
+            placeholder="you@example.com"
+            buttonText="Get pattern updates"
+            className="mt-4 max-w-md"
+          />
+        </section>
 
         {/* Footer */}
         <footer className="mt-20 border-t border-slate-800 pt-10 text-sm text-slate-500">

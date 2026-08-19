@@ -1,24 +1,21 @@
 'use client'
 
 import { Check } from 'lucide-react'
-import { motion } from 'framer-motion'
-import { MotionSection, MotionItem, fadeUp } from './MotionLayer'
+import { MotionSection, MotionItem } from './MotionLayer'
 
 type AlreadySharedSectionProps = {
   items: string[]
 }
 
 /**
- * Strategic-alignment tier — credibility band between the hero and the
- * working-reality grid. Renders the explicit, factual list of touchpoints
- * already shared with the partner today. Biases the page toward conversion
- * via reciprocal alignment that is already true.
+ * Evidence band for unlisted proposal pages. It describes only FrankX-owned
+ * work and must not imply that the intended recipient reviewed, shared, or
+ * reciprocated any item.
  *
  * Visual treatment matches the partnerships component family: rounded-2xl
  * cards on white/[0.025] with subtle borders, emerald checkmark accents,
  * 11px tracking 0.25em uppercase eyebrow in emerald-400/60.
  *
- * Motion: section header reveals first, then list items stagger in at 80ms.
  * Detail: checkmark uses tighter stroke (2.5px) + tighter heading tracking.
  */
 export function AlreadySharedSection({ items }: AlreadySharedSectionProps) {
@@ -32,26 +29,25 @@ export function AlreadySharedSection({ items }: AlreadySharedSectionProps) {
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <MotionItem className="mb-12 max-w-2xl">
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/60 font-medium mb-4">
-            What we already share today
+            What FrankX can show today
           </p>
           <h2
             id="already-shared-heading"
             className="text-3xl sm:text-4xl font-semibold text-white mb-4"
             style={{ letterSpacing: '-0.02em' }}
           >
-            The reciprocal stack, in motion.
+            Public work behind the proposal.
           </h2>
           <p className="text-base text-zinc-300 leading-[1.7]">
-            Every line below is already true. No pitch, no projection — the
-            alignment exists. The conversation is about formalizing it.
+            Each line is a FrankX-authored statement about FrankX work. It does
+            not imply recipient review, reciprocity, endorsement, or agreement.
           </p>
         </MotionItem>
 
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
           {items.map((item, i) => (
-            <motion.li
+            <li
               key={i}
-              variants={fadeUp}
               className="flex items-start gap-3 rounded-2xl bg-white/[0.025] border border-white/[0.08] p-5 transition-all duration-300 hover:bg-white/[0.04] hover:border-emerald-500/25 hover:-translate-y-px"
             >
               <span
@@ -66,7 +62,7 @@ export function AlreadySharedSection({ items }: AlreadySharedSectionProps) {
               <span className="text-sm text-zinc-300 leading-relaxed">
                 {item}
               </span>
-            </motion.li>
+            </li>
           ))}
         </ul>
       </div>

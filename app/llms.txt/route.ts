@@ -1,8 +1,10 @@
 import { getAllBlogPosts } from '@/lib/blog'
+import { getJournalEntrySummaries } from '@/lib/journal'
 import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
+import { askQuestions } from '@/data/ask-questions'
 
 const SITE_URL = siteConfig.url
 
@@ -20,6 +22,13 @@ export async function GET() {
     .map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.description}`)
     .join('\n')
 
+  // Private and unpublished entries are filtered out by the loader before they
+  // reach here, so this never leaks a note that is not on the public site.
+  const journalLinks = getJournalEntrySummaries()
+    .slice(0, 20)
+    .map((e) => `- [${e.title}](${SITE_URL}/journal/${e.slug}): ${e.summary || e.title}`)
+    .join('\n')
+
   const osLinks = osModules
     .map((m) => `- [${m.name}](${SITE_URL}${m.route}): ${m.oneLine}`)
     .join('\n')
@@ -32,9 +41,13 @@ export async function GET() {
     .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
     .join('\n')
 
+  const askLinks = askQuestions
+    .map((q) => `- [${q.question}](${SITE_URL}/ask/${q.slug}): ${q.tldr}`)
+    .join('\n')
+
   const content = `# FrankX
 
-> Personal hub of Frank X. Riemer — former AI architect at Oracle, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+> Personal hub of Frank X. Riemer — AI Architect & Creator. 12,000+ AI-generated songs with Suno. ${siteConfig.description}
 
 The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, practical creator workflows). Frank translates lessons from enterprise-scale AI/cloud work into free, personal-scale tooling for creators, individuals, and families. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 
@@ -42,6 +55,11 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Homepage](${SITE_URL}/): Hub with recent work and primary funnels
 - [Frank Riemer](${SITE_URL}/frank-riemer): Canonical founder/entity page for Frank Riemer and FrankX
 - [About Frank](${SITE_URL}/about): Story, identity, and work patterns
+- [Core Qualities](${SITE_URL}/qualities): Freedom, Mastery, Meaning, and Connection — the governing constraints behind FrankX
+- [Freedom](${SITE_URL}/qualities/freedom): Agency and optionality as the direction of the system
+- [Mastery](${SITE_URL}/qualities/mastery): Inherited craft, durable skill, and judgment as the method
+- [Meaning](${SITE_URL}/qualities/meaning): Relevance, purpose, and coherence as the compass
+- [Connection](${SITE_URL}/qualities/connection): Trust, belonging, and collective capability as the multiplier
 - [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, proof points, boundaries, and contact
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
 - [Signal Loop](${SITE_URL}/newsletter): Main weekly letter on AI architecture, creator systems, music experiments, and peak-state notes
@@ -71,6 +89,10 @@ ${researchLinks}
 - [AI 2026 Graduates](${SITE_URL}/workshops/ai-2026-graduates): Career path workshop
 - [AI Music Masterclass](${SITE_URL}/workshops/ai-music-masterclass): Suno-grade music production
 
+## Ask FrankX (Q&A)
+- [Ask FrankX Hub](${SITE_URL}/ask): Practical answers on AI architecture, music production, and creator workflows
+${askLinks}
+
 ## Tools
 - [ROI Calculator](${SITE_URL}/tools/roi-calculator): AI ROI estimator for enterprise
 - [Strategy Canvas](${SITE_URL}/tools/strategy-canvas): One-page AI strategy template
@@ -82,13 +104,18 @@ ${researchLinks}
 - [Familie](${SITE_URL}/familie): Family hub (German + English)
 - [Chronicle](${SITE_URL}/chronicle): The reflective layer — weekly Palace, monthly Survey, quarterly Census, annual Audit
 
-## Recent Writing
+## Recent Writing (long-form articles)
 ${blogLinks}
+
+## Journal (short, dated working notes)
+- [Journal](${SITE_URL}/journal): Short dated notes written as the work happens — the unedited counterpart to the long-form articles above
+${journalLinks}
 
 ## Optional
 - [llms-full.txt](${SITE_URL}/llms-full.txt): Comprehensive site map with per-page tldrs (longer; ~50KB)
 - [sitemap.xml](${SITE_URL}/sitemap.xml): Full URL inventory
 - [rss.xml](${SITE_URL}/rss.xml): Latest 50 posts as RSS 2.0
+- [journal/feed.xml](${SITE_URL}/journal/feed.xml): Journal entries as RSS 2.0
 - [Open Source Repos](https://github.com/frankxai): Library OS, SIS, ACOS, and more
 `
 

@@ -16,15 +16,10 @@ import {
   CheckCircle,
   ArrowRight,
   Clock,
-  Star,
-  Download,
   Play,
   Sparkles,
-  Search,
-  Filter,
-  BookOpen
+  Search
 } from 'lucide-react'
-import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
@@ -32,7 +27,6 @@ import PremiumButton from '@/components/ui/PremiumButton'
 import {
   StaggerContainer,
   StaggerItem,
-  MagneticHover,
   GlowPulse,
   InteractiveCard
 } from '@/components/ui/AdvancedAnimations'
@@ -48,10 +42,8 @@ type Tool = {
   color: string
   features: string[]
   href: string
-  isPremium: boolean
   isNew: boolean
-  usageCount: number
-  rating: number
+  status: 'live' | 'in-development'
 }
 
 const tools: Tool[] = [
@@ -66,10 +58,8 @@ const tools: Tool[] = [
     color: 'from-green-500 to-emerald-500',
     features: ['Cost-benefit analysis', 'Timeline projections', 'Risk assessment', 'Executive reports'],
     href: '/tools/roi-calculator',
-    isPremium: false,
     isNew: true,
-    usageCount: 1247,
-    rating: 4.9
+    status: 'live'
   },
   {
     id: 'prompt-optimizer',
@@ -82,10 +72,8 @@ const tools: Tool[] = [
     color: 'from-purple-500 to-violet-500',
     features: ['Real-time optimization', 'Multiple AI models', 'Performance scoring', 'Template library'],
     href: '/tools/prompt-optimizer',
-    isPremium: false,
     isNew: false,
-    usageCount: 3421,
-    rating: 4.8
+    status: 'in-development'
   },
   {
     id: 'strategy-canvas',
@@ -98,10 +86,8 @@ const tools: Tool[] = [
     color: 'from-blue-500 to-indigo-500',
     features: ['Visual mapping', 'Stakeholder analysis', 'Timeline planning', 'Export options'],
     href: '/tools/strategy-canvas',
-    isPremium: true,
     isNew: false,
-    usageCount: 892,
-    rating: 4.7
+    status: 'live'
   },
   {
     id: 'risk-analyzer',
@@ -114,10 +100,8 @@ const tools: Tool[] = [
     color: 'from-red-500 to-orange-500',
     features: ['Risk scoring', 'Mitigation strategies', 'Compliance check', 'Action plans'],
     href: '/tools/risk-analyzer',
-    isPremium: true,
     isNew: true,
-    usageCount: 634,
-    rating: 4.9
+    status: 'in-development'
   },
   {
     id: 'agent-builder',
@@ -130,10 +114,8 @@ const tools: Tool[] = [
     color: 'from-cyan-500 to-teal-500',
     features: ['Drag & drop interface', 'Testing environment', 'Export configs', 'Template gallery'],
     href: '/tools/agent-builder',
-    isPremium: true,
     isNew: false,
-    usageCount: 456,
-    rating: 4.6
+    status: 'in-development'
   },
   {
     id: 'performance-tracker',
@@ -146,10 +128,8 @@ const tools: Tool[] = [
     color: 'from-yellow-500 to-orange-500',
     features: ['Real-time monitoring', 'Performance metrics', 'Trend analysis', 'Alerts system'],
     href: '/tools/performance-tracker',
-    isPremium: false,
     isNew: false,
-    usageCount: 1876,
-    rating: 4.5
+    status: 'in-development'
   },
   {
     id: 'content-generator',
@@ -162,10 +142,8 @@ const tools: Tool[] = [
     color: 'from-pink-500 to-rose-500',
     features: ['Multiple content types', 'Custom templates', 'Bulk generation', 'Quality scoring'],
     href: '/tools/content-generator',
-    isPremium: false,
     isNew: false,
-    usageCount: 5234,
-    rating: 4.4
+    status: 'in-development'
   },
   {
     id: 'team-readiness',
@@ -175,13 +153,11 @@ const tools: Tool[] = [
     difficulty: 'beginner',
     timeEstimate: '25 minutes',
     icon: Users,
-    color: 'from-indigo-500 to-purple-500',
+    color: 'from-indigo-500 to-violet-600',
     features: ['Skills assessment', 'Training recommendations', 'Readiness scoring', 'Action plans'],
     href: '/tools/team-readiness',
-    isPremium: true,
     isNew: true,
-    usageCount: 723,
-    rating: 4.8
+    status: 'in-development'
   }
 ]
 
@@ -217,17 +193,6 @@ export default function ToolsPage() {
     return colors[difficulty]
   }
 
-  const getCategoryColor = (category: Tool['category']) => {
-    const colors = {
-      calculator: 'text-green-400',
-      generator: 'text-purple-400',
-      analyzer: 'text-blue-400',
-      planner: 'text-cyan-400',
-      simulator: 'text-orange-400'
-    }
-    return colors[category]
-  }
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4">
@@ -243,28 +208,28 @@ export default function ToolsPage() {
                 Hands-On AI Tools
               </h1>
               <p className="text-xl sm:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-                Professional-grade tools designed by our Agent Team to accelerate your AI implementation journey
+                Two tools are live today. Six are in development. Every card below shows its current state.
               </p>
 
               {/* Stats */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div className="text-center">
                   <div className="text-3xl lg:text-4xl font-bold text-purple-300 mb-2">
-                    {tools.length}+
+                    {tools.length}
                   </div>
                   <div className="text-slate-400 text-sm">AI Tools</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl lg:text-4xl font-bold text-cyan-300 mb-2">
-                    50K+
+                    {tools.filter(t => t.status === 'live').length}
                   </div>
-                  <div className="text-slate-400 text-sm">Monthly Uses</div>
+                  <div className="text-slate-400 text-sm">Live Today</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl lg:text-4xl font-bold text-green-300 mb-2">
-                    4.8/5
+                    {tools.filter(t => t.status === 'in-development').length}
                   </div>
-                  <div className="text-slate-400 text-sm">Average Rating</div>
+                  <div className="text-slate-400 text-sm">In Development</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl lg:text-4xl font-bold text-orange-300 mb-2">
@@ -360,9 +325,9 @@ export default function ToolsPage() {
                               New
                             </span>
                           )}
-                          {tool.isPremium && (
-                            <span className="px-2 py-1 bg-yellow-500/20 text-yellow-300 text-xs rounded-full border border-yellow-500/30">
-                              Premium
+                          {tool.status === 'in-development' && (
+                            <span className="px-2 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-full border border-amber-500/30">
+                              In development
                             </span>
                           )}
                         </div>
@@ -404,41 +369,24 @@ export default function ToolsPage() {
                             {tool.timeEstimate}
                           </span>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <span className="flex items-center">
-                            <Star className="w-3 h-3 mr-1 text-yellow-400" />
-                            {tool.rating}
-                          </span>
-                          <span className={getCategoryColor(tool.category)}>
-                            {tool.usageCount.toLocaleString()} uses
-                          </span>
-                        </div>
+                        <span className={tool.status === 'live' ? 'text-green-300' : 'text-slate-500'}>
+                          {tool.status === 'live' ? 'Live' : 'In development'}
+                        </span>
                       </div>
 
                       {/* Action */}
                       <div className="flex gap-3">
                         <PremiumButton
-                          variant={tool.isPremium ? "luxury" : "primary"}
+                          variant="primary"
                           size="lg"
                           href={tool.href}
                           className="flex-1"
                         >
                           <Play className="w-4 h-4 mr-2" />
-                          {tool.isPremium ? 'Try Premium' : 'Use Tool'}
-                        </PremiumButton>
-                        <PremiumButton
-                          variant="ghost"
-                          size="lg"
-                          href={`${tool.href}/docs`}
-                        >
-                          <BookOpen className="w-4 h-4" />
+                          {tool.status === 'live' ? 'Use Tool' : 'Preview & Join Waitlist'}
                         </PremiumButton>
                       </div>
 
-                      {/* Glow Effect for Premium Tools */}
-                      {tool.isPremium && (
-                        <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-transparent to-orange-500/5 rounded-2xl pointer-events-none" />
-                      )}
                     </GlassmorphicCard>
                   </InteractiveCard>
                 </motion.div>

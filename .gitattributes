@@ -12,3 +12,6 @@
 *.md text eol=lf
 *.mdx text eol=lf
 *.css text eol=lf
+
+# PDFs are compressed binary artifacts; never normalize or render them as text diffs.
+*.pdf binary

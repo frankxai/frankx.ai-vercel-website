@@ -6,6 +6,12 @@ node_modules/
 # Testing
 coverage/
 
+# Music source audio + beat grids (local working files — never commit binaries)
+/content/music/source/
+/generated_audio/
+/generated_imgs/
+/staging/
+
 # Next.js
 .next/
 out/
@@ -76,6 +82,8 @@ tina-frankx/
 
 # Local artifacts (multi-agent + tooling)
 .worktrees/
+.hermes-worktrees/
+.codex-worktrees/
 .playwright-mcp/
 .claude-plugins-fcakyon/
 _archive/
@@ -92,9 +100,10 @@ C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\claude-plugins-official/
 .claude-flow/swarm/
 .claude-flow/governance/
 nul
+.asph-wip/
+
 
 # ACOS session artifacts (regenerated per-session, never commit)
-.acos/
 .claude/checkpoints/
 .claude/trajectories/
 .claude/worktrees/
@@ -110,7 +119,10 @@ frankxai/
 # siblings under C:/Users/frank/, not nested. Frank to relocate when convenient.
 frankx/
 frankx-os/
-/ai-architect-academy/
+ai-architect-academy/
+!app/ai-architect-academy/
+!app/ai-architect-academy/patterns/
+!app/ai-architect-academy/patterns/page.tsx
 education/context-engineering-for-creators/
 claude-skills/
 products/mcp-doctor/
@@ -151,18 +163,6 @@ data/acos/agentdb/cache/
 # Anything under .frankx/private/ is operator-only and never reaches the site.
 .frankx/private/
 
-# Operator-only substrates — NEVER commit to this PUBLIC repo.
-# These live in the private FrankX dev repo. Tracking them here would
-# leak machine inventory, family biographical files, and credential paths.
-# Background: agy attempted to sync them on 2026-05-30; caught pre-push.
-.hearth/
-.umwelt/
-.frankx/machine/
-
-# Orphan drag-drops that don't belong at repo root — assets go under public/
-/connect-live.png
-/connect-qr.png
-
 # 404 telemetry + agentic backfill queue (route-recovery system, Phases 2+3).
 # Operator surface at /admin/404-radar reads these; committing them would leak
 # request URLs and personal browsing patterns. The directory is created lazily
@@ -180,6 +180,13 @@ __pycache__/
 /public/schema-graph.json
 /public/sitemap-extras.xml
 
+# ACOS v11 status cache (regenerate: node scripts/acos-status.mjs)
+.acos/
+# Workflow Tier runtime state (operational, not source)
+data/workflow-gates.jsonl
+data/workflow-trajectories.jsonl
+.gstack/
+
 # Starlight/ACOS temporary files
 .agent/
 .system_generated/
@@ -190,4 +197,17 @@ link-checker-report.txt
 
 # Starlight/ACOS temporary files
 .starlight/
+!.starlight/
+.starlight/*
+!.starlight/design-contract.json
+!.starlight/release-evidence/
+!.starlight/release-evidence/**
 .gemini/
+
+.vercel
+
+# web-excellence pack — local evidence, not repo artifacts
+.visual-proof/
+.lighthouse.json
+.extract-design-system/
+.claude/skills/.replaced/

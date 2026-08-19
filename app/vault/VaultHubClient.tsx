@@ -7,6 +7,7 @@ import { ArrowLeft, Sparkles, Search } from 'lucide-react'
 import type { VaultCollection } from '@/lib/vault-types'
 import { VaultCollectionCard } from '@/components/vault/VaultCollectionCard'
 import { VaultStats } from '@/components/vault/VaultStats'
+import { EmailSignup } from '@/components/email-signup'
 
 export function VaultHubClient({
   collections,
@@ -122,6 +123,24 @@ export function VaultHubClient({
             </button>
           </div>
         )}
+      </section>
+
+      {/* Capture */}
+      <section className="max-w-7xl mx-auto px-6 pb-24">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+          <h2 className="text-xl font-bold text-white">New drops, one email</h2>
+          <p className="mt-2 max-w-xl text-sm text-white/50">
+            The vault grows as new visual work ships. Get a note when a new collection
+            lands — what it is, how it was made, and where it is being used.
+          </p>
+          <EmailSignup
+            listType="arcanea"
+            compact
+            placeholder="you@example.com"
+            buttonText="Get vault updates"
+            className="mt-4 max-w-md"
+          />
+        </div>
       </section>
 
       {/* Cross-link to Gallery */}

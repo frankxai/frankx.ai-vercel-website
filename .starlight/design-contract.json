@@ -1,0 +1,26 @@
+{
+  "schema_version": "starlight.design_contract.v1",
+  "repository": "frankxai/frankx.ai-vercel-website",
+  "kernel_commit_sha": "80830c60040967956580c761772469664c44dd55",
+  "brand": {
+    "id": "frankx",
+    "pack_sha256": "e2473302f44b3c756c9a26f3bce85e82d2d3b4b72e45045c0c44832dddab98f2"
+  },
+  "surfaces": [
+    {
+      "id": "homepage",
+      "mode": "editorial",
+      "claim_classes": ["availability", "capability", "provenance"]
+    },
+    {
+      "id": "ai-architecture",
+      "mode": "product",
+      "claim_classes": ["capability", "provenance"]
+    }
+  ],
+  "local_contracts": ["AGENTS.md", "design.md", "taste.md"],
+  "release_evidence": {
+    "schema_version": "starlight.web_release_evidence.v1",
+    "receipt_directory": ".starlight/release-evidence"
+  }
+}

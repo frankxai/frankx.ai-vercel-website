@@ -421,7 +421,7 @@ After the five, do **the cull**:
 - **Recommend one.** Tell me which to ship and the single reason. Be opinionated.
 - **Name the surviving runner-up** and the one situation in which I'd pick it over the recommended draft.
 
-**Anti-slop — hard cuts.** Forbidden in any draft: "Game changer". "Here's the thing". "Let that sink in". "Game-changing". "Unlock". "Leverage". "Dive into". "It's worth noting". Three-emoji bullet headers. "1/n" thread openers. Em-dash overuse (max one per paragraph).
+**Anti-slop — hard cuts.** Forbidden in any draft: "Game changer". "Here's the thing". "Let that sink in". Hype adjectives standing in for a specific claim. "Unlock". "Leverage". Generic "explore/examine this topic" framing. "Worth mentioning" hedges. Three-emoji bullet headers. "1/n" thread openers. Em-dash overuse (max one per paragraph).
 
 **WOW test:** read the recommended draft aloud. If you wouldn't say this sentence to a friend at a coffee shop, the offending phrase has to go. Replace it before declaring done.
 
@@ -522,7 +522,7 @@ Anatomy:
 - **Body** (4–6 lines) — name the specific moment, the specific people, the specific surprise or failure. No abstract advice. No "lessons learned" framing.
 - **Close** (1 line) — a question that invites a real response
 
-Anti-slop hard-cuts: "Game changer", "Here's the thing", "Let that sink in", "Unlock", "Leverage", "Dive into", "It's worth noting", three-emoji bullets, "1/n" thread openers.
+Anti-slop hard-cuts: "Game changer", "Here's the thing", "Let that sink in", "Unlock", "Leverage", generic "explore this topic" framing, "worth mentioning" hedges, three-emoji bullets, "1/n" thread openers.
 
 ---
 
@@ -717,7 +717,7 @@ WALLPAPER — SQUARE / SOCIAL (1:1)
 
 Each ends with model-appropriate flags: \`--ar 9:16 --no text --style raw\` for Midjourney equivalent, or the model's native parameter format.
 
-**Banned in your prompt strings**: "revolutionary", "transformative", "luminous", "ethereal", "mystical", "unlock", "journey", "awakening". If your draft contains any of these, rewrite. The image should look like quiet luxury — Stripe homepage restraint, not retreat-poster mysticism.
+**Banned in your prompt strings**: hype adjectives for a claim you haven't earned, "transformative", "luminous", "ethereal", "mystical", "unlock", "journey", "awakening". If your draft contains any of these, rewrite. The image should look like quiet luxury — Stripe homepage restraint, not retreat-poster mysticism.
 
 ---
 

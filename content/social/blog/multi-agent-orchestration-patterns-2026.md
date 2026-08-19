@@ -9,7 +9,7 @@ Visuals:
 ## LinkedIn
 Multi-Agent Orchestration Patterns: Building Production Systems in 2026
 
-Beyond simple agent comparisons. Deep dive into orchestration patterns, handoff strategies, state management, and observability for production multi-agent systems.
+Beyond simple agent comparisons: orchestration patterns, handoff strategies, state management, and observability for production multi-agent systems.
 
 What matters now: Tools become durable systems when memory, evals, and deployment discipline converge.
 
@@ -20,7 +20,7 @@ Read the full analysis: https://frankx.ai/blog/multi-agent-orchestration-pattern
 ## X Thread
 1/ Multi-Agent Orchestration Patterns: Building Production Systems in 2026
 
-Beyond simple agent comparisons. Deep dive into orchestration patterns, handoff strategies, state management, and observability for production multi-agent systems.
+Beyond simple agent comparisons: orchestration patterns, handoff strategies, state management, and observability for production multi-agent systems.
 
 2/ The real signal is not another isolated AI tool. It is the move toward agent stack as an operating layer.
 

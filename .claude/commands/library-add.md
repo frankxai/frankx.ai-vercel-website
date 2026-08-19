@@ -12,6 +12,10 @@ Arguments: `/library-add "Book Title" [by Author] [--isbn=XXXX] [--amazon=URL]`
 
 If only the title is given, infer the author and ISBN. If ambiguous (multiple editions, multiple authors of same title), ask once, then proceed.
 
+## Photo-first prerequisite
+
+When the input includes a book photo, handwritten note, Kindle export, or voice memo, run `/library-capture` first. It determines the source pages, public/private boundary, rights note, and whether this should be a source-marked field note rather than a full-book review. Never put private reflection or readable page scans into `data/book-reviews.ts`.
+
 ## Execution
 
 ### Step 1 — Validate schema
@@ -94,6 +98,6 @@ Run /library-deepen {slug} to add quotes, chapters, related reading, and videos.
 
 ## Integration
 
-- Part of the Library OS workflow: `/library-add` → `/library-deepen` → `/library-research` → ship
+- Part of the Library OS workflow: `/library-capture` (when source-backed) → `/library-add` → `/library-deepen` → `/library-research` → ship
 - Output format matches `app/books/types.ts::BookReview`
 - Paired with skill `library-os` for the full workflow context

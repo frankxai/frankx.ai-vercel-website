@@ -69,7 +69,7 @@ ${d.subtitle}
 
   const content = `# FrankX — Comprehensive Site Map (llms-full.txt)
 
-> Personal hub of Frank X. Riemer — former AI architect at Oracle, creator of 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+> Personal hub of Frank X. Riemer — AI Architect & Creator. 12,000+ AI-generated songs with Suno. ${siteConfig.description}
 
 This is the deep-link variant of /llms.txt — designed for AI agents that benefit from per-page summaries before fetching full content. For the concise version see [/llms.txt](${SITE_URL}/llms.txt).
 
@@ -85,6 +85,11 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Homepage](${SITE_URL}/): Hub with recent work and primary funnels
 - [Frank Riemer](${SITE_URL}/frank-riemer): Canonical founder/entity page for Frank Riemer and FrankX
 - [About Frank](${SITE_URL}/about): Story, identity, work patterns
+- [Core Qualities](${SITE_URL}/qualities): Freedom, Mastery, Meaning, and Connection — a public, evolving constitution for the work
+- [Freedom](${SITE_URL}/qualities/freedom): Agency and optionality as the direction of the system
+- [Mastery](${SITE_URL}/qualities/mastery): Inherited craft, durable skill, and judgment as the method
+- [Meaning](${SITE_URL}/qualities/meaning): Relevance, purpose, and coherence as the compass
+- [Connection](${SITE_URL}/qualities/connection): Trust, belonging, and collective capability as the multiplier
 - [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, public proof, editorial boundaries, and contact
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
 - [Signal Loop](${SITE_URL}/newsletter): Main weekly letter on AI architecture, creator systems, music experiments, peak-state notes, and trustworthy human-AI work

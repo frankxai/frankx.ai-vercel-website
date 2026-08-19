@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { EmailSignup } from '@/components/email-signup'
 import {
   ArrowRight,
   Bot,
@@ -483,6 +484,25 @@ export default function AgenticAiCenterPage() {
                 <p className="mt-3 text-sm leading-6 text-slate-400">{faq.answer}</p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/10 py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+            <h2 className="text-xl font-bold text-white">New agentic patterns, as they ship</h2>
+            <p className="mt-2 max-w-xl text-sm text-slate-400">
+              When a new architecture guide, orchestration pattern, or governance checklist
+              lands in this hub, one email goes out with what changed and why it matters.
+            </p>
+            <EmailSignup
+              listType="ai-architect"
+              compact
+              placeholder="you@example.com"
+              buttonText="Get architecture updates"
+              className="mt-4 max-w-md"
+            />
           </div>
         </div>
       </section>

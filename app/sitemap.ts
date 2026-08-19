@@ -5,6 +5,12 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
+import { learningPaths } from '@/data/learning-paths'
+import { getMvuEntrySummaries } from '@/lib/mvu'
+import { getJournalEntrySummaries } from '@/lib/journal'
+import { isCanonicalBlogSlug } from '@/lib/blog-redirects.mjs'
+import { askQuestions } from '@/data/ask-questions'
+import { publishedSignals } from '@/lib/dream100'
 
 const BASE_URL = siteConfig.url
 
@@ -22,6 +28,7 @@ function getBlogEntries(): { slug: string; date: string }[] {
     const seen = new Set<string>()
     return files
       .filter(file => file.endsWith('.mdx'))
+      .filter(file => isCanonicalBlogSlug(getSlugFromFilename(file)))
       .map(file => {
         const slug = getSlugFromFilename(file)
         if (seen.has(slug)) return null
@@ -97,7 +104,7 @@ function getNewsletterIssues(): { slug: string; date: string; status: string }[]
   }
 }
 
-function getRouteIndexRoutes(): Array<{ href: string; type: string }> {
+function getRouteIndexRoutes(): Array<{ href: string; type: string; sitemap?: boolean }> {
   try {
     const routeIndexPath = path.join(process.cwd(), 'data', 'route-index.json')
     const raw = JSON.parse(fs.readFileSync(routeIndexPath, 'utf8'))
@@ -114,9 +121,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages = [
     { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/qualities', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/journal', priority: 0.8, changeFrequency: 'daily' as const },
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
@@ -235,6 +244,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/terms',
     '/legal',
+    '/licensing',
   ]
 
   // Strategy and framework pages
@@ -271,6 +281,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Section pages (important navigation destinations)
   const sectionPages = [
     { url: '/vision', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/manifestation', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/manifestation/quest', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/the-secret', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/think-and-grow-rich', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/ai-world', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/see-through-the-noise', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -337,6 +351,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/signals', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/dream-100', priority: 0.82, changeFrequency: 'weekly' as const },
   ]
 
   // Library OS hub + manifesto/build/quotes funnels
@@ -345,6 +361,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/library/approach', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/library/build', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/library/quotes', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/library/rockstar-energy', priority: 0.8, changeFrequency: 'monthly' as const },
   ]
 
   // Library OS — individual book deep-dives (dynamic from book-reviews registry)
@@ -381,6 +398,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Get dynamic content
   const blogEntries = getBlogEntries()
+  const mvuEntries = getMvuEntrySummaries()
+  const journalEntries = getJournalEntrySummaries()
   const guideSlugs = getGuideSlugs()
   const productSlugs = getProductSlugs()
 
@@ -414,6 +433,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: currentDate,
         changeFrequency: page.changeFrequency,
         priority: page.priority,
+      })
+    })
+
+    publishedSignals.forEach(signal => {
+      entries.push({
+        url: `${BASE_URL}/signals/${signal.slug}`,
+        lastModified: signal.updatedAt,
+        changeFrequency: 'weekly',
+        priority: 0.78,
       })
     })
   
@@ -536,6 +564,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Ask Q&A detail pages (/ask/[slug]) — dynamic route generated from ask-questions data
+  askQuestions.forEach(q => {
+    const parsed = q.date ? new Date(q.date) : null
+    entries.push({
+      url: `${BASE_URL}/ask/${q.slug}`,
+      lastModified: parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    })
+  })
+
   // Legal pages
   legalPages.forEach(page => {
     entries.push({
@@ -553,6 +592,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
+    })
+  })
+
+  // Learn portal detail pages (/learn/[slug]) — dynamic route, not caught by the
+  // static route-index, so enumerate them explicitly. Recency from heroEyebrow.
+  learningPaths.forEach((path) => {
+    const m = path.heroEyebrow?.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/)
+    const parsed = m ? new Date(m[1]) : null
+    const lastModified = parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate
+    entries.push({
+      url: `${BASE_URL}/learn/${path.slug}`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     })
   })
 
@@ -603,6 +656,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
+    })
+  })
+
+  // MVU journey hub + event page + journal entries
+  entries.push(
+    { url: `${BASE_URL}/mvu`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.7 },
+  )
+
+  // Founder Signal OS launch surface. /mvu/sabrina stays out: it is noindex.
+  entries.push({
+    url: `${BASE_URL}/founder-signal`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  })
+
+  // Tallinn is closed; these entries are a finished archive, not a live feed.
+  mvuEntries.forEach(entry => {
+    entries.push({
+      url: `${BASE_URL}/mvu/${entry.slug}`,
+      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    })
+  })
+
+  // Journal entries (private/unpublished ones are filtered by the loader).
+  // Frontmatter dates are free text, so a typo like "2026-13-45" parses to an
+  // Invalid Date whose toISOString() throws — which would take out sitemap.xml
+  // for the whole site, not just journal. Fall back instead of throwing.
+  journalEntries.forEach(entry => {
+    const parsed = entry.date ? new Date(entry.date) : null
+    entries.push({
+      url: `${BASE_URL}/journal/${entry.slug}`,
+      lastModified:
+        parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
     })
   })
 
@@ -697,6 +789,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     legacy: { priority: 0.3, changeFrequency: 'yearly' },
   }
   for (const route of discovered) {
+    if (route.sitemap === false) continue
     const url = `${BASE_URL}${route.href}`
     if (seenUrls.has(url)) continue
     seenUrls.add(url)

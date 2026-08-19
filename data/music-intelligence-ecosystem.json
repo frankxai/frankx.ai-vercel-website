@@ -1,0 +1,114 @@
+{
+  "systems": [
+    {
+      "id": "music-lab",
+      "name": "Music Lab",
+      "scope": "frankx.ai",
+      "href": "/music-lab",
+      "external": false,
+      "linkLabel": "Open the Music Lab",
+      "description": "Free interactive instruments in the browser — piano, drums, DJ pads, singing bowls. No installs, no signup. The fastest way to start making sound.",
+      "tags": ["Free", "Interactive"],
+      "secondaryLinks": []
+    },
+    {
+      "id": "vibe-os",
+      "name": "Vibe OS",
+      "scope": "github",
+      "href": "https://github.com/frankxai/vibe-os",
+      "external": true,
+      "linkLabel": "View on GitHub",
+      "description": "Research-backed state-change music engine. A state library mapping BPM, key, mode, and instrumentation to target states, a Suno prompt generator, and an MCP server so agents can use it too.",
+      "tags": ["Open source", "MCP server"],
+      "secondaryLinks": [
+        { "label": "Overview on frankx.ai", "href": "/vibe", "external": false },
+        { "label": "Vibe OS product", "href": "/products/vibe-os", "external": false }
+      ]
+    },
+    {
+      "id": "music-intelligence-hub",
+      "name": "Music Intelligence Hub",
+      "scope": "github",
+      "href": "https://github.com/frankxai/music-intelligence-systems",
+      "external": true,
+      "linkLabel": "View on GitHub",
+      "description": "The registry that holds the system together — schemas, portable agent exports, research notes, and the open questions still being worked through in public.",
+      "tags": ["Registry", "Research"],
+      "secondaryLinks": []
+    },
+    {
+      "id": "ai-music-academy",
+      "name": "AI Music Academy",
+      "scope": "github",
+      "href": "https://github.com/frankxai/ai-music-academy",
+      "external": true,
+      "linkLabel": "View on GitHub",
+      "description": "Structured education for AI-era music creation — from first prompt to a finished, released track. Built for self-paced learners and classrooms alike.",
+      "tags": ["Education", "Open source"],
+      "secondaryLinks": []
+    },
+    {
+      "id": "awesome-music-agent-skills",
+      "name": "Awesome Music Agent Skills",
+      "scope": "github",
+      "href": "https://github.com/frankxai/awesome-music-agent-skills",
+      "external": true,
+      "linkLabel": "View on GitHub",
+      "description": "150+ curated tools, APIs, and MCP servers for music agents — generation, analysis, mixing, metadata, distribution. The map of what exists.",
+      "tags": ["Curated list", "MCP"],
+      "secondaryLinks": []
+    },
+    {
+      "id": "suno-skills",
+      "name": "Suno Skills",
+      "scope": "github",
+      "href": "https://github.com/frankxai/claude-skills-library",
+      "external": true,
+      "linkLabel": "View on GitHub",
+      "description": "Suno prompting skills for Claude — genre patterns, style stacking, and production checklists, distilled from years of daily production work.",
+      "tags": ["Claude skills", "Suno"],
+      "secondaryLinks": [
+        { "label": "Free prompt templates", "href": "/music/templates", "external": false },
+        { "label": "The music catalog", "href": "/music", "external": false }
+      ]
+    }
+  ],
+  "audiences": [
+    {
+      "id": "producers",
+      "name": "Producers",
+      "description": "Prompt engineering for Suno with genre patterns and production checklists — plus the parameter research behind why a prompt works.",
+      "entry": { "label": "Suno Skills on GitHub", "href": "https://github.com/frankxai/claude-skills-library", "external": true }
+    },
+    {
+      "id": "record-labels",
+      "name": "Record Labels",
+      "description": "Schemas and portable agent exports for catalog metadata, A&R workflows, and AI tooling that plugs into your existing stack.",
+      "entry": { "label": "Music Intelligence Hub", "href": "https://github.com/frankxai/music-intelligence-systems", "external": true }
+    },
+    {
+      "id": "film-sync",
+      "name": "Film & Sync",
+      "description": "State-to-parameter mapping turns a brief like \"tense but hopeful\" into concrete tempo, mode, and instrumentation choices. Browse the catalog for reference.",
+      "entry": { "label": "The music catalog", "href": "/music", "external": false }
+    },
+    {
+      "id": "orchestras-arrangers",
+      "name": "Orchestras & Arrangers",
+      "description": "The research on how tempo, mode, and timbre shape what an audience feels — useful whether the ensemble is human, AI, or both.",
+      "entry": { "label": "The state-change whitepaper", "href": "https://github.com/frankxai/vibe-os/blob/main/docs/whitepaper-the-science-of-state-change.md", "external": true }
+    },
+    {
+      "id": "content-creators",
+      "name": "Content Creators",
+      "description": "Copy-paste Suno templates for focus, energy, and calm — soundtrack your videos and streams without a music budget.",
+      "entry": { "label": "Free prompt templates", "href": "/music/templates", "external": false }
+    },
+    {
+      "id": "educators-students",
+      "name": "Educators & Students",
+      "description": "Browser instruments that need zero setup, plus a structured curriculum for teaching AI-era music creation.",
+      "entry": { "label": "Music Lab", "href": "/music-lab", "external": false }
+    }
+  ]
+}

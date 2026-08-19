@@ -25,15 +25,15 @@
 
 ### Professional Titles
 - AI Architect (primary — never "AI Systems Architect" per CLAUDE.md mandate)
-- Former AI Architect at Oracle
+- AI Architect & Creator
 - Musician-Technologist
 - Creator Transformation Guide
 
 ### Bio (Short - 160 chars for Twitter)
-Former AI architect at Oracle helping creators build practical AI systems. Founder @FrankX_AI • 12,000+ AI songs • human-first systems
+AI Architect & Creator helping creators build practical AI systems. Founder @FrankX_AI • 12,000+ AI songs • human-first systems
 
 ### Bio (Medium - 1 paragraph)
-Frank X. Riemer is a musician-technologist, founder of FrankX.AI, and former AI architect at Oracle. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
+Frank X. Riemer is a musician-technologist, founder of FrankX.AI, and an AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
 
 ### Bio (Long - Full Background)
 Frank X. Riemer is a musician, technologist, and creator transformation guide who spent the first half of his career as a professional violinist before discovering his calling at the intersection of creativity, business, and artificial intelligence.
@@ -57,7 +57,7 @@ Independent project. Not affiliated with, endorsed by, or sponsored by Oracle. O
 
 | Platform | Username | Full URL | Primary Use |
 |----------|----------|----------|-------------|
-| **X (Twitter)** | `@frankxeth` | `https://x.com/frankxeth` | Daily thoughts, AI insights, creator tips |
+| **X (Twitter)** | `@frankx_ai` | `https://x.com/frankx_ai` | Daily thoughts, AI insights, creator tips |
 | **LinkedIn** | `frank-x-riemer` | `https://www.linkedin.com/in/frank-x-riemer/` | Professional content, enterprise AI, networking |
 | **Instagram** | `@frank_riemer` | `https://www.instagram.com/frank_riemer/` | Personal journey, studio life, visual storytelling |
 | **Suno** | `@frankx` | `https://suno.com/@frankx` | AI music creation, Vibe OS sessions, sonic rituals |
@@ -99,7 +99,7 @@ x.com/frankxai                    ❌ WRONG
 ```
 linkedin.com/in/frank-x-riemer/   ✅ CORRECT
 suno.com/@frankx                  ✅ CORRECT
-x.com/frankxeth                   ✅ CORRECT
+x.com/frankx_ai                   ✅ CORRECT
 instagram.com/frank_riemer/       ✅ CORRECT
 linktr.ee/frankx.ai              ✅ CORRECT
 ```
@@ -113,7 +113,7 @@ linktr.ee/frankx.ai              ✅ CORRECT
 - `frankx.com` (redirect to .ai if owned)
 
 ### Social Media Handle Strategy
-- X/Twitter: `@frankxeth` (eth = crypto/tech focus)
+- X/Twitter: `@frankx_ai` (canonical AI identity)
 - LinkedIn: Professional full name `frank-x-riemer`
 - Instagram: Personal name `@frank_riemer`
 - Suno: Creator name `@frankx`
@@ -228,7 +228,7 @@ Translate Frank's musician-technologist and enterprise AI experience into langua
 ### ✅ Must Have Social Links
 
 **Footer (All Pages)**
-- X/Twitter: `https://x.com/frankxeth`
+- X/Twitter: `https://x.com/frankx_ai`
 - LinkedIn: `https://www.linkedin.com/in/frank-x-riemer/`
 - Instagram: `https://www.instagram.com/frank_riemer/`
 - Suno: `https://suno.com/@frankx`

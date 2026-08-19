@@ -12,6 +12,10 @@ Arguments: `/library-deepen {slug}` (e.g. `/library-deepen atomic-habits`)
 
 Optionally: `--source=path/to/book.pdf` or `--source=path/to/notes.md` to base extraction on the actual text.
 
+## Evidence boundary
+
+A handful of photographed pages supports only the passage-level insight actually observed. Do not create a chapter-by-chapter map from incomplete evidence. Run `/library-capture` first for photo/note inputs, use short verified quotes only, and retain the full source material outside the public repository.
+
 ## Execution
 
 ### Step 1 — Load the entry

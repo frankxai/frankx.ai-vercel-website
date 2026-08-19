@@ -9,8 +9,8 @@ import { MEET_AND_GROW_URL } from '@/lib/cta-links'
  * Working reality (top of page) is verifiable today. Proposal (bottom of page)
  * is clearly labeled.
  *
- * Status: pursuing Anthropic Claude for Work Partner Program. No formal
- * agreement, revenue share, or co-marketing arrangement is in place today.
+ * This is based on public evidence and Frank's own tool use. No application,
+ * reciprocal conversation, endorsement, or formal relationship is claimed.
  *
  * Named contacts at Anthropic never appear in this file. They live in
  * `.frankx/private/partnerships/anthropic-brief.md` (gitignored) if at all.
@@ -21,34 +21,37 @@ export const anthropic: Partner = {
   shortName: 'Anthropic',
   tier: 'model-provider',
   status: 'strategic-alignment',
-  lastUpdated: '2026-05-16',
+  publicationBasis: 'independent-proposal',
+  consentStatus: 'not-requested',
+  privacyClassification: 'public-only',
+  lastUpdated: '2026-07-30',
 
-  title: 'AI Architect — Claude-native AI CoE practice',
+  title: 'Independent Claude and agent-workflow opportunity brief',
   tagline:
-    'The harness this practice ships in. The conversation is about scaling that pattern.',
+    'How Claude fits FrankX’s multi-model workflow—and what one small collaboration could test.',
   subTagline:
-    "Frank's practice and Anthropic Claude already ship every day together. Claude Code is the build harness underneath frankx.ai, ACOS, SIS, Library OS, the AI Architect Academy, and the OCI Claude Code skill pack. The conversation is making the alignment formal through Claude for Work.",
+    'Frank uses Claude Code across public projects and learning material. This page is an independent proposal for possible future alignment, not an Anthropic-authored or endorsed page.',
 
-  contextWindow: `Claude Code is not a tool I evaluated and adopted. It is the harness every shipped artifact on frankx.ai is built in — the operating layer underneath an open coding-agent practice that already runs in public.
+  contextWindow: `Claude Code is one of the build harnesses Frank uses in a multi-model practice. Public repositories, learning material, and FrankX pages make parts of that working method inspectable without implying Anthropic involvement.
 
-The pattern I see: enterprises and architects are moving toward agent-native workflows faster than the methodology to support that move has matured. Reference implementations, opinionated harnesses, and a curriculum that meets architects where they work are scarce. Claude Code is the strongest harness on the market for that shift, and a Claude-native AI CoE methodology — open, multi-cloud, with public reference implementations — is what closes the gap.
+The pattern I see: enterprises and architects are moving toward agent-native workflows faster than the methodology to support that move has matured. Reference implementations, opinionated harnesses, and curriculum that meet architects where they work can help close that gap.
 
-That is the layer I bring. Former enterprise AI architecture experience, four public Claude-Code-native repositories, the AI Architect Academy curriculum with Claude Code at the centre, and the workshop Claude branch I already teach. This is an independent project, not affiliated with, endorsed by, or sponsored by Oracle.`,
+That is the layer FrankX brings: enterprise AI architecture experience, public agentic repositories, the AI Architect Academy, and workshop material. Any deeper Anthropic alignment described here is a FrankX-authored proposal that Anthropic has not reviewed or approved.`,
 
   workingReality: [
     {
-      label: 'Claude Code as daily build infrastructure',
+      label: 'Claude Code in Frank’s build practice',
       detail:
-        'Every project on frankx.ai ships in Claude Code — the marketing site, ACOS, SIS, Library OS, the Workshop OS, the partnership system itself. The harness is the working tool, not a logo.',
+        'Frank identifies Claude Code as one tool in his own multi-model workflow. The linked repositories are offered for inspection; this is not evidence of Anthropic participation.',
       evidence: {
         label: 'github.com/frankxai',
         href: 'https://github.com/frankxai',
       },
     },
     {
-      label: 'Claude-Code-native open-source body of work',
+      label: 'Public repositories relevant to the workflow',
       detail:
-        'Four public repositories carry the practice — ACOS (agentic creator OS), SIS (Starlight Intelligence System with a 31-tool MCP server), the AI Architect Academy curriculum, and the OCI Claude Code skill pack.',
+        'ACOS, SIS, the AI Architect Academy, and an OCI Claude Code skill pack are public artifacts relevant to this brief. Their individual repositories—not this page—are the evidence for what each contains.',
       evidence: {
         label: 'ACOS — github.com/frankxai/agentic-creator-os',
         href: 'https://github.com/frankxai/agentic-creator-os',
@@ -57,12 +60,16 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
     {
       label: 'Former enterprise AI architecture practice',
       detail:
-        'Former AI architect at Oracle. Enterprise AI architecture patterns translated into Claude-Code-native workflows using public knowledge, personal experience, and non-confidential material.',
+        'Frank translates non-confidential enterprise AI architecture experience into public, multi-model learning and build systems.',
     },
     {
-      label: 'Workshop Claude branch already taught',
+      label: 'Claude path in public workshop material',
       detail:
-        'I teach the Claude branch of the Build First AI Agent workshop — a multi-path format with Vercel AI SDK at the centre and Claude Code, Codex, Gemini, and ADK as branches. The Claude branch lands strongest in EMEA cohorts.',
+        'Build First AI Agent presents multiple implementation paths, including Claude. The material is independently authored and is not co-branded.',
+      evidence: {
+        label: '/workshops/build-first-ai-agent',
+        href: '/workshops/build-first-ai-agent',
+      },
     },
     {
       label: 'Public distribution surface',
@@ -73,15 +80,15 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
 
   proofPoints: [
     {
-      label: 'ACOS — agentic creator OS, Claude-Code-native',
+      label: 'ACOS — public agentic creator OS',
       href: 'https://github.com/frankxai/agentic-creator-os',
     },
     {
-      label: 'SIS — Starlight Intelligence System with 31-tool MCP server',
+      label: 'SIS — public Starlight Intelligence System repository',
       href: 'https://github.com/frankxai/starlight-intelligence-system',
     },
     {
-      label: 'AI Architect Academy — multi-cloud curriculum, Claude Code at the centre',
+      label: 'AI Architect Academy — public multi-cloud curriculum',
       href: 'https://github.com/frankxai/ai-architect-academy',
     },
     {
@@ -99,13 +106,13 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
 
   asymmetricValue: [
     {
-      title: 'Claude-Code-native open body of work',
-      body: 'Four public repositories — ACOS, SIS, AI Architect Academy, OCI skill pack — already running, already reviewable, already used by architects in the region. The reference implementations exist; the question is distribution.',
-      metric: '4 public repos',
+      title: 'Inspectable public body of work',
+      body: 'The public ACOS, SIS, AI Architect Academy, and OCI skill-pack repositories let a prospective collaborator review relevant artifacts before discussing distribution or attribution.',
+      metric: 'Public artifacts',
     },
     {
       title: 'Academy curriculum with Claude Code at the centre',
-      body: 'AI Architect Academy is multi-cloud by design and Claude-Code-native by default. The curriculum is the on-ramp content that turns architect interest into working agent-native practice.',
+      body: 'AI Architect Academy is multi-cloud by design and includes Claude-related material. Any Anthropic attribution or curriculum review would require separate approval.',
       metric: 'Multi-cloud curriculum',
     },
     {
@@ -114,14 +121,14 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
       metric: 'Public builder channels',
     },
     {
-      title: 'Workshop Claude branch already in market',
-      body: 'The Claude branch of Build First AI Agent ships today. Co-marketing or attribution slots in cleanly. No new format to design, no new audience to acquire — the workshop is running.',
-      metric: 'Live workshop branch',
+      title: 'Published workshop path',
+      body: 'Build First AI Agent includes a Claude path that can be reviewed publicly. A cohort, co-marketing plan, or attribution slot is not assumed.',
+      metric: 'Public workshop material',
     },
     {
       title: 'MCP work shipped publicly',
-      body: 'SIS includes a 31-tool MCP server with Oracle Autonomous Database connectivity — a public reference for what MCP looks like inside an opinionated coding-agent stack. The work is open for review.',
-      metric: '31-tool MCP server',
+      body: 'The SIS repository contains public MCP work that can be inspected directly. This page does not turn repository contents into a usage or adoption claim.',
+      metric: 'Public MCP repository',
     },
   ],
 
@@ -169,14 +176,14 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
     },
     {
       number: 4,
-      name: 'Claude for Work Partner Program — onboarding pathway',
-      cadence: 'Application + 90-day onboarding',
+      name: 'Applicable ecosystem pathway review',
+      cadence: 'One-time fit review',
       whatItIs:
-        'Pursue the Anthropic Claude for Work Partner Program. Application in flight, 90-day onboarding pathway, then steady-state inside whatever partner mechanics the program supports.',
+        'If there is mutual interest, identify an appropriate Anthropic ecosystem pathway without presuming eligibility, timing, or acceptance.',
       whatItProduces: [
-        'Partner Program application submitted',
-        'Partner tier and onboarding milestones defined',
-        'First partner-tier engagement (workshop attribution, content surface, or referenceable case-study)',
+        'A confirmed fit or no-fit decision',
+        'A written scope for any next step',
+        'A public status update only after both sides can verify it',
       ],
       pricingPosture:
         'Per program terms once accepted. Qualitative posture only at this stage.',
@@ -200,23 +207,23 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
   compoundingModel: [
     {
       month: 0,
-      title: 'Application + content commitment',
-      body: 'Anthropic Claude for Work Partner Program application submitted. First co-marketing slot for the Build First AI Agent Claude branch agreed. Content cadence on Claude-native agent patterns defined.',
+      title: 'Independent proposal published',
+      body: 'Public tool use, FrankX-authored curriculum, and the proposed future collaboration are kept visibly separate.',
     },
     {
       month: 3,
-      title: 'First co-published deep-dive and workshop attribution',
-      body: 'First co-authored or attribution-aligned deep-dive published on /research. First workshop cohort completed with attribution. ACOS surfaces aligned with current Claude Code conventions.',
+      title: 'Possible research and workshop pilot',
+      body: 'If mutually approved, test one attributed research piece or workshop module with a defined review boundary.',
     },
     {
       month: 6,
-      title: 'Curriculum module live, Academy distributing',
-      body: 'First Claude Code curriculum module published on the Academy repository. Architect cohort coaching delivered against the module. Partner tier in steady state, attribution lanes running.',
+      title: 'Possible curriculum integration',
+      body: 'Continue only if the pilot produces useful learning outcomes and both sides approve the attribution.',
     },
     {
       month: 12,
-      title: 'Referenceable case-study for Claude-native AI CoE',
-      body: 'A public reference implementation of a Claude-native AI CoE practice — ACOS, SIS, the Academy curriculum, the workshop branch, and the audience funnel running together. Renewal conversation at expanded scope.',
+      title: 'Evidence-based continuation decision',
+      body: 'Review real usage, learning outcomes, and editorial value before deciding whether any formal relationship makes sense.',
     },
   ],
 
@@ -249,9 +256,9 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
   ],
 
   whatThisIsNot: [
-    'Not an Anthropic-employee-flavored relationship — Frank is an independent operator with former enterprise AI architecture experience.',
+    'Not a claim that Anthropic authored, reviewed, or endorsed this page.',
     'Not a model-reseller pitch — there is no API margin or reseller mechanic in scope.',
-    'Not exclusive — Frank also ships in Codex, Gemini, and ADK where the workflow fits. The honest position is Claude-Code-native by default, not Claude-Code-only.',
+    'Not exclusive — Frank uses a multi-model practice and chooses tools by workflow.',
     'Not a deck-building consulting role — every deliverable is a public artifact (repo, curriculum module, workshop cohort, deep-dive).',
     'Not on-call API support or production implementation services.',
   ],
@@ -261,27 +268,25 @@ That is the layer I bring. Former enterprise AI architecture experience, four pu
     href: MEET_AND_GROW_URL,
   },
 
-  programStatus: 'Anthropic Claude for Work — application pathway',
+  programStatus: 'Independent proposal — no formal Anthropic relationship claimed',
 
   alreadyShared: [
-    'Claude Code is the harness for every shipped FrankX project — frankx.ai, ACOS, SIS, Library OS, the workshop curriculum.',
-    'ACOS, SIS, and Library OS are three Claude-Code-native open-source systems, all public on github.com/frankxai.',
-    'The Build First AI Agent workshop teaches Claude as a primary agent path to the EMEA enterprise architect audience.',
-    'Public builder channels across the site, newsletter, GitHub, and LinkedIn already carry Claude-native CoE patterns.',
-    'A2A protocol guide and the agent-framework comparison content publish Claude as the reasoning-lane benchmark.',
-    'Active feedback loop on Claude Code skills and the MCP roadmap from daily delivery use.',
+    'Frank identifies Claude Code as one tool in his multi-model build workflow.',
+    'ACOS, SIS, AI Architect Academy, and the OCI Claude Code skill pack are linked here as public artifacts for inspection.',
+    'Build First AI Agent includes a publicly inspectable Claude path.',
+    'FrankX publishes independent Claude-related notes; no private feedback channel, cohort outcome, or Anthropic involvement is claimed.',
   ],
 
   formalizationAsk:
-    "What's left to formalize. The work is in motion. The reference implementation is public. What remains is the formal program lane — Claude for Work Partner Program entry, attendee credits for the workshop Claude branch, and co-marketing visibility on the surfaces already pointing at you. That is the conversation.",
+    'If this independent proposal is relevant, the next step is a scoped fit conversation. Until that happens, no application, endorsement, shared roadmap, or formal relationship is claimed.',
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/anthropic.svg',
   // ogImagePath: '/images/partnerships/anthropic-og.png', // TODO: generate, falls back to site default
 
   seo: {
-    title: 'FrankX × Anthropic — Claude-Native AI CoE Practice | FrankX',
+    title: 'FrankX on Anthropic — Independent Claude-Native AI CoE Brief',
     description:
-      'A Claude-native AI CoE practice for EMEA — ACOS, SIS, AI Architect Academy, and the workshop Claude branch already running in public. Pursuing Claude for Work.',
+      'How FrankX uses Claude and Claude Code, plus an independently authored proposal for deeper alignment. No Anthropic partnership or endorsement is implied.',
   },
 }

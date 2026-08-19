@@ -171,6 +171,7 @@ export default function NewsletterHero({
                   type="email"
                   value={allEmail}
                   onChange={(e) => setAllEmail(e.target.value)}
+                  aria-label="Email address"
                   placeholder="your@email.com"
                   disabled={allStatus === 'loading'}
                   className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-slate-500 outline-none transition-all focus:border-violet-500/30 disabled:opacity-50"

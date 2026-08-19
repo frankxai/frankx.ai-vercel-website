@@ -28,8 +28,9 @@ const args = new Set(process.argv.slice(2))
 const WARN_ONLY = args.has('--warn')
 const JSON_OUT = args.has('--json')
 
-// File globs we scan
-const SCAN_DIRS = ['content', 'components', 'app']
+// File globs we scan. lib/ and data/ carry the nav configs, product ladders and
+// link registries that render as real <Link>s — they are not "just data".
+const SCAN_DIRS = ['content', 'components', 'app', 'lib', 'data']
 const EXTENSIONS = new Set(['.mdx', '.md', '.tsx', '.ts'])
 
 // Hrefs we deliberately exclude from validation
@@ -55,7 +56,7 @@ const SKIP_PREFIXES = [
   '/og/',      // OpenGraph generated images
 ]
 // Static-asset file extensions — also public/* assets, not routes
-const ASSET_EXT_RE = /\.(png|jpg|jpeg|gif|svg|webp|avif|ico|pdf|zip|mp4|mp3|wav|xml|txt|html|css|js|woff|woff2|ttf|otf)$/i
+const ASSET_EXT_RE = /\.(png|jpg|jpeg|gif|svg|webp|avif|ico|pdf|zip|mp4|mp3|wav|json|xml|txt|html|css|js|woff|woff2|ttf|otf)$/i
 // Hrefs that are template placeholders, not real paths
 const TEMPLATE_RE = /\$\{|\{\{|\$\(|<%/
 
@@ -70,6 +71,59 @@ try {
 const validHrefs = new Set(idx.routes.map((r) => r.href))
 const aliasMap = idx.aliases || {}
 const validAliases = new Set(Object.keys(aliasMap))
+
+const PUBLIC_DIR = path.join(ROOT, 'public')
+
+/**
+ * Files under public/ are served at the site root but are not routes, so they
+ * never appear in route-index. Resolve them against the filesystem instead of
+ * extending SKIP_PREFIXES: an allowlist only covers the directories someone
+ * remembered, and silently reports a real, working asset as broken the first
+ * time a new one appears. That is how /skills/ started failing.
+ */
+function isPublicAsset(href) {
+  const rel = href.replace(/^\/+/, '')
+  if (!rel) return false
+  const resolved = path.resolve(PUBLIC_DIR, rel)
+  // Never let a '../' in source escape public/.
+  if (resolved !== PUBLIC_DIR && !resolved.startsWith(PUBLIC_DIR + path.sep)) return false
+  return fs.existsSync(resolved) && fs.statSync(resolved).isFile()
+}
+
+const APP_DIR = path.join(ROOT, 'app')
+const ROUTE_HANDLER_FILES = ['route.ts', 'route.tsx', 'route.js', 'route.mjs']
+
+/**
+ * Some paths that end in a file extension are not files at all — they are Next
+ * route handlers. /rss.xml is app/rss.xml/route.ts; /journal/feed.xml is
+ * app/journal/feed.xml/route.ts. They serve real content and are not all
+ * present in route-index, so neither the public/ lookup nor the index finds
+ * them. Resolve them against the app tree rather than reporting them broken.
+ */
+function isRouteHandler(href) {
+  const rel = href.replace(/^\/+/, '')
+  if (!rel) return false
+  const dir = path.resolve(APP_DIR, rel)
+  if (dir !== APP_DIR && !dir.startsWith(APP_DIR + path.sep)) return false
+  return ROUTE_HANDLER_FILES.some((f) => fs.existsSync(path.join(dir, f)))
+}
+
+const PAGE_FILES = ['page.tsx', 'page.ts', 'page.js', 'page.jsx', 'page.mdx']
+
+/**
+ * Some real pages are pure redirect stubs — `app/consulting/page.tsx` is a
+ * three-line `redirect('/work-with-me')`. They serve a working URL but the
+ * route-index omits them, so widening the scan surfaced them as "broken".
+ * They are not broken: resolve them against the app tree the same way route
+ * handlers are, rather than adding names to an allowlist that goes stale.
+ */
+function isAppPage(href) {
+  const rel = href.replace(/^\/+/, '')
+  if (!rel) return false
+  const dir = path.resolve(APP_DIR, rel)
+  if (dir !== APP_DIR && !dir.startsWith(APP_DIR + path.sep)) return false
+  return PAGE_FILES.some((f) => fs.existsSync(path.join(dir, f)))
+}
 
 // ─── walk source tree ───────────────────────────────────────
 /** @type {{file: string, line: number, href: string}[]} */
@@ -99,6 +153,12 @@ function walk(dir) {
 // fragments are stripped before lookup.
 const PATTERNS = [
   /\bhref=["']([^"']+)["']/g,
+  // Object-literal form: `href: '/x'`. Every nav config, product ladder and
+  // linktree entry in this repo is written this way, and the JSX-attribute
+  // pattern above (href=) structurally cannot see any of them — so a broken
+  // link in data/ or a nav config passed the gate for as long as it existed.
+  // Adding this surfaced 9 real breaks, two of them in the global nav.
+  /\bhref:\s*["']([^"']+)["']/g,
   /\bto=["']([^"']+)["']/g,
   /\]\((\/[^)\s]+)\)/g, // markdown link
 ]
@@ -121,7 +181,6 @@ function scanFile(file) {
         const href = m[1]
         if (!href.startsWith('/')) continue
         if (SKIP_PREFIXES.some((p) => href.startsWith(p))) continue
-        if (ASSET_EXT_RE.test(href)) continue
         if (TEMPLATE_RE.test(href)) continue
 
         // Strip query string + hash for matching
@@ -134,6 +193,21 @@ function scanFile(file) {
         if (validAliases.has(cleanHref)) continue
         // Trailing-slash variant
         if (validHrefs.has(cleanHref.replace(/\/$/, ''))) continue
+
+        // Anything ending in a file extension is an asset or a file-shaped
+        // route: resolve it, do not wave it through. This used to skip on the
+        // extension alone, so a missing /hero.png passed silently — the same
+        // guess-instead-of-look mistake as the old SKIP_PREFIXES list, one
+        // line higher up.
+        if (ASSET_EXT_RE.test(cleanHref)) {
+          if (isPublicAsset(cleanHref) || isRouteHandler(cleanHref)) continue
+          findings.push({
+            file: path.relative(ROOT, file).replace(/\\/g, '/'),
+            line: i + 1,
+            href: cleanHref,
+          })
+          continue
+        }
         // Dynamic-segment heuristic: if the href matches a known prefix like
         // /blog/<something>, /workshops/<something> and we have the listing
         // page, assume the dynamic page exists (we can't fully resolve every slug)
@@ -144,6 +218,12 @@ function scanFile(file) {
           // (e.g. unreadable frontmatter). Logged at --warn level.
           continue
         }
+
+        // A real file under public/ is a working link, not a broken route.
+        if (isPublicAsset(cleanHref)) continue
+        // A real page.tsx in the app tree serves this URL even when the
+        // route-index omits it (redirect stubs, most commonly).
+        if (isAppPage(cleanHref)) continue
 
         findings.push({
           file: path.relative(ROOT, file).replace(/\\/g, '/'),

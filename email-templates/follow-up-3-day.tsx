@@ -1,5 +1,7 @@
 // 3-Day Follow-up Email Template
 
+import { socialLinks } from '@/lib/social-links'
+
 interface FollowUp3DayEmailProps {
   name: string
   pdfTitle: string
@@ -64,7 +66,7 @@ export function FollowUp3DayEmail({ name, pdfTitle, guideSlug, relatedContentUrl
       </div>
 
       <p style="font-size: 16px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
-        That's how I went from tech-overwhelmed musician to creating 500+ AI songs and building enterprise systems at Oracle.
+        That's how I went from tech-overwhelmed musician to creating 12,000+ AI songs and building tools for creators worldwide.
       </p>
 
       <h2 style="font-size: 20px; font-weight: 600; color: white; margin: 0 0 16px 0;">
@@ -117,8 +119,8 @@ export function FollowUp3DayEmail({ name, pdfTitle, guideSlug, relatedContentUrl
     <div style="text-align: center; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
       <p style="font-size: 12px; color: #64748b; margin: 0 0 16px 0;">
         <strong style="color: #94a3b8;">Frank Riemer</strong><br>
-        Former AI Architect at Oracle | Creator<br>
-        500+ AI songs | Enterprise AI Systems
+        AI Architect & Creator<br>
+        12,000+ AI songs | Workshops & Tools
       </p>
 
       <div style="margin: 16px 0;">
@@ -126,7 +128,7 @@ export function FollowUp3DayEmail({ name, pdfTitle, guideSlug, relatedContentUrl
           frankx.ai
         </a>
         <span style="color: #64748b;">|</span>
-        <a href="https://x.com/frankxeth" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
+        <a href="${socialLinks.x}" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
           X
         </a>
         <span style="color: #64748b;">|</span>

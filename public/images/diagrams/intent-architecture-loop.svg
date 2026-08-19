@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Intent-to-institution loop</title>
+  <desc id="desc">A closed loop from private intention through an intent contract, orchestration, execution, evidence, human judgment, and reusable operating memory.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0a0b"/>
+      <stop offset="1" stop-color="#0d1517"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f5b942"/>
+      <stop offset="0.45" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0 L12 6 L0 12 Z" fill="#38d7c5"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" rx="36" fill="url(#bg)"/>
+  <path d="M210 270 H1390" stroke="url(#line)" stroke-width="5" opacity=".8" marker-end="url(#arrow)"/>
+  <path d="M1390 630 H210" stroke="url(#line)" stroke-width="5" opacity=".8" marker-end="url(#arrow)"/>
+  <path d="M1390 270 Q1490 270 1490 370 V530 Q1490 630 1390 630" fill="none" stroke="#10b981" stroke-width="5" opacity=".7" marker-end="url(#arrow)"/>
+  <path d="M210 630 Q110 630 110 530 V370 Q110 270 210 270" fill="none" stroke="#f5b942" stroke-width="5" opacity=".7" marker-end="url(#arrow)"/>
+
+  <g font-family="Inter, Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(250 270)">
+      <circle r="94" fill="#151311" stroke="#f5b942" stroke-width="3"/>
+      <circle r="71" fill="none" stroke="#f5b942" opacity=".18"/>
+      <text y="-7" fill="#f5b942" font-size="24" font-weight="700">Private</text>
+      <text y="25" fill="#ffffff" font-size="24" font-weight="700">intention</text>
+    </g>
+    <g transform="translate(620 270)">
+      <rect x="-135" y="-82" width="270" height="164" rx="28" fill="#0e1b1e" stroke="#06b6d4" stroke-width="3"/>
+      <text y="-5" fill="#ffffff" font-size="25" font-weight="700">Intent Contract</text>
+      <text y="31" fill="#7dd3fc" font-size="16">purpose · limits · proof</text>
+    </g>
+    <g transform="translate(980 270)">
+      <rect x="-135" y="-82" width="270" height="164" rx="28" fill="#0d1c19" stroke="#10b981" stroke-width="3"/>
+      <text y="-5" fill="#ffffff" font-size="25" font-weight="700">Orchestration</text>
+      <text y="31" fill="#6ee7b7" font-size="16">route · delegate · adapt</text>
+    </g>
+    <g transform="translate(1335 270)">
+      <circle r="94" fill="#0d1c19" stroke="#10b981" stroke-width="3"/>
+      <text y="-20" fill="#ffffff" font-size="22" font-weight="700">Agents · tools</text>
+      <text y="13" fill="#ffffff" font-size="22" font-weight="700">· humans</text>
+      <text y="47" fill="#6ee7b7" font-size="15">bounded execution</text>
+    </g>
+
+    <g transform="translate(1335 630)">
+      <circle r="94" fill="#0e1b1e" stroke="#06b6d4" stroke-width="3"/>
+      <text y="-7" fill="#ffffff" font-size="25" font-weight="700">Evidence</text>
+      <text y="27" fill="#7dd3fc" font-size="16">artifacts · tests · receipts</text>
+    </g>
+    <g transform="translate(950 630)">
+      <rect x="-145" y="-82" width="290" height="164" rx="28" fill="#11191a" stroke="#38d7c5" stroke-width="3"/>
+      <text y="-5" fill="#ffffff" font-size="25" font-weight="700">Human judgment</text>
+      <text y="31" fill="#9ce8df" font-size="16">accept · correct · escalate</text>
+    </g>
+    <g transform="translate(480 630)">
+      <rect x="-170" y="-82" width="340" height="164" rx="28" fill="#151311" stroke="#f5b942" stroke-width="3"/>
+      <text y="-5" fill="#ffffff" font-size="25" font-weight="700">Operating memory</text>
+      <text y="31" fill="#f5cf7a" font-size="16">patterns · decisions · learning</text>
+    </g>
+  </g>
+
+  <text x="800" y="805" text-anchor="middle" fill="#8c9a9d" font-family="Inter, Arial, sans-serif" font-size="20">A completed task becomes organizational intelligence only when evidence and corrections return to memory.</text>
+</svg>

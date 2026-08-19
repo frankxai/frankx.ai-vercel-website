@@ -13,6 +13,7 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -23,6 +24,9 @@
       }
     ],
     "paths": {
+      "@/data/book-reviews": [
+        "./data/library-reviews.ts"
+      ],
       "@/*": [
         "./*"
       ]
@@ -78,7 +82,6 @@
     "inbound",
     "lib/pipelines",
     "content-universe",
-    "new-landing-page-backup",
     "brand",
     "playwright.config.ts",
     "vitest.config.ts",

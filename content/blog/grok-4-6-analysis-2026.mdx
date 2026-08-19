@@ -1,0 +1,155 @@
+---
+title: "Grok 4.6: Same Scale, Stronger Agents"
+description: "xAI shipped Grok 4.6 on 12 August 2026 with large gains in long-running agent work. A rigorous brief separating vendor numbers from independent Starlight Model Arena measurements."
+date: "2026-08-14"
+lastUpdated: "2026-08-14"
+author: "Frank"
+readingGoal: "Understand Grok 4.6 benchmark results, agentic capabilities, and how it compares to frontier models in production workflows."
+category: "Intelligence Dispatches"
+tags:
+  - xai
+  - grok
+  - grok-4-6
+  - frontier-models
+  - benchmarks
+  - agentic-ai
+  - model-arena
+keywords:
+  - grok 4.6
+  - grok 4.6 review
+  - grok 4.6 vs grok 4.5
+  - grok 4.6 vs gpt-5.6 sol
+  - grok 4.6 benchmarks
+  - grok 4.6 pricing
+  - xai grok-4.6 api
+  - starlight model arena
+image: "/images/blog/grok-4-6-analysis-2026-hero.png"
+featured: true
+schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Treat Grok 4.6 as the current xAI flagship for long-running agent and coding work at $2/$6 per million tokens under 200k prompt tokens. Route it when stamina, first-pass app structure, and token efficiency matter more than a new base-model scale jump. Do not treat vendor or Artificial Analysis tables as Starlight Model Arena results. The SIS arena harness is still Claude Code Agent-native; no Grok 4.6 receipt exists in tools/arena/runs as of 2026-08-14."
+  coePillar: "Technology · model routing + Strategy · evidence honesty"
+  personas:
+    - persona: "Long-running coding agents"
+      pick: "Grok 4.6 (vendor and AA agentic gains; no SIS receipt yet)"
+    - persona: "Cost-sensitive frontier work"
+      pick: "Grok 4.6 at $2/$6 under 200k — confirm the 200k price cliff"
+    - persona: "Reviewer / judgment agents"
+      pick: "Keep Claude Opus / Fable on the current SIS arena receipts"
+    - persona: "SIS Model Arena contestants"
+      pick: "Do not add Grok until the harness can dispatch a non-Claude model and write a receipt"
+---
+
+# Grok 4.6: Same Scale, Stronger Agents
+
+**TL;DR.** SpaceXAI / xAI released **Grok 4.6** on 12 August 2026. It is a post-training refresh of Grok 4.5 on the same ~1.5T-class foundation, not a documented parameter-count jump. The company says the work targeted long-running agents and stronger first-pass interactive and visual projects. Official High scores move the Artificial Analysis Intelligence Index from 56 to **61**, matching GPT-5.6 Sol on that composite. Headline API price stays **$2 / $6 per 1M** input/output under 200k prompt tokens. Cached input rose to **$0.50**. The Starlight Model Arena has **not** run Grok 4.6.
+
+---
+
+## What is externally sourced
+
+These facts come from first-party or named independent pages retrieved on 14 August 2026.
+
+- **Release date and pitch.** xAI's announcement dated 12 August 2026 describes Grok 4.6 as building on Grok 4.5 with a focus on long-running agents and more ambitious interactive and visual work. ([x.ai/news/grok-4-6](https://x.ai/news/grok-4-6))
+- **Training recipe, vendor-stated.** Longer supplemental training than 4.5; curated model-generated reasoning and engineering data; Grok 4.5 regenerated SFT trajectories; agentic RL on coding, knowledge work, kernel optimization, web development, and CAD. ([same announcement](https://x.ai/news/grok-4-6))
+- **API contract.** Model id `grok-4.6`. 500,000-token context. Text and image input, text output, no text output limit. Knowledge cutoff 1 February 2026. Reasoning effort: `low`, `medium`, `high` (default), and new `xhigh`. ([docs.x.ai/developers/grok-4-6](https://docs.x.ai/developers/grok-4-6), [release notes](https://docs.x.ai/developers/release-notes))
+- **Pricing, vendor-stated.** $2 / $0.50 / $6 per 1M tokens (input / cached input / output) below 200k prompt tokens; $4 / $1 / $12 above. A fast variant is twice the price. ([release notes](https://docs.x.ai/developers/release-notes))
+- **Official High scoreboard (vendor table).** AA Intelligence 61 vs 4.5's 56; GDPVal-AA v2 1753 vs 1526; AA-Briefcase 1577 vs 1313; APEX-Agents 57.5% vs 47.1%; DeepSWE 1.1 65.9% vs 54%; Terminal-Bench 3.0 26% vs 15.7%; CursorBench 3.2 69.9% vs 66.7%. ([announcement](https://x.ai/news/grok-4-6))
+- **Independent composite.** Artificial Analysis reports 61 on the Intelligence Index, in line with GPT-5.6 Sol (max), behind Claude Opus 5 (63) and Claude Fable 5 (62). Measured cost per task $0.84. On AA-Briefcase, ~53 turns / ~0.5B input tokens versus ~103 turns / ~2.0B for Claude Opus 5 max. Cached-input price rose from $0.30 on 4.5 to $0.50. ([Artificial Analysis, 12 August 2026](https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis))
+
+## What is my analysis
+
+Grok 4.6 is an **agent refresh**, not a new brain. The useful question is not "did xAI leapfrog the frontier?" The useful question is: for a long-running coding or knowledge-work loop, does same-scale post-training plus unchanged $2/$6 list price change the routing table?
+
+On published composites, yes at the margin. 61 on the AA Index puts it next to GPT-5.6 Sol and still behind the Claude Opus 5 family. The larger movement is on **agent and office-style** evals (GDPVal, Briefcase, APEX-Agents, DeepSWE) and on **turn efficiency**. If AA's Briefcase turn counts hold in your harness, the cost advantage is bigger than the token price list.
+
+The 200k prompt-token cliff matters. Long agent loops that stay under 200k stay cheap. Loops that bloat context pay $4/$12. Cache hits are less discounted than on 4.5.
+
+I am not upgrading vendor or AA tables into Starlight winners. The SIS Model Arena still dispatches through Claude Code `Agent` model overrides (`fable`, `opus`, `sonnet`, `haiku`). There is no `grok-4.6` receipt in `tools/arena/runs/` as of this writing. The last Grok-related receipt is a June 2026 Composer lane, not 4.6.
+
+## How was Grok 4.6 trained?
+
+Only the vendor description is available. xAI says it did not move to a new public base. It ran a longer supplemental pass, regenerated SFT with Grok 4.5, filtered traces, then ran agentic RL in coding and design environments. That is consistent with a **same-scale SFT+RL** release. Parameter count is still not officially disclosed. Early 2T rumors were later treated as belonging to a later Grok 4.7 line in third-party writeups; I am not treating those as confirmed.
+
+## Grok 4.6 vs Grok 4.5 vs published flagships
+
+All figures below are **vendor-stated or Artificial Analysis**. They are not Starlight Model Arena results.
+
+| Axis | Grok 4.5 High | Grok 4.6 High | GPT-5.6 Sol Max | Fable 5 Max | Source class |
+| --- | ---: | ---: | ---: | ---: | --- |
+| AA Intelligence Index | 56 | **61** | 61 | 62 | Vendor table + AA |
+| GDPVal-AA v2 Elo | 1526 | **1753** | 1728 | 1741 | Vendor table |
+| AA-Briefcase Elo | 1313 | **1577** | 1502 | 1574 | Vendor table / AA |
+| APEX-Agents | 47.1% | **57.5%** | 56.7% | 59.2% | Vendor table |
+| DeepSWE 1.1 | 54% | **65.9%** | 73% | 70% | Vendor table |
+| Terminal-Bench 3.0 | 15.7% | **26%** | 34.6% | 34.1% | Vendor table |
+| CursorBench 3.2 | 66.7% | **69.9%** | 67.2% | 70.5% | Vendor table |
+| Context | 500k | 500k | — | — | xAI docs |
+| List price under 200k | $2/$6 | $2/$6 | $5/$30 (AA) | — | xAI / AA |
+
+Read the table as a **routing hint**, not a championship. DeepSWE and Terminal-Bench still favor Sol/Fable on the vendor table. Grok's published edge is the combination of 61-level composite intelligence, agent-eval movement, and mid-pack token price.
+
+## What the Starlight arenas will and will not claim
+
+| Surface | Job | Grok 4.6 status on 2026-08-14 |
+| --- | --- | --- |
+| [/research/grok-4-6](/research/grok-4-6) | Sourced brief | This domain |
+| [/llm-hub](/llm-hub) | Catalog + routing | Registry entry added |
+| [/research/model-arena](/research/model-arena) | Receipt-gated SIS battles | **No 4.6 receipt. No winner recorded.** |
+| [/research/agent-benchmarks](/research/agent-benchmarks) | Published benchmark map | Use vendor/AA numbers with dates |
+| [/ai-architect](/ai-architect) | Operating field guide | Unchanged by this release |
+
+A later SIS round can include Grok only after the harness can pin a non-Claude model, run the same fixtures, and write a JSON receipt. Until then, any "Grok beat Opus on Starlight tasks" sentence is false.
+
+## What I tested
+
+I did **not** run a Starlight Model Arena card against Grok 4.6. I did retrieve the official announcement, API docs, release notes, and the Artificial Analysis article on 14 August 2026, and I compared those numbers to the Grok 4.5 rows in the same vendor table. This session is also running on Grok 4.6, which is an operating fact, not a scored eval.
+
+## How to route it this week
+
+1. **Default xAI flagship** for new Grok API work: `grok-4.6`, reasoning `high` unless you have a latency budget for `medium`.
+2. **Use `xhigh`** only when a long agent loop is stalling. It is a cost and latency knob, not a personality.
+3. **Watch the 200k cliff** and set a prompt cache key so cached input actually hits.
+4. **Keep Claude on SIS-native evals** until a Grok receipt exists.
+5. **Do not recycle Grok 4.3 or 4.1 coding scores** as 4.6 evidence.
+
+## Sources and method
+
+Directed question: what actually changed from Grok 4.5 to 4.6, what is vendor-claimed, and what should a builder do before the Starlight arena can score it?
+
+Sources retrieved 14 August 2026:
+
+1. [Introducing Grok 4.6](https://x.ai/news/grok-4-6) — official announcement
+2. [Grok 4.6 overview](https://docs.x.ai/developers/grok-4-6) — API contract
+3. [xAI release notes, 12 August 2026](https://docs.x.ai/developers/release-notes)
+4. [Artificial Analysis: Grok 4.6 benchmarks](https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis)
+
+Method: frankx.ai research phases — directed scan, source hierarchy, claim states, human publication decision. High-confidence claims here are limited to "the named page said X on the retrieval date." Cross-model gaps that mix vendor and independent runs stay directional.
+
+Limitations: no SIS receipt; no first-party token-level bake-off in this repo; company naming (xAI / SpaceXAI) is used as the pages themselves use it; parameter count remains undisclosed.
+
+## FAQ
+
+### Is Grok 4.6 a new base model?
+
+Not according to xAI. The announcement describes a longer supplemental run and regenerated SFT/RL on the Grok 4.5 foundation. Treat "2T" claims as unconfirmed unless xAI publishes them.
+
+### Does Grok 4.6 beat GPT-5.6 Sol?
+
+On the Artificial Analysis Intelligence Index, the published score is a **tie at 61**. On several vendor coding/terminal rows, Sol still leads. "Beat" is the wrong verb.
+
+### Should I switch every agent to Grok 4.6?
+
+Switch new xAI workloads and any 4.5 agent loops that were dying on stamina. Do not rip out Claude or Sol routes that already have measured receipts in your harness.
+
+### Did FrankX run a Grok 4.6 vs Claude battle?
+
+No. The public [Starlight Model Arena](/research/model-arena) only publishes JSON receipts. None exist for Grok 4.6.
+
+### What is the API price?
+
+$2 input / $6 output per million tokens below 200k prompt tokens; double above that. Cached input is $0.50. Confirm on the live pricing page before budgeting.
+
+---
+
+Related: [Research brief](/research/grok-4-6) · [Frontier models hub](/research/generative-ai) · [Model Arena](/research/model-arena) · [LLM Hub](/llm-hub) · [Grok 4.3 analysis](/blog/grok-4-3-analysis-2026)

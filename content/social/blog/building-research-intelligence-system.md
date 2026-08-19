@@ -16,7 +16,7 @@ generatedMode: "built-in-image-gen + deterministic social overlays"
 # Building a Research Intelligence System: How I Use AI Agents for Daily Knowledge Operations
 
 ## LinkedIn Post
-A deep dive into the multi-agent research system powering FrankX.AI - five specialized agents, three workflow modes, and a publication pipeline optimized for the AI age.
+How the multi-agent research system powering FrankX.AI works - five specialized agents, three workflow modes, and a publication pipeline optimized for the AI age.
 
 The real leverage is not the tool by itself. It is the operating layer around it: context, workflow, evals, deployment discipline, and a taste bar high enough to reject generic outputs.
 

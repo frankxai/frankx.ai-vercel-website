@@ -6,11 +6,16 @@ on:
     paths:
       - 'app/**'
       - 'components/**'
+      - 'content/**'
       - 'lib/**'
       - 'data/**'
+      - 'types/**'
+      - 'taste.md'
       - 'scripts/**'
       - 'package.json'
-      - 'package-lock.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.npmrc'
       - 'next.config.*'
       - 'tsconfig*.json'
       - '.eslintrc*'
@@ -21,11 +26,16 @@ on:
     paths:
       - 'app/**'
       - 'components/**'
+      - 'content/**'
       - 'lib/**'
       - 'data/**'
+      - 'types/**'
+      - 'taste.md'
       - 'scripts/**'
       - 'package.json'
-      - 'package-lock.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.npmrc'
       - 'next.config.*'
       - 'tsconfig*.json'
       - '.eslintrc*'
@@ -44,13 +54,15 @@ jobs:
   ci:
     name: CI
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
 
+      # No `version:` here on purpose. action-setup errors out if the version is
+      # specified both here and as `packageManager` in package.json; package.json
+      # is the single source of truth, so this step reads it from there.
       - uses: pnpm/action-setup@v4
         with:
-          version: 10
           run_install: false
 
       - uses: actions/setup-node@v5
@@ -60,11 +72,20 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Build integrity contract
+        run: pnpm run test:build-integrity
+
+      - name: AgentDB runtime smoke
+        run: pnpm run test:agentdb-runtime
+
       - name: Type Check
         run: pnpm run type-check
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Language refusal gate
+        run: pnpm run ai-slop:audit:strict
 
       - name: Build
         run: pnpm run build

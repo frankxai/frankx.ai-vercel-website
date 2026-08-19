@@ -1,0 +1,50 @@
+{
+  "metric": "needle-survival rate: fraction of (scenario, needle-depth) pairs where a fact planted earlier in a growing conversation is still present in the context sent to the model, per eviction strategy",
+  "n_scenarios": 5,
+  "needle_depths": [
+    0.1,
+    0.5,
+    0.9
+  ],
+  "anchor_turns": 10,
+  "strategies": [
+    "fifo",
+    "keep-first-and-last",
+    "retrieval-augmented"
+  ],
+  "totals": {
+    "fifo": {
+      "survived": 9,
+      "n": 15,
+      "survival_rate": 0.6
+    },
+    "keep-first-and-last": {
+      "survived": 9,
+      "n": 15,
+      "survival_rate": 0.6
+    },
+    "retrieval-augmented": {
+      "survived": 15,
+      "n": 15,
+      "survival_rate": 1
+    }
+  },
+  "survival_rate_by_depth": {
+    "0.1": {
+      "fifo": 0.4,
+      "keep-first-and-last": 0.6,
+      "retrieval-augmented": 1
+    },
+    "0.5": {
+      "fifo": 0.4,
+      "keep-first-and-last": 0.4,
+      "retrieval-augmented": 1
+    },
+    "0.9": {
+      "fifo": 1,
+      "keep-first-and-last": 0.8,
+      "retrieval-augmented": 1
+    }
+  },
+  "live": null
+}

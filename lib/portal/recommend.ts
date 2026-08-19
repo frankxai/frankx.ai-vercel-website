@@ -39,10 +39,6 @@ const ALLY_KIT_FALLBACK: Record<string, { title: string; href: string }> = {
     title: 'Ahmad Founder Creator Kit',
     href: '/downloads/ahmad-founder-creator-kit',
   },
-  'ana-ai-business-kit': {
-    title: 'Ana AI Business Kit',
-    href: '/downloads/ana-ai-business-kit',
-  },
   'jojo-hospitality-intelligence-kit': {
     title: 'Jojo Hospitality Intelligence Kit',
     href: '/downloads/jojo-hospitality-intelligence-kit',

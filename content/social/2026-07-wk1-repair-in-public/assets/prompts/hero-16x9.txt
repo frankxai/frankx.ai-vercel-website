@@ -1,0 +1,20 @@
+## CONCEPT
+Hero card for the audit essay (LinkedIn LI-1, X article card): the audit report itself as a floating artifact in a dark command room — flagged findings glowing among healthy rows.
+
+## COMPOSITION
+Wide 16:9. Dark command-room table surface in black glass across the lower third. A translucent floating report panel rendered as thin light strokes, showing a long list of abstract row segments — several rows glowing in a muted warning tone among many dim cyan-white rows. Faint constellation of status points in the background. Left third kept quieter for optional headline overlay.
+
+## SCENE
+Abstract executive command room, materials only — no chairs, no screens with readable UI, no windows.
+
+## LIGHTING
+Shallow depth of field, panel is the key light, brushed-metal edge highlights, cinematic falloff into black.
+
+## PALETTE
+Void black (#0a0a0b) base, graphite, dim cyan-white healthy rows, muted warning-tone flagged rows, emerald (#10b981) accent glow at panel edge. (v2 Tech-spectrum correction, 2026-07-04.)
+
+## MOOD
+Quiet authority, forensic calm, premium editorial.
+
+## STYLE REFERENCES
+FrankX brand world: intelligence console, deal room, signal radar. No readable text — rows are abstract line segments only. No people, no logos.

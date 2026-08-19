@@ -1,0 +1,108 @@
+{
+  "version": "2026-07-11",
+  "program": "FrankX living studio and mind palace",
+  "status": "staged-not-enqueued",
+  "admission": {
+    "state": "hold",
+    "reason": "Machine PP swarm preflight reported maintenance posture and insufficient resource headroom.",
+    "resume_when": "pp preflight --workload swarm returns allow or a bounded posture compatible with the requested lanes"
+  },
+  "human_gates": [
+    "production promotion",
+    "public social or email sends",
+    "cron or scheduled automation registration",
+    "pricing and offer changes",
+    "music rights and release approval",
+    "customer, partner, legal, DNS, credential, destructive, or spend actions"
+  ],
+  "jobs": [
+    {
+      "id": "frankx-home-mind-palace-v1",
+      "status": "active-local",
+      "objective": "Restore the music-led FrankX studio, add one accessible GSAP intent atlas, and prevent the experience from being silently replaced again.",
+      "repo": "C:\\Users\\frank\\starlight\\worktrees\\frankx-mind-palace-home-20260711",
+      "context": [
+        "docs/premium-web-os/frankx-mind-palace-home-spec-2026-07-11.md",
+        "docs/premium-web-os/frankx-mind-palace-gsap-scene-spec-2026-07-11.md"
+      ],
+      "workerLanes": ["repo-native implementation", "claims review", "visual QA"],
+      "allowedTools": ["Codex", "GSAP", "Next.js", "local tests", "Vercel preview after gates"],
+      "writeScopes": ["app/page.tsx", "components/home/**", "data/homepage-featured-release.ts", "scripts/tests/**", "docs/premium-web-os/**", "package.json"],
+      "stopConditions": ["scope overlaps an active checkout/pricing/ecosystem lane", "machine build or browser gate returns hold", "unverified claim or music rights state is required"],
+      "evidence": ["type check", "homepage contract", "desktop/mobile/reduced-motion captures", "design evidence >=26/30", "Vercel preview"],
+      "risk": "medium",
+      "handoff": "Draft PR only after one coherent local verification pass; production promotion remains Frank-gated."
+    },
+    {
+      "id": "frankx-weekly-reviewed-release",
+      "status": "staged-paused",
+      "automationId": "frankx-weekly-music-release-review",
+      "objective": "Prepare one weekly featured-music candidate packet from the Suno catalog without auto-publishing or implying unreviewed rights.",
+      "repo": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website",
+      "context": ["data/music/suno-catalog.json", "data/homepage-featured-release.ts", "Agentic Music OS release gate"],
+      "workerLanes": ["catalog scout", "rights and metadata reviewer", "homepage release curator"],
+      "allowedTools": ["read-only catalog scan", "local report generation", "human approval packet"],
+      "writeScopes": ["queen/reports/frankx-weekly-release-*.md", "approved updates to data/homepage-featured-release.ts"],
+      "stopConditions": ["rights state unknown", "persona or ownership mismatch", "missing artwork or link", "human approval absent"],
+      "evidence": ["candidate ID and source URL", "rights-state field", "artwork inspection", "copy review", "approval receipt"],
+      "risk": "high",
+      "handoff": "Paused Codex automation prepares the packet on Thursday mornings after approval; present the candidate to Frank and never schedule or publish automatically."
+    },
+    {
+      "id": "frankx-living-proof-river",
+      "status": "planned",
+      "objective": "Design a source-cited, approval-safe feed for FrankX music, essays, GitHub work, and selected brand dispatches.",
+      "repo": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website",
+      "context": ["multi-brand social registry", "platform contracts", "brand operating units", "private-memory veil"],
+      "workerLanes": ["source registry", "content normalization", "privacy review", "UI prototype"],
+      "allowedTools": ["read-only APIs or exports", "local fixtures", "design lab", "browser QA"],
+      "writeScopes": ["data/feeds/**", "components/home/lab/**", "docs/premium-web-os/**"],
+      "stopConditions": ["private or unapproved source", "missing provenance", "external send required", "platform terms unclear"],
+      "evidence": ["source registry", "provenance per item", "privacy classification", "empty/error states", "visual QA"],
+      "risk": "high",
+      "handoff": "Keep social publishing approval-pending; promote only a read-only public proof river."
+    },
+    {
+      "id": "frankx-offer-integrity-map",
+      "status": "planned",
+      "objective": "Audit the current free-to-paid ladder, remove unsupported promises, and map each visitor intent to the smallest fitting offer.",
+      "repo": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website",
+      "context": ["data/products.json", "data/products.ts", "checkout routes", "pricing and packaging gates"],
+      "workerLanes": ["offer inventory", "claims audit", "journey mapping", "commercial review"],
+      "allowedTools": ["read-only code audit", "analytics review", "pricing hypothesis report"],
+      "writeScopes": ["queen/reports/frankx-offer-integrity-*.md", "docs/strategy/**"],
+      "stopConditions": ["pricing mutation required", "checkout ownership overlap", "demand or outcome cannot be verified"],
+      "evidence": ["offer-to-intent matrix", "claim source per promise", "drop-off hypotheses", "Frank approval decisions"],
+      "risk": "high",
+      "handoff": "No public pricing, checkout, guarantee, or scarcity change without explicit approval."
+    },
+    {
+      "id": "frankx-estate-route-and-link-audit",
+      "status": "planned",
+      "objective": "Map every FrankX hub, subdomain, repository, newsletter, and social destination; repair only verified broken or misleading routes in owned scopes.",
+      "repo": "C:\\Users\\frank\\starlight\\repos",
+      "context": ["repo estate manifest", "domain registry", "social registry", "Vercel project truth"],
+      "workerLanes": ["estate mapper", "link verifier", "SEO and metadata reviewer"],
+      "allowedTools": ["read-only Vercel", "HTTP checks", "repository scans", "report generation"],
+      "writeScopes": ["queen/reports/frankx-route-audit-*.md", "explicitly claimed repo scopes after review"],
+      "stopConditions": ["DNS or domain mutation", "credential required", "another active lane owns the path", "destination intent is ambiguous"],
+      "evidence": ["canonical route graph", "status code and redirect proof", "owner per destination", "repair diff and test"],
+      "risk": "medium",
+      "handoff": "Queue repo-specific fixes as separate jobs; never sweep the estate in one write lane."
+    },
+    {
+      "id": "frankx-signature-media-lab",
+      "status": "planned",
+      "objective": "Prototype a premium video-card and short-form studio scene using real FrankX media, then promote only if it strengthens comprehension and performance.",
+      "repo": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website",
+      "context": ["Premium Asset Standard", "Motion Design Studio", "FrankX brand pack", "VIS provenance rules"],
+      "workerLanes": ["asset curator", "motion director", "Remotion or browser prototype", "taste critic"],
+      "allowedTools": ["Remotion", "GSAP lab route", "owned media", "visual QA"],
+      "writeScopes": ["app/design-lab/**", "components/home/lab/**", "docs/premium-web-os/**"],
+      "stopConditions": ["unlicensed media", "fake UI or decorative filler", "mobile or reduced-motion fallback missing", "visual score below 26/30"],
+      "evidence": ["asset provenance", "desktop/mobile crops", "reduced-motion route", "performance budget", "30-point visual score"],
+      "risk": "medium",
+      "handoff": "Lab-only until council review and preview evidence pass."
+    }
+  ]
+}

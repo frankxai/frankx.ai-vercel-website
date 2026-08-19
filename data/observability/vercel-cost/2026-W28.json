@@ -1,0 +1,45 @@
+{
+  "week": "2026-W28",
+  "generatedAt": "2026-07-06T07:06:07Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-06-29T07:06:07Z",
+  "windowEnd": "2026-07-06T07:06:07Z",
+  "metrics": {
+    "count_total": 128,
+    "count_production": 26,
+    "count_preview": 87,
+    "count_skipped": 8,
+    "count_error": 7,
+    "count_ready": 113,
+    "duration_p50_seconds": 510,
+    "duration_p95_seconds": 531,
+    "duration_max_seconds": 537,
+    "total_build_minutes": 961,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 8,
+    "ready_deploys_total": 113,
+    "duration_note": "8/113 READY deploys sampled via get_deployment (spanning Jun 29 – Jul 5); total_build_minutes extrapolated as avg(510.4s) × 113 = 961 min"
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W25",
+    "note": "W26 snapshot never created; W27 snapshot (PR#211) unmerged — comparing vs W25 (Jun 8–15). W27 unmerged data for context: count_total=107, p50=553s, total_build_minutes=824 min.",
+    "count_total": -5,
+    "count_total_pct": "-3.8%",
+    "count_production": -1,
+    "count_preview": -19,
+    "count_error": -15,
+    "count_error_pct": "-68.2%",
+    "count_skipped": -3,
+    "duration_p50_seconds": 79,
+    "duration_p50_pct": "+18.3%",
+    "total_build_minutes": 243,
+    "total_build_minutes_pct": "+33.8%"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "duration_p50=510s > 360s RED threshold (was 431s W25, ~553s W27-unmerged). Build times remain elevated; Turbopack + Next.js with large book content library averaging ~510s per READY build.",
+    "count_error=7 ≥ 2 RED threshold. 7 build failures across the week (down significantly from 22 in W25 — a 68% improvement). Failures concentrated in feature branch iteration (ai-architecture PR#210 cluster Jul 1).",
+    "total_build_minutes=961 vs W25=718 (+33.8%, exceeds +30% RED threshold). Driver: avg build time up ~18% (510s vs 431s) with similar deploy count (128 vs 133). Absolute level (961 min) remains well below 1500-min RED ceiling. Comparison skewed by 3-week gap to W25 baseline."
+  ]
+}

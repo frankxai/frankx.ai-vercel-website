@@ -1,18 +1,22 @@
 ---
-title: "AWS Bedrock AgentCore Deep Dive: Production Patterns for Enterprise AI Agents"
-description: "A comprehensive guide to building production-ready AI agents on AWS using Bedrock, AgentCore, and the Strands framework. Learn the architectural patterns, security controls, and operational best practices that power enterprise agent deployments."
-publishedAt: "2026-01-21"
-updatedAt: "2026-01-21"
-author: "Frank"
+title: "AWS Bedrock AgentCore: Production Patterns for Enterprise AI Agents"
+description: "A comprehensive guide to building production-ready AI agents on AWS using Bedrock, AgentCore, and the Strands framework."
+date: "2026-01-21"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "AI Architecture"
-tags:
-  ["AWS", "Bedrock", "AgentCore", "AI Agents", "Production AI", "Enterprise AI"]
+tags: ["ai-architecture", "ai-systems", "production"]
 image: "/images/blog/production-agent-patterns-aws-bedrock-hero.png"
 featured: false
-series: "Production Agent Patterns"
-seriesPart: 2
+readingGoal: "You'll master production agent architecture, tool integration patterns, and resilient multi-agent orchestration systems."
+tldr: "AWS Bedrock AgentCore: Production Patterns for Enterprise AI Agents examines core production patterns, technical trade-offs, and actionable implementation steps. Learn how to architect, scale, and deploy resilient systems with maximum leverage and verifiable performance."
+keywords: ["ai architecture", "ai-architecture", "ai-systems", "production", "frankx", "creator systems"]
+series:
+  slug: "undefined"
+  title: "undefined"
+  part: undefined
+  total: undefined
 ---
-
 **TL;DR**: AWS offers three tiers for building AI agents: Bedrock Agents (managed, no-code), AgentCore (framework-agnostic runtime), and Strands (open-source orchestration). The key differentiator is security-first design with IAM integration, Guardrails for content filtering, and managed memory that persists across sessions. Choose Bedrock Agents for quick deployment, AgentCore for production workloads, and Strands for complex multi-agent systems.
 
 ---
@@ -24,11 +28,11 @@ This is Part 2 of the [Production Agent Patterns](/blog/production-agent-pattern
 **Series Navigation:**
 
 1. [The 7 Pillars of Production Agent Systems](/blog/production-agent-patterns-7-pillars)
-2. **AWS Bedrock AgentCore Deep Dive** (this post)
-3. Google Vertex AI Agent Engine Deep Dive (coming soon)
-4. Azure AI Foundry Deep Dive
-5. OpenAI Agents SDK Deep Dive
-6. Claude Agent SDK Deep Dive
+2. **AWS Bedrock AgentCore** (this post)
+3. Google Vertex AI Agent Engine (coming soon)
+4. Azure AI Foundry
+5. OpenAI Agents SDK
+6. Claude Agent SDK
 7. MCP - The Unifying Standard
 8. Choosing Your Stack (Decision Guide)
 
@@ -593,7 +597,7 @@ Memory uses DynamoDB under the hood. For most use cases, you'll stay within the 
 
 ## Next in the Series
 
-**Part 3: Google Vertex AI Agent Engine Deep Dive**
+**Part 3: Google Vertex AI Agent Engine**
 
 We'll explore Google's "agentic leap" vision, the Agent2Agent protocol, and how Model Armor provides security for production deployments.
 

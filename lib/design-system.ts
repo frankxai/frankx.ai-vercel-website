@@ -60,11 +60,11 @@ export const colors = {
     // HYBRID - For content bridging both worlds
     hybrid: '#8b5cf6',        // Purple-500 - rare, strategic use only
 
-    // ANA SPECTRUM - For Ana Intelligence System surfaces (/ana, /ana-intelligence-system, /ais)
+    // COLLABORATION SPECTRUM - Used by the dedicated collaboration hub
     // Sister palette to Frank-Ω (electric-blue): warm-gold + deep-emerald + earth + amber
     // The Venezuelan-jaguar register — composed warmth, intellectual power
     ana: {
-      gold:     '#D4A574',                  // Primary  — warm dusty gold, Ana-Ω hood
+      gold:     '#D4A574',                  // Primary — warm dusty gold
       emerald:  '#1F5F4A',                  // Accent   — deep, jaguar rosettes, depth
       earth:    '#6B3A1F',                  // Earth    — tortoiseshell, terracotta
       amber:    '#E8A951',                  // Highlight — eye color, link/CTA
@@ -125,7 +125,7 @@ export const colors = {
     strong: 'rgba(255, 255, 255, 0.15)',    // Emphasized borders
     tech: 'rgba(16, 185, 129, 0.2)',        // Tech-themed borders
     soul: 'rgba(245, 158, 11, 0.2)',        // Soul-themed borders
-    ana: 'rgba(232, 169, 81, 0.20)',        // Ana-themed borders (warm amber)
+    ana: 'rgba(232, 169, 81, 0.20)',        // Collaboration-hub borders (warm amber)
   },
 } as const
 

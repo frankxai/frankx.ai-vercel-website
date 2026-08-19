@@ -47,19 +47,28 @@
 /keystatic-frankx/
 /sanity-frankx/
 /tina-frankx/
-/new-landing-page-backup/
 
 # Local book project (separate from app/books/, content/books/)
 /books/
 
+# Generated reading-site output (gen:html / gen:search). Gitignored since PR #349,
+# but explicit here because when a .vercelignore exists it replaces .gitignore for
+# CLI-deploy uploads — a machine still carrying the ~508MB recursive
+# public/reading/public/reading/... artifact on disk would otherwise upload it all
+# as build context. Does not affect the copy regenerated DURING the build by the
+# prebuild chain, which is what actually serves /reading/*.
+/public/reading/
+/reading-site/
+
 # Generated artifacts that should never be in build context.
 # Anchored to root or specific subtrees to avoid the unanchored gitignore trap.
+/generated_audio/
+/generated_imgs/
 /.gh-api-body.json
 /ruvector.db
 /nul
 /content/hooks/inbox/*.csv
 /data/acos/agentdb/
-/next.config.mjs.backup
 /repo_sync_report.md
 /notes.md
 /task_plan.md

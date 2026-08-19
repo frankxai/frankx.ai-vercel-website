@@ -179,7 +179,7 @@ const MIND_MAP_NODES: MindMapNode[] = [
 
 const QUICK_ACTIONS = [
   [
-    { label: 'Generate Social', icon: <Share2 className="w-4 h-4" />, href: '/generate-social', color: 'violet' },
+    { label: 'Generate Social', icon: <Share2 className="w-4 h-4" />, href: '/studio/social', color: 'violet' },
     { label: 'Write Blog', icon: <PenTool className="w-4 h-4" />, href: '/admin/content', color: 'emerald' },
     { label: 'Send Newsletter', icon: <Send className="w-4 h-4" />, href: 'https://n8n.frankx.ai', color: 'cyan', external: true },
     { label: 'Check Analytics', icon: <LineChart className="w-4 h-4" />, href: 'https://vercel.com/frankxai', color: 'amber', external: true },
@@ -666,7 +666,7 @@ function HaaStAQueue() {
       category: 'taste_check',
       title: 'Polish Post: AEO Strategy 2026',
       description: 'Review draft for voice polish and verify unverified claims.',
-      meta: 'Claims: 4 | Unverified: 1 ("revolutionary")',
+      meta: 'Claims: 4 | Unverified: 1 ("revolutionary")', // ai-slop-allow
       price: '0.00 USDC',
       priority: 'high',
       status: 'pending',

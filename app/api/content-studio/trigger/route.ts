@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
+import { writesUnavailable } from '@/lib/vercel-guard';
 
 const QUEUE_DIR = join(process.cwd(), 'data', 'content-queue');
 const QUEUE_FILE = join(QUEUE_DIR, 'queue.json');
@@ -35,6 +36,9 @@ function saveQueue(queue: ContentQueue) {
 }
 
 export async function POST(request: NextRequest) {
+  const blocked = writesUnavailable('Content Studio triggers only work from local `npm run dev`, where the watcher can see the queue file.');
+  if (blocked) return blocked;
+
   try {
     const body = await request.json();
     const { action, params = {} } = body;

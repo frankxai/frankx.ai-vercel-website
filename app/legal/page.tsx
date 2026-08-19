@@ -50,6 +50,13 @@ export default function LegalPage() {
               <h3 className="text-lg font-semibold mb-2">Refund Policy</h3>
               <p className="text-white/60 text-sm">Refund and cancellation policy for EU consumers.</p>
             </Link>
+            <Link
+              href="/licensing"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all"
+            >
+              <h3 className="text-lg font-semibold mb-2">Licensing</h3>
+              <p className="text-white/60 text-sm">Commercial licensing for music, research, templates, and methodology.</p>
+            </Link>
           </section>
 
           {/* Business Information */}

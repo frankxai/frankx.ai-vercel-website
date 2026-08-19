@@ -101,7 +101,7 @@
     {
       "id": "x",
       "label": "X",
-      "url": "https://x.com/frankxeth",
+      "url": "https://x.com/frankx_ai",
       "status": "verified"
     },
     {
@@ -266,6 +266,20 @@
       "label": "Research",
       "kind": "internal",
       "url": "/research",
+      "status": "verified"
+    },
+    {
+      "id": "signals",
+      "label": "Signals",
+      "kind": "internal",
+      "url": "/signals",
+      "status": "verified"
+    },
+    {
+      "id": "dream-100",
+      "label": "Dream 100",
+      "kind": "internal",
+      "url": "/dream-100",
       "status": "verified"
     },
     {

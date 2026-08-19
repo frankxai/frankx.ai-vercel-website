@@ -11,7 +11,7 @@
 import { ArrowUpRight } from 'lucide-react'
 
 // Subject kept exactly as specified, URL-encoded (× = U+00D7, — = U+2014).
-const MAILTO = `mailto:frank.riemer97@gmail.com?subject=${encodeURIComponent(
+const MAILTO = `mailto:frank@frankx.ai?subject=${encodeURIComponent(
   'Van Ede × FrankX — pilot workshop',
 )}`
 

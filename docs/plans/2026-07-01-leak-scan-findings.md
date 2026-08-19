@@ -58,8 +58,6 @@
 | content/blog/using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll.mdx | 31 | `_Built on SIP — Starlight Intelligence Protocol_` |
 | app/downloads/preview/agentic-creator-os/page.tsx | 319 | `<Layers size={16} className="text-emerald-400" /> Open Intelligence Protocol (SIP)` |
 | app/downloads/preview/agentic-creator-os/page.tsx | 322 | `Designed as an open-core layer of the Starlight Intelligence Protocol, ACOS links securely with local vaults, Personal Data Meshes, and private repositories.` |
-| app/ana-intelligence-system/page.tsx | 158 | `'AIS — sister substrate to SIS. Adds People IS, Event IS, neuroscience domain, and IFS-as-foundation. Composes with the existing 9-layer SIP architecture.',` |
-| app/ana-intelligence-system/page.tsx | 431 | `AIS isn&rsquo;t a fork — it&rsquo;s a sister. Layers 0 + 6 + 7 install into your existing SIS vault without touching the rest. Or run AIS standalone. Either way, your SIP attestation chain stays intact.` |
 | app/downloads/health-intelligence-system/page.tsx | 18 | `'SIP-aligned Health Intelligence System file contract',` |
 | app/downloads/DownloadsClient.tsx | 83 | `description: 'A SIP-aligned excellence pack for cancer screening prep, abnormal-result briefs, treatment discussion packets, and second opinions.',` |
 | app/downloads/DownloadsClient.tsx | 104-115 | `id: 'starlight-sip-starter', title: 'Starlight SIP Starter', description: 'Download the open-core SIP starter from Starlight: portable files, public vault seeds, release manifest, and checksums.'` |
@@ -229,7 +227,6 @@ Many internal references to `.claude/`, `.agent/`, `.grok/` config directories a
 | 8 | app/downloads/preview/agentic-creator-os/page.tsx | 6 | "SIP", "open-core", "Personal Data Meshes", "ACOS" |
 | 9 | content/blog/claude-fable-5-prompting-guide.mdx | 6 | "governance-gated edit", "governance gates", internal eval terminology |
 | 10 | components/research/ThreeArenaScene.tsx | 5 | "governance gates", "contradictory specs", "constraint stacks" |
-| 11 | app/ana-intelligence-system/page.tsx | 5 | "SIP", "sister substrate", "9-layer", "IFS-as-foundation", "SIS vault" |
 | 12 | content/blog/llm-evals-claude-code-guide.mdx | 5 | "governance gates", eval jargon, "constraint" terminology |
 | 13 | content/blog/frankx-intelligence-atlas-volume-1.mdx | 4 | "Fortune 500" (cited; OK), "atlas" framing |
 | 14 | app/chronicle/page.tsx | 4 | "SIP v1.1.0", "nine intelligence layers", "sovereignty clause" |
@@ -265,7 +262,6 @@ These are **landing pages and user-facing interfaces**:
 - `app/research/model-arena/page.tsx` — 12 leaks (WORST OFFENDER)
 - `app/research/model-arena/data.ts` — 11 leaks (associated data)
 - `app/starlight-intelligence-system/page.tsx` — 9 leaks (but this is the SIP landing page; jargon somewhat appropriate if explained)
-- `app/ana-intelligence-system/page.tsx` — 5 leaks (similar to above — niche product page)
 
 ### Files in Components/ with Leaks
 

@@ -3,48 +3,18 @@
  *
  * Workshop funnel event helpers.
  *
- * Client-side: fires via Plausible (window.plausible) or GA (window.gtag) if available.
+ * Client-side: fires through the site's privacy-safe aggregate analytics boundary.
  * Server-side: no-op for now (server-side analytics deferred per spec).
  * Never throws — analytics failures are always silent.
  */
 
-// ─── Environment guard ────────────────────────────────────────────
-
-const isClient = typeof window !== 'undefined'
-
-// ─── Plausible + GA shims ─────────────────────────────────────────
-
-type PlausibleFn = (eventName: string, options?: { props?: Record<string, string> }) => void
-type GtagFn = (command: 'event', eventName: string, params?: Record<string, string>) => void
-
-function getPlausible(): PlausibleFn | null {
-  if (!isClient) return null
-  return (window as unknown as { plausible?: PlausibleFn }).plausible ?? null
-}
-
-function getGtag(): GtagFn | null {
-  if (!isClient) return null
-  return (window as unknown as { gtag?: GtagFn }).gtag ?? null
-}
+import { trackEvent } from '@/lib/analytics'
 
 // ─── Fire helper ──────────────────────────────────────────────────
 
 function fireEvent(eventName: string, props?: Record<string, string>): void {
-  if (!isClient) return  // server-side: no-op
-
-  try {
-    const plausible = getPlausible()
-    if (plausible) {
-      plausible(eventName, props ? { props } : undefined)
-    }
-
-    const gtag = getGtag()
-    if (gtag) {
-      gtag('event', eventName, props)
-    }
-  } catch {
-    // Silent — analytics must never crash the UI
-  }
+  if (typeof window === 'undefined') return
+  trackEvent(eventName, props)
 }
 
 // ─── Public API ───────────────────────────────────────────────────

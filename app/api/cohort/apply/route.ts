@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { escapeHtml } from '@/lib/escape-html'
+import { mailtoHref, safeLinkHref } from '@/lib/email-links'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -85,6 +87,16 @@ export async function POST(request: NextRequest) {
     }
 
     // 2. Send notification email to Frank
+    // LinkedIn is applicant-supplied and otherwise unvalidated: only render it as
+    // a clickable anchor when it is a plain https LinkedIn URL. Anything else stays
+    // visible as escaped text so the submission is not silently hidden.
+    const linkedinHref = linkedin?.trim() ? safeLinkHref(linkedin, ['linkedin.com']) : null
+
+    const acceptMailto = mailtoHref(email.trim(), {
+      subject: 'AI Creator Accelerator — Welcome to the Cohort!',
+      body: `Hi ${name.trim().split(' ')[0]},\n\nGreat news — you're in! Welcome to Batch 1 of the AI Creator Accelerator.\n\n`,
+    })
+
     const applicationHtml = `
 <!DOCTYPE html>
 <html>
@@ -102,33 +114,33 @@ export async function POST(request: NextRequest) {
     <table style="width: 100%; border-collapse: collapse;">
       <tr>
         <td style="padding: 10px 0; color: #94a3b8; width: 110px; vertical-align: top; font-size: 14px;">Name</td>
-        <td style="padding: 10px 0; color: #ffffff; font-size: 14px;">${name.trim()}</td>
+        <td style="padding: 10px 0; color: #ffffff; font-size: 14px;">${escapeHtml(name.trim())}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0; color: #94a3b8; vertical-align: top; font-size: 14px;">Email</td>
-        <td style="padding: 10px 0; color: #ffffff; font-size: 14px;"><a href="mailto:${email.trim()}" style="color: #06b6d4;">${email.trim()}</a></td>
+        <td style="padding: 10px 0; color: #ffffff; font-size: 14px;"><a href="${mailtoHref(email.trim())}" style="color: #06b6d4;">${escapeHtml(email.trim())}</a></td>
       </tr>
       <tr>
         <td style="padding: 10px 0; color: #94a3b8; vertical-align: top; font-size: 14px;">LinkedIn</td>
-        <td style="padding: 10px 0; color: #ffffff; font-size: 14px;">${linkedin?.trim() ? `<a href="${linkedin.trim()}" style="color: #06b6d4;">${linkedin.trim()}</a>` : '<span style="color: #64748b;">Not provided</span>'}</td>
+        <td style="padding: 10px 0; color: #ffffff; font-size: 14px;">${linkedinHref ? `<a href="${linkedinHref}" style="color: #06b6d4;">${escapeHtml(linkedin.trim())}</a>` : linkedin?.trim() ? `<span style="color: #ffffff;">${escapeHtml(linkedin.trim())}</span> <span style="color: #f59e0b; font-size: 12px;">(unverified link — not clickable)</span>` : '<span style="color: #64748b;">Not provided</span>'}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0; color: #94a3b8; vertical-align: top; font-size: 14px;">Track</td>
-        <td style="padding: 10px 0; color: #ffffff; font-size: 14px;"><span style="background: rgba(6,182,212,0.15); color: #06b6d4; padding: 3px 10px; border-radius: 999px; font-size: 13px;">${trackLabel}</span></td>
+        <td style="padding: 10px 0; color: #ffffff; font-size: 14px;"><span style="background: rgba(6,182,212,0.15); color: #06b6d4; padding: 3px 10px; border-radius: 999px; font-size: 13px;">${escapeHtml(trackLabel)}</span></td>
       </tr>
       <tr>
         <td style="padding: 10px 0; color: #94a3b8; vertical-align: top; font-size: 14px;">Project Idea</td>
-        <td style="padding: 10px 0; color: #ffffff; font-size: 14px; white-space: pre-wrap; line-height: 1.5;">${projectIdea.trim()}</td>
+        <td style="padding: 10px 0; color: #ffffff; font-size: 14px; white-space: pre-wrap; line-height: 1.5;">${escapeHtml(projectIdea.trim())}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0; color: #94a3b8; vertical-align: top; font-size: 14px;">Why Join</td>
-        <td style="padding: 10px 0; color: #ffffff; font-size: 14px; white-space: pre-wrap; line-height: 1.5;">${whyYou.trim()}</td>
+        <td style="padding: 10px 0; color: #ffffff; font-size: 14px; white-space: pre-wrap; line-height: 1.5;">${escapeHtml(whyYou.trim())}</td>
       </tr>
     </table>
 
     <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 12px;">
-      <a href="mailto:${email.trim()}?subject=AI Creator Accelerator — Welcome to the Cohort!&body=Hi ${name.trim().split(' ')[0]},%0A%0AGreat news — you're in! Welcome to Batch 1 of the AI Creator Accelerator.%0A%0A" style="display: inline-block; background: linear-gradient(to right, #06b6d4, #8b5cf6); color: white; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;">Accept Applicant</a>
-      <a href="mailto:${email.trim()}" style="display: inline-block; background: rgba(255,255,255,0.08); color: #94a3b8; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px;">Reply</a>
+      <a href="${acceptMailto}" style="display: inline-block; background: linear-gradient(to right, #06b6d4, #8b5cf6); color: white; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;">Accept Applicant</a>
+      <a href="${mailtoHref(email.trim())}" style="display: inline-block; background: rgba(255,255,255,0.08); color: #94a3b8; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-size: 14px;">Reply</a>
     </div>
 
     <p style="margin-top: 16px; font-size: 12px; color: #475569;">Submitted at ${new Date().toISOString()}</p>
@@ -165,10 +177,10 @@ export async function POST(request: NextRequest) {
   <div style="max-width: 560px; margin: 0 auto; background: #1a1a1b; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px;">
     <h1 style="font-size: 24px; margin: 0 0 16px; color: #ffffff;">Application Received</h1>
     <p style="color: #94a3b8; line-height: 1.6; margin: 0 0 16px;">
-      Hi ${name.trim().split(' ')[0]}, thanks for applying to the <strong style="color: #ffffff;">AI Creator Accelerator</strong>. I review every application personally and will get back to you soon.
+      Hi ${escapeHtml(name.trim().split(' ')[0])}, thanks for applying to the <strong style="color: #ffffff;">AI Creator Accelerator</strong>. I review every application personally and will get back to you soon.
     </p>
     <p style="color: #94a3b8; line-height: 1.6; margin: 0 0 8px;">
-      <strong style="color: #ffffff;">Your track:</strong> ${trackLabel}
+      <strong style="color: #ffffff;">Your track:</strong> ${escapeHtml(trackLabel)}
     </p>
     <p style="color: #94a3b8; line-height: 1.6; margin: 0 0 24px;">
       While you wait, explore some resources:

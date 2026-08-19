@@ -8,6 +8,7 @@ import BookReader from '../../components/BookReaderNoSSR';
 import { booksRegistry, getBookBySlug } from '../../lib/books-registry';
 import { createMetadata } from '@/lib/seo';
 import JsonLd from '@/components/seo/JsonLd';
+import RelatedQualities from '@/components/qualities/RelatedQualities';
 
 interface PageProps {
   params: Promise<{
@@ -46,11 +47,14 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export async function generateStaticParams() {
+  // Pre-build only the first published chapter per book (26 pages instead of 135).
+  // All other chapters are rendered on demand — dynamicParams defaults to true.
+  // Chapter content is read from filesystem at request time (readFileSync below),
+  // which works correctly in Vercel serverless functions.
   const params: { bookSlug: string; chapterSlug: string }[] = [];
   for (const book of booksRegistry) {
-    for (const chapter of book.chapters.filter((c) => c.published)) {
-      params.push({ bookSlug: book.slug, chapterSlug: chapter.slug });
-    }
+    const first = book.chapters.find((c) => c.published);
+    if (first) params.push({ bookSlug: book.slug, chapterSlug: first.slug });
   }
   return params;
 }
@@ -109,6 +113,11 @@ export default async function ChapterPage({ params }: PageProps) {
         previousChapter={previousChapter}
         nextChapter={nextChapter}
       />
+      <div className="bg-[#0a0a0b] px-6 pb-20 text-white">
+        <div className="mx-auto max-w-3xl">
+          <RelatedQualities href={`/books/${bookSlug}/${chapterSlug}`} />
+        </div>
+      </div>
     </>
   );
 }

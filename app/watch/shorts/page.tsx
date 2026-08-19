@@ -12,6 +12,7 @@ import {
   SITE_CONFIG,
 } from '@/lib/schema-builders'
 import ShortsClient from './ShortsClient'
+import { socialHandles } from '@/lib/social-links'
 
 const PAGE_URL = `${SITE_CONFIG.url}/watch/shorts`
 
@@ -25,7 +26,7 @@ const shortsFAQ = [
   {
     question: 'Who curates these Shorts?',
     answer:
-      'Frank Riemer \u2014 former AI architect at Oracle \u2014 personally selects each Short. The curation filter: does this compress a real insight into 60 seconds or less? If not, it doesn\u2019t make the page. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
+      'Frank Riemer \u2014 AI Architect & Creator \u2014 personally selects each Short. The curation filter: does this compress a real insight into 60 seconds or less? If not, it doesn\u2019t make the page. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
   },
   {
     question: 'Why 60 seconds?',
@@ -35,7 +36,7 @@ const shortsFAQ = [
   {
     question: 'Can I submit a Short to be featured?',
     answer:
-      'Yes \u2014 send any YouTube Short link via the contact form or @frankxeth on X. The bar: compresses a non-obvious insight on AI, creative craft, or peak performance into under 60 seconds.',
+      `Yes \u2014 send any YouTube Short link via the contact form or ${socialHandles.x} on X. The bar: compresses a non-obvious insight on AI, creative craft, or peak performance into under 60 seconds.`,
   },
   {
     question: 'How do Shorts fit into FrankX\u2019s broader learning system?',

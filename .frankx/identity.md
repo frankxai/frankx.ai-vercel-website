@@ -7,7 +7,7 @@
 ## Who Frank Is
 
 **Name:** Frank | **Age:** 28 | **Location:** Amsterdam
-**Professional Background:** Former AI architect at Oracle
+**Professional Background:** AI Architect & Creator
 **Creator Work:** 12,000+ AI songs, digital products, technical content
 
 **Partner:** Tien (girlfriend)

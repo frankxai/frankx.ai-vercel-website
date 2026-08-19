@@ -169,7 +169,7 @@ Products:
 | circle | ✓ | ✓ | ✓ |
 | legacy | ✓ | ✓ | ✓ |
 
-### Technical Skills (19)
+### Technical Skills (20)
 - mcp-architecture
 - claude-sdk
 - langgraph-patterns
@@ -189,6 +189,7 @@ Products:
 - documentation-generation — automated docs from code (TypeDoc, Sphinx, etc.)
 - monitoring-observability — metrics, logs, traces, SLOs
 - security-hardening — auth, secrets, OWASP, runtime defense
+- design-asset-intake — triage external GitHub design/UI/motion/shader libraries before wiring into the site (from claude-skills-library)
 
 ### Business Skills (2)
 - oci-services-expert

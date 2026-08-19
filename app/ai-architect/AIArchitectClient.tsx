@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import {
   ArrowRight,
@@ -35,10 +35,10 @@ const ArchitectureDiagram = dynamic(
 
 function DiagramLoadingPlaceholder() {
   return (
-    <div className="h-[500px] rounded-2xl border border-white/10 bg-slate-900/80 flex items-center justify-center">
+    <div className="h-[500px] rounded-2xl border border-white/10 bg-space/80 flex items-center justify-center">
       <div className="text-center">
-        <div className="w-12 h-12 mx-auto mb-4 rounded-full border-2 border-violet-500/30 border-t-violet-500 animate-spin" />
-        <p className="text-slate-500 text-sm">Loading architecture diagram...</p>
+        <div className="w-12 h-12 mx-auto mb-4 rounded-full border-2 border-tech-primary/30 border-t-tech-primary animate-spin" />
+        <p className="text-zinc-500 text-sm">Loading architecture diagram...</p>
       </div>
     </div>
   )
@@ -59,15 +59,16 @@ const staggerContainer = {
 }
 
 function MethodologyBackground() {
+  const shouldReduceMotion = useReducedMotion()
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0a0a0b]" />
+      <div className="absolute inset-0 bg-void" />
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
+            linear-gradient(rgba(16, 185, 129, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(16, 185, 129, 0.3) 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px',
         }}
@@ -75,18 +76,18 @@ function MethodologyBackground() {
       <motion.div
         className="absolute -right-60 top-20 h-[600px] w-[600px] rounded-full opacity-15"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(16,185,129,0.4) 0%, transparent 70%)',
         }}
-        animate={{ scale: [1, 1.1, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        animate={shouldReduceMotion ? undefined : { scale: [1, 1.1, 1] }}
+        transition={shouldReduceMotion ? undefined : { duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full opacity-10"
         style={{
           background: 'radial-gradient(circle, rgba(6,182,212,0.4) 0%, transparent 70%)',
         }}
-        animate={{ scale: [1.1, 1, 1.1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        animate={shouldReduceMotion ? undefined : { scale: [1.1, 1, 1.1] }}
+        transition={shouldReduceMotion ? undefined : { duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
     </div>
   )
@@ -218,13 +219,13 @@ function PrincipleCard({
       whileInView="animate"
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="group relative rounded-2xl border border-violet-500/20 bg-violet-500/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/10"
+      className="group relative rounded-2xl border border-tech-primary/20 bg-tech-primary/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-tech-primary/40 hover:bg-tech-primary/10"
     >
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400 transition-all group-hover:scale-110">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-tech-primary/20 text-tech-light transition-all group-hover:scale-110">
         <Icon className="h-6 w-6" />
       </div>
       <h3 className="mb-2 text-lg font-bold text-white">{principle.title}</h3>
-      <p className="text-sm text-slate-400">{principle.description}</p>
+      <p className="text-sm text-zinc-400">{principle.description}</p>
     </motion.div>
   )
 }
@@ -246,19 +247,19 @@ function PhaseCard({
       className="relative"
     >
       {index < methodology.phases.length - 1 && (
-        <div className="absolute left-8 top-16 h-full w-px bg-gradient-to-b from-cyan-500/50 to-transparent" />
+        <div className="absolute left-8 top-16 h-full w-px bg-gradient-to-b from-tech-secondary/50 to-transparent" />
       )}
       <div className="group flex gap-6">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-cyan-500/30 bg-cyan-500/10 text-2xl font-bold text-cyan-400 transition-all group-hover:border-cyan-500/50 group-hover:bg-cyan-500/20">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-tech-secondary/30 bg-tech-secondary/10 text-2xl font-bold text-tech-secondary transition-all group-hover:border-tech-secondary/50 group-hover:bg-tech-secondary/20">
           {phase.number}
         </div>
         <div className="flex-1 pb-12">
           <h3 className="mb-2 text-xl font-bold text-white">{phase.title}</h3>
-          <p className="mb-4 text-slate-400">{phase.description}</p>
+          <p className="mb-4 text-zinc-400">{phase.description}</p>
           <ul className="space-y-2">
             {phase.activities.map((activity, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-slate-500">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-500/70" />
+              <li key={i} className="flex items-start gap-2 text-sm text-zinc-500">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-tech-secondary/70" />
                 {activity}
               </li>
             ))}
@@ -286,10 +287,10 @@ export default function AIArchitectClient() {
               animate={{ opacity: 1, y: 0 }}
               className="mb-6 flex items-center gap-3"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-tech-primary/20 text-tech-light">
                 <Brain className="h-5 w-5" />
               </div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
+              <span className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-400">
                 AI Architecture Methodology
               </span>
             </motion.div>
@@ -301,7 +302,7 @@ export default function AIArchitectClient() {
               className="mb-6 max-w-4xl text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
             >
               Enterprise AI Architecture
-              <span className="block bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-tech-primary via-tech-secondary to-tech-light bg-clip-text text-transparent">
                 That Actually Ships
               </span>
             </motion.h1>
@@ -310,7 +311,7 @@ export default function AIArchitectClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-8 max-w-2xl text-lg text-slate-400"
+              className="mb-8 max-w-2xl text-lg text-zinc-400"
             >
               A battle-tested methodology for designing production AI systems. From enterprise architecture experience
               building solutions across AWS, GCP, Azure, and OCI.
@@ -351,7 +352,7 @@ export default function AIArchitectClient() {
               className="mb-12 text-center"
             >
               <h2 className="mb-4 text-3xl font-bold text-white">Core Principles</h2>
-              <p className="mx-auto max-w-2xl text-slate-400">
+              <p className="mx-auto max-w-2xl text-zinc-400">
                 Four foundational principles that guide every architecture decision
               </p>
             </motion.div>
@@ -386,7 +387,7 @@ export default function AIArchitectClient() {
                 </span>
               </div>
               <h2 className="mb-4 text-3xl font-bold text-white">Architecture Methodology</h2>
-              <p className="max-w-2xl text-slate-400">
+              <p className="max-w-2xl text-zinc-400">
                 A structured four-phase approach that transforms business requirements into production-ready
                 AI architectures
               </p>
@@ -411,13 +412,13 @@ export default function AIArchitectClient() {
             >
               <div>
                 <div className="mb-4 flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-violet-400" />
-                  <span className="text-sm font-medium uppercase tracking-wider text-violet-400">
+                  <Sparkles className="h-5 w-5 text-tech-light" />
+                  <span className="text-sm font-medium uppercase tracking-wider text-tech-light">
                     Pattern Library
                   </span>
                 </div>
                 <h2 className="mb-4 text-3xl font-bold text-white">Battle-Tested Patterns</h2>
-                <p className="max-w-xl text-slate-400">
+                <p className="max-w-xl text-zinc-400">
                   20+ enterprise patterns refined through real-world implementations
                 </p>
               </div>
@@ -446,11 +447,11 @@ export default function AIArchitectClient() {
                     transition={{ delay: index * 0.1 }}
                     className="group rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-white/20 hover:bg-white/[0.04]"
                   >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-all group-hover:bg-violet-500/20 group-hover:text-violet-400">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-zinc-400 transition-all group-hover:bg-tech-primary/20 group-hover:text-tech-light">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="mb-1 font-semibold text-white">{pattern.name}</h3>
-                    <p className="text-sm text-slate-500">{pattern.description}</p>
+                    <p className="text-sm text-zinc-500">{pattern.description}</p>
                   </motion.div>
                 )
               })}
@@ -458,7 +459,7 @@ export default function AIArchitectClient() {
 
             <Link
               href="/ai-architect-academy"
-              className="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-violet-400 hover:text-violet-300 sm:hidden"
+              className="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-tech-light hover:text-tech-secondary sm:hidden"
             >
               View all patterns
               <ArrowRight className="h-4 w-4" />
@@ -482,7 +483,7 @@ export default function AIArchitectClient() {
                 </span>
               </div>
               <h2 className="mb-4 text-3xl font-bold text-white">Real Architecture Designs</h2>
-              <p className="mx-auto max-w-2xl text-slate-400">
+              <p className="mx-auto max-w-2xl text-zinc-400">
                 Explore interactive architecture diagrams from actual production systems.
                 Drag nodes to understand component relationships.
               </p>
@@ -497,17 +498,17 @@ export default function AIArchitectClient() {
             >
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-violet-500/30">
-                    <Palette className="h-6 w-6 text-violet-400" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-tech-primary/20 to-tech-secondary/20 border border-tech-primary/30">
+                    <Palette className="h-6 w-6 text-tech-light" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white">FrankX.AI Content Platform</h3>
-                    <p className="text-sm text-slate-400">AI-powered content creation and publishing system</p>
+                    <p className="text-sm text-zinc-400">AI-powered content creation and publishing system</p>
                   </div>
                 </div>
                 <Link
                   href="/prototype/frankx-ai-platform"
-                  className="hidden items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-4 py-2 text-sm font-medium text-violet-400 transition-all hover:border-violet-500/50 hover:bg-violet-500/20 sm:flex"
+                  className="hidden items-center gap-2 rounded-full border border-tech-primary/30 bg-tech-primary/10 px-4 py-2 text-sm font-medium text-tech-light transition-all hover:border-tech-primary/50 hover:bg-tech-primary/20 sm:flex"
                 >
                   View Prototype
                   <ArrowRight className="h-4 w-4" />
@@ -525,17 +526,17 @@ export default function AIArchitectClient() {
                 <div className="space-y-4">
                   <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5">
                     <h4 className="mb-3 font-semibold text-white">Key Components</h4>
-                    <ul className="space-y-2 text-sm text-slate-400">
+                    <ul className="space-y-2 text-sm text-zinc-400">
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-violet-500" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-tech-primary" />
                         <span><strong className="text-white">Claude Code</strong> - AI content generation with Opus/Sonnet</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-500" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-tech-secondary" />
                         <span><strong className="text-white">15+ MCP Servers</strong> - Publishing, SEO, social tools</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-tech-light" />
                         <span><strong className="text-white">Voice Synthesis</strong> - ElevenLabs integration</span>
                       </li>
                       <li className="flex items-start gap-2">
@@ -544,11 +545,11 @@ export default function AIArchitectClient() {
                       </li>
                     </ul>
                   </div>
-                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-                    <h4 className="mb-2 font-semibold text-emerald-400">Tech Stack</h4>
+                  <div className="rounded-xl border border-tech-primary/20 bg-tech-primary/5 p-5">
+                    <h4 className="mb-2 font-semibold text-tech-light">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
                       {['Next.js 16', 'Claude AI', 'MCP', 'Neon Postgres', 'Vercel', 'ElevenLabs'].map((tech) => (
-                        <span key={tech} className="rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 text-xs text-emerald-300">
+                        <span key={tech} className="rounded-full bg-tech-primary/10 border border-tech-primary/20 px-3 py-1 text-xs text-tech-light">
                           {tech}
                         </span>
                       ))}
@@ -567,17 +568,17 @@ export default function AIArchitectClient() {
             >
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500/20 to-amber-500/20 border border-rose-500/30">
-                    <Gamepad2 className="h-6 w-6 text-rose-400" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-tech-secondary/20 to-amber-500/20 border border-tech-secondary/30">
+                    <Gamepad2 className="h-6 w-6 text-tech-secondary" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white">Arcanea Game Platform</h3>
-                    <p className="text-sm text-slate-400">AI-driven narrative game with dynamic world generation</p>
+                    <p className="text-sm text-zinc-400">AI-driven narrative game with dynamic world generation</p>
                   </div>
                 </div>
                 <Link
                   href="/prototype/arcanea-game-engine"
-                  className="hidden items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-4 py-2 text-sm font-medium text-rose-400 transition-all hover:border-rose-500/50 hover:bg-rose-500/20 sm:flex"
+                  className="hidden items-center gap-2 rounded-full border border-tech-secondary/30 bg-tech-secondary/10 px-4 py-2 text-sm font-medium text-tech-secondary transition-all hover:border-tech-secondary/50 hover:bg-tech-secondary/20 sm:flex"
                 >
                   View Prototype
                   <ArrowRight className="h-4 w-4" />
@@ -595,9 +596,9 @@ export default function AIArchitectClient() {
                 <div className="space-y-4">
                   <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5">
                     <h4 className="mb-3 font-semibold text-white">Key Components</h4>
-                    <ul className="space-y-2 text-sm text-slate-400">
+                    <ul className="space-y-2 text-sm text-zinc-400">
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-rose-500" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-tech-secondary" />
                         <span><strong className="text-white">AI Narrator</strong> - Claude Opus for dynamic storytelling</span>
                       </li>
                       <li className="flex items-start gap-2">
@@ -605,20 +606,20 @@ export default function AIArchitectClient() {
                         <span><strong className="text-white">Realm Manager</strong> - State machine world control</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-violet-500" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-tech-primary" />
                         <span><strong className="text-white">Quest Engine</strong> - Dynamic quest generation</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-500" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-tech-secondary" />
                         <span><strong className="text-white">Music Generator</strong> - Suno AI integration</span>
                       </li>
                     </ul>
                   </div>
-                  <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-5">
-                    <h4 className="mb-2 font-semibold text-rose-400">Tech Stack</h4>
+                  <div className="rounded-xl border border-tech-secondary/20 bg-tech-secondary/5 p-5">
+                    <h4 className="mb-2 font-semibold text-tech-secondary">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
                       {['Phaser/Unity', 'Claude Opus', 'Vector DB', 'Redis', 'Suno AI', 'Web3'].map((tech) => (
-                        <span key={tech} className="rounded-full bg-rose-500/10 border border-rose-500/20 px-3 py-1 text-xs text-rose-300">
+                        <span key={tech} className="rounded-full bg-tech-secondary/10 border border-tech-secondary/20 px-3 py-1 text-xs text-tech-secondary">
                           {tech}
                         </span>
                       ))}
@@ -654,7 +655,7 @@ export default function AIArchitectClient() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/50 p-8 md:p-12"
+              className="rounded-3xl border border-white/10 bg-gradient-to-br from-space/80 to-elevated/50 p-8 md:p-12"
             >
               <div className="flex flex-col items-center gap-8 md:flex-row">
                 <div className="flex-1">
@@ -667,7 +668,7 @@ export default function AIArchitectClient() {
                   <h2 className="mb-4 text-2xl font-bold text-white md:text-3xl">
                     Cloud-Agnostic Architecture
                   </h2>
-                  <p className="mb-6 text-slate-400">
+                  <p className="mb-6 text-zinc-400">
                     Every pattern is designed to work across major cloud providers. Understand the trade-offs,
                     leverage platform strengths, and avoid vendor lock-in.
                   </p>
@@ -675,7 +676,7 @@ export default function AIArchitectClient() {
                     {['AWS', 'GCP', 'Azure', 'OCI'].map((cloud) => (
                       <span
                         key={cloud}
-                        className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-slate-300"
+                        className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-zinc-300"
                       >
                         {cloud}
                       </span>
@@ -694,7 +695,7 @@ export default function AIArchitectClient() {
                     href="https://github.com/frankxai/ai-architect-academy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 font-medium text-slate-300 transition-all hover:bg-white/5"
+                    className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 font-medium text-zinc-300 transition-all hover:bg-white/5"
                   >
                     View on GitHub
                     <ExternalLink className="h-4 w-4" />
@@ -714,13 +715,13 @@ export default function AIArchitectClient() {
               viewport={{ once: true }}
             >
               <h2 className="mb-4 text-3xl font-bold text-white">Ready to Architect Your AI Future?</h2>
-              <p className="mb-8 text-slate-400">
+              <p className="mb-8 text-zinc-400">
                 Explore the full AI Architect Academy with 80+ skills, 20+ patterns, and 13 learning paths.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/ai-architect-academy"
-                  className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 px-8 py-4 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-500/25"
+                  className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-tech-primary to-tech-secondary px-8 py-4 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-glow-tech"
                 >
                   Enter the Academy
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

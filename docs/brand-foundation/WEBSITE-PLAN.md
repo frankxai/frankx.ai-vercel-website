@@ -19,7 +19,7 @@
 - CTA: "Discover Your Creator Archetype" → Free Assessment
 
 ### Trust Indicators
-- "Former AI architect at Oracle"
+- "AI Architect & Creator"
 - "12,000+ Songs Created"
 - "Shipped Systems at Scale"
 

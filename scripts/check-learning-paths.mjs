@@ -263,6 +263,7 @@ for (const e of entries) {
     field(e.body, 'description'),
     field(e.body, 'heroEyebrow'),
     field(e.body, 'longIntro'),
+    field(e.body, 'distillation'),
     field(e.body, 'ctaTitle'),
     field(e.body, 'ctaBody'),
     fieldList(e.body, 'outcomes'),
@@ -273,7 +274,7 @@ for (const e of entries) {
 
   for (const word of FORBIDDEN) {
     if (flaggable.includes(word.toLowerCase())) {
-      fail(`[${e.id}] forbidden hype word "${word}" in authored copy (description / heroEyebrow / longIntro / ctaTitle / ctaBody / outcomes)`)
+      fail(`[${e.id}] forbidden hype word "${word}" in authored copy (description / heroEyebrow / longIntro / distillation / ctaTitle / ctaBody / outcomes)`)
     }
   }
 }

@@ -8,7 +8,7 @@
  * IMPORTANT: These links are canonical. If you need to update them,
  * update BRAND_IDENTITY.md first, then propagate changes here.
  *
- * Last Synced: 2026-01-13
+ * Last Synced: 2026-08-06
  */
 
 export interface SocialLink {
@@ -28,9 +28,9 @@ export interface SocialLink {
 export const SOCIAL_PROFILES: Record<string, SocialLink> = {
   x: {
     name: 'X (Twitter)',
-    username: 'frankxeth',
-    handle: '@frankxeth',
-    url: 'https://x.com/frankxeth',
+    username: 'frankx_ai',
+    handle: '@frankx_ai',
+    url: 'https://x.com/frankx_ai',
     icon: 'Twitter', // Lucide icon name (Twitter/X uses same icon)
     primary: true,
     description: 'Daily thoughts, AI insights, creator tips'
@@ -113,8 +113,8 @@ export const socialLinks = {
  * Social @-handles (not URLs) — used for metadata cards (Twitter `creator`, etc.).
  */
 export const socialHandles = {
-  twitter: SOCIAL_PROFILES.x.handle ?? '@frankxeth',
-  x: SOCIAL_PROFILES.x.handle ?? '@frankxeth',
+  twitter: SOCIAL_PROFILES.x.handle ?? '@frankx_ai',
+  x: SOCIAL_PROFILES.x.handle ?? '@frankx_ai',
   linkedin: SOCIAL_PROFILES.linkedin.username,
   github: SOCIAL_PROFILES.github.username,
   youtube: SOCIAL_PROFILES.youtube.username,
@@ -143,7 +143,7 @@ export const SHARE_URLS = {
    * @param url - URL to share
    * @param via - Twitter handle (without @)
    */
-  twitter: (text: string, url: string, via = 'frankxeth') => {
+  twitter: (text: string, url: string, via = 'frankx_ai') => {
     const params = new URLSearchParams({
       text,
       url,
@@ -215,9 +215,9 @@ export const SCHEMA_SAME_AS = PRIMARY_SOCIAL_LINKS.map(link => link.url)
  * Social meta tags for Open Graph and Twitter Cards
  */
 export const SOCIAL_META = {
-  site: '@frankxeth',
-  creator: '@frankxeth',
-  handle: '@frankxeth'
+  site: '@frankx_ai',
+  creator: '@frankx_ai',
+  handle: '@frankx_ai'
 } as const
 
 /**
@@ -230,6 +230,8 @@ export const DEPRECATED_LINKS = {
   '❌ linkedin.com/in/frankxai': '✅ Use SOCIAL_PROFILES.linkedin.url instead',
   '❌ linkedin.com/in/frankzickert': '✅ Wrong person! Use SOCIAL_PROFILES.linkedin.url',
   '❌ suno.com/@frankxai': '✅ Use SOCIAL_PROFILES.suno.url instead',
+  '❌ twitter.com/frankxeth': '✅ Use SOCIAL_PROFILES.x.url instead',
+  '❌ x.com/frankxeth': '✅ Use SOCIAL_PROFILES.x.url instead',
   '❌ twitter.com/frankxai': '✅ Use SOCIAL_PROFILES.x.url instead',
   '❌ x.com/frankxai': '✅ Use SOCIAL_PROFILES.x.url instead'
 } as const
@@ -261,7 +263,9 @@ export function getCorrectSocialUrl(incorrectUrl: string): string | null {
     return SOCIAL_PROFILES.suno.url
   }
 
-  if (urlLower.includes('twitter.com/frankxai') ||
+  if (urlLower.includes('twitter.com/frankxeth') ||
+      urlLower.includes('x.com/frankxeth') ||
+      urlLower.includes('twitter.com/frankxai') ||
       urlLower.includes('x.com/frankxai')) {
     return SOCIAL_PROFILES.x.url
   }

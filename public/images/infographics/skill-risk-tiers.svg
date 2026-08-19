@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#050a14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg4)"/>
+  <text x="80" y="92" fill="#ffffff" font-size="44" font-weight="700">Risk Tiers: Match Friction to Harm</text>
+  <text x="80" y="134" fill="#9ca3af" font-size="24">Govern sensitive workflows hard. Leave personal productivity light.</text>
+  <line x1="80" y1="160" x2="1520" y2="160" stroke="#1f2a3a" stroke-width="2"/>
+
+  <!-- pyramid tiers, narrow at top (T4) to wide at bottom (T0) -->
+  <g>
+    <polygon points="700,210 900,210 940,310 660,310" fill="#2a1518" stroke="#f87171" stroke-width="2"/>
+    <text x="800" y="272" fill="#fca5a5" font-size="26" font-weight="700" text-anchor="middle">T4 · Operational action</text>
+
+    <polygon points="640,320 960,320 1000,420 600,420" fill="#241a14" stroke="#fb923c" stroke-width="2"/>
+    <text x="800" y="382" fill="#fdba74" font-size="26" font-weight="700" text-anchor="middle">T3 · Sensitive workflow</text>
+
+    <polygon points="580,430 1020,430 1060,530 540,530" fill="#22210f" stroke="#facc15" stroke-width="2"/>
+    <text x="800" y="492" fill="#fde047" font-size="26" font-weight="700" text-anchor="middle">T2 · Business workflow</text>
+
+    <polygon points="520,540 1080,540 1120,640 480,640" fill="#0e1a24" stroke="#2dd4bf" stroke-width="2"/>
+    <text x="800" y="602" fill="#5eead4" font-size="26" font-weight="700" text-anchor="middle">T1 · Internal low-risk</text>
+
+    <polygon points="460,650 1140,650 1180,750 420,750" fill="#0e1626" stroke="#64748b" stroke-width="2"/>
+    <text x="800" y="712" fill="#cbd5e1" font-size="26" font-weight="700" text-anchor="middle">T0 · Personal productivity</text>
+  </g>
+
+  <!-- right-side controls -->
+  <text x="1230" y="262" fill="#fca5a5" font-size="19">Strict approval · logging · rollback</text>
+  <text x="1230" y="372" fill="#fdba74" font-size="19">Security / legal / privacy review</text>
+  <text x="1230" y="492" fill="#fde047" font-size="19">Registry + evaluations</text>
+  <text x="1230" y="602" fill="#5eead4" font-size="19">Owner review</text>
+  <text x="1230" y="712" fill="#cbd5e1" font-size="19">Personal judgment</text>
+
+  <text x="80" y="830" fill="#64748b" font-size="18">Governance maps to the L4–L5 levels of the Skill Maturity Model.</text>
+</svg>

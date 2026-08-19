@@ -214,7 +214,7 @@ export const segmentProfiles: SegmentProfile[] = [
     keywords: ['ai learning system', 'student ai tools', 'personal ai assistant'],
     ctas: [
       { label: 'Enter Student Hub', href: '/students' },
-      { label: 'Start Learning', href: '/courses' }
+      { label: 'Start Learning', href: '/learn' }
     ]
   },
   {
@@ -495,7 +495,7 @@ export const agentProtocols: AgentProtocol[] = [
     icon: Sparkles,
     link: { href: '/prompt-library', label: 'Browse Prompts' },
     bullets: [
-      '200+ prompts across multiple categories',
+      '130+ prompts across multiple categories',
       'Each prompt designed to be customized',
       'New prompts added regularly from the community'
     ]
