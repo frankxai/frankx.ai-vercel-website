@@ -81,6 +81,9 @@ jobs:
       - name: Type Check
         run: pnpm run type-check
 
+      - name: Changelog contract
+        run: pnpm run test:changelog-release
+
       - name: Lint
         run: pnpm run lint
 

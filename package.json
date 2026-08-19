@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "eslint --config eslint.config.js \"app/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"lib/**/*.{ts,tsx}\" --ignore-pattern \"app/design-lab/**\" --ignore-pattern \"components/v0-variants/**\"",
     "type-check": "tsc --noEmit",
+    "changelog:validate": "node scripts/validate-changelog.mjs",
+    "test:changelog-release": "node scripts/validate-changelog.mjs && node --test scripts/tests/changelog-release-contract.test.mjs",
     "test:delivery": "node --experimental-strip-types scripts/test-delivery.mjs",
     "test:dream100": "node --test scripts/tests/dream100-contract.test.mjs",
     "dream100:brief": "node scripts/dream100-brief.mjs",
