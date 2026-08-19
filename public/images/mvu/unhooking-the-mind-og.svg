@@ -1,0 +1,28 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#090907"/>
+  <circle cx="897" cy="192" r="286" fill="url(#glow)" opacity=".5"/>
+  <path d="M742 108V522" stroke="#FCD34D" stroke-opacity=".24"/>
+  <text x="72" y="84" fill="#FCD34D" fill-opacity=".75" font-family="JetBrains Mono, monospace" font-size="15" letter-spacing="3">MVU TALLINN · DAY 8 · FIELD GUIDE</text>
+  <text x="72" y="242" fill="white" font-family="Poppins, Arial, sans-serif" font-weight="600" font-size="88" letter-spacing="-4">Unhooking</text>
+  <text x="72" y="334" fill="white" font-family="Poppins, Arial, sans-serif" font-weight="600" font-size="88" letter-spacing="-4">the mind.</text>
+  <text x="77" y="400" fill="white" fill-opacity=".58" font-family="Inter, Arial, sans-serif" font-size="25">A thought can appear without becoming an instruction.</text>
+  <g font-family="JetBrains Mono, monospace" font-size="13" letter-spacing="1.5">
+    <text x="792" y="144" fill="white" fill-opacity=".42">01  FACT</text>
+    <path d="M795 163H1055" stroke="white" stroke-opacity=".13"/>
+    <text x="792" y="220" fill="white" fill-opacity=".42">02  BODY</text>
+    <path d="M795 239H1055" stroke="white" stroke-opacity=".13"/>
+    <text x="792" y="296" fill="white" fill-opacity=".42">03  STORY</text>
+    <path d="M795 315H1055" stroke="white" stroke-opacity=".13"/>
+    <text x="792" y="372" fill="white" fill-opacity=".42">04  IDENTITY</text>
+    <path d="M795 391H1055" stroke="white" stroke-opacity=".13"/>
+    <text x="792" y="448" fill="#FCD34D">05  CHOICE</text>
+    <path d="M795 467H1055" stroke="#FCD34D" stroke-opacity=".62"/>
+  </g>
+  <text x="72" y="565" fill="white" fill-opacity=".35" font-family="Inter, Arial, sans-serif" font-size="16">frankx.ai/mvu/unhooking-the-mind</text>
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(897 192) rotate(90) scale(286)">
+      <stop stop-color="#FCD34D" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#FCD34D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
