@@ -23,18 +23,29 @@ The early era of autonomous agents relied on naive **ReAct (Reason + Act)** prom
 
 Production agentic engineering has evolved into a disciplined branch of distributed systems architecture: **Autonomous Agent Operating Systems**.
 
-```mermaid
-graph TD
-    A[User Goal / Dispatch] --> B[Supervisor Agent / Orchestrator]
-    B --> C{Context Compression & State Engine}
-    C --> D[Domain Subagent: Code Architect]
-    C --> E[Domain Subagent: Verification Sentinel]
-    C --> F[Domain Subagent: Research Scout]
-    D -->|Tool Call| G[MCP Protocol Mesh]
-    E -->|Audit Verdict| H{Quality Gate: PASS / REVISE}
-    H -->|PASS| I[Episodic-to-Semantic Memory Vault]
-    H -->|REVISE| D
-    I --> J[Production Release Artifact]
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                 AUTONOMOUS AGENT OPERATING SYSTEM ARCHITECTURE               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  User Goal / Dispatch Contract                                              │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Supervisor Agent & Context Compression Engine]                            │
+│       │                                                                     │
+│       ├──► [Domain Subagent: Code Architect] ──► [MCP Protocol Tool Mesh]   │
+│       ├──► [Domain Subagent: Research Scout]                                │
+│       └──► [Domain Subagent: Verification Sentinel]                         │
+│                 │                                                           │
+│                 ▼                                                           │
+│            [Quality Gate: PASS / REVISE Audit Loop]                         │
+│                 │                                 ▲                         │
+│                 ├──► (PASS)                       │ (REVISE)                │
+│                 │      │                          │                         │
+│                 ▼      ▼                          │                         │
+│  [Memory Vault Substrate] ──► [Production Release] ─────────────────────────┘
+└─────────────────────────────────────────────────────────────────────────────┘
+
 ```
 
 ---
@@ -133,3 +144,17 @@ export interface TrajectoryEvaluation {
 ```
 
 By enforcing automated gates—type-checking, strict linting, schema validation, and independent reviewer consensus—the agent operating system guarantees that shipped code is robust, documented, and production-ready.
+
+
+---
+
+## Explore Related Architecture & Research
+
+- [The 2026 Agentic Hierarchy](/blog/skills-vs-agents-vs-prompts-vs-mcp) — Deconstructing Prompts, Skills, Agents, and MCP.
+- [The Agent Skill Standard](/blog/agent-skill-standard-evaluated-workflows-2026) — Writing evaluated, testable SKILL.md packages.
+- [MCP in Production](/blog/mcp-protocol-production-architecture-2026) — Building zero-trust tool meshes with JSON-RPC.
+- [Subagent Swarm Orchestration](/blog/subagent-swarm-orchestration-fsm-2026) — Defeating state divergence with FSM state graphs.
+- [Context Compression & Memory Vaults](/blog/context-compression-memory-vault-systems) — Headroom context compaction and memory tiers.
+- [FrankX Open-Source Downloads](/downloads) — Production templates and starter packs.
+
+
