@@ -166,7 +166,7 @@ A machine-readable index of EVERYTHING published across the ecosystem.
 | `blog` | `content/blog/*.mdx` frontmatter | Yes (scan) |
 | `book-chapter` | `content/books/*/chapter-*.md` | Yes (scan) |
 | `music` | `data/music-catalog.json` (future) | Yes |
-| `changelog` | `data/changelog-data.json` | Yes |
+| `changelog` | `data/changelog-updates.json` | Yes — curated releases with public proof |
 | `product` | `data/templates.json`, `data/investor-products.json` | Yes |
 | `research` | `app/research/*/page.tsx` | Partial (needs metadata) |
 | `newsletter-issue` | `data/newsletter-archive.json` (new) | Yes |
