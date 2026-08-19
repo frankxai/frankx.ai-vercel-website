@@ -41,7 +41,7 @@ export default function SeekerPage() {
               href="/soulbook"
               eventName="funnel_cta_clicked"
               eventParams={{ persona: 'seeker' }}
-              className="group inline-flex items-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-sm font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-sm font-medium shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-200 hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
             >
               Download the Soulbook
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

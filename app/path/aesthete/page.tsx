@@ -41,7 +41,7 @@ export default function AesthetePage() {
               href="/gencreator"
               eventName="funnel_cta_clicked"
               eventParams={{ persona: 'aesthete' }}
-              className="group inline-flex items-center gap-2 rounded-2xl bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-8 h-14 text-sm font-medium shadow-lg shadow-fuchsia-500/20 transition-all hover:shadow-xl hover:shadow-fuchsia-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 rounded-2xl bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-8 h-14 text-sm font-medium shadow-lg shadow-fuchsia-500/20 transition-[background-color,box-shadow,transform] duration-200 hover:shadow-xl hover:shadow-fuchsia-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
             >
               Explore the GenCreator Framework
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
