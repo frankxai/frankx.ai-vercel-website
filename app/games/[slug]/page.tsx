@@ -182,14 +182,14 @@ export const GAME_CATALOG: Record<string, GameData> = {
   'neon-drift': {
     slug: 'neon-drift',
     title: 'Neon Drift: 2088',
-    subtitle: '120 FPS Synthwave Pseudo-3D Highway Racer',
+    subtitle: 'Synthwave Pseudo-3D Highway Racer',
     brand: 'Starlight',
     brandColor: 'text-fuchsia-400 border-fuchsia-500/30 bg-fuchsia-500/10',
     category: 'High-Velocity Arcade',
     cognitiveProtocol: 'Dynamic Visual Tracking & Micro-Motor Precision',
     targetBrainArea: 'Motor Cortex & Cerebellum (Temporal Precision)',
-    scientificBasis: 'High-velocity visual tracking at 120 FPS enhances motor response timing and visual processing bandwidth',
-    description: 'High-velocity pseudo-3D synthwave highway racer running at a buttery 120 FPS with procedural synth audio and dynamic CRT bloom.',
+    scientificBasis: 'High-velocity visual tracking enhances motor response timing and visual processing bandwidth',
+    description: 'High-velocity pseudo-3D synthwave highway racer with procedural synth audio and dynamic CRT bloom.',
     instructions: [
       'Steer left and right to navigate highway curves and dodge traffic.',
       'Hold UP or ACCELERATE to reach speeds over 280 km/h.',
@@ -306,7 +306,7 @@ export async function generateMetadata({
   }
 
   const title = `${game.title} — Play Free Online | FrankX Games`
-  const description = `${game.description} Built with 120 FPS WebGL canvas and procedural WebAudio sound. No installs required.`
+  const description = `${game.description} Built with WebGL canvas and procedural WebAudio sound. No installs required.`
 
   return {
     title,
