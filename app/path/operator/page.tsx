@@ -6,7 +6,7 @@ import { createMetadata } from '@/lib/seo'
 import { PathMechanism } from '../PathMechanism'
 
 export const metadata = createMetadata({
-  title: 'The Elite Operator | FrankX',
+  title: 'The Elite Operator',
   description: 'Multi-agent orchestration, Starlight Intelligence, and enterprise-grade AI architecture patterns.',
   path: '/path/operator',
 })

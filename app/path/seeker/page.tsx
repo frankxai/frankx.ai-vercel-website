@@ -6,7 +6,7 @@ import { createMetadata } from '@/lib/seo'
 import { PathMechanism } from '../PathMechanism'
 
 export const metadata = createMetadata({
-  title: 'The Direction Seeker | FrankX',
+  title: 'The Direction Seeker',
   description: 'Overcome overwhelm and find signal. The Soulbook and the daily execution system for starting over.',
   path: '/path/seeker',
 })

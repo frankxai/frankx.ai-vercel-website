@@ -6,7 +6,7 @@ import { createMetadata } from '@/lib/seo'
 import { PathMechanism } from '../PathMechanism'
 
 export const metadata = createMetadata({
-  title: 'The Creator | FrankX',
+  title: 'The Creator',
   description: 'GenCreator: the framework for visual, musical, and narrative work. Principles, handbook, and blueprints.',
   path: '/path/aesthete',
 })
