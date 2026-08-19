@@ -27,63 +27,63 @@ import { fadeUpHero as fadeUp, stagger } from '@/lib/motion'
 const visionPillars = [
   {
     icon: Code2,
-    title: 'AI Architecture',
+    title: 'Sovereign AI Architecture',
     description:
-      'Enterprise-grade AI systems that actually work. Oracle Cloud, agentic orchestration, multi-agent workflows — built for production, not demos.',
+      'Enterprise-grade AI systems, local-first agent swarms, and multi-LLM orchestration running on your own keys and infrastructure—built for durable independence, not closed SaaS lock-in.',
     color: 'from-emerald-400 to-cyan-400',
     borderColor: 'border-emerald-500/20',
     bgColor: 'bg-emerald-500/5',
-    metrics: ['75+ Skills', '38 Agents', 'Production Systems'],
-  },
-  {
-    icon: Music,
-    title: 'Creative Production',
-    description:
-      'AI music, generative art, book publishing — proving that one person with the right tools can out-create entire studios.',
-    color: 'from-violet-400 to-pink-400',
-    borderColor: 'border-violet-500/20',
-    bgColor: 'bg-violet-500/5',
-    metrics: ['12,000+ AI Songs', '7 Books Written', 'Visual Art System'],
+    metrics: ['ACOS v15 Swarm', '99+ Skills', 'Local-First Orchestration'],
   },
   {
     icon: Zap,
-    title: 'Products & Tools',
+    title: 'Modular Business Starter Kits',
     description:
-      'Templates, agents, workflows, and systems that create real value for real builders. Not theory — deployed infrastructure.',
-    color: 'from-amber-400 to-orange-400',
-    borderColor: 'border-amber-500/20',
-    bgColor: 'bg-amber-500/5',
-    metrics: ['Template Shop Live', 'Deploy Pipelines', 'Investor Intelligence'],
-  },
-  {
-    icon: BookOpen,
-    title: 'Knowledge Sharing',
-    description:
-      'Blog posts, books, and courses that teach without preaching. Practical insights from someone who builds every day.',
+      'Turn-key "Fork & Own" architectures. Micro-SaaS tools, digital asset marketplaces, and autonomous workstations designed for builders to launch independent businesses globally.',
     color: 'from-cyan-400 to-blue-400',
     borderColor: 'border-cyan-500/20',
     bgColor: 'bg-cyan-500/5',
-    metrics: ['80+ Articles', 'The Great Transition', 'Golden Age Book'],
+    metrics: ['Turn-Key Kits', 'Local Payment Rails', 'Fork & Own'],
+  },
+  {
+    icon: BookOpen,
+    title: 'Mental Models & Peak OS',
+    description:
+      'The cognitive operating system: 8 Sovereign Mental Models, first-principles deconstruction, 90-minute flow state blocks, and peak execution protocols for operating in Godmode.',
+    color: 'from-violet-400 to-purple-400',
+    borderColor: 'border-violet-500/20',
+    bgColor: 'bg-violet-500/5',
+    metrics: ['8 Mental Models', 'Daily Execution Cadence', 'Zero Slop'],
+  },
+  {
+    icon: Music,
+    title: 'Creative Production & High Volume',
+    description:
+      'AI music, generative art, and book publishing—proving that a sovereign creator with AI leverage can out-produce entire legacy media organizations.',
+    color: 'from-amber-400 to-orange-400',
+    borderColor: 'border-amber-500/20',
+    bgColor: 'bg-amber-500/5',
+    metrics: ['12,000+ AI Songs', '10+ Books Authored', 'Multi-Modal Pipelines'],
   },
   {
     icon: Users,
-    title: 'Community',
+    title: 'Community & Sovereignty',
     description:
-      'A network of builders who hold each other to a higher standard. No hype, no guru culture — just people who ship.',
+      'An alliance of builders, founders, and creators dedicated to mutual empowerment, open standards, and radical agency. No guru hype—only verified execution.',
     color: 'from-pink-400 to-rose-400',
     borderColor: 'border-pink-500/20',
     bgColor: 'bg-pink-500/5',
-    metrics: ['Inner Circle', 'Builder Network', 'Open Source Tools'],
+    metrics: ['Inner Circle', 'Open Workstations', 'Builder-First'],
   },
   {
     icon: Globe,
-    title: 'Global Impact',
+    title: 'A More Free World',
     description:
-      'Making enterprise-level AI accessible to independent builders. Democratizing the tools that used to cost millions.',
-    color: 'from-blue-400 to-indigo-400',
-    borderColor: 'border-blue-500/20',
-    bgColor: 'bg-blue-500/5',
-    metrics: ['frankx.ai Live', 'Open Frameworks', 'Builder-First'],
+      'Democratizing sovereign technology so millions of individuals can achieve economic, intellectual, and creative freedom at global scale.',
+    color: 'from-emerald-400 to-teal-400',
+    borderColor: 'border-emerald-500/20',
+    bgColor: 'bg-emerald-500/5',
+    metrics: ['Global Reach', 'Sovereign Wealth', 'Freedom as Default'],
   },
 ]
 
