@@ -1,0 +1,106 @@
+{
+  "id": "image-bakeoff-2026-08-14",
+  "runAt": "2026-08-15T00:37:00+02:00",
+  "question": "What does Grok Imagine actually return on three locked briefs, and which other estate image APIs can we run today?",
+  "host": "DESKTOP-1B4ICID",
+  "operator": "hermes-default / grok-4.6 session",
+  "configClaimed": {
+    "image_gen.provider": "xai",
+    "image_gen.model": "grok-imagine-image-quality"
+  },
+  "configVsRuntime": "Tool results reported model grok-imagine-image (fast), not grok-imagine-image-quality. Config is not proof of the quality route.",
+  "lockedPrompts": [
+    {
+      "id": "still-life",
+      "aspect": "landscape",
+      "exclusions": ["logos", "readable text", "watermarks", "people", "screens", "UI"],
+      "prompt": "A single matte-black machined cylinder, about 12 centimeters tall, with one hairline gold ring at the midsection, standing alone on a dark slate desk. Warm sidelight from camera left, soft falloff, shallow depth of field, photoreal product photograph, 16:9. No logos, no readable text, no watermarks, no people, no screens, no UI."
+    },
+    {
+      "id": "interior",
+      "aspect": "landscape",
+      "exclusions": ["logos", "readable text", "book titles", "people", "watermarks"],
+      "prompt": "An empty reading room at dusk: one oak table, one empty wooden chair, a tall window with cool blue twilight, an unlit brass lamp on the table, architectural photograph, 35mm lens, natural materials, quiet atmosphere, 16:9. No logos, no readable text, no book titles, no people, no watermarks."
+    },
+    {
+      "id": "droid",
+      "aspect": "landscape",
+      "exclusions": ["humans", "skeletal robots", "logos", "readable text", "watermarks"],
+      "prompt": "A small cute modern 3D droid with compact chibi proportions, smooth cream polymer shell, a simple pixel-dot face made of two dots and a short arc, standing on a pale seamless studio floor, soft even light, collectible product render, 16:9. No humans, no skeletal robots, no logos, no readable text, no watermarks."
+    }
+  ],
+  "backends": [
+    {
+      "id": "grok-imagine",
+      "access": "hermes image_generate / xai-oauth",
+      "status": "ran",
+      "reportedModel": "grok-imagine-image",
+      "provider": "xai",
+      "resolutionReported": "1k",
+      "costField": "cost_in_usd_ticks=200000000 per call; dollar conversion not documented in this session",
+      "outputs": [
+        {
+          "promptId": "still-life",
+          "file": "/research/image-bakeoff-2026-08-14/grok-imagine-still-life.jpg",
+          "cdnClaimedType": "image/png",
+          "bytes": 113344,
+          "magic": "JFIF/JPEG",
+          "pixels": [1280, 720],
+          "briefFit": 5,
+          "notes": "Subject matches. Gold ring present. No text/people. Upper half reads warmer bronze than matte black."
+        },
+        {
+          "promptId": "interior",
+          "file": "/research/image-bakeoff-2026-08-14/grok-imagine-interior.jpg",
+          "cdnClaimedType": "image/png",
+          "bytes": 188709,
+          "magic": "JFIF/JPEG",
+          "pixels": [1280, 720],
+          "briefFit": 3,
+          "notes": "Two chairs instead of one. Brass lamp shade reads lit, prompt asked unlit. No people or readable titles."
+        },
+        {
+          "promptId": "droid",
+          "file": "/research/image-bakeoff-2026-08-14/grok-imagine-droid.jpg",
+          "cdnClaimedType": "image/png",
+          "bytes": 71087,
+          "magic": "JFIF/JPEG",
+          "pixels": [1280, 720],
+          "briefFit": 4,
+          "notes": "Cute cream figure with two dots and an arc. Reads more as a blob mascot than a mechanical droid. No humans, text, or skeletal forms."
+        }
+      ]
+    },
+    {
+      "id": "nano-banana-2",
+      "access": "scripts/lib/nb-image.mjs via Arcanea .env.local GOOGLE_GENERATIVE_AI_API_KEY",
+      "status": "hold",
+      "reportedModel": null,
+      "reason": "Key file present; Gemini returned 400 API key not valid on nb2, nbpro, and nb1."
+    },
+    {
+      "id": "gpt-image",
+      "access": "scripts/lib/gpt-image.mjs",
+      "status": "hold",
+      "reason": "OPENROUTER_API_KEY and OPENAI_API_KEY absent from process env and searched files."
+    },
+    {
+      "id": "fal",
+      "access": "scripts/lib/fal-image.mjs",
+      "status": "hold",
+      "reason": "FAL_KEY / FAL_API_KEY absent from process env and searched files."
+    }
+  ],
+  "notTested": [
+    "Grok Imagine image-to-image / reference edit",
+    "Grok Imagine video",
+    "Higgsfield",
+    "gemini-35 Hermes profile Imagen"
+  ],
+  "limitations": [
+    "n=1 per prompt; no seed control exposed on the Hermes tool",
+    "Quality-tier config was not honored in the tool result",
+    "No independent second-model pixels in this run",
+    "Vision QA is operator judgment on the saved JPEG bytes"
+  ]
+}

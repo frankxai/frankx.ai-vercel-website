@@ -20,7 +20,7 @@ const features = [
     cta: 'Start Creating',
     className: 'col-span-3 lg:col-span-2',
     background: (
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-blue-500/30 blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-violet-500/25 via-pink-500/15 to-cyan-500/25 blur-3xl" />
     ),
   },
   {
@@ -31,7 +31,7 @@ const features = [
     cta: 'Experience It',
     className: 'col-span-3 lg:col-span-1',
     background: (
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-blue-500/20 to-purple-500/30 blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/25 via-sky-500/15 to-violet-500/25 blur-3xl" />
     ),
   },
   {
@@ -102,8 +102,8 @@ export default function ShowcasePage() {
     <main className="min-h-screen bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950">
       {/* Hero Section with SplitTextReveal */}
       <section className="relative px-6 pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-neutral-950 to-blue-900/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-purple-500/10 blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-950/30 via-neutral-950 to-cyan-950/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-violet-500/10 blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto text-center">
           <SplitTextReveal
@@ -113,7 +113,7 @@ export default function ShowcasePage() {
           />
           <SplitTextReveal
             text="Creator Experience"
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-cyan-400 via-sky-400 to-violet-400 bg-clip-text text-transparent"
             delay={0.6}
           />
           <p className="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto">
@@ -220,7 +220,7 @@ export default function ShowcasePage() {
       {/* CTA Section */}
       <section className="relative px-6 py-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-sky-400 to-violet-400 bg-clip-text text-transparent">
             Ready to Experience the Future?
           </h2>
           <p className="text-xl text-slate-300 mb-8">

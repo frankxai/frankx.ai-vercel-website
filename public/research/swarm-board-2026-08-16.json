@@ -1,0 +1,25 @@
+{
+  "id": "swarm-board-2026-08-16",
+  "asOf": "2026-08-16",
+  "authoringModel": "Grok 4.6",
+  "session": "Hermes default / xAI OAuth",
+  "skills": [
+    "content-swarm-production",
+    "seo-geo-public-contract-audit",
+    "estate-design-excellence"
+  ],
+  "flagships": [
+    "grok-4-6",
+    "claude-fable-5",
+    "claude-opus-4-8",
+    "gpt-5-5",
+    "gemini-3-5-flash",
+    "grok-4-3"
+  ],
+  "executed": [
+    "Grok 4.6 brief",
+    "Native still-life: Grok Imagine + Codex + AGY",
+    "Hub routing + flagship cards"
+  ],
+  "notRun": ["SIS arena for Grok/GPT/Gemini", "Grok Imagine video"]
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="nvGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#76B900" />
+      <stop offset="100%" stop-color="#A3E635" />
+    </linearGradient>
+  </defs>
+  <path d="M15 50 C15 30 35 15 55 15 C75 15 90 32 85 55 C80 72 65 85 48 85 C32 85 18 72 18 55 C18 42 28 32 40 32 C52 32 60 42 58 55 C56 62 48 68 42 66" fill="none" stroke="url(#nvGrad)" stroke-width="7" stroke-linecap="round" />
+  <circle cx="42" cy="50" r="5" fill="#76B900" />
+</svg>

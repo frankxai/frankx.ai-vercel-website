@@ -29,9 +29,6 @@ test('the aggregate default gates providers before mount and redacts page-view U
     readRepoFile('components/analytics/PrivacySafeAnalytics.tsx'),
     readRepoFile('lib/privacy-safe-analytics-client.ts'),
   ])
-  const mountGuard = component.indexOf('if (!measurementAllowed) return null')
-  const initializer = component.indexOf('initializePrivacySafeAnalytics()')
-
   assert.equal(hasDoNotTrack(undefined), false)
   assert.equal(hasDoNotTrack(''), false)
   assert.equal(hasDoNotTrack('0'), false)
@@ -39,25 +36,25 @@ test('the aggregate default gates providers before mount and redacts page-view U
   assert.equal(hasDoNotTrack('unspecified'), false)
   assert.equal(hasDoNotTrack('1'), true)
   assert.equal(hasDoNotTrack('yes'), true)
-  assert.equal(hasDoNotTrack('maybe'), true)
+  assert.equal(hasDoNotTrack('maybe'), false)
   assert.equal(allowsAnalyticsMeasurement('0'), true)
   assert.equal(allowsAnalyticsMeasurement('no'), true)
   assert.equal(allowsAnalyticsMeasurement('unspecified'), true)
   assert.equal(allowsAnalyticsMeasurement('1'), false)
   assert.equal(allowsAnalyticsMeasurement('yes'), false)
-  assert.equal(allowsAnalyticsMeasurement('custom-opt-out'), false)
+  assert.equal(allowsAnalyticsMeasurement('custom-opt-out'), true)
   assert.equal(allowsAnalyticsMeasurement(undefined), true)
+  assert.equal(allowsAnalyticsMeasurement(undefined, true), false)
+  assert.equal(allowsAnalyticsMeasurement('0', true), false)
   assert.equal(sanitizeAnalyticsUrl('https://frankx.ai/connect?email=person@example.com#form'), '/connect')
-  assert.match(component, /useSyncExternalStore/)
-  assert.match(component, /subscribeToMeasurementPolicy: \(onStoreChange: \(\) => void\)/)
-  assert.match(component, /getServerMeasurementPermission = \(\) => false/)
-  assert.match(component, /typeof navigator !== 'undefined' \? navigator\.doNotTrack : undefined/)
-  assert.ok(initializer >= 0 && initializer < mountGuard)
-  assert.doesNotMatch(component, /<Analytics/)
+  assert.match(component, /useState<boolean \| null>\(null\)/)
+  assert.match(component, /privacyNavigator\.globalPrivacyControl/)
+  assert.match(component, /if \(!measurementAllowed\) return null/)
+  assert.match(component, /<Analytics beforeSend=\{privacySafeBeforeSend\} \/>/)
   assert.match(component, /<SpeedInsights \/>/)
   assert.match(client, /inject\(\{ beforeSend: privacySafeBeforeSend \}\)/)
   assert.match(client, /if \(analyticsInitialized\) return true/)
-  assert.match(client, /hasDoNotTrack\(window\.navigator\.doNotTrack\)/)
+  assert.match(client, /privacyNavigator\.globalPrivacyControl/)
   assert.match(client, /sanitizeAnalyticsUrl\(event\.url\)/)
 })
 
@@ -119,13 +116,13 @@ test('connect attribution emits only a fixed, privacy-safe entry enum', () => {
   )
 })
 
-async function withFakeBrowser(doNotTrack, run) {
+async function withFakeBrowser(doNotTrack, run, globalPrivacyControl = false) {
   const previousWindow = Object.getOwnPropertyDescriptor(globalThis, 'window')
   const previousDocument = Object.getOwnPropertyDescriptor(globalThis, 'document')
   const previousNodeEnv = process.env.NODE_ENV
   const scripts = []
   const fakeWindow = {
-    navigator: { doNotTrack },
+    navigator: { doNotTrack, globalPrivacyControl },
   }
   const fakeDocument = {
     createElement() {
@@ -227,6 +224,20 @@ test('Do Not Track creates no provider, script, or event queue', async () => {
     assert.equal(fakeWindow.vaq, undefined)
     assert.equal(scripts.length, 0)
   })
+})
+
+test('Global Privacy Control creates no provider, script, or event queue', async () => {
+  await withFakeBrowser('0', async ({ fakeWindow, scripts }) => {
+    const client = await import(
+      `../../lib/privacy-safe-analytics-client.ts?gpc=${Date.now()}`
+    )
+
+    assert.equal(client.initializePrivacySafeAnalytics(), false)
+    assert.equal(client.trackPrivacySafeAnalyticsEvent('blocked_event'), false)
+    assert.equal(scripts.length, 0)
+    assert.equal(fakeWindow.va, undefined)
+    assert.equal(fakeWindow.vaq, undefined)
+  }, true)
 })
 
 test('newsletter conversion remains provider-accepted and analytics receives no email', async () => {

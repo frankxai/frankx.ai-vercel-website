@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import { readFileSync, existsSync } from 'fs'
-import { BLOG_REDIRECTS } from './lib/blog-redirects.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -60,32 +59,16 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.youtube.com',
       },
-      // Official Mindvalley event imagery used with adjacent source attribution.
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
       {
         protocol: 'https',
         hostname: 'a.storyblok.com',
       },
-      // Official Mindvalley brand mark, shown only beside the independence disclosure.
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        pathname: '/mindvalley/**',
-      },
-      // Suno track covers and playlist art (music inventory imageUrl fields)
-      {
-        protocol: 'https',
-        hostname: 'cdn1.suno.ai',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn2.suno.ai',
-      },
-      // Public Library media lives in the project Blob store, outside Git.
-      {
-        protocol: 'https',
-        hostname: 'vbmwpibfe0yzx3fd.public.blob.vercel-storage.com',
-      },
     ],
+
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -96,35 +79,6 @@ const nextConfig = {
       // Includes /ikigai → /workshops/ikigai-branding and the rest of the
       // legacy URL recovery set. Operator + agent additions land here on approval.
       ...REDIRECT_ALIASES,
-      // Tallinn 2026 is complete. Retire the prospective Session Studio route
-      // family so every event-era link resolves to the canonical field record.
-      {
-        source: '/experiences/tallinn-2026',
-        destination: '/mvu',
-        permanent: true,
-      },
-      {
-        source: '/experiences/tallinn-2026/:path*',
-        destination: '/mvu',
-        permanent: true,
-      },
-      {
-        source: '/experiences/mvu-tallinn-2026',
-        destination: '/mvu',
-        permanent: true,
-      },
-      {
-        source: '/experiences/mindvalley-university-tallinn-2026',
-        destination: '/mvu',
-        permanent: true,
-      },
-      // Individual diagnostic events were never suitable for public small-n
-      // aggregation. Keep the product, retire the public insights surface.
-      {
-        source: '/mvu/expert-authority/insights',
-        destination: '/mvu/expert-authority',
-        permanent: false,
-      },
       // Arcanea domain canonicalization
       {
         source: '/arcanea',
@@ -159,6 +113,12 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/arena',
+        destination: '/research/model-arena',
+        permanent: true,
+      },
+
+      {
         source: '/research/ai-evolution',
         destination: '/ai-evolution',
         permanent: true,
@@ -169,7 +129,61 @@ const nextConfig = {
         permanent: true,
       },
       // Blog post legacy redirects
-      ...BLOG_REDIRECTS,
+      {
+        source: '/blog/big-props-to-the-builders-of-this-era',
+        destination: '/blog/props-to-the-builders-of-this-era',
+        permanent: true,
+      },
+      {
+        source: '/blog/01-ai-doesnt-have-to-be-soulless',
+        destination: '/blog/ai-doesnt-have-to-be-soulless',
+        permanent: true,
+      },
+      {
+        source: '/blog/02-the-soul-frequency-framework',
+        destination: '/blog/soul-frequency-framework',
+        permanent: true,
+      },
+      {
+        source: '/blog/03-ai-guide-for-families-and-professionals',
+        destination: '/blog/ai-guide-for-families-and-professionals',
+        permanent: true,
+      },
+      {
+        source: '/blog/04-conscious-ai-for-entrepreneurs',
+        destination: '/blog/conscious-ai-for-entrepreneurs',
+        permanent: true,
+      },
+      {
+        source: '/blog/05-music-as-consciousness-technology',
+        destination: '/blog/music-as-consciousness-technology',
+        permanent: true,
+      },
+      {
+        source: '/blog/06-intelligence-revolution-2025',
+        destination: '/blog/intelligence-revolution-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/07-agentic-creator-os',
+        destination: '/blog/agentic-creator-os',
+        permanent: true,
+      },
+      {
+        source: '/blog/08-golden-age-of-intelligence',
+        destination: '/blog/golden-age-of-intelligence',
+        permanent: true,
+      },
+      {
+        source: '/blog/09-reader-first-golden-age',
+        destination: '/blog/reader-first-golden-age',
+        permanent: true,
+      },
+      {
+        source: '/blog/10-agentic-ai-roadmap-2025',
+        destination: '/blog/agentic-ai-roadmap-2025',
+        permanent: true,
+      },
       // Course redirects
       {
         source: '/courses/ai-ethics-governance',
@@ -280,20 +294,27 @@ const nextConfig = {
         destination: '/collectibles/trading-cards',
         permanent: true,
       },
-    ]
-  },
-  async rewrites() {
-    // Proxy frankx.ai/palace → the standalone frankx-palace deployment (React 19 +
-    // React-Three-Fiber; kept separate from this React 18 app on purpose). Guarded by
-    // PALACE_ORIGIN so the build is safe when the env var is unset (route simply 404s).
-    // The palace is served under basePath=/palace, so the path is preserved 1:1.
-    // Normalize so a trailing slash (common when pasting a Vercel URL) doesn't
-    // produce `//palace` in the destination.
-    const palaceOrigin = (process.env.PALACE_ORIGIN || '').replace(/\/+$/, '')
-    if (!palaceOrigin) return []
-    return [
-      { source: '/palace', destination: `${palaceOrigin}/palace` },
-      { source: '/palace/:path*', destination: `${palaceOrigin}/palace/:path*` },
+      // Tallinn proposal retirement into canonical field record
+      {
+        source: '/experiences/tallinn-2026',
+        destination: '/mvu',
+        permanent: true,
+      },
+      {
+        source: '/experiences/tallinn-2026/:path*',
+        destination: '/mvu',
+        permanent: true,
+      },
+      {
+        source: '/experiences/mvu-tallinn-2026',
+        destination: '/mvu',
+        permanent: true,
+      },
+      {
+        source: '/experiences/mindvalley-university-tallinn-2026',
+        destination: '/mvu',
+        permanent: true,
+      },
     ]
   },
   outputFileTracingRoot: __dirname,
@@ -316,16 +337,6 @@ const nextConfig = {
       'v1-enterprise-backup/**',
       'public/images/**',
       'public/videos/**',
-    ],
-  },
-  // Books chapter on-demand renders need the .md content files. NFT cannot
-  // trace dynamic readFileSync(join(cwd, book.contentDir, slug+'.md')) paths,
-  // so we explicitly bundle all book .md files in the chapter Lambda.
-  // contentDir values in booksRegistry span content/books/** and content/golden-age-book/**. 2026-07-06.
-  outputFileTracingIncludes: {
-    '/books/[bookSlug]/[chapterSlug]': [
-      'content/books/**/*.md',
-      'content/golden-age-book/**/*.md',
     ],
   },
   // Packages with CommonJS/ESM mixed exports that fail Turbopack bundling.
@@ -357,9 +368,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Strict site-wide CSP — excludes /palace, which needs a WebGL-friendly
-        // policy (see the dedicated block below).
-        source: '/((?!palace).*)',
+        source: '/(.*)',
         headers: [
           {
             key: 'Content-Security-Policy',
@@ -367,67 +376,18 @@ const nextConfig = {
             // Audit: grep -r '<iframe' app/ components/ to find all embed sources
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://plausible.io https://assets.lemonsqueezy.com https://www.googletagmanager.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
               "img-src 'self' data: blob: https: http:",
               "media-src 'self' https:",
               "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
-              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app",
-              "object-src 'none'",
-              "base-uri 'self'",
-              "form-action 'self'",
-              "frame-ancestors 'none'",
+              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://plausible.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
             ].join('; '),
           },
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload',
-          },
-        ],
-      },
-      {
-        // The 3D memory palace (Three.js / React-Three-Fiber) needs WebGL: unsafe-eval,
-        // blob: workers, and Google Fonts. Scoped to /palace only — the strict
-        // policy above still governs the rest of frankx.ai.
-        // noindex: palace is an internal showcase, not a search-indexed page.
-        source: '/palace/:path*',
-        headers: [
-          {
-            key: 'X-Robots-Tag',
-            value: 'noindex',
-          },
-          {
-            key: 'Content-Security-Policy',
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:",
-              "worker-src 'self' blob:",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com data:",
-              "img-src 'self' data: blob:",
-              "connect-src 'self' blob: data: https://fonts.googleapis.com https://fonts.gstatic.com",
-            ].join('; '),
           },
           {
             key: 'Permissions-Policy',

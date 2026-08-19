@@ -76,11 +76,13 @@ test('AgentDB satisfies the production memory adapter contract', async () => {
     ACOS_MEMORY_QUIET: process.env.ACOS_MEMORY_QUIET,
     AGENTDB_DISABLE_TRANSFORMERS: process.env.AGENTDB_DISABLE_TRANSFORMERS,
     AGENTDB_PATH: process.env.AGENTDB_PATH,
+    AGENTDB_VECTOR_BACKEND: process.env.AGENTDB_VECTOR_BACKEND,
   }
 
   process.env.ACOS_MEMORY_DRIVER = 'agentdb'
   process.env.ACOS_MEMORY_QUIET = '1'
   process.env.AGENTDB_DISABLE_TRANSFORMERS = '1'
+  process.env.AGENTDB_VECTOR_BACKEND = 'rvf'
   process.env.AGENTDB_PATH = path.join(tempDir, 'agents.db')
   process.chdir(tempDir)
 

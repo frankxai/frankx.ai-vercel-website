@@ -1,8 +1,10 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import CountdownTimer from './CountdownTimer'
+import { isAuctionWindowOpen } from '@/lib/auctions'
 import { Check } from 'lucide-react'
 
 interface AuctionCardProps {
@@ -20,8 +22,7 @@ interface AuctionCardProps {
     buyNowPrice?: number
     currentBid?: number
     bidCount?: number
-    winningBid?: number
-    acquiredBy?: string
+    startTime?: string
     endTime: string
     status: string
     featured?: boolean
@@ -30,9 +31,19 @@ interface AuctionCardProps {
 }
 
 export default function AuctionCard({ auction }: AuctionCardProps) {
-  const isActive = auction.status === 'active'
+  // The advertised window gates the card state, not just `status`, so a drop
+  // whose countdown ended reads as closed. Re-checked every minute.
+  const [inWindow, setInWindow] = useState(() => isAuctionWindowOpen(auction))
+  useEffect(() => {
+    const tick = () => setInWindow(isAuctionWindowOpen(auction))
+    tick()
+    const timer = setInterval(tick, 60_000)
+    return () => clearInterval(timer)
+  }, [auction])
+
+  const isActive = auction.status === 'active' && inWindow
   const isUpcoming = auction.status === 'upcoming'
-  const isCompleted = auction.status === 'completed'
+  const isCompleted = !isActive && !isUpcoming
 
   return (
     <Link
@@ -70,7 +81,7 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
           {isCompleted && (
             <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-medium backdrop-blur-sm flex items-center gap-1">
               <Check className="w-3.5 h-3.5" />
-              Acquired
+              Closed
             </span>
           )}
           {auction.featured && !isCompleted && (
@@ -117,8 +128,8 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
           {isCompleted ? (
             <>
               <div>
-                <span className="text-xs text-white/40">Acquisition Price</span>
-                <div className="text-xl font-bold text-white/70">${auction.winningBid}</div>
+                <span className="text-xs text-white/40">Starting Bid</span>
+                <div className="text-xl font-bold text-white/70">${auction.startingBid}</div>
               </div>
               <div className="text-right">
                 <span className="text-xs text-white/40">Status</span>
@@ -132,8 +143,12 @@ export default function AuctionCard({ auction }: AuctionCardProps) {
                 <div className="text-xl font-bold text-white">${auction.startingBid}</div>
               </div>
               <div className="text-right">
-                <span className="text-xs text-white/40 font-medium text-amber-400">Silent Bid Open</span>
-                <div className="text-xs text-white/30 font-medium">Reviewing Proposals</div>
+                <span className="text-xs font-medium text-amber-400">
+                  {isUpcoming ? 'Upcoming' : 'Silent Bid Open'}
+                </span>
+                <div className="text-xs text-white/30 font-medium">
+                  {isUpcoming ? 'Not yet open' : 'Reviewing Proposals'}
+                </div>
               </div>
             </>
           )}

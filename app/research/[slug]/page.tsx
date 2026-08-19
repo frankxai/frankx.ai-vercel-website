@@ -7,6 +7,7 @@ import { getBlogPost } from '@/lib/blog'
 import ResearchDomainPage from './ResearchDomainPage'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { portalsForResearch } from '@/lib/learn/related-portals'
+import { nativeGalleries } from '@/lib/research/native-galleries'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -143,7 +144,14 @@ export default async function Page({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqLd }}
       />
-      <ResearchDomainPage domain={domain} relatedDomains={relatedDomains} claimCount={claimCount} blogPostTitles={blogPostTitles} />
+      <ResearchDomainPage
+        domain={domain}
+        relatedDomains={relatedDomains}
+        claimCount={claimCount}
+        blogPostTitles={blogPostTitles}
+        gallery={nativeGalleries[domain.slug] ?? []}
+        showGrokPanel={domain.slug === 'grok-4-6' || domain.slug === 'image-generation-bakeoff'}
+      />
       <div className="bg-[#0a0a0b] pb-16">
         <LearnHubSection
           relatedPortals={portalsForResearch(domain.slug)}
