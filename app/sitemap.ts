@@ -8,6 +8,7 @@ import { listPartners } from '@/content/partnerships'
 import { learningPaths } from '@/data/learning-paths'
 import { getMvuEntrySummaries } from '@/lib/mvu'
 import { getJournalEntrySummaries } from '@/lib/journal'
+import { getChangelogUpdates } from '@/lib/changelog'
 import { isCanonicalBlogSlug } from '@/lib/blog-redirects.mjs'
 import { askQuestions } from '@/data/ask-questions'
 import { publishedSignals } from '@/lib/dream100'
@@ -695,6 +696,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate,
       changeFrequency: 'monthly',
       priority: 0.6,
+    })
+  })
+
+  // Curated release notes use their editorial modification date instead of the
+  // build date so crawlers receive stable, truthful freshness signals.
+  getChangelogUpdates().forEach(update => {
+    entries.push({
+      url: `${BASE_URL}/changelog/${update.slug}`,
+      lastModified: new Date(`${update.modifiedAt}T00:00:00Z`).toISOString(),
+      changeFrequency: 'monthly',
+      priority: 0.65,
     })
   })
 
