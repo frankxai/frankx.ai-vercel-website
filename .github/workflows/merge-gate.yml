@@ -138,6 +138,14 @@ jobs:
           pnpm run routes:build
           pnpm run links:check:static
 
+      # Blocks two drift classes that reached production: an alias that shadows
+      # a real page (which silently made /llm-hub unreachable for weeks), and
+      # the Model Arena naming models the LLM registry has never heard of.
+      # Deliberately placed after routes:build for the reason documented above —
+      # against the committed index it would miss a page added by this very PR.
+      - name: Intelligence surface consistency
+        run: pnpm run intelligence:check
+
       - name: Workflow definitions
         run: |
           pnpm run workflow:validate
