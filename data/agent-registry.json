@@ -1,0 +1,449 @@
+{
+  "_description": "FrankX Agent Registry - the decision layer over agent platforms and frameworks. Text LLMs live in model-registry.json (/llm-hub); Frank's own 99-agent ACOS catalog lives in data/acos/agents.ts (/agents).",
+  "_version": "1.0.0",
+  "_updated": "2026-08-19",
+  "_maintainer": "FrankX Intelligence Pipeline",
+  "_note": "Read every capability claim here with two facts in mind. First, scaffold choice moves agentic results by up to 30 absolute points on identical models and identical tasks - the same Claude Opus 4 scored 64.9% on GAIA inside one orchestration scaffold and 57.6% inside another - so a number without its scaffold named is not a comparison. Second, an automated scanning agent has broken all eight major agent benchmarks by reward hacking, reaching near-perfect scores without solving a task. Vendor and third-party figures are recorded here as reported, labelled, and never presented as first-party measurement.",
+  "evidence_grades": {
+    "A": "Peer-reviewed or reproducible first-party measurement with published receipts",
+    "B": "Independent third-party benchmark or industry report",
+    "C": "Mixed sourcing, or vendor figures with partial corroboration",
+    "D": "Vendor-stated or editorial only"
+  },
+  "kinds": {
+    "platform": {
+      "label": "Agent platforms",
+      "description": "Products you run agents in - terminals, editors, cloud runners.",
+      "accent": "emerald"
+    },
+    "framework": {
+      "label": "Agent frameworks",
+      "description": "Libraries you build agents with - orchestration, state, handoffs.",
+      "accent": "cyan"
+    }
+  },
+  "organizations": {
+    "anthropic": {
+      "name": "Anthropic",
+      "url": "https://anthropic.com",
+      "accent_color": "#D97757"
+    },
+    "openai": {
+      "name": "OpenAI",
+      "url": "https://openai.com",
+      "accent_color": "#10B981"
+    },
+    "google": {
+      "name": "Google",
+      "url": "https://google.com",
+      "accent_color": "#4285F4"
+    },
+    "cursor": {
+      "name": "Cursor",
+      "url": "https://cursor.com",
+      "accent_color": "#111827"
+    },
+    "cognition": {
+      "name": "Cognition",
+      "url": "https://cognition.ai",
+      "accent_color": "#7C3AED"
+    },
+    "github": {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "accent_color": "#6E7681"
+    },
+    "langchain": {
+      "name": "LangChain",
+      "url": "https://langchain.com",
+      "accent_color": "#1C3C3C"
+    },
+    "crewai": {
+      "name": "CrewAI",
+      "url": "https://crewai.com",
+      "accent_color": "#FF5A50"
+    },
+    "pydantic": {
+      "name": "Pydantic",
+      "url": "https://pydantic.dev",
+      "accent_color": "#E520E9"
+    },
+    "aws": {
+      "name": "AWS",
+      "url": "https://aws.amazon.com",
+      "accent_color": "#FF9900"
+    }
+  },
+  "entries": {
+    "claude-code": {
+      "name": "Claude Code",
+      "id": "claude-code",
+      "kind": "platform",
+      "organization": "anthropic",
+      "status": "ga",
+      "one_liner": "Terminal-first agent with programmable hooks and a 1M-token window over the whole repo.",
+      "interfaces": [
+        "terminal",
+        "ide",
+        "cloud",
+        "desktop"
+      ],
+      "mcp": "native",
+      "best_for": [
+        "Large terminal-driven refactors across many files",
+        "Repo-scale work without a prebuilt index",
+        "Teams that want the agent loop scripted via hooks"
+      ],
+      "watch_out": "Reported coding scores travel with the model, not the harness - the same platform behaves differently per model and per scaffold. Benchmark it on your own repo before standardising.",
+      "pricing_note": "Included in Claude paid plans; API usage billed separately",
+      "evidence_grade": "C",
+      "access": [
+        {
+          "name": "Claude Code",
+          "url": "https://claude.com/claude-code"
+        }
+      ],
+      "frankx_note": "The default driver for FrankX agentic builds. The 30 hook events are what make it programmable rather than merely conversational.",
+      "sources": [
+        "https://ssojet.com/blog/ai-coding-agents-compared",
+        "https://www.morphllm.com/ai-coding-agent",
+        "https://www.firecrawl.dev/blog/best-ai-coding-agents"
+      ]
+    },
+    "openai-codex": {
+      "name": "OpenAI Codex",
+      "id": "openai-codex",
+      "kind": "platform",
+      "organization": "openai",
+      "status": "ga",
+      "one_liner": "One account across CLI, cloud, app and mobile - async runs that open pull requests.",
+      "interfaces": [
+        "terminal",
+        "cloud",
+        "app",
+        "mobile"
+      ],
+      "mcp": "supported",
+      "best_for": [
+        "Background PR work you review later",
+        "Cross-surface continuity at low entry cost",
+        "Teams already inside the ChatGPT account model"
+      ],
+      "watch_out": "Async-by-default means less moment-to-moment steering; scope tasks tightly or review carefully.",
+      "pricing_note": "From about $8/month at the entry tier (verify current tiers with OpenAI)",
+      "evidence_grade": "C",
+      "access": [
+        {
+          "name": "OpenAI Codex",
+          "url": "https://openai.com/codex"
+        }
+      ],
+      "sources": [
+        "https://ssojet.com/blog/ai-coding-agents-compared",
+        "https://toolchase.com/blog/ai-coding-agents-2026/"
+      ]
+    },
+    "cursor": {
+      "name": "Cursor",
+      "id": "cursor",
+      "kind": "platform",
+      "organization": "cursor",
+      "status": "ga",
+      "one_liner": "Editor and agent sharing one loop, with Composer 2.5 as the fast in-editor driver.",
+      "interfaces": [
+        "ide"
+      ],
+      "mcp": "supported",
+      "best_for": [
+        "Editor-first coding where you stay in the loop",
+        "Cost-sensitive high-frequency edits",
+        "Developers who want the diff in front of them"
+      ],
+      "watch_out": "In-editor framing suits incremental work more than long autonomous runs.",
+      "pricing_note": "Pro from about $20/month (verify current tiers with Cursor)",
+      "evidence_grade": "C",
+      "access": [
+        {
+          "name": "Cursor",
+          "url": "https://cursor.com"
+        }
+      ],
+      "sources": [
+        "https://ssojet.com/blog/ai-coding-agents-compared",
+        "https://kilo.ai/articles/top-ai-coding-agents"
+      ]
+    },
+    "google-antigravity": {
+      "name": "Google Antigravity",
+      "id": "google-antigravity",
+      "kind": "platform",
+      "organization": "google",
+      "status": "ga",
+      "one_liner": "Free-for-individuals agent surface with multi-agent and browser task support.",
+      "interfaces": [
+        "ide",
+        "browser"
+      ],
+      "mcp": "supported",
+      "best_for": [
+        "Multi-agent and browser-driven tasks",
+        "Trying an agent stack without a subscription",
+        "Work already anchored in the Gemini model family"
+      ],
+      "watch_out": "Free tiers change. Confirm current limits before building a workflow that depends on them.",
+      "pricing_note": "Free for individuals at time of writing; verify current terms with Google",
+      "evidence_grade": "D",
+      "access": [
+        {
+          "name": "Antigravity",
+          "url": "https://antigravity.google"
+        }
+      ],
+      "sources": [
+        "https://ssojet.com/blog/ai-coding-agents-compared",
+        "https://lushbinary.com/blog/ai-coding-agents-comparison-cursor-windsurf-claude-copilot-kiro-2026/"
+      ]
+    },
+    "devin": {
+      "name": "Devin",
+      "id": "devin",
+      "kind": "platform",
+      "organization": "cognition",
+      "status": "ga",
+      "one_liner": "Fully autonomous runs with parallel agents, each in its own cloud VM.",
+      "interfaces": [
+        "cloud"
+      ],
+      "mcp": "supported",
+      "best_for": [
+        "A defined backlog you want worked without supervision",
+        "Parallel isolated tasks",
+        "Teams that can absorb per-unit compute billing"
+      ],
+      "watch_out": "The most expensive lane here, and autonomy raises the cost of a wrong spec. Team plans start around $500/month plus usage units.",
+      "pricing_note": "Team plans from about $500/month plus ACU usage charges",
+      "evidence_grade": "D",
+      "access": [
+        {
+          "name": "Devin",
+          "url": "https://devin.ai"
+        }
+      ],
+      "sources": [
+        "https://ssojet.com/blog/ai-coding-agents-compared",
+        "https://toolchase.com/blog/ai-coding-agents-2026/"
+      ]
+    },
+    "github-copilot": {
+      "name": "GitHub Copilot (agent mode)",
+      "id": "github-copilot",
+      "kind": "platform",
+      "organization": "github",
+      "status": "ga",
+      "one_liner": "The agent that already lives where the pull requests do.",
+      "interfaces": [
+        "ide",
+        "cloud"
+      ],
+      "mcp": "supported",
+      "best_for": [
+        "GitHub-heavy teams and existing Copilot seats",
+        "Review-centred workflows",
+        "Low-friction rollout across an org"
+      ],
+      "watch_out": "Convenience of placement is the main argument; benchmark depth against dedicated agent platforms before assuming parity.",
+      "pricing_note": "Per-seat via GitHub plans",
+      "evidence_grade": "D",
+      "access": [
+        {
+          "name": "GitHub Copilot",
+          "url": "https://github.com/features/copilot"
+        }
+      ],
+      "sources": [
+        "https://ssojet.com/blog/ai-coding-agents-compared"
+      ]
+    },
+    "langgraph": {
+      "name": "LangGraph",
+      "id": "langgraph",
+      "kind": "framework",
+      "organization": "langchain",
+      "status": "ga",
+      "one_liner": "Directed graphs with conditional edges - the strongest persistence and checkpointing story.",
+      "interfaces": [
+        "library"
+      ],
+      "mcp": "supported",
+      "best_for": [
+        "Complex stateful orchestration",
+        "Workflows that must resume after failure",
+        "Human-in-the-loop gates at defined nodes"
+      ],
+      "watch_out": "The most control here also means the most boilerplate. Overkill for a two-step agent.",
+      "pricing_note": "Open source; paid platform tiers available",
+      "evidence_grade": "C",
+      "access": [
+        {
+          "name": "LangGraph",
+          "url": "https://langchain-ai.github.io/langgraph/"
+        }
+      ],
+      "sources": [
+        "https://www.morphllm.com/ai-agent-framework",
+        "https://qubittool.com/blog/ai-agent-framework-comparison-2026",
+        "https://turion.ai/blog/langgraph-vs-openai-claude-agent-sdk-2026/"
+      ]
+    },
+    "claude-agent-sdk": {
+      "name": "Claude Agent SDK",
+      "id": "claude-agent-sdk",
+      "kind": "framework",
+      "organization": "anthropic",
+      "status": "ga",
+      "one_liner": "MCP-native by design - in-process servers and lifecycle hooks rather than an adapter layer.",
+      "interfaces": [
+        "library"
+      ],
+      "mcp": "native",
+      "best_for": [
+        "Tool-heavy agents built on MCP",
+        "Single-line access to a large MCP server ecosystem",
+        "Teams that want simplicity over graph-level control"
+      ],
+      "watch_out": "Less fine-grained orchestration than LangGraph. If you need conditional branching and checkpointing, that is the trade.",
+      "pricing_note": "Open source SDK; model usage billed via the API",
+      "evidence_grade": "C",
+      "access": [
+        {
+          "name": "Claude Agent SDK",
+          "url": "https://docs.claude.com/en/api/agent-sdk/overview"
+        }
+      ],
+      "frankx_note": "The substrate under the FrankX agent catalog. MCP-native is the reason the estate's tool surface composes.",
+      "sources": [
+        "https://www.morphllm.com/ai-agent-framework",
+        "https://turion.ai/blog/langgraph-vs-openai-claude-agent-sdk-2026/"
+      ]
+    },
+    "openai-agents-sdk": {
+      "name": "OpenAI Agents SDK",
+      "id": "openai-agents-sdk",
+      "kind": "framework",
+      "organization": "openai",
+      "status": "ga",
+      "one_liner": "Explicit handoffs and a short path from zero to a working agent.",
+      "interfaces": [
+        "library"
+      ],
+      "mcp": "native",
+      "best_for": [
+        "Getting a working agent in hours",
+        "Handoff-shaped multi-agent designs",
+        "Teams standardising on OpenAI models"
+      ],
+      "watch_out": "Splits the difference on control. Complex stateful flows will outgrow the handoff model.",
+      "pricing_note": "Open source SDK; model usage billed via the API",
+      "evidence_grade": "C",
+      "access": [
+        {
+          "name": "OpenAI Agents SDK",
+          "url": "https://openai.github.io/openai-agents-python/"
+        }
+      ],
+      "sources": [
+        "https://www.morphllm.com/ai-agent-framework",
+        "https://qubittool.com/blog/ai-agent-framework-comparison-2026"
+      ]
+    },
+    "crewai": {
+      "name": "CrewAI",
+      "id": "crewai",
+      "kind": "framework",
+      "organization": "crewai",
+      "status": "ga",
+      "one_liner": "Role-based crews with process types, and the broadest protocol support of the group.",
+      "interfaces": [
+        "library"
+      ],
+      "mcp": "supported",
+      "best_for": [
+        "Rapid multi-agent prototyping",
+        "Role-and-task mental models",
+        "Projects wanting both MCP and A2A"
+      ],
+      "watch_out": "Fast to stand up, less prescriptive about failure handling. Add your own gates before production.",
+      "pricing_note": "Open source; paid enterprise offering available",
+      "evidence_grade": "C",
+      "access": [
+        {
+          "name": "CrewAI",
+          "url": "https://crewai.com"
+        }
+      ],
+      "sources": [
+        "https://www.morphllm.com/ai-agent-framework",
+        "https://letsdatascience.com/blog/ai-agent-frameworks-compared"
+      ]
+    },
+    "pydantic-ai": {
+      "name": "Pydantic AI",
+      "id": "pydantic-ai",
+      "kind": "framework",
+      "organization": "pydantic",
+      "status": "ga",
+      "one_liner": "Type-first agents from the team behind the validation library everyone already uses.",
+      "interfaces": [
+        "library"
+      ],
+      "mcp": "native",
+      "best_for": [
+        "Structured outputs enforced by real types",
+        "Python codebases already on Pydantic",
+        "Agents whose output feeds other systems"
+      ],
+      "watch_out": "Younger ecosystem than LangGraph or CrewAI; fewer worked examples for exotic topologies.",
+      "pricing_note": "Open source",
+      "evidence_grade": "C",
+      "access": [
+        {
+          "name": "Pydantic AI",
+          "url": "https://ai.pydantic.dev"
+        }
+      ],
+      "sources": [
+        "https://www.morphllm.com/ai-agent-framework"
+      ]
+    },
+    "strands": {
+      "name": "Strands Agents",
+      "id": "strands",
+      "kind": "framework",
+      "organization": "aws",
+      "status": "ga",
+      "one_liner": "Simplicity-first agent building with MCP support, from the AWS side of the ecosystem.",
+      "interfaces": [
+        "library"
+      ],
+      "mcp": "native",
+      "best_for": [
+        "Simple agents without orchestration ceremony",
+        "AWS-anchored deployments",
+        "Teams that value a small API surface"
+      ],
+      "watch_out": "Simplicity is the design goal, so fine-grained orchestration control is limited by intent.",
+      "pricing_note": "Open source",
+      "evidence_grade": "D",
+      "access": [
+        {
+          "name": "Strands Agents",
+          "url": "https://strandsagents.com"
+        }
+      ],
+      "sources": [
+        "https://www.morphllm.com/ai-agent-framework",
+        "https://qubittool.com/blog/ai-agent-framework-comparison-2026"
+      ]
+    }
+  }
+}
