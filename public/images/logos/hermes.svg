@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="hermesGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="50%" stop-color="#E11D48" />
+      <stop offset="100%" stop-color="#FBBF24" />
+    </linearGradient>
+  </defs>
+  <path d="M50 15 L50 85" stroke="url(#hermesGrad)" stroke-width="3.5" stroke-linecap="round" />
+  <circle cx="50" cy="15" r="5" fill="#F59E0B" />
+  <path d="M47 30 C30 20 15 28 12 45 C22 45 35 40 47 48" fill="none" stroke="url(#hermesGrad)" stroke-width="3" stroke-linecap="round" />
+  <path d="M47 42 C32 36 22 42 18 55 C28 55 38 50 47 56" fill="none" stroke="url(#hermesGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+  <path d="M53 30 C70 20 85 28 88 45 C78 45 65 40 53 48" fill="none" stroke="url(#hermesGrad)" stroke-width="3" stroke-linecap="round" />
+  <path d="M53 42 C68 36 78 42 82 55 C72 55 62 50 53 56" fill="none" stroke="url(#hermesGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+  <path d="M38 65 Q50 55 62 65 T50 78 T38 90" fill="none" stroke="#FBBF24" stroke-width="2" opacity="0.6" />
+</svg>
