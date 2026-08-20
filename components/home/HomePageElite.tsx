@@ -1,9 +1,11 @@
 'use client'
 
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
+import { gsap } from 'gsap'
+import { SplitText } from 'gsap/SplitText'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState, useSyncExternalStore } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { ArrowRight, ChevronDown, Pause, Play, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -157,10 +159,35 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // HERO
 // ============================================================================
 
-// The rotating verb owns the first line of the H1 so a width change (Building vs
-// Architecting differ by ~150px at 7xl) only moves that line's ragged right edge
-// instead of reflowing the sentence every 3.2s.
-const heroVerbs = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
+// Both H1 lines rotate off one index, so there is one clock and one timer. The
+// Jan-2026 hero ran two desynced timers and crossed every verb with every tail;
+// that was only a problem because its tails were not all valid objects of its
+// verbs ("Create your golden age"). Here the constraint is explicit instead:
+//
+//   EVERY tail must read correctly after EVERY verb.
+//
+// Hold that and the cross-product is a feature — 3 x 7 gives 21 headlines from
+// ten lines of copy. Add to either list weekly; the only rule beyond the one
+// above is to keep the two lengths COPRIME, or the pairing repeats early
+// (4 verbs x 8 tails yields 8 combinations, not 32).
+//
+// Index 0 of each is the anchor headline: what SSR, no-JS, and reduced-motion
+// render, so it never depends on hydration. Keep the aria-label on the H1 in
+// sync with it.
+//
+// The verb owns line one alone so a width change (Build vs Architect differ by
+// ~120px at 7xl) only moves that line's ragged right edge; "your" rides on line
+// two with the noun it belongs to.
+const heroVerbs = ['Build', 'Design', 'Architect']
+const heroTails = [
+  'intelligence that compounds.',
+  'your AI Center of Excellence.',
+  'your AI Operating System.',
+  'your Agentic Creator OS.',
+  'your GenCreator OS.',
+  'your Music Production OS.',
+  'your Second Brain.',
+]
 
 const heroOutcome = 'Explore your highest-leverage AI move.'
 
@@ -168,54 +195,194 @@ const heroOutcome = 'Explore your highest-leverage AI move.'
 const heroVerbClassName =
   'bg-gradient-to-r from-emerald-200 to-cyan-200 bg-clip-text font-serif italic font-normal tracking-[-0.02em] text-transparent'
 
+// pb/-mb extends the clip box below the 1.02 line box without shifting layout —
+// every verb ends in "g" and the Playfair descender would otherwise be cut. This
+// wrapper is the mask, not SplitText's own `mask` option, whose per-char box is
+// exactly the tight line box and would reintroduce that clipping.
+const heroLineMaskClassName =
+  'relative inline-block -mb-[0.15em] overflow-hidden pb-[0.15em] align-bottom'
+
 const subscribeToHydration = () => () => undefined
 
-function RotatingHeroVerb({ isRotating, isPaused }: { isRotating: boolean; isPaused: boolean }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+let splitTextRegistered = false
+
+// Phrases of similar character count can still wrap to different line counts —
+// "your AI Operating System." takes three lines in a 588px column where the
+// longer "your AI Center of Excellence." takes two, because its words are
+// longer. Left alone, that pushes everything below the H1 down 72px mid-
+// rotation. So reserve the tallest candidate's height up front.
+//
+// Measured rather than hard-coded, because which phrase is tallest depends on
+// the column width and the loaded font, and because the lists are meant to grow
+// weekly — a hard-coded min-height would silently go stale on the first
+// addition. Candidates are measured in a detached probe instead of being
+// rendered invisibly in the H1, which would put all seven tails into the
+// heading's text content for crawlers.
+function useReservedLineHeight(
+  ref: React.RefObject<HTMLSpanElement | null>,
+  candidates: readonly string[] | undefined,
+) {
+  const [reservedHeight, setReservedHeight] = useState<number>()
 
   useEffect(() => {
-    if (!isRotating || isPaused) return
+    const el = ref.current
+    if (!el || !candidates?.length) return
 
-    const interval = window.setInterval(() => {
-      setCurrentIndex((index) => (index + 1) % heroVerbs.length)
-    }, 3200)
+    // The heading is the wrapping context: the mask span is inline-block, so it
+    // shrinks to fit but still breaks at the heading's width.
+    const heading = el.closest('h1')
+    if (!heading) return
 
-    return () => window.clearInterval(interval)
-  }, [isRotating, isPaused])
+    const probe = document.createElement('span')
+    probe.className = el.className
+    probe.setAttribute('aria-hidden', 'true')
 
-  if (!isRotating) {
-    return (
-      <span className={heroVerbClassName} aria-hidden="true">
-        {heroVerbs[0]}
-      </span>
-    )
-  }
+    const measure = () => {
+      probe.style.cssText = `position:absolute;visibility:hidden;pointer-events:none;width:${heading.clientWidth}px`
+      heading.appendChild(probe)
+      let tallest = 0
+      for (const candidate of candidates) {
+        probe.textContent = candidate
+        tallest = Math.max(tallest, probe.getBoundingClientRect().height)
+      }
+      probe.remove()
+      // minHeight lands on the padded mask wrapper under border-box, while the
+      // probe is styled like the inner span — without this the reservation is
+      // short by exactly the descender padding.
+      const wrapper = el.parentElement
+      const padding = wrapper
+        ? parseFloat(getComputedStyle(wrapper).paddingTop) +
+          parseFloat(getComputedStyle(wrapper).paddingBottom)
+        : 0
+      setReservedHeight(tallest ? tallest + padding : undefined)
+    }
 
-  // pb/-mb extends the clip box below the 1.02 line box without shifting layout —
-  // every verb ends in "g" and the Playfair descender would otherwise be cut.
+    measure()
+    // Fonts change the wrap points, and Playfair is not there on first paint.
+    void document.fonts?.ready.then(measure)
+
+    // Only width can change the wrap points. Gating on it also stops the
+    // observer from re-triggering on the height change this hook itself causes.
+    let lastWidth = heading.clientWidth
+    const remeasureIfResized = () => {
+      if (heading.clientWidth === lastWidth) return
+      lastWidth = heading.clientWidth
+      measure()
+    }
+
+    // Both instruments on purpose. The observer catches column changes no
+    // resize event fires for; the window listener still runs when observer
+    // delivery is starved, since callbacks are tied to the rendering lifecycle
+    // and a backgrounded tab stops driving it.
+    const observer = new ResizeObserver(remeasureIfResized)
+    observer.observe(heading)
+    window.addEventListener('resize', remeasureIfResized)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', remeasureIfResized)
+      probe.remove()
+    }
+  }, [ref, candidates])
+
+  return reservedHeight
+}
+
+// SplitText replaces the whole-word crossfade with a per-character wipe: the old
+// line leaves upward on a stagger while the new one arrives from below, so the
+// eye reads a rolling shutter instead of two words dissolving into each other.
+function SplitFlipLine({
+  text,
+  className,
+  animate,
+  delay = 0,
+  reserveFor,
+}: {
+  text: string
+  className: string
+  animate: boolean
+  delay?: number
+  reserveFor?: readonly string[]
+}) {
+  const ref = useRef<HTMLSpanElement>(null)
+  // React renders the first phrase and never touches this node again — every
+  // later swap is imperative, so SplitText's spans are never fighting a rerender.
+  const [initialText] = useState(text)
+  const renderedText = useRef(text)
+  const reservedHeight = useReservedLineHeight(ref, reserveFor)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el || renderedText.current === text) return
+
+    if (!animate) {
+      el.textContent = text
+      renderedText.current = text
+      return
+    }
+
+    if (!splitTextRegistered) {
+      gsap.registerPlugin(SplitText)
+      splitTextRegistered = true
+    }
+
+    renderedText.current = text
+    // tag: 'span' because SplitText defaults to <div>, and a div inside the H1's
+    // inline span is invalid nesting. GSAP sets display:inline-block either way,
+    // so the yPercent transform still renders.
+    let activeSplit: SplitText | null = SplitText.create(el, { type: 'words,chars', aria: 'none', tag: 'span' })
+
+    const tween = gsap.to(activeSplit.chars, {
+      yPercent: -115,
+      opacity: 0,
+      duration: 0.34,
+      delay,
+      ease: 'power3.in',
+      stagger: 0.014,
+      onComplete: () => {
+        activeSplit?.revert()
+        el.textContent = text
+        activeSplit = SplitText.create(el, { type: 'words,chars', aria: 'none', tag: 'span' })
+        gsap.from(activeSplit.chars, {
+          yPercent: 115,
+          opacity: 0,
+          duration: 0.52,
+          ease: 'power3.out',
+          stagger: 0.018,
+          onComplete: () => {
+            // Reverting leaves plain text behind, so nothing accumulates across
+            // rotations and copy/select still yields the sentence.
+            activeSplit?.revert()
+            activeSplit = null
+          },
+        })
+      },
+    })
+
+    return () => {
+      tween.kill()
+      activeSplit?.revert()
+      activeSplit = null
+      el.textContent = text
+    }
+  }, [text, animate, delay])
+
   return (
     <span
-      className="relative inline-block -mb-[0.15em] overflow-hidden pb-[0.15em] align-bottom"
+      className={heroLineMaskClassName}
+      style={reservedHeight ? { minHeight: reservedHeight } : undefined}
       aria-hidden="true"
     >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={heroVerbs[currentIndex]}
-          className={`inline-block ${heroVerbClassName}`}
-          initial={{ opacity: 0, y: '55%' }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: '-45%' }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {heroVerbs[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
+      <span ref={ref} className={`inline-block ${className}`}>
+        {initialText}
+      </span>
     </span>
   )
 }
 
 function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
   const [isHeadlinePaused, setIsHeadlinePaused] = useState(false)
+  const [phraseIndex, setPhraseIndex] = useState(0)
   const shouldReduceMotion = useReducedMotion()
   const hasHydrated = useSyncExternalStore(
     subscribeToHydration,
@@ -223,6 +390,20 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
     () => false,
   )
   const isRotating = hasHydrated && !shouldReduceMotion
+
+  // 4.4s, not the old 3.2s: the per-character wipe plus the tail's 0.12s offset
+  // runs ~1.3s, and a phrase needs to sit still long enough to actually be read.
+  // The index wraps at the product of the two lengths so it stays a small int
+  // and returns to the anchor headline after a full pass through every pairing.
+  useEffect(() => {
+    if (!isRotating || isHeadlinePaused) return
+
+    const interval = window.setInterval(() => {
+      setPhraseIndex((index) => (index + 1) % (heroVerbs.length * heroTails.length))
+    }, 4400)
+
+    return () => window.clearInterval(interval)
+  }, [isRotating, isHeadlinePaused])
 
   return (
     <section className="relative flex min-h-[92svh] items-center overflow-hidden pb-16 pt-24 md:pb-20 md:pt-28">
@@ -238,11 +419,21 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <h1
                 className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
-                aria-label="Building intelligence that compounds."
+                aria-label="Build intelligence that compounds."
               >
-                <RotatingHeroVerb isRotating={isRotating} isPaused={isHeadlinePaused} />
+                <SplitFlipLine
+                  text={heroVerbs[phraseIndex % heroVerbs.length]}
+                  className={heroVerbClassName}
+                  animate={isRotating}
+                />
                 <br />
-                intelligence that compounds.
+                <SplitFlipLine
+                  text={heroTails[phraseIndex % heroTails.length]}
+                  className="text-white"
+                  animate={isRotating}
+                  delay={0.12}
+                  reserveFor={heroTails}
+                />
               </h1>
 
               <div className="mt-5 flex max-w-2xl items-center gap-3">
@@ -328,10 +519,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect & Creator',
-  'Independent living studio',
-  'Music, systems, books, and field notes',
-  'Built for people, not platforms',
+  'AI Architect & Musician',
+  'Co-builder of 7-Figure Enterprises',
+  'Former AI Architect at Oracle',
+  '12,000+ AI Songs Created',
+  'Autonomous AI Swarms & Sovereign Tools',
 ]
 
 function AuthorityBar() {
@@ -365,39 +557,39 @@ function AuthorityBar() {
 
 const products = [
   {
-    title: 'Agentic Creator OS',
-    description: 'An open creator operating system for agent skills, commands, and repeatable workflows.',
-    href: '/acos',
+    title: 'Sovereign Business Kits',
+    description: 'Turn-key modular starter kits (Micro-SaaS, Marketplace, Creator Hub) designed for builders to launch globally on their own terms.',
+    href: '/templates',
     color: 'emerald' as const,
   },
   {
-    title: 'Prompt Library',
-    description: 'Reusable prompts for writing, music, coding, and image generation, available to inspect and adapt.',
-    href: '/prompt-library',
-    color: 'violet' as const,
-  },
-  {
-    title: 'Creator Kit',
-    description: 'Premium templates and guided implementation resources for creators who want a faster start.',
-    href: '/products',
+    title: 'Mental Models & Peak OS',
+    description: 'The 8 Sovereign Mental Models, cognitive operating systems, and high-performance protocols for operating in Godmode.',
+    href: '/mental-models',
     color: 'cyan' as const,
   },
   {
+    title: 'Agentic Creator OS',
+    description: 'An open creator operating system for agent skills, commands, and repeatable workflows running on your own keys.',
+    href: '/acos',
+    color: 'violet' as const,
+  },
+  {
     title: 'AI Architecture Hub',
-    description: 'Patterns for agent workflows, orchestration, governance, and production-minded system design.',
+    description: 'Patterns for agent workflows, orchestration, governance, and production-minded system design. Built from Oracle to production.',
     href: '/ai-architecture',
     color: 'blue' as const,
   },
   {
     title: 'Music Lab',
-    description: 'An evolving music archive, Suno production workflows, and genre-focused field guides.',
+    description: 'An evolving music archive of 12,000+ tracks, Suno production workflows, and genre-focused frequency field guides.',
     href: '/music-lab',
     color: 'orange' as const,
   },
   {
-    title: 'Design Lab',
-    description: 'Generative art, visual experiments, nature-tech aesthetics.',
-    href: '/design-lab',
+    title: 'Sovereign Creator Blueprint',
+    description: 'The complete 4-layer architecture connecting local-first agents, digital assets, and independent revenue streams.',
+    href: '/gencreator/blueprints',
     color: 'magenta' as const,
   },
 ]

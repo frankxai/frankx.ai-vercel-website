@@ -24,6 +24,17 @@ export interface ModelEditorial {
 }
 
 export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
+  'gemini-3-7-flash': {
+    tagline: 'Google\u2019s current Flash tier \u2014 a coding and agent refresh at an introductory price with a known expiry.',
+    bestFor: [
+      'High-volume agentic coding where cost compounds',
+      'Web development and agent workflows (Google\u2019s stated focus)',
+      '1M-context work at sub-dollar input pricing',
+    ],
+    watchOut: 'The $0.75/$3.75 rate is introductory through 2026-12-31 and doubles to $1.50/$7.50 on 2027-01-01 \u2014 do not build a cost model on it without noting the step. Gains over 3.6 Flash are vendor-reported and unreproduced independently.',
+    creatorUse: 'The cheap agent runtime for bulk drafting and content-generation loops, with a calendar reminder for the price change.',
+    openrouterId: 'google/gemini-3.7-flash',
+  },
   'gemini-3-5-flash': {
     tagline: 'Frontier agentic coding at sub-flagship economics — the new default agent runtime.',
     bestFor: [
@@ -89,6 +100,17 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     watchOut: '$10/$50 is double Opus 4.8 standard. Launch benchmarks are vendor-claimed. In our stress round it executed a governance-gated edit without flagging it — pair with structural gates, and enforce output contracts in schemas: every model’s discipline degrades under heavy task load.',
     creatorUse: 'The default Claude Code driver for agentic builds. Route judgment-heavy review and human-read prose to Opus 4.8 at half the price — our blind style verdicts flipped between rounds, so prose is not the upgrade case.',
   },
+  'claude-opus-5': {
+    tagline: 'Frontier-class coding at the unchanged Opus price \u2014 half of Fable 5, and reporting higher numbers.',
+    bestFor: [
+      'Hard agentic coding and multi-file migrations',
+      'Long-horizon autonomous work at $5/$25',
+      'Teams that want the Fable-class ceiling without the Fable-class bill',
+    ],
+    watchOut: 'Benchmarks are vendor-reported. Published leaderboards disagree at the top of SWE-Bench Verified \u2014 DeepSeek V4 Pro 0813 reports 96.4% against this model\u2019s 96.0% \u2014 so treat any ranking claim as source-dependent.',
+    creatorUse: 'The judgment layer: review gates, ambiguous specs, and long-form work where the 1M window earns its keep.',
+    openrouterId: 'anthropic/claude-opus-5',
+  },
   'claude-opus-4-8': {
     tagline: 'Modest version bump, real frontier gains — tops the intelligence index at the same price as 4.7.',
     bestFor: [
@@ -99,6 +121,17 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     watchOut: 'Loses Terminal-Bench 2.1 to GPT-5.5; narrates more and asks more by default than 4.7, so prompts may need re-tuning. GPQA/USAMO numbers are vendor-claimed.',
     creatorUse: 'Single-pass long-form drafts (128K output) and full-archive synthesis (1M context). Re-baseline any style prompts written against 4.7’s clipped voice — 4.8 is warmer by default.',
     openrouterId: 'anthropic/claude-opus-4.8',
+  },
+  'claude-sonnet-5': {
+    tagline: 'The new mid-tier default \u2014 1M context and frontier computer-use at Sonnet economics.',
+    bestFor: [
+      'Production coding and integrations at $3/$15',
+      'Computer-use agents (81.2% OSWorld, vendor-reported)',
+      '1M-context work without flagship pricing',
+    ],
+    watchOut: 'Opus still leads hard agentic coding \u2014 69.2% vs 63.2% SWE-Bench Pro, which Anthropic states plainly. Launch benchmarks are vendor-reported. The $2/$10 introductory rate ends 2026-08-31; budget against $3/$15.',
+    creatorUse: 'The reliable default for content-engine and production coding work. Route to Opus only when the task earns the premium.',
+    openrouterId: 'anthropic/claude-sonnet-5',
   },
   'claude-sonnet-4-6': {
     tagline: 'The mid-tier that started eating the flagship’s lunch — most of Opus 4.6 at $3/$15.',
@@ -135,8 +168,19 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     bestFor: ['Routing and classification', 'Real-time chat', 'High-volume metadata tagging'],
     openrouterId: 'anthropic/claude-haiku-4.5',
   },
+  'grok-4-6': {
+    tagline: 'Current xAI flagship: same-scale agent refresh of 4.5, AA Index 61, $2/$6 under 200k. No Starlight arena receipt yet.',
+    bestFor: [
+      'Long-running coding and knowledge-work agents on the xAI API',
+      'First-pass app and visual structure work (vendor-stated focus)',
+      'Frontier-priced loops that must stay under the 200k prompt cliff',
+    ],
+    watchOut: 'Not a documented new base model. Cached input rose to $0.50. Price doubles past 200k prompt tokens. Do not treat vendor or AA tables as SIS Model Arena winners.',
+    creatorUse: 'Use as the default Grok API model for multi-step build loops; keep Claude on receipt-gated SIS arena work until a Grok 4.6 JSON receipt exists.',
+    openrouterId: 'x-ai/grok-4.6',
+  },
   'grok-4-3': {
-    tagline: 'Fourth-best frontier intelligence at roughly the cheapest frontier price, with the fastest output in its tier.',
+    tagline: 'Previous cheap-frontier Grok — superseded as flagship by Grok 4.6 on 12 August 2026.',
     bestFor: [
       'High-volume cost-sensitive inference (classification, extraction, summarization)',
       'Latency-sensitive agentic tool loops',
@@ -202,6 +246,17 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     creatorUse: 'Self-host Scout on a single H100 for whole-corpus (10M context) multimodal drafting where you need data control and zero per-token cost.',
     openrouterId: 'meta-llama/llama-4-maverick',
   },
+  'deepseek-v4-pro-0813': {
+    tagline: 'A 1.6T MoE at the top of SWE-bench Verified and last on agentic coding \u2014 read both numbers.',
+    bestFor: [
+      'Verifiable, well-specified coding tasks at low cost per test',
+      'Long-context work (1M in, up to 384K out)',
+      'Teams that benchmark on their own tasks before trusting a headline',
+    ],
+    watchOut: '96.4% on SWE-bench Verified yet last of seven frontier peers on LiveBench agentic coding \u2014 a headline score here does not predict agent behaviour. Prices rose up to 12x on 2026-08-16 and now vary peak/off-peak. Vendor figures await independent proof.',
+    creatorUse: 'Cheap bulk generation where output is checkable. Do not hand it long autonomous loops on this evidence.',
+    openrouterId: 'deepseek/deepseek-v4-pro-0813',
+  },
   'deepseek-v4': {
     tagline: 'Open-weight frontier-class coding at one-sixth the price — MIT-licensed, 1M context, self-hostable.',
     bestFor: ['Budget coding agents at scale', 'Open-weight self-hosting and fine-tuning', 'Cost-anchor for routing decisions'],
@@ -224,6 +279,16 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     watchOut: 'Most coding/reasoning benchmarks are Moonshot’s own evals (vendor-claimed); it trails Opus 4.8 and GPT-5.5 on the neutral intelligence index and on SWE-Bench Verified. Running a 1T MoE well is a real infra project.',
     creatorUse: 'Cheap, self-hostable engine for code generation, UI/UX scaffolding, and multi-agent research swarms where you want frontier-ish quality without frontier pricing or data leaving your environment.',
     openrouterId: 'moonshotai/kimi-k2.6',
+  },
+  'qwen3-8-27b': {
+    tagline: 'Apache 2.0 multimodal weights small enough to run yourself \u2014 the licence is the story.',
+    bestFor: [
+      'Self-hosted and air-gapped deployments',
+      'Commercial use without a revenue-share clause',
+      'Local multimodal work (text, image, video in) at 27.8B',
+    ],
+    watchOut: 'Alibaba\u2019s published comparison leads on all four benchmarks it chose to report \u2014 the shape of a vendor-selected set. No first-party hosted API pricing exists yet, so \u201cfree\u201d means self-hosted, and you pay in GPUs.',
+    creatorUse: 'The private lane: run creator workloads on your own hardware when the content should never leave the building.',
   },
   'qwen3-7-max': {
     tagline: 'Alibaba’s closed-weight agent flagship: top-5 intelligence, 1M context, and 35-hour autonomy at half the Western-frontier price.',

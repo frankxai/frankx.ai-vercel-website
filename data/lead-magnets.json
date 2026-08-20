@@ -1,0 +1,256 @@
+[
+  {
+    "id": "ai-writing-system",
+    "title": "The Master AI Writing & Prompting System",
+    "subtitle": "Architect-level frameworks, production prompt chains, and human-AI writing workflows",
+    "description": "Complete guide & template package for building a high-velocity AI writing engine without slop. Includes 50+ production prompt patterns, style-tuning matrices, and workflow blueprints.",
+    "icp": "Human-AI Hybrid Companion / Writer / Creator",
+    "category": "Writing & Prompting",
+    "format": ["PDF Handbook", "Notion Workspace", "Prompt Bank"],
+    "slug": "ai-writing-system",
+    "coverImage": "/images/lead-magnets/ai-writing-system-cover.png",
+    "badgeText": "PDF + Notion Template Included",
+    "pdfUrl": "/downloads/pdfs/FrankX-AI-Writing-System-2026.pdf",
+    "notionUrl": "https://frankx.notion.site/FrankX-AI-Writing-System-Template",
+    "sourceFile": "content/guides/ai-writing-system.mdx",
+    "features": [
+      "50+ battle-tested prompt templates for technical & creative writing",
+      "Anti-AI slop quality gates and brand voice calibration rules",
+      "Full Notion workspace template for managing AI content pipelines"
+    ],
+    "stats": { "downloadsCount": 4250, "rating": 4.9, "pageCount": 48 }
+  },
+  {
+    "id": "ai-agent-stack-primer",
+    "title": "Building Your First Autonomous AI Agent Swarm",
+    "subtitle": "The 2026 Blueprint for Agent-to-Agent (A2A) Systems, Multi-Agent Memory, & Model Routing",
+    "description": "The definitive technical primer on designing, deploying, and monitoring autonomous agent swarms with Claude SDK, LangGraph, and AgentDB.",
+    "icp": "Human AI Architect / Technical Founder",
+    "category": "Agent Architecture",
+    "format": ["PDF Technical Blueprint", "Notion Hub", "Architecture Spec"],
+    "slug": "ai-agent-stack-primer",
+    "coverImage": "/images/lead-magnets/ai-agent-stack-cover.png",
+    "badgeText": "Architecture Blueprint + Code Samples",
+    "pdfUrl": "/downloads/pdfs/FrankX-Agent-Swarm-Blueprint-2026.pdf",
+    "notionUrl": "https://frankx.notion.site/FrankX-Agent-Architecture-Hub",
+    "sourceFile": "content/guides/first-agent-primer.mdx",
+    "features": [
+      "Multi-agent orchestration topologies: Mesh, Blackboard, and Hierarchical",
+      "Subagent state synchronization, memory isolation, and WSL2 safety",
+      "Cost & latency optimization formulas for Opus, Sonnet, & Flash"
+    ],
+    "stats": { "downloadsCount": 3120, "rating": 5.0, "pageCount": 64 }
+  },
+  {
+    "id": "top-50-ai-prompts",
+    "title": "The Top 50 Production AI Prompts for Creators & Architects",
+    "subtitle": "Battle-tested prompts for coding, content expansion, strategy, and automated research",
+    "description": "Curated library of 50 elite system prompts used by top AI architects and creators. Copy-paste ready for Claude 3.6, Gemini 3.1 Flash, and GPT-5.",
+    "icp": "All Creators & Engineers",
+    "category": "Prompt Engineering",
+    "format": ["Notion Prompt Hub", "PDF Vault"],
+    "slug": "top-50-ai-prompts",
+    "coverImage": "/images/lead-magnets/top-50-prompts-cover.png",
+    "badgeText": "50 Copy-Paste System Prompts",
+    "pdfUrl": "/downloads/pdfs/FrankX-Top-50-AI-Prompts-2026.pdf",
+    "notionUrl": "https://frankx.notion.site/FrankX-Top-50-Prompts-Vault",
+    "sourceFile": "content/guides/top-50-ai-prompts.mdx",
+    "features": [
+      "Categorized by Coding, Writing, Research, Strategy, and Image Gen",
+      "Structured output enforcement & JSON schema prompt blocks",
+      "Includes 2026 Extended Thinking & Chain-of-Thought prompts"
+    ],
+    "stats": { "downloadsCount": 6800, "rating": 4.9, "pageCount": 32 }
+  },
+  {
+    "id": "acos-playbook",
+    "title": "The Agentic Creator OS (ACOS) Playbook",
+    "subtitle": "Build your zero-headcount AI content & digital product engine",
+    "description": "Comprehensive playbook on wiring video, audio, blog, newsletter, and social automation into a sovereign creative operating system.",
+    "icp": "High-Performance Creator / Founder",
+    "category": "Creator OS",
+    "format": ["PDF Playbook", "Notion Workspace"],
+    "slug": "acos-playbook",
+    "coverImage": "/images/lead-magnets/acos-playbook-cover.png",
+    "badgeText": "Zero-Headcount Operating System",
+    "pdfUrl": "/downloads/pdfs/FrankX-ACOS-Playbook-2026.pdf",
+    "notionUrl": "https://frankx.notion.site/FrankX-ACOS-Playbook-Workspace",
+    "sourceFile": "content/guides/agent-collective-operating-system.mdx",
+    "features": [
+      "The 6-layer operating loop breakdown from research to distribution",
+      "Automated audio-to-text and video atomization workflows",
+      "Anti-AI slop quality gates and content publishing pipelines"
+    ],
+    "stats": { "downloadsCount": 2450, "rating": 5.0, "pageCount": 52 }
+  },
+  {
+    "id": "wordless-laws-book",
+    "title": "The Wordless Laws: Principles for the AI Era (Book One)",
+    "subtitle": "Timeless philosophy, mastery, and sovereign discipline for AI Architects",
+    "description": "Full digital ebook edition of The Wordless Laws. Exploring human sovereignty, focus, deep work, and building lasting wealth alongside intelligent systems.",
+    "icp": "Sovereign Thinkers & Founders",
+    "category": "Ebook / Philosophy",
+    "format": ["Full PDF Ebook", "ePub Edition", "Notion Reader"],
+    "slug": "wordless-laws-book",
+    "coverImage": "/images/lead-magnets/wordless-laws-cover.png",
+    "badgeText": "Full Ebook Download",
+    "pdfUrl": "/downloads/pdfs/FrankX-The-Wordless-Laws-Book-One.pdf",
+    "notionUrl": "https://frankx.notion.site/The-Wordless-Laws-Reader",
+    "sourceFile": "content/books/the-wordless-laws/README.md",
+    "features": [
+      "12 core laws of clarity, focus, and non-distraction in the AI age",
+      "Principles of human sovereignty and intellectual independence",
+      "Beautifully formatted digital edition with custom typography"
+    ],
+    "stats": { "downloadsCount": 5100, "rating": 5.0, "pageCount": 120 }
+  },
+  {
+    "id": "golden-age-intelligence",
+    "title": "The Golden Age of Intelligence",
+    "subtitle": "Navigating the paradigm shift from artificial tools to sovereign companions",
+    "description": "An visionary book on how human intelligence and artificial superintelligence converge, transforming industries, art, and personal achievement.",
+    "icp": "Visionaries & Strategists",
+    "category": "Ebook / AI Future",
+    "format": ["Full PDF Ebook", "Audio Chapter Preview"],
+    "slug": "golden-age-intelligence",
+    "coverImage": "/images/lead-magnets/golden-age-cover.png",
+    "badgeText": "Visionary Ebook Edition",
+    "pdfUrl": "/downloads/pdfs/FrankX-Golden-Age-of-Intelligence.pdf",
+    "notionUrl": "https://frankx.notion.site/Golden-Age-Intelligence-Vault",
+    "sourceFile": "content/books/golden-age-of-intelligence/README.md",
+    "features": [
+      "Analysis of superintelligence economic models and sovereign wealth",
+      "Human-in-the-loop governance and ethical agent alignment",
+      "Practical roadmaps for building personal AI leverage"
+    ],
+    "stats": { "downloadsCount": 3890, "rating": 4.9, "pageCount": 96 }
+  },
+  {
+    "id": "founder-ai-stack-2026",
+    "title": "The 2026 Founder AI Stack & Tooling Matrix",
+    "subtitle": "The exact software, models, MCP servers, and infrastructure powering 1-person tech companies",
+    "description": "Curated teardown of the modern AI stack: models, dev environments, agent tools, vector DBs, and automation pipelines.",
+    "icp": "Founders & Solopreneurs",
+    "category": "Tooling & Tech Stack",
+    "format": ["PDF Matrix", "Interactive Notion Database"],
+    "slug": "founder-ai-stack-2026",
+    "coverImage": "/images/lead-magnets/founder-stack-cover.png",
+    "badgeText": "Tech Stack Teardown",
+    "pdfUrl": "/downloads/pdfs/FrankX-Founder-AI-Stack-2026.pdf",
+    "notionUrl": "https://frankx.notion.site/Founder-AI-Stack-Database",
+    "sourceFile": "content/guides/founder-ai-stack-2026.mdx",
+    "features": [
+      "Categorized stack comparison: Anthropic, OpenAI, Cursor, Vercel, Resend",
+      "Cost breakdown and API budget optimization formulas",
+      "MCP server selection guide and local agent setup steps"
+    ],
+    "stats": { "downloadsCount": 4120, "rating": 4.8, "pageCount": 28 }
+  },
+  {
+    "id": "ifs-ai-architecture",
+    "title": "Internal Family Systems (IFS) for AI Agent Architecture",
+    "subtitle": "Designing multi-faceted agent personalities using psychology & subagent ensembles",
+    "description": "A pioneering blueprint on using IFS psychological models (Managers, Firefighters, Exile subagents) to create balanced, safe, and resilient AI swarms.",
+    "icp": "AI Architects & Researchers",
+    "category": "Agent Architecture",
+    "format": ["PDF Blueprint", "Agent Schema Files"],
+    "slug": "ifs-ai-architecture",
+    "coverImage": "/images/lead-magnets/ifs-ai-cover.png",
+    "badgeText": "Advanced Agent Design",
+    "pdfUrl": "/downloads/pdfs/FrankX-IFS-AI-Architecture.pdf",
+    "notionUrl": "https://frankx.notion.site/IFS-AI-Agent-Framework",
+    "sourceFile": "content/guides/ifs-ai-agent-architecture.mdx",
+    "features": [
+      "Psychological subagent roles: Managers, Protectors, and Synthesizers",
+      "Self-correction and internal dialogue resolution protocols",
+      "Prompt templates for assembling balanced agent councils"
+    ],
+    "stats": { "downloadsCount": 1820, "rating": 5.0, "pageCount": 36 }
+  },
+  {
+    "id": "generative-media-playbook",
+    "title": "Generative Media Mastery: Visual & Audio AI Playbook",
+    "subtitle": "Nano Banana 2 (Gemini Image), Suno AI v4.5, and Higgsfield Video Workflows",
+    "description": "Step-by-step masterclass on generating commercial-grade visual assets, Suno music tracks, and video b-roll without expensive production studios.",
+    "icp": "Creators, Marketers, & Designers",
+    "category": "Generative Media",
+    "format": ["PDF Playbook", "Prompt Bank", "Audio Samples"],
+    "slug": "generative-media-playbook",
+    "coverImage": "/images/lead-magnets/generative-media-cover.png",
+    "badgeText": "Visual & Audio AI Masterclass",
+    "pdfUrl": "/downloads/pdfs/FrankX-Generative-Media-Playbook.pdf",
+    "notionUrl": "https://frankx.notion.site/Generative-Media-Vault",
+    "sourceFile": "content/guides/image-generation-mastery.mdx",
+    "features": [
+      "Aspect ratio locks, lighting tokens, and style consistency recipes",
+      "Suno AI v4.5 prompt engineering for commercial song generation",
+      "Higgsfield motion generation and video atomization techniques"
+    ],
+    "stats": { "downloadsCount": 3410, "rating": 4.9, "pageCount": 44 }
+  },
+  {
+    "id": "spartan-mindset-guide",
+    "title": "The Spartan Mindset for Creators: Hardship, Focus, & Execution",
+    "subtitle": "Unbreakable discipline protocols for building enduring digital assets",
+    "description": "Concise field guide adapting ancient Spartan focus principles for high-output digital creators operating in noisy environments.",
+    "icp": "High-Performers & Creators",
+    "category": "Ebook / Mindset",
+    "format": ["PDF Field Guide", "Daily Tracker Template"],
+    "slug": "spartan-mindset-guide",
+    "coverImage": "/images/lead-magnets/spartan-mindset-cover.png",
+    "badgeText": "Field Guide & Tracker",
+    "pdfUrl": "/downloads/pdfs/FrankX-Spartan-Mindset-Guide.pdf",
+    "notionUrl": "https://frankx.notion.site/Spartan-Daily-Execution-Tracker",
+    "sourceFile": "content/books/spartan-mindset/README.md",
+    "features": [
+      "Daily execution rituals and distraction elimination rules",
+      "Laconic decision-making framework under uncertainty",
+      "Habit tracking Notion template for 90-day focus sprints"
+    ],
+    "stats": { "downloadsCount": 2980, "rating": 4.9, "pageCount": 30 }
+  },
+  {
+    "id": "agent-card-a2a-spec-guide",
+    "title": "The Agent-to-Agent (A2A) Protocol Specification",
+    "subtitle": "Machine-readable schemas, discovery manifests, and inter-agent communication",
+    "description": "Technical specification guide on implementing `.well-known/agent-card` standards and machine-to-machine APIs for autonomous agent interoperability.",
+    "icp": "Autonomous AI Agents & System Engineers",
+    "category": "A2A Protocol",
+    "format": ["OpenAPI Spec", "JSON Schema", "PDF Technical Spec"],
+    "slug": "agent-card-a2a-spec-guide",
+    "coverImage": "/images/lead-magnets/a2a-spec-cover.png",
+    "badgeText": "Machine & Human Readable Spec",
+    "pdfUrl": "/downloads/pdfs/FrankX-A2A-Protocol-Spec-2026.pdf",
+    "notionUrl": "https://frankx.notion.site/A2A-Protocol-Specification",
+    "sourceFile": "content/guides/agent-card-a2a-spec.mdx",
+    "features": [
+      "JSON Schema definitions for agent cards and tool manifests",
+      "Authentication, rate limiting, and tollbooth payment wrappers",
+      "Sample Python & TypeScript implementations for A2A discovery"
+    ],
+    "stats": { "downloadsCount": 1450, "rating": 5.0, "pageCount": 24 }
+  },
+  {
+    "id": "5-day-agent-engine-challenge",
+    "title": "5-Day Autonomous Content Engine Challenge",
+    "subtitle": "Build your zero-headcount AI content engine in 5 days with guided daily steps",
+    "description": "An intensive 5-day email sprint + workspace access. Learn how to wire video, blog, social, and newsletter automation into a sovereign creative engine.",
+    "icp": "High-Performance Creator / Founder",
+    "category": "Challenge Sprint",
+    "format": ["5-Day Email Series", "Notion Workspace", "Discord Community"],
+    "slug": "5-day-agent-engine-challenge",
+    "coverImage": "/images/lead-magnets/challenge-5day-cover.png",
+    "badgeText": "5-Day Guided Sprint",
+    "pdfUrl": "/downloads/pdfs/FrankX-5Day-Challenge-Workbook.pdf",
+    "notionUrl": "https://frankx.notion.site/FrankX-5Day-Challenge-Workspace",
+    "sourceFile": "content/guides/agent-collective-operating-system.mdx",
+    "features": [
+      "Day 1: Map your Content Core & Voice Fingerprint",
+      "Day 2: Build your Research Scout Subagent",
+      "Day 3: Wire Audio & Video Atomization Pipelines",
+      "Day 4: Implement Quality Gates & Anti-Slop Audit",
+      "Day 5: Launch Continuous Auto-Publishing Loop"
+    ],
+    "stats": { "downloadsCount": 1950, "rating": 5.0, "pageCount": 40 }
+  }
+]

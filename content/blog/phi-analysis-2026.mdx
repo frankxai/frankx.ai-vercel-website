@@ -1,45 +1,19 @@
 ---
 title: "Microsoft Phi-4 in 2026: The Open-Weight Small Model That Runs on Your Laptop"
-description: "Microsoft's Phi-4 family — Phi-4 (14B), Phi-4-mini (3.8B), Phi-4-multimodal (5.6B), Phi-4-reasoning, and the March 2026 Phi-4-reasoning-vision-15B — are MIT-licensed, $0 to download, and run on consumer GPUs. Verified benchmarks, VRAM tables, and what the small-model angle means for builders."
+description: "Microsoft's Phi-4 family — Phi-4 (14B), Phi-4-mini (3.8B), Phi-4-multimodal (5."
 date: "2026-06-05"
-lastUpdated: "2026-06-05"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - microsoft
-  - phi
-  - open-weight
-  - small-language-models
-  - local-ai
-  - benchmarks
-keywords:
-  - microsoft phi-4
-  - phi-4 benchmarks
-  - phi-4 vram requirements
-  - phi-4 reasoning vision 15b
-  - phi-4 mini 3.8b
-  - run phi-4 locally ollama
-  - best small language model 2026
-  - phi-4 mmlu gpqa
-  - open weight small model
-  - phi-4 vs gemma 3
-image: "/images/blog/phi-analysis-2026-hero-v4.jpg"
+tags: ["microsoft", "phi", "open-weight", "small-language-models", "local-ai", "benchmarks"]
+image: "/images/blog/generated/phi-analysis-2026-premium-hero.png"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll learn actionable architectural frameworks, core implementation steps, and production strategies for microsoft phi4 in 2026 the openweight small model that runs on your laptop."
+tldr: "Microsoft Phi-4 in 2026: The Open-Weight Small Model That Runs on Your Laptop examines core production patterns, technical trade-offs, and actionable implementation steps. Learn how to architect, scale, and deploy resilient systems with maximum leverage and verifiable performance."
+keywords: ["microsoft phi-4", "phi-4 benchmarks", "phi-4 vram requirements", "phi-4 reasoning vision 15b", "phi-4 mini 3.8b", "run phi-4 locally ollama", "best small language model 2026", "phi-4 mmlu gpqa", "open weight small model", "phi-4 vs gemma 3"]
 architectNote:
-  recommendation: "Phi-4 is the $0-per-token floor of an AI Center of Excellence: route high-volume, well-scoped, privacy-sensitive work — extraction, classification, function-calling, document processing — to Phi-4-mini or the 14B on hardware you already own, and escalate only the genuinely hard tasks to a frontier API (Fable 5, released June 2026 at $10/$50, is the current agentic ceiling). The MIT license makes air-gapped deployment and proprietary fine-tuning frictionless in a way Gemma and Llama terms never were. Two honest limits from the post: the base model's 16K context is short, and the vision model is a charts-and-diagrams specialist, not a generalist."
-  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting"
-  personas:
-    - persona: "Bulk fan-out workers"
-      pick: "Phi-4-mini (3.8B, 128K ctx, function calling, ~3-4GB VRAM)"
-    - persona: "Sovereign / self-hosted stacks"
-      pick: "Phi-4 (14B, MIT) — air-gap and regulated deployments"
-    - persona: "Fine-tuned domain agents"
-      pick: "Phi-4 — MIT means fine-tune, redistribute, ship in product, no royalty"
-    - persona: "Reviewer / judgment agents"
-      pick: "Fable 5 or Opus 4.8 — do not ask a 14B STEM specialist for high-stakes judgment"
+  recommendation: ""
 ---
-
 # Microsoft Phi-4 in 2026: The Open-Weight Small Model That Runs on Your Laptop
 
 **TL;DR**: Microsoft's Phi-4 family is the small-language-model line that keeps embarrassing models several times its size — and it's MIT-licensed and free to download. The lineup spans Phi-4-mini (3.8B), Phi-4-multimodal (5.6B, text+vision+speech), the flagship Phi-4 (14B), the reasoning pair Phi-4-reasoning / Phi-4-reasoning-plus (14B), and the newest member, **Phi-4-reasoning-vision-15B**, shipped March 4, 2026, which decides on its own when to "think" and when to answer instantly. Base Phi-4 posts MMLU 84.8, GPQA 56.1, MATH 80.4, and HumanEval 82.6 — outscoring its own teacher (GPT-4o) on GPQA and MATH. The practical headline: a Q4 quant of the 14B runs in roughly 8-10GB of VRAM, so this is frontier-adjacent reasoning on a gaming laptop for $0 in API spend. There is no GA "Phi-5" as of June 2026. Here's the honest state of the family and what it means for builders.

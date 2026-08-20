@@ -1,0 +1,137 @@
+---
+title: "Evals Are the Experiment"
+description: "An agent system without a measurement protocol is literature. How to apply the scientific method to agentic loops: hypothesis, instrument, run, ratify, ledger."
+date: "2026-08-17"
+lastUpdated: "2026-08-18"
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags:
+  - evals
+  - agent-systems
+  - scientific-method
+  - measurement
+  - intelligence-engineering
+keywords:
+  - llm evals
+  - agent evaluation
+  - scientific method ai
+  - measurement protocol
+  - eval framework
+  - agent testing
+featured: false
+readingGoal: "Stop shipping on vibes. Start shipping on receipts."
+tldr: "An agent system without a measurement protocol is literature, not engineering. The scientific method applied to agentic loops looks like this: hypothesis (which model, which task), instrument (what you'll measure before dispatch), run (execute with fixed ground truth), ratify (verify mechanically, judge blind when needed), and ledger (write the receipt)."
+---
+# Evals Are the Experiment
+
+**TL;DR**: An agent system without a measurement protocol is literature, not engineering. The scientific method applied to agentic loops looks like this: hypothesis (which model, which task), instrument (what you'll measure before dispatch), run (execute with fixed ground truth), ratify (verify mechanically, judge blind when needed), and ledger (write the receipt). This is how frankxai/starlight-swarm operates—typed dry-run runtime with SIS as the memory layer. Contrast vibe-shipping with experiment-shipping: one produces claims you can't verify, the other produces JSON you can audit.
+
+---
+
+## What makes an eval an experiment instead of a demo?
+
+An experiment has five properties: a falsifiable hypothesis, instruments fixed before measurement, a reproducible protocol, independent verification, and a public receipt. Most "evals" are demos with extra steps—run a model, eyeball the output, tweet "impressive." That's marketing with decimal precision.
+
+The distinction matters because routing decisions compound. When you choose which model runs your code review agent, which handles your content generation, which does the research fan-out, you're not making one decision—you're making thousands per week. A demo-grade eval gives you a directional sense. An experiment-grade eval gives you a routing policy you can justify to your future self when something breaks.
+
+The [LLM evals guide](/blog/llm-evals-claude-code-guide) showed the Claude Code harness mechanics: per-spawn model overrides, parallel dispatch, mechanical verification. This piece is about what makes that pattern scientific rather than theatrical.
+
+## How does the scientific method map to agent evaluation?
+
+Five steps, borrowed from bench science and adapted for agentic systems:
+
+**1. Hypothesis — state what you're testing, in advance**
+
+"Fable 5 will beat Opus 4.8 on constrained reasoning tasks" is a hypothesis. "Let's see which model is better" is not. The hypothesis must be specific enough to fail: which capability, on which task class, under what constraints. Write it down before dispatch.
+
+In our Queen operating loop (ROUTE → MEASURE → LEARN → RATIFY → LEDGER), the hypothesis lives in the routing layer. When a new model launches, the question is: where in the capability matrix does it slot, and what displaced claim does that falsify?
+
+**2. Instrument — fix what you'll measure before running**
+
+Compute ground truth yourself. For objective tasks—reasoning answers, test suites, format compliance—script the verification before either contestant sees the prompt. For subjective tasks—code craft, voice—decide which non-contestant model will judge, under what criteria, with labels shuffled how.
+
+The failure mode here is deriving truth from a contestant's output, which makes the eval grade itself. If you generate a coding task, see that Model A wrote tests and Model B didn't, then decide "tests are good" and score accordingly, you've laundered Model A's preference into the rubric. Fix the rubric first.
+
+**3. Run — execute with the protocol locked**
+
+Dispatch both contestants in parallel, same prompt, no mid-run adjustments. Tell them their output is raw harness data, not user prose—instruction compliance is part of what you're measuring. If a model asks clarifying questions instead of answering, that's data, not a reason to rewrite the prompt.
+
+This is where starlight-swarm's typed runtime pays off: the contracts are TypeScript interfaces, so "same prompt" is compiler-verified, not honor-system. The swarm executor holds the measurement protocol constant while SIS records what actually ran.
+
+**4. Ratify — verify mechanically, judge blind when needed**
+
+Mechanical verification first: re-run test suites yourself, grep for banned patterns, count words, check JSON schemas. Anything a script can check, a script should check—it's immune to judge bias.
+
+For taste tasks, use a non-contestant model, shuffle A/B labels per task, enforce hard constraints separately in script. The judge scores preference, never compliance. If both outputs violate the word limit, both fail the word limit—the judge's preference between them is recorded but doesn't override the constraint.
+
+The receipts from our [model arena](/research/model-arena) show this split: objective verification in `results`, blind judge scores in `judgeScore`, and `summary.tally` distinguishing mechanical failures from style losses.
+
+**5. Ledger — write the receipt, publish it**
+
+One JSON file per round: contestants, judge and shuffle assignments, per-task results with attempts and durations, the tally, and the caveats (n=1 is directional, same-family judges have family bias, you're measuring model-in-harness). The receipt is what survives "says who?"
+
+This is the discipline that separates [SIS trajectory learning](/blog/sis-trajectory-learning-how-ai-agents-improve) from anecdote accumulation. A trajectory without timestamps and structured outcomes is a story. A trajectory with receipts is a dataset you can train on.
+
+## What does this catch that vibe-shipping misses?
+
+Concrete examples from our rounds: Opus 4.8 answering a hard reasoning task confidently wrong while Fable 5 solved it. Fable 5 executed a governance-gated edit without flagging it; Opus flagged the substrate gate (R2, 9 Jun 2026). A blind style verdict that flipped between rounds—proof that n=1 style judgments shouldn't drive routing.
+
+The deeper catch: constraint compliance under load. Fable 5's constraint edge narrowed on a heavy work-sample (R4, 10 Jun 2026). Enforce contracts structurally.
+
+Vibe-shipping would have caught the unauthorized edit—it's obvious on inspection. It would have missed the load-drift pattern entirely, because that requires running the same measurement protocol at scale repeatedly. Experiments catch systemic behavior. Demos catch what you happened to look at.
+
+## How does this integrate with production systems?
+
+The eval harness is not a separate system—it's the same executor your production agents run on, with the measurement protocol made explicit. In our stack:
+
+- **starlight-swarm** is the typed executor (TypeScript contracts, deterministic dispatch)
+- **SIS** is the memory layer (structured trajectories, versioned outcomes)
+- **ROUTE → MEASURE → LEARN → RATIFY → LEDGER** is the operating loop
+
+When you run an eval, you're exercising the same code path your agents use, but with ground truth fixed and judge assignments recorded. Production is continuous measurement with the ledger step optional. Evals are discrete measurement with the ledger step mandatory.
+
+This is why we don't use LangSmith or Langfuse for evals: they're runtime tracing for live apps, not experiment harnesses. For model comparison, Claude Code's Agent tool with per-spawn overrides plus a bash script that computes ground truth gives you everything you need. For prompt regression, [promptfoo](https://promptfoo.dev) (local, free, declarative) covers it.
+
+The integration point is the receipt: every production trajectory can optionally include the eval-grade metadata—hypothesis, instruments, verification outcomes, judge assignments. Most trajectories don't need it. When you're debugging a routing policy or validating a capability claim, the receipt is already there in SIS.
+
+## Why is this the missing layer in agent observability?
+
+Because observability without a measurement protocol is surveillance, not science. You can trace every token, log every tool call, and still have no idea if the system is improving or degrading—because "better" requires a fixed definition measured the same way over time.
+
+The [observability stack guide](/blog/observability-stack-multi-agent-systems-2026) covers the instrumentation layer: what to log, how to trace, where the bottlenecks hide. This piece is about the evaluation layer above it: what makes a logged outcome *evidence* rather than just *data*.
+
+Coherence is an engineering property ([full argument here](/blog/coherence-is-an-engineering-property)), and eval discipline is what makes coherence measurable. Without it, you can feel when an agent drifted—users complain, outputs look wrong—but you can't prove when it started or what changed. With receipts, you diff the trajectories and see exactly which capability regressed between which versions.
+
+## FAQ
+
+### What's the difference between an eval and an experiment?
+
+An experiment has a falsifiable hypothesis, instruments fixed before measurement, a reproducible protocol, independent verification, and a public receipt. Most evals are demos: run a model, eyeball output, declare a winner. The difference is whether someone else could reproduce your result and verify your claim.
+
+### Do I need an eval platform to run proper evals?
+
+No. The Claude Code Agent tool with per-spawn model overrides plus a bash script for ground truth gives you a head-to-head harness. Add promptfoo for prompt regression if needed. Eval platforms like LangSmith or Langfuse are runtime tracing tools—useful once you have live users, irrelevant for model comparison.
+
+### How do you avoid bias when judging subjective tasks?
+
+Three layers: prefer mechanical verification so most tasks need no judge; use a non-contestant model from outside the matchup; shuffle A/B labels per task while enforcing hard constraints in script. The judge scores taste, never compliance—if both outputs violate the contract, both fail regardless of preference.
+
+### What is "ground truth before dispatch"?
+
+The integrity rule: compute correct answers before any contestant runs, and never adjust them afterward. If you derive truth from a contestant's output, the eval becomes self-grading. Script the verification, write down the answers, lock them before dispatch.
+
+### Why write a receipt instead of just running the eval?
+
+The receipt is what survives "says who?" It's the structured record that lets you reproduce the result, audit the method, and build a dataset of measured outcomes over time. Without receipts, evals are anecdotes. With receipts, they're trajectories you can learn from.
+
+### How does this integrate with SIS and the swarm runtime?
+
+SIS is the memory layer (structured trajectories, versioned outcomes). starlight-swarm is the typed executor (deterministic dispatch, TypeScript contracts). The eval protocol is the same code path production agents use, with measurement made explicit and the ledger step mandatory. Receipts flow into SIS as trajectories tagged with hypothesis, instruments, and verification metadata.
+
+### What if I'm testing creative output like writing or design?
+
+Use mechanical constraints for the floor (word count, format, banned phrases), judge the rest blind with shuffled labels. Creative doesn't mean unmeasurable—it means the measurement splits into objective compliance and subjective preference, enforced separately. The receipt records both.
+
+---
+
+*By Frank — AI Architect & Creator. The open-source eval harness and all receipts: [methodology](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md) · [receipts](https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs). Not affiliated with, endorsed by, or sponsored by Oracle.*
