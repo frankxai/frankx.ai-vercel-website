@@ -19,7 +19,11 @@ const VALID_CATEGORIES = [
   'Vibe Sessions',
   'Intelligence Dispatches',
   'Consciousness',
-  'Flagship'
+  'Flagship',
+  'Creativity',
+  'AI Architecture',
+  'Enterprise AI',
+  'Music Intelligence'
 ]
 
 // Required fields

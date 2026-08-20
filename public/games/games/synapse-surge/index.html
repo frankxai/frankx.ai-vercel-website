@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100 select-none">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Synapse Surge: Working Span — FrankX Cognitive Labs</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    body { touch-action: none; -webkit-user-select: none; user-select: none; }
+    .matrix-node { transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .matrix-node.active-glow { background: radial-gradient(circle, #38bdf8 0%, #0284c7 100%); box-shadow: 0 0 25px #38bdf8; transform: scale(1.08); }
+  </style>
+  <script type="module" crossorigin src="/games/assets/synapseSurge-dlVnJRuM.js"></script>
+  <link rel="modulepreload" crossorigin href="/games/assets/modulepreload-polyfill-B5Qt9EMX.js">
+</head>
+<body class="h-full flex flex-col items-center justify-center overflow-hidden bg-[#050811]">
+
+  <div class="relative w-full h-full max-w-[480px] max-h-[880px] flex flex-col shadow-2xl bg-[#080d1a] overflow-hidden sm:rounded-3xl border border-sky-500/30 p-5 justify-between">
+    
+    <!-- Top Stats -->
+    <div class="flex items-center justify-between z-20 pb-3 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <div class="p-2 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 font-bold text-xs">
+          ⚡ Synapse
+        </div>
+        <div>
+          <div class="text-[10px] text-white/40 uppercase font-semibold">Working Memory Span</div>
+          <div class="text-xs font-bold text-sky-300" id="span-display">Sequence Span: 3</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <div class="text-[10px] text-white/40 uppercase font-semibold">Score</div>
+          <div class="text-sm font-mono font-bold text-emerald-400" id="score-display">0</div>
+        </div>
+        <button id="btn-audio" class="p-2 rounded-full bg-slate-900 text-sky-400 border border-sky-700/40 text-xs">
+          🔊
+        </button>
+      </div>
+    </div>
+
+    <!-- Center 4x4 Grid Matrix -->
+    <div class="my-auto flex flex-col items-center justify-center w-full py-2">
+      <div class="text-xs text-white/50 text-center mb-3" id="state-prompt">
+        Watch the synaptic excitation pattern...
+      </div>
+
+      <div id="synapse-grid" class="grid grid-cols-4 gap-2.5 w-full max-w-[320px] aspect-square p-3 bg-slate-950/60 rounded-2xl border border-white/10 shadow-inner">
+        <!-- 16 matrix nodes -->
+      </div>
+
+      <div id="status-feedback" class="h-6 mt-3 text-xs font-bold text-sky-300 text-center"></div>
+    </div>
+
+    <!-- Bottom Controls -->
+    <div class="space-y-3 z-20">
+      <button id="btn-start" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-slate-950 text-xs font-bold shadow-lg shadow-sky-500/20 active:scale-95 transition-transform">
+        Start Synapse Test
+      </button>
+
+      <div class="text-center">
+        <p class="text-[10px] text-white/30">
+          Target Cortex: Dorsolateral Prefrontal Cortex (Working Memory Span & Sequential Encoding)
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

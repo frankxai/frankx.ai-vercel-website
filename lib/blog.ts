@@ -86,6 +86,11 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   if (!normalized.keywords && normalized.seo?.keywords) {
     normalized.keywords = normalized.seo.keywords
   }
+  if (typeof normalized.architectNote === 'string') {
+    normalized.architectNote = {
+      recommendation: normalized.architectNote,
+    }
+  }
   return normalized
 }
 

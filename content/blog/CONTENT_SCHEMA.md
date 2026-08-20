@@ -1,29 +1,34 @@
 # FrankX Blog Content Schema
 
-## Approved Categories (5 Only)
+## Approved Categories
 
 | Category | Purpose | Editorial Day | Examples |
 |----------|---------|---------------|----------|
-| **Creator Systems** | Workflows, OS design, automation, productivity frameworks | Monday | Agentic Creator OS, Creative OS, SEO Masterplan |
-| **Vibe Sessions** | Music production, Suno AI, state engineering, sonic rituals | Wednesday | Music as Consciousness, State Change Science |
-| **Intelligence Dispatches** | AI strategy, Golden Age vision, enterprise insights | Friday | Intelligence Revolution, AI Guides, Roadmaps |
-| **Creativity** | Purpose-driven AI, personal stories, creative systems | Special | Creative Frequency, AI Doesn't Have to Be Soulless |
-| **Flagship** | Major reports, atlases, comprehensive multi-chapter guides | Flagship | Intelligence Atlas, Golden Age Atlas |
+| **AI Architecture** | System design, multi-agent frameworks, model routing, MCP | Monday | AI Architecture Patterns, MCP Server Guides |
+| **Enterprise AI** | Enterprise deployment, OCI GenAI, governance, LLM evaluation | Tuesday | Production LLM Agents on OCI, Bedrock Patterns |
+| **Creator Systems** | Workflows, OS design, automation, productivity frameworks | Wednesday | Agentic Creator OS, Creative OS, SEO Masterplan |
+| **Music Intelligence** | Music production, Suno AI, state engineering, sonic rituals | Thursday | Suno AI Music Production, State Change Science |
+| **Intelligence Dispatches** | AI strategy, frontier models, benchmark analysis, hardware | Friday | Frontier Model Landscape 2026, RTX 5090 Guide |
+| **Creativity** | Purpose-driven AI, personal stories, creative systems | Weekend | AI Doesn't Have to Be Soulless, Life Architecture |
+| **Flagship** | Major reports, atlases, comprehensive multi-chapter guides | Special | Intelligence Atlas, Golden Age of Intelligence |
+| **Consciousness** | Human-AI alignment, mind models, perception, sovereign AI | Special | Predictive Mind Reality Models, Coherence |
 
 ## Required Frontmatter Schema
 
 ```yaml
 ---
-title: "" # Max 60 chars for SEO
-description: "" # Max 160 chars for SEO meta description
+title: "" # Max 75 chars for SEO & social cards
+description: "" # 120-160 chars for SEO meta description
 date: "YYYY-MM-DD" # ISO format
+lastUpdated: "YYYY-MM-DD" # Freshness signal
 author: "FrankX" # Always FrankX unless guest
-category: "" # One of 5 approved categories above
+category: "" # One of approved categories above
 tags: [] # 3-5 tags, lowercase-kebab-case preferred
-image: "/images/blog/blog-hero-aurora.svg" # Hero image path
+image: "/images/blog/editorial/headers/ai-model-routing-guide-hero.webp" # Hero image path
 featured: false # true for pillar content
-keywords: [] # SEO keywords (optional)
-readingGoal: "" # "You'll learn..." statement (optional)
+readingGoal: "You'll learn..." # Benefit-driven outcome statement
+tldr: "Executive summary for AI extraction & fast readers" # 50-70 words
+keywords: [] # SEO & semantic search keywords
 ---
 ```
 

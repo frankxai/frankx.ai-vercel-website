@@ -53,16 +53,16 @@ const NAV_COLUMNS = [
         external: true,
         accent: 'emerald',
       },
-      { label: 'GenCreator Hub', href: '/gencreator' },
+      { label: 'Starter Kits', href: '/templates', accent: 'emerald' },
       { label: 'Prompt Library', href: '/prompt-library' },
       { label: 'ACOS', href: '/acos' },
-      { label: 'Templates', href: '/templates' },
       { label: 'Creation Chronicles', href: '/creation-chronicles' },
     ],
   },
   {
     label: 'Learn',
     links: [
+      { label: 'Mental Models', href: '/mental-models', accent: 'emerald' },
       { label: 'Courses', href: '/courses' },
       { label: 'Guides', href: '/guides' },
       { label: 'Books', href: '/books' },

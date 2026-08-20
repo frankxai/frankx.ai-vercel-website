@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#060810] text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starlight, Arcanea & FrankX Multi-Brand Game Studio Foundry</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script type="module" crossorigin src="/assets/main-BMpwwL1F.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-mMLvmIeB.css">
+</head>
+<body class="min-h-full flex flex-col antialiased">
+
+  <!-- Header & Status Bar -->
+  <header class="glass-panel sticky top-0 z-50 border-b border-slate-800 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-purple-500 to-cyan-400 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20">
+          ✦
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-extrabold text-lg tracking-tight text-white">MULTI-BRAND GAME FOUNDRY</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              10 GAMES • 3 BRANDS • 60-120 FPS
+            </span>
+          </div>
+          <p class="text-xs text-slate-400">FrankX Cognitive • Arcanea Mythic • Starlight Cosmic Games</p>
+        </div>
+      </div>
+
+      <!-- Quick Telemetry -->
+      <div class="hidden md:flex items-center gap-6 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-slate-300">Live 120 FPS WebAudio Kernel</span>
+        </div>
+        <div class="bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800 text-slate-300">
+          Portfolio: <span class="font-bold text-amber-400">10 Flagship Games</span>
+        </div>
+        <div class="bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800 text-slate-300">
+          Stores: <span class="font-bold text-cyan-400">App Store & Play Store</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Studio Workspace -->
+  <main class="max-w-7xl mx-auto w-full flex-1 p-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+    <!-- Left Column: Multi-Brand Directory & Production OS Tools (5 Cols) -->
+    <div class="lg:col-span-5 space-y-6">
+
+      <!-- Brand Filter Tabs -->
+      <div class="flex items-center gap-2 border-b border-slate-800 pb-3">
+        <button id="tab-all" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 transition-all cursor-pointer">
+          All (10)
+        </button>
+        <button id="tab-frankx" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-slate-300 hover:text-amber-400 border border-slate-800 transition-all cursor-pointer">
+          🧠 FrankX Mind (4)
+        </button>
+        <button id="tab-arcanea" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-slate-300 hover:text-purple-400 border border-slate-800 transition-all cursor-pointer">
+          🎴 Arcanea (2)
+        </button>
+        <button id="tab-starlight" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-slate-300 hover:text-cyan-400 border border-slate-800 transition-all cursor-pointer">
+          ⚡ Starlight (4)
+        </button>
+      </div>
+
+      <!-- Game Directory List -->
+      <div class="glass-panel p-5 rounded-2xl space-y-3 max-h-[500px] overflow-y-auto pr-1">
+
+        <!-- FrankX Cognitive Games -->
+        <div class="game-item brand-frankx glass-card p-3.5 rounded-xl cursor-pointer border-amber-500/50 bg-amber-950/20 transition-all" data-src="./games/neuro-matrix/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🧠</span>
+              <h3 class="font-bold text-white text-sm">NeuroMatrix: Dual N-Back Focus</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-amber-500 text-slate-950">FRANKX MIND</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Scientific Dual N-Back working memory & fluid IQ trainer.</p>
+        </div>
+
+        <div class="game-item brand-frankx glass-card p-3.5 rounded-xl cursor-pointer transition-all" data-src="./games/chrono-focus/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">⚡</span>
+              <h3 class="font-bold text-white text-sm">ChronoFocus: Stroop Warp</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-amber-500 text-slate-950">FRANKX MIND</span>
+          </div>
+          <p class="text-[11px] text-slate-400">High-speed Stroop cognitive flexibility & inhibitory reflex action.</p>
+        </div>
+
+        <div class="game-item brand-frankx glass-card p-3.5 rounded-xl cursor-pointer transition-all" data-src="./games/quantum-prime/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🔢</span>
+              <h3 class="font-bold text-white text-sm">Quantum Prime: Factor Fusion</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-amber-500 text-slate-950">FRANKX MIND</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Intuitive mental multiplication & prime factor chain reactions.</p>
+        </div>
+
+        <div class="game-item brand-frankx glass-card p-3.5 rounded-xl cursor-pointer transition-all" data-src="./games/resonance-flow/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🌿</span>
+              <h3 class="font-bold text-white text-sm">Resonance: Bio-Flow HRV</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-amber-500 text-slate-950">FRANKX MIND</span>
+          </div>
+          <p class="text-[11px] text-slate-400">4-7-8 breathing pacing & Solfeggio 432Hz/528Hz vagal coherence.</p>
+        </div>
+
+        <!-- Arcanea Games -->
+        <div class="game-item brand-arcanea glass-card p-3.5 rounded-xl cursor-pointer transition-all" data-src="./games/arcanea-legends/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🎴</span>
+              <h3 class="font-bold text-white text-sm">Arcanea: Realm of Legends</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-purple-500 text-slate-950">ARCANEA</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Tactical 1v1 Guardian deck battler with 3D foil tilt shaders.</p>
+        </div>
+
+        <div class="game-item brand-arcanea glass-card p-3.5 rounded-xl cursor-pointer transition-all" data-src="./games/neuro-cosmos/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🔮</span>
+              <h3 class="font-bold text-white text-sm">NeuroCosmos: Synapse Odyssey</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-purple-500 text-slate-950">ARCANEA</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Synaptic light routing with Solfeggio 528Hz harmonic chords.</p>
+        </div>
+
+        <!-- Starlight Games -->
+        <div class="game-item brand-starlight glass-card p-3.5 rounded-xl cursor-pointer transition-all" data-src="./games/chrono-shift/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">⚡</span>
+              <h3 class="font-bold text-white text-sm">Chrono Shift: Void Breach</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-cyan-500 text-slate-950">STARLIGHT</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Time-dilation near-miss dodging & tech upgrade shop.</p>
+        </div>
+
+        <div class="game-item brand-starlight glass-card p-3.5 rounded-xl cursor-pointer transition-all" data-src="./games/neon-drift/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🏎️</span>
+              <h3 class="font-bold text-white text-sm">Neon Drift: Cyber Horizon</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-cyan-500 text-slate-950">STARLIGHT</span>
+          </div>
+          <p class="text-[11px] text-slate-400">120 FPS pseudo-3D synthwave highway racing with drift boost.</p>
+        </div>
+
+        <div class="game-item brand-starlight glass-card p-3.5 rounded-xl cursor-pointer transition-all" data-src="./games/aetheria/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🦅</span>
+              <h3 class="font-bold text-white text-sm">Aetheria: Sky Islands Odyssey</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-cyan-500 text-slate-950">STARLIGHT</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Atmospheric flight physics, thermal updrafts & celestial relics.</p>
+        </div>
+
+        <div class="game-item brand-starlight glass-card p-3.5 rounded-xl cursor-pointer transition-all" data-src="./games/quantum-core/index.html">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🛡️</span>
+              <h3 class="font-bold text-white text-sm">Quantum Core: Reactor Defense</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-cyan-500 text-slate-950">STARLIGHT</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Real-time energy routing & modular plasma defense grid.</p>
+        </div>
+
+      </div>
+
+      <!-- Studio Swarm Pipeline & Store Actions -->
+      <div class="glass-panel p-5 rounded-2xl space-y-4">
+        <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider">Multi-Brand Store Pipeline</h2>
+        
+        <div class="grid grid-cols-2 gap-3">
+          <button id="btn-export-aso" class="p-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400 text-left transition-colors cursor-pointer group">
+            <div class="text-amber-400 text-lg mb-1 group-hover:scale-110 transition-transform">📦</div>
+            <div class="text-xs font-bold text-white">Export 10-Game ASO</div>
+            <div class="text-[10px] text-slate-400">App Store & Play Store JSON</div>
+          </button>
+
+          <button id="btn-verify-swarm" class="p-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-400 text-left transition-colors cursor-pointer group">
+            <div class="text-cyan-400 text-lg mb-1 group-hover:scale-110 transition-transform">🛡️</div>
+            <div class="text-xs font-bold text-white">Santa Method QA</div>
+            <div class="text-[10px] text-slate-400">10-Game full verification</div>
+          </button>
+        </div>
+
+        <!-- Notification Toast -->
+        <div id="foundry-toast" class="hidden p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-medium flex items-center gap-2">
+          <span>✅</span>
+          <span id="toast-message">Store metadata bundle successfully verified.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Interactive Multi-Device Simulator (7 Cols) -->
+    <div class="lg:col-span-7 flex flex-col items-center space-y-4">
+
+      <!-- Viewport Device Switcher Toolbar -->
+      <div class="glass-panel px-4 py-2 rounded-2xl flex items-center gap-2 shadow-lg">
+        <span class="text-xs text-slate-400 font-bold mr-2 uppercase tracking-wider">Device:</span>
+        <button id="btn-dev-iphone" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 transition-all cursor-pointer">
+          📱 iPhone 16 Pro
+        </button>
+        <button id="btn-dev-pixel" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:text-white transition-all cursor-pointer">
+          🤖 Pixel 9 Pro
+        </button>
+        <button id="btn-dev-ipad" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:text-white transition-all cursor-pointer">
+          📟 iPad Mini
+        </button>
+        <button id="btn-dev-full" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:text-white transition-all cursor-pointer">
+          🖥️ Full Canvas
+        </button>
+      </div>
+
+      <!-- Device Frame Container -->
+      <div id="device-container" class="device-iphone transition-all duration-300 relative">
+        <div id="device-notch" class="device-notch"></div>
+        <iframe id="game-viewport" src="./games/neuro-matrix/index.html" class="w-full h-full border-0"></iframe>
+      </div>
+
+      <div class="text-center text-xs text-slate-500">
+        Live responsive sandbox running with WebAudio & touch gestures. Click inside to play!
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Interactive Hub Controller -->
+</body>
+</html>
