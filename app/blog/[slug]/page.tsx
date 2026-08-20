@@ -107,7 +107,7 @@ export default async function BlogPostPage({
       url: siteConfig.url,
       jobTitle: 'AI Architect',
       description:
-        'Former Oracle AI architect and independent FrankX builder focused on agentic AI systems, creator operating systems, and 12,000+ AI music experiments.',
+        'Former Oracle AI architect and independent FrankX builder focused on agentic AI systems and creator operating systems.',
       alumniOf: {
         '@type': 'Organization',
         name: 'Oracle',
