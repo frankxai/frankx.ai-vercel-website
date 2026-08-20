@@ -6,6 +6,7 @@ import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
 import { getAllModels } from '@/lib/llm-hub/registry'
+import { getAllAgentEntries } from '@/lib/agent-hub/registry'
 import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 import { learningPaths } from '@/data/learning-paths'
 import { getMvuEntrySummaries } from '@/lib/mvu'
@@ -204,6 +205,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // AI and agent pages
   const aiPages = [
     '/agents',
+    '/agent-hub',
     '/llm-hub',
     '/agent-team',
     '/ai-architect',
@@ -776,6 +778,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: issue.date ? new Date(issue.date).toISOString() : currentDate,
       changeFrequency: 'monthly',
       priority: 0.75,
+    })
+  })
+
+  // Agent Hub — one page per platform/framework, registry-driven.
+  getAllAgentEntries().forEach((entry) => {
+    entries.push({
+      url: `${BASE_URL}/agent-hub/${entry.id}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
     })
   })
 
