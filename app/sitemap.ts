@@ -5,6 +5,8 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
+import { getAllModels } from '@/lib/llm-hub/registry'
+import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 import { learningPaths } from '@/data/learning-paths'
 import { getMvuEntrySummaries } from '@/lib/mvu'
 import { getJournalEntrySummaries } from '@/lib/journal'
@@ -202,6 +204,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // AI and agent pages
   const aiPages = [
     '/agents',
+    '/llm-hub',
     '/agent-team',
     '/ai-architect',
     '/developers',
@@ -773,6 +776,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: issue.date ? new Date(issue.date).toISOString() : currentDate,
       changeFrequency: 'monthly',
       priority: 0.75,
+    })
+  })
+
+  // LLM Hub — per-model and comparison pages. These are registry-driven, return 200,
+  // and were previously absent from the sitemap, so search could not reach them.
+  getAllModels().forEach((model) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/${model.id}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    })
+  })
+  COMPARISONS.forEach((comparison) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/compare/${comparison.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
     })
   })
 
