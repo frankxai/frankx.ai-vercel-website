@@ -19,6 +19,7 @@ import {
   BookOpen,
   ArrowUpRight,
   Download,
+  Gamepad2,
 } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
@@ -193,6 +194,16 @@ const instruments = [
     tag: '16 Pads',
   },
   {
+    name: 'Rhythm Duel',
+    description: 'Guitar Hero-style rhythm game. Solo, or two people on one keyboard or tablet. Every note you hit is a real note in the song.',
+    href: '/music-lab/games/rhythm-duel',
+    color: 'from-emerald-500/15 to-teal-600/10',
+    accent: 'text-emerald-400',
+    border: 'border-emerald-500/20 hover:border-emerald-400/30',
+    icon: Gamepad2,
+    tag: '1–2 Players',
+  },
+  {
     name: 'Xylophone for Kids',
     description: 'Rainbow pentatonic xylophone — every note sounds beautiful together. Designed for little hands.',
     href: '/music-lab/for-kids/xylophone',
@@ -219,15 +230,15 @@ function InstrumentsSection() {
             <span className="text-sm font-medium text-cyan-300">Play Now</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-            Browser instruments
+            Instruments and games
           </h2>
           <p className="text-lg text-white/50 max-w-2xl mx-auto">
-            Play real instruments in your browser. No downloads, no accounts.
-            Touch-optimized for iPad and iPhone.
+            Play real instruments in your browser, or hand someone a controller
+            and duel. No downloads, no accounts. Touch-optimized for iPad and iPhone.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {instruments.map((inst, i) => (
             <motion.div
               key={inst.name}

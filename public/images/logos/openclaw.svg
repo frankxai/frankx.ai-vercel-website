@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="clawGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="50%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="42" stroke="#1F2937" stroke-width="2" />
+  <path d="M50 20 C42 20 38 32 46 42 L50 46 L54 42 C62 32 58 20 50 20 Z" fill="url(#clawGrad)" />
+  <path d="M22 62 C22 54 34 50 44 58 L48 62 L44 66 C34 74 22 70 22 62 Z" fill="url(#clawGrad)" />
+  <path d="M78 62 C78 54 66 50 56 58 L52 62 L56 66 C66 74 78 70 78 62 Z" fill="url(#clawGrad)" />
+  <circle cx="50" cy="56" r="8" fill="#0A0A0B" stroke="#10B981" stroke-width="2.5" />
+  <circle cx="50" cy="56" r="3.5" fill="#06B6D4" />
+</svg>

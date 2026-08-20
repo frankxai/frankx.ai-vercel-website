@@ -42,6 +42,45 @@ export interface Comparison {
 }
 
 export const COMPARISONS: Comparison[] = [
+  {
+    slug: 'grok-4-6-vs-grok-4-3',
+    models: ['grok-4-6', 'grok-4-3'],
+    title: 'Grok 4.6 vs Grok 4.3',
+    description:
+      'Grok 4.6 vs Grok 4.3: same vendor family, different jobs. 4.6 is the August 2026 flagship agent refresh; 4.3 remains the cheap closed-frontier SKU. No Starlight arena receipt for 4.6.',
+    verdict:
+      'Use 4.6 as the current xAI flagship for long agent loops. Keep 4.3 when the $1.25/$2.50 band still fits. Do not treat published AA/vendor tables as SIS Model Arena winners.',
+    analysis: [
+      'Grok 4.6 shipped 12 August 2026 as a same-scale post-training refresh of Grok 4.5. Official High scores put it at 61 on the Artificial Analysis Intelligence Index. Grok 4.3 remains the earlier cheap-frontier SKU at $1.25/$2.50 with a 1M context window.',
+      'The routing fork is price versus published agent scores. 4.6 stays $2/$6 under 200k prompt tokens and doubles above that. 4.3 is still cheaper per token. 4.6 is the model xAI now points at long-running agents; 4.3 is not retired from the cheap tier.',
+      'The Starlight Model Arena has receipts for Claude-native cards, not for Grok 4.6. This page is a catalog comparison, not a battle result.',
+    ],
+    pickFirst: [
+      'New xAI API work that needs the current flagship',
+      'Long-running coding or knowledge-work loops that can stay under 200k tokens',
+      'Cases where 4.5 stamina failed and you want the documented 4.6 refresh',
+    ],
+    pickSecond: [
+      'High-volume, error-tolerant jobs that must stay at $1.25/$2.50',
+      'Workloads that actually need the older 1M context window',
+      'Anything you already measured on 4.3 and have no reason to move',
+    ],
+    keywords: [
+      'grok 4.6 vs grok 4.3',
+      'grok 4.6 review',
+      'xai flagship 2026',
+      'grok 4.6 pricing',
+    ],
+    architect: {
+      call: 'Two Grok seats: 4.6 for flagship agent loops, 4.3 for cheap volume. Do not collapse them. Do not invent a SIS winner.',
+      coePillar: 'Technology · model routing + Strategy · evidence honesty',
+      personas: [
+        { persona: 'Long-running coding agents', pick: 'Grok 4.6' },
+        { persona: 'Bulk fan-out workers', pick: 'Grok 4.3' },
+        { persona: 'SIS Model Arena contestants', pick: 'Stay on Claude receipts until a Grok 4.6 JSON run exists' },
+      ],
+    },
+  },
   // ─────────────────────────────────────────────────────────────────────────
   // Fable 5 launch matchups (June 2026)
   // ─────────────────────────────────────────────────────────────────────────

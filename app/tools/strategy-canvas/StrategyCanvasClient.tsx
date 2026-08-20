@@ -74,7 +74,7 @@ const canvasElements = [
       'Which medium-term goals (6-18 months)?',
       'What are your long-term objectives (18+ months)?'
     ],
-    color: 'from-indigo-500/20 to-purple-500/20',
+    color: 'from-indigo-500/20 to-violet-500/20',
     textColor: 'text-indigo-400'
   }
 ]

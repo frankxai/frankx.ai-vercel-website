@@ -28,6 +28,41 @@ export const outboundLinks: OutboundLink[] = [
     description:
       'Free custom GPT that walks you through Ikigai mapping and brand translation via Socratic questioning.',
   },
+  {
+    slug: 'book-workshop',
+    destination: 'https://cal.com/frankx/workshop',
+    label: 'Book Live Workshop',
+    category: 'partner',
+    description: 'Book a live AI architecture & creator engineering session with FrankX.',
+  },
+  {
+    slug: 'ikigai-notion-template',
+    destination: 'https://frankx.gumroad.com/l/ikigai-notion',
+    label: 'Ikigai Notion Template',
+    category: 'tool',
+    description: 'Interactive Notion workspace for Ikigai mapping and operating systems.',
+  },
+  {
+    slug: 'ikigai-sheet-template',
+    destination: 'https://docs.google.com/spreadsheets/d/1ikigai-template',
+    label: 'Ikigai Spreadsheet Template',
+    category: 'tool',
+    description: 'Calculated spreadsheet template for dimension scoring and priorities.',
+  },
+  {
+    slug: 'claude-cowork',
+    destination: 'https://claude.ai',
+    label: 'Claude Co-Work Hub',
+    category: 'tool',
+    description: 'Claude AI workspace for intentional creation and execution.',
+  },
+  {
+    slug: 'ikigai-prompt-scaffold',
+    destination: 'https://github.com/frankxai/prompt-library/tree/main/ikigai',
+    label: 'Ikigai Prompt Scaffold',
+    category: 'tool',
+    description: 'System prompt scaffolds and Socratic frameworks for Ikigai exploration.',
+  },
 ]
 
 export function getOutboundLink(slug: string): OutboundLink | undefined {
