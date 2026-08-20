@@ -1,7 +1,7 @@
 {
-  "_generated": "2026-08-18T03:28:32.884Z",
+  "_generated": "2026-08-21T00:00:00.000Z",
   "_source": "content/blog/",
-  "_count": 232,
+  "_count": 233,
   "articles": [
     {
       "id": "content_schema",
@@ -2921,6 +2921,38 @@
       "seoTitle": "Agent Family Architecture vs Agent Swarms",
       "seoDescription": "More agents is not more intelligence. The architectural choice between swarm (more workers) and family (governed roles) determines whether your agent stack scales coherently or fragments under load.",
       "ogImage": "/images/blog/agent-family-architecture-hero-v8.jpg",
+      "author": "FrankX"
+    },
+    {
+      "id": "ai-agents-worth-evaluating-august-2026",
+      "type": "blog",
+      "title": "The AI Agents Worth Evaluating in August 2026",
+      "description": "Mira, Viktor, Hermes, ChatGPT Work, and Claude Cowork compared by job, cost, and capability. What to evaluate on August 21, 2026.",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "AI Agents",
+        "Mira",
+        "Viktor",
+        "Hermes Agent",
+        "ChatGPT Work",
+        "Claude Cowork",
+        "OpenClaw",
+        "Manus"
+      ],
+      "createdAt": "2026-08-21",
+      "updatedAt": "2026-08-21",
+      "slug": "ai-agents-worth-evaluating-august-2026",
+      "filePath": "content/blog/ai-agents-worth-evaluating-august-2026.mdx",
+      "wordCount": 4257,
+      "readingTime": "22 min read",
+      "category": "Intelligence Dispatches",
+      "series": null,
+      "seriesOrder": null,
+      "featured": true,
+      "seoTitle": "The AI Agents Worth Evaluating in August 2026",
+      "seoDescription": "Mira, Viktor, Hermes, ChatGPT Work, and Claude Cowork compared by job, cost, and capability. What to evaluate on August 21, 2026.",
+      "ogImage": "/images/blog/ai-agents-worth-evaluating-august-2026-hero.jpg",
       "author": "FrankX"
     },
     {
