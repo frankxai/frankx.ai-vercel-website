@@ -136,7 +136,7 @@ function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right - Stats */}
+          {/* Right - Tech highlights */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -144,18 +144,17 @@ function HeroSection() {
             className="grid grid-cols-2 gap-4"
           >
             {[
-              { value: '15x', label: 'WebGPU vs WebGL', icon: Zap, color: 'text-amber-400' },
-              { value: '70%', label: 'Browser WebGPU support', icon: Globe, color: 'text-cyan-400' },
-              { value: '87%', label: 'Devs using AI agents', icon: Bot, color: 'text-violet-400' },
-              { value: '$0', label: 'App Store fees', icon: Trophy, color: 'text-emerald-400' },
-            ].map((stat) => (
+              { label: 'WebGPU support', icon: Zap, color: 'text-amber-400' },
+              { label: 'Browser native', icon: Globe, color: 'text-cyan-400' },
+              { label: 'AI-powered dev', icon: Bot, color: 'text-violet-400' },
+              { label: 'No app store cut', icon: Trophy, color: 'text-emerald-400' },
+            ].map((item) => (
               <div
-                key={stat.label}
+                key={item.label}
                 className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] transition-colors"
               >
-                <stat.icon className={`w-5 h-5 ${stat.color} mb-3`} />
-                <div className="text-2xl font-semibold text-white mb-1">{stat.value}</div>
-                <div className="text-xs text-white/40">{stat.label}</div>
+                <item.icon className={`w-5 h-5 ${item.color} mb-3`} />
+                <div className="text-sm text-white/60">{item.label}</div>
               </div>
             ))}
           </motion.div>
@@ -174,7 +173,7 @@ function PlayNowSection() {
     // --- 1. FrankX Cognitive Neuroscience Suite ---
     {
       title: 'NeuroMatrix: Dual N-Back',
-      description: 'Scientifically proven Dual N-Back working memory and fluid IQ trainer with spatial grids and pitch cues.',
+      description: 'Dual N-Back working memory and fluid IQ trainer with spatial grids and pitch cues.',
       href: '/games/neuro-matrix',
       badge: 'Cognitive IQ',
       color: 'amber',
@@ -332,7 +331,7 @@ function PlayNowSection() {
     },
     {
       title: 'Neon Drift: Cyber Horizon',
-      description: '120 FPS pseudo-3D synthwave highway racing with drift boosts and traffic hazards.',
+      description: 'Pseudo-3D synthwave highway racing with drift boosts and traffic hazards.',
       href: '/games/neon-drift',
       badge: 'Arcade Racer',
       color: 'cyan',
@@ -384,7 +383,7 @@ function PlayNowSection() {
               Play now on frankx.ai
             </h2>
             <p className="text-white/60 max-w-2xl text-base">
-              Instant 60–120 FPS games running directly in your browser. Zero downloads, zero installs, pure WebAudio synthesis.
+              Games running directly in your browser. Zero downloads, zero installs, pure WebAudio synthesis.
             </p>
           </motion.div>
 
@@ -770,7 +769,7 @@ function AgenticPipelineSection() {
       step: 3,
       title: 'Code Agent',
       description: 'Claude Code generates Phaser/R3F game code, implements mechanics, integrates assets, and creates the Next.js shell with routing and metadata.',
-      tool: 'Claude Code + 500+ Skills',
+      tool: 'Claude Code',
       color: 'cyan',
     },
     {
@@ -854,20 +853,20 @@ function MonetizationSection() {
     },
     {
       title: 'Game Template Sales',
-      description: 'Sell Next.js + Phaser game templates ($27-97) on itch.io, Gumroad, or direct. Creators customize and deploy their own.',
-      metrics: '$27-97 per template',
+      description: 'Sell Next.js + Phaser game templates on itch.io, Gumroad, or direct. Creators customize and deploy their own.',
+      metrics: 'Per-template sales',
       icon: Code,
     },
     {
       title: 'AI Game Builder',
       description: 'Premium product: AI-powered game generator. Input concept, get playable prototype. Subscription model.',
-      metrics: '$27-97/month subscription',
+      metrics: 'Subscription model',
       icon: Sparkles,
     },
     {
       title: 'In-Game Purchases',
-      description: 'Cosmetics, power-ups, battle passes via Stripe/Lemon Squeezy. No 30% App Store tax — browser games keep full revenue.',
-      metrics: '12-18% of users convert',
+      description: 'Cosmetics, power-ups, battle passes via Stripe/Lemon Squeezy. No App Store tax — browser games keep full revenue.',
+      metrics: 'Direct payment integration',
       icon: Trophy,
     },
   ]
@@ -929,7 +928,7 @@ function AIToolsSection() {
     { name: 'AIVA', role: 'Adaptive music — orchestral, electronic, ambient loops', category: 'Music', ready: true },
     { name: 'Replica Studios', role: 'AI voice acting for characters and narration', category: 'Voice', ready: true },
     { name: 'Promethean AI', role: 'Large-scale 3D environment creation (AAA studios)', category: 'Worlds', ready: true },
-    { name: 'Claude Code', role: 'Full game code generation with 500+ dev skills', category: 'Code', ready: true },
+    { name: 'Claude Code', role: 'Full game code generation with dev skills', category: 'Code', ready: true },
   ]
 
   return (
