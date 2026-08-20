@@ -25,6 +25,7 @@
 import { readFileSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { enumerateRoutes } from '../lib/route-enumeration.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const WARN_ONLY = process.argv.includes('--warn')
@@ -38,8 +39,11 @@ const notes = []
 // ── 1. No alias may shadow a real route ──────────────────────────────────────
 const aliasFile = readJson('data/redirect-aliases.json')
 const aliases = aliasFile.aliases ?? {}
-const routeIndex = readJson('data/route-index.json')
-const realRoutes = new Set((routeIndex.routes ?? []).map((r) => r.href))
+// Enumerate from source rather than reading data/route-index.json. The committed
+// index can lag the working tree, so a local `pnpm merge:gate` would otherwise miss
+// an alias shadowing a page added in the same change - which is exactly the bug
+// class this gate exists to stop.
+const realRoutes = new Set(enumerateRoutes().map((r) => r.href))
 
 /**
  * Pre-existing shadowed routes, grandfathered so this gate can block NEW
@@ -51,15 +55,17 @@ const realRoutes = new Set((routeIndex.routes ?? []).map((r) => r.href))
  * removing an alias changes where a live URL resolves. Decide and shrink this
  * list; do not add to it.
  */
-const GRANDFATHERED_SHADOWS = new Set([
-  '/ai-coe',                                    // -> /acos            (465-line page)
-  '/ai-computer',                               // -> /ai-architecture (445-line page)
-  '/soul-frequency-assessment',                 // -> /soul-frequency-quiz (140-line page)
-  '/workshops/ikigai-branding/present/speaker', // -> .../present      (283-line page)
+const GRANDFATHERED_SHADOWS = new Map([
+  ['/ai-coe', '/acos'],                                                        // 465-line page
+  ['/ai-computer', '/ai-architecture'],                                        // 445-line page
+  ['/soul-frequency-assessment', '/soul-frequency-quiz'],                      // 140-line page
+  ['/workshops/ikigai-branding/present/speaker', '/workshops/ikigai-branding/present'], // 283-line page
 ])
 
 for (const from of Object.keys(aliases)) {
-  if (realRoutes.has(from) && GRANDFATHERED_SHADOWS.has(from)) {
+  // Pairs, not just sources: re-pointing a grandfathered alias at a new target is a
+  // fresh decision and must not inherit the exemption.
+  if (realRoutes.has(from) && GRANDFATHERED_SHADOWS.get(from) === aliases[from]) {
     notes.push(`known shadowed route (needs a decision, not blocking): ${from} -> ${aliases[from]}`)
     continue
   }
@@ -84,12 +90,11 @@ if (existsSync(join(ROOT, ARENA))) {
   const normalise = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
   const registryNorm = registryNames.map(normalise)
 
-  const missing = [...new Set(arenaModels)].filter((name) => {
-    const n = normalise(name)
-    // A registry name matches if either side contains the other once normalised
-    // (the arena writes "DeepSeek-V4-Pro-0813", the registry "DeepSeek V4 Pro 0813").
-    return !registryNorm.some((r) => r === n || r.includes(n) || n.includes(r))
-  })
+  // Exact equality AFTER normalising. Normalisation already absorbs the punctuation
+  // difference between the two files ("DeepSeek-V4-Pro-0813" vs "DeepSeek V4 Pro 0813"),
+  // so substring matching adds no reach - it only creates false greens: arena "GPT-5"
+  // would silently match registry "GPT-5.5", passing the gate for a model nobody registered.
+  const missing = [...new Set(arenaModels)].filter((name) => !registryNorm.includes(normalise(name)))
 
   for (const name of missing) {
     problems.push(
