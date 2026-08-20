@@ -117,7 +117,7 @@ export function OfficialArchitectureAtlas() {
   )
 
   return (
-    <main className="min-h-screen bg-[#0a0a0b] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       <section className="relative overflow-hidden border-b border-white/[0.06] pt-28 sm:pt-32">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="absolute left-[12%] top-20 h-72 w-72 rounded-full bg-emerald-500/[0.07] blur-[110px]" />
@@ -261,6 +261,6 @@ export function OfficialArchitectureAtlas() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
