@@ -24,16 +24,26 @@ The landscape of frontier artificial intelligence has undergone a fundamental ar
 
 This shift transforms how software architects, engineering leaders, and creators evaluate and route foundational models.
 
-```mermaid
-graph LR
-    A[User Intent / Task] --> B{Complexity Classifier}
-    B -->|System 1: High Velocity| C[Autoregressive Flash Model]
-    B -->|System 2: Formal Logic| D[Inference-Time Search Engine]
-    D --> E[MCTS / Best-of-N Sampling]
-    E --> F[Process Reward Model PRM]
-    F -->|Verified Pass| G[Deterministic Output]
-    F -->|Logic Fail| E
-    C --> G
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    HYBRID TEST-TIME ROUTING ARCHITECTURE                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  User Intent / Task Payload                                                 │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Dynamic Complexity Classifier]                                            │
+│       │                                                                     │
+│       ├──► [System 1: High Velocity] ──► Autoregressive Flash Model (8B)    │
+│       │                                       │                             │
+│       └──► [System 2: Formal Logic]           ▼                             │
+│                 │                      [Deterministic Output]               │
+│                 ▼                             ▲                             │
+│            [MCTS Search] ──► [PRM Verifier] ──┘ (Verified Pass)             │
+│                 ▲                   │                                       │
+│                 └─ (Logic Reject) ──┘                                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+
 ```
 
 ---
@@ -149,3 +159,14 @@ export function selectOptimalModel(policy: RoutingPolicy): string {
 - **Test-time compute is the new scaling frontier**: Spend compute at inference to solve complex logic rather than increasing model weights blindly.
 - **PRMs eliminate reasoning drift**: Dense step supervision guarantees each deduction holds before proceeding.
 - **Route by outcome verification**: Pair fast System 1 models for intuitive tasks with System 2 reasoning models for mission-critical software and mathematical verification.
+
+
+---
+
+## Explore Related Architecture & Research
+
+- [Model Intelligence Arena & Benchmark Matrix](/research/model-arena) — Benchmark reasoning models and test-time compute scaling live.
+- [The 100-Domain Research Engine](/research) — Deep scientific synthesis across frontier AI, physics, and bioelectricity.
+- [The 2026 Agentic Hierarchy](/blog/skills-vs-agents-vs-prompts-vs-mcp) — Prompts, Skills, Agents, and MCP Protocol.
+- [AI Infrastructure Economics](/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026) — Blackwell NVL72, LPUs, and AI Factories.
+- [FrankX Open-Source Downloads](/downloads) — Download production-grade starter kits and architecture blueprints.

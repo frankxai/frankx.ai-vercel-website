@@ -17,5 +17,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Fetch PR base for an accurate media diff
+        run: git fetch --no-tags origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
+
       - name: Reject repository media debt
         run: node scripts/media-guard.mjs --base origin/${{ github.base_ref }}

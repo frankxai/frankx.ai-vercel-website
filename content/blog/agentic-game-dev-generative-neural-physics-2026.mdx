@@ -22,16 +22,25 @@ The gaming industry is undergoing its most profound technological transformation
 
 **Agentic Game Development** introduces living simulation architectures: autonomous non-player character (NPC) cognitive graphs, neural approximation of fluid and soft-body physics, and dynamic procedural world synthesis.
 
-```mermaid
-graph TD
-    A[Spatial Environment & Player Actions] --> B[Real-Time Game Loop 60 FPS]
-    B -->|Event Stream| C[Asynchronous Cognitive Engine 2 Hz]
-    C --> D[NPC Episodic Memory & Goal FSM]
-    C --> E[Local SLM / LPU Dialogue Generator]
-    D --> F[Intent & Action Dispatch]
-    E --> F
-    F -->|Target Velocity / Dynamic Dialogue| B
-    B --> G[Neural Physics & Spatial Audio Renderer]
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                 ASYNC COGNITIVE GAME ARCHITECTURE DUAL-LOOP                 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Spatial Environment & Player Actions                                       │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [HIGH-FREQUENCY GAME LOOP (60 FPS / 16.6ms Tick)]                          │
+│       │                                 ▲                                   │
+│       │ (Event Telemetry Stream)        │ (Target Velocity / Dynamic Audio) │
+│       ▼                                 │                                   │
+│  [ASYNC COGNITIVE ENGINE (2-5 Hz / LPU Stream)]                             │
+│       ├──► NPC Episodic Memory & Goal FSM                                   │
+│       └──► Local SLM Dynamic Dialogue Synthesizer                           │
+│                                                                             │
+│  Render Target: Neural Physics & Spatial Audio Renderer                     │
+└─────────────────────────────────────────────────────────────────────────────┘
+
 ```
 
 ---

@@ -1,0 +1,122 @@
+---
+title: "The Agentic Engineering Master Guide: Designing Production AI Systems in 2026"
+description: "A complete curriculum for software architects and creators. From prompt engineering baselines to evaluated skills, MCP tool meshes, FSM subagents, and high-density liquid-cooled compute."
+date: "2026-08-18"
+category: "AI Architecture"
+tags:
+  - "agentic-engineering"
+  - "guide"
+  - "mcp"
+  - "skills"
+  - "software-architecture"
+  - "ai-factories"
+image: "/images/blog/generated/skills-vs-agents-vs-prompts-vs-mcp.jpg"
+featured: true
+author: "Frank Riemer"
+readingGoal: "Acquire end-to-end mastery over the 2026 Agentic Hierarchy and modern AI infrastructure engineering."
+tldr: "This master guide unifies the 4-layer agentic hierarchy (Prompts, Skills, Agents, MCP) with sovereign compute engineering. Move beyond prompt wrappers into deterministic, testable software systems."
+---
+
+# The Agentic Engineering Master Guide
+
+## Overview & Curriculum
+
+Modern artificial intelligence engineering is not about typing clever prose into chat interfaces. It is a rigorous branch of **distributed systems engineering, state machine modeling, and silicon economics**.
+
+This master guide establishes the canonical curriculum taught across the FrankX ecosystem.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                   THE 5-MODULE AGENTIC MASTERY CURRICULUM                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Module 1: The Agentic Hierarchy (Primitives & Decision Trees)              │
+│  • Deconstructing Prompts, Skills, Agents, and MCP Protocol boundaries      │
+│                                                                             │
+│  Module 2: The Agent Skill Standard (Version-Controlled Knowledge)          │
+│  • Structuring SKILL.md packages, deterministic shell scripts, and evals    │
+│                                                                             │
+│  Module 3: Model Context Protocol (MCP) in Production                       │
+│  • Building JSON-RPC tool servers, Stdio/SSE transports, zero-trust auth    │
+│                                                                             │
+│  Module 4: Subagent Swarm Orchestration & FSMs                              │
+│  • Defeating state entropy with Finite State Machines and the Santa Loop    │
+│                                                                             │
+│  Module 5: Sovereign AI Infrastructure & Compute Economics                  │
+│  • Blackwell GB200, Groq LPUs, Cerebras WSE-3, liquid manifolds, and CPVO   │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Module 1: The 4-Layer Hierarchy
+
+Understanding where each primitive lives prevents massive architectural failure:
+
+1. **Prompts**: Ephemeral single-turn natural language instructions. Use exclusively for one-off exploration.
+2. **MCP (Model Context Protocol)**: Universal JSON-RPC wire protocol. Standardizes how models read resources and call external tools.
+3. **Skills**: Version-controlled operational packages (`SKILL.md`). Encapsulates how a recurring job must be performed.
+4. **Agents**: Autonomous loops running state transitions toward a high-level goal.
+
+👉 *Core Architecture Post:* [Skills vs Agents vs Prompts vs MCP: The 2026 Agentic Hierarchy](/blog/skills-vs-agents-vs-prompts-vs-mcp)
+
+---
+
+## Module 2: The Agent Skill Standard
+
+The **Agent Skill Standard (ASS)** is the open specification for building testable AI workflows:
+
+- **Metadata Header**: Explicit `name`, `description`, and regex `triggers`.
+- **Pre-Conditions**: Required environment variables, API tokens, and local dependencies.
+- **Deterministic Scripts**: Shell and Node.js helpers for non-probabilistic checks (linting, git diffs).
+- **Golden Evaluation Suites**: Automated assertion test suites validating trajectory convergence.
+
+👉 *Core Architecture Post:* [The Agent Skill Standard: Evaluated Workflows](/blog/agent-skill-standard-evaluated-workflows-2026)
+
+---
+
+## Module 3: MCP Tool Mesh Architecture
+
+Building production MCP servers requires:
+- **Strict Schema Validation**: Validating every incoming tool parameter with Zod.
+- **Transport Selection**: Local Stdio pipes for desktop/CLI agents; SSE over TLS for cloud swarms.
+- **Audit Logging**: Cryptographic logging of every tool execution payload.
+
+👉 *Core Architecture Post:* [MCP in Production: Building Zero-Trust Tool Meshes](/blog/mcp-protocol-production-architecture-2026)
+
+---
+
+## Module 4: FSM Multi-Agent Swarms
+
+To defeat exponential state entropy across multi-agent systems:
+- Replace open-ended agent chat with **Finite State Machines (FSMs)**.
+- Enforce the **Santa Loop** (Generation Subagent ↔ Adversarial Reviewer Subagent).
+- Use typed JSON handoff payloads between supervisor and worker agents.
+
+👉 *Core Architecture Post:* [Subagent Swarms & FSM Orchestration](/blog/subagent-swarm-orchestration-fsm-2026)
+
+---
+
+## Module 5: Sovereign AI Infrastructure & Silicon Economics
+
+Enterprise AI leaders evaluate hardware by **Cost-Per-Verified-Outcome (CPVO)**:
+
+```
+CPVO = (Hourly Hardware Cost × Latency) / First-Pass Pass Rate
+```
+
+- **NVIDIA GB200 NVL72**: Massive multi-terabyte HBM3e for frontier reasoning and pre-training.
+- **Groq LPUs & Cerebras CS-3**: Pure on-chip SRAM for sub-15ms time-to-first-token interactive swarms.
+- **Direct-to-Chip Liquid Cooling**: 140 kW per rack thermal dissipation with PUE < 1.10.
+
+👉 *Core Architecture Post:* [AI Infrastructure & Hardware Economics: Blackwell, LPUs, and AI Factories](/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026)
+
+---
+
+## Download Open-Source Architecture Templates
+
+Access our complete production repositories, `SKILL.md` templates, MCP servers, and FSM swarm configs:
+
+- [FrankX Open-Source Downloads Portal](/downloads)
+- [The 100-Domain Research Engine](/research)
+- [Model Intelligence Arena](/research/model-arena)
+

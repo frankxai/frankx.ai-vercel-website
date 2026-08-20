@@ -5,9 +5,12 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
+import { getAllModels } from '@/lib/llm-hub/registry'
+import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 import { learningPaths } from '@/data/learning-paths'
 import { getMvuEntrySummaries } from '@/lib/mvu'
 import { getJournalEntrySummaries } from '@/lib/journal'
+import { getChangelogUpdates } from '@/lib/changelog'
 import { isCanonicalBlogSlug } from '@/lib/blog-redirects.mjs'
 import { askQuestions } from '@/data/ask-questions'
 import { publishedSignals } from '@/lib/dream100'
@@ -121,6 +124,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages = [
     { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/the-future-we-choose', priority: 0.95, changeFrequency: 'monthly' as const },
+    { url: '/insights/meta-the-future-is-for-everyone', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/insights/from-personal-superintelligence-to-human-sovereignty', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/qualities', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
@@ -201,6 +207,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // AI and agent pages
   const aiPages = [
     '/agents',
+    '/llm-hub',
     '/agent-team',
     '/ai-architect',
     '/developers',
@@ -698,6 +705,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Curated release notes use their editorial modification date instead of the
+  // build date so crawlers receive stable, truthful freshness signals.
+  getChangelogUpdates().forEach(update => {
+    entries.push({
+      url: `${BASE_URL}/changelog/${update.slug}`,
+      lastModified: new Date(`${update.modifiedAt}T00:00:00Z`).toISOString(),
+      changeFrequency: 'monthly',
+      priority: 0.65,
+    })
+  })
+
   // Library OS — hub + manifesto + build + quotes
   libraryPages.forEach(page => {
     entries.push({
@@ -761,6 +779,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: issue.date ? new Date(issue.date).toISOString() : currentDate,
       changeFrequency: 'monthly',
       priority: 0.75,
+    })
+  })
+
+  // LLM Hub — per-model and comparison pages. These are registry-driven, return 200,
+  // and were previously absent from the sitemap, so search could not reach them.
+  getAllModels().forEach((model) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/${model.id}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    })
+  })
+  COMPARISONS.forEach((comparison) => {
+    entries.push({
+      url: `${BASE_URL}/llm-hub/compare/${comparison.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
     })
   })
 
