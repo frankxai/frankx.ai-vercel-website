@@ -770,6 +770,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   })
 
   // Newsletter issues — published only (drafts noindex'd at page level)
+  getNewsletterIssues().forEach((issue) => {
+    entries.push({
+      url: `${BASE_URL}/newsletter/archive/${issue.slug}`,
+      lastModified: issue.date ? new Date(issue.date).toISOString() : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    })
+  })
+
   // LLM Hub — per-model and comparison pages. These are registry-driven, return 200,
   // and were previously absent from the sitemap, so search could not reach them.
   getAllModels().forEach((model) => {
@@ -786,15 +795,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.7,
-    })
-  })
-
-  getNewsletterIssues().forEach((issue) => {
-    entries.push({
-      url: `${BASE_URL}/newsletter/archive/${issue.slug}`,
-      lastModified: issue.date ? new Date(issue.date).toISOString() : currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.75,
     })
   })
 

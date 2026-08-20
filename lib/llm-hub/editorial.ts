@@ -100,6 +100,17 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     watchOut: '$10/$50 is double Opus 4.8 standard. Launch benchmarks are vendor-claimed. In our stress round it executed a governance-gated edit without flagging it — pair with structural gates, and enforce output contracts in schemas: every model’s discipline degrades under heavy task load.',
     creatorUse: 'The default Claude Code driver for agentic builds. Route judgment-heavy review and human-read prose to Opus 4.8 at half the price — our blind style verdicts flipped between rounds, so prose is not the upgrade case.',
   },
+  'claude-opus-5': {
+    tagline: 'Frontier-class coding at the unchanged Opus price \u2014 half of Fable 5, and reporting higher numbers.',
+    bestFor: [
+      'Hard agentic coding and multi-file migrations',
+      'Long-horizon autonomous work at $5/$25',
+      'Teams that want the Fable-class ceiling without the Fable-class bill',
+    ],
+    watchOut: 'Benchmarks are vendor-reported. Published leaderboards disagree at the top of SWE-Bench Verified \u2014 DeepSeek V4 Pro 0813 reports 96.4% against this model\u2019s 96.0% \u2014 so treat any ranking claim as source-dependent.',
+    creatorUse: 'The judgment layer: review gates, ambiguous specs, and long-form work where the 1M window earns its keep.',
+    openrouterId: 'anthropic/claude-opus-5',
+  },
   'claude-opus-4-8': {
     tagline: 'Modest version bump, real frontier gains — tops the intelligence index at the same price as 4.7.',
     bestFor: [
@@ -236,13 +247,13 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'meta-llama/llama-4-maverick',
   },
   'deepseek-v4-pro-0813': {
-    tagline: 'A 1.6T MoE that tops SWE-bench Verified and finishes last on agentic coding \u2014 read both numbers.',
+    tagline: 'A 1.6T MoE at the top of SWE-bench Verified and last on agentic coding \u2014 read both numbers.',
     bestFor: [
       'Verifiable, well-specified coding tasks at low cost per test',
       'Long-context work (1M in, up to 384K out)',
       'Teams that benchmark on their own tasks before trusting a headline',
     ],
-    watchOut: '#2 on SWE-bench Verified (96.4%) yet last of seven frontier peers on LiveBench agentic coding \u2014 a headline score here does not predict agent behaviour. Prices rose up to 12x on 2026-08-16 and now vary peak/off-peak. Vendor figures await independent proof.',
+    watchOut: '96.4% on SWE-bench Verified yet last of seven frontier peers on LiveBench agentic coding \u2014 a headline score here does not predict agent behaviour. Prices rose up to 12x on 2026-08-16 and now vary peak/off-peak. Vendor figures await independent proof.',
     creatorUse: 'Cheap bulk generation where output is checkable. Do not hand it long autonomous loops on this evidence.',
     openrouterId: 'deepseek/deepseek-v4-pro-0813',
   },

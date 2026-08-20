@@ -46,6 +46,45 @@
         "https://www.frankx.ai/research/model-arena"
       ]
     },
+    "claude-opus-5": {
+      "name": "Claude Opus 5",
+      "id": "claude-opus-5",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-07-24",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision",
+        "code"
+      ],
+      "pricing": {
+        "input_per_1m": 5.0,
+        "output_per_1m": 25.0
+      },
+      "benchmarks": {
+        "swe_bench_verified": 96.0,
+        "swe_bench_pro": 79.2,
+        "frontier_bench": 43.3,
+        "arc_agi_3": 30.2,
+        "gdpval_aa": 1861
+      },
+      "key_capabilities": [
+        "1M context, 128K max output",
+        "SWE-Bench Verified 96.0% and Pro 79.2%, up from Opus 4.8's 88.6% / 69.2% (vendor-reported)",
+        "Frontier-class agentic coding and computer use at unchanged Opus pricing"
+      ],
+      "acos_tier": "opus",
+      "frankx_notes": "Shipped 24 July 2026 at the unchanged Opus price of $5/$25, which makes it half the cost of Fable 5 while reporting higher coding numbers - the routing question between the two Anthropic flagships is now cost and task shape, not capability tiers. Benchmarks are vendor-reported. Note that published leaderboards disagree on ordering at the top of SWE-Bench Verified: DeepSeek V4 Pro 0813 reports 96.4% against this model's 96.0%, and different trackers rank them differently, so treat any '#1' claim as source-dependent.",
+      "sources": [
+        "https://www.marktechpost.com/2026/07/24/meet-the-new-claude-opus-5-frontier-class-agentic-coding-and-computer-use-at-unchanged-opus-pricing/",
+        "https://codersera.com/blog/claude-opus-5-benchmarks-explained-2026/",
+        "https://www.morphllm.com/claude-benchmarks"
+      ]
+    },
     "claude-opus-4-8": {
       "name": "Claude Opus 4.8",
       "id": "claude-opus-4-8",
@@ -241,7 +280,7 @@
         "Introductory $2/$10 pricing through 2026-08-31"
       ],
       "acos_tier": "sonnet",
-      "frankx_notes": "Supersedes Sonnet 4.6 as the mid-tier default. Pricing here is the standard $3/$15 list rate, NOT the introductory $2/$10 that runs through 2026-08-31 - confirm which rate you are billed at before 1 September. Opus still leads hard agentic coding (69.2% vs 63.2% SWE-Bench Pro) and Anthropic says so plainly in its own card. Benchmarks are vendor-reported and await independent reproduction. Starlight Model Arena has no Sonnet 5 receipt as of 2026-08-19 - do not read vendor tables as SIS results.",
+      "frankx_notes": "Supersedes Sonnet 4.6 as the mid-tier default. Pricing here is the standard $3/$15 list rate, NOT the introductory $2/$10 that runs through 2026-08-31 - confirm which rate you are billed at before 1 September. Opus still leads hard agentic coding (69.2% vs 63.2% SWE-Bench Pro on Opus 4.8, and further on Opus 5), which Anthropic states in its own launch material as reported by multiple outlets. Benchmarks are vendor-reported. The Starlight Model Arena does hold a receipt for this model - round 5, 2026-07-01, published at /research/arena-receipts/2026-07-01-r5-sonnet5-arrives.json.",
       "sources": [
         "https://www.requesty.ai/models/anthropic/claude-sonnet-5",
         "https://codersera.com/blog/claude-sonnet-5-launch-guide-2026/",
@@ -483,7 +522,7 @@
         "DeepSWE v1.1 65.3%, up from 49.0% on Gemini 3.6 Flash (vendor-reported)",
         "Introductory $0.75/$3.75 pricing through 2026-12-31"
       ],
-      "frankx_notes": "Shipped 13 August 2026, under a month after Gemini 3.6 Flash. Context is unchanged from 3.6 - the deltas are quality and price. Pricing recorded is the introductory rate; Google's listed rate rises to $1.50/$7.50 on 2027-01-01, so anything architected on this price has a known expiry. Gains are vendor-reported and concentrated in coding/agent evals. No independent reproduction and no Starlight Model Arena receipt as of 2026-08-19.",
+      "frankx_notes": "Shipped 13 August 2026, under a month after Gemini 3.6 Flash. Context is unchanged from 3.6 - the deltas are quality and price. Pricing recorded is the introductory rate; Google's listed rate rises to $1.50/$7.50 on 2027-01-01, so anything architected on this price has a known expiry. Gains are vendor-reported and concentrated in coding/agent evals. No independent reproduction. The Model Arena's August 2026 wave lists this model, but that wave is labelled in its own source as synthesized from public reports pending harness verification - treat it as routing guidance, not a first-party receipt.",
       "sources": [
         "https://openrouter.ai/google/gemini-3.7-flash",
         "https://datanorth.ai/news/google-releases-gemini-3-7-flash",
@@ -652,7 +691,7 @@
         "Pretrained on 32T+ tokens (vendor-stated)",
         "Peak/off-peak billing since 2026-08-16 16:00 UTC"
       ],
-      "frankx_notes": "GA on 13 August 2026, ending the preview that began in April; a tier above DeepSeek V4, not a replacement for it. Read its benchmarks together rather than selectively: #2 on SWE-bench Verified at 96.4% (behind Opus 5) yet last of seven frontier peers on LiveBench agentic coding. That spread is the story - a headline score here does not predict agent behaviour. Prices rose sharply on 2026-08-16 (up to 12x on some lanes) and now vary peak/off-peak; recorded pricing is off-peak. Vendor figures await independent proof. No Starlight Model Arena receipt as of 2026-08-19.",
+      "frankx_notes": "GA on 13 August 2026, ending the preview that began in April; a tier above DeepSeek V4, not a replacement for it. Read its benchmarks together rather than selectively: 96.4% on SWE-bench Verified - at or near the top of published tables, though trackers disagree on the exact ordering against Claude Opus 5's 96.0% - yet last of seven frontier peers on LiveBench agentic coding. That spread is the story - a headline score here does not predict agent behaviour. Prices rose sharply on 2026-08-16 (up to 12x on some lanes) and now vary peak/off-peak; recorded pricing is off-peak. Vendor figures await independent proof. The Model Arena's August 2026 wave lists this model, but that wave is labelled in its own source as synthesized from public reports pending harness verification - treat it as routing guidance, not a first-party receipt.",
       "sources": [
         "https://openrouter.ai/deepseek/deepseek-v4-pro-0813",
         "https://artificialanalysis.ai/models/deepseek-v4-pro",
@@ -733,7 +772,7 @@
         "262,144-token native context (Alibaba states extension to 1M)",
         "Runs locally - the capability-per-GB story, not the frontier story"
       ],
-      "frankx_notes": "Released 14 August 2026 and pulled over 3 million times on Hugging Face within three days. The licence is the significant fact, not the leaderboard: Apache 2.0 with no revenue share puts capable multimodal weights on your own hardware. Alibaba's published comparison shows it leading on all four benchmarks it chose to report, which is the shape of a vendor-selected set - weigh it accordingly. A different lane from Qwen3.7-Max (closed, API-only); it does not supersede it. No first-party hosted pricing exists yet, so the zeroes here mean self-hosted, not free API. No Starlight Model Arena receipt as of 2026-08-19.",
+      "frankx_notes": "Released 14 August 2026 and pulled over 3 million times on Hugging Face within three days. The licence is the significant fact, not the leaderboard: Apache 2.0 with no revenue share puts capable multimodal weights on your own hardware. Alibaba's published comparison shows it leading on all four benchmarks it chose to report, which is the shape of a vendor-selected set - weigh it accordingly. A different lane from Qwen3.7-Max (closed, API-only); it does not supersede it. No first-party hosted pricing exists yet, so the zeroes here mean self-hosted, not free API. The Model Arena's August 2026 wave lists this model, but that wave is labelled in its own source as synthesized from public reports pending harness verification - treat it as routing guidance, not a first-party receipt.",
       "sources": [
         "https://datanorth.ai/news/alibaba-releases-qwen3-8-27b",
         "https://cybernews.com/tech/qwen-38-27b-ai-model-debuts-with-million-downloads/",
@@ -1115,6 +1154,8 @@
       "name": "Anthropic",
       "url": "https://anthropic.com",
       "models": [
+        "claude-sonnet-5",
+        "claude-opus-5",
         "claude-fable-5",
         "claude-opus-4-8",
         "claude-opus-4-6",
@@ -1137,6 +1178,7 @@
       "name": "Google DeepMind",
       "url": "https://deepmind.google",
       "models": [
+        "gemini-3-7-flash",
         "gemini-3-5-pro",
         "gemini-3-5-flash",
         "gemini-3-pro",
@@ -1174,6 +1216,7 @@
       "name": "DeepSeek",
       "url": "https://deepseek.com",
       "models": [
+        "deepseek-v4-pro-0813",
         "deepseek-v4"
       ]
     },
@@ -1181,6 +1224,7 @@
       "name": "Alibaba (Qwen)",
       "url": "https://qwen.ai",
       "models": [
+        "qwen3-8-27b",
         "qwen3-7-max"
       ]
     },
@@ -1202,7 +1246,7 @@
   "acos_routing": {
     "note": "Maps registry models to ACOS routing tiers",
     "opus": "claude-opus-4-8",
-    "sonnet": "claude-sonnet-4-6",
+    "sonnet": "claude-sonnet-5",
     "haiku": "claude-haiku-4-5"
   },
   "last_updated": "2026-08-19"

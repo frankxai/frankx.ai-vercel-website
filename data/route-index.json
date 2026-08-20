@@ -1,13 +1,13 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 922,
+    "total": 923,
     "aliases": 61,
     "byType": {
       "core": 23,
       "section": 419,
       "community": 17,
-      "tool": 60,
+      "tool": 61,
       "static": 15,
       "blog": 240,
       "research": 16,
@@ -6385,6 +6385,15 @@
     {
       "href": "/llm-hub/claude-opus-4-8",
       "title": "Claude Opus 4.8 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-opus-5",
+      "title": "Claude Opus 5 — Model Hub",
       "tags": [
         "llm-hub",
         "model"
