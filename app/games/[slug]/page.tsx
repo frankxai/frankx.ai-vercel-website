@@ -3,11 +3,11 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import GamePlayerClient from './GamePlayerClient'
 
-interface GameData {
+export interface GameData {
   slug: string
   title: string
   subtitle: string
-  brand: 'FrankX Mind' | 'Arcanea' | 'Starlight'
+  brand: 'FrankX Mind' | 'Arcanea' | 'Starlight' | 'FrankX Kids' | 'FrankX Party' | 'Deutsche Denkspiele'
   brandColor: string
   category: string
   cognitiveProtocol: string
@@ -23,6 +23,7 @@ interface GameData {
 }
 
 export const GAME_CATALOG: Record<string, GameData> = {
+  // --- 1. Tactical & Arcanea Lore Flagships ---
   'arcanea-legends': {
     slug: 'arcanea-legends',
     title: 'Arcanea: Realm of Legends',
@@ -50,6 +51,33 @@ export const GAME_CATALOG: Record<string, GameData> = {
     fps: 60,
     freqHz: 528
   },
+  'neuro-cosmos': {
+    slug: 'neuro-cosmos',
+    title: 'NeuroCosmos: Synaptic Routing',
+    subtitle: 'Neural Light Physics & Resonance Puzzles',
+    brand: 'Arcanea',
+    brandColor: 'text-indigo-400 border-indigo-500/30 bg-indigo-500/10',
+    category: 'Spatial Physics & Lore',
+    cognitiveProtocol: 'Spatial Transformation & Visual Pattern Routing',
+    targetBrainArea: 'Superior Parietal Lobe & Visual Cortex',
+    scientificBasis: 'Spatial orientation and mental rotation exercises strengthening synaptic connectivity and visual-spatial problem solving',
+    description: 'Route cosmic light beams through holographic prism nodes to awaken ancient dormant Guardian monoliths across the cosmos.',
+    instructions: [
+      'Tap and drag optic prisms to rotate and redirect light vectors.',
+      'Harmonize light beams with corresponding elemental color receptors.',
+      'Achieve 100% synaptic resonance to unlock the stargate.'
+    ],
+    controls: [
+      { key: 'Click + Drag', action: 'Rotate Prisms & Mirrors' },
+      { key: 'R', action: 'Reset Level Vector Path' }
+    ],
+    accentColor: '#6366f1',
+    bgGradient: 'from-indigo-950/40 via-slate-950 to-slate-950',
+    fps: 60,
+    freqHz: 639
+  },
+
+  // --- 2. FrankX Cognitive Neuroscience Suite ---
   'neuro-matrix': {
     slug: 'neuro-matrix',
     title: 'NeuroMatrix: Dual N-Back',
@@ -154,42 +182,223 @@ export const GAME_CATALOG: Record<string, GameData> = {
     fps: 60,
     freqHz: 432
   },
-  'neuro-cosmos': {
-    slug: 'neuro-cosmos',
-    title: 'NeuroCosmos: Synaptic Routing',
-    subtitle: 'Neural Light Physics & Resonance Puzzles',
-    brand: 'Arcanea',
-    brandColor: 'text-indigo-400 border-indigo-500/30 bg-indigo-500/10',
-    category: 'Spatial Physics & Lore',
-    cognitiveProtocol: 'Spatial Transformation & Visual Pattern Routing',
-    targetBrainArea: 'Superior Parietal Lobe & Visual Cortex',
-    scientificBasis: 'Spatial orientation and mental rotation exercises strengthening synaptic connectivity and visual-spatial problem solving',
-    description: 'Route cosmic light beams through holographic prism nodes to awaken ancient dormant Guardian monoliths across the cosmos.',
+  'synapse-surge': {
+    slug: 'synapse-surge',
+    title: 'Synapse Surge: Memory Span',
+    subtitle: 'Spatial-Temporal Sequence Span & Solfeggio Harmonic Grid',
+    brand: 'FrankX Mind',
+    brandColor: 'text-sky-400 border-sky-500/30 bg-sky-500/10',
+    category: 'Cognitive Neuroscience',
+    cognitiveProtocol: 'Working Memory Span & Sequential Synaptic Encoding',
+    targetBrainArea: 'Dorsolateral Prefrontal Cortex (Span Capacity)',
+    scientificBasis: 'Forward and backward memory span training under accelerating interval pressure expands short-term synaptic buffer capacity',
+    description: 'Sequential synaptic memory span training across a 16-node harmonic matrix. Observe procedural excitation pathways and reproduce sequences with micro-tone feedback.',
     instructions: [
-      'Tap and drag optic prisms to rotate and redirect light vectors.',
-      'Harmonize light beams with corresponding elemental color receptors.',
-      'Achieve 100% synaptic resonance to unlock the stargate.'
+      'Observe the sequence of glowing synaptic nodes and auditory harmonic frequencies.',
+      'Replicate the exact sequence in the same order.',
+      'Advance from 3-span memory buffers up to 9-span master working capacity.'
     ],
     controls: [
-      { key: 'Click + Drag', action: 'Rotate Prisms & Mirrors' },
-      { key: 'R', action: 'Reset Level Vector Path' }
+      { key: 'Click / Tap Nodes', action: 'Select Node' },
+      { key: 'M', action: 'Toggle Audio' }
     ],
-    accentColor: '#6366f1',
-    bgGradient: 'from-indigo-950/40 via-slate-950 to-slate-950',
+    accentColor: '#38bdf8',
+    bgGradient: 'from-sky-950/40 via-slate-950 to-slate-950',
+    fps: 60,
+    freqHz: 528
+  },
+  'matrix-logic': {
+    slug: 'matrix-logic',
+    title: 'Matrix Logic: Deductive Reasoning',
+    subtitle: 'Cosmic Latin Square Energy Grid & Deductive P-FIT Logic',
+    brand: 'FrankX Mind',
+    brandColor: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
+    category: 'Cognitive Neuroscience',
+    cognitiveProtocol: 'P-FIT Deductive Reasoning & Quantitative Analysis',
+    targetBrainArea: 'Parieto-Frontal Integration Network (Fluid Reasoning)',
+    scientificBasis: 'Matrix deduction exercises enhance parietal-frontal structural integration and non-verbal relational problem solving',
+    description: 'Deductive mathematical grid puzzles where players balance cosmic matrix energy lines so that all rows and columns equate to harmonic target sums.',
+    instructions: [
+      'Analyze the row and column energy balance equations.',
+      'Determine the missing value in the matrix cell.',
+      'Tap the correct numeric charge from the bottom selector to restore stability.'
+    ],
+    controls: [
+      { key: 'Click / Tap Number', action: 'Input Solution' }
+    ],
+    accentColor: '#10b981',
+    bgGradient: 'from-emerald-950/40 via-slate-950 to-slate-950',
     fps: 60,
     freqHz: 639
   },
+  'echo-shift': {
+    slug: 'echo-shift',
+    title: 'Echo Shift: Task Switcher',
+    subtitle: 'Auditory-Visual Stroop Conflict & Cognitive Flexibility',
+    brand: 'FrankX Mind',
+    brandColor: 'text-teal-400 border-teal-500/30 bg-teal-500/10',
+    category: 'Cognitive Neuroscience',
+    cognitiveProtocol: 'Executive Cognitive Flexibility & Inhibitory Resolution',
+    targetBrainArea: 'Anterior Cingulate Cortex & Left Inferior Frontal Junction',
+    scientificBasis: 'Rapid task-set reconfiguration paradigms enhance neural switching efficiency and reduce attentional refractory latency',
+    description: 'Dynamic cognitive task switching protocol that rapidly toggles between Word Meaning match and Ink Color match under tight response windows.',
+    instructions: [
+      'Monitor the active rule badge (Word Meaning vs Ink Color).',
+      'Select the corresponding button before the energy depletion ring expires.',
+      'Maintain peak accuracy through unexpected rule shifts.'
+    ],
+    controls: [
+      { key: 'Click / Tap Button', action: 'Select Matching Attribute' }
+    ],
+    accentColor: '#14b8a6',
+    bgGradient: 'from-teal-950/40 via-slate-950 to-slate-950',
+    fps: 60,
+    freqHz: 741
+  },
+
+  // --- 3. 🇩🇪 Deutsche Denkspiele & Gehirnjogging Suite ---
+  'wort-schatz': {
+    slug: 'wort-schatz',
+    title: 'WortSchatz: Wort-Alchemie',
+    subtitle: 'Deutsches Silben-Rätsel & Morphologische Assoziation',
+    brand: 'Deutsche Denkspiele',
+    brandColor: 'text-amber-400 border-amber-500/30 bg-amber-500/10',
+    category: 'Sprachliche Intelligenz & Wortschatz',
+    cognitiveProtocol: 'Semantischer Abruf & Morphologische Wortbildung',
+    targetBrainArea: 'Linker Temporallappen & Broca-Areal (Sprachzentrum)',
+    scientificBasis: 'Morphologische Assoziationsübungen mit Komposita stärken den aktiven Wortschatz und die semantische Verarbeitungsgeschwindigkeit',
+    description: 'Kombiniere schwebende Runen-Silben zu tiefgründigen deutschen Komposita wie Gedankenblitz, Zeitgeist, Wunderkind und Fingerspitzengefühl.',
+    instructions: [
+      'Lies den Bedeutungshinweis im oberen Bereich.',
+      'Wähle die passenden Silben aus der Bank aus, um das gesuchte Wort zu bilden.',
+      'Klicke auf eine ausgewählte Silbe, um sie wieder zu entfernen.',
+      'Prüfe dein Wort mit (✓) und sammle Alchemie-Punkte.'
+    ],
+    controls: [
+      { key: 'Klick / Tap', action: 'Silbe wählen / entfernen' },
+      { key: 'Enter', action: 'Wort prüfen' },
+      { key: 'Backspace', action: 'Auswahl leeren' }
+    ],
+    accentColor: '#f59e0b',
+    bgGradient: 'from-amber-950/40 via-slate-950 to-slate-950',
+    fps: 60,
+    freqHz: 528
+  },
+  'kopfrechen-blitz': {
+    slug: 'kopfrechen-blitz',
+    title: 'Kopfrechen-Blitz: Zahlen-Duell',
+    subtitle: 'Schnellrechnen, Multiplikation & Zahlen-Gymnastik',
+    brand: 'Deutsche Denkspiele',
+    brandColor: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10',
+    category: 'Mathematische Kognition',
+    cognitiveProtocol: 'Quantitatives Arbeitsgedächtnis & Faktenabruf',
+    targetBrainArea: 'Intraparietaler Sulcus & Frontales Netzwerk',
+    scientificBasis: 'Rechentraining unter Zeitlimit festigt arithmetische Faktennetze und trainiert das numerische Arbeitsgedächtnis',
+    description: 'Reaktionsschnelles Mathe-Training mit adaptiven Aufgabenstufen: Addition, Subtraktion, Multiplikation, Division und Quadratzahlen mit Serie-Multiplikatoren.',
+    instructions: [
+      'Löse die angezeigte Rechenaufgabe bevor der Zeitbalken abläuft.',
+      'Tippe das Ergebnis über das Ziffernfeld ein und bestätige mit (✓).',
+      'Baue Serien auf, um massive Punkte-Boni freizuschalten.'
+    ],
+    controls: [
+      { key: '0-9 (Tastatur / Screen)', action: 'Ziffer eingeben' },
+      { key: 'Enter / ✓', action: 'Ergebnis bestätigen' },
+      { key: 'Backspace / ⌫', action: 'Ziffer löschen' }
+    ],
+    accentColor: '#06b6d4',
+    bgGradient: 'from-cyan-950/40 via-slate-950 to-slate-950',
+    fps: 60,
+    freqHz: 432
+  },
+  'gedaechtnis-palast': {
+    slug: 'gedaechtnis-palast',
+    title: 'Gedächtnis-Palast: Loci-Methode',
+    subtitle: 'Räumliche Merkfähigkeit & Antike Gedächtniskunst',
+    brand: 'Deutsche Denkspiele',
+    brandColor: 'text-violet-400 border-violet-500/30 bg-violet-500/10',
+    category: 'Räumliches Langzeitgedächtnis',
+    cognitiveProtocol: 'Topologische Loci-Assoziation & Hippocampale Indexierung',
+    targetBrainArea: 'Hippocampus & Entorhinaler Kortex',
+    scientificBasis: 'Die antike Loci-Methode (Gedächtnispalast) nutzt räumliche Hirnstrukturen für exponentiell höhere Erinnerungsraten',
+    description: 'Platziere und erinnere mystische Artefakte in 9 isometrischen Palast-Räumen (Bibliothek, Sternwarte, Alchemielabor) nach der antiken Loci-Methode.',
+    instructions: [
+      'Phase 1: Präge dir ein, in welchen Räumen die Artefakte platziert werden.',
+      'Klicke auf Bereit zum Abfragen.',
+      'Phase 2: Klicke auf den richtigen Raum für das jeweils gesuchte Artefakt.'
+    ],
+    controls: [
+      { key: 'Klick / Tap', action: 'Raum auswählen' },
+      { key: 'Button Start', action: 'Abfragephase beginnen' }
+    ],
+    accentColor: '#8b5cf6',
+    bgGradient: 'from-violet-950/40 via-slate-950 to-slate-950',
+    fps: 60,
+    freqHz: 528
+  },
+
+  // --- 4. Party & Early Childhood Suite ---
+  'scharade-party': {
+    slug: 'scharade-party',
+    title: 'Scharade Party: Gesten & Pantomime',
+    subtitle: 'Interaktives Party- & Gesellschaftsspiel (DE / EN)',
+    brand: 'FrankX Party',
+    brandColor: 'text-fuchsia-400 border-fuchsia-500/30 bg-fuchsia-500/10',
+    category: 'Party & Social Fun',
+    cognitiveProtocol: 'Nonverbale Kommunikation & Schnelle Ideenassoziation',
+    targetBrainArea: 'Spiegelneuronen & Soziale Kognition',
+    scientificBasis: 'Pantomimisches Darstellen und Erkennen stimuliert das Spiegelneuronensystem und trainiert spontane nonverbale Ausdrucksfähigkeit',
+    description: 'Das ultimative Pantomime- und Gesten-Partyspiel für Spieleabende mit Freunden und Familie. 4 Kategorien, Team-Punktezähler (Team Blau vs Team Rot), Countdown-Timer und Buzzer-Sounds.',
+    instructions: [
+      'Wähle eine Kategorie (Filme, Tiere, Berufe, Sprichwörter) oder spiele mit allen Begriffen.',
+      'Starte den 60-Sekunden-Timer und stelle den Begriff pantomimisch ohne Worte dar.',
+      'Klicke auf Erraten (✓) für einen Punkt oder Weitergeben (⏭) wenn es zu schwer ist.'
+    ],
+    controls: [
+      { key: 'Klick / Tap', action: 'Erraten / Passen / Timer starten' },
+      { key: 'Button Sprache', action: 'Deutsch / English umschalten' }
+    ],
+    accentColor: '#d946ef',
+    bgGradient: 'from-fuchsia-950/40 via-slate-950 to-slate-950',
+    fps: 60,
+    freqHz: 528
+  },
+  'wunder-safari': {
+    slug: 'wunder-safari',
+    title: 'WunderSafari: Farben, Formen & Tiere',
+    subtitle: 'Frühkindliche Sinnesförderung für Kinder von 3–6 Jahren',
+    brand: 'FrankX Kids',
+    brandColor: 'text-amber-400 border-amber-500/30 bg-amber-500/10',
+    category: 'Frühkindliche Entwicklung (3-6 Jahre)',
+    cognitiveProtocol: 'Mustererkennung, Farbunterscheidung & Motorik',
+    targetBrainArea: 'Sensorischer Kortex & Visuelle Diskrimination',
+    scientificBasis: 'Frühkindliche Zuordnungsspiele mit positiver harmonischer Rückmeldung fördern die visuelle Wahrnehmung und Feinmotorik stressfrei',
+    description: 'Speziell für Kinder von 3 bis 6 Jahren entwickelt. Große, bunte Tastflächen, sanfte Tierklänge (Löwe, Elefant, Frosch, Katze, Eule), Sternen-Belohnungen und 100% werbefrei und sicher.',
+    instructions: [
+      'Schau dir an, welches Tier oder welche Form oben gesucht wird.',
+      'Tippe auf das passende Bild unten.',
+      'Sammle goldene Sterne und freue dich über bunten Konfetti-Zauber!'
+    ],
+    controls: [
+      { key: 'Große Touch-Tasten', action: 'Bild antippen' }
+    ],
+    accentColor: '#f59e0b',
+    bgGradient: 'from-amber-950/40 via-slate-950 to-slate-950',
+    fps: 60,
+    freqHz: 432
+  },
+
+  // --- 5. Starlight High-Velocity Arcade Flagships ---
   'neon-drift': {
     slug: 'neon-drift',
     title: 'Neon Drift: 2088',
-    subtitle: '120 FPS Synthwave Pseudo-3D Highway Racer',
+    subtitle: 'Synthwave Pseudo-3D Highway Racer',
     brand: 'Starlight',
     brandColor: 'text-fuchsia-400 border-fuchsia-500/30 bg-fuchsia-500/10',
     category: 'High-Velocity Arcade',
     cognitiveProtocol: 'Dynamic Visual Tracking & Micro-Motor Precision',
     targetBrainArea: 'Motor Cortex & Cerebellum (Temporal Precision)',
-    scientificBasis: 'High-velocity visual tracking at 120 FPS enhances motor response timing and visual processing bandwidth',
-    description: 'High-velocity pseudo-3D synthwave highway racer running at a buttery 120 FPS with procedural synth audio and dynamic CRT bloom.',
+    scientificBasis: 'High-velocity visual tracking enhances motor response timing and visual processing bandwidth',
+    description: 'High-velocity pseudo-3D synthwave highway racer with procedural synth audio and dynamic CRT bloom.',
     instructions: [
       'Steer left and right to navigate highway curves and dodge traffic.',
       'Hold UP or ACCELERATE to reach speeds over 280 km/h.',
@@ -306,7 +515,7 @@ export async function generateMetadata({
   }
 
   const title = `${game.title} — Play Free Online | FrankX Games`
-  const description = `${game.description} Built with 120 FPS WebGL canvas and procedural WebAudio sound. No installs required.`
+  const description = `${game.description} Built with WebGL canvas and procedural WebAudio sound. No installs required.`
 
   return {
     title,
@@ -320,6 +529,10 @@ export async function generateMetadata({
       'cognitive training',
       'dual n-back',
       'brain training',
+      'deutsche denkspiele',
+      'gehirnjogging',
+      'kids games 3-6',
+      'scharade partyspiel',
       'indie games',
       'frank riemer games',
       'play in browser'
