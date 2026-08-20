@@ -467,7 +467,7 @@ function StarCatcher() {
           </span>
         )}
       </div>
-      <div className="relative h-64 overflow-hidden rounded-2xl border-4 border-dashed border-amber-200 bg-gradient-to-b from-indigo-950 via-indigo-900 to-purple-950">
+      <div className="relative h-64 overflow-hidden rounded-2xl border-4 border-dashed border-amber-200 bg-gradient-to-b from-indigo-950 via-slate-900 to-violet-950">
         {/* Starfield background dots */}
         {Array.from({ length: 20 }).map((_, i) => (
           <div

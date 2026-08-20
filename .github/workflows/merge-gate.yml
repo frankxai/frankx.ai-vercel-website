@@ -115,6 +115,7 @@ jobs:
           pnpm run test:learning-routes
           pnpm run test:blog-discoverability
           pnpm run test:social-identity
+          pnpm run test:music-release-registry
 
       - name: Content and claims integrity
         run: |

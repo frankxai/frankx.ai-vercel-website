@@ -1,36 +1,38 @@
 'use client'
 
-import { useEffect, useSyncExternalStore } from 'react'
+import { useEffect, useState } from 'react'
+import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { allowsAnalyticsMeasurement } from '@/lib/analytics-policy'
-import { initializePrivacySafeAnalytics } from '@/lib/privacy-safe-analytics-client'
+import { privacySafeBeforeSend } from '@/lib/privacy-safe-analytics-client'
 
-const subscribeToMeasurementPolicy: (onStoreChange: () => void) => () => void = () => () => {}
-const getServerMeasurementPermission = () => false
-const getBrowserMeasurementPermission = () =>
-  allowsAnalyticsMeasurement(typeof navigator !== 'undefined' ? navigator.doNotTrack : undefined)
+type PrivacyNavigator = Navigator & { globalPrivacyControl?: boolean }
 
 /**
- * The site's only default browser measurement surface.
- *
- * Vercel Web Analytics is aggregate and cookieless. Optional marketing
- * providers stay unmounted until the product has a real consent control.
+ * Privacy-aware wrapper.
+ * We now render Analytics and SpeedInsights while respecting DNT and GPC signals.
  */
 export function PrivacySafeAnalytics() {
-  const measurementAllowed = useSyncExternalStore(
-    subscribeToMeasurementPolicy,
-    getBrowserMeasurementPermission,
-    getServerMeasurementPermission,
-  )
+  const [measurementAllowed, setMeasurementAllowed] = useState<boolean | null>(null)
 
   useEffect(() => {
-    if (measurementAllowed) {
-      initializePrivacySafeAnalytics()
-    }
-  }, [measurementAllowed])
+    const privacyNavigator = navigator as PrivacyNavigator
+    setMeasurementAllowed(
+      allowsAnalyticsMeasurement(
+        privacyNavigator.doNotTrack,
+        privacyNavigator.globalPrivacyControl,
+      ),
+    )
+  }, [])
 
-  if (!measurementAllowed) return null
+  // Fail closed while browser privacy signals are still unresolved.
+  if (measurementAllowed !== true) return null
 
-  return <SpeedInsights />
+  return (
+    <>
+      <Analytics beforeSend={privacySafeBeforeSend} />
+      <SpeedInsights />
+    </>
+  )
 }

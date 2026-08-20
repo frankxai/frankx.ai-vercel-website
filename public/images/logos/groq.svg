@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="groqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#FB7185" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="42" stroke="#262626" stroke-width="3" fill="#0A0A0B" />
+  <path d="M30 40 L50 25 L70 40 L70 60 L50 75 L30 60 Z" fill="none" stroke="url(#groqGrad)" stroke-width="4" stroke-linejoin="round" />
+  <path d="M50 25 L50 75 M30 40 L70 60 M30 60 L70 40" stroke="url(#groqGrad)" stroke-width="2" opacity="0.7" />
+  <circle cx="50" cy="50" r="5" fill="#FFFFFF" />
+</svg>

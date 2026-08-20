@@ -1,0 +1,98 @@
+{
+  "version": "2026-06-23",
+  "task": "Create the canonical FrankX changelog and release-note experience.",
+  "surface": "Responsive changelog index, update detail pages, and RSS discovery surface.",
+  "audience": "Builders, customers, partners, journalists, and search or answer engines evaluating FrankX stewardship.",
+  "first_read": "FrankX ships meaningful work in public, and every claim has a receipt.",
+  "standards": [
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "starlight-design-intelligence/brand-packs/frankx/BRAND.md"
+  ],
+  "references": [
+    {
+      "label": "FrankX production design kernel",
+      "source": "design.md and taste.md",
+      "reason": "Defines the frozen FrankX typography, color, hierarchy, and anti-slop constraints."
+    },
+    {
+      "label": "Public GitHub merge evidence",
+      "source": "https://github.com/frankxai/frankx.ai-vercel-website/pulls?q=is%3Apr+is%3Amerged",
+      "reason": "Provides inspectable receipts for every editorial release claim."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "Void-black FrankX chrome and restrained tech accents",
+      "Editorial hierarchy with visible dates and human-readable outcomes",
+      "Exact public evidence links"
+    ],
+    "avoid": [
+      "Equal-card dashboards and vanity metrics",
+      "Generic gradients, glassmorphism, animated counters, and generated filler",
+      "Raw commit-feed language"
+    ],
+    "signature": "An evidence rail connects each release headline to its public receipts.",
+    "system": [
+      "Poppins headings, Inter body, and JetBrains Mono evidence labels",
+      "Void black, hairline white borders, emerald current-state signal, cyan proof links",
+      "Asymmetric desktop ledger that collapses into a single mobile reading flow",
+      "CSS focus and hover transitions only"
+    ]
+  },
+  "asset_quality": {
+    "tier": "C",
+    "source_method": "browser-capture",
+    "provenance": "owned",
+    "why_premium": "The correct premium medium is an exact, fast, accessible editorial system whose claims can be inspected directly.",
+    "shortcut_risk": "low",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "path_or_url": "https://frankx-ai-vercel-website-avt9ry0hj-starlight-intelligence.vercel.app/changelog",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Vercel preview returned 200 with curated fonts, canonical metadata, RSS discovery, seven releases, and public evidence links. Desktop and mobile screenshot inspection remains held by the machine performance gate."
+    },
+    {
+      "path_or_url": "https://frankx-ai-vercel-website-avt9ry0hj-starlight-intelligence.vercel.app/changelog/trust-founder-signal-open-architecture",
+      "kind": "web",
+      "inspected": false,
+      "notes": "Cloud render verified the Article JSON-LD, accurate publication and modification dates, evidence rail, and canonical URL. Desktop and mobile screenshot inspection remains pending."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier C exact UI is the correct medium; public GitHub receipts are Tier A proof content."
+    },
+    {
+      "name": "export-inspection",
+      "status": "blocked",
+      "evidence": "Desktop and mobile exports have not yet been captured."
+    },
+    {
+      "name": "visual-qa",
+      "status": "blocked",
+      "evidence": "Vercel preview is READY and has no runtime errors; desktop and mobile screenshot review is held because PP browser-qa reported HOLD with 15 active Codex runtimes and 17 dev-server processes."
+    },
+    {
+      "name": "cloud-render",
+      "status": "pass",
+      "evidence": "Preview index returned 200; detail Article JSON-LD rendered; RSS XML and sitemap include the release URLs; /updates returned 308 to /changelog; Vercel reported no route runtime errors."
+    }
+  ],
+  "score": {
+    "total": 0,
+    "max": 30,
+    "notes": "Score after implementation and export inspection."
+  },
+  "decision": "blocked",
+  "known_risks": [
+    "Historical merged work may not map one-to-one to currently reachable public routes; proof copy stays scoped to merged changes until live verification.",
+    "Final desktop and mobile screenshot evidence is pending a machine-approved browser QA window."
+  ]
+}

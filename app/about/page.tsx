@@ -10,8 +10,10 @@ import {
   ShieldCheck,
 } from 'lucide-react'
 
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { sitePositioning } from '@/data/site-positioning'
+import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { createMetadata } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
@@ -99,20 +101,17 @@ export default function AboutPage() {
         <div className="relative mx-auto grid min-h-[86svh] max-w-7xl items-center gap-14 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:px-10">
           <div className="max-w-3xl">
             <p className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80">
-              Frank Riemer · Amsterdam
+              Frank Riemer · Amsterdam · AI Architect &amp; Musician
             </p>
             <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-              AI architect. Creator.
-              <span className="block text-white/55">Working in public.</span>
+              Building sovereign systems for a
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">freer world.</span>
             </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/72 sm:text-xl">
-              I build systems for understanding and creating with AI. FrankX is where the
-              research, architectures, book intelligence, partnership work, guides, products,
-              music, and unfinished questions accumulate in public.
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/80 sm:text-xl font-medium">
+              Builder since age 5. Co-builder of 7-figure enterprises. Former AI architect at Oracle. Prolific musician with 12,000+ tracks.
             </p>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-white/62">
-              My agents complete many of the specialist passes. They do not inherit my voice,
-              values, relationships, or responsibility. Those remain mine.
+            <p className="mt-4 max-w-2xl text-base leading-7 text-white/60">
+              From pouring concrete on construction sites to architecting multi-agent AI swarms and sovereign business starter kits, my mission is singular: empower builders and creators to achieve total economic, creative, and technical independence.
             </p>
             <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <Link
@@ -218,7 +217,7 @@ export default function AboutPage() {
                 key={mode.title}
                 className="rounded-[1.5rem] border border-white/[0.1] bg-[#0c0e0e] p-7"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-300/15 bg-emerald-300/[0.055] text-emerald-300">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-300/[0.15] bg-emerald-300/[0.055] text-emerald-300">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <h3 className="mt-7 text-xl font-semibold">{mode.title}</h3>
@@ -249,6 +248,20 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
+          <div className="lg:col-start-2">
+            <TrackedLink
+              href="/qualities"
+              {...coreQualitiesNavigationEvent({
+                source: 'about',
+                placement: 'principles',
+                destination: 'overview',
+              })}
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-emerald-300 underline decoration-emerald-300/30 underline-offset-8 transition-colors hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              Read the four governing qualities
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </TrackedLink>
+          </div>
         </div>
       </section>
 

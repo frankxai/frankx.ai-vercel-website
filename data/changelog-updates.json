@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "1.0",
+  "updatedAt": "2026-08-10",
+  "sourceRepository": "https://github.com/frankxai/frankx.ai-vercel-website",
+  "updates": [
+    {
+      "slug": "trust-founder-signal-open-architecture",
+      "title": "Trust controls, Founder Signal, and open architecture",
+      "summary": "A public signal system, reusable AI architecture assets, and a concentrated pass on security, discoverability, and release integrity.",
+      "releasedAt": "2026-08-09",
+      "publishedAt": "2026-08-10",
+      "modifiedAt": "2026-08-10",
+      "category": "Trust and launch",
+      "audience": "Founders, AI architects, creators, and partners",
+      "highlights": [
+        "Launched Founder Signal as a public operating surface, then added rate limits, validation, and abuse controls around its intake path.",
+        "Published free MIT-licensed AI architecture templates and a reproducible first-party benchmark method for evaluating model and system choices.",
+        "Hardened Auth.js and protobuf dependencies, escaped applicant inputs, and expanded the merge gate, canonical metadata, and link integrity checks.",
+        "Connected GenCreator to the primary site chrome and published a source-led guide to model ownership and platform risk."
+      ],
+      "tags": ["Founder Signal", "AI architecture", "Security", "Open source"],
+      "proof": [
+        { "label": "Founder Signal launch", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/440" },
+        { "label": "Founder Signal abuse controls", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/442" },
+        { "label": "MIT architecture templates", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/412" },
+        { "label": "Reproducible benchmark method", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/411" },
+        { "label": "Critical dependency patches", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/452" },
+        { "label": "Model ownership source pack", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/430" }
+      ]
+    },
+    {
+      "slug": "resilient-public-agentic-workspace",
+      "title": "A more resilient public agentic workspace",
+      "summary": "The site became a clearer public workspace while checkout, mobile rendering, journal structure, and content integrity gained stronger failure modes.",
+      "releasedAt": "2026-08-02",
+      "publishedAt": "2026-08-10",
+      "modifiedAt": "2026-08-10",
+      "category": "Platform",
+      "audience": "Visitors, customers, researchers, and operators",
+      "highlights": [
+        "Reframed FrankX as a public agentic workspace and introduced a shared production release foundation for safer, repeatable launches.",
+        "Added the Expert Authority Intelligence System with durable signal persistence for evidence-led profile work.",
+        "Made checkout fail closed, repaired soft-404 behavior, and separated the journal from the long-form blog archive.",
+        "Improved mobile paint and contrast for the Alba experience while restoring the premium homepage and embedded music playback."
+      ],
+      "tags": ["Public workspace", "Reliability", "Journal", "Mobile"],
+      "proof": [
+        { "label": "Public agentic workspace", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/409" },
+        { "label": "Production release foundation", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/407" },
+        { "label": "Expert Authority Intelligence", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/413" },
+        { "label": "Fail-closed checkout", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/397" },
+        { "label": "Journal and blog separation", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/374" },
+        { "label": "Alba mobile paint and contrast", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/403" }
+      ]
+    },
+    {
+      "slug": "learning-conversion-production-truth",
+      "title": "Learning paths, conversion, and production truth",
+      "summary": "New learning and event journeys arrived alongside stricter public-claim, consent, pricing, and production-state controls.",
+      "releasedAt": "2026-07-26",
+      "publishedAt": "2026-08-10",
+      "modifiedAt": "2026-08-10",
+      "category": "Experience",
+      "audience": "Learners, event participants, creators, and prospective clients",
+      "highlights": [
+        "Opened a curated AI learning hub and expanded the Tallinn field journey across event, contact, and creator pathways.",
+        "Added a ChatGPT Sites founder guide and a source-led authority lab for subject-matter experts.",
+        "Connected email capture to the major hub journeys and replaced ambiguous studio CTAs with honest intake and conversion paths.",
+        "Introduced CI refusals for generic AI copy while tightening learning claims, consent, affiliate disclosure, pricing, and public production-state language."
+      ],
+      "tags": ["Learning", "Tallinn", "Conversion", "Claims"],
+      "proof": [
+        { "label": "Curated AI learning hub", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/359" },
+        { "label": "Tallinn journey and lab", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/342" },
+        { "label": "ChatGPT Sites founder guide", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/350" },
+        { "label": "Honest studio intake", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/369" },
+        { "label": "Public production truth", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/362" },
+        { "label": "Generic AI copy refusal gate", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/360" }
+      ]
+    },
+    {
+      "slug": "scores-skills-founder-research",
+      "title": "Scores, skills, and founder research",
+      "summary": "FrankX added concrete assessment tools, a richer research spine, and lower-cost release controls for the agentic builder ecosystem.",
+      "releasedAt": "2026-07-19",
+      "publishedAt": "2026-08-10",
+      "modifiedAt": "2026-08-10",
+      "category": "Research and tools",
+      "audience": "Founders, enterprise AI teams, and agent builders",
+      "highlights": [
+        "Published Intent Architecture and the Agentic Life Observatory as connected research surfaces for founders building with AI.",
+        "Added an AI Center of Excellence readiness assessment and Agent Stack Scorecard for more concrete decision support.",
+        "Released public Q&A pages designed for answer-engine discovery and re-established the AI Architect and Creator positioning.",
+        "Documented Codex team skills and plugin governance while reducing static prerender and draft-preview build cost."
+      ],
+      "tags": ["Assessments", "Agentic life", "Codex", "Release cost"],
+      "proof": [
+        { "label": "Intent Architecture", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/327" },
+        { "label": "Agentic Life Observatory", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/330" },
+        { "label": "AI CoE readiness assessment", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/264" },
+        { "label": "Agent Stack Scorecard", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/254" },
+        { "label": "Public Q&A discovery surface", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/315" },
+        { "label": "Draft preview build control", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/230" }
+      ]
+    },
+    {
+      "slug": "proof-led-frankx-learning-portals",
+      "title": "Proof-led FrankX and connected learning portals",
+      "summary": "The public experience shifted toward owned proof, connected learning, a large music catalog, and stronger production operations.",
+      "releasedAt": "2026-07-12",
+      "publishedAt": "2026-08-10",
+      "modifiedAt": "2026-08-10",
+      "category": "Product and content",
+      "audience": "Creators, learners, music makers, and AI practitioners",
+      "highlights": [
+        "Rebuilt the homepage around proof-led positioning and clearer outcome language for the core audience.",
+        "Connected AI learning portals, music learning, and the music-first studio into a navigable creator journey.",
+        "Indexed an 817-track music catalog and expanded the Fable and Book of Secrets reading experiences.",
+        "Added production QA across errors, sitemap, blog, links, admin access, analytics privacy, and newsletter operations."
+      ],
+      "tags": ["Homepage", "Learning", "Music", "Production QA"],
+      "proof": [
+        { "label": "Proof-led homepage", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/257" },
+        { "label": "AI learning portals", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/245" },
+        { "label": "Music learning hub", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/258" },
+        { "label": "817-track catalog", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/220" },
+        { "label": "Production QA sweep", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/219" },
+        { "label": "Admin and unsubscribe hardening", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/255" }
+      ]
+    },
+    {
+      "slug": "research-books-runtime-resilience",
+      "title": "Research, books, and runtime resilience",
+      "summary": "A broad research and publishing expansion shipped with safer write paths, stronger structured data, and a sustained Next.js performance program.",
+      "releasedAt": "2026-06-30",
+      "publishedAt": "2026-08-10",
+      "modifiedAt": "2026-08-10",
+      "category": "Publishing and platform",
+      "audience": "Readers, researchers, creators, and platform operators",
+      "highlights": [
+        "Released new book and research experiences including Coherence, Wordless Laws, Higher Self, Reality Architect, and Model Arena.",
+        "Moved write surfaces behind stronger authorization and added MDX, JSON-LD, sitemap, and internal-link safeguards.",
+        "Refreshed frontier-model coverage with source-led updates and repaired structured-data rendering failures.",
+        "Split large routes into server shells and bounded clients to reduce hydration and improve production runtime behavior."
+      ],
+      "tags": ["Books", "Research", "Structured data", "Performance"],
+      "proof": [
+        { "label": "Coherence book experience", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/185" },
+        { "label": "Model Arena", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/182" },
+        { "label": "Authorized write paths", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/165" },
+        { "label": "Structured data and sitemap hardening", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/162" },
+        { "label": "Frontier model refresh", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/155" },
+        { "label": "Server-shell performance program", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/120" }
+      ]
+    },
+    {
+      "slug": "builder-lab-ikigai-production-foundations",
+      "title": "Builder Lab, Ikigai, and production foundations",
+      "summary": "May established the workshop, learning, partnership, and builder surfaces while repairing navigation, deployment cost, accessibility, and SEO foundations.",
+      "releasedAt": "2026-05-31",
+      "publishedAt": "2026-08-10",
+      "modifiedAt": "2026-08-10",
+      "category": "Foundation",
+      "audience": "Workshop participants, builders, partners, and first-time visitors",
+      "highlights": [
+        "Launched the Agentic Builder Lab, commercial build hub, Gemini and Google AI learning portal, and a premium in-person connect route.",
+        "Iterated the Ikigai workshop into one canonical audience-first experience with guided prompts and presenter support.",
+        "Expanded the partnership architecture and repaired core navigation, mobile menu, landmarks, and broken routes.",
+        "Reduced Vercel trace and prerender cost while fixing sitemap bundling, RSS, canonical, type, and production build failures."
+      ],
+      "tags": ["Builder Lab", "Ikigai", "Partnerships", "Deployment"],
+      "proof": [
+        { "label": "Agentic Builder Lab", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/96" },
+        { "label": "Gemini and Google AI portal", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/90" },
+        { "label": "Canonical Ikigai workshop", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/88" },
+        { "label": "Partnership architecture", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/63" },
+        { "label": "Navigation and accessibility repair", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/58" },
+        { "label": "Sitemap production fix", "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/91" }
+      ]
+    }
+  ]
+}
