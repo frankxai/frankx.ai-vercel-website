@@ -171,7 +171,7 @@ function HeroSection() {
 
 function PlayNowSection() {
   const games = [
-    // FrankX Cognitive
+    // --- 1. FrankX Cognitive Neuroscience Suite ---
     {
       title: 'NeuroMatrix: Dual N-Back',
       description: 'Scientifically proven Dual N-Back working memory and fluid IQ trainer with spatial grids and pitch cues.',
@@ -212,7 +212,92 @@ function PlayNowSection() {
       status: 'live' as const,
       brand: 'FrankX Mind',
     },
-    // Arcanea Mythic
+    {
+      title: 'Synapse Surge: Memory Span',
+      description: 'Sequential synaptic working span memory matrix with 16-node harmonic scale and accelerating intervals.',
+      href: '/games/synapse-surge',
+      badge: 'Memory Span',
+      color: 'amber',
+      icon: Zap,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'Matrix Logic: Deductive Grid',
+      description: 'Deductive Latin-Square mathematical energy grid balancing rows and columns to target energy values.',
+      href: '/games/matrix-logic',
+      badge: 'Deductive P-FIT',
+      color: 'amber',
+      icon: Puzzle,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'Echo Shift: Task Switcher',
+      description: 'Auditory-visual Stroop conflict switcher rapidly toggling between word meaning and ink color match.',
+      href: '/games/echo-shift',
+      badge: 'Task Switching',
+      color: 'amber',
+      icon: Sparkles,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+
+    // --- 2. 🇩🇪 Deutsche Denkspiele Suite ---
+    {
+      title: 'WortSchatz: Wort-Alchemie',
+      description: 'Deutsches Silben-Rätsel & Wort-Alchemie: Bilde tiefgründige Komposita wie Gedankenblitz & Zeitgeist.',
+      href: '/games/wort-schatz',
+      badge: 'Wortschatz 🇩🇪',
+      color: 'amber',
+      icon: Sparkles,
+      status: 'live' as const,
+      brand: 'Deutsche Denkspiele',
+    },
+    {
+      title: 'Kopfrechen-Blitz: Zahlen-Duell',
+      description: 'Schnellrechnen & Zahlen-Gymnastik mit Serien-Multiplikatoren: Plus, Minus, Mal, Geteilt & Quadrat.',
+      href: '/games/kopfrechen-blitz',
+      badge: 'Mathe-Blitz 🇩🇪',
+      color: 'cyan',
+      icon: Target,
+      status: 'live' as const,
+      brand: 'Deutsche Denkspiele',
+    },
+    {
+      title: 'Gedächtnis-Palast: Loci-Methode',
+      description: 'Antike Loci-Methode für räumliches Langzeitgedächtnis in 9 isometrischen Palast-Kammern.',
+      href: '/games/gedaechtnis-palast',
+      badge: 'Loci-Palast 🇩🇪',
+      color: 'violet',
+      icon: Brain,
+      status: 'live' as const,
+      brand: 'Deutsche Denkspiele',
+    },
+
+    // --- 3. Party & Early Childhood (3-6 Years) ---
+    {
+      title: 'Scharade Party: Gesten & Mimik',
+      description: 'Bilinguales Partyspiel mit 4 Kategorien, Team-Punktezähler (Blau vs Rot), 60s Countdown & Buzzer.',
+      href: '/games/scharade-party',
+      badge: 'Party Game 🎭',
+      color: 'violet',
+      icon: Swords,
+      status: 'live' as const,
+      brand: 'FrankX Party',
+    },
+    {
+      title: 'WunderSafari: Formen & Tiere',
+      description: 'Frühkindliche Sinnesförderung für Kids 3–6 Jahre: Große Touch-Tasten, Tierlaute, Sterne & 100% werbefrei.',
+      href: '/games/wunder-safari',
+      badge: 'Kids 3-6 🦁',
+      color: 'amber',
+      icon: Sparkles,
+      status: 'live' as const,
+      brand: 'FrankX Kids',
+    },
+
+    // --- 4. Arcanea Mythic & Lore Flagships ---
     {
       title: 'Arcanea: Realm of Legends',
       description: 'Tactical 1v1 Guardian deck battler with dynamic 3D gold foil tilt shaders and AI strategist.',
@@ -233,7 +318,8 @@ function PlayNowSection() {
       status: 'live' as const,
       brand: 'Arcanea',
     },
-    // Starlight Cosmic
+
+    // --- 5. Starlight Cosmic Arcades ---
     {
       title: 'Chrono Shift: Void Breach',
       description: 'Cyber-mythic roguelike bullet-hell with time-dilation matrix dodging and tech upgrades.',
@@ -292,7 +378,7 @@ function PlayNowSection() {
             viewport={{ once: true }}
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold mb-3">
-              ✦ 10 PLAYABLE TITLES LIVE
+              ✦ 18 PLAYABLE TITLES LIVE
             </div>
             <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-3">
               Play now on frankx.ai

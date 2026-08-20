@@ -43,6 +43,10 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
   images: {
+    localPatterns: [
+      { pathname: '/**', search: '' },
+      { pathname: '/**', search: '?**' },
+    ],
     // Enable modern image formats for better compression
     formats: ['image/avif', 'image/webp'],
     // Optimize device sizes for responsive images
