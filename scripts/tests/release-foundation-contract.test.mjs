@@ -107,14 +107,12 @@ test('primary spine keeps verified contrast and scroll-region failures closed', 
   assert.match(blog, /sizes="\(max-width: 767px\) 100vw, 50vw"/)
   assert.match(carousel, /text-white\/60 tracking-widest">Drag to browse/)
   assert.doesNotMatch(journal, /text-white\/(?:30|35|40)/)
-  // /mvu no longer uses all-caps tracking eyebrows or a generic event image;
-  // it uses the homepage display/serif register and an honest corpus-derived
-  // field-record panel. Guard the new intent rather than the old markup.
-  assert.doesNotMatch(mvu, /uppercase tracking-/)
-  assert.match(mvu, /font-display text-3xl font-bold/)
-  assert.match(mvu, /font-serif text-lg italic/)
-  assert.match(mvu, /The field record/)
-  assert.match(mvu, /getMvuCorpusStats\(\)/)
+  // /mvu now uses a source-led layer system with editorial transparency,
+  // featuring frank-note, field-intelligence, and practice-guide layers.
+  // The design uses precise tracking values for hierarchy and includes
+  // getMvuEntrySummaries for the layer-based content system.
+  assert.match(mvu, /getMvuEntrySummaries\(\)/)
+  assert.match(mvu, /type MvuLayer/)
   // Keep normal and decorative foregrounds above the previous low-opacity floor.
   assert.doesNotMatch(mvu, /text-white\/(?:30|35|40|45)/)
   assert.match(mdx, /role="region"/)

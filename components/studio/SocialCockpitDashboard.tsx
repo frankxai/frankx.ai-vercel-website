@@ -21,11 +21,11 @@ import {
 const AGENT_NODES = [
   { id: 'Orchestrator', label: 'Orchestrator', role: 'Cognitive', desc: 'Routes sequences and manages dynamic parallel agent dispatch loops.', x: 150, y: 80, color: 'from-blue-500 to-indigo-600', glow: 'shadow-blue-500/30' },
   { id: 'Strategist', label: 'Social Strategist', role: 'Cognitive', desc: 'Formats blog drafts and releases into structured social threads.', x: 100, y: 200, color: 'from-blue-500 to-cyan-600', glow: 'shadow-cyan-500/30' },
-  { id: 'Psychologist', label: 'Psychologist', role: 'Specialist', desc: 'Audits emotional hooks and spacing to minimize cognitive load.', x: 260, y: 160, color: 'from-purple-500 to-indigo-600', glow: 'shadow-indigo-500/30' },
-  { id: 'VibeTracker', label: 'Vibe Tracker', role: 'Specialist', desc: 'Aligns visual frames and copywriting with brand aesthetic lanes.', x: 380, y: 220, color: 'from-purple-500 to-pink-600', glow: 'shadow-purple-500/30' },
-  { id: 'FactChecker', label: 'Fact Checker', role: 'Specialist', desc: 'Runs automated searches to check assertions, numbers, and link resolution.', x: 120, y: 340, color: 'from-purple-500 to-violet-600', glow: 'shadow-violet-500/30' },
-  { id: 'NewsAnalyst', label: 'News Analyst', role: 'Specialist', desc: 'Tracks model releases, partner feature announcements, and affiliate specs.', x: 260, y: 300, color: 'from-purple-500 to-blue-600', glow: 'shadow-blue-500/30' },
-  { id: 'VisualDirector', label: 'Visual Director', role: 'Specialist', desc: 'Engineers visual prompts for Flux/Higgsfield generative media loops.', x: 420, y: 340, color: 'from-pink-500 to-rose-600', glow: 'shadow-rose-500/30' },
+  { id: 'Psychologist', label: 'Psychologist', role: 'Specialist', desc: 'Audits emotional hooks and spacing to minimize cognitive load.', x: 260, y: 160, color: 'from-violet-500 to-indigo-600', glow: 'shadow-indigo-500/30' },
+  { id: 'VibeTracker', label: 'Vibe Tracker', role: 'Specialist', desc: 'Aligns visual frames and copywriting with brand aesthetic lanes.', x: 380, y: 220, color: 'from-violet-500 to-pink-600', glow: 'shadow-purple-500/30' },
+  { id: 'FactChecker', label: 'Fact Checker', role: 'Specialist', desc: 'Runs automated searches to check assertions, numbers, and link resolution.', x: 120, y: 340, color: 'from-violet-500 to-fuchsia-600', glow: 'shadow-violet-500/30' },
+  { id: 'NewsAnalyst', label: 'News Analyst', role: 'Specialist', desc: 'Tracks model releases, partner feature announcements, and affiliate specs.', x: 260, y: 300, color: 'from-indigo-500 to-sky-600', glow: 'shadow-sky-500/30' },
+  { id: 'VisualDirector', label: 'Visual Director', role: 'Specialist', desc: 'Engineers visual prompts for Flux generative media loops.', x: 420, y: 340, color: 'from-pink-500 to-rose-600', glow: 'shadow-rose-500/30' },
   { id: 'Sentinel', label: 'Social Sentinel', role: 'Sentinel', desc: 'Scrubs credentials, verifies signatures, and manages the operator gate.', x: 280, y: 440, color: 'from-emerald-500 to-teal-600', glow: 'shadow-emerald-500/30' }
 ]
 

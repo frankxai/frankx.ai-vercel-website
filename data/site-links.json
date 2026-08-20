@@ -269,6 +269,20 @@
       "status": "verified"
     },
     {
+      "id": "signals",
+      "label": "Signals",
+      "kind": "internal",
+      "url": "/signals",
+      "status": "verified"
+    },
+    {
+      "id": "dream-100",
+      "label": "Dream 100",
+      "kind": "internal",
+      "url": "/dream-100",
+      "status": "verified"
+    },
+    {
       "id": "cloud",
       "label": "Cloud AI",
       "kind": "internal",

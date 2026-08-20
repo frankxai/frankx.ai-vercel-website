@@ -2,8 +2,8 @@
 /**
  * scripts/chronicle-roll-day.mjs
  *
- * Daily companion to chronicle-roll-week.mjs. Mines yesterday's git activity
- * across canonical FrankX-namespace repos, joins to the typed ecosystem
+ * Daily operations miner for the private admin walk. Mines yesterday's git
+ * activity, joins it to the typed ecosystem
  * registry (data/ecosystem.ts) by repo+path heuristics, and writes
  * data/daily-walk.json — the input to the /admin/daily page.
  *

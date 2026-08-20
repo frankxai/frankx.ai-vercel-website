@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
+import { Calendar, Clock, FileText, Tag } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
 import ReadingProgress from '@/components/blog/ReadingProgress'
@@ -10,12 +10,14 @@ import RelatedResearch from '@/components/blog/RelatedResearch'
 import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
+import { ArticleHeaderActions } from '@/components/blog/ArticleHeaderActions'
 import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import HeroImage from '@/components/ui/HeroImage'
+import RelatedQualities from '@/components/qualities/RelatedQualities'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -105,7 +107,7 @@ export default async function BlogPostPage({
       url: siteConfig.url,
       jobTitle: 'AI Architect',
       description:
-        'Former Oracle AI architect and independent FrankX builder focused on agentic AI systems, creator operating systems, and 12,000+ AI music experiments.',
+        'Former Oracle AI architect and independent FrankX builder focused on agentic AI systems and creator operating systems.',
       alumniOf: {
         '@type': 'Organization',
         name: 'Oracle',
@@ -179,22 +181,26 @@ export default async function BlogPostPage({
 
             <header className="mt-8 space-y-6">
               {/* Category & Meta */}
-              <div className="flex flex-wrap items-center gap-4 text-xs font-medium">
-                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-emerald-400">
+              <div className="flex flex-wrap items-center gap-3 text-xs font-medium">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-emerald-400">
                   <Tag className="h-3.5 w-3.5" />
                   {post.category}
                 </span>
-                <span className="inline-flex items-center gap-2 text-white/40">
-                  <Calendar className="h-4 w-4" />
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
+                  <Calendar className="h-3.5 w-3.5 text-white/40" />
                   {new Date(post.date).toLocaleDateString('en-US', {
-                    month: 'long',
+                    month: 'short',
                     day: 'numeric',
                     year: 'numeric',
                   })}
                 </span>
-                <span className="inline-flex items-center gap-2 text-white/40">
-                  <Clock className="h-4 w-4" />
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
+                  <Clock className="h-3.5 w-3.5 text-white/40" />
                   {post.readingTime}
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
+                  <FileText className="h-3.5 w-3.5 text-white/40" />
+                  {wordCount.toLocaleString()} words
                 </span>
               </div>
 
@@ -204,46 +210,28 @@ export default async function BlogPostPage({
               </h1>
 
               {/* Description */}
-              <p className="text-xl text-white/60 leading-relaxed max-w-3xl">
+              <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl">
                 {post.description}
               </p>
 
               {/* Author Card */}
-              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-6 md:flex-row md:items-center md:justify-between transition-colors duration-200 hover:border-white/[0.14]">
+
                 <div className="flex items-center gap-4">
-                  <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover" />
+                  <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover border border-emerald-500/30" />
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                    <div className="text-sm text-white/50">AI Architect & Creator</div>
-                    <div className="text-xs text-white/35">Former Oracle AI architect · independent FrankX builder</div>
+                    <div className="text-xs font-medium text-emerald-400">AI Architect & Independent Creator</div>
+                    <div className="text-xs text-white/40">Ex-Oracle AI Architect · Starlight & ACOS Systems</div>
                   </div>
                 </div>
 
-                {/* Social Share Buttons */}
-                <div className="flex flex-wrap items-center gap-2">
-                  <a
-                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
-                  >
-                    <Twitter className="h-4 w-4" aria-hidden="true" />
-                    <span className="hidden sm:inline">Share</span>
-                  </a>
-                  <a
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/70 hover:bg-white/[0.12] hover:border-white/20 hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
-                  >
-                    <Linkedin className="h-4 w-4" aria-hidden="true" />
-                    <span className="hidden sm:inline">Share</span>
-                  </a>
-                </div>
+                {/* Interactive Header Actions */}
+                <ArticleHeaderActions title={post.title} url={canonicalUrl} />
               </div>
 
               {/* Hero Image - 16/9 premium with proper margins, padding, sizing for overlays */}
-              <div className="mt-8 mb-8 rounded-3xl overflow-hidden border border-white/10">
+              <div className="mt-8 mb-8">
                 <HeroImage
                   src={post.image}
                   title={post.title}
@@ -284,13 +272,15 @@ export default async function BlogPostPage({
                     </div>
                     <div className="flex-1">
                       <span className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-400">AI Architect Recommendation</span>
-                      <p className="mt-2 text-sm leading-relaxed text-white/70">{post.architectNote.recommendation}</p>
-                      {post.architectNote.coePillar && (
+                      <p className="mt-2 text-sm leading-relaxed text-white/70">
+                        {typeof post.architectNote === 'string' ? post.architectNote : post.architectNote.recommendation}
+                      </p>
+                      {typeof post.architectNote === 'object' && post.architectNote?.coePillar && (
                         <p className="mt-3 text-xs text-white/40">
                           AI CoE pillar: <span className="text-white/65">{post.architectNote.coePillar}</span>
                         </p>
                       )}
-                      {post.architectNote.personas?.length ? (
+                      {typeof post.architectNote === 'object' && post.architectNote?.personas?.length ? (
                         <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
                           {post.architectNote.personas.map((pp) => (
                             <li key={pp.persona} className="text-xs leading-relaxed text-white/55">
@@ -340,6 +330,7 @@ export default async function BlogPostPage({
             )}
 
             <RelatedResearch blogSlug={slug} />
+            <RelatedQualities href={`/blog/${post.slug}`} />
 
             {/* Axi article footer accent */}
             <div className="mt-12 flex items-center gap-4 border-t border-white/10 pt-8">
@@ -379,5 +370,4 @@ export default async function BlogPostPage({
     </main>
   )
 }
-
 

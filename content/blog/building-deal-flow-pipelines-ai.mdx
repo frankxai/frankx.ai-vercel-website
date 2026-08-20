@@ -2,40 +2,16 @@
 title: "Building Automated Deal Flow Pipelines with AI and n8n"
 description: "How to build an automated deal sourcing, screening, and scoring pipeline using n8n workflows, Claude agents, and persistent memory. From RSS feeds to scored deal cards."
 date: "2026-02-14"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  [
-    "deal-flow",
-    "n8n",
-    "workflow-automation",
-    "investment-research",
-    "ai-agents",
-  ]
+tags: ["intelligence-dispatches", "ai-systems", "production"]
 image: "/images/blog/deal-flow-pipeline.png"
 featured: false
-keywords:
-  [
-    "deal flow automation",
-    "n8n investment workflow",
-    "AI deal sourcing",
-    "automated deal scoring",
-  ]
-readingTime: "12 min"
+readingGoal: "You'll learn actionable architectural frameworks, core implementation steps, and production strategies for building automated deal flow pipelines with ai and n8n."
 tldr: "Build an automated deal flow pipeline that sources opportunities from RSS/APIs, screens against your investment criteria, scores deals quantitatively, and delivers weekly digests to your team — using n8n, Claude agents, and persistent memory."
-faq:
-  - question: "What is an automated deal flow pipeline?"
-    answer: "An automated deal flow pipeline monitors funding databases, RSS feeds, and news sources for investment opportunities, then screens and scores them against your criteria automatically. Deals above threshold are queued for human review with full context."
-  - question: "Why use n8n instead of Zapier for deal flow?"
-    answer: "n8n offers self-hosted deployment (data stays on your infrastructure), native AI agent integration with LLM tools and memory, and complex branching logic that deal flow scoring requires. It reached a $2.5B valuation specifically because of these AI orchestration capabilities."
-  - question: "How accurate is AI deal scoring?"
-    answer: "AI scoring is consistent, not omniscient. It applies the same criteria to every deal without fatigue bias. The scoring framework should be calibrated against your historical investment decisions — deals you passed on vs. deals that performed. Expect 65-75% accuracy on pass/advance decisions after calibration."
-  - question: "Can this work for individual angel investors?"
-    answer: "Yes. The same architecture scales down: simpler scoring criteria, fewer data sources, and weekly instead of daily digests. A solo angel investor can monitor 10-20 RSS feeds and score 50+ deals per month with minimal oversight."
-  - question: "What data sources feed into deal flow pipelines?"
-    answer: "Common sources include Crunchbase funding alerts, PitchBook API, TechCrunch RSS, AngelList activity, SEC EDGAR filings, ProductHunt launches, and Y Combinator batch announcements. Each source gets different trust weights in the scoring system."
+keywords: ["intelligence dispatches", "intelligence-dispatches", "ai-systems", "production", "ai architecture", "frankx"]
 ---
-
 Venture capital firms see thousands of deals per year. Angels and solo investors see hundreds. The bottleneck isn't finding opportunities — it's systematically evaluating them without burning all your time on screening.
 
 n8n, now valued at $2.5B after a $180M Series C, is the workflow automation platform that makes AI deal flow pipelines practical. Combined with Claude agents for intelligent scoring and persistent memory for context, you can build a system that runs continuously and gets smarter over time.
@@ -163,7 +139,7 @@ Fit: 8/10 (10%) = 0.8 — Core thesis alignment
 
 **Thresholds:**
 
-- Score >= 70: Recommend Deep Dive {/* ai-slop-allow */}
+- Score >= 70: Recommend technical analysis {/* ai-slop-allow */}
 - Score 50-69: Conditional — needs specific data points
 - Score &lt; 50: Pass with documented reason
 
@@ -172,14 +148,14 @@ Fit: 8/10 (10%) = 0.8 — Core thesis alignment
 Scored deals enter a pipeline with stage tracking:
 
 ```
-Sourced → Screened → First Look → Deep Dive → IC Review → Term Sheet → Closed {/* ai-slop-allow */}
+Sourced → Screened → First Look → technical analysis → IC Review → Term Sheet → Closed {/* ai-slop-allow */}
 ```
 
 Each stage transition requires:
 
 - **Screened → First Look**: Score >= 50, human confirms
-- **First Look → Deep Dive**: Score >= 65, DD Lead initiates {/* ai-slop-allow */}
-- **Deep Dive → IC Review**: DD report complete, score >= 70 {/* ai-slop-allow */}
+- **First Look → technical analysis**: Score >= 65, DD Lead initiates {/* ai-slop-allow */}
+- **technical analysis → IC Review**: DD report complete, score >= 70 {/* ai-slop-allow */}
 - **IC Review → Term Sheet**: Investment committee approval
 - **Term Sheet → Closed**: Legal and final terms
 
@@ -199,7 +175,7 @@ Every Monday morning, a Claude agent compiles the week's pipeline activity:
 | Sourced    | 47    | +23    |
 | Screened   | 12    | +8     |
 | First Look | 3     | +2     |
-| Deep Dive  | 1     | +0     | {/* ai-slop-allow */}
+| technical analysis  | 1     | +0     | {/* ai-slop-allow */}
 
 ## Top Scored Deals This Week
 

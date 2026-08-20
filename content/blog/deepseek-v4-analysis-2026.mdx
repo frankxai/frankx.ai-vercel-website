@@ -1,45 +1,19 @@
 ---
 title: "DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price"
-description: "DeepSeek shipped V4-Pro (1.6T/49B active) and V4-Flash (284B/13B active) on April 24, 2026 under MIT license, open weights, 1M context. SWE-bench Verified 80.6%, AA Intelligence Index 52, V4-Pro API at $1.74/$3.48 per 1M. Technical breakdown with verified benchmarks, what changed vs V3.2, and the self-host vs API math."
+description: "DeepSeek shipped V4-Pro (1.6T/49B active) and V4-Flash (284B/13B active) on April 24, 2026 under MIT license, open weights, 1M context. SWE-bench Verified 80."
 date: "2026-06-05"
-lastUpdated: "2026-06-05"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - deepseek
-  - open-weights
-  - frontier-models
-  - ai-2026
-  - benchmarks
-  - moe
-keywords:
-  - deepseek v4
-  - deepseek v4 review
-  - deepseek v4 benchmarks
-  - deepseek v4 pro pricing
-  - deepseek v4 vs claude opus 4.8
-  - deepseek v4 flash
-  - deepseek v4 swe-bench
-  - deepseek v4 mit license
-  - open weight frontier model 2026
-  - deepseek v4 self host
+tags: ["deepseek", "open-weights", "frontier-models", "ai-2026", "benchmarks", "moe"]
 image: "/images/blog/generated/deepseek-v4-analysis-2026-premium-hero.png"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll understand benchmark performance, cost-efficiency trade-offs, and exact deployment patterns for the latest frontier models."
+tldr: "DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price examines core production patterns, technical trade-offs, and actionable implementation steps. Learn how to architect, scale, and deploy resilient systems with maximum leverage and verifiable performance."
+keywords: ["deepseek v4", "deepseek v4 review", "deepseek v4 benchmarks", "deepseek v4 pro pricing", "deepseek v4 vs claude opus 4.8", "deepseek v4 flash", "deepseek v4 swe-bench", "deepseek v4 mit license", "open weight frontier model 2026", "deepseek v4 self host"]
 architectNote:
-  recommendation: "Slot V4 in as the price floor of your model portfolio, not its ceiling: V4-Pro as the default coding agent (80.6% SWE-bench Verified at $1.74/$3.48, with near-free cached input for agentic loops), escalating to Fable 5 — the current agentic-coding ceiling at $10/$50 — only on tasks V4 demonstrably fails. The CAISI evaluation is the governance input: V4 lags badly on agentic security and abstract reasoning, so keep it supervised there. V4 supersedes the V3.2 and R1 lines — retire any routing entries still pointing at them."
-  coePillar: "Technology · model routing + Strategy · cost-of-error budgeting + Governance · data sovereignty"
-  personas:
-    - persona: "Pipeline & coding agents"
-      pick: "V4-Pro via API — escalate hard failures to Fable 5"
-    - persona: "Bulk fan-out workers"
-      pick: "V4-Flash ($0.14/$0.28, cached input $0.0028/M)"
-    - persona: "Sovereign / self-hosted stacks"
-      pick: "V4-Flash self-hosted (MIT license; Pro needs a cluster)"
-    - persona: "Reviewer / judgment agents"
-      pick: "Opus 4.8 — V4 trails the frontier on the hardest reasoning"
+  recommendation: ""
 ---
-
 # DeepSeek V4: Open-Weight Frontier Reasoning at One-Sixth the Price
 
 **TL;DR**: DeepSeek released V4 on April 24, 2026 — two models, both MIT-licensed with open weights on Hugging Face. **V4-Pro** is a 1.6T-parameter MoE with ~49B active; **V4-Flash** is 284B total / ~13B active. Both ship a 1M-token context window. V4-Pro posts 80.6% on SWE-bench Verified — within a fraction of a point of Claude Opus 4.6 — and scores 52 on the Artificial Analysis Intelligence Index, the #2 open-weights reasoning model behind Kimi K2.6. The real story is economics: V4-Pro's API runs $1.74 / $3.48 per million tokens, roughly one-sixth the cost of Opus 4.7-class models, and you can self-host the weights for free. It's not the frontier. It's the frontier's price floor. Here's what holds up under scrutiny.

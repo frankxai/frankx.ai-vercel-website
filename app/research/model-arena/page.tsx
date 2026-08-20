@@ -196,7 +196,7 @@ export default function ModelArenaPage() {
           backgroundSize: '50px 50px' 
         }} 
       />
-      <div className="absolute top-0 right-0 w-[55%] h-[45%] bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-transparent filter blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[55%] h-[45%] bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent filter blur-[140px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         {/* Navigation */}
