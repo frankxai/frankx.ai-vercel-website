@@ -1,8 +1,21 @@
 import { OfficialArchitectureAtlas } from '@/components/ai-architecture/OfficialArchitectureAtlas'
 import { PillarGuide, pillarFaqs } from '@/components/ai-architecture/pillar/PillarGuide'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
+import { createMetadata } from '@/lib/seo'
 
 const CANONICAL = 'https://www.frankx.ai/ai-architecture'
+
+// Article-shaped metadata belongs to the hub alone. Kept off the segment layout
+// so the client-rendered catalog children do not inherit og:type=article and the
+// hub's modified date.
+export const metadata = createMetadata({
+  title: 'AI Architecture: The Field Guide to Production Agent Systems',
+  description:
+    'How to structure a system that calls a language model: the seven planes, choosing between workflow and agent, the 2026-07-28 MCP revision, the OWASP GenAI LLM Top 10 2026, and where these systems actually break.',
+  path: '/ai-architecture',
+  type: 'article',
+  updatedTime: '2026-08-20',
+})
 
 const CONTENTS = [
   { href: '#what-is-ai-architecture', label: 'What it is' },
@@ -18,7 +31,7 @@ const CONTENTS = [
 
 export default function AIArchitecturePage() {
   return (
-    <>
+    <main>
       <JsonLd
         type="BreadcrumbList"
         id="ai-architecture-breadcrumbs"
@@ -57,6 +70,6 @@ export default function AIArchitecturePage() {
       </nav>
 
       <PillarGuide />
-    </>
+    </main>
   )
 }

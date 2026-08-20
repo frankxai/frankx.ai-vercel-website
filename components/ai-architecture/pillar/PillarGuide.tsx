@@ -43,7 +43,7 @@ export const pillarFaqs = [
   {
     question: 'Why do retrieval systems fail even when search looks healthy?',
     answer:
-      'Because retrieval and generation are usually measured together. A generation eval grades the final answer, so it cannot distinguish an answer that was wrong from an answer whose evidence was never retrieved. Measure recall separately. Most retrieval failures trace back to ingestion and chunking, which sit upstream of anything the model does.',
+      'Because retrieval and generation are usually measured together. A generation eval grades the final answer, so it cannot distinguish an answer that was wrong from an answer whose evidence was never retrieved. Measure recall separately. Ingestion and chunking sit upstream of anything the model does, so a failure there reaches you disguised as a generation failure.',
   },
 ]
 

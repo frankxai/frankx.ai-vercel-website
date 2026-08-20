@@ -17,16 +17,21 @@ export type StackLayer = {
 /**
  * ReferenceStackScene — the pillar guide's single scroll set-piece.
  *
- * Demonstrates rather than decorates: the planes of a production AI system
- * assemble bottom-up as the reader scrolls through the pinned section, so the
- * dependency direction (model access at the base, experience at the top) is
- * carried by the motion itself rather than asserted in a caption.
+ * Demonstrates rather than decorates: the *seams* between planes draw in
+ * bottom-up as the section passes, so the dependency direction (model access at
+ * the base, experience at the top) is carried by the motion itself rather than
+ * asserted in a caption. The seams are also the guide's actual argument — each
+ * one is a boundary where a request changes character.
  *
- * Per `taste.md`: exactly one set-piece per page, transform/opacity only, and a
- * static composition that tells the whole story. `ScrollScene` early-returns
- * under `prefers-reduced-motion: reduce`, and because every tween is a
- * `.from()`, the un-animated DOM *is* the finished diagram — the reduced-motion
- * reader gets the complete stack, not a broken half-state.
+ * Nothing containing copy is animated. `taste.md` ("No animations on text") and
+ * `ScrollScene`'s own contract both forbid it: headings, role lines, part chips
+ * and the boundary labels are already there and stay put. Only the connector
+ * geometry moves, on `scaleY` — a pure transform.
+ *
+ * Per `taste.md`: exactly one set-piece per page, transform only, and a static
+ * composition that tells the whole story. `ScrollScene` early-returns under
+ * `prefers-reduced-motion: reduce`, and because the tween is a `.from()`, the
+ * un-animated DOM *is* the finished diagram.
  *
  * Deliberately NOT pinned. A pinned panel is right for a narrative beat the reader
  * passes through once; this stack is reference material they will scan, re-read, and
@@ -41,28 +46,23 @@ export function ReferenceStackScene({ layers }: { layers: StackLayer[] }) {
       start="top 85%"
       end="bottom 60%"
       timeline={(tl, root) => {
-        const planes = root.querySelectorAll('[data-plane]')
+        // Seams only. Every other node in this scene contains copy.
         const seams = root.querySelectorAll('[data-seam]')
-        const rails = root.querySelectorAll('[data-boundary]')
 
         // The stack is authored top-down (experience first, model access last), so
-        // `from: 'end'` animates the final DOM node first and the foundation
-        // therefore assembles before anything that depends on it.
-        tl.from(planes, {
-          opacity: 0,
-          yPercent: 6,
-          stagger: { each: 0.14, from: 'end' },
+        // `from: 'end'` draws the lowest seam first and the foundation therefore
+        // connects before anything that depends on it.
+        tl.from(seams, {
+          scaleY: 0,
+          stagger: { each: 0.16, from: 'end' },
           ease: 'none',
         })
-          .from(seams, { scaleY: 0, stagger: { each: 0.14, from: 'end' }, ease: 'none' }, 0.06)
-          .from(rails, { opacity: 0, xPercent: -12, stagger: 0.1, ease: 'none' }, 0.3)
       }}
     >
       <ul className="w-full space-y-0" aria-label="Reference architecture planes, experience layer first, model access at the base">
         {layers.map((layer, i) => (
           <li key={layer.id} className="relative">
             <div
-              data-plane
               className="surface-2 grid gap-4 rounded-2xl border border-white/[0.08] p-5 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:gap-6"
             >
               <span className="font-mono text-xs text-emerald-300/80">{layer.index}</span>
@@ -91,7 +91,7 @@ export function ReferenceStackScene({ layers }: { layers: StackLayer[] }) {
                   aria-hidden="true"
                   className="my-1 block h-6 w-px origin-top bg-gradient-to-b from-emerald-400/50 to-cyan-400/20"
                 />
-                <span data-boundary className="self-center font-mono text-[11px] text-slate-500">
+                <span className="self-center font-mono text-[11px] text-slate-500">
                   {layer.boundary}
                 </span>
               </div>

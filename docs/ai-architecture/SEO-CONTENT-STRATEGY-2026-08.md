@@ -1,7 +1,7 @@
 # AI Architecture Pillar + Series — Content & SEO Strategy
 
 **Repo:** `frankxai/frankx.ai-vercel-website` (production — `main` deploys to frankx.ai)
-**Date:** 2026-08-20 · **Author:** Claude (content/SEO strategy session) · **Status:** decision-ready, not yet executed
+**Date:** 2026-08-20 · **Author:** Claude (content/SEO strategy session) · **Status:** partially executed — the pillar page shipped in PR #508 (2026-08-20). The SEO substrate fixes and the supporting series remain planned.
 **Scope:** (1) the definitive AI Architecture pillar page, updated for August 2026, built to rank and to be cited by answer engines; (2) the supporting series that makes it defensible.
 
 Every claim below about the repo was verified by reading source in this checkout on 2026-08-20. Every search-volume number comes from one source — the Semrush MCP connector (US database, pulled 2026-08-20) — and is labeled as such. Where something could not be verified, it says so.
