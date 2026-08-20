@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 910,
-    "aliases": 62,
+    "total": 922,
+    "aliases": 61,
     "byType": {
       "core": 23,
-      "section": 414,
+      "section": 419,
       "community": 17,
-      "tool": 56,
+      "tool": 60,
       "static": 15,
-      "blog": 237,
+      "blog": 240,
       "research": 16,
       "guide": 25,
       "library": 56,
@@ -757,6 +757,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/abundance-is-a-throughput-property",
+      "title": "Abundance Is a Throughput Property",
+      "description": "Abundance is not a slogan. It's a throughput property of an open substrate: MIT-licensed, typed interfaces, help-first alliances, and a floor that never rugs.",
+      "tags": [
+        "open-source",
+        "systems-thinking",
+        "abundance",
+        "platform-design",
+        "infrastructure"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/acos-enterprise-deployment-guide",
       "title": "ACOS for Enterprise: Team Deployment and Governance Guide",
       "description": "Scale Agentic Creator OS to teams with department structures, governance models, access control, and enterprise integration patterns.",
@@ -940,7 +953,7 @@
     {
       "href": "/blog/agentic-creator-os-complete-guide",
       "title": "The Complete Guide to Agentic Creator OS v6: Your AI Operating System",
-      "description": "Master the AI operating system that transforms Claude Code into a full creative studio with commands, skills, swarm intelligence, and auto-activation.",
+      "description": "Master the AI operating system that transforms Claude Code into a full creative studio. 25 commands, 80+ skills, swarm intelligence, and auto-activation. The definitive guide.",
       "tags": [
         "agentic ai",
         "claude code",
@@ -980,7 +993,7 @@
     {
       "href": "/blog/agentic-seo-publishing-masterplan",
       "title": "Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19",
-      "description": "Build a comprehensive intelligence system that fuses Google's latest search dynamics with agentic AI production pipelines.",
+      "description": "Build a 15,000-word intelligence system that fuses Google's latest search dynamics with agentic AI production pipelines.",
       "tags": [
         "seo",
         "agentic ai",
@@ -1802,7 +1815,7 @@
     {
       "href": "/blog/coherence-is-an-engineering-property",
       "title": "Coherence Is an Engineering Property",
-      "description": "One voice across all content is not culture — it is architecture. How coherence becomes code, and why it compounds.",
+      "description": "One voice across 210 posts, 85 agents, and four AI vendors is not culture — it is architecture. How coherence becomes code, and why it compounds.",
       "tags": [
         "Coherence",
         "Systems Architecture",
@@ -2018,6 +2031,19 @@
         "founders",
         "investors",
         "european union"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/evals-are-the-experiment",
+      "title": "Evals Are the Experiment",
+      "description": "An agent system without a measurement protocol is literature. How to apply the scientific method to agentic loops: hypothesis, instrument, run, ratify, ledger.",
+      "tags": [
+        "evals",
+        "agent-systems",
+        "scientific-method",
+        "measurement",
+        "intelligence-engineering"
       ],
       "type": "blog"
     },
@@ -2353,7 +2379,7 @@
     {
       "href": "/blog/how-to-write-claude-md-that-works",
       "title": "How to Write a CLAUDE.md That Actually Works",
-      "description": "The file Claude Code reads first every session. Structure, anti-patterns, and the template for shipping production work.",
+      "description": "The file Claude Code reads first every session. Structure, anti-patterns, and the exact template I use to ship 170+ pages.",
       "tags": [
         "Claude Code",
         "CLAUDE.md",
@@ -2736,7 +2762,7 @@
     {
       "href": "/blog/music-as-consciousness-technology",
       "title": "12,000 Songs Later: What AI Music Taught Me About Creative Systems",
-      "description": "After extensive production with Suno AI, I discovered music isn't entertainment—it's creative technology. Here's what years of daily creation revealed.",
+      "description": "After creating 12,000+ songs with Suno AI, I discovered music isn't entertainment—it's creative technology. Here's what three years of daily creation revealed.",
       "tags": [
         "Music",
         "AI Creativity",
@@ -2795,6 +2821,19 @@
         "creator-systems",
         "ai-systems",
         "production"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/nested-stack-of-intelligence-engineering",
+      "title": "The Nested Stack of Intelligence Engineering",
+      "description": "Intelligence is layered engineering, not a bigger prompt. Each layer—prompt, context, skills, harness, orchestration, evals—amplifies or destroys the layer below.",
+      "tags": [
+        "intelligence-engineering",
+        "system-architecture",
+        "agent-systems",
+        "skills",
+        "orchestration"
       ],
       "type": "blog"
     },
@@ -2894,7 +2933,7 @@
     {
       "href": "/blog/openclaw-explained-ai-agent-everyone-talking-about",
       "title": "OpenClaw, NemoClaw, NanoClaw: The AI Agent Ecosystem",
-      "description": "The widely-adopted open-source AI agent. How it works, what NVIDIA added with NemoClaw, and what it means for personal AI agents in 2026.",
+      "description": "The open-source AI agent with 247K GitHub stars. How it works, what NVIDIA added with NemoClaw, and what it means for personal AI agents in 2026.",
       "tags": [
         "OpenClaw",
         "AI Agents",
@@ -5065,6 +5104,14 @@
       "type": "section"
     },
     {
+      "href": "/game",
+      "title": "Game",
+      "tags": [
+        "game"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/games",
       "title": "Games",
       "tags": [
@@ -6363,6 +6410,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/claude-sonnet-5",
+      "title": "Claude Sonnet 5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/compare/claude-fable-5-vs-claude-opus-4-8",
       "title": "Claude Fable 5 VS Claude Opus 4 8 — Comparison",
       "tags": [
@@ -6534,6 +6590,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/deepseek-v4-pro-0813",
+      "title": "DeepSeek V4 Pro 0813 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/gemini-3-5-flash",
       "title": "Gemini 3.5 Flash — Model Hub",
       "tags": [
@@ -6545,6 +6610,15 @@
     {
       "href": "/llm-hub/gemini-3-5-pro",
       "title": "Gemini 3.5 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-7-flash",
+      "title": "Gemini 3.7 Flash — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -6689,6 +6763,15 @@
     {
       "href": "/llm-hub/qwen3-7-max",
       "title": "Qwen3.7-Max — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/qwen3-8-27b",
+      "title": "Qwen3.8-27B — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -7035,6 +7118,17 @@
       "tags": [
         "mvu",
         "lab"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/mvu/unhooking-the-mind",
+      "title": "Unhooking The Mind",
+      "tags": [
+        "mvu",
+        "unhooking",
+        "the",
+        "mind"
       ],
       "type": "section"
     },
@@ -7400,6 +7494,33 @@
         "vercel"
       ],
       "type": "partnership"
+    },
+    {
+      "href": "/path/aesthete",
+      "title": "Aesthete",
+      "tags": [
+        "path",
+        "aesthete"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/path/operator",
+      "title": "Operator",
+      "tags": [
+        "path",
+        "operator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/path/seeker",
+      "title": "Seeker",
+      "tags": [
+        "path",
+        "seeker"
+      ],
+      "type": "section"
     },
     {
       "href": "/peak-performance",
@@ -9019,7 +9140,6 @@
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
     "/ikigai-content-studio": "/workshops/ikigai-content-studio",
-    "/llm-hub": "/ai-ops/models-2026",
     "/mindvalley-university": "/mvu",
     "/mindvalleyuniversity": "/mvu",
     "/mvu/breathwork-dan-brule": "/mvu/dan-brule-breathwork",

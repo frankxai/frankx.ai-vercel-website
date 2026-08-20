@@ -1,7 +1,7 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-06-10",
+  "_updated": "2026-08-19",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
   "models": {
     "claude-fable-5": {
@@ -208,13 +208,53 @@
         "https://www.anthropic.com/news/claude-opus-4-5"
       ]
     },
+    "claude-sonnet-5": {
+      "name": "Claude Sonnet 5",
+      "id": "claude-sonnet-5",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-06-30",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 1000000,
+      "max_output_tokens": 64000,
+      "modalities": [
+        "text",
+        "vision",
+        "code"
+      ],
+      "pricing": {
+        "input_per_1m": 3.0,
+        "output_per_1m": 15.0
+      },
+      "benchmarks": {
+        "swe_bench_pro": 63.2,
+        "osworld": 81.2,
+        "gpqa_diamond": 91.1,
+        "aa_intelligence_index": 55.3
+      },
+      "key_capabilities": [
+        "1M context window",
+        "Computer use - 81.2% OSWorld (vendor-reported)",
+        "Extended reasoning, tool calling, prompt caching, structured outputs",
+        "Default Claude model for Free and Pro on claude.ai; available in Claude Code, the API, Cursor, VS Code and GitHub Copilot",
+        "Introductory $2/$10 pricing through 2026-08-31"
+      ],
+      "acos_tier": "sonnet",
+      "frankx_notes": "Supersedes Sonnet 4.6 as the mid-tier default. Pricing here is the standard $3/$15 list rate, NOT the introductory $2/$10 that runs through 2026-08-31 - confirm which rate you are billed at before 1 September. Opus still leads hard agentic coding (69.2% vs 63.2% SWE-Bench Pro) and Anthropic says so plainly in its own card. Benchmarks are vendor-reported and await independent reproduction. Starlight Model Arena has no Sonnet 5 receipt as of 2026-08-19 - do not read vendor tables as SIS results.",
+      "sources": [
+        "https://www.requesty.ai/models/anthropic/claude-sonnet-5",
+        "https://codersera.com/blog/claude-sonnet-5-launch-guide-2026/",
+        "https://www.siliconreport.com/anthropics-claude-sonnet-5-breaks-80-on-swe-bench-verified-widens-benchmarks-over-competit-220e6417"
+      ]
+    },
     "claude-sonnet-4-6": {
       "name": "Claude Sonnet 4.6",
       "id": "claude-sonnet-4-6",
       "organization": "anthropic",
       "family": "claude",
       "released": "2026-02-17",
-      "status": "ga",
+      "status": "superseded",
       "architecture": "dense",
       "context_window": 200000,
       "context_window_beta": 1000000,
@@ -412,6 +452,44 @@
       },
       "sources": []
     },
+    "gemini-3-7-flash": {
+      "name": "Gemini 3.7 Flash",
+      "id": "gemini-3.7-flash",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-08-13",
+      "status": "ga",
+      "architecture": "undisclosed",
+      "context_window": 1048576,
+      "max_output_tokens": 64000,
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ],
+      "pricing": {
+        "input_per_1m": 0.75,
+        "output_per_1m": 3.75
+      },
+      "benchmarks": {
+        "deepswe_v1_1": 65.3,
+        "automationbench": 30.4,
+        "webdev_arena_elo": 1588
+      },
+      "key_capabilities": [
+        "1,048,576-token context, 64K max output",
+        "Positioned by Google for software engineering, web development and agent workflows",
+        "DeepSWE v1.1 65.3%, up from 49.0% on Gemini 3.6 Flash (vendor-reported)",
+        "Introductory $0.75/$3.75 pricing through 2026-12-31"
+      ],
+      "frankx_notes": "Shipped 13 August 2026, under a month after Gemini 3.6 Flash. Context is unchanged from 3.6 - the deltas are quality and price. Pricing recorded is the introductory rate; Google's listed rate rises to $1.50/$7.50 on 2027-01-01, so anything architected on this price has a known expiry. Gains are vendor-reported and concentrated in coding/agent evals. No independent reproduction and no Starlight Model Arena receipt as of 2026-08-19.",
+      "sources": [
+        "https://openrouter.ai/google/gemini-3.7-flash",
+        "https://datanorth.ai/news/google-releases-gemini-3-7-flash",
+        "https://benchlm.ai/models/gemini-3-7-flash"
+      ]
+    },
     "gemini-3-5-flash": {
       "name": "Gemini 3.5 Flash",
       "id": "gemini-3-5-flash",
@@ -542,6 +620,45 @@
         "https://www.deeplearning.ai/the-batch/kimi-k2-6-matches-open-qwen3-6-max-anddeepseek-v4-falls-just-behind-top-closed-models"
       ]
     },
+    "deepseek-v4-pro-0813": {
+      "name": "DeepSeek V4 Pro 0813",
+      "id": "deepseek-v4-pro-0813",
+      "organization": "deepseek",
+      "family": "deepseek",
+      "released": "2026-08-13",
+      "status": "ga",
+      "architecture": "mixture-of-experts",
+      "parameters": "1.6T total / ~49B active per token",
+      "context_window": 1048576,
+      "max_output_tokens": 384000,
+      "modalities": [
+        "text",
+        "code"
+      ],
+      "pricing": {
+        "input_per_1m": 0.66,
+        "output_per_1m": 1.98,
+        "peak_input_per_1m": 1.32,
+        "peak_output_per_1m": 3.96
+      },
+      "benchmarks": {
+        "swe_bench_verified": 96.4,
+        "terminal_bench_2_1": 87.9,
+        "deepswe_v1_1": 62.7
+      },
+      "key_capabilities": [
+        "1M context, up to 384K output tokens",
+        "Hybrid attention aimed at cutting long-context inference cost",
+        "Pretrained on 32T+ tokens (vendor-stated)",
+        "Peak/off-peak billing since 2026-08-16 16:00 UTC"
+      ],
+      "frankx_notes": "GA on 13 August 2026, ending the preview that began in April; a tier above DeepSeek V4, not a replacement for it. Read its benchmarks together rather than selectively: #2 on SWE-bench Verified at 96.4% (behind Opus 5) yet last of seven frontier peers on LiveBench agentic coding. That spread is the story - a headline score here does not predict agent behaviour. Prices rose sharply on 2026-08-16 (up to 12x on some lanes) and now vary peak/off-peak; recorded pricing is off-peak. Vendor figures await independent proof. No Starlight Model Arena receipt as of 2026-08-19.",
+      "sources": [
+        "https://openrouter.ai/deepseek/deepseek-v4-pro-0813",
+        "https://artificialanalysis.ai/models/deepseek-v4-pro",
+        "https://www.techtimes.com/articles/324241/20260813/deepseek-v4-pro-0813-goes-ga-benchmark-claims-await-independent-proof.htm"
+      ]
+    },
     "deepseek-v4": {
       "name": "DeepSeek V4",
       "id": "deepseek-v4",
@@ -583,6 +700,44 @@
         "https://artificialanalysis.ai/models/deepseek-v4-pro",
         "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro",
         "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+      ]
+    },
+    "qwen3-8-27b": {
+      "name": "Qwen3.8-27B",
+      "id": "qwen3.8-27b",
+      "organization": "alibaba",
+      "family": "qwen",
+      "released": "2026-08-14",
+      "status": "ga",
+      "architecture": "dense",
+      "parameters": "27.8B dense",
+      "context_window": 262144,
+      "modalities": [
+        "text",
+        "vision",
+        "video"
+      ],
+      "pricing": {
+        "input_per_1m": 0.0,
+        "output_per_1m": 0.0
+      },
+      "benchmarks": {
+        "terminal_bench_2_1": 73.0,
+        "swe_bench_pro": 61.7,
+        "gpqa_diamond": 89.2,
+        "ifbench": 79.5
+      },
+      "key_capabilities": [
+        "Apache 2.0 open weights - commercial use with no revenue-share clause",
+        "27.8B dense multimodal: text, image and video input",
+        "262,144-token native context (Alibaba states extension to 1M)",
+        "Runs locally - the capability-per-GB story, not the frontier story"
+      ],
+      "frankx_notes": "Released 14 August 2026 and pulled over 3 million times on Hugging Face within three days. The licence is the significant fact, not the leaderboard: Apache 2.0 with no revenue share puts capable multimodal weights on your own hardware. Alibaba's published comparison shows it leading on all four benchmarks it chose to report, which is the shape of a vendor-selected set - weigh it accordingly. A different lane from Qwen3.7-Max (closed, API-only); it does not supersede it. No first-party hosted pricing exists yet, so the zeroes here mean self-hosted, not free API. No Starlight Model Arena receipt as of 2026-08-19.",
+      "sources": [
+        "https://datanorth.ai/news/alibaba-releases-qwen3-8-27b",
+        "https://cybernews.com/tech/qwen-38-27b-ai-model-debuts-with-million-downloads/",
+        "https://local-ai-zone.github.io/blog/qwen3-8-27b-comprehensive-analysis.html"
       ]
     },
     "qwen3-7-max": {
@@ -1050,5 +1205,5 @@
     "sonnet": "claude-sonnet-4-6",
     "haiku": "claude-haiku-4-5"
   },
-  "last_updated": "2026-06-05"
+  "last_updated": "2026-08-19"
 }
