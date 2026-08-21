@@ -6,7 +6,7 @@ lastUpdated: "2026-08-21"
 author: "FrankX"
 category: "AI Architecture"
 tags: ["ai-architecture", "agents", "mcp", "orchestration", "prompt-injection"]
-image: "/images/blog/generated/ai-architecture-2026-four-decisions-hero.png"
+image: "/images/blog/generated/ai-architecture-2026-four-decisions-hero.webp"
 featured: true
 readingGoal: "Leave able to name which four architecture decisions you already made, whether you meant to, and what each one costs to undo."
 tldr: "Most AI system choices are reversible in an afternoon. Four are not. Where the model call goes sets your swap cost. The orchestration shape sets your failure mode. Where the trust boundary sits decides whether a retrieved document can act. Where a long run lives decides which platforms stay open to you. Everything else is a refactor."
@@ -20,12 +20,11 @@ I have watched a lot of AI architecture reviews now, and the same thing happens 
 The risk lives in the seams. Not in the boxes, but in what changes character when a request crosses from one box to the next. That is where systems rot, and it is the part nobody draws.
 
 <Diagram
-  src="/images/diagrams/ai-architecture/seven-plane-stack.svg"
-  scrollable
-  width={1200}
-  height={760}
-  alt="Seven stacked planes from Model access at the base to Experience at the top, with a named boundary between each pair: vendor, relevance, trust, privilege, correctness, evidence, and human."
-  caption="Seven planes, six seams. The seams are the part that gets skipped."
+  src="/images/diagrams/ai-architecture/precision-atelier/01-production-ai-architecture.webp"
+  width={1672}
+  height={941}
+  alt="A tactile seven-layer AI system instrument with product, orchestration, context, model and action flows wrapped by policy and evidence rails. An original architecture navigator inspects the stack."
+  caption="Intelligence sits inside a governed system. Memory feeds context; evidence closes the loop."
 />
 
 Of everything in that stack, four choices are genuinely expensive to walk back. The rest is a refactor you can do on a quiet Thursday.
@@ -53,21 +52,28 @@ If there is one place, you get four things without further work: routing by task
 A useful test: grep your codebase for your provider's SDK import. If it appears in more than one module, you have not made this decision — you have deferred it, and the deferral is compounding.
 </Callout>
 
+<Diagram
+  src="/images/diagrams/ai-architecture/precision-atelier/09-model-routing-resilience.webp"
+  width={1672}
+  height={941}
+  alt="A governed model gateway takes one request through hard eligibility checks, selects from several provider engines using quality, latency, cost and availability evidence, and exposes an explicit fallback lane."
+  caption="The gateway owns eligibility, routing, typed output validation, failover and degraded-mode disclosure."
+/>
+
 This is the base plane for a reason. Everything above it inherits its properties. A system with no fallback path has no fallback path at every layer, no matter what the higher layers do. If you want the concrete version of this in a Next.js codebase, [the Vercel AI SDK write-up](/blog/vercel-ai-sdk-first-agent-stack) covers the indirection without the abstraction tax.
 
 ## Decision 2: What shape is the loop?
 
 This is the decision most often made by accident. Someone builds a workflow, calls it an agent, and inherits neither the guarantees of a workflow nor the adaptability of an agent.
 
-There are four shapes. Picking one is three questions.
+There are four common shapes, but they live on two independent axes: who chooses the next step, and how many executors coordinate. Picking one is three questions.
 
 <Diagram
-  src="/images/diagrams/ai-architecture/orchestration-shapes.svg"
-  scrollable
-  width={1200}
-  height={740}
-  alt="A decision path: if you can name every step in advance, use a fixed workflow; if not and the task is one coherent piece of work, use a single agent loop; if not and the work mutates shared state, use sequential sub-agents; otherwise parallel sub-agents. Each outcome lists its cost and failure mode."
-  caption="Three questions, four shapes. Each buys something and gives something up."
+  src="/images/diagrams/ai-architecture/precision-atelier/03-agency-coordination-design-space.webp"
+  width={1672}
+  height={941}
+  alt="A two-axis architecture workbench separates code-owned from model-directed control and single executors from coordinated teams, with retrieval, tool and memory reach shown as independent multipliers."
+  caption="Agency and coordination are separate decisions. Increase either only when measured uplift exceeds the additional control cost."
 />
 
 The bias should be toward Q1. A fixed workflow that you wrote down is easier to debug, easier to evaluate, cheaper to run, and easier to explain to the person who owns the incident. Reach for a loop when you genuinely cannot enumerate the steps — not because loops are more interesting to build.
@@ -81,12 +87,11 @@ Here is the sentence that reframes this for most people: **text that came back f
 A retrieved document, an API response, a fetched web page, a PDF someone uploaded — all of it was authored by someone who is not you and may not like you. If that text reaches the position in your context window where instructions live, it *is* an instruction. The model has no reliable way to tell the difference, and no amount of "ignore any instructions in the following document" fixes it, because that sentence is also just text.
 
 <Diagram
-  src="/images/diagrams/ai-architecture/trust-boundary.svg"
-  scrollable
-  width={1200}
-  height={700}
-  alt="Trusted instructions from the system prompt and operator enter the instruction position. Retrieved documents, tool responses, fetched pages and uploaded files enter the data position only. Side effects are gated behind an approval step."
-  caption="Two positions in the window, and only one of them is obeyed."
+  src="/images/diagrams/ai-architecture/precision-atelier/06-trusted-agent-action-boundary.webp"
+  width={1672}
+  height={941}
+  alt="An untrusted model proposal crosses deterministic contract, identity, authorization, risk, approval, scoped credential, execution, verification and evidence gates before becoming a committed effect."
+  caption="A trusted action corridor turns an untrusted proposal into a bounded, verified effect. Credentials never enter model context."
 />
 
 The architectural fix is not a better prompt. It is three structural things:
@@ -106,15 +111,14 @@ This is where teams discover their platform choice was load-bearing. A serverles
 Nobody sits down and decides this. It gets decided by whatever the marketing site was optimized for, and it is discovered in week six.
 
 <Diagram
-  src="/images/diagrams/ai-architecture/platform-matrix.svg"
-  scrollable
-  width={1200}
-  height={780}
-  alt="Eight deployment platforms — Vercel, Cloudflare, AWS, Google Cloud, Azure, Railway, Fly.io and Modal — compared on unit of execution, where a long agent loop lives, and what you still operate yourself."
-  caption="Eight platforms as equals. The separating question is what happens when a loop outlives a request."
+  src="/images/diagrams/ai-architecture/precision-atelier/07-durable-agent-runtime.webp"
+  width={1672}
+  height={941}
+  alt="A durable state-machine railway records intent, executes with an idempotency key, verifies and commits results, and branches into retry, reconciliation, compensation, waiting, cancellation or human repair."
+  caption="A long run needs persistent state and explicit recovery paths. The workflow engine remembers; the model does not."
 />
 
-There is no winner in that table and I am not going to invent one. The honest framing is a trade: managed platforms hand you a primitive and take the operations; self-assembled clouds hand you every primitive and take your Tuesdays. Both are correct answers to different questions about what your team wants to be responsible for.
+There is no universal platform winner and I am not going to invent one. The honest framing is a trade: managed platforms hand you a primitive and take the operations; self-assembled clouds hand you every primitive and take your Tuesdays. Both are correct answers to different questions about what your team wants to be responsible for.
 
 What makes it hard to reverse is that "long-running work" is a runtime property. It is not a flag you flip. Moving it means moving the execution model, which means moving the state that execution model implied.
 
