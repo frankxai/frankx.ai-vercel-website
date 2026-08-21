@@ -57,7 +57,7 @@ function formatShortDate(date: string): string {
   })
 }
 
-function MvuJsonLd({ entryCount }: { entryCount: number }) {
+function MvuJsonLd() {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -75,7 +75,7 @@ function MvuJsonLd({ entryCount }: { entryCount: number }) {
       endDate: '2026-08-02',
       location: { '@type': 'Place', name: 'Tallinn, Estonia' },
     },
-    mainEntity: { '@type': 'ItemList', numberOfItems: entryCount },
+    mainEntity: { '@type': 'ItemList' },
   }
 
   return (
@@ -95,7 +95,7 @@ export default function MvuPage() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-void text-white">
-      <MvuJsonLd entryCount={entries.length} />
+      <MvuJsonLd />
 
       <section className="relative isolate border-b border-white/10">
         <div
@@ -272,8 +272,6 @@ export default function MvuPage() {
                 <span>{featuredNote.session}</span>
                 <span aria-hidden>·</span>
                 <time dateTime={featuredNote.date}>{formatDate(featuredNote.date)}</time>
-                <span aria-hidden>·</span>
-                <span>{featuredNote.readingTime}</span>
               </div>
               <h2 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl">
                 {featuredNote.title}
