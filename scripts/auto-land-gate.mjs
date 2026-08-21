@@ -36,35 +36,48 @@ console.log(`[release-admission] Validating PR #${prNumber} in frankxai/${repoNa
 
 run('npm run guards:check', { stdio: 'inherit' })
 
-const threadQuery = `query {
-  repository(owner: "frankxai", name: "${repoName}") {
-    pullRequest(number: ${prNumber}) {
-      reviewThreads(first: 100) {
-        nodes { id isResolved }
+const threads = []
+let endCursor = null
+let hasNextPage = false
+
+do {
+  const after = endCursor
+    ? `, after: ${JSON.stringify(endCursor)}`
+    : ''
+  const threadQuery = `query {
+    repository(owner: "frankxai", name: "${repoName}") {
+      pullRequest(number: ${prNumber}) {
+        reviewThreads(first: 100${after}) {
+          nodes { id isResolved }
+          pageInfo { hasNextPage endCursor }
+        }
       }
     }
+  }`
+  const threadData = JSON.parse(
+    run(`gh api graphql -f query='${threadQuery}'`),
+  )
+  const reviewThreads =
+    threadData?.data?.repository?.pullRequest?.reviewThreads
+  if (!reviewThreads) {
+    throw new Error('Unable to read the complete review-thread state.')
   }
-}`
-const threadData = JSON.parse(run(`gh api graphql -f query='${threadQuery}'`))
-const threads =
-  threadData?.data?.repository?.pullRequest?.reviewThreads?.nodes ?? []
+  threads.push(...(reviewThreads.nodes ?? []))
+  hasNextPage = reviewThreads.pageInfo?.hasNextPage === true
+  endCursor = reviewThreads.pageInfo?.endCursor ?? null
+  if (hasNextPage && !endCursor) {
+    throw new Error('Review-thread pagination ended without a cursor.')
+  }
+} while (hasNextPage)
+
 const unresolved = threads.filter((thread) => !thread.isResolved)
 if (unresolved.length > 0) {
   throw new Error(`${unresolved.length} review thread(s) remain unresolved.`)
 }
 
-const reviews = JSON.parse(
-  run(`gh api repos/frankxai/${repoName}/pulls/${prNumber}/reviews`),
-)
-const blockingReviews = reviews.filter(
-  (review) => review.state === 'CHANGES_REQUESTED',
-)
-if (blockingReviews.length > 0) {
-  throw new Error(
-    `${blockingReviews.length} change-request review(s) remain active.`,
-  )
-}
-
+// GitHub's reviewDecision is the authoritative current state. The reviews
+// endpoint contains historical submissions, so an old CHANGES_REQUESTED must
+// not override a later approval.
 const pullRequest = JSON.parse(
   run(
     `gh pr view ${prNumber} --json isDraft,mergeable,reviewDecision,state`,
