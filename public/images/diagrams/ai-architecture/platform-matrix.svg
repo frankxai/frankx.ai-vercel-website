@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780" role="img" aria-labelledby="pmT pmD">
+<title id="pmT">Where a long agent run actually lives, by platform</title>
+<desc id="pmD">Eight deployment platforms compared on three structural properties: the unit of execution, where a long-running agent loop lives, and what you still operate yourself. Vercel, Cloudflare, AWS, Google Cloud, Azure, Railway, Fly.io, and Modal are shown as equal options rather than ranked.</desc>
+<defs>
+<linearGradient id="pmPlane" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" stop-color="#12121a"/><stop offset="100%" stop-color="#0d0d14"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="780" fill="#0a0a0b"/>
+<text x="60" y="52" fill="#ffffff" font-family="Poppins,Inter,system-ui,sans-serif" font-size="26" font-weight="700">Where a long agent run lives</text>
+<text x="60" y="80" fill="#94a3b8" font-family="Inter,system-ui,sans-serif" font-size="15">Eight platforms, no ranking. The question that separates them is what happens when a loop outlives a request.</text>
+
+<g font-family="Inter,system-ui,sans-serif">
+<!-- header -->
+<g transform="translate(60,110)" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12" fill="#64748b">
+<text x="16" y="14">PLATFORM</text>
+<text x="196" y="14">UNIT OF EXECUTION</text>
+<text x="516" y="14">WHERE A LONG LOOP LIVES</text>
+<text x="836" y="14">WHAT YOU STILL OPERATE</text>
+</g>
+<line x1="60" y1="132" x2="1140" y2="132" stroke="#ffffff" stroke-opacity=".1"/>
+
+<!-- rows -->
+<g transform="translate(60,142)">
+<rect width="1080" height="72" rx="12" fill="url(#pmPlane)" stroke="#ffffff" stroke-opacity=".07"/>
+<text x="16" y="32" fill="#ffffff" font-size="15" font-weight="600">Vercel</text>
+<text x="16" y="54" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11">managed</text>
+<text x="196" y="32" fill="#cbd5e1" font-size="13">Serverless and edge functions</text>
+<text x="196" y="54" fill="#64748b" font-size="12">Framework-native, deploy on push</text>
+<text x="516" y="32" fill="#cbd5e1" font-size="13">A queued background job</text>
+<text x="516" y="54" fill="#64748b" font-size="12">Not the request that started it</text>
+<text x="836" y="32" fill="#cbd5e1" font-size="13">Model keys, data store, evals</text>
+</g>
+
+<g transform="translate(60,222)">
+<rect width="1080" height="72" rx="12" fill="url(#pmPlane)" stroke="#ffffff" stroke-opacity=".07"/>
+<text x="16" y="32" fill="#ffffff" font-size="15" font-weight="600">Cloudflare</text>
+<text x="16" y="54" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11">managed</text>
+<text x="196" y="32" fill="#cbd5e1" font-size="13">V8 isolates at the edge</text>
+<text x="196" y="54" fill="#64748b" font-size="12">Cold start measured in milliseconds</text>
+<text x="516" y="32" fill="#cbd5e1" font-size="13">A durable object or workflow</text>
+<text x="516" y="54" fill="#64748b" font-size="12">State and execution co-located</text>
+<text x="836" y="32" fill="#cbd5e1" font-size="13">Model keys, data model, evals</text>
+</g>
+
+<g transform="translate(60,302)">
+<rect width="1080" height="72" rx="12" fill="url(#pmPlane)" stroke="#ffffff" stroke-opacity=".07"/>
+<text x="16" y="32" fill="#ffffff" font-size="15" font-weight="600">AWS</text>
+<text x="16" y="54" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11">self-assembled</text>
+<text x="196" y="32" fill="#cbd5e1" font-size="13">Functions, containers, or VMs</text>
+<text x="196" y="54" fill="#64748b" font-size="12">You pick the primitive</text>
+<text x="516" y="32" fill="#cbd5e1" font-size="13">A step-function state machine</text>
+<text x="516" y="54" fill="#64748b" font-size="12">Or a container you keep warm</text>
+<text x="836" y="32" fill="#cbd5e1" font-size="13">Networking, identity, the rest</text>
+</g>
+
+<g transform="translate(60,382)">
+<rect width="1080" height="72" rx="12" fill="url(#pmPlane)" stroke="#ffffff" stroke-opacity=".07"/>
+<text x="16" y="32" fill="#ffffff" font-size="15" font-weight="600">Google Cloud</text>
+<text x="16" y="54" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11">self-assembled</text>
+<text x="196" y="32" fill="#cbd5e1" font-size="13">Containers, jobs, or Kubernetes</text>
+<text x="196" y="54" fill="#64748b" font-size="12">Request-scoped or batch</text>
+<text x="516" y="32" fill="#cbd5e1" font-size="13">A job, not a request handler</text>
+<text x="516" y="54" fill="#64748b" font-size="12">Orchestrated outside the request</text>
+<text x="836" y="32" fill="#cbd5e1" font-size="13">Networking, identity, the rest</text>
+</g>
+
+<g transform="translate(60,462)">
+<rect width="1080" height="72" rx="12" fill="url(#pmPlane)" stroke="#ffffff" stroke-opacity=".07"/>
+<text x="16" y="32" fill="#ffffff" font-size="15" font-weight="600">Azure</text>
+<text x="16" y="54" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11">self-assembled</text>
+<text x="196" y="32" fill="#cbd5e1" font-size="13">Functions, container apps, or AKS</text>
+<text x="196" y="54" fill="#64748b" font-size="12">You pick the primitive</text>
+<text x="516" y="32" fill="#cbd5e1" font-size="13">A durable orchestration</text>
+<text x="516" y="54" fill="#64748b" font-size="12">Checkpointed, replayable</text>
+<text x="836" y="32" fill="#cbd5e1" font-size="13">Networking, identity, the rest</text>
+</g>
+
+<g transform="translate(60,542)">
+<rect width="1080" height="72" rx="12" fill="url(#pmPlane)" stroke="#ffffff" stroke-opacity=".07"/>
+<text x="16" y="32" fill="#ffffff" font-size="15" font-weight="600">Railway</text>
+<text x="16" y="54" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11">managed</text>
+<text x="196" y="32" fill="#cbd5e1" font-size="13">A long-lived container</text>
+<text x="196" y="54" fill="#64748b" font-size="12">Your Dockerfile, their scheduler</text>
+<text x="516" y="32" fill="#cbd5e1" font-size="13">Just a process</text>
+<text x="516" y="54" fill="#64748b" font-size="12">No special primitive to learn</text>
+<text x="836" y="32" fill="#cbd5e1" font-size="13">Image, migrations, restarts</text>
+</g>
+
+<g transform="translate(60,622)">
+<rect width="1080" height="72" rx="12" fill="url(#pmPlane)" stroke="#ffffff" stroke-opacity=".07"/>
+<text x="16" y="32" fill="#ffffff" font-size="15" font-weight="600">Fly.io</text>
+<text x="16" y="54" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11">managed</text>
+<text x="196" y="32" fill="#cbd5e1" font-size="13">Micro-VMs placed near users</text>
+<text x="196" y="54" fill="#64748b" font-size="12">Started and stopped per run</text>
+<text x="516" y="32" fill="#cbd5e1" font-size="13">A machine you own for its duration</text>
+<text x="516" y="54" fill="#64748b" font-size="12">Then release</text>
+<text x="836" y="32" fill="#cbd5e1" font-size="13">VM lifecycle, volumes, regions</text>
+</g>
+
+<g transform="translate(60,702)">
+<rect width="1080" height="60" rx="12" fill="url(#pmPlane)" stroke="#10b981" stroke-opacity=".22"/>
+<text x="16" y="28" fill="#ffffff" font-size="15" font-weight="600">Modal</text>
+<text x="16" y="48" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11">managed</text>
+<text x="196" y="28" fill="#cbd5e1" font-size="13">Functions as remote containers</text>
+<text x="196" y="48" fill="#64748b" font-size="12">Accelerator-attached when asked</text>
+<text x="516" y="28" fill="#cbd5e1" font-size="13">The function call itself</text>
+<text x="516" y="48" fill="#64748b" font-size="12">Duration is a parameter</text>
+<text x="836" y="28" fill="#cbd5e1" font-size="13">Packaging, images, weights</text>
+</g>
+</g>
+</svg>
