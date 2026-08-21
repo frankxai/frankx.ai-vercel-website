@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation'
 import { Calendar, Clock, FileText, Tag } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
-import ReadingProgress from '@/components/blog/ReadingProgress'
 import TableOfContents from '@/components/blog/TableOfContents'
 import RelatedResearch from '@/components/blog/RelatedResearch'
 import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
@@ -145,7 +144,6 @@ export default async function BlogPostPage({
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
-      <ReadingProgress />
       <JsonLd type="Article" data={articleSchema} />
       {extractedFaqs.length > 0 && (
         <JsonLd
@@ -298,12 +296,21 @@ export default async function BlogPostPage({
         </div>
 
         <div className="px-6 pt-12">
-          <div className="mx-auto max-w-3xl">
-            <TableOfContents />
-            <div className="article-prose">
-              <MDXContent source={post.content} />
+          <div className="mx-auto max-w-3xl xl:max-w-[72rem]">
+            <div className="xl:flex xl:items-start xl:gap-12">
+              <div className="mx-auto min-w-0 max-w-3xl xl:mx-0 xl:flex-1">
+                <div className="article-prose">
+                  <MDXContent source={post.content} />
+                </div>
+              </div>
+              <aside className="hidden w-[17rem] shrink-0 xl:block" aria-label="Article sections">
+                <div className="sticky top-28">
+                  <TableOfContents variant="rail" />
+                </div>
+              </aside>
             </div>
           </div>
+          <TableOfContents variant="mobile" />
 
           {/* Wider container for cards and meta sections */}
           <div className="mx-auto max-w-4xl">
