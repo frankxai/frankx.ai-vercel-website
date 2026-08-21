@@ -196,7 +196,7 @@ plainly that the evidence is testimony, not grep.
 | 1 | How many modules import a model provider's SDK? | Exactly one | More than one, or not counted |
 | 2 | Where does the loop's exit condition live? | In code — a counter, budget, or state machine | In the prompt, or not located |
 | 3 | Can you point to the line where retrieved text becomes labelled data? | Yes, and side effects are gated | No, or not traced |
-| 4 | Do you know your longest production run and your platform's ceiling? | Both known, ceiling higher | Ceiling close or lower, or either unknown |
+| 4 | Do you know your longest production run and your platform's ceiling? | Both known, and the ceiling is higher | Ceiling close or lower, or either unknown |
 
 "I don't know" is always OPEN. An unmade decision and an unknown one cost the
 same, because both are open in the expensive direction.

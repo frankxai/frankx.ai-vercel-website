@@ -103,6 +103,25 @@ if (!runner.includes("['trust', 'run', 'loop', 'model']")) {
 if (!skillCanon.includes(canon('trust boundary, then long-run home, then orchestration shape, then model seam'))) {
   failures.push('skill fix-first priority changed — update the review runner to match')
 }
+// The MADE/OPEN semantics are pinned by anchor phrases that appear in both the
+// runner's options and the skill's Interview mode table. Changing what earns a
+// verdict on either side means touching one of these, which fails here until
+// the other side is updated to match.
+const MAPPING_ANCHORS = [
+  'exactly one', // model MADE
+  'more than one', // model OPEN
+  'counter, budget, or state machine', // loop MADE
+  'in the prompt', // loop OPEN
+  'side effects are gated', // trust MADE
+  'not traced', // trust OPEN
+  'ceiling is higher', // run MADE
+  'close or lower', // run OPEN
+]
+for (const anchor of MAPPING_ANCHORS) {
+  const needle = canon(anchor)
+  if (!runnerCanon.includes(needle)) failures.push(`review runner verdict mapping changed — anchor missing: "${anchor}"`)
+  if (!skillCanon.includes(needle)) failures.push(`skill verdict mapping changed — anchor missing: "${anchor}"`)
+}
 
 if (failures.length) {
   console.error(JSON.stringify({ status: 'fail', failures }, null, 2))
