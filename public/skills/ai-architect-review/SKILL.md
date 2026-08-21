@@ -201,6 +201,16 @@ plainly that the evidence is testimony, not grep.
 "I don't know" is always OPEN. An unmade decision and an unknown one cost the
 same, because both are open in the expensive direction.
 
+Interview mode covers the four decisions; the plane walk needs the codebase.
+Keep the report format intact by writing the section honestly:
+
+```
+### Unowned planes
+Not assessed — interview mode, no codebase access.
+```
+
+Or interview plane owners one by one, if the people are in the room.
+
 Fix-first priority when several come back OPEN: **trust boundary, then long-run
 home, then orchestration shape, then model seam.** Trust rises in cost fastest —
 it scales with the number of tools already shipped.

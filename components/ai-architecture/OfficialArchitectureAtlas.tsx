@@ -106,7 +106,8 @@ const templateLanes: TemplateLane[] = [
     blurb:
       'Durable-runtime starters — workers, queues, Postgres, and the services that outlive a request.',
     action: 'Browse the marketplace',
-    href: 'https://railway.com/templates',
+    // railway.com/templates 301s here; link the verified final URL directly.
+    href: 'https://railway.com/deploy',
   },
 ]
 

@@ -76,6 +76,34 @@ if (!blueprintIndex.includes('/ai-architecture/${blueprint.slug}') || !legacyShe
   failures.push('canonical blueprint route is missing')
 }
 
+// The browser review (ReviewRunner) and the skill's Interview mode define the
+// same four questions twice, by design — one is TSX, one is markdown a coding
+// agent reads. Nothing structural ties them together, so this pins them:
+// punctuation-insensitive matching, because curly and straight apostrophes
+// differ between the two files on purpose.
+const runner = await readFile(new URL('app/ai-architect/ReviewRunner.tsx', root), 'utf8')
+const skill = await readFile(new URL('public/skills/ai-architect-review/SKILL.md', root), 'utf8')
+const canon = (text) => text.toLowerCase().replace(/[^a-z0-9]/g, '')
+const runnerCanon = canon(runner)
+const skillCanon = canon(skill)
+const INTERVIEW_QUESTIONS = [
+  "How many modules import a model provider's SDK?",
+  "Where does the loop's exit condition live?",
+  'Can you point to the line where retrieved text becomes labelled data?',
+  "Do you know your longest production run and your platform's ceiling?",
+]
+for (const question of INTERVIEW_QUESTIONS) {
+  const needle = canon(question)
+  if (!runnerCanon.includes(needle)) failures.push(`review runner dropped an interview question: ${question}`)
+  if (!skillCanon.includes(needle)) failures.push(`skill dropped an interview question: ${question}`)
+}
+if (!runner.includes("['trust', 'run', 'loop', 'model']")) {
+  failures.push('review runner fix-first priority changed — update the skill Interview mode to match')
+}
+if (!skillCanon.includes(canon('trust boundary, then long-run home, then orchestration shape, then model seam'))) {
+  failures.push('skill fix-first priority changed — update the review runner to match')
+}
+
 if (failures.length) {
   console.error(JSON.stringify({ status: 'fail', failures }, null, 2))
   process.exit(1)

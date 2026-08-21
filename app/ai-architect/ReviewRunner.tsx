@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Copy } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -115,6 +115,9 @@ function buildReport(answers: Answers, date: string): string {
     '### The four decisions',
     ...lines,
     '',
+    '### Unowned planes',
+    'Not assessed — self-run interview, no codebase access. Run the skill for the plane walk.',
+    '',
     '### Fix first',
     fixFirst,
     '',
@@ -140,17 +143,25 @@ export default function ReviewRunner() {
   )
   const fixFirstId = FIX_PRIORITY.find((id) => openIds.includes(id))
 
-  // The report carries a date, so it is built client-side on completion rather
-  // than during render — the server never renders the complete state.
+  // The report carries a date, so it is built client-side rather than during
+  // render — the server never renders the complete state. It rebuilds on every
+  // answer change while complete, so an edited answer can never copy a stale
+  // report; the completion analytics event stays transition-based.
+  const wasComplete = useRef(false)
   useEffect(() => {
     if (!complete) {
       setReport('')
-      return
+    } else {
+      setReport(buildReport(answers, new Date().toISOString().slice(0, 10)))
+      if (!wasComplete.current) {
+        const openCount = DECISIONS.filter(
+          (d) => d.options[answers[d.id] as number].verdict === 'open',
+        ).length
+        trackEvent('ai_architect_review_completed', { open_count: openCount })
+      }
     }
-    setReport(buildReport(answers, new Date().toISOString().slice(0, 10)))
-    trackEvent('ai_architect_review_completed', { open_count: openIds.length })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [complete])
+    wasComplete.current = complete
+  }, [answers, complete])
 
   const copyReport = async () => {
     trackEvent('ai_architect_review_copied', {})
