@@ -4,9 +4,17 @@ interface DiagramProps {
   src: string
   alt: string
   caption?: string
+  /**
+   * The diagram's own pixel dimensions. The browser reserves this ratio before
+   * the file loads, so a diagram that is not 16:9 must pass its real numbers or
+   * the box snaps to a different height on load. Defaults match the 27 call
+   * sites that predate these props.
+   */
+  width?: number
+  height?: number
 }
 
-export default function Diagram({ src, alt, caption }: DiagramProps) {
+export default function Diagram({ src, alt, caption, width = 1600, height = 900 }: DiagramProps) {
   return (
     <figure className="my-10">
       <div className="rounded-2xl border border-emerald-400/20 bg-gradient-to-b from-[#0b1220] to-[#070d18] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.45)]">
