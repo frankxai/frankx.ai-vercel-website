@@ -1,7 +1,7 @@
 {
   "_generated": "2026-08-21T00:00:00.000Z",
   "_source": "content/blog/",
-  "_count": 233,
+  "_count": 234,
   "articles": [
     {
       "id": "content_schema",
@@ -2953,6 +2953,35 @@
       "seoTitle": "The AI Agents Worth Evaluating in August 2026",
       "seoDescription": "Mira, Viktor, Hermes, ChatGPT Work, and Claude Cowork compared by job, cost, and capability. What to evaluate on August 21, 2026.",
       "ogImage": "/images/blog/ai-agents-worth-evaluating-august-2026-hero.jpg",
+      "author": "FrankX"
+    },
+    {
+      "id": "gemini-3-7-flash-what-google-shipped-august-2026",
+      "type": "blog",
+      "title": "Gemini 3.7 Flash: what Google actually shipped on 13 August 2026",
+      "description": "Google's 13 August Flash update, in vendor numbers and one live AGY admission. Not a harness winner. Not a ChatGPT killer.",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "Gemini 3.7 Flash",
+        "Google",
+        "AI Models",
+        "Coding Agents",
+        "AGY"
+      ],
+      "createdAt": "2026-08-22",
+      "updatedAt": "2026-08-22",
+      "slug": "gemini-3-7-flash-what-google-shipped-august-2026",
+      "filePath": "content/blog/gemini-3-7-flash-what-google-shipped-august-2026.mdx",
+      "wordCount": 1180,
+      "readingTime": "6 min read",
+      "category": "Intelligence Dispatches",
+      "series": null,
+      "seriesOrder": null,
+      "featured": false,
+      "seoTitle": "Gemini 3.7 Flash: what Google actually shipped on 13 August 2026",
+      "seoDescription": "Google's 13 August Flash update, in vendor numbers and one live AGY admission. Not a harness winner. Not a ChatGPT killer.",
+      "ogImage": "/images/blog/editorial/headers/ai-model-routing-guide-hero.webp",
       "author": "FrankX"
     },
     {
