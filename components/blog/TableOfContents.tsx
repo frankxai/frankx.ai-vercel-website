@@ -47,7 +47,7 @@ function TocList({
               href={`#${heading.id}`}
               aria-current={isActive ? 'location' : undefined}
               onClick={onNavigate}
-              className={`group flex items-center py-1.5 px-2.5 rounded-lg leading-snug transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
+              className={`group flex items-center py-1.5 px-2.5 rounded-lg leading-snug transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
                 heading.level === 3 ? 'ml-3 text-[12.5px]' : 'text-[13.5px] font-medium'
               } ${
                 isActive
@@ -108,7 +108,7 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
       <>
         <button
           type="button"
-          className="fixed bottom-6 right-4 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-emerald-500/30 bg-[#121216]/90 text-white shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-200 hover:border-emerald-400 hover:text-emerald-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 xl:hidden"
+          className="fixed bottom-6 right-4 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-emerald-500/30 bg-[#121216]/90 text-white shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-[color,border-color,transform] duration-200 hover:border-emerald-400 hover:text-emerald-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 xl:hidden"
           aria-label={open ? 'Close table of contents' : 'Open table of contents'}
           aria-expanded={open}
           aria-controls={panelId}
