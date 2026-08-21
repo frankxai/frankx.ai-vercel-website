@@ -248,8 +248,8 @@ function Scene() {
       {/* Particle field */}
       <ParticleField count={150} />
 
-      {/* Environment for reflections */}
-      <Environment preset="night" />
+      {/* Environment for reflections - removed to avoid HDR 404 errors */}
+      {/* Using ambient + point lights instead for reflections */}
     </>
   )
 }
