@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Arrival · Visual Boards — Golden Age Systems</title>
+<style>
+  :root{
+    --bg:#07090f;--card:#0e1320;--ink:#eef2ff;--mut:#94a0bd;
+    --amber:#f0c674;--blue:#5b8cff;--em:#34d399;--line:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:ui-sans-serif,system-ui,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+  .wrap{max-width:1200px;margin:0 auto;padding:28px}
+  h1{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.04em;margin:0 0 8px}
+  .k{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+  .sub{color:var(--mut);max-width:60ch;margin:0 0 28px}
+  .board{background:linear-gradient(180deg,rgba(255,255,255,.03),transparent 45%),var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;margin:0 0 26px;box-shadow:0 30px 90px rgba(0,0,0,.4)}
+  .board h2{margin:0 0 6px;font-size:1.35rem;letter-spacing:-.02em}
+  .meta{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:var(--mut);margin-bottom:16px}
+  .row{display:grid;gap:12px}
+  .r5{grid-template-columns:repeat(5,1fr)}
+  .r3{grid-template-columns:repeat(3,1fr)}
+  .r2{grid-template-columns:1fr 1fr}
+  .r7{grid-template-columns:repeat(7,1fr)}
+  @media(max-width:900px){.r5,.r3,.r2,.r7{grid-template-columns:1fr}}
+  .c{border:1px solid var(--line);background:rgba(0,0,0,.25);border-radius:16px;padding:14px}
+  .c h3{margin:0 0 6px;font-size:1rem}
+  .c p{margin:0;color:var(--mut);font-size:.9rem;line-height:1.45}
+  .tag{display:inline-block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(240,198,116,.35);background:rgba(240,198,116,.1);border-radius:999px;padding:3px 8px;margin-bottom:8px}
+  .tag.b{color:var(--blue);border-color:rgba(91,140,255,.35);background:rgba(91,140,255,.1)}
+  .tag.e{color:var(--em);border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.1)}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+  .pill{border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-weight:600;font-size:.86rem;background:rgba(255,255,255,.03)}
+  .arr{color:var(--mut)}
+  table{width:100%;border-collapse:collapse;font-size:.86rem}
+  th,td{border-bottom:1px solid var(--line);padding:9px 6px;text-align:left;vertical-align:top}
+  th{color:var(--amber);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+  td{color:var(--mut)} td strong{color:var(--ink)}
+  .hero-line{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;letter-spacing:-.03em;margin:10px 0}
+  .poem{color:var(--amber);font-style:italic;margin:8px 0 0}
+  footer{color:var(--mut);font-size:.85rem;padding:0 0 40px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="k">Golden Age Systems · Arrival · Visual board pack</p>
+  <h1>Exact-text boards for hybrid production</h1>
+  <p class="sub">Deterministic typography for site/social. Pair with atmospheric stills from Grok/xAI and Nano Banana. Screenshot each .board at 2x for export.</p>
+
+  <section class="board" id="b0">
+    <h2>Board 0 · Sprint hero copy</h2>
+    <p class="meta">OG / social · no ambient gen text</p>
+    <p class="k">Golden Age Systems · Arrival</p>
+    <p class="hero-line">One meaningful aim.<br/>Seven days. One real beginning.</p>
+    <p class="sub" style="margin:0">The 7-Day Arrival Sprint turns a stalled aim into a named Gate, a when-then plan, and a dated Keystone you can prove.</p>
+    <p class="poem">A life worth arriving in, built one honest act at a time.</p>
+    <div class="flow"><span class="pill">Begin the Arrival Sprint</span></div>
+  </section>
+
+  <section class="board" id="b1">
+    <h2>Board 1 · The loop</h2>
+    <p class="meta">Aim → Obstacle → Plan → Keystone → Evidence</p>
+    <div class="row r5">
+      <div class="c"><span class="tag">01</span><h3>Aim</h3><p>One present-tense sentence. Specific. Difficult enough to matter.</p></div>
+      <div class="c"><span class="tag">02</span><h3>Obstacle</h3><p>Name the real block. Classify the Gate.</p></div>
+      <div class="c"><span class="tag">03</span><h3>Plan</h3><p>when-then tied to triggers in your actual day.</p></div>
+      <div class="c"><span class="tag e">04</span><h3>Keystone</h3><p>14-day experiment: prediction, evidence, acceptance, reset.</p></div>
+      <div class="c"><span class="tag b">05</span><h3>Evidence</h3><p>Score facts. Keep, revise, or abandon — not vibes.</p></div>
+    </div>
+  </section>
+
+  <section class="board" id="b2">
+    <h2>Board 2 · Action Prime (~5 min)</h2>
+    <p class="meta">Daily default · public path</p>
+    <div class="row r5">
+      <div class="c"><h3>1 · Target</h3><p>Today’s one behavior.</p></div>
+      <div class="c"><h3>2 · Obstacle</h3><p>Concrete, present.</p></div>
+      <div class="c"><h3>3 · when-then</h3><p>Pre-decide the move.</p></div>
+      <div class="c"><h3>4 · Rehearse</h3><p>First physical step.</p></div>
+      <div class="c"><h3>5 · Block</h3><p>Calendar or start now.</p></div>
+    </div>
+  </section>
+
+  <section class="board" id="b3">
+    <h2>Board 3 · Gate classifier</h2>
+    <p class="meta">One class · one next move</p>
+    <table>
+      <thead><tr><th>Class</th><th>Next move</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Unclear aim</strong></td><td>Rewrite one sentence a stranger could score</td></tr>
+        <tr><td><strong>Skill gap</strong></td><td>Schedule deliberate practice / learn brief</td></tr>
+        <tr><td><strong>Energy constraint</strong></td><td>Peak State defaults — sleep, move, stress hygiene</td></tr>
+        <tr><td><strong>Environment</strong></td><td>Change a default or remove friction</td></tr>
+        <tr><td><strong>Missing system</strong></td><td>Reality Architect — first gap only</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="board" id="b4">
+    <h2>Board 4 · 7-Day Arrival Sprint</h2>
+    <p class="meta">Free activation</p>
+    <div class="row r3">
+      <div class="c"><span class="tag">D1</span><h3>Write the aim</h3><p>One sentence. No domain sprawl.</p></div>
+      <div class="c"><span class="tag">D2</span><h3>Name the Gate</h3><p>Classify so the next move is prescribed.</p></div>
+      <div class="c"><span class="tag">D3</span><h3>when-then</h3><p>Link trigger → action.</p></div>
+      <div class="c"><span class="tag">D4</span><h3>Rehearse steps</h3><p>Process, not trophy.</p></div>
+      <div class="c"><span class="tag">D5</span><h3>Shrink until done</h3><p>Unmissable first act today.</p></div>
+      <div class="c"><span class="tag">D6</span><h3>Evidence log</h3><p>Date · action · fact.</p></div>
+      <div class="c"><span class="tag e">D7</span><h3>Keystone contract</h3><p>WOOP + experiment fields.</p></div>
+      <div class="c"><span class="tag b">D14</span><h3>Evidence review</h3><p>Pass/fail · one correction.</p></div>
+      <div class="c"><span class="tag">Rule</span><h3>Mechanism</h3><p>Not magic. No guarantees.</p></div>
+    </div>
+  </section>
+
+  <section class="board" id="b5">
+    <h2>Board 5 · Product ladder</h2>
+    <p class="meta">Golden Age Systems · 90-day max surface</p>
+    <div class="row r2">
+      <div class="c"><span class="tag e">Now</span><h3>Arrival Sprint</h3><p>Free. One aim → dated Keystone experiment.</p></div>
+      <div class="c"><span class="tag">Era</span><h3>The Golden Age</h3><p>Books & thesis — cultural sky.</p></div>
+      <div class="c"><span class="tag b">Handoff</span><h3>Reality Architect</h3><p>When Gate = missing system.</p></div>
+      <div class="c"><span class="tag">Later</span><h3>Fieldbook · Studio · Signal</h3><p>Only after Sprint proof. No Circle yet.</p></div>
+    </div>
+  </section>
+
+  <section class="board" id="b6">
+    <h2>Board 6 · Brand walls</h2>
+    <p class="meta">Do / don’t</p>
+    <div class="row r2">
+      <div class="c"><span class="tag e">Use</span><h3>Allowed</h3><p>Aim · Gate · Keystone · Experiment · Evidence · Practice · System · Review · Build · Compound · Seven Levers · Fieldbook</p></div>
+      <div class="c"><span class="tag">Ban</span><h3>Public forbid</h3><p>Codex · manifestation guarantees · vibration · abundance attract · AI life coach · autonomous life OS · thought creates reality</p></div>
+    </div>
+  </section>
+
+  <footer>
+    Golden Age Systems visual pack · 2026-08-10 · Hybrid: HTML text + gen atmosphere · Open each board full-screen and capture.
+    Job: C:/Users/frank/brands/image-system/jobs/2026-08-10/arrival-golden-age-visuals/
+  </footer>
+</div>
+</body>
+</html>

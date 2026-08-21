@@ -64,6 +64,8 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
 - [Signal Loop](${SITE_URL}/newsletter): Main weekly letter on AI architecture, creator systems, music experiments, and peak-state notes
 - [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, and work-review system; not medical advice
+- [Arrival](${SITE_URL}/arrival): Golden Age practice door — 7-Day Arrival Sprint (aim → Gate → when-then → Keystone experiment); mechanism not magic
+- [The Golden Age](${SITE_URL}/golden-age): Creator-era thesis and flagship book chapters
 - [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer to €2,997 Founder's Circle)
 - [Founder's Circle](${SITE_URL}/founders-circle): Application-only quarterly cohort
 
