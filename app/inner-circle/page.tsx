@@ -436,7 +436,7 @@ export default function InnerCirclePage() {
               href="#signup"
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#AB47C7]/40 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60"
             >
-              Join the Waitlist — June 1 2026
+              Join the Waitlist
               <ArrowRight className="h-4 w-4" />
             </Link>
             <span className="text-xs text-white/40">
@@ -462,7 +462,7 @@ export default function InnerCirclePage() {
               href="#signup"
               className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/50 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#AB47C7]/60"
             >
-              Join the Waitlist — June 1 2026
+              Join the Waitlist
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
@@ -508,10 +508,10 @@ export default function InnerCirclePage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
-              { number: '24+', label: 'AI Agents', icon: Cpu, color: 'text-[#AB47C7]', href: '/acos' },
-              { number: '70+', label: 'Skills', icon: Zap, color: 'text-[#43BFE3]', href: '/acos' },
-              { number: '12K+', label: 'AI Songs', icon: Music, color: 'text-[#F59E0B]', href: '/music' },
-              { number: '70+', label: 'Articles', icon: FileText, color: 'text-[#10B981]', href: '/blog' },
+              { number: 'ACOS', label: 'AI Agents', icon: Cpu, color: 'text-[#AB47C7]', href: '/acos' },
+              { number: 'Skills', label: 'Skills', icon: Zap, color: 'text-[#43BFE3]', href: '/acos' },
+              { number: 'Music', label: 'AI Songs', icon: Music, color: 'text-[#F59E0B]', href: '/music' },
+              { number: 'Articles', label: 'Articles', icon: FileText, color: 'text-[#10B981]', href: '/blog' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
