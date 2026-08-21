@@ -207,10 +207,16 @@ export default async function BlogPostPage({
                 {post.title}
               </h1>
 
-              {/* Description */}
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl">
-                {post.description}
-              </p>
+              {post.tldr ? (
+                <div className="max-w-3xl rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-400">TL;DR</p>
+                  <p className="mt-2 text-base leading-relaxed text-white/80 md:text-lg">{post.tldr}</p>
+                </div>
+              ) : (
+                <p className="max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">
+                  {post.description}
+                </p>
+              )}
 
               {/* Author Card */}
               <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-6 md:flex-row md:items-center md:justify-between transition-colors duration-200 hover:border-white/[0.14]">
