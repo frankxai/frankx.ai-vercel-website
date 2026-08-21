@@ -11,6 +11,7 @@ import LearnHubCallout from '@/components/learn/LearnHubCallout'
 import { EcosystemBadge, EcosystemStack } from '@/components/blog/EcosystemBadges'
 import { MascotInsight } from '@/components/blog/MascotInsight'
 import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
+import { collectText, slugifyHeading } from '@/lib/heading-id'
 
 
 // Embed components for immersive media
@@ -131,19 +132,30 @@ export const mdxComponents: MDXComponents = {
       {children}
     </h1>
   ),
-  h2: ({ children, ...props }: ComponentPropsWithoutRef<'h2'>) => (
-    <h2
-      className="mt-14 mb-5 text-2xl font-bold tracking-tight text-white md:text-3xl"
-      {...props}
-    >
-      {children}
-    </h2>
-  ),
-  h3: ({ children, ...props }: ComponentPropsWithoutRef<'h3'>) => (
-    <h3 className="mt-10 mb-4 text-xl font-semibold text-white md:text-2xl" {...props}>
-      {children}
-    </h3>
-  ),
+  h2: ({ children, id, className, ...props }: ComponentPropsWithoutRef<'h2'>) => {
+    const headingId = id || slugifyHeading(collectText(children))
+    return (
+      <h2
+        id={headingId || undefined}
+        className={`mt-14 mb-5 scroll-mt-28 text-2xl font-bold tracking-tight text-white article-heading-anchor md:text-3xl ${className ?? ''}`}
+        {...props}
+      >
+        {children}
+      </h2>
+    )
+  },
+  h3: ({ children, id, className, ...props }: ComponentPropsWithoutRef<'h3'>) => {
+    const headingId = id || slugifyHeading(collectText(children))
+    return (
+      <h3
+        id={headingId || undefined}
+        className={`mt-10 mb-4 scroll-mt-28 text-xl font-semibold text-white article-heading-anchor md:text-2xl ${className ?? ''}`}
+        {...props}
+      >
+        {children}
+      </h3>
+    )
+  },
   h4: ({ children, ...props }: ComponentPropsWithoutRef<'h4'>) => (
     <h4 className="mt-8 mb-3 text-lg font-semibold text-white/90" {...props}>
       {children}
