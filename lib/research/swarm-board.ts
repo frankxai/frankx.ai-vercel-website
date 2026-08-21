@@ -86,7 +86,7 @@ export const flagshipModels: FlagshipModel[] = [
     id: 'grok-4-6',
     name: 'Grok 4.6',
     job: 'Long-running agents at mid price',
-    architecture: 'Same 1.5T-class base as 4.5; post-training / agent RL refresh. 500k context.',
+    architecture: 'Post-training / agent RL refresh. 500k context.',
     evidence: 'independent-composite',
     note: 'AA Index 61 (vendor + AA, 12 Aug 2026). No SIS arena receipt.',
     href: '/research/grok-4-6',
