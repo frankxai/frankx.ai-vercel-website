@@ -54,6 +54,62 @@ const runtimeStyle: Record<Runtime, string> = {
   Either: 'border-white/10 text-slate-400',
 }
 
+/**
+ * Official deploy entry points, labeled by the lane they cover. The clone link
+ * is derived from the catalog's already-verified vercel/chatbot repository; the
+ * other three are top-level vendor surfaces. Vendor pages do not render inside
+ * this site (their frame policy forbids it), so each card opens the official
+ * surface directly.
+ */
+type TemplateLane = {
+  id: string
+  platform: string
+  title: string
+  blurb: string
+  action: string
+  href: string
+  secondary?: { label: string; href: string }
+}
+
+const templateLanes: TemplateLane[] = [
+  {
+    id: 'vercel-ai-chatbot',
+    platform: 'Vercel',
+    title: 'Next.js AI chatbot',
+    blurb:
+      'The canonical request-scoped agent surface — streaming UI, auth, persistence, and a model gateway, cloned into your own repository.',
+    action: 'Deploy a clone',
+    href: 'https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fchatbot',
+    secondary: { label: 'Source repository', href: 'https://github.com/vercel/chatbot' },
+  },
+  {
+    id: 'v0',
+    platform: 'v0 by Vercel',
+    title: 'Generate the experience plane',
+    blurb:
+      'Prompt-to-component for the surface in front of your loop. Export the code into your repository; the boundaries stay yours to draw.',
+    action: 'Open v0',
+    href: 'https://v0.app',
+  },
+  {
+    id: 'vercel-templates-ai',
+    platform: 'Vercel',
+    title: 'AI template gallery',
+    blurb: 'Maintained starters for the request-scoped lane, filterable by stack and use case.',
+    action: 'Browse the gallery',
+    href: 'https://vercel.com/templates/ai',
+  },
+  {
+    id: 'railway-templates',
+    platform: 'Railway',
+    title: 'Template marketplace',
+    blurb:
+      'Durable-runtime starters — workers, queues, Postgres, and the services that outlive a request.',
+    action: 'Browse the marketplace',
+    href: 'https://railway.com/templates',
+  },
+]
+
 function RuntimeBadge({ runtime }: { runtime: Runtime }) {
   return (
     <span className={`rounded-full border px-2.5 py-1 text-xs ${runtimeStyle[runtime]}`}>
@@ -285,6 +341,65 @@ export function OfficialArchitectureAtlas() {
                       {source.source.label}
                     </a>
                   </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/[0.06] py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="font-mono text-xs text-cyan-300">Deploy lanes</p>
+          <h2 className="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Templates are scaffolding, not decisions.
+          </h2>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
+            Official starting points for the lanes above. Deploying one buys you a working lane —
+            the seams between planes, and what crosses them, still belong to you.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {templateLanes.map((lane) => (
+              <article
+                key={lane.id}
+                className="surface-2 flex flex-col rounded-2xl border border-white/[0.08] p-6"
+              >
+                <p className="font-mono text-xs text-slate-500">{lane.platform}</p>
+                <h3 className="mt-3 text-xl font-semibold text-white">{lane.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{lane.blurb}</p>
+                <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6">
+                  <a
+                    href={lane.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() =>
+                      trackEvent('ai_architecture_template_opened', {
+                        template_id: lane.id,
+                        link_kind: 'primary',
+                      })
+                    }
+                    className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                  >
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    {lane.action}
+                  </a>
+                  {lane.secondary ? (
+                    <a
+                      href={lane.secondary.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() =>
+                        trackEvent('ai_architecture_template_opened', {
+                          template_id: lane.id,
+                          link_kind: 'repository',
+                        })
+                      }
+                      className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                    >
+                      <Github className="h-4 w-4" aria-hidden="true" />
+                      {lane.secondary.label}
+                    </a>
+                  ) : null}
                 </div>
               </article>
             ))}

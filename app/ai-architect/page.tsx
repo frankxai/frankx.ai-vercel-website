@@ -4,6 +4,8 @@ import { ArrowRight, Download, Terminal } from 'lucide-react'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { createMetadata } from '@/lib/seo'
 
+import ReviewRunner from './ReviewRunner'
+
 const CANONICAL = 'https://www.frankx.ai/ai-architect'
 const SKILL_PATH = '/skills/ai-architect-review/SKILL.md'
 
@@ -228,6 +230,23 @@ export default function AIArchitectPage() {
             </Link>{' '}
             covers why each one is expensive.
           </p>
+        </div>
+      </section>
+
+      <section id="run" className="scroll-mt-20 border-b border-white/5 py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-6">
+          <Eyebrow>Run it now</Eyebrow>
+          <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Four answers in, one verdict out.
+          </h2>
+          <p className="mt-5 max-w-2xl leading-7 text-slate-400">
+            The same rubric the installable skill runs — deterministic, in your browser, and nothing
+            you enter leaves the page. Each option names the evidence it stands on, because a review
+            with no evidence is an opinion.
+          </p>
+          <div className="mt-12">
+            <ReviewRunner />
+          </div>
         </div>
       </section>
 

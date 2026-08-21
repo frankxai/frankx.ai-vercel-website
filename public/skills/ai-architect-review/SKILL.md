@@ -184,6 +184,32 @@ fixing the finding.
 
 ---
 
+## Interview mode
+
+When there is no codebase to grep — a design conversation, a whiteboard session,
+a system that exists only as a plan — run the four checks as an interview. Ask
+each question, map the answer to a verdict, and produce the same report. Say
+plainly that the evidence is testimony, not grep.
+
+| # | Question | MADE when | OPEN when |
+|---|---|---|---|
+| 1 | How many modules import a model provider's SDK? | Exactly one | More than one, or not counted |
+| 2 | Where does the loop's exit condition live? | In code — a counter, budget, or state machine | In the prompt, or not located |
+| 3 | Can you point to the line where retrieved text becomes labelled data? | Yes, and side effects are gated | No, or not traced |
+| 4 | Do you know your longest production run and your platform's ceiling? | Both known, ceiling higher | Ceiling close or lower, or either unknown |
+
+"I don't know" is always OPEN. An unmade decision and an unknown one cost the
+same, because both are open in the expensive direction.
+
+Fix-first priority when several come back OPEN: **trust boundary, then long-run
+home, then orchestration shape, then model seam.** Trust rises in cost fastest —
+it scales with the number of tools already shipped.
+
+A browser version of this interview runs at
+<https://www.frankx.ai/ai-architect> and emits the same report format.
+
+---
+
 ## What this skill does not do
 
 - It does not pick a model, a framework, or a vendor. Those are the reversible
