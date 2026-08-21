@@ -39,8 +39,29 @@ if (!['Request-scoped', 'Durable runtime', 'Managed service'].every((shape) =>
 )) {
   failures.push('catalog must cover all three real runtime shapes, not only "Either"')
 }
-if (!sources.every((source) => typeof source.layer === 'string' && source.layer.length > 0)) {
-  failures.push('every architecture must declare the plane it belongs to')
+// The atlas derives its filter buttons from these values, so a typo does not
+// fail loudly -- it ships as a selectable plane with one architecture behind it.
+// Membership, not truthiness, is what makes the declaration meaningful.
+const PLANES = [
+  'Experience',
+  'Orchestration',
+  'Runtime',
+  'Intelligence',
+  'Integration',
+  'Reliability',
+  'Operations',
+]
+const unknownPlanes = [...new Set(
+  sources.map((source) => source.layer).filter((layer) => !PLANES.includes(layer)),
+)]
+if (unknownPlanes.length) {
+  failures.push(`unknown plane(s): ${unknownPlanes.join(', ')} -- must be one of: ${PLANES.join(', ')}`)
+}
+// The atlas is meant to be a complete map, so every plane needs an architecture
+// standing in it. A plane with no entry is a gap the reader cannot see.
+const emptyPlanes = PLANES.filter((plane) => !sources.some((source) => source.layer === plane))
+if (emptyPlanes.length) {
+  failures.push(`plane(s) with no architecture: ${emptyPlanes.join(', ')}`)
 }
 // The page is meant to read as cross-platform. Naming only the three internal
 // deployment targets is the regression this guards against.
