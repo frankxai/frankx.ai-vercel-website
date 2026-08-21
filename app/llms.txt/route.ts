@@ -77,6 +77,13 @@ ${osLinks}
 - [Library Quotes](${SITE_URL}/library/quotes): Curated quotation collection
 ${libraryLinks}
 
+## Model & Agent Intelligence (the decision layers)
+- [LLM Hub](${SITE_URL}/llm-hub): Every frontier model - context, pricing, benchmarks, verdicts, each entry sourced
+- [Model Arena](${SITE_URL}/research/model-arena): First-party measured model rounds with published run receipts
+- [Agent Hub](${SITE_URL}/agent-hub): Agent platforms and frameworks compared, every claim carrying an evidence grade
+- [Agent Catalog](${SITE_URL}/agents): The 99-agent Creator OS, packaged as installable artifacts
+- [LLM Hub JSON](${SITE_URL}/llm-hub.json): Machine-readable model registry for agents
+
 ## Research Hub
 - [Research Index](${SITE_URL}/research): All research domains
 - [Research Sources](${SITE_URL}/research/sources): How research is sourced
