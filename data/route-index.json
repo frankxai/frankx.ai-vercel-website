@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 923,
+    "total": 931,
     "aliases": 61,
     "byType": {
       "core": 23,
-      "section": 419,
+      "section": 425,
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 240,
+      "blog": 242,
       "research": 16,
       "guide": 25,
       "library": 56,
@@ -64,6 +64,15 @@
       "href": "/affiliates",
       "title": "Affiliates",
       "type": "community"
+    },
+    {
+      "href": "/agent-hub",
+      "title": "Agent Hub",
+      "tags": [
+        "agent",
+        "hub"
+      ],
+      "type": "section"
     },
     {
       "href": "/agent-team",
@@ -1060,6 +1069,35 @@
       "title": "How AI Agents Are Transforming Due Diligence in 2026",
       "description": "AI reduces DD review time by 70%. Here's exactly how multi-agent systems handle document analysis, risk scoring, and competitive mapping for institutional investors.",
       "tags": [],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-agents-worth-evaluating-august-2026",
+      "title": "The AI Agents Worth Evaluating in August 2026",
+      "description": "Mira, Viktor, Hermes, ChatGPT Work, and Claude Cowork compared by job, cost, and capability. What to evaluate on August 21, 2026.",
+      "tags": [
+        "AI Agents",
+        "Mira",
+        "Viktor",
+        "Hermes Agent",
+        "ChatGPT Work",
+        "Claude Cowork",
+        "OpenClaw",
+        "Manus"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-architecture-2026-four-decisions-hard-to-reverse",
+      "title": "AI Architecture 2026: Four Decisions Hard to Reverse",
+      "description": "Most AI system decisions are cheap to change. Four are not: the vendor boundary, the orchestration shape, the trust boundary, and where a long run lives.",
+      "tags": [
+        "ai-architecture",
+        "agents",
+        "mcp",
+        "orchestration",
+        "prompt-injection"
+      ],
       "type": "blog"
     },
     {
@@ -5606,6 +5644,34 @@
       "type": "section"
     },
     {
+      "href": "/insights/from-personal-superintelligence-to-human-sovereignty",
+      "title": "From Personal Superintelligence TO Human Sovereignty",
+      "tags": [
+        "insights",
+        "from",
+        "personal",
+        "superintelligence",
+        "to",
+        "human",
+        "sovereignty"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/insights/meta-the-future-is-for-everyone",
+      "title": "Meta The Future IS For Everyone",
+      "tags": [
+        "insights",
+        "meta",
+        "the",
+        "future",
+        "is",
+        "for",
+        "everyone"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/inspiration",
       "title": "Inspiration",
       "type": "section"
@@ -8731,6 +8797,29 @@
       "type": "section"
     },
     {
+      "href": "/the-future-is-for-everyone",
+      "title": "The Future IS For Everyone",
+      "tags": [
+        "the",
+        "future",
+        "is",
+        "for",
+        "everyone"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/the-future-we-choose",
+      "title": "The Future WE Choose",
+      "tags": [
+        "the",
+        "future",
+        "we",
+        "choose"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/the-light-within",
       "title": "The Light Within",
       "tags": [
@@ -8746,6 +8835,14 @@
       "tags": [
         "the",
         "secret"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/thefutureisforeveryone",
+      "title": "Thefutureisforeveryone",
+      "tags": [
+        "thefutureisforeveryone"
       ],
       "type": "section"
     },

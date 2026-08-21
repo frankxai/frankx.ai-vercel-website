@@ -260,11 +260,10 @@ const nextConfig = {
         destination: '/ai-architecture',
         permanent: true,
       },
-      {
-        source: '/ai-architect',
-        destination: '/ai-architecture',
-        permanent: true,
-      },
+      // /ai-architect used to 301 to /ai-architecture. It is now its own page:
+      // the review as something you run, where /ai-architecture is the reference
+      // you read. The child redirect stays, minus the two paths that are real
+      // pages of their own.
       {
         source: '/ai-architect/:path((?!ai-coe-hub).*)',
         destination: '/ai-architecture/:path',

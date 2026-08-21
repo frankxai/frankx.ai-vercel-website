@@ -96,7 +96,9 @@ function SystemTopology() {
         </div>
         <ShieldCheck className="h-6 w-6 text-emerald-300" aria-hidden="true" />
       </div>
-      <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-center">
+      {/* stretch, not center: the three cards carry different amounts of copy and
+          centering them independently leaves their tops and bottoms ragged. */}
+      <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
         {stages.map((stage, index) => {
           const Icon = stage.icon
           return (
@@ -108,7 +110,7 @@ function SystemTopology() {
                 <p className="mt-auto pt-4 font-mono text-[11px] leading-5 text-slate-600">{stage.examples}</p>
               </div>
               {index < stages.length - 1 && (
-                <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-slate-600 lg:rotate-0" aria-hidden="true" />
+                <ArrowRight className="mx-auto h-5 w-5 rotate-90 self-center text-slate-600 lg:rotate-0" aria-hidden="true" />
               )}
             </Fragment>
           )
@@ -205,7 +207,7 @@ export function OfficialArchitectureAtlas() {
                 height={780}
                 unoptimized
                 loading="lazy"
-                className="mx-auto h-auto w-full min-w-[720px]"
+                className="mx-auto h-auto w-full min-w-[960px]"
               />
             </div>
             <figcaption className="mt-3 text-sm text-white/45">

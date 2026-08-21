@@ -21,6 +21,7 @@ The risk lives in the seams. Not in the boxes, but in what changes character whe
 
 <Diagram
   src="/images/diagrams/ai-architecture/seven-plane-stack.svg"
+  scrollable
   width={1200}
   height={760}
   alt="Seven stacked planes from Model access at the base to Experience at the top, with a named boundary between each pair: vendor, relevance, trust, privilege, correctness, evidence, and human."
@@ -62,6 +63,7 @@ There are four shapes. Picking one is three questions.
 
 <Diagram
   src="/images/diagrams/ai-architecture/orchestration-shapes.svg"
+  scrollable
   width={1200}
   height={740}
   alt="A decision path: if you can name every step in advance, use a fixed workflow; if not and the task is one coherent piece of work, use a single agent loop; if not and the work mutates shared state, use sequential sub-agents; otherwise parallel sub-agents. Each outcome lists its cost and failure mode."
@@ -80,6 +82,7 @@ A retrieved document, an API response, a fetched web page, a PDF someone uploade
 
 <Diagram
   src="/images/diagrams/ai-architecture/trust-boundary.svg"
+  scrollable
   width={1200}
   height={700}
   alt="Trusted instructions from the system prompt and operator enter the instruction position. Retrieved documents, tool responses, fetched pages and uploaded files enter the data position only. Side effects are gated behind an approval step."
@@ -104,6 +107,7 @@ Nobody sits down and decides this. It gets decided by whatever the marketing sit
 
 <Diagram
   src="/images/diagrams/ai-architecture/platform-matrix.svg"
+  scrollable
   width={1200}
   height={780}
   alt="Eight deployment platforms — Vercel, Cloudflare, AWS, Google Cloud, Azure, Railway, Fly.io and Modal — compared on unit of execution, where a long agent loop lives, and what you still operate yourself."
