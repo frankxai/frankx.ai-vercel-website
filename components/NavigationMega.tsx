@@ -40,6 +40,7 @@ import {
   Play,
   Zap,
   Search,
+  Boxes,
 } from 'lucide-react'
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { trackEvent } from '@/lib/analytics'
@@ -185,6 +186,7 @@ const navigation = {
       { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
       { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
       { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status' },
+      { name: 'Agent Hub', href: '/agent-hub', icon: Boxes, description: 'Platforms & frameworks, compared' },
       { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
       { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },

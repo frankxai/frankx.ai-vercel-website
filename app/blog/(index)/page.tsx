@@ -11,7 +11,7 @@ const blogFaqs = [
   },
   {
     question: 'How often is new content published?',
-    answer: 'New articles are published 2-3 times per week, covering a range of topics including AI implementation guides, enterprise architecture patterns, creative AI workflows, and insights from building production AI systems.'
+    answer: 'New articles cover a range of topics including AI implementation guides, enterprise architecture patterns, creative AI workflows, and insights from building production AI systems.'
   },
   {
     question: 'What is the difference between the blog and the journal?',
@@ -23,11 +23,11 @@ const blogFaqs = [
   },
   {
     question: 'Can I get notified about new articles?',
-    answer: 'Yes, you can join the FrankX.AI newsletter to receive notifications about new articles, exclusive content, and early access to resources. Subscribe through any article page or the homepage.'
+    answer: 'Yes, you can join the FrankX.AI newsletter to receive notifications about new articles. Subscribe through any article page or the homepage.'
   },
   {
     question: 'Are the articles suitable for beginners?',
-    answer: 'Yes, articles range from beginner-friendly introductions to advanced technical deep-dives. Each article is tagged by category and difficulty, making it easy to find content matching your experience level.'
+    answer: 'Yes, articles range from beginner-friendly introductions to advanced technical deep-dives. Each article is tagged by category, making it easy to find content matching your experience level.'
   }
 ]
 

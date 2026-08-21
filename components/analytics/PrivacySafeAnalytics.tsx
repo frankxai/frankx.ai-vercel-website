@@ -26,7 +26,8 @@ export function PrivacySafeAnalytics() {
     )
   }, [])
 
-  if (measurementAllowed === false) return null
+  // Fail closed while browser privacy signals are still unresolved.
+  if (measurementAllowed !== true) return null
 
   return (
     <>

@@ -1,0 +1,60 @@
+name: Draft GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing semantic-version tag to draft
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: draft-release-${{ github.event.inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  draft-release:
+    name: Create reviewable draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Resolve and validate tag
+        id: tag
+        env:
+          REQUESTED_TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          if [[ ! "$REQUESTED_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Tag must match vMAJOR.MINOR.PATCH" >&2
+            exit 1
+          fi
+          git rev-parse --verify "refs/tags/$REQUESTED_TAG^{commit}" >/dev/null
+          if [[ "$(git cat-file -t "refs/tags/$REQUESTED_TAG")" != "tag" ]]; then
+            echo "Release tags must be annotated, not lightweight." >&2
+            exit 1
+          fi
+          echo "value=$REQUESTED_TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Create draft with generated notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.tag.outputs.value }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "Release $RELEASE_TAG already exists; leaving it unchanged."
+            exit 0
+          fi
+          gh release create "$RELEASE_TAG" \
+            --draft \
+            --verify-tag \
+            --generate-notes \
+            --title "$RELEASE_TAG"

@@ -29,6 +29,7 @@ import {
   Server,
   Palette,
   Bot,
+  ShieldAlert,
 } from 'lucide-react'
 
 // ============================================================================
@@ -135,7 +136,7 @@ function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right - Stats */}
+          {/* Right - Tech highlights */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -143,18 +144,17 @@ function HeroSection() {
             className="grid grid-cols-2 gap-4"
           >
             {[
-              { value: '15x', label: 'WebGPU vs WebGL', icon: Zap, color: 'text-amber-400' },
-              { value: '70%', label: 'Browser WebGPU support', icon: Globe, color: 'text-cyan-400' },
-              { value: '87%', label: 'Devs using AI agents', icon: Bot, color: 'text-violet-400' },
-              { value: '$0', label: 'App Store fees', icon: Trophy, color: 'text-emerald-400' },
-            ].map((stat) => (
+              { label: 'WebGPU support', icon: Zap, color: 'text-amber-400' },
+              { label: 'Browser native', icon: Globe, color: 'text-cyan-400' },
+              { label: 'AI-powered dev', icon: Bot, color: 'text-violet-400' },
+              { label: 'No app store cut', icon: Trophy, color: 'text-emerald-400' },
+            ].map((item) => (
               <div
-                key={stat.label}
+                key={item.label}
                 className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] transition-colors"
               >
-                <stat.icon className={`w-5 h-5 ${stat.color} mb-3`} />
-                <div className="text-2xl font-semibold text-white mb-1">{stat.value}</div>
-                <div className="text-xs text-white/40">{stat.label}</div>
+                <item.icon className={`w-5 h-5 ${item.color} mb-3`} />
+                <div className="text-sm text-white/60">{item.label}</div>
               </div>
             ))}
           </motion.div>
@@ -170,32 +170,194 @@ function HeroSection() {
 
 function PlayNowSection() {
   const games = [
+    // --- 1. FrankX Cognitive Neuroscience Suite ---
     {
-      title: 'Memory Match',
-      description: 'Test your memory by matching pairs of cards. Three difficulty levels, star ratings, and a timer.',
-      href: '/games/memory-match',
-      badge: 'Play Now',
+      title: 'NeuroMatrix: Dual N-Back',
+      description: 'Dual N-Back working memory and fluid IQ trainer with spatial grids and pitch cues.',
+      href: '/games/neuro-matrix',
+      badge: 'Cognitive IQ',
+      color: 'amber',
+      icon: Brain,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'ChronoFocus: Stroop Warp',
+      description: 'Hyper-speed Stroop interference reaction trainer testing executive inhibition and mental agility.',
+      href: '/games/chrono-focus',
+      badge: 'Speed Reflex',
+      color: 'amber',
+      icon: Zap,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'Quantum Prime: Factor Fusion',
+      description: 'Intuitive mental multiplication and prime factor fusion puzzle with particle chain reactions.',
+      href: '/games/quantum-prime',
+      badge: 'Mental Math',
+      color: 'amber',
+      icon: Target,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'Resonance: Bio-Flow HRV',
+      description: '4-7-8 guided breathing pacing with Solfeggio 432Hz/528Hz soundscapes for vagal tone coherence.',
+      href: '/games/resonance-flow',
+      badge: 'Zen Flow',
+      color: 'amber',
+      icon: Sparkles,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'Synapse Surge: Memory Span',
+      description: 'Sequential synaptic working span memory matrix with 16-node harmonic scale and accelerating intervals.',
+      href: '/games/synapse-surge',
+      badge: 'Memory Span',
+      color: 'amber',
+      icon: Zap,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'Matrix Logic: Deductive Grid',
+      description: 'Deductive Latin-Square mathematical energy grid balancing rows and columns to target energy values.',
+      href: '/games/matrix-logic',
+      badge: 'Deductive P-FIT',
+      color: 'amber',
+      icon: Puzzle,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+    {
+      title: 'Echo Shift: Task Switcher',
+      description: 'Auditory-visual Stroop conflict switcher rapidly toggling between word meaning and ink color match.',
+      href: '/games/echo-shift',
+      badge: 'Task Switching',
+      color: 'amber',
+      icon: Sparkles,
+      status: 'live' as const,
+      brand: 'FrankX Mind',
+    },
+
+    // --- 2. 🇩🇪 Deutsche Denkspiele Suite ---
+    {
+      title: 'WortSchatz: Wort-Alchemie',
+      description: 'Deutsches Silben-Rätsel & Wort-Alchemie: Bilde tiefgründige Komposita wie Gedankenblitz & Zeitgeist.',
+      href: '/games/wort-schatz',
+      badge: 'Wortschatz 🇩🇪',
+      color: 'amber',
+      icon: Sparkles,
+      status: 'live' as const,
+      brand: 'Deutsche Denkspiele',
+    },
+    {
+      title: 'Kopfrechen-Blitz: Zahlen-Duell',
+      description: 'Schnellrechnen & Zahlen-Gymnastik mit Serien-Multiplikatoren: Plus, Minus, Mal, Geteilt & Quadrat.',
+      href: '/games/kopfrechen-blitz',
+      badge: 'Mathe-Blitz 🇩🇪',
+      color: 'cyan',
+      icon: Target,
+      status: 'live' as const,
+      brand: 'Deutsche Denkspiele',
+    },
+    {
+      title: 'Gedächtnis-Palast: Loci-Methode',
+      description: 'Antike Loci-Methode für räumliches Langzeitgedächtnis in 9 isometrischen Palast-Kammern.',
+      href: '/games/gedaechtnis-palast',
+      badge: 'Loci-Palast 🇩🇪',
+      color: 'violet',
+      icon: Brain,
+      status: 'live' as const,
+      brand: 'Deutsche Denkspiele',
+    },
+
+    // --- 3. Party & Early Childhood (3-6 Years) ---
+    {
+      title: 'Scharade Party: Gesten & Mimik',
+      description: 'Bilinguales Partyspiel mit 4 Kategorien, Team-Punktezähler (Blau vs Rot), 60s Countdown & Buzzer.',
+      href: '/games/scharade-party',
+      badge: 'Party Game 🎭',
+      color: 'violet',
+      icon: Swords,
+      status: 'live' as const,
+      brand: 'FrankX Party',
+    },
+    {
+      title: 'WunderSafari: Formen & Tiere',
+      description: 'Frühkindliche Sinnesförderung für Kids 3–6 Jahre: Große Touch-Tasten, Tierlaute, Sterne & 100% werbefrei.',
+      href: '/games/wunder-safari',
+      badge: 'Kids 3-6 🦁',
+      color: 'amber',
+      icon: Sparkles,
+      status: 'live' as const,
+      brand: 'FrankX Kids',
+    },
+
+    // --- 4. Arcanea Mythic & Lore Flagships ---
+    {
+      title: 'Arcanea: Realm of Legends',
+      description: 'Tactical 1v1 Guardian deck battler with dynamic 3D gold foil tilt shaders and AI strategist.',
+      href: '/games/arcanea-legends',
+      badge: 'Card Battler',
+      color: 'violet',
+      icon: Swords,
+      status: 'live' as const,
+      brand: 'Arcanea',
+    },
+    {
+      title: 'NeuroCosmos: Synapse Odyssey',
+      description: 'Tactile synaptic prism light routing with Solfeggio 528Hz harmonic chords across 5 lobes.',
+      href: '/games/neuro-cosmos',
+      badge: 'Light Puzzle',
       color: 'violet',
       icon: Puzzle,
       status: 'live' as const,
+      brand: 'Arcanea',
     },
+
+    // --- 5. Starlight Cosmic Arcades ---
     {
-      title: 'AI Quiz',
-      description: 'AI-generated trivia questions across topics. Adaptive difficulty that learns your strengths.',
-      href: '/games',
-      badge: 'Coming Soon',
+      title: 'Chrono Shift: Void Breach',
+      description: 'Cyber-mythic roguelike bullet-hell with time-dilation matrix dodging and tech upgrades.',
+      href: '/games/chrono-shift',
+      badge: 'Roguelike',
       color: 'cyan',
-      icon: Brain,
-      status: 'coming' as const,
+      icon: Gamepad2,
+      status: 'live' as const,
+      brand: 'Starlight',
     },
     {
-      title: 'Word Forge',
-      description: 'Wordle-inspired word game with daily challenges and an unlimited practice mode.',
-      href: '/games',
-      badge: 'Coming Soon',
-      color: 'amber',
-      icon: Puzzle,
-      status: 'coming' as const,
+      title: 'Neon Drift: Cyber Horizon',
+      description: 'Pseudo-3D synthwave highway racing with drift boosts and traffic hazards.',
+      href: '/games/neon-drift',
+      badge: 'Arcade Racer',
+      color: 'cyan',
+      icon: Trophy,
+      status: 'live' as const,
+      brand: 'Starlight',
+    },
+    {
+      title: 'Aetheria: Sky Islands',
+      description: 'Atmospheric glider exploration RPG with thermal updrafts and celestial relic harvesting.',
+      href: '/games/aetheria',
+      badge: 'Glider RPG',
+      color: 'cyan',
+      icon: Globe,
+      status: 'live' as const,
+      brand: 'Starlight',
+    },
+    {
+      title: 'Quantum Core: Reactor Defense',
+      description: 'Real-time tactical energy grid routing and modular plasma/cryo/singularity turret defense.',
+      href: '/games/quantum-core',
+      badge: 'Tower Defense',
+      color: 'cyan',
+      icon: ShieldAlert,
+      status: 'live' as const,
+      brand: 'Starlight',
     },
   ]
 
@@ -207,67 +369,71 @@ function PlayNowSection() {
 
   return (
     <section className="relative py-24 px-6 border-t border-white/[0.04]">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-            Play now
-          </h2>
-          <p className="text-white/50 max-w-2xl text-lg">
-            Games you can play right now in your browser. More coming soon.
-          </p>
-        </motion.div>
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold mb-3">
+              ✦ 18 PLAYABLE TITLES LIVE
+            </div>
+            <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-3">
+              Play now on frankx.ai
+            </h2>
+            <p className="text-white/60 max-w-2xl text-base">
+              Games running directly in your browser. Zero downloads, zero installs, pure WebAudio synthesis.
+            </p>
+          </motion.div>
 
-        <div className="grid sm:grid-cols-3 gap-4">
+          <Link
+            href="/games/hub.html"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-cyan-500 text-slate-950 font-bold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-amber-500/20 whitespace-nowrap self-start md:self-auto"
+          >
+            <Smartphone className="w-4 h-4" />
+            Launch Multi-Device Simulator Hub
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {games.map((game, i) => {
             const colors = colorMap[game.color]
-            const isLive = game.status === 'live'
-            const cardClasses = `block p-6 rounded-2xl border ${colors.border} bg-white/[0.02] transition-all ${
-              isLive ? 'hover:bg-white/[0.05] hover:scale-[1.02] cursor-pointer' : 'opacity-60'
-            }`
-
-            const cardContent = (
-              <>
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`p-2.5 rounded-xl ${colors.bg}`}>
-                    <game.icon className={`w-5 h-5 ${colors.text}`} />
-                  </div>
-                  <span className={`text-[10px] font-medium px-2 py-1 rounded-full ${
-                    isLive
-                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                      : 'bg-white/[0.04] text-white/30 border border-white/[0.06]'
-                  }`}>
-                    {game.badge}
-                  </span>
-                </div>
-                <h3 className="text-lg font-medium text-white mb-2">{game.title}</h3>
-                <p className="text-sm text-white/40 leading-relaxed">{game.description}</p>
-                {isLive && (
-                  <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-violet-400">
-                    Play
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                )}
-              </>
-            )
-
             return (
               <motion.div
                 key={game.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.05 }}
               >
-                {isLive ? (
-                  <Link href={game.href} className={cardClasses}>{cardContent}</Link>
-                ) : (
-                  <div className={cardClasses}>{cardContent}</div>
-                )}
+                <Link
+                  href={game.href}
+                  className={`block p-6 rounded-2xl border ${colors.border} bg-white/[0.02] hover:bg-white/[0.06] hover:scale-[1.02] transition-[background-color,transform,border-color] duration-200 cursor-pointer group h-full flex flex-col justify-between`}
+
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`p-2.5 rounded-xl ${colors.bg}`}>
+                        <game.icon className={`w-5 h-5 ${colors.text}`} />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-white/40 uppercase tracking-wider font-semibold">{game.brand}</span>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          {game.badge}
+                        </span>
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-amber-300 transition-colors">{game.title}</h3>
+                    <p className="text-sm text-white/50 leading-relaxed">{game.description}</p>
+                  </div>
+                  
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold text-white/80 group-hover:text-white">
+                    <span>PLAY IN BROWSER</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-amber-400" />
+                  </div>
+                </Link>
               </motion.div>
             )
           })}
@@ -603,7 +769,7 @@ function AgenticPipelineSection() {
       step: 3,
       title: 'Code Agent',
       description: 'Claude Code generates Phaser/R3F game code, implements mechanics, integrates assets, and creates the Next.js shell with routing and metadata.',
-      tool: 'Claude Code + 500+ Skills',
+      tool: 'Claude Code',
       color: 'cyan',
     },
     {
@@ -687,20 +853,20 @@ function MonetizationSection() {
     },
     {
       title: 'Game Template Sales',
-      description: 'Sell Next.js + Phaser game templates ($27-97) on itch.io, Gumroad, or direct. Creators customize and deploy their own.',
-      metrics: '$27-97 per template',
+      description: 'Sell Next.js + Phaser game templates on itch.io, Gumroad, or direct. Creators customize and deploy their own.',
+      metrics: 'Per-template sales',
       icon: Code,
     },
     {
       title: 'AI Game Builder',
       description: 'Premium product: AI-powered game generator. Input concept, get playable prototype. Subscription model.',
-      metrics: '$27-97/month subscription',
+      metrics: 'Subscription model',
       icon: Sparkles,
     },
     {
       title: 'In-Game Purchases',
-      description: 'Cosmetics, power-ups, battle passes via Stripe/Lemon Squeezy. No 30% App Store tax — browser games keep full revenue.',
-      metrics: '12-18% of users convert',
+      description: 'Cosmetics, power-ups, battle passes via Stripe/Lemon Squeezy. No App Store tax — browser games keep full revenue.',
+      metrics: 'Direct payment integration',
       icon: Trophy,
     },
   ]
@@ -762,7 +928,7 @@ function AIToolsSection() {
     { name: 'AIVA', role: 'Adaptive music — orchestral, electronic, ambient loops', category: 'Music', ready: true },
     { name: 'Replica Studios', role: 'AI voice acting for characters and narration', category: 'Voice', ready: true },
     { name: 'Promethean AI', role: 'Large-scale 3D environment creation (AAA studios)', category: 'Worlds', ready: true },
-    { name: 'Claude Code', role: 'Full game code generation with 500+ dev skills', category: 'Code', ready: true },
+    { name: 'Claude Code', role: 'Full game code generation with dev skills', category: 'Code', ready: true },
   ]
 
   return (

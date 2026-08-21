@@ -65,8 +65,13 @@ const colorConfig: Record<string, { border: string; text: string; bg: string; gr
   sky: { border: 'border-sky-500/30', text: 'text-sky-400', bg: 'bg-sky-500/10', gradient: 'from-sky-500/20 to-sky-500/5', glow: 'shadow-sky-500/20' },
 }
 
-// Get featured domains (3 most recently updated)
+// Get featured domains (3 most recently updated) — exclude removed/pending domains
 const featuredDomains = [...researchDomains]
+  .filter((d) => 
+    !d.slug.startsWith('REMOVED-') && 
+    !d.title.startsWith('[REMOVED]') && 
+    d.sourceCount > 0
+  )
   .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
   .slice(0, 3)
 
@@ -74,7 +79,11 @@ const totalSources = new Set(
   Object.values(domainSources).flat().map((source) => source.url),
 ).size
 const sourcedDomainCount = researchDomains.filter(
-  (domain) => (domainSources[domain.slug]?.length ?? 0) > 0,
+  (domain) => 
+    !domain.slug.startsWith('REMOVED-') && 
+    !domain.title.startsWith('[REMOVED]') && 
+    domain.sourceCount > 0 &&
+    (domainSources[domain.slug]?.length ?? 0) > 0,
 ).length
 const sourceCountFor = (slug: string) => domainSources[slug]?.length ?? 0
 
@@ -128,7 +137,7 @@ function HeroSection() {
         {/* Stats */}
         <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: 'Research domains', value: String(researchDomains.length), icon: Layers },
+            { label: 'Research domains', value: String(researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length), icon: Layers },
             { label: 'Domains with sources', value: String(sourcedDomainCount), icon: ShieldCheck },
             { label: 'Source references', value: `${totalSources}+`, icon: Search },
             { label: 'Specialist agent roles', value: String(researchAgents.length), icon: Radar },
@@ -247,9 +256,15 @@ function DomainsGrid() {
   const [searchQuery, setSearchQuery] = useState('')
 
   const filteredDomains = useMemo(() => {
-    let domains = activeCategory === 'all'
+    // Exclude removed/pending domains from display
+    let domains = (activeCategory === 'all'
       ? researchDomains
       : researchDomains.filter(d => d.category === activeCategory)
+    ).filter((d) =>
+      !d.slug.startsWith('REMOVED-') &&
+      !d.title.startsWith('[REMOVED]') &&
+      d.sourceCount > 0
+    )
 
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase()
@@ -272,7 +287,7 @@ function DomainsGrid() {
             All research domains
           </h2>
           <p className="text-white/60 max-w-2xl">
-            {researchDomains.length} research areas organized by topic. Specialist agents map the
+            {researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length} research areas organized by topic. Specialist agents map the
             evidence and contradictions; I review what the page can responsibly conclude.
           </p>
         </div>
@@ -308,9 +323,14 @@ function DomainsGrid() {
           {categoryKeys.map((key) => {
             const isActive = activeCategory === key
             const label = key === 'all' ? 'All Domains' : (domainCategories[key]?.label || key)
+            const activeDomains = researchDomains.filter((d) =>
+              !d.slug.startsWith('REMOVED-') &&
+              !d.title.startsWith('[REMOVED]') &&
+              d.sourceCount > 0
+            )
             const count = key === 'all'
-              ? researchDomains.length
-              : researchDomains.filter(d => d.category === key).length
+              ? activeDomains.length
+              : activeDomains.filter(d => d.category === key).length
 
             return (
               <button
@@ -339,7 +359,7 @@ function DomainsGrid() {
         {/* Results count */}
         {(searchQuery || activeCategory !== 'all') && (
           <p className="text-xs text-white/50 mb-4">
-            Showing {filteredDomains.length} of {researchDomains.length} domains
+            Showing {filteredDomains.length} of {researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length} domains
           </p>
         )}
 
@@ -593,15 +613,7 @@ function FlagshipArticles() {
         'Longevity research from Okinawa and Sardinia, read as a systems question: what keeps work meaningful when AI does more of it.',
       readingTime: '12 min',
     },
-    {
-      kanji: '識',
-      label: 'human agency · architecture',
-      title: 'Human-Centered AI Operating Systems',
-      href: '/research/conscious-ai-operating-systems',
-      blurb:
-        'Architectures that combine biometrics, persistent memory, and explicit ethical boundaries without erasing human agency.',
-      readingTime: '15 min',
-    },
+    // Human-Centered AI Operating Systems removed: no primary source on /research/conscious-ai-operating-systems (Estate Editor 17 Aug 2026)
   ]
   return (
     <section className="py-12 md:py-16 border-b border-white/[0.04]">
