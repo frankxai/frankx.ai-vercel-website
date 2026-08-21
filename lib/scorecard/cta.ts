@@ -1,8 +1,8 @@
 // Tier -> CTA routing for the Operator Scorecard report screen.
 //
 // Per the spec's barbell doctrine (frankx.product-experience.v1.md §5): low tiers route to
-// the self-liquidating middle (ACOS Creator Kit, $47, already live at /acos); high tiers route
-// to the high-ticket lane (Architect Sprint / Personal AI CoE, /workshops/personal-ai-coe).
+// the ACOS page (/acos) which has a waitlist; high tiers route to the high-ticket lane
+// (Architect Sprint / Personal AI CoE, /workshops/personal-ai-coe).
 // No new checkout surface is introduced here — both routes exist in this repo today.
 
 import type { TierId } from './engine'
@@ -22,7 +22,7 @@ export const CTA_BY_TIER: Record<TierId, TierCta> = {
     eyebrow: 'Start here',
     headline: 'Install the system instead of assembling it yourself.',
     body: 'The ACOS Creator Kit is the same operator stack graded in this scorecard — 84 agents, the skill lanes, the memory config — packaged so you run it in 20 minutes instead of building it from scratch.',
-    ctaLabel: 'Get the ACOS Creator Kit — $47',
+    ctaLabel: 'Join ACOS Waitlist',
     ctaHref: '/acos',
     secondaryLabel: 'See what an Agentic Leader stack actually looks like',
     secondaryHref: '/agent-team',
@@ -31,7 +31,7 @@ export const CTA_BY_TIER: Record<TierId, TierCta> = {
     eyebrow: 'Next rung',
     headline: 'You have pieces. The Kit turns them into a system.',
     body: 'You are already delegating some things — the ACOS Creator Kit closes the rest: persistent memory, a real agent roster, and the skills that make delegation the default instead of the exception.',
-    ctaLabel: 'Get the ACOS Creator Kit — $47',
+    ctaLabel: 'Join ACOS Waitlist',
     ctaHref: '/acos',
     secondaryLabel: 'See what an Agentic Leader stack actually looks like',
     secondaryHref: '/agent-team',

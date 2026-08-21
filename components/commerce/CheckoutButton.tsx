@@ -71,7 +71,7 @@ export default function CheckoutButton({
         disabled
         className={`${sizeClasses[size]} font-semibold rounded-xl bg-white/[0.06] text-white/40 border border-white/10 cursor-not-allowed ${className}`}
       >
-        Coming Soon · ${price}
+        Coming Soon
       </button>
     )
   }
