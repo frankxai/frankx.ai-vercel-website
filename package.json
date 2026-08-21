@@ -62,7 +62,7 @@
     "gen:infographic": "node scripts/gen-infographic-cli.mjs",
     "land:main": "node scripts/auto-land-gate.mjs",
     "sync-ais": "node scripts/sync-ais.mjs",
-    "content:check": "node scripts/check-mdx-safety.mjs && node scripts/check-content-integrity.mjs && node scripts/check-publish-holds.mjs",
+    "content:check": "node scripts/check-mdx-safety.mjs && node scripts/check-content-integrity.mjs && node scripts/check-publish-holds.mjs && node scripts/aeo-blog-audit.mjs",
     "prebuild": "npm run guards:check && npm run content:check && npm run sync-ais && node scripts/prebuild-cache.mjs && node scripts/build-route-index.mjs",
     "postbuild": "npm run test:build-artifact-integrity && npm run test:vault-metadata:rendered",
     "routes:build": "node scripts/build-route-index.mjs",
