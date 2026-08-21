@@ -97,12 +97,6 @@ export default async function MvuEntryPage({
             <span className={layer.accent}>{entry.session || layer.label}</span>
             <span aria-hidden>·</span>
             <time dateTime={entry.date}>{formatDate(entry.date)}</time>
-            {entry.readingTime && (
-              <>
-                <span aria-hidden>·</span>
-                <span>{entry.readingTime}</span>
-              </>
-            )}
           </div>
           <h1 className="mt-5 text-4xl font-semibold leading-[1.06] tracking-[-0.04em] text-white sm:text-5xl">
             {entry.title}
