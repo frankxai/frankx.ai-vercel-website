@@ -38,7 +38,7 @@ function TocList({
   onNavigate?: () => void
 }) {
   return (
-    <ol className="space-y-0.5">
+    <ol className="space-y-1">
       {headings.map((heading) => {
         const isActive = activeId === heading.id
         return (
@@ -47,15 +47,15 @@ function TocList({
               href={`#${heading.id}`}
               aria-current={isActive ? 'location' : undefined}
               onClick={onNavigate}
-              className={`block cursor-pointer border-l-2 py-1.5 leading-snug transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
-                heading.level === 3 ? 'pl-5 text-[13px]' : 'pl-3 text-sm'
+              className={`group flex items-center py-1.5 px-2.5 rounded-lg leading-snug transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
+                heading.level === 3 ? 'ml-3 text-[12.5px]' : 'text-[13.5px] font-medium'
               } ${
                 isActive
-                  ? 'border-emerald-400 text-white'
-                  : 'border-white/10 text-zinc-400 hover:border-white/30 hover:text-zinc-100'
+                  ? 'bg-emerald-500/15 text-emerald-300 font-semibold shadow-sm border-l-2 border-emerald-400'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04] border-l-2 border-transparent'
               }`}
             >
-              {heading.text}
+              <span className="truncate">{heading.text}</span>
             </a>
           </li>
         )
@@ -108,7 +108,7 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
       <>
         <button
           type="button"
-          className="fixed bottom-6 right-4 z-40 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-[#121214]/90 text-white shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-md transition-colors duration-200 hover:border-emerald-400/40 hover:text-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 xl:hidden"
+          className="fixed bottom-6 right-4 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-emerald-500/30 bg-[#121216]/90 text-white shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-[color,border-color,transform] duration-200 hover:border-emerald-400 hover:text-emerald-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 xl:hidden"
           aria-label={open ? 'Close table of contents' : 'Open table of contents'}
           aria-expanded={open}
           aria-controls={panelId}
@@ -129,17 +129,23 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
           <div className="fixed inset-0 z-30 xl:hidden">
             <button
               type="button"
-              className="absolute inset-0 cursor-pointer bg-black/40"
+              className="absolute inset-0 cursor-pointer bg-black/60 backdrop-blur-sm"
               aria-label="Dismiss table of contents"
               onClick={() => setOpen(false)}
             />
             <nav
               id={panelId}
               aria-label="Table of contents"
-              className="absolute inset-x-4 bottom-24 max-h-[min(70vh,32rem)] overflow-y-auto rounded-2xl border border-white/[0.1] bg-[#0f0f12]/95 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-md"
+              className="absolute inset-x-4 bottom-24 max-h-[min(70vh,32rem)] overflow-y-auto rounded-2xl border border-white/[0.12] bg-[#0d0e12]/95 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.7)] backdrop-blur-xl"
             >
-              <div className="mb-3 text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
-                On this page
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-3 mb-3">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-300">
+                    Table of Contents
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-zinc-500">{headings.length} sections</span>
               </div>
               <TocList headings={headings} activeId={activeId} onNavigate={() => setOpen(false)} />
             </nav>
@@ -152,12 +158,33 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
   return (
     <nav
       aria-label="Table of contents"
-      className="max-h-[calc(100vh-8rem)] overflow-y-auto overscroll-contain pr-1"
+      className="rounded-2xl border border-white/[0.08] bg-[#0d0e12]/80 p-4 shadow-[0_8px_32px_rgba(0,0,0,0.36)] backdrop-blur-xl max-h-[calc(100vh-8.5rem)] flex flex-col"
     >
-      <div className="mb-3 text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
-        On this page
+      <div className="flex items-center justify-between border-b border-white/[0.06] pb-3 mb-3 shrink-0">
+        <div className="flex items-center gap-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-300">
+            Table of Contents
+          </span>
+        </div>
+        <span className="text-[11px] font-mono text-zinc-500">{headings.length} sections</span>
       </div>
-      <TocList headings={headings} activeId={activeId} />
+      <div className="overflow-y-auto overscroll-contain pr-1 custom-scrollbar flex-1">
+        <TocList headings={headings} activeId={activeId} />
+      </div>
+      <div className="mt-3 pt-2.5 border-t border-white/[0.06] flex items-center justify-between shrink-0 text-[11px]">
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center gap-1 text-zinc-400 hover:text-emerald-300 transition-colors cursor-pointer"
+        >
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+          <span>Back to top</span>
+        </button>
+        <span className="text-zinc-500 font-mono">FrankX Dispatch</span>
+      </div>
     </nav>
   )
 }
