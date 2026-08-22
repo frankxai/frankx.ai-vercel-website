@@ -19,6 +19,7 @@ name: Web excellence
 # scope.
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - '**/*.tsx'
       - '**/*.jsx'
@@ -37,6 +38,7 @@ permissions:
 jobs:
   guidelines:
     name: Web Interface Guidelines (mechanical)
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -12,7 +12,7 @@ on:
     # without it, adding [contract-change] after a red run would not re-run the
     # check, and removing it after a green one would leave the check green while
     # the reviewer signal quietly disappeared.
-    types: [opened, synchronize, reopened, edited]
+    types: [opened, synchronize, reopened, edited, ready_for_review]
     branches: [main, staging]
     # Broad on purpose. A contract can guard a script or a public asset as well
     # as a component, so narrowing this would silently skip the check on exactly
@@ -41,6 +41,7 @@ concurrency:
 jobs:
   contract-guard:
     name: Contract Guard
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
