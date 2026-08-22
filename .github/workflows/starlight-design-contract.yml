@@ -9,5 +9,4 @@ permissions:
 
 jobs:
   design-contract:
-    if: github.event.pull_request.draft == false
     uses: frankxai/starlight-design-intelligence/.github/workflows/design-contract.yml@80830c60040967956580c761772469664c44dd55
