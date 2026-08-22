@@ -1,0 +1,103 @@
+---
+title: "Gemini 3.7 Flash: what Google actually shipped on 13 August 2026"
+description: "Google's 13 August Flash update, in vendor numbers and one live AGY admission. Not a harness winner. Not a ChatGPT killer."
+date: "2026-08-22"
+lastUpdated: "2026-08-22"
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags: ["Gemini 3.7 Flash", "Google", "AI Models", "Coding Agents", "AGY"]
+image: "/images/blog/editorial/headers/ai-model-routing-guide-hero.webp"
+featured: false
+readingGoal: "Know what Google published, what it costs through year-end, and what this machine could actually run."
+tldr: "Gemini 3.7 Flash launched 13 August 2026 as Google's workhorse for coding and agents. Official list price is $0.75 / $3.75 per million tokens until 31 December 2026, then $1.50 / $7.50. Vendor benches rose versus 3.6 Flash. This site has not run a judged harness round on it. AGY on this machine lists the model. Headless print still only greets."
+keywords: ["gemini 3.7 flash", "gemini 3.7 flash pricing", "gemini 3.7 vs 3.6", "google flash august 2026", "agy gemini 3.7"]
+---
+**TL;DR:** Google shipped [Gemini 3.7 Flash](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/) on 13 August 2026, three weeks after 3.6 Flash. Tulsee Doshi's post calls it the most intelligent Flash workhorse yet for coding and agents, at half the original 3.6 list price through year-end. The benches below are Google's. They are not a FrankX arena receipt. If you need a $20 chat-app pick, stay on [ChatGPT vs Claude vs Gemini 2026](/blog/chatgpt-vs-claude-vs-gemini-2026). If you need an agent-by-job map, use [the 21 August field guide](/blog/ai-agents-worth-evaluating-august-2026).
+
+I am not ranking this model against Grok 4.6 or Claude. I am recording what Google published, what the price footnote says, and what this machine admitted tonight.
+
+## What did Google ship on 13 August 2026?
+
+A Flash-series update. Not a new Pro. Not a new Ultra. The [Google blog post](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/) is the primary source.
+
+Google says the jump came from developer feedback and algorithmic work, not a from-scratch train. It claims gains in software engineering, knowledge work, and web-development workflows. It also says 3.7 Flash is the model behind Gemini Spark for Google AI Pro and Ultra subscribers in the countries where Spark is available. Spark is excluded from the EEA, Nigeria, Switzerland, and the United Kingdom on the support page Google links.
+
+Safety language on that same post: updated CBRN and cyber-offense safeguards, plus a [model card](https://deepmind.google/models/model-cards/gemini-3-7-flash). I have not audited those controls.
+
+## How much does Gemini 3.7 Flash cost?
+
+Google's own footnote, not a reseller card:
+
+| Window | Input / 1M tokens | Output / 1M tokens |
+| --- | --- | --- |
+| Introductory, through 31 December 2026 | $0.75 | $3.75 |
+| From 1 January 2027 | $1.50 | $7.50 |
+
+Google describes the intro rate as half the original 3.6 Flash cost per million tokens. If your billing path is AGY, Vertex, or a gateway, trust that invoice. The table is the public API list price from the 13 August post.
+
+## Which vendor benches did Google publish?
+
+These numbers are copied from the same post. I did not re-run FrontierCode, DeepSWE, WebDev Arena, GDP.pdf, or AutomationBench.
+
+| Bench | Gemini 3.7 Flash | Gemini 3.6 Flash | Google's link |
+| --- | --- | --- | --- |
+| FrontierCode 1.1 Main | 43.6% | 34.4% | [Cognition FrontierCode](https://cognition.com/frontiercode) |
+| DeepSWE v1.1 | 65.3% | 49.0% | [DeepSWE](https://deepswe.datacurve.ai/) |
+| Arena.ai WebDev Arena Elo | 1588 | 1538 | [WebDev Arena](https://arena.ai/leaderboard/code/webdev) |
+| GDP.pdf | 34.0% | 22.0% | named in the Google post |
+| AutomationBench | 30.4% | 17.0% | [Zapier AutomationBench](https://zapier.com/blog/introducing-automationbench/) |
+
+Google also says 3.7 Flash is stronger at first-pass code, debugging, reference-faithful UI, and multi-step tool use. That is vendor prose. Treat it as a hypothesis until you watch it fail a real repo.
+
+Google's demo reel pairs 3.7 Flash with Nano Banana for in-loop game assets, Gemini Omni for parallax landing pages, and a three-agent robotics graph. Those are Google videos, not a claim that your AGY session will do the same.
+
+## Did FrankX measure Gemini 3.7 Flash?
+
+Not in the model arena. Live [`/research/model-arena`](/research/model-arena) must not show a judged August wave. The honest label is public-report orientation. Last real harness measurement on that page is dated 2026-07-01 until a new receipt exists.
+
+What this Yogabook session actually observed on 22 August 2026:
+
+- `agy models` listed `gemini-3.7-flash-high`, `gemini-3.7-flash-medium`, and `gemini-3.7-flash-low`.
+- `agy -p --model gemini-3.7-flash-high` returned a greeting that named Gemini 3.7 Flash High Reasoning and ignored the prompt. That is an admission failure for headless print, not a model-quality score.
+- OpenCode's current free list on this machine did not include `deepseek-v4-flash-free`. The free pins present were `opencode/big-pickle`, `opencode/hy3-free`, `opencode/mimo-v2.5-free`, and two Nemotron free IDs.
+- Grok CLI 1.0.5 is on PATH. Native image generation was not proven in this pass.
+
+If a later ticket posts a receipt under `public/research/arena-receipts/`, update this paragraph. Until then, do not quote this article as a bake-off.
+
+## Should you switch coding agents to Gemini 3.7 Flash this week?
+
+Only if your work already sits in Google's stack, or you have a cheap AGY/API path and a task that looks like Google's benches: debug a repo, generate a UI from a screenshot, grind a long PDF.
+
+Do not switch if you need a judged comparison against Claude Code, Codex, or Grok Build. That write-up is still the [2026 coding-agent guide](/blog/ultimate-guide-ai-coding-agents-2026). Do not switch because a dashboard called it the August winner. That dashboard was lying until the honesty patch landed.
+
+A one-week test that is fair:
+
+1. Pick one closed ticket in a real repo.
+2. Run it on your current harness and on AGY `gemini-3.7-flash-high`.
+3. Keep the diff, the command, and the wall-clock. That is a receipt. A greeting is not.
+
+## FAQ
+
+### Is Gemini 3.7 Flash the same as Gemini 3.5 Pro?
+
+No. Google shipped a Flash update. The 13 August post does not replace Pro. Axios also framed it as Flash arriving before a 3.5 Pro refresh. Use the model ID your vendor lists.
+
+### Is the $0.75 / $3.75 price permanent?
+
+No. Google's footnote ends the intro price on 31 December 2026. 1 January 2027 is $1.50 / $7.50.
+
+### Does Gemini Spark use 3.7 Flash?
+
+Google says Spark on Google AI Pro and Ultra started using 3.7 Flash on 13 August 2026, except in regions Spark does not support. That is a consumer-agent path, not the coding CLI.
+
+### Can I treat DeepSWE 65.3% as our score?
+
+No. That is Google's published comparison to 3.6 Flash. Copy it with attribution. Do not put `judged: true` on it.
+
+### Did AGY actually answer with Gemini 3.7 tonight?
+
+It identified itself as Gemini 3.7 Flash High Reasoning. It did not execute the print prompt. Recorded as listed-and-greeted, not headless-verified.
+
+### Where should I go next?
+
+Agent jobs: [August 2026 field guide](/blog/ai-agents-worth-evaluating-august-2026). Everyday $20 chat: [ChatGPT vs Claude vs Gemini](/blog/chatgpt-vs-claude-vs-gemini-2026). Coding harnesses: [ultimate guide](/blog/ultimate-guide-ai-coding-agents-2026). Weekly notes: [/newsletter](/newsletter).
