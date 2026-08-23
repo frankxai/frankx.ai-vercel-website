@@ -3,6 +3,7 @@
 import Link from 'next/link'
 
 import { EmailSignup } from '@/components/email-signup'
+import { trackEvent } from '@/lib/analytics'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -258,6 +259,12 @@ export default function AIArchitectAcademyPage() {
               This page is the curriculum.{' '}
               <Link
                 href="/ai-architecture"
+                onClick={() =>
+                  trackEvent('ai_architecture_cta_opened', {
+                    destination: 'field_guide',
+                    placement: 'academy_orientation',
+                  })
+                }
                 className="text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
               >
                 The field guide
@@ -265,6 +272,12 @@ export default function AIArchitectAcademyPage() {
               is the reference — the seven planes and the decisions behind them.{' '}
               <Link
                 href="/ai-architect"
+                onClick={() =>
+                  trackEvent('ai_architecture_cta_opened', {
+                    destination: 'ai_architect',
+                    placement: 'academy_orientation',
+                  })
+                }
                 className="text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
               >
                 The architecture review

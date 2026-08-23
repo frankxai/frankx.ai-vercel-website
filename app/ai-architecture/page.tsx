@@ -1,7 +1,5 @@
-import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-
 import { OfficialArchitectureAtlas } from '@/components/ai-architecture/OfficialArchitectureAtlas'
+import RunItCta from '@/components/ai-architecture/RunItCta'
 import { PillarGuide, pillarFaqs } from '@/components/ai-architecture/pillar/PillarGuide'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { createMetadata } from '@/lib/seo'
@@ -93,26 +91,7 @@ export default function AIArchitecturePage() {
             which to close first — or install the same rubric into the coding agent that already
             has the repository open, and let it grep for the evidence instead of asking you.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-5">
-            <Link
-              href="/ai-architect#run"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
-            >
-              Run the architecture review
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            {/*
-              Same label as the /ai-architect hero, so it has to resolve to the
-              same thing: the file itself, not the page that describes it. A
-              plain anchor because this is a static asset, not a route.
-            */}
-            <a
-              href="/skills/ai-architect-review/SKILL.md"
-              className="rounded-sm text-sm font-medium text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
-            >
-              Get the skill (MIT)
-            </a>
-          </div>
+          <RunItCta />
         </div>
       </section>
     </main>

@@ -90,7 +90,7 @@
     "layer": "Orchestration",
     "summary": "Agents, handoffs, guardrails, sessions, human-in-the-loop controls, and tracing composed as a backend service.",
     "bestFor": "Python agent services that need explicit handoffs and inspectable traces.",
-    "runtime": "Managed service",
+    "runtime": "Either",
     "flow": [
       "Client",
       "Agent service",
