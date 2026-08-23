@@ -91,66 +91,68 @@ export default function TeamSetPiece({
           </p>
         </div>
 
-        <ol
-          className="space-y-0"
-          aria-label="The artifact contract, in the order the team writes it"
-        >
-          {stages.map((stage, i) => {
-            const last = i === stages.length - 1
-            return (
-              <li key={stage.id} className="relative">
-                <div className="grid gap-3 py-5 sm:grid-cols-[auto_1fr] sm:gap-6">
-                  <span className="font-mono text-xs leading-6 text-emerald-300/80">
-                    {stage.index}
-                  </span>
-                  <div>
-                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                      <h3 className="font-semibold text-white">{stage.name}</h3>
-                      <span className="font-mono text-[11px] text-slate-500">{stage.model}</span>
+        <div>
+          <ol
+            className="space-y-0"
+            aria-label="The artifact contract, in the order the team writes it"
+          >
+            {stages.map((stage, i) => {
+              const last = i === stages.length - 1
+              return (
+                <li key={stage.id} className="relative">
+                  <div className="grid gap-3 py-5 sm:grid-cols-[auto_1fr] sm:gap-6">
+                    <span className="font-mono text-xs leading-6 text-emerald-300/80">
+                      {stage.index}
+                    </span>
+                    <div>
+                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                        <h3 className="font-semibold text-white">{stage.name}</h3>
+                        <span className="font-mono text-[11px] text-slate-500">{stage.model}</span>
+                      </div>
+                      <ul className="mt-2.5 space-y-1">
+                        {stage.files.map((file) => (
+                          <li
+                            key={file}
+                            className="break-all font-mono text-xs leading-6 text-slate-300"
+                          >
+                            {file}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-2.5 max-w-xl text-sm leading-6 text-slate-500">
+                        Stops when: {stage.stop}
+                      </p>
                     </div>
-                    <ul className="mt-2.5 space-y-1">
-                      {stage.files.map((file) => (
-                        <li
-                          key={file}
-                          className="break-all font-mono text-xs leading-6 text-slate-300"
-                        >
-                          {file}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-2.5 max-w-xl text-sm leading-6 text-slate-500">
-                      Stops when: {stage.stop}
-                    </p>
                   </div>
-                </div>
 
-                {!last ? (
-                  <span
-                    data-seam
-                    aria-hidden="true"
-                    className="ml-[7px] block h-5 w-px origin-top bg-gradient-to-b from-emerald-400/50 to-cyan-400/15"
-                  />
-                ) : null}
-              </li>
-            )
-          })}
-        </ol>
-      </div>
+                  {!last ? (
+                    <span
+                      data-seam
+                      aria-hidden="true"
+                      className="ml-[7px] block h-5 w-px origin-top bg-gradient-to-b from-emerald-400/50 to-cyan-400/15"
+                    />
+                  ) : null}
+                </li>
+              )
+            })}
+          </ol>
 
-      <div className="mt-10 lg:ml-auto lg:w-[55%]">
-        <span
-          data-verdict
-          aria-hidden="true"
-          className="block h-px w-full origin-left bg-cyan-400/60"
-        />
-        <p className="mt-4 font-mono text-xs uppercase tracking-wider text-cyan-300">
-          Failed gate
-        </p>
-        <p className="mt-2 max-w-xl leading-7 text-slate-300">{verifierStop}</p>
-        <p className="mt-3 max-w-xl leading-7 text-slate-500">
-          That is the design. The run stops at the first red gate and hands you the receipt, rather
-          than repairing the artifact so the gate can go green.
-        </p>
+        <div className="mt-10">
+          <span
+            data-verdict
+            aria-hidden="true"
+            className="block h-px w-full origin-left bg-cyan-400/60"
+          />
+          <p className="mt-4 font-mono text-xs uppercase tracking-wider text-cyan-300">
+            Failed gate
+          </p>
+          <p className="mt-2 max-w-xl leading-7 text-slate-300">{verifierStop}</p>
+          <p className="mt-3 max-w-xl leading-7 text-slate-500">
+            That is the design. The run stops at the first red gate and hands you the receipt, rather
+            than repairing the artifact so the gate can go green.
+          </p>
+        </div>
+        </div>
       </div>
     </ScrollScene>
   )
