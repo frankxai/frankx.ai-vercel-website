@@ -123,6 +123,59 @@ for (const anchor of MAPPING_ANCHORS) {
   if (!skillCanon.includes(needle)) failures.push(`skill verdict mapping changed — anchor missing: "${anchor}"`)
 }
 
+// The /ai-architect page renders the team from this file rather than restating
+// it, so a truncated or re-shaped copy would silently ship a shorter roster and
+// a shorter artifact contract with it. The ids are the plugin's eight agents.
+const TEAM_AGENT_IDS = [
+  'delivery-engineer',
+  'discovery-analyst',
+  'economics-analyst',
+  'eval-engineer',
+  'experience-designer',
+  'independent-verifier',
+  'principal-architect',
+  'trust-reviewer',
+]
+const team = JSON.parse(await readFile(new URL('data/ai-architect/team.json', root), 'utf8'))
+if (!Array.isArray(team.agents) || team.agents.length !== 8) {
+  failures.push(`team roster must carry the plugin's eight agents, found ${team.agents?.length ?? 0}`)
+} else {
+  const ids = team.agents.map((agent) => agent.id).sort()
+  const missing = TEAM_AGENT_IDS.filter((id) => !ids.includes(id))
+  if (missing.length) failures.push(`team roster is missing agent(s): ${missing.join(', ')}`)
+  const incomplete = team.agents.filter((agent) =>
+    !agent.name ||
+    !agent.purpose ||
+    !agent.model ||
+    !Array.isArray(agent.writes) ||
+    agent.writes.length === 0 ||
+    !Array.isArray(agent.stops_when) ||
+    agent.stops_when.length === 0
+  )
+  if (incomplete.length) {
+    failures.push(`team roster rows missing name, purpose, model, writes, or stop conditions: ${incomplete.map((agent) => agent.id).join(', ')}`)
+  }
+}
+
+// The worked examples are rendered from content/ and downloaded from public/.
+// The two copies drift silently: the page keeps rendering while every download
+// link 404s. This asserts the download copy of the anchor file is present.
+const EXAMPLE_SLUGS = ['support-triage', 'personal-ai-coe', 'contract-rag']
+for (const slug of EXAMPLE_SLUGS) {
+  for (const file of ['SYSTEM.md', 'review.md']) {
+    try {
+      await access(new URL(`public/artifacts/ai-architect/${slug}/${file}`, root))
+    } catch {
+      failures.push(`worked example download missing: public/artifacts/ai-architect/${slug}/${file}`)
+    }
+    try {
+      await access(new URL(`content/ai-architect/examples/${slug}/${file}`, root))
+    } catch {
+      failures.push(`worked example source missing: content/ai-architect/examples/${slug}/${file}`)
+    }
+  }
+}
+
 if (failures.length) {
   console.error(JSON.stringify({ status: 'fail', failures }, null, 2))
   process.exit(1)
@@ -131,6 +184,7 @@ if (failures.length) {
 console.log(JSON.stringify({
   status: 'pass',
   architectures: sources.length,
+  teamAgents: team.agents.length,
   planes: [...new Set(sources.map((source) => source.layer))],
   runtimeShapes: [...new Set(sources.map((source) => source.runtime))],
 }, null, 2))

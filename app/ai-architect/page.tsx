@@ -1,9 +1,14 @@
 import Link from 'next/link'
 import { ArrowRight, Download, Terminal } from 'lucide-react'
 
+import ArtifactExplorer from '@/components/ai-architect/ArtifactExplorer'
+import TeamRoster, { orderedAgents } from '@/components/ai-architect/TeamRoster'
+import TeamSetPiece, { type ContractStage } from '@/components/ai-architect/TeamSetPiece'
 import ArchitectureStudio from '@/components/ai-architecture/ArchitectureStudio'
+import { EmailSignup } from '@/components/email-signup'
 import FrankOmega from '@/components/FrankOmega'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
+import { loadWorkedExamples } from '@/lib/ai-architect-examples'
 import { createMetadata } from '@/lib/seo'
 
 import ReviewRunner from './ReviewRunner'
@@ -83,6 +88,52 @@ const INSTALLS = [
   },
 ]
 
+/**
+ * Stage order is the plugin's own handoff chain, not an editorial ordering:
+ * discovery hands to experience, experience to the principal architect, and the
+ * verifier reads what the other seven wrote. Everything else on this page that
+ * describes the team — names, purposes, write scopes, stop conditions, model
+ * tiers — is read from `data/ai-architect/team.json`, which is generated from the
+ * plugin's agent definitions. Nothing about the team is retyped here.
+ */
+const STAGE_ORDER = [
+  'discovery-analyst',
+  'experience-designer',
+  'principal-architect',
+  'economics-analyst',
+  'trust-reviewer',
+  'eval-engineer',
+  'delivery-engineer',
+  'independent-verifier',
+] as const
+
+const TEAM = orderedAgents(STAGE_ORDER)
+
+const CONTRACT_STAGES: ContractStage[] = TEAM.map((agent, index) => ({
+  id: agent.id,
+  index: String(index + 1).padStart(2, '0'),
+  name: agent.name,
+  model: agent.model,
+  files: agent.writes.map((path) => path.replace(/^docs\/architecture\//, '')),
+  stop: agent.stops_when[0],
+}))
+
+const CONTRACT_FILE_COUNT = CONTRACT_STAGES.reduce(
+  (total, stage) => total + stage.files.length,
+  0,
+)
+
+/** The set-piece rows all show a stage's first stop condition, so the closing
+ *  beat takes the verifier's second one rather than repeating the row above it. */
+const VERIFIER_STOP =
+  TEAM.find((agent) => agent.id === 'independent-verifier')?.stops_when[1] ?? ''
+
+const EXAMPLES = loadWorkedExamples()
+
+/** The economics analyst's own opening line. The page's single serif italic. */
+const EVIDENCE_LINE =
+  'A number with no source URL and no retrieval date is not a price, it is a memory.'
+
 const FAQS = [
   {
     question: 'What is an AI architecture review?',
@@ -93,6 +144,11 @@ const FAQS = [
     question: 'Is this an MCP server or a skill?',
     answer:
       'The review is a skill: a file your agent reads. MCP is the right shape for capability with side effects. The nine-stage team is a plugin that writes docs/architecture/ in your repo. An optional local stdio MCP runs the gate checks — it does not call a model and it is not hosted here. A hosted agent on this page would be the wrong shape.',
+  },
+  {
+    question: 'What does the plugin write into my repo?',
+    answer:
+      'One directory: docs/architecture/. The contract is 00-frame.md, 01-discovery.md, 02-user-flows.md, 03-experience-blueprint.md, SYSTEM.md, one ADR per decision that changed state, architecture.json, 04-roi.md, prices.json, 05-trust-boundary.md, 06-evals/cases.jsonl, 06-evals/rubric.md, WORKFLOW.md, SOP.md, 07-runbook.md, a dated receipt under receipts/, and review.md. No agent on the team writes application source code, and an existing file is never overwritten — the proposed version is written beside it and the handoff says so.',
   },
   {
     question: 'What does the skill cost?',
@@ -255,6 +311,31 @@ export default function AIArchitectPage() {
         </div>
       </section>
 
+      <section id="team" className="scroll-mt-20 border-b border-white/5 py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <Eyebrow>One goal, {CONTRACT_FILE_COUNT} files</Eyebrow>
+          <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            The interview is four questions. The team is nine gated stages.
+          </h2>
+          <p className="mt-5 max-w-2xl leading-7 text-slate-400">
+            Same four decisions, run against the repository instead of your memory of it. Each stage
+            has one author, one write scope, and a condition that stops it rather than letting it
+            guess.
+          </p>
+          <p className="mt-6 max-w-2xl font-serif text-xl italic leading-9 text-slate-200">
+            {EVIDENCE_LINE}
+          </p>
+
+          <div className="mt-16">
+            <TeamSetPiece
+              stages={CONTRACT_STAGES}
+              fileCount={CONTRACT_FILE_COUNT}
+              verifierStop={VERIFIER_STOP}
+            />
+          </div>
+        </div>
+      </section>
+
       <section id="studio" className="scroll-mt-20 border-b border-white/5 py-24 lg:py-32">
         <div className="mx-auto max-w-5xl px-6">
           <Eyebrow>Walk an architecture</Eyebrow>
@@ -268,6 +349,23 @@ export default function AIArchitectPage() {
           </p>
           <div className="mt-12">
             <ArchitectureStudio />
+          </div>
+        </div>
+      </section>
+
+      <section id="examples" className="scroll-mt-20 border-b border-white/5 py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <Eyebrow>Worked examples</Eyebrow>
+          <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Three runs, and what each verifier found.
+          </h2>
+          <p className="mt-5 max-w-2xl leading-7 text-slate-400">
+            These sets were produced by the plugin on three fixture repositories, and every number
+            in them names the file or command it came from. Each one ends with a review that says
+            what is unowned, and none of them assigns itself a score.
+          </p>
+          <div className="mt-12">
+            <ArtifactExplorer examples={EXAMPLES} />
           </div>
         </div>
       </section>
@@ -322,6 +420,23 @@ node scripts/install-cross-harness.mjs --cursor --agents-md --target /path/to/yo
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      <section id="roster" className="scroll-mt-20 border-b border-white/5 py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-6">
+          <Eyebrow>The team</Eyebrow>
+          <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Eight agents, and what stops each one.
+          </h2>
+          <p className="mt-5 max-w-2xl leading-7 text-slate-400">
+            Read down the stop conditions before you read anything else. An agent that cannot say
+            what would make it halt is an agent that will produce an answer for every question,
+            including the ones nobody can answer yet.
+          </p>
+          <div className="mt-14">
+            <TeamRoster agents={TEAM} />
+          </div>
         </div>
       </section>
 
@@ -408,6 +523,46 @@ node scripts/install-cross-harness.mjs --cursor --agents-md --target /path/to/yo
               Inspect the blueprints
             </Link>
           </div>
+
+          <div className="mt-20 border-t border-white/[0.07] pt-14">
+            <h2 className="max-w-2xl font-display text-2xl font-bold tracking-tight sm:text-3xl">
+              When the rubric changes, you hear about it.
+            </h2>
+            <p className="mt-4 max-w-xl leading-7 text-slate-400">
+              One note when a check is added, a stage changes, or the team learns something worth
+              rewriting the file for.
+            </p>
+            <div className="mt-8 max-w-xl">
+              <EmailSignup listType="ai-architect" buttonText="Subscribe" />
+            </div>
+          </div>
+
+          <p className="mt-16 max-w-3xl leading-7 text-slate-500">
+            Three neighbouring pages, one each for a different question.{' '}
+            <Link
+              href="/ai-architecture"
+              className={`rounded-sm text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white ${FOCUS_RING}`}
+            >
+              /ai-architecture
+            </Link>{' '}
+            is the reference: the planes, the reference stacks, the atlas of maintained vendor
+            architectures.{' '}
+            <Link
+              href="/ai-architect-academy"
+              className={`rounded-sm text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white ${FOCUS_RING}`}
+            >
+              /ai-architect-academy
+            </Link>{' '}
+            is where you learn to make the calls yourself, and{' '}
+            <Link
+              href="/ai-coe"
+              className={`rounded-sm text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white ${FOCUS_RING}`}
+            >
+              /ai-coe
+            </Link>{' '}
+            is the organisational version of the same question — who owns a plane when the plane
+            spans four teams.
+          </p>
         </div>
       </section>
     </main>
