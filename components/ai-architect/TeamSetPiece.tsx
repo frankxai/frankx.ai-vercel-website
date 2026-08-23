@@ -24,6 +24,14 @@ export type ContractStage = {
  * is shown by the motion instead of asserted in a caption; the last seam is the
  * verifier's, and it lands in the failed-gate treatment the static DOM already
  * carries — a run that fails verification is the normal case, not the exception.
+ * That closing rule is cyan, the far end of the seam gradient, not a warning
+ * colour: the page runs on the tech spectrum only, and a failed gate here is a
+ * reported state rather than an alarm.
+ *
+ * FRANK-Ω carries one static caption for the whole scene rather than a caption
+ * per beat. A caption that changes as you scroll is animated text, which is the
+ * one thing this scene is not allowed to do; one sentence that is true at every
+ * beat costs nothing and cannot be caught mid-swap.
  *
  * Nothing containing copy moves. `taste.md` ("No animations on text") and the
  * `ScrollScene` contract both forbid it: the file names, the stop conditions and
@@ -70,7 +78,7 @@ export default function TeamSetPiece({
     >
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <FrankOmega variant="thinking" size="md" />
+          <FrankOmega variant="thinking" size="md" speech="One author per file. No exceptions." />
           <p className="mt-6 max-w-sm leading-7 text-slate-300">
             One stated goal goes in. {fileCount} files come out, under{' '}
             <span className="font-mono text-slate-200">docs/architecture/</span> in your own
@@ -133,9 +141,9 @@ export default function TeamSetPiece({
         <span
           data-verdict
           aria-hidden="true"
-          className="block h-px w-full origin-left bg-amber-400/50"
+          className="block h-px w-full origin-left bg-cyan-400/60"
         />
-        <p className="mt-4 font-mono text-xs uppercase tracking-wider text-amber-400">
+        <p className="mt-4 font-mono text-xs uppercase tracking-wider text-cyan-300">
           Failed gate
         </p>
         <p className="mt-2 max-w-xl leading-7 text-slate-300">{verifierStop}</p>
