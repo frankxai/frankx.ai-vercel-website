@@ -176,6 +176,48 @@ for (const slug of EXAMPLE_SLUGS) {
   }
 }
 
+// Every priced row in a shipped example names a vendor. That is the point: a
+// price with no provider and no source URL is the "memory" the economics analyst
+// refuses to accept. The vendor is therefore only allowed to appear alongside the
+// evidence that makes it checkable, and this is what enforces the pairing.
+for (const slug of EXAMPLE_SLUGS) {
+  for (const base of ['content/ai-architect/examples', 'public/artifacts/ai-architect']) {
+    const rel = `${base}/${slug}/prices.json`
+    let prices
+    try {
+      prices = JSON.parse(await readFile(new URL(rel, root), 'utf8'))
+    } catch {
+      failures.push(`worked example price sheet missing or unparseable: ${rel}`)
+      continue
+    }
+    if (!Array.isArray(prices.rows) || prices.rows.length === 0) {
+      failures.push(`price sheet has no rows: ${rel}`)
+      continue
+    }
+    const unsourced = prices.rows.filter((row) => !row.source_url || !row.retrieved_at)
+    if (unsourced.length) {
+      failures.push(`price rows without a source URL and retrieval date in ${rel}: ${unsourced.map((row) => row.item).join('; ')}`)
+    }
+  }
+}
+
+// The /ai-architect page states the stage count in four places -- a headline, an
+// FAQ answer that also becomes JSON-LD, the install intro, and the roster heading.
+// Hand-typed, they drift against each other and against the roster while every
+// other gate stays green: the page shipped "nine gated stages" over an eight-agent
+// roster. Every one of them must read the count from STAGE_COUNT_WORD, which is
+// derived from the roster, so this bans the literal rather than blessing a number.
+const hubPage = await readFile(new URL('app/ai-architect/page.tsx', root), 'utf8')
+if (!hubPage.includes('const STAGE_COUNT_WORD =')) {
+  failures.push('the /ai-architect page must derive its stage count from the roster (STAGE_COUNT_WORD)')
+}
+const literalStageCount = hubPage.match(
+  /\b(one|two|three|four|five|six|seven|eight|nine|ten)[- ](?:gated )?stages?\b/gi,
+)
+if (literalStageCount) {
+  failures.push(`/ai-architect page states a stage count as a literal instead of STAGE_COUNT_WORD: ${[...new Set(literalStageCount)].join(', ')}`)
+}
+
 if (failures.length) {
   console.error(JSON.stringify({ status: 'fail', failures }, null, 2))
   process.exit(1)

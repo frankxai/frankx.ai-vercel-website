@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Download, Terminal } from 'lucide-react'
 
+import ArchitectureCanvas from '@/components/ai-architect/ArchitectureCanvas'
 import ArtifactExplorer from '@/components/ai-architect/ArtifactExplorer'
 import TeamRoster, { orderedAgents } from '@/components/ai-architect/TeamRoster'
 import TeamSetPiece, { type ContractStage } from '@/components/ai-architect/TeamSetPiece'
@@ -123,6 +124,25 @@ const CONTRACT_FILE_COUNT = CONTRACT_STAGES.reduce(
   0,
 )
 
+/** Spelled out because the headline reads better in words, derived from the
+ *  roster because a hand-typed stage count is exactly the kind of number this
+ *  page argues against. The contract script pins the pair. */
+const NUMBER_WORDS = [
+  'zero',
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+  'ten',
+] as const
+
+const STAGE_COUNT_WORD = NUMBER_WORDS[CONTRACT_STAGES.length] ?? String(CONTRACT_STAGES.length)
+
 /** The set-piece rows all show a stage's first stop condition, so the closing
  *  beat takes the verifier's second one rather than repeating the row above it. */
 const VERIFIER_STOP =
@@ -143,7 +163,7 @@ const FAQS = [
   {
     question: 'Is this an MCP server or a skill?',
     answer:
-      'The review is a skill: a file your agent reads. MCP is the right shape for capability with side effects. The nine-stage team is a plugin that writes docs/architecture/ in your repo. An optional local stdio MCP runs the gate checks — it does not call a model and it is not hosted here. A hosted agent on this page would be the wrong shape.',
+      `The review is a skill: a file your agent reads. MCP is the right shape for capability with side effects. The ${STAGE_COUNT_WORD}-stage team is a plugin that writes docs/architecture/ in your repo. An optional local stdio MCP runs the gate checks — it does not call a model and it is not hosted here. A hosted agent on this page would be the wrong shape.`,
   },
   {
     question: 'What does the plugin write into my repo?',
@@ -271,7 +291,7 @@ export default function AIArchitectPage() {
                     <dd className="mt-1.5 text-slate-300">{check.pass}</dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-xs text-amber-400">Deferred</dt>
+                    <dt className="font-mono text-xs text-cyan-300">Deferred</dt>
                     <dd className="mt-1.5 text-slate-400">{check.fail}</dd>
                   </div>
                 </dl>
@@ -315,7 +335,7 @@ export default function AIArchitectPage() {
         <div className="mx-auto max-w-6xl px-6">
           <Eyebrow>One goal, {CONTRACT_FILE_COUNT} files</Eyebrow>
           <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            The interview is four questions. The team is nine gated stages.
+            The interview is four questions. The team is {STAGE_COUNT_WORD} gated stages.
           </h2>
           <p className="mt-5 max-w-2xl leading-7 text-slate-400">
             Same four decisions, run against the repository instead of your memory of it. Each stage
@@ -332,6 +352,23 @@ export default function AIArchitectPage() {
               fileCount={CONTRACT_FILE_COUNT}
               verifierStop={VERIFIER_STOP}
             />
+          </div>
+        </div>
+      </section>
+
+      <section id="canvas" className="scroll-mt-20 border-b border-white/5 py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <Eyebrow>See the seams</Eyebrow>
+          <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Two answers decide which planes carry the failure.
+          </h2>
+          <p className="mt-5 max-w-2xl leading-7 text-slate-400">
+            Pick the orchestration shape and the home its long work runs in. The seven planes stay
+            the same; which of them is under pressure does not. The canvas states the shape&apos;s
+            own cost and how it fails, and names nothing it cannot cite.
+          </p>
+          <div className="mt-14">
+            <ArchitectureCanvas />
           </div>
         </div>
       </section>
@@ -361,8 +398,10 @@ export default function AIArchitectPage() {
           </h2>
           <p className="mt-5 max-w-2xl leading-7 text-slate-400">
             These sets were produced by the plugin on three fixture repositories, and every number
-            in them names the file or command it came from. Each one ends with a review that says
-            what is unowned, and none of them assigns itself a score.
+            in them names the file or command it came from. The price sheets go further and name an
+            example provider next to a dated link to its public pricing page, because a price with
+            no provider and no source is not a price. Each set ends with a review that says what is
+            unowned, and none of them assigns itself a score.
           </p>
           <div className="mt-12">
             <ArtifactExplorer examples={EXAMPLES} />
@@ -377,7 +416,7 @@ export default function AIArchitectPage() {
             Run it where the architecture actually is.
           </h2>
           <p className="mt-5 max-w-2xl leading-7 text-slate-400">
-            The rubric is one file. The team is a plugin: nine gated stages that write
+            The rubric is one file. The team is a plugin: {STAGE_COUNT_WORD} gated stages that write
             <span className="font-mono text-slate-300"> docs/architecture/</span> and stop at the
             first red gate. Both run on your keys. Nothing is hosted on this page except the
             interview runner.
@@ -427,7 +466,8 @@ node scripts/install-cross-harness.mjs --cursor --agents-md --target /path/to/yo
         <div className="mx-auto max-w-5xl px-6">
           <Eyebrow>The team</Eyebrow>
           <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            Eight agents, and what stops each one.
+            {STAGE_COUNT_WORD.charAt(0).toUpperCase() + STAGE_COUNT_WORD.slice(1)} agents, and
+            what stops each one.
           </h2>
           <p className="mt-5 max-w-2xl leading-7 text-slate-400">
             Read down the stop conditions before you read anything else. An agent that cannot say
