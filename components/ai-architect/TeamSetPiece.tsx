@@ -76,15 +76,19 @@ export default function TeamSetPiece({
         if (verdict) tl.from(verdict, { scaleX: 0, ease: 'none' }, '>-0.1')
       }}
     >
-      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-        <div className="lg:sticky lg:top-28 lg:self-start">
+      {/* Single column on purpose. html, body and the app shell all set
+          overflow-x:hidden, which makes them scroll containers, so position:sticky
+          never engages anywhere on this site — a two-column layout would leave the
+          left half empty for the length of the list. */}
+      <div className="flex flex-col gap-12">
+        <div className="max-w-2xl">
           <FrankOmega variant="thinking" size="md" speech="One author per file. No exceptions." />
-          <p className="mt-6 max-w-sm leading-7 text-slate-300">
+          <p className="mt-6 leading-7 text-slate-300">
             One stated goal goes in. {fileCount} files come out, under{' '}
             <span className="font-mono text-slate-200">docs/architecture/</span> in your own
             repository, and each one has a single author.
           </p>
-          <p className="mt-4 max-w-sm leading-7 text-slate-400">
+          <p className="mt-4 leading-7 text-slate-400">
             The last stage is a fresh context that wrote none of them. It re-runs the commands,
             compares what it observes against what was recorded, and has no tool that can edit the
             files it is reviewing.
