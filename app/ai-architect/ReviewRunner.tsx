@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Copy } from 'lucide-react'
+import { Copy, Download } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 
@@ -174,6 +174,20 @@ export default function ReviewRunner() {
     }
   }
 
+  // The report is built in the browser and never posted anywhere, so the file is
+  // assembled from the same string and handed to the browser as a Blob.
+  const downloadReport = () => {
+    trackEvent('ai_architect_review_downloaded', {})
+    const url = URL.createObjectURL(new Blob([report], { type: 'text/markdown;charset=utf-8' }))
+    const link = document.createElement('a')
+    link.href = url
+    link.download = 'review.md'
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    URL.revokeObjectURL(url)
+  }
+
   const reset = () => {
     setAnswers(EMPTY_ANSWERS)
     setCopyState('idle')
@@ -261,6 +275,14 @@ export default function ReviewRunner() {
               >
                 <Copy className="h-4 w-4" aria-hidden="true" />
                 {copyState === 'copied' ? 'Copied' : 'Copy the report'}
+              </button>
+              <button
+                type="button"
+                onClick={downloadReport}
+                className={`inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:border-white/35 hover:text-white ${FOCUS_RING}`}
+              >
+                <Download className="h-4 w-4" aria-hidden="true" />
+                Download review.md
               </button>
               <button
                 type="button"
