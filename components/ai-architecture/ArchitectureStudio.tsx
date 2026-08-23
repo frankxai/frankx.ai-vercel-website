@@ -34,7 +34,7 @@ const KITS: Kit[] = [
     ],
     open: { href: '/ai-architecture/claude-agent-sdk-vercel', label: 'Open the Vercel-lane blueprint' },
     source: {
-      href: 'https://github.com/frankxai/ai-architect/tree/agent/claude/ai-architect-plugin/templates/deploy/request-scoped-agent',
+      href: 'https://github.com/frankxai/ai-architect/tree/main/templates/deploy/request-scoped-agent',
       label: 'Experience kit source',
     },
     deploy: {
@@ -58,7 +58,7 @@ const KITS: Kit[] = [
     ],
     open: { href: '/ai-architecture/claude-code-multi-agent-team-railway', label: 'Open the Railway-lane blueprint' },
     source: {
-      href: 'https://github.com/frankxai/ai-architect/tree/agent/claude/ai-architect-plugin/templates/deploy/durable-worker',
+      href: 'https://github.com/frankxai/ai-architect/tree/main/templates/deploy/durable-worker',
       label: 'Worker kit source',
     },
     deploy: {

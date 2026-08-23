@@ -440,10 +440,14 @@ curl -sSL https://www.frankx.ai${SKILL_PATH} \\
               <span className="font-mono text-xs">The team (plugin)</span>
             </div>
             <pre className="whitespace-pre font-mono text-xs leading-6 text-slate-300 sm:text-sm">
-{`git clone https://github.com/frankxai/ai-architect
-cd ai-architect
-# Claude Code: add this directory as a local marketplace, then install ai-architect
-# Cursor / AGENTS.md:
+{`# Claude Code
+/plugin marketplace add frankxai/ai-architect
+/plugin install ai-architect@frankx
+
+# Any harness with a skills directory (Codex, Cursor, Gemini)
+npx skills add frankxai/ai-architect
+
+# Or wire an existing checkout into one repository
 node scripts/install-cross-harness.mjs --cursor --agents-md --target /path/to/your/repo`}
             </pre>
           </div>
