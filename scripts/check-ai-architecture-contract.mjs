@@ -140,9 +140,23 @@ const MAPPING_ANCHORS = [
 // The skill is the third place the seven planes are written down, and it is the
 // copy that travels into other people's repositories. If it drifts from the
 // guide, a reader gets one vocabulary on the page and another in their agent.
-// Read the plane-walk table specifically: a whole-document search passes on the
-// frontmatter alone, which is a gate that cannot fail.
-const skillPlanes = [...skill.matchAll(/^\|\s*\d{2}\s*\|\s*([^|]+?)\s*\|/gm)].map((match) => match[1])
+// Read the Step 2 plane-walk table specifically. Two earlier versions of this
+// check were too loose to fail: searching the whole document passes on the
+// frontmatter alone, and matching any two-digit table row passes if the seven
+// rows are moved under an unrelated heading. Bound to the section, then require
+// the table's own header before trusting any row.
+const step2Start = skill.indexOf('## Step 2')
+const step2End = skill.indexOf('\n## ', step2Start + 1)
+const planeWalk =
+  step2Start === -1 ? '' : skill.slice(step2Start, step2End === -1 ? skill.length : step2End)
+const PLANE_TABLE_HEADER = '| # | Plane | Owns | The boundary below it |'
+if (!planeWalk.includes(PLANE_TABLE_HEADER)) {
+  failures.push(
+    'skill Step 2 plane-walk table is missing or renamed — its header row must read exactly ' +
+      `"${PLANE_TABLE_HEADER}", or this parity check silently has nothing to compare`,
+  )
+}
+const skillPlanes = [...planeWalk.matchAll(/^\|\s*\d{2}\s*\|\s*([^|]+?)\s*\|/gm)].map((match) => match[1])
 if (skillPlanes.length !== PLANES.length || skillPlanes.some((name, index) => name !== PLANES[index])) {
   failures.push(
     `skill plane walk drifted — skill has [${skillPlanes.join(', ')}], field guide has [${PLANES.join(', ')}]`,

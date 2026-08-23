@@ -101,12 +101,17 @@ export default function AIArchitecturePage() {
               Run the architecture review
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-            <Link
-              href="/ai-architect"
+            {/*
+              Same label as the /ai-architect hero, so it has to resolve to the
+              same thing: the file itself, not the page that describes it. A
+              plain anchor because this is a static asset, not a route.
+            */}
+            <a
+              href="/skills/ai-architect-review/SKILL.md"
               className="rounded-sm text-sm font-medium text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
             >
               Get the skill (MIT)
-            </Link>
+            </a>
           </div>
         </div>
       </section>
