@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { ArrowRight, Download, Terminal } from 'lucide-react'
 
+import ArchitectureStudio from '@/components/ai-architecture/ArchitectureStudio'
+import FrankOmega from '@/components/FrankOmega'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { createMetadata } from '@/lib/seo'
 
@@ -90,7 +92,7 @@ const FAQS = [
   {
     question: 'Is this an MCP server or a skill?',
     answer:
-      'A skill. MCP is the right shape for capability with side effects — something that reads your systems, holds state, and acts. This rubric is static knowledge, so a file your agent reads is strictly better: it works offline, it cannot break when a server goes down, it costs nothing to run, and the same file installs into Claude Code, Cursor, Codex, Windsurf and Copilot. An MCP server would only start earning its complexity if the reviewer needed to read your repository and hold state across a session.',
+      'The review is a skill: a file your agent reads. MCP is the right shape for capability with side effects. The nine-stage team is a plugin that writes docs/architecture/ in your repo. An optional local stdio MCP runs the gate checks — it does not call a model and it is not hosted here. A hosted agent on this page would be the wrong shape.',
   },
   {
     question: 'What does the skill cost?',
@@ -132,14 +134,17 @@ export default function AIArchitectPage() {
         </div>
         <div className="relative mx-auto grid max-w-6xl gap-14 px-6 pb-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
-            <Eyebrow>AI Architect</Eyebrow>
+            <div className="flex items-center gap-4">
+              <FrankOmega variant="thinking" size="md" animate glow />
+              <Eyebrow>FRANK-Ω hosts the review</Eyebrow>
+            </div>
             <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
               The architecture review, as something you can run.
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-8 text-slate-300">
               Four checks against a real codebase. Each one names something you can grep, measure, or
               point at — because a review with no evidence is an opinion. Work through it here, or
-              install it into the coding agent that already has the repository open.
+              install the team into the coding agent that already has the repository open.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-5">
               <a
@@ -150,12 +155,12 @@ export default function AIArchitectPage() {
                 <Download className="h-4 w-4" aria-hidden="true" />
                 Get the skill (MIT)
               </a>
-              <Link
-                href="/ai-architecture"
+              <a
+                href="https://github.com/frankxai/ai-architect"
                 className={`rounded-sm text-sm font-medium text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white ${FOCUS_RING}`}
               >
-                Read the field guide
-              </Link>
+                Install the team
+              </a>
             </div>
           </div>
 
@@ -250,6 +255,23 @@ export default function AIArchitectPage() {
         </div>
       </section>
 
+      <section id="studio" className="scroll-mt-20 border-b border-white/5 py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-6">
+          <Eyebrow>Walk an architecture</Eyebrow>
+          <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            The page is the preview. Not a list of other people&apos;s URLs.
+          </h2>
+          <p className="mt-5 max-w-2xl leading-7 text-slate-400">
+            Three kits. Each one names the four decisions it settles. Open the full blueprint when
+            you want the long form. Deploy from the official starter, or from the source that
+            encodes the seams.
+          </p>
+          <div className="mt-12">
+            <ArchitectureStudio />
+          </div>
+        </div>
+      </section>
+
       <section className="border-b border-white/5 py-24 lg:py-32">
         <div className="mx-auto max-w-5xl px-6">
           <Eyebrow>Install</Eyebrow>
@@ -257,7 +279,10 @@ export default function AIArchitectPage() {
             Run it where the architecture actually is.
           </h2>
           <p className="mt-5 max-w-2xl leading-7 text-slate-400">
-            One file, no dependencies, no account. Drop it where your harness looks for skills.
+            The rubric is one file. The team is a plugin: nine gated stages that write
+            <span className="font-mono text-slate-300"> docs/architecture/</span> and stop at the
+            first red gate. Both run on your keys. Nothing is hosted on this page except the
+            interview runner.
           </p>
 
           <div className="mt-10 overflow-x-auto rounded-2xl border border-white/[0.08] bg-black/40 p-5 sm:p-6">
@@ -269,6 +294,20 @@ export default function AIArchitectPage() {
 {`mkdir -p .claude/skills/ai-architect-review
 curl -sSL https://www.frankx.ai${SKILL_PATH} \\
   -o .claude/skills/ai-architect-review/SKILL.md`}
+            </pre>
+          </div>
+
+          <div className="mt-6 overflow-x-auto rounded-2xl border border-white/[0.08] bg-black/40 p-5 sm:p-6">
+            <div className="mb-3 flex items-center gap-2 text-slate-500">
+              <Terminal className="h-4 w-4" aria-hidden="true" />
+              <span className="font-mono text-xs">The team (plugin)</span>
+            </div>
+            <pre className="whitespace-pre font-mono text-xs leading-6 text-slate-300 sm:text-sm">
+{`git clone https://github.com/frankxai/ai-architect
+cd ai-architect
+# Claude Code: add this directory as a local marketplace, then install ai-architect
+# Cursor / AGENTS.md:
+node scripts/install-cross-harness.mjs --cursor --agents-md --target /path/to/your/repo`}
             </pre>
           </div>
 
@@ -290,7 +329,7 @@ curl -sSL https://www.frankx.ai${SKILL_PATH} \\
         <div className="mx-auto max-w-5xl px-6">
           <Eyebrow>The engineering call</Eyebrow>
           <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            Why this is a skill and not an MCP server.
+            A rubric is a file. A team is a plugin. A hosted agent is a product you now operate.
           </h2>
           <div className="mt-8 grid gap-10 lg:grid-cols-2">
             <div className="space-y-5 leading-7 text-slate-400">
