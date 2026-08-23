@@ -371,9 +371,9 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Strict site-wide CSP — excludes /palace, which needs a WebGL-friendly
-        // policy (see the dedicated block below).
-        source: '/((?!palace).*)',
+        // Strict site-wide CSP — excludes /palace (WebGL) and /games/games
+        // (same-origin iframe shells; see the dedicated block below).
+        source: '/((?!palace|games/games).*)',
         headers: [
           {
             key: 'Content-Security-Policy',
@@ -442,6 +442,39 @@ const nextConfig = {
           {
             key: 'X-Robots-Tag',
             value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
+        // /games/[slug] frames these static shells. Site-wide
+        // frame-ancestors 'none' + X-Frame-Options: DENY blank every title.
+        // vercel.json cleanUrls 308s *.html onto this path, so the exception
+        // must cover both the clean URL and the .html alias.
+        source: '/games/games/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              "img-src 'self' data: blob: https:",
+              "media-src 'self'",
+              "connect-src 'self'",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "frame-ancestors 'self'",
+            ].join('; '),
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
           },
         ],
       },
