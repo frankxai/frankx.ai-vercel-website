@@ -1,0 +1,13 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gray-on-color",
+        "value": "text-slate-950 on bg-emerald-100",
+        "createdAt": "2026-08-23T12:22:30.142Z"
+      }
+    ]
+  }
+}
