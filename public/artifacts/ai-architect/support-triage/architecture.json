@@ -1,0 +1,169 @@
+{
+  "schema": "ai-architect.architecture.v1",
+  "generated_at": "2026-08-23",
+  "goal": "Triage the inbound support inbox of a 40-person B2B software company: classify, route, and draft a reply that a support agent approves before anything sends.",
+  "system_name": "support triage",
+  "stage": "verify",
+  "fixture": true,
+  "fixture_note": "Worked example shipped with the AI Architect plugin. Paths, commands and observed outputs are this example's definition, not a recording from a live repository. Re-derive everything against your own repository before treating any line as evidence.",
+  "decisions": {
+    "model": {
+      "verdict": "OPEN",
+      "evidence": "rg -l \"from ['\\\"](openai|@anthropic-ai/sdk)\" -tsrc → 3 files: packages/llm/src/client.ts, apps/worker/src/summarize.ts, apps/api/src/routes/reply-draft.ts",
+      "deferral_cost": "Three call sites to migrate, measured 2026-08-23. Every feature shipped before the seam lands adds one more, and no fallback path, cache key or single spend line can be written until they collapse to one module."
+    },
+    "loop": {
+      "verdict": "MADE",
+      "evidence": "apps/worker/src/triage.ts:L64 — fixed workflow, exit condition in code, three attempts, no prompt-level stop instruction. ADR-0003.",
+      "deferral_cost": null
+    },
+    "trust": {
+      "verdict": "MADE",
+      "evidence": "packages/prompt/src/build.ts:L27 — ticket body wrapped as <untrusted_ticket> in the user message; system message built at packages/prompt/src/system.ts:L14. ADR-0001.",
+      "deferral_cost": null
+    },
+    "run": {
+      "verdict": "MADE",
+      "evidence": "apps/worker/src/queue.ts:L11 — queued worker; longest observed run 41 s against a 300 s request-scoped ceiling. ADR-0002.",
+      "deferral_cost": null
+    }
+  },
+  "planes": {
+    "experience": {
+      "owner": "support lead",
+      "evidence": "03-experience-blueprint.md flow 1, stage 'agent review'"
+    },
+    "observability": {
+      "owner": "platform engineer",
+      "evidence": "apps/worker/src/queue.ts:L11 — queue depth alert; no run-level trace yet, gap g3"
+    },
+    "evaluation": {
+      "owner": "support lead",
+      "evidence": "06-evals/rubric.md run log, 12 cases"
+    },
+    "orchestration": {
+      "owner": "backend engineer",
+      "evidence": "apps/worker/src/triage.ts:L64"
+    },
+    "tools": {
+      "owner": "backend engineer",
+      "evidence": "05-trust-boundary.md tool table, six tools, one finding"
+    },
+    "context": {
+      "owner": "backend engineer",
+      "evidence": "apps/worker/src/retrieve.ts:L31"
+    },
+    "model": {
+      "owner": "unowned",
+      "evidence": "Finding F1: three modules import a provider SDK directly, so nobody owns the fallback path, the cache key or the spend line. This is why gate.decisions is FAIL."
+    }
+  },
+  "gates": {
+    "gate.frame": {
+      "status": "PASS",
+      "evidence": [
+        "00-frame.md § outcome — one sentence",
+        "00-frame.md § non-goals — five named",
+        "00-frame.md § kill criterion — unedited send rate below one in three, or routing accuracy below 90 of 100 on the weekly sample, measured 2026-10-04; measurement command in 07-runbook.md step 6"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.discovery": {
+      "status": "PASS",
+      "evidence": [
+        "rg -c '\\[assumed\\]' docs/architecture/01-discovery.md → 0",
+        "rg -c '\\[unknown\\]' docs/architecture/01-discovery.md → 5 (four questions answered as unknown, plus the convention line in the file's header); every unknown names who can answer it",
+        "rg -n '^## ' docs/architecture/01-discovery.md → 9 headings: eight bank sections plus gaps"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.flow": {
+      "status": "PASS",
+      "evidence": [
+        "rg -c '^### failure branch' docs/architecture/02-user-flows.md → 3",
+        "rg -c '^### human step' docs/architecture/02-user-flows.md → 3",
+        "03-experience-blueprint.md — three tables, every stage in 02-user-flows.md present as a row including failure stages"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.decisions": {
+      "status": "FAIL",
+      "evidence": [
+        "FAIL cause: pass criterion 5 — every plane has a named owner. planes.model.owner = 'unowned'.",
+        "rg -l \"from ['\\\"](openai|@anthropic-ai/sdk)\" -tsrc → 3 files — no single module knows the provider's name, so no one owns the model plane",
+        "Named fix: name an owner for the model plane, then collapse apps/worker/src/summarize.ts and apps/api/src/routes/reply-draft.ts into packages/llm/src/client.ts; re-run the grep and expect 1 file. Owner of the fix: head of engineering (naming), platform engineer (collapse). Estimated 12 engineer hours, not included in fx.build.",
+        "Not the cause: the other three decisions are MADE with file:line evidence and each has an accepted ADR; the model decision is OPEN with a dated deferral cost, which the gate allows.",
+        "Operator decision 2026-08-23: the run was stopped at decide and the operator chose to continue with the finding recorded rather than block the remaining stages. gate.decisions stays FAIL until both halves of the fix land."
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.economics": {
+      "status": "PASS",
+      "evidence": [
+        "prices.json — 8 rows, every row has source_url and retrieved_at 2026-08-22, one day before the run date",
+        "04-roi.md — monthly run cost $98.47 shown as arithmetic over prices.json rows and the fx.* volumes in 00-frame.md",
+        "Sensitivity band on three drivers: ticket volume, minutes saved per ticket, build effort; payback 0.6 to 4.1 months, base 1.5",
+        "node scripts/check-roi.mjs examples/support-triage/docs/architecture → no return-rate acronym found in 04-roi.md or prices.json, 0 hits"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.trust": {
+      "status": "PASS",
+      "evidence": [
+        "05-trust-boundary.md § trace — label line is packages/prompt/src/build.ts:L27, not ABSENT",
+        "rg -l 'buildPrompt\\(' -tsrc → 2 files, both through the wrapper",
+        "Tool table — six tools, tiers assigned; the only irreversible tool (promote_index_namespace) is recorded as finding F2 with severity medium and a rollback command, not silently omitted",
+        "send_email does not exist: rg -n 'send_email' apps/worker/src/tools.ts → 0 hits"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.evals": {
+      "status": "PASS",
+      "evidence": [
+        "06-evals/cases.jsonl → 12 cases: 6 golden, 3 refusal, 3 injection",
+        "06-evals/rubric.md run log — node scripts/run-evals.mjs docs/architecture/06-evals/cases.jsonl → 12 cases, 12 pass, 0 fail",
+        "injection-001..003 fail closed: flagged spans, no forbidden tool call, system prompt not disclosed"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.operate": {
+      "status": "PASS",
+      "evidence": [
+        "07-runbook.md — 7 numbered steps plus one no-dry-run procedure, every command in a fenced block",
+        "Each command's dry-run exit status recorded in the step table; the full re-index cannot be dry-run safely and carries the read-only probe run instead (node scripts/index-macros.mjs --plan)",
+        "Every procedure names a rollback that is itself a command in the runbook, and an owner as a role"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.verify": {
+      "status": "PASS",
+      "evidence": [
+        "receipts/2026-08-23-verify.md — written in a fresh context, 7 evidence pointers re-derived, 7 CONFIRMED",
+        "review.md — leads with what is unowned, assigns no score",
+        "All eight preceding gates carry a status; gate.decisions is FAIL with a named fix and an owner"
+      ],
+      "verified_by": "independent-verifier"
+    }
+  },
+  "artifacts": [
+    "SYSTEM.md",
+    "WORKFLOW.md",
+    "SOP.md",
+    "00-frame.md",
+    "01-discovery.md",
+    "02-user-flows.md",
+    "03-experience-blueprint.md",
+    "04-roi.md",
+    "prices.json",
+    "05-trust-boundary.md",
+    "06-evals/cases.jsonl",
+    "06-evals/rubric.md",
+    "07-runbook.md",
+    "adr/ADR-0001-label-untrusted-ticket-text-at-one-builder.md",
+    "adr/ADR-0002-run-triage-as-a-queued-worker.md",
+    "adr/ADR-0003-fixed-workflow-not-an-agent-loop.md",
+    "architecture.json",
+    "receipts/2026-08-23-verify.md",
+    "review.md"
+  ]
+}

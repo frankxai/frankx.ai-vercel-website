@@ -1,0 +1,94 @@
+# Standard operating procedure — contract question answering
+
+Every `/architect*` command loads this file before it does anything else. If a command's
+instructions and this file disagree, this file wins. If this file is missing from
+`docs/architecture/`, the plugin's template is used and a copy is written here on the first run.
+
+## Model routing
+
+| work | model | why |
+|---|---|---|
+| judgment: decisions, trust boundary, independent verification | opus | irreversible calls; a wrong verdict is expensive to unwind |
+| build: discovery, flows, economics, evals, runbook | sonnet | bounded, checkable work with a written output |
+| mechanical: file moves, table formatting, json shape checks | haiku or a local script | no judgment involved |
+
+Do not upgrade a stage's model to get a better-sounding answer. Upgrade it when the stage's gate
+keeps failing on judgment, and record that in `review.md`.
+
+## Write scopes
+
+No agent in this workflow writes source code. Every agent writes only into
+`docs/architecture/`, and only the paths listed for it.
+
+| agent | may write | must not write |
+|---|---|---|
+| principal-architect | `SYSTEM.md`, `adr/*`, `architecture.json` | anything outside `docs/architecture/` |
+| discovery-analyst | `00-frame.md`, `01-discovery.md` | any other artifact |
+| experience-designer | `02-user-flows.md`, `03-experience-blueprint.md` | any other artifact |
+| economics-analyst | `04-roi.md`, `prices.json` | any other artifact |
+| trust-reviewer | `05-trust-boundary.md` | any other artifact |
+| eval-engineer | `06-evals/*` | any other artifact |
+| delivery-engineer | `WORKFLOW.md`, `SOP.md`, `07-runbook.md` | any other artifact |
+| independent-verifier | `receipts/*`, `review.md` | everything else — it holds no editing tools and writes via shell redirection only |
+
+Never overwrite a file that already exists. Write `<name>.proposed.md` beside it, and say so in
+the command's closing summary. The only files updated in place are `architecture.json` and
+`review.md`, and only by the agents that own them.
+
+## Stop conditions
+
+Stop and hand back to the human when any of these is true. Stopping is a result, not a failure.
+
+1. The stage's gate is red and the missing input is a fact only the operator has.
+2. A number is needed and no source URL can be retrieved for it. Write `[unknown]`, never a guess.
+3. The work would require writing outside `docs/architecture/`.
+4. An artifact already exists and the change is not additive.
+5. Two artifacts disagree about the same fact. Report the disagreement; do not pick a winner.
+6. A human gate below is reached.
+
+## Human gates
+
+These actions are never taken by an agent in this workflow. Name the action, name what it would
+do, and stop.
+
+| gate | covers |
+|---|---|
+| publish | anything that becomes publicly readable |
+| external_send | mail, chat, tickets, webhooks leaving the repository |
+| spend | provisioning, purchases, plan changes, anything metered |
+| dns | records, domains, certificates |
+| credentials | creating, rotating, reading, or pasting a secret |
+| destructive | delete, force-push, drop, truncate, prune |
+| legal_ip | licences, terms, contributor agreements, third-party content |
+| brand_identity | naming, positioning, public voice |
+
+## Escalation
+
+| situation | escalate to | with |
+|---|---|---|
+| a gate fails twice on the same missing input | the operator | the gate id, the missing input, and the one command that would produce it |
+| two agents produce contradicting evidence | principal-architect | both evidence pointers, unresolved |
+| the verifier cannot re-derive an evidence pointer | the agent that wrote it | the failed command and its actual output |
+| a stage needs a decision the goal does not cover | the operator | the decision, the options, and the cost of deferring |
+
+Escalation is written into `review.md` as a dated line. Nothing is escalated verbally.
+
+## Evidence rules
+
+An evidence pointer is `path/to/file.ts:L42`, or a fenced command plus its observed output, for
+example `rg -l "from ['\"]openai" -tsrc → 3 files`. A pointer to a document, a conversation, or a
+person is not evidence. Every number carries a source URL and a retrieval date.
+
+## This system's specifics
+
+- `legal_ip` is a live gate here, not a formality. The system answers questions about contracts it
+  did not write, for a firm that is accountable for the answer. Every answer carries citations and
+  every citation is checkable; an answer with no clause to point at is a refusal, not a hedge.
+- The `trust` decision is `OPEN` and the trust gate is red. Until the label line exists, uploaded
+  contracts from outside the firm do not go through this system. That restriction is operational,
+  not aspirational: it is step 7 of `07-runbook.md` and the toggle is off by default for the
+  external-upload path.
+- Judgment stages here are `decide`, `secure` and `verify`. `secure` is expected to run twice:
+  once now, and once after the fix lands.
+
+Generated by AI Architect · https://www.frankx.ai/ai-architect

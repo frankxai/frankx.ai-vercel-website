@@ -1,0 +1,68 @@
+{
+  "schema": "ai-architect.prices.v1",
+  "rows": [
+    {
+      "item": "Model gateway — economy tier input tokens",
+      "unit": "per 1M input tokens",
+      "unit_price": 1,
+      "currency": "USD",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "retrieved_at": "2026-08-22",
+      "notes": "Standard first-party API pricing, global routing. Example provider (Anthropic Claude Haiku 4.5); capability is generic — a model gateway economy tier."
+    },
+    {
+      "item": "Model gateway — economy tier output tokens",
+      "unit": "per 1M output tokens",
+      "unit_price": 5,
+      "currency": "USD",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "retrieved_at": "2026-08-22",
+      "notes": "Standard first-party API pricing, global routing. Example provider (Anthropic Claude Haiku 4.5); capability is generic — a model gateway economy tier."
+    },
+    {
+      "item": "Model gateway — workhorse tier input tokens",
+      "unit": "per 1M input tokens",
+      "unit_price": 2,
+      "currency": "USD",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "retrieved_at": "2026-08-22",
+      "notes": "Standard first-party API pricing, global routing, no prompt caching. Example provider (Anthropic Claude Sonnet 5); capability is generic — a model gateway workhorse tier."
+    },
+    {
+      "item": "Model gateway — workhorse tier output tokens",
+      "unit": "per 1M output tokens",
+      "unit_price": 10,
+      "currency": "USD",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "retrieved_at": "2026-08-22",
+      "notes": "Standard first-party API pricing, global routing. Example provider (Anthropic Claude Sonnet 5); capability is generic — a model gateway workhorse tier."
+    },
+    {
+      "item": "Model gateway — frontier tier input tokens",
+      "unit": "per 1M input tokens",
+      "unit_price": 5,
+      "currency": "USD",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "retrieved_at": "2026-08-22",
+      "notes": "Standard first-party API pricing, global routing, no fast mode. Example provider (Anthropic Claude Opus 5); capability is generic — a model gateway frontier tier."
+    },
+    {
+      "item": "Model gateway — frontier tier output tokens",
+      "unit": "per 1M output tokens",
+      "unit_price": 25,
+      "currency": "USD",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "retrieved_at": "2026-08-22",
+      "notes": "Standard first-party API pricing, global routing. Example provider (Anthropic Claude Opus 5); capability is generic — a model gateway frontier tier."
+    },
+    {
+      "item": "Object storage — standard storage",
+      "unit": "per GB per month",
+      "unit_price": 0.015,
+      "currency": "USD",
+      "source_url": "https://developers.cloudflare.com/r2/pricing/",
+      "retrieved_at": "2026-08-22",
+      "notes": "Standard storage class, no egress fee. Example provider (Cloudflare R2); capability is generic — an object store."
+    }
+  ]
+}

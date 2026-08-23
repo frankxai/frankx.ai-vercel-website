@@ -1,0 +1,169 @@
+{
+  "schema": "ai-architect.architecture.v1",
+  "generated_at": "2026-08-23",
+  "goal": "Build a personal AI centre of excellence on one person's own machine: three scheduled loops, a local memory store, and an ad-hoc session mode, with every output read by the operator before it becomes a decision.",
+  "system_name": "personal AI centre of excellence",
+  "stage": "verify",
+  "fixture": true,
+  "fixture_note": "Worked example shipped with the AI Architect plugin. Paths, commands and observed outputs are this example's definition, not a recording from a live machine. Re-derive everything against your own machine before treating any line as evidence.",
+  "decisions": {
+    "model": {
+      "verdict": "MADE",
+      "evidence": "packages/model/src/route.ts:L14 — one module, routing by task; rg -l \"from ['\\\"](openai|@anthropic-ai/sdk|@google/genai)\" -tsrc → 1 file. ADR-0002.",
+      "deferral_cost": null
+    },
+    "loop": {
+      "verdict": "MADE",
+      "evidence": "packages/loops/src/run.ts:L58 — fixed workflow per scheduled job, token budget as the exit condition in code.",
+      "deferral_cost": null
+    },
+    "trust": {
+      "verdict": "MADE",
+      "evidence": "packages/prompt/src/context.ts:L33 — fetched text wrapped as <untrusted_web> in the user message; the system message is assembled at L12 from a typed object with no free-text field. ADR-0003 covers the memory write path.",
+      "deferral_cost": null
+    },
+    "run": {
+      "verdict": "MADE",
+      "evidence": "scripts/schedule/register-tasks.ps1:L27 — local scheduled tasks; longest run 400 s, no platform ceiling, bounded by the loop's own token budget. ADR-0001.",
+      "deferral_cost": null
+    }
+  },
+  "planes": {
+    "experience": {
+      "owner": "operator, as reader",
+      "evidence": "03-experience-blueprint.md flow 3, stage 'operator promotes'"
+    },
+    "observability": {
+      "owner": "operator, as maintainer",
+      "evidence": "packages/loops/src/run.ts:L88 — one run-log line per run"
+    },
+    "evaluation": {
+      "owner": "operator, as maintainer",
+      "evidence": "06-evals/rubric.md run log, 13 cases"
+    },
+    "orchestration": {
+      "owner": "operator, as maintainer",
+      "evidence": "packages/loops/src/run.ts:L58"
+    },
+    "tools": {
+      "owner": "operator, as maintainer",
+      "evidence": "05-trust-boundary.md tool table, eight tools, findings F1 and F2"
+    },
+    "context": {
+      "owner": "operator, as maintainer",
+      "evidence": "packages/prompt/src/context.ts:L33"
+    },
+    "model": {
+      "owner": "operator, as maintainer",
+      "evidence": "packages/model/src/route.ts:L14"
+    }
+  },
+  "gates": {
+    "gate.frame": {
+      "status": "PASS",
+      "evidence": [
+        "00-frame.md § outcome — one sentence",
+        "00-frame.md § non-goals — five named, each a thing a reader could otherwise expect",
+        "00-frame.md § kill criterion — brief opened on fewer than 20 of 30 days, measured 2026-09-22 with node scripts/brief-open-rate.mjs --last 30; second floor on ledger time"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.discovery": {
+      "status": "PASS",
+      "evidence": [
+        "rg -c '\\[assumed\\]' docs/architecture/01-discovery.md → 0",
+        "rg -c '\\[unknown\\]' docs/architecture/01-discovery.md → 3 (two questions answered as unknown, plus the convention line in the file's header); both name the operator and what would close them",
+        "rg -n '^## ' docs/architecture/01-discovery.md → 9 headings: eight bank sections plus gaps"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.flow": {
+      "status": "PASS",
+      "evidence": [
+        "rg -c '^### failure branch' docs/architecture/02-user-flows.md → 3",
+        "rg -c '^### human step' docs/architecture/02-user-flows.md → 3",
+        "03-experience-blueprint.md — three tables, every stage present including failure stages"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.decisions": {
+      "status": "PASS",
+      "evidence": [
+        "All four decisions MADE with file:line evidence; ADR-0001, ADR-0002, ADR-0003 accepted",
+        "Every plane has a named owner — all seven are the same person, wearing two named hats, recorded as bus factor one in 01-discovery.md § 33",
+        "rg -l \"from ['\\\"](openai|@anthropic-ai/sdk|@google/genai)\" -tsrc → 1 file"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.economics": {
+      "status": "PASS",
+      "evidence": [
+        "prices.json — 7 rows, every row with source_url and retrieved_at 2026-08-22",
+        "04-roi.md — monthly run cost $15.88 shown as arithmetic over prices.json rows and the fx.* volumes",
+        "Sensitivity on three drivers: minutes saved per day, build effort, token volume; payback 0.9 to 3.3 months, base 1.7",
+        "node scripts/check-roi.mjs examples/personal-ai-coe/docs/architecture → no return-rate acronym found in 04-roi.md or prices.json, 0 hits"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.trust": {
+      "status": "PASS",
+      "evidence": [
+        "05-trust-boundary.md § trace — label line is packages/prompt/src/context.ts:L33, not ABSENT; the system message is assembled from a typed object with no free-text field",
+        "rg -l 'buildContext\\(' -tsrc → 3 files, all in packages/loops/",
+        "Tool table — eight tools with tiers; the two irreversible writes are gated by the promote step and the id echo; run_backup is recorded as finding F1 with severity high rather than omitted",
+        "rg -n 'send_mail|publish_post' packages/tools/src → 0 hits"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.evals": {
+      "status": "PASS",
+      "evidence": [
+        "06-evals/cases.jsonl → 13 cases: 7 golden, 3 refusal, 3 injection",
+        "06-evals/rubric.md run log — node scripts/run-evals.mjs docs/architecture/06-evals/cases.jsonl → 13 cases, 13 pass, 0 fail",
+        "injection-001..003 fail closed: flagged spans, no file read outside the run's source set, no send capability claimed"
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.operate": {
+      "status": "FAIL",
+      "evidence": [
+        "FAIL cause: pass criteria 2 and 3 — every command must name a binary that resolves on the target machine and must have been dry-run with the observed exit status recorded. Step 5r fails both.",
+        "command -v restic → exit 1, no output. The rollback for the memory-store migration has never run.",
+        "Step 5b, the fallback that avoids the missing binary, cannot run either: scripts/memory-export.mjs has never been scheduled, so no archive exists to restore from.",
+        "Consequence recorded in 07-runbook.md: the memory-store migration does not run, and the nightly job is honestly described as a one-way copy rather than a backup.",
+        "Named fix, either half closes the gate: (1) install the snapshot backup tool, restore to a scratch target, record the exit status — fixture estimate 40 minutes; or (2) schedule scripts/memory-export.mjs nightly, dry-run scripts/memory-import.mjs, record the exit status — fixture estimate 90 minutes, and it removes an external dependency. Owner: the operator."
+      ],
+      "verified_by": "independent-verifier"
+    },
+    "gate.verify": {
+      "status": "PASS",
+      "evidence": [
+        "receipts/2026-08-23-verify.md — written in a fresh context, 8 evidence pointers re-derived, 8 CONFIRMED",
+        "review.md — leads with what is unowned, assigns no score",
+        "All eight preceding gates carry a status; gate.operate is FAIL with two named fixes and an owner"
+      ],
+      "verified_by": "independent-verifier"
+    }
+  },
+  "artifacts": [
+    "SYSTEM.md",
+    "WORKFLOW.md",
+    "SOP.md",
+    "00-frame.md",
+    "01-discovery.md",
+    "02-user-flows.md",
+    "03-experience-blueprint.md",
+    "04-roi.md",
+    "prices.json",
+    "05-trust-boundary.md",
+    "06-evals/cases.jsonl",
+    "06-evals/rubric.md",
+    "07-runbook.md",
+    "adr/ADR-0001-the-machine-is-the-runtime.md",
+    "adr/ADR-0002-route-by-task-behind-one-seam.md",
+    "adr/ADR-0003-memory-is-written-only-by-a-human-promotion-step.md",
+    "architecture.json",
+    "receipts/2026-08-23-verify.md",
+    "review.md"
+  ]
+}
