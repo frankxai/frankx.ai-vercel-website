@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 931,
-    "aliases": 61,
+    "total": 932,
+    "aliases": 58,
     "byType": {
       "core": 23,
       "section": 425,
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 242,
+      "blog": 243,
       "research": 16,
       "guide": 25,
       "library": 56,
@@ -2216,6 +2216,19 @@
         "ai-2026",
         "benchmarks",
         "multimodal"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gemini-3-7-flash-what-google-shipped-august-2026",
+      "title": "Gemini 3.7 Flash: what Google actually shipped on 13 August 2026",
+      "description": "Google's 13 August Flash update, in vendor numbers and one live AGY admission. Not a harness winner. Not a ChatGPT killer.",
+      "tags": [
+        "Gemini 3.7 Flash",
+        "Google",
+        "AI Models",
+        "Coding Agents",
+        "AGY"
       ],
       "type": "blog"
     },
@@ -9199,8 +9212,6 @@
   "aliases": {
     "/academy": "/ai-architect-academy",
     "/aco": "/agents",
-    "/ai-coe": "/acos",
-    "/ai-computer": "/ai-architecture",
     "/aiarchitectacademy": "/ai-architect-academy",
     "/ais": "/allies/ana-cancino",
     "/alliance/cecilia": "/allies/ana-cancino",
@@ -9254,7 +9265,6 @@
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
     "/workshops/ikigai": "/workshops/ikigai-branding",
-    "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
     "/workshops/ikigai/v2": "/workshops/ikigai-branding",
     "/workshops/ikigai/v3": "/workshops/ikigai-branding",
     "/workshops/ikigai/v4": "/workshops/ikigai-branding"
