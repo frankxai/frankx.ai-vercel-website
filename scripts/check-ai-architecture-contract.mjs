@@ -42,15 +42,35 @@ if (!['Request-scoped', 'Durable runtime', 'Managed service'].every((shape) =>
 // The atlas derives its filter buttons from these values, so a typo does not
 // fail loudly -- it ships as a selectable plane with one architecture behind it.
 // Membership, not truthiness, is what makes the declaration meaningful.
+// These are the seven planes the field guide, the blog post, the diagrams and
+// the ai-architect-review skill all use. The atlas used to carry a second,
+// different set of seven under the same word, so a reader picked a plane at the
+// top of the page and then read a different plane vocabulary below it (#515).
+// One vocabulary now, and this list is what keeps it that way.
 const PLANES = [
   'Experience',
+  'Observability',
+  'Evaluation',
   'Orchestration',
-  'Runtime',
-  'Intelligence',
-  'Integration',
-  'Reliability',
-  'Operations',
+  'Tool surface',
+  'Context and retrieval',
+  'Model access',
 ]
+// A hardcoded list would only record today's answer. The field guide's own
+// referenceStack is the source the page renders, so the list above is checked
+// against it: rename a plane there and this fails until the atlas is remapped,
+// which is the divergence #515 was.
+const guideData = await readFile(new URL('components/ai-architecture/pillar/guide-data.ts', root), 'utf8')
+const stackStart = guideData.indexOf('referenceStack')
+const stackEnd = guideData.indexOf('\nexport ', stackStart + 'referenceStack'.length)
+const stackSegment = guideData.slice(stackStart, stackEnd === -1 ? guideData.length : stackEnd)
+const guidePlanes = [...stackSegment.matchAll(/^\s{4}name:\s*'([^']+)'/gm)].map((match) => match[1])
+if (guidePlanes.length !== PLANES.length || guidePlanes.some((name, index) => name !== PLANES[index])) {
+  failures.push(
+    `plane vocabulary drifted from the field guide — guide has [${guidePlanes.join(', ')}], contract has [${PLANES.join(', ')}]`,
+  )
+}
+
 const unknownPlanes = [...new Set(
   sources.map((source) => source.layer).filter((layer) => !PLANES.includes(layer)),
 )]
@@ -117,6 +137,18 @@ const MAPPING_ANCHORS = [
   'ceiling is higher', // run MADE
   'close or lower', // run OPEN
 ]
+// The skill is the third place the seven planes are written down, and it is the
+// copy that travels into other people's repositories. If it drifts from the
+// guide, a reader gets one vocabulary on the page and another in their agent.
+// Read the plane-walk table specifically: a whole-document search passes on the
+// frontmatter alone, which is a gate that cannot fail.
+const skillPlanes = [...skill.matchAll(/^\|\s*\d{2}\s*\|\s*([^|]+?)\s*\|/gm)].map((match) => match[1])
+if (skillPlanes.length !== PLANES.length || skillPlanes.some((name, index) => name !== PLANES[index])) {
+  failures.push(
+    `skill plane walk drifted — skill has [${skillPlanes.join(', ')}], field guide has [${PLANES.join(', ')}]`,
+  )
+}
+
 for (const anchor of MAPPING_ANCHORS) {
   const needle = canon(anchor)
   if (!runnerCanon.includes(needle)) failures.push(`review runner verdict mapping changed — anchor missing: "${anchor}"`)

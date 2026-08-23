@@ -202,7 +202,7 @@ export function OfficialArchitectureAtlas() {
               Build the agent system you can operate.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-              Official reference architectures and working repositories, organised by the plane they belong to rather than the vendor that published them. Every external link in this catalog was checked on 12 July 2026.
+              Official reference architectures and working repositories, organised by the plane they belong to rather than the vendor that published them. Every external link in this catalog was checked when its entry was added — the July 2026 set on 12 July, the model-access and evaluation entries on 23 August.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
@@ -283,6 +283,10 @@ export function OfficialArchitectureAtlas() {
               <h2 className="mt-3 max-w-2xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
                 Start from maintained architecture, then adapt it deliberately.
               </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/50">
+                Filtered by the same seven planes the field guide uses below. Pick the plane you
+                cannot currently name an owner for — that is where the next incident comes from.
+              </p>
             </div>
             <div className="flex flex-wrap gap-2" role="group" aria-label="Filter architectures by plane">
               {planeFilters.map((item) => (
