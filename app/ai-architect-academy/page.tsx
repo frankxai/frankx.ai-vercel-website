@@ -243,6 +243,35 @@ export default function AIArchitectAcademyPage() {
               previews from an enterprise AI architect.
             </motion.p>
 
+            {/*
+              Three surfaces cover this subject and none of them said how they
+              relate, so a reader landing on any one of them could not tell
+              whether the other two were the same thing. Curriculum here,
+              reference there, verdict on the third.
+            */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mb-8 max-w-2xl leading-relaxed text-slate-500"
+            >
+              This page is the curriculum.{' '}
+              <Link
+                href="/ai-architecture"
+                className="text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+              >
+                The field guide
+              </Link>{' '}
+              is the reference — the seven planes and the decisions behind them.{' '}
+              <Link
+                href="/ai-architect"
+                className="text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+              >
+                The architecture review
+              </Link>{' '}
+              runs those decisions against a system you already have.
+            </motion.p>
+
             {/* Tech badges */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}

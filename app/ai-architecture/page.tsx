@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+
 import { OfficialArchitectureAtlas } from '@/components/ai-architecture/OfficialArchitectureAtlas'
 import { PillarGuide, pillarFaqs } from '@/components/ai-architecture/pillar/PillarGuide'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
@@ -70,6 +73,43 @@ export default function AIArchitecturePage() {
       </nav>
 
       <PillarGuide />
+
+      {/*
+        The guide ends by naming seven planes and telling the reader an unowned
+        plane is where the next incident comes from. Until now the page stopped
+        there, with no way to act on it — /ai-architect runs the same four
+        decisions against a real system, and was reachable from everywhere
+        except the guide that teaches them.
+      */}
+      <section className="border-t border-white/5 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <p className="font-mono text-xs text-emerald-300">Run it</p>
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Seven planes is a reading. Four decisions is a verdict.
+          </h2>
+          <p className="mt-5 leading-7 text-slate-400">
+            The four decisions above are the ones that are expensive to reverse. Answer them for
+            your own system and you get a report naming which are made, which are still open, and
+            which to close first — or install the same rubric into the coding agent that already
+            has the repository open, and let it grep for the evidence instead of asking you.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-5">
+            <Link
+              href="/ai-architect#run"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+            >
+              Run the architecture review
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/ai-architect"
+              className="rounded-sm text-sm font-medium text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+            >
+              Get the skill (MIT)
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
