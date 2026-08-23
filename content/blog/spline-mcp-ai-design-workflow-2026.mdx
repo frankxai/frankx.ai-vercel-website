@@ -1,0 +1,331 @@
+---
+title: "Spline MCP: The AI-Native 3D Design Workflow"
+description: "A production architecture for Spline MCP with Codex, Next.js, and Vercel: scene generation, human review, embedding, performance, and business workflows."
+date: "2026-08-23"
+lastUpdated: "2026-08-23"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["spline-mcp", "ai-architecture", "3d-web", "creative-workflows", "vercel"]
+image: "/images/blog/generated/spline-mcp-ai-design-workflow-2026-hero.webp"
+featured: true
+readingGoal: "Leave with a production boundary for Spline MCP, a repeatable scene-to-site workflow, and the criteria for deciding when interactive 3D earns its cost."
+tldr: "Spline MCP turns a 3D editor into an agent-operable production surface. The winning architecture keeps business logic and content in Next.js, uses Spline for spatial interaction, requires human visual review, and ships every scene with a static fallback, performance budget, source artifact, and measurable conversion job. This article maps the workflow, boundaries, and business cases."
+keywords:
+  - "Spline MCP"
+  - "Spline MCP tutorial"
+  - "AI 3D design workflow"
+  - "Spline Next.js embed"
+  - "agentic web design"
+  - "interactive 3D website"
+  - "AI creative stack"
+series:
+  slug: "ai-native-creative-stack"
+  title: "The AI-Native Creative Stack"
+  part: 1
+  total: 4
+architectNote:
+  recommendation: "Use Spline MCP as a supervised experience compiler, not an application runtime. Keep identity, commerce, state, analytics, and accessibility in Next.js; ship a click-to-load scene with a static fallback and a conversion hypothesis."
+  coePillar: "Experience"
+  personas:
+    - persona: "Experience Director"
+      pick: "Own the concept, scene brief, interaction grammar, and conversion job."
+    - persona: "Spline Builder"
+      pick: "Operate one scene at a time through MCP and preserve source and version history."
+    - persona: "Web Integrator"
+      pick: "Own embedding, fallbacks, analytics, accessibility, and performance budgets."
+---
+
+**TL;DR:** Spline MCP is most valuable when it turns a precise creative brief into an editable, interactive scene—not when it replaces the rest of the product stack. Keep the article, application state, identity, commerce, protected data, analytics, and deployment controls in Next.js and Vercel. Treat Spline as one supervised experience island with a static poster, an explicit performance budget, and a business job.
+
+This is the architecture note before the lab result. Spline V2 arrived on August 20, 2026, and its MCP server requires the local desktop app on macOS or Windows. I can verify the platform design from primary documentation now; I will only call the follow-up a hands-on test after the FrankX scene, MCP trace, exports, and Vercel measurements exist.
+
+<Callout type="insight">
+The important shift is not “AI can generate a 3D object.” It is that an agent can operate an editable visual system: inspect the scene, change objects and materials, wire states and events, take screenshots, write scene-local code, and keep iterating inside the same document.
+</Callout>
+
+## What actually changed with Spline V2?
+
+[Spline V2](https://blog.spline.design/spline-v2) combines four changes that matter together: a rebuilt WebGPU editor, an integrated AI agent, a code layer, and an MCP server that exposes the editor to tools such as Codex, Claude Code, Cursor, ChatGPT, VS Code, and Antigravity.
+
+The agent can work on objects, materials, lights, cameras, particles, booleans, variables, states, and events. It can also capture screenshots to inspect its work. The Code mode adds an HTML and JavaScript layer over the canvas for interface elements, game logic, and scene control. Spline reports that the new renderer uses WebGPU by default and falls back to WebGL when needed.
+
+The architectural consequence is larger than a faster creation workflow. The loop becomes:
+
+1. express intent as a scene contract;
+2. let an agent edit the live scene graph;
+3. inspect the result visually;
+4. export an interactive runtime;
+5. embed it inside the product;
+6. measure whether the experience did useful work; and
+7. derive still images, motion, social crops, and reusable assets from the same source.
+
+That is why I think of Spline MCP as an **experience compiler**. Natural-language intent is not the final artifact. It is compiled into named objects, materials, cameras, variables, interactions, and export settings that remain editable by a human.
+
+There is also a hard boundary. According to [Spline’s MCP documentation](https://docs.spline.design/generate/spline-mcp-server), the server is bundled with the Spline desktop application, binds to `127.0.0.1`, and routes structured tool calls into an open Spline 3D or Hana tab. It does not run from the browser and is not a headless cloud service. Spline AI generation invoked by the agent still uses Spline’s cloud.
+
+That local design is useful, but “local MCP” does not mean the entire workflow is local. The selected AI client and model provider still have their own data path. Production teams need to evaluate both sides.
+
+## Where should Spline live in an AI product architecture?
+
+The clean boundary is simple: **Spline owns spatial presentation and interaction; the application owns truth.**
+
+| Layer | System of record | What belongs there | What should not move into Spline |
+|---|---|---|---|
+| Intent and canon | GitHub, briefs, design system | claims, voice, scene contract, acceptance criteria | vague prompts as the only specification |
+| Agent orchestration | Codex or another MCP client | planning, tool calls, critique, code reconciliation | unattended production publishing |
+| Experience authoring | Spline Desktop and MCP | geometry, materials, light, camera, variables, states, scene-local motion | customer identity, billing, secrets, canonical product data |
+| Application runtime | Next.js | semantic copy, controls, accessibility, product state, protected API access | critical meaning rendered only inside canvas |
+| Distribution | Vercel | previews, production deployment, analytics, performance evidence, rollback | unreviewed scene drafts |
+| Asset governance | Vercel Blob plus a Git manifest | source archive, poster, stills, video, checksum, rights record | large opaque binaries in normal Git history |
+
+This follows the same principle I use for [production MCP architecture](/blog/mcp-protocol-production-architecture-2026): a tool can be powerful without becoming the system of record.
+
+For the first FrankX implementation, the article should remain server-rendered HTML. The 3D scene should be one progressively enhanced client island placed after the governing argument—not the page’s LCP hero. The hero should be a static export from the same scene. If WebGPU, JavaScript, the scene host, or the user’s device fails, the article must still communicate the entire idea.
+
+Protected API calls belong behind a Next.js Route Handler or server-side function. The page can translate an approved response into a narrow visual value such as color, scale, position, label, or state. It should never expose an API key or authorization token to a published scene.
+
+Spline’s [Code API for Web](https://docs.spline.design/exporting-your-scene/web/code-api-for-web) can update variables and object properties, trigger transitions, and listen for scene events from React or Next.js. That is the right bridge: application state stays authoritative, while Spline visualizes a bounded projection of it.
+
+## What should remain outside the scene?
+
+Interactive 3D becomes expensive when teams ask the canvas to do the work of the document, application, and backend at once.
+
+Keep these outside Spline:
+
+- **Meaning.** Headings, explanations, comparison criteria, citations, pricing context, and calls to action should exist in the DOM.
+- **Identity and commerce.** Authentication, account state, entitlements, payments, and customer records stay in the application and backend.
+- **Secrets.** Public scene code and client-side requests must be treated as inspectable.
+- **Canonical state.** A Spline variable may reflect a product choice, but it should not become the source of truth for that choice.
+- **Accessibility.** Keyboard controls, focus order, labels, text alternatives, and reduced-motion behavior need an HTML owner.
+- **Release authority.** An agent can create a draft; a human approves the visual target and production promotion.
+
+The [Model Context Protocol tool specification](https://modelcontextprotocol.io/specification/2026-07-28/server/tools) describes tools as model-controlled, while still calling for visible tool exposure, clear invocation, and human control over sensitive operations. For a shared Spline file, the safest operating model is one writer agent per scene, a separate visual critic, and a human approver.
+
+Several AI sessions can connect to the same running editor. That is technically convenient and operationally ambiguous. Until scene-level change attribution and merge semantics are proven, “one scene, one writer” is the adult default.
+
+## Which Spline export should a Next.js team choose?
+
+Spline supports several routes to the web, but they represent different ownership levels.
+
+| Export | Best use | Strength | Boundary |
+|---|---|---|---|
+| Public URL or iframe | internal proof, fast prototype | lowest integration effort | limited coordination with the parent page |
+| `<spline-viewer>` | editorial embed, campaign module | native web component, global scroll and pointer events, lazy loading by default | hosted runtime with less application control than React |
+| React or Next.js runtime | product explainer, configurator, measured interaction | Code API, event listeners, application-controlled state | adds client code and requires careful loading behavior |
+| Three.js or React Three Fiber export | custom rendering and deeper runtime ownership | flexible composition with an existing 3D stack | more engineering; exported behavior is not equivalent across formats |
+| Self-hosted code export | compliance or portability case | deployment control | currently an Enterprise feature on Spline’s pricing page |
+| GLB | interchange with Blender, a game engine, AR, or another pipeline | portable geometry and basic materials | not a faithful backup of a Spline experience |
+
+Spline’s [Viewer documentation](https://docs.spline.design/exporting-your-scene/web/exporting-as-spline-viewer) says `<spline-viewer>` is a native web component, supports page-level scroll and pointer events, and lazy-loads by default. That makes it the most sensible first editorial integration.
+
+For the FrankX test, I would start even more conservatively: a poster that loads the Viewer only after explicit activation. This proves whether readers choose to interact before we add a larger runtime dependency or make the experience automatic.
+
+Move to the React/Next.js runtime when the scene must share state with the application or emit meaningful events. Move to React Three Fiber when the team needs custom shaders, a more explicit render loop, deep component composition, or runtime behavior that no longer fits Spline’s scene model. Move to a game engine when authoritative simulation, persistent worlds, complex physics, or networked multiplayer becomes the product.
+
+Spline is a bridge between design and runtime. It is not a replacement for Blender, Figma, React Three Fiber, or a dedicated game engine.
+
+## How should the MCP production workflow run?
+
+The prompt should not be the brief. The scene contract should be the brief.
+
+### 1. Define the job before the scene
+
+Every scene gets one business sentence:
+
+> This experience helps **this audience** understand or do **this task**, so we expect **this measurable behavior**.
+
+For the first article: “Help an AI builder understand the boundary between agent, scene, application, and deployment, so we expect more architecture-diagram completion and higher-intent clicks into the next article or implementation offer.”
+
+### 2. Specify the scene as named, testable parts
+
+The contract should include:
+
+- the visual thesis and prohibited clichés;
+- named objects and hierarchy;
+- camera and responsive states;
+- material, light, and polygon constraints;
+- interaction states and external events;
+- reduced-motion behavior;
+- poster, still, social, video, source, and interchange exports; and
+- acceptance tests for desktop, mobile, keyboard, and failure states.
+
+### 3. Let one agent author, then force visual inspection
+
+The Spline MCP can create and edit a scene, set cameras, generate assets, and take screenshots. The correct loop is not one giant prompt. It is three bounded passes:
+
+1. **Structure:** object hierarchy, proportions, camera, and composition.
+2. **Material and light:** surface system, contrast, depth, and brand fit.
+3. **Interaction and performance:** states, events, mobile behavior, and export settings.
+
+After each pass, capture evidence. A critic should judge the screenshot and object structure against the contract without becoming a second writer.
+
+### 4. Optimize before integration
+
+Spline’s [scene optimization guide](https://docs.spline.design/exporting-your-scene/how-to-optimize-your-scene) recommends reducing polygons and objects, using compression, keeping materials and post-processing simple, reusing components and material assets, and generally using fewer than three lights. It advises one or two embeds per page and no more than three.
+
+Our article needs one.
+
+Use the Spline Performance Panel and record the output. Choose automatic rendering so WebGPU can fall back to WebGL. Create a simplified mobile state rather than shrinking the desktop composition until its text and interaction targets become useless.
+
+### 5. Export a draft, not “production”
+
+[Spline code exports](https://docs.spline.design/exporting-your-scene/web/exporting-as-code) support draft snapshots and a separate Production version. The scene draft should first land in a Git branch and Vercel Preview. The poster, source manifest, runtime URL, analytics event names, and rollback behavior should travel together.
+
+GitHub holds reviewable text and code. Vercel provides the preview and deployment evidence. Spline holds the editable scene and hosted runtime. Vercel Blob holds the downloadable source archive and media derivatives. No single system has to pretend to be all four.
+
+### 6. Measure the experience, not its novelty
+
+Track at least:
+
+- `spline_loaded`;
+- `spline_first_interaction`;
+- `architecture_mode_changed`;
+- `scene_completed`; and
+- the external CTA event.
+
+Compare Vercel Speed Insights before and after the embed. Record LCP, INP, and CLS on desktop and mobile. Do not repeat vendor performance claims as FrankX measurements. The build log becomes the second article only after those numbers exist.
+
+## How should tokens, credits, and tool calls be budgeted?
+
+There is no honest single “AI token budget” for this workflow because three different meters are involved.
+
+| Meter | What consumes it | What Spline publishes | FrankX operating rule |
+|---|---|---|---|
+| Model tokens | research, planning, visual critique, code, tool reasoning | controlled by the selected AI client/model, not Spline | cap the number of passes and supply a compact scene contract |
+| MCP tool calls | scene inspection and editor mutations | Max includes higher limits; numeric ceilings are not public | log calls during the first lab and optimize repeated edits afterward |
+| Spline AI credits | agent runs, 3D generation, textures, Hana prompts | shared monthly pool; complex runs cost more | stay inside the included plan allowance until measured demand proves otherwise |
+| Runtime budget | bytes, polygons, materials, lights, shaders, pixels | Performance Panel estimates and recommendations | set release thresholds before adding the scene |
+| Human attention | art direction, review, accessibility, approval | not a platform meter | protect the approver from prompt-level micromanagement; review evidence instead |
+
+[Spline’s current pricing documentation](https://docs.spline.design/account/pricing) lists 2,000 monthly AI credits for Hobby, 3,000 for Pro, and 10,000 for Max. Its public pricing page says Max includes higher MCP tool-call limits, but it does not publish deterministic per-scene credit costs or numeric MCP-call ceilings. Longer and more complex agent runs consume more credits.
+
+My starting recommendation is **Pro for a serious FrankX pilot**, not Max by default. Pro provides the product features needed for interactive work and a 3,000-credit baseline. Upgrade only if the test log shows that AI generation or MCP limits—not weak briefs, excessive retries, or scene complexity—are the constraint.
+
+For external model usage, use this as a FrankX planning envelope, not a vendor promise:
+
+| Deliverable | Suggested model-token envelope | Authoring policy |
+|---|---:|---|
+| Editorial hero scene | 20k–50k total | three bounded passes, one critic pass |
+| Product explainer | 40k–100k total | contract-first, application event map included |
+| Immersive microsite | 100k–250k total | split scenes and code into independently reviewed work packages |
+| Game vertical slice | 200k+ | prove the loop in Spline, then decide whether to graduate the runtime |
+
+Token count is not the quality metric. A compact brief that names objects, states, constraints, and tests should outperform an open-ended 100,000-token conversation.
+
+## Which business workflows can this support?
+
+The scene earns its cost when one source creates several owned assets and moves a business metric.
+
+| Workflow | Canonical artifact | Derivatives | Revenue path | Primary metric |
+|---|---|---|---|---|
+| Interactive editorial | architecture scene | hero, diagram, social loop, downloadable source | newsletter, advisory, paid implementation | qualified CTA rate |
+| Product explainer | product-state scene | demo clips, sales stills, launch assets | software conversion, sales enablement | demo completion to trial |
+| Configurator | React-controlled scene | product renders and personalized shares | direct commerce or lead qualification | configuration completion |
+| Executive proposal | client-specific system map | deck visuals and leave-behind page | strategy engagement | proposal-to-workshop rate |
+| Learning simulation | bounded interactive world | lesson stills, clips, instructor material | course, cohort, team training | lesson completion and recall |
+| Brand asset system | reusable scene library | campaign crops, video, thumbnails, covers | production retainer or licensed kit | reuse per source scene |
+| Game vertical slice | one complete mechanic | trailer loop, playtest page, concept art | validation, publishing, sponsorship | repeat play and session depth |
+
+For FrankX, the most coherent first revenue loop is:
+
+**research article → interactive architecture scene → downloadable implementation kit → paid architecture review or production sprint**.
+
+That compounds work already present in the [Vercel-first agent stack](/blog/vercel-ai-sdk-first-agent-stack) and the [visual intelligence system](/blog/visual-intelligence-system-ai-image-management). The scene is not a decorative expense beside the content engine. It becomes the source for the article’s hero, diagram, motion, social crops, download, and demo.
+
+## What exactly will FrankX build first?
+
+The first test scene is **The Agentic Experience Compiler**.
+
+It will visualize one clear relationship: intent becomes an editable scene, the scene becomes a bounded runtime, and the runtime becomes measurable distribution.
+
+The scene contract will test:
+
+- a central Intent object;
+- three system states: Design, Runtime, and Distribution;
+- six named nodes: Agent, Spline/Hana, Scene Graph, Next.js, Vercel, and Derivative Media;
+- hover or tap explanations for each node;
+- scroll-driven progression through the three states;
+- one completion state showing the full operating loop;
+- a simplified mobile composition;
+- a reduced-motion mode using fades and state changes rather than continuous orbit; and
+- external HTML controls and CTA ownership.
+
+The deliverable is not just an embed. It is a governed asset package:
+
+```text
+spline-agentic-visual-stack/
+├── README.md
+├── LICENSE-NOTES.md
+├── scene-manifest.json
+├── source/agentic-experience-compiler.spline
+├── runtime/agentic-experience-compiler.splinecode
+├── interchange/agentic-experience-compiler.glb
+├── images/hero-2400.png
+├── images/hero-1600.webp
+├── images/architecture-fallback.webp
+├── images/og-1200x630.png
+├── video/loop-16x9.mp4
+├── video/loop-9x16.mp4
+└── evidence/
+    ├── mcp-call-summary.md
+    ├── performance-panel.png
+    └── device-test-matrix.md
+```
+
+The `.spline` file is the editable source. The `.splinecode` asset is the web runtime. The `.glb` export is portable geometry, not a faithful backup: Spline’s [GLTF/GLB documentation](https://docs.spline.design/exporting-your-scene/files/exporting-as-gtlf-glb) says animation, physics, environment, most material layers, states, events, interactivity, components, and variables are not supported in that export.
+
+Large source and runtime binaries should live in Vercel Blob with version, size, license, and checksum metadata. Git should keep the small manifest, embed code, and article copy. The live scene uses a Spline-hosted draft or production URL.
+
+The follow-up build log will publish what the official documentation cannot tell us: actual MCP call volume, Spline credit consumption, scene weight, mobile behavior, Web Vitals impact, iteration count, and whether readers use the experience.
+
+## When should we not use Spline?
+
+Do not add 3D because a page feels visually quiet. Use it only when spatial interaction makes a difficult relationship easier to understand, makes a product easier to configure, or creates a reusable source for enough downstream media to justify the runtime.
+
+Skip it when:
+
+- the same meaning is clearer in one static diagram;
+- the experience would sit above critical content and delay first render;
+- the team cannot maintain a static fallback;
+- the scene requires secrets or authoritative application state;
+- mobile users receive a reduced version with no remaining value;
+- interaction cannot be measured; or
+- production requires a persistent world or networked simulation beyond Spline’s role.
+
+This is one of the [AI architecture decisions that becomes expensive to reverse](/blog/ai-architecture-2026-four-decisions-hard-to-reverse): decide the ownership boundary before the prototype becomes the product.
+
+## FAQ
+
+### Does Spline MCP work in the browser?
+
+No. The MCP server is bundled with the Spline desktop application for macOS and Windows. The browser editor can still be used for normal Spline work, but the MCP connection requires the desktop app to be open.
+
+### Can Codex create and edit a Spline scene?
+
+Yes, when Codex is running in a supported local client and the Spline desktop app has registered its MCP server. Spline lists Codex and the ChatGPT desktop app among supported client paths. The current cloud writing environment cannot reach a local desktop editor, so this article does not claim a completed hands-on run.
+
+### Should Spline contain product data or business logic?
+
+Only bounded visual state. Keep identity, commerce, secrets, canonical data, protected API calls, accessibility, and conversion logic in the application. Use Spline variables and Code API calls to visualize approved state.
+
+### Which embed method is best for the first article?
+
+Start with a static poster and click-to-load Spline Viewer. It has the smallest production commitment, preserves article performance before activation, and still tests whether readers choose to interact. Move to the React/Next.js runtime when scene events must share state with the application.
+
+### How many AI tokens or Spline credits will one scene use?
+
+There is no reliable universal number. Model tokens, MCP tool calls, and Spline AI credits are separate meters. Spline says longer agent runs cost more credits but does not publish deterministic per-scene cost or numeric MCP call limits. Set a pass budget, record the first lab, then price future work from evidence.
+
+### Can we download and reuse the 3D file?
+
+Yes. Spline supports local `.spline` files and web, image, video, and 3D-format exports. Preserve the `.spline` source for editing, the `.splinecode` runtime for the web, and a `.glb` only as an interchange artifact. Package rights, version, checksum, and limitations with every download.
+
+### Is Spline enough for a full game?
+
+It can produce interactive prototypes, HUDs, scene logic, and vertical slices. A persistent or networked game with authoritative simulation will usually need a dedicated engine or custom runtime. The useful question is not “Can Spline make a game?” but “At what point does the runtime stop being an experience module and become the product?” See the broader [agentic game-development architecture](/blog/agentic-game-dev-generative-neural-physics-2026).
+
+## Sources and test conditions
+
+Technical claims in this article were checked against primary sources on August 23, 2026: the [Spline V2 announcement](https://blog.spline.design/spline-v2), [Spline MCP documentation](https://docs.spline.design/generate/spline-mcp-server), [Code API](https://docs.spline.design/exporting-your-scene/web/code-api-for-web), [Viewer export](https://docs.spline.design/exporting-your-scene/web/exporting-as-spline-viewer), [code export](https://docs.spline.design/exporting-your-scene/web/exporting-as-code), [optimization guidance](https://docs.spline.design/exporting-your-scene/how-to-optimize-your-scene), [GLTF/GLB limitations](https://docs.spline.design/exporting-your-scene/files/exporting-as-gtlf-glb), [pricing and AI credits](https://docs.spline.design/account/pricing), the [MCP 2026-07-28 specification](https://modelcontextprotocol.io/specification/2026-07-28), and [Vercel’s Git deployment documentation](https://vercel.com/docs/git).
+
+No FrankX performance, credit, call-volume, or quality claim is presented as measured yet. Those belong in part two after the local Spline MCP session and Vercel Preview test.
