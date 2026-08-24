@@ -57,7 +57,7 @@ export function VoiceArchitectureChoice() {
         <section className="bg-[#0d1112] p-5 md:p-7" aria-label="Native speech-to-speech architecture">
           <div className="flex items-baseline justify-between gap-4">
             <h4 className="text-sm font-semibold text-emerald-200">Native speech-to-speech</h4>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/55">one live loop</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/[0.55]">one live loop</span>
           </div>
           <div className="mt-5 grid grid-cols-[1fr_28px_1.4fr_28px_1fr] items-center gap-1">
             <SignalNode>Mic</SignalNode>
@@ -66,7 +66,7 @@ export function VoiceArchitectureChoice() {
             <Connector tone="emerald" />
             <SignalNode>Voice</SignalNode>
           </div>
-            <p className="mt-5 text-sm leading-6 text-white/[0.62]">
+          <p className="mt-5 text-sm leading-6 text-white/[0.62]">
             Best when interruption, tone, and turn-taking are part of the product. Fewer stage boundaries make the exchange feel continuous.
           </p>
           <p className="mt-3 border-l border-emerald-400/30 pl-3 text-xs leading-5 text-emerald-100/70">
@@ -77,7 +77,7 @@ export function VoiceArchitectureChoice() {
         <section className="bg-[#0d1112] p-5 md:p-7" aria-label="Chained voice architecture">
           <div className="flex items-baseline justify-between gap-4">
             <h4 className="text-sm font-semibold text-cyan-200">Chained pipeline</h4>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-cyan-300/55">replaceable stages</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-cyan-300/[0.55]">replaceable stages</span>
           </div>
           <div className="mt-5 grid grid-cols-[1fr_18px_1fr_18px_1fr_18px_1fr] items-center gap-1">
             <SignalNode>Mic</SignalNode>
@@ -88,7 +88,7 @@ export function VoiceArchitectureChoice() {
             <Connector tone="cyan" />
             <SignalNode>TTS</SignalNode>
           </div>
-            <p className="mt-5 text-sm leading-6 text-white/[0.62]">
+          <p className="mt-5 text-sm leading-6 text-white/[0.62]">
             Best when durable transcripts, deterministic checks, or stage-level vendor control matter more than conversational fluidity.
           </p>
           <p className="mt-3 border-l border-cyan-400/30 pl-3 text-xs leading-5 text-cyan-100/70">
@@ -276,7 +276,7 @@ export function VoiceReferenceArchitecture() {
 
         <div className="rounded-xl border border-emerald-400/25 bg-emerald-400/[0.06] p-4 text-center">
           <p className="text-sm font-semibold text-emerald-100">Session gateway + policy router</p>
-          <p className="mt-1 text-xs leading-5 text-emerald-100/55">identity · consent · region · capability · risk · budget · fallback</p>
+          <p className="mt-1 text-xs leading-5 text-emerald-100/[0.55]">identity · consent · region · capability · risk · budget · fallback</p>
         </div>
 
         <div className="my-3 flex justify-center" aria-hidden="true">
