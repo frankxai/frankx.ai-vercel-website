@@ -1,39 +1,53 @@
-'use client'
+"use client";
 
-import { Linkedin, Twitter, Youtube, Instagram, Github, Music, type LucideIcon } from 'lucide-react'
-import { PRIMARY_SOCIAL_LINKS, type SocialLink } from '@/lib/social-links'
-import { trackEvent } from '@/lib/analytics'
+import {
+  Github,
+  Instagram,
+  Linkedin,
+  Music,
+  Twitter,
+  Youtube,
+  type LucideIcon,
+} from "lucide-react";
 
-const ICON_MAP: Record<string, LucideIcon> = {
+import { trackEvent } from "@/lib/analytics";
+import { PRIMARY_SOCIAL_LINKS, type SocialLink } from "@/lib/social-links";
+
+const iconMap: Record<string, LucideIcon> = {
   Linkedin,
   Twitter,
   Youtube,
   Instagram,
   Github,
   Music,
-}
+};
 
 export function ConnectSocialsRow() {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2.5">
+    <div className="flex flex-wrap gap-x-6 gap-y-4">
       {PRIMARY_SOCIAL_LINKS.map((social: SocialLink) => {
-        const Icon = ICON_MAP[social.icon] ?? Music
-        const key = social.name.toLowerCase().replace(/[^a-z0-9]/g, '-')
+        const Icon = iconMap[social.icon] ?? Music;
+        const key = social.name.toLowerCase().replace(/[^a-z0-9]/g, "-");
+
         return (
           <a
             key={social.url}
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={social.name}
-            title={social.name}
-            onClick={() => trackEvent('connect_social_clicked', { network: key, url: social.url })}
-            className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 backdrop-blur transition-all hover:scale-105 hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
+            onClick={() =>
+              trackEvent("connect_social_clicked", {
+                network: key,
+                url: social.url,
+              })
+            }
+            className="inline-flex min-h-11 items-center gap-2 border-b border-[#171915]/25 text-sm font-medium text-[#454940] transition-colors hover:border-[#2157d5] hover:text-[#2157d5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2157d5]"
           >
-            <Icon className="h-4.5 w-4.5" aria-hidden />
+            <Icon className="h-4 w-4" aria-hidden />
+            {social.name}
           </a>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

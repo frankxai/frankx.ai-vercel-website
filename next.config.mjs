@@ -30,6 +30,23 @@ function loadRedirectAliases() {
 
 const REDIRECT_ALIASES = loadRedirectAliases()
 
+function siteContentSecurityPolicy(frameAncestors) {
+  return [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com data:",
+    "img-src 'self' data: blob: https: http:",
+    "media-src 'self' https:",
+    "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
+    "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    `frame-ancestors ${frameAncestors}`,
+  ].join('; ')
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
@@ -377,20 +394,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com data:",
-              "img-src 'self' data: blob: https: http:",
-              "media-src 'self' https:",
-              "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
-              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io",
-              "object-src 'none'",
-              "base-uri 'self'",
-              "form-action 'self'",
-              "frame-ancestors 'none'",
-            ].join('; '),
+            value: siteContentSecurityPolicy("'none'"),
           },
           {
             key: 'X-DNS-Prefetch-Control',
@@ -415,6 +419,22 @@ const nextConfig = {
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
+          },
+        ],
+      },
+      {
+        // Game documents are embedded by the same-origin player at /games/:slug.
+        // This rule follows the site-wide rule so these two headers override it
+        // without weakening framing protection for any other route.
+        source: '/games/games/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: siteContentSecurityPolicy("'self'"),
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
           },
         ],
       },
