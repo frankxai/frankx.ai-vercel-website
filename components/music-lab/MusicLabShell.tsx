@@ -137,7 +137,7 @@ function InstrumentRow({ route }: { route: LabRoute }) {
         </span>
         <span className="mt-1 block max-w-2xl text-sm leading-6 text-stone-400">{route.description}</span>
       </span>
-      <ArrowRight className="size-4 text-stone-600 transition-[color,transform] duration-200 group-hover:translate-x-1 group-hover:text-[#d9855f]" aria-hidden="true" />
+      <ArrowRight className="size-4 text-stone-500 transition-[color,transform] duration-200 group-hover:translate-x-1 group-hover:text-[#d9855f]" aria-hidden="true" />
     </Link>
   )
 }
@@ -165,7 +165,7 @@ function ViolinProof() {
           <div key={string.name} className="grid grid-cols-[2rem_1fr] items-center gap-3">
             <div>
               <p className="font-mono text-sm font-semibold text-stone-100">{string.name}</p>
-              <p className="font-mono text-[10px] text-stone-600">{string.note}</p>
+              <p className="font-mono text-[10px] text-stone-500">{string.note}</p>
             </div>
             <div className="relative flex items-center justify-between gap-1">
               <span
@@ -218,7 +218,7 @@ export function MusicLabShell() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/music-lab/violin"
-                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#d9855f] px-6 py-3 text-sm font-semibold text-[#16120f] transition-colors duration-200 hover:bg-[#e49773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f3b391] focus-visible:ring-offset-4 focus-visible:ring-offset-[#11100e]"
+                className="mr-14 inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#d9855f] px-6 py-3 text-sm font-semibold text-[#16120f] transition-colors duration-200 hover:bg-[#e49773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f3b391] focus-visible:ring-offset-4 focus-visible:ring-offset-[#11100e] sm:mr-0"
               >
                 Play the violin
                 <ArrowRight className="size-4" aria-hidden="true" />
@@ -232,15 +232,15 @@ export function MusicLabShell() {
             </div>
             <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-stone-300/15 pt-5">
               <div>
-                <dt className="text-xs text-stone-600">Interaction</dt>
+                <dt className="text-xs text-stone-500">Interaction</dt>
                 <dd className="mt-1 text-sm text-stone-300">Touch + keys</dd>
               </div>
               <div>
-                <dt className="text-xs text-stone-600">Guidance</dt>
+                <dt className="text-xs text-stone-500">Guidance</dt>
                 <dd className="mt-1 text-sm text-stone-300">Notes + fingers</dd>
               </div>
               <div>
-                <dt className="text-xs text-stone-600">Setup</dt>
+                <dt className="text-xs text-stone-500">Setup</dt>
                 <dd className="mt-1 text-sm text-stone-300">No account</dd>
               </div>
             </dl>

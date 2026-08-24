@@ -400,7 +400,7 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
             }`}
           >
             <span className="block text-sm font-semibold">{MODE_COPY[option].label}</span>
-            <span className={`mt-1 hidden text-xs leading-5 lg:block ${mode === option ? 'text-[#3a2419]/75' : 'text-stone-600'}`}>{MODE_COPY[option].description}</span>
+            <span className={`mt-1 hidden text-xs leading-5 lg:block ${mode === option ? 'text-[#3a2419]/75' : 'text-stone-500'}`}>{MODE_COPY[option].description}</span>
           </button>
         ))}
       </div>
@@ -521,7 +521,8 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
             </div>
           </div>
 
-          <div className="mt-6 overflow-x-auto pb-2">
+          <p className="mt-4 text-xs text-stone-500 sm:hidden">Swipe sideways to reach every finger position.</p>
+          <div className="mt-4 overflow-x-auto pb-2 sm:mt-6">
             <div className="min-w-[360px] space-y-5">
               {VIOLIN_STRINGS.map((string, stringIndex) => {
                 const positions = VIOLIN_POSITIONS.filter((position) => position.string === string.name)
@@ -529,7 +530,7 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
                   <div key={string.name} className="grid grid-cols-[2.6rem_1fr] items-center gap-3 sm:grid-cols-[3.5rem_1fr] sm:gap-5">
                   <div>
                     <p className="font-mono text-base font-semibold text-stone-100">{string.name}</p>
-                    <p className="font-mono text-[10px] text-stone-600">{string.openNote}</p>
+                    <p className="font-mono text-[10px] text-stone-500">{string.openNote}</p>
                   </div>
                   <div className="relative grid grid-cols-5 gap-2 sm:gap-3">
                     <span
@@ -559,7 +560,7 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
                           }`}
                         >
                           <span className="font-mono text-sm font-semibold">{position.note}</span>
-                          <span className={`mt-1 text-[10px] ${isActive ? 'text-[#4d2c1d]' : 'text-stone-600'}`}>{position.finger === 0 ? 'open' : `finger ${position.finger}`} · {position.keyboardKey.toUpperCase()}</span>
+                          <span className={`mt-1 text-[10px] ${isActive ? 'text-[#4d2c1d]' : 'text-stone-500'}`}>{position.finger === 0 ? 'open' : `finger ${position.finger}`} · {position.keyboardKey.toUpperCase()}</span>
                         </button>
                       )
                     })}
@@ -577,7 +578,7 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
               <p className="text-sm font-semibold text-stone-100">Continuous bow</p>
               <p className="mt-1 max-w-md text-xs leading-5 text-stone-500">Move sideways for bow energy. Move higher for more pressure. Hold Space or Enter when this surface is focused.</p>
             </div>
-            <div className="text-right font-mono text-[10px] text-stone-600">
+            <div className="text-right font-mono text-[10px] text-stone-500">
               <p>Energy {Math.round(bowEnergy * 100)}</p>
               <p>Pressure {Math.round(bowPressure * 100)}</p>
             </div>
@@ -613,7 +614,7 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
             />
             <span className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
               <span className="font-mono text-3xl font-semibold text-stone-200">{selectedPosition.note}</span>
-              <span className="mt-2 text-xs text-stone-600">press · move · release</span>
+              <span className="mt-2 text-xs text-stone-500">press · move · release</span>
             </span>
           </button>
 
@@ -635,7 +636,7 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
       </div>
 
       <p className="mt-4 min-h-6 px-2 text-sm text-stone-400" aria-live="polite">{liveMessage}</p>
-      <p className="mt-2 px-2 text-xs leading-5 text-stone-600">
+      <p className="mt-2 px-2 text-xs leading-5 text-stone-500">
         Audio is synthesized locally with Web Audio. Performance mode stores events only in this page until you leave or refresh; no microphone or upload is used.
       </p>
     </section>

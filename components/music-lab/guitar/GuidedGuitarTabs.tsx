@@ -288,7 +288,7 @@ export function GuidedGuitarTabs() {
                   {lesson.events.map((event, index) => {
                     const carriesNote = event.string === string.id
                     const className = `relative z-10 flex size-12 items-center justify-center border-x border-transparent font-mono text-sm ${
-                      index === step ? 'bg-[#d9855f]/15 text-[#f0a27d]' : 'text-stone-600'
+                      index === step ? 'bg-[#d9855f]/15 text-[#f0a27d]' : 'text-stone-500'
                     }`
 
                     return carriesNote ? (
@@ -313,22 +313,22 @@ export function GuidedGuitarTabs() {
 
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-stone-300/10 bg-white/[0.025] p-4">
-            <p className="text-xs text-stone-600">Current note</p>
+            <p className="text-xs text-stone-500">Current note</p>
             <p className="mt-1 font-mono text-lg text-stone-200">{midiName(currentMidi)}</p>
           </div>
           <div className="rounded-xl border border-stone-300/10 bg-white/[0.025] p-4">
-            <p className="text-xs text-stone-600">String and fret</p>
+            <p className="text-xs text-stone-500">String and fret</p>
             <p className="mt-1 font-mono text-lg text-stone-200">{currentEvent.string} · {currentEvent.fret}</p>
           </div>
           <div className="rounded-xl border border-stone-300/10 bg-white/[0.025] p-4">
-            <p className="text-xs text-stone-600">Beat length</p>
+            <p className="text-xs text-stone-500">Beat length</p>
             <p className="mt-1 font-mono text-lg text-stone-200">{currentEvent.beats}</p>
           </div>
         </div>
       </div>
 
       <p className="mt-4 min-h-6 px-2 text-sm text-stone-400" aria-live="polite">{message}</p>
-      <p className="mt-2 px-2 text-xs leading-5 text-stone-600">The reference tone is synthesized locally. No microphone, recording, or upload is used.</p>
+      <p className="mt-2 px-2 text-xs leading-5 text-stone-500">The reference tone is synthesized locally. No microphone, recording, or upload is used.</p>
     </section>
   )
 }
