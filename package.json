@@ -261,5 +261,14 @@
     "*.{json,md,mdx,css}": [
       "prettier --write --ignore-unknown"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@opentelemetry/propagator-jaeger": "^2.9.0",
+      "hono": "^4.13.1",
+      "ip-address": "^10.4.0",
+      "nanoid": "^3.3.18",
+      "postcss": "^8.5.26"
+    }
   }
 }
