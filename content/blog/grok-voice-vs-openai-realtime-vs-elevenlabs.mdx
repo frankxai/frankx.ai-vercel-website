@@ -1,0 +1,404 @@
+---
+title: "Grok Voice vs OpenAI Realtime vs ElevenLabs (2026)"
+description: "Compare price, latency, architecture, tools, and voice quality—then choose a production voice-agent stack for web, mobile, or phone."
+date: "2026-08-24"
+lastUpdated: "2026-08-25"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["Voice Agents", "Grok Voice", "OpenAI Realtime", "ElevenLabs", "AI Architecture"]
+image: "/images/blog/grok-openai-elevenlabs-voice-agents-2026.webp"
+featured: true
+readingGoal: "Choose a voice-agent architecture, estimate its real cost, and leave with a measurable 30-day production plan."
+tldr: "Grok is my primary choice for native, personality-led realtime sessions; OpenAI Realtime 2.1 is the strongest reasoning and approval-aware fallback, with 2.1 mini for public volume; ElevenLabs remains the voice-identity and managed-operations layer. Do not force one vendor across every surface. Put them behind one adapter, benchmark interruption and tool recovery in your region, and require confirmation before irreversible actions."
+keywords: ["Grok Voice vs OpenAI Realtime vs ElevenLabs", "voice agent pricing comparison", "best voice agent API 2026", "voice agent architecture", "OpenAI Realtime pricing per minute", "Grok Voice API pricing", "ElevenLabs Agents pricing"]
+---
+
+**The verdict:** I would ship Grok Voice as the primary native conversation engine for a personality-led product, OpenAI Realtime 2.1 as the reasoning and approval-aware route, OpenAI Realtime 2.1 mini for public volume, and ElevenLabs as the canonical voice and managed-operations layer. That is a routing policy, not a three-vendor science project. One adapter, one eval contract, and one fallback path keep the product coherent.
+
+This guide reflects provider documentation and release notes checked on **August 24, 2026**. Vendor latency figures are labeled as vendor claims. The cost model shows its assumptions. We have not run a controlled three-way audio benchmark in the same region yet, so I will not invent a latency winner.
+
+<VoiceProviderRoles />
+
+## Which voice provider should you choose in 60 seconds?
+
+Start with the job. Provider preference comes second.
+
+| Product job | First route | Why | Required check |
+| --- | --- | --- | --- |
+| Authenticated, personality-led assistant | **Grok Voice Think Fast 2.0** | Native speech, interruption, tools, search, custom voice direction | p95 first audio and barge-in recovery in your region |
+| Tool-heavy workflow with consequential actions | **OpenAI Realtime 2.1** | Realtime reasoning, MCP tool controls, approval events | tool accuracy, confirmation compliance, duplicate-action rate |
+| Public demo or high-volume voice surface | **OpenAI Realtime 2.1 mini** | Much lower audio-token rates | quality regression against 2.1 on your own corpus |
+| Signature character, narration, or multilingual brand voice | **ElevenLabs TTS** | Strong voice identity, expressive delivery, voice versioning | pronunciation, emotional consistency, rights and consent |
+| Turnkey support or phone operation | **ElevenAgents** | Managed ASR, LLM choice, TTS, telephony, workflows, evals, analytics | LLM and carrier costs beyond the speech-engine minute |
+| Audit-heavy flow with a durable transcript | **Chained STT → agent → TTS** | Each stage can be inspected, retried, or replaced | end-to-end latency and partial-failure recovery |
+
+If you want one default, my answer is **Grok for the live character of the product**. If you want one provider for every surface, my answer is **do not make that constraint**. Voice identity, reasoning depth, managed phone operations, and cheap public sessions are separate jobs.
+
+## Should your voice agent be native speech-to-speech or chained?
+
+This decision changes latency, observability, failure recovery, and the emotional feel of the conversation. Make it before comparing vendor demos.
+
+<VoiceArchitectureChoice />
+
+A native speech-to-speech model hears audio and produces audio inside one live session. It can use timing, cadence, interruption, and tone as part of the interaction. That is the right shape for a tutor that waits while someone thinks, a creative companion with a recognizable character, or an assistant used while the screen is unavailable.
+
+A chained system converts speech to text, passes the transcript into an agent, and synthesizes the response. The boundaries cost time, but they also create control points. You can redact the transcript, validate an account number, route a sensitive request to a stronger model, or replay only the TTS stage.
+
+The practical split:
+
+- Choose **native** when conversational timing is product value.
+- Choose **chained** when an exact transcript or deterministic gate is product value.
+- Keep a **chained fallback** even if native is primary. It gives you a degraded mode during a provider incident and an inspectable baseline for evals.
+
+OpenAI's official [voice-agent architecture guide](https://developers.openai.com/api/docs/guides/voice-agents) makes the same transport split: WebRTC for browser and mobile clients, WebSocket for server-side media pipelines, and SIP for telephony. xAI exposes a realtime speech-to-speech session over WebSocket and documents LiveKit/SIP paths in its [speech-to-speech guide](https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech). ElevenAgents packages a chained runtime behind web, mobile, and phone integrations in its [platform overview](https://elevenlabs.io/docs/eleven-agents/overview).
+
+## What do Grok Voice, OpenAI Realtime, and ElevenLabs cost in August 2026?
+
+The headline numbers look comparable and are billed differently. xAI lists an audio-minute rate. OpenAI bills audio tokens and repeatedly includes conversation history in later turns. ElevenAgents lists a speech-engine minute while the chosen LLM and telephony remain separate.
+
+<VoiceCostBaseline />
+
+### What is the current Grok Voice price?
+
+xAI's current [pricing documentation](https://docs.x.ai/developers/pricing) lists **Grok Voice Think Fast 2.0 at $0.08 per audio minute**, plus **$0.004 per text input**. At that published rate, 60 audio minutes are $4.80 before text inputs or adjacent infrastructure.
+
+The same page lists:
+
+- REST speech-to-text at **$0.10 per hour**.
+- Streaming speech-to-text at **$0.20 per hour**.
+- Text-to-speech at **$15 per million characters**.
+
+There is a documentation mismatch worth knowing: xAI's [voice marketing page](https://x.ai/api/voice) still shows **$0.05 per minute**, while the newer pricing document, updated August 21, shows **$0.08** for Voice Think Fast 2.0. I would budget from the pricing document and pin `grok-voice-think-fast-2.0` in production rather than relying on the moving `grok-voice-latest` alias.
+
+### What does OpenAI Realtime cost per minute?
+
+OpenAI publishes token prices rather than a flat conversation-minute price:
+
+| Model | Audio input | Cached audio input | Audio output | Text input / output |
+| --- | ---: | ---: | ---: | ---: |
+| [GPT-Realtime 2.1](https://developers.openai.com/api/docs/models/gpt-realtime-2.1) | $32/M | $0.40/M | $64/M | $4/M · $24/M |
+| [GPT-Realtime 2.1 mini](https://developers.openai.com/api/docs/models/gpt-realtime-2.1-mini) | $10/M | $0.30/M | $20/M | $0.60/M · $2.40/M |
+
+OpenAI's [Realtime cost guide](https://developers.openai.com/api/docs/guides/realtime-costs) says user audio is approximately one token per 100 milliseconds and assistant audio one token per 50 milliseconds, with small variation from special tokens. That gives a useful lower-bound orientation for one balanced clock minute:
+
+```text
+Assumption: 30 seconds user audio + 30 seconds assistant audio
+
+User audio      30s / 0.1s = 300 tokens
+Assistant audio 30s / 0.05s = 600 tokens
+
+Realtime 2.1      (300 × $32/M) + (600 × $64/M) = $0.048
+Realtime 2.1 mini (300 × $10/M) + (600 × $20/M) = $0.015
+```
+
+Those are **media-only lower bounds**, not invoice forecasts. Real sessions include instructions, text, fixed events, tool calls, and prior conversation context. A ten-minute conversation can cost more than ten copies of the first minute because later responses include more history. Caching and truncation policy therefore matter as much as the sticker rate.
+
+### What does ElevenLabs cost for voice agents?
+
+ElevenLabs' [Agents pricing](https://elevenlabs.io/pricing/agents) lists the Speech Engine at **$0.08 per additional minute**, **$0.16 per burst minute**, and **$0.003 per text input**. The selected LLM and telephony carrier are additional. Silence longer than ten seconds can receive a substantial discount under the current billing rules, which matters for calls with hold time or long pauses.
+
+Published plan allowances currently run from 15 included minutes on Free to 12,375 minutes on Business:
+
+| Plan | Monthly price | Included minutes | Base concurrency |
+| --- | ---: | ---: | ---: |
+| Free | $0 | 15 | 4 |
+| Starter | $6 | 75 | 6 |
+| Creator | $22 | 275 | 10 |
+| Pro | $99 | 1,238 | 20 |
+| Scale | $299 | 3,738 | 30 |
+| Business | $990 | 12,375 | 40 |
+
+For component APIs, ElevenLabs' [API pricing](https://elevenlabs.io/pricing/api) lists Flash/Turbo and Eleven v3 Conversational at **$0.05 per 1,000 characters**, Multilingual v2 and full Eleven v3 at **$0.10 per 1,000 characters**, Scribe v2 transcription at **$0.22 per hour**, and realtime transcription at **$0.39 per hour**.
+
+The right forecast is a session model with four lines: speech runtime, reasoning model, telephony or transport, and your own storage/observability. A single blended “cost per minute” hides the lever you will need to tune later.
+
+## Which provider performs best inside a real app?
+
+There is no defensible universal winner from vendor pages. “Latency” can mean model time-to-first-byte, first playable audio after buffering, tool round-trip time, or the delay before an interrupted agent actually stops speaking. Your users feel the whole loop.
+
+Use these production metrics:
+
+| Metric | What it reveals | Record |
+| --- | --- | --- |
+| Time to first audible audio | Perceived responsiveness after a completed user turn | p50, p95, p99 by region and transport |
+| Barge-in stop latency | Whether interruption feels respected | milliseconds from detected speech to playback stop |
+| Interruption recovery | Whether the agent continues from the right meaning | pass/fail plus human rating |
+| Entity transcription | Names, emails, addresses, SKUs, dates, and amounts | exact-match rate with noise and accents |
+| Tool completion | Whether the agent chooses, calls, and explains the right tool | selection accuracy, argument accuracy, timeout rate |
+| Confirmation compliance | Whether consequential fields are read back before commit | violation rate; target zero |
+| Session resilience | Behavior after reconnect, provider timeout, or partial audio | recovered sessions and duplicated actions |
+| Effective session cost | What the interaction actually costs | p50 and p95 dollars per completed job |
+
+The current vendor signals are still useful when labeled correctly:
+
+- xAI markets **sub-second latency** for Grok Voice and documents server VAD, interruption, session resumption, functions, search, and MCP. That is a strong feature shape; it remains a vendor claim until measured in your route and region.
+- OpenAI's 2.1 model pages emphasize better interruption handling, silence behavior, noisy-audio robustness, alphanumeric accuracy, reasoning, and tool use. An OpenAI staff [2.1 release announcement](https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896) reports at least a 25% p95 latency reduction across Realtime voice through caching. Treat the percentage as OpenAI-reported.
+- ElevenLabs documents about **75 ms model latency** for Flash v2.5 and about **280 ms** for Eleven v3 Conversational in its [TTS model guide](https://elevenlabs.io/docs/overview/capabilities/text-to-speech). Those figures exclude network, application, buffering, LLM, and turn-detection time. Its February [multi-region update](https://elevenlabs.io/blog/text-to-speech-api-up-to-40-faster-globally) reports lower model TTFB from the US, Netherlands, and Singapore.
+
+For a fair bake-off, keep the microphone, codec, region, prompt, tool server, test utterance, output device, and measurement clock fixed. Do not compare one provider's model latency to another provider's full phone-call latency.
+
+## Where is Grok Voice strongest?
+
+Grok is the most compelling primary route when the agent's presence is the product. The current speech-to-speech runtime combines full-duplex audio, server-side turn handling, tools, search, collections, remote MCP, telephony paths, session resumption, pronunciation controls, and custom voice direction.
+
+The important product direction is visible in xAI's [release notes](https://docs.x.ai/developers/release-notes): Voice Think Fast 1.0 arrived in April, short-sample custom voices in June, and Voice Think Fast 2.0 in late July. xAI is assembling a native voice runtime around Grok rather than treating speech as an output accessory.
+
+Use Grok first when:
+
+- The assistant has a distinct personality and must feel responsive during interruption.
+- Search or live knowledge access is part of ordinary conversation.
+- You want functions and remote MCP in the same session.
+- A predictable published audio-minute rate simplifies early capacity planning.
+- You are prepared to build your own policy, observability, and evaluation surface.
+
+Watch the gaps:
+
+- Production SDK maturity and event compatibility still need application-level testing.
+- The moving `latest` alias and the stale $0.05 marketing price are reminders to pin versions and date financial assumptions.
+- Native audio gives you less inspectable stage separation than a chained system. Store structured receipts for transcripts, tool calls, interruptions, and fallbacks.
+- A provider preference is not performance evidence. My preference for Grok is a product thesis to test, not a benchmark result.
+
+## Where is OpenAI Realtime strongest?
+
+OpenAI Realtime 2.1 is the strongest route in this stack for voice sessions that must reason through a multi-step tool workflow and pause for approval before a consequential action. Its official [Realtime MCP guide](https://developers.openai.com/api/docs/guides/realtime-mcp) supports tool allowlists, connector and remote MCP access, and approval events.
+
+That matters for requests such as “move my meeting and notify the team” or “prepare this order, then read the total back before placing it.” The model can converse naturally while the application retains an explicit approval boundary.
+
+Use Realtime 2.1 when:
+
+- Tool choice and argument quality matter more than the cheapest minute.
+- The session must ask for approval before an external side effect.
+- Browser/mobile WebRTC and server/SIP paths should share one provider family.
+- Noisy audio, silence handling, alphanumeric transcription, and interruption are central eval dimensions.
+- The task benefits from a larger 128K context and stronger live reasoning.
+
+Use Realtime 2.1 mini when:
+
+- The flow is public, frequent, and bounded.
+- Tool space is narrow and the prompt can stay compact.
+- Your eval corpus shows no material drop on entity capture, interruption, or completion rate.
+
+OpenAI's recent direction combines realtime conversation with reasoning, translation, transcription, and tool execution. The May 2026 [voice intelligence release](https://openai.com/index/advancing-voice-intelligence-with-new-models-in-the-api/) introduced that broader family; 2.1 and 2.1 mini turn it into a quality-and-cost routing choice.
+
+The main cost risk is context growth. Track cached input, history length, and dollars per completed job. A cheap first minute can become an expensive tenth minute if the session carries everything forward.
+
+## Where is ElevenLabs strongest?
+
+ElevenLabs wins when voice identity or the operating surface matters more than owning the whole native reasoning loop.
+
+Its TTS lineup is deliberately segmented:
+
+- **Flash v2.5** for speed-sensitive synthesis and 32-language coverage.
+- **Eleven v3 Conversational** for expressive realtime delivery across 70+ languages.
+- **Multilingual v2** for stable long-form narration and consistent brand output.
+
+Its February [Expressive Mode release](https://elevenlabs.io/blog/introducing-expressive-mode) couples Eleven v3 Conversational with improved turn-taking and emphasizes emotional tone, de-escalation, and multilingual customer conversations. That is a clear product direction: ElevenLabs is building an expressive voice plane and a managed agent operations plane.
+
+ElevenAgents is valuable when you want configuration, knowledge and RAG, custom or supported LLMs, tools and MCP, telephony, SDKs, workflow branches, evaluation, analytics, OpenTelemetry, retention controls, and versioned agent changes without building every operations surface yourself.
+
+Use ElevenLabs when:
+
+- A canonical character or founder voice must remain stable across products.
+- Narration, dubbing, or multilingual delivery shares the same voice asset.
+- Customer support requires emotional calibration and de-escalation.
+- A team needs a visual operations surface, telephony, analytics, and agent versioning now.
+- You want to keep the reasoning provider replaceable while the audience hears one consistent voice.
+
+The tradeoff is architectural: ElevenAgents is a managed chained pipeline. The LLM and carrier can add cost and latency beyond the published speech-engine minute. If your product's unique advantage lives in the live reasoning loop, retain control of the router and use ElevenLabs at the voice boundary.
+
+## What should voice agents actually do in your product?
+
+Voice earns its place when speaking or listening removes friction that a screen cannot.
+
+### Strong production fits
+
+**Guided activation and onboarding.** Let a user describe a goal in their own words, then configure the product while reflecting each choice on screen. The visible state prevents ambiguity; voice keeps the flow human.
+
+**Hands-busy operators.** Field service, cooking, music production, warehouse work, driving-safe summaries, and accessibility contexts all gain from an interface that does not require a keyboard.
+
+**Tutoring and rehearsal.** Language practice, interview rehearsal, sales coaching, and concept tutoring depend on timing, follow-up questions, and spoken recall. Native voice has a real interaction advantage here.
+
+**Support triage and de-escalation.** Voice can gather context, explain status, execute low-risk actions, and hand a structured summary to a human. Sensitive or angry conversations require tone evals and fast escalation.
+
+**Qualification and scheduling.** A bounded agent can ask a known set of questions, confirm contact details, schedule a slot, and write a CRM receipt. Keep consent and call-recording rules region-aware.
+
+**Narration and product characters.** Long-form audio, guided experiences, and persistent characters are where ElevenLabs' voice consistency is more important than native end-to-end ownership.
+
+### Fits that require visible confirmation
+
+- Payments, purchases, refunds, transfers, and subscription changes.
+- Account deletion, permission changes, and outbound messages.
+- Addresses, email addresses, phone numbers, dates, dosages, IDs, and serial numbers.
+- Any tool action where a mistaken entity produces an external side effect.
+
+For these flows, show the parsed fields, read them back, and require an explicit confirmation event. Make every tool idempotent and issue a receipt after completion.
+
+### Weak voice-first fits
+
+- Dense comparisons that a reader needs to scan, copy, or revisit.
+- Silent or socially constrained settings.
+- Long uninterruptible monologues.
+- High-stakes medical, legal, or financial decisions without a qualified human path.
+- “Always listening” features without a clear wake, consent, retention, and deletion model.
+
+The best voice products are multimodal. Voice handles intent, timing, and rapport. The screen handles exact state, dense evidence, editable fields, and confirmation.
+
+## What voice architecture should we ship for the FrankX stack?
+
+Our existing `starlight-voice` runtime is a useful chained baseline: Groq Whisper for speech-to-text, OpenRouter or Cerebras for the model step, and ElevenLabs Flash for synthesis. It works. It also exposes the next engineering gap: the current first-audio benchmark measures graph readiness more than audible output.
+
+Before claiming that any native provider is faster, I would fix the instrument, then add native routes behind one capability interface.
+
+<VoiceReferenceArchitecture />
+
+The provider contract should describe behavior rather than brands:
+
+```ts
+type VoiceCapabilities = {
+  nativeAudio: boolean
+  bargeIn: boolean
+  remoteMcp: boolean
+  toolApprovals: boolean
+  sip: boolean
+  customVoice: boolean
+  sessionResume: boolean
+}
+
+interface VoiceProvider {
+  capabilities: VoiceCapabilities
+  connect(context: SessionContext): Promise<VoiceSession>
+  interrupt(sessionId: string): Promise<void>
+  close(sessionId: string): Promise<VoiceReceipt>
+}
+```
+
+The routing policy can then make explicit decisions:
+
+1. **Authenticated Starlight session:** Grok Voice primary.
+2. **Consequential tool workflow:** OpenAI Realtime 2.1 with approval events.
+3. **Public or high-volume session:** OpenAI Realtime 2.1 mini after eval clearance.
+4. **Canonical character or narration:** ElevenLabs voice asset and synthesis.
+5. **Managed support or phone operation:** ElevenAgents when its operations surface saves more than the platform premium.
+6. **Provider incident or audit-heavy flow:** existing chained runtime.
+
+This is the same principle I use in the [model-routing guide](/blog/ai-model-routing-guide): route by capability, cost, and failure behavior. The [MCP production architecture guide](/blog/mcp-protocol-production-architecture-2026) covers the tool boundary in more depth. The [four hard-to-reverse AI architecture decisions](/blog/ai-architecture-2026-four-decisions-hard-to-reverse) explain why provider coupling belongs outside product logic.
+
+The full decision and migration boundary are recorded in the [Starlight voice-provider ADR](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/docs/specs/2026-08-24-voice-provider-architecture-decision.md). That receipt matters more than remembering which demo felt best six months from now.
+
+## How should you benchmark a voice agent before launch?
+
+Run the same corpus through every route. Fix the rubric before hearing the outputs. The protocol should be boring enough to repeat after every model, prompt, transport, or region change.
+
+### Build a 40-session corpus
+
+Use eight scenarios with five variants each:
+
+1. Clean microphone, short factual turn.
+2. Background noise and cross-talk.
+3. Accent and code-switching.
+4. Names, email, address, amount, date, and SKU.
+5. Mid-sentence interruption.
+6. Tool timeout followed by recovery.
+7. Consequential action that requires confirmation.
+8. Disconnect and resume or failover.
+
+### Lock the instruments
+
+- Same region, device, codec, sample rate, transport, prompt, tool server, and output device.
+- Client timestamps for end of user speech, first playable audio, playback stop, tool start, and tool completion.
+- Server timestamps for session creation, model events, tool arguments, fallback, and close.
+- Exact expected entities and tool arguments written before the run.
+- Blind human rating for voice fit and interruption recovery; mechanical scoring for timing and tool correctness.
+
+### Set launch gates
+
+Example gates for a bounded product flow:
+
+- p95 first audible audio under the threshold your user study accepts.
+- Zero unconfirmed consequential actions.
+- No duplicate external action after reconnect or retry.
+- Entity exact-match above the task's risk threshold.
+- Tool completion and fallback success above the text baseline.
+- p95 session cost within the product's gross-margin envelope.
+
+The methodology is an extension of [Evals Are the Experiment](/blog/evals-are-the-experiment): hypothesis, instrument, run, ratify, ledger. Voice adds a physical clock, acoustic variance, and interruption state. The discipline stays the same.
+
+## What should you build in the next 30 days?
+
+### Week 1: instrument the baseline
+
+- Repair first-audio measurement so it ends at audible playback, not graph construction.
+- Define the provider-neutral session, capability, event, and receipt contracts.
+- Build the 40-session corpus and exact entity/tool ground truth.
+- Record current chained p50/p95 latency, interruption behavior, completion, and cost.
+
+### Week 2: add native routes
+
+- Implement the xAI adapter with version-pinned Voice Think Fast 2.0.
+- Implement OpenAI Realtime 2.1 and 2.1 mini behind the same event contract.
+- Add timeout, reconnect, and chained failover without duplicating tool actions.
+- Keep provider credentials off the client; issue short-lived session credentials where supported.
+
+### Week 3: separate voice identity from reasoning
+
+- Version the canonical ElevenLabs voices with consent, provenance, and pronunciation tests.
+- Decide which surfaces need ElevenLabs synthesis and which need the full ElevenAgents operations plane.
+- Add confirmation UI for consequential fields and actions.
+- Send normalized traces to one observability and eval ledger.
+
+### Week 4: canary and ratify
+
+- Run the fixed corpus across region, device, and noise variants.
+- Canary the new router on a small authenticated cohort.
+- Compare completed-job cost, fallback rate, and user interruption behavior.
+- Promote routes only when their receipts beat the baseline for the intended job.
+
+At the end of 30 days, the valuable output is not “we integrated three APIs.” It is a routing policy with measured reasons, a provider-neutral interface, a safe fallback, and enough evidence to change your mind.
+
+## FAQ
+
+### Is Grok Voice better than OpenAI Realtime?
+
+Grok is my preferred primary route for a personality-led native voice experience. OpenAI Realtime 2.1 is the stronger choice when live reasoning, MCP approvals, and consequential tool workflows dominate. “Better” depends on the job and must be verified with the same microphone, region, prompt, tools, and measurement clock.
+
+### Is OpenAI Realtime cheaper than Grok Voice?
+
+OpenAI Realtime 2.1 mini can be cheaper under a short, balanced media-only assumption: about $0.015 for 30 seconds of user audio plus 30 seconds of assistant audio. Full Realtime 2.1 is about $0.048 under the same lower-bound assumption. Grok lists $0.08 per audio minute. OpenAI's history, text, tool, and fixed-event charges make real sessions variable, so compare dollars per completed job.
+
+### Does ElevenLabs replace the language model?
+
+ElevenLabs can supply a managed agent runtime with a supported or custom LLM, but its core architectural strength is voice generation, voice identity, turn handling, and the operations surface around web and phone agents. You can keep your preferred reasoning model and use ElevenLabs as the speech layer.
+
+### Should a browser voice agent use WebRTC or WebSocket?
+
+Use WebRTC when the provider supports direct browser or mobile realtime media and short-lived client credentials. Use WebSocket when media is controlled by your server, when you need a custom pipeline, or when the provider's native transport requires it. Phone routes usually use SIP through the provider or carrier.
+
+### What is the most important voice-agent metric?
+
+For user experience, measure p95 time from the end of user speech to first audible response together with barge-in stop latency. For business value, measure cost per correctly completed job. A fast response that chooses the wrong tool or executes twice is a failure.
+
+### When should I use a chained voice pipeline?
+
+Use a chained STT → agent → TTS pipeline when you need a durable transcript, deterministic validation between stages, independent model selection, or an inspectable fallback. Expect extra latency and tune each boundary. Keep it as a degraded mode even when native speech-to-speech is primary.
+
+### What should a voice agent never do without confirmation?
+
+A voice agent should not commit a payment, transfer, purchase, refund, deletion, permission change, outbound message, or other consequential side effect without reading back the critical fields and receiving explicit confirmation. Make the tool idempotent and provide a visible receipt.
+
+### How often should I recheck voice-agent pricing?
+
+Recheck before every launch decision and at least monthly while usage is growing. Pin model versions, store the source URL and checked date in the cost model, and alert on effective dollars per completed session. xAI's current $0.05 marketing-page and $0.08 pricing-document mismatch shows why dated assumptions matter.
+
+---
+
+## Sources and methodology
+
+This comparison was prepared from first-party pricing, model, architecture, and release documentation checked on August 24, 2026. Price figures exclude taxes and enterprise contracts. Latency figures are provider-reported unless the text explicitly describes the proposed benchmark. No provider supplied or reviewed the verdict.
+
+**xAI:** [pricing](https://docs.x.ai/developers/pricing) · [speech-to-speech](https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech) · [release notes](https://docs.x.ai/developers/release-notes) · [voice product page](https://x.ai/api/voice)
+
+**OpenAI:** [Realtime 2.1](https://developers.openai.com/api/docs/models/gpt-realtime-2.1) · [Realtime 2.1 mini](https://developers.openai.com/api/docs/models/gpt-realtime-2.1-mini) · [Realtime costs](https://developers.openai.com/api/docs/guides/realtime-costs) · [voice agents](https://developers.openai.com/api/docs/guides/voice-agents) · [Realtime MCP](https://developers.openai.com/api/docs/guides/realtime-mcp) · [voice intelligence release](https://openai.com/index/advancing-voice-intelligence-with-new-models-in-the-api/)
+
+**ElevenLabs:** [Agents pricing](https://elevenlabs.io/pricing/agents) · [API pricing](https://elevenlabs.io/pricing/api) · [TTS models](https://elevenlabs.io/docs/overview/capabilities/text-to-speech) · [ElevenAgents overview](https://elevenlabs.io/docs/eleven-agents/overview) · [Expressive Mode](https://elevenlabs.io/blog/introducing-expressive-mode) · [multi-region latency update](https://elevenlabs.io/blog/text-to-speech-api-up-to-40-faster-globally)
+
+*By FrankX — independent AI Architect and Creator. Architecture receipts: [voice-provider ADR](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/docs/specs/2026-08-24-voice-provider-architecture-decision.md) and [runtime provider options](https://github.com/frankxai/starlight-voice/blob/main/docs/PROVIDER-OPTIONS.md).*

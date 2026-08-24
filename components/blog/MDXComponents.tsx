@@ -11,6 +11,12 @@ import LearnHubCallout from '@/components/learn/LearnHubCallout'
 import { EcosystemBadge, EcosystemStack } from '@/components/blog/EcosystemBadges'
 import { MascotInsight } from '@/components/blog/MascotInsight'
 import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
+import {
+  VoiceArchitectureChoice,
+  VoiceCostBaseline,
+  VoiceProviderRoles,
+  VoiceReferenceArchitecture,
+} from '@/components/blog/VoiceAgentGuideVisuals'
 import { collectText, slugifyHeading } from '@/lib/heading-id'
 
 
@@ -306,6 +312,10 @@ export const mdxComponents: MDXComponents = {
   EcosystemStack,
   MascotInsight,
   MascotCallout: MascotInsight,
+  VoiceArchitectureChoice,
+  VoiceCostBaseline,
+  VoiceProviderRoles,
+  VoiceReferenceArchitecture,
   Link,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,
