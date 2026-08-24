@@ -30,10 +30,15 @@ function loadRedirectAliases() {
 
 const REDIRECT_ALIASES = loadRedirectAliases()
 
-function siteContentSecurityPolicy(frameAncestors) {
+const GAME_TAILWIND_BROWSER_SCRIPT = 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4'
+
+function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = []) {
+  const scriptSourceSuffix =
+    additionalScriptSources.length > 0 ? ` ${additionalScriptSources.join(' ')}` : ''
+
   return [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com",
+    `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com${scriptSourceSuffix}`,
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com data:",
     "img-src 'self' data: blob: https: http:",
@@ -96,6 +101,33 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Static game builds live outside /games so the App Router owns both
+      // /games and /games/:slug. Preserve previously published direct URLs.
+      {
+        source: '/games/index.html',
+        destination: '/games',
+        permanent: true,
+      },
+      {
+        source: '/games/hub',
+        destination: '/game-embeds/legacy-hub.html',
+        permanent: true,
+      },
+      {
+        source: '/games/hub.html',
+        destination: '/game-embeds/legacy-hub.html',
+        permanent: true,
+      },
+      {
+        source: '/games/games/:path*',
+        destination: '/game-embeds/:path*',
+        permanent: true,
+      },
+      {
+        source: '/games/:slug/index.html',
+        destination: '/game-embeds/:slug/index.html',
+        permanent: true,
+      },
       // Curated path aliases — loaded from data/redirect-aliases.json.
       // Includes /ikigai → /workshops/ikigai-branding and the rest of the
       // legacy URL recovery set. Operator + agent additions land here on approval.
@@ -423,14 +455,14 @@ const nextConfig = {
         ],
       },
       {
-        // Game documents are embedded by the same-origin player at /games/:slug.
-        // This rule follows the site-wide rule so these two headers override it
-        // without weakening framing protection for any other route.
-        source: '/games/games/:path*',
+        // Relocated game documents are embedded by the same-origin player at
+        // /games/:slug. This rule follows the site-wide rule so these headers
+        // override it without weakening framing or script policy elsewhere.
+        source: '/game-embeds/:path*',
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: siteContentSecurityPolicy("'self'"),
+            value: siteContentSecurityPolicy("'self'", [GAME_TAILWIND_BROWSER_SCRIPT]),
           },
           {
             key: 'X-Frame-Options',
