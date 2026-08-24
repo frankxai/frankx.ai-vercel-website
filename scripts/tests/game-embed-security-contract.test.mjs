@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url'
 import nextConfig from '../../next.config.mjs'
 
 const repoRoot = fileURLToPath(new URL('../..', import.meta.url))
+const vercelConfig = JSON.parse(readFileSync(join(repoRoot, 'vercel.json'), 'utf8'))
 const embedRoot = join(repoRoot, 'public', 'game-embeds')
 const legacyGamesRoot = join(repoRoot, 'public', 'games')
 const catalogSource = readFileSync(join(repoRoot, 'app', 'games', '[slug]', 'page.tsx'), 'utf8')
@@ -52,7 +53,7 @@ test('the App Router owns /games and every catalog slug', () => {
   const templateDelimiter = String.fromCharCode(96)
   const expectedIframeSource =
     'src={' + templateDelimiter + '/game-embeds/' + gameSlugExpression +
-    '/index.html' + templateDelimiter + '}'
+    templateDelimiter + '}'
   assert.ok(
     playerSource.includes(expectedIframeSource),
     'the player iframe must use the isolated embed prefix',
@@ -89,17 +90,19 @@ test('the App Router owns /games and every catalog slug', () => {
 
   const legacyHub = readFileSync(join(embedRoot, 'legacy-hub.html'), 'utf8')
   assert.doesNotMatch(legacyHub, /\/games\/(?:games|assets)\//u)
-  assert.match(legacyHub, /\/game-embeds\/neuro-matrix\/index\.html/u)
+  assert.match(legacyHub, /\/game-embeds\/neuro-matrix/u)
+  assert.doesNotMatch(legacyHub, /\/game-embeds\/[^"']+\/index\.html/u)
 })
 
-test('legacy static game URLs redirect to the isolated embed prefix', async () => {
-  const redirects = await nextConfig.redirects()
+test('clean URLs and effective aliases converge on canonical game routes', async () => {
+  assert.equal(vercelConfig.cleanUrls, true)
 
+  const redirects = await nextConfig.redirects()
   assert.deepEqual(
-    redirects.find((rule) => rule.source === '/games/index.html'),
+    redirects.find((rule) => rule.source === '/games/hub'),
     {
-      source: '/games/index.html',
-      destination: '/games',
+      source: '/games/hub',
+      destination: '/game-embeds/legacy-hub',
       permanent: true,
     },
   )
@@ -111,13 +114,16 @@ test('legacy static game URLs redirect to the isolated embed prefix', async () =
       permanent: true,
     },
   )
-  assert.deepEqual(
-    redirects.find((rule) => rule.source === '/games/:slug/index.html'),
-    {
-      source: '/games/:slug/index.html',
-      destination: '/game-embeds/:slug/index.html',
-      permanent: true,
-    },
+
+  const gameRedirects = redirects.filter(
+    (rule) => rule.source.startsWith('/games') || rule.destination.startsWith('/game-embeds'),
+  )
+  assert.equal(
+    gameRedirects.some(
+      (rule) => rule.source.includes('.html') || rule.destination.includes('.html'),
+    ),
+    false,
+    'cleanUrls handles .html/index.html before Next redirects, so aliases must be extensionless',
   )
 })
 
@@ -131,6 +137,15 @@ test('only relocated game embeds receive same-origin framing and Tailwind script
   assert.ok(
     rules.indexOf(gameRule) > rules.indexOf(siteRule),
     'the game override must follow the site-wide rule so matching headers win',
+  )
+
+  const conflictingVercelXFrameRules = (vercelConfig.headers ?? [])
+    .flatMap((rule) => rule.headers ?? [])
+    .filter((header) => header.key.toLowerCase() === 'x-frame-options')
+  assert.deepEqual(
+    conflictingVercelXFrameRules,
+    [],
+    'vercel.json must not overwrite the route-specific Next.js framing policy',
   )
 
   const siteCsp = getHeader(siteRule, 'Content-Security-Policy')

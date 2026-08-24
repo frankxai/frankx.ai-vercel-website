@@ -248,7 +248,7 @@ export default function GamePlayerClient({ game, allGames }: Props) {
         >
           <iframe
             key={iframeKey}
-            src={`/game-embeds/${game.slug}/index.html`}
+            src={`/game-embeds/${game.slug}`}
             title={game.title}
             className="w-full h-full border-0 block"
             allow="autoplay; fullscreen; accelerometer; gyroscope"
