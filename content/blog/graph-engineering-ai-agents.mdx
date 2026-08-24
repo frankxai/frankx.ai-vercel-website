@@ -1,0 +1,580 @@
+---
+title: "Graph Engineering: AI Architect’s Guide to Reliable Agents"
+description: "Execution, context and control graphs for reliable AI agents, with runtime choices, failure modes and a 90-day adoption plan."
+date: "2026-08-24"
+lastUpdated: "2026-08-25"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["Graph Engineering", "AI Agents", "Agent Orchestration", "Multi-Agent Systems", "Context Engineering"]
+image: "/images/blog/graph-engineering/graph-engineering-hero.webp"
+featured: true
+flagship: true
+readingGoal: "Design an agent system you can inspect, recover and improve"
+tldr: "Graph engineering makes an agent system’s work, context, state, evidence, authority and recovery paths explicit. It extends loop engineering rather than replacing it. The production unit is not a swarm or diagram; it is a versioned set of node and edge contracts that can be tested, observed, resumed and governed."
+architectNote:
+  recommendation: "Treat the graph as a contract system: model judgment may propose a route, but code, policy or a human authorizes consequential transitions."
+  coePillar: "Architecture and governance"
+keywords: ["graph engineering", "graph engineering AI agents", "AI architect graph engineering", "loop engineering vs graph engineering", "agent graph architecture"]
+schema: ["Article", "FAQPage"]
+faqSource: "body"
+faq:
+  - q: "Is graph engineering an official Anthropic concept?"
+    a: "No. Anthropic officially uses loop engineering, harness design, workflows, subagents and agent teams. Graph engineering is an emerging external umbrella."
+  - q: "Is graph engineering the same as LangGraph?"
+    a: "No. Graph engineering is the discipline; LangGraph is one family of state-graph runtimes."
+  - q: "Is graph engineering the same as GraphRAG?"
+    a: "No. GraphRAG focuses on retrieval and context. Production agent systems also need execution and control graphs."
+  - q: "Do graph-engineered systems require multiple agents?"
+    a: "No. One agent with typed state, verification, checkpoints and approval gates can be graph-engineered."
+  - q: "Must an agent graph be a DAG?"
+    a: "No. Evaluation, repair and recovery create cycles; every cycle needs budgets and terminal conditions."
+series:
+  slug: "graph-engineering-field-guide"
+  title: "Graph Engineering Field Guide"
+  part: 1
+  total: 9
+---
+
+The internet is currently selling graph engineering as a magic file, a secret Anthropic doctrine, or a way to summon a hundred engineers from one terminal.
+
+That is not the useful version of the idea.
+
+No official Anthropic source I reviewed calls graph engineering an Anthropic standard. The closest first-party terms are **dynamic workflows**, **multi-agent systems**, **orchestrator-worker patterns**, **subagents**, and **agent teams**. OpenAI talks about agent orchestration, handoffs, agents-as-tools, sessions, tracing, guardrails, and harness engineering. Google, xAI, Nous Research, LangChain, Temporal, and the graph-retrieval community each expose different parts of the same systems problem.
+
+The emerging term is still valuable—if we define it with enough precision to outlive the trend.
+
+> **Graph engineering is the discipline of designing, versioning, running, observing, and improving explicit graphs that coordinate agent loops, tools, state, evidence, human decisions, and recovery paths.**
+
+This is the field guide I wish the viral diagrams had shipped with.
+
+<MascotInsight character="omega" mood="thinking" title="The first architectural correction">
+  A graph is not automatically multi-agent, and a multi-agent swarm is not automatically well engineered. One agent with explicit state, gates, and recovery can be more graph-engineered than fifty agents exchanging vague messages.
+</MascotInsight>
+
+## The short version
+
+- **Loop engineering** improves one agent’s repeated cycle: gather context, act, observe, verify, and continue.
+- **Graph engineering** composes one or more loops into a governed system of typed work, state, evidence, approvals, and recovery.
+- A production agent system usually contains **three coupled graphs**: an execution graph, a context graph, and a control graph.
+- The real engineering object is not the visual diagram. It is the set of **contracts** governing nodes, edges, state, permissions, evidence, budgets, and failure.
+- Do not reach for a graph because it looks advanced. Use it when work branches, parallelizes, crosses trust boundaries, survives context windows, or requires auditable proof.
+- Start with the smallest topology that can meet the service level. Anthropic’s own guidance repeatedly warns that extra autonomy and coordination increase cost and latency.
+
+Use the [orchestration pattern decision guide](/blog/multi-agent-orchestration-patterns-2026) when the immediate question is topology. Use [Six Primitives of Every AI Agent](/blog/six-primitives-ai-agent) to inspect the worker itself, and [AI Architecture 2026](/blog/ai-architecture-2026-four-decisions-hard-to-reverse) before making the vendor, trust, orchestration and runtime decisions that become expensive to undo.
+
+<Diagram
+  src="/images/blog/graph-engineering/three-coupled-graphs.webp"
+  width={1122}
+  height={1402}
+  alt="Three coupled agent-system planes: execution routes work, context retrieves evidence, and control verifies and releases outcomes"
+  caption="One system, three coupled planes. The product is the contracts between them."
+/>
+
+## The nine-part field guide
+
+Start here for the shared architecture, then jump to the guide that matches the decision in front of you. Each part keeps one boundary clear so execution graphs, coding harnesses, curricula, and inference runtimes do not collapse into the same idea.
+
+| Part | Guide | Decision it owns |
+|---:|---|---|
+| 1 | **This architect’s guide** | Define graph engineering, its three coupled graphs, and the adoption sequence |
+| 2 | [AI agent orchestration patterns](/blog/multi-agent-orchestration-patterns-2026) | Choose among pipelines, loops, routers, DAGs, state machines, and dynamic graphs |
+| 3 | [Stanford CS329Z: the agent-engineering roadmap](/blog/stanford-cs329z-engineering-ai-agents) | Turn Stanford’s tentative curriculum into an organizational learning path |
+| 4 | [Stanford M* Walk Graph](/blog/stanford-mstar-walk-graph) | Separate multimodal inference graphs from agent workflow graphs |
+| 5 | [Claude agent engineering](/blog/graph-engineering-claude-code) | Map Claude loops, dynamic workflows, subagents, teams, Skills, and hooks to the right layers |
+| 6 | [Graph engineering with OpenAI Codex](/blog/graph-engineering-openai-codex) | Design repository delivery graphs with Skills, subagents, worktrees, SDK integration, and release proof |
+| 7 | [Graph engineering with Hermes Agent](/blog/graph-engineering-hermes-agent) | Use Kanban task graphs and worker lanes without confusing them with event replay |
+| 8 | [Graph engineering with Grok Build](/blog/graph-engineering-grok-build) | Use Grok as an isolated coding worker while keeping durable authority elsewhere |
+| 9 | [Google Antigravity and ADK 2.0](/blog/graph-engineering-antigravity-adk) | Separate the coding loop, graph semantics, and Temporal durability |
+
+Return to this guide whenever you need the common contract model; use the other parts when the implementation or research layer matters.
+
+## Why the term appeared now
+
+The original agent abstraction was a loop:
+
+1. the model receives a goal and context;
+2. it chooses an action or tool;
+3. the environment returns an observation;
+4. the model evaluates progress;
+5. the cycle repeats until completion or a stop condition.
+
+That loop remains foundational. Anthropic’s Claude Code documentation describes essentially this gather-context, act, verify, repeat cycle. OpenAI’s agent stack likewise revolves around a model loop that calls tools, produces results, and continues under an orchestration policy.
+
+The abstraction becomes insufficient when a system must do several things at once:
+
+- route different requests to different capabilities;
+- fan work out and synthesize it;
+- preserve state across long runs or process restarts;
+- retrieve only the context a node is allowed to see;
+- require evidence before a result advances;
+- pause for human approval before side effects;
+- repair one failed branch without replaying everything;
+- compare competing solutions;
+- remember facts that change over time;
+- learn from traces without silently changing production behavior.
+
+At that point, “improve the prompt” is the wrong altitude. You are engineering a system.
+
+The 2026 paper [*Graph Engineering in the Era of LLM Agents*](https://arxiv.org/abs/2608.21156) gives the emerging field a broad research vocabulary. Vendor documentation supplies the deployable primitives. Graph engineering is the useful umbrella between them—but that umbrella is an interpretation, not a vendor certification.
+
+Two new signals sharpen the boundary. Anthropic’s Claude Code team now explicitly defines [loop engineering](https://claude.com/blog/getting-started-with-loops) as repeated agent cycles ending at a stop condition. Stanford’s tentative Fall 2026 [CS329Z: Engineering AI Agents](https://cs329z.stanford.edu/) treats decomposition, components, data, evaluation, safety and operations as one build discipline. Neither source calls that discipline graph engineering.
+
+Stanford’s June 2026 [M* serving system](https://ai.stanford.edu/blog/mstar/) is the more literal loop-to-graph example—but at a different layer. M* models components inside a composite multimodal model as nodes and tensor edges, then lets a small state machine select named subgraphs called Walks. That is an inference-runtime graph, not a business-agent workflow. Similar vocabulary does not create identical contracts.
+
+## Loop engineering versus graph engineering
+
+<Diagram
+  src="/images/blog/graph-engineering/loop-to-graph.webp"
+  width={1672}
+  height={941}
+  alt="A single agent verification loop expanding into a graph of typed nodes, parallel work, evidence gates, checkpoints and recovery paths"
+  caption="The loop does not disappear. It becomes a governed primitive inside a larger system."
+/>
+
+The cleanest mental model is:
+
+> **A loop is a unit of agency. A graph is a system of agency.**
+
+| Dimension | Loop engineering | Graph engineering |
+|---|---|---|
+| Primary object | One agent’s repeated decision cycle | A network of agents, tools, humans, state, and evaluators |
+| State | Usually local to a session or task | Explicitly scoped, versioned, and durable where needed |
+| Control | Continue, retry, or stop | Route, branch, parallelize, merge, interrupt, repair, escalate |
+| Context | Prompt and tool results | A retrieval policy over artifacts, memory, entities, and provenance |
+| Verification | The loop checks its own progress | Independent tests, critics, approvals, and release gates |
+| Failure | Retry the loop or abandon | Resume from a checkpoint, isolate a branch, compensate, or reroute |
+| Observability | Transcript or local trace | End-to-end spans, graph state, evidence lineage, cost and latency by path |
+
+Graph engineering does not abolish the loop. Every worker node may contain one. An evaluator may run its own loop. A recovery edge may launch a repair loop. The graph gives those loops boundaries and consequences.
+
+## The three graphs you are actually engineering
+
+Many teams draw only the execution topology. That is why their demonstrations look convincing and their production systems feel haunted.
+
+### 1. The execution graph
+
+The execution graph answers: **what can run next?**
+
+Its nodes may be:
+
+- an agent or specialist subagent;
+- a deterministic function;
+- a retrieval operation;
+- a test suite;
+- a human decision;
+- a deployment, message, payment, or other side effect.
+
+Its edges carry control and data. They can represent delegation, conditional routing, fan-out, merge, retry, timeout, compensation, escalation, or completion.
+
+Anthropic’s [effective-agent patterns](https://www.anthropic.com/engineering/building-effective-agents)—routing, parallelization, orchestrator-workers, evaluator-optimizer, and autonomous agents—are execution-graph patterns even though Anthropic does not use that umbrella term. Claude Code’s [dynamic workflows](https://code.claude.com/docs/en/workflows) make branching, loops, barriers, and intermediate results executable in JavaScript. OpenAI’s [Agents SDK orchestration](https://openai.github.io/openai-agents-js/guides/agents/#orchestration) expresses dynamic ownership through handoffs and manager-owned specialists through agents-as-tools.
+
+### 2. The context graph
+
+The context graph answers: **what does this node know, from where, and as of when?**
+
+It connects:
+
+- people, accounts, products, concepts, and entities;
+- source documents and extracted claims;
+- files, commits, issues, tests, and deployments;
+- memories and their validity intervals;
+- decisions, owners, and superseding decisions;
+- citations and provenance.
+
+This graph may live in a graph database, but it does not have to. File paths, relational tables, object storage, vector retrieval, and link-rich Markdown can implement parts of it. The defining property is not the database. It is the explicit relationship and retrieval policy.
+
+Anthropic’s [context-engineering guidance](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) recommends just-in-time retrieval rather than preloading every possible detail. [Graphiti](https://github.com/getzep/graphiti) adds bi-temporal facts and provenance for knowledge that changes. [Microsoft GraphRAG](https://github.com/microsoft/graphrag) and [Neo4j GraphRAG](https://github.com/neo4j/neo4j-graphrag-python) build retrieval structures from corpora. Those are context-graph technologies, not general agent workflow engines.
+
+### 3. The control graph
+
+The control graph answers: **what must be true before the system may continue?**
+
+It includes:
+
+- input and output validation;
+- permission checks and least-privilege boundaries;
+- token, time, and monetary budgets;
+- test and evaluation gates;
+- adversarial review;
+- human approval;
+- retry and backoff policy;
+- recovery and compensation;
+- stop conditions;
+- release and rollback.
+
+This is the plane most demos omit and most businesses eventually need. OpenAI guardrails and human-in-the-loop approvals, Claude Code hooks and permissions, Temporal retry and durable workflow semantics, CI checks, policy engines, and audit trails all belong here.
+
+### The substrate: state
+
+State is not a fourth decorative graph. It is the substrate beneath all three.
+
+For every piece of state, specify:
+
+- its schema and version;
+- its owner;
+- who can read and write it;
+- whether it is ephemeral, session-scoped, task-scoped, or durable;
+- its retention and deletion policy;
+- its source of truth;
+- its checkpoint and replay behavior.
+
+Anthropic’s long-running-agent work emphasizes external artifacts, progress files, commits, clean handoffs, and end-to-end verification. Its managed-agent architecture separates the model brain, execution environment, and durable session event log. OpenAI’s harness-engineering account makes the same organizational move: humans shape environments, intent, and feedback loops while agents execute within them.
+
+## The graph contract
+
+You do not have a production graph because a library can draw one. You have one when every node and edge has a testable contract.
+
+### Node contract
+
+Every non-trivial node should declare:
+
+| Field | Question |
+|---|---|
+| Purpose | What single responsibility does this node own? |
+| Input schema | What must be true when it starts? |
+| Output schema | What artifact or state transition may it produce? |
+| Evidence | What sources, tests, or receipts must accompany the output? |
+| State scope | What can it read and write? |
+| Tools | Which capabilities are available? |
+| Permissions | What is explicitly denied? |
+| Budget | How many turns, tokens, seconds, or euros may it spend? |
+| Side effects | Is it pure, idempotent, or compensatable? |
+| Failure model | What counts as retryable, terminal, or human-reviewable? |
+| Version | Which code, prompt, model, skill, and schema produced the result? |
+
+### Edge contract
+
+An edge is not “then the next agent takes over.” It should define:
+
+- the event or condition that activates it;
+- the payload schema;
+- the guard or policy that permits traversal;
+- the timeout and freshness window;
+- the evidence carried forward;
+- the state transition;
+- the retry, fallback, and compensation route;
+- the trace relationship to the parent work.
+
+Here is a small TypeScript shape—not a framework, just the minimum discipline:
+
+```ts
+type Evidence = {
+  source: string
+  capturedAt: string
+  claim?: string
+  checksum?: string
+}
+
+type NodeContract<I, O> = {
+  id: string
+  version: string
+  input: (value: unknown) => I
+  run: (input: I, ctx: RunContext) => Promise<O>
+  output: (value: unknown) => O
+  requiredEvidence: (output: O) => Evidence[]
+  budget: { turns: number; seconds: number; costUsd?: number }
+  sideEffect: "none" | "idempotent" | "compensatable" | "approval-required"
+}
+
+type EdgeContract<O> = {
+  from: string
+  to: string
+  when: (output: O, state: GraphState) => boolean
+  project: (output: O) => unknown
+  onFailure: "retry" | "repair" | "escalate" | "stop"
+}
+```
+
+The critical move is separating **model judgment** from **system authority**. A model can recommend an edge. Code, policy, or a human should authorize consequential transitions.
+
+## Nine production patterns
+
+### 1. Route and act
+
+A classifier or policy node selects one specialist path. Use it when requests fall into meaningfully different contracts, tools, or risk classes. Do not create five specialists that differ only by persona.
+
+### 2. Fan out and synthesize
+
+Independent workers explore separate sources, files, markets, or hypotheses; a synthesis node combines results. This is where multi-agent parallelism earns its cost.
+
+Anthropic’s research system reported materially better performance on its internal evaluation, but also about **15× the token usage of ordinary chat**. Parallelism is an investment, not free leverage.
+
+### 3. Orchestrator and workers
+
+An orchestrator decomposes a task dynamically, dispatches workers, and integrates their artifacts. This works when decomposition cannot be fully specified in advance. The orchestrator should produce explicit work packets—not inspirational prose.
+
+### 4. Evaluator and optimizer
+
+One node creates; another scores against a rubric; the creator repairs until it passes a threshold or exhausts a budget. Keep the evaluator independent enough to disagree.
+
+### 5. Adversarial verification
+
+A reviewer tries to falsify the output: find unsupported claims, security defects, missing tests, contradictory state, or unsafe side effects. The objective is not stylistic criticism. It is evidence of failure.
+
+### 6. Generate and filter
+
+Create several candidates cheaply, apply deterministic filters, then spend expensive reasoning only on survivors. This is useful for naming, design exploration, query generation, and solution search.
+
+### 7. Checkpoint and resume
+
+Write durable state at meaningful boundaries. On failure, resume from the last valid checkpoint rather than replaying every model call. Node code must be idempotent or compensatable when the runtime can restart work.
+
+### 8. Event-driven supervisor
+
+Repository events, CRM changes, content approvals, or scheduled triggers start bounded workflows. GitHub’s [Agentic Workflows](https://github.com/github/gh-aw), Temporal, and issue-to-agent supervisors such as [OpenAI Symphony](https://github.com/openai/symphony) illustrate different versions of this pattern.
+
+### 9. Knowledge-grounded action
+
+Before a consequential node acts, it retrieves the smallest authoritative context, records provenance, and binds the evidence to the decision. The context graph does not merely answer questions; it constrains action.
+
+## When not to use graph engineering
+
+Use a single loop or deterministic function when:
+
+- the task is short, linear, and reversible;
+- every step needs the same context;
+- the output can be validated immediately;
+- parallel workers would edit the same artifact;
+- coordination cost exceeds the expected quality gain;
+- no durable state or audit trail is required.
+
+Anthropic’s multi-agent report explicitly notes that broad research parallelizes better than many coding tasks with tight dependencies. Its compiler experiment eventually used 16 agents across roughly 2,000 Claude Code sessions and about $20,000 in API usage—but also encountered duplicated work, merge conflicts, and agents overwriting one another. The lesson is not “use sixteen.” The lesson is “make the work separable before you parallelize it.”
+
+## The repository and runtime landscape
+
+These tools solve different graph planes. Treating them as one popularity ranking is an architectural error. This is the adoption call as of 24 August 2026:
+
+| Job | First choice | Call | Boundary |
+|---|---|---|---|
+| Multi-hour or multi-day business process | [Temporal](https://github.com/temporalio/temporal) | **Adopt** | Durable replay, timers and messaging; agent semantics live inside Activities |
+| Typed in-process agent graph | [LangGraph](https://github.com/langchain-ai/langgraph) / [LangGraphJS](https://github.com/langchain-ai/langgraphjs) | **Adopt** | Retried nodes restart, so external effects must be idempotent |
+| Google-native application graph | [ADK 2.0](https://github.com/google/adk-python) | **Pilot** | GA and actively released, but only months into a breaking 2.x redesign |
+| Compact tools-and-handoffs loop | [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) | **Adopt** | Strong semantic loop; not a durable DAG runtime |
+| GitHub-native repository automation | [GitHub Agentic Workflows](https://github.com/github/gh-aw) | **Pilot** | Public preview; compiles governed workflows to Actions, not an application runtime |
+| Issue-to-code supervision | [OpenAI Symphony](https://github.com/openai/symphony) | **Pilot** | Useful tracker/workspace specification; current implementation is an engineering preview |
+| Named autonomous worker fleet | [Hermes Agent](https://github.com/NousResearch/hermes-agent) | **Pilot** | Durable task handoffs, not full event replay; pin a verified release |
+| Evolving temporal memory | [Graphiti](https://github.com/getzep/graphiti) | **Pilot** | Context and provenance graph, not execution control |
+| Composite multimodal serving | [Stanford M*](https://github.com/mstar-project/mstar) | **Watch / domain pilot** | Component dataflow graph; not a business-agent orchestrator |
+| Google coding harness | [Antigravity SDK](https://github.com/google-antigravity/antigravity-sdk-python) | **Pilot only** | Alpha, platform-coupled and not the ADK graph runtime |
+| xAI coding harness | [Grok Build](https://github.com/xai-org/grok-build) | **Do not use as the graph core** | Public snapshot has no formal releases and is not a general workflow DSL |
+| Corpus knowledge graph | [Microsoft GraphRAG](https://github.com/microsoft/graphrag) | **Maintain/evaluate only** | Fresh patches, but the project says it is largely in maintenance mode |
+
+My default production composition is **LangGraph for explicit graph semantics plus Temporal for durability**. In a Google-native estate, pilot **ADK 2.0 plus Temporal**. Use the OpenAI Agents SDK when the problem is fundamentally a compact tool or handoff loop.
+
+Do not install every layer by reflex. A small service may need only deterministic TypeScript and one agent SDK. Add LangGraph when graph state and interrupts are the product. Add Temporal when elapsed time, process failure, messages and side effects become architectural concerns. Add Graphiti only when facts changing over time are a separate requirement.
+
+## The repositories I would create
+
+Do not create a separate architecture repository for every model vendor. Keep the graph contract stable and make runtimes replaceable.
+
+```text
+agent-systems/
+  packages/
+    graph-contracts/       # node, edge, state, evidence, budget schemas
+    runtime-adapters/      # Codex, Claude, Hermes, Grok, deterministic tools
+    observability/         # trace IDs, spans, cost, latency, evidence lineage
+    policy/                # permissions, approvals, risk classes
+  workflows/
+    content-pipeline/
+    repository-delivery/
+    client-onboarding/
+    product-research/
+  skills/
+    research-source-ledger/
+    claim-verification/
+    architecture-review/
+    release-gate/
+  evals/
+    fixtures/
+    rubrics/
+    adversarial-cases/
+    regression-suites/
+```
+
+The model-facing files—`AGENTS.md`, `CLAUDE.md`, project rules, or vendor-specific plugins—should remain thin adapters into this system.
+
+## The Codex and Claude Skills you actually need
+
+A Skill is a **node procedure**, not the graph itself. A good reusable Skill declares:
+
+- trigger conditions;
+- required inputs and unavailable-input behavior;
+- permitted tools and data;
+- a stepwise method;
+- invariants and safety boundaries;
+- the artifact or structured output contract;
+- evidence requirements;
+- termination and escalation conditions;
+- validation or tests.
+
+Build skills around stable work contracts, not vendor features:
+
+1. **graph-intake** — converts a business objective into a bounded workflow hypothesis;
+2. **graph-contract-compiler** — produces typed node, edge, state, and evidence schemas;
+3. **parallel-work-packet** — creates separable tasks with exclusive artifact ownership;
+4. **evidence-ledger** — records claims, sources, freshness, rights, and confidence;
+5. **adversarial-verifier** — attacks a result against a declared rubric;
+6. **checkpoint-handoff** — serializes progress, next actions, state version, and recovery notes;
+7. **graph-eval-runner** — scores final outcomes and path-level operational metrics;
+8. **incident-replay** — reconstructs why a path was taken and whether retry is safe;
+9. **runtime-adapter-review** — checks whether a vendor harness satisfies the graph contract.
+
+Anthropic advises keeping `CLAUDE.md` concise and moving procedures into Skills; deterministic constraints belong in hooks, settings, permissions, and sandboxes. The same separation applies to Codex: instruction files shape behavior, but code, schemas, approvals, tests, and environment boundaries enforce authority.
+
+## Applying graph engineering across the business
+
+The best first graphs are not the most theatrical. They are recurring processes with clear artifacts, expensive mistakes, and observable outcomes.
+
+| Business system | Execution graph | Context graph | Control graph |
+|---|---|---|---|
+| Content and media | research → outline → draft → design → publish | claims, sources, topics, assets, audience, prior posts | source quality, rights, brand, factual review, SEO, final approval |
+| Product engineering | issue → spec → isolated work → tests → PR → deploy | code, dependencies, decisions, incidents, owners | CI, security, reviewer approval, rollback |
+| Client delivery | intake → diagnosis → proposal → production → handoff | account, goals, constraints, artifacts, decisions | scope, privacy, acceptance criteria, sign-off |
+| Education and digital products | curriculum map → lesson assets → exercises → release | concepts, prerequisites, examples, learner signals | accuracy, accessibility, completion outcomes |
+| Revenue operations | lead change → research → next-best action → follow-up | people, companies, interactions, offers, consent | outreach policy, pricing authority, human approval |
+
+Start where all three planes are already visible informally. A process held together by Slack messages, browser tabs, and one person’s memory is usually a better candidate than a clean one-step automation.
+
+## A 30/60/90-day adoption plan
+
+### Days 1–30: map and measure
+
+- Inventory ten recurring agent or human-agent loops.
+- Select two with measurable value and reversible failure.
+- Draw the execution, context, and control graph separately.
+- Define a canonical event envelope and state version.
+- Baseline quality, lead time, cost, retries, and human interventions.
+- Create the graph-contract package before choosing a fleet size.
+
+### Days 31–60: pilot one thin graph
+
+- Implement three to five meaningful nodes, not thirty personas.
+- Give each mutable artifact one owner at a time.
+- Add a durable checkpoint before any expensive or consequential branch.
+- Require evidence at the merge.
+- Add one independent verifier and one human approval for irreversible actions.
+- Trace every model call, tool call, state transition, and edge decision.
+
+### Days 61–90: harden and reuse
+
+- Test restarts, duplicate events, timeouts, stale state, and partial failure.
+- Add cost and latency budgets per path.
+- Package successful node procedures as Skills.
+- Introduce a second runtime adapter to prove the graph contract is portable.
+- Run adversarial evals against the final state, not only the expected path.
+- Publish an internal graph registry with owners, versions, dependencies, and service levels.
+
+## Metrics that matter
+
+Do not optimize for number of agents. Measure:
+
+- task success and acceptance rate;
+- evidence coverage and citation validity;
+- human override and escalation rate;
+- recovery success after injected failure;
+- duplicate or conflicting work;
+- time and cost to a verified outcome;
+- state staleness and provenance gaps;
+- permission denials and unsafe action attempts;
+- path distribution and bottlenecks;
+- regression by node, edge, model, skill, and workflow version.
+
+The most important graph metric is often **verified outcome per unit of coordination**, not raw model quality.
+
+## What the viral screenshots get wrong
+
+The supplied examples were useful visual references, but several claims do not survive primary-source review:
+
+- I found no official Anthropic “$3.4M leaked file” that creates a free engineering team in the company’s engineering publications, product documentation, or public repositories reviewed for this guide.
+- A configuration file may cost nothing; running multi-agent models does not. Anthropic’s [parallel compiler experiment](https://www.anthropic.com/engineering/building-c-compiler) used about $20,000 in API spend.
+- I found no official Anthropic paper titled *Graph Engineering: Opus 5 Edition*. Anthropic’s actual current materials use [dynamic workflow](https://code.claude.com/docs/en/workflows), harness, and loop terminology.
+- The social attribution naming “Anatoli Kopadze” as Head of Claude Code conflicts with official Anthropic material identifying [Boris Cherny](https://www.anthropic.com/webinars/claude-code-for-financial-services-boris-cherny) in that role.
+- Anthropic says its role-based [Claude certification exams](https://claude.com/blog/four-role-based-claude-certifications) are proctored and identity-verified; they are not awarded for merely attending a free course.
+- I found no first-party source for the claim that 85% of Anthropic engineers run dozens or hundreds of agents. Anthropic’s own [multi-agent guidance](https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them) argues for starting with one agent and earning the extra coordination cost.
+
+The accurate story is already powerful. It does not need counterfeit authority.
+
+## Verification receipt
+
+I audited 125 unique primary URLs for this field guide: official documentation, first-party engineering reports, original papers, release pages, and canonical repositories. I separated shipped capability from preview, roadmap, benchmark, and social claim in the accompanying evidence ledger. I did not run every external runtime, so the adoption matrix stays explicit about **adopt**, **pilot**, **watch**, and **not for core** calls.
+
+## FAQ
+
+### Is graph engineering an official Anthropic concept?
+
+No first-party Anthropic source reviewed for this guide uses it as an official doctrine. Anthropic uses terms such as workflows, dynamic workflows, multi-agent systems, orchestrator-workers, subagents, and agent teams. “Graph engineering” is an emerging external umbrella.
+
+### Is graph engineering the same as LangGraph?
+
+No. Graph engineering is a discipline. LangGraph is one implementation family for stateful agent graphs. You can graph-engineer with Temporal, an Agents SDK, Claude workflows, deterministic code, queues, databases, and human gates—or with LangGraph.
+
+### Is it the same as GraphRAG?
+
+No. GraphRAG primarily engineers a graph for retrieval and context. A full agent system also needs an execution graph and a control graph.
+
+### Do I need multiple agents?
+
+No. A single agent with explicit state, tool boundaries, verification, checkpoints, and human gates can be graph-engineered. Add specialists only when their contracts or contexts are meaningfully different.
+
+### Must the graph be a DAG?
+
+No. Build and data pipelines are often DAGs. Agent systems commonly require cycles for evaluation, repair, negotiation, and recovery. Cycles need budgets and termination conditions.
+
+### Do I need a graph database?
+
+No. Use one when relationship traversal, temporal facts, or ontology-driven retrieval justifies it. PostgreSQL, files, object storage, vector search, and explicit links may be sufficient.
+
+### How many agents should I start with?
+
+The minimum that creates genuine separation. Anthropic’s agent-team guidance suggests roughly three to five teammates initially and warns against same-file edits. “Hundreds” is a capability ceiling in some workflow products, not a recommended default.
+
+### Can `CLAUDE.md` or `AGENTS.md` be the graph?
+
+No. Those files provide context and instructions. They do not provide durable workflow history, typed state transitions, deterministic authorization, idempotency, or recovery by themselves.
+
+## The architect’s conclusion
+
+Loop engineering taught us to improve the model’s immediate cycle.
+
+Graph engineering moves the unit of design outward: from the cleverness of one answer to the reliability of an entire path through work, knowledge, authority, and proof.
+
+The graph is not a swarm. It is not a screenshot. It is not a vendor logo connected to five pastel boxes.
+
+It is a promise:
+
+- this node knows what it is allowed to do;
+- this edge carries a valid artifact;
+- this state can survive failure;
+- this claim can be traced to evidence;
+- this action cannot cross its authority boundary unnoticed;
+- this system can explain, recover, and improve.
+
+That is the version worth engineering.
+
+## Primary sources and further study
+
+- [Graph Engineering in the Era of LLM Agents](https://arxiv.org/abs/2608.21156)
+- [Awesome Graph Engineering companion repository](https://github.com/DEEP-JLU/Awesome-Graph-Engineering)
+- [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
+- [Anthropic: How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
+- [Anthropic: When to use multi-agent systems](https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them)
+- [Anthropic: Agent Harness Design](https://claude.com/blog/harnessing-claudes-intelligence)
+- [Anthropic: Loop engineering](https://claude.com/blog/getting-started-with-loops)
+- [Anthropic: Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+- [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+- [Anthropic: A harness for every task—dynamic workflows in Claude Code](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code)
+- [Stanford CS329Z: Engineering AI Agents](https://cs329z.stanford.edu/)
+- [Stanford SAIL: M* Walk Graph](https://ai.stanford.edu/blog/mstar/)
+- [M* paper](https://arxiv.org/abs/2606.12688)
+- [Stanford SPRINT](https://scalingintelligence.stanford.edu/pubs/sprint/)
+- [SPRINT paper](https://arxiv.org/abs/2506.05745)
+- [Stanford AgentFlow](https://agentflow.stanford.edu/)
+- [AgentFlow paper](https://arxiv.org/abs/2510.05592)
+- [ReAct](https://arxiv.org/abs/2210.03629)
+- [LLMCompiler](https://arxiv.org/abs/2312.04511)
+- [StateFlow](https://arxiv.org/abs/2403.11322)
+- [GraphFlow](https://arxiv.org/abs/2605.22566)
+- [MAST multi-agent failure taxonomy](https://arxiv.org/abs/2503.13657)
+- [OpenAI Agents SDK: Orchestration](https://openai.github.io/openai-agents-js/guides/agents/#orchestration)
+- [OpenAI: Harness engineering](https://openai.com/index/harness-engineering/)
+- [Temporal: OpenAI Agents SDK integration](https://docs.temporal.io/develop/typescript/integrations/openai-agents)
