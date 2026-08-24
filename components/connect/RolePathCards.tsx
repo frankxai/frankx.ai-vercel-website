@@ -34,7 +34,7 @@ const paths = [
     description:
       "Start with the cohort, the outcome, and the constraints. Then book a fit call around the right format.",
     action: "Plan the workshop",
-    href: "#university-workshops",
+    href: "/connect#university-workshops",
   },
   {
     id: "research",
