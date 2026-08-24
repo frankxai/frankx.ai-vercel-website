@@ -296,13 +296,26 @@ function TemplateCard({
             <span className="text-sm text-white/30 line-through">${template.originalPrice}</span>
           )}
         </div>
-        <CheckoutButton
-          variantId={template.lemonSqueezy.variantId || undefined}
-          price={template.price}
-          originalPrice={template.originalPrice}
-          label="Get"
-          size="sm"
-        />
+        <div className="flex items-center gap-2">
+          {'vercelDeployUrl' in template && template.vercelDeployUrl && (
+            <a
+              href={template.vercelDeployUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 hover:bg-white/15 px-2.5 py-1.5 text-[11px] font-semibold text-white transition-colors"
+              title="1-Click Vercel Deploy"
+            >
+              <span>▲ Deploy</span>
+            </a>
+          )}
+          <CheckoutButton
+            variantId={template.lemonSqueezy.variantId || undefined}
+            price={template.price}
+            originalPrice={template.originalPrice}
+            label="Get"
+            size="sm"
+          />
+        </div>
       </div>
     </motion.div>
   )
@@ -381,11 +394,29 @@ export default function ShopTemplatesPage() {
               Faster
             </h1>
 
-            <p className="mb-10 max-w-2xl text-lg text-white/50">
+            <p className="mb-8 max-w-2xl text-lg text-white/50">
               Production-tested templates from the systems behind frankx.ai.
               Claude Code skills, n8n workflows, Next.js starters, and full AI architecture blueprints.
               Built by an AI architect who ships in production.
             </p>
+
+            {/* Quick Actions */}
+            <div className="flex flex-wrap items-center gap-3 mb-10">
+              <Link
+                href="/v0"
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-5 py-2.5 text-sm font-semibold text-black transition-all shadow-lg shadow-emerald-500/20"
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Launch /v0 Live Demos</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/templates"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition-all"
+              >
+                <span>Free Templates Hub</span>
+              </Link>
+            </div>
           </motion.div>
 
           {/* Stats bar */}

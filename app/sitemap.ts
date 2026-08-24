@@ -141,6 +141,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/music-lab/violin', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/music-lab/piano', priority: 0.75, changeFrequency: 'monthly' as const },
+    { url: '/music-lab/piano/songs', priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: '/music-lab/guitar-tabs', priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: '/music-lab/drums', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/music-lab/games/rhythm-duel', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/foundry', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/foundry/guide', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
@@ -329,7 +335,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/soulbook/golden-path', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook/life-symphony', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook/vault', priority: 0.7, changeFrequency: 'monthly' as const },
-    // Design Lab
+    // Design Lab & v0 Hub
+    { url: '/v0', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/design-lab', priority: 0.6, changeFrequency: 'weekly' as const },
     { url: '/design-lab/nature', priority: 0.6, changeFrequency: 'monthly' as const },
     { url: '/design-lab/nature/variants', priority: 0.5, changeFrequency: 'monthly' as const },
