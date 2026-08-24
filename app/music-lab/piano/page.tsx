@@ -71,7 +71,7 @@ class GrandPianoEngine {
       return
     }
 
-    this.ctx = new AudioContext({ sampleRate: 44100 })
+    this.ctx = new AudioContext({ latencyHint: 'interactive' })
 
     // Compressor: looser threshold gives ~5 dB more loudness while still catching peaks
     this.compressor = this.ctx.createDynamicsCompressor()
@@ -459,7 +459,7 @@ export default function PianoPage() {
   const loading = loadCount > 0 && !samplesReady
 
   return (
-    <div className="bg-[#060810] min-h-[100dvh] flex flex-col overflow-hidden select-none">
+    <div className="bg-[#060810] min-h-[100dvh] flex flex-col overflow-x-hidden select-none">
       {/* Ambient */}
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute w-[500px] h-[500px] bg-cyan-500/[0.025] rounded-full blur-[180px] top-1/4 left-1/3" />
@@ -468,62 +468,68 @@ export default function PianoPage() {
       </div>
 
       {/* Header */}
-      <header className="relative z-10 text-center pt-5 md:pt-7 pb-1 px-6">
-        <p className="text-[10px] tracking-[0.3em] uppercase text-white/20 mb-1">FrankX Music Lab</p>
-        <h1 className="text-3xl md:text-4xl font-bold text-white/80 tracking-tight">Grand Piano</h1>
-        <p className="text-white/20 text-[10px] tracking-[0.25em] uppercase mt-1">
-          Yamaha C5 Concert Grand
+      <header className="relative z-10 px-4 pb-1 pt-5 text-center md:pt-7">
+        <p className="mb-1 text-xs text-white/45">FrankX Music Lab</p>
+        <h1 className="text-3xl font-bold tracking-tight text-white/90 md:text-4xl">Grand Piano</h1>
+        <p className="mt-1 text-xs text-white/40">
+          Yamaha C5 concert grand
         </p>
       </header>
 
       {/* Note + loading display */}
       <div className="relative z-10 text-center h-9 flex items-center justify-center gap-3">
         {lastNote && (
-          <span key={lastNote + Date.now()} className="text-cyan-300/40 text-lg font-mono tracking-wider animate-[fadeIn_0.1s_ease-out]">
+          <span key={lastNote + Date.now()} className="animate-[fadeIn_0.1s_ease-out] font-mono text-lg tracking-wider text-cyan-300/70 motion-reduce:animate-none">
             {lastNote}
           </span>
         )}
         {loading && (
-          <span className="text-white/15 text-[10px] tracking-wide">
+          <span className="text-[10px] tracking-wide text-white/45">
             Loading {loadCount}/{TOTAL_SAMPLES}
           </span>
         )}
         {samplesReady && loadCount > 0 && !lastNote && (
-          <span className="text-white/10 text-[10px] tracking-wide">Grand Piano ready</span>
+          <span className="text-[10px] tracking-wide text-white/35">Grand Piano ready</span>
         )}
       </div>
 
       {/* Controls */}
-      <div className="relative z-10 flex items-center justify-center gap-3 py-1.5">
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-2 px-4 py-2 sm:gap-3">
         <button
+          type="button"
           onClick={() => setOctave(o => Math.max(1, o - 1))}
-          className="px-3 py-1.5 rounded-lg border border-white/8 text-white/28 text-[11px] tracking-wide hover:border-cyan-400/20 hover:text-cyan-200/45 transition-all active:scale-95"
+          className="min-h-11 rounded-lg border border-white/15 px-3 py-1.5 text-[11px] tracking-wide text-white/55 transition-[border-color,color,transform] duration-150 hover:border-cyan-400/35 hover:text-cyan-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 active:scale-[0.98]"
+          aria-label="Move piano down one octave"
         >
           Lower
         </button>
-        <span className="text-white/18 text-[11px] font-mono tracking-wider min-w-[72px] text-center">
+        <span className="min-w-[72px] text-center font-mono text-[11px] tracking-wider text-white/45">
           C{octave}–C{octave + 2}
         </span>
         <button
+          type="button"
           onClick={() => setOctave(o => Math.min(6, o + 1))}
-          className="px-3 py-1.5 rounded-lg border border-white/8 text-white/28 text-[11px] tracking-wide hover:border-cyan-400/20 hover:text-cyan-200/45 transition-all active:scale-95"
+          className="min-h-11 rounded-lg border border-white/15 px-3 py-1.5 text-[11px] tracking-wide text-white/55 transition-[border-color,color,transform] duration-150 hover:border-cyan-400/35 hover:text-cyan-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 active:scale-[0.98]"
+          aria-label="Move piano up one octave"
         >
           Higher
         </button>
-        <div className="w-px h-3.5 bg-white/8" />
+        <div className="hidden h-3.5 w-px bg-white/10 sm:block" aria-hidden="true" />
         <button
+          type="button"
           onClick={toggleSustain}
-          className={`px-3 py-1.5 rounded-lg text-[11px] tracking-wide transition-all active:scale-95 ${
+          className={`min-h-11 rounded-lg px-3 py-1.5 text-[11px] tracking-wide transition-[background-color,border-color,color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 active:scale-[0.98] ${
             sustainOn
-              ? 'border border-cyan-400/30 bg-cyan-500/10 text-cyan-200/60 shadow-[0_0_12px_rgba(34,211,238,0.1)]'
-              : 'border border-white/8 text-white/28 hover:border-cyan-400/20 hover:text-cyan-200/45'
+              ? 'border border-cyan-400/45 bg-cyan-500/10 text-cyan-100/80'
+              : 'border border-white/15 text-white/55 hover:border-cyan-400/35 hover:text-cyan-100/80'
           }`}
+          aria-pressed={sustainOn}
         >
           Sustain
         </button>
-        <div className="w-px h-3.5 bg-white/8" />
-        <label className="flex items-center gap-2" aria-label="Volume">
-          <span className="text-white/35 text-[11px]" aria-hidden="true">🔊</span>
+        <div className="hidden h-3.5 w-px bg-white/10 sm:block" aria-hidden="true" />
+        <label className="flex min-h-11 items-center gap-2 text-[11px] text-white/55">
+          <span>Volume</span>
           <input
             type="range"
             min="0"
@@ -538,11 +544,11 @@ export default function PianoPage() {
       </div>
 
       {/* Piano */}
-      <div className="flex-1 flex items-end pb-2 md:pb-5 px-0.5 md:px-3 relative z-10">
-        <div className="w-full rounded-t-xl bg-gradient-to-b from-[#111520] via-[#0d1018] to-[#090c12] border border-white/[0.05] border-b-0 p-1 pt-2 md:p-2.5 md:pt-3.5 shadow-[0_-6px_60px_rgba(34,211,238,0.02)]">
+      <div className="relative z-10 flex flex-1 items-end overflow-x-auto px-1 pb-2 md:px-3 md:pb-5" aria-label="Scrollable piano keyboard">
+        <div className="min-w-[720px] flex-1 rounded-t-xl border border-b-0 border-white/[0.08] bg-gradient-to-b from-[#111520] via-[#0d1018] to-[#090c12] p-1 pt-2 shadow-[0_-6px_60px_rgba(34,211,238,0.02)] md:p-2.5 md:pt-3.5">
           <div
             ref={pianoRef}
-            className="relative w-full h-[230px] sm:h-[275px] md:h-[330px] lg:h-[380px]"
+            className="relative h-[230px] w-full sm:h-[275px] md:h-[330px] lg:h-[380px]"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -557,8 +563,10 @@ export default function PianoPage() {
                 return (
                   <button
                     key={k.midi}
+                    type="button"
                     data-midi={k.midi}
-                    className="relative flex-1 rounded-b-[6px] outline-none"
+                    aria-label={`Play ${midiToDisplay(k.midi)}`}
+                    className="relative flex-1 rounded-b-[6px] focus-visible:z-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cyan-500"
                     style={{
                       background: on
                         ? 'linear-gradient(180deg, #e0f4f8 0%, #d0ecf2 40%, #c0e4ec 100%)'
@@ -567,7 +575,7 @@ export default function PianoPage() {
                         ? '0 0 30px rgba(34,211,238,0.25), 0 1px 0 rgba(0,0,0,0.12), inset 0 -2px 3px rgba(34,211,238,0.06)'
                         : 'inset -1px 0 0 rgba(0,0,0,0.05), 0 4px 0 rgba(0,0,0,0.07), inset 0 -6px 10px rgba(0,0,0,0.04)',
                       transform: on ? 'translateY(2px) scaleY(0.997)' : 'translateY(0)',
-                      transition: 'all 25ms ease-out',
+                      transition: 'background 25ms ease-out, box-shadow 25ms ease-out, transform 25ms ease-out',
                     }}
                     onPointerDown={e => { if (e.pointerType !== 'touch') { e.preventDefault(); noteOn(k.midi) } }}
                     onPointerUp={e => { if (e.pointerType !== 'touch') noteOff(k.midi) }}
@@ -590,8 +598,10 @@ export default function PianoPage() {
               return (
                 <button
                   key={k.midi}
+                  type="button"
                   data-midi={k.midi}
-                  className="absolute top-0 z-10 rounded-b-[5px] outline-none"
+                  aria-label={`Play ${midiToDisplay(k.midi)}`}
+                  className="absolute top-0 z-10 rounded-b-[5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cyan-300"
                   style={{
                     left: `${blackPos(k.midi)}%`,
                     width: `${ww * 0.6}%`,
@@ -603,7 +613,7 @@ export default function PianoPage() {
                       ? '0 0 22px rgba(34,211,238,0.3), 0 1px 0 rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)'
                       : '2px 5px 10px rgba(0,0,0,0.6), -1px 0 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 2px rgba(255,255,255,0.015)',
                     transform: on ? 'translateY(1.5px)' : 'translateY(0)',
-                    transition: 'all 25ms ease-out',
+                    transition: 'background 25ms ease-out, box-shadow 25ms ease-out, transform 25ms ease-out',
                   }}
                   onPointerDown={e => { if (e.pointerType !== 'touch') { e.preventDefault(); noteOn(k.midi) } }}
                   onPointerUp={e => { if (e.pointerType !== 'touch') noteOff(k.midi) }}
@@ -616,13 +626,14 @@ export default function PianoPage() {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10 text-center pb-3 md:pb-5 space-y-1.5">
-        <p className="text-white/8 text-[9px] tracking-wide hidden md:block">
+      <div className="relative z-10 space-y-2 pb-3 text-center md:pb-5">
+        <p className="hidden text-[10px] tracking-wide text-white/35 md:block">
           Z–M lower · Q–U upper · [ ] octave · Space sustain · Touch lower on key = louder
         </p>
-        <Link href="/music-lab" className="inline-block text-cyan-300/18 text-[11px] hover:text-cyan-300/35 transition-colors">
-          Music Lab
-        </Link>
+        <div className="flex justify-center gap-5 text-[11px]">
+          <Link href="/music-lab/piano/songs" className="text-cyan-300/55 transition-colors hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">Guided piano</Link>
+          <Link href="/music-lab" className="text-cyan-300/55 transition-colors hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">Music Lab</Link>
+        </div>
       </div>
 
       <style jsx>{`
