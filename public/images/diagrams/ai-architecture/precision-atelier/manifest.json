@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "series": "AI Architecture Precision Atelier — August 2026",
+  "generatedAt": "2026-08-21T08:29:26.333Z",
+  "treatment": "Image-generation raster scene + deterministic labels/claims + unmodified official brand marks",
+  "mascotPolicy": "The AI Architecture Navigator is an original FrankX editorial character, not an official lab mascot.",
+  "assets": [
+    {
+      "id": "ast_fx_aiarch_2026_article_hero",
+      "placementId": "frankx.blog.ai-architecture-2026-four-decisions.hero",
+      "file": "ai-architecture-2026-four-decisions-hero.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 163772,
+      "sha256": "fe9aaadadc547e8e863c76480fefabe4c13b07213e37c9905861e5ab75ec034b",
+      "sourceMaster": "01-production-ai-architecture.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_01",
+      "placementId": "frankx.ai-architecture-2026.plate-01",
+      "file": "01-production-ai-architecture.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 181454,
+      "sha256": "801dd5204d610e60eb18e92c49512ff2294b25759164c504ed2e855f0a571d06",
+      "sourceMaster": "01-production-ai-architecture.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_02",
+      "placementId": "frankx.ai-architecture-2026.plate-02",
+      "file": "02-agent-control-plane.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 176514,
+      "sha256": "b45ffdc7273ca3e286d79ec7c33e709ac15d9f5a7354d267e3fcae34ac67aec3",
+      "sourceMaster": "02-agent-control-plane.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_03",
+      "placementId": "frankx.ai-architecture-2026.plate-03",
+      "file": "03-agency-coordination-design-space.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 148570,
+      "sha256": "9fe0b30a6ec8e26e7b316b658d5702123baf405a90cb83433144e6dd4b4efb12",
+      "sourceMaster": "03-agency-coordination-design-space.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_04",
+      "placementId": "frankx.ai-architecture-2026.plate-04",
+      "file": "04-coordination-pattern-atlas.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 175686,
+      "sha256": "7976e8ce3a8c82387282e6edc22bc9e19c88f9800c594a01326c6176d04ef478",
+      "sourceMaster": "04-coordination-pattern-atlas.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_05",
+      "placementId": "frankx.ai-architecture-2026.plate-05",
+      "file": "05-context-governed-memory.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 139080,
+      "sha256": "6d34d4ad49db66e71067dc080f8f8e61775b2ac8cd66e9e0623a0b3237e0840c",
+      "sourceMaster": "05-context-governed-memory.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_06",
+      "placementId": "frankx.ai-architecture-2026.plate-06",
+      "file": "06-trusted-agent-action-boundary.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 126158,
+      "sha256": "e74956741779aa99068e997c8a86b76e975fba0a152298da41fdd1e816c03ed6",
+      "sourceMaster": "06-trusted-agent-action-boundary.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_07",
+      "placementId": "frankx.ai-architecture-2026.plate-07",
+      "file": "07-durable-agent-runtime.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 244362,
+      "sha256": "ce0400d35d17e0eb87fe629ff88f9525ba13c30fce7946c0a985ac8afc331c46",
+      "sourceMaster": "07-durable-agent-runtime.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_08",
+      "placementId": "frankx.ai-architecture-2026.plate-08",
+      "file": "08-mcp-a2a-boundaries.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 109242,
+      "sha256": "205f17043973047d79cef994ea7dbe3103ce15d05425f841499cb7d8575f5109",
+      "sourceMaster": "08-mcp-a2a-boundaries.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_09",
+      "placementId": "frankx.ai-architecture-2026.plate-09",
+      "file": "09-model-routing-resilience.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 135704,
+      "sha256": "d7a27b6073e456b722da7c8556a15446a246a92e1a3a4dfa9e41858a683cab50",
+      "sourceMaster": "09-model-routing-resilience.png"
+    },
+    {
+      "id": "ast_fx_aiarch_2026_10",
+      "placementId": "frankx.ai-architecture-2026.plate-10",
+      "file": "10-evaluation-governance-flywheel.webp",
+      "width": 1672,
+      "height": 941,
+      "mimeType": "image/webp",
+      "byteSize": 175044,
+      "sha256": "f45a2e61f0a59925ff2f88b66a33ca70c617f49361619d7d4ef3f07413df3b9e",
+      "sourceMaster": "10-evaluation-governance-flywheel.png"
+    }
+  ]
+}

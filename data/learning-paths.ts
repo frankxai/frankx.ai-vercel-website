@@ -2460,6 +2460,251 @@ export const learningPaths: LearningPath[] = [
       },
     ],
   },
+  {
+    id: 'higgsfield-mastery',
+    title: 'Higgsfield AI & Cinematic Video Mastery',
+    slug: 'higgsfield-mastery',
+    description:
+      'Master multi-model AI video production with Higgsfield AI: Cinema Studio, 70+ camera presets, Soul ID consistency, Seedance 2.0, Kling 3.0, and Veo 3.1.',
+    icon: 'image',
+    difficulty: 'intermediate',
+    estimatedHours: 6,
+    color: 'violet',
+    category: 'consumer',
+    heroEyebrow: 'Updated August 2026 · Multi-Model Video Suite',
+    longIntro:
+      'Higgsfield AI unifies the top AI video generation models under a single studio interface. Rather than switching between separate tools, you can direct Kling 3.0 for character motion, Veo 3.1 for lighting and realism, Seedance 2.0 for commercial ads, and Wan 2.6 for VFX. This portal guides you through camera trajectory control with Cinema Studio, persistent characters with Soul ID, and automated commercial production with Marketing Studio.',
+    distillation:
+      'Generative video has shifted from single-model toys to multi-model director suites. No single generative model wins every shot type: Kling 3.0 dominates human anatomy and acting, Veo 3.1 delivers physical realism and lighting, and Seedance 2.0 powers rapid commercial B-roll. Higgsfield unifies these engines under one interface with precision camera trajectory controls and character identity locks.\n\nThe real breakthrough in Higgsfield is Cinema Studio and Soul ID. Text prompts alone are terrible at controlling physical camera trajectories — Cinema Studio gives you deterministic mathematical moves like Orbital 360, Bullet Time, and Vertigo Dolly Zooms. Soul ID anchors facial geometry across multiple scene renders, solving character drift for narrative filmmaking.\n\nFor creators and founders, the highest-impact move is pairing Marketing Studio (URL-to-Video) for rapid ad production with custom Cinema Studio shots for hero brand content. Master the multi-model selection matrix and camera moves, and you can produce studio-grade video at 10x speed.',
+
+    ctaTitle: 'Ready to direct your first AI film?',
+    ctaBody:
+      'Pair this video portal with our in-depth written playbook. Master prompt engineering, camera move coordinates, and automated production pipelines.',
+    outcomes: [
+      'Direct 70+ camera movements including Orbital 360, Bullet Time, and Dolly Zooms',
+      'Maintain character facial identity across 10+ sequential shots with Soul ID',
+      'Select the optimal model (Kling 3.0, Veo 3.1, Seedance 2.0, Wan 2.6) for each scene',
+      'Generate commercial product video ads with Marketing Studio URL-to-Video',
+      'Integrate Higgsfield programmatically via Fal.ai and developer APIs',
+      'Upscale and export pristine 4K 24fps master videos for client delivery',
+    ],
+    relatedGuides: [
+      '/guides/higgsfield-ai-video-guide',
+      '/guides/image-generation-mastery',
+      '/learn/gemini-mastery',
+      '/learn/claude-mastery',
+    ],
+    videos: [
+      {
+        id: 'higgsfield-overview',
+        youtubeId: 'mKyaNr3jK-E',
+        title: 'Learn 98% of Higgsfield AI in 18 Minutes',
+        creator: 'Youri van Hofwegen',
+        creatorChannel: 'https://www.youtube.com/@yourivanhofwegen',
+        duration: '18 min',
+        level: 'beginner',
+        description:
+          'Complete walkthrough of Higgsfield AI: Cinema Studio, Marketing Studio, audio tools, and character consistency.',
+        tags: ['higgsfield', 'overview', 'ai-video'],
+      },
+      {
+        id: 'higgsfield-tutorial-beginner',
+        youtubeId: 'FF1sRs4LDCN',
+        title: 'How to Use Higgsfield AI for Beginners (Step by Step)',
+        creator: 'Creator Tutorials',
+        creatorChannel: 'https://www.youtube.com/results?search_query=Higgsfield+AI+tutorial',
+        duration: '14 min',
+        level: 'beginner',
+        description:
+          'Step-by-step beginner guide covering text-to-video, image-to-video, and camera movements.',
+        tags: ['higgsfield', 'tutorial', 'camera-control'],
+      },
+      {
+        id: 'higgsfield-cinema-studio',
+        youtubeId: 'Ee9qCk59BIv',
+        title: 'Directing Cinematic AI Video with Camera Presets and Soul ID',
+        creator: 'AI Filmmaking Lab',
+        creatorChannel: 'https://www.youtube.com/results?search_query=Higgsfield+Cinema+Studio',
+        duration: '16 min',
+        level: 'intermediate',
+        description:
+          'Deep dive into Cinema Studio camera trajectories, character facial locks, and multi-shot composition.',
+        tags: ['cinema-studio', 'soul-id', 'consistency'],
+      },
+    ],
+    ecosystem: [
+      {
+        name: 'Cinema Studio',
+        category: 'Camera Direction',
+        description:
+          '70+ camera presets including Orbital 360, Bullet Time, Vertigo Dolly Zoom, and Drone Passes with precision trajectory vectors.',
+        href: 'https://higgsfield.ai',
+        status: 'New',
+      },
+      {
+        name: 'Soul ID',
+        category: 'Character Consistency',
+        description:
+          'Face landmark and identity embedding anchor preserving subject likeness across sequential scene renders.',
+        href: 'https://higgsfield.ai',
+        status: 'New',
+      },
+      {
+        name: 'Marketing Studio',
+        category: 'Commercial Ads',
+        description:
+          'URL-to-video e-commerce ad generation with automated scriptwriting, voiceover sync, and multi-ratio exports.',
+        href: 'https://higgsfield.ai',
+        status: 'Updated',
+      },
+      {
+        name: 'Kling 3.0 Integration',
+        category: 'Motion Engine',
+        description:
+          'Frontier human anatomy and organic motion engine, ideal for dialogue scenes and complex character choreography.',
+        href: 'https://higgsfield.ai',
+        status: 'Updated',
+      },
+      {
+        name: 'Veo 3.1 Integration',
+        category: 'Cinematic Realism',
+        description:
+          'Google DeepMind cinematic model for photorealism, atmospheric lighting, and native synchronized soundscapes.',
+        href: 'https://deepmind.google/models/veo/',
+        status: 'Updated',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is Higgsfield AI?',
+        answer:
+          'Higgsfield AI is a unified multi-model video production platform that aggregates top generative engines (Kling 3.0, Veo 3.1, Seedance 2.0, Wan 2.6) with precision camera control (Cinema Studio) and character consistency (Soul ID).',
+      },
+      {
+        question: 'How does Soul ID preserve character faces across shots?',
+        answer:
+          'Soul ID analyzes 3 to 5 reference photos, generates a facial embedding vector, and locks the character token (e.g. [HERO_NAME]) across sequential prompts, achieving 98%+ identity retention across varying lighting and angles.',
+      },
+      {
+        question: 'How do Cinema Studio camera presets work?',
+        answer:
+          'Cinema Studio applies trajectory vector math to the rendering pipeline, giving you deterministic control over moves like Orbital 360, Vertigo Dolly Zoom, Bullet Time, and Crane High Passes rather than relying on random text prompts.',
+      },
+      {
+        question: 'Can I use Higgsfield programmatically via API?',
+        answer:
+          'Yes. Higgsfield Cinema Studio and generation endpoints are accessible programmatically via Fal.ai and direct developer APIs for batch video generation and automated pipelines.',
+      },
+    ],
+  },
+  {
+    id: 'agentic-architecture-mastery',
+    title: 'Agentic Architecture & Sovereign AI Infrastructure',
+    slug: 'agentic-architecture-mastery',
+    description:
+      'Master the 2026 Agentic Hierarchy — Prompts, Skills, Agents, MCP, Subagent FSMs, Blackwell NVL72 liquid cooling, and Cost-Per-Verified-Outcome economics.',
+    icon: 'brain',
+    difficulty: 'advanced',
+    estimatedHours: 14,
+    color: 'emerald',
+    category: 'cloud',
+    heroEyebrow: '2026 Master Curriculum · Evaluated Skills, MCP Meshes & Sovereign Compute',
+    longIntro:
+      'Modern artificial intelligence engineering is not about typing clever prompts into a chat box. It is a rigorous discipline of distributed systems, Finite State Machines, typed wire protocols, and high-density silicon thermodynamics.\n\nThis portal structures the entire FrankX agentic and infrastructure curriculum into an actionable learning path. You will move systematically from primitive definitions (Prompts vs. Skills vs. Agents vs. MCP) to building production TypeScript MCP servers, orchestrating deterministic FSM subagent swarms, compressing context with Headroom, and evaluating datacenter compute through Cost-Per-Verified-Outcome metrics.',
+    distillation:
+      'The single most important principle in modern AI engineering: primitives compose, they do not compete. If you confuse an agent with a skill, your systems will hallucinate and burn tokens in infinite loops. If you isolate your models from standardized wire protocols like MCP, your tools become fragile and unmaintainable.\n\nTreat your operational workflows as version-controlled code in SKILL.md packages. Guard your state transitions with deterministic compilers and linters. And when provisioning compute, never optimize for hourly GPU rental rates — optimize for the Cost Per Verified Outcome.',
+    ctaTitle: 'Ready to build production agentic systems?',
+    ctaBody:
+      'Pair this learning path with our open-source repositories, downloadable SKILL.md starter templates, and MCP server boilerplates.',
+    outcomes: [
+      'Deconstruct the 4-layer Agentic Hierarchy to pick the right primitive for production software',
+      'Author version-controlled, evaluated AI skills using the Agent Skill Standard',
+      'Build and secure production TypeScript MCP servers with JSON-RPC streaming and Zod validation',
+      'Orchestrate multi-agent swarms using Finite State Machines and the adversarial Santa Loop',
+      'Prevent context rot and memory dilution with Headroom semantic compression',
+      'Evaluate sovereign hardware (NVIDIA GB200, Groq LPUs, Cerebras CS-3, Google TPU v6e) by Cost-Per-Verified-Outcome',
+    ],
+    relatedGuides: [
+      '/guides/agentic-engineering-mastery-2026',
+      '/blog/skills-vs-agents-vs-prompts-vs-mcp',
+      '/blog/agent-skill-standard-evaluated-workflows-2026',
+      '/blog/mcp-protocol-production-architecture-2026',
+      '/blog/subagent-swarm-orchestration-fsm-2026',
+      '/blog/context-compression-memory-vault-systems',
+      '/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026',
+      '/blog/cost-per-verified-outcome-infrastructure-roi',
+    ],
+    videos: [
+      {
+        id: 'agentic-systems-overview',
+        youtubeId: 'Sal4s84k3iE',
+        title: 'Building Production AI Agents & MCP Systems',
+        creator: 'FrankX AI',
+        creatorChannel: 'https://www.youtube.com/@frankxai',
+        duration: '28:45',
+        level: 'advanced',
+        description:
+          'A comprehensive engineering breakdown of the 4-layer agentic hierarchy, evaluated skill patterns, and production MCP tool meshes.',
+        tags: ['AI Agents', 'MCP', 'Agent Architecture', 'Skills Standard'],
+        keyTakeaways: [
+          'The 4-layer hierarchy separates ephemeral prompts, standardized MCP wires, evaluated skills, and autonomous agents.',
+          'Finite State Machines prevent exponential multi-agent state entropy and infinite loops.',
+          'Outcome-based hardware economics save 80%+ on enterprise inference costs.',
+        ],
+        architectNote:
+          'Never deploy unconstrained while loops in production. Always gate agent state transitions with deterministic typecheckers and linters.',
+      },
+    ],
+    ecosystem: [
+      {
+        name: 'Model Context Protocol (MCP)',
+        category: 'Protocol Layer',
+        description: 'Universal JSON-RPC 2.0 wire protocol standardizing how AI models access enterprise tools and resources.',
+        href: 'https://modelcontextprotocol.io/',
+        status: 'GA',
+      },
+      {
+        name: 'Agent Skill Standard (ASS)',
+        category: 'Skill Standard',
+        description: 'Open specification for packaging operational AI knowledge into version-controlled, evaluated SKILL.md modules.',
+        href: 'https://frankx.ai/blog/agent-skill-standard-evaluated-workflows-2026',
+        status: 'New',
+      },
+      {
+        name: 'vLLM & SGLang',
+        category: 'Inference Engine',
+        description: 'High-throughput PagedAttention inference runtimes for hosting sovereign open-weights models.',
+        href: 'https://github.com/vllm-project/vllm',
+        status: 'GA',
+      },
+    ],
+    announcements: [
+      {
+        date: '2026-08-18',
+        title: 'The Agentic Architecture Hierarchy Series Published',
+        summary: 'FrankX releases the complete 10-part architectural series and open-source handbook on agentic engineering.',
+        source: 'FrankX Research',
+        tag: 'Launch',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is the fundamental difference between a Skill and an Agent?',
+        answer:
+          'A Skill is a version-controlled, testable recipe (how to do a specific job deterministically). An Agent is an autonomous state machine (which decides what actions to take and when to use skills to achieve a goal).',
+      },
+      {
+        question: 'Why does hourly GPU price fail to measure AI infrastructure ROI?',
+        answer:
+          'Because agentic workflows require multiple sequential tool steps. Cheaper hardware with higher latency and lower first-pass accuracy causes costly retry loops. Fast, reliable silicon drastically reduces total spend per verified outcome.',
+      },
+      {
+        question: 'How do you secure Model Context Protocol (MCP) servers?',
+        answer:
+          'Enforce strict Zod schema validation on every tool call, run terminal execution in isolated WASM/Docker sandboxes, default database access to read replicas, and maintain cryptographic audit logs.',
+      },
+    ],
+  },
 ]
 
 export const featuredCreators = [

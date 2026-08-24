@@ -2,6 +2,7 @@ name: Media Guard
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches: [main, staging]
 
 permissions:
@@ -10,12 +11,16 @@ permissions:
 jobs:
   media-guard:
     name: Media Guard
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
+
+      - name: Fetch PR base for an accurate media diff
+        run: git fetch --no-tags origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
 
       - name: Reject repository media debt
         run: node scripts/media-guard.mjs --base origin/${{ github.base_ref }}

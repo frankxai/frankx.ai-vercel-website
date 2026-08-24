@@ -1,48 +1,19 @@
 ---
 title: "Claude Fable 5: Benchmarks, Pricing, and What Four Day-One Evals Actually Show"
-description: "Anthropic released Claude Fable 5 on June 9, 2026 — a Mythos-class model made generally available. Launch benchmarks: 95% SWE-bench Verified, ~80% SWE-bench Pro. We ran four first-party eval rounds against Opus 4.8 in Claude Code within 24 hours. Here are the receipts, the pricing math, and the routing guide."
+description: "Anthropic released Claude Fable 5 on June 9, 2026 — a Mythos-class model made generally available. Launch benchmarks: 95% SWE-bench Verified, ~80% SWE-bench Pro."
 date: "2026-06-10"
-lastUpdated: "2026-06-10"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - anthropic
-  - claude-fable-5
-  - frontier-models
-  - ai-2026
-  - benchmarks
-  - agentic-ai
-  - claude-code
-keywords:
-  - claude fable 5
-  - claude fable 5 review
-  - claude fable 5 benchmarks
-  - claude fable 5 pricing
-  - fable 5 vs opus 4.8
-  - fable 5 vs gpt-5.5
-  - claude fable 5 context window
-  - claude mythos 5
-  - claude-fable-5 model id
-  - should i upgrade to fable 5
-  - best ai model 2026
-  - new claude model june 2026
+tags: ["anthropic", "claude-fable-5", "frontier-models", "ai-2026", "benchmarks", "agentic-ai", "claude-code"]
 image: "/images/blog/generated/claude-fable-5-analysis-2026-premium-hero.png"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll understand benchmark performance, cost-efficiency trade-offs, and exact deployment patterns for the latest frontier models."
+tldr: "Anthropic released Claude Fable 5 on June 9, 2026 — a Mythos-class model made safe for general availability, while the unrestricted Claude Mythos 5 stays gated behind trusted-access programs. Launch numbers lead agentic coding: 95.0% SWE-bench Verified and ~80% SWE-bench Pro."
+keywords: ["claude fable 5", "claude fable 5 review", "claude fable 5 benchmarks", "claude fable 5 pricing", "fable 5 vs opus 4.8", "fable 5 vs gpt-5.5", "claude fable 5 context window", "claude mythos 5", "claude-fable-5 model id", "should i upgrade to fable 5", "best ai model 2026", "new claude model june 2026"]
 architectNote:
-  recommendation: "Adopt Fable 5 as the execution layer of your AI Center of Excellence — the model behind agents whose outputs feed schemas, tools, and other agents — and keep Opus 4.8 as the judgment layer at half the price. Swap the model string, run your own eval round before committing volume (an afternoon, not a sprint), and enforce output contracts structurally: our Round 4 showed every model's discipline bends under load."
-  coePillar: "Technology · model routing"
-  personas:
-    - persona: "Pipeline & coding agents"
-      pick: "Fable 5"
-    - persona: "Reviewer / judgment agents"
-      pick: "Opus 4.8"
-    - persona: "Research & synthesis agents"
-      pick: "Opus 4.8 (1M ctx at $5/$25)"
-    - persona: "Bulk fan-out workers"
-      pick: "Haiku-tier — don't pay flagship rates"
+  recommendation: ""
 ---
-
 # Claude Fable 5: Benchmarks, Pricing, and What Four Day-One Evals Actually Show
 
 **TL;DR**: Anthropic released Claude Fable 5 on June 9, 2026 — a Mythos-class model made safe for general availability, while the unrestricted Claude Mythos 5 stays gated behind trusted-access programs. Launch numbers lead agentic coding: 95.0% SWE-bench Verified and ~80% SWE-bench Pro versus GPT-5.5's 58.6%. Pricing is $10/$50 per million tokens (input/output), 1M context, 128K max output — double Opus 4.8's standard rate. We didn't stop at the model card: within 24 hours we ran four head-to-head eval rounds against Opus 4.8 inside Claude Code, with published JSON receipts. The short version: Fable 5 wins on constraint precision and hard clean reasoning; Opus 4.8 keeps winning on situational judgment, accessibility craft, and speed. Routing guide below.

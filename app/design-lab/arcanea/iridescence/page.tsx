@@ -215,17 +215,17 @@ export default function IridescenceShowcase() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-white/10" />
+              <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-white/10" />
               <p className="text-sm font-medium text-white/90">Cathedral Crystal</p>
               <p className="text-xs text-white/50 mt-1">Light refraction</p>
             </div>
             <div>
-              <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-slate-500/20 to-purple-500/20 border border-white/10" />
+              <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-slate-500/20 to-violet-500/20 border border-white/10" />
               <p className="text-sm font-medium text-white/90">Oil on Water</p>
               <p className="text-xs text-white/50 mt-1">At night</p>
             </div>
             <div>
-              <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-emerald-500/20 to-purple-500/20 border border-white/10" />
+              <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-emerald-500/20 to-violet-500/20 border border-white/10" />
               <p className="text-sm font-medium text-white/90">Aurora Borealis</p>
               <p className="text-xs text-white/50 mt-1">Compressed</p>
             </div>

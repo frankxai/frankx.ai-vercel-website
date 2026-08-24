@@ -40,6 +40,7 @@ import {
   Play,
   Zap,
   Search,
+  Boxes,
 } from 'lucide-react'
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { trackEvent } from '@/lib/analytics'
@@ -175,6 +176,8 @@ const navigation = {
       { name: 'Ecosystem', href: '/ecosystem', icon: Network, description: 'The complete system map' },
       { name: 'Universe Map', href: '/map', icon: Map, description: 'Every surface, one view' },
       { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
+      { name: 'Signals', href: '/signals', icon: Flame, description: 'Source-backed architecture notes' },
+      { name: 'Dream 100', href: '/dream-100', icon: Users, description: 'Contribution before contact' },
       { name: 'Core Qualities', href: '/qualities', icon: Compass, description: 'Freedom, mastery, meaning & connection' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
@@ -183,6 +186,7 @@ const navigation = {
       { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
       { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
       { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status' },
+      { name: 'Agent Hub', href: '/agent-hub', icon: Boxes, description: 'Platforms & frameworks, compared' },
       { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
       { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
@@ -200,7 +204,7 @@ const navigation = {
     groups: [
       {
         label: 'Current work',
-        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Core Qualities', 'Intelligence Atlas', 'Library', 'Guides', 'Essays', 'Journal'],
+        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Signals', 'Dream 100', 'Core Qualities', 'Intelligence Atlas', 'Library', 'Guides', 'Essays', 'Journal'],
       },
       {
         label: 'Systems & products',

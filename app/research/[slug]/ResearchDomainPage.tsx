@@ -34,14 +34,18 @@ import {
   Sparkles,
   TrendingUp,
   BarChart3,
+  Image,
 } from 'lucide-react'
 import type { ResearchDomain } from '@/lib/research/domains'
 import { getSourcesForDomain, sourceTypeLabels } from '@/lib/research/sources'
+import type { GalleryFrame } from '@/lib/research/native-galleries'
+import ResearchImageGallery from './ResearchImageGallery'
+import Grok46RoutingPanel from './Grok46RoutingPanel'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Activity, Brain, Building2, Code, Compass, Cpu, Database, FileText,
   GraduationCap, Heart, Layers, Network, Palette, Plug, Radar, Rocket,
-  Scale, Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3,
+  Scale, Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3, Image,
 }
 
 const colorConfig: Record<string, { border: string; text: string; bg: string; gradient: string }> = {
@@ -93,9 +97,11 @@ interface Props {
   relatedDomains: ResearchDomain[]
   claimCount?: number
   blogPostTitles?: Record<string, string>
+  gallery?: GalleryFrame[]
+  showGrokPanel?: boolean
 }
 
-export default function ResearchDomainPage({ domain, relatedDomains, claimCount = 0, blogPostTitles = {} }: Props) {
+export default function ResearchDomainPage({ domain, relatedDomains, claimCount = 0, blogPostTitles = {}, gallery = [], showGrokPanel = false }: Props) {
   const Icon = iconMap[domain.icon] || Layers
   const colors = colorConfig[domain.color] || colorConfig.emerald
   const hasFaq = domain.faq && domain.faq.length > 0
@@ -111,6 +117,8 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
 
   // Build table of contents
   const tocItems = [
+    ...(gallery.length > 0 ? [{ id: 'gallery', label: 'Frames' }] : []),
+    ...(showGrokPanel ? [{ id: 'grok46-panel', label: 'Grok 4.6 stack' }] : []),
     ...domain.sections.map((s, i) => ({ id: `section-${i}`, label: s.title })),
     { id: 'findings', label: 'Key Findings' },
     ...((domain.limitations?.length || domain.whatWeDontKnow?.length) ? [{ id: 'transparency', label: 'Transparency' }] : []),
@@ -229,6 +237,9 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                     </div>
                   </div>
                 </div>
+
+                {showGrokPanel && <div className="mt-8"><Grok46RoutingPanel /></div>}
+                {gallery.length > 0 && <div className="mt-8"><ResearchImageGallery frames={gallery} /></div>}
 
                 {/* Above-fold conversion bar — added 2026-05-20 per /hub-audit research P1.2 */}
                 <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-3.5">

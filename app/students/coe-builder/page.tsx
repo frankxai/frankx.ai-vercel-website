@@ -226,14 +226,14 @@ export default function CoEBuilderPage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-20 pb-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-slate-950 to-blue-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-950/30 via-slate-950 to-cyan-950/20" />
 
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 text-6xl font-bold bg-gradient-to-r from-slate-100 via-purple-200 to-blue-200 bg-clip-text text-transparent sm:text-7xl"
+              className="mb-6 text-6xl font-bold bg-gradient-to-r from-slate-100 via-violet-200 to-cyan-200 bg-clip-text text-transparent sm:text-7xl"
             >
               Build Your Creator CoE
             </motion.h1>

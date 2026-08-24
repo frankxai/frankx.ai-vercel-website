@@ -32,6 +32,7 @@ import {
   METHODOLOGY_URL,
   RUNS_DIR_URL,
   PUBLISHED_BENCHMARKS,
+  LAST_MEASURED,
 } from './data'
 
 interface AssertionReceipt {
@@ -196,7 +197,7 @@ export default function ModelArenaPage() {
           backgroundSize: '50px 50px' 
         }} 
       />
-      <div className="absolute top-0 right-0 w-[55%] h-[45%] bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-transparent filter blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[55%] h-[45%] bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent filter blur-[140px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         {/* Navigation */}
@@ -218,8 +219,13 @@ export default function ModelArenaPage() {
 
         {/* Title Header */}
         <header className="mb-14 max-w-3xl">
-          <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/20 text-[#a855f7] text-xs font-mono tracking-wider uppercase">
-            <span>Live Model Testing • Open Receipts</span>
+          <div className="mb-4 flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/20 text-[#a855f7] text-xs font-mono tracking-wider uppercase">
+              <span>Live Model Testing • Open Receipts</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-zinc-400 text-xs font-mono tracking-wider">
+              <span>Last harness measurement: {LAST_MEASURED}</span>
+            </div>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent">
             Starlight Model Arena
@@ -612,8 +618,17 @@ export default function ModelArenaPage() {
             <div className="bg-slate-950/50 border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-sm animate-fade-in">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                 <h3 className="text-xl font-bold text-white">{activeRound.card}</h3>
-                <span className="text-xs text-zinc-400 font-mono">Executed: {activeRound.date}</span>
+                <span className="text-xs text-zinc-400 font-mono">
+                  {activeRound.evidence === 'harness' ? 'Executed' : 'Compiled'}: {activeRound.date}
+                </span>
               </div>
+
+              {activeRound.evidence === 'public-reports' && (
+                <div className="mb-6 rounded-xl border border-amber-400/25 bg-amber-400/[0.06] px-4 py-3 text-xs leading-relaxed text-amber-200/90">
+                  Synthesized from public vendor reports — not a harness result. No round was dispatched and no
+                  receipt exists for this entry. Treat the lane calls as orientation, not measurement.
+                </div>
+              )}
 
               <div className="mb-6 flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[#a855f7]/30 bg-[#a855f7]/[0.06] px-3.5 py-1 text-xs font-semibold text-[#a855f7]">
@@ -621,7 +636,11 @@ export default function ModelArenaPage() {
                   {activeRound.tally}
                 </span>
                 <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 text-xs text-zinc-400 font-mono">
-                  {activeRound.judged ? 'Blind LLM Judge + Mechanical Tests' : 'Fully Mechanical assertions'}
+                  {activeRound.evidence === 'public-reports'
+                    ? 'Public vendor reports — no harness run'
+                    : activeRound.judged
+                      ? 'Blind LLM Judge + Mechanical Tests'
+                      : 'Fully Mechanical assertions'}
                 </span>
                 <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 text-xs text-zinc-400 font-mono">
                   Contestants: {activeRound.contestants.join(' vs ')}
@@ -634,6 +653,7 @@ export default function ModelArenaPage() {
               </div>
 
               {/* Task Breakdown list */}
+              {activeRound.tasks.length > 0 && (
               <div className="space-y-3">
                 <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">TASK SPECIFICS</div>
                 {activeRound.tasks.map((task) => (
@@ -651,19 +671,26 @@ export default function ModelArenaPage() {
                   </div>
                 ))}
               </div>
+              )}
 
-              <div className="mt-6 pt-6 border-t border-white/5 flex items-center justify-between">
-                <a
-                  href={activeRound.receiptUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-zinc-300 hover:text-white transition-colors"
-                >
-                  <Code2 className="w-4 h-4 text-zinc-400" />
-                  View canonical JSON receipt mapping this round
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </div>
+              {activeRound.receiptUrl ? (
+                <div className="mt-6 pt-6 border-t border-white/5 flex items-center justify-between">
+                  <a
+                    href={activeRound.receiptUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-zinc-300 hover:text-white transition-colors"
+                  >
+                    <Code2 className="w-4 h-4 text-zinc-400" />
+                    View canonical JSON receipt mapping this round
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              ) : (
+                <div className="mt-6 pt-6 border-t border-white/5 text-xs text-zinc-500 font-mono">
+                  No receipt — this entry was not produced by the harness.
+                </div>
+              )}
             </div>
           )}
         </section>

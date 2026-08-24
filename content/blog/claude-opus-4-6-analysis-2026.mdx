@@ -2,44 +2,18 @@
 title: "Claude Opus 4.6: What Actually Changed and Why It Matters"
 description: "Anthropic's Opus 4.6 brings 1M context, 128K output, adaptive thinking, and a 67% price cut. Technical breakdown with benchmarks, migration guide, and practical implications for builders."
 date: "2026-02-06"
-lastUpdated: "2026-02-06"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - anthropic
-  - claude
-  - frontier-models
-  - ai-2026
-  - benchmarks
-  - agentic-ai
-keywords:
-  - claude opus 4.6
-  - claude opus 4.6 review
-  - claude opus 4.6 benchmarks
-  - anthropic opus 4.6 pricing
-  - claude opus 4.6 vs gpt 5.2
-  - claude opus 4.6 context window
-  - adaptive thinking claude
-  - claude 1 million context
-  - opus 4.6 api changes
-  - best ai model 2026
+tags: ["anthropic", "claude", "frontier-models", "ai-2026", "benchmarks", "agentic-ai"]
 image: "/images/models/claude-opus-4-6-hero.png"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll understand benchmark performance, cost-efficiency trade-offs, and exact deployment patterns for the latest frontier models."
+tldr: "Anthropic released Claude Opus 4.6 on February 5, 2026. The headline numbers: 1M token context window (beta), 128K output tokens, adaptive thinking that replaces manual budget tuning, and a 67% price reduction to $5/$25 per million tokens. ARC-AGI-2 jumped from 37.6% to."
+keywords: ["claude opus 4.6", "claude opus 4.6 review", "claude opus 4.6 benchmarks", "anthropic opus 4.6 pricing", "claude opus 4.6 vs gpt 5.2", "claude opus 4.6 context window", "adaptive thinking claude", "claude 1 million context", "opus 4.6 api changes", "best ai model 2026"]
 architectNote:
-  recommendation: "Opus 4.6 is superseded — Opus 4.7 and 4.8 followed at the same $5/$25, and Fable 5 (June 9, 2026) now holds the agentic-coding ceiling — so don't start new work on this model ID. Its lasting contribution to your AI Center of Excellence is structural: the 67% price cut, 1M context, and adaptive thinking it introduced are what made routing complex tasks to Opus-tier economical, and they carried forward unchanged. If you're still pinned to claude-opus-4-6, the upgrade path is a string swap plus the 4.7 breaking changes (budget_tokens, sampling params, prefills) documented in the 4.8 analysis."
-  coePillar: "Technology · model routing"
-  personas:
-    - persona: "Pipeline & coding agents"
-      pick: "Fable 5"
-    - persona: "Reviewer / judgment agents"
-      pick: "Opus 4.8"
-    - persona: "Long-context repo agents"
-      pick: "Opus 4.8 (same 1M ctx, same price, better model)"
-    - persona: "Bulk fan-out workers"
-      pick: "Haiku-tier"
+  recommendation: ""
 ---
-
 # Claude Opus 4.6: What Actually Changed and Why It Matters
 
 **TL;DR**: Anthropic released Claude Opus 4.6 on February 5, 2026. The headline numbers: 1M token context window (beta), 128K output tokens, adaptive thinking that replaces manual budget tuning, and a 67% price reduction to $5/$25 per million tokens. ARC-AGI-2 jumped from 37.6% to 68.8%. There are breaking changes — prefilling assistant messages now returns a 400 error, and `budget_tokens` is deprecated. Here's what actually matters for builders.

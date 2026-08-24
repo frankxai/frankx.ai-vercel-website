@@ -5,8 +5,14 @@ import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
 import Diagram from '@/components/blog/Diagram'
 import { FunnelCTA } from '@/components/funnel/FunnelCTA'
-import LearnHubCallout from '@/components/learn/LearnHubCallout'
+import { LeadMagnetCard } from '@/components/blog/LeadMagnetCard'
 import { buildInlineVideoSchema } from '@/lib/video-schema'
+import LearnHubCallout from '@/components/learn/LearnHubCallout'
+import { EcosystemBadge, EcosystemStack } from '@/components/blog/EcosystemBadges'
+import { MascotInsight } from '@/components/blog/MascotInsight'
+import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
+import { collectText, slugifyHeading } from '@/lib/heading-id'
+
 
 // Embed components for immersive media
 import {
@@ -91,8 +97,6 @@ function getCalloutIcon(type: CalloutKind) {
 }
 
 function Callout({ children, type = 'info' }: CalloutProps) {
-  // Defensive lookup — unknown `type` from a blog post falls back to 'info'
-  // instead of throwing during prerender (caught 'insight' on six-primitives 2026-05-07).
   const safeType: CalloutKind = (type in calloutStyles ? type : 'info') as CalloutKind
   const style = calloutStyles[safeType]
   return (
@@ -108,25 +112,16 @@ function Callout({ children, type = 'info' }: CalloutProps) {
   )
 }
 
-function CustomImage({ src, alt, ...props }: any) {
+function CustomImage({ src, alt, caption, ...props }: any) {
   return (
-    <figure className="my-10">
-      <div className="overflow-hidden rounded-xl border border-white/[0.08]">
-        <Image
-          src={src}
-          alt={alt}
-          width={1200}
-          height={630}
-          className="h-auto w-full"
-          {...props}
-        />
-      </div>
-      {alt && alt !== 'image' && (
-        <figcaption className="mt-3 text-center text-sm text-white/60">
-          {alt}
-        </figcaption>
-      )}
-    </figure>
+
+    <LiquidGlassImage
+      src={src}
+      alt={alt}
+      caption={caption}
+      {...props}
+    />
+
   )
 }
 
@@ -137,19 +132,30 @@ export const mdxComponents: MDXComponents = {
       {children}
     </h1>
   ),
-  h2: ({ children, ...props }: ComponentPropsWithoutRef<'h2'>) => (
-    <h2
-      className="mt-14 mb-5 text-2xl font-bold tracking-tight text-white md:text-3xl"
-      {...props}
-    >
-      {children}
-    </h2>
-  ),
-  h3: ({ children, ...props }: ComponentPropsWithoutRef<'h3'>) => (
-    <h3 className="mt-10 mb-4 text-xl font-semibold text-white md:text-2xl" {...props}>
-      {children}
-    </h3>
-  ),
+  h2: ({ children, id, className, ...props }: ComponentPropsWithoutRef<'h2'>) => {
+    const headingId = id || slugifyHeading(collectText(children))
+    return (
+      <h2
+        id={headingId || undefined}
+        className={`mt-14 mb-5 scroll-mt-28 text-2xl font-bold tracking-tight text-white article-heading-anchor md:text-3xl ${className ?? ''}`}
+        {...props}
+      >
+        {children}
+      </h2>
+    )
+  },
+  h3: ({ children, id, className, ...props }: ComponentPropsWithoutRef<'h3'>) => {
+    const headingId = id || slugifyHeading(collectText(children))
+    return (
+      <h3
+        id={headingId || undefined}
+        className={`mt-10 mb-4 scroll-mt-28 text-xl font-semibold text-white article-heading-anchor md:text-2xl ${className ?? ''}`}
+        {...props}
+      >
+        {children}
+      </h3>
+    )
+  },
   h4: ({ children, ...props }: ComponentPropsWithoutRef<'h4'>) => (
     <h4 className="mt-8 mb-3 text-lg font-semibold text-white/90" {...props}>
       {children}
@@ -232,7 +238,7 @@ export const mdxComponents: MDXComponents = {
       role="region"
       aria-label="Scrollable data table"
       tabIndex={0}
-      className="my-8 overflow-x-auto rounded-xl border border-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-400"
+      className="my-8 overflow-x-auto rounded-xl border border-white/[0.08] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500/50"
     >
       <table className="min-w-full text-sm" {...props}>
         {children}
@@ -286,11 +292,20 @@ export const mdxComponents: MDXComponents = {
 
   // ── Custom components ─────────────────────────────────────────────────
   Image: CustomImage,
+  img: CustomImage,
+  LiquidGlassImage,
+  InfographicImage: LiquidGlassImage,
   Diagram,
   Callout,
   AffiliateLink,
   FunnelCTA,
+  LeadMagnetCard,
+  LeadMagnetInline: LeadMagnetCard,
   LearnHubCallout,
+  EcosystemBadge,
+  EcosystemStack,
+  MascotInsight,
+  MascotCallout: MascotInsight,
   Link,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,

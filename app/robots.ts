@@ -1,9 +1,7 @@
 import { MetadataRoute } from 'next'
 
-import { siteConfig } from '@/lib/seo'
-
 export default function robots(): MetadataRoute.Robots {
-  const privatePaths = [
+  const commonDisallows = [
     '/api/',
     '/admin/',
     '/auth/',
@@ -12,12 +10,6 @@ export default function robots(): MetadataRoute.Robots {
     '/prototype/',
     '/onboarding/',
     '/command-center/',
-    '/checkout/',
-    '/vault/',
-    '/inner-circle/',
-    '/realm/',
-    '/partnerships/proposal/',
-    '/downloads/*',
   ]
 
   return {
@@ -25,24 +17,25 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: privatePaths,
+        disallow: commonDisallows,
       },
       {
         userAgent: [
-          // Training and broad content-ingestion crawlers remain blocked.
-          // Visitor-triggered answer engines (ChatGPT-User, Claude-User,
-          // PerplexityBot) follow the public rule above so Library pages can
-          // be retrieved and cited without opting the site into model training.
           'GPTBot',
-          'CCBot',
+          'ChatGPT-User',
           'ClaudeBot',
+          'Claude-Web',
+          'PerplexityBot',
           'Google-Extended',
-          'FacebookBot',
+          'Applebot-Extended',
+          'Amazonbot',
+          'cohere-ai',
           'Meta-ExternalAgent',
         ],
-        disallow: '/',
+        allow: '/',
+        disallow: commonDisallows,
       },
     ],
-    sitemap: `${siteConfig.url}/sitemap.xml`,
+    sitemap: 'https://frankx.ai/sitemap.xml',
   }
 }

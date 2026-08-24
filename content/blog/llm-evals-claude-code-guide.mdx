@@ -1,42 +1,19 @@
 ---
 title: "How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)"
-description: "The complete tutorial for head-to-head model evals inside Claude Code: per-spawn model overrides, ground truth before dispatch, self-verifying tasks, blind judging, and JSON receipts. The exact harness behind our Fable 5 vs Opus 4.8 rounds."
+description: "The complete tutorial for head-to-head model evals inside Claude Code: per-spawn model overrides, ground truth before dispatch, self-verifying tasks, blind judging, and JSON receipts."
 date: "2026-06-10"
-lastUpdated: "2026-06-10"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - claude-code
-  - llm-evals
-  - agentic-ai
-  - benchmarks
-  - ai-2026
-  - anthropic
-keywords:
-  - llm eval claude code
-  - how to evaluate llm models
-  - claude code model comparison
-  - run llm benchmarks yourself
-  - llm eval harness
-  - compare ai models claude code
-  - model eval without langsmith
-  - promptfoo vs langfuse
-  - blind llm judging
-image: "/images/blog/llm-evals-claude-code-guide-hero-v5.jpg"
+tags: ["claude-code", "llm-evals", "agentic-ai", "benchmarks", "ai-2026", "anthropic"]
+image: "/images/blog/generated/llm-evals-claude-code-guide-premium-hero.png"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll understand benchmark performance, cost-efficiency trade-offs, and exact deployment patterns for the latest frontier models."
+tldr: "You do not need an eval platform to know which model to route where. The Claude Code Agent tool accepts a per-spawn model override, which makes the CLI itself a head-to-head eval harness: dispatch the same task to two models as parallel subagents, verify objective tasks with."
+keywords: ["llm eval claude code", "how to evaluate llm models", "claude code model comparison", "run llm benchmarks yourself", "llm eval harness", "compare ai models claude code", "model eval without langsmith", "promptfoo vs langfuse", "blind llm judging"]
 architectNote:
-  recommendation: "Make evals a routing reflex, not a platform project. The Claude Code Agent tool's per-spawn model override gives you a zero-infrastructure harness for head-to-head rounds — fix ground truth before dispatch, verify mechanically, judge blind, write a receipt. Adopt promptfoo only for prompt regression, Langfuse only once an app serves real users, and skip LangSmith entirely unless you already live in LangChain."
-  coePillar: "Evaluation discipline + evidence standards"
-  personas:
-    - persona: "AI architects / engineering leads"
-      pick: "This harness — new model day = eval day"
-    - persona: "Prompt engineers"
-      pick: "promptfoo for pattern regression"
-    - persona: "Product teams with live users"
-      pick: "Langfuse for runtime tracing"
+  recommendation: ""
 ---
-
 # How to Run Your Own LLM Evals in Claude Code (No Eval Platform Required)
 
 **TL;DR**: You do not need an eval platform to know which model to route where. The Claude Code `Agent` tool accepts a per-spawn `model` override, which makes the CLI itself a head-to-head eval harness: dispatch the same task to two models as parallel subagents, verify objective tasks with asserts you wrote *before* dispatch, judge subjective tasks with a blind non-contestant model under shuffled labels, and write a JSON receipt. This is the exact loop behind our [four receipted Fable 5 vs Opus 4.8 rounds](/research/model-arena), run within 24 hours of the model's release. Full walkthrough below, including the task-design rules and the three caveats that never leave a receipt.

@@ -224,7 +224,7 @@ export default function VaultPreviewPage() {
             href="/inner-circle"
             className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 h-14 font-semibold text-white shadow-lg shadow-[#AB47C7]/30 transition-all hover:-translate-y-0.5"
           >
-            Join the Waitlist — June 1 2026
+            Join the Waitlist
             <ArrowRight className="w-5 h-5" />
           </Link>
           <p className="text-xs text-white/40 mt-4">Cancel anytime · One-click unsubscribe · No spam</p>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" role="img" aria-labelledby="tbT tbD">
+<title id="tbT">The trust boundary in an agent loop</title>
+<desc id="tbD">Trusted instructions from the system prompt and the operator enter the instruction position of the context window. Everything a tool or retrieval returns — documents, web pages, API responses, uploaded files — is untrusted and enters the data position only. Side effects that leave the system are gated behind an approval step, so a document cannot authorise its own consequences.</desc>
+<defs>
+<linearGradient id="tbPlane" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" stop-color="#12121a"/><stop offset="100%" stop-color="#0d0d14"/>
+</linearGradient>
+<marker id="tbArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#10b981" fill-opacity=".8"/>
+</marker>
+<marker id="tbArrowWarn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#f59e0b" fill-opacity=".85"/>
+</marker>
+</defs>
+<rect width="1200" height="700" fill="#0a0a0b"/>
+<text x="60" y="52" fill="#ffffff" font-family="Poppins,Inter,system-ui,sans-serif" font-size="26" font-weight="700">The trust boundary</text>
+<text x="60" y="80" fill="#94a3b8" font-family="Inter,system-ui,sans-serif" font-size="15">Text that came back from a tool is data. The moment it reaches the instruction position, it is a command.</text>
+
+<g font-family="Inter,system-ui,sans-serif">
+
+<!-- TRUSTED column -->
+<text x="60" y="128" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">TRUSTED — you wrote this</text>
+<g transform="translate(60,140)">
+<rect width="300" height="64" rx="12" fill="url(#tbPlane)" stroke="#10b981" stroke-opacity=".3"/>
+<text x="20" y="28" fill="#ffffff" font-size="15" font-weight="600">System prompt</text>
+<text x="20" y="50" fill="#94a3b8" font-size="13">Role, constraints, refusals</text>
+</g>
+<g transform="translate(60,216)">
+<rect width="300" height="64" rx="12" fill="url(#tbPlane)" stroke="#10b981" stroke-opacity=".3"/>
+<text x="20" y="28" fill="#ffffff" font-size="15" font-weight="600">Operator instruction</text>
+<text x="20" y="50" fill="#94a3b8" font-size="13">The task, from a person</text>
+</g>
+<line x1="360" y1="172" x2="472" y2="196" stroke="#10b981" stroke-opacity=".55" stroke-width="1.5" marker-end="url(#tbArrow)"/>
+<line x1="360" y1="248" x2="472" y2="224" stroke="#10b981" stroke-opacity=".55" stroke-width="1.5" marker-end="url(#tbArrow)"/>
+
+<!-- UNTRUSTED column -->
+<text x="60" y="344" fill="#f59e0b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">UNTRUSTED — anyone could have written this</text>
+<rect x="52" y="356" width="316" height="252" rx="16" fill="none" stroke="#f59e0b" stroke-opacity=".35" stroke-dasharray="6 5"/>
+<g transform="translate(68,376)">
+<rect width="284" height="52" rx="12" fill="url(#tbPlane)" stroke="#ffffff" stroke-opacity=".08"/>
+<text x="20" y="31" fill="#e2e8f0" font-size="14">Retrieved documents</text>
+</g>
+<g transform="translate(68,438)">
+<rect width="284" height="52" rx="12" fill="url(#tbPlane)" stroke="#ffffff" stroke-opacity=".08"/>
+<text x="20" y="31" fill="#e2e8f0" font-size="14">Tool and API responses</text>
+</g>
+<g transform="translate(68,500)">
+<rect width="284" height="52" rx="12" fill="url(#tbPlane)" stroke="#ffffff" stroke-opacity=".08"/>
+<text x="20" y="31" fill="#e2e8f0" font-size="14">Fetched web pages</text>
+</g>
+<g transform="translate(68,562)">
+<rect width="284" height="34" rx="10" fill="url(#tbPlane)" stroke="#ffffff" stroke-opacity=".08"/>
+<text x="20" y="23" fill="#e2e8f0" font-size="14">Uploaded files</text>
+</g>
+<path d="M368,486 L440,486 L440,270 L474,270" fill="none" stroke="#f59e0b" stroke-opacity=".55" stroke-width="1.5" marker-end="url(#tbArrowWarn)"/>
+<text x="374" y="508" fill="#f59e0b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">as data only</text>
+
+<!-- CONTEXT WINDOW -->
+<g transform="translate(480,140)">
+<rect width="300" height="176" rx="16" fill="url(#tbPlane)" stroke="#ffffff" stroke-opacity=".12"/>
+<text x="20" y="30" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">CONTEXT WINDOW</text>
+<rect x="20" y="46" width="260" height="46" rx="10" fill="#10b981" fill-opacity=".07" stroke="#10b981" stroke-opacity=".3"/>
+<text x="36" y="66" fill="#ffffff" font-size="14" font-weight="600">Instruction position</text>
+<text x="36" y="84" fill="#34d399" font-size="12">Trusted input only. No exceptions.</text>
+<rect x="20" y="104" width="260" height="52" rx="10" fill="#f59e0b" fill-opacity=".06" stroke="#f59e0b" stroke-opacity=".3"/>
+<text x="36" y="124" fill="#ffffff" font-size="14" font-weight="600">Data position</text>
+<text x="36" y="142" fill="#fbbf24" font-size="12">Fenced, labelled, never obeyed.</text>
+</g>
+
+<!-- LOOP -->
+<g transform="translate(480,356)">
+<rect width="300" height="112" rx="16" fill="url(#tbPlane)" stroke="#ffffff" stroke-opacity=".12"/>
+<text x="20" y="32" fill="#ffffff" font-size="16" font-weight="600">The loop</text>
+<text x="20" y="56" fill="#94a3b8" font-size="13">Reads context, picks a tool,</text>
+<text x="20" y="76" fill="#94a3b8" font-size="13">calls it, reads what comes back.</text>
+<text x="20" y="98" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">iteration cap lives in code</text>
+</g>
+<line x1="630" y1="316" x2="630" y2="348" stroke="#10b981" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#tbArrow)"/>
+
+<!-- GATE -->
+<g transform="translate(820,356)">
+<rect width="320" height="112" rx="16" fill="url(#tbPlane)" stroke="#f59e0b" stroke-opacity=".4"/>
+<text x="20" y="32" fill="#ffffff" font-size="16" font-weight="600">Approval gate</text>
+<text x="20" y="56" fill="#94a3b8" font-size="13">Anything irreversible stops here</text>
+<text x="20" y="76" fill="#94a3b8" font-size="13">until a person says yes.</text>
+<text x="20" y="98" fill="#fbbf24" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">a document cannot approve itself</text>
+</g>
+<line x1="780" y1="412" x2="812" y2="412" stroke="#f59e0b" stroke-opacity=".55" stroke-width="1.5" marker-end="url(#tbArrowWarn)"/>
+
+<!-- EFFECTS -->
+<g transform="translate(820,140)">
+<rect width="320" height="176" rx="16" fill="url(#tbPlane)" stroke="#ffffff" stroke-opacity=".12"/>
+<text x="20" y="30" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">SIDE EFFECTS — leave the system</text>
+<text x="20" y="62" fill="#e2e8f0" font-size="14">Writes to a database</text>
+<text x="20" y="90" fill="#e2e8f0" font-size="14">Messages to a person</text>
+<text x="20" y="118" fill="#e2e8f0" font-size="14">Payments and provisioning</text>
+<text x="20" y="146" fill="#e2e8f0" font-size="14">Code merged or deployed</text>
+</g>
+<line x1="980" y1="348" x2="980" y2="324" stroke="#f59e0b" stroke-opacity=".55" stroke-width="1.5" marker-end="url(#tbArrowWarn)"/>
+
+<text x="60" y="656" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">If the loop can act on retrieved text without a gate, the retrieval corpus is part of your attack surface.</text>
+</g>
+</svg>

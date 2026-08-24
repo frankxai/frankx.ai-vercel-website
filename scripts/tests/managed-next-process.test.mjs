@@ -3,6 +3,7 @@ import { once } from 'node:events'
 import test from 'node:test'
 
 import {
+  processGroupHasRunningMember,
   spawnManagedProcess,
   stopManagedProcess,
 } from './helpers/managed-next-process.mjs'
@@ -53,10 +54,19 @@ test('managed process teardown exits the child tree and closes its pipes promptl
     assert.equal(child.stderr.destroyed, true)
 
     if (process.platform !== 'win32') {
-      assert.throws(
-        () => process.kill(-child.pid, 0),
-        (error) => error?.code === 'ESRCH',
-        'the complete process group must be gone',
+      // Every process in the group must be dead — but "dead" is not the same as
+      // "gone from the process table". A killed orphan is reparented to init and
+      // lingers as a zombie until init reaps it, which took 1.2-1.9s in a
+      // container here while the processes themselves died in ~50ms. Asserting
+      // on kill(-pgid, 0) measured init's reaping latency, not this teardown,
+      // and failed about one run in four for that reason.
+      //
+      // A zombie holds no port, runs no code and writes no files, so the leak
+      // this guards against is a *running* leftover. That is what we assert.
+      assert.equal(
+        processGroupHasRunningMember(child.pid),
+        false,
+        'no running process may remain in the group',
       )
     }
   } finally {

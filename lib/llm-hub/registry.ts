@@ -101,6 +101,14 @@ export function getPlatform(id: string | undefined): AgenticPlatformEntry | unde
   return (RAW.agentic_platforms || {})[id]
 }
 
+/**
+ * The registry's own freshness stamp. Surfaces read this instead of hardcoding a
+ * date in copy, so the page can never claim to be fresher than its data.
+ */
+export function registryLastUpdated(): string {
+  return (registry as { _updated?: string })._updated ?? ''
+}
+
 export function getAllModels(): ModelEntry[] {
   return Object.entries(rawModels()).map(([key, m]) => normaliseModel(key, m))
 }

@@ -22,6 +22,7 @@ on:
       - 'eslint.config.*'
       - '.github/workflows/ci.yml'
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches: [main, staging]
     paths:
       - 'app/**'
@@ -53,6 +54,7 @@ env:
 jobs:
   ci:
     name: CI
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -80,6 +82,9 @@ jobs:
 
       - name: Type Check
         run: pnpm run type-check
+
+      - name: Changelog contract
+        run: pnpm run test:changelog-release
 
       - name: Lint
         run: pnpm run lint

@@ -1,0 +1,111 @@
+---
+title: "The 100-Domain Research Engine: Building a PhD-Grade Intelligence Substrate"
+description: "How to structure automated literature synthesis, primary source registries, validated claims matrices, and answer engine optimization (AEO)."
+date: "2026-08-18"
+category: "Intelligence Dispatches"
+tags:
+  - "research-engine"
+  - "knowledge-graphs"
+  - "validated-claims"
+  - "literature-synthesis"
+  - "aeo"
+  - "academic-rigor"
+image: "/images/blog/generated/100-domain-research-engine.jpg"
+readingGoal: "Learn how to build a continuous research intelligence system that monitors academic literature, extracts empirical claims, and powers Answer Engine Optimization."
+tldr: "Information overload requires automated epistemic architecture. A 100-domain research engine ingests primary literature (arXiv, Nature, IEEE), extracts empirical metrics, grades evidence validity, and structures data for AI search discovery."
+architectNote: "Never rely on raw LLM summaries for research truth. Always maintain immutable pointers to DOIs, paper authors, publication dates, and sample sizes with strict epistemic grading (Grade A/B/C)."
+publishedAt: "2026-08-18"
+lastUpdated: "2026-08-18"
+author: "Frank Riemer"
+---
+
+The volume of scientific and technological literature has outstripped human cognitive processing capacity. Thousands of papers are published weekly across frontier AI, quantum computing, biophysics, and distributed systems. Relying on superficial social media summaries or unverified second-hand commentary leads to intellectual decay and strategic blindspots.
+
+The solution is an automated, sovereign **100-Domain Research Engine** operating with the epistemic rigor of a top-tier research institution.
+
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                 100-DOMAIN RESEARCH ENGINE INGESTION PIPELINE               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Primary Literature Streams (arXiv, Nature, IEEE, ACM, Science)             │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Automated Ingestion & PDF Parser]                                         │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Claim Extraction & Methodology Auditor]                                   │
+│       │                                                                     │
+│       ▼                                                                     │
+│  [Epistemic Grading Gate]                                                   │
+│       ├──► Grade A: Peer-Reviewed Proof  ──┐                                │
+│       ├──► Grade B: Technical Report     ──┼─► [Validated Knowledge Graph]  │
+│       └──► Grade C: Working Hypothesis   ──┘          │                     │
+│                                                       ▼                     │
+│                                          [100-Domain Research Hub / AEO]    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+```
+
+---
+
+## 1. The Epistemic Quality Grading Framework
+
+To maintain scientific integrity, every empirical statement in the research engine is assigned an **Evidence Grade**:
+
+| Grade | Evidence Standard | Verification Criteria |
+|---|---|---|
+| **Grade A** | Gold-Standard Peer-Reviewed | Published in indexed journal (Nature, Science, IEEE, ACM) with reproducible data and formal peer review. |
+| **Grade B** | Verified Industry Technical Report | Official technical report from frontier labs (OpenAI, Anthropic, DeepMind, NVIDIA) with public benchmark logs. |
+| **Grade C** | Independent Preprint / Working Paper | arXiv preprint or technical whitepaper with sound mathematical reasoning but awaiting independent replication. |
+| **Grade D** | Editorial / Speculative Hypothesis | Conceptual framework or strategic synthesis with logical plausibility but unverified empirical outcomes. |
+
+---
+
+## 2. Structured Claim Extraction and Knowledge Graph Topology
+
+A research domain is not a monolithic blog post; it is a **computable knowledge node** containing structured data:
+
+```typescript
+// Research Domain Schema
+export interface ResearchDomainNode {
+  slug: string;
+  discipline: 'frontier-ai' | 'agentic-systems' | 'ai-infrastructure' | 'quantum-technology' | 'reality-architecture' | 'agentic-products' | 'enterprise-governance';
+  title: string;
+  tldr: string;
+  primarySources: Array<{
+    title: string;
+    authors: string[];
+    doiOrUrl: string;
+    publishedDate: string;
+    evidenceGrade: 'A' | 'B' | 'C';
+  }>;
+  validatedClaims: Array<{
+    claimStatement: string;
+    empiricalMetric: string;
+    confidenceScore: number; // 0.0 to 1.0
+  }>;
+  limitations: string[];
+  whatWeDontKnow: string[];
+}
+```
+
+---
+
+## 3. Answer Engine Optimization (AEO) and AI Citation Engineering
+
+In the post-search era, discovery occurs through AI Answer Engines: Perplexity, ChatGPT Search, Claude, and Google AI Overviews. These engines prioritize content that is:
+
+1. **High Semantic Density**: Crisp, authoritative answers directly below headings without filler introductory text.
+2. **Dense Structured Data**: Schema.org `TechArticle`, `FAQPage`, `BreadcrumbList`, and `ItemPage` JSON-LD markup.
+3. **Verifiable Citations**: Clear links to primary DOIs, author attributions, and empirical sample sizes.
+4. **Epistemic Humility**: Clear declarations of boundaries, limitations, and unanswered questions ("What We Do Not Know Yet").
+
+---
+
+## 4. The Compounding Advantage of Sovereign Research
+
+When an individual creator or organization maintains a 100-domain research substrate:
+- **Zero-Latency Truth Access**: Instant retrieval of verified empirical metrics during high-stakes decision making.
+- **Deep Intellectual Moat**: Content, products, and strategies are grounded in primary scientific realities rather than fleeting industry hype.
+- **Continuous Ingestion Flywheel**: As new papers drop, automated agents update domain nodes, expanding the knowledge mesh automatically.

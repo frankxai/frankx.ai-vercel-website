@@ -7,7 +7,7 @@ import { ModelExplorer } from '@/components/llm-hub/ModelExplorer'
 import { DecisionMatrix } from '@/components/llm-hub/DecisionMatrix'
 import { CreatorStackCard } from '@/components/llm-hub/CreatorStackCard'
 import { TaskRoutingPlayground } from '@/components/research/TaskRoutingPlayground'
-import { getAllPlatforms, getProviders } from '@/lib/llm-hub/registry'
+import { getAllPlatforms, getProviders, registryLastUpdated } from '@/lib/llm-hub/registry'
 import { buildModelRows } from '@/lib/llm-hub/rows'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
 import { ldJson } from '@/lib/seo/jsonld'
@@ -50,6 +50,14 @@ const FAQ = [
     a: 'Yes. The full curated dataset — models, pricing, verdicts, decision matrix, comparisons — is available as clean JSON at /llm-hub.json, plus JSON-LD structured data on every page and deep links in /llms.txt.',
   },
 ]
+
+/** ISO date from the registry -> the long form the hero uses. */
+function formatUpdated(iso: string): string {
+  if (!iso) return 'recently'
+  const d = new Date(`${iso}T00:00:00Z`)
+  if (Number.isNaN(d.getTime())) return 'recently'
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+}
 
 export default async function LlmHubPage() {
   const providers = getProviders()
@@ -122,7 +130,7 @@ export default async function LlmHubPage() {
         <section className="px-6 pb-12 pt-16">
           <div className="mx-auto max-w-6xl">
             <p className="mb-4 font-mono text-sm uppercase tracking-wider text-emerald-400">
-              Frontier Intelligence Directory · Updated May 20, 2026
+              Frontier Intelligence Directory · Updated {formatUpdated(registryLastUpdated())}
             </p>
             <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
               LLM Provider Hub <span className="text-white/40">2026</span>

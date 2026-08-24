@@ -1,45 +1,19 @@
 ---
 title: "Mistral Large 3: The 675B Open-Weight Frontier Model Europe Has Been Waiting For"
-description: "Mistral Large 3 (mistral-large-2512) is a 675B/41B-active MoE released under Apache 2.0, December 2025. 256K context, $0.50/$1.50 API pricing, runs on one 8xH200 node. Verified benchmarks, EU sovereignty angle, self-host specifics, and what it means for builders."
+description: "Mistral Large 3 (mistral-large-2512) is a 675B/41B-active MoE released under Apache 2.0, December 2025. 256K context, $0.50/$1.50 API pricing, runs on one 8xH200 node."
 date: "2026-06-05"
-lastUpdated: "2026-06-05"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - mistral
-  - open-weight
-  - frontier-models
-  - ai-2026
-  - benchmarks
-  - eu-sovereign-ai
-keywords:
-  - mistral large 3
-  - mistral large 3 review
-  - mistral large 3 benchmarks
-  - mistral large 3 pricing
-  - mistral large 3 apache 2.0
-  - mistral large 3 self host
-  - mistral large 3 vram
-  - mistral large 3 vs deepseek
-  - mistral 3 open weight
-  - best open weight model 2026
-image: "/images/blog/mistral-large-3-analysis-2026-hero-v5.jpg"
+tags: ["mistral", "open-weight", "frontier-models", "ai-2026", "benchmarks", "eu-sovereign-ai"]
+image: "/images/blog/editorial/headers/mistral-large-3-analysis-2026-hero.webp"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll learn actionable architectural frameworks, core implementation steps, and production strategies for mistral large 3 the 675b openweight frontier model europe has been waiting for."
+tldr: "On December 2, 2025, Mistral shipped Mistral Large 3 (mistral-large-2512) — a sparse Mixture-of-Experts model with 675B total / 41B active parameters, released under Apache 2.0. Base and instruct weights are on Hugging Face; there is no commercial-license catch on this one."
+keywords: ["mistral large 3", "mistral large 3 review", "mistral large 3 benchmarks", "mistral large 3 pricing", "mistral large 3 apache 2.0", "mistral large 3 self host", "mistral large 3 vram", "mistral large 3 vs deepseek", "mistral 3 open weight", "best open weight model 2026"]
 architectNote:
-  recommendation: "Route the volume to Large 3 — multilingual chat, RAG answering, drafting, code completion — at $0.50/$1.50 via la Plateforme or at $0 per token self-hosted FP8 on one 8x H200 node. It is the strongest open non-reasoner (LMArena ~1418) and the only frontier-class model combining Apache 2.0 with EU-resident endpoints, which makes it the default for regulated European workloads. Do not route hard reasoning to it: ~44% GPQA Diamond is roughly half the dedicated reasoners, so keep a DeepSeek-class model or Opus 4.8 on the judgment lane until Mistral's promised reasoning variant ships."
-  coePillar: "Technology · model routing + Governance · data sovereignty"
-  personas:
-    - persona: "Bulk fan-out workers"
-      pick: "Mistral Large 3 ($0.50/$1.50, or $0 self-hosted)"
-    - persona: "Sovereign / self-hosted stacks"
-      pick: "Mistral Large 3 (FP8, one 8x H200 node, Apache 2.0)"
-    - persona: "Customer-workflow agents"
-      pick: "Mistral Large 3 — multilingual, fast, human-preferred"
-    - persona: "Reviewer / judgment agents"
-      pick: "Opus 4.8 or DeepSeek-V4 — Large 3's GPQA gap rules it out here"
+  recommendation: ""
 ---
-
 # Mistral Large 3: The 675B Open-Weight Frontier Model Europe Has Been Waiting For
 
 **TL;DR**: On December 2, 2025, Mistral shipped Mistral Large 3 (`mistral-large-2512`) — a sparse Mixture-of-Experts model with 675B total / 41B active parameters, **released under Apache 2.0**. Base and instruct weights are on Hugging Face; there is no commercial-license catch on this one. It has a 256K context window, accepts text and images, and the FP8 checkpoint fits on a single 8xH200 node. API access on Mistral's la Plateforme runs $0.50 input / $1.50 output per million tokens — a 75% cut from Mistral Large 2. The benchmarks tell an honest story: it is one of the strongest *non-reasoning* open-weight models in the world (LMArena Elo ~1418, #2 among open-source non-reasoning models, ~73% MMLU-Pro, ~92% HumanEval), but it trails the dedicated reasoners — DeepSeek, Kimi K2-Thinking, GLM — on hard reasoning (GPQA Diamond ~44%). A reasoning variant is "coming soon." Here is what actually matters.

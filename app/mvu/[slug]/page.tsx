@@ -3,16 +3,16 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 
-import { createMetadata, siteConfig } from '@/lib/seo'
+import { createMetadata } from '@/lib/seo'
 import { getMvuEntries, getMvuEntry } from '@/lib/mvu'
+import { MVU_LAYER_META } from '@/lib/mvu-display'
+import { serializeJsonLd } from '@/lib/structured-data'
 import { MDXContent } from '@/components/blog/MDXContent'
-import { MvuResearchArticle } from '@/components/mvu/MvuResearchArticle'
 
-const SITE_URL = siteConfig.url
+const SITE_URL = 'https://www.frankx.ai'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
-export const revalidate = 86400
 
 export function generateStaticParams() {
   return getMvuEntries().map((entry) => ({ slug: entry.slug }))
@@ -33,37 +33,12 @@ export async function generateMetadata({
     })
   }
 
-  const keywords = Array.from(
-    new Set(
-      [
-        ...entry.tags,
-        entry.speaker,
-        entry.kind === 'research' ? 'Mindvalley University research' : 'Mindvalley University journal',
-        ...(entry.slug === 'dan-brule-breathwork'
-          ? [
-              'Dan Brulé breathwork',
-              'Dan Brulé Breath Mastery',
-              'conscious breathing',
-              'breathing awareness',
-              'relaxation breathing',
-            ]
-          : []),
-      ].filter((value): value is string => Boolean(value)),
-    ),
-  )
+  const collectionLabel = MVU_LAYER_META[entry.layer].collectionLabel
 
   return createMetadata({
-    title:
-      entry.kind === 'research'
-        ? `${entry.title} — MVU research`
-        : `${entry.title} — MVU journal`,
+    title: `${entry.title} — ${collectionLabel}`,
     description: entry.summary || `${entry.title} — from Frank Riemer’s Mindvalley University journal.`,
     path: `/mvu/${slug}`,
-    keywords,
-    type: 'article',
-    publishedTime: entry.date || undefined,
-    updatedTime: entry.reviewed || entry.date || undefined,
-    authors: ['Frank Riemer'],
   })
 }
 
@@ -71,12 +46,7 @@ function formatDate(date: string): string {
   if (!date) return ''
   const d = new Date(date)
   if (Number.isNaN(d.getTime())) return date
-  return d.toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    timeZone: 'UTC',
-  })
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
 export default async function MvuEntryPage({
@@ -88,96 +58,77 @@ export default async function MvuEntryPage({
   const entry = getMvuEntry(slug)
   if (!entry) notFound()
 
-  const canonicalUrl = `${SITE_URL}/mvu/${entry.slug}`
   const articleJsonLd = {
     '@context': 'https://schema.org',
-    '@type': entry.kind === 'journal' ? 'BlogPosting' : 'Article',
-    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+    '@type': entry.layer === 'frank-note' ? 'BlogPosting' : 'Article',
     headline: entry.title,
     description: entry.summary,
     datePublished: entry.date,
-    ...(entry.reviewed ? { dateModified: entry.reviewed } : {}),
-    inLanguage: 'en',
-    isAccessibleForFree: true,
-    keywords: entry.tags.join(', '),
     author: { '@type': 'Person', name: 'Frank Riemer', url: SITE_URL },
     publisher: { '@type': 'Organization', name: 'FrankX', url: SITE_URL },
-    url: canonicalUrl,
-    isPartOf: { '@type': 'CollectionPage', name: 'MVU journal', url: `${SITE_URL}/mvu` },
-    ...(entry.speaker
-      ? {
-          about: {
-            '@type': 'Person',
-            name: entry.speaker,
-            ...(entry.slug === 'dan-brule-breathwork'
-              ? { url: 'https://links.breathmastery.com/' }
-              : {}),
-          },
-        }
-      : {}),
-    ...(entry.sources.length ? { citation: entry.sources } : {}),
+    url: `${SITE_URL}/mvu/${entry.slug}`,
+    isPartOf: { '@type': 'CollectionPage', name: 'MVU field atlas', url: `${SITE_URL}/mvu` },
   }
 
-  if (entry.kind === 'research') {
-    return (
-      <main className="min-h-screen bg-void">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-        />
-        <MvuResearchArticle entry={entry} />
-      </main>
-    )
-  }
+  const layer = MVU_LAYER_META[entry.layer]
 
   return (
-    <main className="min-h-screen bg-void">
+    <main className="relative min-h-screen overflow-hidden bg-void">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_50%_0%,rgba(251,191,36,0.08),transparent_62%)]"
+      />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
       />
 
-      <article className="mx-auto w-full max-w-2xl px-5 py-16 sm:py-24">
+      <article className="relative mx-auto w-full max-w-3xl px-5 py-16 sm:px-6 sm:py-24">
         <Link
           href="/mvu"
-          className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
+          className="inline-flex min-h-11 items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
-          MVU journal
+          MVU field atlas
         </Link>
 
-        <header className="mt-8">
-          <div className="flex items-center gap-3 text-sm text-white/55">
-            <span className="capitalize text-tech-light/80">{entry.kind}</span>
+        <header className="mt-10 border-b border-white/10 pb-10 sm:pb-12">
+          <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-white/40">
+            <span className={layer.accent}>{entry.session || layer.label}</span>
             <span aria-hidden>·</span>
             <time dateTime={entry.date}>{formatDate(entry.date)}</time>
-            {entry.readingTime && (
-              <>
-                <span aria-hidden>·</span>
-                <span>{entry.readingTime}</span>
-              </>
-            )}
           </div>
-          <h1 className="mt-4 font-display text-3xl font-bold leading-[1.06] tracking-[-0.035em] text-white sm:text-4xl">
+          <h1 className="mt-5 text-4xl font-semibold leading-[1.06] tracking-[-0.04em] text-white sm:text-5xl">
             {entry.title}
           </h1>
+          {entry.summary && (
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/58">{entry.summary}</p>
+          )}
         </header>
 
-        <div className="prose prose-invert mt-10 max-w-none prose-headings:font-semibold prose-headings:text-white prose-p:text-white/75 prose-a:text-tech-light prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-li:text-white/75">
+        <aside className={`mt-8 rounded-2xl border p-5 sm:p-6 ${layer.panel}`}>
+          <p className={`text-xs font-semibold uppercase tracking-[0.2em] ${layer.accent}`}>
+            {layer.label}
+          </p>
+          <p className="mt-3 text-sm leading-6 text-white/58">
+            {entry.provenance || layer.description}
+          </p>
+        </aside>
+
+        <div className="prose prose-lg prose-invert mt-12 max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-white prose-p:leading-8 prose-p:text-white/72 prose-a:text-tech-light prose-a:no-underline hover:prose-a:underline prose-blockquote:border-amber-200/40 prose-blockquote:text-amber-50 prose-strong:text-white prose-li:text-white/72">
           <MDXContent source={entry.content} />
         </div>
 
         <hr className="my-12 border-white/10" />
 
-        <p className="text-sm leading-relaxed text-white/55">
-          Independent journal. I attended Mindvalley University 2026 as a
-          participant — not affiliated with, sponsored by, or endorsed by
-          Mindvalley.{' '}
+        <p className="text-sm leading-relaxed text-white/45">
+          Independent participant record. Not affiliated with, sponsored by, or
+          endorsed by Mindvalley.{' '}
           <Link
             href="/mvu#what-followed"
-            className="text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-tech-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-light"
+            className="text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-tech-light"
           >
-            See what the Tallinn notes became.
+            Return to the field atlas
           </Link>
         </p>
       </article>

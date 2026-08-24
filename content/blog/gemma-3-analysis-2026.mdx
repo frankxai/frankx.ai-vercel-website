@@ -1,45 +1,19 @@
 ---
 title: "Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU"
-description: "Google's current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4. Self-host specifics, verified benchmarks, license analysis, and which size for which job."
+description: "Google's current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4."
 date: "2026-06-05"
-lastUpdated: "2026-06-05"
-author: "Frank"
+lastUpdated: "2026-08-18"
+author: "FrankX"
 category: "Intelligence Dispatches"
-tags:
-  - google
-  - gemma
-  - open-weight-models
-  - local-llms
-  - ai-2026
-  - benchmarks
-keywords:
-  - gemma 4
-  - gemma 4 benchmarks
-  - gemma 4 vram requirements
-  - gemma 4 31b local
-  - gemma 4 vs gemma 3
-  - gemma 4 apache 2.0 license
-  - run gemma 4 ollama
-  - gemma 4 12b multimodal
-  - best open weight model 2026
-  - gemma 4 model sizes
-image: "/images/blog/gemma-3-analysis-2026-hero-v9.jpg"
+tags: ["google", "gemma", "open-weight-models", "local-llms", "ai-2026", "benchmarks"]
+image: "/images/blog/generated/gemma-3-analysis-2026-premium-hero.png"
 featured: true
-schema: ["Article", "FAQPage"]
+readingGoal: "You'll learn actionable architectural frameworks, core implementation steps, and production strategies for gemma 4 googles openweight family now runs a 31b frontier model on one gpu."
+tldr: "Google's current run-it-yourself model is Gemma 4, released April 2, 2026 — not Gemma 3 anymore. The headline change is the license: Gemma 4 drops Google's custom \"Gemma Terms\" for plain Apache 2.0, which removes the biggest friction enterprises had with the prior."
+keywords: ["gemma 4", "gemma 4 benchmarks", "gemma 4 vram requirements", "gemma 4 31b local", "gemma 4 vs gemma 3", "gemma 4 apache 2.0 license", "run gemma 4 ollama", "gemma 4 12b multimodal", "best open weight model 2026", "gemma 4 model sizes"]
 architectNote:
-  recommendation: "Gemma 4 is the self-hosted tier of your AI Center of Excellence: the 31B is the strongest open model that fits on a single 24GB GPU (~18GB at Q4), now under plain Apache 2.0, which removes the legal review that stalled prior Gemma adoptions. Route privacy-bound work and high-volume agent loops here — the 26B A4B MoE plus vLLM batching is a fundamentally different cost curve than per-call API billing. Do not make it compete at the frontier; Fable 5 ($10/$50, the current agentic ceiling) or DeepSeek V4 carry the hardest work. Before committing, run your own eval against Qwen 3.5, which narrowly out-reasons it — Gemma 4 wins on package, not on every score."
-  coePillar: "Technology · model routing + Governance · data sovereignty"
-  personas:
-    - persona: "Sovereign / self-hosted stacks"
-      pick: "Gemma 4 31B — max open quality on one GPU, Apache 2.0"
-    - persona: "Agentic mid-tier / tool-use fleets"
-      pick: "Gemma 4 26B A4B (~4B active) — MoE throughput at $0 per token"
-    - persona: "Multimodal ingest agents"
-      pick: "Gemma 4 12B — encoder-free vision + native audio on a 16GB laptop"
-    - persona: "Fine-tuned domain agents"
-      pick: "Gemma 4 (base + it checkpoints, Unsloth tooling, no disclosure obligation)"
+  recommendation: ""
 ---
-
 # Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU
 
 **TL;DR**: Google's current run-it-yourself model is **Gemma 4**, released April 2, 2026 — not Gemma 3 anymore. The headline change is the license: Gemma 4 drops Google's custom "Gemma Terms" for plain **Apache 2.0**, which removes the biggest friction enterprises had with the prior generations. The lineup ships in five tiers — E2B, E4B, the new **12B** (added June 3, 2026), a **26B A4B** mixture-of-experts, and a **31B dense** flagship. The 31B hits a **1452 LMArena Elo** (vendor-reported #3 among open models) and runs in roughly **18GB of VRAM at Q4** — one consumer GPU. Context is up to 256K, with native vision and (on E2B/E4B/12B) audio. Here's what's verifiable, what's vendor-claimed, and which tier to actually run.
