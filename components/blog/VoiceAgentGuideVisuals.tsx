@@ -19,7 +19,7 @@ function SignalNode({ children, tone = 'neutral' }: { children: ReactNode; tone?
   }[tone]
 
   return (
-    <div className={`flex min-h-12 items-center justify-center rounded-lg border px-3 py-2 text-center text-xs font-semibold leading-snug ${toneClass}`}>
+    <div className={`flex min-h-12 items-center justify-center rounded-lg border px-2 py-2 text-center text-xs font-semibold leading-snug sm:px-3 ${toneClass}`}>
       {children}
     </div>
   )
@@ -59,7 +59,7 @@ export function VoiceArchitectureChoice() {
             <h4 className="text-sm font-semibold text-emerald-200">Native speech-to-speech</h4>
             <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/[0.55]">one live loop</span>
           </div>
-          <div className="mt-5 grid grid-cols-[1fr_28px_1.4fr_28px_1fr] items-center gap-1">
+          <div className="mt-5 grid grid-cols-[1fr_16px_1.4fr_16px_1fr] items-center gap-0.5 sm:grid-cols-[1fr_28px_1.4fr_28px_1fr] sm:gap-1">
             <SignalNode>Mic</SignalNode>
             <Connector tone="emerald" />
             <SignalNode tone="emerald">Realtime model</SignalNode>
@@ -79,7 +79,7 @@ export function VoiceArchitectureChoice() {
             <h4 className="text-sm font-semibold text-cyan-200">Chained pipeline</h4>
             <span className="font-mono text-[10px] uppercase tracking-widest text-cyan-300/[0.55]">replaceable stages</span>
           </div>
-          <div className="mt-5 grid grid-cols-[1fr_18px_1fr_18px_1fr_18px_1fr] items-center gap-1">
+          <div className="mt-5 grid grid-cols-[1fr_12px_1fr_12px_1fr_12px_1fr] items-center gap-0.5 sm:grid-cols-[1fr_18px_1fr_18px_1fr_18px_1fr] sm:gap-1">
             <SignalNode>Mic</SignalNode>
             <Connector tone="cyan" />
             <SignalNode tone="cyan">STT</SignalNode>
