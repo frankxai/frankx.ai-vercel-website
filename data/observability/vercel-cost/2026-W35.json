@@ -1,0 +1,53 @@
+{
+  "week": "2026-W35",
+  "generatedAt": "2026-08-24T07:09:39Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-08-17T07:09:39Z",
+  "windowEnd": "2026-08-24T07:09:39Z",
+  "metrics": {
+    "count_total": 230,
+    "count_production": 36,
+    "count_preview": 194,
+    "count_skipped": 37,
+    "count_error": 9,
+    "count_ready": 184,
+    "duration_p50_seconds": 535,
+    "duration_p95_seconds": 621,
+    "duration_max_seconds": 663,
+    "total_build_minutes": 1684,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 18,
+    "ready_deploys_total": 184,
+    "duration_note": "18/184 READY deploys sampled via get_deployment across the Aug 17–24 window. Sorted samples (s): 448.3, 500.4, 504.0, 504.5, 505.8, 507.9, 509.1, 509.5, 528.8, 541.8, 558.7, 569.9, 596.2, 600.2, 608.4, 612.9, 613.6, 663.7. p50=535s (0-based idx 8.5: 528.8+0.5×(541.8−528.8)=535.3s). p95=621s (0-based idx 16.15: 613.6+0.15×50.1=621.1s). total_build_minutes estimated as (mean_sample=549.1s÷60)×184_READY=1684min."
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W34",
+    "count_total_delta": 122,
+    "count_total_delta_pct": 113.0,
+    "count_production_delta": 23,
+    "count_production_delta_pct": 176.9,
+    "count_preview_delta": 99,
+    "count_preview_delta_pct": 104.2,
+    "count_ready_delta": 112,
+    "count_ready_delta_pct": 155.6,
+    "count_error_change": "3→9 (+200%)",
+    "count_skipped_delta_pct": 12.1,
+    "duration_p50_delta_seconds": 9,
+    "duration_p50_delta_pct": 1.7,
+    "duration_p95_delta_seconds": 75,
+    "duration_p95_delta_pct": 13.7,
+    "duration_max_delta_seconds": 111,
+    "total_build_minutes_delta": 1064,
+    "total_build_minutes_delta_pct": 171.6
+  },
+  "verdict": "RED",
+  "alerts": [
+    "total_build_minutes=1684 > 1500 RED threshold. First time crossing the ceiling. Primary driver: deploy count more than doubled (108→230, +113%) as the site absorbed multi-day iteration on PRs #494/#496/#514 (blog + games + AI-architect surfaces) and reopened branches picked up main-merge deploys. Per-deploy cost held roughly flat (mean sample 549s vs W34 517s, +6%); the ceiling breach is throughput, not regression.",
+    "count_total=230 vs W34 108 (+113%). 36 production deploys across ~14 main-branch merges (#494, #496, #497, #498, #499, #500, #501, #502, #503, #505, #506, #507, #508, #509, #510, #511, #512, #514, #516, #517, #518, #520, #524, #525, #526, #528, #529, plus content). 194 preview builds across active PR branches — visibly heavy iteration on agent/gemini/blog-excellence-sync, claude/ai-architecture-seo-guide, agent/hermes/funnel-wig-499.",
+    "count_error=9 ≥ 2 RED threshold. Three-fold jump from W34 (3→9, +200%). 6 of 9 ERRORs concentrated on agent/gemini/blog-excellence-sync (PR #496) — content-pipeline build-out with iterative TypeScript/mdx compilation fixes, resolved by merge. Remaining 3 on adjacent long-running branches. Not a systemic infra failure; branch-specific compile churn.",
+    "duration_p50=535s > 360s RED threshold. Marginal drift from W34 (526→535s, +9s, +1.7%). Build-time ceiling remains structurally elevated at ~9 min p50, ~47% above the 360s GREEN target. Turbopack + Next 16.3.2 + expanded content corpus (230 articles now standardized in #494) keeps per-build work heavy. No compounding gains from prior cost audit; still ~1.7× ceiling.",
+    "duration_p95=621s (+75s, +13.7% vs W34) and max=663s (+111s) indicate tail expanded, likely tied to the content-corpus modernization on the blog-excellence-sync branch — larger MDX processing sets extend the tail of the distribution.",
+    "count_skipped=37 CANCELED builds (16.1% of total, down from 30.6% in W34). Rapid successive pushes still superseding earlier builds, mainly on agent/hermes/funnel-wig-499 (WIG lint iteration) and blog-excellence-sync. Not a risk signal but slightly lower cancel-rate reflects fewer rapid rebases within same branch."
+  ]
+}
