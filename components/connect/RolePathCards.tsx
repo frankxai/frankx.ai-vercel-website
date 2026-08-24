@@ -9,6 +9,7 @@ const paths = [
   {
     id: "architecture",
     number: "01",
+    audience: "Enterprise and technical teams",
     title: "You need an AI system that survives contact with the organisation.",
     description:
       "Start with the architecture field guide: decisions, constraints, evaluation, and operating boundaries.",
@@ -18,6 +19,7 @@ const paths = [
   {
     id: "partner",
     number: "02",
+    audience: "Technology and ecosystem partners",
     title: "You see a serious partner opportunity.",
     description:
       "Review documented proposals, platform alignment, and the exact relationship status behind each claim.",
@@ -25,8 +27,19 @@ const paths = [
     href: "/partnerships",
   },
   {
-    id: "research",
+    id: "university",
     number: "03",
+    audience: "Universities, faculty, and student programs",
+    title: "You want an AI workshop built around the people in the room.",
+    description:
+      "Start with the cohort, the outcome, and the constraints. Then book a fit call around the right format.",
+    action: "Plan the workshop",
+    href: "/connect#university-workshops",
+  },
+  {
+    id: "research",
+    number: "04",
+    audience: "Research, media, and peers",
     title: "You want to understand the thinking before we talk.",
     description:
       "Read source-led essays and build notes on agents, AI architecture, and applied creative systems.",
@@ -54,6 +67,9 @@ export function RolePathCards() {
             {path.number}
           </span>
           <span>
+            <span className="mb-2 block text-sm font-semibold text-[#2157d5]">
+              {path.audience}
+            </span>
             <span className="block max-w-2xl text-xl font-medium leading-7 tracking-[-0.025em] text-[#171915] sm:text-2xl sm:leading-8">
               {path.title}
             </span>
