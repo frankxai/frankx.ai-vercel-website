@@ -337,6 +337,13 @@ test('offline mode validates the normalized committed seed without network', () 
 })
 
 test('bounded HTTP helper enforces HTTPS, bytes, redirects, and every final host', async (t) => {
+  let forwardedAuthorization = null
+  const sink = createServer((request, response) => {
+    forwardedAuthorization = request.headers.authorization || null
+    response.end('ok')
+  })
+  await new Promise((resolveListen) => sink.listen(0, '127.0.0.1', resolveListen))
+  t.after(() => new Promise((resolveClose) => sink.close(resolveClose)))
   const server = createServer((request, response) => {
     if (request.url === '/large') {
       response.end('0123456789abcdef')
@@ -350,6 +357,8 @@ test('bounded HTTP helper enforces HTTPS, bytes, redirects, and every final host
       response.writeHead(307, { location: '/ok' }).end()
     } else if (request.url === '/foreign') {
       response.writeHead(302, { location: `http://localhost:${server.address().port}/ok` }).end()
+    } else if (request.url === '/cross-origin') {
+      response.writeHead(302, { location: `http://127.0.0.1:${sink.address().port}/ok` }).end()
     } else {
       response.end('ok')
     }
@@ -369,6 +378,8 @@ test('bounded HTTP helper enforces HTTPS, bytes, redirects, and every final host
   const followed = await fetchBytesBounded(`${base}/r1`, options)
   assert.equal(followed.redirects, 2)
   assert.equal(followed.finalUrl, `${base}/ok`)
+  await fetchBytesBounded(`${base}/cross-origin`, { ...options, headers: { authorization: 'Bearer do-not-forward' } })
+  assert.equal(forwardedAuthorization, null, 'authorization must be stripped on an allowed cross-origin redirect')
 })
 
 test('licence verifier confirms exact bounded evidence bytes and rejects a mismatch', async (t) => {

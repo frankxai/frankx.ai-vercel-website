@@ -33,9 +33,10 @@ export async function fetchBytesBounded(rawUrl, {
   assertPositiveInteger(timeoutMs, 'timeoutMs')
 
   let current = assertAllowedUrl(rawUrl, allowedHosts, { allowHttp })
+  let requestHeaders = new Headers(headers)
   for (let redirectCount = 0; ; redirectCount++) {
     const response = await fetchImpl(current, {
-      headers,
+      headers: requestHeaders,
       redirect: 'manual',
       signal: AbortSignal.timeout(timeoutMs),
     })
@@ -44,7 +45,12 @@ export async function fetchBytesBounded(rawUrl, {
       if (redirectCount >= maxRedirects) throw new Error(`redirect limit ${maxRedirects} exceeded`)
       const location = response.headers.get('location')
       if (!location) throw new Error(`redirect ${response.status} has no Location header`)
-      current = assertAllowedUrl(new URL(location, current).href, allowedHosts, { allowHttp })
+      const next = assertAllowedUrl(new URL(location, current).href, allowedHosts, { allowHttp })
+      if (next.origin !== current.origin) {
+        requestHeaders = new Headers(requestHeaders)
+        for (const sensitive of ['authorization', 'cookie', 'proxy-authorization']) requestHeaders.delete(sensitive)
+      }
+      current = next
       continue
     }
 

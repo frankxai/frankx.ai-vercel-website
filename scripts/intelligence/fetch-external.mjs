@@ -89,6 +89,9 @@ function validatePolicy(policy) {
   const ids = new Set()
   for (const source of policy.sources) {
     requiredString(source.id, 'source id', 128)
+    if (!/^[a-z0-9](?:[a-z0-9-]{0,126}[a-z0-9])?$/.test(source.id)) {
+      throw new Error(`source id ${source.id} must be a lowercase slug`)
+    }
     if (ids.has(source.id)) throw new Error(`duplicate source id ${source.id}`)
     ids.add(source.id)
     if (!['ingest', 'link-only'].includes(source.mode)) throw new Error(`source ${source.id} has invalid mode`)
@@ -111,6 +114,10 @@ function validatePolicy(policy) {
       for (const [provider, org] of Object.entries(source.provider_org_map)) {
         requiredString(provider, `source ${source.id} provider key`, 128)
         requiredString(org, `source ${source.id} registry org`, 128)
+      }
+      if (!['none', 'bearer-env'].includes(source.auth?.kind)) throw new Error(`source ${source.id} auth kind is invalid`)
+      if (source.auth.kind === 'bearer-env' && !/^[A-Z][A-Z0-9_]{0,127}$/.test(source.auth.env || '')) {
+        throw new Error(`source ${source.id} bearer env is invalid`)
       }
       if (!Array.isArray(source.allowed_hosts) || !source.allowed_hosts.includes(url.hostname)) {
         throw new Error(`source ${source.id} allowed_hosts must include ${url.hostname}`)
