@@ -388,7 +388,7 @@ function PlayNowSection() {
           </motion.div>
 
           <Link
-            href="/games/hub.html"
+            href="/game-embeds/legacy-hub.html"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-cyan-500 text-slate-950 font-bold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-amber-500/20 whitespace-nowrap self-start md:self-auto"
           >
             <Smartphone className="w-4 h-4" />
