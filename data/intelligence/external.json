@@ -1,6 +1,6 @@
 {
   "schema": "frankx/external-intelligence@1",
-  "_description": "External model intelligence, merged from permissively-licensed public sources. Every figure carries its source, licence and retrieval time. Sources that forbid redistribution are linked (external_refs), never ingested. Regenerate with: pnpm intelligence:fetch",
+  "_description": "External model intelligence from policy-approved public sources. Every ingested figure carries source, licence and retrieval time. Link-only sources are normalised once at the top level and never ingested. Regenerate with: pnpm intelligence:fetch",
   "generated_at": null,
   "_seed_note": "Seeded from data/model-registry.json with no external figures yet. The weekly intelligence-refresh workflow populates pricing/adoption on an unrestricted runner; this sandbox blocks the source hosts.",
   "sources": [
@@ -10,23 +10,43 @@
       "license": "MIT",
       "attribution": "models.dev (SST)",
       "retrieved_at": null,
-      "status": "pending"
+      "status": "pending",
+      "license_state": "confirmed",
+      "license_notice": "Copyright (c) 2025 models.dev",
+      "license_evidence": [
+        {
+          "role": "dataset-scope",
+          "url": "https://raw.githubusercontent.com/anomalyco/models.dev/dev/README.md",
+          "sha256": "2767d37ee90f6d71a876ef33347c04776cf16591f0051ac27f7369f8accd09cf"
+        },
+        {
+          "role": "licence-grant",
+          "url": "https://raw.githubusercontent.com/anomalyco/models.dev/dev/LICENSE",
+          "sha256": "dc2dc41c9fea2fd3c41c21c6f484844cab367800b88ff24781f980ad3a9d160a"
+        }
+      ]
     },
     {
       "id": "openrouter-models",
       "url": "https://openrouter.ai/api/v1/models",
-      "license": "OpenRouter ToS — pricing facts, cited with attribution",
+      "license": "OpenRouter ToS — redistribution not yet verified",
       "attribution": "OpenRouter",
       "retrieved_at": null,
-      "status": "pending"
+      "status": "pending",
+      "license_state": "unverified",
+      "license_notice": null,
+      "license_evidence": []
     },
     {
       "id": "openrouter-rankings",
       "url": "https://openrouter.ai/api/v1/datasets/rankings-daily",
-      "license": "CC BY 4.0",
+      "license": "OpenRouter rankings terms — redistribution not yet verified",
       "attribution": "OpenRouter rankings",
       "retrieved_at": null,
-      "status": "pending"
+      "status": "pending",
+      "license_state": "unverified",
+      "license_notice": null,
+      "license_evidence": []
     }
   ],
   "link_only": [
@@ -34,19 +54,19 @@
       "id": "artificial-analysis",
       "label": "Artificial Analysis — Intelligence Index, speed, price",
       "url": "https://artificialanalysis.ai/",
-      "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
+      "reason": "Free-tier terms are treated as no-redistribution pending a commercial licence."
     },
     {
       "id": "swe-bench",
       "label": "SWE-bench leaderboard",
       "url": "https://www.swebench.com/",
-      "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
+      "reason": "CC BY-NC 4.0 is not compatible with redistribution on this commercial site."
     },
     {
       "id": "lmarena",
       "label": "LMArena human-preference leaderboard",
       "url": "https://lmarena.ai/leaderboard",
-      "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
+      "reason": "Ingest remains deferred until the dataset licence and Parquet path are verified end to end."
     }
   ],
   "models": [
@@ -59,27 +79,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "claude-haiku-4-5",
@@ -90,27 +90,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 200000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "claude-opus-4-5",
@@ -121,27 +101,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 200000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "claude-opus-4-6",
@@ -152,27 +112,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 200000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "claude-opus-4-8",
@@ -183,27 +123,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "claude-opus-5",
@@ -214,27 +134,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "claude-sonnet-4-5",
@@ -245,27 +145,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 200000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "claude-sonnet-4-6",
@@ -276,27 +156,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 200000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "claude-sonnet-5",
@@ -307,27 +167,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "deepseek-v4",
@@ -338,27 +178,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "deepseek-v4-pro-0813",
@@ -369,27 +189,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1048576,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "gemini-3-5-flash",
@@ -400,27 +200,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "gemini-3-5-pro",
@@ -431,27 +211,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": null,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "gemini-3-7-flash",
@@ -462,27 +222,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1048576,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "gemini-3-pro",
@@ -493,27 +233,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 2000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "gemma-4",
@@ -524,27 +244,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 256000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "gpt-5-2-pro",
@@ -555,27 +255,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 196000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "gpt-5-5",
@@ -586,27 +266,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "gpt-oss",
@@ -617,27 +277,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 131072,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "grok-4-1",
@@ -648,27 +288,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 2000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "grok-4-3",
@@ -679,27 +299,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "grok-4-6",
@@ -710,27 +310,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 500000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "kimi-k2-6",
@@ -741,27 +321,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 262144,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "llama-4-maverick",
@@ -772,27 +332,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1048576,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "mai-code-1-flash",
@@ -803,27 +343,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": null,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "mai-image-2-5",
@@ -834,27 +354,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": null,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "mai-thinking-1",
@@ -865,27 +365,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 256000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "mistral-large-3",
@@ -896,27 +376,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 256000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "phi-4",
@@ -927,27 +387,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 16000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "qwen3-7-max",
@@ -958,27 +398,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     },
     {
       "id": "qwen3-8-27b",
@@ -989,27 +409,7 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 262144,
-      "benchmarks": [],
-      "external_refs": [
-        {
-          "id": "artificial-analysis",
-          "label": "Artificial Analysis — Intelligence Index, speed, price",
-          "url": "https://artificialanalysis.ai/",
-          "reason": "Free-tier terms are internal-use only; redistribution requires a commercial licence."
-        },
-        {
-          "id": "swe-bench",
-          "label": "SWE-bench leaderboard",
-          "url": "https://www.swebench.com/",
-          "reason": "Leaderboard repo is CC BY-NC 4.0 — NonCommercial conflicts with this site."
-        },
-        {
-          "id": "lmarena",
-          "label": "LMArena human-preference leaderboard",
-          "url": "https://lmarena.ai/leaderboard",
-          "reason": "CC-BY-4.0 dataset; ingest deferred until the Parquet path is verified end to end."
-        }
-      ]
+      "benchmarks": []
     }
   ]
 }
