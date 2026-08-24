@@ -285,6 +285,18 @@ This is the same principle I use in the [model-routing guide](/blog/ai-model-rou
 
 The full decision and migration boundary are recorded in the [Starlight voice-provider ADR](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/docs/specs/2026-08-24-voice-provider-architecture-decision.md). That receipt matters more than remembering which demo felt best six months from now.
 
+## Where should voice-agent research and architecture decisions live?
+
+Use one canonical decision record and two supporting evidence stores. Giving all three equal authority creates drift.
+
+| Layer | What belongs there | Governing rule |
+|---|---|---|
+| **GitHub ADR — canonical** | Ratified decision, alternatives, provider versions, migration boundary, rollback trigger, and links to evidence | This is the only layer allowed to say what the architecture currently is. Review changes through a diff. |
+| **Notion research mirror** | Readable brief, discussion notes, owner, open questions, and next review date | Link back to the ADR. Never let a meeting note silently override the ratified decision. |
+| **Restricted Google Drive evidence** | Consent-cleared audio samples, benchmark exports, call recordings, large CSVs, and vendor PDFs | Use dated, access-controlled folders. Index or hash material evidence from the ADR so it remains traceable. |
+
+For this stack, the [GitHub voice-provider ADR](https://github.com/frankxai/Starlight-Intelligence-System/blob/main/docs/specs/2026-08-24-voice-provider-architecture-decision.md) is the source of truth. Notion is the collaboration mirror; Drive is used only when the benchmark produces binary or heavyweight evidence. If the three disagree, GitHub wins. This keeps research useful without turning workspace sprawl into accidental architecture.
+
 ## How should you benchmark a voice agent before launch?
 
 Run the same corpus through every route. Fix the rubric before hearing the outputs. The protocol should be boring enough to repeat after every model, prompt, transport, or region change.
