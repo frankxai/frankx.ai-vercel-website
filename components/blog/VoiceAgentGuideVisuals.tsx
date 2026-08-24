@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 const surface =
-  'relative overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0d1112] shadow-[0_24px_80px_rgba(0,0,0,0.28)]'
+  'relative overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0a0a0b] shadow-[0_24px_80px_rgba(0,0,0,0.28)]'
 
 function Eyebrow({ children }: { children: ReactNode }) {
   return (
@@ -53,8 +53,8 @@ export function VoiceArchitectureChoice() {
         </h3>
       </div>
 
-      <div className="grid gap-px bg-white/[0.07] lg:grid-cols-2">
-        <section className="bg-[#0d1112] p-5 md:p-7" aria-label="Native speech-to-speech architecture">
+      <div className="grid divide-y divide-white/[0.07] lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+        <section className="p-5 md:p-7" aria-label="Native speech-to-speech architecture">
           <div className="flex items-baseline justify-between gap-4">
             <h4 className="text-sm font-semibold text-emerald-200">Native speech-to-speech</h4>
             <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/[0.55]">one live loop</span>
@@ -74,7 +74,7 @@ export function VoiceArchitectureChoice() {
           </p>
         </section>
 
-        <section className="bg-[#0d1112] p-5 md:p-7" aria-label="Chained voice architecture">
+        <section className="p-5 md:p-7" aria-label="Chained voice architecture">
           <div className="flex items-baseline justify-between gap-4">
             <h4 className="text-sm font-semibold text-cyan-200">Chained pipeline</h4>
             <span className="font-mono text-[10px] uppercase tracking-widest text-cyan-300/[0.55]">replaceable stages</span>
@@ -97,7 +97,7 @@ export function VoiceArchitectureChoice() {
         </section>
       </div>
 
-      <figcaption className="border-t border-white/[0.07] px-5 py-4 text-xs leading-5 text-white/[0.42] md:px-7">
+      <figcaption className="border-t border-white/[0.07] px-5 py-4 text-xs leading-5 text-white/50 md:px-7">
         Native and chained systems solve different interaction contracts. A provider comparison is useful only after this split is explicit.
       </figcaption>
     </figure>
@@ -145,7 +145,7 @@ export function VoiceCostBaseline() {
             One minute is not one billing unit
           </h3>
         </div>
-        <div className="border-t border-white/[0.07] px-5 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-white/[0.45] md:border-l md:border-t-0 md:px-6 md:py-6">
+        <div className="border-t border-white/[0.07] px-5 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-white/50 md:border-l md:border-t-0 md:px-6 md:py-6">
           USD · checked 24 Aug 2026
         </div>
       </div>
@@ -156,9 +156,9 @@ export function VoiceCostBaseline() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-medium text-white/[0.84]">{row.label}</p>
-                <p className="mt-1 text-[11px] leading-4 text-white/[0.42]">{row.note}</p>
+                <p className="mt-1 text-[11px] leading-4 text-white/50">{row.note}</p>
               </div>
-              <p className="shrink-0 font-mono text-sm font-semibold text-white">{row.value}<span className="text-[10px] font-normal text-white/40"> / min</span></p>
+              <p className="shrink-0 font-mono text-sm font-semibold text-white">{row.value}<span className="text-[10px] font-normal text-white/50"> / min</span></p>
             </div>
             <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
               <div className={`h-full rounded-full ${row.tone}`} style={{ width: row.width }} />
@@ -167,7 +167,7 @@ export function VoiceCostBaseline() {
         ))}
       </div>
 
-      <figcaption className="border-t border-white/[0.07] bg-white/[0.018] px-5 py-4 text-xs leading-5 text-white/[0.48] md:px-7">
+      <figcaption className="border-t border-white/[0.07] bg-white/[0.018] px-5 py-4 text-xs leading-5 text-white/50 md:px-7">
         Orientation, not a quote. The OpenAI figures assume 30 seconds of user audio and 30 seconds of assistant audio, with no history, text, tools, or fixed events. Real sessions rise as conversation history and tool traffic accumulate.
       </figcaption>
     </figure>
@@ -220,18 +220,18 @@ export function VoiceProviderRoles() {
             className={`relative grid gap-4 px-5 py-6 md:grid-cols-[52px_1.05fr_1fr] md:items-start md:px-7 ${index > 0 ? 'border-t border-white/[0.07]' : ''}`}
             aria-label={`${provider.name}: ${provider.role}`}
           >
-            <div className="font-mono text-xs text-white/30">{provider.index}</div>
+            <div className="font-mono text-xs text-white/50">{provider.index}</div>
             <div>
               <p className={`text-lg font-semibold tracking-tight ${provider.tone}`}>{provider.name}</p>
               <p className="mt-1 text-sm font-medium text-white/70">{provider.role}</p>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/[0.38]">{provider.signal}</p>
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/50">{provider.signal}</p>
             </div>
             <p className="text-sm leading-6 text-white/[0.58]">{provider.detail}</p>
             <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r ${provider.rail}`} aria-hidden="true" />
           </section>
         ))}
       </div>
-      <figcaption className="px-5 py-4 text-xs leading-5 text-white/[0.42] md:px-7">
+      <figcaption className="px-5 py-4 text-xs leading-5 text-white/50 md:px-7">
         The provider name belongs in an adapter and routing policy. Product logic should depend on capabilities, receipts, and failure behavior.
       </figcaption>
     </figure>
@@ -248,7 +248,7 @@ function StackBlock({ label, detail, tone = 'neutral' }: { label: string; detail
   return (
     <div className={`rounded-xl border p-4 ${toneClass}`}>
       <p className="text-sm font-semibold text-white/[0.86]">{label}</p>
-      <p className="mt-1 text-xs leading-5 text-white/[0.46]">{detail}</p>
+      <p className="mt-1 text-xs leading-5 text-white/55">{detail}</p>
     </div>
   )
 }
@@ -300,7 +300,7 @@ export function VoiceReferenceArchitecture() {
         </div>
       </div>
 
-      <figcaption className="border-t border-white/[0.07] px-5 py-4 text-xs leading-5 text-white/[0.42] md:px-7">
+      <figcaption className="border-t border-white/[0.07] px-5 py-4 text-xs leading-5 text-white/50 md:px-7">
         This boundary keeps a provider outage, price change, or model revision from becoming a product rewrite.
       </figcaption>
     </figure>
