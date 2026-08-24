@@ -1,0 +1,404 @@
+---
+title: "Graph Engineering with Hermes Agent: Durable Worker Graphs"
+description: "Use Hermes Kanban tasks, dependencies, worker lanes, reviews and recovery as a durable worker graph without mistaking it for event replay."
+date: "2026-08-24"
+lastUpdated: "2026-08-25"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["Hermes Agent", "Nous Research", "Kanban", "Multi-Agent Systems", "Graph Engineering"]
+image: "/images/blog/graph-engineering/graph-engineering-hero.webp"
+featured: false
+flagship: false
+readingGoal: "Build a durable Hermes worker graph that can survive restarts and hand work to humans"
+tldr: "Hermes Kanban is a durable task graph and worker-fleet plane: tasks and dependency links live in SQLite, named profiles run as OS processes, work can block, resume, review, retry, and leave machine-readable evidence. It is not Temporal-style replay, so external side effects still need idempotency, compensation or a stronger control plane."
+architectNote:
+  recommendation: "Use Hermes for durable work and handoffs between named workers; keep business authority in a stronger control plane."
+  coePillar: "Worker operations"
+keywords: ["graph engineering Hermes Agent", "Hermes Agent Kanban", "Hermes multi-agent workflows", "Hermes worker lanes", "Nous Hermes Agent"]
+schema: ["Article", "FAQPage"]
+faqSource: "body"
+faq:
+  - q: "What makes Hermes Kanban a graph?"
+    a: "Tasks are persistent nodes, dependency links are edges and the dispatcher advances work through explicit lifecycle states."
+  - q: "Is Hermes Kanban the same as delegate_task?"
+    a: "No. Delegation is a parent-blocking local call; Kanban is a durable peer-readable queue and state machine."
+  - q: "Is Hermes a Temporal replacement?"
+    a: "No. Hermes persists tasks and handoffs but does not replay every internal action or coordinate distributed transactions."
+  - q: "Can humans participate in a Hermes graph?"
+    a: "Yes. Humans can inspect, comment, unblock and review work on the shared board."
+  - q: "When should I adopt Hermes?"
+    a: "Pilot it when named worker fleets, durable handoffs, worktrees and human review matter more than full event-sourced replay."
+series:
+  slug: "graph-engineering-field-guide"
+  title: "Graph Engineering Field Guide"
+  part: 7
+  total: 9
+---
+
+Hermes Agent is one of the few agent platforms where the phrase “worker graph” maps cleanly to a real persistent primitive.
+
+The key is not generic subagent delegation. It is [**Hermes Kanban**](https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban): a durable task board shared across named agent profiles and humans.
+
+Officially, every task is a row in SQLite, every dependency is a link, every handoff can be inspected, and every worker is a full OS process with its own identity. That makes Hermes particularly strong as a worker and fleet plane.
+
+It does **not** make Hermes a universal durable workflow engine. The right architecture preserves that boundary.
+
+Read the [Graph Engineering architect guide](/blog/graph-engineering-ai-agents) for the three-plane model, the [orchestration pattern guide](/blog/multi-agent-orchestration-patterns-2026) for topology selection, and the [multi-agent observability stack](/blog/observability-stack-multi-agent-systems-2026) for operating evidence.
+
+## Two Hermes primitives that look similar but are not
+
+Hermes documents a crisp distinction between [local subagent delegation](https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation) and Kanban:
+
+| `delegate_task` | Hermes Kanban |
+|---|---|
+| Fork–join RPC call | Durable queue + state machine |
+| Parent blocks for the answer | Create and continue |
+| Anonymous child | Named profile with persistent memory |
+| No resumability | Block, unblock, re-run, reclaim |
+| No human in the loop | Humans can comment or unblock |
+| Result returns to parent context | Handoff persists in SQLite |
+| Hierarchical | Peer-readable board |
+
+Use `delegate_task` when a parent needs a short reasoning result before continuing.
+
+Use Kanban when work:
+
+- crosses agent boundaries;
+- must survive restarts;
+- may need human input;
+- may be retried by a different role;
+- must remain discoverable and auditable;
+- spans scheduled or recurring operations.
+
+A Kanban worker can still use `delegate_task` internally. In graph language, Kanban owns the durable inter-node edge; delegation is a local loop inside a node.
+
+## The Hermes graph model
+
+| Graph concept | Hermes primitive |
+|---|---|
+| Node | Task executed by a named profile |
+| Dependency edge | Parent → child task link |
+| Node state | `triage`, `todo`, `ready`, `running`, `blocked`, `review`, `done`, `archived` |
+| Scheduler | Gateway-embedded dispatcher |
+| Worker | Profile launched as an OS process |
+| Data edge | Task body, parent handoff, comments, attachments, metadata |
+| Durable state | Board-specific SQLite database |
+| Isolation | Board, workspace, tenant namespace, worker profile |
+| Recovery | Reclaim, block/unblock, retry, review/change request, circuit breaker |
+| Observability | CLI/dashboard, task events, comments, API event stream |
+
+Tasks may include an idempotency key for automation. The dispatcher promotes a task from `todo` to `ready` only when its parent tasks are complete.
+
+That is a real executable dependency graph—not simply a picture generated by a model.
+
+## The three-graph mapping
+
+### Execution graph
+
+Hermes Kanban owns assignment, dependency links, dispatch, worker lanes, review transitions, and task lifecycle. Profiles carry distinct tools and memory. Workspaces isolate execution.
+
+### Context graph
+
+Task bodies, parent handoffs, the full comment thread, attachments, profile memory, and external files supply context. A worker starts by calling `kanban_show()` to reconstruct its work packet.
+
+### Control graph
+
+Deterministic status transitions, parent gates, failure limits, block recurrence limits, reviews, idempotency keys, workspaces, and human actions constrain the worker fleet.
+
+The control graph is credible because many of its gates live in the database and dispatcher—not in a model’s willingness to follow a sentence.
+
+## A useful first topology
+
+Build a research-to-publication graph:
+
+```text
+source researcher A ─┐
+source researcher B ─┼→ evidence analyst → writer → adversarial review → human approval
+official-doc reader ─┘
+```
+
+Each researcher owns a distinct source domain. The analyst joins only when all parents are done. The writer receives the analyst’s machine-readable evidence ledger, not three unfiltered chats. The reviewer can request changes on the same card. A human releases the final artifact.
+
+## Quick start
+
+The official Kanban flow begins with a board and the gateway-embedded dispatcher:
+
+```bash
+hermes kanban init
+hermes gateway start
+hermes kanban create "Research official runtime sources" --assignee researcher
+hermes kanban watch
+```
+
+Agents interact with the board through structured `kanban_*` tools. Humans, scripts, and cron use the CLI, slash commands, dashboard, or API.
+
+For an orchestrator, the conceptual tool sequence is:
+
+```text
+kanban_show()
+
+kanban_create(
+  title="Research official platform sources",
+  assignee="official-docs-researcher",
+  body="Primary sources only. Return claims, links, dates, and caveats."
+)
+
+kanban_create(
+  title="Research peer-reviewed graph papers",
+  assignee="paper-researcher",
+  body="Separate reported maxima from general conclusions."
+)
+
+kanban_create(
+  title="Synthesize evidence-backed guide",
+  assignee="architect-writer",
+  parents=["<official-task>", "<paper-task>"],
+  body="Use only supported claims. Preserve disagreements and uncertainty."
+)
+
+kanban_complete(
+  summary="Created two independent research nodes and one gated synthesis node"
+)
+```
+
+Hermes promotes the synthesis task only after both parents complete.
+
+## The work-packet contract
+
+Task prose is not enough. Every task should include:
+
+- one outcome;
+- one assignee profile;
+- explicit parent dependencies;
+- authoritative inputs and attachments;
+- workspace type;
+- allowed mutable scope;
+- completion criteria;
+- required evidence metadata;
+- block and review behavior;
+- idempotency key when triggered by automation.
+
+For engineering work, Hermes recommends metadata that answers four questions:
+
+1. What changed?
+2. How was it verified?
+3. What can unblock or retry this?
+4. What residual risk remains?
+
+An illustrative completion call looks like this; the `1,000 req/s` value is a hypothetical untested boundary, not a measured result:
+
+```json
+{
+  "changed_files": ["src/billing/limiter.py"],
+  "verification": ["pytest tests/billing/test_limiter.py -q"],
+  "dependencies": ["t_parent"],
+  "blocked_reason": null,
+  "retry_notes": "first run failed on a stale fixture",
+  "residual_risk": ["load behavior not tested above 1,000 req/s"]
+}
+```
+
+The schema is currently a convention rather than a requirement. For a serious deployment, validate it at your integration boundary.
+
+## Workspaces and ownership
+
+[Hermes Kanban](https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban) supports three workspace shapes:
+
+| Workspace | Best for | Durability |
+|---|---|---|
+| `scratch` | Disposable research or transformation | Removed after completion; declared artifacts are copied to durable attachments |
+| `dir:<absolute-path>` | Trusted shared vaults or operations directories | Preserved |
+| `worktree` | Isolated coding tasks | Preserved Git worktree |
+
+Use worktrees for parallel coding nodes. Use scratch for work whose only durable output is an attached artifact. Use shared directories only when the trust model and concurrency behavior are explicit.
+
+Relative directory paths are rejected because they can resolve ambiguously and create a confused-deputy escape. That is exactly the kind of control-plane detail graph engineering should surface.
+
+## Boards, tenants, and isolation
+
+Boards are the hard isolation boundary:
+
+- separate SQLite database;
+- separate workspaces and logs;
+- workers see only their board’s tasks;
+- cross-board dependency links are disallowed.
+
+Tenants are a softer namespace within a board. Use them to segment work for a shared specialist fleet, but do not treat a tenant filter as equivalent to a separate security domain.
+
+For unrelated businesses, repositories, or trust boundaries, use separate boards—and consider separate hosts or stronger external sandboxing where the risk requires it.
+
+## Worker lanes and bounded concurrency
+
+[Worker lanes](https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban-worker-lanes) let a profile or worker class process tasks concurrently without turning the entire board into an uncontrolled swarm.
+
+Design lanes around real capacity:
+
+- `research`: several read-heavy workers;
+- `implementation`: one worker per isolated worktree;
+- `review`: fewer independent verifier workers;
+- `release`: serialized and human-gated.
+
+Concurrency is a resource policy. It should reflect API limits, CPU, memory, mutable ownership, and the cost of a failed join.
+
+## Recovery semantics
+
+The official [Kanban lifecycle](https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban) supplies useful operational recovery:
+
+- crashed workers can be reclaimed;
+- stale claims return to the work pool;
+- tasks can block and later unblock;
+- parent gates are re-applied;
+- reviewers can request changes;
+- repeated blocks can escalate to triage;
+- consecutive spawn failures can auto-block a task;
+- idempotency keys prevent duplicate task creation from retried automation.
+
+The default dispatcher sweep is periodic. Long-running workers should send heartbeats. A worker that exits cleanly while leaving its task in `running` creates a protocol violation; Hermes injects nudges to encourage a terminal board tool call.
+
+These are solid worker-fleet semantics.
+
+They are not the same as event-sourced replay of every internal model/tool action. If a task performs an external side effect and then crashes before recording completion, Kanban cannot magically know whether repeating the task is safe. The node must be idempotent or compensatable.
+
+## Review as a graph edge
+
+Hermes supports same-card review:
+
+```text
+running → review → done
+              ↓
+        request changes
+              ↓
+          original worker
+```
+
+Use `kanban_request_review` with a durable summary and metadata. A reviewer can request changes without abusing `blocked`. This keeps implementation and review history attached to the same task.
+
+For high-risk work, separate:
+
+- semantic review by another profile;
+- deterministic tests or policy checks;
+- human approval;
+- the actual external release action.
+
+## The API boundary
+
+Hermes’s API server and event stream make the board usable as a worker plane inside a larger system.
+
+A durable orchestrator can:
+
+1. receive a business event;
+2. create an idempotent Hermes task or subgraph;
+3. observe board events;
+4. collect the completion artifact;
+5. run independent policy and approval;
+6. advance the durable business workflow.
+
+This is the right composition when Hermes workers perform rich agentic work but another system owns SLAs, timers, customer state, payments, or irreversible actions.
+
+## Where Hermes ends
+
+Hermes Kanban is strong at:
+
+- durable task state;
+- named worker profiles;
+- dependencies and reviews;
+- human comments and unblocking;
+- recurring and scheduled fleets;
+- local workspace/worktree execution;
+- auditable inter-agent handoffs.
+
+It is not automatically:
+
+- a distributed multi-region scheduler;
+- a formal replay engine;
+- a transaction coordinator;
+- a causal provenance system;
+- a substitute for database row-level security;
+- a guarantee that model-generated evidence is true.
+
+Pair it with Temporal or another durable control plane when process history and external side effects demand stronger guarantees. Pair it with Graphiti or a governed knowledge service when temporal entity memory matters. Pair it with repository CI and security policy for software delivery.
+
+## New Hermes Skills to build
+
+1. **kanban-graph-designer** — turns a goal into tasks, dependencies, roles, and join criteria.
+2. **evidence-handoff** — validates completion metadata and attachments.
+3. **bounded-retry** — classifies retryable, repairable, and human-required failure.
+4. **cross-source-verifier** — attempts to falsify research claims before synthesis.
+5. **worktree-integrator** — merges isolated coding tasks and runs full verification.
+6. **board-incident-review** — reconstructs task transitions, comments, retries, and residual risk.
+7. **human-release-gate** — prepares the exact evidence needed for sign-off without performing release.
+
+Skills should make node behavior consistent. The board and dispatcher still own lifecycle.
+
+## A safe rollout
+
+### Week 1
+
+- Create one project board.
+- Define three profiles: orchestrator, worker, reviewer.
+- Use scratch workspaces and attached artifacts.
+- Limit the graph to three worker tasks and one synthesis task.
+
+### Week 2
+
+- Add structured completion metadata.
+- Add one review cycle and one human block/unblock.
+- Inject a worker crash and verify reclaim.
+- Add idempotent task creation for one scheduled event.
+
+### Weeks 3–4
+
+- Add worktrees for coding tasks.
+- Separate boards by project or business boundary.
+- Consume API events in an external control plane.
+- Measure queue time, retries, blocked duration, evidence completeness, cost, and accepted outcomes.
+
+## The architect’s conclusion
+
+Hermes Agent is compelling because it makes a specific part of the graph durable: **work and handoffs between named workers**.
+
+Use that strength directly.
+
+Do not reduce Kanban to a fancy task list. Do not inflate it into a universal workflow database. Build small dependency graphs, insist on evidence at every handoff, isolate mutable work, rehearse recovery, and let an external control plane own the consequences Hermes was not designed to own.
+
+That is graph engineering with Hermes: a fleet that can stop, resume, review, and explain what it handed forward.
+
+## Verification receipt
+
+I traced the Kanban state model, delegation boundary, worker lanes, workspaces, API surface, recovery rules, repository, and current release through first-party documentation. No Hermes CLI was installed in the publishing environment, so the topology is a source inspection receipt rather than a live fleet benchmark. Keep the call at pilot until your own board survives the failure drills above.
+
+## FAQ
+
+### What makes Hermes Kanban a graph?
+
+Tasks are persistent nodes, parent dependencies are edges and the dispatcher advances work through explicit lifecycle states. The graph is executable because the board and scheduler enforce those dependencies.
+
+### Is Hermes Kanban the same as delegate_task?
+
+No. Delegation is a parent-blocking local call that returns a child result. Kanban is a durable, peer-readable queue and state machine that can survive restarts and include humans.
+
+### Is Hermes a Temporal replacement?
+
+No. Hermes persists task and handoff state, but it does not replay every internal model or tool action or coordinate distributed transactions. External side effects still need idempotency or compensation.
+
+### Can humans participate in a Hermes graph?
+
+Yes. Humans can inspect tasks, comment, unblock work and participate in review. For consequential release decisions, keep the approval and the actual side effect as separate control nodes.
+
+### When should I adopt Hermes?
+
+Pilot it when you need named worker profiles, durable task dependencies, worktree isolation, evidence-bearing handoffs and human review. Choose a stronger process runtime when event history, timers and transactional recovery dominate.
+
+## Official sources
+
+- [Hermes Agent Kanban](https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban)
+- [Hermes Kanban worker lanes](https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban-worker-lanes)
+- [Hermes subagent delegation](https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation)
+- [Hermes API server](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server)
+- [Hermes scheduled tasks](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron)
+- [Hermes Codex App Server runtime](https://hermes-agent.nousresearch.com/docs/user-guide/features/codex-app-server-runtime)
+- [Hermes Kanban tutorial](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/kanban-tutorial.md)
+- [Hermes CLI commands](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/reference/cli-commands.md)
+- [Hermes built-in tools reference](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/reference/tools-reference.md)
+- [Hermes Agent repository](https://github.com/NousResearch/hermes-agent)
+- [Hermes Agent releases](https://github.com/NousResearch/hermes-agent/releases)
