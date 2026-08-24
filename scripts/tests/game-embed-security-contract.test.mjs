@@ -42,8 +42,9 @@ test('the App Router owns /games and every catalog slug', () => {
   const catalogSlugs = new Set(
     [...catalogSource.matchAll(/\bslug:\s*'([^']+)'/gu)].map((match) => match[1]),
   )
+  const nonGameEmbedDirectories = new Set(['assets', 'legacy-hub'])
   const embedSlugs = readdirSync(embedRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && entry.name !== 'assets')
+    .filter((entry) => entry.isDirectory() && !nonGameEmbedDirectories.has(entry.name))
     .map((entry) => entry.name)
 
   assert.ok(catalogSlugs.size > 0, 'the game catalog parser must find at least one slug')
@@ -88,23 +89,60 @@ test('the App Router owns /games and every catalog slug', () => {
     }
   }
 
-  const legacyHub = readFileSync(join(embedRoot, 'legacy-hub.html'), 'utf8')
+  const legacyHubPath = join(embedRoot, 'legacy-hub', 'index.html')
+  assert.equal(
+    existsSync(join(embedRoot, 'legacy-hub.html')),
+    false,
+    'the hub source must use a directory index so its clean URL is filesystem-resolvable',
+  )
+  assert.ok(existsSync(legacyHubPath), 'the canonical legacy hub index must exist')
+
+  const legacyHub = readFileSync(legacyHubPath, 'utf8')
   assert.doesNotMatch(legacyHub, /\/games\/(?:games|assets)\//u)
   assert.match(legacyHub, /\/game-embeds\/neuro-matrix/u)
   assert.doesNotMatch(legacyHub, /\/game-embeds\/[^"']+\/index\.html/u)
+
+  const hubEmbedReferences = [...legacyHub.matchAll(
+    /\b(?:data-src|src|href)=["'](\/game-embeds\/[^"']+)["']/gu,
+  )].map((match) => match[1])
+  assert.ok(hubEmbedReferences.length > 0, 'the legacy hub must reference canonical embeds')
+
+  for (const reference of hubEmbedReferences) {
+    assert.doesNotMatch(reference, /(?:\.html|\/index\.html)$/u)
+    if (reference.startsWith('/game-embeds/assets/')) {
+      assert.ok(
+        existsSync(join(repoRoot, 'public', reference.slice(1))),
+        'legacy hub references a missing asset: ' + reference,
+      )
+      continue
+    }
+
+    const slug = reference.split('/')[2]
+    assert.ok(catalogSlugs.has(slug), 'legacy hub references an unknown game: ' + reference)
+  }
 })
 
 test('clean URLs and effective aliases converge on canonical game routes', async () => {
   assert.equal(vercelConfig.cleanUrls, true)
 
   const redirects = await nextConfig.redirects()
+  const hubRedirect = redirects.find((rule) => rule.source === '/games/hub')
   assert.deepEqual(
-    redirects.find((rule) => rule.source === '/games/hub'),
+    hubRedirect,
     {
       source: '/games/hub',
       destination: '/game-embeds/legacy-hub',
       permanent: true,
     },
+  )
+  assert.ok(
+    existsSync(join(repoRoot, 'public', hubRedirect.destination.slice(1), 'index.html')),
+    'the extensionless hub redirect must resolve to a directory index',
+  )
+  assert.equal(
+    existsSync(join(repoRoot, 'public', hubRedirect.destination.slice(1) + '.html')),
+    false,
+    'the hub must not rely on a .html source file under cleanUrls',
   )
   assert.deepEqual(
     redirects.find((rule) => rule.source === '/games/games/:path*'),
