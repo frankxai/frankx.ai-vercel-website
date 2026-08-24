@@ -1,57 +1,58 @@
-'use client'
+"use client";
 
-import { useId, useState, type FormEvent } from 'react'
-import Link from 'next/link'
-import { CheckCircle2, AlertCircle, Sparkles } from 'lucide-react'
-import { trackEvent } from '@/lib/analytics'
+import Link from "next/link";
+import { useId, useState, type FormEvent } from "react";
+import { AlertCircle, CheckCircle2, ArrowRight } from "lucide-react";
 
-type Status = 'idle' | 'submitting' | 'success' | 'error'
+import { trackEvent } from "@/lib/analytics";
+
+type Status = "idle" | "submitting" | "success" | "error";
 
 export function ConnectNewsletterForm() {
-  const honeypotId = useId()
-  const [email, setEmail] = useState('')
-  const [website, setWebsite] = useState('')
-  const [status, setStatus] = useState<Status>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
+  const honeypotId = useId();
+  const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    if (!email) return
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!email) return;
 
-    setStatus('submitting')
-    setErrorMessage('')
+    setStatus("submitting");
+    setErrorMessage("");
 
     try {
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, website, listType: 'inner-circle' }),
-      })
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, website, listType: "inner-circle" }),
+      });
 
       if (!response.ok) {
-        const data = await response.json().catch(() => ({}))
-        throw new Error(data.message ?? 'Subscription failed')
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.message ?? "Subscription failed");
       }
 
-      trackEvent('connect_waitlist_signed_up', { listType: 'inner-circle' })
-      setStatus('success')
-      setEmail('')
-    } catch (err) {
-      setStatus('error')
-      setErrorMessage(err instanceof Error ? err.message : 'Something went wrong')
+      trackEvent("connect_waitlist_signed_up", { listType: "inner-circle" });
+      setStatus("success");
+      setEmail("");
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(
+        error instanceof Error ? error.message : "Something went wrong",
+      );
     }
   }
 
   return (
-    <div className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.01] p-5 backdrop-blur">
-      <div className="mb-3 flex items-center gap-2">
-        <Sparkles className="h-4 w-4 text-amber-300" aria-hidden />
-        <p className="text-sm font-semibold text-white">Join the inner circle</p>
-      </div>
-      <p className="mb-3 text-xs leading-relaxed text-white/60">
-        Weekly drops on AI architecture, music, and the systems behind FrankX. No noise.
+    <div className="border-l-2 border-[#2157d5] bg-[#ebe3d4] p-6 sm:p-8 lg:p-10">
+      <p className="text-sm font-semibold text-[#2157d5]">FrankX field notes</p>
+      <p className="mt-3 text-xl font-medium leading-7 tracking-[-0.02em] text-[#171915]">
+        One considered note when there is something worth sending.
       </p>
-      <form onSubmit={handleSubmit} className="relative flex flex-col gap-2 sm:flex-row">
+
+      <form onSubmit={handleSubmit} className="relative mt-7">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden"
@@ -67,60 +68,80 @@ export function ConnectNewsletterForm() {
             onChange={(event) => setWebsite(event.target.value)}
           />
         </div>
-        <label htmlFor="connect-newsletter-email" className="sr-only">
+
+        <label
+          htmlFor="connect-newsletter-email"
+          className="text-sm font-medium text-[#373b34]"
+        >
           Email address
         </label>
-        <input
-          id="connect-newsletter-email"
-          type="email"
-          name="email"
-          autoComplete="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          disabled={status === 'submitting' || status === 'success'}
-          placeholder="you@domain.com"
-          aria-describedby="connect-newsletter-status"
-          className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 backdrop-blur focus:border-emerald-400/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/30 disabled:opacity-50"
-        />
-        <button
-          type="submit"
-          disabled={status === 'submitting' || status === 'success'}
-          className="rounded-xl bg-gradient-to-r from-emerald-500 via-emerald-400 to-cyan-400 px-5 py-3 text-sm font-semibold text-black shadow-[0_10px_30px_-10px_rgba(16,185,129,0.55)] transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100"
-        >
-          {status === 'submitting' ? '…' : status === 'success' ? 'Joined' : 'Join'}
-        </button>
+        <div className="mt-2 flex flex-col gap-2 sm:flex-row">
+          <input
+            id="connect-newsletter-email"
+            type="email"
+            name="email"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            disabled={status === "submitting" || status === "success"}
+            placeholder="you@domain.com"
+            aria-describedby="connect-newsletter-status"
+            className="min-h-12 flex-1 border border-[#171915]/30 bg-[#f8f5ee] px-4 py-3 text-base text-[#171915] placeholder:text-[#777b72] focus:border-[#2157d5] focus:outline-none focus:ring-2 focus:ring-[#2157d5]/30 disabled:opacity-60"
+          />
+          <button
+            type="submit"
+            disabled={status === "submitting" || status === "success"}
+            className="group inline-flex min-h-12 items-center justify-center gap-2 bg-[#171915] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#2157d5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2157d5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#ebe3d4] disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {status === "submitting"
+              ? "Sending…"
+              : status === "success"
+                ? "Subscribed"
+                : "Subscribe"}
+            {status === "idle" && (
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none"
+                aria-hidden
+              />
+            )}
+          </button>
+        </div>
       </form>
-      <p className="mt-2 text-[11px] leading-5 text-white/55">
-        Occasional FrankX field notes. Unsubscribe anytime.{' '}
+
+      <p className="mt-3 text-xs leading-5 text-[#666a61]">
+        Occasional notes. Unsubscribe anytime. Read the{" "}
         <Link
           href="/privacy"
-          className="underline decoration-white/30 underline-offset-2 transition-colors hover:text-white"
+          className="underline decoration-[#171915]/35 underline-offset-2 hover:text-[#171915]"
         >
           Privacy details
         </Link>
         .
       </p>
+
       <div
         id="connect-newsletter-status"
         role="status"
         aria-live="polite"
         aria-atomic="true"
-        className="mt-2.5 min-h-[1.25rem] text-xs"
+        className="mt-3 min-h-5 text-sm"
       >
-        {status === 'success' && (
-          <div className="flex items-center gap-1.5 text-emerald-300">
-            <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
-            <span>Welcome. Check your inbox.</span>
+        {status === "success" && (
+          <div className="flex items-center gap-2 text-[#225b3b]">
+            <CheckCircle2 className="h-4 w-4" aria-hidden />
+            <span>You are on the list. Check your inbox.</span>
           </div>
         )}
-        {status === 'error' && (
-          <div className="flex items-center gap-1.5 text-amber-300">
-            <AlertCircle className="h-3.5 w-3.5" aria-hidden />
-            <span>{errorMessage || 'Something went wrong — try again.'}</span>
+        {status === "error" && (
+          <div className="flex items-center gap-2 text-[#8a3f2d]">
+            <AlertCircle className="h-4 w-4" aria-hidden />
+            <span>
+              {errorMessage || "Something went wrong. Please try again."}
+            </span>
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }
