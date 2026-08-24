@@ -1,10 +1,20 @@
 import assert from 'node:assert/strict'
-import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs'
+import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 
 import nextConfig from '../../next.config.mjs'
+import { resolvesPublicHref } from '../lib/public-file-resolution.mjs'
 
 const repoRoot = fileURLToPath(new URL('../..', import.meta.url))
 const vercelConfig = JSON.parse(readFileSync(join(repoRoot, 'vercel.json'), 'utf8'))
@@ -31,6 +41,31 @@ function getDirective(csp, directive) {
 function sorted(values) {
   return [...values].sort((left, right) => left.localeCompare(right))
 }
+
+test('public clean URLs resolve only exact files or directory indexes', (t) => {
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'frankx-public-href-'))
+  const publicRoot = join(fixtureRoot, 'public')
+  const hubDirectory = join(publicRoot, 'game-embeds', 'legacy-hub')
+  const emptyDirectory = join(publicRoot, 'empty-directory')
+  const prefixLookalike = join(fixtureRoot, 'public-lookalike')
+
+  mkdirSync(hubDirectory, { recursive: true })
+  mkdirSync(emptyDirectory, { recursive: true })
+  mkdirSync(prefixLookalike, { recursive: true })
+  writeFileSync(join(publicRoot, 'exact.txt'), 'exact')
+  writeFileSync(join(hubDirectory, 'index.html'), '<!doctype html>')
+  writeFileSync(join(prefixLookalike, 'leak.txt'), 'outside public')
+  t.after(() => rmSync(fixtureRoot, { recursive: true, force: true }))
+
+  assert.equal(resolvesPublicHref(publicRoot, '/exact.txt'), true)
+  assert.equal(resolvesPublicHref(publicRoot, '/game-embeds/legacy-hub'), true)
+  assert.equal(resolvesPublicHref(publicRoot, '/game-embeds/legacy-hub/index.html'), true)
+
+  assert.equal(resolvesPublicHref(publicRoot, '/missing-directory'), false)
+  assert.equal(resolvesPublicHref(publicRoot, '/empty-directory'), false)
+  assert.equal(resolvesPublicHref(publicRoot, '/../public-lookalike/leak.txt'), false)
+  assert.equal(resolvesPublicHref(publicRoot, '/../../etc/passwd'), false)
+})
 
 test('the App Router owns /games and every catalog slug', () => {
   assert.equal(

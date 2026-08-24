@@ -23,6 +23,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
+import { resolvesPublicHref } from './lib/public-file-resolution.mjs'
+
 const ROOT = process.cwd()
 const args = new Set(process.argv.slice(2))
 const WARN_ONLY = args.has('--warn')
@@ -76,18 +78,11 @@ const PUBLIC_DIR = path.join(ROOT, 'public')
 
 /**
  * Files under public/ are served at the site root but are not routes, so they
- * never appear in route-index. Resolve them against the filesystem instead of
- * extending SKIP_PREFIXES: an allowlist only covers the directories someone
- * remembered, and silently reports a real, working asset as broken the first
- * time a new one appears. That is how /skills/ started failing.
+ * never appear in route-index. Resolve exact files and exact directory indexes
+ * against the filesystem instead of trusting a path-prefix allowlist.
  */
 function isPublicAsset(href) {
-  const rel = href.replace(/^\/+/, '')
-  if (!rel) return false
-  const resolved = path.resolve(PUBLIC_DIR, rel)
-  // Never let a '../' in source escape public/.
-  if (resolved !== PUBLIC_DIR && !resolved.startsWith(PUBLIC_DIR + path.sep)) return false
-  return fs.existsSync(resolved) && fs.statSync(resolved).isFile()
+  return resolvesPublicHref(PUBLIC_DIR, href)
 }
 
 const APP_DIR = path.join(ROOT, 'app')
