@@ -1,0 +1,482 @@
+---
+title: "Claude Agent Engineering: Loops, Workflows and Graphs"
+description: "Map Claude Code loops, subagents, Skills, teams and dynamic workflows into a production graph with explicit state, gates and recovery."
+date: "2026-08-24"
+lastUpdated: "2026-08-25"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["Claude Code", "Dynamic Workflows", "Subagents", "Agent Teams", "Graph Engineering"]
+image: "/images/blog/graph-engineering/loop-to-graph.webp"
+featured: false
+flagship: false
+readingGoal: "Build one repeatable Claude Code graph without confusing scale for reliability"
+tldr: "Claude agent engineering is this guide’s name for the harness, loop, context, tool, verification and orchestration work around Claude. Anthropic does not use it as an official doctrine. Use dynamic workflows when code should own branches and fan-out; use external state and deterministic controls when work must survive a session or cross authority boundaries."
+architectNote:
+  recommendation: "Use Claude as the worker brain. Keep durable state, authority and release conditions outside model improvisation."
+  coePillar: "Agent platform"
+keywords: ["graph engineering Claude Code", "Claude Code dynamic workflows", "Claude Code subagents", "Claude agent teams", "Claude Code orchestration"]
+schema: ["Article", "FAQPage"]
+faqSource: "body"
+faq:
+  - q: "Is Claude agent engineering an official Anthropic term?"
+    a: "No. This guide uses it as an editorial umbrella for Anthropic's official harness, loop, context, workflow and verification primitives."
+  - q: "Is graph engineering an official Claude Code feature?"
+    a: "No. Dynamic workflows, subagents, agent teams, Skills, hooks and MCP are the official primitives."
+  - q: "How many agents can a Claude dynamic workflow run?"
+    a: "Current docs specify 16 concurrent agents and 1,000 total agents per run; those are limits, not recommended targets."
+  - q: "Can a Claude workflow resume after Claude Code exits?"
+    a: "No. Current documentation limits workflow resumption to the same Claude Code session."
+  - q: "When should I use the Claude Agent SDK?"
+    a: "Use it when Claude's loop must be embedded in an application; add a durable control plane for long-lived business processes."
+series:
+  slug: "graph-engineering-field-guide"
+  title: "Graph Engineering Field Guide"
+  part: 5
+  total: 9
+---
+
+First, the terminology correction:
+
+**Anthropic does not currently present “Claude agent engineering” or “graph engineering” as official doctrines.** I use the first as a practical umbrella. Anthropic’s own vocabulary now includes agent harness design, loop engineering, context engineering, workflows, dynamic workflows, subagents, agent teams, Skills, hooks, MCP and the agentic loop.
+
+That is not a limitation. It gives us a precise mapping.
+
+> In Claude Code, graph engineering means moving orchestration out of an improvised conversation and into inspectable workflow code, bounded workers, external artifacts, deterministic controls, and verified handoffs.
+
+This is the Claude implementation layer of the [Graph Engineering Field Guide](/blog/graph-engineering-ai-agents). Use the [orchestration pattern guide](/blog/multi-agent-orchestration-patterns-2026) before choosing a topology, and the [Skills, agents, prompts and MCP guide](/blog/skills-vs-agents-vs-prompts-vs-mcp) before assigning configuration primitives.
+
+## The 2026 shift: from one harness to a family of loops
+
+Anthropic’s [Agent Harness Design](https://claude.com/blog/harnessing-claudes-intelligence) defines the harness as the loop, tools, context management and guardrails around the model. Its June [loop engineering guide](https://claude.com/blog/getting-started-with-loops) then names four operating shapes:
+
+| Loop | Trigger | Stop | Use it for |
+|---|---|---|---|
+| Turn-based | User prompt | Claude finishes or needs context | Short, interactive work |
+| Goal-based | A declared goal | Separate completion check passes | Long-running work with a testable terminal state |
+| Time-based | A cadence or schedule | Window, count or policy ends | Repeated checks and maintenance |
+| Proactive | Event or standing trigger | Trigger-specific policy | Work Claude should initiate rather than await |
+
+Dynamic workflows add a different dimension. Instead of Claude deciding the next step turn by turn, a JavaScript script holds branches, loops, fan-out, joins and intermediate results. The workflow runtime is therefore the closest current Claude primitive to an explicit execution graph. It is generally available, but Anthropic warns that it can consume substantially more tokens.
+
+The hierarchy is cumulative: a workflow can launch subagents, and each subagent still runs a loop inside its own harness.
+
+## Which Claude primitive owns which job?
+
+Anthropic’s [dynamic workflow documentation](https://code.claude.com/docs/en/workflows) makes the distinction unusually clear.
+
+| Primitive | Who holds the plan? | Best use | Graph role |
+|---|---|---|---|
+| Main Claude session | Claude, turn by turn | One coherent task and local loop | Interactive orchestrator/node |
+| Subagent | Calling Claude | A bounded specialist with isolated context and tools | Worker node |
+| Skill | Claude following an on-demand procedure | Repeatable method or domain procedure | Node implementation contract |
+| Agent team | Lead agent supervising peer sessions | A handful of long-running independent peers | Conversational worker network |
+| Dynamic workflow | JavaScript runtime | Repeatable fan-out, loops, barriers, tournaments, verification | Execution/control graph |
+| Agent SDK | Your application | Hosted or productized Claude loop | Runtime embedding layer |
+
+The rule of thumb:
+
+- Use the **main loop** until it becomes context-bound.
+- Use a **subagent** when one bounded task benefits from isolated context.
+- Use a **Skill** when the method must be reusable.
+- Use an **agent team** when peers need sustained work and direct coordination.
+- Use a **dynamic workflow** when the orchestration itself must be readable, repeatable, and scalable.
+- Use the **Agent SDK** when Claude Code becomes part of a product or service.
+
+Use **Agent View** when you need to supervise independent local sessions in isolated worktrees. Use **Managed Agents** when Anthropic should host the persistent session and sandbox. Do not apply Agent View, Claude Code, Agent SDK and Managed Agents limits to one another; they are distinct runtimes.
+
+## The three-graph mapping
+
+| Graph plane | Claude Code implementation |
+|---|---|
+| Execution | Main loop, subagents, agent teams, workflow `agent()` and `pipeline()`, tools, MCP |
+| Context | `CLAUDE.md`, scoped rules, Skills, files, Git, tool retrieval, optional memory and external stores |
+| Control | Workflow code, structured schemas, hooks, permissions, sandboxes, tests, verifier agents, launch approval |
+
+Do not mistake `CLAUDE.md` for the whole system. Anthropic recommends keeping it concise—generally under 200 lines—and moving reusable procedures to Skills. It is context, not deterministic policy. Use hooks, settings, permissions, and sandboxes for hard constraints.
+
+## The smallest useful Claude graph
+
+Start with a workflow that audits independent files, verifies each claim, and synthesizes only supported findings.
+
+The graph is:
+
+```text
+discover files
+    ↓
+fan out file auditors
+    ↓
+fan out adversarial verifiers
+    ↓
+filter unsupported findings
+    ↓
+synthesize ranked report
+```
+
+Claude Code can author this script for you. A good initiating prompt is:
+
+```text
+use a workflow to audit every changed server route for missing authorization checks.
+Give each route to an isolated auditor, have a second agent adversarially verify every
+finding against the code, drop unsupported claims, and return one ranked report with
+file paths, line evidence, exploitability, and a proposed test. Use a small workflow first.
+```
+
+When the run is correct, save it under `.claude/workflows/` so the repository owns the orchestration.
+
+## What the workflow script looks like
+
+Claude’s current workflow runtime uses plain JavaScript with top-level `await`. `agent()` launches one subagent; `pipeline()` applies a subagent operation across a list. The script itself coordinates; agents perform filesystem and shell work.
+
+The following is an architecture template. Let Claude Code generate and validate the final script against your installed version before committing it.
+
+```js
+export const meta = {
+  name: "verify-route-authorization",
+  description: "Audit changed routes and verify every reported authorization defect",
+}
+
+const discovered = await agent(
+  `List changed server route files. Return only files that can receive requests.`,
+  {
+    label: "discover-routes",
+    schema: {
+      type: "object",
+      required: ["files"],
+      properties: {
+        files: { type: "array", items: { type: "string" } },
+      },
+    },
+  },
+)
+
+const audits = await pipeline(discovered.files, file =>
+  agent(
+    `Audit ${file} for missing authorization. Return a finding only when you can cite
+     the route, protected resource, missing check, and a concrete test that would fail.`,
+    { label: `audit:${file}` },
+  ),
+)
+
+const findings = audits.filter(Boolean)
+
+const verified = await pipeline(findings, finding =>
+  agent(
+    `Try to falsify this authorization finding against the repository.
+     Mark it supported, refuted, or unverified. Preserve exact file evidence.
+     FINDING: ${JSON.stringify(finding)}`,
+    {
+      label: "verify-finding",
+      schema: {
+        type: "object",
+        required: ["status", "evidence"],
+        properties: {
+          status: {
+            type: "string",
+            enum: ["supported", "refuted", "unverified"],
+          },
+          evidence: { type: "array", items: { type: "string" } },
+          rationale: { type: "string" },
+        },
+      },
+    },
+  ),
+)
+
+const supported = verified.filter(
+  result => result && result.status === "supported",
+)
+
+return agent(
+  `Rank these verified findings by exploitability and blast radius. Deduplicate shared
+   root causes. Do not add claims that are absent from the evidence.
+   VERIFIED: ${JSON.stringify(supported)}`,
+  { label: "synthesize-report" },
+)
+```
+
+The important pattern is not the syntax. It is the **independent evidence gate** between creation and release.
+
+## A repository layout that scales
+
+```text
+.claude/
+  CLAUDE.md                    # concise repository map and always-on constraints
+  rules/
+    security.md                # scoped guidance
+    testing.md
+  agents/
+    route-auditor.md           # isolated worker definitions
+    adversarial-verifier.md
+  skills/
+    evidence-ledger/
+      SKILL.md
+    checkpoint-handoff/
+      SKILL.md
+    release-gate/
+      SKILL.md
+  workflows/
+    verify-route-authorization.js
+  settings.json                # permissions and hook configuration
+artifacts/
+  workflow-state/              # durable project artifacts, not model memory
+  evidence/
+  reports/
+```
+
+### Keep `CLAUDE.md` thin
+
+Use it for:
+
+- repository purpose and architecture map;
+- essential commands;
+- non-obvious constraints;
+- pointers to authoritative files;
+- the few rules that apply to nearly every task.
+
+Do not paste every procedure, API reference, or style rule into always-on context.
+
+### Put procedures into Skills
+
+A graph-ready Skill should specify:
+
+- when it should run;
+- inputs and missing-input behavior;
+- allowed tools;
+- output schema or artifact;
+- evidence requirements;
+- invariants;
+- stop and escalation conditions;
+- verification.
+
+Claude Code Skills can be invoked automatically or explicitly, restricted to tools, or run in a forked context. That makes a Skill a strong node implementation—but the workflow still owns ordering and branching.
+
+### Put enforcement into hooks and permissions
+
+Use command hooks for production controls such as:
+
+- blocking edits to generated or protected files;
+- running formatting and tests after changes;
+- rejecting unsafe shell patterns;
+- validating a report schema before completion;
+- recording tool and subagent lifecycle events.
+
+Anthropic marks agent-based hooks as experimental; deterministic command hooks are the safer enforcement layer.
+
+## Subagents versus agent teams
+
+Use **subagents** when work is bounded and should return a summary to the caller. They receive fresh, isolated contexts, custom tools and permissions, optional Skills and memory. They do not automatically inherit the full lead conversation, so the work packet must carry what matters.
+
+Use **agent teams** when several peer sessions need sustained work, direct messaging, and a shared task list.
+
+But preserve Anthropic’s own caveats:
+
+- agent teams are experimental and disabled by default;
+- start with roughly three to five teammates;
+- give teammates independent work;
+- avoid same-file edits;
+- there are no nested teams;
+- one team can exist per session;
+- the lead is fixed;
+- teams are interactive Claude Code only, not a teammate API for `claude -p` or Agent SDK sessions;
+- in-process teammates are not restored by resume or rewind.
+
+For a 500-file mechanical migration, a scripted workflow is usually more repeatable than a conversational team. For three independent architecture investigations that must challenge one another over time, a team may be appropriate.
+
+## Dynamic workflow semantics that matter
+
+As of 24 August 2026, the official documentation states:
+
+- dynamic workflows require Claude Code v2.1.154 or later;
+- the script holds loops, branching, and intermediate results;
+- runs can coordinate dozens to hundreds of agent calls;
+- the documented ceiling is 16 concurrent agents and 1,000 total agents per run;
+- the workflow itself has no direct filesystem or shell access—agents do;
+- scripts cannot load modules with `import()`;
+- ordinary mid-run user input is unavailable beyond permission prompts;
+- resumption works within the same Claude Code session;
+- exiting Claude Code starts the workflow fresh;
+- stopping mid-fan-out can cause later completed agents to rerun on resume;
+- usage and rate limits still apply.
+
+Those ceilings are not targets. Claude Code warns when a workflow exceeds 25 agents or is projected past 1.5 million tokens, but that warning is advisory.
+
+## External state and durable handoffs
+
+Workflow variables improve context efficiency; they are not a general durable business database.
+
+For work that must survive sessions, write explicit artifacts:
+
+```json
+{
+  "graphVersion": "route-audit@3",
+  "runId": "2026-08-24T21:00Z_pr-481",
+  "goal": "Verify authorization on changed routes",
+  "completedNodes": ["discover", "audit:billing.ts"],
+  "openNodes": ["verify:billing.ts"],
+  "artifacts": ["artifacts/evidence/billing-route.json"],
+  "nextSafeAction": "Run verifier only",
+  "sourceCommit": "<sha>",
+  "budgets": { "agents": 8, "tokens": 250000 },
+  "status": "checkpointed"
+}
+```
+
+Commit code progress when appropriate. Store business state in the business system of record. Store durable orchestration history in a runtime designed for it when the process crosses days, services, or irreversible effects.
+
+For those cases, use Claude Agent SDK nodes inside Temporal, a queue-backed service, or your existing durable control plane rather than pretending a session is a workflow database.
+
+## Context graph design in Claude Code
+
+Do not tell every worker to “read the repository.” Give it a retrieval route:
+
+1. the exact task and acceptance criteria;
+2. the smallest authoritative files or search strategy;
+3. the allowed state slice;
+4. the evidence schema;
+5. the artifact it owns;
+6. what it must not change.
+
+This should get thinner as the model improves, not thicker by default. Anthropic reports that its Claude Code team removed [more than 80% of the system prompt for newer Claude models](https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models) without a measured evaluation loss. That is not proof that instructions are useless. It is evidence that over-constraining a stronger model can hide capability and waste context.
+
+MCP can expand the context graph into external systems. It also expands the attack surface. Anthropic warns that project MCP servers require trust review and that tools retrieving untrusted content introduce prompt-injection risk. Use least privilege, allowlisted egress, deferred tool discovery, and credentials outside the sandbox.
+
+## Testing the graph
+
+Test the architecture, not only the happy-path answer.
+
+### Node tests
+
+- malformed input;
+- missing file or source;
+- denied tool;
+- budget exhaustion;
+- output-schema failure;
+- malicious instructions inside retrieved content.
+
+### Edge tests
+
+- unsupported finding cannot advance;
+- verifier timeout becomes `unverified`, not `refuted`;
+- stale evidence forces re-check;
+- stop condition ends a no-progress loop;
+- an irreversible action requests approval.
+
+### Recovery tests
+
+- stop during fan-out and resume;
+- restart the session from the external checkpoint;
+- change the source commit during a paused run;
+- replay an event without duplicating side effects;
+- fail one worker while siblings complete.
+
+## Cost discipline
+
+Anthropic’s official advice is the correct one: run a small slice first.
+
+- one directory before the repository;
+- five sources before fifty;
+- three workers before thirty;
+- a cheaper model for discovery or classification;
+- the strongest model only where judgment changes the outcome;
+- a hard no-progress limit on repair loops;
+- token and agent counts visible in `/workflows`.
+
+The relevant metric is **verified findings per token**, not agents launched.
+
+## The production boundary
+
+Claude Code dynamic workflows are excellent for inspectable repository work: migrations, audits, reviews, research, and plan exploration.
+
+Graduate to a separate durable control plane when:
+
+- the process must survive an exited session;
+- it spans days or external callbacks;
+- it owns business state;
+- it performs payments, messages, deployments, or other side effects;
+- it requires mid-run human review with serialized resumption;
+- several tenants or credential domains must remain isolated;
+- you need deterministic replay, compensation, or formal SLAs.
+
+At that boundary, Claude remains a powerful node. It should not be forced to impersonate the workflow engine.
+
+## Which official Claude repositories should you adopt?
+
+The verified Anthropic organization contained more than one hundred repositories at this review. These are the ones that matter for this architecture:
+
+| Repository | Status on 24 August 2026 | Adoption call |
+|---|---|---|
+| [claude-code](https://github.com/anthropics/claude-code) | v2.1.241, 23 August | **Adopt the product.** Do not call the public repository open source; its license is all-rights-reserved. |
+| [Claude Agent SDK TypeScript](https://github.com/anthropics/claude-agent-sdk-typescript) | v0.3.241, 23 August | **Adopt** for current TypeScript embedding. Pin the SDK with the Claude Code version it targets. |
+| [Claude Agent SDK Python](https://github.com/anthropics/claude-agent-sdk-python) | v0.2.143, 20 August | **Adopt/pilot** for Python 3.10+ applications; test 0.x upgrades. |
+| [claude-code-action](https://github.com/anthropics/claude-code-action) | v1.0.201, 23 August | **Adopt** for bounded GitHub automation with explicit permissions. |
+| [skills](https://github.com/anthropics/skills) | Active examples | **Use as patterns**, not as an orchestration runtime. |
+| [claude-cookbooks](https://github.com/anthropics/claude-cookbooks) | Active recipes | **Use as examples** and verify every recipe against the installed SDK. |
+| [agent-sdk-workshop](https://github.com/anthropics/agent-sdk-workshop) | Current workshop | **Use for learning**, not as a production template. |
+| [cwc-long-running-agents](https://github.com/anthropics/cwc-long-running-agents) | Event demo; explicitly not maintained | **Reference only.** Extract the evidence-contract and fresh-evaluator ideas. |
+| [riv2025 long-horizon demo](https://github.com/anthropics/riv2025-long-horizon-coding-agent-demo) | Archived 7 May 2026 | **Do not adopt.** It receives no maintenance or security patches. |
+
+No official Anthropic graph-engineering repository exists. Dynamic workflows are a Claude Code feature, not a standalone open-source graph runtime.
+
+## Recommended first implementation
+
+1. Choose a recurring repository audit with independent files.
+2. Write a concise `CLAUDE.md` and two worker definitions.
+3. Define a verifier Skill with an evidence schema.
+4. Ask Claude to author a **small** workflow.
+5. Inspect the raw script before approving it.
+6. Save the successful workflow in `.claude/workflows/`.
+7. Add deterministic hooks for protected files and test execution.
+8. Write an external checkpoint artifact.
+9. Inject a worker failure and rehearse recovery.
+10. Only then increase width.
+
+That is graph engineering with Claude Code: not a hundred Claudes, but a readable system that knows what can run, what evidence must survive, and what is not allowed to pass.
+
+## Verification receipt
+
+I reconciled this architecture with Anthropic’s live workflow, subagent, team, Skill, hook, Agent View, and release documentation on August 24. The workflow example now has a typed verifier output, but no Claude Code CLI was available in the publishing environment, so it remains an architecture template—not a claim of an executed benchmark. Generate and validate the final script against the exact Claude Code version you install.
+
+## FAQ
+
+### Is Claude agent engineering an official Anthropic term?
+
+No. I use it here as an editorial umbrella for Anthropic’s official work on harness design, loop engineering, context engineering, tools, verification and orchestration. Anthropic does not present a doctrine named “Claude agent engineering.”
+
+### Is graph engineering an official Claude Code feature?
+
+No. Claude Code’s official primitives are the agentic loop, subagents, Skills, hooks, MCP, agent teams, agent view and dynamic workflows. This guide maps those primitives into execution, context and control graphs.
+
+### How many agents can a dynamic workflow run?
+
+Current documentation specifies a maximum of 16 agents executing concurrently and 1,000 total agents in one run. A warning appears above 25 agents or a projected 1.5 million tokens, but that warning is advisory. These are ceilings, not sensible defaults.
+
+### Can a Claude workflow resume after Claude Code exits?
+
+No. Current live documentation says resumption works only inside the same Claude Code session. Exiting starts a fresh workflow. Persist checkpoints outside the session when the business run must survive.
+
+### When should I use the Claude Agent SDK?
+
+Use the Agent SDK when Claude’s loop belongs inside your application. Use a durable workflow runtime or queue-backed control plane when timers, process failure, approvals and irreversible side effects must outlive that application process.
+
+## Official sources
+
+- [Anthropic: Agent Harness Design](https://claude.com/blog/harnessing-claudes-intelligence)
+- [Anthropic: Loop engineering](https://claude.com/blog/getting-started-with-loops)
+- [Anthropic: When to use multi-agent systems](https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them)
+- [Anthropic: Introducing dynamic workflows](https://claude.com/blog/introducing-dynamic-workflows-in-claude-code)
+- [Claude Code dynamic workflows](https://code.claude.com/docs/en/workflows)
+- [Claude Code subagents](https://code.claude.com/docs/en/sub-agents)
+- [Claude Code agent teams](https://code.claude.com/docs/en/agent-teams)
+- [Claude Code Agent View](https://code.claude.com/docs/en/agent-view)
+- [Claude Code cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging)
+- [Claude Code Skills](https://code.claude.com/docs/en/skills)
+- [Claude Code memory and CLAUDE.md](https://code.claude.com/docs/en/memory)
+- [Claude Code hooks](https://code.claude.com/docs/en/hooks-guide)
+- [Claude Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview)
+- [Secure Agent SDK deployment](https://code.claude.com/docs/en/agent-sdk/secure-deployment)
+- [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
+- [Anthropic: Verification loops with Skills](https://claude.com/blog/building-verification-loops-in-claude-code-with-skills)
+- [Anthropic: New rules of context engineering](https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models)
+- [Anthropic: A harness for every task](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code)
+- [Anthropic Claude Code repository](https://github.com/anthropics/claude-code)
+- [Anthropic Claude Agent SDK TypeScript](https://github.com/anthropics/claude-agent-sdk-typescript)
