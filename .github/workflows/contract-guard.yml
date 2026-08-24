@@ -32,6 +32,14 @@ on:
       # state on 2026-08-14. It also genuinely affects the guarded surfaces
       # (headers, redirects, image config), so it belongs here on merit.
       - 'next.config.mjs'
+      # Same trap, second instance: a lockfile-only pull request touched no path
+      # above, so this required check was expected and never reported, leaving
+      # the pull request unmergeable without an admin override. A dependency
+      # change also belongs here on merit — it swaps the framework the guarded
+      # surfaces are built from, and a Next upgrade moves middleware, redirect
+      # and rendering behaviour that the contracts assert on.
+      - 'package.json'
+      - 'pnpm-lock.yaml'
       - '.github/workflows/contract-guard.yml'
 
 concurrency:
