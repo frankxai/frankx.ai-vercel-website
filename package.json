@@ -97,7 +97,7 @@
     "intelligence:fetch": "node scripts/intelligence/fetch-external.mjs",
     "intelligence:validate": "node scripts/intelligence/fetch-external.mjs --offline",
     "intelligence:licenses": "node scripts/intelligence/verify-licenses.mjs",
-    "test:intelligence-ingest": "node --test scripts/intelligence/fetch-external.test.mjs",
+    "test:intelligence-ingest": "node --test scripts/intelligence/*.test.mjs",
     "links:check": "node scripts/check-links.mjs",
     "links:check:ci": "bash scripts/run-links-check-with-dev.sh",
     "links:check:static": "node scripts/check-internal-links.mjs",

@@ -1,7 +1,7 @@
 name: intelligence-refresh
 
-# Weekly refresh of data/intelligence/external.json from permissively-licensed
-# public sources.
+# Weekly refresh of data/intelligence/external.json from sources whose exact
+# redistribution evidence is confirmed in the declarative source policy.
 #
 # This opens a PR — it never pushes to main, because main deploys to frankx.ai.
 # Frank merging the snapshot PR IS the editorial review step. This is also why
@@ -24,16 +24,18 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
 
       # No install step: the fetcher is zero-dependency by design, so a
       # dependency outage can never block the intelligence refresh.
       - name: Verify ingest logic against fixtures
-        run: node --test scripts/intelligence/fetch-external.test.mjs
+        run: node --test scripts/intelligence/*.test.mjs
 
       # Confirms each declared licence against the page that states it. Runs
       # here rather than in merge:gate because it needs egress, and the dev
@@ -64,7 +66,7 @@ jobs:
           "
 
       - name: Open snapshot PR
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
         with:
           branch: automation/intelligence-refresh
           base: main
@@ -83,8 +85,11 @@ jobs:
             `retrieved_at`; the run aborts rather than writing a figure without them.
             Artificial Analysis (no-redistribution) and SWE-bench (CC BY-NC) are
             link-only and are never ingested. Every declared licence was confirmed
-            against its source page before this snapshot was built; a source whose
-            terms are not confirmed is reported `blocked` and contributes no figures.
+            against its pinned evidence document before this snapshot was built; a
+            source whose terms are blocked, revoked, or unverified contributes no
+            figures and any rows it contributed to an older snapshot are purged.
 
-            A degraded source keeps its previous rows — freshness drops, data does not
-            disappear. Review the diff, then merge to publish.
+            Only a transient fetch failure for a still-confirmed source can carry
+            previous figures, and only while those figures are at most 192 hours old.
+            A total enabled-source outage leaves the snapshot byte-for-byte untouched
+            and fails the run. Review the diff, then merge to publish.
