@@ -35,6 +35,13 @@ jobs:
       - name: Verify ingest logic against fixtures
         run: node --test scripts/intelligence/fetch-external.test.mjs
 
+      # Confirms each declared licence against the page that states it. Runs
+      # here rather than in merge:gate because it needs egress, and the dev
+      # sandbox blocks these hosts. Fails the run on a licence claim that cannot
+      # be confirmed; a source with no confirmed licence is simply not ingested.
+      - name: Verify source licences at source
+        run: node scripts/intelligence/verify-licenses.mjs
+
       - name: Fetch external intelligence
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -75,7 +82,9 @@ jobs:
             Every figure in this snapshot carries `source`, `source_url`, `license` and
             `retrieved_at`; the run aborts rather than writing a figure without them.
             Artificial Analysis (no-redistribution) and SWE-bench (CC BY-NC) are
-            link-only and are never ingested.
+            link-only and are never ingested. Every declared licence was confirmed
+            against its source page before this snapshot was built; a source whose
+            terms are not confirmed is reported `blocked` and contributes no figures.
 
             A degraded source keeps its previous rows — freshness drops, data does not
             disappear. Review the diff, then merge to publish.

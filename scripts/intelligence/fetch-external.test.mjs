@@ -128,3 +128,64 @@ test('offline mode re-validates the committed snapshot', async () => {
   assert.equal(parsed.mode, 'offline-validate')
   assert.deepEqual(parsed.problems, [], 'committed snapshot has no provenance problems')
 })
+
+test('a source with no confirmed licence is blocked, not ingested', async () => {
+  // The local half of the licence gate. Fixtures are exempt (hand-built shapes,
+  // not redistributed data), so drive the real source list with network calls
+  // that cannot succeed — status must be `blocked` for the unconfirmed sources
+  // rather than `failed`, proving the licence check runs BEFORE any fetch.
+  const dir = await mkdtemp(join(tmpdir(), 'ext-intel-block-'))
+  await mkdir(join(dir, 'data', 'intelligence'), { recursive: true })
+  await mkdir(join(dir, 'scripts', 'intelligence'), { recursive: true })
+  await cp(join(ROOT, SCRIPT), join(dir, SCRIPT))
+  await cp(join(ROOT, 'data', 'model-registry.json'), join(dir, 'data', 'model-registry.json'))
+
+  const src = await readFile(join(dir, SCRIPT), 'utf8')
+  // Force every source to be unconfirmed, so none may be ingested.
+  await writeFile(join(dir, SCRIPT), src.replace(/license_marker: '[^']*'/g, 'license_marker: null'))
+
+  try {
+    execFileSync('node', [SCRIPT], { cwd: dir, encoding: 'utf8', stdio: 'pipe' })
+  } catch {
+    // All sources blocked means no data — a non-zero exit here is acceptable.
+  }
+  const snap = JSON.parse(await readFile(join(dir, 'data', 'intelligence', 'external.json'), 'utf8'))
+  for (const s of snap.sources) {
+    assert.equal(s.status, 'blocked', `${s.id} must be blocked when its licence is unconfirmed`)
+    assert.match(s.note, /licence unconfirmed/)
+  }
+  for (const m of snap.models) {
+    assert.ok(!m.pricing, `${m.id} must carry no figure from a blocked source`)
+    assert.ok(!m.adoption, `${m.id} must carry no adoption figure from a blocked source`)
+  }
+  await rm(dir, { recursive: true, force: true })
+})
+
+test('verify-licenses treats a null marker as a hold and a false claim as fatal', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'ext-intel-lic-'))
+  await mkdir(join(dir, 'scripts', 'intelligence'), { recursive: true })
+  await cp(join(ROOT, SCRIPT), join(dir, SCRIPT))
+  await cp(join(ROOT, 'scripts/intelligence/verify-licenses.mjs'), join(dir, 'scripts/intelligence/verify-licenses.mjs'))
+  const src = await readFile(join(dir, SCRIPT), 'utf8')
+
+  // All markers null -> every source is a hold, nothing is fetched, exit 0.
+  await writeFile(join(dir, SCRIPT), src.replace(/license_marker: '[^']*'/g, 'license_marker: null'))
+  const held = execFileSync('node', ['scripts/intelligence/verify-licenses.mjs'], { cwd: dir, encoding: 'utf8' })
+  assert.match(held, /unverified \(ingest blocked\)/)
+  assert.doesNotMatch(held, /could not be confirmed at source/)
+
+  // A marker pointing at an unreachable evidence URL is an unconfirmable claim.
+  await writeFile(
+    join(dir, SCRIPT),
+    src.replace(
+      /license_evidence_url: '[^']*'/,
+      "license_evidence_url: 'https://invalid.invalid/nope'",
+    ),
+  )
+  assert.throws(
+    () => execFileSync('node', ['scripts/intelligence/verify-licenses.mjs'], { cwd: dir, encoding: 'utf8', stdio: 'pipe' }),
+    /could not be confirmed at source/,
+    'an unconfirmable licence claim must fail the run',
+  )
+  await rm(dir, { recursive: true, force: true })
+})

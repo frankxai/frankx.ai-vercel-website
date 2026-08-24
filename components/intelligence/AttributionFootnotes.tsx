@@ -31,6 +31,9 @@ function formatRetrieved(iso: string | null) {
 const STATUS_STYLE: Record<string, string> = {
   ok: 'border-emerald-400/25 bg-emerald-400/[0.06] text-emerald-200/90',
   failed: 'border-amber-400/25 bg-amber-400/[0.06] text-amber-200/90',
+  // Deliberate hold, not an outage: the source's terms are not confirmed, so it
+  // contributes no figures. Worth showing the reader rather than hiding.
+  blocked: 'border-amber-400/25 bg-amber-400/[0.06] text-amber-200/90',
   skipped: 'border-white/10 bg-white/[0.03] text-white/50',
   pending: 'border-white/10 bg-white/[0.03] text-white/50',
 }

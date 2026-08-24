@@ -46,13 +46,26 @@ const fixturesIdx = argv.indexOf('--fixtures')
 const FIXTURES = fixturesIdx !== -1 ? argv[fixturesIdx + 1] : null
 
 // ── Sources ────────────────────────────────────────────────────────────────
-// license strings are verified at the source URL. Re-verify on any change:
-// a wrong license here is a licensing violation shipped to a public page.
+// A wrong license string here is a licensing violation shipped to a public page,
+// and it is the one thing assertProvenance() cannot catch — it checks that a
+// license is PRESENT, never that it is TRUE.
+//
+// So each source declares the evidence for its own license:
+//   license_evidence_url — the page or file that states the terms
+//   license_marker       — the substring that must appear there, or null when
+//                          the terms have not been confirmed at source yet
+// verify-licenses.mjs fetches each evidence URL and fails the run on a missing
+// marker or a null one. It needs egress, so it runs on the Actions runner (the
+// dev sandbox blocks these hosts) and gates intelligence-refresh before fetch.
+// null is not a placeholder to fill in casually: it means nobody has read the
+// terms, and it blocks ingest until someone has.
 const SOURCES = [
   {
     id: 'models-dev',
     url: 'https://models.dev/api.json',
     license: 'MIT',
+    license_evidence_url: 'https://raw.githubusercontent.com/sst/models.dev/master/LICENSE',
+    license_marker: 'MIT License',
     attribution: 'models.dev (SST)',
     role: 'pricing + capability spine',
   },
@@ -60,6 +73,11 @@ const SOURCES = [
     id: 'openrouter-models',
     url: 'https://openrouter.ai/api/v1/models',
     license: 'OpenRouter ToS — pricing facts, cited with attribution',
+    // UNCONFIRMED. This string characterises the ToS from a search extract; no
+    // one has read the terms and confirmed that republishing OpenRouter's
+    // per-token prices is permitted. Until someone does, this source is blocked.
+    license_evidence_url: 'https://openrouter.ai/terms',
+    license_marker: null,
     attribution: 'OpenRouter',
     role: 'live pricing + context windows',
   },
@@ -67,6 +85,10 @@ const SOURCES = [
     id: 'openrouter-rankings',
     url: 'https://openrouter.ai/api/v1/datasets/rankings-daily',
     license: 'CC BY 4.0',
+    // UNCONFIRMED, same reason as above: 'CC BY 4.0' came from a search extract,
+    // not from a fetched page declaring it for this dataset.
+    license_evidence_url: 'https://openrouter.ai/docs/features/rankings',
+    license_marker: null,
     attribution: 'OpenRouter rankings',
     role: 'adoption share (usage, not quality)',
     needsKey: true,
@@ -251,6 +273,23 @@ if (OFFLINE) {
 }
 
 for (const src of SOURCES) {
+  // A source whose terms nobody has read cannot be ingested, even if it fetches
+  // fine. This is the local half of the licence gate: verify-licenses.mjs proves
+  // a declared marker is TRUE at source (needs egress, runs on the runner), and
+  // this proves a source without a marker never reaches a published figure at
+  // all. Fixtures are exempt — they are hand-built shapes, not redistributed data.
+  if (src.license_marker == null && !FIXTURES) {
+    sourceStatus.push({
+      id: src.id,
+      url: src.url,
+      license: src.license,
+      attribution: src.attribution,
+      retrieved_at: previous?.sources?.find((s) => s.id === src.id)?.retrieved_at ?? null,
+      status: 'blocked',
+      note: `licence unconfirmed — no license_marker; confirm terms at ${src.license_evidence_url ?? 'the source'} before ingesting`,
+    })
+    continue
+  }
   const headers = {}
   if (src.needsKey && !FIXTURES) {
     const key = process.env.OPENROUTER_API_KEY
