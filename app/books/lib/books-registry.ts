@@ -1427,7 +1427,9 @@ export const booksRegistry: BookConfig[] = [
 // ─── Helper Functions ───────────────────────────────────────────
 
 export function getBookBySlug(slug: string): BookConfig | undefined {
-  return booksRegistry.find((b) => b.slug === slug);
+  const book = booksRegistry.find((b) => b.slug === slug);
+
+  return book?.status === 'draft' ? undefined : book;
 }
 
 function getVariantGroupKey(book: BookConfig): string {
