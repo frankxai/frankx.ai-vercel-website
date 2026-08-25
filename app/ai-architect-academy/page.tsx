@@ -240,7 +240,7 @@ export default function AIArchitectAcademyPage() {
               className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Master enterprise AI patterns, Claude Code skills, and production architectures.
-              80+ skills, 20+ documented patterns, and {learningPathPreviews.length} curriculum
+              Comprehensive skills, documented patterns, and {learningPathPreviews.length} curriculum
               previews from an enterprise AI architect.
             </motion.p>
 
@@ -354,8 +354,8 @@ export default function AIArchitectAcademyPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
               {[
-                { value: '80+', label: 'Claude Skills', sublabel: 'Ready to use' },
-                { value: '20+', label: 'Design Patterns', sublabel: 'Enterprise-grade' },
+                { value: 'Skills', label: 'Claude Code', sublabel: 'Ready to use' },
+                { value: 'Patterns', label: 'Design Library', sublabel: 'Enterprise-grade' },
                 {
                   value: String(learningPathPreviews.length),
                   label: 'Path Previews',
@@ -446,7 +446,7 @@ export default function AIArchitectAcademyPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-violet-400 hover:text-violet-300"
               >
-                View all 20+ patterns on GitHub
+                View all patterns on GitHub
                 <ExternalLink className="h-4 w-4" />
               </a>
             </motion.div>
@@ -532,7 +532,7 @@ export default function AIArchitectAcademyPage() {
                   Claude Code Skills
                 </span>
                 <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl">
-                  80+ Ready-to-Use Skills
+                  Ready-to-Use Skills
                 </h2>
                 <p className="mb-8 text-lg text-slate-400">
                   Comprehensive Claude Code skills covering MCP servers, agent development, cloud services, and automation.
@@ -602,7 +602,7 @@ export default function AIArchitectAcademyPage() {
 
                 {/* Floating badge */}
                 <div className="absolute -right-4 -top-4 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 px-4 py-2 text-sm font-semibold text-white shadow-lg">
-                  80+ Skills
+                  Skills Library
                 </div>
               </motion.div>
             </div>

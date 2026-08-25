@@ -55,6 +55,9 @@ test('the dedicated library route renders every decision layer and structured ev
   assert.match(page, /focus-visible:ring-2/);
   assert.match(og, /width: 1200/);
   assert.match(og, /height: 630/);
+  assert.match(og, /aria-label="4 out of 5 stars"/);
+  assert.match(og, /const ratingMarkers = \[true, true, true, true, false\] as const;/);
+  assert.doesNotMatch(og, /[★☆]/);
 });
 
 test('the review is discoverable from the library index and canonical route catalog', () => {

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de" class="h-full bg-amber-950 text-slate-100 select-none">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>WunderSafari: Farben, Formen & Tiere — Kids 3-6 Jahre</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    body { touch-action: none; -webkit-user-select: none; user-select: none; }
+    .kid-card { transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .kid-card:active { transform: scale(0.88); }
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .bounce-target { animation: bounce-slow 2s infinite ease-in-out; }
+  </style>
+  <script type="module" crossorigin src="/game-embeds/assets/wunderSafari-Coanna53.js"></script>
+  <link rel="modulepreload" crossorigin href="/game-embeds/assets/modulepreload-polyfill-B5Qt9EMX.js">
+</head>
+<body class="h-full flex flex-col items-center justify-center overflow-hidden bg-[#1c1917]">
+
+  <!-- Kid-Safe Large Screen Container -->
+  <div class="relative w-full h-full max-w-[480px] max-h-[880px] flex flex-col shadow-2xl bg-gradient-to-b from-amber-900/60 to-emerald-950/80 overflow-hidden sm:rounded-3xl border-4 border-amber-400/50 p-6 justify-between">
+    
+    <!-- Top Cheerful Header -->
+    <div class="flex items-center justify-between z-20 pb-3 border-b-2 border-white/10">
+      <div class="flex items-center gap-2">
+        <span class="text-3xl">🦁</span>
+        <div>
+          <div class="text-xs text-amber-300 font-bold uppercase tracking-wider">WunderSafari</div>
+          <div class="text-[11px] text-white/60">Für Entdecker (3-6 Jahre)</div>
+        </div>
+      </div>
+
+      <!-- Star Counter -->
+      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400/20 border border-amber-300/40">
+        <span class="text-xl">⭐</span>
+        <span class="text-lg font-extrabold text-amber-300 font-mono" id="star-count">0</span>
+      </div>
+    </div>
+
+    <!-- Center Prompt Stage (Huge tactile Target) -->
+    <div class="my-auto flex flex-col items-center justify-center text-center py-4">
+      
+      <div class="text-sm font-bold text-amber-200 mb-2" id="prompt-voice-text">
+        Tippe auf: Den fröhlichen Löwen!
+      </div>
+
+      <!-- Target Display Card -->
+      <div class="bounce-target w-36 h-36 rounded-3xl bg-amber-400/20 border-4 border-amber-400/60 shadow-2xl flex items-center justify-center text-6xl" id="target-icon">
+        🦁
+      </div>
+
+      <div id="cheer-msg" class="h-8 text-base font-extrabold text-amber-300 mt-4"></div>
+    </div>
+
+    <!-- Bottom 4 Big Choice Buttons -->
+    <div class="space-y-4 z-20">
+      <div class="grid grid-cols-2 gap-4" id="choices-grid">
+        <!-- 4 Large Touchable Cards -->
+      </div>
+
+      <div class="text-center">
+        <p class="text-[11px] text-amber-200/50 font-medium">
+          100% Sicher für Kinder • Keine Werbung • Sanfte Klänge
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

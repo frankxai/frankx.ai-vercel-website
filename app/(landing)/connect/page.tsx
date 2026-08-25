@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
-import { ArrowRight, Mail, QrCode } from "lucide-react";
+import { ArrowRight, CalendarDays, Mail, QrCode } from "lucide-react";
 
+import { MEET_AND_GROW_URL } from "@/lib/cta-links";
 import { createMetadata, siteConfig } from "@/lib/seo";
 import { CONTACT_INFO } from "@/lib/social-links";
 
@@ -13,6 +14,7 @@ import { ConnectSocialsRow } from "@/components/connect/ConnectSocialsRow";
 import { FeaturedWorkGrid } from "@/components/connect/FeaturedWorkGrid";
 import { RolePathCards } from "@/components/connect/RolePathCards";
 import { SaveContactButton } from "@/components/connect/SaveContactButton";
+import { TrackedBookingLink } from "@/components/connect/TrackedBookingLink";
 import { TrackedEmailLink } from "@/components/connect/TrackedEmailLink";
 
 const SITE_URL = siteConfig.url;
@@ -38,7 +40,7 @@ function ConnectJsonLd() {
         '@type': 'WebPage',
         name: "Connect with Frank Riemer",
         description:
-          "Meet Frank Riemer, AI Architect. Explore his public work in AI architecture, agent systems, partnerships, and applied creative practice.",
+          "Meet Frank Riemer, AI Architect. Explore his work in AI architecture, agent systems, partnerships, university workshops, and applied creative practice.",
         url: CONNECT_URL,
         mainEntity: {
           "@type": "Person",
@@ -62,7 +64,7 @@ function ConnectJsonLd() {
 export const metadata: Metadata = createMetadata({
   title: "Connect with Frank Riemer — AI Architect",
   description:
-    "Meet Frank Riemer, AI Architect. Explore his public work in AI architecture, agent systems, partnerships, and applied creative practice.",
+    "Meet Frank Riemer, AI Architect. Explore his work in AI architecture, agent systems, partnerships, university workshops, and applied creative practice.",
   path: "/connect",
   keywords: [
     "frank riemer",
@@ -71,6 +73,8 @@ export const metadata: Metadata = createMetadata({
     "enterprise ai architecture",
     "agent systems",
     "ai partnerships",
+    "university ai workshops",
+    "ai workshop speaker",
   ],
 });
 
@@ -119,10 +123,10 @@ export default function ConnectPage() {
               <ConnectAuthorityFigure className="mt-8 lg:hidden" />
 
               <p className="mt-8 max-w-2xl text-lg leading-8 text-[#44483f] sm:text-xl sm:leading-9">
-                I work with senior operators, technical teams, and partners on
-                the decisions that make AI useful: architecture, workflows,
-                governance, and adoption. My agents accelerate the work. I own
-                the judgment and the result.
+                I work with senior operators, technical teams, university
+                programs, and platform partners on the decisions that make AI
+                useful: architecture, workflows, governance, and adoption. My
+                agents accelerate the work. I own the judgment and the result.
               </p>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -189,7 +193,7 @@ export default function ConnectPage() {
               Start with your situation
             </p>
             <h2 className="mt-4 max-w-md text-4xl font-medium leading-[1.02] tracking-[-0.045em] text-[#171915] sm:text-5xl">
-              Three useful ways into the work.
+              Four useful ways into the work.
             </h2>
             <p className="mt-6 max-w-md text-base leading-7 text-[#555950]">
               Choose the question closest to yours and inspect the work before
@@ -197,6 +201,80 @@ export default function ConnectPage() {
             </p>
           </div>
           <RolePathCards />
+        </div>
+      </section>
+
+      <section
+        id="university-workshops"
+        className="scroll-mt-24 border-y border-[#171915]/15 bg-[#171915] px-5 py-20 text-[#f3efe6] sm:px-8 sm:py-24 lg:px-12 lg:py-28"
+      >
+        <div className="mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-20">
+          <figure>
+            <div className="relative aspect-[4/3] overflow-hidden bg-[#292b26]">
+              <Image
+                src="/images/oracle-events/oracle-workshop-P1081706.jpg"
+                alt="Frank Riemer facilitating an applied workshop in front of a flip chart"
+                fill
+                sizes="(max-width: 1023px) 100vw, 55vw"
+                className="object-cover object-center saturate-[0.78] contrast-[1.04]"
+              />
+              <span className="absolute bottom-0 right-0 bg-[#2157d5] px-4 py-2 text-xs font-semibold text-white">
+                Room note 01
+              </span>
+            </div>
+            <figcaption className="mt-3 flex flex-col gap-1 text-xs leading-5 text-white/[0.55] sm:flex-row sm:justify-between">
+              <span>Facilitating an applied workshop, 2025.</span>
+              <span className="sm:text-right">
+                Former Oracle role · no current endorsement implied
+              </span>
+            </figcaption>
+          </figure>
+
+          <div>
+            <p className="text-sm font-semibold text-[#8fb0ff]">
+              Universities and learning communities
+            </p>
+            <h2 className="mt-4 max-w-2xl text-4xl font-medium leading-[1.02] tracking-[-0.045em] sm:text-5xl">
+              Bring Frank into a room that wants to build, not just listen.
+            </h2>
+            <p className="mt-6 max-w-xl text-base leading-7 text-white/[0.68] sm:text-lg sm:leading-8">
+              For faculty, program directors, innovation labs, incubators, and
+              student communities. Start with one useful result participants
+              should carry home; the format follows from the room, not a stock
+              slide deck.
+            </p>
+
+            <div className="mt-8 grid gap-3 border-y border-white/[0.18] py-5 text-sm text-white/[0.68] sm:grid-cols-3">
+              <span>In person</span>
+              <span>Virtual</span>
+              <span>Hybrid</span>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <TrackedBookingLink
+                href={MEET_AND_GROW_URL}
+                className="group inline-flex min-h-12 items-center justify-center gap-3 bg-[#f3efe6] px-6 py-3.5 text-sm font-semibold text-[#171915] transition-colors hover:bg-[#8fb0ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8fb0ff] focus-visible:ring-offset-4 focus-visible:ring-offset-[#171915]"
+              >
+                <CalendarDays className="h-4 w-4" aria-hidden />
+                Book a workshop fit call
+                <ArrowRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none"
+                  aria-hidden
+                />
+              </TrackedBookingLink>
+              <Link
+                href="/workshops"
+                className="inline-flex min-h-12 items-center justify-center px-4 text-sm font-semibold text-white underline decoration-white/30 underline-offset-4 transition-colors hover:text-[#8fb0ff] hover:decoration-[#8fb0ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8fb0ff]"
+              >
+                Inspect workshop formats
+              </Link>
+            </div>
+
+            <p className="mt-5 text-xs leading-5 text-white/[0.48]">
+              A fit call covers audience, desired outcome, timing, format, and
+              logistics. No generic proposal before the room is understood.
+            </p>
+          </div>
         </div>
       </section>
 

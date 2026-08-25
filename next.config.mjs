@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 /**
- * Load curated path aliases for 301 redirects.
+ * Load curated path aliases for permanent redirects (HTTP 308).
  * Source: data/redirect-aliases.json (operator-curated; agent proposals require approval).
  * Format: { aliases: { from: to, ... } } — see file for schema doc.
  * Failing safely to {} means a bad file never breaks the build.
@@ -30,10 +30,15 @@ function loadRedirectAliases() {
 
 const REDIRECT_ALIASES = loadRedirectAliases()
 
-function siteContentSecurityPolicy(frameAncestors) {
+const GAME_TAILWIND_BROWSER_SCRIPT = 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4'
+
+function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = []) {
+  const scriptSourceSuffix =
+    additionalScriptSources.length > 0 ? ` ${additionalScriptSources.join(' ')}` : ''
+
   return [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com",
+    `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com${scriptSourceSuffix}`,
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com data:",
     "img-src 'self' data: blob: https: http:",
@@ -96,6 +101,20 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Static game builds live outside /games so the App Router owns both
+      // /games and /games/:slug. Vercel cleanUrls canonicalizes .html and
+      // index.html requests before these rules, so effective aliases and
+      // destinations stay extensionless and converge without redirect loops.
+      {
+        source: '/games/hub',
+        destination: '/game-embeds/legacy-hub',
+        permanent: true,
+      },
+      {
+        source: '/games/games/:path*',
+        destination: '/game-embeds/:path*',
+        permanent: true,
+      },
       // Curated path aliases — loaded from data/redirect-aliases.json.
       // Includes /ikigai → /workshops/ikigai-branding and the rest of the
       // legacy URL recovery set. Operator + agent additions land here on approval.
@@ -277,7 +296,8 @@ const nextConfig = {
         destination: '/ai-architecture',
         permanent: true,
       },
-      // /ai-architect used to 301 to /ai-architecture. It is now its own page:
+      // /ai-architect used to permanently redirect (HTTP 308) to
+      // /ai-architecture. It is now its own page:
       // the review as something you run, where /ai-architecture is the reference
       // you read. The child redirect stays, minus the two paths that are real
       // pages of their own.
@@ -423,14 +443,14 @@ const nextConfig = {
         ],
       },
       {
-        // Game documents are embedded by the same-origin player at /games/:slug.
-        // This rule follows the site-wide rule so these two headers override it
-        // without weakening framing protection for any other route.
-        source: '/games/games/:path*',
+        // Relocated game documents are embedded by the same-origin player at
+        // /games/:slug. This rule follows the site-wide rule so these headers
+        // override it without weakening framing or script policy elsewhere.
+        source: '/game-embeds/:path*',
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: siteContentSecurityPolicy("'self'"),
+            value: siteContentSecurityPolicy("'self'", [GAME_TAILWIND_BROWSER_SCRIPT]),
           },
           {
             key: 'X-Frame-Options',

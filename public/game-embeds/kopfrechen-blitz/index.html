@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de" class="h-full bg-slate-950 text-slate-100 select-none">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Kopfrechen-Blitz: Zahlen-Gymnastik — FrankX Denkspiele</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    body { touch-action: none; -webkit-user-select: none; user-select: none; }
+    .num-btn { transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .num-btn:active { transform: scale(0.9); }
+  </style>
+  <script type="module" crossorigin src="/game-embeds/assets/kopfrechenBlitz-BEeGhDQi.js"></script>
+  <link rel="modulepreload" crossorigin href="/game-embeds/assets/modulepreload-polyfill-B5Qt9EMX.js">
+</head>
+<body class="h-full flex flex-col items-center justify-center overflow-hidden bg-[#070b14]">
+
+  <!-- Mobile Viewport Frame -->
+  <div class="relative w-full h-full max-w-[480px] max-h-[880px] flex flex-col shadow-2xl bg-[#090f1d] overflow-hidden sm:rounded-3xl border border-cyan-500/30 p-5 justify-between">
+    
+    <!-- Top Stats Bar -->
+    <div class="flex items-center justify-between z-20 pb-3 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <div class="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold text-xs">
+          ⚡ Kopfrechen
+        </div>
+        <div>
+          <div class="text-[10px] text-white/40 uppercase font-semibold">Zahlen-Gymnastik</div>
+          <div class="text-xs font-bold text-cyan-300" id="combo-display">Serie: 0x 🔥</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <div class="text-[10px] text-white/40 uppercase font-semibold">Punkte</div>
+          <div class="text-sm font-mono font-bold text-emerald-400" id="score-display">0</div>
+        </div>
+        <button id="btn-audio" class="p-2 rounded-full bg-slate-900 text-cyan-400 border border-cyan-700/40 text-xs">
+          🔊
+        </button>
+      </div>
+    </div>
+
+    <!-- Center Math Problem Stage -->
+    <div class="my-auto flex flex-col items-center justify-center text-center py-4">
+      
+      <!-- Time Countdown Bar -->
+      <div class="w-full bg-slate-800/60 h-2 rounded-full mb-6 overflow-hidden border border-white/10">
+        <div id="time-bar" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 transition-all duration-100 ease-linear w-full"></div>
+      </div>
+
+      <!-- Problem Prompt -->
+      <div class="text-sm text-cyan-300/60 uppercase tracking-widest font-mono mb-2" id="operation-label">
+        Multiplikation & Addition
+      </div>
+      
+      <div class="text-4xl sm:text-5xl font-mono font-extrabold text-white tracking-wider my-2" id="problem-text">
+        14 × 6 = ?
+      </div>
+
+      <!-- Live Input Display -->
+      <div class="h-12 min-w-[160px] mt-3 px-4 py-2 rounded-xl bg-cyan-950/30 border border-cyan-500/40 flex items-center justify-center text-2xl font-mono font-bold text-cyan-300" id="input-display">
+        _
+      </div>
+
+      <div id="feedback-text" class="h-5 text-xs font-bold mt-2"></div>
+    </div>
+
+    <!-- Bottom Keypad -->
+    <div class="space-y-3 z-20">
+      
+      <!-- Keypad Grid -->
+      <div class="grid grid-cols-3 gap-2.5">
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">1</button>
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">2</button>
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">3</button>
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">4</button>
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">5</button>
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">6</button>
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">7</button>
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">8</button>
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">9</button>
+        <button class="num-btn py-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-sm font-bold text-rose-300" id="btn-del">⌫</button>
+        <button class="num-btn py-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-lg font-mono font-bold text-white">0</button>
+        <button class="num-btn py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 text-sm font-bold shadow-lg shadow-cyan-500/20" id="btn-enter">✓</button>
+      </div>
+
+      <div class="text-center">
+        <p class="text-[10px] text-white/30">
+          Kognitives Ziel: Parietallappen & Zahlenverarbeitung (Intraparietaler Sulcus)
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
