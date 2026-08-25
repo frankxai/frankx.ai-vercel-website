@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
+import { ciAlwaysReportingErrors } from './helpers/workflow-yaml-contract.mjs'
 
 const read = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
 
@@ -71,12 +72,8 @@ test('pnpm lifecycle scripts stay denied by default with two version-pinned appr
 test('CI always reports and runs the dependency boundary and AgentDB runtime contracts', async () => {
   const workflow = await read('.github/workflows/ci.yml')
   const packageJson = JSON.parse(await read('package.json'))
-  const onBlock = workflow.match(/^on:\n[\s\S]*?(?=^[A-Za-z_][\w-]*:)/m)?.[0]
 
-  assert.ok(onBlock, 'CI must contain a canonical top-level on mapping')
-  assert.match(onBlock, /^  push:/m)
-  assert.match(onBlock, /^  pull_request:/m)
-  assert.doesNotMatch(onBlock, /^\s+paths(?:-ignore)?:/m)
+  assert.deepEqual(ciAlwaysReportingErrors(workflow), [])
   assert.match(
     workflow,
     /- name: Build integrity contract\s+run: pnpm run test:build-integrity/,
