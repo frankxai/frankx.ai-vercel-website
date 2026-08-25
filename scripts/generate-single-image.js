@@ -15,6 +15,8 @@ const OUTPUT_DIR = process.env.GUIDE_IMAGE_OUTPUT_DIR
   ? path.resolve(process.env.GUIDE_IMAGE_OUTPUT_DIR)
   : path.join(__dirname, "..", "public", "images", "guides");
 
+fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 const filename = "image-generation-mastery.png";
