@@ -157,9 +157,9 @@ export default function V0FoundryPage() {
               <div className="absolute inset-x-7 bottom-7 rounded-[1.5rem] bg-[#11120f] p-5 text-[#f2efe6] sm:inset-x-10 sm:bottom-10 sm:p-6">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/45">
-                    Release readiness
+                    Verified gates
                   </span>
-                  <span className="font-mono text-2xl text-[#d9ff5a]">92%</span>
+                  <span className="font-mono text-2xl text-[#d9ff5a]">5/6</span>
                 </div>
                 <div className="mt-4 grid grid-cols-3 gap-3 text-xs">
                   {['Offer', 'Delivery', 'Proof'].map((item) => (

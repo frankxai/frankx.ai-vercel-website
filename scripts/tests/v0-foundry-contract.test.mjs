@@ -50,6 +50,14 @@ test('interface studies are not mislabeled as deployable products', () => {
   assert.doesNotMatch(`${page}\n${source}`, /production-ready|SOTA|one-click deploy/i)
 })
 
+test('release maturity indicators are evidence-backed', () => {
+  const page = read('app/v0/page.tsx')
+
+  assert.match(page, /Verified gates/)
+  assert.match(page, />5\/6</)
+  assert.doesNotMatch(page, /\b\d{1,3}%\b/)
+})
+
 test('release evidence names the remaining browser review gap', () => {
   const source = read('content/v0/foundry.ts')
 
