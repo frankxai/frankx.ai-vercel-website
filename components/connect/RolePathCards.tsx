@@ -1,137 +1,91 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import {
-  TrendingUp,
-  Handshake,
-  Network,
-  Music4,
-  ArrowUpRight,
-  type LucideIcon,
-} from 'lucide-react'
-import { trackEvent } from '@/lib/analytics'
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
-type Accent = 'cyan' | 'emerald' | 'violet' | 'amber'
+import { trackEvent } from "@/lib/analytics";
 
-interface RolePath {
-  id: 'investor' | 'partner' | 'client' | 'creator'
-  label: string
-  title: string
-  subtitle: string
-  href: string
-  icon: LucideIcon
-  accent: Accent
-}
-
-const PATHS: RolePath[] = [
+const paths = [
   {
-    id: 'investor',
-    label: 'Investor',
-    title: 'Deal intelligence & portfolio access',
-    subtitle: 'AI agents for due diligence, sourcing, and market research. Conversations open.',
-    href: '/investor',
-    icon: TrendingUp,
-    accent: 'cyan',
+    id: "architecture",
+    number: "01",
+    audience: "Enterprise and technical teams",
+    title: "You need an AI system that survives contact with the organisation.",
+    description:
+      "Start with the architecture field guide: decisions, constraints, evaluation, and operating boundaries.",
+    action: "Inspect the architecture",
+    href: "/ai-architecture",
   },
   {
-    id: 'partner',
-    label: 'Partner · Tech-co',
-    title: 'Active integrations & new collabs',
-    subtitle: 'Live Madrid week: Google partnership — Gemini + ADK + Antigravity. Plus Anthropic, Vercel, NVIDIA, Oracle. Where your stack fits.',
-    href: '/partnerships',
-    icon: Handshake,
-    accent: 'emerald',
+    id: "partner",
+    number: "02",
+    audience: "Technology and ecosystem partners",
+    title: "You see a serious partner opportunity.",
+    description:
+      "Review documented proposals, platform alignment, and the exact relationship status behind each claim.",
+    action: "See how I partner",
+    href: "/partnerships",
   },
   {
-    id: 'client',
-    label: 'Client · Enterprise',
-    title: 'AI architect engagements',
-    subtitle: 'Agentic systems, Oracle Cloud, multi-agent orchestration. Patterns that ship.',
-    href: '/ai-architect',
-    icon: Network,
-    accent: 'violet',
+    id: "university",
+    number: "03",
+    audience: "Universities, faculty, and student programs",
+    title: "You want an AI workshop built around the people in the room.",
+    description:
+      "Start with the cohort, the outcome, and the constraints. Then book a fit call around the right format.",
+    action: "Plan the workshop",
+    href: "/connect#university-workshops",
   },
   {
-    id: 'creator',
-    label: 'Creator · Community',
-    title: 'Music, ideas, weekly drops',
-    subtitle: '12K+ AI tracks, Creation Chronicles, Vibe OS — join the inner circle.',
-    href: '/music-lab',
-    icon: Music4,
-    accent: 'amber',
+    id: "research",
+    number: "04",
+    audience: "Research, media, and peers",
+    title: "You want to understand the thinking before we talk.",
+    description:
+      "Read source-led essays and build notes on agents, AI architecture, and applied creative systems.",
+    action: "Read the field notes",
+    href: "/blog",
   },
-]
-
-const ACCENT_RING: Record<Accent, string> = {
-  cyan: 'hover:border-cyan-400/40 hover:shadow-[0_20px_60px_-25px_rgba(34,211,238,0.6)]',
-  emerald: 'hover:border-emerald-400/40 hover:shadow-[0_20px_60px_-25px_rgba(16,185,129,0.6)]',
-  violet: 'hover:border-violet-400/40 hover:shadow-[0_20px_60px_-25px_rgba(167,139,250,0.6)]',
-  amber: 'hover:border-amber-400/40 hover:shadow-[0_20px_60px_-25px_rgba(251,191,36,0.6)]',
-}
-
-const ACCENT_ICON_BG: Record<Accent, string> = {
-  cyan: 'bg-cyan-500/10 text-cyan-300 ring-1 ring-cyan-400/20',
-  emerald: 'bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-400/20',
-  violet: 'bg-violet-500/10 text-violet-300 ring-1 ring-violet-400/20',
-  amber: 'bg-amber-500/10 text-amber-300 ring-1 ring-amber-400/20',
-}
-
-const ACCENT_LABEL: Record<Accent, string> = {
-  cyan: 'text-cyan-300',
-  emerald: 'text-emerald-300',
-  violet: 'text-violet-300',
-  amber: 'text-amber-300',
-}
+] as const;
 
 export function RolePathCards() {
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
-      }}
-      className="grid w-full gap-3 sm:grid-cols-2"
-    >
-      {PATHS.map((path) => {
-        const Icon = path.icon
-        return (
-          <motion.div
-            key={path.id}
-            variants={{
-              hidden: { opacity: 0, y: 16 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-            }}
-          >
-            <Link
-              href={path.href}
-              onClick={() =>
-                trackEvent('connect_path_clicked', { path: path.id, destination: path.href })
-              }
-              className={`group relative flex h-full flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${ACCENT_RING[path.accent]}`}
-            >
-              <div className="flex items-center justify-between">
-                <span className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${ACCENT_ICON_BG[path.accent]}`}>
-                  <Icon className="h-4.5 w-4.5" aria-hidden />
-                </span>
-                <ArrowUpRight
-                  className="h-4 w-4 text-white/40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80"
-                  aria-hidden
-                />
-              </div>
-              <div>
-                <p className={`text-[11px] font-medium uppercase tracking-[0.14em] ${ACCENT_LABEL[path.accent]}`}>
-                  {path.label}
-                </p>
-                <h3 className="mt-1.5 text-base font-semibold text-white sm:text-[17px]">{path.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-white/60">{path.subtitle}</p>
-              </div>
-            </Link>
-          </motion.div>
-        )
-      })}
-    </motion.div>
-  )
+    <div className="border-t border-[#171915]">
+      {paths.map((path) => (
+        <Link
+          key={path.id}
+          href={path.href}
+          onClick={() =>
+            trackEvent("connect_path_clicked", {
+              path: path.id,
+              destination: path.href,
+            })
+          }
+          className="group grid gap-5 border-b border-[#171915]/30 py-7 outline-none transition-colors hover:bg-[#ebe3d4] focus-visible:bg-[#ebe3d4] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#2157d5] sm:grid-cols-[52px_minmax(0,1fr)_180px] sm:items-start sm:gap-6 sm:px-4 sm:py-8"
+        >
+          <span className="font-mono text-xs text-[#2157d5]">
+            {path.number}
+          </span>
+          <span>
+            <span className="mb-2 block text-sm font-semibold text-[#2157d5]">
+              {path.audience}
+            </span>
+            <span className="block max-w-2xl text-xl font-medium leading-7 tracking-[-0.025em] text-[#171915] sm:text-2xl sm:leading-8">
+              {path.title}
+            </span>
+            <span className="mt-3 block max-w-2xl text-sm leading-6 text-[#5a5e55] sm:text-base sm:leading-7">
+              {path.description}
+            </span>
+          </span>
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#171915] sm:justify-self-end">
+            {path.action}
+            <ArrowUpRight
+              className="h-4 w-4 text-[#2157d5] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+              aria-hidden
+            />
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
 }

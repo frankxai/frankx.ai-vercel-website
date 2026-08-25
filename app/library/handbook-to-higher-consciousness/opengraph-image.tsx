@@ -5,6 +5,8 @@ export const alt = 'Handbook to Higher Consciousness — complete system map';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
+const ratingMarkers = [true, true, true, true, false] as const;
+
 export default function OpenGraphImage() {
   return new ImageResponse(
     (
@@ -117,7 +119,24 @@ export default function OpenGraphImage() {
                 </div>
               ))}
             </div>
-            <div style={{ color: '#fcd34d', fontSize: 21, letterSpacing: '0.14em' }}>★★★★☆</div>
+            <div
+              role="img"
+              aria-label="4 out of 5 stars"
+              style={{ display: 'flex', gap: 8 }}
+            >
+              {ratingMarkers.map((filled, index) => (
+                <span
+                  key={index}
+                  style={{
+                    width: 17,
+                    height: 17,
+                    borderRadius: 999,
+                    border: '2px solid #fcd34d',
+                    background: filled ? '#fcd34d' : 'transparent',
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
