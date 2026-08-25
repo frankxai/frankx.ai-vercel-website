@@ -5,22 +5,19 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: [main, staging]
 
-permissions:
-  contents: read
+# This workflow is intentionally inert. It exists only to emit a pull_request
+# workflow_run event. The default-branch Media Guard Trusted workflow performs
+# all checkout, policy loading, inspection, and status reporting.
+permissions: {}
 
 jobs:
-  media-guard:
+  request:
     name: Media Guard
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 2
     steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: Fetch PR base for an accurate media diff
-        run: git fetch --no-tags origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
-
-      - name: Reject repository media debt
-        run: node scripts/media-guard.mjs --base origin/${{ github.base_ref }}
+      - name: Queue the base-controlled verifier
+        shell: bash
+        run: |
+          echo "Media inspection is performed by the default-branch trusted workflow."

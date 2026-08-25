@@ -1,0 +1,106 @@
+name: Media Guard Trusted
+
+on:
+  workflow_run:
+    workflows: [Media Guard]
+    types: [completed]
+
+# The token is never exposed to candidate code. The candidate merge commit is
+# checked out as data only; every executable script comes from a trusted base.
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: media-guard-trusted-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Media Guard Trusted
+    if: github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # This environment must allow only the protected default branch. Its App
+    # credentials are therefore unavailable to same-repository PR workflows.
+    environment: media-guard-trusted
+    steps:
+      - name: Check out the default-branch bootstrap at the event SHA
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          ref: ${{ github.sha }}
+          path: bootstrap
+          fetch-depth: 1
+          persist-credentials: false
+          submodules: false
+
+      - name: Resolve the exact current PR target
+        id: resolve
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node bootstrap/scripts/resolve-media-guard-pr.mjs
+
+      - name: Mint the dedicated media-guard App token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.MEDIA_GUARD_APP_ID }}
+          private-key: ${{ secrets.MEDIA_GUARD_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-statuses: write
+
+      - name: Mark the exact PR head pending
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: >-
+          node bootstrap/scripts/report-media-guard-status.mjs
+          --state pending
+          --sha "${{ steps.resolve.outputs.head_sha }}"
+          --description "Base-controlled media inspection is running"
+
+      - name: Check out the exact trusted PR base
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          ref: ${{ steps.resolve.outputs.base_sha }}
+          path: trusted
+          fetch-depth: 1
+          persist-credentials: false
+          submodules: false
+
+      - name: Check out the exact GitHub merge commit as inert candidate data
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          ref: ${{ steps.resolve.outputs.merge_sha }}
+          path: candidate
+          fetch-depth: 0
+          persist-credentials: false
+          submodules: false
+
+      - name: Inspect candidate with the base-controlled checker and policy
+        working-directory: candidate
+        run: >-
+          node "$GITHUB_WORKSPACE/trusted/scripts/media-guard.mjs"
+          --base "${{ steps.resolve.outputs.base_sha }}"
+          --head "${{ steps.resolve.outputs.head_sha }}"
+          --trusted-merge "${{ steps.resolve.outputs.merge_sha }}"
+          --protect-policy
+
+      - name: Mark the exact PR head successful
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: >-
+          node bootstrap/scripts/report-media-guard-status.mjs
+          --state success
+          --sha "${{ steps.resolve.outputs.head_sha }}"
+          --description "Base-controlled media inspection passed"
+
+      - name: Mark the exact PR head failed
+        if: failure() && steps.resolve.outputs.head_sha != ''
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: >-
+          node bootstrap/scripts/report-media-guard-status.mjs
+          --state failure
+          --sha "${{ steps.resolve.outputs.head_sha }}"
+          --description "Base-controlled media inspection failed"
