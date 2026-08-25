@@ -62,7 +62,10 @@ function checkoutBlocks(workflow) {
       }
     }
 
-    blocks.push(lines.slice(stepStart, stepEnd).join("\n"));
+    blocks.push({
+      source: lines.slice(stepStart, stepEnd).join("\n"),
+      stepIndent
+    });
   }
 
   return blocks;
@@ -92,13 +95,62 @@ function checkoutPersistenceErrors(workflow) {
     );
   }
 
-  return errors.concat(blocks.flatMap((source, index) => {
-    const falseCount = (source.match(/^\s+persist-credentials:\s*false\s*(?:#.*)?$/gm) || []).length;
+  return errors.concat(blocks.flatMap(({ source, stepIndent }, index) => {
+    const withIndent = " ".repeat(stepIndent + 2);
+    const optionIndent = " ".repeat(stepIndent + 4);
+    const withCount = (
+      source.match(new RegExp(`^${withIndent}with:\\s*(?:#.*)?$`, "gm")) || []
+    ).length;
+    const falseCount = (
+      source.match(
+        new RegExp(
+          `^${optionIndent}persist-credentials:\\s*false\\s*(?:#.*)?$`,
+          "gm"
+        )
+      ) || []
+    ).length;
+    const allPersistenceCount = (
+      source.match(/^\s+persist-credentials:\s*(?:true|false)\s*(?:#.*)?$/gm) || []
+    ).length;
     const explicitTrue = /^\s+persist-credentials:\s*true\s*(?:#.*)?$/m.test(source);
-    return falseCount === 1 && !explicitTrue
+    return withCount === 1 && falseCount === 1 && allPersistenceCount === 1 && !explicitTrue
       ? []
       : [`checkout block ${index + 1} must set persist-credentials: false exactly once`];
   }));
+}
+
+function triggerPathEntries(workflow, triggerName) {
+  const lines = workflow.split(/\r?\n/);
+  const triggerIndex = lines.findIndex(line =>
+    new RegExp(`^(\\s*)${triggerName}:\\s*$`).test(line)
+  );
+  if (triggerIndex === -1) return [];
+
+  const triggerIndent = lines[triggerIndex].match(/^\s*/)[0].length;
+  let pathsIndex = -1;
+  let pathsIndent = -1;
+
+  for (let index = triggerIndex + 1; index < lines.length; index += 1) {
+    if (!lines[index].trim() || /^\s*#/.test(lines[index])) continue;
+    const indent = lines[index].match(/^\s*/)[0].length;
+    if (indent <= triggerIndent) break;
+    if (/^\s*paths:\s*$/.test(lines[index])) {
+      pathsIndex = index;
+      pathsIndent = indent;
+      break;
+    }
+  }
+  if (pathsIndex === -1) return [];
+
+  const entries = [];
+  for (let index = pathsIndex + 1; index < lines.length; index += 1) {
+    if (!lines[index].trim() || /^\s*#/.test(lines[index])) continue;
+    const indent = lines[index].match(/^\s*/)[0].length;
+    if (indent <= pathsIndent) break;
+    const entry = lines[index].match(/^\s*-\s+['"]?([^'"]+?)['"]?\s*(?:#.*)?$/);
+    if (entry) entries.push(entry[1].trim());
+  }
+  return entries;
 }
 
 async function withTemporaryOutput(run) {
@@ -258,16 +310,53 @@ jobs:
   assert.ok(errors.some(error => /noncanonical checkout reference/.test(error)));
 });
 
+test("checkout parser rejects persist-credentials decoys outside the with mapping", () => {
+  const workflow = `
+jobs:
+  check:
+    steps:
+      - uses: actions/checkout@v5
+        env:
+          DECOY: |
+            persist-credentials: false
+  `;
+
+  assert.deepEqual(checkoutPersistenceErrors(workflow), [
+    "checkout block 1 must set persist-credentials: false exactly once"
+  ]);
+});
+
 test("CI runs the checkout credential contract for every workflow change", async () => {
   const ciWorkflow = await readFile(path.join(workflowDir, "ci.yml"), "utf8");
-  const workflowWildcardCount = (
-    ciWorkflow.match(/^\s+-\s+['"]?\.github\/workflows\/\*\*['"]?\s*(?:#.*)?$/gm) || []
-  ).length;
+  for (const triggerName of ["push", "pull_request"]) {
+    const entries = triggerPathEntries(ciWorkflow, triggerName);
+    assert.equal(
+      entries.filter(entry => entry === ".github/workflows/**").length,
+      1,
+      `${triggerName}.paths must include .github/workflows/** exactly once`
+    );
+  }
+});
+
+test("CI trigger parser rejects a duplicate push wildcard with no PR wildcard", () => {
+  const workflow = `
+on:
+  push:
+    paths:
+      - '.github/workflows/**'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'scripts/**'
+  `;
 
   assert.equal(
-    workflowWildcardCount,
-    2,
-    "push and pull_request path filters must both include .github/workflows/**"
+    triggerPathEntries(workflow, "push").filter(entry => entry === ".github/workflows/**").length,
+    2
+  );
+  assert.equal(
+    triggerPathEntries(workflow, "pull_request").filter(entry => entry === ".github/workflows/**").length,
+    0
   );
 });
 
