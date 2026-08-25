@@ -96,6 +96,7 @@ RELEVANT_PATHS=(
   # Media Guard changes are release-critical policy changes. They need an
   # exact-head preview receipt even though they do not alter rendered output.
   .github/media-guard-policy.json
+  .github/workflows/merge-gate.yml
   .github/workflows/media-guard.yml
   .github/workflows/media-guard-trusted.yml
 )

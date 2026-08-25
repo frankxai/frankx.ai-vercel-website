@@ -564,7 +564,9 @@ test("rejects Git LFS pointer media", async (t) => {
 test("trusted workflow is base-controlled, read-minimal, and exact-SHA pinned", async () => {
   const request = await readFile(join(repositoryRoot, ".github/workflows/media-guard.yml"), "utf8")
   const trusted = await readFile(join(repositoryRoot, ".github/workflows/media-guard-trusted.yml"), "utf8")
+  const mergeGate = await readFile(join(repositoryRoot, ".github/workflows/merge-gate.yml"), "utf8")
   const resolver = await readFile(join(repositoryRoot, "scripts/resolve-media-guard-pr.mjs"), "utf8")
+  const shouldDeploy = await readFile(join(repositoryRoot, "scripts/should-deploy.sh"), "utf8")
 
   assert.match(request, /\n  pull_request:\n/u)
   assert.doesNotMatch(request, /pull_request_target/u)
@@ -593,4 +595,6 @@ test("trusted workflow is base-controlled, read-minimal, and exact-SHA pinned", 
   assert.match(resolver, /headSha !== eventHead/u)
   assert.match(resolver, /pullRequest\.base\.sha/u)
   assert.match(resolver, /pullRequest\.merge_commit_sha/u)
+  assert.match(mergeGate, /pnpm run test:media-guard/u)
+  assert.match(shouldDeploy, /\.github\/workflows\/merge-gate\.yml/u)
 })
