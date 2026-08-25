@@ -23,6 +23,41 @@ async function defaultGenerateImage(options) {
   return generateImage(options);
 }
 
+function verifyGeneratedArtifact(result, outputDir, expectedOutputPath) {
+  if (!result || typeof result.path !== "string" || !result.path.trim()) {
+    throw new Error("Gemini image client returned no generated artifact path.");
+  }
+
+  const generatedPath = path.resolve(result.path);
+  const relativePath = path.relative(path.resolve(outputDir), generatedPath);
+  if (
+    !relativePath ||
+    relativePath === ".." ||
+    relativePath.startsWith(`..${path.sep}`) ||
+    path.isAbsolute(relativePath)
+  ) {
+    throw new Error("Gemini image client returned a path outside the configured output directory.");
+  }
+  if (path.parse(generatedPath).name !== path.parse(expectedOutputPath).name) {
+    throw new Error("Gemini image client returned an artifact with an unexpected filename.");
+  }
+  if (![".png", ".jpg", ".jpeg", ".webp"].includes(path.extname(generatedPath).toLowerCase())) {
+    throw new Error("Gemini image client returned an unsupported image extension.");
+  }
+
+  let stats;
+  try {
+    stats = fs.statSync(generatedPath);
+  } catch {
+    throw new Error("Gemini image client did not write the declared artifact.");
+  }
+  if (!stats.isFile() || stats.size === 0) {
+    throw new Error("Gemini image client wrote an empty or non-file artifact.");
+  }
+
+  return generatedPath;
+}
+
 async function main({
   env = process.env,
   generateImageImpl = defaultGenerateImage
@@ -48,7 +83,8 @@ async function main({
     verbose: true
   });
 
-  console.log(`Saved: ${result.path || outputPath}`);
+  const savedPath = verifyGeneratedArtifact(result, outputDir, outputPath);
+  console.log(`Saved: ${savedPath}`);
   return result;
 }
 
@@ -67,4 +103,10 @@ if (require.main === module) {
   void runCli();
 }
 
-module.exports = { main, requireGeminiKey, resolveOutputDir, runCli };
+module.exports = {
+  main,
+  requireGeminiKey,
+  resolveOutputDir,
+  runCli,
+  verifyGeneratedArtifact
+};

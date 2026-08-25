@@ -68,13 +68,15 @@ test('pnpm lifecycle scripts stay denied by default with two version-pinned appr
   }
 })
 
-test('CI runs the dependency boundary and AgentDB runtime contracts', async () => {
+test('CI always reports and runs the dependency boundary and AgentDB runtime contracts', async () => {
   const workflow = await read('.github/workflows/ci.yml')
   const packageJson = JSON.parse(await read('package.json'))
+  const onBlock = workflow.match(/^on:\n[\s\S]*?(?=^[A-Za-z_][\w-]*:)/m)?.[0]
 
-  assert.match(workflow, /- 'pnpm-lock\.yaml'/)
-  assert.match(workflow, /- 'pnpm-workspace\.yaml'/)
-  assert.match(workflow, /- '\.npmrc'/)
+  assert.ok(onBlock, 'CI must contain a canonical top-level on mapping')
+  assert.match(onBlock, /^  push:/m)
+  assert.match(onBlock, /^  pull_request:/m)
+  assert.doesNotMatch(onBlock, /^\s+paths(?:-ignore)?:/m)
   assert.match(
     workflow,
     /- name: Build integrity contract\s+run: pnpm run test:build-integrity/,

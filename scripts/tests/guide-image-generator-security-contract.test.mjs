@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
-import { mkdtemp, readFile, readdir, rm } from "node:fs/promises";
+import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -119,38 +119,36 @@ function checkoutPersistenceErrors(workflow) {
   }));
 }
 
-function triggerPathEntries(workflow, triggerName) {
+function topLevelMappingBlock(workflow, key) {
   const lines = workflow.split(/\r?\n/);
-  const triggerIndex = lines.findIndex(line =>
-    new RegExp(`^(\\s*)${triggerName}:\\s*$`).test(line)
-  );
-  if (triggerIndex === -1) return [];
+  const start = lines.findIndex(line => line === `${key}:`);
+  if (start === -1) return null;
 
-  const triggerIndent = lines[triggerIndex].match(/^\s*/)[0].length;
-  let pathsIndex = -1;
-  let pathsIndent = -1;
-
-  for (let index = triggerIndex + 1; index < lines.length; index += 1) {
-    if (!lines[index].trim() || /^\s*#/.test(lines[index])) continue;
-    const indent = lines[index].match(/^\s*/)[0].length;
-    if (indent <= triggerIndent) break;
-    if (/^\s*paths:\s*$/.test(lines[index])) {
-      pathsIndex = index;
-      pathsIndent = indent;
+  let end = lines.length;
+  for (let index = start + 1; index < lines.length; index += 1) {
+    if (/^[A-Za-z_][0-9A-Za-z_-]*:\s*(?:#.*)?$/.test(lines[index])) {
+      end = index;
       break;
     }
   }
-  if (pathsIndex === -1) return [];
 
-  const entries = [];
-  for (let index = pathsIndex + 1; index < lines.length; index += 1) {
-    if (!lines[index].trim() || /^\s*#/.test(lines[index])) continue;
-    const indent = lines[index].match(/^\s*/)[0].length;
-    if (indent <= pathsIndent) break;
-    const entry = lines[index].match(/^\s*-\s+['"]?([^'"]+?)['"]?\s*(?:#.*)?$/);
-    if (entry) entries.push(entry[1].trim());
+  return lines.slice(start, end).join("\n");
+}
+
+function ciAlwaysReportingErrors(workflow) {
+  const onBlock = topLevelMappingBlock(workflow, "on");
+  if (!onBlock) return ["CI must contain one canonical top-level on mapping"];
+
+  const errors = [];
+  for (const triggerName of ["push", "pull_request"]) {
+    if (!new RegExp(`^  ${triggerName}:\\s*$`, "m").test(onBlock)) {
+      errors.push(`CI on mapping must contain ${triggerName}`);
+    }
   }
-  return entries;
+  if (/^\s+paths(?:-ignore)?:\s*$/m.test(onBlock)) {
+    errors.push("CI required checks must not use paths or paths-ignore filters");
+  }
+  return errors;
 }
 
 async function withTemporaryOutput(run) {
@@ -226,6 +224,7 @@ for (const { generatorPath, generator } of generatorModules) {
         assert.equal(options.model, "nbpro");
         assert.equal(options.aspectRatio, "16:9");
         calls.push(options);
+        await writeFile(options.outputPath, "nonempty-test-image");
         return { path: options.outputPath };
       };
 
@@ -256,6 +255,25 @@ for (const { generatorPath, generator } of generatorModules) {
         }),
         /synthetic generation failure|generation request\(s\) failed/
       ));
+
+      const malformedAdapters = [
+        async () => false,
+        async () => ({}),
+        async options => ({ path: options.outputPath })
+      ];
+      for (const malformedAdapter of malformedAdapters) {
+        await withMutedConsole(() => assert.rejects(
+          generator.main({
+            env: {
+              GEMINI_API_KEY: "non-secret-test-placeholder",
+              GUIDE_IMAGE_OUTPUT_DIR: outputDir
+            },
+            generateImageImpl: malformedAdapter,
+            delayMilliseconds: 0
+          }),
+          /returned no generated artifact path|did not write the declared artifact|generation request\(s\) failed/
+        ));
+      }
 
       const previousExitCode = process.exitCode;
       process.exitCode = undefined;
@@ -328,36 +346,31 @@ jobs:
 
 test("CI runs the checkout credential contract for every workflow change", async () => {
   const ciWorkflow = await readFile(path.join(workflowDir, "ci.yml"), "utf8");
-  for (const triggerName of ["push", "pull_request"]) {
-    const entries = triggerPathEntries(ciWorkflow, triggerName);
-    assert.equal(
-      entries.filter(entry => entry === ".github/workflows/**").length,
-      1,
-      `${triggerName}.paths must include .github/workflows/** exactly once`
-    );
-  }
+  assert.deepEqual(ciAlwaysReportingErrors(ciWorkflow), []);
 });
 
-test("CI trigger parser rejects a duplicate push wildcard with no PR wildcard", () => {
+test("CI trigger parser anchors to top-level on and rejects block-scalar decoys", () => {
   const workflow = `
+env:
+  DECOY: |
+    push:
+      paths:
+        - '.github/workflows/**'
+    pull_request:
+      paths:
+        - '.github/workflows/**'
 on:
   push:
     paths:
-      - '.github/workflows/**'
-      - '.github/workflows/**'
+      - 'scripts/**'
   pull_request:
     paths:
       - 'scripts/**'
   `;
 
-  assert.equal(
-    triggerPathEntries(workflow, "push").filter(entry => entry === ".github/workflows/**").length,
-    2
-  );
-  assert.equal(
-    triggerPathEntries(workflow, "pull_request").filter(entry => entry === ".github/workflows/**").length,
-    0
-  );
+  assert.deepEqual(ciAlwaysReportingErrors(workflow), [
+    "CI required checks must not use paths or paths-ignore filters"
+  ]);
 });
 
 for (const workflowPath of workflowPaths) {

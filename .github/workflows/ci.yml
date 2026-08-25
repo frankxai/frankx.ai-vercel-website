@@ -3,47 +3,12 @@ name: CI
 on:
   push:
     branches: [main, staging]
-    paths:
-      - 'app/**'
-      - 'components/**'
-      - 'content/**'
-      - 'lib/**'
-      - 'data/**'
-      - 'types/**'
-      - 'taste.md'
-      - 'scripts/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - '.npmrc'
-      - 'next.config.*'
-      - 'tsconfig*.json'
-      - '.eslintrc*'
-      - 'eslint.config.*'
-      # test:build-integrity scans every workflow checkout for credential
-      # persistence, so every workflow file is a real CI input.
-      - '.github/workflows/**'
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: [main, staging]
-    paths:
-      - 'app/**'
-      - 'components/**'
-      - 'content/**'
-      - 'lib/**'
-      - 'data/**'
-      - 'types/**'
-      - 'taste.md'
-      - 'scripts/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - '.npmrc'
-      - 'next.config.*'
-      - 'tsconfig*.json'
-      - '.eslintrc*'
-      - 'eslint.config.*'
-      - '.github/workflows/**'
+
+# CI is an exact required landing check and test:build-integrity scans workflow
+# security controls. Keep it always-reporting; never add paths/paths-ignore.
 
 # Cancel superseded runs on rapid pushes to the same ref
 concurrency:
