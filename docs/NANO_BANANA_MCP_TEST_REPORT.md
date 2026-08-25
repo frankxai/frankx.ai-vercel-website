@@ -68,7 +68,7 @@
         "C:\\Users\\Frank\\MCP Server\\Nano banana\\nano-banana-mcp\\dist\\index.js"
       ],
       "env": {
-        "GEMINI_API_KEY": "AIzaSyB-raRd6EKVd82aa9S9mwK6bwvEnN6Ek9g"
+        "GEMINI_API_KEY": "<set via GEMINI_API_KEY environment variable>"
       }
     }
   }

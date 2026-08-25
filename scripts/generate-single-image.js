@@ -1,9 +1,19 @@
-const { GoogleGenAI } = require("@google/genai");
 const fs = require("fs");
 const path = require("path");
 
-const API_KEY = "AIzaSyClPlfKNsasEZ56dTSr-7zwJimthqus-UI";
-const OUTPUT_DIR = "C:\\Users\\Frank\\FrankX\\.worktrees\\vercel-ui-ux\\public\\images\\guides";
+const API_KEY = process.env.GEMINI_API_KEY?.trim();
+
+if (!API_KEY) {
+  throw new Error(
+    "GEMINI_API_KEY is required. Set it in the environment before generating a guide image."
+  );
+}
+
+const { GoogleGenAI } = require("@google/genai");
+
+const OUTPUT_DIR = process.env.GUIDE_IMAGE_OUTPUT_DIR
+  ? path.resolve(process.env.GUIDE_IMAGE_OUTPUT_DIR)
+  : path.join(__dirname, "..", "public", "images", "guides");
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
