@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 /**
- * Load curated path aliases for 301 redirects.
+ * Load curated path aliases for permanent redirects (HTTP 308).
  * Source: data/redirect-aliases.json (operator-curated; agent proposals require approval).
  * Format: { aliases: { from: to, ... } } — see file for schema doc.
  * Failing safely to {} means a bad file never breaks the build.
@@ -296,7 +296,8 @@ const nextConfig = {
         destination: '/ai-architecture',
         permanent: true,
       },
-      // /ai-architect used to 301 to /ai-architecture. It is now its own page:
+      // /ai-architect used to permanently redirect (HTTP 308) to
+      // /ai-architecture. It is now its own page:
       // the review as something you run, where /ai-architecture is the reference
       // you read. The child redirect stays, minus the two paths that are real
       // pages of their own.
