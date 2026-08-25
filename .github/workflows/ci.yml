@@ -20,7 +20,9 @@ on:
       - 'tsconfig*.json'
       - '.eslintrc*'
       - 'eslint.config.*'
-      - '.github/workflows/ci.yml'
+      # test:build-integrity scans every workflow checkout for credential
+      # persistence, so every workflow file is a real CI input.
+      - '.github/workflows/**'
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: [main, staging]
@@ -41,7 +43,7 @@ on:
       - 'tsconfig*.json'
       - '.eslintrc*'
       - 'eslint.config.*'
-      - '.github/workflows/ci.yml'
+      - '.github/workflows/**'
 
 # Cancel superseded runs on rapid pushes to the same ref
 concurrency:

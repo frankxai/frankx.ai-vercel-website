@@ -34,14 +34,15 @@ function checkoutBlocks(workflow) {
   const blocks = [];
 
   for (let index = 0; index < lines.length; index += 1) {
-    const usesMatch = lines[index].match(/^(\s*)(?:-\s*)?uses:\s*actions\/checkout@/);
-    if (!usesMatch) continue;
+    if (!/actions\/checkout@/i.test(lines[index])) continue;
 
-    const usesIndent = usesMatch[1].length;
+    const usesMatch = lines[index].match(/^(\s*)(?:-\s*)?uses:\s*/i);
+    const leadingIndent = lines[index].match(/^\s*/)[0].length;
+    const usesIndent = usesMatch?.[1].length ?? leadingIndent;
     let stepStart = index;
     let stepIndent = usesIndent;
 
-    if (!/^\s*-\s*uses:/.test(lines[index])) {
+    if (!/^\s*-\s*(?:uses:|\{)/i.test(lines[index])) {
       for (let cursor = index - 1; cursor >= 0; cursor -= 1) {
         const stepMatch = lines[cursor].match(/^(\s*)-\s+/);
         if (stepMatch && stepMatch[1].length < usesIndent) {
@@ -68,13 +69,36 @@ function checkoutBlocks(workflow) {
 }
 
 function checkoutPersistenceErrors(workflow) {
-  return checkoutBlocks(workflow).flatMap((source, index) => {
+  const blocks = checkoutBlocks(workflow);
+  const checkoutReferences = workflow.match(/actions\/checkout@/gi) || [];
+  const errors = workflow
+    .split(/\r?\n/)
+    .flatMap((line, index) => {
+      if (/^\s*(?:-\s*)?uses:\s*\*/i.test(line)) {
+        return [`line ${index + 1} uses a YAML alias; checkout steps must be explicit`];
+      }
+      if (
+        /actions\/checkout@/i.test(line) &&
+        !/^\s*(?:-\s*)?uses:\s*(['"]?)actions\/checkout@[0-9A-Za-z._/-]+\1\s*(?:#.*)?$/i.test(line)
+      ) {
+        return [`line ${index + 1} contains a noncanonical checkout reference`];
+      }
+      return [];
+    });
+
+  if (checkoutReferences.length !== blocks.length) {
+    errors.push(
+      `found ${checkoutReferences.length} checkout references but parsed ${blocks.length} steps`
+    );
+  }
+
+  return errors.concat(blocks.flatMap((source, index) => {
     const falseCount = (source.match(/^\s+persist-credentials:\s*false\s*(?:#.*)?$/gm) || []).length;
     const explicitTrue = /^\s+persist-credentials:\s*true\s*(?:#.*)?$/m.test(source);
     return falseCount === 1 && !explicitTrue
       ? []
       : [`checkout block ${index + 1} must set persist-credentials: false exactly once`];
-  });
+  }));
 }
 
 async function withTemporaryOutput(run) {
@@ -194,7 +218,7 @@ for (const { generatorPath, generator } of generatorModules) {
   });
 }
 
-test("checkout parser detects direct and named checkout steps", () => {
+test("checkout parser detects direct, named, quoted, case-varied, and inline checkout steps", () => {
   const workflow = `
 jobs:
   check:
@@ -203,13 +227,48 @@ jobs:
         with:
           persist-credentials: false
       - name: Unsafe named checkout
-        uses: actions/checkout@v5
+        uses: 'actions/checkout@v5'
+      - name: Unsafe case-varied checkout
+        uses: "Actions/Checkout@v5"
+      - { uses: actions/checkout@v5 }
   `;
 
-  assert.equal(checkoutBlocks(workflow).length, 2);
-  assert.deepEqual(checkoutPersistenceErrors(workflow), [
-    "checkout block 2 must set persist-credentials: false exactly once"
-  ]);
+  assert.equal(checkoutBlocks(workflow).length, 4);
+  const errors = checkoutPersistenceErrors(workflow);
+  assert.ok(errors.some(error => /noncanonical checkout reference/.test(error)));
+  assert.ok(errors.includes("checkout block 2 must set persist-credentials: false exactly once"));
+  assert.ok(errors.includes("checkout block 3 must set persist-credentials: false exactly once"));
+  assert.ok(errors.includes("checkout block 4 must set persist-credentials: false exactly once"));
+});
+
+test("checkout parser rejects YAML-anchor indirection instead of borrowing another step's options", () => {
+  const workflow = `
+x-checkout: &checkout actions/checkout@v5
+jobs:
+  check:
+    steps:
+      - uses: *checkout
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+  `;
+  const errors = checkoutPersistenceErrors(workflow);
+
+  assert.ok(errors.some(error => /YAML alias/.test(error)));
+  assert.ok(errors.some(error => /noncanonical checkout reference/.test(error)));
+});
+
+test("CI runs the checkout credential contract for every workflow change", async () => {
+  const ciWorkflow = await readFile(path.join(workflowDir, "ci.yml"), "utf8");
+  const workflowWildcardCount = (
+    ciWorkflow.match(/^\s+-\s+['"]?\.github\/workflows\/\*\*['"]?\s*(?:#.*)?$/gm) || []
+  ).length;
+
+  assert.equal(
+    workflowWildcardCount,
+    2,
+    "push and pull_request path filters must both include .github/workflows/**"
+  );
 });
 
 for (const workflowPath of workflowPaths) {
