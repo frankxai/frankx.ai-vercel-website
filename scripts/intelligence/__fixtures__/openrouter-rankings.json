@@ -1,0 +1,6 @@
+{
+  "data": [
+    { "model_permaslug": "anthropic/claude-opus-4.8", "total_tokens": 600 },
+    { "model_permaslug": "openai/gpt-5.5", "total_tokens": 400 }
+  ]
+}

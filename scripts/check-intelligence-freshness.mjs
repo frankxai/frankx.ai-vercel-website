@@ -47,7 +47,7 @@ const realRoutes = new Set(enumerateRoutes().map((r) => r.href))
 
 /**
  * Pre-existing shadowed routes, grandfathered so this gate can block NEW
- * shadowing today rather than waiting on four unrelated URL decisions.
+ * shadowing today rather than waiting on unrelated URL decisions.
  *
  * Each of these aliases points away from a real page that still exists in the
  * tree. Whether that is deliberate (a soft retirement that keeps the file) or
@@ -56,10 +56,11 @@ const realRoutes = new Set(enumerateRoutes().map((r) => r.href))
  * list; do not add to it.
  */
 const GRANDFATHERED_SHADOWS = new Map([
-  ['/ai-coe', '/acos'],                                                        // 465-line page
-  ['/ai-computer', '/ai-architecture'],                                        // 445-line page
+  // Legitimate soft retirement: the 140-line assessment was superseded by the
+  // 530-line quiz it points at. The permanent redirect (HTTP 308) is the
+  // correct consolidation, so this
+  // one stays. The unreachable source file is dead code, flagged not deleted.
   ['/soul-frequency-assessment', '/soul-frequency-quiz'],                      // 140-line page
-  ['/workshops/ikigai-branding/present/speaker', '/workshops/ikigai-branding/present'], // 283-line page
 ])
 
 for (const from of Object.keys(aliases)) {

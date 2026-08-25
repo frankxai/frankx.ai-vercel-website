@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 931,
-    "aliases": 61,
+    "total": 941,
+    "aliases": 58,
     "byType": {
       "core": 23,
       "section": 425,
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 242,
+      "blog": 252,
       "research": 16,
       "guide": 25,
       "library": 56,
@@ -2220,6 +2220,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/gemini-3-7-flash-what-google-shipped-august-2026",
+      "title": "Gemini 3.7 Flash: what Google actually shipped on 13 August 2026",
+      "description": "Google's 13 August Flash update, in vendor numbers and one live AGY admission. Not a harness winner. Not a ChatGPT killer.",
+      "tags": [
+        "Gemini 3.7 Flash",
+        "Google",
+        "AI Models",
+        "Coding Agents",
+        "AGY"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/gemma-3-analysis-2026",
       "title": "Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU",
       "description": "Google's current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4.",
@@ -2345,6 +2358,84 @@
       "type": "blog"
     },
     {
+      "href": "/blog/graph-engineering-ai-agents",
+      "title": "Graph Engineering: AI Architect’s Guide to Reliable Agents",
+      "description": "Execution, context and control graphs for reliable AI agents, with runtime choices, failure modes and a 90-day adoption plan.",
+      "tags": [
+        "Graph Engineering",
+        "AI Agents",
+        "Agent Orchestration",
+        "Multi-Agent Systems",
+        "Context Engineering"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-antigravity-adk",
+      "title": "Graph Engineering with Google Antigravity and ADK 2.0",
+      "description": "Separate Antigravity coding loops, ADK 2.0 workflow graphs and Temporal durability in one exact Google agent architecture.",
+      "tags": [
+        "Google Antigravity",
+        "Google ADK",
+        "ADK 2.0",
+        "Temporal",
+        "Graph Engineering"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-claude-code",
+      "title": "Claude Agent Engineering: Loops, Workflows and Graphs",
+      "description": "Map Claude Code loops, subagents, Skills, teams and dynamic workflows into a production graph with explicit state, gates and recovery.",
+      "tags": [
+        "Claude Code",
+        "Dynamic Workflows",
+        "Subagents",
+        "Agent Teams",
+        "Graph Engineering"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-grok-build",
+      "title": "Graph Engineering with Grok Build: Parallel Coding Graphs",
+      "description": "Design parallel Grok Build coding graphs with isolated workspaces, evidence gates and durable control outside the coding harness.",
+      "tags": [
+        "Grok Build",
+        "xAI",
+        "Graph Engineering",
+        "Coding Agents",
+        "Parallel Development"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-hermes-agent",
+      "title": "Graph Engineering with Hermes Agent: Durable Worker Graphs",
+      "description": "Use Hermes Kanban tasks, dependencies, worker lanes, reviews and recovery as a durable worker graph without mistaking it for event replay.",
+      "tags": [
+        "Hermes Agent",
+        "Nous Research",
+        "Kanban",
+        "Multi-Agent Systems",
+        "Graph Engineering"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-openai-codex",
+      "title": "Graph Engineering with OpenAI Codex: Skills and Delivery",
+      "description": "Build Codex delivery graphs with subagents, worktrees, Skills, the SDK, evidence gates, durable state and release controls.",
+      "tags": [
+        "OpenAI Codex",
+        "Codex SDK",
+        "Agent Skills",
+        "Subagents",
+        "Graph Engineering"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/grok-4-3-analysis-2026",
       "title": "Grok 4.3: xAI Trades the Crown for the Price Tag",
       "description": "xAI's Grok 4.3 scores 53 on the Artificial Analysis Intelligence Index, lifts GDPval-AA to 1500 Elo, ships a 1M context window with always-on reasoning, and cuts price ~40% to $1.25/$2.50.",
@@ -2383,6 +2474,19 @@
         "evals",
         "codex",
         "antigravity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/grok-voice-vs-openai-realtime-vs-elevenlabs",
+      "title": "Grok Voice vs OpenAI Realtime vs ElevenLabs (2026)",
+      "description": "Compare price, latency, architecture, tools, and voice quality—then choose a production voice-agent stack for web, mobile, or phone.",
+      "tags": [
+        "Voice Agents",
+        "Grok Voice",
+        "OpenAI Realtime",
+        "ElevenLabs",
+        "AI Architecture"
       ],
       "type": "blog"
     },
@@ -2786,14 +2890,14 @@
     },
     {
       "href": "/blog/multi-agent-orchestration-patterns-2026",
-      "title": "Multi-Agent Orchestration Patterns: Building Production Systems in 2026",
-      "description": "Beyond simple agent comparisons. Deep dive into orchestration patterns, handoff strategies, state management, and observability for production multi-agent systems.",
+      "title": "AI Agent Orchestration: Loops, DAGs and Durable Graphs",
+      "description": "Choose pipelines, loops, routers, state machines or dynamic graphs using state duration, consequence, recovery and evidence.",
       "tags": [
-        "Multi-Agent",
-        "LangGraph",
-        "CrewAI",
-        "Orchestration",
-        "Production AI"
+        "AI Agent Orchestration",
+        "Agentic Workflows",
+        "State Machines",
+        "Multi-Agent Systems",
+        "Graph Engineering"
       ],
       "type": "blog"
     },
@@ -3368,6 +3472,32 @@
         "capital-allocation",
         "digital-assets",
         "acos"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/stanford-cs329z-engineering-ai-agents",
+      "title": "Stanford CS329Z: The AI Agent Engineering Roadmap",
+      "description": "A fact-checked architect’s roadmap to Stanford CS329Z: agent loops, compound systems, evaluation, safety and production adoption.",
+      "tags": [
+        "Stanford CS329Z",
+        "Engineering AI Agents",
+        "Compound AI Systems",
+        "Agent Evaluation",
+        "AI Architecture"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/stanford-mstar-walk-graph",
+      "title": "Stanford M* Walk Graph: Multimodal Inference Explained",
+      "description": "A fact-checked guide to Stanford M*: Walk Graphs, multimodal model serving, benchmark limits and an architect’s adoption plan.",
+      "tags": [
+        "Stanford M*",
+        "Walk Graph",
+        "Multimodal Inference",
+        "Model Serving",
+        "AI Infrastructure"
       ],
       "type": "blog"
     },
@@ -9199,8 +9329,6 @@
   "aliases": {
     "/academy": "/ai-architect-academy",
     "/aco": "/agents",
-    "/ai-coe": "/acos",
-    "/ai-computer": "/ai-architecture",
     "/aiarchitectacademy": "/ai-architect-academy",
     "/ais": "/allies/ana-cancino",
     "/alliance/cecilia": "/allies/ana-cancino",
@@ -9254,7 +9382,6 @@
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
     "/workshops/ikigai": "/workshops/ikigai-branding",
-    "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
     "/workshops/ikigai/v2": "/workshops/ikigai-branding",
     "/workshops/ikigai/v3": "/workshops/ikigai-branding",
     "/workshops/ikigai/v4": "/workshops/ikigai-branding"

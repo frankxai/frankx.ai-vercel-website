@@ -1,0 +1,95 @@
+name: intelligence-refresh
+
+# Weekly refresh of data/intelligence/external.json from sources whose exact
+# redistribution evidence is confirmed in the declarative source policy.
+#
+# This opens a PR — it never pushes to main, because main deploys to frankx.ai.
+# Frank merging the snapshot PR IS the editorial review step. This is also why
+# it is not a deploy job: Vercel's git integration handles deploys.
+
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: intelligence-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+
+      # No install step: the fetcher is zero-dependency by design, so a
+      # dependency outage can never block the intelligence refresh.
+      - name: Verify ingest logic against fixtures
+        run: node --test scripts/intelligence/*.test.mjs
+
+      # Confirms each declared licence against the page that states it. Runs
+      # here rather than in merge:gate because it needs egress, and the dev
+      # sandbox blocks these hosts. Fails the run on a licence claim that cannot
+      # be confirmed; a source with no confirmed licence is simply not ingested.
+      - name: Verify source licences at source
+        run: node scripts/intelligence/verify-licenses.mjs
+
+      - name: Fetch external intelligence
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: node scripts/intelligence/fetch-external.mjs
+
+      - name: Summarise snapshot
+        id: summary
+        run: |
+          node -e "
+            const s = require('./data/intelligence/external.json');
+            const ok = s.sources.filter(x => x.status === 'ok').map(x => x.id);
+            const bad = s.sources.filter(x => x.status !== 'ok').map(x => x.id + ':' + x.status);
+            const priced = s.models.filter(m => m.pricing).length;
+            const adopted = s.models.filter(m => m.adoption).length;
+            const fs = require('fs');
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'ok=' + ok.join(',') + '\n');
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'bad=' + (bad.join(',') || 'none') + '\n');
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'priced=' + priced + '\n');
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'adopted=' + adopted + '\n');
+          "
+
+      - name: Open snapshot PR
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
+        with:
+          branch: automation/intelligence-refresh
+          base: main
+          add-paths: data/intelligence/external.json
+          commit-message: 'chore(intelligence): weekly external snapshot'
+          title: 'chore(intelligence): weekly external model-intelligence snapshot'
+          delete-branch: true
+          body: |
+            Automated weekly refresh of `data/intelligence/external.json`.
+
+            - Sources OK: `${{ steps.summary.outputs.ok }}`
+            - Sources degraded: `${{ steps.summary.outputs.bad }}`
+            - Models with pricing: **${{ steps.summary.outputs.priced }}** · with adoption: **${{ steps.summary.outputs.adopted }}**
+
+            Every figure in this snapshot carries `source`, `source_url`, `license` and
+            `retrieved_at`; the run aborts rather than writing a figure without them.
+            Artificial Analysis (no-redistribution) and SWE-bench (CC BY-NC) are
+            link-only and are never ingested. Every declared licence was confirmed
+            against its pinned evidence document before this snapshot was built; a
+            source whose terms are blocked, revoked, or unverified contributes no
+            figures and any rows it contributed to an older snapshot are purged.
+
+            Only a transient fetch failure for a still-confirmed source can carry
+            previous figures, and only while those figures are at most 192 hours old.
+            A total enabled-source outage leaves the snapshot byte-for-byte untouched
+            and fails the run. Review the diff, then merge to publish.

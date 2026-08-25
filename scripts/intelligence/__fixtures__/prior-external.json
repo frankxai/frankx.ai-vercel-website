@@ -1,0 +1,119 @@
+{
+  "schema": "frankx/external-intelligence@1",
+  "generated_at": "2026-08-20T06:00:00.000Z",
+  "sources": [
+    {
+      "id": "models-dev",
+      "url": "https://models.dev/api.json",
+      "license": "MIT",
+      "license_state": "confirmed",
+      "attribution": "models.dev (SST)",
+      "retrieved_at": "2026-08-20T06:00:00.000Z",
+      "status": "ok"
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "license": "Previously claimed OpenRouter terms",
+      "license_state": "confirmed",
+      "attribution": "OpenRouter",
+      "retrieved_at": "2026-08-20T06:00:00.000Z",
+      "status": "ok"
+    },
+    {
+      "id": "openrouter-rankings",
+      "url": "https://openrouter.ai/api/v1/datasets/rankings-daily",
+      "license": "Previously claimed rankings terms",
+      "license_state": "confirmed",
+      "attribution": "OpenRouter rankings",
+      "retrieved_at": "2026-08-20T06:00:00.000Z",
+      "status": "ok"
+    }
+  ],
+  "link_only": [
+    {
+      "id": "artificial-analysis",
+      "label": "Artificial Analysis — Intelligence Index, speed, price",
+      "url": "https://artificialanalysis.ai/",
+      "reason": "Free-tier terms are treated as no-redistribution pending a commercial licence."
+    },
+    {
+      "id": "swe-bench",
+      "label": "SWE-bench leaderboard",
+      "url": "https://www.swebench.com/",
+      "reason": "CC BY-NC 4.0 is not compatible with redistribution on this commercial site."
+    },
+    {
+      "id": "lmarena",
+      "label": "LMArena human-preference leaderboard",
+      "url": "https://lmarena.ai/leaderboard",
+      "reason": "Ingest remains deferred until the dataset licence and Parquet path are verified end to end."
+    }
+  ],
+  "models": [
+    {
+      "id": "claude-opus-4-8",
+      "name": "Claude Opus 4.8",
+      "org": "anthropic",
+      "in_registry": true,
+      "names": { "models-dev": "Claude Opus 4.8" },
+      "pricing": {
+        "in_usd_per_m": 5,
+        "out_usd_per_m": 25,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-20T06:00:00.000Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1000000,
+      "benchmarks": []
+    },
+    {
+      "id": "gpt-5-5",
+      "name": "GPT-5.5",
+      "org": "openai",
+      "in_registry": true,
+      "names": { "openrouter-models": "openai/gpt-5.5" },
+      "pricing": {
+        "in_usd_per_m": 1.25,
+        "out_usd_per_m": 10,
+        "source": "openrouter-models",
+        "source_url": "https://openrouter.ai/api/v1/models",
+        "license": "Previously claimed OpenRouter terms",
+        "retrieved_at": "2026-08-20T06:00:00.000Z",
+        "modified": true
+      },
+      "adoption": {
+        "share": 0.4,
+        "source": "openrouter-rankings",
+        "source_url": "https://openrouter.ai/api/v1/datasets/rankings-daily",
+        "license": "Previously claimed rankings terms",
+        "retrieved_at": "2026-08-20T06:00:00.000Z",
+        "modified": true
+      },
+      "context_tokens": 1000000,
+      "benchmarks": []
+    },
+    {
+      "id": "external:openrouter-only",
+      "name": "Prior OpenRouter-only model",
+      "org": null,
+      "in_registry": false,
+      "names": { "openrouter-models": "vendor/openrouter-only" },
+      "pricing": {
+        "in_usd_per_m": 2,
+        "out_usd_per_m": 4,
+        "source": "openrouter-models",
+        "source_url": "https://openrouter.ai/api/v1/models",
+        "license": "Previously claimed OpenRouter terms",
+        "retrieved_at": "2026-08-20T06:00:00.000Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 32000,
+      "benchmarks": []
+    }
+  ]
+}
