@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { trackEvent } from '@/lib/analytics'
 import { getVolume, setVolume as persistVolume } from '@/lib/piano-progress'
 
 // ─── Music Theory ───────────────────────────────────────────────────
@@ -46,27 +47,35 @@ const TOTAL_SAMPLES = SAMPLE_NOTES.length
 
 // ─── Grand Piano Engine ─────────────────────────────────────────────
 
+interface PianoVoice {
+  sources: AudioScheduledSourceNode[]
+  nodes: AudioNode[]
+  envelope: GainNode
+  remainingSources: number
+  cleaned: boolean
+}
+
 class GrandPianoEngine {
   private ctx: AudioContext | null = null
   private buffers = new Map<string, AudioBuffer>()
   private master: GainNode | null = null
   private reverb: ConvolverNode | null = null
   private compressor: DynamicsCompressorNode | null = null
+  private graphNodes: AudioNode[] = []
   sustain = false
   private sustainedNotes = new Set<number>()
-  private active = new Map<number, {
-    source: AudioBufferSourceNode | OscillatorNode[]
-    noteGain: GainNode
-    panner: StereoPannerNode
-    isSynth: boolean
-  }>()
+  private active = new Map<number, PianoVoice>()
+  private voices = new Set<PianoVoice>()
+  private sampleAbort: AbortController | null = null
+  private destroyed = false
 
   loaded = 0
   ready = false
   private progressCbs: (() => void)[] = []
 
   async init() {
-    if (this.ctx) {
+    if (this.destroyed) throw new Error('The piano audio engine has been disposed.')
+    if (this.ctx && this.ctx.state !== 'closed') {
       if (this.ctx.state === 'suspended') await this.ctx.resume()
       return
     }
@@ -112,7 +121,11 @@ class GrandPianoEngine {
     dry.connect(hiRolloff)
     wet.connect(hiRolloff)
 
-    this.loadAllSamples()
+    this.graphNodes = [this.master, this.reverb, dry, wet, hiRolloff, warmth, this.compressor]
+
+    const controller = new AbortController()
+    this.sampleAbort = controller
+    void this.loadAllSamples(controller)
   }
 
   private buildIR(): AudioBuffer {
@@ -132,32 +145,42 @@ class GrandPianoEngine {
     return buf
   }
 
-  private async loadAllSamples() {
+  private async loadAllSamples(controller: AbortController) {
     const batchSize = 6
     for (let i = 0; i < SAMPLE_NOTES.length; i += batchSize) {
+      if (controller.signal.aborted || this.destroyed) return
       const batch = SAMPLE_NOTES.slice(i, i + batchSize)
-      await Promise.all(batch.map(s => this.loadSample(s.name)))
+      await Promise.all(batch.map(s => this.loadSample(s.name, controller)))
     }
+    if (controller.signal.aborted || this.destroyed) return
     this.ready = true
     this.progressCbs.forEach(cb => cb())
   }
 
-  private async loadSample(name: string) {
-    if (!this.ctx) return
+  private async loadSample(name: string, controller: AbortController) {
+    const context = this.ctx
+    if (!context) return
     try {
-      const res = await fetch(`${SAMPLE_CDN}${name}.mp3`)
+      const res = await fetch(`${SAMPLE_CDN}${name}.mp3`, { signal: controller.signal })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const data = await res.arrayBuffer()
-      const buffer = await this.ctx.decodeAudioData(data)
+      const buffer = await context.decodeAudioData(data)
+      if (controller.signal.aborted || this.destroyed || this.ctx !== context) return
       this.buffers.set(name, buffer)
     } catch {
       // Synthesis fallback will handle this note
     }
+    if (controller.signal.aborted || this.destroyed) return
     this.loaded++
     this.progressCbs.forEach(cb => cb())
   }
 
-  onProgress(cb: () => void) { this.progressCbs.push(cb) }
+  onProgress(cb: () => void) {
+    this.progressCbs.push(cb)
+    return () => {
+      this.progressCbs = this.progressCbs.filter(candidate => candidate !== cb)
+    }
+  }
 
   private findNearest(midi: number): { name: string; midi: number } | null {
     let best = SAMPLE_NOTES[0]
@@ -206,9 +229,9 @@ class GrandPianoEngine {
     source.buffer = buffer
     source.playbackRate.value = rate
     source.connect(velFilter)
+    const voice = this.registerVoice(midi, [source], [velFilter, noteGain, panner], noteGain)
     source.start(now)
-
-    this.active.set(midi, { source, noteGain, panner, isSynth: false })
+    this.active.set(midi, voice)
   }
 
   private playSynth(midi: number, velocity: number) {
@@ -226,6 +249,7 @@ class GrandPianoEngine {
     noteGain.connect(panner)
 
     const oscs: OscillatorNode[] = []
+    const oscillatorGains: GainNode[] = []
     for (const det of [-3, 0, 3]) {
       const o = ctx.createOscillator()
       const g = ctx.createGain()
@@ -242,22 +266,20 @@ class GrandPianoEngine {
       o.start(now)
       o.stop(now + sus * 4)
       oscs.push(o)
+      oscillatorGains.push(g)
     }
-    this.active.set(midi, { source: oscs, noteGain, panner, isSynth: true })
+    const voice = this.registerVoice(midi, oscs, [...oscillatorGains, noteGain, panner], noteGain)
+    this.active.set(midi, voice)
   }
 
   private quickFade(midi: number) {
     const note = this.active.get(midi)
     if (!note || !this.ctx) return
     const now = this.ctx.currentTime
-    note.noteGain.gain.setValueAtTime(note.noteGain.gain.value, now)
-    note.noteGain.gain.linearRampToValueAtTime(0, now + 0.025)
-    if (note.isSynth) {
-      for (const o of note.source as OscillatorNode[]) {
-        try { o.stop(now + 0.04) } catch { /* ok */ }
-      }
-    } else {
-      try { (note.source as AudioBufferSourceNode).stop(now + 0.04) } catch { /* ok */ }
+    note.envelope.gain.setValueAtTime(note.envelope.gain.value, now)
+    note.envelope.gain.linearRampToValueAtTime(0, now + 0.025)
+    for (const source of note.sources) {
+      try { source.stop(now + 0.04) } catch { /* ok */ }
     }
     this.active.delete(midi)
   }
@@ -271,15 +293,11 @@ class GrandPianoEngine {
     const note = this.active.get(midi)
     if (!note || !this.ctx) return
     const now = this.ctx.currentTime
-    note.noteGain.gain.cancelScheduledValues(now)
-    note.noteGain.gain.setValueAtTime(note.noteGain.gain.value, now)
-    note.noteGain.gain.setTargetAtTime(0.0001, now, 0.08)
-    if (note.isSynth) {
-      for (const o of note.source as OscillatorNode[]) {
-        try { o.stop(now + 0.5) } catch { /* ok */ }
-      }
-    } else {
-      try { (note.source as AudioBufferSourceNode).stop(now + 0.5) } catch { /* ok */ }
+    note.envelope.gain.cancelScheduledValues(now)
+    note.envelope.gain.setValueAtTime(note.envelope.gain.value, now)
+    note.envelope.gain.setTargetAtTime(0.0001, now, 0.08)
+    for (const source of note.sources) {
+      try { source.stop(now + 0.5) } catch { /* ok */ }
     }
     this.active.delete(midi)
   }
@@ -295,10 +313,101 @@ class GrandPianoEngine {
     this.master.gain.setTargetAtTime(clamped, this.ctx.currentTime, 0.05)
   }
 
-  destroy() {
-    for (const [midi] of this.active) this.damperRelease(midi)
-    if (this.ctx) { try { this.ctx.close() } catch { /* ok */ } }
+  async suspend() {
+    this.stopAll()
+    if (this.ctx?.state === 'running') await this.ctx.suspend()
+  }
+
+  async destroy() {
+    if (this.destroyed) return
+    this.destroyed = true
+    this.sampleAbort?.abort()
+    this.sampleAbort = null
+    this.stopAll()
+    this.progressCbs = []
+    this.buffers.clear()
+
+    const context = this.ctx
+    for (const node of this.graphNodes) {
+      try { node.disconnect() } catch { /* already disconnected */ }
+    }
+    this.graphNodes = []
     this.ctx = null
+    this.master = null
+    this.reverb = null
+    this.compressor = null
+
+    if (context && context.state !== 'closed') {
+      try { await context.close() } catch { /* already closed */ }
+    }
+  }
+
+  private registerVoice(
+    midi: number,
+    sources: AudioScheduledSourceNode[],
+    nodes: AudioNode[],
+    envelope: GainNode,
+  ) {
+    const voice: PianoVoice = {
+      sources,
+      nodes,
+      envelope,
+      remainingSources: sources.length,
+      cleaned: false,
+    }
+    this.voices.add(voice)
+    for (const source of sources) {
+      source.onended = () => {
+        voice.remainingSources -= 1
+        if (voice.remainingSources <= 0) this.cleanupVoice(midi, voice)
+      }
+    }
+    return voice
+  }
+
+  private cleanupVoice(midi: number, voice: PianoVoice) {
+    if (voice.cleaned) return
+    voice.cleaned = true
+    if (this.active.get(midi) === voice) this.active.delete(midi)
+    this.voices.delete(voice)
+    for (const source of voice.sources) {
+      source.onended = null
+      try { source.disconnect() } catch { /* already disconnected */ }
+    }
+    for (const node of voice.nodes) {
+      try { node.disconnect() } catch { /* already disconnected */ }
+    }
+  }
+
+  private stopAll() {
+    const stopAt = this.ctx?.currentTime ?? 0
+    for (const [midi, voice] of [...this.active]) {
+      for (const source of voice.sources) {
+        try { source.stop(stopAt) } catch { /* source may already have ended */ }
+      }
+      this.cleanupVoice(midi, voice)
+    }
+    for (const voice of [...this.voices]) {
+      for (const source of voice.sources) {
+        try { source.stop(stopAt) } catch { /* source may already have ended */ }
+      }
+      this.cleanupDetachedVoice(voice)
+    }
+    this.active.clear()
+    this.sustainedNotes.clear()
+  }
+
+  private cleanupDetachedVoice(voice: PianoVoice) {
+    if (voice.cleaned) return
+    voice.cleaned = true
+    this.voices.delete(voice)
+    for (const source of voice.sources) {
+      source.onended = null
+      try { source.disconnect() } catch { /* already disconnected */ }
+    }
+    for (const node of voice.nodes) {
+      try { node.disconnect() } catch { /* already disconnected */ }
+    }
   }
 }
 
@@ -347,7 +456,24 @@ export default function PianoPage() {
     return engineRef.current
   }, [])
 
-  useEffect(() => () => { engineRef.current?.destroy() }, [])
+  useEffect(() => {
+    const suspendForNavigation = () => {
+      touchMap.current.clear()
+      setPressed(new Set())
+      void engineRef.current?.suspend()
+    }
+    const handleVisibility = () => {
+      if (document.visibilityState === 'hidden') suspendForNavigation()
+    }
+    window.addEventListener('blur', suspendForNavigation)
+    document.addEventListener('visibilitychange', handleVisibility)
+    return () => {
+      window.removeEventListener('blur', suspendForNavigation)
+      document.removeEventListener('visibilitychange', handleVisibility)
+      void engineRef.current?.destroy()
+      engineRef.current = null
+    }
+  }, [])
 
   // Hydrate volume from localStorage once
   useEffect(() => { setVolume(getVolume() * 1.15) }, [])
@@ -361,6 +487,10 @@ export default function PianoPage() {
   const noteOn = useCallback(async (midi: number, vel?: number) => {
     const eng = await getEngine()
     eng.noteOn(midi, vel)
+    trackEvent('music_lab_instrument_played', {
+      instrument: 'grand_piano',
+      action: 'note',
+    })
     setPressed(prev => new Set(prev).add(midi))
     setLastNote(midiToDisplay(midi))
   }, [getEngine])

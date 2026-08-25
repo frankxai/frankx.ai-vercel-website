@@ -77,6 +77,9 @@ jobs:
       - name: Build integrity contract
         run: pnpm run test:build-integrity
 
+      - name: Music Lab lifecycle
+        run: pnpm run test:music-lab
+
       - name: AgentDB runtime smoke
         run: pnpm run test:agentdb-runtime
 

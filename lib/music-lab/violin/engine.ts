@@ -9,6 +9,11 @@ export interface ViolinExpression {
 
 interface ActiveVoice {
   token: number
+  sources: AudioScheduledSourceNode[]
+  nodes: AudioNode[]
+  remainingSources: number
+  cleanupTimer: ReturnType<typeof setTimeout> | null
+  cleaned: boolean
   soft: OscillatorNode
   bright: OscillatorNode
   noise: AudioBufferSourceNode
@@ -28,17 +33,22 @@ export class ViolinEngine {
   private input: GainNode | null = null
   private master: GainNode | null = null
   private wet: GainNode | null = null
+  private graphNodes: AudioNode[] = []
   private noiseBuffer: AudioBuffer | null = null
   private voice: ActiveVoice | null = null
+  private voices = new Set<ActiveVoice>()
+  private strokeTimers = new Set<ReturnType<typeof setTimeout>>()
   private voiceToken = 0
   private gestureToken = 0
   private disposed = false
 
   get isReady() {
-    return this.context !== null && this.context.state !== 'closed'
+    return this.context?.state === 'running'
   }
 
+  /** Must be called directly from a click, pointer, or keyboard gesture. */
   async init() {
+    if (this.disposed) throw new Error('The violin audio engine has been disposed.')
     if (this.context && this.context.state !== 'closed') {
       if (this.context.state === 'suspended') await this.context.resume()
       return
@@ -101,6 +111,18 @@ export class ViolinEngine {
     wet.connect(master)
     this.wet = wet
 
+    this.graphNodes = [
+      input,
+      bodyLow,
+      bodyMid,
+      bodyHigh,
+      dry,
+      reverb,
+      wet,
+      master,
+      limiter,
+    ]
+
     const noiseBuffer = context.createBuffer(1, context.sampleRate * 2, context.sampleRate)
     const noise = noiseBuffer.getChannelData(0)
     for (let index = 0; index < noise.length; index += 1) noise[index] = Math.random() * 2 - 1
@@ -134,10 +156,9 @@ export class ViolinEngine {
   }
 
   async start(midi: number, expression: ViolinExpression): Promise<number> {
-    await this.init()
     const context = this.context
     const input = this.input
-    if (!context || !input || this.disposed) return -1
+    if (!context || !input || context.state !== 'running' || this.disposed) return -1
     const gestureToken = ++this.gestureToken
 
     if (this.voice) {
@@ -194,8 +215,13 @@ export class ViolinEngine {
     vibratoDepth.connect(soft.detune)
     vibratoDepth.connect(bright.detune)
 
-    this.voice = {
+    const voice: ActiveVoice = {
       token,
+      sources: [soft, bright, noise, vibrato],
+      nodes: [noteGain, tone, softGain, brightGain, noiseFilter, noiseGain, vibratoDepth],
+      remainingSources: 4,
+      cleanupTimer: null,
+      cleaned: false,
       soft,
       bright,
       noise,
@@ -206,6 +232,14 @@ export class ViolinEngine {
       tone,
       vibrato,
       vibratoDepth,
+    }
+    this.voice = voice
+    this.voices.add(voice)
+    for (const source of voice.sources) {
+      source.onended = () => {
+        voice.remainingSources -= 1
+        if (voice.remainingSources <= 0) this.cleanupVoice(voice)
+      }
     }
 
     this.setExpression(expression, true)
@@ -250,9 +284,20 @@ export class ViolinEngine {
 
   stop(release = 0.12) {
     this.gestureToken += 1
+    this.clearStrokeTimers()
     const context = this.context
     const voice = this.voice
     if (!context || !voice) return
+
+    this.voice = null
+
+    if (release <= 0) {
+      for (const source of voice.sources) {
+        try { source.stop(context.currentTime) } catch { /* source may already be stopped */ }
+      }
+      this.cleanupVoice(voice)
+      return
+    }
 
     const now = context.currentTime
     const stopAt = now + Math.max(0.06, release) + 0.08
@@ -260,17 +305,24 @@ export class ViolinEngine {
     voice.noteGain.gain.setValueAtTime(Math.max(voice.noteGain.gain.value, 0.0001), now)
     voice.noteGain.gain.exponentialRampToValueAtTime(0.0001, stopAt - 0.03)
 
-    for (const source of [voice.soft, voice.bright, voice.noise, voice.vibrato]) {
+    for (const source of voice.sources) {
       try { source.stop(stopAt) } catch { /* source may already be stopped */ }
     }
-    this.voice = null
+    voice.cleanupTimer = globalThis.setTimeout(
+      () => this.cleanupVoice(voice),
+      (Math.max(0.06, release) + 0.2) * 1000,
+    )
   }
 
   async playStroke(midi: number, expression: ViolinExpression, duration = 0.72) {
     const gestureToken = await this.start(midi, expression)
-    globalThis.setTimeout(() => {
+    if (gestureToken < 0) return false
+    const timer = globalThis.setTimeout(() => {
+      this.strokeTimers.delete(timer)
       if (this.voice && this.gestureToken === gestureToken) this.stop(0.14)
     }, duration * 1000)
+    this.strokeTimers.add(timer)
+    return true
   }
 
   setVolume(volume: number) {
@@ -279,20 +331,52 @@ export class ViolinEngine {
   }
 
   async suspend() {
-    this.stop(0.08)
+    this.stop(0)
     if (this.context?.state === 'running') await this.context.suspend()
   }
 
-  destroy() {
+  async destroy() {
+    if (this.disposed) return
     this.disposed = true
-    this.stop(0.06)
-    if (this.context && this.context.state !== 'closed') {
-      try { void this.context.close() } catch { /* context already closed */ }
+    this.stop(0)
+    this.clearStrokeTimers()
+    for (const voice of [...this.voices]) this.cleanupVoice(voice)
+
+    const context = this.context
+    for (const node of this.graphNodes) {
+      try { node.disconnect() } catch { /* already disconnected */ }
     }
+    this.graphNodes = []
     this.context = null
     this.input = null
     this.master = null
     this.wet = null
     this.noiseBuffer = null
+
+    if (context && context.state !== 'closed') {
+      try { await context.close() } catch { /* context already closed */ }
+    }
+  }
+
+  private clearStrokeTimers() {
+    for (const timer of this.strokeTimers) globalThis.clearTimeout(timer)
+    this.strokeTimers.clear()
+  }
+
+  private cleanupVoice(voice: ActiveVoice) {
+    if (voice.cleaned) return
+    voice.cleaned = true
+    if (voice.cleanupTimer !== null) globalThis.clearTimeout(voice.cleanupTimer)
+    voice.cleanupTimer = null
+    if (this.voice === voice) this.voice = null
+    this.voices.delete(voice)
+
+    for (const source of voice.sources) {
+      source.onended = null
+      try { source.disconnect() } catch { /* already disconnected */ }
+    }
+    for (const node of voice.nodes) {
+      try { node.disconnect() } catch { /* already disconnected */ }
+    }
   }
 }

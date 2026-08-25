@@ -11,6 +11,12 @@ import {
 } from 'react'
 import { Pause, Play, RotateCcw, Square } from 'lucide-react'
 import { VIOLIN_LESSONS } from '@/data/music-lab/violin-lessons'
+import { trackEvent } from '@/lib/analytics'
+import {
+  PlaybackTimeline,
+  type PlaybackState,
+  type PlaybackTimelineEvent,
+} from '@/lib/music-lab/playback-timeline'
 import { ViolinEngine, type ViolinExpression } from '@/lib/music-lab/violin/engine'
 import {
   VIOLIN_POSITIONS,
@@ -52,7 +58,7 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
   const engineRef = useRef<ViolinEngine | null>(null)
   const bowRef = useRef<BowState | null>(null)
   const activeTimerRef = useRef<number | null>(null)
-  const replayTimersRef = useRef<number[]>([])
+  const replayTimelineRef = useRef<PlaybackTimeline<RecordedEvent> | null>(null)
   const recordingRef = useRef(false)
   const takeStartRef = useRef(0)
 
@@ -71,7 +77,7 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
   const [recording, setRecording] = useState(false)
   const [takeEvents, setTakeEvents] = useState<RecordedEvent[]>([])
   const [takeDuration, setTakeDuration] = useState(0)
-  const [replaying, setReplaying] = useState(false)
+  const [replayState, setReplayState] = useState<PlaybackState>('idle')
   const [liveMessage, setLiveMessage] = useState('Select a note, then use the bow surface.')
 
   const lesson = useMemo(
@@ -81,6 +87,8 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
   const expectedEvent = lesson.events[guidedStep]
   const expectedPosition = expectedEvent ? getViolinPosition(expectedEvent.positionId) : undefined
   const selectedPosition = getViolinPosition(selectedId) ?? VIOLIN_POSITIONS[0]
+  const replaying = replayState === 'playing'
+  const replayPaused = replayState === 'paused'
 
   const expression = useCallback((energy = 0.62, pressure = 0.48): ViolinExpression => ({
     energy,
@@ -90,9 +98,9 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
   }), [room, vibrato])
 
   const clearReplay = useCallback(() => {
-    replayTimersRef.current.forEach((timer) => window.clearTimeout(timer))
-    replayTimersRef.current = []
-    setReplaying(false)
+    replayTimelineRef.current?.dispose()
+    replayTimelineRef.current = null
+    setReplayState('idle')
   }, [])
 
   const ensureEngine = useCallback(async () => {
@@ -116,21 +124,32 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
   }, [volume])
 
   useEffect(() => {
-    const handleVisibility = () => {
-      if (document.visibilityState === 'hidden') {
+    const pauseForNavigation = () => {
+      const replay = replayTimelineRef.current
+      if (replay?.getSnapshot().state === 'playing') {
+        replay.pause()
+        setLiveMessage('Replay paused. Resume when the page is active again.')
+      } else {
         stopSound()
-        void engineRef.current?.suspend()
       }
+      void engineRef.current?.suspend()
     }
-    window.addEventListener('blur', stopSound)
+    const handleVisibility = () => {
+      if (document.visibilityState === 'hidden') pauseForNavigation()
+    }
+    window.addEventListener('blur', pauseForNavigation)
     document.addEventListener('visibilitychange', handleVisibility)
     return () => {
-      window.removeEventListener('blur', stopSound)
+      window.removeEventListener('blur', pauseForNavigation)
       document.removeEventListener('visibilitychange', handleVisibility)
-      clearReplay()
-      engineRef.current?.destroy()
+      replayTimelineRef.current?.dispose()
+      replayTimelineRef.current = null
+      if (activeTimerRef.current !== null) window.clearTimeout(activeTimerRef.current)
+      activeTimerRef.current = null
+      void engineRef.current?.destroy()
+      engineRef.current = null
     }
-  }, [clearReplay, stopSound])
+  }, [stopSound])
 
   const registerGuidedNote = useCallback((positionId: string) => {
     if (mode !== 'guided' || completed) return
@@ -176,15 +195,21 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
     if (activeTimerRef.current !== null) window.clearTimeout(activeTimerRef.current)
     try {
       const engine = await ensureEngine()
-      await engine.playStroke(position.midi, expression(), 0.66)
+      const started = await engine.playStroke(position.midi, expression(), 0.66)
+      if (!started) throw new Error('Audio context is not active.')
       setLiveMessage(`${position.note} · ${position.string} string · finger ${position.finger}`)
       addRecordedEvent({ positionId: position.id, duration: 660, energy: 0.62, pressure: 0.48 })
       activeTimerRef.current = window.setTimeout(() => setActiveId(null), 700)
+      trackEvent('music_lab_instrument_played', {
+        instrument: 'violin',
+        action: 'fingerboard_note',
+        mode,
+      })
     } catch {
       setActiveId(null)
       setLiveMessage('Audio could not start. Check browser audio permissions and try again.')
     }
-  }, [addRecordedEvent, ensureEngine, expression, registerGuidedNote])
+  }, [addRecordedEvent, ensureEngine, expression, mode, registerGuidedNote])
 
   const setInstrumentMode = useCallback((nextMode: ViolinMode) => {
     stopSound()
@@ -210,6 +235,7 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
     setMisses(0)
     setCompleted(false)
     setLiveMessage('New exercise ready. Follow the highlighted position.')
+    trackEvent('music_lab_lesson_selected', { instrument: 'violin', lesson_id: nextLessonId })
   }, [])
 
   const pressureFromPointer = (event: ReactPointerEvent<HTMLButtonElement>) => {
@@ -243,14 +269,20 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
         engine.stop(0.08)
         return
       }
-      await engine.start(selectedPosition.midi, expression(0.42, pressure))
+      const gestureToken = await engine.start(selectedPosition.midi, expression(0.42, pressure))
+      if (gestureToken < 0) throw new Error('Audio context is not active.')
       setLiveMessage(`Bowing ${selectedPosition.note}. Move sideways for energy and vertically for pressure.`)
+      trackEvent('music_lab_instrument_played', {
+        instrument: 'violin',
+        action: 'continuous_bow',
+        mode,
+      })
     } catch {
       bowRef.current = null
       setActiveId(null)
       setLiveMessage('Audio could not start. Check browser audio permissions and try again.')
     }
-  }, [ensureEngine, expression, registerGuidedNote, selectedPosition])
+  }, [ensureEngine, expression, mode, registerGuidedNote, selectedPosition])
 
   const moveBow = useCallback((event: ReactPointerEvent<HTMLButtonElement>) => {
     const bow = bowRef.current
@@ -293,50 +325,83 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
     setTakeDuration(0)
     setRecording(true)
     setLiveMessage('Take running. Play notes or shape the bow surface.')
+    trackEvent('music_lab_take_started', { instrument: 'violin' })
   }, [clearReplay, stopSound])
 
   const finishTake = useCallback(() => {
-    if (bowRef.current) endBow()
+    const finishingBow = bowRef.current !== null
+    if (finishingBow) endBow()
     const duration = Math.max(0, Date.now() - takeStartRef.current)
     recordingRef.current = false
     setRecording(false)
     setTakeDuration(duration)
     stopSound()
     setLiveMessage('Take saved in this page. Replay it or start another.')
-  }, [endBow, stopSound])
+    trackEvent('music_lab_take_recorded', {
+      instrument: 'violin',
+      note_count: takeEvents.length + (finishingBow ? 1 : 0),
+      duration_bucket: Math.min(60, Math.ceil(duration / 1000)),
+    })
+  }, [endBow, stopSound, takeEvents.length])
 
   const replayTake = useCallback(async () => {
     if (takeEvents.length === 0) return
-    clearReplay()
     recordingRef.current = false
     setRecording(false)
-    setReplaying(true)
-    setLiveMessage('Replaying the take.')
+    const wasPaused = replayTimelineRef.current?.getSnapshot().state === 'paused'
 
     try {
       const engine = await ensureEngine()
-      takeEvents.forEach((event) => {
-        const timer = window.setTimeout(() => {
-          const position = getViolinPosition(event.positionId)
-          if (!position) return
-          setSelectedId(position.id)
-          setActiveId(position.id)
-          void engine.playStroke(position.midi, expression(event.energy, event.pressure), event.duration / 1000)
-        }, event.offset)
-        replayTimersRef.current.push(timer)
+      let replay = replayTimelineRef.current
+      if (!replay || !wasPaused) {
+        replay?.dispose()
+        const timelineEvents: PlaybackTimelineEvent<RecordedEvent>[] = takeEvents.map((event) => ({
+          at: event.offset,
+          duration: event.duration,
+          value: event,
+        }))
+        replay = new PlaybackTimeline(timelineEvents, 1, {
+          onInterrupt: () => engine.stop(0),
+          onEvent: (event, _index, _remainingDuration, remainingMs) => {
+            const position = getViolinPosition(event.value.positionId)
+            if (!position) return
+            setSelectedId(position.id)
+            setActiveId(position.id)
+            void engine.playStroke(
+              position.midi,
+              expression(event.value.energy, event.value.pressure),
+              remainingMs / 1000,
+            )
+          },
+          onStateChange: (snapshot) => {
+            setReplayState(snapshot.state)
+            if (snapshot.state === 'completed') {
+              setActiveId(null)
+              setLiveMessage('Replay complete.')
+            }
+          },
+        })
+        replayTimelineRef.current = replay
+      }
+      replay.play()
+      setLiveMessage(wasPaused ? 'Replay resumed.' : 'Replaying the take.')
+      trackEvent('music_lab_take_replayed', {
+        instrument: 'violin',
+        action: wasPaused ? 'resume' : 'start',
+        note_count: takeEvents.length,
       })
-      const lastEvent = takeEvents[takeEvents.length - 1]
-      const finalTimer = window.setTimeout(() => {
-        setActiveId(null)
-        setReplaying(false)
-        setLiveMessage('Replay complete.')
-      }, lastEvent.offset + lastEvent.duration + 120)
-      replayTimersRef.current.push(finalTimer)
     } catch {
-      setReplaying(false)
+      setReplayState('idle')
       setLiveMessage('Audio could not start. Check browser audio permissions and try again.')
     }
-  }, [clearReplay, ensureEngine, expression, takeEvents])
+  }, [ensureEngine, expression, takeEvents])
+
+  const pauseReplay = useCallback(() => {
+    replayTimelineRef.current?.pause()
+    void engineRef.current?.suspend()
+    setLiveMessage('Replay paused. Resume continues from this position.')
+    trackEvent('music_lab_take_replayed', { instrument: 'violin', action: 'pause' })
+  }, [])
 
   const handleInstrumentKeyDown = useCallback((event: ReactKeyboardEvent<HTMLElement>) => {
     if (event.repeat || event.metaKey || event.ctrlKey || event.altKey) return
@@ -366,14 +431,20 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
     registerGuidedNote(selectedPosition.id)
     try {
       const engine = await ensureEngine()
-      await engine.start(selectedPosition.midi, expression(0.58, 0.5))
+      const gestureToken = await engine.start(selectedPosition.midi, expression(0.58, 0.5))
+      if (gestureToken < 0) throw new Error('Audio context is not active.')
       setLiveMessage(`Bowing ${selectedPosition.note}.`)
+      trackEvent('music_lab_instrument_played', {
+        instrument: 'violin',
+        action: 'keyboard_bow',
+        mode,
+      })
     } catch {
       bowRef.current = null
       setActiveId(null)
       setLiveMessage('Audio could not start. Check browser audio permissions and try again.')
     }
-  }, [ensureEngine, expression, registerGuidedNote, selectedPosition])
+  }, [ensureEngine, expression, mode, registerGuidedNote, selectedPosition])
 
   const resetGuided = () => {
     setGuidedStep(0)
@@ -490,20 +561,12 @@ export function DigitalViolin({ initialMode = 'play' }: { initialMode?: ViolinMo
             )}
             <button
               type="button"
-              onClick={() => {
-                if (replaying) {
-                  clearReplay()
-                  stopSound()
-                  setLiveMessage('Replay paused.')
-                } else {
-                  void replayTake()
-                }
-              }}
+              onClick={replaying ? pauseReplay : () => void replayTake()}
               disabled={takeEvents.length === 0 || recording}
               className="inline-flex min-h-11 items-center gap-2 rounded-full border border-stone-300/20 px-5 text-sm text-stone-300 hover:border-[#d9855f]/60 hover:text-[#e49773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d9855f] disabled:cursor-not-allowed disabled:opacity-35"
             >
               {replaying ? <Pause className="size-4" aria-hidden="true" /> : <Play className="size-4" aria-hidden="true" />}
-              {replaying ? 'Pause' : 'Replay'}
+              {replaying ? 'Pause' : replayPaused ? 'Resume replay' : 'Replay'}
             </button>
           </div>
         </div>

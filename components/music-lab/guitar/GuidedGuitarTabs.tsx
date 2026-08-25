@@ -2,6 +2,13 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Pause, Play, RotateCcw, SkipForward } from 'lucide-react'
+import { trackEvent } from '@/lib/analytics'
+import { GuitarEngine } from '@/lib/music-lab/guitar/engine'
+import {
+  PlaybackTimeline,
+  type PlaybackState,
+  type PlaybackTimelineEvent,
+} from '@/lib/music-lab/playback-timeline'
 
 type GuitarStringId = 'e' | 'B' | 'G' | 'D' | 'A' | 'E'
 
@@ -95,12 +102,13 @@ function midiName(midi: number) {
 }
 
 export function GuidedGuitarTabs() {
-  const audioRef = useRef<AudioContext | null>(null)
-  const timersRef = useRef<number[]>([])
+  const engineRef = useRef<GuitarEngine | null>(null)
+  const timelineRef = useRef<PlaybackTimeline<TabEvent> | null>(null)
+  const timelineLessonRef = useRef<string | null>(null)
   const [lessonId, setLessonId] = useState(TAB_LESSONS[0].id)
   const [step, setStep] = useState(0)
   const [tempo, setTempo] = useState(TAB_LESSONS[0].tempo)
-  const [playing, setPlaying] = useState(false)
+  const [playbackState, setPlaybackState] = useState<PlaybackState>('idle')
   const [message, setMessage] = useState('Start at the left and read one column at a time.')
 
   const lesson = useMemo(
@@ -109,133 +117,154 @@ export function GuidedGuitarTabs() {
   )
   const currentEvent = lesson.events[step]
   const currentMidi = midiFor(currentEvent)
+  const playing = playbackState === 'playing'
+  const paused = playbackState === 'paused'
 
-  const clearTimers = useCallback(() => {
-    timersRef.current.forEach((timer) => window.clearTimeout(timer))
-    timersRef.current = []
-    setPlaying(false)
+  const getEngine = useCallback(() => {
+    if (!engineRef.current) engineRef.current = new GuitarEngine()
+    return engineRef.current
   }, [])
 
-  useEffect(() => () => {
-    clearTimers()
-    if (audioRef.current?.state !== 'closed') void audioRef.current?.close()
-  }, [clearTimers])
+  const activateEngine = useCallback(async () => {
+    const engine = getEngine()
+    await engine.activate()
+    return engine
+  }, [getEngine])
 
-  const getAudio = useCallback(async () => {
-    if (!audioRef.current || audioRef.current.state === 'closed') {
-      audioRef.current = new AudioContext({ latencyHint: 'interactive' })
-    }
-    if (audioRef.current.state === 'suspended') await audioRef.current.resume()
-    return audioRef.current
+  const playPluck = useCallback((engine: GuitarEngine, event: TabEvent, durationMs = 720) => {
+    const frequency = 440 * Math.pow(2, (midiFor(event) - 69) / 12)
+    if (!engine.playPluck(frequency, durationMs)) return false
+    setMessage(`${midiName(midiFor(event))} · ${event.string} string · fret ${event.fret}`)
+    return true
   }, [])
 
-  const playPluck = useCallback(async (event: TabEvent, durationMs = 720) => {
-    try {
-      const context = await getAudio()
-      const now = context.currentTime
-      const frequency = 440 * Math.pow(2, (midiFor(event) - 69) / 12)
+  const disposeTimeline = useCallback(() => {
+    timelineRef.current?.dispose()
+    timelineRef.current = null
+    timelineLessonRef.current = null
+  }, [])
 
-      const limiter = context.createDynamicsCompressor()
-      limiter.threshold.value = -12
-      limiter.ratio.value = 3
-      limiter.connect(context.destination)
+  const stopTimeline = useCallback((suspend = false) => {
+    timelineRef.current?.stop()
+    if (suspend) void engineRef.current?.suspend()
+  }, [])
 
-      const body = context.createBiquadFilter()
-      body.type = 'peaking'
-      body.frequency.value = 240
-      body.Q.value = 0.8
-      body.gain.value = 3
-      body.connect(limiter)
-
-      const gain = context.createGain()
-      gain.gain.setValueAtTime(0.0001, now)
-      gain.gain.linearRampToValueAtTime(0.52, now + 0.004)
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + Math.max(0.45, durationMs / 1000 + 0.55))
-      gain.connect(body)
-
-      const tone = context.createBiquadFilter()
-      tone.type = 'lowpass'
-      tone.frequency.setValueAtTime(5600, now)
-      tone.frequency.exponentialRampToValueAtTime(1700, now + 0.65)
-      tone.Q.value = 0.65
-      tone.connect(gain)
-
-      const fundamental = context.createOscillator()
-      fundamental.type = 'triangle'
-      fundamental.frequency.value = frequency
-      const harmonic = context.createOscillator()
-      harmonic.type = 'sine'
-      harmonic.frequency.value = frequency * 2
-      const harmonicGain = context.createGain()
-      harmonicGain.gain.value = 0.18
-      fundamental.connect(tone)
-      harmonic.connect(harmonicGain)
-      harmonicGain.connect(tone)
-
-      const pickBuffer = context.createBuffer(1, Math.floor(context.sampleRate * 0.028), context.sampleRate)
-      const pick = pickBuffer.getChannelData(0)
-      for (let index = 0; index < pick.length; index += 1) {
-        pick[index] = (Math.random() * 2 - 1) * Math.pow(1 - index / pick.length, 3)
+  useEffect(() => {
+    const pauseForNavigation = () => {
+      const timeline = timelineRef.current
+      if (timeline?.getSnapshot().state === 'playing') {
+        timeline.pause()
+        setMessage('Phrase paused. Resume when the page is active again.')
       }
-      const pickSource = context.createBufferSource()
-      pickSource.buffer = pickBuffer
-      const pickGain = context.createGain()
-      pickGain.gain.value = 0.16
-      pickSource.connect(pickGain)
-      pickGain.connect(tone)
+      void engineRef.current?.suspend()
+    }
+    const handleVisibility = () => {
+      if (document.visibilityState === 'hidden') pauseForNavigation()
+    }
 
-      fundamental.start(now)
-      harmonic.start(now)
-      pickSource.start(now)
-      const stopAt = now + Math.max(0.6, durationMs / 1000 + 0.75)
-      fundamental.stop(stopAt)
-      harmonic.stop(stopAt)
-      setMessage(`${midiName(midiFor(event))} · ${event.string} string · fret ${event.fret}`)
+    window.addEventListener('blur', pauseForNavigation)
+    document.addEventListener('visibilitychange', handleVisibility)
+    return () => {
+      window.removeEventListener('blur', pauseForNavigation)
+      document.removeEventListener('visibilitychange', handleVisibility)
+      timelineRef.current?.dispose()
+      timelineRef.current = null
+      void engineRef.current?.destroy()
+      engineRef.current = null
+    }
+  }, [])
+
+  const playStep = useCallback(async (index: number) => {
+    const event = lesson.events[index]
+    stopTimeline()
+    setStep(index)
+    try {
+      const engine = await activateEngine()
+      playPluck(engine, event, 60000 / tempo * event.beats)
+      trackEvent('music_lab_instrument_played', {
+        instrument: 'guitar',
+        action: 'single_note',
+        lesson_id: lesson.id,
+      })
     } catch {
       setMessage('Audio could not start. Check browser audio permissions and try again.')
     }
-  }, [getAudio])
-
-  const playStep = useCallback((index: number) => {
-    const event = lesson.events[index]
-    setStep(index)
-    void playPluck(event, 60000 / tempo * event.beats)
-  }, [lesson.events, playPluck, tempo])
+  }, [activateEngine, lesson.events, lesson.id, playPluck, stopTimeline, tempo])
 
   const nextStep = () => {
     const next = (step + 1) % lesson.events.length
-    playStep(next)
+    void playStep(next)
   }
 
-  const playSequence = useCallback(() => {
-    clearTimers()
-    setPlaying(true)
-    let elapsed = 0
-    const beatMs = 60000 / tempo
-
-    lesson.events.forEach((event, index) => {
-      const timer = window.setTimeout(() => {
-        setStep(index)
-        void playPluck(event, beatMs * event.beats)
-      }, elapsed)
-      timersRef.current.push(timer)
-      elapsed += beatMs * event.beats
+  const createTimeline = useCallback((engine: GuitarEngine) => {
+    let beatOffset = 0
+    const events: PlaybackTimelineEvent<TabEvent>[] = lesson.events.map((event) => {
+      const timelineEvent = { at: beatOffset, duration: event.beats, value: event }
+      beatOffset += event.beats
+      return timelineEvent
     })
 
-    const endTimer = window.setTimeout(() => {
-      setPlaying(false)
-      setMessage('Phrase complete. Repeat it slowly, then raise the tempo.')
-    }, elapsed + 100)
-    timersRef.current.push(endTimer)
-  }, [clearTimers, lesson.events, playPluck, tempo])
+    const timeline = new PlaybackTimeline(events, tempo / 60000, {
+      onInterrupt: () => engine.stopAll(),
+      onEvent: (event, index, _remainingBeats, remainingMs) => {
+        setStep(index)
+        playPluck(engine, event.value, remainingMs)
+      },
+      onStateChange: (snapshot) => {
+        setPlaybackState(snapshot.state)
+        if (snapshot.state === 'completed') {
+          setMessage('Phrase complete. Repeat it slowly, then raise the tempo.')
+        }
+      },
+    })
+    timelineRef.current = timeline
+    timelineLessonRef.current = lesson.id
+    return timeline
+  }, [lesson.events, lesson.id, playPluck, tempo])
+
+  const playSequence = useCallback(async () => {
+    const wasPaused = timelineRef.current?.getSnapshot().state === 'paused'
+    try {
+      const engine = await activateEngine()
+      const timeline = timelineRef.current && timelineLessonRef.current === lesson.id
+        ? timelineRef.current
+        : createTimeline(engine)
+      timeline.setRate(tempo / 60000)
+      timeline.play()
+      trackEvent('music_lab_instrument_played', {
+        instrument: 'guitar',
+        action: wasPaused ? 'resume_phrase' : 'play_phrase',
+        lesson_id: lesson.id,
+      })
+    } catch {
+      setPlaybackState('idle')
+      setMessage('Audio could not start. Check browser audio permissions and try again.')
+    }
+  }, [activateEngine, createTimeline, lesson.id, tempo])
+
+  const pauseSequence = useCallback(() => {
+    timelineRef.current?.pause()
+    void engineRef.current?.suspend()
+    setMessage('Phrase paused. Resume continues from this note.')
+    trackEvent('music_lab_sequence_paused', { instrument: 'guitar', lesson_id: lesson.id })
+  }, [lesson.id])
+
+  const changeTempo = useCallback((nextTempo: number) => {
+    setTempo(nextTempo)
+    timelineRef.current?.setRate(nextTempo / 60000)
+  }, [])
 
   const changeLesson = (nextLessonId: string) => {
-    clearTimers()
+    disposeTimeline()
+    engineRef.current?.stopAll()
+    void engineRef.current?.suspend()
     const nextLesson = TAB_LESSONS.find((candidate) => candidate.id === nextLessonId) ?? TAB_LESSONS[0]
     setLessonId(nextLesson.id)
     setTempo(nextLesson.tempo)
     setStep(0)
+    setPlaybackState('idle')
     setMessage('New tab ready. Start with the highlighted column.')
+    trackEvent('music_lab_lesson_selected', { instrument: 'guitar', lesson_id: nextLesson.id })
   }
 
   return (
@@ -254,7 +283,7 @@ export function GuidedGuitarTabs() {
           </label>
           <label className="block min-w-52 text-xs text-stone-500">
             <span className="flex justify-between"><span>Tempo</span><span>{tempo} BPM</span></span>
-            <input type="range" min="48" max="132" step="1" value={tempo} onChange={(event) => setTempo(Number(event.target.value))} className="mt-3 h-2 w-full cursor-pointer accent-[#d9855f]" />
+            <input type="range" min="48" max="132" step="1" value={tempo} onChange={(event) => changeTempo(Number(event.target.value))} className="mt-3 h-2 w-full cursor-pointer accent-[#d9855f]" />
           </label>
         </div>
 
@@ -264,15 +293,15 @@ export function GuidedGuitarTabs() {
             <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-500">{lesson.description}</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <button type="button" onClick={playing ? clearTimers : playSequence} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#d9855f] px-5 text-sm font-semibold text-[#18130f] hover:bg-[#e49773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f3b391]">
+            <button type="button" onClick={playing ? pauseSequence : () => void playSequence()} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#d9855f] px-5 text-sm font-semibold text-[#18130f] hover:bg-[#e49773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f3b391]">
               {playing ? <Pause className="size-4" aria-hidden="true" /> : <Play className="size-4" aria-hidden="true" />}
-              {playing ? 'Pause' : 'Play phrase'}
+              {playing ? 'Pause' : paused ? 'Resume phrase' : 'Play phrase'}
             </button>
             <button type="button" onClick={nextStep} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-stone-300/20 px-5 text-sm text-stone-300 hover:border-[#d9855f]/60 hover:text-[#e49773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d9855f]">
               <SkipForward className="size-4" aria-hidden="true" />
               Next note
             </button>
-            <button type="button" onClick={() => { clearTimers(); setStep(0); setMessage('Exercise reset to the first note.') }} aria-label="Reset exercise" className="flex size-11 items-center justify-center rounded-full border border-stone-300/20 text-stone-400 hover:border-[#d9855f]/60 hover:text-[#e49773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d9855f]">
+            <button type="button" onClick={() => { stopTimeline(true); setStep(0); setMessage('Exercise reset to the first note.') }} aria-label="Reset exercise" className="flex size-11 items-center justify-center rounded-full border border-stone-300/20 text-stone-400 hover:border-[#d9855f]/60 hover:text-[#e49773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d9855f]">
               <RotateCcw className="size-4" aria-hidden="true" />
             </button>
           </div>
@@ -295,7 +324,7 @@ export function GuidedGuitarTabs() {
                       <button
                         key={`${string.id}-${index}`}
                         type="button"
-                        onClick={() => playStep(index)}
+                        onClick={() => void playStep(index)}
                         aria-label={`Step ${index + 1}, ${string.label} string fret ${event.fret}`}
                         className={`${className} hover:bg-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d9855f]`}
                       >

@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useState, useCallback, useRef, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { trackEvent } from '@/lib/analytics'
 import {
   getSongProgress,
   recordAttempt,
@@ -386,6 +387,14 @@ interface AudioEngine {
   playChime: () => void
   setMasterVolume: (v: number) => void
   resume: () => void
+  stopAll: () => void
+}
+
+interface ManagedAudioVoice {
+  sources: AudioScheduledSourceNode[]
+  nodes: AudioNode[]
+  remainingSources: number
+  cleaned: boolean
 }
 
 function useAudio(): AudioEngine {
@@ -397,6 +406,47 @@ function useAudio(): AudioEngine {
   const sampleBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
   const sampleLoadRef = useRef<Promise<void> | null>(null)
   const sampleAbortRef = useRef<AbortController | null>(null)
+  const graphNodesRef = useRef<AudioNode[]>([])
+  const voicesRef = useRef<Set<ManagedAudioVoice>>(new Set())
+
+  const cleanupVoice = useCallback((voice: ManagedAudioVoice) => {
+    if (voice.cleaned) return
+    voice.cleaned = true
+    voicesRef.current.delete(voice)
+    for (const source of voice.sources) {
+      source.onended = null
+      try { source.disconnect() } catch { /* already disconnected */ }
+    }
+    for (const node of voice.nodes) {
+      try { node.disconnect() } catch { /* already disconnected */ }
+    }
+  }, [])
+
+  const registerVoice = useCallback((sources: AudioScheduledSourceNode[], nodes: AudioNode[]) => {
+    const voice: ManagedAudioVoice = {
+      sources,
+      nodes,
+      remainingSources: sources.length,
+      cleaned: false,
+    }
+    voicesRef.current.add(voice)
+    for (const source of sources) {
+      source.onended = () => {
+        voice.remainingSources -= 1
+        if (voice.remainingSources <= 0) cleanupVoice(voice)
+      }
+    }
+  }, [cleanupVoice])
+
+  const stopAll = useCallback(() => {
+    const stopAt = ctxRef.current?.currentTime ?? 0
+    for (const voice of [...voicesRef.current]) {
+      for (const source of voice.sources) {
+        try { source.stop(stopAt) } catch { /* source may already have ended */ }
+      }
+      cleanupVoice(voice)
+    }
+  }, [cleanupVoice])
 
   const ensureCtx = useCallback(() => {
     if (!ctxRef.current || ctxRef.current.state === 'closed') {
@@ -443,6 +493,7 @@ function useAudio(): AudioEngine {
       dry.connect(master)
       reverb.connect(wet)
       wet.connect(master)
+      graphNodesRef.current = [master, comp, reverb, dry, wet]
 
       const controller = new AbortController()
       sampleAbortRef.current = controller
@@ -452,6 +503,7 @@ function useAudio(): AudioEngine {
           if (!response.ok) return
           const data = await response.arrayBuffer()
           const buffer = await ctx.decodeAudioData(data)
+          if (controller.signal.aborted || ctxRef.current !== ctx) return
           sampleBuffersRef.current.set(sample.name, buffer)
         } catch {
           // The oscillator voice remains available when a sample cannot load.
@@ -465,9 +517,10 @@ function useAudio(): AudioEngine {
   }, [])
 
   const playNote = useCallback((frequency: number, duration = 0.6) => {
-    const ctx = ensureCtx()
-    const dry = dryRef.current!
-    const reverb = reverbRef.current!
+    const ctx = ctxRef.current
+    const dry = dryRef.current
+    const reverb = reverbRef.current
+    if (!ctx || ctx.state === 'closed' || !dry || !reverb) return
     const now = ctx.currentTime
 
     const nearestSample = GUIDED_PIANO_SAMPLES.reduce((nearest, candidate) => (
@@ -496,6 +549,7 @@ function useAudio(): AudioEngine {
       source.buffer = sampleBuffer
       source.playbackRate.value = frequency / nearestSample.frequency
       source.connect(tone)
+      registerVoice([source], [tone, gain])
       source.start(now)
       source.stop(now + Math.min(4, Math.max(duration + 1.2, 1.5)))
       return
@@ -541,15 +595,17 @@ function useAudio(): AudioEngine {
 
     tri.start(now)
     sine.start(now)
+    registerVoice([tri, sine], [triGain, sineGain, lp, noteGain])
     tri.stop(now + duration + 0.5)
     sine.stop(now + duration + 0.5)
-  }, [ensureCtx])
+  }, [registerVoice])
 
   const playChime = useCallback(() => {
     // Soft "✓" reward chime — 1320 Hz sine, very short
-    const ctx = ensureCtx()
-    const dry = dryRef.current!
-    const reverb = reverbRef.current!
+    const ctx = ctxRef.current
+    const dry = dryRef.current
+    const reverb = reverbRef.current
+    if (!ctx || ctx.state === 'closed' || !dry || !reverb) return
     const now = ctx.currentTime
     const gain = ctx.createGain()
     gain.gain.value = 0
@@ -563,9 +619,10 @@ function useAudio(): AudioEngine {
     o.frequency.setValueAtTime(1320, now)
     o.frequency.exponentialRampToValueAtTime(1760, now + 0.12)
     o.connect(gain)
+    registerVoice([o], [gain])
     o.start(now)
     o.stop(now + 0.25)
-  }, [ensureCtx])
+  }, [registerVoice])
 
   const setMasterVolume = useCallback((v: number) => {
     if (masterRef.current && ctxRef.current) {
@@ -584,13 +641,27 @@ function useAudio(): AudioEngine {
       sampleAbortRef.current?.abort()
       sampleLoadRef.current = null
       sampleBuffers.clear()
-      if (ctxRef.current && ctxRef.current.state !== 'closed') {
-        try { void ctxRef.current.close() } catch { /* ok */ }
+      stopAll()
+      for (const node of graphNodesRef.current) {
+        try { node.disconnect() } catch { /* already disconnected */ }
+      }
+      graphNodesRef.current = []
+      const context = ctxRef.current
+      ctxRef.current = null
+      masterRef.current = null
+      reverbRef.current = null
+      dryRef.current = null
+      wetRef.current = null
+      if (context && context.state !== 'closed') {
+        try { void context.close() } catch { /* ok */ }
       }
     }
-  }, [])
+  }, [stopAll])
 
-  return { playNote, playChime, setMasterVolume, resume }
+  return useMemo(
+    () => ({ playNote, playChime, setMasterVolume, resume, stopAll }),
+    [playChime, playNote, resume, setMasterVolume, stopAll],
+  )
 }
 
 // ── Helper: stars badge ─────────────────────────────────────────────────────
@@ -692,6 +763,10 @@ export default function InteractivePiano({
     (note: NoteDef) => {
       audio.resume()
       audio.playNote(note.freq, mode === 'guided' ? 0.7 : 0.6)
+      trackEvent('music_lab_instrument_played', {
+        instrument: 'piano',
+        action: mode === 'guided' ? 'guided_note' : 'free_note',
+      })
       setActiveNote(note.note)
       window.setTimeout(() => setActiveNote((cur) => (cur === note.note ? null : cur)), 220)
 
@@ -748,6 +823,11 @@ export default function InteractivePiano({
       const song = SONGS[songId]
       if (!song || autoPlaying) return
       audio.resume()
+      trackEvent('music_lab_lesson_selected', {
+        instrument: 'piano',
+        lesson_id: songId,
+        mode: 'listen',
+      })
       setAutoPlaying(true)
       setCurrentSong(songId)
       stopRef.current = false
@@ -770,7 +850,8 @@ export default function InteractivePiano({
 
   const stopSongAuto = useCallback(() => {
     stopRef.current = true
-  }, [])
+    audio.stopAll()
+  }, [audio])
 
   // ── Guided mode controls ─────────────────────────────────────────────────
 
@@ -778,6 +859,11 @@ export default function InteractivePiano({
     const song = SONGS[songId]
     if (!song) return
     audio.resume()
+    trackEvent('music_lab_lesson_selected', {
+      instrument: 'piano',
+      lesson_id: songId,
+      mode: 'guided',
+    })
     setCompletion(null)
     setGuided({ songId, step: 0, misses: 0, startedAt: Date.now() })
     setHighlightedNote(song.notes[0].note)
@@ -802,7 +888,10 @@ export default function InteractivePiano({
   }, [audio])
 
   // Keep refs/state coherent on unmount
-  useEffect(() => () => { stopRef.current = true }, [])
+  useEffect(() => () => {
+    stopRef.current = true
+    audio.stopAll()
+  }, [audio])
 
   // ── Render ───────────────────────────────────────────────────────────────
 
