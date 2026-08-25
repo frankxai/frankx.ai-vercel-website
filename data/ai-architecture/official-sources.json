@@ -14,6 +14,8 @@
       "Postgres"
     ],
     "docsUrl": "https://ai-sdk.dev/docs/agents/overview",
+    "docsKind": "documentation",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
       "label": "Vercel AI chatbot repository",
@@ -35,6 +37,8 @@
       "Backend"
     ],
     "docsUrl": "https://opentelemetry.io/docs/languages/js/",
+    "docsKind": "documentation",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
       "label": "OpenTelemetry JavaScript repository",
@@ -55,7 +59,9 @@
       "Assertions",
       "Results viewer"
     ],
-    "docsUrl": "https://github.com/promptfoo/promptfoo/blob/main/site/docs/intro.md",
+    "docsUrl": "https://www.promptfoo.dev/docs/intro/",
+    "docsKind": "documentation",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
       "label": "promptfoo evaluation harness repository",
@@ -67,16 +73,18 @@
     "title": "Multi-agent team with ADK",
     "owner": "Google",
     "layer": "Orchestration",
-    "summary": "Specialized agents coordinated through Google's Agent Development Kit with deployable samples and managed runtime options.",
+    "summary": "ADK composes coordinator, specialist, sequential, parallel, loop, and graph workflows in code.",
     "bestFor": "Teams standardizing agent roles, tools, sessions, and evaluation on Google Cloud.",
     "runtime": "Either",
     "flow": [
       "Web client",
-      "Coordinator",
-      "Specialists",
-      "Vertex AI"
+      "Coordinator agent",
+      "Specialist agents",
+      "Tools + model"
     ],
-    "docsUrl": "https://cloud.google.com/architecture/ai-ml",
+    "docsUrl": "https://adk.dev/workflows/",
+    "docsKind": "documentation",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
       "label": "Google ADK samples repository",
@@ -98,6 +106,8 @@
       "Trace"
     ],
     "docsUrl": "https://openai.github.io/openai-agents-python/",
+    "docsKind": "documentation",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
       "label": "OpenAI Agents SDK repository",
@@ -119,6 +129,8 @@
       "Database"
     ],
     "docsUrl": "https://docs.railway.com/deployments",
+    "docsKind": "documentation",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
       "label": "Railway multi-agent reference repository",
@@ -140,6 +152,8 @@
       "Approval"
     ],
     "docsUrl": "https://docs.temporal.io/develop/typescript",
+    "docsKind": "documentation",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
       "label": "Temporal TypeScript samples repository",
@@ -160,7 +174,9 @@
       "MCP server",
       "System of record"
     ],
-    "docsUrl": "https://github.com/modelcontextprotocol/servers",
+    "docsUrl": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+    "docsKind": "documentation",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
       "label": "GitHub MCP Server repository",
@@ -169,23 +185,25 @@
   },
   {
     "id": "vertex-rag",
-    "title": "Managed enterprise RAG",
+    "title": "RAG on Agent Platform and AlloyDB",
     "owner": "Google Cloud",
     "layer": "Context and retrieval",
-    "summary": "A grounded retrieval path built around Vertex AI, managed data services, evaluation, and enterprise controls.",
+    "summary": "A Google Cloud reference design that stores embeddings in AlloyDB with pgvector, retrieves context in the application, sends contextualized prompts to an LLM on Agent Platform, and evaluates quality separately.",
     "bestFor": "Governed knowledge assistants and data-heavy enterprise workloads.",
     "runtime": "Managed service",
     "flow": [
-      "Vercel UI",
-      "Vertex AI",
-      "Retrieval",
-      "Evaluation"
+      "Frontend",
+      "AlloyDB vector search",
+      "Agent Platform LLM",
+      "Screened response"
     ],
-    "docsUrl": "https://cloud.google.com/architecture/rag-capable-gen-ai-app-using-vertex-ai",
+    "docsUrl": "https://docs.cloud.google.com/architecture/rag-capable-gen-ai-app-using-vertex-ai",
+    "docsKind": "reference-architecture",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
-      "label": "Agent Starter Pack repository",
-      "url": "https://github.com/GoogleCloudPlatform/agent-starter-pack"
+      "label": "Related Google Cloud Terraform RAG sample (Cloud SQL by default)",
+      "url": "https://github.com/GoogleCloudPlatform/terraform-genai-rag"
     }
   },
   {
@@ -203,6 +221,8 @@
       "Provider"
     ],
     "docsUrl": "https://github.com/BerriAI/litellm/blob/main/ARCHITECTURE.md",
+    "docsKind": "architecture-notes",
+    "verifiedOn": "2026-08-25",
     "source": {
       "kind": "repository",
       "label": "LiteLLM gateway repository",

@@ -250,12 +250,7 @@ export default function AIArchitectAcademyPage() {
               whether the other two were the same thing. Curriculum here,
               reference there, verdict on the third.
             */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="mb-8 max-w-2xl leading-relaxed text-slate-500"
-            >
+            <p className="mb-8 max-w-2xl leading-relaxed text-slate-500">
               This page is the curriculum.{' '}
               <Link
                 href="/ai-architecture"
@@ -265,11 +260,11 @@ export default function AIArchitectAcademyPage() {
                     placement: 'academy_orientation',
                   })
                 }
-                className="text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+                className="rounded-sm text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 The field guide
               </Link>{' '}
-              is the reference — the seven planes and the decisions behind them.{' '}
+              is the reference — seven planes and the operating boundaries between them.{' '}
               <Link
                 href="/ai-architect"
                 onClick={() =>
@@ -278,12 +273,12 @@ export default function AIArchitectAcademyPage() {
                     placement: 'academy_orientation',
                   })
                 }
-                className="text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+                className="rounded-sm text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 The architecture review
               </Link>{' '}
-              runs those decisions against a system you already have.
-            </motion.p>
+              applies four concrete checks to a system you already have.
+            </p>
 
             {/* Tech badges */}
             <motion.div

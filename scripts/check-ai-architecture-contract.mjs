@@ -13,9 +13,11 @@ await Promise.all([
 ])
 
 const failures = []
-if (sources.length < 8) failures.push('official source atlas contains fewer than eight architectures')
+if (sources.length < 10) failures.push('official source atlas contains fewer than ten architectures')
 if (!sources.every((source) =>
   source.docsUrl &&
+  source.docsKind &&
+  source.verifiedOn &&
   source.source?.kind &&
   source.source?.label &&
   source.source?.url &&
@@ -23,6 +25,25 @@ if (!sources.every((source) =>
   source.flow.length >= 4
 )) {
   failures.push('every architecture must include docs, repository, and a four-stage flow')
+}
+const ids = sources.map((source) => source.id)
+if (new Set(ids).size !== ids.length) {
+  failures.push('every architecture id must be unique')
+}
+const DOCS_KINDS = ['documentation', 'reference-architecture', 'architecture-notes']
+if (!sources.every((source) => DOCS_KINDS.includes(source.docsKind))) {
+  failures.push(`every architecture needs a docsKind from: ${DOCS_KINDS.join(', ')}`)
+}
+const isCalendarDate = (value) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
+  const [year, month, day] = value.split('-').map(Number)
+  const date = new Date(Date.UTC(year, month - 1, day))
+  return date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month - 1 &&
+    date.getUTCDate() === day
+}
+if (!sources.every((source) => isCalendarDate(source.verifiedOn))) {
+  failures.push('every architecture needs a real verifiedOn calendar date in YYYY-MM-DD format')
 }
 // The catalog used to be keyed to three named vendors. It is now keyed to the
 // execution shape a reference needs, which is the property that decides which
@@ -77,6 +98,15 @@ const unknownPlanes = [...new Set(
 if (unknownPlanes.length) {
   failures.push(`unknown plane(s): ${unknownPlanes.join(', ')} -- must be one of: ${PLANES.join(', ')}`)
 }
+const catalogPlanes = [...new Set(sources.map((source) => source.layer))]
+if (
+  catalogPlanes.length !== PLANES.length ||
+  catalogPlanes.some((plane, index) => plane !== PLANES[index])
+) {
+  failures.push(
+    `catalog filter order drifted — catalog has [${catalogPlanes.join(', ')}], expected [${PLANES.join(', ')}]`,
+  )
+}
 // The atlas is meant to be a complete map, so every plane needs an architecture
 // standing in it. A plane with no entry is a gap the reader cannot see.
 const emptyPlanes = PLANES.filter((plane) => !sources.some((source) => source.layer === plane))
@@ -89,7 +119,12 @@ const PLATFORMS = ['Vercel', 'Cloudflare', 'AWS', 'Google Cloud', 'Azure', 'Rail
 if (PLATFORMS.filter((name) => home.includes(name)).length < 6) {
   failures.push('atlas must present platforms broadly, not just the internal three')
 }
-if (!home.includes('Every external link in this catalog was checked')) failures.push('visible link-verification statement missing')
+if (!home.includes('Each entry shows when its documentation and source links were last')) {
+  failures.push('visible per-entry link-verification statement missing')
+}
+if (!home.includes('source.verifiedOn') || !home.includes('DOCS_LABEL[source.docsKind]')) {
+  failures.push('atlas must render each source verification date and controlled documentation label')
+}
 if (home.includes('Working repository')) failures.push('generic repository label remains')
 if (blueprintIndex.includes('/blueprint/') || legacyShell.includes('/blueprint/')) failures.push('legacy broken /blueprint route remains')
 if (!blueprintIndex.includes('/ai-architecture/${blueprint.slug}') || !legacyShell.includes('/ai-architecture/${blueprint.slug}')) {

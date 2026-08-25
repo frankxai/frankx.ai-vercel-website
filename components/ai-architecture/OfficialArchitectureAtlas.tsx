@@ -24,6 +24,7 @@ import { trackEvent } from '@/lib/analytics'
  * is the thing that actually decides which platforms stay open to you.
  */
 type Runtime = 'Request-scoped' | 'Durable runtime' | 'Managed service' | 'Either'
+type DocsKind = 'documentation' | 'reference-architecture' | 'architecture-notes'
 
 type ArchitectureSource = {
   id: string
@@ -35,6 +36,8 @@ type ArchitectureSource = {
   runtime: Runtime
   flow: string[]
   docsUrl: string
+  docsKind: DocsKind
+  verifiedOn: string
   source: {
     kind: 'repository' | 'template-directory'
     label: string
@@ -43,6 +46,12 @@ type ArchitectureSource = {
 }
 
 const sources = sourcesData as ArchitectureSource[]
+
+const DOCS_LABEL: Record<DocsKind, string> = {
+  documentation: 'Official documentation',
+  'reference-architecture': 'Official reference architecture',
+  'architecture-notes': 'Official architecture notes',
+}
 
 /** Filter by plane, not by vendor. Derived from the catalog so it cannot drift. */
 const planeFilters: string[] = ['All', ...Array.from(new Set(sources.map((s) => s.layer)))]
@@ -202,7 +211,9 @@ export function OfficialArchitectureAtlas() {
               Build the agent system you can operate.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-              Official reference architectures and working repositories, organised by the plane they belong to rather than the vendor that published them. Every external link in this catalog was checked when its entry was added — the July 2026 set on 12 July, the model-access and evaluation entries on 23 August.
+              Official reference architectures and working repositories, organised by plane rather
+              than publisher. Each entry shows when its documentation and source links were last
+              checked.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
@@ -320,6 +331,12 @@ export function OfficialArchitectureAtlas() {
                   <p className="mt-4 text-sm leading-6 text-slate-300"><span className="text-slate-500">Use it for:</span> {source.bestFor}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     <RuntimeBadge runtime={source.runtime} />
+                    <time
+                      dateTime={source.verifiedOn}
+                      className="rounded-full border border-white/10 px-2.5 py-1 font-mono text-xs text-slate-500"
+                    >
+                      Links checked {source.verifiedOn}
+                    </time>
                   </div>
                 </div>
 
@@ -339,7 +356,7 @@ export function OfficialArchitectureAtlas() {
                   <div className="mt-8 flex flex-wrap gap-3 border-t border-white/10 pt-5">
                     <a href={source.docsUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('ai_architecture_source_opened', { architecture_id: source.id, link_kind: 'official_docs' })} className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200">
                       <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                      Official architecture
+                      {DOCS_LABEL[source.docsKind]}
                     </a>
                     <a href={source.source.url} target="_blank" rel="noreferrer" onClick={() => trackEvent('ai_architecture_source_opened', { architecture_id: source.id, link_kind: source.source.kind })} className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white">
                       <Github className="h-4 w-4" aria-hidden="true" />
