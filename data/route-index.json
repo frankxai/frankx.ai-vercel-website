@@ -2890,14 +2890,14 @@
     },
     {
       "href": "/blog/multi-agent-orchestration-patterns-2026",
-      "title": "Multi-Agent Orchestration Patterns: Building Production Systems in 2026",
-      "description": "Beyond simple agent comparisons. Deep dive into orchestration patterns, handoff strategies, state management, and observability for production multi-agent systems.",
+      "title": "AI Agent Orchestration: Loops, DAGs and Durable Graphs",
+      "description": "Choose pipelines, loops, routers, state machines or dynamic graphs using state duration, consequence, recovery and evidence.",
       "tags": [
-        "Multi-Agent",
-        "LangGraph",
-        "CrewAI",
-        "Orchestration",
-        "Production AI"
+        "AI Agent Orchestration",
+        "Agentic Workflows",
+        "State Machines",
+        "Multi-Agent Systems",
+        "Graph Engineering"
       ],
       "type": "blog"
     },

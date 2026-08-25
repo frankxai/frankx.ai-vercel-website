@@ -57,7 +57,8 @@ const realRoutes = new Set(enumerateRoutes().map((r) => r.href))
  */
 const GRANDFATHERED_SHADOWS = new Map([
   // Legitimate soft retirement: the 140-line assessment was superseded by the
-  // 530-line quiz it points at. The 301 is the correct consolidation, so this
+  // 530-line quiz it points at. The permanent redirect (HTTP 308) is the
+  // correct consolidation, so this
   // one stays. The unreachable source file is dead code, flagged not deleted.
   ['/soul-frequency-assessment', '/soul-frequency-quiz'],                      // 140-line page
 ])
