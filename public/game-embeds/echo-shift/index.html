@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100 select-none">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Echo Shift: Cognitive Flexibility — FrankX Cognitive Labs</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    body { touch-action: none; -webkit-user-select: none; user-select: none; }
+    .choice-card { transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .choice-card:active { transform: scale(0.92); }
+  </style>
+  <script type="module" crossorigin src="/game-embeds/assets/echoShift-DAzfSOU6.js"></script>
+  <link rel="modulepreload" crossorigin href="/game-embeds/assets/modulepreload-polyfill-B5Qt9EMX.js">
+</head>
+<body class="h-full flex flex-col items-center justify-center overflow-hidden bg-[#070c14]">
+
+  <div class="relative w-full h-full max-w-[480px] max-h-[880px] flex flex-col shadow-2xl bg-[#0b1320] overflow-hidden sm:rounded-3xl border border-teal-500/30 p-5 justify-between">
+    
+    <!-- Top Bar -->
+    <div class="flex items-center justify-between z-20 pb-3 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <div class="p-2 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-400 font-bold text-xs">
+          ⚡ Echo Shift
+        </div>
+        <div>
+          <div class="text-[10px] text-white/40 uppercase font-semibold">Cognitive Task Switching</div>
+          <div class="text-xs font-bold text-teal-300" id="rule-mode-display">Mode: COLOR MATCH</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <div class="text-[10px] text-white/40 uppercase font-semibold">Score</div>
+          <div class="text-sm font-mono font-bold text-emerald-400" id="score-display">0</div>
+        </div>
+        <button id="btn-audio" class="p-2 rounded-full bg-slate-900 text-teal-400 border border-teal-700/40 text-xs">
+          🔊
+        </button>
+      </div>
+    </div>
+
+    <!-- Center Stroop Stimulus Stage -->
+    <div class="my-auto flex flex-col items-center justify-center text-center py-4">
+      
+      <!-- Time Countdown Bar -->
+      <div class="w-full bg-slate-800/60 h-2 rounded-full mb-6 overflow-hidden border border-white/10">
+        <div id="time-bar" class="h-full bg-gradient-to-r from-teal-400 to-emerald-400 transition-all duration-100 ease-linear w-full"></div>
+      </div>
+
+      <!-- Rule Badge -->
+      <div class="px-4 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/40 text-xs font-bold text-teal-300 uppercase tracking-wider mb-3" id="active-rule-badge">
+        Match the TEXT MEANING
+      </div>
+
+      <!-- Central Conflict Stimulus -->
+      <div class="min-h-[120px] w-full flex items-center justify-center p-6 rounded-3xl bg-white/[0.03] border border-white/10 shadow-inner">
+        <span class="text-4xl sm:text-5xl font-extrabold tracking-wider" id="stimulus-word">
+          RED
+        </span>
+      </div>
+
+      <div id="feedback-msg" class="h-6 mt-3 text-xs font-bold text-center"></div>
+    </div>
+
+    <!-- Bottom 3 Choice Buttons -->
+    <div class="space-y-4 z-20">
+      <div class="grid grid-cols-3 gap-3" id="choices-container">
+        <!-- 3 Dynamic Response Buttons -->
+      </div>
+
+      <div class="text-center">
+        <p class="text-[10px] text-white/30">
+          Target Cortex: Anterior Cingulate Cortex (Inhibitory Control & Cognitive Conflict Resolution)
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

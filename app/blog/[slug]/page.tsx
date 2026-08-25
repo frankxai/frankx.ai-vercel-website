@@ -10,7 +10,7 @@ import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
 import { ArticleHeaderActions } from '@/components/blog/ArticleHeaderActions'
-import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
+import { getAllBlogPosts, getBlogPost, extractFAQFromContent, normalizeFAQText } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
@@ -139,8 +139,16 @@ export default async function BlogPostPage({
     ...(post.tldr && { abstract: post.tldr }),
   }
 
-  // Extract FAQ from content body for FAQPage schema
-  const extractedFaqs = extractFAQFromContent(post.content)
+  // Visible body FAQs are canonical. Legacy frontmatter is used only when the
+  // document has no rendered FAQ section, matching scripts/generate-schema.mjs.
+  const bodyFaqs = extractFAQFromContent(post.content)
+  const frontmatterFaqs = (post.faq || [])
+    .map((faq) => ({
+      question: normalizeFAQText(faq.question || faq.q),
+      answer: normalizeFAQText(faq.answer || faq.a),
+    }))
+    .filter((faq) => faq.question && faq.answer)
+  const extractedFaqs = bodyFaqs.length > 0 ? bodyFaqs : frontmatterFaqs
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
@@ -383,4 +391,3 @@ export default async function BlogPostPage({
     </main>
   )
 }
-

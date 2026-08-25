@@ -1,0 +1,451 @@
+---
+title: "Graph Engineering with OpenAI Codex: Skills and Delivery"
+description: "Build Codex delivery graphs with subagents, worktrees, Skills, the SDK, evidence gates, durable state and release controls."
+date: "2026-08-24"
+lastUpdated: "2026-08-25"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["OpenAI Codex", "Codex SDK", "Agent Skills", "Subagents", "Graph Engineering"]
+image: "/images/blog/graph-engineering/graph-engineering-hero.webp"
+featured: false
+flagship: false
+readingGoal: "Turn Codex from an excellent coding loop into one governed node in a verifiable delivery system"
+tldr: "Use Codex for repository intelligence and execution; use subagents and worktrees for separable work; use Skills for node procedures; use the Codex SDK/App Server for integration; and use a durable control plane when the graph spans business state or irreversible effects. Treat merge and release as separate policy-controlled nodes backed by reproducible evidence."
+architectNote:
+  recommendation: "A coding agent can own a change. It should not silently own the policy that decides whether the change ships."
+  coePillar: "Software delivery"
+keywords: ["graph engineering Codex", "OpenAI Codex subagents", "Codex SDK workflow", "Codex Skills", "Codex multi-agent architecture"]
+schema: ["Article", "FAQPage"]
+faqSource: "body"
+faq:
+  - q: "Does Codex have a graph workflow engine?"
+    a: "Codex has subagents, Skills, threads and worktree patterns; durable graph authority still belongs in explicit repository and workflow controls."
+  - q: "When should Codex use subagents?"
+    a: "Use them for separable exploration, review and test work. Avoid parallel write-heavy tasks that share mutable files."
+  - q: "What is the role of AGENTS.md?"
+    a: "AGENTS.md provides scoped context and operating instructions. It is not a durable state store or security boundary."
+  - q: "When should I use the Codex SDK?"
+    a: "Use the SDK for programmatic coding jobs and CI; use App Server for rich clients that need approvals, history and streamed events."
+  - q: "Does an Agents SDK session replace a durable workflow?"
+    a: "No. Conversation state is not a replayable business-process history with timers, compensation and idempotent retries."
+series:
+  slug: "graph-engineering-field-guide"
+  title: "Graph Engineering Field Guide"
+  part: 6
+  total: 9
+---
+
+Codex already contains the seed of graph engineering: a strong repository loop, bounded permissions, parallel agent threads, inspectable subagents, worktrees, Skills, and several ways to embed the harness.
+
+The architectural mistake is asking Codex to become every layer at once.
+
+> Use Codex as the high-agency coding node. Keep graph authority in explicit contracts, repository state, tests, approval policy, and—when the process must survive failure—a durable workflow runtime.
+
+Start with the [Graph Engineering architect guide](/blog/graph-engineering-ai-agents), then use the [orchestration decision guide](/blog/multi-agent-orchestration-patterns-2026) to select the smallest topology. The [four hard-to-reverse AI architecture decisions](/blog/ai-architecture-2026-four-decisions-hard-to-reverse) define the vendor, trust and runtime boundaries around the delivery graph.
+
+## The official Codex stack
+
+As of 24 August 2026, the relevant first-party layers are:
+
+| Layer | Official primitive | Best role in the graph |
+|---|---|---|
+| Interactive coding loop | Codex CLI, IDE, desktop, cloud | Explore, edit, run, verify |
+| Parallel work | Codex subagent workflows and agent threads | Read-heavy exploration, testing, triage, bounded independent work |
+| Isolation | Git worktrees and sandboxes | Exclusive mutable ownership and permission boundaries |
+| Persistent repository context | `AGENTS.md` and scoped overrides | Architecture map and working agreements |
+| Reusable node procedures | Agent Skills in `.agents/skills` | Input/output method, scripts, references, validation |
+| Programmatic coding threads | Codex SDK for TypeScript and Python | CI, internal tooling, server-side coding workflows |
+| Deep product integration | Codex App Server | Authentication, conversation history, approvals, streamed events |
+| Semantic multi-agent app | OpenAI Agents SDK | Handoffs, agents-as-tools, sessions, tracing, guardrails, HITL |
+| Issue-to-agent supervisor | OpenAI Symphony specification | Repeated isolated issue execution; engineering preview |
+| Durable business workflow | Temporal or equivalent | Events, timers, retries, compensation, long-lived state |
+
+One important freshness note: `codex mcp-server` was deprecated on 24 August 2026. New deep integrations should use the **Codex App Server**; automated coding jobs should use the **Codex SDK**. The Codex SDK page still points to the older MCP command for Agents SDK composition on the same date, so the broader-agent transport is in transition. Do not build a new critical boundary around the deprecated command.
+
+## The three-graph mapping
+
+| Graph plane | Codex/OpenAI implementation |
+|---|---|
+| Execution | Main Codex thread, subagents, worktrees, SDK threads, Agents SDK handoffs and agents-as-tools |
+| Context | Repository files, `AGENTS.md`, Skills, MCP/connectors, search, issue and PR artifacts |
+| Control | Sandboxes, approvals, read-only review turns, tests, CI, guardrails, tracing, Symphony workflow policy, durable runtime |
+
+Codex is unusually strong at the **program graph**—the repository’s files, symbols, imports, calls, tests, and change history. That still does not make the repository graph the same thing as the execution or control graph.
+
+## Start inside Codex: one lead, bounded subagents
+
+Current Codex releases enable subagent workflows by default. The lead can spawn specialized agents in parallel and collect their results. The official guidance recommends parallel agents first for read-heavy work such as exploration, tests, triage, and summarization; parallel write-heavy work deserves more caution.
+
+A useful review prompt is:
+
+```text
+Review this branch with three independent subagents.
+
+1. Security reviewer: find exploitable trust-boundary or authorization defects.
+2. Test reviewer: find behavior changes not covered by tests.
+3. Maintainability reviewer: find brittle coupling or invalid architectural dependencies.
+
+All reviewers are read-only. Each finding must include a file reference, evidence,
+impact, and a falsification check. Wait for all three. Deduplicate shared root causes.
+Return supported, refuted, and unverified findings separately.
+```
+
+That is already a graph:
+
+```text
+lead → {security, tests, architecture} → evidence merge → decision
+```
+
+The engineering quality comes from the contracts:
+
+- independent scopes;
+- read-only permissions;
+- evidence requirements;
+- a defined join;
+- explicit handling of uncertainty.
+
+## Move noisy work off the main thread
+
+OpenAI’s subagent documentation identifies two common long-session problems: context pollution and context rot. A graph solves part of this by keeping exploration logs, test noise, and failed branches inside bounded agent threads while the lead retains requirements and decisions.
+
+But subagents are not free compression. Every subagent performs its own model and tool work. Use them when:
+
+- investigations can run independently;
+- each agent has a clear deliverable;
+- the summary is materially smaller than the raw work;
+- time saved or evidence diversity justifies the tokens.
+
+Do not spawn three agents to read the same five-line function.
+
+## Use worktrees for parallel writers
+
+If agents must write in parallel, give each mutable branch a separate worktree or exclusive file boundary.
+
+```text
+issue/spec
+  ├─ worktree A: API implementation
+  ├─ worktree B: migration + fixtures
+  └─ worktree C: independent tests
+          ↓
+      integration branch
+          ↓
+     read-only verifier
+```
+
+The merge is its own node. It must:
+
+- update from the integration base;
+- detect overlapping changes;
+- run the complete verification suite;
+- preserve each branch’s evidence;
+- reject or repair conflicts deliberately;
+- produce one reviewable diff.
+
+Parallelism is safe when ownership is exclusive and the join is explicit.
+
+## Design `AGENTS.md` as context, not policy theater
+
+Codex reads layered `AGENTS.md` files from global scope through the repository path. Files closer to the current working directory override earlier guidance.
+
+Use the root file for stable working agreements:
+
+```md
+# Repository operating contract
+
+## Architecture
+- `apps/web` may import from `packages/*`; packages must not import from apps.
+- Database changes require a backward-compatible migration.
+
+## Verification
+- Run targeted tests after each bounded change.
+- Run `pnpm lint && pnpm typecheck && pnpm test` before final handoff.
+- Report every skipped or unavailable check.
+
+## Parallel work
+- Delegate independent read-heavy investigation when useful.
+- One agent owns a mutable artifact at a time.
+- Use an isolated worktree for parallel implementation.
+
+## Authority
+- Do not publish, deploy, message users, or change secrets without approval.
+```
+
+Use nested `AGENTS.md` or `AGENTS.override.md` for service-specific constraints. Do not turn the root file into a complete handbook; point to authoritative references or Skills.
+
+## Skills are node implementations
+
+OpenAI describes Skills as reusable workflow packages containing a required `SKILL.md` and optional scripts, references, assets, and agent metadata. Codex uses progressive disclosure: it sees names and descriptions first, then loads the full instructions only when selected.
+
+A repository Skill belongs in `.agents/skills/<name>/`.
+
+Example:
+
+```md
+---
+name: verified-implementation
+description: Implement a bounded repository change when acceptance criteria and target scope are known; do not use for open-ended product discovery.
+---
+
+# Inputs
+- accepted task specification
+- target files or subsystem
+- required checks
+
+# Method
+1. Restate the terminal behavior and non-goals.
+2. Inspect the smallest relevant code path.
+3. Create a checkpoint and bounded implementation plan.
+4. Make the smallest coherent change.
+5. Run targeted checks, then repository-required checks.
+6. Review the diff in read-only mode.
+
+# Output
+- changed files
+- behavior implemented
+- checks run with results
+- unresolved risks
+- recovery/revert note
+
+# Invariants
+- never weaken tests to make the change pass
+- never cross the declared mutable scope without reporting it
+- never claim a check ran when it did not
+```
+
+This Skill can implement a node consistently across CLI, IDE, and desktop. The graph still decides when the node runs and what can follow it.
+
+## Programmatic graph: Codex SDK
+
+Use the [Codex SDK](https://developers.openai.com/codex/codex-sdk) when a server-side application or CI job needs to start, continue, and resume coding threads.
+
+The TypeScript SDK’s basic shape is:
+
+```ts
+import { Codex } from "@openai/codex-sdk"
+
+const codex = new Codex()
+const thread = codex.startThread()
+
+const plan = await thread.run(
+  "Make a plan to diagnose and fix the CI failures. Do not edit yet.",
+)
+
+const implementation = await thread.run(
+  "Implement the accepted plan and run the targeted checks.",
+)
+
+console.log(implementation.finalResponse)
+```
+
+The Python SDK exposes explicit sandbox presets, which makes a clean create–review control edge possible:
+
+```python
+from openai_codex import Codex, Sandbox
+
+with Codex() as codex:
+    thread = codex.thread_start(sandbox=Sandbox.workspace_write)
+    change = thread.run("Implement the accepted change and run targeted tests.")
+
+    review = thread.run(
+        "Review the final diff only. Report unsupported claims and missing checks.",
+        sandbox=Sandbox.read_only,
+    )
+
+    print(review.final_response)
+```
+
+This is not yet a durable delivery graph. It is a programmatically controlled Codex thread with explicit permission changes.
+
+Add an external orchestrator when you need:
+
+- several threads in isolated worktrees;
+- durable events and timers;
+- retries after process failure;
+- human approval that resumes the same business run;
+- compensation for external effects;
+- organization-wide trace and policy.
+
+## Codex App Server versus Agents SDK
+
+Use **Codex App Server** when you are building a rich Codex client and need authentication, history, approvals, and streamed agent events. It is the interface behind rich Codex clients and supports a bidirectional JSON-RPC protocol.
+
+Use the **OpenAI Agents SDK** to own the broader semantic agent system. It provides:
+
+- manager-owned agents-as-tools;
+- conversation-owning handoffs;
+- sessions;
+- tracing across model and tool calls;
+- guardrails;
+- human approval with serialized resumption.
+
+Then integrate Codex through a supported current boundary. For a new system, prefer the Codex SDK or App Server while OpenAI resolves the documentation mismatch around the deprecated MCP server command. Treat this transport choice as versioned infrastructure, not an eternal architecture decision.
+
+Use the **Responses API directly** when your application should own every loop, route, branch, and state transition itself.
+
+None of these choices automatically supplies Temporal-style durable replay. Sessions preserve conversation state; they are not a substitute for a workflow event history.
+
+## Symphony: the issue-to-agent graph
+
+[OpenAI Symphony](https://github.com/openai/symphony) is a particularly useful architecture specification for repository-scale graph engineering.
+
+It continuously reads work from an issue tracker, creates an isolated workspace per issue, and runs a coding-agent session under in-repository `WORKFLOW.md` policy. It addresses four operational problems:
+
+1. issue execution becomes a repeatable daemon workflow;
+2. every issue gets workspace isolation;
+3. runtime policy is versioned with the repository;
+4. concurrent runs have enough observability to operate and debug.
+
+But preserve the boundary: Symphony is an engineering preview. Its reference implementation is prototype software, and the project recommends hardened implementations based on the specification. It is a scheduler/runner and tracker reader—not a universal distributed workflow engine.
+
+Use its specification as a design reference before placing its current implementation on a critical path.
+
+## A production delivery graph
+
+```text
+issue accepted
+    ↓
+spec validator
+    ↓
+workspace provisioner
+    ↓
+Codex explorer ──→ evidence artifact
+    ↓
+Codex implementer in isolated worktree
+    ↓
+deterministic tests + CI
+    ↓ fail                  ↓ pass
+bounded repair loop     read-only Codex review
+    ↓                         ↓
+security/policy gate → human merge approval → deploy workflow
+```
+
+Assign ownership by layer:
+
+| Responsibility | Owner |
+|---|---|
+| Repository reasoning and implementation | Codex thread |
+| Work decomposition | Lead Codex or external orchestrator |
+| Workspace isolation | Worktree/container provisioner |
+| Task and business state | Issue tracker + durable workflow store |
+| Correctness evidence | Tests, CI, coverage, artifacts |
+| Semantic review | Read-only reviewer agent |
+| Permission and release | Policy code + authorized human |
+| Trace and cost | Agents SDK/App Server traces + workflow telemetry |
+
+## The context graph
+
+Codex should retrieve repository context through explicit routes:
+
+- issue and accepted specification;
+- relevant `AGENTS.md` chain;
+- matching Skills;
+- code search and symbol relationships;
+- Git history and architectural decisions;
+- tests and prior incidents;
+- external tools through MCP only when needed.
+
+OpenAI’s Skills implementation deliberately limits initial skill metadata to a small context budget, then loads full instructions on demand. Preserve that principle across the system: the node should receive the smallest authoritative context that lets it act safely.
+
+## The control graph
+
+Codex offers strong control primitives, but use them intentionally:
+
+- start exploration and review in read-only mode;
+- use workspace-write only for the bounded implementation node;
+- keep full access exceptional;
+- require approval for boundary crossings;
+- use auto-review only as a reviewer swap, not as a permission grant;
+- keep writable roots narrow;
+- pin source commit and graph version in the run state;
+- make tests and artifact checks deterministic;
+- make deploy, publish, message, and secret changes separate approval nodes.
+
+An agent can recommend a permission escalation. It should not redefine the sandbox that judges the request.
+
+## New Skills I would build first
+
+1. **repository-graph-map** — maps entry points, ownership, dependencies, tests, and change risk.
+2. **exclusive-work-packet** — produces a worktree-safe task with explicit mutable scope.
+3. **verified-implementation** — plans, edits, tests, and reports a bounded change.
+4. **diff-falsifier** — read-only adversarial review with evidence and reproduction steps.
+5. **integration-merge** — combines worktrees, detects overlaps, and runs full checks.
+6. **checkpoint-handoff** — records thread ID, commit, graph version, artifacts, open risks, and next safe action.
+7. **release-proof** — assembles CI, review, security, and product acceptance evidence.
+8. **incident-replay** — reconstructs the path from issue to deployed artifact.
+
+Package them as a plugin only when distribution across projects or connected tools is needed. Keep a Skill focused on one reusable job.
+
+## Failure drills
+
+Before increasing agent count, rehearse:
+
+- a subagent returns no useful result;
+- two worktrees change the same interface;
+- CI passes targeted tests but fails integration;
+- the source branch moves during review;
+- a thread resumes against a different repository state;
+- a retrieved issue contains prompt injection;
+- a model requests broader network or filesystem access;
+- an approval expires while state changes;
+- a retry would duplicate a side effect.
+
+The system should fail into a named state: retryable, repairable, stale, rejected, or human-reviewable. “Ask Codex again” is not a recovery model.
+
+## The recommended FrankX stack
+
+For a TypeScript-first portfolio:
+
+- **Codex** for code exploration, implementation, and bounded review nodes;
+- **Codex subagents + worktrees** for genuinely separable repository work;
+- **Skills + `AGENTS.md`** for reusable procedures and scoped context;
+- **Codex SDK** for CI and internal coding automation;
+- **App Server** for rich client integrations;
+- **OpenAI Agents SDK JS** when coding is one specialist inside a broader agent product;
+- **GitHub Agentic Workflows (public preview) or Symphony-style supervision** for repository events;
+- **Temporal** when time, failure, approvals, and business state require durable ownership.
+
+That architecture lets Codex become more capable without forcing it to become the scheduler, database, policy engine, and auditor of its own work.
+
+## Verification receipt
+
+I cross-checked the TypeScript and Python examples against the current Codex SDK documentation and reviewed the App Server, subagent, Skills, worktree, and changelog pages on August 24. That same-day changelog deprecated `codex mcp-server` while one composition page still referenced it, so this guide records the mismatch instead of presenting the older transport as settled architecture. The examples demonstrate interface shape; your pinned package remains the executable authority.
+
+## FAQ
+
+### Does Codex have a graph workflow engine?
+
+Codex exposes subagents, threads, Skills, SDK integration and worktree-friendly execution. Those are useful graph primitives, but durable authority still belongs in repository contracts, CI, approvals and—when required—a workflow runtime.
+
+### When should Codex use subagents?
+
+Use them for separable repository exploration, independent review, test analysis and bounded implementation in isolated worktrees. Parallel write-heavy work against the same interfaces usually creates more merge risk than speed.
+
+### What is the role of AGENTS.md?
+
+AGENTS.md gives Codex scoped repository context and operating instructions. It is not a workflow history, database or security boundary. Tests, sandboxes, approval policy and branch protection enforce consequences.
+
+### When should I use the Codex SDK?
+
+Use the Codex SDK for programmatic jobs, internal tools and CI. Use Codex App Server for rich clients that need authentication, history, approval and streamed event integration.
+
+### Does an Agents SDK session replace a durable workflow?
+
+No. A session can preserve conversation state. It does not by itself supply durable timers, replay-safe activities, idempotent side effects, compensation or a business-process event history.
+
+## Official sources
+
+- [Codex subagents](https://developers.openai.com/codex/agent-configuration/subagents)
+- [Codex customization overview](https://developers.openai.com/codex/customization/overview)
+- [Custom instructions with AGENTS.md](https://developers.openai.com/codex/agent-configuration/agents-md)
+- [Build Codex Skills](https://developers.openai.com/codex/build-skills)
+- [Codex Git worktrees](https://developers.openai.com/codex/git-worktrees)
+- [Codex SDK](https://developers.openai.com/codex/codex-sdk)
+- [Codex App Server](https://developers.openai.com/codex/app-server)
+- [Codex changelog](https://developers.openai.com/codex/changelog)
+- [Codex CLI](https://developers.openai.com/codex/cli)
+- [OpenAI Agents SDK orchestration](https://openai.github.io/openai-agents-js/guides/agents/#orchestration)
+- [OpenAI Agents SDK human approval](https://openai.github.io/openai-agents-js/guides/human-in-the-loop/)
+- [OpenAI Agents SDK tracing](https://openai.github.io/openai-agents-js/guides/tracing/)
+- [OpenAI Symphony](https://github.com/openai/symphony)
+- [Symphony specification](https://github.com/openai/symphony/blob/main/SPEC.md)
+- [OpenAI: Harness engineering](https://openai.com/index/harness-engineering/)
