@@ -3,6 +3,7 @@
 import Link from 'next/link'
 
 import { EmailSignup } from '@/components/email-signup'
+import { trackEvent } from '@/lib/analytics'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -242,6 +243,42 @@ export default function AIArchitectAcademyPage() {
               Comprehensive skills, documented patterns, and {learningPathPreviews.length} curriculum
               previews from an enterprise AI architect.
             </motion.p>
+
+            {/*
+              Three surfaces cover this subject and none of them said how they
+              relate, so a reader landing on any one of them could not tell
+              whether the other two were the same thing. Curriculum here,
+              reference there, verdict on the third.
+            */}
+            <p className="mb-8 max-w-2xl leading-relaxed text-slate-500">
+              This page is the curriculum.{' '}
+              <Link
+                href="/ai-architecture"
+                onClick={() =>
+                  trackEvent('ai_architecture_cta_opened', {
+                    destination: 'field_guide',
+                    placement: 'academy_orientation',
+                  })
+                }
+                className="rounded-sm text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              >
+                The field guide
+              </Link>{' '}
+              is the reference — seven planes and the operating boundaries between them.{' '}
+              <Link
+                href="/ai-architect"
+                onClick={() =>
+                  trackEvent('ai_architecture_cta_opened', {
+                    destination: 'ai_architect',
+                    placement: 'academy_orientation',
+                  })
+                }
+                className="rounded-sm text-slate-300 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              >
+                The architecture review
+              </Link>{' '}
+              applies four concrete checks to a system you already have.
+            </p>
 
             {/* Tech badges */}
             <motion.div
