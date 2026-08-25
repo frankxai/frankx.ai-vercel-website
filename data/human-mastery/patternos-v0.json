@@ -1,10 +1,38 @@
 {
   "metadata": {
-    "version": "0.1.0",
+    "version": "0.2.0",
     "status": "draft",
-    "updated": "2026-08-16",
+    "updated": "2026-08-25",
     "canonicalNamespace": "HMP",
-    "practitionerBoundary": "Practitioner and creator media may generate hypotheses, examples, or drills, but it is never the sole research anchor for a PatternOS claim."
+    "practitionerBoundary": "Practitioner and creator media may generate hypotheses, examples, or drills, but it is never the sole research anchor for a PatternOS claim.",
+    "provenance": {
+      "repository": "https://github.com/frankxai/frankx.ai-vercel-website",
+      "pullRequest": "https://github.com/frankxai/frankx.ai-vercel-website/pull/484",
+      "generation": {
+        "method": "AI-assisted structured synthesis",
+        "generator": "OpenAI Codex",
+        "firstCommit": "349e18cc22163bf0b5855b82a2502cf4044642ba",
+        "recordedAt": "2026-08-16"
+      },
+      "repair": {
+        "method": "Bounded schema, evidence-location, and provenance hardening",
+        "generator": "OpenAI Codex",
+        "inputCommit": "96b3aed71c5047b50dc59b8514f2d00d4ae87346",
+        "recordedAt": "2026-08-25"
+      },
+      "curation": {
+        "status": "pending",
+        "actor": null,
+        "requiredRole": "human research curator",
+        "note": "No machine-verifiable human-curation receipt is present; public claim use remains held."
+      },
+      "review": {
+        "status": "pending",
+        "actor": null,
+        "requiredRole": "independent research and rights reviewer",
+        "note": "No independent human review receipt is present; public claim use remains held."
+      }
+    }
   },
   "capabilityPlanes": [
     {
@@ -148,30 +176,102 @@
   ],
   "passportScales": {
     "evidence": [
-      { "code": "E0", "label": "Unverified", "definition": "Unsourced idea or hypothesis with no external evidence anchor." },
-      { "code": "E1", "label": "Preliminary", "definition": "Practitioner account, case, expert description, correlational signal, or early research." },
-      { "code": "E2", "label": "Supported", "definition": "A relevant peer-reviewed study or coherent but bounded body of evidence." },
-      { "code": "E3", "label": "Synthesized", "definition": "A systematic review, meta-analysis, replicated program, validated construct, or recognized standard." },
-      { "code": "E4", "label": "Convergent", "definition": "Multiple high-quality syntheses or standards converge and material counterevidence is addressed." }
+      {
+        "code": "E0",
+        "label": "Unverified",
+        "definition": "Unsourced idea or hypothesis with no external evidence anchor."
+      },
+      {
+        "code": "E1",
+        "label": "Preliminary",
+        "definition": "Practitioner account, case, expert description, correlational signal, or early research."
+      },
+      {
+        "code": "E2",
+        "label": "Supported",
+        "definition": "A relevant peer-reviewed study or coherent but bounded body of evidence."
+      },
+      {
+        "code": "E3",
+        "label": "Synthesized",
+        "definition": "A systematic review, meta-analysis, replicated program, validated construct, or recognized standard."
+      },
+      {
+        "code": "E4",
+        "label": "Convergent",
+        "definition": "Multiple high-quality syntheses or standards converge and material counterevidence is addressed."
+      }
     ],
     "field": [
-      { "code": "F0", "label": "Untested", "definition": "No PatternOS field observation has been recorded." },
-      { "code": "F1", "label": "Observed once", "definition": "One dated use or anecdotal outcome has been recorded with caveats." },
-      { "code": "F2", "label": "Repeated", "definition": "Repeated use in one context has been recorded without a credible comparison." },
-      { "code": "F3", "label": "Instrumented", "definition": "Predeclared measures exist across multiple teams, cohorts, or comparable contexts." },
-      { "code": "F4", "label": "Longitudinal", "definition": "Comparative or longitudinal outcomes and adverse cases have independent review." }
+      {
+        "code": "F0",
+        "label": "Untested",
+        "definition": "No PatternOS field observation has been recorded."
+      },
+      {
+        "code": "F1",
+        "label": "Observed once",
+        "definition": "One dated use or anecdotal outcome has been recorded with caveats."
+      },
+      {
+        "code": "F2",
+        "label": "Repeated",
+        "definition": "Repeated use in one context has been recorded without a credible comparison."
+      },
+      {
+        "code": "F3",
+        "label": "Instrumented",
+        "definition": "Predeclared measures exist across multiple teams, cohorts, or comparable contexts."
+      },
+      {
+        "code": "F4",
+        "label": "Longitudinal",
+        "definition": "Comparative or longitudinal outcomes and adverse cases have independent review."
+      }
     ],
     "transfer": [
-      { "code": "T0", "label": "Untested", "definition": "Transfer beyond the originating context has not been tested." },
-      { "code": "T1", "label": "Near", "definition": "The pattern has been tested in a closely similar task or population." },
-      { "code": "T2", "label": "Adjacent", "definition": "The invariant has been tested in adjacent domains or materially different teams." },
-      { "code": "T3", "label": "Distant", "definition": "The invariant has been tested in dissimilar domains including a human–AI workflow." }
+      {
+        "code": "T0",
+        "label": "Untested",
+        "definition": "Transfer beyond the originating context has not been tested."
+      },
+      {
+        "code": "T1",
+        "label": "Near",
+        "definition": "The pattern has been tested in a closely similar task or population."
+      },
+      {
+        "code": "T2",
+        "label": "Adjacent",
+        "definition": "The invariant has been tested in adjacent domains or materially different teams."
+      },
+      {
+        "code": "T3",
+        "label": "Distant",
+        "definition": "The invariant has been tested in dissimilar domains including a human–AI workflow."
+      }
     ],
     "rights": [
-      { "code": "R-GREEN", "label": "Allowed in scope", "definition": "The recorded use is original, licensed, public-domain, or limited to lawful linking, embedding, or short attributed paraphrase." },
-      { "code": "R-RESTRICTED", "label": "Restricted", "definition": "Metadata and original commentary are allowed but reproduction or transformation is limited." },
-      { "code": "R-PERMISSION", "label": "Permission required", "definition": "The proposed excerpt, media, transcript, or adaptation needs documented permission." },
-      { "code": "R-PROHIBITED", "label": "Prohibited", "definition": "The proposed use is disallowed, unsafe, or incompatible with its license." }
+      {
+        "code": "R-GREEN",
+        "label": "Allowed in scope",
+        "definition": "The recorded use is original, licensed, public-domain, or limited to lawful linking, embedding, or short attributed paraphrase."
+      },
+      {
+        "code": "R-RESTRICTED",
+        "label": "Restricted",
+        "definition": "Metadata and original commentary are allowed but reproduction or transformation is limited."
+      },
+      {
+        "code": "R-PERMISSION",
+        "label": "Permission required",
+        "definition": "The proposed excerpt, media, transcript, or adaptation needs documented permission."
+      },
+      {
+        "code": "R-PROHIBITED",
+        "label": "Prohibited",
+        "definition": "The proposed use is disallowed, unsafe, or incompatible with its license."
+      }
     ]
   },
   "patterns": [
@@ -180,25 +280,100 @@
       "slug": "divergence-evaluation-convergence",
       "title": "Divergence → evaluation → convergence",
       "summary": "Generate meaningfully different options before applying criteria, then commit to a bounded next move.",
-      "planes": ["HMP-CAP-003", "HMP-CAP-004", "HMP-CAP-005"],
-      "contexts": ["creative problem solving", "product design", "workshop facilitation", "campaign concepts", "operational recovery"],
-      "triggerSignals": ["The first acceptable idea is becoming the plan", "Criticism starts while options are still being generated", "The option set differs only cosmetically"],
+      "planes": [
+        "HMP-CAP-003",
+        "HMP-CAP-004",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "creative problem solving",
+        "product design",
+        "workshop facilitation",
+        "campaign concepts",
+        "operational recovery"
+      ],
+      "triggerSignals": [
+        "The first acceptable idea is becoming the plan",
+        "Criticism starts while options are still being generated",
+        "The option set differs only cosmetically"
+      ],
       "invariant": "Option quality benefits when generation is protected from premature evaluation and convergence uses explicit criteria rather than social momentum.",
-      "humanMoves": ["Frame the problem and non-negotiable constraints", "Timebox independent and group generation", "Approve criteria before scoring", "Own the final trade-off and commitment"],
-      "aiMoves": ["Produce structurally distinct options after independent human generation", "Label dimensions of difference", "Stress-test options against approved criteria", "Surface missing stakeholder or failure perspectives"],
+      "humanMoves": [
+        "Frame the problem and non-negotiable constraints",
+        "Timebox independent and group generation",
+        "Approve criteria before scoring",
+        "Own the final trade-off and commitment"
+      ],
+      "aiMoves": [
+        "Produce structurally distinct options after independent human generation",
+        "Label dimensions of difference",
+        "Stress-test options against approved criteria",
+        "Surface missing stakeholder or failure perspectives"
+      ],
       "authority": {
-        "humanOwns": ["Problem framing", "Values and constraints", "Final selection and accountability"],
-        "aiMay": ["Expand option diversity", "Apply a scoring rubric", "Generate counterexamples"],
-        "aiMustNot": ["Choose hidden criteria", "Declare one option objectively best", "Execute an irreversible choice"]
+        "humanOwns": [
+          "Problem framing",
+          "Values and constraints",
+          "Final selection and accountability"
+        ],
+        "aiMay": [
+          "Expand option diversity",
+          "Apply a scoring rubric",
+          "Generate counterexamples"
+        ],
+        "aiMustNot": [
+          "Choose hidden criteria",
+          "Declare one option objectively best",
+          "Execute an irreversible choice"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-011", "claim": "Interactive brainstorming can incur production blocking and evaluation effects.", "scope": "The meta-analysis concerns group idea generation, not every collaborative creative task." },
-        { "sourceId": "HMP-SRC-016", "claim": "Creativity training can improve relevant outcomes across studied programs.", "scope": "Effects vary by training design, outcome measure, population, and follow-up." }
+        {
+          "sourceId": "HMP-SRC-011",
+          "claim": "Interactive brainstorming can incur production blocking and evaluation effects.",
+          "scope": "The meta-analysis concerns group idea generation, not every collaborative creative task.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-016",
+          "claim": "Creativity training can improve relevant outcomes across studied programs.",
+          "scope": "Effects vary by training design, outcome measure, population, and follow-up.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Count of structurally distinct options", "Time to explicit decision", "Criterion coverage", "Post-test option revision"],
-      "failureModes": ["Performative idea volume", "Criteria introduced after a favored idea appears", "Endless divergence without commitment"],
-      "recovery": ["Restate the decision and constraints", "Cluster duplicates by underlying mechanism", "Lock criteria and force a timeboxed selection"],
-      "passport": { "evidence": "E3", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original synthesis with attributed links and paraphrases." },
+      "metrics": [
+        "Count of structurally distinct options",
+        "Time to explicit decision",
+        "Criterion coverage",
+        "Post-test option revision"
+      ],
+      "failureModes": [
+        "Performative idea volume",
+        "Criteria introduced after a favored idea appears",
+        "Endless divergence without commitment"
+      ],
+      "recovery": [
+        "Restate the decision and constraints",
+        "Cluster duplicates by underlying mechanism",
+        "Lock criteria and force a timeboxed selection"
+      ],
+      "passport": {
+        "evidence": "E3",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original synthesis with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Compare independent-first and open-group generation on option diversity and selected-option quality in three workshop contexts."
     },
@@ -207,25 +382,98 @@
       "slug": "independent-generation-before-synthesis",
       "title": "Independent generation before synthesis",
       "summary": "Capture independent human and model perspectives before exposure to a shared draft, then synthesize differences explicitly.",
-      "planes": ["HMP-CAP-003", "HMP-CAP-004", "HMP-CAP-005"],
-      "contexts": ["human–AI ideation", "team decisions", "strategy", "research synthesis", "design critique"],
-      "triggerSignals": ["Everyone is editing the same first draft", "Later contributions echo the model's framing", "Agreement rises while option diversity collapses"],
+      "planes": [
+        "HMP-CAP-003",
+        "HMP-CAP-004",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "human–AI ideation",
+        "team decisions",
+        "strategy",
+        "research synthesis",
+        "design critique"
+      ],
+      "triggerSignals": [
+        "Everyone is editing the same first draft",
+        "Later contributions echo the model's framing",
+        "Agreement rises while option diversity collapses"
+      ],
       "invariant": "Independent representations preserve information and option diversity that can be lost when contributors anchor on the first shared answer.",
-      "humanMoves": ["Record an unaided view before opening model output", "Ask contributors to state assumptions and confidence", "Compare disagreements before synthesis"],
-      "aiMoves": ["Generate its answer without seeing the human draft when feasible", "Cluster overlaps and conflicts after reveal", "Identify lost alternatives and common assumptions"],
+      "humanMoves": [
+        "Record an unaided view before opening model output",
+        "Ask contributors to state assumptions and confidence",
+        "Compare disagreements before synthesis"
+      ],
+      "aiMoves": [
+        "Generate its answer without seeing the human draft when feasible",
+        "Cluster overlaps and conflicts after reveal",
+        "Identify lost alternatives and common assumptions"
+      ],
       "authority": {
-        "humanOwns": ["Whether independence is material", "Disclosure of relevant expertise", "Synthesis and final decision"],
-        "aiMay": ["Generate a blind candidate set", "Compare answer structures", "Flag convergence and omitted options"],
-        "aiMustNot": ["Present consensus as correctness", "Overwrite minority evidence", "Infer private beliefs from disagreement"]
+        "humanOwns": [
+          "Whether independence is material",
+          "Disclosure of relevant expertise",
+          "Synthesis and final decision"
+        ],
+        "aiMay": [
+          "Generate a blind candidate set",
+          "Compare answer structures",
+          "Flag convergence and omitted options"
+        ],
+        "aiMustNot": [
+          "Present consensus as correctness",
+          "Overwrite minority evidence",
+          "Infer private beliefs from disagreement"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-011", "claim": "Nominal or independent generation can avoid some losses found in interacting groups.", "scope": "Results are strongest for idea generation and do not imply that interaction is generally harmful." },
-        { "sourceId": "HMP-SRC-017", "claim": "Generative AI can raise individual creative output while reducing aggregate novelty among outputs.", "scope": "The reported task and model setting do not establish the effect for all creative or team work." }
+        {
+          "sourceId": "HMP-SRC-011",
+          "claim": "Nominal or independent generation can avoid some losses found in interacting groups.",
+          "scope": "Results are strongest for idea generation and do not imply that interaction is generally harmful.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-017",
+          "claim": "Generative AI can raise individual creative output while reducing aggregate novelty among outputs.",
+          "scope": "The reported task and model setting do not establish the effect for all creative or team work.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Unique assumptions before reveal", "Semantic diversity of option set", "Minority evidence retained", "Decision accuracy or usefulness"],
-      "failureModes": ["Fake independence after seeing a shared prompt answer", "Excessive duplication cost", "Synthesis that averages away a decisive minority signal"],
-      "recovery": ["Run a fresh blind second pass", "Assign a counter-position explicitly", "Preserve unresolved differences in the decision record"],
-      "passport": { "evidence": "E2", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original synthesis with attributed links and paraphrases." },
+      "metrics": [
+        "Unique assumptions before reveal",
+        "Semantic diversity of option set",
+        "Minority evidence retained",
+        "Decision accuracy or usefulness"
+      ],
+      "failureModes": [
+        "Fake independence after seeing a shared prompt answer",
+        "Excessive duplication cost",
+        "Synthesis that averages away a decisive minority signal"
+      ],
+      "recovery": [
+        "Run a fresh blind second pass",
+        "Assign a counter-position explicitly",
+        "Preserve unresolved differences in the decision record"
+      ],
+      "passport": {
+        "evidence": "E2",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original synthesis with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "A/B test shared-first and independent-first human–AI sessions for novelty, decision quality, time, and confidence calibration."
     },
@@ -234,24 +482,88 @@
       "slug": "compare-contrasting-cases",
       "title": "Compare contrasting cases",
       "summary": "Align two or more cases around structural relations so the invariant and its boundary conditions become explicit.",
-      "planes": ["HMP-CAP-001", "HMP-CAP-003", "HMP-CAP-005"],
-      "contexts": ["learning", "pattern recognition", "case review", "design", "sales discovery", "AI architecture"],
-      "triggerSignals": ["A lesson is stored as a single vivid example", "Similarity is based on surface features", "A playbook is copied into a context with different constraints"],
+      "planes": [
+        "HMP-CAP-001",
+        "HMP-CAP-003",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "learning",
+        "pattern recognition",
+        "case review",
+        "design",
+        "sales discovery",
+        "AI architecture"
+      ],
+      "triggerSignals": [
+        "A lesson is stored as a single vivid example",
+        "Similarity is based on surface features",
+        "A playbook is copied into a context with different constraints"
+      ],
       "invariant": "Explicit comparison of relational structure can support abstraction and transfer better than treating examples as isolated stories.",
-      "humanMoves": ["Select a success, failure, and near miss", "Align actors, constraints, actions, and outcomes", "Name both invariant and disconfirming difference"],
-      "aiMoves": ["Normalize cases into the same schema", "Propose structural correspondences", "Search for a counterexample and missing boundary"],
+      "humanMoves": [
+        "Select a success, failure, and near miss",
+        "Align actors, constraints, actions, and outcomes",
+        "Name both invariant and disconfirming difference"
+      ],
+      "aiMoves": [
+        "Normalize cases into the same schema",
+        "Propose structural correspondences",
+        "Search for a counterexample and missing boundary"
+      ],
       "authority": {
-        "humanOwns": ["Case validity", "Context-specific meaning", "Acceptance of the proposed invariant"],
-        "aiMay": ["Extract comparable features", "Suggest analogies", "Challenge surface-level matches"],
-        "aiMustNot": ["Invent absent case facts", "Treat resemblance as causation", "Hide contradictions to strengthen a pattern"]
+        "humanOwns": [
+          "Case validity",
+          "Context-specific meaning",
+          "Acceptance of the proposed invariant"
+        ],
+        "aiMay": [
+          "Extract comparable features",
+          "Suggest analogies",
+          "Challenge surface-level matches"
+        ],
+        "aiMustNot": [
+          "Invent absent case facts",
+          "Treat resemblance as causation",
+          "Hide contradictions to strengthen a pattern"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-002", "claim": "Comparison can promote relational abstraction and transfer in studied learning tasks.", "scope": "Benefits depend on alignable cases and instructional conditions; transfer is not automatic." }
+        {
+          "sourceId": "HMP-SRC-002",
+          "claim": "Comparison can promote relational abstraction and transfer in studied learning tasks.",
+          "scope": "Benefits depend on alignable cases and instructional conditions; transfer is not automatic.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Number of relational rather than surface correspondences", "Boundary conditions named", "Performance on a novel transfer case", "Counterexamples retained"],
-      "failureModes": ["Cherry-picked cases", "Analogy based on vocabulary rather than mechanism", "One invariant stretched across incompatible environments"],
-      "recovery": ["Add a near-miss or failure case", "Rewrite the comparison using roles and causal relations", "Reduce the claim to the smallest common structure"],
-      "passport": { "evidence": "E3", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original synthesis with attributed links and paraphrases." },
+      "metrics": [
+        "Number of relational rather than surface correspondences",
+        "Boundary conditions named",
+        "Performance on a novel transfer case",
+        "Counterexamples retained"
+      ],
+      "failureModes": [
+        "Cherry-picked cases",
+        "Analogy based on vocabulary rather than mechanism",
+        "One invariant stretched across incompatible environments"
+      ],
+      "recovery": [
+        "Add a near-miss or failure case",
+        "Rewrite the comparison using roles and causal relations",
+        "Reduce the claim to the smallest common structure"
+      ],
+      "passport": {
+        "evidence": "E3",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original synthesis with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Test structural comparison against single-case review on a delayed transfer task spanning design, facilitation, and AI architecture."
     },
@@ -260,25 +572,99 @@
       "slug": "prediction-before-feedback",
       "title": "Prediction before feedback",
       "summary": "Record an outcome and confidence before revealing feedback so surprise can drive correction instead of hindsight.",
-      "planes": ["HMP-CAP-001", "HMP-CAP-003", "HMP-CAP-005"],
-      "contexts": ["learning", "forecasting", "experimentation", "sales calls", "operations", "AI evaluation"],
-      "triggerSignals": ["Rationales appear only after results", "Confidence is discussed without a probability or criterion", "The team cannot say what result would change its mind"],
+      "planes": [
+        "HMP-CAP-001",
+        "HMP-CAP-003",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "learning",
+        "forecasting",
+        "experimentation",
+        "sales calls",
+        "operations",
+        "AI evaluation"
+      ],
+      "triggerSignals": [
+        "Rationales appear only after results",
+        "Confidence is discussed without a probability or criterion",
+        "The team cannot say what result would change its mind"
+      ],
       "invariant": "A timestamped prediction creates a comparison point that makes error, calibration, and revision observable.",
-      "humanMoves": ["State the predicted outcome, probability, and decision threshold", "Name what would falsify the hypothesis", "Compare prediction and result before explaining"],
-      "aiMoves": ["Prompt for missing assumptions", "Score calibration over repeated predictions", "Generate alternative explanations after the error is visible"],
+      "humanMoves": [
+        "State the predicted outcome, probability, and decision threshold",
+        "Name what would falsify the hypothesis",
+        "Compare prediction and result before explaining"
+      ],
+      "aiMoves": [
+        "Prompt for missing assumptions",
+        "Score calibration over repeated predictions",
+        "Generate alternative explanations after the error is visible"
+      ],
       "authority": {
-        "humanOwns": ["Decision stakes", "Thresholds and utility", "Revision after evidence"],
-        "aiMay": ["Timestamp predictions", "Calculate calibration measures", "Surface contradictory observations"],
-        "aiMustNot": ["Rewrite the precommitment", "Optimize a metric by hiding adverse outcomes", "Convert confidence into certainty"]
+        "humanOwns": [
+          "Decision stakes",
+          "Thresholds and utility",
+          "Revision after evidence"
+        ],
+        "aiMay": [
+          "Timestamp predictions",
+          "Calculate calibration measures",
+          "Surface contradictory observations"
+        ],
+        "aiMustNot": [
+          "Rewrite the precommitment",
+          "Optimize a metric by hiding adverse outcomes",
+          "Convert confidence into certainty"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-007", "claim": "Practice testing and feedback are among the learning techniques with comparatively strong utility evidence.", "scope": "The review covers educational learning techniques, not every organizational forecast." },
-        { "sourceId": "HMP-SRC-015", "claim": "Structured forecasting practice and aggregation can improve probabilistic judgment in studied tournaments.", "scope": "Tournament performance does not guarantee accuracy in every domain or one-off decision." }
+        {
+          "sourceId": "HMP-SRC-007",
+          "claim": "Practice testing and feedback are among the learning techniques with comparatively strong utility evidence.",
+          "scope": "The review covers educational learning techniques, not every organizational forecast.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-015",
+          "claim": "Structured forecasting practice and aggregation can improve probabilistic judgment in studied tournaments.",
+          "scope": "Tournament performance does not guarantee accuracy in every domain or one-off decision.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Brier score or proper scoring rule", "Absolute prediction error", "Rate of belief revision", "Decision-threshold accuracy"],
-      "failureModes": ["Vague predictions that cannot be wrong", "Good-outcome bias", "Gaming the score with low-stakes forecasts"],
-      "recovery": ["Rewrite the outcome as a dated observable", "Separate probability from desirability", "Use base rates and a reference class before the next forecast"],
-      "passport": { "evidence": "E3", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original synthesis with attributed links and paraphrases." },
+      "metrics": [
+        "Brier score or proper scoring rule",
+        "Absolute prediction error",
+        "Rate of belief revision",
+        "Decision-threshold accuracy"
+      ],
+      "failureModes": [
+        "Vague predictions that cannot be wrong",
+        "Good-outcome bias",
+        "Gaming the score with low-stakes forecasts"
+      ],
+      "recovery": [
+        "Rewrite the outcome as a dated observable",
+        "Separate probability from desirability",
+        "Use base rates and a reference class before the next forecast"
+      ],
+      "passport": {
+        "evidence": "E3",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original synthesis with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Run a 30-decision calibration log and compare forecast error, revision latency, and decision quality against an unlogged baseline."
     },
@@ -287,25 +673,100 @@
       "slug": "bounded-autonomy-with-escalation",
       "title": "Bounded autonomy with escalation",
       "summary": "Delegate action inside explicit limits while making exceptions, uncertainty, and irreversible consequences easy to escalate.",
-      "planes": ["HMP-CAP-004", "HMP-CAP-005"],
-      "contexts": ["leadership", "operations", "human–AI teams", "customer support", "agentic workflows"],
-      "triggerSignals": ["Owners wait for permission on routine choices", "Agents act beyond the intended risk boundary", "Escalation happens only after irreversible harm"],
+      "planes": [
+        "HMP-CAP-004",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "leadership",
+        "operations",
+        "human–AI teams",
+        "customer support",
+        "agentic workflows"
+      ],
+      "triggerSignals": [
+        "Owners wait for permission on routine choices",
+        "Agents act beyond the intended risk boundary",
+        "Escalation happens only after irreversible harm"
+      ],
       "invariant": "Autonomy is safer and more useful when decision rights, reversible scope, stop conditions, and escalation paths are explicit before action.",
-      "humanMoves": ["Set purpose, constraints, budget, and protected values", "Define irreversible or high-impact actions", "Own exception handling and accountability"],
-      "aiMoves": ["Act within enumerated reversible bounds", "Expose uncertainty and policy conflicts", "Pause and package the exception for human review"],
+      "humanMoves": [
+        "Set purpose, constraints, budget, and protected values",
+        "Define irreversible or high-impact actions",
+        "Own exception handling and accountability"
+      ],
+      "aiMoves": [
+        "Act within enumerated reversible bounds",
+        "Expose uncertainty and policy conflicts",
+        "Pause and package the exception for human review"
+      ],
       "authority": {
-        "humanOwns": ["Values and consent", "Irreversible decisions", "Exception adjudication", "Accountability"],
-        "aiMay": ["Execute bounded reversible steps", "Monitor thresholds", "Prepare escalation context"],
-        "aiMustNot": ["Expand its own authority", "Suppress uncertainty", "Execute a prohibited or irreversible action"]
+        "humanOwns": [
+          "Values and consent",
+          "Irreversible decisions",
+          "Exception adjudication",
+          "Accountability"
+        ],
+        "aiMay": [
+          "Execute bounded reversible steps",
+          "Monitor thresholds",
+          "Prepare escalation context"
+        ],
+        "aiMustNot": [
+          "Expand its own authority",
+          "Suppress uncertainty",
+          "Execute a prohibited or irreversible action"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-013", "claim": "Team cognition and shared mental models are associated with coordination and performance.", "scope": "The meta-analysis does not validate this exact human–AI delegation protocol." },
-        { "sourceId": "HMP-SRC-021", "claim": "Human–AI performance depends on task and collaboration conditions rather than automation alone.", "scope": "The emerging synthesis is context dependent and does not establish universal complementarity." }
+        {
+          "sourceId": "HMP-SRC-013",
+          "claim": "Team cognition and shared mental models are associated with coordination and performance.",
+          "scope": "The meta-analysis does not validate this exact human–AI delegation protocol.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-021",
+          "claim": "Human–AI performance depends on task and collaboration conditions rather than automation alone.",
+          "scope": "The emerging synthesis is context dependent and does not establish universal complementarity.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Routine decisions completed without rework", "Exception capture rate", "Time from boundary signal to escalation", "Unauthorized irreversible actions"],
-      "failureModes": ["Vague authority language", "Escalation fatigue", "Model confidence treated as permission", "No named human owner"],
-      "recovery": ["Freeze the affected action class", "Narrow the reversible envelope", "Rewrite thresholds from the incident", "Require explicit human acknowledgement before resumption"],
-      "passport": { "evidence": "E2", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original protocol pattern with attributed links and paraphrases." },
+      "metrics": [
+        "Routine decisions completed without rework",
+        "Exception capture rate",
+        "Time from boundary signal to escalation",
+        "Unauthorized irreversible actions"
+      ],
+      "failureModes": [
+        "Vague authority language",
+        "Escalation fatigue",
+        "Model confidence treated as permission",
+        "No named human owner"
+      ],
+      "recovery": [
+        "Freeze the affected action class",
+        "Narrow the reversible envelope",
+        "Rewrite thresholds from the incident",
+        "Require explicit human acknowledgement before resumption"
+      ],
+      "passport": {
+        "evidence": "E2",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original protocol pattern with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Instrument one reversible agent workflow and compare completion time, escalation quality, and boundary violations across three authority configurations."
     },
@@ -314,25 +775,98 @@
       "slug": "proposer-critic-judge-separation",
       "title": "Proposer–critic–judge separation",
       "summary": "Separate option production, adversarial review, and accountable selection so one voice does not define both answer and standard.",
-      "planes": ["HMP-CAP-003", "HMP-CAP-004", "HMP-CAP-005"],
-      "contexts": ["human–AI decisions", "editorial review", "design critique", "strategy", "risk review"],
-      "triggerSignals": ["The author grades its own proposal", "Critique is softened by social hierarchy", "The model's rationale is accepted as independent verification"],
+      "planes": [
+        "HMP-CAP-003",
+        "HMP-CAP-004",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "human–AI decisions",
+        "editorial review",
+        "design critique",
+        "strategy",
+        "risk review"
+      ],
+      "triggerSignals": [
+        "The author grades its own proposal",
+        "Critique is softened by social hierarchy",
+        "The model's rationale is accepted as independent verification"
+      ],
       "invariant": "Role separation makes criteria and disagreement more visible, but independence and final accountability must be real rather than theatrical.",
-      "humanMoves": ["Approve evaluation criteria before proposals are scored", "Assign an empowered critic", "Judge trade-offs and document the decision"],
-      "aiMoves": ["Propose candidates", "Run a separate critique against fixed criteria", "Produce a comparison that preserves unresolved uncertainty"],
+      "humanMoves": [
+        "Approve evaluation criteria before proposals are scored",
+        "Assign an empowered critic",
+        "Judge trade-offs and document the decision"
+      ],
+      "aiMoves": [
+        "Propose candidates",
+        "Run a separate critique against fixed criteria",
+        "Produce a comparison that preserves unresolved uncertainty"
+      ],
       "authority": {
-        "humanOwns": ["Criteria", "Conflict resolution", "Final decision and accountability"],
-        "aiMay": ["Fill proposer or critic roles", "Search for failure cases", "Summarize differences"],
-        "aiMustNot": ["Impersonate independent review when context is shared", "Select consequential values", "Erase dissent after judgment"]
+        "humanOwns": [
+          "Criteria",
+          "Conflict resolution",
+          "Final decision and accountability"
+        ],
+        "aiMay": [
+          "Fill proposer or critic roles",
+          "Search for failure cases",
+          "Summarize differences"
+        ],
+        "aiMustNot": [
+          "Impersonate independent review when context is shared",
+          "Select consequential values",
+          "Erase dissent after judgment"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-011", "claim": "Group production and evaluation dynamics can reduce performance in idea-generation settings.", "scope": "This is indirect support for role separation, not a direct validation of the full protocol." },
-        { "sourceId": "HMP-SRC-017", "claim": "Shared generative systems can increase individual output while narrowing collective diversity.", "scope": "Effects may differ by model, prompt, expertise, and task; separation is a testable response." }
+        {
+          "sourceId": "HMP-SRC-011",
+          "claim": "Group production and evaluation dynamics can reduce performance in idea-generation settings.",
+          "scope": "This is indirect support for role separation, not a direct validation of the full protocol.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-017",
+          "claim": "Shared generative systems can increase individual output while narrowing collective diversity.",
+          "scope": "Effects may differ by model, prompt, expertise, and task; separation is a testable response.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Critical issues found before commitment", "Criterion changes after reveal", "Decision reversals after independent review", "Unresolved dissent recorded"],
-      "failureModes": ["Same prompt and context masquerading as independent agents", "Critic rewarded for negativity rather than discrimination", "Judge rubber-stamps the proposer"],
-      "recovery": ["Blind the critic to the preferred option", "Re-anchor critique to decision criteria", "Require the judge to state rejected evidence and residual risk"],
-      "passport": { "evidence": "E2", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original synthesis with attributed links and paraphrases." },
+      "metrics": [
+        "Critical issues found before commitment",
+        "Criterion changes after reveal",
+        "Decision reversals after independent review",
+        "Unresolved dissent recorded"
+      ],
+      "failureModes": [
+        "Same prompt and context masquerading as independent agents",
+        "Critic rewarded for negativity rather than discrimination",
+        "Judge rubber-stamps the proposer"
+      ],
+      "recovery": [
+        "Blind the critic to the preferred option",
+        "Re-anchor critique to decision criteria",
+        "Require the judge to state rejected evidence and residual risk"
+      ],
+      "passport": {
+        "evidence": "E2",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original synthesis with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Compare single-agent self-review with role-separated review on defect discovery, false alarms, and final decision quality."
     },
@@ -341,25 +875,98 @@
       "slug": "shared-model-brief-back",
       "title": "Shared-model brief-back",
       "summary": "Have each actor restate the goal, roles, constraints, triggers, and next move before coordinated execution begins.",
-      "planes": ["HMP-CAP-002", "HMP-CAP-004", "HMP-CAP-005"],
-      "contexts": ["team leadership", "workshops", "incident response", "sales handoff", "human–AI orchestration"],
-      "triggerSignals": ["People agree verbally but act on different goals", "Role boundaries are implicit", "A handoff loses constraints or success criteria"],
+      "planes": [
+        "HMP-CAP-002",
+        "HMP-CAP-004",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "team leadership",
+        "workshops",
+        "incident response",
+        "sales handoff",
+        "human–AI orchestration"
+      ],
+      "triggerSignals": [
+        "People agree verbally but act on different goals",
+        "Role boundaries are implicit",
+        "A handoff loses constraints or success criteria"
+      ],
       "invariant": "Coordination improves when actors expose and reconcile their working models of the task before action rather than assuming shared understanding.",
-      "humanMoves": ["State intent, roles, constraints, and success criteria", "Ask for a brief-back in the receiver's own words", "Resolve discrepancies before execution"],
-      "aiMoves": ["Render a role and dependency map", "Restate its instructions and uncertainty", "Flag conflicting constraints and missing owners"],
+      "humanMoves": [
+        "State intent, roles, constraints, and success criteria",
+        "Ask for a brief-back in the receiver's own words",
+        "Resolve discrepancies before execution"
+      ],
+      "aiMoves": [
+        "Render a role and dependency map",
+        "Restate its instructions and uncertainty",
+        "Flag conflicting constraints and missing owners"
+      ],
       "authority": {
-        "humanOwns": ["Shared intent", "Role assignment", "Resolution of conflicting priorities"],
-        "aiMay": ["Summarize the operating model", "Detect mismatches", "Maintain the live brief"],
-        "aiMustNot": ["Assume silence means agreement", "Invent authority", "Hide a constraint conflict"]
+        "humanOwns": [
+          "Shared intent",
+          "Role assignment",
+          "Resolution of conflicting priorities"
+        ],
+        "aiMay": [
+          "Summarize the operating model",
+          "Detect mismatches",
+          "Maintain the live brief"
+        ],
+        "aiMustNot": [
+          "Assume silence means agreement",
+          "Invent authority",
+          "Hide a constraint conflict"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-013", "claim": "Shared mental models are positively related to team process and performance across studies.", "scope": "Effects vary and the meta-analysis does not prescribe one universal briefing format." },
-        { "sourceId": "HMP-SRC-014", "claim": "Properly conducted debriefs are associated with improved individual and team performance.", "scope": "Debrief evidence supports structured reflection; this brief-back adds a pre-action coordination step." }
+        {
+          "sourceId": "HMP-SRC-013",
+          "claim": "Shared mental models are positively related to team process and performance across studies.",
+          "scope": "Effects vary and the meta-analysis does not prescribe one universal briefing format.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-014",
+          "claim": "Properly conducted debriefs are associated with improved individual and team performance.",
+          "scope": "Debrief evidence supports structured reflection; this brief-back adds a pre-action coordination step.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Goal and role discrepancies found before action", "Handoff rework", "Unowned dependencies", "Time to coordinated first move"],
-      "failureModes": ["Parroting without comprehension", "An oversized briefing that obscures priorities", "No update when conditions change"],
-      "recovery": ["Ask for consequences and edge cases, not verbatim repetition", "Reduce the brief to decision-critical constraints", "Trigger a new brief-back after a material exception"],
-      "passport": { "evidence": "E3", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original synthesis with attributed links and paraphrases." },
+      "metrics": [
+        "Goal and role discrepancies found before action",
+        "Handoff rework",
+        "Unowned dependencies",
+        "Time to coordinated first move"
+      ],
+      "failureModes": [
+        "Parroting without comprehension",
+        "An oversized briefing that obscures priorities",
+        "No update when conditions change"
+      ],
+      "recovery": [
+        "Ask for consequences and edge cases, not verbatim repetition",
+        "Reduce the brief to decision-critical constraints",
+        "Trigger a new brief-back after a material exception"
+      ],
+      "passport": {
+        "evidence": "E3",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original synthesis with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Measure alignment errors and rework with and without brief-backs across a workshop handoff, an operations handoff, and an AI-agent task."
     },
@@ -368,25 +975,101 @@
       "slug": "exception-capture-to-recovery",
       "title": "Exception capture → recovery",
       "summary": "Turn unexpected conditions into a structured exception record, safe recovery move, and explicit revision to the operating model.",
-      "planes": ["HMP-CAP-001", "HMP-CAP-004", "HMP-CAP-005"],
-      "contexts": ["operations", "facilitation", "product incidents", "leadership", "human–AI workflows"],
-      "triggerSignals": ["The same surprise recurs", "Teams patch outcomes without revising assumptions", "Failures disappear into narrative retrospectives"],
+      "planes": [
+        "HMP-CAP-001",
+        "HMP-CAP-004",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "operations",
+        "facilitation",
+        "product incidents",
+        "leadership",
+        "human–AI workflows"
+      ],
+      "triggerSignals": [
+        "The same surprise recurs",
+        "Teams patch outcomes without revising assumptions",
+        "Failures disappear into narrative retrospectives"
+      ],
       "invariant": "Learning compounds when exceptions preserve the violated expectation, context, recovery, outcome, and resulting model change in a reusable record.",
-      "humanMoves": ["Protect people and stabilize the situation", "Record the expected and observed states", "Approve the recovery and systemic change"],
-      "aiMoves": ["Capture structured incident facts", "Compare with prior exceptions", "Propose recovery options and candidate revisions"],
+      "humanMoves": [
+        "Protect people and stabilize the situation",
+        "Record the expected and observed states",
+        "Approve the recovery and systemic change"
+      ],
+      "aiMoves": [
+        "Capture structured incident facts",
+        "Compare with prior exceptions",
+        "Propose recovery options and candidate revisions"
+      ],
       "authority": {
-        "humanOwns": ["Safety and care", "Accountability", "Recovery approval", "Policy change"],
-        "aiMay": ["Normalize logs", "Find recurring exception patterns", "Draft revisions"],
-        "aiMustNot": ["Blame individuals from sparse data", "Erase anomalous cases", "Resume a frozen workflow without approval"]
+        "humanOwns": [
+          "Safety and care",
+          "Accountability",
+          "Recovery approval",
+          "Policy change"
+        ],
+        "aiMay": [
+          "Normalize logs",
+          "Find recurring exception patterns",
+          "Draft revisions"
+        ],
+        "aiMustNot": [
+          "Blame individuals from sparse data",
+          "Erase anomalous cases",
+          "Resume a frozen workflow without approval"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-014", "claim": "Structured debriefs can improve subsequent performance across studied settings.", "scope": "Effectiveness depends on debrief quality and does not establish every element of this exception schema." },
-        { "sourceId": "HMP-SRC-112", "claim": "Systems thinking emphasizes feedback, delays, stocks, flows, and model revision.", "scope": "The book is a conceptual foundation, not direct causal evidence for this protocol." }
+        {
+          "sourceId": "HMP-SRC-014",
+          "claim": "Structured debriefs can improve subsequent performance across studied settings.",
+          "scope": "Effectiveness depends on debrief quality and does not establish every element of this exception schema.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-112",
+          "claim": "Systems thinking emphasizes feedback, delays, stocks, flows, and model revision.",
+          "scope": "The book is a conceptual foundation, not direct causal evidence for this protocol.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Repeat rate of the same exception", "Time to safe stabilization", "Recovery effectiveness", "Percentage of material exceptions producing a tested revision"],
-      "failureModes": ["Blame-focused postmortem", "Logs without follow-through", "Overfitting policy to one anomaly", "Sensitive data captured without need"],
-      "recovery": ["Separate facts, interpretations, and accountability", "Assign a dated revision owner", "Test the smallest policy change", "Minimize or redact unnecessary personal data"],
-      "passport": { "evidence": "E2", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original synthesis with attributed links and paraphrases." },
+      "metrics": [
+        "Repeat rate of the same exception",
+        "Time to safe stabilization",
+        "Recovery effectiveness",
+        "Percentage of material exceptions producing a tested revision"
+      ],
+      "failureModes": [
+        "Blame-focused postmortem",
+        "Logs without follow-through",
+        "Overfitting policy to one anomaly",
+        "Sensitive data captured without need"
+      ],
+      "recovery": [
+        "Separate facts, interpretations, and accountability",
+        "Assign a dated revision owner",
+        "Test the smallest policy change",
+        "Minimize or redact unnecessary personal data"
+      ],
+      "passport": {
+        "evidence": "E2",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original synthesis with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Use the exception schema for ten incidents and measure repeat exceptions, recovery latency, and closed-loop revisions."
     },
@@ -395,25 +1078,101 @@
       "slug": "reversible-delegation-irreversible-review",
       "title": "Reversible delegation, irreversible review",
       "summary": "Increase execution speed by delegating reversible actions while reserving irreversible, high-impact, or values-laden moves for human review.",
-      "planes": ["HMP-CAP-003", "HMP-CAP-004", "HMP-CAP-005"],
-      "contexts": ["AI agents", "publishing", "customer operations", "software delivery", "marketing automation"],
-      "triggerSignals": ["Every low-risk step waits for approval", "A system can publish, purchase, delete, or message without review", "The team cannot define reversibility"],
+      "planes": [
+        "HMP-CAP-003",
+        "HMP-CAP-004",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "AI agents",
+        "publishing",
+        "customer operations",
+        "software delivery",
+        "marketing automation"
+      ],
+      "triggerSignals": [
+        "Every low-risk step waits for approval",
+        "A system can publish, purchase, delete, or message without review",
+        "The team cannot define reversibility"
+      ],
       "invariant": "Decision latency and risk can be balanced by classifying actions by reversibility, impact, consent, and recovery cost before delegation.",
-      "humanMoves": ["Classify action types and recovery cost", "Define review triggers and authorized scope", "Own irreversible approvals and audit exceptions"],
-      "aiMoves": ["Execute enumerated reversible actions", "Simulate or stage consequential actions", "Request approval with evidence, uncertainty, and rollback status"],
+      "humanMoves": [
+        "Classify action types and recovery cost",
+        "Define review triggers and authorized scope",
+        "Own irreversible approvals and audit exceptions"
+      ],
+      "aiMoves": [
+        "Execute enumerated reversible actions",
+        "Simulate or stage consequential actions",
+        "Request approval with evidence, uncertainty, and rollback status"
+      ],
       "authority": {
-        "humanOwns": ["Risk tolerance", "Consent", "Irreversible approval", "Expansion of permissions"],
-        "aiMay": ["Stage drafts", "Run sandboxed or reversible operations", "Prepare approval packets"],
-        "aiMustNot": ["Self-classify a forbidden action as reversible", "Bypass review", "Use broader credentials than the task requires"]
+        "humanOwns": [
+          "Risk tolerance",
+          "Consent",
+          "Irreversible approval",
+          "Expansion of permissions"
+        ],
+        "aiMay": [
+          "Stage drafts",
+          "Run sandboxed or reversible operations",
+          "Prepare approval packets"
+        ],
+        "aiMustNot": [
+          "Self-classify a forbidden action as reversible",
+          "Bypass review",
+          "Use broader credentials than the task requires"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-021", "claim": "Human–AI teaming outcomes vary with task structure and allocation rather than following from AI use alone.", "scope": "This recent synthesis does not directly validate the proposed reversibility taxonomy." },
-        { "sourceId": "HMP-SRC-022", "claim": "Complementarity depends on how human and AI capabilities are configured in organizational work.", "scope": "The paper provides conceptual and empirical framing, not a universal permission policy." }
+        {
+          "sourceId": "HMP-SRC-021",
+          "claim": "Human–AI teaming outcomes vary with task structure and allocation rather than following from AI use alone.",
+          "scope": "This recent synthesis does not directly validate the proposed reversibility taxonomy.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-022",
+          "claim": "Complementarity depends on how human and AI capabilities are configured in organizational work.",
+          "scope": "The paper provides conceptual and empirical framing, not a universal permission policy.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Approval latency by action class", "Percentage of delegated actions rolled back", "Unauthorized consequential actions", "Human review precision"],
-      "failureModes": ["Calling an action reversible when reputational or privacy effects persist", "Approval theater", "Privilege creep", "No reliable rollback"],
-      "recovery": ["Suspend the action class", "Reduce permissions", "Test rollback before re-enabling", "Add downstream and stakeholder impact to classification"],
-      "passport": { "evidence": "E2", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original operational synthesis with attributed links and paraphrases." },
+      "metrics": [
+        "Approval latency by action class",
+        "Percentage of delegated actions rolled back",
+        "Unauthorized consequential actions",
+        "Human review precision"
+      ],
+      "failureModes": [
+        "Calling an action reversible when reputational or privacy effects persist",
+        "Approval theater",
+        "Privilege creep",
+        "No reliable rollback"
+      ],
+      "recovery": [
+        "Suspend the action class",
+        "Reduce permissions",
+        "Test rollback before re-enabling",
+        "Add downstream and stakeholder impact to classification"
+      ],
+      "passport": {
+        "evidence": "E2",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original operational synthesis with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Classify actions in one content and one operations workflow, then measure latency, rollbacks, review accuracy, and near misses."
     },
@@ -422,25 +1181,105 @@
       "slug": "source-claim-pattern-protocol-chain",
       "title": "Source → claim → pattern → protocol chain",
       "summary": "Keep each practical instruction traceable to bounded claims, explicit synthesis, and a versioned protocol with observable outcomes.",
-      "planes": ["HMP-CAP-001", "HMP-CAP-002", "HMP-CAP-003", "HMP-CAP-004", "HMP-CAP-005"],
-      "contexts": ["research", "books", "guides", "workshops", "infographics", "AI retrieval", "team playbooks"],
-      "triggerSignals": ["A viral tactic has no claim boundary", "A citation is decorative rather than supportive", "A protocol changes without a source or outcome record"],
+      "planes": [
+        "HMP-CAP-001",
+        "HMP-CAP-002",
+        "HMP-CAP-003",
+        "HMP-CAP-004",
+        "HMP-CAP-005"
+      ],
+      "contexts": [
+        "research",
+        "books",
+        "guides",
+        "workshops",
+        "infographics",
+        "AI retrieval",
+        "team playbooks"
+      ],
+      "triggerSignals": [
+        "A viral tactic has no claim boundary",
+        "A citation is decorative rather than supportive",
+        "A protocol changes without a source or outcome record"
+      ],
       "invariant": "Traceability prevents a bounded finding from silently expanding into a universal prescription and makes field outcomes revise the correct layer.",
-      "humanMoves": ["Write the smallest defensible claim", "Separate finding, synthesis, pattern, and protocol", "Approve the final language and rights scope"],
-      "aiMoves": ["Resolve and check source references", "Detect claim expansion", "Generate a traceability view and flag stale reviews"],
+      "humanMoves": [
+        "Write the smallest defensible claim",
+        "Separate finding, synthesis, pattern, and protocol",
+        "Approve the final language and rights scope"
+      ],
+      "aiMoves": [
+        "Resolve and check source references",
+        "Detect claim expansion",
+        "Generate a traceability view and flag stale reviews"
+      ],
       "authority": {
-        "humanOwns": ["Interpretive judgment", "Claim approval", "Ethical and rights decisions", "Deprecation"],
-        "aiMay": ["Extract candidate claims", "Compare sources", "Validate links and structural completeness"],
-        "aiMustNot": ["Fabricate citations", "Upgrade evidence grades", "Treat fluent synthesis as proof"]
+        "humanOwns": [
+          "Interpretive judgment",
+          "Claim approval",
+          "Ethical and rights decisions",
+          "Deprecation"
+        ],
+        "aiMay": [
+          "Extract candidate claims",
+          "Compare sources",
+          "Validate links and structural completeness"
+        ],
+        "aiMustNot": [
+          "Fabricate citations",
+          "Upgrade evidence grades",
+          "Treat fluent synthesis as proof"
+        ]
       },
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-001", "claim": "Expert intuition is reliable only under environments and learning conditions that support valid cue acquisition.", "scope": "The paper compares traditions in judgment and does not specify this exact publishing chain." },
-        { "sourceId": "HMP-SRC-003", "claim": "Implementation intentions can improve goal attainment by linking situations to responses.", "scope": "Effects and applicability vary; a protocol remains a hypothesis until tested in its target context." }
+        {
+          "sourceId": "HMP-SRC-001",
+          "claim": "Expert intuition is reliable only under environments and learning conditions that support valid cue acquisition.",
+          "scope": "The paper compares traditions in judgment and does not specify this exact publishing chain.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-003",
+          "claim": "Implementation intentions can improve goal attainment by linking situations to responses.",
+          "scope": "Effects and applicability vary; a protocol remains a hypothesis until tested in its target context.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "metrics": ["Publishable claims with resolvable anchors", "Unsupported claim-expansion flags", "Time from contradictory evidence to revision", "Rights-scope violations"],
-      "failureModes": ["Citation laundering", "Source volume mistaken for convergence", "Protocol success used to validate unrelated theory", "Stale links and reviews"],
-      "recovery": ["Reduce the claim to what the source supports", "Add counterevidence and scope", "Downgrade the passport", "Deprecate rather than silently repurpose the object"],
-      "passport": { "evidence": "E2", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original governance synthesis with attributed links and paraphrases." },
+      "metrics": [
+        "Publishable claims with resolvable anchors",
+        "Unsupported claim-expansion flags",
+        "Time from contradictory evidence to revision",
+        "Rights-scope violations"
+      ],
+      "failureModes": [
+        "Citation laundering",
+        "Source volume mistaken for convergence",
+        "Protocol success used to validate unrelated theory",
+        "Stale links and reviews"
+      ],
+      "recovery": [
+        "Reduce the claim to what the source supports",
+        "Add counterevidence and scope",
+        "Downgrade the passport",
+        "Deprecate rather than silently repurpose the object"
+      ],
+      "passport": {
+        "evidence": "E2",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original governance synthesis with attributed links and paraphrases."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Audit thirty public claims for anchor resolution, claim expansion, counterevidence, and revision latency before and after adopting the chain."
     }
@@ -449,7 +1288,12 @@
     {
       "id": "HMP-DRL-001",
       "title": "Contrast-to-transfer sprint",
-      "patternIds": ["HMP-PAT-001", "HMP-PAT-002", "HMP-PAT-003", "HMP-PAT-004"],
+      "patternIds": [
+        "HMP-PAT-001",
+        "HMP-PAT-002",
+        "HMP-PAT-003",
+        "HMP-PAT-004"
+      ],
       "purpose": "Practice extracting a bounded invariant from contrasting cases and testing it on a live decision without surrendering judgment to AI.",
       "durationMinutes": 35,
       "steps": [
@@ -469,12 +1313,43 @@
         "0–2: prediction, confidence, and falsifier were recorded before feedback",
         "0–2: the resulting revision changes the pattern, protocol, or next test"
       ],
-      "stopConditions": ["The test could cause irreversible harm", "Required consent or authority is absent", "Cases contain sensitive data that cannot be minimized", "No observable outcome can be named"],
-      "evidenceBasis": [
-        { "sourceId": "HMP-SRC-002", "claim": "Structured comparison can support abstraction and transfer.", "scope": "The drill extends this finding into an unvalidated cross-domain practice." },
-        { "sourceId": "HMP-SRC-007", "claim": "Practice testing and feedback have comparatively strong utility in studied learning settings.", "scope": "A live organizational test differs from educational retrieval practice." }
+      "stopConditions": [
+        "The test could cause irreversible harm",
+        "Required consent or authority is absent",
+        "Cases contain sensitive data that cannot be minimized",
+        "No observable outcome can be named"
       ],
-      "passport": { "evidence": "E2", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original drill; source concepts are paraphrased and linked." },
+      "evidenceBasis": [
+        {
+          "sourceId": "HMP-SRC-002",
+          "claim": "Structured comparison can support abstraction and transfer.",
+          "scope": "The drill extends this finding into an unvalidated cross-domain practice.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-007",
+          "claim": "Practice testing and feedback have comparatively strong utility in studied learning settings.",
+          "scope": "A live organizational test differs from educational retrieval practice.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
+      ],
+      "passport": {
+        "evidence": "E2",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original drill; source concepts are paraphrased and linked."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Run with twelve participants across design, facilitation, and AI workflow cases; score inter-rater agreement and delayed transfer."
     }
@@ -483,23 +1358,93 @@
     {
       "id": "HMP-ASM-001",
       "title": "Pattern transfer behavior rubric",
-      "patternIds": ["HMP-PAT-003", "HMP-PAT-004", "HMP-PAT-008", "HMP-PAT-010"],
+      "patternIds": [
+        "HMP-PAT-003",
+        "HMP-PAT-004",
+        "HMP-PAT-008",
+        "HMP-PAT-010"
+      ],
       "purpose": "Provide an observable practice baseline for how a person or team extracts, tests, and revises patterns; it is not a personality or aptitude test.",
       "items": [
-        { "behavior": "Separates observations from interpretations", "score0": "Blends facts and explanations", "score1": "Separates them when prompted", "score2": "Labels them before analysis" },
-        { "behavior": "Compares relational structure across cases", "score0": "Uses surface resemblance", "score1": "Names some shared relations", "score2": "Aligns relations and boundaries" },
-        { "behavior": "Records a falsifiable prediction", "score0": "Predicts only after feedback", "score1": "Records an outcome without confidence", "score2": "Records outcome, confidence, and falsifier" },
-        { "behavior": "Tests transfer rather than assuming it", "score0": "Claims universal applicability", "score1": "Tests one similar context", "score2": "Tests a new context and records exceptions" },
-        { "behavior": "Revises the operating model after exceptions", "score0": "Explains away the exception", "score1": "Records the exception", "score2": "Changes and retests the pattern or protocol" },
-        { "behavior": "Maintains source and rights traceability", "score0": "Uses unsupported or unscoped material", "score1": "Provides a source link", "score2": "Links claim, source scope, passport, and permitted use" }
+        {
+          "behavior": "Separates observations from interpretations",
+          "score0": "Blends facts and explanations",
+          "score1": "Separates them when prompted",
+          "score2": "Labels them before analysis"
+        },
+        {
+          "behavior": "Compares relational structure across cases",
+          "score0": "Uses surface resemblance",
+          "score1": "Names some shared relations",
+          "score2": "Aligns relations and boundaries"
+        },
+        {
+          "behavior": "Records a falsifiable prediction",
+          "score0": "Predicts only after feedback",
+          "score1": "Records an outcome without confidence",
+          "score2": "Records outcome, confidence, and falsifier"
+        },
+        {
+          "behavior": "Tests transfer rather than assuming it",
+          "score0": "Claims universal applicability",
+          "score1": "Tests one similar context",
+          "score2": "Tests a new context and records exceptions"
+        },
+        {
+          "behavior": "Revises the operating model after exceptions",
+          "score0": "Explains away the exception",
+          "score1": "Records the exception",
+          "score2": "Changes and retests the pattern or protocol"
+        },
+        {
+          "behavior": "Maintains source and rights traceability",
+          "score0": "Uses unsupported or unscoped material",
+          "score1": "Provides a source link",
+          "score2": "Links claim, source scope, passport, and permitted use"
+        }
       ],
-      "interpretation": ["Score behavior by direct observation of a named task, not self-image", "Use item-level scores to choose the next drill; do not rank people", "Repeat on comparable work and inspect change and rater disagreement"],
-      "limitations": ["Not psychometrically validated", "Not diagnostic", "Scores depend on task difficulty and observer calibration", "No claim of stable trait measurement or cross-cultural equivalence"],
+      "interpretation": [
+        "Score behavior by direct observation of a named task, not self-image",
+        "Use item-level scores to choose the next drill; do not rank people",
+        "Repeat on comparable work and inspect change and rater disagreement"
+      ],
+      "limitations": [
+        "Not psychometrically validated",
+        "Not diagnostic",
+        "Scores depend on task difficulty and observer calibration",
+        "No claim of stable trait measurement or cross-cultural equivalence"
+      ],
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-002", "claim": "Relational comparison can support abstraction and transfer.", "scope": "The paper does not validate this rubric or its scoring scale." },
-        { "sourceId": "HMP-SRC-014", "claim": "Structured debriefing can improve later performance.", "scope": "Assessment and feedback quality moderate usefulness; causality is not established for this rubric." }
+        {
+          "sourceId": "HMP-SRC-002",
+          "claim": "Relational comparison can support abstraction and transfer.",
+          "scope": "The paper does not validate this rubric or its scoring scale.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-014",
+          "claim": "Structured debriefing can improve later performance.",
+          "scope": "Assessment and feedback quality moderate usefulness; causality is not established for this rubric.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "passport": { "evidence": "E1", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original observational rubric; no diagnostic or psychometric claim." },
+      "passport": {
+        "evidence": "E1",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original observational rubric; no diagnostic or psychometric claim."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Establish rater guidance, score twenty recorded tasks with two raters, and test sensitivity to a short practice intervention."
     }
@@ -508,9 +1453,21 @@
     {
       "id": "HMP-PRT-001",
       "title": "Bounded human–AI decision sprint",
-      "patternIds": ["HMP-PAT-002", "HMP-PAT-004", "HMP-PAT-005", "HMP-PAT-006", "HMP-PAT-009", "HMP-PAT-010"],
+      "patternIds": [
+        "HMP-PAT-002",
+        "HMP-PAT-004",
+        "HMP-PAT-005",
+        "HMP-PAT-006",
+        "HMP-PAT-009",
+        "HMP-PAT-010"
+      ],
       "purpose": "Use AI to expand and challenge a consequential decision while keeping criteria, authority, consent, and irreversible actions under human control.",
-      "roles": ["Human owner: frames stakes, approves criteria, judges, and remains accountable", "Human or AI proposer: creates distinct options", "Independent critic: tests options against fixed criteria and failure cases", "AI recorder: timestamps predictions, sources, exceptions, and revisions"],
+      "roles": [
+        "Human owner: frames stakes, approves criteria, judges, and remains accountable",
+        "Human or AI proposer: creates distinct options",
+        "Independent critic: tests options against fixed criteria and failure cases",
+        "AI recorder: timestamps predictions, sources, exceptions, and revisions"
+      ],
       "sequence": [
         "Human owner defines the decision, protected values, stakeholders, time horizon, and reversible boundary.",
         "Human owner records an independent view, prediction, and confidence before model output.",
@@ -521,15 +1478,62 @@
         "Only reversible approved steps execute; irreversible or high-impact actions enter explicit review.",
         "After the outcome window, owner and recorder compare prediction to result, log exceptions, and revise the chain."
       ],
-      "authorityGates": ["Human approval is required for changes to goals, values, audiences, permissions, or success criteria", "Human approval is required before publishing, purchasing, deleting, sending externally, or handling sensitive personal data", "The protocol must stop when uncertainty crosses the declared threshold or rollback is unavailable"],
-      "requiredLogs": ["Decision and context ID", "Independent human prediction and timestamp", "Options and source IDs", "Approved criteria and critic findings", "Human decision and rationale", "Actions, exceptions, outcome, and revision"],
+      "authorityGates": [
+        "Human approval is required for changes to goals, values, audiences, permissions, or success criteria",
+        "Human approval is required before publishing, purchasing, deleting, sending externally, or handling sensitive personal data",
+        "The protocol must stop when uncertainty crosses the declared threshold or rollback is unavailable"
+      ],
+      "requiredLogs": [
+        "Decision and context ID",
+        "Independent human prediction and timestamp",
+        "Options and source IDs",
+        "Approved criteria and critic findings",
+        "Human decision and rationale",
+        "Actions, exceptions, outcome, and revision"
+      ],
       "exceptionPolicy": "Pause the affected action, preserve a minimal factual record, notify the named human owner, propose reversible recovery options, and resume only after the boundary or protocol is explicitly revised.",
       "evidenceBasis": [
-        { "sourceId": "HMP-SRC-013", "claim": "Shared task models are related to team process and performance.", "scope": "Human–AI role assignment and authority gates remain a PatternOS operational hypothesis." },
-        { "sourceId": "HMP-SRC-021", "claim": "Human–AI collaboration outcomes depend on the task and interaction design.", "scope": "The recent evidence base is heterogeneous and cannot guarantee complementarity." },
-        { "sourceId": "HMP-SRC-015", "claim": "Explicit probabilistic forecasting practices can improve calibration in studied contexts.", "scope": "Not every decision supports formal probabilities or receives timely feedback." }
+        {
+          "sourceId": "HMP-SRC-013",
+          "claim": "Shared task models are related to team process and performance.",
+          "scope": "Human–AI role assignment and authority gates remain a PatternOS operational hypothesis.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-021",
+          "claim": "Human–AI collaboration outcomes depend on the task and interaction design.",
+          "scope": "The recent evidence base is heterogeneous and cannot guarantee complementarity.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        },
+        {
+          "sourceId": "HMP-SRC-015",
+          "claim": "Explicit probabilistic forecasting practices can improve calibration in studied contexts.",
+          "scope": "Not every decision supports formal probabilities or receives timely feedback.",
+          "claimLocator": {
+            "status": "hold",
+            "locator": null,
+            "reason": "Exact page, section, table, or abstract location was not independently verified in this repair; do not publish this claim as source-level evidence."
+          },
+          "publicationStatus": "hold"
+        }
       ],
-      "passport": { "evidence": "E2", "field": "F0", "transfer": "T0", "rights": "R-GREEN", "rightsScope": "Original protocol; underlying research is cited and paraphrased." },
+      "passport": {
+        "evidence": "E2",
+        "field": "F0",
+        "transfer": "T0",
+        "rights": "R-GREEN",
+        "rightsScope": "Original protocol; underlying research is cited and paraphrased."
+      },
       "lastReviewed": "2026-08-16",
       "nextValidation": "Run twenty reversible product, content, and operations decisions; compare decision defects, option diversity, review precision, and cycle time to current practice."
     }

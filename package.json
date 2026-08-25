@@ -90,8 +90,8 @@
     "diagrams:guard": "node scripts/diagrams/guard.mjs",
     "diagrams:baseline": "node scripts/diagrams/guard.mjs --update-baseline",
     "ci:check": "npm run merge:gate && npm run lint && npm run content:validate && npm run diagrams:guard",
-    "merge:gate": "npm run test:syntax && npm run test:build-integrity && npm run test:agentdb-runtime && npm run test:homepage-release && npm run test:music-release-registry && npm run test:collaboration-release && npm run test:expert-authority && npm run test:ai-architecture && npm run test:email-safety && npm run test:checkout-sku && npm run test:auction-bid && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run test:blog-discoverability && npm run test:social-identity && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run intelligence:check && npm run learn:check && npm run links:check:static && npm run links:check:ci && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
-    "merge:gate:ci": "npm run test:syntax && npm run test:build-integrity && npm run test:agentdb-runtime && npm run test:homepage-release && npm run test:music-release-registry && npm run test:collaboration-release && npm run test:expert-authority && npm run test:ai-architecture && npm run test:email-safety && npm run test:checkout-sku && npm run test:auction-bid && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run test:blog-discoverability && npm run test:social-identity && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run learn:check && npm run links:check:static && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
+    "merge:gate": "npm run test:syntax && npm run test:build-integrity && npm run test:agentdb-runtime && npm run test:homepage-release && npm run test:music-release-registry && npm run test:collaboration-release && npm run test:expert-authority && npm run test:ai-architecture && npm run test:email-safety && npm run test:checkout-sku && npm run test:auction-bid && npm run test:agentic-life-research && npm run test:human-mastery-patternos && npm run test:community-platform-guide && npm run test:learning-routes && npm run test:blog-discoverability && npm run test:social-identity && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run intelligence:check && npm run learn:check && npm run links:check:static && npm run links:check:ci && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
+    "merge:gate:ci": "npm run test:syntax && npm run test:build-integrity && npm run test:agentdb-runtime && npm run test:homepage-release && npm run test:music-release-registry && npm run test:collaboration-release && npm run test:expert-authority && npm run test:ai-architecture && npm run test:email-safety && npm run test:checkout-sku && npm run test:auction-bid && npm run test:agentic-life-research && npm run test:human-mastery-patternos && npm run test:community-platform-guide && npm run test:learning-routes && npm run test:blog-discoverability && npm run test:social-identity && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run learn:check && npm run links:check:static && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
     "learn:check": "node scripts/check-learning-paths.mjs",
     "intelligence:check": "node scripts/check-intelligence-freshness.mjs",
     "links:check": "node scripts/check-links.mjs",
@@ -153,7 +153,7 @@
     "newsletter:send": "node scripts/newsletter/send.mjs send",
     "test:contract-guard": "node scripts/check-contract-guard.mjs",
     "test:syntax": "node scripts/check-test-syntax.mjs",
-    "test:music-release-registry": "node --experimental-strip-types --test scripts/tests/music-release-registry.test.mjs"
+    "test:human-mastery-patternos": "node --test scripts/tests/human-mastery-patternos-contract.test.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -252,7 +252,8 @@
     "puppeteer": "^24.35.0",
     "styled-jsx": "^5.1.7",
     "svgo": "^4.0.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "ajv": "^8.20.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

@@ -97,11 +97,13 @@ Foundational knowledge, citations, limitations, and basic patterns should remain
 - `data/human-mastery/patternos-v0.json` — the v0 graph seed.
 - `data/human-mastery/patternos.schema.json` — structural contract.
 - `data/human-mastery/sources-v0.json` — research, book, standard, and practitioner source ledger.
+- `data/human-mastery/sources.schema.json` — strict source, edition-identity, platform-metadata, and provenance contract.
 - `data/human-mastery/artifact-backlog-v0.json` — projection backlog.
+- `data/human-mastery/artifact-backlog.schema.json` — strict projection and evidence-basis contract.
 - `docs/research/human-mastery-patternos/evidence-standard.md` — claim, validation, and rights rules.
 - `docs/research/human-mastery-patternos/public-experience-directions.md` — three release directions and the unresolved choice.
-- `scripts/tests/human-mastery-patternos.test.mjs` — dependency-free integrity checks.
+- `scripts/tests/human-mastery-patternos-contract.test.mjs` — executable Draft 2020-12 schema validation, semantic cross-document checks, and negative mutation tests.
 
 ## Publication gate
 
-An object may be published only when its referenced sources resolve, its E/F/T/R passport is complete, its claim language matches its evidence level, its rights scope allows the proposed use, its failure modes and boundary conditions are visible, and a next validation has been named. Public interface implementation remains blocked until one of the three experience directions is selected and mobile evidence is captured.
+An object may be published only when its referenced sources resolve, each consequential claim has a verified page/section/table/abstract locator, its E/F/T/R passport is complete, its claim language matches its evidence level, its rights scope allows the proposed use, its failure modes and boundary conditions are visible, and a next validation has been named. A `hold` locator or pending curator/reviewer receipt is a machine-enforced publication stop, not an invitation to infer a missing location. Public interface implementation remains blocked until one of the three experience directions is selected and mobile evidence is captured.

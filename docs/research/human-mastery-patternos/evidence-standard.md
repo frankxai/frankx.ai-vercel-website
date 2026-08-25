@@ -71,6 +71,10 @@ For every consequential public claim, record:
 
 Prefer original papers, standards, and systematic reviews. Books are valuable for coherent models and practice design, but their empirical claims must resolve to primary or synthesis research where possible.
 
+“Where available” never means “optional without consequence.” Every evidence reference records a typed claim-locator state. `verified` requires an exact page, chapter, section, table, figure, or abstract location; `hold` requires a null locator and a reason and blocks publication. Do not reconstruct a page number from memory, a search snippet, or a different edition.
+
+Book records separate the work’s first-publication year from the year and format of the exact ISBN edition. Publisher metadata that cannot be matched to that ISBN is retained as a visible `hold`. Practitioner-video identity comes from YouTube platform metadata and records the exact title, channel, video ID, canonical URL, and verification date.
+
 ## Practitioner-source rule
 
 Practitioner videos and talks are a separate source class. They may contribute:
@@ -127,6 +131,7 @@ Before activation, a reviewer must answer:
 5. What harm follows if the user overgeneralizes it?
 6. What observation could lower its grade or deprecate it?
 7. Does every proposed source use fit its recorded rights scope?
+8. Are curator and independent-review receipts named and approved rather than merely implied by a commit author?
 
 ## Revision policy
 

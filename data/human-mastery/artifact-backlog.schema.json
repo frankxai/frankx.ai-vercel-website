@@ -1,0 +1,541 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frankx.ai/schemas/human-mastery/artifact-backlog-v0.2.schema.json",
+  "title": "Human Mastery PatternOS artifact backlog v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "artifacts"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "updated",
+        "status",
+        "releaseRule",
+        "provenance"
+      ],
+      "properties": {
+        "version": {
+          "const": "0.2.0"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "const": "seed backlog"
+        },
+        "releaseRule": {
+          "type": "string",
+          "minLength": 20
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    }
+  },
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "pullRequest",
+        "generation",
+        "repair",
+        "curation",
+        "review"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "pullRequest": {
+          "type": "string",
+          "pattern": "^https://github\\.com/.+/pull/[0-9]+$"
+        },
+        "generation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "generator",
+            "firstCommit",
+            "recordedAt"
+          ],
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 10
+            },
+            "generator": {
+              "type": "string",
+              "minLength": 1
+            },
+            "firstCommit": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "recordedAt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "repair": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "generator",
+            "inputCommit",
+            "recordedAt"
+          ],
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 10
+            },
+            "generator": {
+              "type": "string",
+              "minLength": 1
+            },
+            "inputCommit": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "recordedAt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "curation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "actor",
+            "requiredRole",
+            "note"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pending",
+                "approved"
+              ]
+            },
+            "actor": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "minLength": 1
+            },
+            "requiredRole": {
+              "type": "string",
+              "minLength": 8
+            },
+            "note": {
+              "type": "string",
+              "minLength": 20
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "pending"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "actor": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "approved"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "actor": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "actor",
+            "requiredRole",
+            "note"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pending",
+                "approved"
+              ]
+            },
+            "actor": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "minLength": 1
+            },
+            "requiredRole": {
+              "type": "string",
+              "minLength": 8
+            },
+            "note": {
+              "type": "string",
+              "minLength": 20
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "pending"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "actor": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "approved"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "actor": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "passport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence",
+        "field",
+        "transfer",
+        "rights",
+        "rightsScope"
+      ],
+      "properties": {
+        "evidence": {
+          "enum": [
+            "E0",
+            "E1",
+            "E2",
+            "E3",
+            "E4"
+          ]
+        },
+        "field": {
+          "enum": [
+            "F0",
+            "F1",
+            "F2",
+            "F3",
+            "F4"
+          ]
+        },
+        "transfer": {
+          "enum": [
+            "T0",
+            "T1",
+            "T2",
+            "T3"
+          ]
+        },
+        "rights": {
+          "enum": [
+            "R-GREEN",
+            "R-RESTRICTED",
+            "R-PERMISSION",
+            "R-PROHIBITED"
+          ]
+        },
+        "rightsScope": {
+          "type": "string",
+          "minLength": 8
+        }
+      }
+    },
+    "evidenceBasis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "publicationEligible",
+        "sourceIds",
+        "derivedFromObjectIds",
+        "rationale"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "hold",
+            "verified"
+          ]
+        },
+        "publicationEligible": {
+          "type": "boolean"
+        },
+        "sourceIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^HMP-SRC-[0-9]{3}$"
+          }
+        },
+        "derivedFromObjectIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^HMP-(?:CAP|LOOP|PAT|DRL|ASM|PRT)-[0-9]{3}$"
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 20
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "hold"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "publicationEligible": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "publicationEligible": {
+                "const": true
+              },
+              "sourceIds": {
+                "minItems": 1,
+                "type": "array"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "projection",
+        "brand",
+        "audience",
+        "status",
+        "priority",
+        "canonicalObjectIds",
+        "publicRoute",
+        "outcome",
+        "proofOfDone",
+        "releaseGate",
+        "dependencies",
+        "passport",
+        "evidenceBasis",
+        "publicationStatus"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HMP-ART-[0-9]{3}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 5
+        },
+        "projection": {
+          "enum": [
+            "research-page",
+            "research-index",
+            "guide",
+            "library-collection",
+            "book",
+            "blog-series",
+            "infographic",
+            "workshop",
+            "assessment",
+            "team-playbook",
+            "mcp-api"
+          ]
+        },
+        "brand": {
+          "type": "string",
+          "minLength": 3
+        },
+        "audience": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "status": {
+          "enum": [
+            "researching",
+            "backlog",
+            "drafting"
+          ]
+        },
+        "priority": {
+          "enum": [
+            "P0",
+            "P1",
+            "P2"
+          ]
+        },
+        "canonicalObjectIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^HMP-(?:CAP|LOOP|PAT|DRL|ASM|PRT|SRC)-[0-9]{3}$"
+          }
+        },
+        "publicRoute": {
+          "type": "string",
+          "pattern": "^/[a-z0-9/-]+$"
+        },
+        "outcome": {
+          "type": "string",
+          "minLength": 20
+        },
+        "proofOfDone": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "releaseGate": {
+          "type": "string",
+          "minLength": 20
+        },
+        "dependencies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^HMP-ART-[0-9]{3}$"
+          }
+        },
+        "passport": {
+          "$ref": "#/$defs/passport"
+        },
+        "evidenceBasis": {
+          "$ref": "#/$defs/evidenceBasis"
+        },
+        "publicationStatus": {
+          "enum": [
+            "hold",
+            "internal",
+            "public"
+          ]
+        }
+      }
+    }
+  }
+}

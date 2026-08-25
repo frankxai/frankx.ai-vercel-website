@@ -1,0 +1,815 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frankx.ai/schemas/human-mastery/sources-v0.2.schema.json",
+  "title": "Human Mastery PatternOS source ledger v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "researchSources",
+    "bookSources",
+    "practitionerSources"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "updated",
+        "policy",
+        "rightsDefault",
+        "verificationPolicy",
+        "provenance"
+      ],
+      "properties": {
+        "version": {
+          "const": "0.2.0"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date"
+        },
+        "policy": {
+          "type": "string",
+          "minLength": 20
+        },
+        "rightsDefault": {
+          "type": "string",
+          "minLength": 20
+        },
+        "verificationPolicy": {
+          "type": "string",
+          "minLength": 20
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    },
+    "researchSources": {
+      "type": "array",
+      "minItems": 28,
+      "maxItems": 28,
+      "items": {
+        "$ref": "#/$defs/researchSource"
+      }
+    },
+    "bookSources": {
+      "type": "array",
+      "minItems": 17,
+      "maxItems": 17,
+      "items": {
+        "$ref": "#/$defs/bookSource"
+      }
+    },
+    "practitionerSources": {
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "items": {
+        "$ref": "#/$defs/practitionerSource"
+      }
+    }
+  },
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "pullRequest",
+        "generation",
+        "repair",
+        "curation",
+        "review"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "pullRequest": {
+          "type": "string",
+          "pattern": "^https://github\\.com/.+/pull/[0-9]+$"
+        },
+        "generation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "generator",
+            "firstCommit",
+            "recordedAt"
+          ],
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 10
+            },
+            "generator": {
+              "type": "string",
+              "minLength": 1
+            },
+            "firstCommit": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "recordedAt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "repair": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "generator",
+            "inputCommit",
+            "recordedAt"
+          ],
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 10
+            },
+            "generator": {
+              "type": "string",
+              "minLength": 1
+            },
+            "inputCommit": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "recordedAt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "curation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "actor",
+            "requiredRole",
+            "note"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pending",
+                "approved"
+              ]
+            },
+            "actor": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "minLength": 1
+            },
+            "requiredRole": {
+              "type": "string",
+              "minLength": 8
+            },
+            "note": {
+              "type": "string",
+              "minLength": 20
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "pending"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "actor": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "approved"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "actor": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "actor",
+            "requiredRole",
+            "note"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pending",
+                "approved"
+              ]
+            },
+            "actor": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "minLength": 1
+            },
+            "requiredRole": {
+              "type": "string",
+              "minLength": 8
+            },
+            "note": {
+              "type": "string",
+              "minLength": 20
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "pending"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "actor": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "approved"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "actor": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "passport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence",
+        "field",
+        "transfer",
+        "rights",
+        "rightsScope"
+      ],
+      "properties": {
+        "evidence": {
+          "enum": [
+            "E0",
+            "E1",
+            "E2",
+            "E3",
+            "E4"
+          ]
+        },
+        "field": {
+          "enum": [
+            "F0",
+            "F1",
+            "F2",
+            "F3",
+            "F4"
+          ]
+        },
+        "transfer": {
+          "enum": [
+            "T0",
+            "T1",
+            "T2",
+            "T3"
+          ]
+        },
+        "rights": {
+          "enum": [
+            "R-GREEN",
+            "R-RESTRICTED",
+            "R-PERMISSION",
+            "R-PROHIBITED"
+          ]
+        },
+        "rightsScope": {
+          "type": "string",
+          "minLength": 8
+        }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "canonicalUrl",
+        "authority",
+        "verificationMethod",
+        "receiptLocator",
+        "verifiedAt"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "verified",
+            "hold"
+          ]
+        },
+        "canonicalUrl": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "authority": {
+          "type": "string",
+          "minLength": 3
+        },
+        "verificationMethod": {
+          "type": "string",
+          "minLength": 5
+        },
+        "receiptLocator": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "verifiedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "holdReason": {
+          "type": "string",
+          "minLength": 20
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "hold"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "holdReason"
+            ],
+            "properties": {
+              "holdReason": {
+                "type": "string",
+                "minLength": 20
+              }
+            }
+          }
+        }
+      ]
+    },
+    "researchSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sourceType",
+        "title",
+        "authors",
+        "year",
+        "locator",
+        "supports",
+        "limitations",
+        "passport",
+        "capturedAt",
+        "lastVerified",
+        "identity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HMP-SRC-0[0-9]{2}$"
+        },
+        "sourceType": {
+          "enum": [
+            "experiment",
+            "field-experiment",
+            "field-method",
+            "interdisciplinary-framework",
+            "meta-analysis",
+            "paper",
+            "randomized-effectiveness-study",
+            "research-program",
+            "research-report",
+            "review-and-framework",
+            "standard",
+            "systematic-review",
+            "systematic-review-and-meta-analysis",
+            "theorem"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 8
+        },
+        "authors": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "locator": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "doi": {
+          "type": "string",
+          "minLength": 5
+        },
+        "openCopy": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "openRecord": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "supports": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "passport": {
+          "$ref": "#/$defs/passport"
+        },
+        "capturedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "lastVerified": {
+          "type": "string",
+          "format": "date"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        }
+      }
+    },
+    "editionIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "format",
+        "workFirstPublicationYear",
+        "workFirstPublicationYearStatus",
+        "editionPublicationYear"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 3
+        },
+        "format": {
+          "enum": [
+            "paperback",
+            "hardcover",
+            "ebook"
+          ]
+        },
+        "workFirstPublicationYear": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1400,
+          "maximum": 2100
+        },
+        "workFirstPublicationYearStatus": {
+          "enum": [
+            "verified",
+            "provisional",
+            "unavailable"
+          ]
+        },
+        "editionPublicationYear": {
+          "type": "integer",
+          "minimum": 1400,
+          "maximum": 2100
+        },
+        "copyrightYear": {
+          "type": "integer",
+          "minimum": 1400,
+          "maximum": 2100
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "workFirstPublicationYearStatus": {
+                "const": "unavailable"
+              }
+            },
+            "required": [
+              "workFirstPublicationYearStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "workFirstPublicationYear": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "workFirstPublicationYearStatus": {
+                "enum": [
+                  "verified",
+                  "provisional"
+                ]
+              }
+            },
+            "required": [
+              "workFirstPublicationYearStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "workFirstPublicationYear": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "bookSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sourceType",
+        "title",
+        "authors",
+        "publisher",
+        "isbn13",
+        "locator",
+        "editionIdentity",
+        "use",
+        "limitations",
+        "passport",
+        "capturedAt",
+        "lastVerified",
+        "identity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HMP-SRC-1[0-9]{2}$"
+        },
+        "sourceType": {
+          "const": "book"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 5
+        },
+        "authors": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 3
+        },
+        "isbn13": {
+          "type": "string",
+          "pattern": "^[0-9]{13}$"
+        },
+        "locator": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "editionIdentity": {
+          "$ref": "#/$defs/editionIdentity"
+        },
+        "use": {
+          "type": "string",
+          "minLength": 12
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "passport": {
+          "$ref": "#/$defs/passport"
+        },
+        "capturedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "lastVerified": {
+          "type": "string",
+          "format": "date"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        }
+      }
+    },
+    "channel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "url"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 2
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://www\\.youtube\\.com/@"
+        }
+      }
+    },
+    "practitionerSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sourceType",
+        "title",
+        "creator",
+        "videoId",
+        "canonicalUrl",
+        "locator",
+        "channel",
+        "candidateContribution",
+        "scientificBoundary",
+        "mayAnchorResearchClaims",
+        "passport",
+        "capturedAt",
+        "lastVerified",
+        "identity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HMP-SRC-2[0-9]{2}$"
+        },
+        "sourceType": {
+          "enum": [
+            "practitioner-video",
+            "research-synthesis-video",
+            "researcher-talk"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 5
+        },
+        "creator": {
+          "type": "string",
+          "minLength": 2
+        },
+        "videoId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{11}$"
+        },
+        "canonicalUrl": {
+          "type": "string",
+          "pattern": "^https://www\\.youtube\\.com/watch\\?v=[A-Za-z0-9_-]{11}$"
+        },
+        "locator": {
+          "type": "string",
+          "pattern": "^https://www\\.youtube\\.com/watch\\?v=[A-Za-z0-9_-]{11}$"
+        },
+        "channel": {
+          "$ref": "#/$defs/channel"
+        },
+        "candidateContribution": {
+          "type": "string",
+          "minLength": 12
+        },
+        "scientificBoundary": {
+          "type": "string",
+          "minLength": 12
+        },
+        "mayAnchorResearchClaims": {
+          "const": false
+        },
+        "relatedResearch": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "relatedCounterevidence": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "passport": {
+          "$ref": "#/$defs/passport"
+        },
+        "capturedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "lastVerified": {
+          "type": "string",
+          "format": "date"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        }
+      }
+    }
+  }
+}
