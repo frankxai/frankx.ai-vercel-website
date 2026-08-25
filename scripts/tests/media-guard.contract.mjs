@@ -571,6 +571,7 @@ test("trusted workflow is base-controlled, read-minimal, and exact-SHA pinned", 
   assert.match(request, /permissions: \{\}/u)
   assert.doesNotMatch(request, /^\s*uses:/mu)
   assert.doesNotMatch(request, /media-guard\.mjs/u)
+  assert.doesNotMatch(request, /secrets\./u)
 
   assert.match(trusted, /\n  workflow_run:\n/u)
   assert.doesNotMatch(trusted, /pull_request_target/u)
@@ -579,6 +580,7 @@ test("trusted workflow is base-controlled, read-minimal, and exact-SHA pinned", 
   assert.match(trusted, /environment: media-guard-trusted/u)
   assert.match(trusted, /actions\/create-github-app-token@[0-9a-f]{40}/u)
   assert.match(trusted, /permission-statuses: write/u)
+  assert.equal((trusted.match(/GITHUB_TOKEN: \$\{\{ github\.token \}\}/gu) || []).length, 1)
   assert.equal((trusted.match(/GITHUB_TOKEN: \$\{\{ steps\.app-token\.outputs\.token \}\}/gu) || []).length, 3)
   assert.match(trusted, /node "\$GITHUB_WORKSPACE\/trusted\/scripts\/media-guard\.mjs"/u)
   assert.match(trusted, /--protect-policy/u)
