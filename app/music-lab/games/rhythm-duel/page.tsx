@@ -22,9 +22,19 @@ const WINDOW_GOOD = 0.145
 
 const SCORE = { perfect: 100, great: 70, good: 40, holdTick: 14 }
 
-const LANE_KEYS: string[][] = [
-  ['a', 's', 'd', 'f'],
-  ['j', 'k', 'l', ';'],
+const LANE_BINDINGS = [
+  [
+    { code: 'KeyA', keys: ['a'], label: 'A' },
+    { code: 'KeyS', keys: ['s'], label: 'S' },
+    { code: 'KeyD', keys: ['d'], label: 'D' },
+    { code: 'KeyF', keys: ['f'], label: 'F' },
+  ],
+  [
+    { code: 'KeyJ', keys: ['j'], label: 'J' },
+    { code: 'KeyK', keys: ['k'], label: 'K' },
+    { code: 'KeyL', keys: ['l'], label: 'L' },
+    { code: 'Semicolon', keys: [';', 'ö'], label: '; / Ö' },
+  ],
 ]
 const ARROW_LANES: Record<string, number> = {
   ArrowLeft: 0, ArrowDown: 1, ArrowUp: 2, ArrowRight: 3,
@@ -40,10 +50,12 @@ const LANES = [
 const PLAYER_ACCENT = ['#22d3ee', '#c084fc']
 
 const SPEEDS = [
+  { label: 'Kids', scroll: 3.2 },
   { label: 'Relaxed', scroll: 2.0 },
   { label: 'Standard', scroll: 1.5 },
   { label: 'Fast', scroll: 1.1 },
 ]
+const DEFAULT_SPEED_INDEX = 2
 
 // ─── Runtime types ──────────────────────────────────────────────────
 
@@ -109,6 +121,13 @@ function multiplier(combo: number) {
   return Math.min(4, 1 + Math.floor(combo / 10))
 }
 
+function laneForKey(playerIndex: number, e: KeyboardEvent) {
+  const key = e.key.length === 1 ? e.key.toLowerCase() : e.key
+  return LANE_BINDINGS[playerIndex]?.findIndex(binding =>
+    binding.code === e.code || binding.keys.includes(key),
+  ) ?? -1
+}
+
 function makePlayer(index: number, name: string, chart: ChartNote[]): PlayerRT {
   return {
     index,
@@ -149,7 +168,7 @@ export default function RhythmDuelPage() {
   const [players, setPlayers] = useState(1)
   const [songId, setSongId] = useState(SONGS[0].id)
   const [difficulty, setDifficulty] = useState<Difficulty>('easy')
-  const [speedIndex, setSpeedIndex] = useState(1)
+  const [speedIndex, setSpeedIndex] = useState(DEFAULT_SPEED_INDEX)
   const [volume, setVolume] = useState(0.8)
   const [offsetMs, setOffsetMs] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -163,7 +182,7 @@ export default function RhythmDuelPage() {
   const schedulerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const pausedRef = useRef(false)
   const offsetRef = useRef(0)
-  const scrollRef = useRef(SPEEDS[1].scroll)
+  const scrollRef = useRef(SPEEDS[DEFAULT_SPEED_INDEX].scroll)
   const pauseAnchor = useRef(0)
 
   const song = useMemo(() => SONGS.find(s => s.id === songId) ?? SONGS[0], [songId])
@@ -363,7 +382,7 @@ export default function RhythmDuelPage() {
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key
 
       for (let pi = 0; pi < run.players.length; pi++) {
-        const lane = LANE_KEYS[pi].indexOf(key)
+        const lane = laneForKey(pi, e)
         if (lane >= 0) { e.preventDefault(); judgePress(pi, lane); return }
       }
       // Arrows drive player 2 in a duel, or player 1 when playing alone.
@@ -377,11 +396,11 @@ export default function RhythmDuelPage() {
     const up = (e: KeyboardEvent) => {
       const run = runRef.current
       if (!run) return
-      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key
       for (let pi = 0; pi < run.players.length; pi++) {
-        const lane = LANE_KEYS[pi].indexOf(key)
+        const lane = laneForKey(pi, e)
         if (lane >= 0) { judgeRelease(pi, lane); return }
       }
+      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key
       if (key in ARROW_LANES) {
         judgeRelease(run.players.length === 2 ? 1 : 0, ARROW_LANES[key])
       }
@@ -874,7 +893,7 @@ function MenuScreen(props: {
           </button>
           <p className="text-xs text-white/55 text-center leading-relaxed">
             Player 1 &mdash; <Kbd>A</Kbd><Kbd>S</Kbd><Kbd>D</Kbd><Kbd>F</Kbd>
-            {players === 2 && <> &nbsp;&middot;&nbsp; Player 2 &mdash; <Kbd>J</Kbd><Kbd>K</Kbd><Kbd>L</Kbd><Kbd>;</Kbd> or arrow keys</>}
+            {players === 2 && <> &nbsp;&middot;&nbsp; Player 2 &mdash; <Kbd>J</Kbd><Kbd>K</Kbd><Kbd>L</Kbd><Kbd>; / Ö</Kbd> or arrow keys</>}
             {players === 1 && <> &nbsp;or arrow keys</>}
             <br />
             On a tablet or phone, use the pads under the highway. <Kbd>Esc</Kbd> pauses.
@@ -937,7 +956,7 @@ function PlayScreen(props: {
                   }}
                 >
                   <span className="text-[11px] font-semibold" style={{ color: lane.color }}>
-                    {LANE_KEYS[i]?.[l]?.toUpperCase() ?? ''}
+                    {LANE_BINDINGS[i]?.[l]?.label ?? ''}
                   </span>
                 </button>
               ))}
