@@ -48,6 +48,9 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 env:
   NODE_VERSION: '22'
 
@@ -59,6 +62,8 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       # No `version:` here on purpose. action-setup errors out if the version is
       # specified both here and as `packageManager` in package.json; package.json
