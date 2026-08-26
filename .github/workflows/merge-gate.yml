@@ -158,6 +158,7 @@ jobs:
         run: |
           pnpm run intelligence:validate
           pnpm run test:intelligence-ingest
+          pnpm run test:intelligence-layer
 
       - name: Workflow definitions
         run: |
