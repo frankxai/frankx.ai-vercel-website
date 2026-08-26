@@ -2,11 +2,12 @@
  * Glossary System
  *
  * Manages book glossaries for inline tooltips and reference pages.
- * Each book can have a glossary defining key terms that appear in chapters.
+ * Data is imported statically so serverless and client bundles both
+ * receive the JSON — runtime `fs` lookups miss `data/glossaries` on Vercel.
  */
 
-import fs from 'fs';
-import path from 'path';
+import hoffnung from '@/data/glossaries/hoffnung.json';
+import spartanMindset from '@/data/glossaries/spartan-mindset.json';
 
 export interface GlossaryTerm {
   term: string;
@@ -25,43 +26,45 @@ export interface BookGlossary {
   terms: GlossaryTerm[];
 }
 
-const GLOSSARIES_DIR = path.join(process.cwd(), 'data', 'glossaries');
+type GlossaryFile = {
+  bookSlug?: string;
+  book?: string;
+  title?: string;
+  description?: string;
+  terms?: GlossaryTerm[];
+};
+
+const GLOSSARY_FILES: Record<string, GlossaryFile> = {
+  'spartan-mindset': spartanMindset,
+  hoffnung,
+};
+
+function toGlossary(bookSlug: string, raw: GlossaryFile): BookGlossary {
+  const terms = Array.isArray(raw.terms) ? raw.terms : [];
+  return {
+    bookSlug: raw.bookSlug || raw.book || bookSlug,
+    title: raw.title || 'Glossary',
+    description: raw.description || '',
+    terms,
+  };
+}
+
+const GLOSSARIES: Record<string, BookGlossary> = Object.fromEntries(
+  Object.entries(GLOSSARY_FILES).map(([slug, raw]) => [slug, toGlossary(slug, raw)]),
+);
 
 /**
  * Get glossary for a specific book
  */
 export function getBookGlossary(bookSlug: string): BookGlossary | null {
-  try {
-    const filePath = path.join(GLOSSARIES_DIR, `${bookSlug}.json`);
-    if (!fs.existsSync(filePath)) {
-      return null;
-    }
-    const data = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(data) as BookGlossary;
-  } catch (error) {
-    console.error(`Failed to load glossary for ${bookSlug}:`, error);
-    return null;
-  }
+  return GLOSSARIES[bookSlug] ?? null;
 }
 
 /**
  * Get all available glossaries
  */
 export function getAllGlossaries(): BookGlossary[] {
-  try {
-    const files = fs.readdirSync(GLOSSARIES_DIR)
-      .filter(file => file.endsWith('.json'));
-
-    return files
-      .map(file => {
-        const bookSlug = file.replace('.json', '');
-        return getBookGlossary(bookSlug);
-      })
-      .filter((g): g is BookGlossary => g !== null);
-  } catch (error) {
-    console.error('Failed to load glossaries:', error);
-    return [];
-  }
+  return Object.values(GLOSSARIES);
 }
 
 /**
@@ -69,24 +72,15 @@ export function getAllGlossaries(): BookGlossary[] {
  */
 export function findTerm(
   glossary: BookGlossary,
-  searchTerm: string
+  query: string
 ): GlossaryTerm | null {
-  const normalized = searchTerm.toLowerCase().trim();
+  const normalized = query.toLowerCase().trim();
 
   return glossary.terms.find(term => {
-    // Check main term
     if (term.term.toLowerCase() === normalized) {
       return true;
     }
-
-    // Check aliases
-    if (term.aliases) {
-      return term.aliases.some(alias =>
-        alias.toLowerCase() === normalized
-      );
-    }
-
-    return false;
+    return term.aliases?.some(alias => alias.toLowerCase() === normalized) ?? false;
   }) || null;
 }
 
@@ -106,7 +100,6 @@ export function getTermsByCategory(
     categorized[category].push(term);
   });
 
-  // Sort terms alphabetically within each category
   Object.keys(categorized).forEach(category => {
     categorized[category].sort((a, b) =>
       a.term.localeCompare(b.term)
@@ -130,22 +123,18 @@ export function searchTerms(
   }
 
   return glossary.terms.filter(term => {
-    // Search in term name
     if (term.term.toLowerCase().includes(normalized)) {
       return true;
     }
 
-    // Search in definition
     if (term.definition.toLowerCase().includes(normalized)) {
       return true;
     }
 
-    // Search in extended definition
     if (term.extended?.toLowerCase().includes(normalized)) {
       return true;
     }
 
-    // Search in aliases
     if (term.aliases?.some(alias =>
       alias.toLowerCase().includes(normalized)
     )) {
@@ -172,7 +161,6 @@ export function getAlphabeticalIndex(
     index[firstLetter].push(term);
   });
 
-  // Sort terms alphabetically within each letter
   Object.keys(index).forEach(letter => {
     index[letter].sort((a, b) =>
       a.term.localeCompare(b.term)
