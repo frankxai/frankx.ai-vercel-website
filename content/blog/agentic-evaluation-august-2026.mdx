@@ -38,7 +38,7 @@ We ran five identical prompts across five OpenCode Zen free-model lanes: busines
 
 **Frontend lane**: A JSX hero component built with Tailwind 3.4 dark tech theme (indigo 900 / violet 500 / gold 400 tokens). Responsive 1920×1080 hero with CTA "Start Building" → /agent-hub. Reduced-motion safe (no auto-animation-on-load). Accessible CTA with aria-label. Mobile-first: stack vertically below 640px; CTA full-width.
 
-**Backend lane**: A JSON:API endpoint `/v1/agents/{agent_id}/evals` returning { score, rubric, source, judged_at } with rate limit 60 requests/min per agent (X-Rate-Limit-Remaining header). CROSS-MODEL-GATE reviewer flag returns 429 when a different model than the maker reviewed the output. Reduced-motion guard on any UI-related fields.
+**Backend lane**: A JSON:API endpoint `/v1/agents/{agent_id}/evals` returning `{ score, rubric, source, judged_at }` with rate limit 60 requests/min per agent (X-Rate-Limit-Remaining header). CROSS-MODEL-GATE reviewer flag returns 429 when a different model than the maker reviewed the output. Reduced-motion guard on any UI-related fields.
 
 **Swarm lane**: A 5-agent maker-checker handoff with kanban states (idea → drafting → review → revision → done). When a guardian exits early, the checker auto-promotes the next agent in the kanban queue and records the gap in the evidence log with timestamp and exit reason. JSON result bundle captures handoffId, agents, states, and evidenceLog.
 
