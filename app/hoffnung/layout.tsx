@@ -16,11 +16,11 @@ const lora = Lora({
 export const metadata: Metadata = {
   title: 'Hoffnung — Ein Licht in der Dunkelheit',
   description:
-    'Poesie, Musik, Meditation und Heilfrequenzen. Eine immersive Erfahrung der Hoffnung — für jeden, der durch Trauer, Verlust oder Dunkelheit geht.',
+    'Poesie, Musik, Meditation und symbolische Klangräume — eine künstlerische Erfahrung über Hoffnung, Trauer und Verbundenheit.',
   openGraph: {
     title: 'Hoffnung — Ein Licht in der Dunkelheit',
     description:
-      'Poesie, Musik, Meditation und Heilfrequenzen. Eine immersive Erfahrung der Hoffnung.',
+      'Poesie, Musik, Meditation und symbolische Klangräume. Eine künstlerische Erfahrung der Hoffnung.',
     images: ['/images/books/hoffnung-cover.png'],
   },
 }

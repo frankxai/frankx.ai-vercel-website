@@ -34,9 +34,10 @@ export default function FoundryGuidePage() {
           How to run a business on an operating system.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-white/60">
-          For founders who just got an OS installed — or instantiated the open-source template
-          themselves. No AI background assumed. Ten minutes to read; thirty minutes a week to
-          operate.
+          For founders who just got an OS installed — or instantiated the
+          open-source template themselves. No AI background assumed. The
+          operating rhythm is adapted to the company, the work, and the
+          founder’s available attention.
         </p>
 
         <div className="mt-16 space-y-14 text-base leading-relaxed">

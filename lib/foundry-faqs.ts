@@ -15,7 +15,7 @@ export const FOUNDRY_FAQS: FoundryFAQ[] = [
   {
     question: 'What is the FrankX Foundry?',
     answer:
-      'The Foundry installs complete operating systems into businesses: a website, an AI-agent harness, pre-publish quality gates, and a compounding business memory — the same architecture that runs frankx.ai, adapted to your brand in a guided derivation. You walk out owning the whole repo.',
+      'The Foundry installs a website, AI-agent harness, pre-publish quality gates, and business memory using the same contract-and-gate pattern applied on frankx.ai. The system is adapted to your brand in a guided derivation, and you own the resulting repository.',
   },
   {
     question: 'What exactly gets installed?',
@@ -30,26 +30,26 @@ export const FOUNDRY_FAQS: FoundryFAQ[] = [
   {
     question: 'What does it cost?',
     answer:
-      'Pricing follows evaluation — the founding cohort is forming now and applications are open. The underlying template is MIT-licensed and free forever; what the Foundry prices is the install, the brand derivation, and the connected relationship.',
+      'Pricing and scope follow the fit review. The underlying template is MIT-licensed; what the Foundry prices is the guided install, brand derivation, and agreed support relationship.',
   },
   {
     question: 'What does "staying connected" mean?',
     answer:
-      'Your repo is registered as a downstream instance. When the upstream harness improves — a sharper gate, a new agent — you receive a pull request with a plain-language changelog. You read the diff and merge or decline; nothing ever auto-merges, and your brand files are never touched. The first instance has already merged its first sync.',
+      'Your repo can be registered as a downstream instance. When an upstream harness improvement applies, it can arrive as a pull request with a plain-language changelog. You read the diff and merge or decline; nothing auto-merges, and brand files remain under your control.',
   },
   {
     question: 'Do I need to know how to code?',
     answer:
-      'No. The operating layer is plain language: you talk to a coding agent in your repo and it behaves like a trained team member, because the contract files teach it your business. The weekly rhythm is about 30 minutes of structure — a Monday plan and a Friday review.',
+      'No. The operating layer uses plain-language contracts that teach a coding agent the business context, boundaries, and quality checks. The operating rhythm is documented during the install and adjusted to the company rather than sold as a universal time promise.',
   },
   {
-    question: 'How does this relate to the Inner Circle and Alliance?',
+    question: 'How does this relate to Founder’s Circle?',
     answer:
-      'The Inner Circle is the FrankX community and vault. Alliance is custom-scope partnership. The Foundry is narrower and deeper than both: one business, one operating system, installed and connected. Alliance conversations often include a Foundry install; an Inner Circle membership is neither required nor assumed.',
+      'The Foundry is implementation: one business, one operating system, installed around real work. Founder’s Circle is strategic access for consequential decisions under uncertainty. Neither requires the other.',
   },
   {
-    question: 'Is the system actually proven?',
+    question: 'What can I verify before applying?',
     answer:
-      'The architecture runs frankx.ai in production — 500+ routes, automated quality gates, a public agent catalog. The first external install (a European consumer-goods launch) went from zero to a build-verified, gated, deployed-ready operating system in one day, and is now a registered downstream instance receiving harness updates. The repos are public; verify rather than trust.',
+      'The operating guide, Agentic Business OS template, harness contract, and related public repositories are linked from the page. Inspect the source, the quality gates, and the ownership model before deciding whether an application makes sense.',
   },
 ]

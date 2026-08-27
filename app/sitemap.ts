@@ -131,6 +131,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/qualities', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: '/founder-stack', priority: 0.95, changeFrequency: 'weekly' as const },
+    { url: '/founder-signal', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/founders-circle', priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: '/human-layer', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
     { url: '/journal', priority: 0.8, changeFrequency: 'daily' as const },
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
@@ -674,14 +678,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.7 },
   )
 
-  // Founder Signal OS launch surface. /mvu/sabrina stays out: it is noindex.
-  entries.push({
-    url: `${BASE_URL}/founder-signal`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.9,
-  })
-
   // Tallinn is closed; these entries are a finished archive, not a live feed.
   mvuEntries.forEach(entry => {
     entries.push({
@@ -819,6 +815,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // route; the generated JSON keeps sitemap coverage without over-bundling.
   const seenUrls = new Set(entries.map((e) => e.url))
   const discovered = getRouteIndexRoutes()
+  const noindexRoutes = new Set([
+    '/founders-circle/apply',
+    '/inner-circle/vault-preview',
+  ])
   const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
     core: { priority: 0.8, changeFrequency: 'weekly' },
     blog: { priority: 0.7, changeFrequency: 'monthly' },
@@ -838,7 +838,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     legacy: { priority: 0.3, changeFrequency: 'yearly' },
   }
   for (const route of discovered) {
-    if (route.sitemap === false) continue
+    if (route.sitemap === false || noindexRoutes.has(route.href)) continue
     const url = `${BASE_URL}${route.href}`
     if (seenUrls.has(url)) continue
     seenUrls.add(url)

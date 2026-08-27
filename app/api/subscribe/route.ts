@@ -1,25 +1,30 @@
+import { createHash, createHmac, timingSafeEqual } from 'node:crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { musicPromptsEmail } from '@/lib/email-templates'
 import { welcomeEmail1 } from '@/lib/email-templates-welcome'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 import { innerCircleWaitlistEmail } from '@/lib/email-templates-inner-circle'
 import { mvuRsvpConfirmation, mvuRsvpAlert } from '@/lib/email-templates-mvu'
+import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
 export const runtime = 'nodejs'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
+const PREFERENCES_SECRET = process.env.NEWSLETTER_PREFERENCES_SECRET
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
 const FROM_EMAIL = 'Frank <frank@mail.frankx.ai>'
+const PREFERENCE_TOKEN_TTL_MS = 30 * 60 * 1000
 
-// Resend topic IDs (dashboard "topics" — recorded on the contact as a `topics`
-// property for segmentation/reporting. NOTE: the contacts endpoint itself does
-// not subscribe contacts to topics; that is a dashboard/Broadcast concept, so we
-// persist the intent as a queryable custom property instead).
+// Resend topic IDs. Native topic state is the only preference source of truth;
+// contact metadata never mirrors it because two provider writes cannot be atomic.
 const TOPICS = {
   newsletter: 'b613f6ff-9c56-4b4c-86df-9217843c5d78',
   'music-suno': '018a5159-10c8-4595-8ecc-63d7a2c6b442',
   'product-updates': '811064ed-7444-45db-9a2a-fd8c83a21053',
 } as const
+
+type TopicKey = keyof typeof TOPICS
+const TOPIC_KEYS = Object.keys(TOPICS) as TopicKey[]
 
 // Map each list type to its topics. The KEY set is also the allow-list of valid
 // list types — anything else falls back to `newsletter`.
@@ -27,6 +32,7 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   newsletter: { topics: [TOPICS.newsletter] },
   'creation-chronicles': { topics: [TOPICS.newsletter] },
   'ai-architect': { topics: [TOPICS.newsletter] },
+  'founder-stack': { topics: [TOPICS.newsletter, TOPICS['product-updates']] },
   'operator-scorecard': { topics: [TOPICS.newsletter] },
   'inner-circle': { topics: [TOPICS.newsletter, TOPICS['product-updates']] },
   'music-lab': { topics: [TOPICS['music-suno'], TOPICS.newsletter] },
@@ -53,6 +59,109 @@ function resolveListType(value: unknown): keyof typeof LIST_CONFIG {
   return typeof value === 'string' && value in LIST_CONFIG
     ? (value as keyof typeof LIST_CONFIG)
     : 'newsletter'
+}
+
+function canonicalizeTopics(value: unknown): TopicKey[] | null {
+  if (!Array.isArray(value)) return null
+  const selected = new Set<TopicKey>()
+  for (const topic of value) {
+    if (typeof topic !== 'string' || !TOPIC_KEYS.includes(topic as TopicKey)) return null
+    selected.add(topic as TopicKey)
+  }
+  return TOPIC_KEYS.filter((topic) => selected.has(topic))
+}
+
+function sameTopics(left: TopicKey[], right: TopicKey[]) {
+  return left.length === right.length && left.every((topic, index) => topic === right[index])
+}
+
+function preferenceSignature(email: string, payload: string) {
+  if (!PREFERENCES_SECRET) return null
+  return createHmac('sha256', PREFERENCES_SECRET)
+    .update(`${email}\n${payload}`)
+    .digest('base64url')
+}
+
+function createPreferenceToken(email: string, topics: TopicKey[]) {
+  const payload = Buffer.from(
+    JSON.stringify({ v: 1, topics, exp: Date.now() + PREFERENCE_TOKEN_TTL_MS }),
+  ).toString('base64url')
+  const signature = preferenceSignature(email, payload)
+  return signature ? `${payload}.${signature}` : null
+}
+
+function topicsFromPreferenceToken(email: string, token: string): TopicKey[] | null {
+  if (!PREFERENCES_SECRET || token.length > 2048) return null
+  const parts = token.split('.')
+  if (parts.length !== 2) return null
+  const [payloadPart, signature] = parts
+  const expected = preferenceSignature(email, payloadPart)
+  if (!expected) return null
+
+  const receivedBytes = Buffer.from(signature)
+  const expectedBytes = Buffer.from(expected)
+  if (
+    receivedBytes.length !== expectedBytes.length ||
+    !timingSafeEqual(receivedBytes, expectedBytes)
+  ) {
+    return null
+  }
+
+  try {
+    const payload = JSON.parse(Buffer.from(payloadPart, 'base64url').toString('utf8')) as {
+      v?: unknown
+      topics?: unknown
+      exp?: unknown
+    }
+    const topics = canonicalizeTopics(payload.topics)
+    if (
+      payload.v !== 1 ||
+      typeof payload.exp !== 'number' ||
+      !Number.isSafeInteger(payload.exp) ||
+      payload.exp <= Date.now() ||
+      !topics
+    ) {
+      return null
+    }
+    return topics
+  } catch {
+    return null
+  }
+}
+
+async function subscriptionRateLimit(request: NextRequest, email: string) {
+  const emailDigest = createHash('sha256').update(email).digest('hex')
+  try {
+    const [ipResult, emailResult] = await Promise.all([
+      emailRatelimit.limit(`subscribe:ip:${getClientIdentifier(request)}`),
+      emailRatelimit.limit(`subscribe:email:${emailDigest}`),
+    ])
+    return ipResult.success && emailResult.success ? 'allowed' : 'limited'
+  } catch (error) {
+    console.error('Subscription rate limit unavailable:', error)
+    return 'unavailable'
+  }
+}
+
+async function sendPreferenceConfirmation(email: string, topics: TopicKey[]) {
+  const token = createPreferenceToken(email, topics)
+  if (!token) throw new Error('Preference signing is not configured')
+  const url = `https://frankx.ai/newsletter/preferences?token=${encodeURIComponent(token)}`
+  const labels = topics.length ? topics.join(', ') : 'no optional topics'
+  await sendEmail({
+    to: email,
+    subject: 'Confirm your FrankX email preferences',
+    text: [
+      'Confirm your FrankX email preferences.',
+      '',
+      `Requested topics: ${labels}`,
+      '',
+      'Open this short-lived link, re-enter your email, and confirm:',
+      url,
+      '',
+      'If you did not request this change, ignore this email. Nothing has changed.',
+    ].join('\n'),
+  })
 }
 
 /**
@@ -85,8 +194,8 @@ function premiumPacksConfirmation(name: string) {
 }
 
 async function sendEmail(payload: Record<string, unknown>) {
-  if (!RESEND_API_KEY) return
-  await fetch('https://api.resend.com/emails', {
+  if (!RESEND_API_KEY) throw new Error('Email service not configured')
+  const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${RESEND_API_KEY}`,
@@ -94,6 +203,7 @@ async function sendEmail(payload: Record<string, unknown>) {
     },
     body: JSON.stringify({ from: FROM_EMAIL, ...payload }),
   })
+  if (!response.ok) throw new Error(`Email delivery failed with status ${response.status}`)
 }
 
 async function sendWelcomeEmail(
@@ -178,6 +288,26 @@ async function createContact(body: ContactBody) {
   })
 }
 
+async function updateContactTopics(email: string, selectedTopicKeys: Array<keyof typeof TOPICS>) {
+  const selected = new Set(selectedTopicKeys)
+  return fetch(
+    `https://api.resend.com/contacts/${encodeURIComponent(email)}/topics`,
+    {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        topics: Object.entries(TOPICS).map(([key, id]) => ({
+          id,
+          subscription: selected.has(key as keyof typeof TOPICS) ? 'opt_in' : 'opt_out',
+        })),
+      }),
+    },
+  )
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => null)
@@ -198,11 +328,36 @@ export async function POST(request: NextRequest) {
     const source = String(raw.source ?? '').trim().slice(0, MAX_SOURCE_LEN)
     const intention = String(raw.intention ?? '').trim().slice(0, 280)
     const listType = resolveListType(raw.listType)
+    const hasExplicitTopics = Object.prototype.hasOwnProperty.call(raw, 'topics')
+    const explicitTopics = hasExplicitTopics ? canonicalizeTopics(raw.topics) : null
+    const preferenceToken =
+      typeof raw.preferenceToken === 'string' ? raw.preferenceToken.trim() : ''
 
     if (!email || email.length > MAX_EMAIL_LEN || !EMAIL_RE.test(email)) {
       return NextResponse.json(
         { error: 'Please enter a valid email address' },
         { status: 400 },
+      )
+    }
+
+    if (hasExplicitTopics && !explicitTopics) {
+      return NextResponse.json({ error: 'Invalid topic preferences.' }, { status: 400 })
+    }
+    if (raw.preferenceToken != null && typeof raw.preferenceToken !== 'string') {
+      return NextResponse.json({ error: 'Invalid preference token.' }, { status: 400 })
+    }
+
+    const rateLimit = await subscriptionRateLimit(request, email)
+    if (rateLimit === 'unavailable') {
+      return NextResponse.json(
+        { error: 'Subscription protection is temporarily unavailable. Please try again.' },
+        { status: 503 },
+      )
+    }
+    if (rateLimit === 'limited') {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again shortly.' },
+        { status: 429, headers: { 'Retry-After': '600' } },
       )
     }
 
@@ -214,12 +369,59 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    if (hasExplicitTopics || preferenceToken) {
+      if (!PREFERENCES_SECRET) {
+        console.error('NEWSLETTER_PREFERENCES_SECRET not configured')
+        return NextResponse.json(
+          { error: 'Preference confirmation is temporarily unavailable.' },
+          { status: 503 },
+        )
+      }
+
+      if (!preferenceToken) {
+        await sendPreferenceConfirmation(email, explicitTopics ?? [])
+        return NextResponse.json(
+          {
+            success: true,
+            confirmationRequired: true,
+            message:
+              'Check your inbox. Preferences are unchanged until you open the link and re-enter your email.',
+          },
+          { status: 202 },
+        )
+      }
+
+      const tokenTopics = topicsFromPreferenceToken(email, preferenceToken)
+      if (!tokenTopics || (explicitTopics && !sameTopics(explicitTopics, tokenTopics))) {
+        return NextResponse.json(
+          { error: 'This preference confirmation is invalid or expired.' },
+          { status: 401 },
+        )
+      }
+
+      const topicResponse = await updateContactTopics(email, tokenTopics).catch(() => null)
+      if (!topicResponse?.ok) {
+        console.error('Resend verified topic preference update failed', topicResponse?.status)
+        return NextResponse.json(
+          { error: 'The verified preferences could not be saved. Please try again.' },
+          { status: 502 },
+        )
+      }
+
+      return NextResponse.json({
+        success: true,
+        confirmationRequired: false,
+        updated: true,
+        welcomeSent: false,
+        message: 'Your verified email preferences are saved.',
+      })
+    }
+
     const config = LIST_CONFIG[listType]
 
-    // Custom properties make the list genuinely segmentable inside Resend. The
-    // create-contact endpoint accepts a string→string `properties` map.
+    // Source metadata describes the signup surface only. Topic subscriptions
+    // live exclusively in Resend's native topic state.
     const properties: Record<string, string> = { source: listType }
-    if (config.topics.length) properties.topics = config.topics.join(',')
     if (source) properties.referrer = source
     // Persist the RSVP intention so the approve/decline decision and the room's
     // makeup are backed by a queryable segment, not only the alert emails.
@@ -243,16 +445,19 @@ export async function POST(request: NextRequest) {
       resendResponse = await createContact(minimal)
     }
 
+    if (resendResponse.status === 409) {
+      return NextResponse.json({
+        success: true,
+        duplicate: true,
+        updated: false,
+        welcomeSent: false,
+        message: 'This email is already on file. No duplicate email was sent.',
+      })
+    }
+
     if (!resendResponse.ok) {
       const errorData = await resendResponse.json().catch(() => ({}))
       console.error('Resend API error:', resendResponse.status, errorData)
-
-      if (resendResponse.status === 409) {
-        return NextResponse.json(
-          { error: 'This email is already subscribed!' },
-          { status: 400 },
-        )
-      }
 
       return NextResponse.json(
         { error: 'Failed to subscribe. Please try again.' },
@@ -262,11 +467,39 @@ export async function POST(request: NextRequest) {
 
     const data = await resendResponse.json().catch(() => ({}))
 
-    // Welcome/delivery email is non-blocking — a delivery hiccup must not fail
-    // the subscription itself.
-    sendWelcomeEmail(email, name, listType, intention).catch((err) =>
-      console.error('Welcome email error:', err),
-    )
+    const configuredTopicKeys = Object.entries(TOPICS)
+      .filter(([, id]) => config.topics.includes(id))
+      .map(([key]) => key as keyof typeof TOPICS)
+    const topicResponse = await updateContactTopics(
+      email,
+      configuredTopicKeys,
+    ).catch(() => null)
+
+    if (!topicResponse?.ok) {
+      console.error('Resend topic opt-in failed:', topicResponse?.status)
+      return NextResponse.json(
+        { error: 'The subscription was created, but its topics could not be saved.' },
+        { status: 502 },
+      )
+    }
+
+    let welcomeSent = false
+    try {
+      await sendWelcomeEmail(email, name, listType, intention)
+      welcomeSent = true
+    } catch (error) {
+      console.error('Welcome email error:', error)
+    }
+
+    if (listType === 'music-lab' && !welcomeSent) {
+      return NextResponse.json(
+        {
+          error:
+            'Your subscription was saved, but the prompt email could not be sent. Please try again.',
+        },
+        { status: 502 },
+      )
+    }
 
     return NextResponse.json({
       success: true,
@@ -275,6 +508,8 @@ export async function POST(request: NextRequest) {
           ? 'Check your email for your free prompts!'
           : 'Successfully subscribed!',
       subscriber: data.id,
+      updated: false,
+      welcomeSent,
     })
   } catch (error) {
     console.error('Subscription error:', error)

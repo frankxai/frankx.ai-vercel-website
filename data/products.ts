@@ -69,7 +69,7 @@ export interface Product {
   secondaryCtaText?: string
   /** "Most popular" badge for hub-page emphasis. */
   featured?: boolean
-  /** Hard limit on seats — for Founder's Circle real-scarcity. */
+  /** Optional verified capacity disclosure for the current intake window. */
   seatsPerQuarter?: number
 }
 
@@ -340,7 +340,7 @@ export const products: Product[] = [
     hook: 'The enterprise CoE framework Frank refined through Oracle EMEA architecture work — yours to use.',
     pricing: { eur: 997, usd: 1080, cadence: 'lifetime' },
     positioning:
-      'Your problem isn\'t "how do I build an agent." Your problem is "how do I roll agents into a 500-person engineering org with governance, compliance, and a clear executive narrative." The Architect tier is Frank\'s enterprise CoE framework: a 6-pillar AI Center of Excellence (Strategy, Governance, Talent, Technology, Data, Ethics) refined through large-enterprise AI work and translated to your team. The same operating logic. 1/5000th the consultancy price.',
+      'Your problem isn\'t "how do I build an agent." Your problem is "how do I roll agents into a 500-person engineering org with governance, compliance, and a clear executive narrative." The Architect tier is Frank\'s enterprise CoE framework: a 6-pillar AI Center of Excellence (Strategy, Governance, Talent, Technology, Data, Ethics) refined through large-enterprise AI work and translated into a reusable system for your team.',
     notFor: [
       'Solo builders without organizational scope — Mastery is the right tier',
       'Founders looking for 1:1 strategic AI advisory — Founder\'s Circle',
@@ -415,7 +415,7 @@ export const products: Product[] = [
     tier: 'founders',
     title: 'Founder\'s Circle',
     subtitle: 'Frank\'s actual time. Quarterly strategic AI retainer.',
-    hook: '10 seats per quarter. By application. Frank\'s time is the constraint.',
+    hook: 'Application only. Acceptance depends on fit, conflicts, and Frank\'s available capacity.',
     pricing: { eur: 2997, usd: 3245, cadence: 'application' },
     positioning:
       'You are a founder, family-office advisor, or C-level architect. Your problem is not artifacts — you can buy artifacts. Your problem is judgment under uncertainty: which AI moves matter, which are noise, and how to make calls that compound across years. Founder\'s Circle is four hours of Frank\'s time per quarter. Calls when you need them, async support windows after, and a quarterly strategic AI retainer scoped to your business.',
@@ -471,7 +471,6 @@ export const products: Product[] = [
     color: 'rose',
     funnelStage: 'premium',
     ctaText: 'Apply for the Circle',
-    seatsPerQuarter: 10,
   },
 ]
 

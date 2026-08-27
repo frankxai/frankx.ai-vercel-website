@@ -18,7 +18,7 @@ const faqItems = [
   },
   {
     q: 'How often will I receive emails?',
-    a: 'Signal Loop is sent most weeks. Deeper streams have their own cadence and can be managed separately.',
+    a: 'Signal Loop is sent most weeks. The newsletter hub also publishes deeper editorial lanes; the preferences page manages the delivery categories currently connected to email.',
   },
   {
     q: 'Can I unsubscribe anytime?',
