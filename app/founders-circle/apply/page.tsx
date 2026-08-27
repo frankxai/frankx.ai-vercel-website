@@ -9,6 +9,7 @@ export const metadata = createMetadata({
   description:
     'Apply for the FrankX Founder’s Circle. Share the consequential decision, what you have already tried, and the working session that would create value.',
   path: '/founders-circle/apply',
+  noindex: true,
 })
 
 export default function ApplyPage() {
