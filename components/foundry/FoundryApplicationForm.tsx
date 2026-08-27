@@ -12,7 +12,7 @@ const STAGES = [
 ] as const
 
 const inputClass =
-  'w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-white placeholder:text-white/35 transition-colors focus:border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500/60 disabled:opacity-50'
+  'w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-white placeholder:text-white/35 transition-colors focus-visible:border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 disabled:opacity-50'
 
 export function FoundryApplicationForm() {
   const [form, setForm] = useState({
