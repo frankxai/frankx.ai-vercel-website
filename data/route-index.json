@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 941,
+    "total": 943,
     "aliases": 58,
     "byType": {
       "core": 23,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 252,
+      "blog": 254,
       "research": 16,
       "guide": 25,
       "library": 56,
@@ -753,6 +753,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/4-hour-ai-architect-deal-framework-2026",
+      "title": "The 4-Hour Workweek, Rebuilt for AI Architects in 2026",
+      "description": "Every DEAL chapter rebuilt for founders using AI agents, governed automation, human specialists, and deliberate freedom.",
+      "tags": [
+        "ai-architect",
+        "creator-systems",
+        "automation",
+        "founder-ops",
+        "future-of-work"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/4-week-personal-ai-coe-2026-rebuild",
       "title": "The 4-Week Personal AI Center of Excellence: 2026 Rebuild Blueprint",
       "description": "How to stand up an elite, sovereign Personal AI Center of Excellence (CoE) under $100/month with automated skills, safety gates, and memory infrastructure.",
@@ -1323,6 +1336,19 @@
         "creator economy",
         "monetization",
         "passive income"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-app-builders-2026",
+      "title": "Best AI App Builders 2026: v0, Replit, Lovable",
+      "description": "Choose v0, Replit, Lovable, Bolt, or Base44—and design the handoff to Claude Code, Codex, GitHub, deployment, sales, and operations.",
+      "tags": [
+        "ai-app-builders",
+        "vibe-coding",
+        "ai-architecture",
+        "coding-agents",
+        "digital-products"
       ],
       "type": "blog"
     },
