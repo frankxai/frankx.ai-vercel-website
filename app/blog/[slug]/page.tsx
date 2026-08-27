@@ -322,7 +322,7 @@ export default async function BlogPostPage({
                       <Link
                         key={tag}
                         href={`/blog?tag=${encodeURIComponent(tag.toLowerCase())}`}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/55 transition-all duration-200 hover:bg-emerald-500/10 hover:border-emerald-500/25 hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/55 transition-[background-color,border-color,color] duration-200 hover:bg-emerald-500/10 hover:border-emerald-500/25 hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
                       >
                         #{tag}
                       </Link>
