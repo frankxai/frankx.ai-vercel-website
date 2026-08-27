@@ -291,13 +291,13 @@ export default function V0ShowcasePage() {
                   setSelectedWave(3)
                   setSelectedCategory('All')
                 }}
-                className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/20"
+                className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm transition-colors duration-200 shadow-lg shadow-emerald-500/20"
               >
                 View Wave 3 Kits
               </button>
               <Link
                 href="/shop/templates"
-                className="px-5 py-2.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-white font-medium text-sm transition-all duration-200"
+                className="px-5 py-2.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-white font-medium text-sm transition-colors duration-200"
               >
                 Commercial Licenses
               </Link>
@@ -315,7 +315,7 @@ export default function V0ShowcasePage() {
                 <button
                   key={String(wave)}
                   onClick={() => setSelectedWave(wave)}
-                  className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 whitespace-nowrap ${
+                  className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-[background-color,color,box-shadow] duration-200 whitespace-nowrap ${
                     selectedWave === wave
                       ? 'bg-emerald-500 text-black shadow-md shadow-emerald-500/20'
                       : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
@@ -334,7 +334,7 @@ export default function V0ShowcasePage() {
                 placeholder="Search templates or categories..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                className="w-full pl-10 pr-4 py-2 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 focus-visible:ring-2 focus-visible:ring-emerald-400/50 transition-colors"
               />
             </div>
           </div>
@@ -345,7 +345,7 @@ export default function V0ShowcasePage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-[background-color,border-color,color] duration-200 whitespace-nowrap ${
                   selectedCategory === cat
                     ? 'bg-white/10 text-white border border-white/20'
                     : 'bg-white/[0.02] text-zinc-400 border border-white/[0.04] hover:text-zinc-200 hover:bg-white/[0.04]'
@@ -381,7 +381,7 @@ export default function V0ShowcasePage() {
               <motion.div
                 key={gen.id}
                 layout={!shouldReduceMotion}
-                className={`group relative rounded-2xl border ${colors.border} ${colors.borderHover} bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-300 flex flex-col justify-between hover:shadow-2xl ${colors.glow} ${
+                className={`group relative rounded-2xl border ${colors.border} ${colors.borderHover} bg-white/[0.02] backdrop-blur-md overflow-hidden transition-[border-color,box-shadow] duration-300 flex flex-col justify-between hover:shadow-2xl ${colors.glow} ${
                   isPreviewing ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''
                 }`}
               >
@@ -499,7 +499,7 @@ export default function V0ShowcasePage() {
                         {/* Iframe Viewport Container */}
                         <div className="p-4 flex items-center justify-center bg-[#0d0e12] overflow-x-auto min-h-[500px]">
                           <div
-                            className={`transition-all duration-300 overflow-hidden bg-black rounded-lg border border-white/[0.08] shadow-2xl ${
+                            className={`transition-[width,height,border-width,border-radius,box-shadow] duration-300 overflow-hidden bg-black rounded-lg border border-white/[0.08] shadow-2xl ${
                               deviceMode === 'desktop'
                                 ? 'w-full h-[540px]'
                                 : deviceMode === 'tablet'
