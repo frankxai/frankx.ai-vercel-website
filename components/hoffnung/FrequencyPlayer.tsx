@@ -6,66 +6,75 @@ import { ScrollReveal } from '@/components/valentines/ScrollReveal'
 const frequencies = [
   {
     hz: 174,
-    name: 'Erdung & Sicherheit',
-    nameEn: 'Grounding & Security',
+    name: 'Tiefe & Schwere',
+    nameEn: 'Depth & Weight',
     color: '#7C3AED',
-    description: 'Lindert Schmerz und gibt ein Gefühl von Sicherheit und Geborgenheit.',
+    description:
+      'Ein symbolischer Hörimpuls für Ruhe, Gewicht und Bodenhaftung.',
   },
   {
     hz: 285,
-    name: 'Heilung & Erneuerung',
-    nameEn: 'Healing & Renewal',
+    name: 'Erneuerung',
+    nameEn: 'Renewal',
     color: '#6366F1',
-    description: 'Fördert die Regeneration und Erneuerung des Körpers und Geistes.',
+    description:
+      'Eine erfahrungsbezogene Einladung, Übergang und Neubeginn wahrzunehmen.',
   },
   {
     hz: 396,
     name: 'Befreiung',
     nameEn: 'Liberation',
     color: '#3B82F6',
-    description: 'Löst Schuld und Angst. Befreit von emotionalen Blockaden.',
+    description:
+      'Ein symbolischer Rahmen für das Loslassen belastender Gedanken.',
   },
   {
     hz: 432,
     name: 'Natürliche Harmonie',
     nameEn: 'Natural Harmony',
     color: '#38BDF8',
-    description: 'Die natürliche Stimmung des Universums. Tiefe Ruhe und Frieden.',
+    description:
+      'Eine alternative Stimmung, die manche Hörer als weich und ruhig erleben.',
   },
   {
     hz: 528,
-    name: 'Frequenz der Liebe',
-    nameEn: 'Love Frequency',
+    name: 'Wärme',
+    nameEn: 'Warmth',
     color: '#10B981',
-    description: 'Transformation und Wunder. Die Frequenz der Liebe und des Lichts.',
+    description:
+      'Ein symbolischer Hörimpuls für Wärme, Güte und Verbundenheit.',
   },
   {
     hz: 639,
     name: 'Verbindung',
     nameEn: 'Connection',
     color: '#F59E0B',
-    description: 'Harmonisiert Beziehungen und stärkt die Verbindung zu anderen.',
+    description:
+      'Eine erfahrungsbezogene Einladung, an Verbindung und Beziehung zu denken.',
   },
   {
     hz: 741,
-    name: 'Ausdruck & Reinigung',
-    nameEn: 'Expression & Cleansing',
+    name: 'Ausdruck',
+    nameEn: 'Expression',
     color: '#F97316',
-    description: 'Emotionale Reinigung und authentischer Selbstausdruck.',
+    description:
+      'Ein symbolischer Rahmen für Stimme, Ausdruck und offene Aufmerksamkeit.',
   },
   {
     hz: 852,
     name: 'Intuition',
     nameEn: 'Intuition',
     color: '#EC4899',
-    description: 'Öffnet die innere Wahrnehmung und stärkt die Intuition.',
+    description:
+      'Eine erfahrungsbezogene Einladung zu stiller, innerer Aufmerksamkeit.',
   },
   {
     hz: 963,
-    name: 'Kosmisches Bewusstsein',
-    nameEn: 'Cosmic Consciousness',
+    name: 'Weite',
+    nameEn: 'Spaciousness',
     color: '#A855F7',
-    description: 'Verbindung mit dem Göttlichen und dem kosmischen Bewusstsein.',
+    description:
+      'Ein symbolischer Hörimpuls für Weite, Staunen und persönliche Bedeutung.',
   },
 ]
 
@@ -86,14 +95,16 @@ export function FrequencyPlayer() {
       </div>
       <ScrollReveal>
         <h2 className="font-garamond text-3xl md:text-4xl text-center text-white/90 mb-4">
-          Heilfrequenzen
+          Klangräume
         </h2>
         <p className="font-lora text-center text-sky-200/50 mb-4 text-sm">
-          Healing Frequencies
+          Symbolic Listening Prompts
         </p>
         <p className="font-lora text-center text-white/40 max-w-2xl mx-auto mb-16 text-sm leading-relaxed">
-          Die Solfeggio-Frequenzen sind uralte Klangschwingungen, die seit Jahrhunderten
-          zur Heilung und Meditation verwendet werden.
+          Diese Frequenznamen sind kulturelle und symbolische Hörrahmen, keine
+          medizinischen Wirkversprechen. Forschung zu Musik und Stress zeigt
+          gemischte, stark kontextabhängige Ergebnisse; höre nach persönlicher
+          Verträglichkeit.
         </p>
       </ScrollReveal>
 

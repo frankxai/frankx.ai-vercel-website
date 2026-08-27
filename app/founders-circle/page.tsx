@@ -8,7 +8,7 @@ import { NotForBlock } from '@/components/funnel/NotForBlock'
 export const metadata = createMetadata({
   title: 'Founder\'s Circle — Frank\'s Quarterly Strategic AI Retainer',
   description:
-    'Four hours of Frank\'s time per quarter. 10 seats per quarter. Application only. €2,997. For founders, family-office advisors, and C-level architects whose problem is judgment under uncertainty — not artifacts.',
+    'Four hours of Frank\'s time per quarter. Application only. €2,997. For founders and senior decision-makers whose problem is judgment under uncertainty — not artifact production.',
   path: '/founders-circle',
 })
 
@@ -32,10 +32,10 @@ export default function FoundersCirclePage() {
             they are excellent. Some operators have a different problem.
           </p>
           <p className="text-lg text-zinc-300 leading-relaxed mb-10 max-w-2xl">
-            Their decisions cost or earn millions. Their time is the constraint, not their
-            budget. They have read the books and built the prototypes. What they need is a
-            second brain who has shipped enterprise AI systems and can give them the
-            single sentence that saves them six months. That's what the Circle is.
+            Their decisions shape product direction, budgets, and teams. Their time is the
+            constraint. They have read the books and built the prototypes. What they need is a
+            second brain who has shipped enterprise AI systems, can test assumptions, surface
+            tradeoffs, and help them avoid expensive detours. That's what the Circle is.
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
@@ -55,9 +55,9 @@ export default function FoundersCirclePage() {
           </div>
 
           <p className="text-xs text-zinc-500 mt-8 max-w-xl">
-            10 seats per quarter. €2,997 per quarter. Real scarcity — that's how many
-            quarterly retainer seats fit in Frank's calendar without diluting FrankX building
-            and existing commitments. Application form takes 8 minutes; reply within 5 business days.
+            €2,997 per quarter. Capacity stays deliberately limited so the work
+            remains direct. The application is reviewed personally for fit,
+            availability, and conflicts.
           </p>
         </div>
       </section>
@@ -175,8 +175,8 @@ export default function FoundersCirclePage() {
             Frank Riemer is an AI Architect & Creator who has built AI Center of
             Excellence frameworks for enterprise customers. He realized the same 6-pillar
             architecture (Strategy, Governance, Talent, Technology, Data, Ethics) translates
-            directly to personal use — at 1/5000th the cost. On frankx.ai he makes
-            enterprise-grade frameworks available openly.
+            into a practical operating model for founders and small teams. On frankx.ai he
+            makes enterprise-grade frameworks available openly.
           </p>
           <p className="text-sm text-zinc-300 leading-relaxed mb-3">
             Founder's Circle is a separate FrankX offering. It does not involve Oracle
@@ -184,9 +184,10 @@ export default function FoundersCirclePage() {
             obligations, the work is referred upstream rather than serviced in the Circle.
           </p>
           <p className="text-sm text-zinc-400 leading-relaxed">
-            All work in the Circle is done under FrankX (Frank's separate Dutch BV).
-            Confidentiality, NDAs, and conflict-of-interest screening are part of the
-            application process.
+            All work in the Circle is done under FrankX (Frank's separate Dutch
+            BV). Conflict-of-interest screening happens before acceptance.
+            Confidentiality terms, including an NDA when needed, are agreed
+            before confidential work begins.
           </p>
         </div>
       </section>
@@ -212,14 +213,15 @@ export default function FoundersCirclePage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-rose-500/20 bg-rose-500/[0.04] p-8 text-center">
             <p className="text-xs font-medium text-rose-400 uppercase tracking-[0.18em] mb-3">
-              Q2 2026 · 10 seats
+              Quarterly · application only
             </p>
             <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">
               Apply for the next quarter
             </h3>
             <p className="text-sm text-zinc-300 max-w-lg mx-auto leading-relaxed mb-6">
-              The application takes 8 minutes. We reply within 5 business days. If a current
-              quarter is full, you'll be offered the next one.
+              Share the consequential decision and the work already done. Frank
+              reviews each application for fit, availability, and potential
+              conflicts before replying.
             </p>
             <Link
               href="/founders-circle/apply"
