@@ -579,7 +579,7 @@ const products = [
   },
   {
     title: 'Music Lab',
-    description: 'An evolving music archive of 12,000+ tracks, Suno production workflows, and genre-focused frequency field guides.',
+    description: 'An evolving music archive, Suno production workflows, and genre-focused frequency field guides.',
     href: '/music-lab',
     color: 'orange' as const,
   },
