@@ -84,4 +84,17 @@ Project-level slash commands live in `.claude/commands/` — confirmed present: 
 
 ---
 
-_This file replaces a prior version that was a verbatim, unadapted copy of the private `frankxai/FrankX` repo's CLAUDE.md and stated that pushing to this repo's `main` does not deploy to production. That was backwards — this repo's `main` is what deploys to frankx.ai._
+## This repo is the trunk, not a mirror
+
+The private `frankxai/FrankX` repo is where authoring and agent tooling live. It is **behind this one**, and it is not a source to copy from wholesale.
+
+Measured 2026-08-28 on both checkouts: this repo has +202 files under `app/`, +382 under `content/`, +142 under `components/`, +67 under `lib/`, +51 under `data/`, and committed more recently. 148 URLs are live here with no counterpart in the private repo; 10 exist only there. Method and the full list: `docs/architecture/two-repo-drift-2026-08-28.md` in `frankxai/FrankX`.
+
+Two rules follow, for any agent working either side:
+
+- **No bulk copy from `FrankX` into this repo.** No `cp -r`, no `rsync`, no directory sync onto `app/`, `components/`, `content/`, `lib/`, or `data/`. It would overwrite or orphan 148 live pages.
+- **For a file that exists in both repos, this repo's version is the authority.** Genuinely new work from the private repo arrives as a port of named files on a branch with a PR — read this repo's version of every file the change touches first. Note that several index routes live at `app/<route>/(index)/page.tsx` here and at `app/<route>/page.tsx` there; the same URL, a different file.
+
+---
+
+_This file replaces a prior version that was a verbatim, unadapted copy of the private `frankxai/FrankX` repo's CLAUDE.md and stated that pushing to this repo's `main` does not deploy to production. That was backwards — this repo's `main` is what deploys to frankx.ai. The sync-direction note above is the same defect measured from the other end: the private repo's contract described this repo as a downstream copy, and it has not been one for some time._
