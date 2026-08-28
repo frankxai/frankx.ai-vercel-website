@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useDeferredValue, useState } from 'react'
-import { ArrowUpRight, Search, X } from 'lucide-react'
+import { ArrowUpRight, ChevronDown, Search, X } from 'lucide-react'
 
 import { studyCategories, type StudyCategory, type V0Study } from '@/content/v0/foundry'
 import { trackEvent } from '@/lib/analytics'
@@ -21,6 +21,7 @@ const categoryLabels: Record<StudyCategory, string> = {
 export function FoundryStudies({ studies }: { studies: V0Study[] }) {
   const [category, setCategory] = useState<'all' | StudyCategory>('all')
   const [query, setQuery] = useState('')
+  const [indexOpen, setIndexOpen] = useState(false)
   const deferredQuery = useDeferredValue(query)
   const visualStudies = studies.filter((study) => studyVisuals[study.id])
 
@@ -82,6 +83,32 @@ export function FoundryStudies({ studies }: { studies: V0Study[] }) {
       </div>
 
       <div className="mt-14 border-y border-white/10">
+        <button
+          type="button"
+          aria-expanded={indexOpen}
+          aria-controls="v0-source-index"
+          onClick={() => {
+            setIndexOpen((current) => !current)
+            trackEvent('v0_source_index_toggled', { state: indexOpen ? 'closed' : 'open' })
+          }}
+          className="flex min-h-20 w-full items-center justify-between gap-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+        >
+          <span>
+            <span className="block font-display text-xl font-semibold tracking-[-0.025em] text-white">
+              Browse the complete source index
+            </span>
+            <span className="mt-1 block text-xs text-white/38">
+              Search and filter all nineteen v0 studies when you need the full catalog.
+            </span>
+          </span>
+          <ChevronDown
+            className={`h-5 w-5 shrink-0 text-white/48 transition-transform motion-reduce:transition-none ${indexOpen ? 'rotate-180' : ''}`}
+            aria-hidden="true"
+          />
+        </button>
+
+        {indexOpen ? (
+          <div id="v0-source-index" className="border-t border-white/10">
         <div className="flex flex-col gap-4 py-5 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex gap-2 overflow-x-auto pb-1" role="group" aria-label="Filter interface studies by category">
             {studyCategories.map((item) => (
@@ -153,6 +180,8 @@ export function FoundryStudies({ studies }: { studies: V0Study[] }) {
         ) : (
           <div className="border-t border-white/10 py-12 text-center text-sm text-white/48">No study matches that signal.</div>
         )}
+          </div>
+        ) : null}
       </div>
     </div>
   )

@@ -41,7 +41,7 @@ export function CreatorLaunchScene({ compact }: { compact: boolean }) {
       className="h-full overflow-auto bg-[#eeeae1] text-[#11120f]"
     >
       <header
-        className={`sticky top-0 z-20 flex border-b border-black/10 bg-[#eeeae1]/95 backdrop-blur ${compact ? 'flex-col items-start gap-3 px-4 py-3' : 'h-16 items-center justify-between px-7'}`}
+        className={`sticky top-0 z-20 flex border-b border-black/10 bg-[#eeeae1]/95 backdrop-blur ${compact ? 'flex-col items-start gap-3 px-4 py-3' : 'flex-col items-start gap-3 px-4 py-3 sm:h-16 sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:px-7 sm:py-0'}`}
       >
         <div className="flex items-center gap-3">
           <span className="grid h-8 w-8 place-items-center rounded-full bg-[#11120f] text-xs font-bold text-[#eeeae1]">
@@ -80,14 +80,14 @@ export function CreatorLaunchScene({ compact }: { compact: boolean }) {
       {activeView === 'storefront' ? (
         <section
           role="tabpanel"
-          className={`${compact ? 'block px-5 py-8' : 'grid min-h-[calc(100%-4rem)] grid-cols-[1.05fr_0.95fr] items-center gap-12 px-[clamp(2rem,7vw,7rem)] py-12'}`}
+          className={`${compact ? 'block px-5 py-8' : 'block px-5 py-8 sm:grid sm:min-h-[calc(100%-4rem)] sm:grid-cols-[1.05fr_0.95fr] sm:items-center sm:gap-12 sm:px-[clamp(2rem,7vw,7rem)] sm:py-12'}`}
         >
           <div>
             <p className="font-mono text-[9px] tracking-[0.11em] text-black/48">
               A free creator-business starter
             </p>
             <h2
-              className={`${compact ? 'mt-5 text-5xl' : 'mt-6 text-[clamp(3rem,5.6vw,5.75rem)]'} max-w-3xl font-display font-semibold leading-[0.9] tracking-[-0.065em]`}
+              className={`${compact ? 'mt-5 text-5xl' : 'mt-5 text-5xl sm:mt-6 sm:text-[clamp(3rem,5.6vw,5.75rem)]'} max-w-3xl font-display font-semibold leading-[0.9] tracking-[-0.065em]`}
             >
               Make the work easy to trust—and easier to{' '}
               <span className="font-serif font-normal italic">buy.</span>
@@ -121,7 +121,7 @@ export function CreatorLaunchScene({ compact }: { compact: boolean }) {
             </div>
           </div>
 
-          <div className={`${compact ? 'mt-9' : ''} relative overflow-hidden rounded-[1.7rem] bg-[#11120f] p-6 text-[#f4f1e9] shadow-[0_30px_70px_rgba(95,88,69,0.24)]`}>
+          <div className={`${compact ? 'mt-9' : 'mt-9 sm:mt-0'} relative overflow-hidden rounded-[1.7rem] bg-[#11120f] p-6 text-[#f4f1e9] shadow-[0_30px_70px_rgba(95,88,69,0.24)]`}>
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:32px_32px]" />
             <div className="relative">
               <div className="flex items-center justify-between font-mono text-[8px] text-white/46">
@@ -159,19 +159,19 @@ export function CreatorLaunchScene({ compact }: { compact: boolean }) {
       {activeView === 'studio' ? (
         <section
           role="tabpanel"
-          className={`${compact ? 'block' : 'grid min-h-[calc(100%-4rem)] grid-cols-[15.5rem_1fr]'} bg-[#11120f] text-[#f5f3ec]`}
+          className={`${compact ? 'block' : 'block sm:grid sm:min-h-[calc(100%-4rem)] sm:grid-cols-[15.5rem_1fr]'} bg-[#11120f] text-[#f5f3ec]`}
         >
-          <aside className={`${compact ? 'border-b px-4 py-5' : 'border-r p-6'} border-white/10`}>
+          <aside className={`${compact ? 'border-b px-4 py-5' : 'border-b px-4 py-5 sm:border-b-0 sm:border-r sm:p-6'} border-white/10`}>
             <p className="font-mono text-[9px] tracking-[0.1em] text-white/38">Release studio</p>
             <h2 className="mt-6 font-display text-2xl font-semibold leading-none tracking-[-0.04em]">
               Turn the offer into an operating loop.
             </h2>
-            <div className={`${compact ? 'mt-5 flex overflow-x-auto' : 'mt-8'}`}>
+            <div className={`${compact ? 'mt-5 flex overflow-x-auto' : 'mt-5 flex overflow-x-auto sm:mt-8 sm:block sm:overflow-visible'}`}>
               {['Systems Field Guide', 'Creator Sprint', 'Prompt Field Notes'].map((release, index) => (
                 <button
                   key={release}
                   type="button"
-                  className={`${compact ? 'min-w-36' : 'w-full'} rounded-xl px-3 py-3 text-left text-[11px] ${index === 0 ? 'bg-white/[0.07] text-white' : 'text-white/42'}`}
+                  className={`${compact ? 'min-w-36' : 'min-w-36 sm:w-full sm:min-w-0'} rounded-xl px-3 py-3 text-left text-[11px] ${index === 0 ? 'bg-white/[0.07] text-white' : 'text-white/42'}`}
                 >
                   <span className="mb-1 block font-mono text-[8px] text-white/30">
                     {String(index + 1).padStart(2, '0')}
@@ -182,19 +182,19 @@ export function CreatorLaunchScene({ compact }: { compact: boolean }) {
             </div>
           </aside>
           <div className={`${compact ? 'p-5' : 'p-8'}`}>
-            <div className={`${compact ? 'block' : 'flex items-end justify-between gap-8'} border-b border-white/10 pb-6`}>
+            <div className={`${compact ? 'block' : 'block sm:flex sm:items-end sm:justify-between sm:gap-8'} border-b border-white/10 pb-6`}>
               <div>
                 <p className="font-mono text-[8px] text-white/34">Current release</p>
                 <h3 className="mt-2 font-display text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">
                   Systems Field Guide
                 </h3>
               </div>
-              <p className={`${compact ? 'mt-4' : ''} max-w-md text-[11px] leading-5 text-white/45`}>
+              <p className={`${compact ? 'mt-4' : 'mt-4 sm:mt-0'} max-w-md text-[11px] leading-5 text-white/45`}>
                 The public storefront is one view. This workspace makes proof, delivery, and the
                 next release decision visible.
               </p>
             </div>
-            <div className={`${compact ? 'grid-cols-1' : 'grid-cols-3'} mt-5 grid gap-3`}>
+            <div className={`${compact ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-3'} mt-5 grid gap-3`}>
               {[
                 ['18', 'Waitlist subscribers'],
                 ['7', 'Delivery checks passed'],
@@ -215,10 +215,10 @@ export function CreatorLaunchScene({ compact }: { compact: boolean }) {
               ].map(([label, note, status]) => (
                 <div
                   key={label}
-                  className={`grid ${compact ? 'grid-cols-[1fr_auto]' : 'grid-cols-[1fr_8rem_5rem]'} gap-4 border-b border-white/10 px-4 py-3 text-[10px] last:border-0`}
+                  className={`grid ${compact ? 'grid-cols-[1fr_auto]' : 'grid-cols-[1fr_auto] sm:grid-cols-[1fr_8rem_5rem]'} gap-4 border-b border-white/10 px-4 py-3 text-[10px] last:border-0`}
                 >
                   <span className="font-medium">{label}</span>
-                  {!compact ? <span className="text-white/38">{note}</span> : null}
+                  {!compact ? <span className="hidden text-white/38 sm:block">{note}</span> : null}
                   <span className={status === 'Ready' ? 'text-[#c8ff4d]' : 'text-white/45'}>{status}</span>
                 </div>
               ))}
@@ -230,13 +230,13 @@ export function CreatorLaunchScene({ compact }: { compact: boolean }) {
       {activeView === 'delivery' ? (
         <section
           role="tabpanel"
-          className={`${compact ? 'block px-5 py-8' : 'grid min-h-[calc(100%-4rem)] grid-cols-[0.8fr_1.2fr] items-center gap-14 px-[clamp(2rem,7vw,7rem)] py-12'}`}
+          className={`${compact ? 'block px-5 py-8' : 'block px-5 py-8 sm:grid sm:min-h-[calc(100%-4rem)] sm:grid-cols-[0.8fr_1.2fr] sm:items-center sm:gap-14 sm:px-[clamp(2rem,7vw,7rem)] sm:py-12'}`}
         >
           <div>
             <p className="font-mono text-[9px] tracking-[0.1em] text-black/48">
               Delivery is part of the product
             </p>
-            <h2 className={`${compact ? 'text-5xl' : 'text-[clamp(3rem,5vw,4.75rem)]'} mt-5 font-display font-semibold leading-[0.94] tracking-[-0.055em]`}>
+            <h2 className={`${compact ? 'text-5xl' : 'text-5xl sm:text-[clamp(3rem,5vw,4.75rem)]'} mt-5 font-display font-semibold leading-[0.94] tracking-[-0.055em]`}>
               The promise survives the checkout.
             </h2>
             <p className="mt-6 text-sm leading-6 text-black/55">
@@ -244,7 +244,7 @@ export function CreatorLaunchScene({ compact }: { compact: boolean }) {
               delivery fails, and which signal improves the next edition.
             </p>
           </div>
-          <div className={`${compact ? 'mt-9' : ''} border-t border-black/10`}>
+          <div className={`${compact ? 'mt-9' : 'mt-9 sm:mt-0'} border-t border-black/10`}>
             {deliverySteps.map(([title, description, timing], index) => (
               <div
                 key={title}

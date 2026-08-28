@@ -77,7 +77,7 @@ export function FoundryStudio({ studies }: { studies: V0Study[] }) {
 
   return (
     <section className="min-h-screen border-b border-white/10 bg-[#0a0a0b] pt-24 sm:pt-28">
-      <div className="mx-auto grid min-h-[calc(100vh-7rem)] max-w-[1600px] gap-10 px-5 pb-8 sm:px-8 lg:grid-cols-[minmax(310px,0.72fr)_minmax(620px,1.28fr)] lg:items-stretch lg:px-10">
+      <div className="mx-auto grid min-h-[calc(100vh-7rem)] max-w-[1600px] gap-6 px-5 pb-8 sm:px-8 lg:grid-cols-[minmax(310px,0.72fr)_minmax(620px,1.28fr)] lg:items-stretch lg:gap-10 lg:px-10">
         <div className="flex flex-col justify-between py-5 lg:py-10">
           <div>
             <p className="font-mono text-[11px] font-medium tracking-[0.14em] text-emerald-300/80">
@@ -111,7 +111,7 @@ export function FoundryStudio({ studies }: { studies: V0Study[] }) {
             </div>
           </div>
 
-          <dl className="mt-14 grid grid-cols-3 gap-5 border-t border-white/10 pt-6 lg:mt-10">
+          <dl className="mt-14 hidden grid-cols-3 gap-5 border-t border-white/10 pt-6 lg:mt-10 lg:grid">
             {[
               ['19', 'Live interface studies'],
               ['22', 'Focused business systems'],
@@ -259,6 +259,21 @@ export function FoundryStudio({ studies }: { studies: V0Study[] }) {
               )
             })}
           </div>
+          <dl className="mt-2 grid grid-cols-3 gap-4 border-t border-white/10 pt-5 lg:hidden">
+            {[
+              ['19', 'Live studies'],
+              ['22', 'Business systems'],
+              ['1', 'Open release'],
+            ].map(([value, label]) => (
+              <div key={label}>
+                <dt className="sr-only">{label}</dt>
+                <dd className="font-display text-2xl font-semibold tracking-[-0.04em] text-white">
+                  {value}
+                </dd>
+                <p className="mt-1 text-[10px] leading-4 text-white/38">{label}</p>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>
