@@ -1,0 +1,391 @@
+---
+title: "The AI Architect Guide 2026"
+description: "A field guide to the decisions, system planes, evidence gates, and operating artifacts required to turn AI capability into a reliable workflow."
+date: "2026-08-27"
+lastUpdated: "2026-08-27"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["AI Architecture", "Agentic Systems", "MCP", "Evals", "AI Governance"]
+image: "/images/blog/six-plane-enterprise-ai-architecture.jpeg"
+featured: true
+readingGoal: "Leave with a reference architecture, decision sequence, and 30-day operating plan for one AI workflow."
+tldr: "An AI architect owns the decisions that connect a business outcome to a system: authority, orchestration, context, models, tools, evidence, and policy. Start with one recurring workflow, write its outcome and authority contracts, choose the smallest control loop that works, and instrument cost, quality, latency, and side effects before expanding the tool surface. The durable asset is the operating evidence, not the provider configuration."
+architectNote:
+  recommendation: "Treat every model response as a proposal until deterministic policy, evidence, and human authority turn it into an accepted result or effect."
+  coePillar: "Architecture and governance"
+keywords: ["AI architect guide 2026", "AI architect", "AI architecture framework", "agentic systems architecture", "AI governance", "AI evaluation framework", "AI architect roadmap"]
+schema: ["Article", "FAQPage"]
+faqSource: "body"
+---
+
+**TL;DR:** An AI architect owns the decisions that connect a business outcome to a system: authority, orchestration, context, models, tools, evidence, and policy. Start with one recurring workflow, write its outcome and authority contracts, choose the smallest control loop that works, and instrument cost, quality, latency, and side effects before expanding the tool surface. The durable asset is the operating evidence, not the provider configuration.
+
+This guide is for the founder, product lead, or technical operator whose AI prototype has started touching real work. The demo already answers. The next question is whether the surrounding system can survive provider changes, bad inputs, retries, partial failures, and a teammate asking, “Why did it do that?”
+
+My proposition is simple: **the AI architect owns the seams where probabilistic capability meets business authority.** Model selection matters. The lasting work is defining who may act, where state lives, what evidence counts, and how the system stops.
+
+The companion [AI Architect Guide 2026: August Edition](https://starlightintelligence.academy/guides/ai-architect-guide-2026-august-edition) tracks the dated changes. This page holds the architecture that should remain useful after the August model names have moved on.
+
+## What does an AI architect own in 2026?
+
+An AI architect converts an outcome into a governed operating system. The role sits across product, data, software, security, and operations because an AI workflow crosses all five.
+
+| Ownership area | The decision | The artifact | The release question |
+| --- | --- | --- | --- |
+| Outcome | What result is worth producing? | Outcome contract | Can we distinguish a useful result from a fluent one? |
+| Authority | What may the system decide or do? | Authority map | Which effects require a named human? |
+| Orchestration | Who chooses the next step? | Control-flow record | Is each branch, retry, and stop condition explicit? |
+| Context and state | What must persist, for how long, and why? | State model | Can a run resume without reconstructing truth from chat text? |
+| Models | Which capability tier handles each task? | Routing policy | Can we change a provider without rewriting the workflow? |
+| Tools | Which systems may be read or changed? | Tool contract | Are identity, scope, idempotency, and failure behavior defined? |
+| Evidence | What proves quality, safety, cost, and latency? | Evaluation pack | Does the release gate use real workflow cases? |
+| Operations | Who responds when the system drifts or fails? | Runbook and owner map | Can an operator inspect, pause, repair, and roll back? |
+
+This is why the title “prompt engineer” is too narrow for the job. A prompt is one implementation detail inside a much larger control surface. The architect is responsible for the system that remains when the prompt changes.
+
+<Callout type="insight">
+If a team cannot name the person who owns a bad side effect, the system has an accountability gap before it has a model problem.
+</Callout>
+
+## Where should the architecture process begin?
+
+Begin with one recurring workflow and write an outcome contract before drawing the stack.
+
+A useful outcome contract fits on one page:
+
+```text
+Workflow:        What recurring job are we improving?
+Recipient:       Who receives the result?
+Trigger:         What starts a run?
+Accepted result: What observable condition means "done"?
+Authority:       What may the system read, propose, approve, or execute?
+Human gate:      Which decision stays with a named person?
+Failure budget:  What can be wrong, late, unavailable, or expensive?
+Evidence:        What record lets an operator verify the run?
+Owner:           Who accepts, pauses, repairs, and retires the workflow?
+```
+
+This contract prevents the most expensive form of architecture drift: optimizing a model score while the workflow still lacks a clear recipient or accepted result.
+
+Consider invoice exception triage. “Use AI to process invoices” is not an outcome. “Classify incoming invoice exceptions, assemble the supporting evidence, and route each case to the authorized reviewer without initiating payment” is an outcome with a boundary. The second sentence gives you a system to design.
+
+Use three initial baselines:
+
+1. **Quality:** how well do people complete the workflow now, measured on representative cases?
+2. **Time:** where does elapsed time accumulate—waiting, searching, deciding, or executing?
+3. **Risk:** which mistakes create reversible rework, and which create an external effect?
+
+The baseline is the comparison set for every later architecture claim. Without it, “better” is a mood.
+
+## What are the seven planes of a production AI system?
+
+I use seven planes because each one has a different owner, failure mode, and replacement cycle.
+
+| Plane | Owns | Typical components | Failure to design for |
+| --- | --- | --- | --- |
+| 1. Experience | Intent, disclosure, review, correction | UI, API, inbox, approval queue | The recipient cannot see or correct the system’s interpretation |
+| 2. Orchestration | Sequence, branching, retries, stops | Code workflow, state machine, agent runtime | A loop continues after evidence or authority has run out |
+| 3. Context and state | Working context, durable records, provenance | Retrieval, session state, event log, memory store | Chat history becomes the only source of truth |
+| 4. Model fabric | Capability, routing, fallback, structured output | Gateway, model tiers, cache, validation | Provider logic leaks into every workflow step |
+| 5. Action and integration | Reads, writes, credentials, side effects | APIs, MCP servers, queues, workers | Untrusted text can reach an over-scoped tool |
+| 6. Evidence | Traces, evals, cost, latency, incidents | Evaluation sets, telemetry, receipts, dashboards | A fluent answer passes with no proof of trajectory or effect |
+| 7. Policy and trust | Identity, authorization, privacy, retention, human authority | Policy engine, approval rules, audit controls | The model quietly becomes the policy engine |
+
+The planes are responsibility boundaries, not a shopping list. A small team can implement several planes in one codebase. Keep the contracts separate even when the deployment is compact.
+
+The difficult choices live between planes. A document crosses from context into orchestration. A model proposal crosses into action. A run crosses from a request into durable execution. Those seams are the subject of [four AI architecture decisions that are hard to reverse](/blog/ai-architecture-2026-four-decisions-hard-to-reverse).
+
+## Which architecture decisions deserve a written record?
+
+Write a short architecture decision record when a choice changes authority, state, portability, or evidence. Nine decisions deserve that treatment in almost every serious workflow.
+
+| Decision | Default starting point | Escalate when |
+| --- | --- | --- |
+| Workflow boundary | One trigger, one accepted result | The process has independent recipients or risk classes |
+| Control shape | Deterministic workflow | The next useful step cannot be enumerated reliably |
+| Model boundary | One gateway, task-based routing | A provider-specific capability produces measured uplift |
+| Output contract | Typed, validated result | The recipient genuinely needs open-ended prose |
+| State owner | Application event/state store | The task is request-scoped and disposable |
+| Tool scope | Read-only, narrow credentials | A measured case requires a write or external effect |
+| Human authority | Approval before consequential effects | The effect is low-risk, reversible, and policy-approved |
+| Evaluation unit | Outcome plus trajectory | A step has no inspectable path and only the final state matters |
+| Failure mode | Stop, preserve evidence, ask for repair | A bounded retry is idempotent and cheaper than escalation |
+
+An architecture decision record can be six lines: context, decision, rejected alternatives, consequence, evidence needed to revisit, and owner. Its purpose is to preserve the reason after the tool names have changed.
+
+### The irreversibility test
+
+Ask four questions before committing:
+
+- Does this choice spread provider-specific code across the product?
+- Does it move authority from code or a person into model judgment?
+- Does it make state implicit in a connection, conversation, or framework?
+- Does it change the evidence required to prove a run was acceptable?
+
+One “yes” earns a decision record. Two “yes” answers earn a review with security and operations.
+
+## How should you choose between a workflow and an agent?
+
+Choose the smallest control shape that can complete the job.
+
+| Shape | Who chooses the next step? | Use when | Primary evaluation |
+| --- | --- | --- | --- |
+| Fixed workflow | Code | Steps and branches are known | Step correctness and final outcome |
+| Routed workflow | Code plus a bounded classifier | Inputs follow a small set of paths | Route accuracy and per-path outcome |
+| Single-agent loop | Model inside explicit limits | The path must adapt during the run | Trajectory, tool use, stops, outcome |
+| Multi-agent graph | Multiple bounded executors | Work separates into independent specialties | Handoffs, joins, conflicts, total outcome |
+
+The decision is architectural because the evaluation harness changes with the control shape. A fixed workflow can be tested step by step. An agent loop needs trajectory evidence: which tools it chose, what it observed, how often it retried, why it stopped, and whether it respected authority throughout the run.
+
+Google’s [Agent Development Kit evaluation guidance](https://google.github.io/adk-docs/evaluate/) makes the same distinction between evaluating the final response and evaluating the trajectory. OpenAI’s [Agents SDK tracing](https://openai.github.io/openai-agents-python/tracing/) records model generations, tool calls, handoffs, guardrails, and custom events. The architectural conclusion is broader than either framework: **if the system chooses a path, the path becomes part of the product.**
+
+The [modern agentic systems architecture guide](/blog/modern-agentic-systems-architecture-2026) goes deeper on state machines, bounded loops, and trajectory gates.
+
+## Where should memory and state live?
+
+Separate five things that teams often call “memory”:
+
+| State type | Example | Lifetime | Source of truth? |
+| --- | --- | --- | --- |
+| Request context | Current instruction and inputs | One call | No |
+| Working state | Current step, evidence, pending approval | One run | Yes, for the run |
+| Conversation history | Prior messages | One session | Usually no |
+| Domain record | Invoice, ticket, contract, customer state | Business-defined | Yes |
+| Learned memory | Approved preference or reusable pattern | Until reviewed or expired | Only within its declared scope |
+
+Long context is useful. It is still not a database, an event log, or an authorization record. Anthropic’s [context-window guidance](https://docs.anthropic.com/en/docs/build-with-claude/context-windows) describes server-side compaction as a strategy for long-running conversations and agentic workflows. Compaction keeps a conversation operable; it does not create durable business truth.
+
+For any run that can pause, retry, or cross a human approval, persist at least:
+
+- a stable run identifier;
+- the workflow and policy version;
+- current state and allowed transitions;
+- inputs with provenance and retention rules;
+- tool intents and idempotency keys;
+- approvals, rejections, and actor identity;
+- outputs, validation results, and committed effects;
+- the reason the run stopped.
+
+That record lets a new process resume without asking a model to infer what happened from a transcript.
+
+## How should tools and side effects be governed?
+
+Treat the model as an untrusted proposer at the action boundary. It may recommend a tool call. Deterministic code and policy decide whether that proposal is valid, authorized, and safe to execute.
+
+A production tool contract needs more than a JSON schema:
+
+```text
+Identity        Which principal is acting?
+Purpose         Which workflow and step may call the tool?
+Input schema    Which values are accepted and normalized?
+Data boundary   Which records or fields may be read?
+Effect boundary Which resources may be created, changed, or deleted?
+Idempotency     What happens when the same intent arrives twice?
+Timeout/retry   Which failures may be retried, and how often?
+Approval        Which effects require a named human?
+Receipt         What evidence proves the attempted and committed effect?
+Compensation    How is a reversible effect repaired?
+```
+
+The 2026 [OWASP Top 10 for Agentic Applications](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) is a useful threat-model input because it treats goal hijacking, tool misuse, identity, memory, inter-agent communication, and cascading failures as system risks. The practical response is least privilege, typed tools, explicit authority, isolated untrusted content, and receipts for consequential actions.
+
+MCP can standardize the interface to tools and context. It does not grant trust. The [28 July 2026 MCP specification](https://modelcontextprotocol.io/specification/2026-07-28) makes the protocol stateless; the application must own any cross-request workflow state explicitly. That is a cleaner boundary, provided the application actually takes ownership.
+
+## What evidence should exist before release?
+
+A release decision needs four evidence lanes.
+
+| Lane | Core question | Minimum useful measures |
+| --- | --- | --- |
+| Outcome | Did the recipient get an acceptable result? | Acceptance rate, correction rate, unresolved cases |
+| Trajectory | Did the system take an acceptable path? | Route/tool accuracy, unnecessary steps, stop compliance |
+| Operations | Can the service meet its operating envelope? | End-to-end latency, error rate, retry rate, availability |
+| Economics | Is the verified result worth its total cost? | Cost per accepted outcome, human review time, rework |
+
+Add a fifth lane for consequential workflows: **authority and safety**. Measure unauthorized tool attempts, blocked effects, approval bypasses, policy violations, and incidents. A zero count only means something when the events are instrumented.
+
+OpenTelemetry’s [Generative AI semantic conventions](https://opentelemetry.io/docs/specs/semconv/) provide a shared vocabulary for traces, metrics, and attributes across implementations. Use that vocabulary where it fits, then add workflow-specific fields: outcome ID, policy version, evidence set, approval actor, committed effect, and evaluation result.
+
+The smallest credible evaluation pack contains:
+
+1. representative normal cases;
+2. ambiguous inputs that should trigger clarification;
+3. adversarial or untrusted content;
+4. tool errors, timeouts, and partial results;
+5. repeated requests that test idempotency;
+6. cases that must stop or escalate;
+7. known regressions from prior releases.
+
+Run the pack against the exact model, prompt, tool, retrieval, policy, and workflow versions you plan to release. A model benchmark cannot approve your workflow because it did not test your recipient, data, tools, or authority boundary.
+
+For the instrumentation layer, use the [multi-agent observability stack](/blog/observability-stack-multi-agent-systems-2026). For the economic denominator, use [cost per verified outcome](/blog/cost-per-verified-outcome-infrastructure-roi).
+
+## How should model routing work?
+
+Route by task and evidence, not by brand loyalty.
+
+Place one model boundary between product code and provider SDKs. Give that boundary responsibility for:
+
+- eligibility: privacy, region, modality, context, and tool constraints;
+- capability tier: the least expensive route that meets the quality gate;
+- structured-output validation;
+- timeouts, fallbacks, and degraded-mode disclosure;
+- caching and prompt/version identity;
+- cost and latency telemetry;
+- evaluation-based promotion or rollback.
+
+Start with one primary route and one explicit failure path. A routing fabric with six unmeasured providers creates operational surface without evidence. Add a route only when a defined evaluation slice shows why it exists.
+
+The model boundary should return more than content. Return the provider and model version, input/output contract version, usage, latency, finish state, and validation result. That record makes a later incident or comparison possible.
+
+## What should you build, buy, or rent?
+
+Use ownership and differentiation as the filter.
+
+| Layer | Build when | Buy or rent when | Keep portable |
+| --- | --- | --- | --- |
+| Experience | The workflow interaction is the product | A standard inbox or chat is enough | Intent and result contracts |
+| Orchestration | Control flow is differentiated or regulated | A managed runtime meets durability needs | State model and transition semantics |
+| Retrieval | Domain ranking or provenance is distinctive | Standard search meets the evaluation gate | Documents, metadata, citations, eval set |
+| Models | Rarely; only with clear data/cost/control evidence | Provider capability clears the task gate | Gateway contract, prompts, test cases |
+| Tools | The integration encodes unique operations | A supported connector is sufficient | Tool schemas, scopes, receipts |
+| Observability | Workflow evidence is domain-specific | Commodity telemetry is sufficient | Trace IDs, event schema, raw export |
+| Policy | Authority is specific to your organization | A policy product enforces known controls | Rules, identities, decisions, audit trail |
+
+The goal is not maximum portability. It is **known swap cost**. A provider-specific feature can be the correct choice when the uplift is measured and the dependency is recorded.
+
+## What are the core operating artifacts?
+
+An AI architecture becomes operable when the team can inspect the following artifacts without asking the original builder to reconstruct them from memory.
+
+1. **Outcome contract** — recipient, trigger, accepted result, risk, evidence, owner.
+2. **Authority map** — read, propose, approve, execute, repair, and retire permissions.
+3. **System map** — the seven planes, data movement, trust boundaries, and external dependencies.
+4. **Decision records** — expensive choices and the evidence required to revisit them.
+5. **State model** — durable records, transitions, retention, and resume behavior.
+6. **Tool registry** — schemas, scopes, credentials, effects, retries, and receipts.
+7. **Evaluation pack** — cases, graders, thresholds, known limitations, and results.
+8. **Evidence schema** — trace and outcome fields that connect a run to a release.
+9. **Runbook** — pause, retry, escalate, repair, roll back, and communicate.
+10. **Change ledger** — model, prompt, policy, retrieval, tool, and workflow versions.
+
+Together, these artifacts are the real architecture repository. Diagrams show the system. The contracts and evidence let the team operate it.
+
+## What should the first 30 days look like?
+
+### Days 1–5: bound one workflow
+
+- Interview the recipient and the current operator.
+- Write the outcome contract and baseline cases.
+- Mark every read, proposal, approval, and external effect.
+- Choose one accepted result and one explicit non-goal.
+
+**Exit evidence:** the recipient can reject the contract because it is specific enough to disagree with.
+
+### Days 6–12: build the thinnest end-to-end path
+
+- Use a deterministic workflow where possible.
+- Put provider calls behind one boundary.
+- Validate structured outputs.
+- Keep tools read-only unless a write is necessary for the tested outcome.
+- Persist the run state and evidence identifiers.
+
+**Exit evidence:** one representative case can be replayed from trigger to inspected result.
+
+### Days 13–20: attack the boundaries
+
+- Add ambiguous, adversarial, timeout, retry, and stop cases.
+- Test idempotency and approval behavior.
+- Review tool scopes with security or the system owner.
+- Record the cost and latency of accepted and rejected runs.
+
+**Exit evidence:** failures stop in a defined state and preserve enough information for repair.
+
+### Days 21–30: run a bounded operating trial
+
+- Put a named person behind the review queue.
+- Compare results with the baseline.
+- Log corrections and update the evaluation pack.
+- Set release, pause, and rollback thresholds.
+- Write the first change ledger entry.
+
+**Exit evidence:** the owner can explain what the system may do, how well it did, what it cost, and how to stop it.
+
+## Which skills matter most for an AI architect?
+
+The role rewards translation across disciplines more than mastery of one framework.
+
+| Skill | What good looks like | Practice artifact |
+| --- | --- | --- |
+| Outcome design | Converts ambition into a testable operating result | Outcome contract |
+| Distributed systems | Designs retries, state, queues, idempotency, and recovery | Failure-state diagram |
+| Context engineering | Separates instructions, evidence, state, and untrusted content | Context contract |
+| Model evaluation | Builds task-specific cases and explains uncertainty | Evaluation report |
+| Security and identity | Applies least privilege and names authority | Threat model and authority map |
+| Data architecture | Defines provenance, retention, quality, and access | Data flow and record schema |
+| Product judgment | Chooses the smallest valuable workflow | Scope decision record |
+| Operations | Makes incidents, rollback, and ownership explicit | Runbook |
+| Economics | Measures total cost against accepted outcomes | Cost-per-outcome ledger |
+| Communication | Makes trade-offs legible to technical and business owners | Architecture review memo |
+
+Build a portfolio around receipts rather than screenshots. For each workflow, show the outcome contract, architecture, eval set, failure cases, authority boundary, and a short decision memo. That demonstrates the actual job.
+
+## What is the release checklist?
+
+Before a workflow touches production work, answer these questions with evidence:
+
+- [ ] Is there one named recipient and one observable accepted result?
+- [ ] Does every external effect have explicit authority and an owner?
+- [ ] Are untrusted inputs isolated from system instructions and credentials?
+- [ ] Can the workflow stop, resume, retry, and avoid duplicate effects?
+- [ ] Is provider logic behind one model boundary?
+- [ ] Are structured outputs validated before downstream use?
+- [ ] Does the state store record workflow, policy, model, prompt, and tool versions?
+- [ ] Does the evaluation pack include normal, ambiguous, adversarial, failure, and stop cases?
+- [ ] Are quality, latency, cost, and correction measured per accepted outcome?
+- [ ] Can an operator inspect a run, pause the system, repair state, and roll back?
+- [ ] Are retention, privacy, identity, and access rules explicit?
+- [ ] Does a named owner accept the remaining limitations?
+
+If an answer is “we think so,” the next task is to produce the missing receipt.
+
+## What changed in the August 2026 edition?
+
+The architecture above is stable. August changed several implementation assumptions around model routing, context management, agent runtimes, interoperability, and MCP state ownership.
+
+The [August field edition](https://starlightintelligence.academy/guides/ai-architect-guide-2026-august-edition) turns those changes into a dated ledger:
+
+- what changed;
+- which architecture plane moved;
+- what consequence follows;
+- what to change now;
+- what to watch without redesigning the system.
+
+Read the evergreen guide when you are designing the system. Read the August edition when you are deciding whether this month’s releases justify a migration.
+
+## FAQ
+
+**Q: What is an AI architect?**
+An AI architect designs the system that connects AI capability to a business outcome. The role owns architecture boundaries, orchestration, context and state, model routing, tool contracts, evidence, policy, and operations. It works across product, engineering, data, security, and governance.
+
+**Q: Does an AI architect need to be a software engineer?**
+The role needs enough software and distributed-systems depth to reason about state, APIs, identity, retries, failure, deployment, and evidence. Some AI architects write production code; others lead designs with engineering teams. The non-negotiable skill is making technical consequences explicit and testable.
+
+**Q: What is the difference between an AI engineer and an AI architect?**
+An AI engineer usually owns implementation inside a defined system. An AI architect owns the cross-system decisions: outcome, authority, boundaries, control shape, state, portability, evidence, and operating model. On a small team, one person may perform both roles.
+
+**Q: Should an AI architect start with an agent framework?**
+No. Start with the outcome and authority contracts, then choose the smallest control shape. A fixed or routed workflow is often easier to test and operate. Adopt an agent runtime when the path must adapt and your evaluation pack can judge the resulting trajectory.
+
+**Q: Which cloud or model provider is best for AI architecture?**
+There is no universal winner. Evaluate the exact workflow against privacy, region, modality, context, tool use, quality, latency, cost, and operating constraints. Put provider calls behind one boundary so a measured advantage does not become accidental lock-in across the codebase.
+
+**Q: How do you measure whether an AI architecture works?**
+Measure accepted outcomes, corrections, trajectory quality, latency, failures, safety events, human review time, and total cost per accepted outcome. Use representative workflow cases and record the exact model, prompt, retrieval, tool, policy, and workflow versions tested.
+
+**Q: What should be in an AI architect portfolio?**
+Show operating evidence: an outcome contract, system map, authority model, decision records, tool contracts, evaluation set, failure cases, cost analysis, and runbook. A polished chat screenshot shows interface quality. The portfolio should also prove that the system can be inspected and governed.
+
+## Sources and method
+
+This guide separates durable architecture guidance from dated product claims. The security, evaluation, observability, context, and protocol references point to primary documentation from OWASP, Google ADK, OpenAI, Anthropic, OpenTelemetry, and MCP. Vendor benchmarks are not used as proof of workflow quality. The [August edition](https://starlightintelligence.academy/guides/ai-architect-guide-2026-august-edition) is the dated source ledger, checked as of 27 August 2026.
