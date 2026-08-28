@@ -1,27 +1,37 @@
-import FounderHome from '@/components/home/FounderHome'
+import HomePageElite from '@/components/home/HomePageElite'
+import { getPublishedBooks } from '@/app/books/lib/books-registry'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
+import { bookReviews } from '@/data/book-reviews'
+import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 import { getAllBlogPosts } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
-  title: 'FrankX — Founder Operating Systems for the AI Age',
+  title: 'FrankX — AI Architect & Musician · Building Sovereign Systems',
   description:
-    'Map the constraint across State, Signal, Systems, Scale, and Stewardship. FrankX helps founders build useful AI systems without losing the human judgment that makes the company worth owning.',
+    'AI Architect & Musician. Building sovereign systems for a freer world. Turn-key modular starter kits, autonomous agent swarms, 12,000+ sonic tracks, and elite cognitive mental models.',
   keywords: [
-    'founder operating system',
-    'Founder Stack',
-    'AI for founders',
-    'founder systems',
-    'founder assessment',
-    'AI architecture',
-    'agentic workflows',
-    'founder judgment',
-    'solopreneur systems',
-    'coach business systems',
-    'human layer',
     'Frank Riemer',
     'FrankX',
+    'AI Architect & Musician',
+    'sovereign systems',
+    'freer world',
+    'co-builder 7-figure businesses',
+    'mental models',
+    'peak performance',
+    'modular business templates',
+    'AI creator systems',
+    'AI music creation',
+    'Suno music',
+    'agentic workflows',
+    'personal AI operating system',
+    'AI architecture',
+    'creator tools',
+    'Claude Code',
+    'multi-agent systems',
+    'field notes',
+    'digital products',
   ],
   path: '/',
 })
@@ -34,39 +44,45 @@ const websiteSchema = {
   alternateName: ['FrankX.AI', 'Frank Riemer'],
   url: siteUrl,
   description:
-    'Founder operating systems, AI architecture, field notes, and Human Layer practices from Frank Riemer.',
-  publisher: { '@id': `${siteUrl}/#organization` },
-  about: { '@id': `${siteUrl}/#frank-riemer` },
+    'FrankX is Frank Riemer\'s living studio for music, agent systems, books, field notes, and practical tools.',
+  publisher: {
+    '@id': `${siteUrl}/#organization`,
+  },
+  about: {
+    '@id': `${siteUrl}/#frank-riemer`,
+  },
   potentialAction: {
     '@type': 'SearchAction',
     target: `${siteUrl}/search?q={search_term_string}`,
     'query-input': 'required name=search_term_string',
   },
 }
-
 const personSchema = {
   '@id': `${siteUrl}/#frank-riemer`,
   name: 'Frank Riemer',
-  jobTitle: 'AI Architect and Founder',
+  jobTitle: 'AI Architect and Creator',
   url: `${siteUrl}/frank-riemer`,
   image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
-  mainEntityOfPage: { '@id': `${siteUrl}/frank-riemer` },
-  alumniOf: { '@type': 'Organization', name: 'Oracle' },
-  brand: { '@id': `${siteUrl}/#organization` },
-  sameAs: [
-    socialLinks.linkedin,
-    socialLinks.github,
-    socialLinks.suno,
-    socialLinks.twitter,
-  ],
+  mainEntityOfPage: {
+    '@id': `${siteUrl}/frank-riemer`,
+  },
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'Oracle',
+  },
+  brand: {
+    '@id': `${siteUrl}/#organization`,
+  },
+  sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno, socialLinks.twitter],
   knowsAbout: [
-    'Founder Operating Systems',
     'AI Architecture',
+    'Personal AI Operating Systems',
     'AI Creator Systems',
+    'AI Music Creation',
     'Agentic Workflows',
     'Multi-Agent Systems',
-    'Founder Judgment',
-    'Human-Centered AI',
+    'Creator Education',
+    'Creative Technology',
   ],
 }
 
@@ -76,43 +92,50 @@ const organizationSchema = {
   alternateName: 'FrankX.AI',
   url: siteUrl,
   logo: `${siteUrl}/images/brand/logo-full.png`,
-  founder: { '@id': `${siteUrl}/#frank-riemer` },
+  founder: {
+    '@id': `${siteUrl}/#frank-riemer`,
+  },
   sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno],
   description:
-    'FrankX helps founders diagnose constraints, install useful AI systems, and improve judgment under uncertainty.',
+    'FrankX publishes music, inspectable creator systems, agent-workflow labs, books, and practical field notes from Frank Riemer.',
 }
 
 const homepageFAQs = [
   {
-    question: 'Who is FrankX for?',
+    question: 'What is FrankX?',
     answer:
-      'FrankX speaks to one avatar: the founder. Entrepreneur, solopreneur, coach, and creator-led operator are founder contexts when you carry the risk and make the consequential decisions.',
+      'FrankX is Frank Riemer\'s independent living studio: a public home for music, agent systems, books, experiments, and field notes. It is a personal project and is not affiliated with, endorsed by, or sponsored by Oracle.',
   },
   {
     question: 'Where should I begin?',
     answer:
-      'Begin with the private Founder Stack Map. Ten questions identify the current constraint across State, Signal, Systems, Scale, and Stewardship, then route you to the most useful next move.',
+      'Begin with what you need now. Listen for music, Learn for practical pathways, Build for open systems, Reflect for books and questions, Acquire for paid tools, or Explore for the wider FrankX ecosystem.',
   },
   {
-    question: 'What is the Foundry?',
+    question: 'How does music fit into FrankX?',
     answer:
-      'The Foundry is a bounded implementation engagement for installing a founder operating system around a real company workflow: site, agent harness, business memory, and quality controls.',
+      'Music is one of the studio\'s living practices and a form of creative AI experimentation. Listening is optional; the architecture, systems, products, books, and wider ecosystem are equally direct ways into the work.',
   },
   {
-    question: 'What does the Human Layer include?',
+    question: 'Can I use the systems and tools?',
     answer:
-      'The Human Layer covers attention, physiology, meaning, and reflective practice. Claims are labeled through four lenses—Established, Emerging, Experiential, and Symbolic—so meditation, breathwork, sound, neurotechnology, manifestation, dream practice, and plant-medicine research are not presented with false certainty.',
+      'Yes. FrankX includes public guides and open systems you can inspect first, plus paid packs and guided paths for people who want a more complete or supported route. Each offer should state its scope before asking for a purchase.',
   },
   {
-    question: 'Is FrankX affiliated with Oracle?',
+    question: 'Is FrankX an agency or coaching business?',
     answer:
-      'No. FrankX is Frank Riemer’s independent project and is not affiliated with, endorsed by, or sponsored by Oracle.',
+      'FrankX is a founder studio rather than a conventional client agency. Some bounded architecture work, programs, or private access may open when the fit is mutual, but the public work and usefulness come first.',
+  },
+  {
+    question: 'How are new music and studio updates chosen?',
+    answer:
+      'A weekly process can prepare candidates, but nothing is featured automatically from a catalog or social feed. Music, copy, links, and rights state are reviewed before a homepage update or public send.',
   },
 ]
 
 export default function Page() {
   const latestPosts = getAllBlogPosts()
-    .slice(0, 3)
+    .slice(0, 6)
     .map((post) => ({
       slug: post.slug,
       title: post.title,
@@ -122,9 +145,40 @@ export default function Page() {
       date: post.date,
     }))
 
+  const books = getPublishedBooks()
+    .filter(
+      (book): book is typeof book & { coverImage: string } => Boolean(book.coverImage),
+    )
+    .slice(0, 6)
+    .map((book) => ({
+      slug: book.slug,
+      title: book.title,
+      subtitle: book.subtitle,
+      coverImage: book.coverImage,
+    }))
+
+  const libraryBooks = bookReviews
+    .filter((review) => (review.quotes?.length ?? 0) > 0 && (review.chapters?.length ?? 0) > 0)
+    .sort((a, b) => (b.quotes?.length ?? 0) - (a.quotes?.length ?? 0))
+    .slice(0, 5)
+    .map((review) => ({
+      slug: review.slug,
+      title: review.title,
+      author: review.author,
+      coverImage: review.coverImage,
+      quoteCount: review.quotes?.length ?? 0,
+      chapterCount: review.chapters?.length ?? 0,
+    }))
+
   return (
     <>
-      <FounderHome latestPosts={latestPosts} faqs={homepageFAQs} />
+      <HomePageElite
+        latestPosts={latestPosts}
+        faqs={homepageFAQs}
+        books={books}
+        libraryBooks={libraryBooks}
+        featuredTrack={homepageFeaturedRelease}
+      />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />
