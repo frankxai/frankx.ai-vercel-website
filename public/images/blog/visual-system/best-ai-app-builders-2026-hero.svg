@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Best AI App Builders 2026</title>
+  <desc id="desc">A dark technical editorial visual separates app builders, repository coding agents and the governed delivery system.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050607"/>
+      <stop offset="0.55" stop-color="#0a0a0b"/>
+      <stop offset="1" stop-color="#07141a"/>
+    </linearGradient>
+    <radialGradient id="ga" cx="19%" cy="16%" r="52%">
+      <stop offset="0" stop-color="#10b981" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gb" cx="84%" cy="78%" r="50%">
+      <stop offset="0" stop-color="#06b6d4" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#ga)"/>
+  <rect width="1600" height="900" fill="url(#gb)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <rect x="84" y="76" width="1432" height="748" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.10"/>
+
+  <text x="116" y="146" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="700">FRANKX / AI BUILDER STACK</text>
+  <text x="116" y="256" fill="#f8fafc" font-family="Poppins, Inter, Arial, sans-serif" font-size="64" font-weight="760">Best AI App Builders</text>
+  <text x="116" y="328" fill="#f8fafc" font-family="Poppins, Inter, Arial, sans-serif" font-size="64" font-weight="760">2026</text>
+  <text x="120" y="397" fill="#aeb8c7" font-family="Inter, Arial, sans-serif" font-size="25">Choose a stack and a graduation path.</text>
+  <text x="120" y="433" fill="#aeb8c7" font-family="Inter, Arial, sans-serif" font-size="25">Do not choose one magic prompt box.</text>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="116" y="518" width="388" height="176" rx="20" fill="#0d1414" stroke="#10b981" stroke-opacity="0.58"/>
+    <text x="146" y="563" fill="#10b981" font-size="17" font-weight="750">01 / CREATE</text>
+    <text x="146" y="610" fill="#f8fafc" font-size="29" font-weight="720">App builders</text>
+    <text x="146" y="654" fill="#94a3b8" font-size="18">v0 · Replit · Lovable</text>
+    <text x="146" y="681" fill="#94a3b8" font-size="18">Bolt · Base44</text>
+
+    <rect x="548" y="518" width="388" height="176" rx="20" fill="#0c1216" stroke="#06b6d4" stroke-opacity="0.58"/>
+    <text x="578" y="563" fill="#06b6d4" font-size="17" font-weight="750">02 / HARDEN</text>
+    <text x="578" y="610" fill="#f8fafc" font-size="29" font-weight="720">Repository agents</text>
+    <text x="578" y="654" fill="#94a3b8" font-size="18">Claude Code · Codex</text>
+    <text x="578" y="681" fill="#94a3b8" font-size="18">Tests · CI · PR review</text>
+
+    <rect x="980" y="518" width="388" height="176" rx="20" fill="#0d1414" stroke="#10b981" stroke-opacity="0.58"/>
+    <text x="1010" y="563" fill="#10b981" font-size="17" font-weight="750">03 / OPERATE</text>
+    <text x="1010" y="610" fill="#f8fafc" font-size="29" font-weight="720">Company system</text>
+    <text x="1010" y="654" fill="#94a3b8" font-size="18">Runtime · data · workflows</text>
+    <text x="1010" y="681" fill="#94a3b8" font-size="18">Sales · ops · evidence</text>
+  </g>
+
+  <path d="M504 606H548M936 606H980" stroke="#ffffff" stroke-opacity="0.45" stroke-width="2"/>
+  <path d="M538 598l16 8-16 8zM970 598l16 8-16 8z" fill="#cbd5e1" fill-opacity="0.7"/>
+  <rect x="1396" y="495" width="74" height="223" rx="37" fill="#071012" stroke="#06b6d4" stroke-opacity="0.55"/>
+  <circle cx="1433" cy="550" r="16" fill="#10b981" fill-opacity="0.7"/>
+  <circle cx="1433" cy="606" r="16" fill="#06b6d4" fill-opacity="0.7"/>
+  <circle cx="1433" cy="662" r="16" fill="#f59e0b" fill-opacity="0.7"/>
+
+  <text x="116" y="773" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="19">Builder edge → owned source → reviewed release → observable business outcome</text>
+  <text x="1474" y="773" text-anchor="end" fill="#64748b" font-family="JetBrains Mono, Consolas, monospace" font-size="16">2026.08.27</text>
+</svg>

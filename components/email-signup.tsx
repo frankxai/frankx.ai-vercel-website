@@ -3,11 +3,25 @@
 import { useState, useId, FormEvent } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { trackEvent } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 
 interface EmailSignupProps {
-  listType?: 'newsletter' | 'creation-chronicles' | 'ai-architect' | 'inner-circle' | 'music-lab' | 'arcanea' | 'investor' | 'courses-waitlist' | 'ikigai-branding' | 'agentic-builder-lab' | 'premium-packs' | 'all'
+  listType?:
+    | 'newsletter'
+    | 'creation-chronicles'
+    | 'ai-architect'
+    | 'founder-stack'
+    | 'inner-circle'
+    | 'music-lab'
+    | 'arcanea'
+    | 'investor'
+    | 'courses-waitlist'
+    | 'ikigai-branding'
+    | 'agentic-builder-lab'
+    | 'premium-packs'
+    | 'all'
+  source?: string
   placeholder?: string
   buttonText?: string
   className?: string
@@ -18,7 +32,8 @@ interface EmailSignupProps {
 
 export function EmailSignup({
   listType = 'newsletter',
-  placeholder = 'Enter your email',
+  source,
+  placeholder = 'you@company.com',
   buttonText = 'Subscribe',
   className,
   redirectTo,
@@ -37,6 +52,7 @@ export function EmailSignup({
   const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const normalizedPlaceholder = `${placeholder.replace(/[.…]+$/, '')}…`
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -60,6 +76,7 @@ export function EmailSignup({
           email,
           name: showName ? name : undefined,
           listType,
+          source,
           website,
         }),
       })
@@ -71,6 +88,10 @@ export function EmailSignup({
       }
 
       setStatus('success')
+      trackEvent('signal_loop_submit_success', {
+        list_type: listType,
+        surface: source || 'unspecified',
+      })
 
       // Redirect after success with stream context
       if (redirectTo) {
@@ -83,6 +104,10 @@ export function EmailSignup({
     } catch (error) {
       setStatus('error')
       setErrorMessage(error instanceof Error ? error.message : 'Something went wrong')
+      trackEvent('signal_loop_submit_error', {
+        list_type: listType,
+        surface: source || 'unspecified',
+      })
     }
   }
 
@@ -105,7 +130,7 @@ export function EmailSignup({
     return (
       <form onSubmit={handleSubmit} className={cn('relative', className)}>
         {honeypotField}
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row">
           <label htmlFor={emailId} className="sr-only">
             Email address
           </label>
@@ -114,20 +139,25 @@ export function EmailSignup({
             type="email"
             name="email"
             autoComplete="email"
+            spellCheck={false}
             required
             aria-describedby={statusId}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder={placeholder}
+            placeholder={normalizedPlaceholder}
             disabled={status === 'loading' || status === 'success'}
-            className="min-w-0 flex-1 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
+            className="w-full min-w-0 flex-1 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="rounded-full bg-emerald-400 px-6 py-2 font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 disabled:cursor-not-allowed disabled:opacity-50"
+            className="min-h-11 w-full rounded-full bg-emerald-400 px-6 py-2 font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
           >
-            {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓' : buttonText}
+            {status === 'loading'
+              ? 'Subscribing…'
+              : status === 'success'
+                ? 'Subscribed'
+                : buttonText}
           </button>
         </div>
         <p className="mt-2 text-xs leading-5 text-slate-400">
@@ -141,34 +171,26 @@ export function EmailSignup({
           .
         </p>
 
-        <AnimatePresence>
-          {status === 'error' && errorMessage && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              id={statusId}
-              role="alert"
-              aria-live="assertive"
-              className="text-red-400 text-sm mt-2"
-            >
-              {errorMessage}
-            </motion.div>
-          )}
-          {status === 'success' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              id={statusId}
-              role="status"
-              aria-live="polite"
-              className="text-emerald-400 text-sm mt-2"
-            >
-              Successfully subscribed! Check your email.
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {status === 'error' && errorMessage && (
+          <div
+            id={statusId}
+            role="alert"
+            aria-live="assertive"
+            className="mt-2 text-sm text-red-400"
+          >
+            {errorMessage}
+          </div>
+        )}
+        {status === 'success' && (
+          <div
+            id={statusId}
+            role="status"
+            aria-live="polite"
+            className="mt-2 text-sm text-emerald-400"
+          >
+            You are subscribed.
+          </div>
+        )}
       </form>
     )
   }
@@ -189,9 +211,9 @@ export function EmailSignup({
               autoComplete="given-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Your first name"
+              placeholder="Your first name…"
               disabled={status === 'loading' || status === 'success'}
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 transition-all"
+              className="w-full rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3 text-white placeholder:text-slate-400 transition-colors focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
             />
           </div>
         )}
@@ -205,13 +227,14 @@ export function EmailSignup({
             id={emailId}
             name="email"
             autoComplete="email"
+            spellCheck={false}
             aria-describedby={statusId}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder={placeholder}
+            placeholder={normalizedPlaceholder}
             disabled={status === 'loading' || status === 'success'}
             required
-            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 transition-all"
+            className="w-full rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3 text-white placeholder:text-slate-400 transition-colors focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
           />
         </div>
 
@@ -219,47 +242,39 @@ export function EmailSignup({
           type="submit"
           disabled={status === 'loading' || status === 'success'}
           className={cn(
-            "w-full px-6 py-3 font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed",
+            'w-full rounded-xl px-6 py-3 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-50',
             status === 'success'
-              ? "bg-emerald-600 text-white"
-              : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500"
+              ? 'bg-emerald-600 text-white'
+              : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500',
           )}
         >
-          {status === 'loading' && 'Subscribing...'}
-          {status === 'success' && '✓ Subscribed!'}
+          {status === 'loading' && 'Subscribing…'}
+          {status === 'success' && 'Subscribed'}
           {status === 'idle' && buttonText}
           {status === 'error' && 'Try Again'}
         </button>
 
-        <AnimatePresence>
-          {status === 'error' && errorMessage && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              id={statusId}
-              role="alert"
-              aria-live="assertive"
-              className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm"
-            >
-              {errorMessage}
-            </motion.div>
-          )}
-          {status === 'success' && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              id={statusId}
-              role="status"
-              aria-live="polite"
-              className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-sm"
-            >
-              Successfully subscribed! Check your email for confirmation.
-              {redirectTo && <span className="block mt-1">Redirecting...</span>}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {status === 'error' && errorMessage && (
+          <div
+            id={statusId}
+            role="alert"
+            aria-live="assertive"
+            className="rounded-lg border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-400"
+          >
+            {errorMessage}
+          </div>
+        )}
+        {status === 'success' && (
+          <div
+            id={statusId}
+            role="status"
+            aria-live="polite"
+            className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm text-emerald-400"
+          >
+            You are subscribed.
+            {redirectTo && <span className="mt-1 block">Redirecting…</span>}
+          </div>
+        )}
       </form>
 
       <p className="mt-4 text-xs text-slate-500 text-center">

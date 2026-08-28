@@ -51,10 +51,11 @@ For a high-value new page or redesign, apply the canonical kernel with the two l
 
 ## Brand voice
 
-Frank: AI Architect and Creator, ships products/code/content, translates enterprise-scale AI/cloud experience into practical systems for creators and operators. Independent project — not affiliated with, endorsed by, or sponsored by Oracle.
+Frank: founder and AI Architect who translates enterprise-scale AI/cloud experience into practical operating systems for founders. Entrepreneur, solopreneur, coach, and creator-led operator are founder contexts. Independent project — not affiliated with, endorsed by, or sponsored by Oracle.
 
 - **DO:** lead with results, precise technical language, show don't tell, confident but understated.
-- **DON'T:** spiritual language, grandiose claims, self-help-guru tone, emoji in user-facing copy (unless explicitly requested).
+- **DO:** use the governed Human Layer on its dedicated surfaces: `established`, `emerging`, `experiential`, and `symbolic` lenses, with explicit uncertainty and safety boundaries.
+- **DON'T:** guru authority, grandiose or medical-certainty claims, unlabeled metaphysics presented as science, or emoji in user-facing copy (unless explicitly requested). Plant medicine is research and harm reduction only; never provide sourcing, dosing, protocols, or treatment promises.
 
 ---
 

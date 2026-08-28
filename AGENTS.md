@@ -69,7 +69,8 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 
 ## 4. Brand + content discipline
 
-- **Voice:** "Elite Creator. AI Architect. Humble Excellence." — direct, technical, results-first. Never spiritual or guru-toned.
+- **Voice:** "Founder. AI Architect. Humble Excellence." — direct, technical, results-first. Speak to one avatar: the founder; entrepreneur, solopreneur, coach, and creator-led operator are founder contexts.
+- **Human Layer:** Post-rational spirituality is allowed only on governed Human Layer surfaces. Label each claim `established`, `emerging`, `experiential`, or `symbolic`; never use guru authority, medical certainty, promised healing, or cosmological claims presented as science. Plant-medicine coverage is research and harm reduction only—no sourcing, dosing, protocols, or treatment claims.
 - **Title stays "AI Architect"** — never "AI Systems Architect" or "Senior AI Architect."
 - **No Arcanea mythology in FrankX copy** (Guardians, Gates, Realms, Seekers, etc.) — that belongs to the separate Arcanea brand.
 - **No emoji in user-facing copy** unless explicitly requested.
@@ -108,3 +109,13 @@ No `CONTRIBUTING.md` exists in this repo. No `.agent/active-agents.md` live-boar
 ---
 
 _End of AGENTS.md. This file replaces a prior version that was a verbatim, unadapted copy of the private `frankxai/FrankX` repo's AGENTS.md and stated this repo does not deploy to production — that was backwards. This repo is production._
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

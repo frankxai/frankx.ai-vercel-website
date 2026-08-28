@@ -1,0 +1,386 @@
+---
+title: "Best AI App Builders 2026: v0, Replit, Lovable"
+description: "Choose v0, Replit, Lovable, Bolt, or Base44—and design the handoff to Claude Code, Codex, GitHub, deployment, sales, and operations."
+date: "2026-08-27"
+lastUpdated: "2026-08-27"
+author: "FrankX"
+category: "Creator Systems"
+tags: ["ai-app-builders", "vibe-coding", "ai-architecture", "coding-agents", "digital-products"]
+image: "/images/blog/visual-system/best-ai-app-builders-2026-hero.svg"
+ogImage: "/images/blog/visual-system/social/best-ai-app-builders-2026-og.png"
+featured: true
+readingGoal: "Choose the right creation surface, define its graduation path, and connect the resulting product to a governed company stack."
+tldr: "v0, Replit, Lovable, Bolt, and Base44 are app builders. Claude Code and Codex are repository agents. n8n and Make are workflow runtimes. The best 2026 stack is not one magic product: it is a replaceable builder edge, a GitHub source boundary, independent review, preview deployment, governed production, and business-system integration."
+keywords: ["best AI app builders 2026", "v0 vs Replit vs Lovable", "AI app builder for business", "Lovable vs v0", "Replit Agent vs Lovable", "app builder to coding agent handoff", "AI builder stack"]
+schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Standardize the source boundary, data contracts, release evidence, and observability—not the first prompt box. Choose a builder whose graduation path matches the product's risk."
+  coePillar: "Product engineering and governed delivery"
+  personas:
+    - persona: "Product and design"
+      pick: "App builder for fast, inspectable product slices"
+    - persona: "Engineering"
+      pick: "Repository agent, tests, CI, security, and production hardening"
+    - persona: "Business operations"
+      pick: "Separate workflow plane for CRM, support, analytics, and recovery"
+---
+
+If you flatten all of those products into one comparison, you get a popular table and a bad architecture.
+
+An app builder can turn intent into working software quickly. A coding agent can understand and change a real repository. A workflow runtime can move data and trigger actions across systems. A model supplies intelligence. A deployment platform runs the result. A source-control and review system tells you what changed and whether it is allowed to ship.
+
+They overlap. They are not interchangeable.
+
+This guide answers two questions:
+
+1. **Which app builder fits the product I am trying to create?**
+2. **How does that prototype graduate into software a team can own, operate, market, sell, and improve?**
+
+<Callout type="info">
+Method: this is a capability-and-architecture comparison based on official documentation checked on 27 August 2026 and first-party FrankX v0 work. It is **not** a same-prompt, five-tool benchmark. Where comparable test evidence does not exist, I say so.
+</Callout>
+
+<Diagram
+  src="/images/blog/visual-system/infographics/best-ai-app-builders-2026-map.svg"
+  width={1600}
+  height={1000}
+  scrollable
+  alt="The AI builder stack routes validated intent through an app builder into a GitHub source boundary, coding-agent review, preview and production runtime, workflow integrations, business systems, and evidence that informs the next decision."
+  caption="The builder is the creation edge. The source boundary, release system, runtime, and business records make it a company asset."
+/>
+
+## The short answer: which AI app builder should you choose?
+
+| Your situation | Start here | Why | Graduation path |
+| --- | --- | --- | --- |
+| **Next.js or Vercel product with strong UI requirements** | **v0** | Native fit for modern React/Next.js work, GitHub, previews, and Vercel deployment | v0 → GitHub → Codex or Claude Code → Vercel preview → reviewed release |
+| **One environment for ideation, code, data, and hosting** | **Replit Agent** | Broad creation workspace and managed runtime reduce setup for fast experiments and teaching | Replit → Git/source policy → security and data review → controlled publish |
+| **Collaborative business web app or SaaS MVP** | **Lovable** | Strong full-stack product flow, managed backend options, and Git sync for developer handoff | Lovable → GitHub → owned backend decision → coding agent → chosen runtime |
+| **Fast prototype or small-business proof** | **Bolt** | Low-friction full-stack building, built-in cloud, GitHub, and fast publishing | Bolt → GitHub → test and accessibility pass → host where the product fits |
+| **Business app with workflows and always-on agents** | **Base44** | Managed app surface, backend, workflows, connectors, and business-agent direction | Base44 → source/data boundary → approval design → separate records and observability |
+| **Existing repository that needs implementation** | **Claude Code or Codex** | The product already exists; you need a coding agent, not another app generator | Issue/spec → branch → agent implementation → CI → PR review → preview → production |
+| **Cross-system automation behind the product** | **n8n or Make** | The job is orchestration, retries, schedules, and connectors—not screen generation | Event → workflow → policy/approval → side effect → run evidence → recovery |
+
+That is the routing answer. There is no responsible universal winner because the products optimize different starting states and ownership boundaries.
+
+If you are new to coding entirely, the [beginner AI coding guide](/blog/best-ai-coding-tools-for-beginners-2026) gives a gentler first decision. If you are choosing repository agents, use the [AI coding-agent guide](/blog/ultimate-guide-ai-coding-agents-2026). If the work is a no-code agent or automation, use the [workflow-agent builder comparison](/blog/best-no-code-ai-agent-builders-2026). ChatGPT's lightweight site surface has its own [founder guide](/blog/chatgpt-sites-founder-guide-2026).
+
+## The category map most comparisons miss
+
+| Category | Creates | Typical names | System boundary |
+| --- | --- | --- | --- |
+| **Prompt-to-app builder** | Interface plus some or all application code and backend | v0, Replit, Lovable, Bolt, Base44 | Product creation surface |
+| **Repository coding agent** | Changes, tests, reviews, migrations, and pull requests | Claude Code, Codex, Cursor, GitHub Copilot agents, Mistral Vibe | Source-controlled engineering surface |
+| **Workflow and business-agent runtime** | Triggers, connectors, schedules, retries, and cross-system actions | n8n, Make, Lindy | Operational execution surface |
+| **Model or assistant provider** | Reasoning, generation, tool use, multimodal intelligence | OpenAI, Anthropic, Google, xAI, Meta, Mistral | Intelligence supplier and user surface |
+| **Deployment and data runtime** | Compute, domains, storage, databases, queues, functions | Vercel, Railway, Cloudflare, Supabase, builder-managed clouds | Production operating environment |
+| **Control and evidence** | Identity, permissions, diffs, approvals, tests, logs, rollback | GitHub, CI, secrets, observability, analytics | Governance and learning system |
+
+The durable architectural move is to treat the app builder as a **replaceable creation edge**. Your code, data, identity, domain, customer records, release policy, and evidence should not all become accidental properties of the same chat.
+
+## v0: strongest when the product is already Vercel-shaped
+
+[v0](https://v0.dev/docs) now describes itself as an agent that creates real code, full-stack apps, and agents—not merely a component generator. Its advantage is clearest when the target is a modern web product in a Vercel/Next.js estate.
+
+The important capabilities are not the demo animation. They are the handoffs:
+
+- connect a repository and track changes through [GitHub integration](https://v0.dev/docs/github);
+- create preview and production deployments through [Vercel deployment](https://v0.dev/docs/deployments);
+- work with external APIs and data services;
+- open a pull request instead of treating generated code as an unreviewed final artifact.
+
+FrankX has a real first-party v0 surface in the [v0 Design Lab](/design-lab/v0). That proves we have used v0 as a design and implementation instrument. It does not prove v0 beats every alternative on the same brief.
+
+**Choose v0 when:** the product is web-first, design quality matters, the team already uses Next.js/Vercel, and GitHub is part of the path.
+
+**Do not choose v0 merely because:** the first screen looks polished. Check auth, data, accessibility, failure states, analytics, and how the product will be maintained after the first conversation.
+
+## Replit Agent: strongest when one environment is the point
+
+[Replit Agent](https://docs.replit.com/features/agent/overview) can plan, create, check, repair, and help publish applications from natural-language intent. Replit combines the agent, workspace, code, secrets, managed infrastructure, collaboration, and publishing surface.
+
+That is excellent when setup friction is the enemy:
+
+- a founder or cross-functional team needs a working internal tool quickly;
+- a workshop needs every participant in the same environment;
+- a prototype spans backend work and cannot be reduced to a static site;
+- the team values one managed creation-and-runtime surface more than infrastructure choice.
+
+The strength is also the architectural question. When more of the product lives in one environment, you must decide how Git history, release approval, data export, identity, secrets, and recovery work before risk rises.
+
+Replit's [publishing documentation](https://docs.replit.com/build/publish-your-app) separates the editable project from the published app, while its [Security Center](https://docs.replit.com/features/security/project-security-center) describes automated checks. Those are useful controls. They are not substitutes for your own threat model or acceptance tests.
+
+**Choose Replit when:** speed to a full working environment matters more than composing the stack yourself.
+
+**Graduate deliberately when:** sensitive data, regulated behavior, complex access control, large teams, or independent release governance enter the product.
+
+## Lovable: strongest for collaborative business web apps and handoff
+
+[Lovable](https://docs.lovable.dev/introduction/welcome) focuses on creating full-stack web applications through conversation. Its [Cloud](https://docs.lovable.dev/features/cloud) can provide database, authentication, storage, realtime behavior, and functions. Teams can also connect their own Supabase environment.
+
+The most important production fact is ownership and movement. Lovable documents [Git synchronization and external hosting](https://docs.lovable.dev/tips-tricks/deployment-hosting-ownership): teams can sync code to GitHub or GitLab, clone it, change it outside Lovable, and deploy elsewhere.
+
+That reduces source-code lock-in. It does not make every dependency portable by magic.
+
+You still need to inspect:
+
+- database schema and migration path;
+- identity provider and session behavior;
+- storage and function assumptions;
+- secrets and third-party connectors;
+- deployment configuration and environment variables;
+- which parts of the product require Lovable Cloud to behave the same way.
+
+**Choose Lovable when:** product, design, and business stakeholders need to iterate together on a web application and a developer handoff is part of the plan.
+
+**Do not confuse:** “I own the code” with “migration has zero cost.” Ownership gives you options. Architecture determines the work required to use them.
+
+## Bolt and Base44: two different reasons to go broad
+
+[Bolt](https://support.bolt.new/) and [Base44](https://docs.base44.com/) both push beyond page generation, but their centers of gravity differ.
+
+### Bolt: speed and a broad managed build surface
+
+Bolt supports websites, applications, databases, hosting, GitHub, and fast publishing. Its documentation explicitly distinguishes [built-in version history from GitHub](https://support.bolt.new/concepts/version-history-github), and documents its [Git integration](https://support.bolt.new/integrations/git) for source movement and collaboration.
+
+That makes Bolt useful for rapid proofs, small-business applications, and experiments where fast iteration matters more than a deeply customized platform on day one.
+
+The caution is project growth. As context, dependencies, data, and integrations expand, a fast chat loop can become an expensive way to discover that no one defined the product architecture. Use plan mode, keep the source boundary visible, and graduate before the prototype becomes the only production specification.
+
+### Base44: business applications, workflows, and agents in one platform
+
+Base44 combines a managed application layer with [AI agents](https://docs.base44.com/Building-your-app/AI-agents-for-apps), [workflows](https://docs.base44.com/Building-your-app/Creating-workflows), and [integrations](https://docs.base44.com/Integrations/Using-integrations). That makes it interesting for internal operations, sales tooling, customer portals, and business systems where the interface and the workflow are tightly coupled.
+
+The question is not whether Base44 can do more. It is whether one platform should own more.
+
+Keep customer and financial systems of record explicit. Put approval around messages, price changes, CRM state, publishing, deletion, and money movement. Ensure a managed agent cannot silently enlarge its own authority.
+
+**Choose Base44 when:** the business process is the product and managed breadth is a feature.
+
+**Separate critical layers when:** the workflow crosses systems, must survive a platform outage, or needs independent evidence and recovery.
+
+## Claude Code and Codex are not alternatives to the app builder
+
+This is the comparison people keep trying to force: “Should I use Lovable, Claude Code, or Codex?”
+
+Usually, that is a sequence question.
+
+An app builder is optimized for moving from intent to a product surface. A repository agent is optimized for working inside a codebase with files, commands, tests, dependencies, conventions, and review.
+
+| Capability | App builder | Claude Code / Codex |
+| --- | --- | --- |
+| Start from a nontechnical product description | Primary strength | Possible, but not the most guided surface |
+| Show an immediate interactive product | Primary strength | Depends on repository and local/preview setup |
+| Work across an established codebase | Varies | Primary strength |
+| Run tests and commands | Varies by platform | Core behavior |
+| Make reviewable multi-file changes | Increasingly supported | Core behavior |
+| Create a full managed runtime | Often | No; integrates with the runtime you choose |
+| Operate through PR and CI policy | Possible through Git integration | Natural graduation path |
+| Handle visual stakeholder iteration | Builder-native | Stronger with a design artifact or existing UI system |
+
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) reads a codebase, edits files, runs commands, and connects to tools through an extensible environment. Codex documents [CLI](https://developers.openai.com/codex/cli), [IDE](https://developers.openai.com/codex/ide), and [cloud](https://developers.openai.com/codex/cloud) surfaces for local and delegated software work.
+
+The practical handoff is:
+
+1. Create a bounded product slice in v0, Replit, Lovable, Bolt, or Base44.
+2. Where the builder and your plan support it, synchronize or export into a repository you control.
+3. Add repository instructions, architecture decisions, tests, and a definition of done.
+4. Assign Claude Code or Codex a specific hardening or implementation task.
+5. Require a pull request, CI evidence, and preview deployment.
+6. Review the product behavior, not only the diff.
+
+GitHub now supports asynchronous coding agents that create pull requests for human review, including [third-party coding agents](https://docs.github.com/en/copilot/concepts/agents/about-third-party-coding-agents). The architecture is becoming multi-agent. Accountability is not becoming optional.
+
+## The AI Architect's reference stack
+
+The stack I would recommend for most serious teams has eight explicit layers.
+
+| Layer | Question | Default pattern |
+| --- | --- | --- |
+| **1. Intent** | What user job and business evidence justify the product? | Brief, non-goals, success metric, risk class |
+| **2. Product surface** | Which builder creates the smallest convincing slice? | v0, Replit, Lovable, Bolt, or Base44 |
+| **3. Source boundary** | Where is the owned, reviewable code history? | GitHub repository, branch policy, CODEOWNERS |
+| **4. Engineering** | Who hardens, tests, migrates, and maintains it? | Claude Code, Codex, Cursor, and human engineers |
+| **5. Runtime and data** | Where do compute, identity, storage, and queues live? | Vercel/builder cloud plus explicit database and secrets choices |
+| **6. Workflow plane** | How does the product connect to business systems? | n8n for controlled technical orchestration; Make for connector-led speed |
+| **7. Business records** | Which systems own customer, revenue, support, and content truth? | CRM, billing, support, analytics, CMS—not agent memory |
+| **8. Evidence** | Can the team explain, observe, and reverse what happened? | PRs, tests, previews, logs, traces, metrics, incident and rollback records |
+
+Do not put a language model into a deterministic step because it looks modern. If a rule can be written and tested, ordinary software is cheaper to understand.
+
+Do not put a deterministic rule around a genuinely ambiguous judgment and pretend it is objective. Route it to a qualified human.
+
+The [solo-builder architecture patterns](/blog/ai-architecture-patterns-solo-builders) show how to keep this stack small. The [Claude Code to Vercel deployment guide](/blog/vercel-claude-code-nextjs-deploy-one-session) shows one implementation path. For larger agent teams, use the [orchestration patterns guide](/blog/multi-agent-orchestration-patterns-2026).
+
+## How an AI Architect team uses the stack across the company
+
+### Software and web development
+
+- **Product/design:** frame the user job, create the flow, and use an app builder for a bounded slice.
+- **Engineering agent:** move the slice into the repository, implement the system contracts, add tests, and surface uncertainties.
+- **Human reviewer:** inspect security, accessibility, maintainability, and product behavior.
+- **Release system:** create a preview for every pull request and production only from the protected branch.
+
+[Vercel's Git integration](https://vercel.com/docs/git) automatically creates a unique preview for pull requests before production. [GitHub protected branches](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches) can require reviews and status checks. Those two controls turn generated code into a reviewable release path.
+
+### Marketing
+
+Use v0, Lovable, or Bolt for landing pages, calculators, product explainers, and campaign prototypes. Keep the design system and analytics contract outside the builder prompt. Route leads through an owned form and CRM contract. Use n8n or Make for deterministic handoffs and enrichment.
+
+Use a source-bounded research surface for market discovery, preserve the underlying sources, and move claims through editorial review before they reach a landing page. Presentation tools belong after the evidence and narrative pass—not in place of it.
+
+### Digital products
+
+Create the smallest complete value loop: sign in, perform one valuable action, preserve the result, and return to it. A beautiful dashboard with no retained user outcome is not an MVP.
+
+As risk grows, move sensitive authorization, billing, entitlements, and data operations through repository review and explicit backend contracts. A builder may remain the preferred interface surface while critical logic graduates.
+
+### Sales
+
+Use the product builder for a configurator, assessment, customer portal, or proposal experience. Keep pricing rules, approval thresholds, and CRM ownership explicit. AI can research accounts and draft follow-ups. A named human owns promises, exceptions, negotiation, and the relationship.
+
+### Operations and support
+
+Use Replit or Base44 for internal tools when a managed environment accelerates the team. Use [n8n](https://docs.n8n.io/build/understand-workflows/understand-executions/view-all-executions) for governed cross-system workflows with execution history and retry; use [Make](https://help.make.com/introduction-to-make-apps) when connector breadth and business-user iteration dominate. Use human-facing agents for triage and preparation, not as the unaccountable owner of a customer incident.
+
+## The prototype-to-production workflow
+
+### 1. Validate the job before opening a builder
+
+Write the user, painful job, current workaround, evidence, smallest outcome, non-goals, and risk class. App-generation speed makes premature building more tempting, not less costly.
+
+### 2. Choose the builder by graduation path
+
+Ask:
+
+- Can I export or synchronize the source?
+- Who owns the database and data?
+- How are secrets stored?
+- How will auth and roles be tested?
+- What creates a preview?
+- What must move when risk grows?
+- What happens when the builder or its model is unavailable?
+
+### 3. Build one vertical slice
+
+Avoid “build the whole platform.” Create one end-to-end behavior with real loading, empty, error, permission, and success states.
+
+### 4. Establish the source boundary
+
+Connect GitHub early. Add a README, architecture decision, environment contract, and test commands. Enable secret protection where appropriate; GitHub's [push protection](https://docs.github.com/en/code-security/concepts/secret-security/push-protection) is designed to block recognized credentials before they enter the repository.
+
+### 5. Give the coding agent a bounded hardening task
+
+Good tasks include:
+
+- add role-based authorization tests;
+- replace client-side secrets;
+- make database migrations repeatable;
+- implement accessible keyboard and focus behavior;
+- add error boundaries and recovery states;
+- document and test the deployment contract.
+
+“Make it production-ready” is not a task. It is a way to hide ten unmade decisions inside a prompt.
+
+### 6. Preview, inspect, and test
+
+For every release candidate:
+
+- desktop and mobile behavior;
+- keyboard navigation and accessible names;
+- authentication and authorization boundaries;
+- empty, loading, error, retry, and rollback paths;
+- secrets and personal-data exposure;
+- cost and rate limits;
+- logs and actionable alerts;
+- canonical metadata, structured data, and analytics consent where relevant.
+
+### 7. Connect business systems behind policy
+
+Marketing, sales, support, and operations actions need explicit ownership. Sending messages, changing CRM stages, quoting prices, publishing, deleting data, or moving money should require a rule, permission, evidence, and—in high-impact cases—human approval.
+
+[OWASP's guidance for generative-AI applications](https://genai.owasp.org/llm-top-10/) includes risks created by excessive agency and misplaced reliance. [NIST's AI Risk Management Framework](https://airc.nist.gov/airmf-resources/airmf/) organizes work around Govern, Map, Measure, and Manage. Those are not enterprise decorations. They are a useful minimum vocabulary for any app allowed to act.
+
+### 8. Learn from outcomes, not generation volume
+
+Track activation, task completion, retention, support burden, change failure, incident recovery, and cost per verified outcome. “Prompts sent” and “screens generated” are production metrics only for the vendor.
+
+## The production gate
+
+An app is ready to publish only when the answer is yes—or an explicit, accepted risk—to each relevant line:
+
+| Gate | Evidence |
+| --- | --- |
+| **User value** | A real user can complete the target job |
+| **Ownership** | Source, data, domain, identity, and credentials have named owners |
+| **Security** | Authorization, input boundaries, dependencies, and secrets were reviewed |
+| **Quality** | Tests pass; key flows work on desktop, mobile, and keyboard |
+| **Operations** | Logs, alert owner, budget/rate limits, and recovery path exist |
+| **Release** | PR, independent review, preview, and rollback evidence exist |
+| **Business** | CRM, billing, analytics, support, and content systems have explicit contracts |
+| **AI governance** | Model access, tool permissions, approvals, retention, and failure disclosure are defined |
+
+One-click publish proves that a deployment happened. It does not prove that the app is safe, maintainable, useful, or owned.
+
+## A 30-day adoption plan for a real organization
+
+### Week 1: pick one bounded business job
+
+Choose a workflow with one owner, reachable users, reversible actions, and a measurable outcome. Do not start with payroll, legal decisions, autonomous pricing, or production deletion.
+
+### Week 2: run a two-surface build
+
+Create the product slice in the best-fit app builder. Move it into GitHub. Give one bounded issue to Claude Code or Codex. Record every handoff and point of coupling.
+
+### Week 3: add the company connections
+
+Connect one system of record and one workflow. Add permissions, run evidence, retries, and an approval where consequences justify it.
+
+### Week 4: release and review the architecture
+
+Ship through a pull request and preview. Observe real use. Then decide:
+
+- keep the builder as the main development surface;
+- use it for prototypes and graduate engineering to the repository;
+- change the runtime or data boundary;
+- stop because the user job was not strong enough.
+
+The decision is not “Did the AI build an app?” It is “Did the company acquire a useful, operable asset?”
+
+## Affiliate and editorial disclosure
+
+The provider references in this guide use direct official documentation, not FrankX affiliate links. FrankX did not have a verified, provider-issued customer-referral URL for these products in the publication ledger on 27 August 2026. I will not manufacture a `?ref=` parameter—or redirect readers to a partner-program application page—and call it a partnership.
+
+If a verified customer-referral link is added later, it will be labelled next to the link. Commercial relationships will not determine category definitions, rankings, or architecture recommendations.
+
+## FAQ
+
+**Q: What is the best AI app builder in 2026?**
+For a Vercel/Next.js product, start with v0. For an all-in-one creation and runtime environment, start with Replit. For a collaborative business web app with a clear developer handoff, start with Lovable. For a rapid proof, consider Bolt. For a managed business app whose workflows and agents are central, consider Base44. The product's risk and graduation path matter more than the first-screen demo.
+
+**Q: Is Lovable better than Replit?**
+They optimize different systems. Lovable is a focused collaborative web-app builder with managed backend and Git sync options. Replit combines a broader creation workspace, code environment, infrastructure, and publishing. Choose Lovable for a business web-product flow; choose Replit when one broad environment is the advantage.
+
+**Q: Should I use v0 or Claude Code?**
+Often both, in sequence. Use v0 to create and iterate on a Vercel-shaped product surface. Use Claude Code or Codex inside the repository for tests, architecture, migrations, hardening, maintenance, and reviewable implementation.
+
+**Q: Does GitHub sync eliminate lock-in?**
+It reduces source-code lock-in. Data services, authentication, managed functions, proprietary connectors, deployment behavior, and operational knowledge can still create coupling. Inspect the entire migration path, not only whether a repository exists.
+
+**Q: Can an AI-built app go directly to production?**
+A bounded, low-risk app sometimes can—after independent review and testing. Any product handling sensitive data, payments, consequential decisions, multiple roles, or cross-system actions needs stronger security, release, observability, and recovery controls. Generated code does not receive a lower production standard.
+
+**Q: Where do ChatGPT, Gemini, Grok, Meta, and Mistral fit?**
+They are intelligence or work surfaces, not direct equivalents of the app builders in this guide. They may help specify, research, design, code, or operate parts of the lifecycle. The [assistant comparison](/blog/chatgpt-vs-claude-vs-gemini-2026) covers model-side selection; this article owns the application stack and handoff.
+
+## The choice that survives 2026
+
+The brands and feature tables will keep moving. The architecture should survive them.
+
+Choose the builder that gets the right people to the first valuable product slice. Then make the result legible to the rest of the company: owned source, explicit data, bounded permissions, independent review, preview deployment, observable operations, and business records that do not disappear into a chat history.
+
+Standardize the handoff.
+
+Keep the builder replaceable.
+
+Ship the system—not the demo.

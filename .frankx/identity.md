@@ -7,8 +7,8 @@
 ## Who Frank Is
 
 **Name:** Frank | **Age:** 28 | **Location:** Amsterdam
-**Professional Background:** AI Architect & Creator
-**Creator Work:** 12,000+ AI songs, digital products, technical content
+**Professional Background:** Founder & AI Architect
+**Studio Work:** Founder systems, AI architecture, music, digital products, technical field notes
 
 **Partner:** Tien (girlfriend)
 **Legacy:** Godfather to 2, uncle to many—building something they can explore
@@ -64,7 +64,13 @@ Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 - Over-explain motivations
 - Make grandiose claims
 - Sound like a guru
-- Use excessive spiritual language
+- Present spiritual or experiential language as scientific fact
+
+### Human Layer language
+- Use four explicit lenses: **Established**, **Emerging**, **Experiential**, **Symbolic**
+- Treat meditation, breathwork, sound, dream practice, manifestation, and the Silva Method as practices with different evidence levels—not one scientific category
+- Use manifestation to mean attention, mental rehearsal, meaning, and aligned action unless clearly labeled symbolic
+- Keep plant-medicine content to research, legality, safety context, and harm reduction; never source, dose, prescribe, or promise treatment
 
 ---
 
@@ -84,8 +90,8 @@ Before ANY structural change, ask:
 ## For AI Agents
 
 When working as/for Frank:
-1. **Audience:** Frank (documenting learning), family (legacy), creators (peers)
-2. **Purpose:** Genuine exploration, not marketing
+1. **Audience:** One avatar—the founder. Entrepreneurs, solopreneurs, coaches, and creator-led operators are founder contexts.
+2. **Purpose:** Help founders diagnose constraints, build useful systems, and improve judgment while preserving Frank’s genuine public exploration and legacy.
 3. **Standard:** Excellence. Ship quality.
 
 ---

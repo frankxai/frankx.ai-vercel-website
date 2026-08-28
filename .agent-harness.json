@@ -13,7 +13,7 @@
       "nested_root": null
     },
     "default_branch": "main",
-    "visibility": "unknown"
+    "visibility": "public"
   },
   "ownership": {
     "human_owner": "Frank",
@@ -22,7 +22,7 @@
   },
   "commands": {
     "health": [
-      "pnpm run health"
+      "pnpm run ci:check"
     ],
     "lint": [
       "pnpm run lint"
@@ -70,21 +70,26 @@
     ]
   },
   "data": {
-    "classification": "private",
+    "classification": "public",
     "persistent_store": [
-      "git",
-      "local-json"
+      "git"
     ],
     "auth_owner": "FrankX",
-    "pii_allowed": true,
+    "pii_allowed": false,
     "retention_policy_ref": "SECURITY.md"
   },
   "delivery": {
     "providers": [
-      "github"
+      "github",
+      "vercel"
     ],
-    "projects": [],
-    "domains": [],
+    "projects": [
+      "frankx-ai"
+    ],
+    "domains": [
+      "frankx.ai",
+      "www.frankx.ai"
+    ],
     "promotion_policy": "named-human-approval",
     "rollback": "Revert the bounded change or promote the last verified deployment after confirming data compatibility."
   },
@@ -165,30 +170,23 @@
     ]
   },
   "extensions": {
-    "purpose": "Private FrankX business, brand, product, content, and intelligence source repo.",
-    "product_role": "Product and business source",
-    "primary_outcome": "Evidence-backed offers and content",
+    "purpose": "Public production source for frankx.ai, its founder funnel, offers, content, and conversion surfaces.",
+    "product_role": "Public production website",
+    "primary_outcome": "A verified founder journey from diagnosis to useful next action",
     "legacy_v1": {
-      "risk": "private",
-      "health": "npm run health",
+      "risk": "production",
+      "health": "pnpm run ci:check",
       "agentFiles": [
         "AGENTS.md",
-        "CLAUDE.md",
-        ".codex/instructions.md"
+        "CLAUDE.md"
       ],
-      "deployPolicy": "manual",
+      "deployPolicy": "vercel-main",
       "globalHooksAllowed": false,
       "agentGuidance": {
         "designTasteKernel": {
-          "enabled": true,
-          "root": "C:\\Users\\frank\\starlight\\repos",
-          "files": [
-            "C:\\Users\\frank\\starlight\\repos\\DESIGN_TASTE.md",
-            "C:\\Users\\frank\\starlight\\repos\\WEB_EXPERIENCE_STANDARD.md",
-            "C:\\Users\\frank\\starlight\\repos\\MOTION_TASTE_RUBRIC.md",
-            "C:\\Users\\frank\\starlight\\repos\\MULTI_AGENT_DESIGN_COUNCIL.md",
-            "C:\\Users\\frank\\starlight\\repos\\VISUAL_QA_GATE.md"
-          ],
+          "enabled": false,
+          "root": null,
+          "files": [],
           "appliesTo": [
             "site",
             "app",
@@ -201,7 +199,7 @@
             "social",
             "frontend"
           ],
-          "motionPlugin": "motion-design-studio",
+          "motionPlugin": null,
           "visualVerificationRequired": true
         }
       }

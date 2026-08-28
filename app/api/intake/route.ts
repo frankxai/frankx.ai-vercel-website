@@ -84,8 +84,8 @@ export async function POST(request: NextRequest) {
         ok: true,
         ackSent,
         message: ackSent
-          ? "Got it — check your inbox for the confirmation. You'll hear back within 1–2 working days."
-          : "Got it — your message is in. You'll hear back within 1–2 working days.",
+          ? 'Got it — check your inbox for the confirmation. Frank will reply after reviewing the request.'
+          : 'Got it — your message is in. Frank will reply after reviewing the request.',
       },
       { status: 200 },
     )

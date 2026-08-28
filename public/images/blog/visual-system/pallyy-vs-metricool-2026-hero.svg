@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Pallyy versus Metricool in 2026</title>
+  <desc id="desc">An editorial comparison balances Pallyy's focused one-brand operating surface against Metricool's broader analytics and MCP-connected control plane.</desc>
+  <defs>
+    <radialGradient id="left" cx="18%" cy="52%" r="55%"><stop offset="0" stop-color="#315d4a" stop-opacity=".34"/><stop offset="1" stop-color="#080b0a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="right" cx="83%" cy="52%" r="55%"><stop offset="0" stop-color="#6c5831" stop-opacity=".25"/><stop offset="1" stop-color="#080b0a" stop-opacity="0"/></radialGradient>
+    <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1600" height="900" fill="#080b0a"/><rect width="1600" height="900" fill="url(#left)"/><rect width="1600" height="900" fill="url(#right)"/>
+  <g stroke="#f0f0e8" stroke-opacity=".045"><path d="M0 150H1600M0 300H1600M0 450H1600M0 600H1600M0 750H1600"/><path d="M200 0V900M400 0V900M600 0V900M800 0V900M1000 0V900M1200 0V900M1400 0V900"/></g>
+  <text x="76" y="66" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="12" letter-spacing="3.4">FRANKX / DIRECT COMPARISON / 2026</text>
+  <text x="1524" y="66" fill="#6f7874" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">PRICE · ANALYTICS · MCP · OPERATING FIT</text>
+  <path d="M76 92H1524" stroke="#f0f0e8" stroke-opacity=".13"/>
+
+  <text x="800" y="186" fill="#f1f1e9" font-family="Georgia, serif" font-size="74" text-anchor="middle">Pallyy <tspan fill="#706f69" font-style="italic">vs</tspan> Metricool</text>
+  <text x="800" y="232" fill="#8b928e" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">The focused cockpit or the wider intelligence layer?</text>
+
+  <g transform="translate(92 318)" font-family="Arial, sans-serif">
+    <rect width="590" height="392" fill="#101513" stroke="#8eb3a1" stroke-opacity=".34"/>
+    <text x="30" y="40" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="11" letter-spacing="2.4">01 / FOCUSED OPERATION</text>
+    <text x="30" y="94" fill="#f1f1e9" font-family="Georgia, serif" font-size="44">Pallyy</text>
+    <text x="30" y="128" fill="#8b928e" font-size="14">Best default for one compact brand</text>
+    <path d="M30 158H560" stroke="#f0f0e8" stroke-opacity=".1"/>
+    <text x="30" y="198" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10">PUBLIC PRICE</text><text x="190" y="198" fill="#f1f1e9" font-size="14">Free · $15 · $25 / month</text>
+    <text x="30" y="240" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10">CONTROL</text><text x="190" y="240" fill="#f1f1e9" font-size="14">Focused workflow · API paid</text>
+    <text x="30" y="282" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10">ADVANTAGE</text><text x="190" y="282" fill="#f1f1e9" font-size="14">Clarity and one-brand economics</text>
+    <text x="30" y="324" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10">SWITCH WHEN</text><text x="190" y="324" fill="#f1f1e9" font-size="14">Analytics becomes the operating center</text>
+    <circle cx="548" cy="42" r="5" fill="#8eb3a1" filter="url(#glow)"/>
+  </g>
+
+  <g transform="translate(918 318)" font-family="Arial, sans-serif">
+    <rect width="590" height="392" fill="#12140f" stroke="#dfc58e" stroke-opacity=".38"/>
+    <text x="30" y="40" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="11" letter-spacing="2.4">02 / WIDER INTELLIGENCE</text>
+    <text x="30" y="94" fill="#f1f1e9" font-family="Georgia, serif" font-size="44">Metricool</text>
+    <text x="30" y="128" fill="#8b928e" font-size="14">Best when analytics, brands, or MCP matter</text>
+    <path d="M30 158H560" stroke="#f0f0e8" stroke-opacity=".1"/>
+    <text x="30" y="198" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10">PUBLIC PRICE</text><text x="190" y="198" fill="#f1f1e9" font-size="14">Free · from $20 / month annual</text>
+    <text x="30" y="240" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10">CONTROL</text><text x="190" y="240" fill="#f1f1e9" font-size="14">Official MCP · API on higher plans</text>
+    <text x="30" y="282" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10">ADVANTAGE</text><text x="190" y="282" fill="#f1f1e9" font-size="14">Reporting and multi-brand breadth</text>
+    <text x="30" y="324" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10">AVOID WHEN</text><text x="190" y="324" fill="#f1f1e9" font-size="14">You only need a calm weekly queue</text>
+    <circle cx="548" cy="42" r="5" fill="#dfc58e" filter="url(#glow)"/>
+  </g>
+
+  <g transform="translate(682 390)">
+    <circle cx="118" cy="118" r="86" fill="#090d0b" stroke="#f0f0e8" stroke-opacity=".14"/>
+    <circle cx="118" cy="118" r="56" fill="#0d1210" stroke="#dfc58e" stroke-opacity=".32"/>
+    <text x="118" y="110" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2" text-anchor="middle">DECIDE BY</text>
+    <text x="118" y="138" fill="#f1f1e9" font-family="Georgia, serif" font-size="21" text-anchor="middle">Operating job</text>
+  </g>
+
+  <path d="M388 764H1212" stroke="#f0f0e8" stroke-opacity=".16"/>
+  <circle cx="800" cy="764" r="7" fill="#dfc58e" filter="url(#glow)"/>
+  <text x="800" y="807" fill="#f1f1e9" font-family="Georgia, serif" font-size="25" text-anchor="middle">Pallyy starts simpler. Metricool earns complexity through use.</text>
+  <text x="800" y="850" fill="#68716d" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.4" text-anchor="middle">OFFICIAL SOURCES VERIFIED 28 AUG 2026 · NO TRACKED FRANKX AFFILIATE RELATIONSHIP ASSERTED</text>
+</svg>

@@ -157,6 +157,14 @@ const nextConfig = {
         destination: '/research/model-arena',
         permanent: true,
       },
+      // P0 fix 2026-08-27: /research/agent-benchmarks was deleted (404) but still
+      // drew ~5 visitors/week with dangling internal links. Redirect to the live
+      // model-arena hub, which is the semantic successor (head-to-head LLM evals).
+      {
+        source: '/research/agent-benchmarks',
+        destination: '/research/model-arena',
+        permanent: true,
+      },
 
       {
         source: '/research/ai-evolution',

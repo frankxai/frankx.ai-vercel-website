@@ -63,7 +63,11 @@ type NavSection = {
   label: string
   icon: LucideIcon
   tagline: string
-  featured: { title: string; description: string; href: string; badge: string; external?: boolean }
+  featured: { title: string
+    description: string
+    href: string
+    badge: string
+    external?: boolean }
   items: NavItem[]
   // Mirrors the desktop mega-menu columns. Without it a 22-item door renders as
   // one flat list — 22 uninterrupted tab stops with no wayfinding.
@@ -85,11 +89,16 @@ const sections: NavSection[] = [
       badge: '12K+ Tracks',
     },
     items: [
-      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
-      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
-      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory through production' },
-      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
+      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks',
+      },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method',
+      },
+      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools',
+      },
+      { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory through production',
+      },
+      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true,
+      },
     ],
   },
   {
@@ -112,13 +121,20 @@ const sections: NavSection[] = [
         description: 'Product domain — start creating',
         external: true,
       },
-      { name: 'GenCreator Hub', href: '/gencreator', icon: Flame, description: 'On-site framework & education' },
-      { name: 'Principles', href: '/gencreator/principles', icon: Compass, description: '12 GenCreator principles' },
-      { name: 'Handbook', href: '/gencreator/handbook', icon: BookOpen, description: 'Practical playbook' },
-      { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: 'Ship-ready systems' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: 'Prompts Frank uses and publishes' },
-      { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Build logs + stories' },
-      { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-ship templates' },
+      { name: 'GenCreator Hub', href: '/gencreator', icon: Flame, description: 'On-site framework & education',
+      },
+      { name: 'Principles', href: '/gencreator/principles', icon: Compass, description: '12 GenCreator principles',
+      },
+      { name: 'Handbook', href: '/gencreator/handbook', icon: BookOpen, description: 'Practical playbook',
+      },
+      { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: 'Ship-ready systems',
+      },
+      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: 'Prompts Frank uses and publishes',
+      },
+      { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Build logs + stories',
+      },
+      { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-ship templates',
+      },
     ],
   },
   {
@@ -133,15 +149,24 @@ const sections: NavSection[] = [
       badge: 'Hub',
     },
     items: [
-      { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning paths' },
-      { name: 'Guides', href: '/guides', icon: BookOpen, description: 'Deep how-tos' },
-      { name: 'Books', href: '/books', icon: BookOpen, description: 'Long-form reading' },
-      { name: 'Library', href: '/library', icon: Layers, description: 'Book intelligence and system maps' },
-      { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Benchmark your AI skills' },
-      { name: 'Student Hub', href: '/students', icon: Users, description: 'For students + educators' },
-      { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Playful learning experiments' },
-      { name: 'Watch', href: '/watch', icon: Play, description: 'Video library' },
-      { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'Fast takes + insights' },
+      { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning paths',
+      },
+      { name: 'Guides', href: '/guides', icon: BookOpen, description: 'Deep how-tos',
+      },
+      { name: 'Books', href: '/books', icon: BookOpen, description: 'Long-form reading',
+      },
+      { name: 'Library', href: '/library', icon: Layers, description: 'Book intelligence and system maps',
+      },
+      { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Benchmark your AI skills',
+      },
+      { name: 'Student Hub', href: '/students', icon: Users, description: 'For students + educators',
+      },
+      { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Playful learning experiments',
+      },
+      { name: 'Watch', href: '/watch', icon: Play, description: 'Video library',
+      },
+      { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'Fast takes + insights',
+      },
     ],
   },
   {
@@ -156,79 +181,169 @@ const sections: NavSection[] = [
       badge: 'CoE Playbook',
     },
     items: [
-      { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'System design patterns' },
-      { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Reference architectures' },
-      { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Working proofs' },
-      { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Drop-in scaffolds' },
-      { name: 'Build Stack', href: '/build', icon: Layers, description: 'The six primitives stack' },
-      { name: 'Template Pack', href: '/build/template-pack', icon: FileText, description: 'AGENTS.md, prompt packs, eval harness' },
-      { name: 'Builder Lab', href: '/agentic-builder-lab', icon: Terminal, description: 'Spec-driven agent building' },
-      { name: 'AI World', href: '/ai-world', icon: Workflow, description: 'The wider AI landscape' },
-      { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'For builders + engineers' },
-      { name: 'AI Studio', href: '/work-with-me', icon: Briefcase, description: 'Work with Frank' },
-      { name: 'Consulting', href: '/consulting', icon: Briefcase, description: 'Advisory engagements' },
-      { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'Market + investor signal' },
-      { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Shipping agent packs' },
-      { name: 'Workshops', href: '/workshops', icon: Users, description: 'Sessions built around a shipped result' },
-      { name: 'Coaching', href: '/coaching', icon: Target, description: 'Application-based architecture coaching' },
-      { name: 'Shop', href: '/shop', icon: FileText, description: 'Templates, systems, and skills' },
+      { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'System design patterns',
+      },
+      { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Reference architectures',
+      },
+      { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Working proofs',
+      },
+      { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Drop-in scaffolds',
+      },
+      { name: 'Build Stack', href: '/build', icon: Layers, description: 'The six primitives stack',
+      },
+      { name: 'Template Pack', href: '/build/template-pack', icon: FileText, description: 'AGENTS.md, prompt packs, eval harness',
+      },
+      { name: 'Builder Lab', href: '/agentic-builder-lab', icon: Terminal, description: 'Spec-driven agent building',
+      },
+      { name: 'AI World', href: '/ai-world', icon: Workflow, description: 'The wider AI landscape',
+      },
+      { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'For builders + engineers',
+      },
+      { name: 'AI Studio', href: '/work-with-me', icon: Briefcase, description: 'Work with Frank',
+      },
+      { name: 'Consulting', href: '/consulting', icon: Briefcase, description: 'Advisory engagements',
+      },
+      { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'Market + investor signal',
+      },
+      { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Shipping agent packs',
+      },
+      { name: 'Workshops', href: '/workshops', icon: Users, description: 'Sessions built around a shipped result',
+      },
+      { name: 'Coaching', href: '/coaching', icon: Target, description: 'Application-based architecture coaching',
+      },
+      { name: 'Shop', href: '/shop', icon: FileText, description: 'Templates, systems, and skills',
+      },
     ],
   },
   {
     key: 'explore',
-    label: 'Workspace',
-    icon: Workflow,
-    tagline: 'How Frank and the agent team build in public',
+    label: 'Founder',
+    icon: Target,
+    tagline: 'Find the constraint, then choose the next move',
     featured: {
-      title: 'The Agentic Workspace',
-      description: 'Source material, specialist passes, Frank’s decision, public artifact.',
-      href: '/workspace',
-      badge: 'How it works',
+      title: 'Map your Founder Stack',
+      description: 'State, Signal, Systems, Scale, and Stewardship.',
+      href: '/founder-stack',
+      badge: 'Start here',
     },
     items: [
-      { name: 'Workspace', href: '/workspace', icon: Workflow, description: 'The source-to-artifact workflow' },
-      { name: 'Ecosystem', href: '/ecosystem', icon: Network, description: 'The complete system map' },
-      { name: 'Universe Map', href: '/map', icon: Map, description: 'Every surface, one view' },
-      { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations' },
-      { name: 'Signals', href: '/signals', icon: Flame, description: 'Source-backed architecture notes' },
-      { name: 'Dream 100', href: '/dream-100', icon: Users, description: 'Contribution before contact' },
-      { name: 'Core Qualities', href: '/qualities', icon: Compass, description: 'Freedom, mastery, meaning & connection' },
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
-      { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps' },
-      { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work' },
-      { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
-      { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
-      { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status' },
-      { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
-      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
-      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
-      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
-      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
-      { name: 'Partnerships', href: '/partnerships', icon: Users, description: 'Systems built around real missions' },
-      { name: 'Journal', href: '/journal', icon: PenLine, description: 'Notes from work in progress' },
-      { name: 'About Frank', href: '/about', icon: Users, description: 'Person, principles, and boundaries' },
-      { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
-      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact' },
-      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights' },
-      { name: 'Connect', href: '/connect', icon: Compass, description: 'Bring a real question' },
-      { name: 'Contact', href: '/contact', icon: Compass, description: 'Press, licensing, and direct email' },
+      {
+        name: 'Founder Stack',
+        href: '/founder-stack',
+        icon: Target,
+        description: 'Five layers · one current constraint',
+      },
+      {
+        name: 'Founder Signal',
+        href: '/founder-signal',
+        icon: Brain,
+        description: 'Protect voice, judgment, and earned beliefs',
+      },
+      {
+        name: 'Foundry',
+        href: '/foundry',
+        icon: Building,
+        description: 'Install a founder operating system',
+      },
+      {
+        name: "Founder's Circle",
+        href: '/founders-circle',
+        icon: Users,
+        description: 'Strategic judgment under uncertainty',
+      },
+      {
+        name: 'Human Layer',
+        href: '/human-layer',
+        icon: Compass,
+        description: 'Statecraft through four honest lenses',
+      },
+      {
+        name: 'Signal Loop',
+        href: '/newsletter',
+        icon: Flame,
+        description: 'Founder field notes and optional streams',
+      },
+      {
+        name: 'Workspace', href: '/workspace', icon: Workflow, description: 'The source-to-artifact workflow',
+      },
+      { name: 'Ecosystem', href: '/ecosystem', icon: Network, description: 'The complete system map',
+      },
+      { name: 'Universe Map', href: '/map', icon: Map, description: 'Every surface, one view',
+      },
+      { name: 'Research', href: '/research', icon: Microscope, description: 'Source-led investigations',
+      },
+      { name: 'Signals', href: '/signals', icon: Flame, description: 'Source-backed architecture notes',
+      },
+      { name: 'Dream 100', href: '/dream-100', icon: Users, description: 'Contribution before contact',
+      },
+      { name: 'Core Qualities', href: '/qualities', icon: Compass, description: 'Freedom, mastery, meaning & connection',
+      },
+      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research',
+      },
+      { name: 'Library', href: '/library', icon: BookOpen, description: 'Book intelligence and system maps',
+      },
+      { name: 'Guides', href: '/guides', icon: FileText, description: 'Methods distilled from the work',
+      },
+      { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)',
+      },
+      { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS',
+      },
+      { name: 'Agent Catalog', href: '/agents', icon: Bot, description: 'Roles, packs, and ship status',
+      },
+      { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open',
+      },
+      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools',
+      },
+      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources',
+      },
+      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library',
+      },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy',
+      },
+      { name: 'Partnerships', href: '/partnerships', icon: Users, description: 'Systems built around real missions',
+      },
+      { name: 'Journal', href: '/journal', icon: PenLine, description: 'Notes from work in progress',
+      },
+      { name: 'About Frank', href: '/about', icon: Users, description: 'Person, principles, and boundaries',
+      },
+      { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics',
+      },
+      { name: 'Media Kit', href: '/media-kit', icon: FileText, description: 'Story angles, proof & contact',
+      },
+      { name: 'Licensing', href: '/licensing', icon: Briefcase, description: 'Music, templates & partner rights',
+      },
+      { name: 'Connect', href: '/connect', icon: Compass, description: 'Bring a real question',
+      },
+      { name: 'Contact', href: '/contact', icon: Compass, description: 'Press, licensing, and direct email',
+      },
     ],
     groups: [
       {
+        label: 'Founder path',
+        items: [
+          'Founder Stack',
+          'Founder Signal',
+          'Foundry',
+          "Founder's Circle",
+          'Human Layer',
+          'Signal Loop',
+        ],
+      },
+      {
         label: 'Current work',
-        items: ['Workspace', 'Ecosystem', 'Universe Map', 'Research', 'Signals', 'Dream 100', 'Core Qualities', 'Intelligence Atlas', 'Library', 'Guides', 'Journal'],
+        items: ['Workspace', 'Research', 'Signals', 'Guides', 'Journal'],
       },
       {
         label: 'Systems & products',
-        items: ['Starlight IS', 'ACOS', 'Agent Catalog', 'Design System', 'Resource Hub', 'Downloads'],
-      },
-      {
-        label: 'Worlds',
-        items: ['ArcaneaVault', 'Arcanea'],
+        items: ['Starlight IS', 'ACOS', 'Agent Catalog', 'Design System', 'Resource Hub', 'Downloads',
+        ],
       },
       {
         label: 'Connect',
-        items: ['Partnerships', 'About Frank', 'Bio', 'Media Kit', 'Licensing', 'Connect', 'Contact'],
+        items: ['Partnerships', 'About Frank',
+          'Media Kit',
+          'Connect', 'Contact',
+        ],
       },
     ],
   },
@@ -247,7 +362,20 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
   const pathname = usePathname()
   const [activeSection, setActiveSection] = useState<SectionKey | null>(null)
   const dialogRef = useRef<HTMLDivElement>(null)
+  const sectionTriggerRef = useRef<HTMLButtonElement | null>(null)
   const shouldReduceMotion = useReducedMotion()
+
+  const selectSection = useCallback(
+    (key: SectionKey, trigger: HTMLButtonElement) => {
+      sectionTriggerRef.current = trigger
+      setActiveSection(key)
+    },
+    [],
+  )
+
+  const returnToHome = useCallback(() => {
+    setActiveSection(null)
+  }, [])
 
   // Lock body scroll while open
   useEffect(() => {
@@ -261,7 +389,9 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
     return () => {
       window.cancelAnimationFrame(focusFrame)
       document.body.style.overflow = prev
-      previousFocus?.focus()
+      window.requestAnimationFrame(() => {
+        if (previousFocus?.isConnected) previousFocus?.focus()
+      })
     }
   }, [isOpen])
 
@@ -273,15 +403,32 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
 
   // Reset to home view whenever overlay opens/closes
   useEffect(() => {
-    if (!isOpen) setActiveSection(null)
+    if (!isOpen) {
+      setActiveSection(null)
+      sectionTriggerRef.current = null
+    }
   }, [isOpen])
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const focusFrame = window.requestAnimationFrame(() => {
+      const focusTarget = activeSection
+        ? dialogRef.current?.querySelector<HTMLElement>(
+            '[data-mobile-nav-section-autofocus]',
+          )
+        : sectionTriggerRef.current
+      focusTarget?.focus()
+    })
+    return () => window.cancelAnimationFrame(focusFrame)
+  }, [activeSection, isOpen])
 
   // Escape closes and Tab remains contained inside the modal navigation.
   useEffect(() => {
     if (!isOpen) return
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        if (activeSection) setActiveSection(null)
+        if (activeSection) returnToHome()
         else onClose()
       }
 
@@ -311,7 +458,7 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [isOpen, activeSection, onClose])
+  }, [isOpen, activeSection, onClose, returnToHome])
 
   const openCommandPalette = useCallback(() => {
     onClose()
@@ -388,7 +535,7 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
                 className="h-full w-1/2 overflow-y-auto overscroll-contain"
               >
                 <HomeView
-                  onSelectSection={(key) => setActiveSection(key)}
+                  onSelectSection={selectSection}
                   onClose={onClose}
                 />
               </div>
@@ -403,7 +550,7 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
                 {current && (
                   <SectionView
                     section={current}
-                    onBack={() => setActiveSection(null)}
+                    onBack={returnToHome}
                     onClose={onClose}
                   />
                 )}
@@ -420,7 +567,7 @@ function HomeView({
   onSelectSection,
   onClose,
 }: {
-  onSelectSection: (key: SectionKey) => void
+  onSelectSection: (key: SectionKey, trigger: HTMLButtonElement) => void
   onClose: () => void
 }) {
   return (
@@ -439,7 +586,9 @@ function HomeView({
             <button
               key={section.key}
               type="button"
-              onClick={() => onSelectSection(section.key)}
+              onClick={(event) =>
+                onSelectSection(section.key, event.currentTarget)
+              }
               className={tileBase}
             >
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-200">
@@ -493,11 +642,11 @@ function HomeView({
 
       <div className="pt-6">
         <Link
-          href="/start"
+          href="/founder-stack"
           onClick={onClose}
           className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 px-5 py-3.5 text-[15px] font-semibold text-slate-900 shadow-lg shadow-emerald-500/20 transition hover:brightness-110 active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 min-h-[44px]"
         >
-          Start Here
+          Map Your Stack
           <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
@@ -523,6 +672,8 @@ function SectionView({
       <button
         type="button"
         onClick={onBack}
+        aria-label={`Back to navigation directions from ${section.label}`}
+        data-mobile-nav-section-autofocus
         className="mb-4 inline-flex items-center gap-1.5 self-start rounded-lg px-2 py-2 text-[14px] font-medium text-slate-300 transition hover:bg-white/5 active:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 min-h-[44px]"
       >
         <ChevronLeft className="h-4 w-4" />
@@ -551,7 +702,8 @@ function SectionView({
             {section.featured.description}
           </p>
           <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-emerald-300">
-            Open product <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+            Open product {' '}
+            <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
           </span>
         </a>
       ) : (
@@ -573,7 +725,8 @@ function SectionView({
             {section.featured.description}
           </p>
           <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-emerald-300">
-            Open hub <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+            Open hub {' '}
+            <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
           </span>
         </Link>
       )}
