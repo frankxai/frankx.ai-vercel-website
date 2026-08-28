@@ -37,7 +37,7 @@ export const creatorLaunchTemplate = {
     'Public MIT source with clean history',
     'TypeScript, lint, contract tests, and production build passed in cloud CI',
     'Vercel preview built from a zero-environment clean export',
-    'Desktop and mobile visual review pending machine capacity',
+    'Desktop and mobile visual review passed in bounded cloud capture',
   ],
 } as const
 
@@ -69,7 +69,7 @@ export const v0Studies: V0Study[] = [
     description: 'Filterable product presentation exploring hierarchy, featured offers, and collection browsing.',
     category: 'product-page',
     chatId: 'oyx6iwcSNW0',
-    demoUrl: 'https://demo-kzmnco49r01u38scvpt5.vusercontent.net',
+    demoUrl: 'https://demo-kzmnco49r01u38scvpt5.vusercontent.net/products',
   },
   {
     id: 3,
@@ -78,7 +78,7 @@ export const v0Studies: V0Study[] = [
     description: 'Research index with category navigation, evidence signals, and a dense reading surface.',
     category: 'dashboard',
     chatId: 'hz3M0ZGsSF5',
-    demoUrl: 'https://demo-kzmfrqnxel1daa64b510.vusercontent.net',
+    demoUrl: 'https://demo-kzmfrqnxel1daa64b510.vusercontent.net/research',
   },
   {
     id: 4,
@@ -87,7 +87,7 @@ export const v0Studies: V0Study[] = [
     description: 'Editorial index with a lead story, supporting posts, and visible reading expectations.',
     category: 'landing-page',
     chatId: 'vDtmFp45TVR',
-    demoUrl: 'https://demo-kzmp0oaq7ysi02dfvmnl.vusercontent.net',
+    demoUrl: 'https://demo-kzmp0oaq7ysi02dfvmnl.vusercontent.net/blog',
   },
   {
     id: 5,
@@ -96,7 +96,7 @@ export const v0Studies: V0Study[] = [
     description: 'Membership concept testing offer clarity, access levels, and member-content previews.',
     category: 'product-page',
     chatId: 'uaPnlaw4BIK',
-    demoUrl: 'https://demo-kzmqkdpccsp0s5d342f9.vusercontent.net',
+    demoUrl: 'https://demo-kzmqkdpccsp0s5d342f9.vusercontent.net/inner-circle',
   },
   {
     id: 6,
@@ -114,7 +114,7 @@ export const v0Studies: V0Study[] = [
     description: 'Learning-platform study covering course discovery, progress, and credential states.',
     category: 'landing-page',
     chatId: 'kmqMZu6QQHA',
-    demoUrl: 'https://demo-kzmqdniz3r3vtbckv0w2.vusercontent.net',
+    demoUrl: 'https://demo-kzmqdniz3r3vtbckv0w2.vusercontent.net/ai-architect-academy',
   },
   {
     id: 8,
@@ -123,7 +123,7 @@ export const v0Studies: V0Study[] = [
     description: 'Personal authority page with chronology, working principles, and evidence of practice.',
     category: 'landing-page',
     chatId: 'vf8toBMjzWP',
-    demoUrl: 'https://demo-kzmjven0djm9woxa21xi.vusercontent.net',
+    demoUrl: 'https://demo-kzmjven0djm9woxa21xi.vusercontent.net/about',
   },
   {
     id: 9,
@@ -132,7 +132,7 @@ export const v0Studies: V0Study[] = [
     description: 'Token and component reference exploring type, color, spacing, and reusable states.',
     category: 'component',
     chatId: 'nmegM49Dti2',
-    demoUrl: 'https://demo-kzmljrx9qevuoynjg4t1.vusercontent.net',
+    demoUrl: 'https://demo-kzmljrx9qevuoynjg4t1.vusercontent.net/design-system',
   },
   {
     id: 10,
@@ -141,7 +141,7 @@ export const v0Studies: V0Study[] = [
     description: 'Creator workspace concept for tracks, waveforms, production context, and catalog actions.',
     category: 'dashboard',
     chatId: 'r9XYZI8P0Mv',
-    demoUrl: 'https://demo-kzmnibzj21qauou5xlcm.vusercontent.net',
+    demoUrl: 'https://demo-kzmnibzj21qauou5xlcm.vusercontent.net/music-lab',
   },
   {
     id: 11,
@@ -150,7 +150,7 @@ export const v0Studies: V0Study[] = [
     description: 'Guided reflection product study with progress, prompts, and a structured path.',
     category: 'product-page',
     chatId: 'qlakULoe76B',
-    demoUrl: 'https://demo-kzmq92zhek8h1nsceani.vusercontent.net',
+    demoUrl: 'https://demo-kzmq92zhek8h1nsceani.vusercontent.net/soulbook',
   },
   {
     id: 12,
@@ -168,7 +168,7 @@ export const v0Studies: V0Study[] = [
     description: 'Build-session archive with active experiments, process notes, and replay discovery.',
     category: 'landing-page',
     chatId: 'bTEnogK4Jrn',
-    demoUrl: 'https://demo-kzmo42sze9qnoaml93ym.vusercontent.net',
+    demoUrl: 'https://demo-kzmo42sze9qnoaml93ym.vusercontent.net/labs',
   },
   {
     id: 14,
@@ -177,7 +177,7 @@ export const v0Studies: V0Study[] = [
     description: 'A second membership direction testing stronger hierarchy, FAQs, and offer framing.',
     category: 'product-page',
     chatId: 'tZ41YuKQJoo',
-    demoUrl: 'https://demo-kzmisu11l2vafqrmp560.vusercontent.net',
+    demoUrl: 'https://demo-kzmisu11l2vafqrmp560.vusercontent.net/inner-circle',
   },
   {
     id: 15,
@@ -186,7 +186,7 @@ export const v0Studies: V0Study[] = [
     description: 'Service-product study covering program fit, method, tiers, and booking intent.',
     category: 'product-page',
     chatId: 'ixe64JX8hmQ',
-    demoUrl: 'https://demo-kzmid0zlxhgrfar9tmd2.vusercontent.net',
+    demoUrl: 'https://demo-kzmid0zlxhgrfar9tmd2.vusercontent.net/coaching',
   },
   {
     id: 16,
@@ -195,7 +195,7 @@ export const v0Studies: V0Study[] = [
     description: 'Builder-community concept with activity, members, resources, and event discovery.',
     category: 'community',
     chatId: 'eCYweJC6UTl',
-    demoUrl: 'https://demo-kzmn6q9sjk9cmrje1k4y.vusercontent.net',
+    demoUrl: 'https://demo-kzmn6q9sjk9cmrje1k4y.vusercontent.net/community',
   },
   {
     id: 17,
@@ -213,7 +213,7 @@ export const v0Studies: V0Study[] = [
     description: 'Enterprise operating-console study for governance, models, prompts, and portfolio signals.',
     category: 'dashboard',
     chatId: 'kDrmtjc6u0W',
-    demoUrl: 'https://demo-kzmg2hfy774lsmrau3jo.vusercontent.net',
+    demoUrl: 'https://demo-kzmg2hfy774lsmrau3jo.vusercontent.net/dashboard',
   },
   {
     id: 19,
