@@ -162,4 +162,3 @@ template must still render an honest “checkout not configured” state.
 - no unsupported maturity, licensing, or performance claims;
 - percentage of shared-kernel changes adopted across maintained templates;
 - activation, successful delivery, and second-use events by vertical.
-
