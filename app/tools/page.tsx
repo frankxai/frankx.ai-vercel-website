@@ -1,507 +1,418 @@
-'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import {
-  Calculator,
-  Brain,
-  Target,
-  BarChart3,
-  Shield,
-  Zap,
-  Users,
-  FileText,
-  Settings,
-  TrendingUp,
-  CheckCircle,
   ArrowRight,
-  Clock,
-  Play,
-  Sparkles,
-  Search,
+  ArrowUpRight,
+  Calculator,
   Compass,
   Database,
-  Network
+  Layers,
+  Network,
+  Shield,
+  Target,
 } from 'lucide-react'
 
-import { cn } from '@/lib/utils'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
-import PremiumButton from '@/components/ui/PremiumButton'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import JsonLd from '@/components/seo/JsonLd'
 import {
-  StaggerContainer,
-  StaggerItem,
-  GlowPulse,
-  InteractiveCard
-} from '@/components/ui/AdvancedAnimations'
+  SOCIAL_MEDIA_TOOLS,
+  SOCIAL_TOOL_LAST_VERIFIED,
+  SOCIAL_TOOL_ROLES,
+} from '@/data/social-media-tools'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
-type Tool = {
-  id: string
-  title: string
-  description: string
-  category: 'calculator' | 'generator' | 'analyzer' | 'planner' | 'simulator'
-  difficulty: 'beginner' | 'intermediate' | 'advanced'
-  timeEstimate: string
-  icon: any
-  color: string
-  features: string[]
-  href: string
-  isNew: boolean
-  status: 'live' | 'in-development'
-}
+export const metadata = createMetadata({
+  title: 'Tools — Instruments Built in the FrankX Studio',
+  description:
+    'Free, in-browser instruments built by FrankX: the AI ROI calculator, the strategy canvas, and the social tool decision atlas. The third-party stack lives at /stack.',
+  path: '/tools',
+})
 
-const tools: Tool[] = [
+/* One row per live, working instrument. Nothing in-development belongs here. */
+const instruments = [
   {
-    id: 'roi-calculator',
-    title: 'AI ROI Calculator',
-    description: 'Calculate the return on investment for your AI initiatives with detailed financial modeling.',
-    category: 'calculator',
-    difficulty: 'intermediate',
-    timeEstimate: '10 minutes',
+    index: '01',
+    name: 'AI ROI Calculator',
     icon: Calculator,
-    color: 'from-green-500 to-emerald-500',
-    features: ['Cost-benefit analysis', 'Timeline projections', 'Risk assessment', 'Executive reports'],
+    what: 'A financial model for an AI initiative. Enter team size, salary cost, implementation cost, and expected time savings.',
+    output: 'ROI percentage, payback in months, break-even month, and a shareable report view.',
+    time: '~10 min',
     href: '/tools/roi-calculator',
-    isNew: true,
-    status: 'live'
   },
   {
-    id: 'prompt-optimizer',
-    title: 'Prompt Optimizer',
-    description: 'Enhance your AI prompts for better results using proven optimization techniques.',
-    category: 'generator',
-    difficulty: 'beginner',
-    timeEstimate: '5 minutes',
-    icon: Brain,
-    color: 'from-purple-500 to-violet-500',
-    features: ['Real-time optimization', 'Multiple AI models', 'Performance scoring', 'Template library'],
-    href: '/tools/prompt-optimizer',
-    isNew: false,
-    status: 'in-development'
-  },
-  {
-    id: 'strategy-canvas',
-    title: 'AI Strategy Canvas',
-    description: 'Visual planning tool for designing comprehensive AI implementation strategies.',
-    category: 'planner',
-    difficulty: 'intermediate',
-    timeEstimate: '30 minutes',
+    index: '02',
+    name: 'AI Strategy Canvas',
     icon: Target,
-    color: 'from-blue-500 to-indigo-500',
-    features: ['Visual mapping', 'Stakeholder analysis', 'Timeline planning', 'Export options'],
+    what: 'A six-section planning canvas — vision, stakeholders, resources, risks, use cases, roadmap — with guided questions per section.',
+    output: 'A completed strategy canvas, from an enterprise, startup, or creator template.',
+    time: '~30 min',
     href: '/tools/strategy-canvas',
-    isNew: false,
-    status: 'live'
   },
   {
-    id: 'risk-analyzer',
-    title: 'AI Risk Analyzer',
-    description: 'Comprehensive risk assessment for AI implementations and deployments.',
-    category: 'analyzer',
-    difficulty: 'advanced',
-    timeEstimate: '20 minutes',
-    icon: Shield,
-    color: 'from-red-500 to-orange-500',
-    features: ['Risk scoring', 'Mitigation strategies', 'Compliance check', 'Action plans'],
-    href: '/tools/risk-analyzer',
-    isNew: true,
-    status: 'in-development'
+    index: '03',
+    name: 'Social Tool Decision Atlas',
+    icon: Compass,
+    what: `Evidence-checked comparison of ${SOCIAL_MEDIA_TOOLS.length} social media tools by role, price, API, MCP, approvals, and governance.`,
+    output: `A shortlist for your operating role, from ${SOCIAL_TOOL_ROLES.length} routes — solo founder to enterprise.`,
+    time: '~5 min',
+    href: '/tools/social-media',
   },
-  {
-    id: 'agent-builder',
-    title: 'Agent Configuration Builder',
-    description: 'Design and configure AI agents with our intuitive visual interface.',
-    category: 'simulator',
-    difficulty: 'advanced',
-    timeEstimate: '45 minutes',
-    icon: Settings,
-    color: 'from-cyan-500 to-teal-500',
-    features: ['Drag & drop interface', 'Testing environment', 'Export configs', 'Template gallery'],
-    href: '/tools/agent-builder',
-    isNew: false,
-    status: 'in-development'
-  },
-  {
-    id: 'performance-tracker',
-    title: 'AI Performance Tracker',
-    description: 'Monitor and optimize the performance of your AI systems and workflows.',
-    category: 'analyzer',
-    difficulty: 'intermediate',
-    timeEstimate: '15 minutes',
-    icon: BarChart3,
-    color: 'from-yellow-500 to-orange-500',
-    features: ['Real-time monitoring', 'Performance metrics', 'Trend analysis', 'Alerts system'],
-    href: '/tools/performance-tracker',
-    isNew: false,
-    status: 'in-development'
-  },
-  {
-    id: 'content-generator',
-    title: 'AI Content Generator',
-    description: 'Generate high-quality content using advanced AI with custom templates.',
-    category: 'generator',
-    difficulty: 'beginner',
-    timeEstimate: '5 minutes',
-    icon: FileText,
-    color: 'from-pink-500 to-rose-500',
-    features: ['Multiple content types', 'Custom templates', 'Bulk generation', 'Quality scoring'],
-    href: '/tools/content-generator',
-    isNew: false,
-    status: 'in-development'
-  },
-  {
-    id: 'team-readiness',
-    title: 'Team Readiness Assessment',
-    description: 'Evaluate your team\'s readiness for AI adoption and identify training needs.',
-    category: 'analyzer',
-    difficulty: 'beginner',
-    timeEstimate: '25 minutes',
-    icon: Users,
-    color: 'from-indigo-500 to-violet-600',
-    features: ['Skills assessment', 'Training recommendations', 'Readiness scoring', 'Action plans'],
-    href: '/tools/team-readiness',
-    isNew: true,
-    status: 'in-development'
-  }
 ]
 
-const categories = [
-  { id: 'all', label: 'All Tools', icon: Sparkles },
-  { id: 'calculator', label: 'Calculators', icon: Calculator },
-  { id: 'generator', label: 'Generators', icon: Zap },
-  { id: 'analyzer', label: 'Analyzers', icon: BarChart3 },
-  { id: 'planner', label: 'Planners', icon: Target },
-  { id: 'simulator', label: 'Simulators', icon: Settings }
+/* Honest ledger. These preview pages exist; the instruments do not, yet. */
+const inDevelopment = [
+  {
+    name: 'Prompt Optimizer',
+    will: 'Structured prompt rework with model-aware checks',
+    href: '/tools/prompt-optimizer',
+  },
+  {
+    name: 'AI Risk Analyzer',
+    will: 'Pre-deployment risk and compliance review',
+    href: '/tools/risk-analyzer',
+  },
+  {
+    name: 'Agent Configuration Builder',
+    will: 'Agent capabilities, tools, and safety constraints',
+    href: '/tools/agent-builder',
+  },
+  {
+    name: 'AI Performance Tracker',
+    will: 'Quality, latency, and reliability trends per workflow',
+    href: '/tools/performance-tracker',
+  },
+  {
+    name: 'AI Content Generator',
+    will: 'Guided drafts from reusable structures',
+    href: '/tools/content-generator',
+  },
+  {
+    name: 'Team Readiness Assessment',
+    will: 'AI readiness across roles, skills, and adoption plans',
+    href: '/tools/team-readiness',
+  },
+  {
+    name: 'System Builder',
+    will: 'Guided architecture intake for a full AI system',
+    href: '/tools/builder',
+  },
 ]
 
 export default function ToolsPage() {
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null)
-
-  const filteredTools = tools.filter(tool => {
-    const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory
-    const matchesSearch = tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         tool.description.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesDifficulty = !selectedDifficulty || tool.difficulty === selectedDifficulty
-
-    return matchesCategory && matchesSearch && matchesDifficulty
-  })
-
-  const getDifficultyColor = (difficulty: Tool['difficulty']) => {
-    const colors = {
-      beginner: 'text-green-400 bg-green-500/20',
-      intermediate: 'text-yellow-400 bg-yellow-500/20',
-      advanced: 'text-red-400 bg-red-500/20'
-    }
-    return colors[difficulty]
-  }
+  const canonicalUrl = `${siteConfig.url}/tools`
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <StaggerContainer>
-          <StaggerItem>
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-sm font-medium mb-8">
-                <Zap className="w-4 h-4 mr-2" />
-                Interactive AI Tools
-              </div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
-                Hands-On AI Tools
-              </h1>
-              <p className="text-xl sm:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-                Two tools are live today. Six are in development. Every card below shows its current state.
-              </p>
+    <main id="main" className="min-h-screen bg-void text-slate-100">
+      <JsonLd
+        type="CollectionPage"
+        data={{
+          name: 'FrankX Tools',
+          description:
+            'Free, in-browser instruments built by FrankX: calculators, planning canvases, and tool decision atlases.',
+          url: canonicalUrl,
+          dateModified: SOCIAL_TOOL_LAST_VERIFIED,
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: instruments.length,
+            itemListElement: instruments.map((tool, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: tool.name,
+              url: `${siteConfig.url}${tool.href}`,
+            })),
+          },
+        }}
+      />
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-purple-300 mb-2">
-                    {tools.length}
-                  </div>
-                  <div className="text-slate-400 text-sm">AI Tools</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-cyan-300 mb-2">
-                    {tools.filter(t => t.status === 'live').length}
-                  </div>
-                  <div className="text-slate-400 text-sm">Live Today</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-green-300 mb-2">
-                    {tools.filter(t => t.status === 'in-development').length}
-                  </div>
-                  <div className="text-slate-400 text-sm">In Development</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-orange-300 mb-2">
-                    100%
-                  </div>
-                  <div className="text-slate-400 text-sm">Free to Start</div>
-                </div>
-              </div>
-            </div>
-          </StaggerItem>
+      {/* Hero */}
+      <section className="border-b border-white/5 pt-28 pb-20 lg:pb-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <Breadcrumbs items={[{ label: 'Tools', href: '/tools' }]} />
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-300/60">
+            FrankX Tools
+          </p>
+          <h1 className="mt-5 max-w-3xl text-balance font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            The <span className="font-serif font-medium italic text-emerald-200">instrument</span> room
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-400">
+            Calculators, canvases, and decision atlases built in this studio. Free, in the
+            browser, no signup. The third-party stack that runs the studio is a different
+            page — the fork at the end of this one points there.
+          </p>
 
-          <StaggerItem>
-            <section
-              aria-labelledby="tool-intelligence-title"
-              className="relative mb-12 overflow-hidden border border-amber-200/20 bg-[#0c1110] text-left"
+          <div className="mt-9 flex flex-wrap items-center gap-5">
+            <Link
+              href="/tools/roi-calculator"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition-colors hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
             >
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(217,187,126,0.13),transparent_30%),radial-gradient(circle_at_15%_80%,rgba(74,148,116,0.12),transparent_32%)]"
-              />
-              <div className="relative grid gap-px bg-white/10 lg:grid-cols-[1.25fr_0.75fr]">
-                <div className="bg-[#0c1110]/95 p-7 sm:p-10 lg:p-14">
-                  <p className="mb-8 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-300/80">
-                    <Compass className="h-4 w-4" />
-                    Tool intelligence / current evidence
-                  </p>
-                  <h2
-                    id="tool-intelligence-title"
-                    className="max-w-3xl font-serif text-4xl font-medium leading-[0.98] tracking-[-0.04em] text-stone-100 sm:text-5xl lg:text-6xl"
-                  >
-                    A decision atlas, not a logo cloud.
-                  </h2>
-                  <p className="mt-7 max-w-2xl text-base leading-7 text-stone-300/65">
-                    Compare Metricool, Pallyy, Postiz, Blotato, Buffer, HubSpot, Sprout Social,
-                    Hootsuite, and seven more by role, price, API, MCP, governance, and evidence.
-                  </p>
-                  <Link
-                    href="/tools/social-media"
-                    className="mt-9 inline-flex items-center gap-4 border border-amber-200/50 bg-amber-100 px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-stone-950 transition-colors hover:bg-amber-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-200"
-                  >
-                    Open the social tool atlas
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-                <div className="grid bg-white/10 sm:grid-cols-3 lg:grid-cols-1">
-                  {[
-                    { icon: Database, value: '15', label: 'Official-source records' },
-                    { icon: Network, value: '5', label: 'Operating-role routes' },
-                    { icon: Shield, value: '2026.08.28', label: 'Last evidence check' },
-                  ].map((item) => (
-                    <div key={item.label} className="bg-[#0d1211] p-7 sm:p-8">
-                      <item.icon className="mb-7 h-5 w-5 text-amber-200/75" />
-                      <strong className="block font-mono text-2xl font-medium text-stone-100">
-                        {item.value}
-                      </strong>
-                      <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-400">
-                        {item.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          </StaggerItem>
+              Open the ROI calculator
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/stack"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 transition-colors hover:text-emerald-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
+            >
+              Or browse the stack I run
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </Link>
+          </div>
 
-          {/* Filters */}
-          <StaggerItem>
-            <GlassmorphicCard variant="premium" className="p-8 mb-12">
-              <div className="flex flex-col lg:flex-row gap-6">
-                {/* Search */}
-                <div className="flex-1">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
-                    <input
-                      type="text"
-                      placeholder="Search tools..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-11 pr-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50"
+          <dl className="mt-14 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-white/5 pt-8 sm:grid-cols-4">
+            {[
+              { value: String(instruments.length), label: 'Instruments live' },
+              { value: String(SOCIAL_MEDIA_TOOLS.length), label: 'Tools compared in the atlas' },
+              { value: SOCIAL_TOOL_LAST_VERIFIED, label: 'Last evidence check' },
+              { value: String(inDevelopment.length), label: 'On the bench' },
+            ].map((stat) => (
+              <div key={stat.label} className="flex flex-col">
+                <dt className="order-last mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                  {stat.label}
+                </dt>
+                <dd className="font-mono text-2xl font-medium text-slate-100">{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Live instruments */}
+      <section aria-labelledby="instruments-title" className="border-b border-white/5 py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-300/60">
+            Built here / live now
+          </p>
+          <h2 id="instruments-title" className="mt-4 max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
+            Three instruments, each with a job
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">
+            Everything in this section works today. Each row says what goes in and what
+            comes out — if a tool can&apos;t answer that, it isn&apos;t listed here.
+          </p>
+
+          <div className="mt-14 divide-y divide-white/5 border-y border-white/5">
+            {instruments.map((tool) => (
+              <Link
+                key={tool.index}
+                href={tool.href}
+                className="group grid gap-6 py-10 transition-colors hover:bg-white/[0.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 lg:grid-cols-[64px_1fr_280px] lg:gap-10"
+              >
+                <span className="font-mono text-sm text-emerald-300/50" aria-hidden="true">
+                  {tool.index}
+                </span>
+                <div>
+                  <span className="flex items-center gap-3">
+                    <tool.icon className="h-5 w-5 text-emerald-300/80" aria-hidden="true" />
+                    <span className="font-display text-xl font-semibold text-white transition-colors group-hover:text-emerald-100">
+                      {tool.name}
+                    </span>
+                  </span>
+                  <p className="mt-3 max-w-xl text-sm leading-6 text-slate-400">{tool.what}</p>
+                  <p className="mt-3 max-w-xl font-mono text-xs leading-5 text-emerald-200/70">
+                    → {tool.output}
+                  </p>
+                </div>
+                <div className="flex items-start justify-between gap-4 lg:flex-col lg:items-end lg:text-right">
+                  <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-emerald-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
+                    Live
+                  </span>
+                  <span className="font-mono text-xs text-slate-500">{tool.time}</span>
+                  <span className="hidden items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 transition-colors group-hover:text-emerald-200 lg:inline-flex">
+                    Open
+                    <ArrowRight
+                      className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:transform-none"
+                      aria-hidden="true"
                     />
-                  </div>
+                  </span>
                 </div>
-
-                {/* Category Filter */}
-                <div className="flex flex-wrap gap-2">
-                  {categories.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => setSelectedCategory(category.id)}
-                      className={cn(
-                        'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2',
-                        selectedCategory === category.id
-                          ? 'bg-purple-500/20 text-purple-200 border border-purple-500/30'
-                          : 'bg-slate-800/30 text-slate-400 border border-slate-700/30 hover:bg-slate-700/30'
-                      )}
-                    >
-                      <category.icon className="w-4 h-4" />
-                      {category.label}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Difficulty Filter */}
-                <div className="flex gap-2">
-                  {['beginner', 'intermediate', 'advanced'].map((level) => (
-                    <button
-                      key={level}
-                      onClick={() => setSelectedDifficulty(selectedDifficulty === level ? null : level)}
-                      className={cn(
-                        'px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 capitalize',
-                        selectedDifficulty === level
-                          ? getDifficultyColor(level as Tool['difficulty'])
-                          : 'bg-slate-800/30 text-slate-400 border border-slate-700/30 hover:bg-slate-700/30'
-                      )}
-                    >
-                      {level}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </GlassmorphicCard>
-          </StaggerItem>
-
-          {/* Tools Grid */}
-          <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {filteredTools.map((tool, index) => (
-              <StaggerItem key={tool.id}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <InteractiveCard>
-                    <GlassmorphicCard
-                      variant="luxury"
-                      hover
-                      className="h-full p-8 flex flex-col relative overflow-hidden"
-                    >
-                      {/* Header */}
-                      <div className="flex items-start justify-between mb-6">
-                        <div className={cn('w-14 h-14 rounded-2xl bg-gradient-to-br flex items-center justify-center', tool.color)}>
-                          <tool.icon className="w-7 h-7 text-white" />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          {tool.isNew && (
-                            <span className="px-2 py-1 bg-green-500/20 text-green-300 text-xs rounded-full border border-green-500/30">
-                              New
-                            </span>
-                          )}
-                          {tool.status === 'in-development' && (
-                            <span className="px-2 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-full border border-amber-500/30">
-                              In development
-                            </span>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1 mb-6">
-                        <h3 className="text-xl font-bold mb-3 text-slate-100">
-                          {tool.title}
-                        </h3>
-                        <p className="text-slate-300 mb-4 leading-relaxed">
-                          {tool.description}
-                        </p>
-
-                        {/* Features */}
-                        <div className="space-y-2 mb-6">
-                          {tool.features.slice(0, 3).map((feature, idx) => (
-                            <div key={idx} className="flex items-center text-sm text-slate-400">
-                              <CheckCircle className="w-4 h-4 text-green-400 mr-2 flex-shrink-0" />
-                              {feature}
-                            </div>
-                          ))}
-                          {tool.features.length > 3 && (
-                            <div className="text-sm text-slate-500">
-                              +{tool.features.length - 3} more features
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Meta Info */}
-                      <div className="flex items-center justify-between mb-6 text-xs text-slate-400">
-                        <div className="flex items-center gap-4">
-                          <span className={cn('px-2 py-1 rounded-full', getDifficultyColor(tool.difficulty))}>
-                            {tool.difficulty}
-                          </span>
-                          <span className="flex items-center">
-                            <Clock className="w-3 h-3 mr-1" />
-                            {tool.timeEstimate}
-                          </span>
-                        </div>
-                        <span className={tool.status === 'live' ? 'text-green-300' : 'text-slate-500'}>
-                          {tool.status === 'live' ? 'Live' : 'In development'}
-                        </span>
-                      </div>
-
-                      {/* Action */}
-                      <div className="flex gap-3">
-                        <PremiumButton
-                          variant="primary"
-                          size="lg"
-                          href={tool.href}
-                          className="flex-1"
-                        >
-                          <Play className="w-4 h-4 mr-2" />
-                          {tool.status === 'live' ? 'Use Tool' : 'Preview & Join Waitlist'}
-                        </PremiumButton>
-                      </div>
-
-                    </GlassmorphicCard>
-                  </InteractiveCard>
-                </motion.div>
-              </StaggerItem>
+              </Link>
             ))}
           </div>
 
-          {/* No Results */}
-          {filteredTools.length === 0 && (
-            <StaggerItem>
-              <div className="text-center py-16">
-                <div className="w-24 h-24 rounded-2xl bg-slate-800/50 flex items-center justify-center mx-auto mb-6">
-                  <Search className="w-12 h-12 text-slate-500" />
-                </div>
-                <h3 className="text-2xl font-semibold text-slate-300 mb-4">No tools found</h3>
-                <p className="text-slate-400 mb-8">Try adjusting your filters or search terms</p>
-                <PremiumButton
-                  variant="ghost"
-                  onClick={() => {
-                    setSearchQuery('')
-                    setSelectedCategory('all')
-                    setSelectedDifficulty(null)
-                  }}
-                >
-                  Clear Filters
-                </PremiumButton>
-              </div>
-            </StaggerItem>
-          )}
+          <p className="mt-8 text-sm text-slate-500">
+            Also live:{' '}
+            <Link
+              href="/tools/visual-intelligence"
+              className="font-medium text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-emerald-200 hover:decoration-emerald-300/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
+            >
+              the Visual Intelligence System
+            </Link>{' '}
+            — the image pipeline behind this site, documented layer by layer.
+          </p>
+        </div>
+      </section>
 
-          {/* CTA Section */}
-          <StaggerItem>
-            <div className="mt-20">
-              <GlassmorphicCard variant="luxury" className="p-12 text-center">
-                <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
-                  Need a Custom Tool?
-                </h2>
-                <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-                  Our Agent Team can create custom tools tailored to your specific needs and industry requirements.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <GlowPulse color="purple">
-                    <PremiumButton variant="luxury" size="xl" href="/contact">
-                      Request Custom Tool
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </PremiumButton>
-                  </GlowPulse>
-                  <PremiumButton variant="ghost" size="xl" href="/tools/builder">
-                    <Settings className="w-5 h-5 mr-2" />
-                    Tool Builder (Coming Soon)
-                  </PremiumButton>
-                </div>
-              </GlassmorphicCard>
+      {/* Tool intelligence */}
+      <section aria-labelledby="tool-intelligence-title" className="border-b border-white/5 py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 lg:grid-cols-[1.25fr_0.75fr]">
+            <div className="bg-void p-8 sm:p-12">
+              <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-300/60">
+                <Compass className="h-4 w-4" aria-hidden="true" />
+                Tool intelligence / current evidence
+              </p>
+              <h2
+                id="tool-intelligence-title"
+                className="mt-7 max-w-2xl text-balance font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"
+              >
+                A decision atlas, not a logo cloud.
+              </h2>
+              <p className="mt-6 max-w-xl text-base leading-7 text-slate-400">
+                The atlases are instruments too — first-party research on third-party
+                categories. Product fit is scored before commercial status is shown, and
+                every record links an official source, not a tracked link.
+              </p>
+              <p className="mt-4 max-w-xl text-base leading-7 text-slate-400">
+                First category: social media tools. Compare Metricool, Pallyy, Postiz,
+                Buffer, and {SOCIAL_MEDIA_TOOLS.length - 4} more by role, price, API, MCP,
+                approvals, and governance.
+              </p>
+              <Link
+                href="/tools/social-media"
+                className="mt-9 inline-flex items-center gap-3 rounded-full border border-emerald-300/40 px-6 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-200 transition-colors hover:border-emerald-300 hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
+              >
+                Open the social tool atlas
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
-          </StaggerItem>
-        </StaggerContainer>
-      </div>
-    </div>
+            <div className="grid bg-white/10 gap-px sm:grid-cols-3 lg:grid-cols-1">
+              {[
+                {
+                  icon: Database,
+                  value: String(SOCIAL_MEDIA_TOOLS.length),
+                  label: 'Official-source records',
+                },
+                {
+                  icon: Network,
+                  value: String(SOCIAL_TOOL_ROLES.length),
+                  label: 'Operating-role routes',
+                },
+                { icon: Shield, value: SOCIAL_TOOL_LAST_VERIFIED, label: 'Last evidence check' },
+              ].map((item) => (
+                <div key={item.label} className="bg-void p-7 sm:p-8">
+                  <item.icon className="mb-6 h-5 w-5 text-emerald-300/70" aria-hidden="true" />
+                  <strong className="block font-mono text-2xl font-medium text-white">
+                    {item.value}
+                  </strong>
+                  <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* In development */}
+      <section aria-labelledby="bench-title" className="border-b border-white/5 py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
+            On the bench / not live yet
+          </p>
+          <h2 id="bench-title" className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
+            In development
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">
+            {inDevelopment.length} instruments are in build. No screenshots of things that
+            don&apos;t exist — each row opens a preview page where you can join the waitlist.
+          </p>
+
+          <ul className="mt-12 border-t border-white/5">
+            {inDevelopment.map((tool, index) => (
+              <li key={tool.name} className="border-b border-white/5">
+                <Link
+                  href={tool.href}
+                  className="group flex flex-wrap items-baseline gap-x-6 gap-y-1 py-5 transition-colors hover:bg-white/[0.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 sm:flex-nowrap"
+                >
+                  <span className="w-8 shrink-0 font-mono text-xs text-slate-600" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="w-64 shrink-0 text-sm font-semibold text-slate-200 transition-colors group-hover:text-white">
+                    {tool.name}
+                  </span>
+                  <span className="min-w-0 flex-1 text-sm text-slate-500">{tool.will}</span>
+                  <span className="ml-auto shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-amber-300/70">
+                    In build
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* The fork: built here vs runs the studio */}
+      <section aria-labelledby="fork-title" className="py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-300/60">
+            Two kinds of tools
+          </p>
+          <h2 id="fork-title" className="mt-4 max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
+            Built here, or runs the studio
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">
+            This page is the first kind. The second kind — the third-party tools behind the
+            work — has its own page, so neither pretends to be the other.
+          </p>
+
+          <div className="mt-12 grid gap-px overflow-hidden border border-white/10 bg-white/10 lg:grid-cols-2">
+            <div className="flex flex-col bg-void p-8 sm:p-10">
+              <span className="flex items-center gap-2.5">
+                <Layers className="h-5 w-5 text-emerald-300/80" aria-hidden="true" />
+                <span className="font-display text-lg font-semibold text-white">Built in this studio</span>
+              </span>
+              <p className="mt-4 text-sm leading-6 text-slate-400">
+                First-party instruments — designed, coded, and maintained by FrankX. Free to
+                use, no account. The wider library of playbooks, prompt packs, and templates
+                lives in the resource hub.
+              </p>
+              <Link
+                href="/resources"
+                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300 transition-colors hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
+              >
+                Browse the resource hub
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="flex flex-col bg-void p-8 sm:p-10">
+              <span className="flex items-center gap-2.5">
+                <Database className="h-5 w-5 text-emerald-300/80" aria-hidden="true" />
+                <span className="font-display text-lg font-semibold text-white">Runs the studio</span>
+              </span>
+              <p className="mt-4 text-sm leading-6 text-slate-400">
+                The FrankX Stack: third-party templates, agent frameworks, infrastructure,
+                databases, and dev tools I actually use and recommend. Some links are
+                affiliate links —{' '}
+                <Link
+                  href="/affiliates"
+                  className="text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-emerald-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+                >
+                  the policy is public
+                </Link>
+                .
+              </p>
+              <Link
+                href="/stack"
+                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300 transition-colors hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
+              >
+                Browse the stack
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+
+          <p className="mt-12 text-sm text-slate-500">
+            Need an instrument that doesn&apos;t exist yet?{' '}
+            <Link
+              href="/contact"
+              className="font-medium text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-emerald-200 hover:decoration-emerald-300/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
+            >
+              Tell me what it should do
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+    </main>
   )
 }
