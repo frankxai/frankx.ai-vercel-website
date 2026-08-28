@@ -1,15 +1,14 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 943,
-    "aliases": 58,
+    "total": 948,
     "byType": {
       "core": 23,
       "section": 425,
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 254,
+      "blog": 259,
       "research": 16,
       "guide": 25,
       "library": 56,
@@ -19,7 +18,8 @@
       "product": 21,
       "video": 3,
       "workshop": 8
-    }
+    },
+    "aliases": 58
   },
   "routes": [
     {
@@ -2638,6 +2638,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/is-revolut-safe-netherlands-2026",
+      "title": "Is Revolut Safe in the Netherlands? Bank Licence, Dutch IBAN and €100k Protection",
+      "description": "A regulator-first answer to whether Revolut is safe in the Netherlands: bank status, DNB register, Dutch IBAN, deposit insurance, and risks protection does not cover.",
+      "tags": [
+        "Revolut",
+        "Netherlands",
+        "bank safety",
+        "Dutch IBAN",
+        "deposit guarantee"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/karpathys-ai-vision-deep-dive",
       "title": "Karpathy's AI Vision: A Deep Dive",
       "description": "Key takeaways from Karpathy's latest AI insights",
@@ -3353,6 +3366,58 @@
         "intelligence-dispatches",
         "ai-systems",
         "production"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/revolut-fees-netherlands-2026",
+      "title": "Revolut Fees Netherlands 2026: Exchange, Weekend, ATM and Card Costs",
+      "description": "The current Revolut Netherlands fees that matter most: Standard exchange allowance, weekend fee, ATM limit, card delivery, transfers, and the costs people miss.",
+      "tags": [
+        "Revolut",
+        "Netherlands",
+        "fees",
+        "travel money",
+        "currency exchange"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/revolut-plans-netherlands-2026",
+      "title": "Revolut Plans Netherlands 2026: Standard vs Plus vs Premium vs Metal vs Ultra",
+      "description": "A source-checked guide to Revolut's five Dutch personal plans, current monthly prices, exchange and ATM limits, and the rule for choosing without overpaying.",
+      "tags": [
+        "Revolut",
+        "Netherlands",
+        "fintech",
+        "travel money",
+        "banking"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/revolut-referral-code-netherlands-2026",
+      "title": "Revolut Referral Code Netherlands 2026: Who Gets the €100 and What Counts",
+      "description": "Frank's current Revolut referral can pay Frank €100 after a personally invited friend qualifies. Here is who gets the reward, the current steps, deadline, and why the link is not public.",
+      "tags": [
+        "Revolut",
+        "referral",
+        "Netherlands",
+        "invite reward",
+        "fintech"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/revolut-vs-wise-vs-bunq-netherlands-2026",
+      "title": "Revolut vs Wise vs bunq Netherlands 2026: Choose by Use Case",
+      "description": "A source-led comparison of Revolut, Wise, and bunq for Dutch residents: account model, pricing, FX, ATM use, IBANs, deposit protection, travel, and who each fits.",
+      "tags": [
+        "Revolut",
+        "Wise",
+        "bunq",
+        "Netherlands",
+        "fintech comparison"
       ],
       "type": "blog"
     },
