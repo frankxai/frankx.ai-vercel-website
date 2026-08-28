@@ -32,11 +32,14 @@ test('the mobile menu contains focus, restores focus, and respects motion prefer
   assert.match(overlay, /data-mobile-nav-view="section"/)
   assert.doesNotMatch(overlay, /offsetParent/)
   assert.match(overlay, /data-mobile-nav-autofocus/)
+  assert.match(overlay, /sectionTriggerRef/)
+  assert.match(overlay, /data-mobile-nav-section-autofocus/)
+  assert.match(overlay, /onSelectSection\(section\.key, event\.currentTarget\)/)
   assert.match(overlay, /useReducedMotion\(\)/)
   assert.match(overlay, /document\.body\.style\.overflow = 'hidden'/)
 })
 
-test('desktop and mobile navigation expose the workspace authorship model', async () => {
+test('desktop and mobile navigation expose the founder operating model', async () => {
   const navigation = await readRepoFile('components/NavigationMega.tsx')
   const overlay = await readRepoFile('components/MobileNavOverlay.tsx')
 
@@ -44,18 +47,22 @@ test('desktop and mobile navigation expose the workspace authorship model', asyn
   // 8px uppercase mono at 60% opacity, in both the desktop nav and the mobile
   // overlay. The authorship model is still asserted below, by the parts that
   // carry it at a legible size. A tagline is not the contract; the Workspace
-  // section and the source→artifact line are.
+  // section and its founder path are.
   assert.doesNotMatch(navigation, /Public agentic workspace/)
   assert.doesNotMatch(navigation, /text-\[8px\]/)
-  assert.match(navigation, /label: 'Workspace'/)
-  assert.match(navigation, /Source → agents → Frank → artifact/)
-  assert.match(navigation, /const desktopSections: NavKey\[\] = \['explore', 'build', 'learn', 'gencreators', 'music'\]/)
+  assert.match(navigation, /label: 'Founder'/)
+  assert.match(navigation, /title: 'Map your Founder Stack'/)
+  assert.match(navigation, /label: 'Founder path'/)
+  assert.match(navigation, /href: '\/founder-stack'/)
+  assert.match(navigation, /const desktopSections: NavKey\[\] = \[\s*'explore',\s*'build',\s*'learn',\s*'gencreators',\s*'music'/)
   assert.doesNotMatch(navigation, /router\.push/)
 
   assert.doesNotMatch(overlay, /Public agentic workspace/)
   assert.doesNotMatch(overlay, /text-\[8px\]/)
-  assert.match(overlay, /Source material, specialist passes, Frank’s decision, public artifact/)
-  assert.match(overlay, /How Frank and the agent team build in public/)
+  assert.match(overlay, /label: 'Founder'/)
+  assert.match(overlay, /title: 'Map your Founder Stack'/)
+  assert.match(overlay, /label: 'Founder path'/)
+  assert.match(overlay, /Map Your Stack/)
 })
 
 // PR #409 collapsed the nav to four doors without being asked. Music is its own
@@ -98,8 +105,8 @@ test('the widest mobile door renders grouped, not as one flat list', async () =>
 
   assert.match(overlay, /groups\?: \{ label: string; items: string\[\] \}\[\]/)
   assert.match(overlay, /section\.groups \? \(/)
-  for (const label of ['Current work', 'Systems & products', 'Worlds', 'Connect']) {
-    assert.ok(overlay.includes(`label: '${label}'`), `mobile explore door needs the ${label} group`)
+  for (const label of ['Founder path', 'Current work', 'Systems & products', 'Connect']) {
+    assert.ok(overlay.includes(`label: '${label}'`), `mobile founder door needs the ${label} group`)
   }
 })
 

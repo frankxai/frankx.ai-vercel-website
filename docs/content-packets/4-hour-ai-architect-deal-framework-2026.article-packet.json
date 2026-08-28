@@ -1,0 +1,427 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "cnt_frankx_4_hour_ai_architect_2026",
+  "status": "READY_FOR_FRANK",
+  "authority": "PUBLISH",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "www.frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "frankx-ai-vercel-website / prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+    "notion_record": "not-required-for-repository-publication"
+  },
+  "brief": {
+    "working_title": "The 4-Hour Workweek, Rebuilt for AI Architects in 2026",
+    "subject": "A chapter-by-chapter refinement of The 4-Hour Workweek for governed AI, deterministic automation, human specialists, and founder agency",
+    "origin": "User-authorized FrankX viewpoint, the complete DEAL chapter map, first-party AI documentation, and current productivity evidence",
+    "thesis": "The modern four-hour workweek is an operating model whose intent, decision rights, evidence, and exceptions are explicit enough that AI and human specialists can execute without making the founder the default router; definition and elimination still precede automation.",
+    "reader": "Founder, creator, executive, or expert operator trying to reclaim time without surrendering judgment or control",
+    "reader_baseline": "The reader associates a four-hour week with productivity tricks, passive-income claims, or replacing virtual assistants with chatbots.",
+    "reader_delta": "The reader can translate every DEAL chapter into a governed operating practice, route work by consequence, and run a 90-day absence test.",
+    "stakes": "Automation can compound waste and error as quickly as it compounds useful work; a time dividend requires elimination, governance, ownership, and deliberate allocation.",
+    "strongest_objection": "AI productivity effects are uneven and sometimes negative for experienced workers, so no tool stack can honestly promise a four-hour week.",
+    "commercial_relationship": "All references use direct official or research links. No issued customer-referral URL was verified for this release, so no affiliate link is published."
+  },
+  "content_graph": {
+    "cluster_id": "cluster_ai_architect_founder_operating_model",
+    "canonical_url": "https://www.frankx.ai/blog/4-hour-ai-architect-deal-framework-2026",
+    "existing_related_urls": [
+      "https://www.frankx.ai/library/the-4-hour-workweek",
+      "https://www.frankx.ai/blog/ai-architecture-patterns-solo-builders",
+      "https://www.frankx.ai/blog/multi-agent-orchestration-patterns-2026",
+      "https://www.frankx.ai/blog/ultimate-n8n-workflow-2026"
+    ],
+    "internal_links": [
+      "The 4-Hour Workweek library review for the original book context",
+      "AI Architecture Patterns for Solo Builders for maintenance-surface decisions",
+      "Multi-Agent Orchestration Patterns for execution topology",
+      "ChatGPT vs Claude vs Gemini for assistant selection",
+      "Local LLM guide for controlled model deployment",
+      "FrankX stack for current operating surfaces"
+    ],
+    "entities": [
+      "The 4-Hour Workweek",
+      "Tim Ferriss",
+      "DEAL",
+      "AI architect",
+      "virtual assistant",
+      "ChatGPT",
+      "Claude",
+      "Gemini",
+      "Grok",
+      "Llama",
+      "Mistral Vibe",
+      "founder operating system"
+    ]
+  },
+  "search": {
+    "primary_intent": "Modernize The 4-Hour Workweek framework with AI agents and a practical founder operating model",
+    "query_set": [
+      "4 hour workweek AI",
+      "AI agents for 4 hour workweek",
+      "AI architect operating system",
+      "virtual assistant vs AI agent",
+      "founder automation framework"
+    ],
+    "serp_snapshot": {
+      "captured_at": "2026-08-27T22:34:11Z",
+      "locale": "en-US",
+      "device": "desktop",
+      "dominant_intent": "AI-automation tips, prompt lists, lifestyle promises, book summaries, and shorter-workweek commentary",
+      "information_gap": "A complete chapter-by-chapter DEAL translation with explicit decision rights, evidence, exceptions, counter-evidence, and an absence test",
+      "result_ledger": [
+        "https://books.google.com/books/about/The_4_Hour_AI_Workweek.html?id=SjrMEQAAQBAJ",
+        "https://thedavidbaer.medium.com/the-4-hour-workweek-meets-a-i-9a082ff8296",
+        "https://lowtech.ai/blog/the-four-hour-work-week-with-ai",
+        "https://www.forbes.com/sites/jodiecook/2023/08/14/5-chatgpt-prompts-to-implement-the-4-hour-workweek-in-your-business/",
+        "https://note.com/lush_chives9422/n/n0520447ab045?hl=en"
+      ]
+    },
+    "answer_units": [
+      "What the modern four-hour week means",
+      "Every DEAL chapter translated for 2026",
+      "Old virtual assistants versus modern AI systems",
+      "Which AI surface fits which job",
+      "The literal four-hour founder control plane",
+      "A seven-day implementation sequence",
+      "A 90-day absence test"
+    ],
+    "structured_data": [
+      "Article",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "indexation": "index",
+    "crawler_policy_checked": true
+  },
+  "sources": [
+    {
+      "source_id": "src_ferriss_tools",
+      "url": "https://tim.blog/4-hour-workweek-tools/",
+      "title": "The 4-Hour Workweek Tools",
+      "publisher": "Tim Ferriss",
+      "source_type": "primary_author_source",
+      "published_at": "undated",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_ferriss_retrospective",
+      "url": "https://tim.blog/2024/12/18/the-4-hour-workweek/",
+      "title": "The 4-Hour Workweek retrospective",
+      "publisher": "Tim Ferriss",
+      "source_type": "primary_author_source",
+      "published_at": "2024-12-18",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_prh_expanded_edition",
+      "url": "https://www.penguinrandomhouse.com/books/49081/the-4-hour-workweek-expanded-and-updated-by-timothy-ferriss/",
+      "title": "The 4-Hour Workweek, Expanded and Updated",
+      "publisher": "Penguin Random House",
+      "source_type": "primary_publisher_source",
+      "published_at": "2009-12-15",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_qje_genai_work",
+      "url": "https://academic.oup.com/qje/article/140/2/889/7990658",
+      "title": "Generative AI at Work",
+      "publisher": "The Quarterly Journal of Economics",
+      "source_type": "peer_reviewed_research",
+      "published_at": "2025-02-03",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_mit_writing",
+      "url": "https://news.mit.edu/2023/study-finds-chatgpt-boosts-worker-productivity-writing-0714",
+      "title": "Study finds ChatGPT boosts worker productivity for some writing tasks",
+      "publisher": "MIT News",
+      "source_type": "research_institution_summary",
+      "published_at": "2023-07-14",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_metr_2025",
+      "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+      "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+      "publisher": "METR",
+      "source_type": "primary_research",
+      "published_at": "2025-07-10",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_metr_2026",
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "title": "Developer productivity uplift update",
+      "publisher": "METR",
+      "source_type": "primary_research_update",
+      "published_at": "2026-02-24",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_openai_codex_cli",
+      "url": "https://developers.openai.com/codex/cli",
+      "title": "Codex CLI",
+      "publisher": "OpenAI",
+      "source_type": "primary_product_documentation",
+      "published_at": "undated",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_openai_codex_ide",
+      "url": "https://developers.openai.com/codex/ide",
+      "title": "Codex IDE extension",
+      "publisher": "OpenAI",
+      "source_type": "primary_product_documentation",
+      "published_at": "undated",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_openai_codex_cloud",
+      "url": "https://developers.openai.com/codex/cloud",
+      "title": "Codex cloud",
+      "publisher": "OpenAI",
+      "source_type": "primary_product_documentation",
+      "published_at": "undated",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_openai_chatgpt_apps",
+      "url": "https://help.openai.com/en/articles/11487775-connectors-in-chatgpt",
+      "title": "Apps in ChatGPT",
+      "publisher": "OpenAI",
+      "source_type": "primary_product_documentation",
+      "published_at": "undated",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_anthropic_claude_code",
+      "url": "https://docs.anthropic.com/en/docs/claude-code/overview",
+      "title": "Claude Code overview",
+      "publisher": "Anthropic",
+      "source_type": "primary_product_documentation",
+      "published_at": "undated",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_google_gemini_workspace",
+      "url": "https://support.google.com/gemini/answer/15229592?hl=en",
+      "title": "Connect Google Workspace apps and services to Gemini Apps",
+      "publisher": "Google",
+      "source_type": "primary_product_documentation",
+      "published_at": "undated",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_xai_search",
+      "url": "https://docs.x.ai/developers/tools/x-search",
+      "title": "X Search",
+      "publisher": "xAI",
+      "source_type": "primary_product_documentation",
+      "published_at": "undated",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_meta_llama",
+      "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+      "title": "Llama 4 multimodal intelligence",
+      "publisher": "Meta",
+      "source_type": "primary_product_announcement",
+      "published_at": "2025-04-05",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_mistral_vibe",
+      "url": "https://docs.mistral.ai/vibe",
+      "title": "Mistral Vibe",
+      "publisher": "Mistral AI",
+      "source_type": "primary_product_documentation",
+      "published_at": "undated",
+      "last_updated_at": "not-stated",
+      "retrieved_at": "2026-08-27"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm_deal_structure",
+      "text": "The book's operational structure is Definition, Elimination, Automation, and Liberation, with the article mapping the complete official chapter sequence.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_ferriss_tools",
+        "src_ferriss_retrospective",
+        "src_prh_expanded_edition"
+      ]
+    },
+    {
+      "claim_id": "clm_productivity_context",
+      "text": "Generative AI can improve speed or output quality in some bounded work, but observed effects vary by task, worker experience, workflow, and measurement design.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_qje_genai_work",
+        "src_mit_writing",
+        "src_metr_2025",
+        "src_metr_2026"
+      ]
+    },
+    {
+      "claim_id": "clm_time_dividend",
+      "text": "AI creates technical capacity for a time dividend; elimination, governance, ownership, and allocation determine whether that capacity becomes leisure, better work, or more expected output.",
+      "type": "inference",
+      "support": "derived",
+      "source_ids": [
+        "src_qje_genai_work",
+        "src_metr_2025",
+        "src_metr_2026"
+      ]
+    },
+    {
+      "claim_id": "clm_ai_surfaces",
+      "text": "Current AI products span conversational assistance, repository work, connected workspace tasks, real-time public-signal retrieval, customizable open-weight systems, and European model/code-agent options; they are not interchangeable employees.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_openai_chatgpt_apps",
+        "src_openai_codex_cli",
+        "src_openai_codex_ide",
+        "src_openai_codex_cloud",
+        "src_anthropic_claude_code",
+        "src_google_gemini_workspace",
+        "src_xai_search",
+        "src_meta_llama",
+        "src_mistral_vibe"
+      ]
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/4-hour-ai-architect-deal-framework-2026.mdx",
+    "canonical_title": "The 4-Hour Workweek, Rebuilt for AI Architects in 2026",
+    "description": "Every DEAL chapter rebuilt for founders using AI agents, governed automation, human specialists, and deliberate freedom.",
+    "author_id": "frankx",
+    "published_at": null,
+    "modified_at": "2026-08-27"
+  },
+  "media": [
+    {
+      "asset_id": "fx-blog-4-hour-ai-architect-hero",
+      "version_id": "v1-2026-08-27",
+      "placement": "hero",
+      "media_type": "repo_native_svg",
+      "path": "/images/blog/visual-system/4-hour-ai-architect-deal-framework-2026-hero.svg",
+      "mime_type": "image/svg+xml",
+      "width": 1600,
+      "height": 900,
+      "bytes": 5124,
+      "sha256": "483f5a3800d0dbc4676b7e7bc33eb81f1e5d819159170b7227220f90af6a6be1",
+      "creator": "FrankX Content Intelligence OS",
+      "rights_status": "approved-original-editorial-art",
+      "rights": "FrankX original architecture; nominative book reference; no third-party cover, logo, or likeness",
+      "alt": "A four-hour ceiling for compulsory founder control, expressed through Definition, Elimination, Automation, Liberation, evidence, and exceptions."
+    },
+    {
+      "asset_id": "fx-blog-4-hour-ai-architect-deal-map",
+      "version_id": "v1-2026-08-27-map",
+      "placement": "opening_architecture_map",
+      "media_type": "repo_native_svg",
+      "path": "/images/blog/visual-system/infographics/4-hour-ai-architect-deal-framework-2026-map.svg",
+      "mime_type": "image/svg+xml",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 5782,
+      "sha256": "8ba3b51299d0646e870656223589f74d832c7c28f1f45eb1cfd7e0744fc08280",
+      "creator": "FrankX Content Intelligence OS",
+      "rights_status": "approved-original-editorial-art",
+      "rights": "FrankX original architecture",
+      "alt": "The DEAL operating loop for a governed AI and human workforce."
+    },
+    {
+      "asset_id": "fx-blog-4-hour-ai-architect-hero",
+      "version_id": "v1-2026-08-27-og-1200x630",
+      "placement": "open_graph",
+      "media_type": "deterministic_png_rendition",
+      "path": "/images/blog/visual-system/social/4-hour-ai-architect-deal-framework-2026-og.png",
+      "mime_type": "image/png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 179110,
+      "sha256": "782790a8f4a28eb36e8bc960deb233cca783543559995b90bd2797ffe09ec8bb",
+      "creator": "FrankX Content Intelligence OS",
+      "rights_status": "approved-original-editorial-art",
+      "rights": "FrankX original architecture; deterministic crop of the approved hero",
+      "alt": "The 4-Hour Workweek rebuilt for AI architects as a governed DEAL control plane."
+    }
+  ],
+  "affiliates": [],
+  "distribution": [],
+  "reviews": [
+    {
+      "lane": "truth_rights",
+      "verdict": "pass",
+      "reason": "Independent four_hour_research re-review passed the edition map, factual scope, product claims, research framing, trademark treatment, non-affiliation language, and media rights on 2026-08-27."
+    },
+    {
+      "lane": "commissioning_editor",
+      "verdict": "pass",
+      "reason": "Independent four_hour_research re-review passed FrankX voice, reader utility, the founder proposal, the chapter practices, and the skeptical counter-case on 2026-08-27."
+    },
+    {
+      "lane": "seo_geo",
+      "verdict": "pass",
+      "reason": "Independent canonical_audit passed title and intent separation, www canonical emission, internal links, FAQPage extraction, library placement, dated SERP evidence, and crawler configuration on 2026-08-27."
+    },
+    {
+      "lane": "art_critic",
+      "verdict": "pass",
+      "reason": "Independent four_hour_research re-review passed the corrected hero, architecture map, fallback-font fit, real 1200x630 OG rendition, provenance, rights, alt text, and checksums on 2026-08-27."
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "No GitHub pull request or Vercel preview exists yet."
+    }
+  ],
+  "publication": {
+    "branch": "agent/codex/content-wave-20260827",
+    "pull_request": "blocked",
+    "preview_url": "blocked",
+    "live_url": "blocked",
+    "verified_at": null,
+    "rollback": "555c19f9119c6ca8b09b8de51c8202c69a6f932b"
+  },
+  "measurement": {
+    "hypothesis": "A skeptical, complete DEAL redesign will earn qualified discovery and move readers from inspirational automation interest to an explicit operating-model implementation.",
+    "primary_metric": "Qualified organic entrances that continue to an architecture, workflow, assistant-comparison, or stack page",
+    "guardrails": [
+      "No claim that Frank already works a literal four-hour week",
+      "No universal AI productivity or leisure promise",
+      "No autonomous high-consequence action recommendation",
+      "No book-cover or author-likeness usage",
+      "No affiliate influence on AI routing"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "2026-11-27",
+    "freshness_triggers": [
+      "Material capability change among named AI products",
+      "New high-quality evidence on AI productivity",
+      "Canonical or portfolio-routing change",
+      "Observed search cannibalization with the library review"
+    ]
+  },
+  "blocked": []
+}

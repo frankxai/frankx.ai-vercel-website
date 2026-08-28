@@ -88,9 +88,13 @@ const NAV_COLUMNS = [
     ],
   },
   {
-    label: 'Work with me',
+    label: 'Founder',
     links: [
-      { label: 'Start Here', href: '/start' },
+      { label: 'Founder Stack', href: '/founder-stack', accent: 'emerald' },
+      { label: 'Founder Signal', href: '/founder-signal' },
+      { label: 'Foundry', href: '/foundry' },
+      { label: "Founder's Circle", href: '/founders-circle' },
+      { label: 'Human Layer', href: '/human-layer' },
       { label: 'Connect', href: '/connect', accent: 'emerald' },
       { label: 'Partnerships', href: '/partnerships' },
       { label: 'Work with Frank', href: '/work-with-me' },

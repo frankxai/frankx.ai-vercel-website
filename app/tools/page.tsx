@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
   Calculator,
@@ -18,7 +19,10 @@ import {
   Clock,
   Play,
   Sparkles,
-  Search
+  Search,
+  Compass,
+  Database,
+  Network
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -239,6 +243,60 @@ export default function ToolsPage() {
                 </div>
               </div>
             </div>
+          </StaggerItem>
+
+          <StaggerItem>
+            <section
+              aria-labelledby="tool-intelligence-title"
+              className="relative mb-12 overflow-hidden border border-amber-200/20 bg-[#0c1110] text-left"
+            >
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(217,187,126,0.13),transparent_30%),radial-gradient(circle_at_15%_80%,rgba(74,148,116,0.12),transparent_32%)]"
+              />
+              <div className="relative grid gap-px bg-white/10 lg:grid-cols-[1.25fr_0.75fr]">
+                <div className="bg-[#0c1110]/95 p-7 sm:p-10 lg:p-14">
+                  <p className="mb-8 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-300/80">
+                    <Compass className="h-4 w-4" />
+                    Tool intelligence / current evidence
+                  </p>
+                  <h2
+                    id="tool-intelligence-title"
+                    className="max-w-3xl font-serif text-4xl font-medium leading-[0.98] tracking-[-0.04em] text-stone-100 sm:text-5xl lg:text-6xl"
+                  >
+                    A decision atlas, not a logo cloud.
+                  </h2>
+                  <p className="mt-7 max-w-2xl text-base leading-7 text-stone-300/65">
+                    Compare Metricool, Pallyy, Postiz, Blotato, Buffer, HubSpot, Sprout Social,
+                    Hootsuite, and seven more by role, price, API, MCP, governance, and evidence.
+                  </p>
+                  <Link
+                    href="/tools/social-media"
+                    className="mt-9 inline-flex items-center gap-4 border border-amber-200/50 bg-amber-100 px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-stone-950 transition-colors hover:bg-amber-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-200"
+                  >
+                    Open the social tool atlas
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+                <div className="grid bg-white/10 sm:grid-cols-3 lg:grid-cols-1">
+                  {[
+                    { icon: Database, value: '15', label: 'Official-source records' },
+                    { icon: Network, value: '5', label: 'Operating-role routes' },
+                    { icon: Shield, value: '2026.08.28', label: 'Last evidence check' },
+                  ].map((item) => (
+                    <div key={item.label} className="bg-[#0d1211] p-7 sm:p-8">
+                      <item.icon className="mb-7 h-5 w-5 text-amber-200/75" />
+                      <strong className="block font-mono text-2xl font-medium text-stone-100">
+                        {item.value}
+                      </strong>
+                      <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-400">
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
           </StaggerItem>
 
           {/* Filters */}

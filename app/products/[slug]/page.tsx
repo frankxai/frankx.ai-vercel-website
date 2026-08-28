@@ -91,15 +91,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           },
         }
       : {}),
-    ...(product.socialProof?.stats
-      ? {
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.9',
-            reviewCount: '150', // Placeholder or real data if available
-          },
-        }
-      : {}),
   }
 
   return (
