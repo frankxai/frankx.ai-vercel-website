@@ -6,6 +6,7 @@ import { ArrowDown, ArrowUpRight, Monitor, Smartphone, Tablet } from 'lucide-rea
 
 import type { V0Study } from '@/content/v0/foundry'
 import { trackEvent } from '@/lib/analytics'
+import { CreatorLaunchScene } from './CreatorLaunchScene'
 import { studyVisuals } from './studyVisuals'
 
 const viewportOptions = [
@@ -22,10 +23,11 @@ const viewportWidth = {
 
 interface StudioScene {
   id: string
+  kind: 'owned' | 'iframe'
   role: string
   title: string
-  src: string
-  poster: string
+  src?: string
+  poster?: string
   studyId?: number
   chatId?: string
 }
@@ -39,6 +41,7 @@ export function FoundryStudio({ studies }: { studies: V0Study[] }) {
         const resolvedStudy = study as V0Study
         return {
           id: `study-${resolvedStudy.id}`,
+          kind: 'iframe',
           role: resolvedStudy.id === 1 ? 'v0 composition' : resolvedStudy.id === 10 ? 'Creator study' : 'AI operations',
           title: resolvedStudy.title,
           src: resolvedStudy.demoUrl,
@@ -51,20 +54,19 @@ export function FoundryStudio({ studies }: { studies: V0Study[] }) {
     return [
       {
         id: 'creator-launch-os',
+        kind: 'owned',
         role: 'Owned product',
         title: 'Creator Launch OS',
-        src: '/embeds/creator-launch-os.html',
-        poster: '/images/v0/template/creator-launch-os-desktop.webp',
       },
       ...studyScenes,
     ] satisfies StudioScene[]
   }, [studies])
   const [activeScene, setActiveScene] = useState<StudioScene>(scenes[0]!)
   const [viewport, setViewport] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
-  const [frameReady, setFrameReady] = useState(false)
+  const [frameReady, setFrameReady] = useState(true)
 
   function selectScene(scene: StudioScene) {
-    setFrameReady(false)
+    setFrameReady(scene.kind === 'owned')
     setActiveScene(scene)
     trackEvent('v0_study_previewed', {
       scene_id: scene.id,
@@ -149,25 +151,31 @@ export function FoundryStudio({ studies }: { studies: V0Study[] }) {
               <div
                 className={`relative mx-auto h-[520px] overflow-hidden rounded-[1.1rem] border border-white/10 bg-white transition-[width] duration-300 motion-reduce:transition-none sm:h-[650px] ${viewportWidth[viewport]}`}
               >
-                <Image
-                  src={activeScene.poster}
-                  alt=""
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 64vw, 100vw"
-                  className="object-cover object-top"
-                  aria-hidden="true"
-                />
-                <iframe
-                  key={activeScene.id}
-                  src={activeScene.src}
-                  title={`${activeScene.title} interactive preview`}
-                  loading="eager"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  sandbox="allow-forms allow-popups allow-same-origin allow-scripts"
-                  onLoad={() => setFrameReady(true)}
-                  className={`absolute inset-0 h-full w-full bg-white transition-opacity duration-300 motion-reduce:transition-none ${frameReady ? 'opacity-100' : 'opacity-0'}`}
-                />
+                {activeScene.kind === 'owned' ? (
+                  <CreatorLaunchScene compact={viewport !== 'desktop'} />
+                ) : (
+                  <>
+                    <Image
+                      src={activeScene.poster!}
+                      alt=""
+                      fill
+                      priority
+                      sizes="(min-width: 1024px) 64vw, 100vw"
+                      className="object-cover object-top"
+                      aria-hidden="true"
+                    />
+                    <iframe
+                      key={activeScene.id}
+                      src={activeScene.src}
+                      title={`${activeScene.title} interactive preview`}
+                      loading="eager"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      sandbox="allow-forms allow-popups allow-same-origin allow-scripts"
+                      onLoad={() => setFrameReady(true)}
+                      className={`absolute inset-0 h-full w-full bg-white transition-opacity duration-300 motion-reduce:transition-none ${frameReady ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                  </>
+                )}
               </div>
             </div>
 

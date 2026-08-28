@@ -9,6 +9,7 @@ test('the foundry ships complete route states and specialized client surfaces', 
     'app/v0/page.tsx',
     'app/v0/loading.tsx',
     'app/v0/error.tsx',
+    'components/v0/CreatorLaunchScene.tsx',
     'components/v0/FoundryStudio.tsx',
     'components/v0/FoundryStudies.tsx',
     'components/v0/FoundryWorkflow.tsx',
@@ -64,8 +65,9 @@ test('release maturity indicators are evidence-backed and current', () => {
   assert.doesNotMatch(page, /\b\d{1,3}%\b/)
 })
 
-test('the first viewport contains one governed, eager live preview with responsive controls', () => {
+test('the first viewport leads with an owned product and governs external live previews', () => {
   const component = read('components/v0/FoundryStudio.tsx')
+  const ownedProduct = read('components/v0/CreatorLaunchScene.tsx')
 
   assert.equal([...component.matchAll(/<iframe/g)].length, 1)
   assert.match(component, /loading="eager"/)
@@ -76,8 +78,10 @@ test('the first viewport contains one governed, eager live preview with responsi
   assert.match(component, /Mobile/)
   assert.match(component, /v0_study_previewed/)
   assert.match(component, /v0_preview_viewport_changed/)
-  assert.match(component, /\/embeds\/creator-launch-os\.html/)
   assert.match(component, /Owned product/)
+  assert.match(component, /CreatorLaunchScene/)
+  assert.match(ownedProduct, /data-owned-product-live="true"/)
+  assert.match(ownedProduct, /v0_owned_product_scene_changed/)
 })
 
 test('the visual index is backed by captured study and template assets', () => {

@@ -6,7 +6,7 @@
 - Job: make the product system visible before asking the reader to trust a framework or browse a catalog.
 - Promise: inspect a real interface, understand the workflow behind it, and take only the source whose evidence is explicit.
 - Primary action: take the free Creator Launch OS starter.
-- Signature proof: the owned Creator Launch OS interaction in the first viewport, with live v0 studies available as selectable evidence and a reproducible release contract beneath it.
+- Signature proof: the native Creator Launch OS interaction in the first viewport, with sandboxed live v0 studies available as selectable evidence and a reproducible release contract beneath it.
 - Intended feeling: entering a working studio run by a careful product builder, not scrolling another template gallery.
 
 ## Three directions compared
@@ -31,8 +31,8 @@ Why it lost: excellent for an authenticated builder, too operational for the fir
 
 ## Composition decisions
 
-1. Put the owned Creator Launch OS interface in the governed first-viewport iframe and load it eagerly.
-2. Keep a captured preview behind the iframe so slow third-party loading never produces a white void.
+1. Render the owned Creator Launch OS interface natively in the first viewport so it stays fast, interactive, and independent of third-party uptime.
+2. Reserve one governed iframe for selected v0 studies and keep a captured preview behind it so slow third-party loading never produces a white void.
 3. Replace the long text-first catalog with seven visual study captures plus a complete searchable source index.
 4. Show Creator Launch OS as the real product surface, not an invented marketing card.
 5. Explain the product compiler as six user-controlled decisions in one contained interaction.
@@ -45,7 +45,7 @@ Why it lost: excellent for an authenticated builder, too operational for the fir
 - Controlled properties: iframe opacity and container width, 300ms maximum.
 - Control: the reader selects every change; there is no autoplay.
 - Reduced motion: transitions are removed and the complete static composition remains visible.
-- Performance posture: one iframe, seven lazy WebP captures, no continuous animation, no scroll hijacking.
+- Performance posture: no iframe in the default state, at most one iframe after a study is selected, seven lazy WebP captures, no continuous animation, no scroll hijacking.
 
 ## Source and rights posture
 
