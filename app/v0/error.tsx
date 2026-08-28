@@ -6,7 +6,7 @@ export default function V0Error({ reset }: { error: Error & { digest?: string };
   return (
     <main className="grid min-h-screen place-items-center bg-[#0a0a0b] px-5 py-24 text-white">
       <div className="max-w-xl text-center">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-emerald-300/70">
+        <p className="font-mono text-[11px] tracking-[0.12em] text-emerald-300/70">
           Foundry interrupted
         </p>
         <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight sm:text-5xl">

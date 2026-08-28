@@ -259,8 +259,133 @@ export const verticalRoadmap = [
   },
 ] as const
 
+export const templatePortfolio = [
+  {
+    lane: 'Creator businesses',
+    promise: 'A focused site and operating layer for the way each creator earns trust and delivers value.',
+    products: [
+      {
+        audience: 'Digital-product creators',
+        product: 'Creator Launch OS',
+        outcome: 'Catalog, product decisions, release operations, and delivery handoff.',
+      },
+      {
+        audience: 'Authors and publishers',
+        product: 'Author & Book Launch OS',
+        outcome: 'Reader sample, press kit, events, newsletter, and reader circle.',
+      },
+      {
+        audience: 'Newsletter and media operators',
+        product: 'Independent Media OS',
+        outcome: 'Issue archive, sponsorship inventory, referrals, and paid membership.',
+      },
+      {
+        audience: 'Educators and cohort leaders',
+        product: 'Course & Cohort OS',
+        outcome: 'Curriculum, enrollment, live sessions, resources, and completion.',
+      },
+      {
+        audience: 'Communities and memberships',
+        product: 'Community Membership OS',
+        outcome: 'Onboarding, roles, events, resources, and recurring communication.',
+      },
+      {
+        audience: 'Coaches and consultants',
+        product: 'Expert Services OS',
+        outcome: 'Fit, method, proof, booking, client intake, and service delivery.',
+      },
+      {
+        audience: 'Musicians and audio creators',
+        product: 'Music Release OS',
+        outcome: 'Listening, catalog context, credits, licensing, drops, and fan capture.',
+      },
+      {
+        audience: 'Artists and photographers',
+        product: 'Portfolio & Licensing OS',
+        outcome: 'Collections, commissions, usage rights, licensing, and collector contact.',
+      },
+      {
+        audience: 'Podcasters and video creators',
+        product: 'Audience Network OS',
+        outcome: 'Episodes, clips, guests, sponsors, resources, and subscriber paths.',
+      },
+      {
+        audience: 'Speakers and event producers',
+        product: 'Events & Speaker OS',
+        outcome: 'Programs, dates, media kit, registration, partners, and follow-up.',
+      },
+      {
+        audience: 'Agencies and creative studios',
+        product: 'Studio Pipeline OS',
+        outcome: 'Capabilities, case evidence, qualification, proposals, and client handoff.',
+      },
+      {
+        audience: 'Indie games and worldbuilders',
+        product: 'World Launch OS',
+        outcome: 'Lore entry, playable proof, updates, community, and release milestones.',
+      },
+    ],
+  },
+  {
+    lane: 'AI startups',
+    promise: 'Production-oriented starters organized around the real operating risk, not a generic chat screen.',
+    products: [
+      {
+        audience: 'AI SaaS founders',
+        product: 'AI SaaS Starter',
+        outcome: 'Authentication, usage, billing adapter, onboarding, support, and observability.',
+      },
+      {
+        audience: 'Agent-product teams',
+        product: 'Agent Product Starter',
+        outcome: 'Runs, tools, approvals, handoffs, traces, cost, and failure recovery.',
+      },
+      {
+        audience: 'Knowledge-product teams',
+        product: 'Knowledge Studio',
+        outcome: 'Ingestion, retrieval, citations, permissions, feedback, and source refresh.',
+      },
+      {
+        audience: 'Research and intelligence teams',
+        product: 'AI Research Desk',
+        outcome: 'Research plans, evidence, synthesis, review, exports, and paid reports.',
+      },
+      {
+        audience: 'Image, audio, and video startups',
+        product: 'Generative Media Studio',
+        outcome: 'Jobs, variants, provenance, rights, review, storage, and delivery.',
+      },
+      {
+        audience: 'Vertical copilot founders',
+        product: 'Vertical Copilot Starter',
+        outcome: 'Domain intake, structured actions, human approval, history, and audit trail.',
+      },
+      {
+        audience: 'API and developer-tool companies',
+        product: 'Developer Business Starter',
+        outcome: 'Documentation, keys, usage, examples, status, pricing, and support.',
+      },
+      {
+        audience: 'Model and platform teams',
+        product: 'Eval & Observability Console',
+        outcome: 'Datasets, runs, comparisons, quality, latency, cost, and regressions.',
+      },
+      {
+        audience: 'Enterprise AI programs',
+        product: 'AI CoE Operating System',
+        outcome: 'Portfolio, governance, models, policies, risk, value, and adoption.',
+      },
+      {
+        audience: 'Automation and integration startups',
+        product: 'Workflow Automation Hub',
+        outcome: 'Connectors, triggers, runs, retries, approvals, and operational ownership.',
+      },
+    ],
+  },
+] as const
+
 export const releaseGates = [
-  'Public source with a clear license',
+  'Public source with a clear license, rights, and provenance record',
   'Useful demo path with no required secrets',
   'Loading, empty, error, and permission-aware states',
   'Type, lint, contract, and production-build evidence',

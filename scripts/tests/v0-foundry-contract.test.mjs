@@ -45,7 +45,7 @@ test('interface studies are not mislabeled as deployable products', () => {
   const page = read('app/v0/page.tsx')
   const source = read('content/v0/foundry.ts')
 
-  assert.match(page, /interactive references/)
+  assert.match(page, /interactive (?:design )?references/i)
   assert.match(page, /Zero false deployment claims/)
   assert.doesNotMatch(`${page}\n${source}`, /production-ready|SOTA|one-click deploy/i)
 })
@@ -63,4 +63,40 @@ test('release evidence names the remaining browser review gap', () => {
 
   assert.match(source, /TypeScript, lint, contract tests, and production build passed/)
   assert.match(source, /visual review pending machine capacity/)
+})
+
+test('the catalog embeds one governed preview with responsive controls', () => {
+  const component = read('components/v0/FoundryStudies.tsx')
+
+  assert.match(component, /<iframe/)
+  assert.match(component, /sandbox="allow-forms allow-popups allow-same-origin allow-scripts"/)
+  assert.match(component, /Preview width/)
+  assert.match(component, /Desktop/)
+  assert.match(component, /Tablet/)
+  assert.match(component, /Mobile/)
+  assert.match(component, /v0_study_previewed/)
+  assert.match(component, /v0_preview_viewport_changed/)
+})
+
+test('v0 interface copy follows the sentence-case design contract', () => {
+  const surfaces = [
+    read('app/v0/page.tsx'),
+    read('app/v0/error.tsx'),
+    read('components/v0/FoundryStudies.tsx'),
+  ].join('\n')
+
+  assert.doesNotMatch(surfaces, /\buppercase\b|text-transform:\s*uppercase/)
+})
+
+test('the product portfolio covers focused creator and AI startup businesses', () => {
+  const source = read('content/v0/foundry.ts')
+  const page = read('app/v0/page.tsx')
+  const portfolio = source
+    .split('export const templatePortfolio =')[1]
+    .split('export const releaseGates =')[0]
+
+  assert.equal([...portfolio.matchAll(/audience: '/g)].length, 22)
+  assert.match(portfolio, /Creator businesses/)
+  assert.match(portfolio, /AI startups/)
+  assert.match(page, /Proprietary code, assets, and prompts are never copied/)
 })
