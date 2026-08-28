@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Creator Launch OS interactive product scene</title>
+  <style>
+    :root{color-scheme:light;--paper:#eeeae1;--ink:#11120f;--muted:#66665f;--line:#11120f26;--signal:#c8ff4d;--night:#11120f}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif}button{font:inherit}
+    .shell{min-height:100vh;display:flex;flex-direction:column}.top{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid var(--line)}.identity{display:flex;align-items:center;gap:12px}.mark{display:grid;width:32px;height:32px;place-items:center;border-radius:50%;background:var(--ink);color:var(--paper);font-weight:800}.identity b{font-size:13px}.identity span{display:block;margin-top:2px;font:9px ui-monospace,monospace;letter-spacing:.08em;color:var(--muted)}
+    .tabs{display:flex;gap:6px;padding:4px;border:1px solid var(--line);border-radius:999px}.tabs button{border:0;background:transparent;color:var(--muted);padding:8px 12px;border-radius:999px;font-size:11px;cursor:pointer}.tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+    .view{display:none;flex:1}.view.active{display:grid}.storefront{grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;padding:54px clamp(32px,7vw,110px)}.eyebrow{font:10px ui-monospace,monospace;letter-spacing:.11em;color:var(--muted)}h1{font-size:clamp(46px,6.4vw,92px);line-height:.9;letter-spacing:-.065em;margin:24px 0 25px;max-width:760px}h1 em{font:italic 400 1em Georgia,serif}.deck{font-size:16px;line-height:1.6;color:var(--muted);max-width:580px}.actions{display:flex;align-items:center;gap:22px;margin-top:28px}.primary{border:0;background:var(--ink);color:var(--paper);border-radius:999px;padding:13px 18px;font-size:12px;font-weight:750}.textlink{font-size:12px;font-weight:650}.meta{display:flex;gap:24px;margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font:9px ui-monospace,monospace;color:var(--muted)}
+    .release-card{position:relative;border-radius:28px;background:var(--night);color:#f4f1e9;padding:30px;box-shadow:0 30px 70px #5f58453d;overflow:hidden}.release-card:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff10 1px,transparent 1px),linear-gradient(90deg,#ffffff10 1px,transparent 1px);background-size:32px 32px}.card-content{position:relative}.card-top{display:flex;align-items:center;justify-content:space-between;font:9px ui-monospace,monospace;color:#ffffff75}.demo{border:1px solid #ffffff20;border-radius:999px;padding:6px 9px}.release-card h2{font:400 clamp(30px,4vw,52px)/1.02 Georgia,serif;margin:34px 0 10px;max-width:490px}.score{font-size:46px;color:var(--signal);letter-spacing:-.05em}.checks{margin-top:26px;border-top:1px solid #ffffff15}.check{display:grid;grid-template-columns:22px 1fr auto;gap:10px;padding:15px 0;border-bottom:1px solid #ffffff12;font-size:12px}.check i{font-style:normal;color:var(--signal)}.check span{color:#ffffff45;font:9px ui-monospace,monospace}.bar{height:4px;border-radius:999px;background:#ffffff15;margin-top:26px;overflow:hidden}.bar:after{content:"";display:block;width:92%;height:100%;background:var(--signal)}
+    .studio{grid-template-columns:250px 1fr;background:var(--night);color:#f5f3ec}.studio aside{border-right:1px solid #ffffff12;padding:28px 18px}.studio aside h2{font-size:24px;line-height:1.02;margin:28px 8px}.queue{display:block;width:100%;text-align:left;border:0;border-radius:14px;padding:14px;background:transparent;color:#ffffff55;margin-bottom:5px}.queue.active{background:#ffffff0c;color:white}.queue small{display:block;font:9px ui-monospace,monospace;color:#ffffff35;margin-bottom:5px}.workspace{padding:34px}.workspace-head{display:flex;align-items:end;justify-content:space-between;gap:20px;border-bottom:1px solid #ffffff15;padding-bottom:24px}.workspace h3{font-size:40px;letter-spacing:-.045em;margin:0}.workspace p{max-width:460px;color:#ffffff52;font-size:12px;line-height:1.55;margin:0}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.metric{border:1px solid #ffffff12;border-radius:16px;padding:18px}.metric b{font-size:28px}.metric span{display:block;margin-top:6px;font-size:10px;color:#ffffff42}.release-table{margin-top:22px;border:1px solid #ffffff12;border-radius:16px;overflow:hidden}.row{display:grid;grid-template-columns:1fr 130px 90px;gap:18px;padding:16px 18px;border-bottom:1px solid #ffffff10;font-size:11px}.row:last-child{border:0}.row span{color:#ffffff45}.ready{color:var(--signal)!important}
+    .delivery{grid-template-columns:.8fr 1.2fr;gap:60px;align-items:center;padding:54px clamp(32px,7vw,110px)}.delivery h2{font-size:clamp(44px,5vw,76px);line-height:.94;letter-spacing:-.055em;margin:22px 0}.delivery p{font-size:15px;line-height:1.65;color:var(--muted)}.delivery-list{border-top:1px solid var(--line)}.delivery-item{display:grid;grid-template-columns:38px 1fr auto;gap:14px;padding:22px 0;border-bottom:1px solid var(--line)}.delivery-item i{font:10px ui-monospace,monospace;font-style:normal}.delivery-item b{font-size:15px}.delivery-item p{margin:5px 0 0;font-size:11px}.delivery-item span{font:9px ui-monospace,monospace;border:1px solid var(--line);border-radius:999px;padding:7px 9px;height:max-content}
+    @media(max-width:720px){.top{height:auto;min-height:62px;padding:10px 14px;gap:10px}.tabs{overflow:auto}.tabs button{padding:7px 9px}.storefront,.delivery{display:block!important;padding:34px 20px}.storefront h1{font-size:52px}.release-card{margin-top:38px;padding:22px}.meta{gap:13px;flex-wrap:wrap}.studio{grid-template-columns:1fr!important}.studio aside{border-right:0;border-bottom:1px solid #ffffff12;padding:16px}.studio aside h2{margin:12px 4px 18px}.queues{display:flex;overflow:auto}.queue{min-width:145px}.workspace{padding:24px 16px}.workspace-head{display:block}.workspace p{margin-top:13px}.metrics{grid-template-columns:1fr}.row{grid-template-columns:1fr auto}.row span:nth-child(2){display:none}.delivery-list{margin-top:36px}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="identity"><span class="mark">0</span><div><b>Creator Launch OS</b><span>Edition Zero</span></div></div>
+      <div class="tabs" role="tablist" aria-label="Product scenes">
+        <button type="button" role="tab" aria-selected="true" data-view="storefront">Storefront</button>
+        <button type="button" role="tab" aria-selected="false" data-view="studio">Release studio</button>
+        <button type="button" role="tab" aria-selected="false" data-view="delivery">Delivery</button>
+      </div>
+    </header>
+
+    <section id="storefront" class="view storefront active" role="tabpanel">
+      <div>
+        <p class="eyebrow">A free creator-business starter</p>
+        <h1>Make the work easy to trust—and easier to <em>buy.</em></h1>
+        <p class="deck">A focused storefront with the operating view behind it. Replace the sample release, connect your checkout, and publish on your own domain.</p>
+        <div class="actions"><button class="primary" type="button">Browse the releases →</button><span class="textlink">Inspect the operating view →</span></div>
+        <div class="meta"><span>Next.js 16</span><span>Zero-secret demo</span><span>MIT licensed</span><span>Vercel-ready</span></div>
+      </div>
+      <div class="release-card"><div class="card-content"><div class="card-top"><span>Release 01</span><span class="demo">Demo data</span></div><h2>The Systems Field Guide</h2><div class="score">92%</div><div class="checks"><div class="check"><i>✓</i><b>Offer is specific</b><span>Ready</span></div><div class="check"><i>✓</i><b>Delivery tested</b><span>Ready</span></div><div class="check"><i>✓</i><b>Proof attached</b><span>Ready</span></div><div class="check"><i>○</i><b>Release window</b><span>Next</span></div></div><div class="bar"></div></div></div>
+    </section>
+
+    <section id="studio" class="view studio" role="tabpanel">
+      <aside><p class="eyebrow">Release studio</p><h2>Turn the offer into an operating loop.</h2><div class="queues"><button class="queue active" type="button"><small>01</small>Systems Field Guide</button><button class="queue" type="button"><small>02</small>Creator Sprint</button><button class="queue" type="button"><small>03</small>Prompt Field Notes</button></div></aside>
+      <div class="workspace"><div class="workspace-head"><div><p class="eyebrow">Current release</p><h3>Systems Field Guide</h3></div><p>The public storefront is only one view. This workspace makes proof, delivery, and the next release decision visible.</p></div><div class="metrics"><div class="metric"><b>18</b><span>Waitlist subscribers</span></div><div class="metric"><b>7</b><span>Delivery checks passed</span></div><div class="metric"><b>3</b><span>Field notes attached</span></div></div><div class="release-table"><div class="row"><b>Offer and decision path</b><span>Copy review</span><span class="ready">Ready</span></div><div class="row"><b>Checkout handoff</b><span>Fallback tested</span><span class="ready">Ready</span></div><div class="row"><b>Delivery package</b><span>Clean account</span><span class="ready">Ready</span></div><div class="row"><b>Post-release learning</b><span>Three events</span><span>Watching</span></div></div></div>
+    </section>
+
+    <section id="delivery" class="view delivery" role="tabpanel">
+      <div><p class="eyebrow">Delivery is part of the product</p><h2>The promise survives the checkout.</h2><p>Each release defines what the buyer receives, where it lives, what happens when delivery fails, and which signal improves the next edition.</p></div>
+      <div class="delivery-list"><div class="delivery-item"><i>01</i><div><b>Confirm the decision</b><p>Repeat the product, edition, and delivery expectation.</p></div><span>Immediate</span></div><div class="delivery-item"><i>02</i><div><b>Deliver the owned artifact</b><p>Send the download or access path without exposing credentials.</p></div><span>Automated</span></div><div class="delivery-item"><i>03</i><div><b>Make failure recoverable</b><p>Give the buyer a support path and preserve the transaction state.</p></div><span>Observed</span></div><div class="delivery-item"><i>04</i><div><b>Earn the second use</b><p>Ask one useful question after the customer has used the release.</p></div><span>Day seven</span></div></div>
+    </section>
+  </div>
+  <script>
+    const tabs = [...document.querySelectorAll('[data-view]')]
+    const views = [...document.querySelectorAll('.view')]
+    tabs.forEach((tab) => tab.addEventListener('click', () => {
+      tabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)))
+      views.forEach((view) => view.classList.toggle('active', view.id === tab.dataset.view))
+    }))
+  </script>
+</body>
+</html>

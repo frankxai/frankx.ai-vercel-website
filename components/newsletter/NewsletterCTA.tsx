@@ -25,7 +25,8 @@ export default function NewsletterCTA() {
               How it works
             </h2>
             <p className="text-slate-400">
-              Start with the main letter. Add deeper streams only when they matter.
+              Start with the main letter. Explore deeper editorial lanes only
+              when they matter.
             </p>
           </motion.div>
 
@@ -44,7 +45,7 @@ export default function NewsletterCTA() {
               {
                 step: '03',
                 title: 'Stay in control',
-                desc: 'No pressure loops. Leave any time, or add deeper streams when they earn your attention.',
+                desc: 'No pressure loops. Leave any time, or update the delivery categories connected to your address.',
               },
             ].map((item, i) => (
               <motion.div

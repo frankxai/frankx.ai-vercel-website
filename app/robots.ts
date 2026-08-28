@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
 
+import { siteConfig } from '@/lib/seo'
+
 export default function robots(): MetadataRoute.Robots {
   const commonDisallows = [
     '/api/',
@@ -36,6 +38,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: commonDisallows,
       },
     ],
-    sitemap: 'https://frankx.ai/sitemap.xml',
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   }
 }

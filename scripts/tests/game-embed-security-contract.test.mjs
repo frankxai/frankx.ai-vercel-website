@@ -1,16 +1,209 @@
 import assert from 'node:assert/strict'
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import test from 'node:test'
+import { fileURLToPath } from 'node:url'
 
 import nextConfig from '../../next.config.mjs'
+import { resolvesPublicHref } from '../lib/public-file-resolution.mjs'
+
+const repoRoot = fileURLToPath(new URL('../..', import.meta.url))
+const vercelConfig = JSON.parse(readFileSync(join(repoRoot, 'vercel.json'), 'utf8'))
+const embedRoot = join(repoRoot, 'public', 'game-embeds')
+const legacyGamesRoot = join(repoRoot, 'public', 'games')
+const catalogSource = readFileSync(join(repoRoot, 'app', 'games', '[slug]', 'page.tsx'), 'utf8')
+const playerSource = readFileSync(
+  join(repoRoot, 'app', 'games', '[slug]', 'GamePlayerClient.tsx'),
+  'utf8',
+)
+const tailwindBrowserScript = 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4'
 
 function getHeader(rule, key) {
   return rule.headers.find((header) => header.key === key)?.value
 }
 
-test('static game documents can be embedded only by the FrankX origin', async () => {
+function getDirective(csp, directive) {
+  return csp
+    .split(';')
+    .map((value) => value.trim())
+    .find((value) => value.startsWith(directive + ' '))
+}
+
+function sorted(values) {
+  return [...values].sort((left, right) => left.localeCompare(right))
+}
+
+test('public clean URLs resolve only exact files or directory indexes', (t) => {
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'frankx-public-href-'))
+  const publicRoot = join(fixtureRoot, 'public')
+  const hubDirectory = join(publicRoot, 'game-embeds', 'legacy-hub')
+  const emptyDirectory = join(publicRoot, 'empty-directory')
+  const prefixLookalike = join(fixtureRoot, 'public-lookalike')
+
+  mkdirSync(hubDirectory, { recursive: true })
+  mkdirSync(emptyDirectory, { recursive: true })
+  mkdirSync(prefixLookalike, { recursive: true })
+  writeFileSync(join(publicRoot, 'exact.txt'), 'exact')
+  writeFileSync(join(hubDirectory, 'index.html'), '<!doctype html>')
+  writeFileSync(join(prefixLookalike, 'leak.txt'), 'outside public')
+  t.after(() => rmSync(fixtureRoot, { recursive: true, force: true }))
+
+  assert.equal(resolvesPublicHref(publicRoot, '/exact.txt'), true)
+  assert.equal(resolvesPublicHref(publicRoot, '/game-embeds/legacy-hub'), true)
+  assert.equal(resolvesPublicHref(publicRoot, '/game-embeds/legacy-hub/index.html'), true)
+
+  assert.equal(resolvesPublicHref(publicRoot, '/missing-directory'), false)
+  assert.equal(resolvesPublicHref(publicRoot, '/empty-directory'), false)
+  assert.equal(resolvesPublicHref(publicRoot, '/../public-lookalike/leak.txt'), false)
+  assert.equal(resolvesPublicHref(publicRoot, '/../../etc/passwd'), false)
+})
+
+test('the App Router owns /games and every catalog slug', () => {
+  assert.equal(
+    existsSync(legacyGamesRoot),
+    false,
+    'public/games must not exist because static files there shadow app/games routes',
+  )
+
+  const catalogSlugs = new Set(
+    [...catalogSource.matchAll(/\bslug:\s*'([^']+)'/gu)].map((match) => match[1]),
+  )
+  const nonGameEmbedDirectories = new Set(['assets', 'legacy-hub'])
+  const embedSlugs = readdirSync(embedRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && !nonGameEmbedDirectories.has(entry.name))
+    .map((entry) => entry.name)
+
+  assert.ok(catalogSlugs.size > 0, 'the game catalog parser must find at least one slug')
+  assert.deepEqual(sorted(embedSlugs), sorted(catalogSlugs))
+
+  const gameSlugExpression = '$' + '{game.slug}'
+  const templateDelimiter = String.fromCharCode(96)
+  const expectedIframeSource =
+    'src={' + templateDelimiter + '/game-embeds/' + gameSlugExpression +
+    templateDelimiter + '}'
+  assert.ok(
+    playerSource.includes(expectedIframeSource),
+    'the player iframe must use the isolated embed prefix',
+  )
+  assert.doesNotMatch(playerSource, /\/games\/games\//u)
+
+  for (const slug of embedSlugs) {
+    const htmlPath = join(embedRoot, slug, 'index.html')
+    assert.ok(existsSync(htmlPath), 'missing embed document for ' + slug)
+
+    const html = readFileSync(htmlPath, 'utf8')
+    const externalScripts = [...html.matchAll(
+      /<script\b[^>]*\bsrc=["'](https:\/\/[^"']+)["'][^>]*>/giu,
+    )].map((match) => match[1])
+    assert.deepEqual(
+      externalScripts,
+      [tailwindBrowserScript],
+      slug + ' must load only the explicitly authorized external script',
+    )
+    assert.doesNotMatch(html, /\/games\/(?:games|assets)\//u)
+    assert.doesNotMatch(html, /\.\.\/\.\.\/index\.html/u)
+
+    const assetReferences = [...html.matchAll(
+      /\b(?:src|href)=["'](\/game-embeds\/assets\/[^"']+)["']/gu,
+    )].map((match) => match[1])
+    assert.ok(assetReferences.length >= 2, slug + ' must reference its local bundles')
+    for (const assetReference of assetReferences) {
+      assert.ok(
+        existsSync(join(repoRoot, 'public', assetReference.slice(1))),
+        slug + ' references a missing asset: ' + assetReference,
+      )
+    }
+  }
+
+  const legacyHubPath = join(embedRoot, 'legacy-hub', 'index.html')
+  assert.equal(
+    existsSync(join(embedRoot, 'legacy-hub.html')),
+    false,
+    'the hub source must use a directory index so its clean URL is filesystem-resolvable',
+  )
+  assert.ok(existsSync(legacyHubPath), 'the canonical legacy hub index must exist')
+
+  const legacyHub = readFileSync(legacyHubPath, 'utf8')
+  assert.doesNotMatch(legacyHub, /\/games\/(?:games|assets)\//u)
+  assert.match(legacyHub, /\/game-embeds\/neuro-matrix/u)
+  assert.doesNotMatch(legacyHub, /\/game-embeds\/[^"']+\/index\.html/u)
+
+  const hubEmbedReferences = [...legacyHub.matchAll(
+    /\b(?:data-src|src|href)=["'](\/game-embeds\/[^"']+)["']/gu,
+  )].map((match) => match[1])
+  assert.ok(hubEmbedReferences.length > 0, 'the legacy hub must reference canonical embeds')
+
+  for (const reference of hubEmbedReferences) {
+    assert.doesNotMatch(reference, /(?:\.html|\/index\.html)$/u)
+    if (reference.startsWith('/game-embeds/assets/')) {
+      assert.ok(
+        existsSync(join(repoRoot, 'public', reference.slice(1))),
+        'legacy hub references a missing asset: ' + reference,
+      )
+      continue
+    }
+
+    const slug = reference.split('/')[2]
+    assert.ok(catalogSlugs.has(slug), 'legacy hub references an unknown game: ' + reference)
+  }
+})
+
+test('clean URLs and effective aliases converge on canonical game routes', async () => {
+  assert.equal(vercelConfig.cleanUrls, true)
+
+  const redirects = await nextConfig.redirects()
+  const hubRedirect = redirects.find((rule) => rule.source === '/games/hub')
+  assert.deepEqual(
+    hubRedirect,
+    {
+      source: '/games/hub',
+      destination: '/game-embeds/legacy-hub',
+      permanent: true,
+    },
+  )
+  assert.ok(
+    existsSync(join(repoRoot, 'public', hubRedirect.destination.slice(1), 'index.html')),
+    'the extensionless hub redirect must resolve to a directory index',
+  )
+  assert.equal(
+    existsSync(join(repoRoot, 'public', hubRedirect.destination.slice(1) + '.html')),
+    false,
+    'the hub must not rely on a .html source file under cleanUrls',
+  )
+  assert.deepEqual(
+    redirects.find((rule) => rule.source === '/games/games/:path*'),
+    {
+      source: '/games/games/:path*',
+      destination: '/game-embeds/:path*',
+      permanent: true,
+    },
+  )
+
+  const gameRedirects = redirects.filter(
+    (rule) => rule.source.startsWith('/games') || rule.destination.startsWith('/game-embeds'),
+  )
+  assert.equal(
+    gameRedirects.some(
+      (rule) => rule.source.includes('.html') || rule.destination.includes('.html'),
+    ),
+    false,
+    'cleanUrls handles .html/index.html before Next redirects, so aliases must be extensionless',
+  )
+})
+
+test('only relocated game embeds receive same-origin framing and Tailwind script access', async () => {
   const rules = await nextConfig.headers()
   const siteRule = rules.find((rule) => rule.source === '/((?!palace).*)')
-  const gameRule = rules.find((rule) => rule.source === '/games/games/:path*')
+  const gameRule = rules.find((rule) => rule.source === '/game-embeds/:path*')
 
   assert.ok(siteRule, 'the site-wide security-header rule must remain present')
   assert.ok(gameRule, 'embedded game documents need a dedicated security-header override')
@@ -19,12 +212,30 @@ test('static game documents can be embedded only by the FrankX origin', async ()
     'the game override must follow the site-wide rule so matching headers win',
   )
 
+  const conflictingVercelXFrameRules = (vercelConfig.headers ?? [])
+    .flatMap((rule) => rule.headers ?? [])
+    .filter((header) => header.key.toLowerCase() === 'x-frame-options')
+  assert.deepEqual(
+    conflictingVercelXFrameRules,
+    [],
+    'vercel.json must not overwrite the route-specific Next.js framing policy',
+  )
+
   const siteCsp = getHeader(siteRule, 'Content-Security-Policy')
   const gameCsp = getHeader(gameRule, 'Content-Security-Policy')
+  const siteScriptSources = getDirective(siteCsp, 'script-src')
+  const gameScriptSources = getDirective(gameCsp, 'script-src')
 
-  assert.match(siteCsp, /frame-ancestors 'none'/)
+  assert.equal(getDirective(siteCsp, 'frame-ancestors'), "frame-ancestors 'none'")
   assert.equal(getHeader(siteRule, 'X-Frame-Options'), 'DENY')
-  assert.match(gameCsp, /frame-ancestors 'self'/)
-  assert.doesNotMatch(gameCsp, /frame-ancestors 'none'/)
+  assert.doesNotMatch(siteScriptSources, /cdn\.jsdelivr\.net/u)
+
+  assert.equal(getDirective(gameCsp, 'frame-ancestors'), "frame-ancestors 'self'")
   assert.equal(getHeader(gameRule, 'X-Frame-Options'), 'SAMEORIGIN')
+  assert.match(gameScriptSources, /https:\/\/cdn\.jsdelivr\.net\/npm\/@tailwindcss\/browser@4/u)
+
+  const jsDelivrRules = rules
+    .filter((rule) => getHeader(rule, 'Content-Security-Policy')?.includes('cdn.jsdelivr.net'))
+    .map((rule) => rule.source)
+  assert.deepEqual(jsDelivrRules, ['/game-embeds/:path*'])
 })

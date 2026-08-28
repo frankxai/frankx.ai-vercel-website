@@ -1,0 +1,144 @@
+{
+  "schema": "frankx/intelligence-source-policy@1",
+  "defaults": {
+    "timeout_ms": 20000,
+    "max_redirects": 2,
+    "max_response_bytes": 8388608,
+    "max_models": 10000,
+    "max_output_models": 1000,
+    "max_stale_hours": 192,
+    "max_context_tokens": 100000000,
+    "max_price_usd_per_m": 100000,
+    "max_abs_benchmark_score": 1000000000,
+    "output_scope": "registry-only",
+    "provider_org_map": {
+      "alibaba": "alibaba",
+      "anthropic": "anthropic",
+      "azure": "microsoft",
+      "deepseek": "deepseek",
+      "google": "google",
+      "meta": "meta",
+      "mistral": "mistralai",
+      "moonshotai": "moonshot",
+      "openai": "openai",
+      "xai": "xai"
+    }
+  },
+  "sources": [
+    {
+      "id": "models-dev",
+      "mode": "ingest",
+      "enabled": true,
+      "url": "https://models.dev/api.json",
+      "allowed_hosts": ["models.dev"],
+      "license": {
+        "name": "MIT",
+        "state": "confirmed",
+        "redistribution_permitted": true,
+        "notice": "Copyright (c) 2025 models.dev",
+        "evidence": [
+          {
+            "role": "dataset-scope",
+            "url": "https://raw.githubusercontent.com/anomalyco/models.dev/dev/README.md",
+            "allowed_hosts": ["raw.githubusercontent.com"],
+            "sha256": "2767d37ee90f6d71a876ef33347c04776cf16591f0051ac27f7369f8accd09cf"
+          },
+          {
+            "role": "licence-grant",
+            "url": "https://raw.githubusercontent.com/anomalyco/models.dev/dev/LICENSE",
+            "allowed_hosts": ["raw.githubusercontent.com"],
+            "sha256": "dc2dc41c9fea2fd3c41c21c6f484844cab367800b88ff24781f980ad3a9d160a"
+          }
+        ],
+        "verified_at": "2026-08-24"
+      },
+      "attribution": "models.dev (SST)",
+      "role": "pricing + capability spine",
+      "auth": { "kind": "none" }
+    },
+    {
+      "id": "openrouter-models",
+      "mode": "ingest",
+      "enabled": true,
+      "url": "https://openrouter.ai/api/v1/models",
+      "allowed_hosts": ["openrouter.ai"],
+      "license": {
+        "name": "OpenRouter ToS — redistribution not yet verified",
+        "state": "unverified",
+        "redistribution_permitted": null,
+        "candidate_evidence_urls": ["https://openrouter.ai/terms"],
+        "evidence": [],
+        "verified_at": null
+      },
+      "attribution": "OpenRouter",
+      "role": "live pricing + context windows",
+      "auth": { "kind": "none" }
+    },
+    {
+      "id": "openrouter-rankings",
+      "mode": "ingest",
+      "enabled": true,
+      "url": "https://openrouter.ai/api/v1/datasets/rankings-daily",
+      "allowed_hosts": ["openrouter.ai"],
+      "license": {
+        "name": "OpenRouter rankings terms — redistribution not yet verified",
+        "state": "unverified",
+        "redistribution_permitted": null,
+        "candidate_evidence_urls": ["https://openrouter.ai/docs/features/rankings"],
+        "evidence": [],
+        "verified_at": null
+      },
+      "attribution": "OpenRouter rankings",
+      "role": "adoption share (usage, not quality)",
+      "auth": { "kind": "bearer-env", "env": "OPENROUTER_API_KEY" }
+    },
+    {
+      "id": "artificial-analysis",
+      "mode": "link-only",
+      "enabled": true,
+      "url": "https://artificialanalysis.ai/",
+      "label": "Artificial Analysis — Intelligence Index, speed, price",
+      "reason": "Free-tier terms are treated as no-redistribution pending a commercial licence.",
+      "license": {
+        "name": "Commercial terms required for redistribution",
+        "state": "blocked",
+        "redistribution_permitted": false,
+        "candidate_evidence_urls": ["https://artificialanalysis.ai/terms"],
+        "evidence": [],
+        "verified_at": null
+      }
+    },
+    {
+      "id": "swe-bench",
+      "mode": "link-only",
+      "enabled": true,
+      "url": "https://www.swebench.com/",
+      "label": "SWE-bench leaderboard",
+      "reason": "CC BY-NC 4.0 is not compatible with redistribution on this commercial site.",
+      "license": {
+        "name": "CC BY-NC 4.0",
+        "state": "blocked",
+        "redistribution_permitted": false,
+        "candidate_evidence_urls": ["https://github.com/SWE-bench/SWE-bench/blob/main/LICENSE"],
+        "evidence": [],
+        "verified_at": null
+      }
+    },
+    {
+      "id": "lmarena",
+      "mode": "link-only",
+      "enabled": true,
+      "url": "https://lmarena.ai/leaderboard",
+      "label": "LMArena human-preference leaderboard",
+      "reason": "Ingest remains deferred until the dataset licence and Parquet path are verified end to end.",
+      "license": {
+        "name": "Licence not yet verified for this ingest path",
+        "state": "unverified",
+        "redistribution_permitted": null,
+        "candidate_evidence_urls": ["https://lmarena.ai/leaderboard"],
+        "evidence": [],
+        "verified_at": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">The modern DEAL operating loop</title>
+  <desc id="desc">Definition, Elimination, Automation and Liberation are connected by evidence and exception routing in an AI architect's founder operating system.</desc>
+  <rect width="1600" height="1000" fill="#07090b"/>
+  <rect x="54" y="54" width="1492" height="892" rx="28" fill="#0b0e11" stroke="#ffffff" stroke-opacity="0.10"/>
+  <text x="100" y="126" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="700">THE MODERN DEAL LOOP</text>
+  <text x="100" y="190" fill="#f8fafc" font-family="Poppins, Inter, Arial, sans-serif" font-size="46" font-weight="760">From personal productivity to governed autonomy</text>
+  <text x="100" y="232" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="21">Every stage has a human decision, a machine role, and proof before the next handoff.</text>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="100" y="304" width="324" height="390" rx="20" fill="#0d1414" stroke="#10b981" stroke-opacity="0.58"/>
+    <text x="132" y="352" fill="#10b981" font-size="17" font-weight="750">01 / DEFINITION</text>
+    <text x="132" y="405" fill="#f8fafc" font-size="32" font-weight="720">Choose the game</text>
+    <text x="132" y="458" fill="#cbd5e1" font-size="19">Purpose and 90-day outcomes</text>
+    <text x="132" y="496" fill="#cbd5e1" font-size="19">Non-goals and quality floor</text>
+    <text x="132" y="534" fill="#cbd5e1" font-size="19">Decision rights and limits</text>
+    <text x="132" y="572" fill="#cbd5e1" font-size="19">Stop conditions</text>
+    <path d="M132 614H390" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="132" y="653" fill="#94a3b8" font-size="16">OUTPUT</text>
+    <text x="210" y="653" fill="#a7f3d0" font-size="16" font-weight="700">ONE-PAGE CONSTITUTION</text>
+
+    <rect x="458" y="304" width="324" height="390" rx="20" fill="#0c1216" stroke="#06b6d4" stroke-opacity="0.58"/>
+    <text x="490" y="352" fill="#06b6d4" font-size="17" font-weight="750">02 / ELIMINATION</text>
+    <text x="490" y="405" fill="#f8fafc" font-size="32" font-weight="720">Protect attention</text>
+    <text x="490" y="458" fill="#cbd5e1" font-size="19">Three active outcomes</text>
+    <text x="490" y="496" fill="#cbd5e1" font-size="19">Question-led information</text>
+    <text x="490" y="534" fill="#cbd5e1" font-size="19">One intake contract</text>
+    <text x="490" y="572" fill="#cbd5e1" font-size="19">A legitimate hold list</text>
+    <path d="M490 614H748" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="490" y="653" fill="#94a3b8" font-size="16">OUTPUT</text>
+    <text x="568" y="653" fill="#67e8f9" font-size="16" font-weight="700">BOUNDED WORK QUEUE</text>
+
+    <rect x="816" y="304" width="324" height="390" rx="20" fill="#0d1414" stroke="#10b981" stroke-opacity="0.58"/>
+    <text x="848" y="352" fill="#10b981" font-size="17" font-weight="750">03 / AUTOMATION</text>
+    <text x="848" y="405" fill="#f8fafc" font-size="32" font-weight="720">Route the work</text>
+    <text x="848" y="458" fill="#cbd5e1" font-size="19">Rules → deterministic code</text>
+    <text x="848" y="496" fill="#cbd5e1" font-size="19">Ambiguity → bounded AI</text>
+    <text x="848" y="534" fill="#cbd5e1" font-size="19">Judgment → specialist</text>
+    <text x="848" y="572" fill="#cbd5e1" font-size="19">Identity → founder</text>
+    <path d="M848 614H1106" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="848" y="653" fill="#94a3b8" font-size="16">OUTPUT</text>
+    <text x="926" y="653" fill="#a7f3d0" font-size="16" font-weight="700">VERIFIED OUTCOME</text>
+
+    <rect x="1174" y="304" width="324" height="390" rx="20" fill="#0c1216" stroke="#06b6d4" stroke-opacity="0.58"/>
+    <text x="1206" y="352" fill="#06b6d4" font-size="17" font-weight="750">04 / LIBERATION</text>
+    <text x="1206" y="405" fill="#f8fafc" font-size="32" font-weight="720">Test the absence</text>
+    <text x="1206" y="458" fill="#cbd5e1" font-size="19">Pause safely without you</text>
+    <text x="1206" y="496" fill="#cbd5e1" font-size="19">Escalate only exceptions</text>
+    <text x="1206" y="534" fill="#cbd5e1" font-size="19">Protect chosen commitments</text>
+    <text x="1206" y="572" fill="#cbd5e1" font-size="19">Measure time returned</text>
+    <path d="M1206 614H1464" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="1206" y="653" fill="#94a3b8" font-size="16">OUTPUT</text>
+    <text x="1284" y="653" fill="#67e8f9" font-size="16" font-weight="700">REAL AGENCY</text>
+  </g>
+
+  <g fill="none" stroke="#94a3b8" stroke-opacity="0.55" stroke-width="2">
+    <path d="M424 500H458"/>
+    <path d="M782 500H816"/>
+    <path d="M1140 500H1174"/>
+  </g>
+  <g fill="#94a3b8" fill-opacity="0.7">
+    <path d="M454 492l14 8-14 8z"/>
+    <path d="M812 492l14 8-14 8z"/>
+    <path d="M1170 492l14 8-14 8z"/>
+  </g>
+
+  <rect x="100" y="752" width="1398" height="132" rx="18" fill="#070a0d" stroke="#ffffff" stroke-opacity="0.11"/>
+  <text x="132" y="801" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">CONTROL RAIL</text>
+  <text x="340" y="801" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="18">permissions · budgets · tests · source evidence · rollback · exception queue</text>
+  <text x="132" y="846" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="16">LEARN FROM EXCEPTIONS → UPDATE THE CONTRACT → RUN THE ABSENCE TEST AGAIN</text>
+
+  <text x="100" y="922" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="17">FrankX original architecture · 27 August 2026</text>
+</svg>

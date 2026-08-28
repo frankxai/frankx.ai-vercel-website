@@ -1,11 +1,5 @@
-const { GoogleGenAI } = require("@google/genai");
 const fs = require("fs");
 const path = require("path");
-
-const API_KEY = "AIzaSyClPlfKNsasEZ56dTSr-7zwJimthqus-UI";
-const OUTPUT_DIR = "C:\\Users\\Frank\\FrankX\\.worktrees\\vercel-ui-ux\\public\\images\\guides";
-
-const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 const imagePrompts = [
   {
@@ -30,64 +24,142 @@ const imagePrompts = [
   }
 ];
 
-async function generateImage(prompt, filename) {
-  console.log(`\nGenerating: ${filename}`);
-  console.log(`Prompt: ${prompt.substring(0, 80)}...`);
+function requireGeminiKey(env) {
+  if (!env.GEMINI_API_KEY?.trim()) {
+    throw new Error(
+      "GEMINI_API_KEY is required. Set it in the environment before generating guide images."
+    );
+  }
+}
 
+function resolveOutputDir(env) {
+  return env.GUIDE_IMAGE_OUTPUT_DIR
+    ? path.resolve(env.GUIDE_IMAGE_OUTPUT_DIR)
+    : path.join(__dirname, "..", "public", "images", "guides");
+}
+
+async function defaultGenerateImage(options) {
+  const { generateImage } = await import("./lib/nb-image.mjs");
+  return generateImage(options);
+}
+
+function verifyGeneratedArtifact(result, outputDir, expectedOutputPath) {
+  if (!result || typeof result.path !== "string" || !result.path.trim()) {
+    throw new Error("Gemini image client returned no generated artifact path.");
+  }
+
+  const generatedPath = path.resolve(result.path);
+  const relativePath = path.relative(path.resolve(outputDir), generatedPath);
+  if (
+    !relativePath ||
+    relativePath === ".." ||
+    relativePath.startsWith(`..${path.sep}`) ||
+    path.isAbsolute(relativePath)
+  ) {
+    throw new Error("Gemini image client returned a path outside the configured output directory.");
+  }
+  if (path.parse(generatedPath).name !== path.parse(expectedOutputPath).name) {
+    throw new Error("Gemini image client returned an artifact with an unexpected filename.");
+  }
+  if (![".png", ".jpg", ".jpeg", ".webp"].includes(path.extname(generatedPath).toLowerCase())) {
+    throw new Error("Gemini image client returned an unsupported image extension.");
+  }
+
+  let stats;
   try {
-    const response = await ai.models.generateImages({
-      model: "imagen-4.0-generate-001",
-      prompt: prompt,
-      config: {
-        numberOfImages: 1,
+    stats = fs.statSync(generatedPath);
+  } catch {
+    throw new Error("Gemini image client did not write the declared artifact.");
+  }
+  if (!stats.isFile() || stats.size === 0) {
+    throw new Error("Gemini image client wrote an empty or non-file artifact.");
+  }
+
+  return generatedPath;
+}
+
+function defaultDelay(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+async function main({
+  env = process.env,
+  generateImageImpl = defaultGenerateImage,
+  delayImpl = defaultDelay,
+  delayMilliseconds = 2000
+} = {}) {
+  requireGeminiKey(env);
+
+  const outputDir = resolveOutputDir(env);
+  fs.mkdirSync(outputDir, { recursive: true });
+  console.log("Starting image generation with the canonical FrankX Gemini image client");
+  console.log(`Output directory: ${outputDir}`);
+
+  const failures = [];
+
+  for (const [index, { filename, prompt }] of imagePrompts.entries()) {
+    console.log(`\nGenerating: ${filename}`);
+    console.log(`Prompt: ${prompt.substring(0, 80)}...`);
+
+    try {
+      const outputPath = path.join(outputDir, filename);
+      const result = await generateImageImpl({
+        prompt,
+        outputPath,
+        model: "nbpro",
         aspectRatio: "16:9",
-        outputMimeType: "image/png"
-      }
-    });
-
-    if (response.generatedImages && response.generatedImages.length > 0) {
-      const imageData = response.generatedImages[0].image.imageBytes;
-      const outputPath = path.join(OUTPUT_DIR, filename);
-
-      // Convert base64 to buffer and save
-      const buffer = Buffer.from(imageData, "base64");
-      fs.writeFileSync(outputPath, buffer);
-
-      console.log(`Saved: ${outputPath}`);
-      return true;
-    } else {
-      console.error(`No image generated for ${filename}`);
-      return false;
+        imageSize: "2K",
+        enforceDesignThinking: false,
+        fallback: true,
+        backupExisting: false,
+        verbose: true
+      });
+      const savedPath = verifyGeneratedArtifact(result, outputDir, outputPath);
+      console.log(`Saved: ${savedPath}`);
+    } catch (error) {
+      failures.push({ filename, message: error.message });
+      console.error(`Error generating ${filename}: ${error.message}`);
     }
+
+    if (index < imagePrompts.length - 1 && delayMilliseconds > 0) {
+      await delayImpl(delayMilliseconds);
+    }
+  }
+
+  const successCount = imagePrompts.length - failures.length;
+  console.log(`\n${"=".repeat(50)}`);
+  console.log(`Generation complete: ${successCount}/${imagePrompts.length} images created`);
+  console.log(`Images saved to: ${outputDir}`);
+
+  if (failures.length > 0) {
+    throw new Error(
+      `${failures.length} guide image generation request(s) failed: ${failures.map(item => item.filename).join(", ")}`
+    );
+  }
+
+  return { successCount, outputDir };
+}
+
+async function runCli(mainImpl = main) {
+  try {
+    await mainImpl();
+    return true;
   } catch (error) {
-    console.error(`Error generating ${filename}:`, error.message);
+    console.error(`Guide image batch failed: ${error.message}`);
+    process.exitCode = 1;
     return false;
   }
 }
 
-async function main() {
-  console.log("Starting image generation with Gemini Imagen 4 API");
-  console.log(`Output directory: ${OUTPUT_DIR}`);
-
-  // Ensure output directory exists
-  if (!fs.existsSync(OUTPUT_DIR)) {
-    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-    console.log("Created output directory");
-  }
-
-  let successCount = 0;
-
-  for (const { filename, prompt } of imagePrompts) {
-    const success = await generateImage(prompt, filename);
-    if (success) successCount++;
-
-    // Small delay between requests to avoid rate limiting
-    await new Promise(resolve => setTimeout(resolve, 2000));
-  }
-
-  console.log(`\n${"=".repeat(50)}`);
-  console.log(`Generation complete: ${successCount}/${imagePrompts.length} images created`);
-  console.log(`Images saved to: ${OUTPUT_DIR}`);
+if (require.main === module) {
+  void runCli();
 }
 
-main().catch(console.error);
+module.exports = {
+  imagePrompts,
+  main,
+  requireGeminiKey,
+  resolveOutputDir,
+  runCli,
+  verifyGeneratedArtifact
+};

@@ -1,4 +1,5 @@
 import { OfficialArchitectureAtlas } from '@/components/ai-architecture/OfficialArchitectureAtlas'
+import RunItCta from '@/components/ai-architecture/RunItCta'
 import { PillarGuide, pillarFaqs } from '@/components/ai-architecture/pillar/PillarGuide'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { createMetadata } from '@/lib/seo'
@@ -14,7 +15,7 @@ export const metadata = createMetadata({
     'How to structure a system that calls a language model: the seven planes, choosing between workflow and agent, the 2026-07-28 MCP revision, the OWASP GenAI LLM Top 10 2026, and where these systems actually break.',
   path: '/ai-architecture',
   type: 'article',
-  updatedTime: '2026-08-20',
+  updatedTime: '2026-08-25',
 })
 
 const CONTENTS = [
@@ -70,6 +71,28 @@ export default function AIArchitecturePage() {
       </nav>
 
       <PillarGuide />
+
+      {/*
+        The field guide gives readers a seven-plane system map. The review is the
+        next action: it asks four explicit questions about the hardest decisions to
+        reverse and turns the answers into a fix-first verdict.
+      */}
+      <section className="border-t border-white/5 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <p className="font-mono text-xs text-emerald-300">Run it</p>
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Seven planes map the system. Four decisions produce a verdict.
+          </h2>
+          <p className="mt-5 leading-7 text-slate-400">
+            The architecture review asks four questions about the decisions that are expensive to
+            reverse. Answer them for your own system and you get a report naming which are made,
+            which are still open, and which to close first — or install the same rubric into the
+            coding agent that already has the repository open, and let it grep for the evidence
+            instead of asking you.
+          </p>
+          <RunItCta />
+        </div>
+      </section>
     </main>
   )
 }

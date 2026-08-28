@@ -61,11 +61,17 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Meaning](${SITE_URL}/qualities/meaning): Relevance, purpose, and coherence as the compass
 - [Connection](${SITE_URL}/qualities/connection): Trust, belonging, and collective capability as the multiplier
 - [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, proof points, boundaries, and contact
+
+## Founder Path
+Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
+- [Founder Stack](${SITE_URL}/founder-stack): Diagnose the current constraint across State, Signal, Systems, Scale, and Stewardship
+- [Foundry](${SITE_URL}/foundry): Apply for an evaluated operating-system install adapted to the founder's business
+- [Founder's Circle](${SITE_URL}/founders-circle): Application-only quarterly strategic AI retainer for consequential decisions
+- [Human Layer](${SITE_URL}/human-layer): Evidence-aware founder statecraft governed by established, emerging, experiential, and symbolic lenses
+- [Signal Loop](${SITE_URL}/newsletter): Main founder letter, with additional editorial lanes available through the newsletter hub
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
-- [Signal Loop](${SITE_URL}/newsletter): Main weekly letter on AI architecture, creator systems, music experiments, and peak-state notes
 - [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, and work-review system; not medical advice
 - [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer to €2,997 Founder's Circle)
-- [Founder's Circle](${SITE_URL}/founders-circle): Application-only quarterly cohort
 
 ## Operating Systems (the FrankX OS spine)
 ${osLinks}

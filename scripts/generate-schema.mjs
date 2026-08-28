@@ -10,7 +10,7 @@
 
 import fs from 'fs/promises'
 import path from 'path'
-import { glob } from 'glob'
+import { pathToFileURL } from 'url'
 
 const SITE_URL = 'https://frankx.ai'
 const SITE_NAME = 'FrankX.AI'
@@ -25,60 +25,72 @@ function parseFrontmatter(content) {
   const yaml = match[1]
   const frontmatter = {}
   const lines = yaml.split('\n')
-  let currentKey = null
-  let currentArray = null
 
-  for (const line of lines) {
-    if (line.trim().startsWith('- ') && currentKey) {
-      const value = line.trim().slice(2)
-      if (!frontmatter[currentKey]) frontmatter[currentKey] = []
+  const unquote = (value) => value.trim().replace(/^["']|["']$/g, '')
 
-      if (value.startsWith('q:')) {
-        currentArray = { q: value.slice(2).trim().replace(/^["']|["']$/g, '') }
-        frontmatter[currentKey].push(currentArray)
-      } else if (value.startsWith('a:') && currentArray) {
-        currentArray.a = value.slice(2).trim().replace(/^["']|["']$/g, '')
-      } else {
-        frontmatter[currentKey].push(value.replace(/^["']|["']$/g, ''))
+  for (let index = 0; index < lines.length; index += 1) {
+    const topLevel = lines[index].match(/^([A-Za-z][\w-]*):\s*(.*)$/)
+    if (!topLevel) continue
+
+    const [, key, rawValue] = topLevel
+    const value = rawValue.trim()
+
+    if (key === 'faq' && value === '') {
+      const faqs = []
+      let currentFAQ = null
+
+      while (index + 1 < lines.length && /^\s+/.test(lines[index + 1])) {
+        index += 1
+        const question = lines[index].match(/^\s{2}- q:\s*(.+)$/)
+        const answer = lines[index].match(/^\s{4}a:\s*(.+)$/)
+
+        if (question) {
+          currentFAQ = { q: unquote(question[1]) }
+          faqs.push(currentFAQ)
+        } else if (answer && currentFAQ) {
+          currentFAQ.a = unquote(answer[1])
+        }
       }
-      continue
-    }
 
-    const colonIndex = line.indexOf(':')
-    if (colonIndex > 0) {
-      const key = line.slice(0, colonIndex).trim()
-      const value = line.slice(colonIndex + 1).trim()
-
-      if (value === '' || value === '|') {
-        currentKey = key
-        frontmatter[key] = []
-      } else if (value.startsWith('[') && value.endsWith(']')) {
-        frontmatter[key] = value.slice(1, -1).split(',').map((v) => v.trim().replace(/^["']|["']$/g, ''))
-        currentKey = null
-      } else {
-        frontmatter[key] = value.replace(/^["']|["']$/g, '')
-        currentKey = key
-        currentArray = null
-      }
+      frontmatter.faq = faqs
+    } else if (value.startsWith('[') && value.endsWith(']')) {
+      frontmatter[key] = value.slice(1, -1).split(',').map((entry) => unquote(entry))
+    } else if (value && value !== '|') {
+      frontmatter[key] = unquote(value)
     }
   }
 
   return frontmatter
 }
 
-function extractFAQFromBody(content) {
+export function normalizeFAQText(value) {
+  return String(value || '')
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/`+([^`]+)`+/g, '$1')
+    .replace(/\\([\\`*_{}\[\]()#+\-.!])/g, '$1')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/__([^_]+)__/g, '$1')
+    .replace(/~~([^~]+)~~/g, '$1')
+    .replace(/(^|\s)[*-]\s+/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+export function extractFAQFromBody(content) {
   const body = content.replace(/^---[\s\S]*?---/, '')
-  const faqMatch = body.match(/##\s*FAQ[\s\S]*?(?=##[^#]|$)/i)
+  const faqMatch = body.match(/(?:^|\n)## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/i)
   if (!faqMatch) return []
 
   const faqs = []
-  const faqSection = faqMatch[0]
-  const pattern = /###\s*(.+?)\n+([\s\S]*?)(?=###|$)/g
+  const faqSection = faqMatch[1]
+  const pattern = /### (.+?)\n\n([\s\S]*?)(?=\n### |\n## |$)/g
   let match
 
   while ((match = pattern.exec(faqSection)) !== null) {
-    const question = match[1].trim()
-    const answer = match[2].trim().split('\n').filter((line) => line.trim() && !line.startsWith('#')).join(' ').trim()
+    const question = normalizeFAQText(match[1])
+    const answer = normalizeFAQText(match[2].trim().split('\n').filter((line) => line.trim() && !line.startsWith('#')).join(' '))
     if (question && answer) faqs.push({ question, answer })
   }
 
@@ -126,19 +138,34 @@ function buildSchemaGraph(frontmatter, faqs, slug) {
   return { '@context': 'https://schema.org', '@graph': schemas }
 }
 
-async function generateSchemaForFile(filepath) {
+export async function generateSchemaForFile(filepath) {
   const content = await fs.readFile(filepath, 'utf-8')
   const frontmatter = parseFrontmatter(content)
   if (!frontmatter) return null
 
   const slug = path.basename(filepath, '.mdx')
-  const frontmatterFaqs = Array.isArray(frontmatter.faq) ? frontmatter.faq : []
   const bodyFaqs = extractFAQFromBody(content)
+  const frontmatterFaqs = (Array.isArray(frontmatter.faq) ? frontmatter.faq : [])
+    .map((faq) => ({
+      question: normalizeFAQText(faq.question || faq.q),
+      answer: normalizeFAQText(faq.answer || faq.a),
+    }))
+    .filter((faq) => faq.question && faq.answer)
 
-  const allFaqs = [...frontmatterFaqs]
-  for (const bodyFaq of bodyFaqs) {
-    const exists = allFaqs.some((f) => (f.question || f.q).toLowerCase().trim() === bodyFaq.question.toLowerCase().trim())
-    if (!exists) allFaqs.push({ question: bodyFaq.question, answer: bodyFaq.answer })
+  // Visible body FAQs are canonical whenever present. This keeps generated
+  // JSON-LD identical to the live blog route and prevents two drifting copies
+  // from being merged into duplicate questions. Frontmatter remains a fallback
+  // for legacy documents that do not render an FAQ section.
+  const sourceFaqs = bodyFaqs.length > 0 ? bodyFaqs : frontmatterFaqs
+  const seen = new Set()
+  const allFaqs = []
+  for (const faq of sourceFaqs) {
+    const key = faq.question.toLocaleLowerCase('en-US')
+    if (seen.has(key)) {
+      throw new Error(`${filepath}: duplicate FAQ question after normalization: ${faq.question}`)
+    }
+    seen.add(key)
+    allFaqs.push(faq)
   }
 
   return { slug, schema: buildSchemaGraph(frontmatter, allFaqs, slug), stats: { faqCount: allFaqs.length, hasImage: !!frontmatter.image, hasTldr: !!frontmatter.tldr } }
@@ -153,6 +180,7 @@ async function saveSchema(slug, schema) {
 }
 
 async function generateAll() {
+  const { glob } = await import('glob')
   const blogDir = path.join(process.cwd(), 'content', 'blog')
   const files = await glob(blogDir + '/**/*.mdx')
   console.log('\nGenerating schemas for ' + files.length + ' MDX files...\n')
@@ -208,4 +236,6 @@ async function main() {
   }
 }
 
-main()
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main()
+}

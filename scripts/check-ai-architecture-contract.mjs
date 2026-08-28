@@ -13,9 +13,11 @@ await Promise.all([
 ])
 
 const failures = []
-if (sources.length < 8) failures.push('official source atlas contains fewer than eight architectures')
+if (sources.length < 10) failures.push('official source atlas contains fewer than ten architectures')
 if (!sources.every((source) =>
   source.docsUrl &&
+  source.docsKind &&
+  source.verifiedOn &&
   source.source?.kind &&
   source.source?.label &&
   source.source?.url &&
@@ -23,6 +25,25 @@ if (!sources.every((source) =>
   source.flow.length >= 4
 )) {
   failures.push('every architecture must include docs, repository, and a four-stage flow')
+}
+const ids = sources.map((source) => source.id)
+if (new Set(ids).size !== ids.length) {
+  failures.push('every architecture id must be unique')
+}
+const DOCS_KINDS = ['documentation', 'reference-architecture', 'architecture-notes']
+if (!sources.every((source) => DOCS_KINDS.includes(source.docsKind))) {
+  failures.push(`every architecture needs a docsKind from: ${DOCS_KINDS.join(', ')}`)
+}
+const isCalendarDate = (value) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
+  const [year, month, day] = value.split('-').map(Number)
+  const date = new Date(Date.UTC(year, month - 1, day))
+  return date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month - 1 &&
+    date.getUTCDate() === day
+}
+if (!sources.every((source) => isCalendarDate(source.verifiedOn))) {
+  failures.push('every architecture needs a real verifiedOn calendar date in YYYY-MM-DD format')
 }
 // The catalog used to be keyed to three named vendors. It is now keyed to the
 // execution shape a reference needs, which is the property that decides which
@@ -42,20 +63,49 @@ if (!['Request-scoped', 'Durable runtime', 'Managed service'].every((shape) =>
 // The atlas derives its filter buttons from these values, so a typo does not
 // fail loudly -- it ships as a selectable plane with one architecture behind it.
 // Membership, not truthiness, is what makes the declaration meaningful.
+// These are the seven planes the field guide, the blog post, the diagrams and
+// the ai-architect-review skill all use. The atlas used to carry a second,
+// different set of seven under the same word, so a reader picked a plane at the
+// top of the page and then read a different plane vocabulary below it (#515).
+// One vocabulary now, and this list is what keeps it that way.
 const PLANES = [
   'Experience',
+  'Observability',
+  'Evaluation',
   'Orchestration',
-  'Runtime',
-  'Intelligence',
-  'Integration',
-  'Reliability',
-  'Operations',
+  'Tool surface',
+  'Context and retrieval',
+  'Model access',
 ]
+// A hardcoded list would only record today's answer. The field guide's own
+// referenceStack is the source the page renders, so the list above is checked
+// against it: rename a plane there and this fails until the atlas is remapped,
+// which is the divergence #515 was.
+const guideData = await readFile(new URL('components/ai-architecture/pillar/guide-data.ts', root), 'utf8')
+const stackStart = guideData.indexOf('referenceStack')
+const stackEnd = guideData.indexOf('\nexport ', stackStart + 'referenceStack'.length)
+const stackSegment = guideData.slice(stackStart, stackEnd === -1 ? guideData.length : stackEnd)
+const guidePlanes = [...stackSegment.matchAll(/^\s{4}name:\s*'([^']+)'/gm)].map((match) => match[1])
+if (guidePlanes.length !== PLANES.length || guidePlanes.some((name, index) => name !== PLANES[index])) {
+  failures.push(
+    `plane vocabulary drifted from the field guide — guide has [${guidePlanes.join(', ')}], contract has [${PLANES.join(', ')}]`,
+  )
+}
+
 const unknownPlanes = [...new Set(
   sources.map((source) => source.layer).filter((layer) => !PLANES.includes(layer)),
 )]
 if (unknownPlanes.length) {
   failures.push(`unknown plane(s): ${unknownPlanes.join(', ')} -- must be one of: ${PLANES.join(', ')}`)
+}
+const catalogPlanes = [...new Set(sources.map((source) => source.layer))]
+if (
+  catalogPlanes.length !== PLANES.length ||
+  catalogPlanes.some((plane, index) => plane !== PLANES[index])
+) {
+  failures.push(
+    `catalog filter order drifted — catalog has [${catalogPlanes.join(', ')}], expected [${PLANES.join(', ')}]`,
+  )
 }
 // The atlas is meant to be a complete map, so every plane needs an architecture
 // standing in it. A plane with no entry is a gap the reader cannot see.
@@ -69,7 +119,12 @@ const PLATFORMS = ['Vercel', 'Cloudflare', 'AWS', 'Google Cloud', 'Azure', 'Rail
 if (PLATFORMS.filter((name) => home.includes(name)).length < 6) {
   failures.push('atlas must present platforms broadly, not just the internal three')
 }
-if (!home.includes('Every external link in this catalog was checked')) failures.push('visible link-verification statement missing')
+if (!home.includes('Each entry shows when its documentation and source links were last')) {
+  failures.push('visible per-entry link-verification statement missing')
+}
+if (!home.includes('source.verifiedOn') || !home.includes('DOCS_LABEL[source.docsKind]')) {
+  failures.push('atlas must render each source verification date and controlled documentation label')
+}
 if (home.includes('Working repository')) failures.push('generic repository label remains')
 if (blueprintIndex.includes('/blueprint/') || legacyShell.includes('/blueprint/')) failures.push('legacy broken /blueprint route remains')
 if (!blueprintIndex.includes('/ai-architecture/${blueprint.slug}') || !legacyShell.includes('/ai-architecture/${blueprint.slug}')) {
@@ -117,6 +172,32 @@ const MAPPING_ANCHORS = [
   'ceiling is higher', // run MADE
   'close or lower', // run OPEN
 ]
+// The skill is the third place the seven planes are written down, and it is the
+// copy that travels into other people's repositories. If it drifts from the
+// guide, a reader gets one vocabulary on the page and another in their agent.
+// Read the Step 2 plane-walk table specifically. Two earlier versions of this
+// check were too loose to fail: searching the whole document passes on the
+// frontmatter alone, and matching any two-digit table row passes if the seven
+// rows are moved under an unrelated heading. Bound to the section, then require
+// the table's own header before trusting any row.
+const step2Start = skill.indexOf('## Step 2')
+const step2End = skill.indexOf('\n## ', step2Start + 1)
+const planeWalk =
+  step2Start === -1 ? '' : skill.slice(step2Start, step2End === -1 ? skill.length : step2End)
+const PLANE_TABLE_HEADER = '| # | Plane | Owns | The boundary below it |'
+if (!planeWalk.includes(PLANE_TABLE_HEADER)) {
+  failures.push(
+    'skill Step 2 plane-walk table is missing or renamed — its header row must read exactly ' +
+      `"${PLANE_TABLE_HEADER}", or this parity check silently has nothing to compare`,
+  )
+}
+const skillPlanes = [...planeWalk.matchAll(/^\|\s*\d{2}\s*\|\s*([^|]+?)\s*\|/gm)].map((match) => match[1])
+if (skillPlanes.length !== PLANES.length || skillPlanes.some((name, index) => name !== PLANES[index])) {
+  failures.push(
+    `skill plane walk drifted — skill has [${skillPlanes.join(', ')}], field guide has [${PLANES.join(', ')}]`,
+  )
+}
+
 for (const anchor of MAPPING_ANCHORS) {
   const needle = canon(anchor)
   if (!runnerCanon.includes(needle)) failures.push(`review runner verdict mapping changed — anchor missing: "${anchor}"`)

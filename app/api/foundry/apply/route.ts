@@ -1,55 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { appendFile, mkdir } from 'fs/promises'
-import path from 'path'
-import { leadRatelimit, getClientIdentifier } from '@/lib/ratelimit'
-import {
-  foundryApplicationReceivedEmail,
-  foundryApplicationNotifyEmail,
-  type FoundryApplicationInput,
-} from '@/lib/email-templates-foundry'
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY
-const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
+import { processIntake } from '@/lib/contact-intake'
+import { getClientIdentifier, leadRatelimit } from '@/lib/ratelimit'
 
 const VALID_STAGES = ['idea', 'pre-launch', 'revenue', 'scaling'] as const
+const FIELD_LIMITS = {
+  name: 200,
+  email: 200,
+  company: 200,
+  building: 1500,
+  why: 1500,
+  stage: 50,
+  link: 500,
+} as const
 
-/**
- * Foundry application intake.
- * Mirrors the 404-log storage pattern: private/ locally (gitignored),
- * /tmp on Vercel. Applications also land in Frank's inbox via Resend,
- * so the JSONL is a backstop, not the system of record.
- */
-function applicationsPath() {
-  const dir = process.env.VERCEL ? '/tmp' : path.join(process.cwd(), 'private')
-  return { dir, file: path.join(dir, 'foundry-applications.jsonl') }
-}
-
-async function sendEmails(input: FoundryApplicationInput) {
-  if (!RESEND_API_KEY) return
-
-  const send = (to: string, subject: string, text: string) =>
-    fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ from: 'Frank <frank@mail.frankx.ai>', to, subject, text }),
-    })
-
-  const confirmation = foundryApplicationReceivedEmail(input)
-  const notification = foundryApplicationNotifyEmail(input)
-
-  await Promise.allSettled([
-    send(input.email, confirmation.subject, confirmation.plainText),
-    send('frank@frankx.ai', notification.subject, notification.plainText),
-  ])
-}
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limit: 10 applications per hour per client. Fail-open — a KV
-    // outage must never block a legitimate application.
     try {
       const { success } = await leadRatelimit.limit(getClientIdentifier(request))
       if (!success) {
@@ -58,81 +27,104 @@ export async function POST(request: NextRequest) {
           { status: 429 }
         )
       }
-    } catch (err) {
-      console.error('Foundry rate-limit check failed (continuing open):', err)
+    } catch (error) {
+      console.error('Foundry rate-limit check failed:', error)
+      return NextResponse.json(
+        {
+          error:
+            'The application service is temporarily unavailable. Please try again shortly or email frank@frankx.ai.',
+        },
+        { status: 503 },
+      )
     }
 
     const body = await request.json()
-
-    // Honeypot: real users never see or fill this field. Bots that fill it
-    // get a success response and silence — no signal that they were caught.
     if (typeof body.website === 'string' && body.website.trim() !== '') {
       return NextResponse.json({ success: true, message: 'Application received.' })
     }
 
-    const input: FoundryApplicationInput = {
-      name: String(body.name ?? '').slice(0, 200).trim(),
-      email: String(body.email ?? '').slice(0, 200).trim(),
-      company: String(body.company ?? '').slice(0, 200).trim(),
-      building: String(body.building ?? '').slice(0, 2000).trim(),
-      why: String(body.why ?? '').slice(0, 2000).trim(),
-      stage: String(body.stage ?? '').slice(0, 50).trim(),
-      link: body.link ? String(body.link).slice(0, 500).trim() : undefined,
+    const rawInput = {
+      name: String(body.name ?? ''),
+      email: String(body.email ?? ''),
+      company: String(body.company ?? ''),
+      building: String(body.building ?? ''),
+      why: String(body.why ?? ''),
+      stage: String(body.stage ?? ''),
+      link: body.link ? String(body.link) : '',
     }
+    const oversizedField = Object.entries(FIELD_LIMITS).find(
+      ([key, limit]) => rawInput[key as keyof typeof rawInput].length > limit,
+    )
+    if (oversizedField) {
+      return NextResponse.json(
+        {
+          error: `The ${oversizedField[0]} field is too long. Please shorten it and submit again.`,
+        },
+        { status: 400 },
+      )
+    }
+    const input = Object.fromEntries(
+      Object.entries(rawInput).map(([key, value]) => [key, value.trim()]),
+    ) as typeof rawInput
 
     if (!input.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) {
-      return NextResponse.json({ error: 'Please enter a valid email address' }, { status: 400 })
+      return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
     }
     if (!input.name || !input.company || !input.building || !input.why) {
       return NextResponse.json(
-        { error: 'Name, company, what you are building, and why it matters are required' },
+        { error: 'Please complete every required field.' },
+        { status: 400 }
+      )
+    }
+    if (body.consent !== true) {
+      return NextResponse.json(
+        { error: 'Please confirm consent so Frank can review and respond.' },
         { status: 400 }
       )
     }
     if (!VALID_STAGES.includes(input.stage as (typeof VALID_STAGES)[number])) {
-      return NextResponse.json({ error: 'Please select a stage' }, { status: 400 })
+      return NextResponse.json({ error: 'Please select a stage.' }, { status: 400 })
     }
 
-    // Backstop log (gitignored locally, ephemeral on Vercel)
-    try {
-      const { dir, file } = applicationsPath()
-      await mkdir(dir, { recursive: true })
-      await appendFile(
-        file,
-        JSON.stringify({ ...input, receivedAt: new Date().toISOString() }) + '\n'
+    const message = [
+      'FOUNDRY APPLICATION',
+      `Stage: ${input.stage}`,
+      `Link: ${input.link || 'Not provided'}`,
+      '',
+      'What they are building:',
+      input.building,
+      '',
+      'Why it matters:',
+      input.why,
+    ].join('\n')
+
+    const result = await processIntake(
+      {
+        intent: 'sprint',
+        name: input.name,
+        email: input.email,
+        company: input.company,
+        message,
+        source: '/foundry',
+        consent: true,
+      },
+      {
+        referrer: request.headers.get('referer'),
+        userAgent: request.headers.get('user-agent'),
+      },
+    )
+
+    if (!result.ok) {
+      return NextResponse.json(
+        { error: 'We hit a delivery hiccup. Please try again or email frank@frankx.ai.' },
+        { status: 500 }
       )
-    } catch (err) {
-      console.error('Foundry application log write failed:', err)
     }
-
-    // Add to Resend audience so the applicant exists as a contact (idempotent-ish:
-    // a 409 just means they already exist — not an error for an application).
-    if (RESEND_API_KEY) {
-      const res = await fetch(`https://api.resend.com/audiences/${AUDIENCE_ID}/contacts`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: input.email,
-          first_name: input.name || undefined,
-          unsubscribed: false,
-        }),
-      })
-      if (!res.ok && res.status !== 409) {
-        console.error('Resend contact creation failed for foundry application:', await res.text())
-      }
-    } else {
-      console.error('RESEND_API_KEY not configured — foundry application stored to log only')
-    }
-
-    // Confirmation + internal notification (non-blocking for the response)
-    sendEmails(input).catch((err) => console.error('Foundry application email error:', err))
 
     return NextResponse.json({
       success: true,
-      message: 'Application received. Frank reads every one personally.',
+      ackSent: result.entry.ack === 'sent',
+      message: 'Application received.',
     })
   } catch (error) {
     console.error('Foundry application error:', error)

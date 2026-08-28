@@ -1,10 +1,10 @@
 # AI Architecture Pillar + Series — Content & SEO Strategy
 
 **Repo:** `frankxai/frankx.ai-vercel-website` (production — `main` deploys to frankx.ai)
-**Date:** 2026-08-20 · **Author:** Claude (content/SEO strategy session) · **Status:** partially executed — the pillar page shipped in PR #508 (2026-08-20). The SEO substrate fixes and the supporting series remain planned.
+**Date:** 2026-08-20 · **Updated:** 2026-08-25 · **Author:** Claude (content/SEO strategy session) · **Status:** partially executed — the pillar page shipped in PR #508, `/ai-architect` is now a live four-check review, and the source atlas has ten entries across seven canonical planes. The remaining SEO substrate fixes and supporting series stay planned.
 **Scope:** (1) the definitive AI Architecture pillar page, updated for August 2026, built to rank and to be cited by answer engines; (2) the supporting series that makes it defensible.
 
-Every claim below about the repo was verified by reading source in this checkout on 2026-08-20. Every search-volume number comes from one source — the Semrush MCP connector (US database, pulled 2026-08-20) — and is labeled as such. Where something could not be verified, it says so.
+Repository-state claims touched by the 2026-08-25 consolidation were rechecked in source on that date. Search-volume numbers remain historical evidence from one source — the Semrush MCP connector (US database, pulled 2026-08-20) — and are labeled as such. Where something could not be verified, it says so.
 
 ---
 
@@ -40,37 +40,36 @@ Verified mechanisms, file by file. This section exists so the executing agent do
 - **`components/seo/JsonLd.tsx`** — typed `<JsonLd type=… data=…>` component; supported types include `Article`, `FAQPage`, `HowTo`, `BreadcrumbList`, `QAPage`, `Course`, `ItemList`, `CollectionPage`. Also exports `buildFAQPageData`, `buildHowToData`.
 - **`components/seo/Breadcrumbs.tsx`** — renders visible breadcrumbs **and** emits `BreadcrumbList` JSON-LD.
 - In use today: blog posts emit `Article` (+`FAQPage` when Q&A headings are extractable) at `app/blog/[slug]/page.tsx:143-160`; guides emit `Article` + `FAQPage` from frontmatter `faqs` at `app/guides/[slug]/page.tsx:75-77`; `/ask/[slug]` emits `FAQPage` with Question/Answer at `app/ask/[slug]/page.tsx:270-292`; research pages emit their own blocks.
-- **None of the `/ai-architecture` family emits any JSON-LD today** (verified by grep across `app/ai-architecture/`, `app/ai-architect*/`, `components/ai-architecture/`).
+- **The pillar now emits JSON-LD:** `app/ai-architecture/page.tsx` renders `BreadcrumbList` and `FAQPage`. Blueprint and supporting-route schema remains part of the P0 work below.
 
 ### 1.3 Content authoring pipelines
 
 - **Blog:** MDX in `content/blog/` (250 files), loaded by `lib/blog.ts` (gray-matter + reading-time, `cache()`d). Frontmatter supports: `title, description, date, lastUpdated, category, tags, keywords, tldr, faq[], schema[], featured, flagship, canonical` (canonical override for duplicates), `series { slug, title, part, total }` (drives prev/next SeriesNav), and `architectNote` (an "AI Architect Recommendation" box). Rendered at `app/blog/[slug]/page.tsx` with canonical `${siteConfig.url}/blog/${slug}`, Article JSON-LD (author marked `jobTitle: 'AI Architect'`, `alumniOf: Oracle`), extracted-FAQ JSON-LD, visible `Breadcrumbs`.
 - **Guides:** MDX in `content/guides/` (25 files) via `lib/guides.ts`; rendered at `app/guides/[slug]/page.tsx` with `createMetadata` + canonical + Article + FAQPage. The evergreen surface.
-- **Research:** `lib/research/domains.ts` (data module ~15k lines) → `/research/[slug]`; five domains today: `agentic-life-architecture`, `agentic-memory`, `agentic-sovereignty`, `agentic-evals`, `agentic-life-observatory`; plus the series page `app/research/series/architecture-of-intelligence/page.tsx`.
+- **Research:** `lib/research/domains.ts` → `/research/[slug]`; five domains today: `agentic-life-architecture`, `agentic-memory`, `agentic-sovereignty`, `agentic-evals`, `agentic-life-observatory`; plus the series page `app/research/series/architecture-of-intelligence/page.tsx`.
 - **Ask (Q&A/AEO surface):** `data/ask-questions.ts` (14 entries, categories include `ai-architecture`) → `/ask/[slug]` with FAQPage JSON-LD and `createMetadata`. Also fed into llms.txt.
 
 ### 1.4 Crawl surfaces
 
-- **`app/sitemap.ts`** (818 lines) — hardcoded arrays + dynamic loaders (blog from `content/blog`, guides, journal, newsletter, shorts…). AI-architecture entries today: `/ai-architecture` (0.7), plus **redirected** URLs `/ai-architect` (0.7 and again in an `aiPages` array at line 206), `/ai-architectures` (0.7), `/prototypes` (0.5), `/ai-architect/multi-cloud-comparison` (0.7), and `/ai-architect-academy` (0.8). **Missing:** every live `/ai-architecture/*` sub-page and all 13 blueprint URLs.
+- **`app/sitemap.ts`** — hardcoded arrays + dynamic loaders (blog from `content/blog`, guides, journal, newsletter, shorts…). AI-architecture entries today: `/ai-architecture` (0.7), the now-live `/ai-architect` twice, plus **redirected** URLs `/ai-architectures` (0.7), `/prototypes` (0.5), `/ai-architect/multi-cloud-comparison` (0.7), and `/ai-architect-academy` (0.8). **Missing:** every live `/ai-architecture/*` sub-page and all 13 blueprint URLs. Keep `/ai-architect` once; remove only its duplicate sitemap entry.
 - **`app/robots.ts`** — allows all + an explicit AI-crawler allowlist (GPTBot, ChatGPT-User, ClaudeBot, Claude-Web, PerplexityBot, Google-Extended, Applebot-Extended, Amazonbot, cohere-ai, Meta-ExternalAgent); disallows `/api/`, `/admin/`, `/prototype/`, etc. ⚠️ `sitemap:` points at `https://frankx.ai/sitemap.xml` (apex) while canonicals are `www` — works via redirect, but align it.
 - **`app/llms.txt/route.ts`** + **`app/llms-full.txt/route.ts`** — generated llms.txt per llmstxt.org: sections for OS modules, Library, Research, Workshops, Ask, blog, journal. **The `/ai-architecture` family appears nowhere in either file** (grep-verified) — the single cheapest AEO gap on the site.
 
 ### 1.5 Redirects (already shipped — this changes the whole brief)
 
-`next.config.mjs:252-271` — "AI Architecture Hub redirects - consolidate all variants to single hub", all `permanent: true`:
+`next.config.mjs` keeps the legacy AI Architecture family redirects `permanent: true`, but `/ai-architect` itself was deliberately unshadowed in #524:
 
 ```
 /prototypes                              → /ai-architecture/blueprints
 /ai-architectures                        → /ai-architecture
-/ai-architect                            → /ai-architecture
 /ai-architect/:path((?!ai-coe-hub).*)    → /ai-architecture/:path     (ai-coe-hub carved out)
 ```
 
-Config redirects run before the filesystem, so `app/ai-architectures/page.tsx`, `app/ai-architect/page.tsx` + `AIArchitectClient.tsx`, `app/ai-architect/multi-cloud-comparison/*`, and `app/prototypes/page.tsx` are **unreachable dead code**. `data/redirect-aliases.json` additionally 301s typo/alias paths (`/academy`, `/architect-academy`, `/ai-computer`, `/signal` → hub/academy). The cannibalization question is therefore already half-answered in routing; what remains is metadata, sitemap, llms.txt, one live duplicate route, and internal links.
+Config redirects run before the filesystem, so `app/ai-architectures/page.tsx`, the legacy `app/ai-architect/AIArchitectClient.tsx`, `app/ai-architect/multi-cloud-comparison/*`, and `app/prototypes/page.tsx` are **unreachable dead code**. `app/ai-architect/page.tsx` is live and owns the action intent: a four-question review plus an MIT-licensed skill. `data/redirect-aliases.json` additionally handles typo/alias paths. The cannibalization question is therefore already half-answered in routing; what remains is metadata, sitemap, llms.txt, one live duplicate route, and internal links.
 
 ### 1.6 Contracts and gates that must keep passing
 
-- **`scripts/check-ai-architecture-contract.mjs`** (wired as `test:ai-architecture` inside `pnpm run merge:gate`): requires ≥8 entries in `data/ai-architecture/official-sources.json`, each with `docsUrl`, `source.kind/label/url`, `flow.length ≥ 4`; deployment coverage of Vercel + Railway + GCP; the visible sentence `Every external link in this catalog was checked` in `OfficialArchitectureAtlas.tsx`; no generic "Working repository" label; no `/blueprint/` links in `app/ai-architecture/blueprints/page.tsx` or the legacy `AIArchitectureShell.tsx`; and the canonical link template `/ai-architecture/${blueprint.slug}` present in both.
+- **`scripts/check-ai-architecture-contract.mjs`** (wired as `test:ai-architecture` inside `pnpm run merge:gate`): requires the ten-entry catalog, unique IDs, one controlled `docsKind` and a real per-entry `verifiedOn` calendar date, the canonical seven-plane membership **and first-occurrence/filter order**, runtime coverage, guide and portable-skill plane parity, four-review-question parity, visible per-entry provenance, canonical blueprint routes, and the existing verdict-mapping invariants. These checks are intentionally adversarial: moving the Step 2 table, duplicating an ID, inventing a date, or reordering catalog planes must fail.
 - **`scripts/audit-ai-slop.mjs --strict`** (CI): taste.md refusal list — "delve", "dive deep/into", "unleash", "harness the power", "unlock your potential", "next-level", "game-changing", "revolutionary", line-initial "certainly/absolutely", etc.
 - **`scripts/audit-marketing-claims.mjs --strict`**: bans Fortune 100/500 claims, "trusted by", "Nx faster", "N% success rate", numeric ROI, and large vanity metrics — scans `app/ components/ lib/ data/` (not `content/`).
 - **`scripts/check-internal-links.mjs`** (`links:check:static`) — broken internal links fail the gate.
@@ -85,18 +84,18 @@ Config redirects run before the filesystem, so `app/ai-architectures/page.tsx`, 
 
 | URL | State | Source | What it is |
 |---|---|---|---|
-| `/ai-architecture` | **Live · canonical hub** | `app/ai-architecture/page.tsx` (5 lines) → `components/ai-architecture/OfficialArchitectureAtlas.tsx` (266 lines, `'use client'`) | "AI architecture field guide": 8 official reference architectures (Vercel agent interface, Vertex RAG, Google ADK team, Railway worker plane, OpenAI agent service, MCP tool plane, Temporal durable workflow, OTel observability) from `data/ai-architecture/official-sources.json`, each with owner, layer, 4-step flow, deployment badges, docs + repo links; a Vercel–Railway–GCP topology diagram; link-verification line "checked on 12 July 2026"; analytics events wired (`ai_architecture_cta_opened`, `ai_architecture_filter_selected`, `ai_architecture_source_opened`) |
-| `/ai-architecture/[slug]` | Live ×13 | `app/ai-architecture/[slug]/page.tsx` (377 lines) + `data/ai-architecture/prototypes.json` (13 published blueprints, 2,001 lines) | Blueprint detail pages: mermaid architecture diagram, problem/solution, components, implementation steps, code examples, `estimatedCost.monthly`, `timeToImplement`. `generateMetadata` returns **title + description only** |
+| `/ai-architecture` | **Live · canonical hub** | `app/ai-architecture/page.tsx` → `components/ai-architecture/OfficialArchitectureAtlas.tsx` | Field guide plus ten maintained entries across Experience, Observability, Evaluation, Orchestration, Tool surface, Context and retrieval, and Model access. Every card carries a controlled provenance label and its own `verifiedOn` date; the page also links to the four-check review and portable skill. Analytics events remain wired (`ai_architecture_cta_opened`, `ai_architecture_filter_selected`, `ai_architecture_source_opened`) |
+| `/ai-architecture/[slug]` | Live ×13 | `app/ai-architecture/[slug]/page.tsx` + `data/ai-architecture/prototypes.json` (13 published blueprints) | Blueprint detail pages: mermaid architecture diagram, problem/solution, components, implementation steps, code examples, `estimatedCost.monthly`, `timeToImplement`. `generateMetadata` returns **title + description only** |
 | `/ai-architecture/blueprints` | Live | `app/ai-architecture/blueprints/page.tsx` (client, **no metadata**) | Blueprint index; links `/ai-architecture/${slug}` (contract-enforced) |
 | `/ai-architecture/prototypes` | Live | client, **no metadata** | Interactive BYOK prototypes (chat playground live, others planned) |
 | `/ai-architecture/templates` | Live | client, **no metadata** | Paid starter kits via Lemon Squeezy checkout links |
 | `/ai-architecture/tools` | Live | client, **no metadata** | Curated tool directory, 8 categories |
 | `/ai-architecture/multi-cloud-comparison` | Live | client, **no metadata** | AWS/GCP/Azure/OCI comparison with CostBreakdown/GenAISetup/Roadmap components |
-| `/ai-architectures` | **308 → hub** | dead file `app/ai-architectures/page.tsx` (465 lines) | Unreachable showcase. Contains exactly the class of unsourced metrics recent commits removed elsewhere ("94%" accuracy, "10M/day", "99.99%", "40% savings") and links to `/prototype/${slug}` — harmless only because unreachable |
-| `/ai-architect` | **308 → hub** | dead `page.tsx` + `AIArchitectClient.tsx` (742 lines) | Unreachable methodology page |
+| `/ai-architectures` | **308 → hub** | dead file `app/ai-architectures/page.tsx` | Unreachable showcase. Contains exactly the class of unsourced metrics recent commits removed elsewhere ("94%" accuracy, "10M/day", "99.99%", "40% savings") and links to `/prototype/${slug}` — harmless only because unreachable |
+| `/ai-architect` | **Live · action surface** | `app/ai-architect/page.tsx` + `ReviewRunner.tsx` + `/skills/ai-architect-review/SKILL.md` | Runs four explicit reversal-cost checks in the browser or through the MIT-licensed coding-agent skill. The page and skill share contract-pinned questions, verdict semantics, seven-plane vocabulary, and fix-first priority |
 | `/ai-architect/ai-coe-hub` | **Live (carve-out)** | `app/ai-architect/ai-coe-hub/page.tsx` (client) | Oracle/OCI + FrankX AI-CoE resource hub; referenced by `lib/cross-links.ts` (`'ai-coe'` surface) and `data/os-modules.ts:108` |
 | `/ai-architect/multi-cloud-comparison` | 308 → `/ai-architecture/multi-cloud-comparison` | dead duplicate component tree | Unreachable |
-| `/ai-architect-academy` | **Live** | `app/ai-architect-academy/page.tsx` (645 lines, client; layout has `createMetadata`) | Training/curriculum surface for the public GitHub repo `frankxai/ai-architect-academy` (patterns, learning paths, Claude config) |
+| `/ai-architect-academy` | **Live** | `app/ai-architect-academy/page.tsx` (client; layout has `createMetadata`) | Training/curriculum surface for the public GitHub repo `frankxai/ai-architect-academy` (patterns, learning paths, Claude config); its orientation block distinguishes curriculum, field guide, and review |
 | `/ai-architect-academy/patterns` | Live | server page with `createMetadata` | 8 pattern one-pagers linking into the GitHub repo |
 | `/blueprint/[slug]` | **Live — unredirected duplicate** | `app/blueprint/[slug]/page.tsx` | Same 13 blueprints as `/ai-architecture/[slug]`, same data file — but this copy additionally renders affiliate-tracked `DeployButtonGroup` (from `data/deploy-targets.json`). No canonical on either side. The contract bans *linking* to `/blueprint/` from the two index surfaces but the route itself still resolves |
 | `/prototype/[id]`, `/prototype/chat-playground` | Live, robots-disallowed | `app/prototype/*` | Interactive surfaces; correctly excluded from crawl |
@@ -106,7 +105,7 @@ Adjacent live surfaces that overlap topically: `/for/architects` (audience lande
 ### 2.2 What's good
 
 - The **routing consolidation already happened** (§1.5) — four families → one canonical hub + one carved-out CoE hub + the academy. The strategy builds on it instead of re-litigating it.
-- The **atlas is genuinely differentiated**: link-verified official sources with a dated verification statement that CI enforces. No competitor page has a CI contract that fails the build when the verification sentence disappears.
+- The **atlas is genuinely differentiated**: each official source carries a controlled documentation label and its own checked date, and CI rejects missing/invalid dates, unknown labels, duplicate IDs, or filter-order drift.
 - The **blueprint data layer** (`prototypes.json`) is deep: 13 systems with diagrams, component inventories, implementation steps, cost estimates. Most "ultimate guide" competitors have prose only.
 - Voice and copy on the current atlas already pass the taste bar ("Build the agent system you can operate", "Keep the web request short. Move durable work to workers…"). Nothing to unwrite.
 - The blog machinery (tldr/faq/schema/series/canonical frontmatter) is exactly the machinery a pillar-cluster program needs, already proven on 250 posts.
@@ -132,13 +131,13 @@ All are additive; none renames a URL; each names its verification.
 | P0-1 | Per-route metadata: add server `layout.tsx` with `createMetadata` for `blueprints`, `prototypes`, `templates`, `tools`, `multi-cloud-comparison` (pattern already proven by `app/ai-architectures/layout.tsx` wrapping a client page) | `app/ai-architecture/{blueprints,prototypes,templates,tools,multi-cloud-comparison}/layout.tsx` (new) | `curl` rendered HTML: unique `<title>` + self-canonical per route |
 | P0-2 | Blueprint canonicals: extend `generateMetadata` in `app/ai-architecture/[slug]/page.tsx` to use `createMetadata({ path: '/ai-architecture/' + slug, type: 'article', updatedTime: blueprint.updatedAt })` | one file | self-canonical on all 13; contract still passes (`pnpm run test:ai-architecture`) |
 | P0-3 | De-duplicate `/blueprint/[slug]`: port `DeployButtonGroup` block into `/ai-architecture/[slug]`, then add `alternates.canonical → /ai-architecture/[slug]` in `app/blueprint/[slug]/page.tsx`. (Optional later, with operator approval: 308 redirect) | 2 files | both URLs render; `/blueprint/*` carries cross-canonical |
-| P0-4 | Sitemap hygiene: remove `/ai-architect` (both entries, lines 206 + 300), `/ai-architectures` (302), `/prototypes` (304), `/ai-architect/multi-cloud-comparison` (317); add the 5 sub-pages, 13 blueprint URLs (derive from `prototypes.json` with `updatedAt` as lastmod), `/ai-architect/ai-coe-hub`, `/ai-architect-academy/patterns` | `app/sitemap.ts` | sitemap route renders; no redirected URLs remain (`grep`) |
+| P0-4 | Sitemap hygiene: keep the live `/ai-architect` once and remove its duplicate entry; remove redirected `/ai-architectures`, `/prototypes`, and `/ai-architect/multi-cloud-comparison`; add the 5 sub-pages, 13 blueprint URLs (derive from `prototypes.json` with `updatedAt` as lastmod), `/ai-architect/ai-coe-hub`, `/ai-architect-academy/patterns` | `app/sitemap.ts` | sitemap route renders; no redirected or duplicate URLs remain (`grep`) |
 | P0-5 | llms.txt: add an "AI Architecture" section — hub, blueprints index, 13 blueprints (title + one-liner from `prototypes.json`), tools, templates, multi-cloud comparison, academy, CoE hub, and the two architecture blog series | `app/llms.txt/route.ts` (+ llms-full) | fetch `/llms.txt`, links resolve 200 |
 | P0-6 | Fix academy internal link `/prototypes` → `/ai-architecture/blueprints` | `app/ai-architect-academy/page.tsx:299` | `pnpm run links:check:static` |
 | P0-7 | JSON-LD on the family: hub gets `CollectionPage` + `FAQPage` + `BreadcrumbList`; blueprints get `TechArticle`-shaped `Article` + `BreadcrumbList` + (where implementationSteps exist) `HowTo`; reuse `components/seo/JsonLd.tsx` + `Breadcrumbs.tsx` | hub page (compose server wrapper), `[slug]` page | Rich Results test / schema validator on 3 sample URLs |
 | P0-8 | Host alignment: `robots.ts` sitemap → `https://www.frankx.ai/sitemap.xml`; `lib/schema-builders.ts` `SITE_CONFIG.url` → www | 2 lines | grep |
 
-Deliberately **not** proposed: deleting the dead `app/ai-architectures/`, `app/ai-architect/AIArchitectClient.tsx`, `app/prototypes/page.tsx`, or `components/ai-architecture/AIArchitectureShell.tsx` (the contract script reads the shell; dead-code removal is a separate, operator-approved cleanup). Flagged, not fixed.
+Deliberately **not** proposed: deleting the dead `app/ai-architectures/`, legacy `app/ai-architect/AIArchitectClient.tsx`, `app/prototypes/page.tsx`, or `components/ai-architecture/AIArchitectureShell.tsx` (the contract script reads the shell; dead-code removal is a separate, operator-approved cleanup). Flagged, not fixed.
 
 
 ---
@@ -230,6 +229,7 @@ All volumes/difficulty below: **Semrush MCP connector, US database, batch keywor
   GUIDES: agentic-engineering-mastery-2026, first-agent-primer, agent-card-a2a-spec (→S7)
   ASK: 6 new question pages (AEO edge)
   ACADEMY: /ai-architect-academy — learning/career intent ("ai architect", curriculum, repo)
+  REVIEW: /ai-architect — action intent (four checks, browser review, portable MIT skill)
   COE HUB: /ai-architect/ai-coe-hub — enterprise CoE intent (+ /ai-coe)
   RESEARCH: /research/agentic-* — theory/frontier intent (agentic memory, evals, sovereignty)
 ```
@@ -238,6 +238,7 @@ All volumes/difficulty below: **Semrush MCP connector, US database, batch keywor
 
 - `/ai-architecture` = *reference* intent: "show me the architecture." Never teaches a curriculum, never sells a course.
 - `/ai-architect-academy` = *learning/career* intent: "make me the architect." Owns "ai architect" (1,600/KD 47) and the career long-tail (salary 320, certification 170, how-to-become 50). Its hero copy should say so and link the hub with anchor "AI architecture field guide" — one direction of authority.
+- `/ai-architect` = *action/review* intent: "check the system I have." It owns the four-question browser review and the same rubric as a portable MIT skill; it does not duplicate the field guide or curriculum.
 - `/ai-architect/ai-coe-hub` + `/ai-coe` = *organizational* intent ("ai center of excellence", 320/KD 62).
 - Blog = *dated analysis and decisions* (each post owns one decision or one pattern; `lastUpdated` discipline).
 - `/ask/` = *single-question answers*, 150–400 words, FAQPage JSON-LD — the citation-bait layer.
@@ -261,7 +262,7 @@ Justification against the alternatives:
 | `/blog/...` post | Rejected | Blog is the dated-analysis surface; pillar is evergreen reference. Also blog canonical pattern hard-codes `/blog/` paths |
 | `/guides/ai-architecture` | Rejected | Right machinery, wrong family — the architecture estate lives under `/ai-architecture`, and guides sit outside its internal-link cluster |
 
-**Mechanics of "enrich in place":** `app/ai-architecture/page.tsx` is a 5-line server component rendering the client atlas. Convert it to a server page that composes: server-rendered guide sections (definition, decision framework, layers, failure modes, FAQ — crawlable HTML, no JS required) around the existing `<OfficialArchitectureAtlas />` as the interactive centerpiece. The contract (`check-ai-architecture-contract.mjs`) tests strings *inside the atlas component file* and file existence — composing around it does not touch the contract. UI change ⇒ goes through the `web-release-gate` skill with 375/768/1440 before/after screenshots per CLAUDE.md.
+**Mechanics of "enrich in place":** `app/ai-architecture/page.tsx` now composes server-rendered guide sections (definition, decision framework, layers, failure modes, FAQ, reading path, and the review handoff) around `<OfficialArchitectureAtlas />` as the interactive centerpiece. Keep that prose crawlable without JS. The contract now ties the atlas catalog to the guide, the portable skill, and the four-check review. UI change ⇒ goes through the `web-release-gate` skill with 375/768/1440 before/after screenshots per CLAUDE.md.
 
 ### 4.2 Title / H1 / meta
 
@@ -280,7 +281,7 @@ H2s are question-shaped or claim-shaped so each can be cited standalone; every H
 ```
 H1  AI architecture: build the agent system you can operate.
     [definition + disambiguation block — the quotable 40-word answer]
-    [updated line: "Last verified: <date> · every external link checked · changelog"]
+    [per-entry receipt: controlled docs label + "Links checked YYYY-MM-DD"]
 
 H2  What is AI architecture? (and what it is not)
     H3  The four decisions every AI system encodes (model, context, control flow, state)
@@ -334,7 +335,7 @@ Estimated length: 2,500–3,500 words of server-rendered prose around the atlas.
 |---|---|
 | Definition | Disambiguates against building-architecture intent explicitly (no glossary page does; the Semrush question data shows the confusion is real) |
 | Layers | Maps every layer to a *deployable* target and a maintained repo, not vendor abstractions |
-| Reference-architecture chooser | The atlas is link-verified on a printed date and CI fails if the claim is removed — a freshness receipt no vendor page carries |
+| Reference-architecture chooser | Every atlas entry carries its own link-check date and truthful documentation kind; CI fails on missing, invalid, or reordered provenance |
 | Single vs multi-agent | A decision tree with named thresholds, versus the "it depends" prose that dominates |
 | Failure modes | Vendor pages don't publish failure catalogs about their own patterns; independence is the moat |
 | Cost | Real per-blueprint estimates with assumptions, versus no numbers at all (vendors) or invented ROI (listicles) — and the claims audit keeps ours honest |
@@ -342,7 +343,7 @@ Estimated length: 2,500–3,500 words of server-rendered prose around the atlas.
 
 ### 4.5 Only-here assets (the defensibility list)
 
-1. **CI-enforced freshness receipt** — the dated "every external link checked" line, contractually required by `check-ai-architecture-contract.mjs`. Extend the contract to also require the guide's "Last verified" line once it ships.
+1. **CI-enforced freshness receipt** — every source record carries `verifiedOn` and a controlled `docsKind`; the atlas renders both, and `check-ai-architecture-contract.mjs` rejects missing fields, impossible dates, unknown labels, duplicate IDs, or filter-order drift.
 2. **The Vercel–Railway–GCP deployment split** with per-architecture deployment matrix (contract requires all three providers covered).
 3. **The failure-mode catalog** (new, §4.3) — grounded in systems this site actually runs (`ai-architecture-patterns-solo-builders` documents the site's own architecture; blueprints carry problem/solution fields to mine).
 4. **13 deployable blueprints** with mermaid diagrams, implementation steps, cost estimates — after P0-3, with one-click deploy buttons.
@@ -447,9 +448,9 @@ Sequencing principle: **technical substrate → pillar → spokes at a sustainab
 
 **Refresh / re-date protocol (what keeps "updated August 2026" honest):**
 
-1. **Link verification, quarterly.** Re-check every external link in `official-sources.json` and update the printed "checked on <date>" line in `OfficialArchitectureAtlas.tsx` in the same commit. The contract already fails if the sentence disappears; the date changes only when the check actually ran. Next due: **October 12, 2026** (last: July 12).
+1. **Link verification, quarterly per entry.** Re-check both `docsUrl` and `source.url` for every record in `official-sources.json`. Update only that record's `verifiedOn` after the same run succeeds; do not roll every date forward because one source changed. The contract rejects missing or impossible dates, and the atlas renders the per-entry receipt. A source is due when three months have elapsed since its own `verifiedOn` value.
 2. **`lastUpdated` discipline (blog/guides):** re-date only for substantive changes — new sections, changed recommendations, corrected claims. Typos, link fixes, formatting keep the old date. `dateModified` in JSON-LD follows `lastUpdated` automatically via the existing blog template.
-3. **Re-date triggers for the pillar:** a reference architecture added/removed/re-owned in `official-sources.json`; a provider materially changes a linked offering; a blueprint added; a failure mode added from real operation. Each bumps the visible "Last verified" line + `updatedTime` in the layout metadata.
+3. **Re-date triggers for the pillar:** a reference architecture added/removed/re-owned in `official-sources.json`; a provider materially changes a linked offering; a blueprint added; a failure mode added from real operation. Source-link checks update the affected entry's `verifiedOn`; substantive pillar changes update `updatedTime` in page metadata.
 4. **Versioned, not silently mutated:** substantive pillar changes get a one-line entry on `/changelog` (surface already exists), giving answer engines and returning readers a diff trail.
 5. **Title-year rule:** "(2026)" in the title survives into 2027 only if a January verification pass actually revises content; otherwise strip the year rather than fake it.
 
@@ -490,7 +491,7 @@ Sequencing principle: **technical substrate → pillar → spokes at a sustainab
 
 1. **Head-term ambiguity (evidence-backed).** The "ai architecture" question SERP is mostly building-architecture intent (§3.1). Even a perfect page may cap below expectations on the head term. Mitigation: the strategy's center of gravity is the qualified mid-tail; the head term is upside, not the plan. Also why the disambiguation sentence leads the page.
 2. **Sequencing risk.** Publishing spokes before P0-1/P0-2 land means new content inherits the canonical defect and self-suppresses. The Aug PR is a hard prerequisite — treat it as blocking.
-3. **Freshness debt.** Every printed "checked on <date>" is a liability the moment the quarterly pass slips; a stale receipt is worse than none. Mitigation: calendar the October 12 pass now; the year leaves the title if the pass doesn't happen (§7.5).
+3. **Freshness debt.** Every per-entry `verifiedOn` receipt becomes a liability when its own quarterly recheck slips; a stale receipt is worse than none. Mitigation: schedule from each record's date and remove the title year if the January content pass does not happen (§7.5).
 4. **Archive cannibalization.** 250 posts, several already overlapping (§2.3-6). Each new spoke must claim an intent row (§3.3 rule) and the GSC query report should be checked before S8b-style canonical decisions — merging on gut feeling violates the URL-safety doctrine.
 5. **Client-rendering fragility.** The atlas and all sub-pages are client components; the pillar's new prose must be server-rendered or the whole bet on extraction weakens. The §4.1 composition handles this — hold that line in review.
 6. **Unsourced-number regression.** The dead `/ai-architectures` file still contains the metric style the site purged; if anyone resurrects that code, the claims audit catches some patterns ("94%" accuracy would pass the current regexes). Editorial review stays the last gate.
@@ -524,10 +525,10 @@ Every number: repo-derived, Semrush-cited (with date), or cut
 
 | Fact | Source | Status |
 |---|---|---|
-| 8 official architectures; Vercel/Railway/GCP matrix | `data/ai-architecture/official-sources.json` (counted) | verified 2026-08-20 |
+| 10 official-source entries across 7 canonical planes; Vercel/Railway/GCP matrix | `data/ai-architecture/official-sources.json` (counted and contract-checked) | verified 2026-08-25 |
 | 13 published blueprints | `data/ai-architecture/prototypes.json` (counted) | verified |
 | 250 blog MDX files, 25 guides, 14 ask entries, 5 research domains | `ls | wc -l` / grep counts | verified |
-| Redirects consolidate 3 families → hub | `next.config.mjs:252-271` | verified |
+| Legacy redirects consolidate old families while `/ai-architect` remains live | `next.config.mjs` + `app/ai-architect/page.tsx` | verified 2026-08-25 |
 | Sub-pages inherit hub canonical | Next metadata-inheritance semantics + absence of leaf metadata (grep) | high-confidence; **confirm in rendered HTML before P0 PR** |
 | `/blueprint/[slug]` live duplicate w/ deploy buttons | route diff + no redirect found | verified |
 | All keyword volumes/KD | Semrush MCP, US db, 2026-08-20 | pulled; single-vendor, single-country |

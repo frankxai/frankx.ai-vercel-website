@@ -4800,7 +4800,30 @@ export const bookReviews: BookReview[] = [
         keyIdea: 'The hardest part of the New Rich life is figuring out what to do with the time you fought for.',
         summary: 'The closing operational chapter and the most personal. Ferriss describes his own post-escape depression — without the structure of a 9-to-5, what is the point? His answer: continuous learning, service, and the deliberate cultivation of varied identities (athlete, language student, philanthropist). The book ends with the warning that freedom without purpose is its own trap.',
       },
+      {
+        number: 16,
+        title: 'Step IV — Liberation: The Top 13 New Rich Mistakes',
+        keyIdea: 'Freedom needs a recurring audit, because old work habits can quietly rebuild the life the system was meant to replace.',
+        summary: 'Ferriss closes the DEAL sequence by naming common failure modes: working for work\'s sake, recreating a job inside a business, confusing more income with more freedom, and leaving the recovered time without purpose. The useful modern reading is not a victory lap but a quarterly operating review: test whether the system still creates mobility, meaning, resilience, and room for life.',
+      },
     ],
+    application: {
+      title: 'Rebuild DEAL as a governed AI operating system',
+      body: 'The enduring sequence is still Definition, Elimination, Automation, and Liberation. Modern AI expands what can be delegated, but it also increases the cost of unclear goals and permissions. The practical companion below maps every chapter to decision rights, evidence, human judgment, and an absence test.',
+      practice: {
+        title: 'Run a one-day absence test',
+        duration: '1 day plus a 30-minute review',
+        instruction: 'Step away from one operating loop for a day. Record every escalation, separate true exceptions from unclear instructions, then repair the contract before adding more automation.',
+      },
+      connections: [
+        {
+          label: 'The 4-Hour Workweek, Rebuilt for AI Architects in 2026',
+          href: '/blog/4-hour-ai-architect-deal-framework-2026',
+          reason: 'A chapter-by-chapter FrankX refinement for governed AI delegation, human specialists, one exception queue, and a 90-day absence test.',
+          kind: 'article',
+        },
+      ],
+    },
     continueReading: [
       {
         title: 'Tools of Titans',

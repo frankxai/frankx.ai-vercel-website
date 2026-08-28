@@ -64,6 +64,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - uses: pnpm/action-setup@v4
         with:
@@ -147,6 +149,15 @@ jobs:
       # against the committed index it would miss a page added by this very PR.
       - name: Intelligence surface consistency
         run: pnpm run intelligence:check
+
+      # The external snapshot ships committed, so CI re-checks that every figure
+      # in it still carries source/licence/retrieved_at, and that the ingest's
+      # normalise + join logic still holds against the committed fixtures. Both
+      # are offline — no egress, no API key, no cost.
+      - name: External intelligence provenance
+        run: |
+          pnpm run intelligence:validate
+          pnpm run test:intelligence-ingest
 
       - name: Workflow definitions
         run: |
