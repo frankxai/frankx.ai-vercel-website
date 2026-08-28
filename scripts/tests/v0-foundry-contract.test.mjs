@@ -14,6 +14,7 @@ test('the foundry ships complete route states and specialized client surfaces', 
     'components/v0/FoundryWorkflow.tsx',
     'components/v0/studyVisuals.ts',
     'content/v0/foundry.ts',
+    'public/embeds/creator-launch-os.html',
   ]
 
   for (const file of requiredFiles) {
@@ -75,6 +76,8 @@ test('the first viewport contains one governed, eager live preview with responsi
   assert.match(component, /Mobile/)
   assert.match(component, /v0_study_previewed/)
   assert.match(component, /v0_preview_viewport_changed/)
+  assert.match(component, /\/embeds\/creator-launch-os\.html/)
+  assert.match(component, /Owned product/)
 })
 
 test('the visual index is backed by captured study and template assets', () => {
