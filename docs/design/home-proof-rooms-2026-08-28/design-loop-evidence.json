@@ -48,7 +48,7 @@
     "signature": "Two proof rooms where each crawlable resource link is visibly connected to one layer of a real working artifact.",
     "system": [
       "Poppins headings, Inter prose, JetBrains Mono evidence labels",
-      "Blue/cyan architecture spectrum and amber/orange music spectrum over #0a0a0b",
+      "Restrained emerald architecture spectrum and amber music spectrum over #0a0a0b",
       "Tier B text-free generated stills with Tier C deterministic proof overlays",
       "One rounded-full 44px-plus primary CTA per room",
       "Track A focus/hover state only with complete reduced-motion parity",
@@ -63,7 +63,29 @@
     "shortcut_risk": "medium",
     "context_tested": false
   },
-  "artifacts": [],
+  "artifacts": [
+    {
+      "label": "AI Architecture generated still",
+      "path_or_url": "public/images/home/proof-rooms/ai-architecture-workbench-v1.webp",
+      "kind": "homepage proof-room image",
+      "inspected": true,
+      "evidence": "1586x992 WebP, 110272 bytes; full-resolution inspection passed."
+    },
+    {
+      "label": "Music Lab generated still",
+      "path_or_url": "public/images/home/proof-rooms/music-lab-workbench-v1.webp",
+      "kind": "homepage proof-room image",
+      "inspected": true,
+      "evidence": "1586x992 WebP, 102288 bytes; full-resolution inspection passed."
+    },
+    {
+      "label": "Protected Vercel preview",
+      "path_or_url": "https://frankx-ai-vercel-website-git-agen-91cd2c-starlight-intelligence.vercel.app/",
+      "kind": "deployment preview",
+      "inspected": true,
+      "evidence": "Deployment dpl_9VWH2E5ExCdjSqumAWiUWutiJtzD reached READY after production compile, TypeScript, 1388-page static generation, and post-build tests."
+    }
+  ],
   "checks": [
     {
       "name": "asset-tier",
@@ -72,8 +94,18 @@
     },
     {
       "name": "export-inspection",
-      "status": "blocked",
-      "evidence": "Generation and full-resolution inspection pending."
+      "status": "pass",
+      "evidence": "Both generated sources were inspected at full resolution, converted to exact-ratio WebP exports, and checked for text, logos, artifacts, and focal-safe composition."
+    },
+    {
+      "name": "production-build",
+      "status": "pass",
+      "evidence": "Vercel deployment dpl_9VWH2E5ExCdjSqumAWiUWutiJtzD compiled successfully, completed TypeScript, generated all 1388 static pages, passed post-build tests, and reached READY."
+    },
+    {
+      "name": "preview-semantics",
+      "status": "pass",
+      "evidence": "Authenticated Vercel CLI fetch returned HTTP 200 and confirmed both section IDs, both generated image paths, both primary CTAs, and both labeled starting-point navigations in deployed HTML."
     },
     {
       "name": "visual-qa",
@@ -83,7 +115,7 @@
     {
       "name": "links",
       "status": "pass",
-      "evidence": "Independent archaeology verified all eight current destinations as live HTTP 200 routes on 2026-08-28."
+      "evidence": "All eight CTA and resource destinations returned HTTP 200 from the exact Vercel preview on 2026-08-28."
     },
     {
       "name": "performance-gate",
@@ -92,13 +124,13 @@
     }
   ],
   "score": {
-    "total": 0,
+    "total": 24,
     "max": 30,
-    "notes": "Score the final rendered artifact after implementation and independent visual QA."
+    "notes": "Provisional evidence score. The selected direction scored 28/30 in the design council; six release points remain withheld until rendered desktop/mobile and independent final visual QA are available."
   },
   "decision": "blocked",
   "known_risks": [
-    "Generated exports may require one targeted iteration after crop inspection.",
-    "Machine-performance gate currently blocks heavy local build and browser QA."
+    "Rendered desktop/mobile capture, keyboard/reduced-motion inspection, and independent final visual review remain blocked by the machine-performance browser reserve gate.",
+    "The preview is Vercel-auth protected; reviewers need project access or the PR deployment link."
   ]
 }

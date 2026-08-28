@@ -47,11 +47,11 @@ The homepage scene qualifies interest. It does not add a new form or parallel fu
 
 - `Enterprise AI` → `Production AI systems`: names the mechanism and includes builders outside formal enterprise programs.
 - AI deck → `Reference designs for agent workflows, MCP infrastructure, orchestration, and human oversight—documented with the constraints and deployment choices intact.` The replacement is more concrete and puts inspectable decisions next to the claim.
-- `Agent Patterns & Pillars` → `Seven production agent patterns`: replaces internal taxonomy with the article's specific object.
+- `Agent Patterns & Pillars` → `Seven pillars of production agents`: replaces an abbreviated label with the article's specific framework.
 - `Explore AI Architecture` → `Open the AI Architecture field guide`: names the destination and next action.
 - `Music Production` → `AI music production`: increases topic clarity without adding a claim.
 - Music deck → `A working archive of AI songs, Suno prompt systems, production notes, and playable instruments—built from daily studio practice.` The replacement describes what a visitor can inspect.
-- `Science of State Change` → `How music changes state`: clearer to a first-time reader while preserving the route.
+- `Science of State Change` → `How music changes your state`: clearer to a first-time reader while preserving the route.
 - `Browse All Tracks` → `Browse releases and tracks`: avoids implying that every created track is publicly indexed.
 - `Enter Music Lab` → `Open the Music Lab`: a direct action in FrankX language.
 
@@ -90,7 +90,7 @@ The homepage scene qualifies interest. It does not add a new form or parallel fu
 ## Selected scene system
 
 - Brand mode: FrankX product/technical for architecture; FrankX soul/cultural for music.
-- Palette: existing void `#0a0a0b`; blue/cyan architecture accents; amber/orange music accents. No purple-blue SaaS gradient.
+- Palette: existing void `#0a0a0b`; restrained emerald architecture accents; amber music accents. No purple-blue SaaS gradient.
 - Material: graphite, black glass, brushed metal, paper-thin signal lines, tactile studio controls.
 - Typography: existing Poppins, Inter, and JetBrains Mono roles. Prose remains still.
 - Shape: one large rounded scene surface per room, one rounded-full primary CTA, restrained proof-link rows.
@@ -132,9 +132,10 @@ Avoid: rainbow neon, festival stage, sci-fi spaceship console, purple-blue gradi
 
 ## Verification contract
 
-- Current desktop and mobile states captured before implementation.
-- Generated exports inspected at full resolution and inside desktop/mobile crops.
-- All eight routes checked locally and against the preview/live host.
-- Type-check, lint, strict language audit, and build run when the machine-performance gate permits or in CI/Vercel preview.
-- Desktop, mobile, keyboard, reduced-motion, console, asset loading, and overflow verified.
-- Maker and independent reviewers remain distinct.
+- [x] Current desktop and mobile states captured before implementation.
+- [x] Generated exports inspected at full resolution and exact 16:10 crop.
+- [x] All eight routes checked against the protected Vercel preview.
+- [x] Component lint, strict language audit, production compile, TypeScript, static generation, and post-build tests passed.
+- [x] Preview HTML contains both stable section IDs, both image assets, both CTAs, and both labeled resource navigations.
+- [ ] Desktop/mobile rendered capture, keyboard/reduced-motion inspection, console review, and overflow review. The machine-performance contract currently holds browser QA below the required 8 GB RAM reserve.
+- [ ] Independent final visual review after rendered captures exist. Direction selection and source-level review were performed by separate reviewers before implementation.
