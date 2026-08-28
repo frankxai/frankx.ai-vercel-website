@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useDeferredValue, useMemo, useState } from 'react'
+import { useDeferredValue, useState } from 'react'
 import { ArrowUpRight, Search, X } from 'lucide-react'
 
 import { studyCategories, type StudyCategory, type V0Study } from '@/content/v0/foundry'
@@ -24,18 +24,16 @@ export function FoundryStudies({ studies }: { studies: V0Study[] }) {
   const deferredQuery = useDeferredValue(query)
   const visualStudies = studies.filter((study) => studyVisuals[study.id])
 
-  const filteredStudies = useMemo(() => {
-    const normalizedQuery = deferredQuery.trim().toLowerCase()
-    return studies.filter((study) => {
-      const categoryMatches = category === 'all' || study.category === category
-      const queryMatches =
-        normalizedQuery.length === 0 ||
-        `${study.title} ${study.description} ${categoryLabels[study.category]}`
-          .toLowerCase()
-          .includes(normalizedQuery)
-      return categoryMatches && queryMatches
-    })
-  }, [category, deferredQuery, studies])
+  const normalizedQuery = deferredQuery.trim().toLowerCase()
+  const filteredStudies = studies.filter((study) => {
+    const categoryMatches = category === 'all' || study.category === category
+    const queryMatches =
+      normalizedQuery.length === 0 ||
+      `${study.title} ${study.description} ${categoryLabels[study.category]}`
+        .toLowerCase()
+        .includes(normalizedQuery)
+    return categoryMatches && queryMatches
+  })
 
   return (
     <div>
