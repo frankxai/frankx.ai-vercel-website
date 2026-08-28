@@ -20,7 +20,7 @@ import {
 } from '@/content/v0/foundry'
 
 export const metadata: Metadata = {
-  title: 'Vertical Product Foundry | FrankX',
+  title: 'Vertical Product Foundry',
   description:
     'A free deployable creator product, reviewed v0 interface studies, and the engineering evidence behind each release.',
   alternates: { canonical: '/v0' },
