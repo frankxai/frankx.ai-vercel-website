@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "cnt_pallyy_vs_metricool_2026",
+  "status": "READY_FOR_FRANK",
+  "authority": "PUBLISH",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "frankx-ai-vercel-website",
+    "notion_record": "not_applicable"
+  },
+  "brief": {
+    "working_title": "Pallyy vs Metricool (2026): Which Is Better?",
+    "subject": "A current direct comparison of Pallyy and Metricool for one-brand founders, analytics-led operators, agencies, and AI-connected workflows",
+    "origin": "User-requested face-off, official Pallyy and Metricool pricing and documentation retrieved 28 August 2026, and the FrankX social tool role registry",
+    "thesis": "Pallyy is the better default for one compact brand; Metricool becomes better when analytics, brand count, reporting, or MCP is a real operating behavior.",
+    "reader": "Founder, creator, or agency operator actively choosing between Pallyy and Metricool",
+    "reader_baseline": "The reader assumes Metricool's wider feature surface makes it universally better.",
+    "reader_delta": "The reader can choose by operating center, understand the plan and automation boundaries, and run a 30-day proof.",
+    "stakes": "The wrong choice creates either avoidable dashboard complexity or an undersized workflow that must be replaced during growth.",
+    "strongest_objection": "A documentation-backed comparison cannot establish relative usability without a controlled production pilot.",
+    "commercial_relationship": "Both products publish affiliate-program entry points; no tracked FrankX relationship is asserted and official direct links are used."
+  },
+  "content_graph": {
+    "cluster_id": "cluster_social_tool_intelligence_2026",
+    "canonical_url": "https://www.frankx.ai/blog/pallyy-vs-metricool-2026",
+    "existing_related_urls": [
+      "https://www.frankx.ai/tools/social-media",
+      "https://www.frankx.ai/blog/best-social-media-management-tools-founders-2026"
+    ],
+    "internal_links": [
+      "Social Media Tool Decision Atlas for live comparison",
+      "Ultimate founder guide for adjacent tools and category routing"
+    ],
+    "entities": ["Pallyy", "Metricool", "Pallyy API", "Metricool MCP", "Metricool API", "social media management"]
+  },
+  "search": {
+    "primary_intent": "Decide whether Pallyy or Metricool is better in 2026",
+    "query_set": [
+      "Pallyy vs Metricool",
+      "Metricool vs Pallyy 2026",
+      "is Metricool better than Pallyy",
+      "Pallyy pricing",
+      "Metricool pricing",
+      "Metricool MCP",
+      "Pallyy API"
+    ],
+    "serp_snapshot": {
+      "captured_at": "2026-08-28T12:00:00Z",
+      "locale": "en-US",
+      "device": "desktop",
+      "dominant_intent": "Short feature comparisons and vendor-adjacent list pages, including stale Pallyy pricing",
+      "information_gap": "A current official-source comparison that corrects outdated Pallyy plan data and makes the MCP-versus-API and one-brand-versus-multi-brand decisions explicit"
+    },
+    "answer_units": [
+      "Direct winner by scenario",
+      "Current plan-by-plan pricing",
+      "Publishing and analytics operating-center test",
+      "API and MCP distinction",
+      "Multi-agent architecture",
+      "When neither product fits",
+      "30-day pilot"
+    ],
+    "structured_data": ["Article", "FAQPage", "BreadcrumbList"],
+    "indexation": "index",
+    "crawler_policy_checked": true
+  },
+  "sources": [
+    {
+      "source_id": "src_pallyy_pricing",
+      "url": "https://pallyy.com/pricing",
+      "title": "Pallyy Pricing",
+      "publisher": "Pallyy",
+      "source_type": "official_pricing",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_pallyy_api",
+      "url": "https://pallyy.com/features/api",
+      "title": "Pallyy API",
+      "publisher": "Pallyy",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_pallyy_affiliate",
+      "url": "https://pallyy.getrewardful.com/",
+      "title": "Pallyy Affiliate Program",
+      "publisher": "Pallyy",
+      "source_type": "official_program_entry",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_metricool_pricing",
+      "url": "https://metricool.com/pricing/",
+      "title": "Metricool Pricing",
+      "publisher": "Metricool",
+      "source_type": "official_pricing",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_metricool_mcp_api",
+      "url": "https://help.metricool.com/mcp-vs-api-access-what-is-the-difference-5y3ib",
+      "title": "MCP vs API access: what is the difference?",
+      "publisher": "Metricool",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_metricool_affiliate",
+      "url": "https://help.metricool.com/affiliate-program-66g59",
+      "title": "Metricool Affiliate Program",
+      "publisher": "Metricool",
+      "source_type": "official_program_documentation",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_social_registry",
+      "repository_path": "data/social-media-tools.ts",
+      "title": "FrankX governed social media tool registry",
+      "publisher": "FrankX",
+      "source_type": "first_party_registry",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm_pallyy_plans",
+      "text": "Pallyy publicly lists Free, Starter at fifteen dollars per month, and Pro at twenty-five dollars per month.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": ["src_pallyy_pricing"]
+    },
+    {
+      "claim_id": "clm_pallyy_api",
+      "text": "Pallyy documents API access on paid plans.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": ["src_pallyy_pricing", "src_pallyy_api"]
+    },
+    {
+      "claim_id": "clm_metricool_plans",
+      "text": "Metricool publicly lists Free and Starter from twenty dollars per month with annual billing, with brand-based plan levels.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": ["src_metricool_pricing"]
+    },
+    {
+      "claim_id": "clm_metricool_surfaces",
+      "text": "Metricool documents MCP on every plan and API on Advanced and Custom plans.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": ["src_metricool_pricing", "src_metricool_mcp_api"]
+    },
+    {
+      "claim_id": "clm_editorial_winner",
+      "text": "Pallyy is the editorial default for one compact brand, while Metricool is the stronger route for analytics-led, multi-brand, or MCP-connected operations.",
+      "type": "inference",
+      "support": "derived",
+      "source_ids": ["src_pallyy_pricing", "src_pallyy_api", "src_metricool_pricing", "src_metricool_mcp_api", "src_social_registry"]
+    },
+    {
+      "claim_id": "clm_program_separation",
+      "text": "Both products publish program entry points, but public program availability does not establish a FrankX commercial relationship.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": ["src_pallyy_affiliate", "src_metricool_affiliate"]
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/pallyy-vs-metricool-2026.mdx",
+    "canonical_title": "Pallyy vs Metricool (2026): Which Is Better?",
+    "description": "Pallyy vs Metricool on price, analytics, publishing, API, MCP, brands, approvals, and founder fit—with a direct 2026 recommendation.",
+    "author_id": "frank-riemer",
+    "published_at": null,
+    "modified_at": "2026-08-28"
+  },
+  "media": [
+    {
+      "asset_id": "fx-pallyy-metricool-hero",
+      "version_id": "v1-2026-08-28",
+      "placement": "hero",
+      "media_type": "repo_native_svg",
+      "path": "/images/blog/visual-system/pallyy-vs-metricool-2026-hero.svg",
+      "rights": "FrankX original editorial architecture; product names used nominatively; no third-party logos or screenshots",
+      "alt": "Pallyy's focused one-brand workspace is compared with Metricool's wider analytics and MCP-connected operating surface.",
+      "sha256": "f0529823ace61c65f7678e66ac9b109ab2118f11ebd2dce23a96f5d4e695c08a"
+    },
+    {
+      "asset_id": "fx-pallyy-metricool-map",
+      "version_id": "v1-2026-08-28",
+      "placement": "opening_decision_map",
+      "media_type": "repo_native_svg",
+      "path": "/images/blog/visual-system/infographics/pallyy-vs-metricool-2026-map.svg",
+      "rights": "FrankX original editorial architecture",
+      "alt": "A four-question map routes a focused one-brand operator to Pallyy and an analytics or MCP-led operator to Metricool.",
+      "sha256": "fcf3e24910feb1398f95cd96a4f351ee2ff0560706eb20ad693b8f045fbcd9ea"
+    },
+    {
+      "asset_id": "fx-pallyy-metricool-og",
+      "version_id": "v1-2026-08-28-1200x630",
+      "placement": "open_graph",
+      "media_type": "deterministic_png_rendition",
+      "path": "/images/blog/visual-system/social/pallyy-vs-metricool-2026-og.png",
+      "rights": "FrankX original editorial architecture; deterministic crop of approved hero",
+      "alt": "Pallyy versus Metricool: decide by operating job.",
+      "sha256": "4c6b5f311dd5bac18992e183d6b97aab5814085dc805df9a6f991f5cce2463e5"
+    }
+  ],
+  "affiliates": [],
+  "distribution": [],
+  "reviews": [
+    {
+      "lane": "truth_rights",
+      "verdict": "pass",
+      "reason": "Pricing, network, API, MCP, and program statements bind to official first-party pages; deterministic media is original and uses no third-party marks."
+    },
+    {
+      "lane": "commissioning_editor",
+      "verdict": "pass",
+      "reason": "The article gives a direct scenario verdict, explains the operating distinction, covers when neither product fits, and ends with a bounded proof."
+    },
+    {
+      "lane": "icp_reader",
+      "verdict": "pass",
+      "reason": "A one-brand founder can decide within the opening table and validate the choice without parsing a generic feature inventory."
+    },
+    {
+      "lane": "seo_geo",
+      "verdict": "pass",
+      "reason": "Comparison intent, exact entities, plan tables, direct answer, visible FAQs, current date, and canonical cluster links are explicit."
+    },
+    {
+      "lane": "art_critic",
+      "verdict": "pass",
+      "reason": "The side-by-side hero and decision map translate the comparison into an editorial system rather than a vendor-logo face-off."
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "GitHub pull request, Vercel preview, and production URL verification remain release steps."
+    }
+  ],
+  "publication": {
+    "branch": "agent/codex/social-tool-intelligence-20260828",
+    "pull_request": "blocked",
+    "preview_url": "blocked",
+    "live_url": "blocked",
+    "verified_at": null,
+    "rollback": "9dd02f721682b9dc2a9f0dfee06688763abf91cc"
+  },
+  "measurement": {
+    "hypothesis": "A current primary-source face-off will capture qualified comparison intent and move readers into the living atlas or an official pricing page with a clear operating model.",
+    "primary_metric": "Qualified comparison entrances that continue to the atlas, ultimate guide, or an official evidence source",
+    "guardrails": [
+      "No usability benchmark implication",
+      "No universal winner",
+      "No tracked affiliate relationship without verification",
+      "No MCP-equals-API claim",
+      "No annual commitment before a bounded pilot"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "2026-09-28",
+    "freshness_triggers": [
+      "Pallyy or Metricool plan, price, network, API, or MCP change",
+      "Verified FrankX program enrollment",
+      "First-party comparative pilot evidence",
+      "Search-intent or canonical collision"
+    ]
+  },
+  "blocked": []
+}

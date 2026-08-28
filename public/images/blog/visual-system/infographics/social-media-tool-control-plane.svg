@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Governed social media agent control plane</title>
+  <desc id="desc">A five-stage architecture keeps evidence and brand memory upstream, lets specialist agents propose work, requires human approval, publishes through API or MCP, and returns measured outcomes to the next brief.</desc>
+  <defs>
+    <radialGradient id="field" cx="50%" cy="42%" r="64%"><stop offset="0" stop-color="#315d4a" stop-opacity=".26"/><stop offset="1" stop-color="#080b0a" stop-opacity="0"/></radialGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L9 3L0 6Z" fill="#8eb3a1" fill-opacity=".65"/></marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#080b0a"/><rect width="1600" height="1000" fill="url(#field)"/>
+  <text x="78" y="68" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="13" letter-spacing="3.6">FRANKX / GOVERNED SOCIAL CONTROL PLANE</text>
+  <text x="1522" y="68" fill="#68716d" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">THE SCHEDULER IS A SIDE-EFFECT BOUNDARY</text>
+  <path d="M78 94H1522" stroke="#f0f0e8" stroke-opacity=".13"/>
+  <text x="78" y="178" fill="#f1f1e9" font-family="Georgia, serif" font-size="62">Keep judgment upstream.</text>
+  <text x="78" y="226" fill="#8b928e" font-family="Arial, sans-serif" font-size="16">A multi-agent publishing system is safe when memory, authority, execution, and learning remain separate.</text>
+
+  <g stroke="#8eb3a1" stroke-opacity=".5" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M338 470H424"/><path d="M650 470H736"/><path d="M962 470H1048"/><path d="M1274 470H1360"/>
+  </g>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(78 338)"><rect width="260" height="264" fill="#101513" stroke="#8eb3a1" stroke-opacity=".28"/><text x="22" y="34" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">01 / SOURCE</text><text x="22" y="82" fill="#f1f1e9" font-family="Georgia, serif" font-size="28">Brand memory</text><path d="M22 110H238" stroke="#f0f0e8" stroke-opacity=".1"/><text x="22" y="144" fill="#cdd1cb" font-size="12">Claims + sources</text><text x="22" y="174" fill="#cdd1cb" font-size="12">Voice + offers</text><text x="22" y="204" fill="#cdd1cb" font-size="12">Rights + campaign state</text><text x="22" y="238" fill="#6f7874" font-size="11">Owned system of record</text></g>
+    <g transform="translate(390 338)"><rect width="260" height="264" fill="#101513" stroke="#8eb3a1" stroke-opacity=".28"/><text x="22" y="34" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">02 / PROPOSE</text><text x="22" y="82" fill="#f1f1e9" font-family="Georgia, serif" font-size="28">Agent cell</text><path d="M22 110H238" stroke="#f0f0e8" stroke-opacity=".1"/><text x="22" y="144" fill="#cdd1cb" font-size="12">Research + plan</text><text x="22" y="174" fill="#cdd1cb" font-size="12">Draft + adapt</text><text x="22" y="204" fill="#cdd1cb" font-size="12">Critique + policy check</text><text x="22" y="238" fill="#6f7874" font-size="11">Reversible work</text></g>
+    <g transform="translate(702 310)"><rect width="260" height="320" fill="#1b1a12" stroke="#dfc58e" stroke-opacity=".55"/><text x="22" y="34" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">03 / AUTHORITY</text><text x="22" y="88" fill="#f1f1e9" font-family="Georgia, serif" font-size="30">Human gate</text><path d="M22 118H238" stroke="#dfc58e" stroke-opacity=".18"/><text x="22" y="158" fill="#f1f1e9" font-size="12">Truth + context</text><text x="22" y="190" fill="#f1f1e9" font-size="12">Voice + audience</text><text x="22" y="222" fill="#f1f1e9" font-size="12">Risk + timing</text><text x="22" y="254" fill="#f1f1e9" font-size="12">Named final consent</text><text x="22" y="294" fill="#dfc58e" font-size="11">Consequential side effect</text></g>
+    <g transform="translate(1014 338)"><rect width="260" height="264" fill="#101513" stroke="#8eb3a1" stroke-opacity=".28"/><text x="22" y="34" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">04 / EXECUTE</text><text x="22" y="82" fill="#f1f1e9" font-family="Georgia, serif" font-size="28">API / MCP</text><path d="M22 110H238" stroke="#f0f0e8" stroke-opacity=".1"/><text x="22" y="144" fill="#cdd1cb" font-size="12">Idempotent payload</text><text x="22" y="174" fill="#cdd1cb" font-size="12">Platform destination</text><text x="22" y="204" fill="#cdd1cb" font-size="12">Publish receipt + ID</text><text x="22" y="238" fill="#6f7874" font-size="11">Replaceable vendor edge</text></g>
+    <g transform="translate(1326 338)"><rect width="196" height="264" fill="#101513" stroke="#8eb3a1" stroke-opacity=".28"/><text x="20" y="34" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">05 / LEARN</text><text x="20" y="82" fill="#f1f1e9" font-family="Georgia, serif" font-size="28">Evidence</text><path d="M20 110H176" stroke="#f0f0e8" stroke-opacity=".1"/><text x="20" y="144" fill="#cdd1cb" font-size="12">Reach + response</text><text x="20" y="174" fill="#cdd1cb" font-size="12">Leads + revenue</text><text x="20" y="204" fill="#cdd1cb" font-size="12">Failures + recovery</text><text x="20" y="238" fill="#6f7874" font-size="11">Next brief delta</text></g>
+  </g>
+
+  <path d="M1424 602C1424 770 1180 790 832 790C484 790 210 760 210 616" fill="none" stroke="#dfc58e" stroke-opacity=".35" stroke-dasharray="5 8" marker-end="url(#arrow)"/>
+  <text x="820" y="826" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2" text-anchor="middle">MEASURED OUTCOMES CHANGE THE NEXT BRIEF</text>
+
+  <g transform="translate(78 876)" font-family="Arial, sans-serif" font-size="11">
+    <rect width="1444" height="62" fill="#0d1110" stroke="#f0f0e8" stroke-opacity=".12"/>
+    <text x="22" y="38" fill="#8eb3a1">KEEP</text><text x="78" y="38" fill="#aab0ac">memory + evidence</text>
+    <text x="330" y="38" fill="#8eb3a1">DELEGATE</text><text x="414" y="38" fill="#aab0ac">reversible analysis</text>
+    <text x="704" y="38" fill="#dfc58e">GATE</text><text x="752" y="38" fill="#aab0ac">brand-sensitive publishing</text>
+    <text x="1080" y="38" fill="#8eb3a1">RECORD</text><text x="1148" y="38" fill="#aab0ac">payload + receipt + outcome</text>
+  </g>
+</svg>

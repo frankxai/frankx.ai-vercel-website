@@ -152,6 +152,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Tool pages
   const toolPages = [
     '/tools',
+    '/tools/social-media',
     '/tools/roi-calculator',
     '/tools/strategy-canvas',
     '/tools/builder',
