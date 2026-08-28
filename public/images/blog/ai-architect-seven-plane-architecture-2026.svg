@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1600 840" role="img" aria-labelledby="title desc">
   <title id="title">The AI Architect Guide 2026 — seven-plane architecture</title>
   <desc id="desc">A provider-neutral reference architecture with seven system planes: Experience, Orchestration, Context and state, Model fabric, Action and integration, Evidence, and Policy and trust.</desc>
   <defs>
@@ -27,12 +27,12 @@
     </linearGradient>
   </defs>
 
-  <rect width="1600" height="900" fill="url(#background)"/>
-  <rect width="1600" height="900" fill="url(#emeraldGlow)"/>
-  <rect width="1600" height="900" fill="url(#cyanGlow)"/>
+  <rect width="1600" height="840" fill="url(#background)"/>
+  <rect width="1600" height="840" fill="url(#emeraldGlow)"/>
+  <rect width="1600" height="840" fill="url(#cyanGlow)"/>
   <g stroke="#FFFFFF" stroke-opacity="0.035">
     <path d="M0 150H1600M0 300H1600M0 450H1600M0 600H1600M0 750H1600"/>
-    <path d="M200 0V900M400 0V900M600 0V900M800 0V900M1000 0V900M1200 0V900M1400 0V900"/>
+    <path d="M200 0V840M400 0V840M600 0V840M800 0V840M1000 0V840M1200 0V840M1400 0V840"/>
   </g>
 
   <text x="100" y="88" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="7" fill="#34D399">THE AI ARCHITECT GUIDE · 2026</text>
@@ -104,7 +104,7 @@
     </g>
   </g>
 
-  <rect x="100" y="806" width="1400" height="1" fill="url(#rule)"/>
-  <text x="100" y="850" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="650" letter-spacing="2.5" fill="#6B7573">FRANKX.AI · OUTCOME → AUTHORITY → EVIDENCE → SCALE</text>
-  <text x="1500" y="850" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="16" fill="#6B7573">PROVIDER-NEUTRAL REFERENCE ARCHITECTURE</text>
+  <rect x="100" y="790" width="1400" height="1" fill="url(#rule)"/>
+  <text x="100" y="824" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="650" letter-spacing="2.5" fill="#8493A8">FRANKX.AI · OUTCOME → AUTHORITY → EVIDENCE → SCALE</text>
+  <text x="1500" y="824" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="16" fill="#8493A8">PROVIDER-NEUTRAL REFERENCE ARCHITECTURE</text>
 </svg>
