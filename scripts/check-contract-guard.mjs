@@ -30,10 +30,17 @@
  *      '../../app/…' relative to scripts/tests/, and Next route groups put
  *      parentheses in real paths. Both are normalised before lookup.
  *
- * Deliberately changing a contract alongside its surface is legitimate — the
- * point is that it must be deliberate and visible to a reviewer, not silent.
- * Put [contract-change] in the pull request title, or set
- * ALLOW_CONTRACT_CHANGE=1, and this check reports the pairs and passes.
+ * Deliberately changing most contracts alongside their surfaces is legitimate
+ * when it is visible to a reviewer. Put [contract-change] in the pull request
+ * title, or set ALLOW_CONTRACT_CHANGE=1, and this check reports the pairs and
+ * passes.
+ *
+ * The homepage is intentionally stricter. Its contract cannot be changed in
+ * the same pull request as app/page.tsx or components/home/**, and homepage
+ * work cannot be bundled with unrelated executable surfaces. The 2026-08-27
+ * regression passed because a replacement homepage and a newly-permissive
+ * contract shipped together inside a broad funnel change. A title tag is not
+ * sufficient approval for repeating that operation.
  */
 import { execFileSync } from 'node:child_process'
 import { readFileSync, readdirSync } from 'node:fs'
@@ -41,6 +48,28 @@ import path from 'node:path'
 
 const TEST_DIR = 'scripts/tests'
 const TEST_SUFFIX = 'contract.test.mjs'
+const HOMEPAGE_ENTRYPOINT = 'app/page.tsx'
+const HOMEPAGE_COMPONENT_PREFIX = 'components/home/'
+const HOMEPAGE_CONTRACT = 'scripts/tests/homepage-mind-palace-contract.test.mjs'
+const EXECUTABLE_PREFIXES = [
+  '.github/workflows/',
+  'app/',
+  'components/',
+  'content/',
+  'data/',
+  'lib/',
+  'public/',
+  'scripts/',
+  'styles/',
+  'types/',
+]
+const EXECUTABLE_FILES = new Set([
+  'middleware.ts',
+  'next.config.mjs',
+  'package.json',
+  'pnpm-lock.yaml',
+  'tailwind.config.js',
+])
 
 // Any quoted literal that looks like a path: contains a slash and an extension.
 // Deliberately not an allowlist of prefixes or extensions — a contract can
@@ -51,6 +80,18 @@ const PATH_RE = /['"`]([^'"`\n\s]*\/[^'"`\n\s]*\.[A-Za-z0-9]+)['"`]/g
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim()
 
 const isContractTest = (p) => p.startsWith(`${TEST_DIR}/`) && p.endsWith(TEST_SUFFIX)
+const isHomepageSurface = (p) =>
+  p === HOMEPAGE_ENTRYPOINT || p.startsWith(HOMEPAGE_COMPONENT_PREFIX)
+
+const isHomepageCompanion = (p) =>
+  isHomepageSurface(p) ||
+  p.startsWith('data/homepage-') ||
+  p.startsWith('public/images/homepage/') ||
+  p.startsWith('public/images/music/') ||
+  p.startsWith('scripts/tests/homepage-')
+
+const isExecutableSurface = (p) =>
+  EXECUTABLE_FILES.has(p) || EXECUTABLE_PREFIXES.some((prefix) => p.startsWith(prefix))
 
 /** Changed paths plus the base revision they were measured against. */
 function changeSet() {
@@ -100,6 +141,25 @@ function guardedBy(testPath, rev, tracked) {
 
 const { base, files } = changeSet()
 const changed = new Set(files)
+
+const homepageTouched = files.some(isHomepageSurface)
+const mixedHomepageScope = homepageTouched
+  ? files.filter((file) => isExecutableSurface(file) && !isHomepageCompanion(file))
+  : []
+
+if (mixedHomepageScope.length > 0) {
+  console.error('')
+  console.error('[contract-guard] Homepage work is bundled with unrelated executable surfaces:')
+  console.error('')
+  for (const file of mixedHomepageScope) console.error(`  ${file}`)
+  console.error('')
+  console.error('The homepage is a protected identity and portfolio surface. Keep its change in')
+  console.error('an isolated pull request so the before/after value can be reviewed directly.')
+  console.error('Move the unrelated route, API, content, data, or shared-component work to a')
+  console.error('separate pull request. This rule has no title-tag override.')
+  console.error('')
+  process.exit(1)
+}
 
 // Tracked at HEAD, plus anything this pull request touched — so a source file
 // the pull request deletes still counts as a guarded surface.
@@ -154,6 +214,9 @@ if (violations.length === 0) {
 
 const title = process.env.PR_TITLE || ''
 const acknowledged = process.env.ALLOW_CONTRACT_CHANGE === '1' || /\[contract-change\]/i.test(title)
+const protectedHomepageViolations = violations.filter(
+  ({ test, overlap }) => test === HOMEPAGE_CONTRACT || overlap.some(isHomepageSurface),
+)
 
 console.error('')
 console.error('[contract-guard] A contract test was changed in the same pull request as a surface it guards:')
@@ -164,10 +227,20 @@ for (const v of violations) {
 }
 console.error('')
 
-if (acknowledged) {
+if (acknowledged && protectedHomepageViolations.length === 0) {
   console.error('[contract-guard] Acknowledged — the change is marked deliberate. Passing.')
   console.error('[contract-guard] Reviewer: confirm the contract was loosened on purpose, not to make a regression pass.')
   process.exit(0)
+}
+
+if (protectedHomepageViolations.length > 0) {
+  console.error('The homepage preservation contract cannot be changed in the same pull request')
+  console.error('as the homepage surface, even with [contract-change] or ALLOW_CONTRACT_CHANGE=1.')
+  console.error('Land any deliberate contract change as its own reviewed pull request first;')
+  console.error('then propose the homepage change against that already-reviewed contract.')
+  console.error('See docs/strategy/HOMEPAGE-PRESERVATION-CONTRACT.md.')
+  console.error('')
+  process.exit(1)
 }
 
 console.error('This is how a regression ships green: the test that would have caught it')

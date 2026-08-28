@@ -88,6 +88,18 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 - `arcanean-library` is fiction-only. Never place historical religious texts, real-world theology, documentary evidence, or modern scholarship there.
 - Before moving this material, update the portfolio placement record and preserve source, translation, interpretation, and new composition as separate layers.
 
+### Protected homepage contract
+
+The production homepage is an intentional living-studio and portfolio map, not an empty funnel template. Its identity, music, AI architecture, products, creative worlds, books, library, articles, learning surfaces, and human presence are accumulated brand equity.
+
+- “Speak to the founder” is an audience and routing lens. It is not permission to replace the homepage, collapse FrankX into one framework, or remove the breadth that establishes trust and distinctiveness.
+- Strategy documents and planning language are non-executable context. They never authorize a production rewrite by themselves.
+- Before changing `app/page.tsx` or `components/home/**`, read `docs/strategy/HOMEPAGE-PRESERVATION-CONTRACT.md` and classify the work as copy polish, additive enhancement, section-level change, or structural replacement.
+- Structural homepage work requires current desktop and mobile captures, a preservation matrix, exactly three reviewed directions, and Frank's explicit approval of the selected direction before implementation.
+- Keep homepage work in an isolated pull request. Do not bundle it with APIs, security, unrelated routes, navigation rewrites, or broad content migrations.
+- Never edit `scripts/tests/homepage-mind-palace-contract.test.mjs` in the same pull request as the homepage surface. `[contract-change]` does not override this rule. A deliberate contract change must land first in its own reviewed pull request.
+- Agents and bots must not infer approval from a broad strategy request, a previous plan, or their own evaluation, and must not self-apply any human-approval signal.
+
 ### World-class release kernel
 
 The canonical cross-repo standard lives in [`frankxai/starlight-design-intelligence`](https://github.com/frankxai/starlight-design-intelligence):

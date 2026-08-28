@@ -36,6 +36,8 @@ This is the production repo for frankx.ai. Vercel's git integration deploys `mai
 
 **URL/SEO — never without explicit approval:** never rename a working URL, never delete a page with traffic, never "consolidate" by deleting pages (fix navigation instead). "AI Architect" stays "AI Architect."
 
+**Homepage — preserve before changing:** `app/page.tsx` and `components/home/**` are protected identity surfaces. “Founder” is a messaging and routing lens, not authorization to replace the living-studio homepage or erase music, portfolio breadth, proof, and discovery. Read `docs/strategy/HOMEPAGE-PRESERVATION-CONTRACT.md`; keep homepage work isolated; require baseline captures, a preservation matrix, three directions for structural work, and Frank's approval of the exact direction. Never change the homepage contract test beside the homepage—the general `[contract-change]` override does not apply.
+
 ---
 
 ## Design and release contract (read before any UI/visual work)
