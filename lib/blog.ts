@@ -156,7 +156,18 @@ function buildBlogPost(slug: string, data: Record<string, any>, content: string)
   } as BlogPost
 }
 
-export const getAllBlogPosts = cache((): BlogPost[] => {
+// React cache() is request-scoped, so it re-reads and parses the whole local
+// corpus for every prerendered article. Production content is immutable for the
+// lifetime of a build/runtime module; retain one corpus per worker instead.
+// Development deliberately bypasses this cache so MDX edits remain visible.
+let productionBlogPosts: BlogPost[] | undefined
+let productionBlogPostSummaries: BlogPostSummary[] | undefined
+
+export function getAllBlogPosts(): BlogPost[] {
+  if (process.env.NODE_ENV === 'production' && productionBlogPosts) {
+    return productionBlogPosts
+  }
+
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
     .filter((name) => name.endsWith('.mdx'))
@@ -169,12 +180,24 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
       return buildBlogPost(slug, data, content)
     })
 
-  return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
-})
+  const sortedPosts = allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+  if (process.env.NODE_ENV === 'production') {
+    productionBlogPosts = sortedPosts
+  }
+  return sortedPosts
+}
 
-export const getAllBlogPostSummaries = cache((): BlogPostSummary[] => {
-  return getAllBlogPosts().map(({ content: _content, ...post }) => post)
-})
+export function getAllBlogPostSummaries(): BlogPostSummary[] {
+  if (process.env.NODE_ENV === 'production' && productionBlogPostSummaries) {
+    return productionBlogPostSummaries
+  }
+
+  const summaries = getAllBlogPosts().map(({ content: _content, ...post }) => post)
+  if (process.env.NODE_ENV === 'production') {
+    productionBlogPostSummaries = summaries
+  }
+  return summaries
+}
 
 export const getBlogPost = cache((slug: string): BlogPost | null => {
   if (!isCanonicalBlogSlug(slug)) return null
