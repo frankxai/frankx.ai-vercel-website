@@ -152,6 +152,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Tool pages
   const toolPages = [
     '/tools',
+    '/tools/social-media',
     '/tools/roi-calculator',
     '/tools/strategy-canvas',
     '/tools/builder',
@@ -333,7 +334,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/soulbook/golden-path', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook/life-symphony', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook/vault', priority: 0.7, changeFrequency: 'monthly' as const },
-    // Design Lab
+    // Product Foundry & Design Lab
+    { url: '/v0', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/design-lab', priority: 0.6, changeFrequency: 'weekly' as const },
     { url: '/design-lab/nature', priority: 0.6, changeFrequency: 'monthly' as const },
     { url: '/design-lab/nature/variants', priority: 0.5, changeFrequency: 'monthly' as const },
