@@ -90,10 +90,42 @@ function validateReceipt(parsed: unknown): string | null {
   if (typeof c.title !== 'string' || typeof c.methodology !== 'string') {
     return 'title and methodology must be strings'
   }
-  if (!Array.isArray(c.contestants) || !c.contestants.every((x) => typeof x === 'string' && x.trim() !== '')) {
-    return 'contestants must be an array of non-empty strings'
+  // Non-empty is part of the contract, not a nicety: a receipt with no
+  // contestants and no tasks records no measurement, yet its date would still
+  // advance lastMeasured() — a measurement claim with nothing behind it.
+  if (
+    !Array.isArray(c.contestants) ||
+    c.contestants.length === 0 ||
+    !c.contestants.every((x) => typeof x === 'string' && x.trim() !== '')
+  ) {
+    return 'contestants must be a non-empty array of non-empty strings'
   }
-  if (!Array.isArray(c.tasks)) return 'tasks must be an array'
+  if (!Array.isArray(c.tasks) || c.tasks.length === 0) return 'tasks must be a non-empty array'
+
+  // Each task is dereferenced by the projection (task.id, task.results), so an
+  // array that merely exists is not proof enough: tasks:[null] would crash
+  // taskStatusesFor() at build time. Task ids are also the keys of
+  // taskStatuses, so duplicates would silently collapse two results into one.
+  const seenTaskIds = new Set<string>()
+  for (const [i, t] of c.tasks.entries()) {
+    if (t === null || typeof t !== 'object' || Array.isArray(t)) {
+      return `tasks[${i}] must be an object`
+    }
+    const task = t as Record<string, unknown>
+    if (typeof task.id !== 'string' || task.id.trim() === '') {
+      return `tasks[${i}].id must be a non-empty string`
+    }
+    if (seenTaskIds.has(task.id)) {
+      return `duplicate task id ${JSON.stringify(task.id)} — task statuses keyed by id would collapse`
+    }
+    seenTaskIds.add(task.id)
+    if (typeof task.prompt !== 'string' || task.prompt.trim() === '') {
+      return `tasks[${i}].prompt must be a non-empty string`
+    }
+    if (task.results === null || typeof task.results !== 'object' || Array.isArray(task.results)) {
+      return `tasks[${i}].results must be a plain object`
+    }
+  }
   return null
 }
 

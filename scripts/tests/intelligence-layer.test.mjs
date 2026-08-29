@@ -147,7 +147,9 @@ test('hostile receipt files are surfaced as problems, never a crash', async () =
   // consumer instead of recording the file in problems. The module reads
   // process.cwd() at import, so drive the real file through a child process
   // whose cwd is a fixture directory of exactly the hostile shapes reviewed:
-  // null root, array root, malformed date, empty round_id, duplicate round_id.
+  // null root, array root, malformed date, empty round_id, duplicate round_id,
+  // impossible calendar date, null task, duplicate task id, empty contestants,
+  // empty tasks.
   const { execFileSync } = await import('node:child_process')
   const { mkdtemp, mkdir, writeFile, rm } = await import('node:fs/promises')
   const { tmpdir } = await import('node:os')
@@ -157,9 +159,14 @@ test('hostile receipt files are surfaced as problems, never a crash', async () =
   const receiptsDir = join(dir, 'public', 'research', 'arena-receipts')
   await mkdir(receiptsDir, { recursive: true })
 
-  const valid = (roundId) => JSON.stringify({
+  // A fully valid receipt: fixtures that test ONE violation each start from
+  // this and break exactly one thing, so a rejection proves the intended check
+  // fired and not an incidental one (an empty tasks array is itself invalid now).
+  const valid = (roundId, over = {}) => JSON.stringify({
     round_id: roundId, date: '2026-07-01', title: 'T', methodology: 'm',
-    contestants: ['Claude Sonnet 5'], tasks: [],
+    contestants: ['Claude Sonnet 5'],
+    tasks: [{ id: 't1', prompt: 'p', results: {} }],
+    ...over,
   })
   await writeFile(join(receiptsDir, '1-null.json'), 'null')
   await writeFile(join(receiptsDir, '2-array.json'), '[]')
@@ -170,6 +177,17 @@ test('hostile receipt files are surfaced as problems, never a crash', async () =
   // Passes the format regex AND Date.parse — Node normalizes it to March 3.
   // Only the UTC-midnight round-trip check catches it.
   await writeFile(join(receiptsDir, '7-impossible-date.json'), valid('r-impossible-date').replace('2026-07-01', '2026-02-31'))
+  // tasks:[null] passed the old Array.isArray check, then taskStatusesFor()
+  // dereferenced task.results and crashed the static projection at build time.
+  await writeFile(join(receiptsDir, '8-null-task.json'), valid('r-null-task', { tasks: [null] }))
+  // Task ids key taskStatuses — a duplicate would silently collapse two results.
+  await writeFile(join(receiptsDir, '9-dup-task-id.json'), valid('r-dup-task-id', {
+    tasks: [{ id: 't1', prompt: 'p', results: {} }, { id: 't1', prompt: 'q', results: {} }],
+  }))
+  // No contestants and no tasks record no measurement, yet the date would
+  // still advance lastMeasured(). ('a-'/'b-' keep lexicographic sort order.)
+  await writeFile(join(receiptsDir, 'a-empty-contestants.json'), valid('r-empty-contestants', { contestants: [] }))
+  await writeFile(join(receiptsDir, 'b-empty-tasks.json'), valid('r-empty-tasks', { tasks: [] }))
 
   const runner = join(dir, 'runner.mjs')
   await writeFile(runner, [
@@ -189,7 +207,11 @@ test('hostile receipt files are surfaced as problems, never a crash', async () =
   assert.match(byFile['4-empty-round.json'], /round_id must be a non-empty string/)
   assert.match(byFile['6-dup-b.json'], /duplicate round_id "round-dup".*5-dup-a\.json/)
   assert.match(byFile['7-impossible-date.json'], /date must be a real YYYY-MM-DD/)
-  assert.equal(problems.length, 6, 'every hostile file surfaced, none swallowed')
+  assert.match(byFile['8-null-task.json'], /tasks\[0\] must be an object/)
+  assert.match(byFile['9-dup-task-id.json'], /duplicate task id "t1"/)
+  assert.match(byFile['a-empty-contestants.json'], /contestants must be a non-empty array/)
+  assert.match(byFile['b-empty-tasks.json'], /tasks must be a non-empty array/)
+  assert.equal(problems.length, 10, 'every hostile file surfaced, none swallowed')
 
   await rm(dir, { recursive: true, force: true })
 })
