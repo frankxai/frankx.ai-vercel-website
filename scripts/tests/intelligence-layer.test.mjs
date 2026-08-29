@@ -167,6 +167,9 @@ test('hostile receipt files are surfaced as problems, never a crash', async () =
   await writeFile(join(receiptsDir, '4-empty-round.json'), valid(''))
   await writeFile(join(receiptsDir, '5-dup-a.json'), valid('round-dup'))
   await writeFile(join(receiptsDir, '6-dup-b.json'), valid('round-dup'))
+  // Passes the format regex AND Date.parse — Node normalizes it to March 3.
+  // Only the UTC-midnight round-trip check catches it.
+  await writeFile(join(receiptsDir, '7-impossible-date.json'), valid('r-impossible-date').replace('2026-07-01', '2026-02-31'))
 
   const runner = join(dir, 'runner.mjs')
   await writeFile(runner, [
@@ -185,7 +188,8 @@ test('hostile receipt files are surfaced as problems, never a crash', async () =
   assert.match(byFile['3-bad-date.json'], /date must be a real YYYY-MM-DD/)
   assert.match(byFile['4-empty-round.json'], /round_id must be a non-empty string/)
   assert.match(byFile['6-dup-b.json'], /duplicate round_id "round-dup".*5-dup-a\.json/)
-  assert.equal(problems.length, 5, 'every hostile file surfaced, none swallowed')
+  assert.match(byFile['7-impossible-date.json'], /date must be a real YYYY-MM-DD/)
+  assert.equal(problems.length, 6, 'every hostile file surfaced, none swallowed')
 
   await rm(dir, { recursive: true, force: true })
 })

@@ -75,7 +75,16 @@ function validateReceipt(parsed: unknown): string | null {
   if (typeof c.round_id !== 'string' || c.round_id.trim() === '') {
     return 'round_id must be a non-empty string'
   }
-  if (typeof c.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(c.date) || Number.isNaN(Date.parse(c.date))) {
+  // Date.parse alone is not proof of a real calendar date: Node accepts
+  // '2026-02-31' and normalizes it to a March timestamp, so an impossible date
+  // would pass, join lexical lastMeasured() ordering, and publish as evidence.
+  // Parsing at UTC midnight and requiring an exact round-trip rejects both
+  // impossible dates and any normalization drift.
+  if (typeof c.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(c.date)) {
+    return `date must be a real YYYY-MM-DD date, got ${JSON.stringify(c.date)}`
+  }
+  const parsedDate = new Date(`${c.date}T00:00:00.000Z`)
+  if (Number.isNaN(parsedDate.getTime()) || parsedDate.toISOString().slice(0, 10) !== c.date) {
     return `date must be a real YYYY-MM-DD date, got ${JSON.stringify(c.date)}`
   }
   if (typeof c.title !== 'string' || typeof c.methodology !== 'string') {
