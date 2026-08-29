@@ -154,6 +154,7 @@ test('hostile receipt files are surfaced as problems, never a crash', async () =
   const { mkdtemp, mkdir, writeFile, rm } = await import('node:fs/promises')
   const { tmpdir } = await import('node:os')
   const { join } = await import('node:path')
+  const { pathToFileURL } = await import('node:url')
 
   const dir = await mkdtemp(join(tmpdir(), 'receipts-hostile-'))
   const receiptsDir = join(dir, 'public', 'research', 'arena-receipts')
@@ -190,8 +191,9 @@ test('hostile receipt files are surfaced as problems, never a crash', async () =
   await writeFile(join(receiptsDir, 'b-empty-tasks.json'), valid('r-empty-tasks', { tasks: [] }))
 
   const runner = join(dir, 'runner.mjs')
+  const receiptsModuleUrl = pathToFileURL(join(process.cwd(), 'lib/intelligence/receipts.ts')).href
   await writeFile(runner, [
-    `import { getReceipts, getReceiptProblems } from ${JSON.stringify(join(process.cwd(), 'lib/intelligence/receipts.ts'))}`,
+    `import { getReceipts, getReceiptProblems } from ${JSON.stringify(receiptsModuleUrl)}`,
     `console.log(JSON.stringify({ kept: getReceipts().map(r => r.round_id), problems: getReceiptProblems() }))`,
   ].join('\n'))
 
