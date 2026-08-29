@@ -10,7 +10,13 @@ import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
 import { ArticleHeaderActions } from '@/components/blog/ArticleHeaderActions'
-import { getAllBlogPosts, getBlogPost, extractFAQFromContent, normalizeFAQText } from '@/lib/blog'
+import {
+  getAllBlogPostSummaries,
+  getAllBlogPosts,
+  getBlogPost,
+  extractFAQFromContent,
+  normalizeFAQText,
+} from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
@@ -67,10 +73,11 @@ export default async function BlogPostPage({
     notFound()
   }
 
-  const allPosts = getAllBlogPosts()
+  // Recommendations are a client component and only consume metadata. Passing
+  // full MDX bodies here serializes the entire blog corpus into every article.
+  const allPosts = getAllBlogPostSummaries()
   const documents = allPosts.map((postItem) => ({
     title: postItem.title,
-    content: postItem.content || '',
     url: `/blog/${postItem.slug}`,
     tags: postItem.tags,
     image: postItem.image,
@@ -81,7 +88,6 @@ export default async function BlogPostPage({
 
   const currentDocument = {
     title: post.title,
-    content: post.content,
     url: `/blog/${post.slug}`,
     tags: post.tags,
     image: post.image,
