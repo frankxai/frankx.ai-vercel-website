@@ -49,14 +49,44 @@ export interface Receipt {
   href: string
 }
 
-const REQUIRED: Array<keyof Receipt> = [
-  'round_id',
-  'date',
-  'title',
-  'contestants',
-  'methodology',
-  'tasks',
-]
+/**
+ * Fail-closed schema boundary for one parsed receipt file.
+ *
+ * JSON.parse legally returns null, arrays, and primitives — and reading a field
+ * off null THROWS, which at module load would crash every consumer instead of
+ * recording the file in problems. So the root shape is rejected before any
+ * field access, and required fields are checked for their TYPES, not just
+ * presence: a receipt with an empty round_id cannot be cited by a verdict, and
+ * one with an unparseable date would corrupt lastMeasured() ordering silently.
+ *
+ * Returns the reason the candidate is invalid, or null when it is a Receipt.
+ */
+function validateReceipt(parsed: unknown): string | null {
+  if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return `root must be a JSON object, got ${parsed === null ? 'null' : Array.isArray(parsed) ? 'array' : typeof parsed}`
+  }
+  const c = parsed as Record<string, unknown>
+
+  const missing = ['round_id', 'date', 'title', 'contestants', 'methodology', 'tasks'].filter(
+    (k) => c[k] === undefined,
+  )
+  if (missing.length) return `missing required field(s): ${missing.join(', ')}`
+
+  if (typeof c.round_id !== 'string' || c.round_id.trim() === '') {
+    return 'round_id must be a non-empty string'
+  }
+  if (typeof c.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(c.date) || Number.isNaN(Date.parse(c.date))) {
+    return `date must be a real YYYY-MM-DD date, got ${JSON.stringify(c.date)}`
+  }
+  if (typeof c.title !== 'string' || typeof c.methodology !== 'string') {
+    return 'title and methodology must be strings'
+  }
+  if (!Array.isArray(c.contestants) || !c.contestants.every((x) => typeof x === 'string' && x.trim() !== '')) {
+    return 'contestants must be an array of non-empty strings'
+  }
+  if (!Array.isArray(c.tasks)) return 'tasks must be an array'
+  return null
+}
 
 /**
  * Reasons a candidate file was rejected. Surfaced rather than swallowed: a receipt that
@@ -78,6 +108,10 @@ function load(): LoadResult {
 
   const receipts: Receipt[] = []
   const problems: ReceiptProblem[] = []
+  // round_id is the citation key routing verdicts use, so two receipts sharing
+  // one would make a citation ambiguous. First file (sorted order) wins; the
+  // later one is a problem, not a silent overwrite.
+  const seenRounds = new Map<string, string>()
 
   for (const file of readdirSync(RECEIPTS_DIR).filter((f) => f.endsWith('.json')).sort()) {
     let parsed: unknown
@@ -88,19 +122,25 @@ function load(): LoadResult {
       continue
     }
 
-    const candidate = parsed as Partial<Receipt>
-    const missing = REQUIRED.filter((k) => candidate[k] === undefined)
-    if (missing.length) {
-      problems.push({ file, problem: `missing required field(s): ${missing.join(', ')}` })
+    const invalid = validateReceipt(parsed)
+    if (invalid !== null) {
+      problems.push({ file, problem: invalid })
       continue
     }
-    if (!Array.isArray(candidate.tasks) || !Array.isArray(candidate.contestants)) {
-      problems.push({ file, problem: 'tasks and contestants must both be arrays' })
+    const candidate = parsed as unknown as Receipt
+
+    const holder = seenRounds.get(candidate.round_id)
+    if (holder) {
+      problems.push({
+        file,
+        problem: `duplicate round_id "${candidate.round_id}" — already claimed by ${holder}; a verdict citing it would be ambiguous`,
+      })
       continue
     }
+    seenRounds.set(candidate.round_id, file)
 
     receipts.push({
-      ...(candidate as Receipt),
+      ...candidate,
       href: `/research/arena-receipts/${file}`,
     })
   }

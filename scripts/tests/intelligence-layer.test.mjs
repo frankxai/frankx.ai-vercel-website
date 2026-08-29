@@ -140,3 +140,52 @@ test('receipts on disk parse and expose a real last-measured date', () => {
     for (const r of receipts) assert.ok(r.href.startsWith('/research/arena-receipts/'))
   }
 })
+
+test('hostile receipt files are surfaced as problems, never a crash', async () => {
+  // Frank's #577 review finding, as a regression test: JSON.parse legally
+  // returns null, and field access on it THREW at module load — crashing every
+  // consumer instead of recording the file in problems. The module reads
+  // process.cwd() at import, so drive the real file through a child process
+  // whose cwd is a fixture directory of exactly the hostile shapes reviewed:
+  // null root, array root, malformed date, empty round_id, duplicate round_id.
+  const { execFileSync } = await import('node:child_process')
+  const { mkdtemp, mkdir, writeFile, rm } = await import('node:fs/promises')
+  const { tmpdir } = await import('node:os')
+  const { join } = await import('node:path')
+
+  const dir = await mkdtemp(join(tmpdir(), 'receipts-hostile-'))
+  const receiptsDir = join(dir, 'public', 'research', 'arena-receipts')
+  await mkdir(receiptsDir, { recursive: true })
+
+  const valid = (roundId) => JSON.stringify({
+    round_id: roundId, date: '2026-07-01', title: 'T', methodology: 'm',
+    contestants: ['Claude Sonnet 5'], tasks: [],
+  })
+  await writeFile(join(receiptsDir, '1-null.json'), 'null')
+  await writeFile(join(receiptsDir, '2-array.json'), '[]')
+  await writeFile(join(receiptsDir, '3-bad-date.json'), valid('r-bad-date').replace('2026-07-01', 'July 1st'))
+  await writeFile(join(receiptsDir, '4-empty-round.json'), valid(''))
+  await writeFile(join(receiptsDir, '5-dup-a.json'), valid('round-dup'))
+  await writeFile(join(receiptsDir, '6-dup-b.json'), valid('round-dup'))
+
+  const runner = join(dir, 'runner.mjs')
+  await writeFile(runner, [
+    `import { getReceipts, getReceiptProblems } from ${JSON.stringify(join(process.cwd(), 'lib/intelligence/receipts.ts'))}`,
+    `console.log(JSON.stringify({ kept: getReceipts().map(r => r.round_id), problems: getReceiptProblems() }))`,
+  ].join('\n'))
+
+  // The load must SUCCEED — a throw here is the exact defect under test.
+  const out = execFileSync('node', ['--experimental-strip-types', runner], { cwd: dir, encoding: 'utf8' })
+  const { kept, problems } = JSON.parse(out)
+
+  assert.deepEqual(kept, ['round-dup'], 'only the one valid receipt survives, first duplicate wins')
+  const byFile = Object.fromEntries(problems.map((p) => [p.file, p.problem]))
+  assert.match(byFile['1-null.json'], /root must be a JSON object.*null/)
+  assert.match(byFile['2-array.json'], /root must be a JSON object.*array/)
+  assert.match(byFile['3-bad-date.json'], /date must be a real YYYY-MM-DD/)
+  assert.match(byFile['4-empty-round.json'], /round_id must be a non-empty string/)
+  assert.match(byFile['6-dup-b.json'], /duplicate round_id "round-dup".*5-dup-a\.json/)
+  assert.equal(problems.length, 5, 'every hostile file surfaced, none swallowed')
+
+  await rm(dir, { recursive: true, force: true })
+})
