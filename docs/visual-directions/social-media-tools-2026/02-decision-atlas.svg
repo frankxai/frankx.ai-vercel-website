@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1400" viewBox="0 0 1800 1400" role="img" aria-labelledby="title desc">
+  <title id="title">Direction two: Decision Atlas</title>
+  <desc id="desc">A cinematic, role-based desktop and mobile direction that maps social media tools to the systems different brands can operate.</desc>
+  <defs>
+    <radialGradient id="atlasField" cx="48%" cy="35%" r="68%">
+      <stop offset="0" stop-color="#10b981" stop-opacity=".12"/>
+      <stop offset=".42" stop-color="#06b6d4" stop-opacity=".035"/>
+      <stop offset="1" stop-color="#070708" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="atlasPath" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#10b981" stop-opacity=".18"/>
+      <stop offset=".5" stop-color="#6ee7b7"/>
+      <stop offset="1" stop-color="#06b6d4" stop-opacity=".18"/>
+    </linearGradient>
+    <filter id="atlasShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="34" flood-color="#000" flood-opacity=".5"/>
+    </filter>
+    <filter id="atlasGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1800" height="1400" fill="#070708"/>
+  <rect width="1800" height="1400" fill="url(#atlasField)"/>
+  <path d="M0 84H1800M0 1320H1800" stroke="#ffffff" stroke-opacity=".07"/>
+
+  <text x="80" y="72" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="4">DIRECTION 02 · DECISION ATLAS · SELECTED</text>
+  <text x="80" y="130" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="44" font-weight="700" letter-spacing="-2">The operating map</text>
+  <text x="80" y="166" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="19">Evidence becomes a path: identify the brand, expose the constraint, compose the right control plane.</text>
+
+  <g filter="url(#atlasShadow)">
+    <rect x="80" y="210" width="1160" height="820" rx="30" fill="#0a0b0c" stroke="#ffffff" stroke-opacity=".1"/>
+  </g>
+  <path d="M80 265H1240" stroke="#ffffff" stroke-opacity=".07"/>
+  <text x="118" y="244" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">FRANKX / SOCIAL TOOL INTELLIGENCE / 2026</text>
+  <text x="1012" y="244" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">15 SOURCED</text>
+
+  <text x="118" y="320" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3">THE DECISION STARTS WITH YOU</text>
+  <text x="118" y="376" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="45" font-weight="700" letter-spacing="-2.2">Choose the system your brand</text>
+  <text x="118" y="424" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="45" font-weight="700" letter-spacing="-2.2">can actually operate.</text>
+  <text x="118" y="466" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="16">Not the longest feature list. The smallest stack that preserves judgment and feedback.</text>
+
+  <g font-family="Inter, sans-serif" font-size="12">
+    <rect x="118" y="510" width="148" height="38" rx="19" fill="#10b981"/>
+    <text x="147" y="534" fill="#06130f" font-weight="700">Solo founder</text>
+    <rect x="278" y="510" width="154" height="38" rx="19" fill="#ffffff" fill-opacity=".035" stroke="#ffffff" stroke-opacity=".11"/>
+    <text x="307" y="534" fill="#d4d4d8">Creator-led</text>
+    <rect x="444" y="510" width="152" height="38" rx="19" fill="#ffffff" fill-opacity=".035" stroke="#ffffff" stroke-opacity=".11"/>
+    <text x="472" y="534" fill="#d4d4d8">Developer</text>
+    <rect x="608" y="510" width="130" height="38" rx="19" fill="#ffffff" fill-opacity=".035" stroke="#ffffff" stroke-opacity=".11"/>
+    <text x="643" y="534" fill="#d4d4d8">Agency</text>
+    <rect x="750" y="510" width="148" height="38" rx="19" fill="#ffffff" fill-opacity=".035" stroke="#ffffff" stroke-opacity=".11"/>
+    <text x="780" y="534" fill="#d4d4d8">Enterprise</text>
+  </g>
+
+  <path d="M222 572C344 618 382 674 509 684C642 694 718 617 851 642C940 659 989 715 1093 725" fill="none" stroke="url(#atlasPath)" stroke-width="2"/>
+  <path d="M222 572C318 708 425 754 566 744C720 733 802 797 918 834" fill="none" stroke="#ffffff" stroke-opacity=".08"/>
+  <path d="M222 572C386 581 474 573 610 606C748 639 865 594 1000 588" fill="none" stroke="#ffffff" stroke-opacity=".08"/>
+  <circle cx="222" cy="572" r="6" fill="#6ee7b7" filter="url(#atlasGlow)"/>
+
+  <g font-family="Inter, sans-serif">
+    <g transform="translate(118 594)">
+      <rect width="212" height="122" rx="24" fill="#ffffff" fill-opacity=".028" stroke="#ffffff" stroke-opacity=".09"/>
+      <text x="20" y="29" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.8">01 / REALITY</text>
+      <text x="20" y="59" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="18" font-weight="600">One brand</text>
+      <text x="20" y="84" fill="#a1a1aa" font-size="12">One operator · weekly</text>
+      <text x="20" y="104" fill="#a1a1aa" font-size="12">LinkedIn + Instagram</text>
+    </g>
+    <g transform="translate(365 642)">
+      <rect width="250" height="144" rx="28" fill="#10b981" fill-opacity=".07" stroke="#10b981" stroke-opacity=".24"/>
+      <text x="22" y="31" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.8">02 / CONSTRAINT</text>
+      <text x="22" y="64" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Clarity over scale</text>
+      <text x="22" y="91" fill="#d4d4d8" font-size="12">No approval chain</text>
+      <text x="22" y="112" fill="#d4d4d8" font-size="12">Useful analytics · API optional</text>
+      <text x="22" y="133" fill="#71717a" font-size="11">Budget band: $15–$40 / month</text>
+    </g>
+    <g transform="translate(650 600)">
+      <rect width="308" height="210" rx="30" fill="#111415" stroke="#ffffff" stroke-opacity=".11"/>
+      <text x="24" y="32" fill="#67e8f9" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.8">03 / ROUTE</text>
+      <text x="24" y="69" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="25" font-weight="700">Pallyy first.</text>
+      <text x="24" y="98" fill="#a1a1aa" font-size="12">Pro: $25 · 11 accounts · unlimited posts</text>
+      <path d="M24 119H284" stroke="#ffffff" stroke-opacity=".09"/>
+      <text x="24" y="146" fill="#d4d4d8" font-size="12">Switch to Metricool when:</text>
+      <text x="24" y="171" fill="#a1a1aa" font-size="11">analytics, ad reporting, competitors,</text>
+      <text x="24" y="190" fill="#a1a1aa" font-size="11">or MCP become the operating center.</text>
+    </g>
+    <g transform="translate(994 684)">
+      <rect width="208" height="164" rx="28" fill="#ffffff" fill-opacity=".025" stroke="#ffffff" stroke-opacity=".09"/>
+      <text x="20" y="30" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.8">04 / PROOF</text>
+      <text x="20" y="61" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="18" font-weight="600">30-day pilot</text>
+      <text x="20" y="88" fill="#a1a1aa" font-size="11">10 posts shipped</text>
+      <text x="20" y="109" fill="#a1a1aa" font-size="11">2 hours saved / week</text>
+      <text x="20" y="130" fill="#a1a1aa" font-size="11">0 failed approvals</text>
+      <text x="20" y="151" fill="#6ee7b7" font-size="11">review before annual</text>
+    </g>
+  </g>
+
+  <g transform="translate(118 872)">
+    <text x="0" y="0" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2.4">AGENTIC STACK / HUMAN AUTHORITY PRESERVED</text>
+    <path d="M84 65H914" stroke="#ffffff" stroke-opacity=".12"/>
+    <g font-family="Inter, sans-serif" font-size="11" text-anchor="middle">
+      <circle cx="84" cy="65" r="24" fill="#101314" stroke="#10b981" stroke-opacity=".5"/><text x="84" y="69" fill="#d4d4d8">R</text><text x="84" y="105" fill="#71717a">Research</text>
+      <circle cx="250" cy="65" r="24" fill="#101314" stroke="#ffffff" stroke-opacity=".18"/><text x="250" y="69" fill="#d4d4d8">P</text><text x="250" y="105" fill="#71717a">Plan</text>
+      <circle cx="416" cy="65" r="29" fill="#10b981"/><text x="416" y="69" fill="#06130f" font-weight="700">H</text><text x="416" y="105" fill="#6ee7b7">Approve</text>
+      <circle cx="582" cy="65" r="24" fill="#101314" stroke="#ffffff" stroke-opacity=".18"/><text x="582" y="69" fill="#d4d4d8">P</text><text x="582" y="105" fill="#71717a">Publish</text>
+      <circle cx="748" cy="65" r="24" fill="#101314" stroke="#ffffff" stroke-opacity=".18"/><text x="748" y="69" fill="#d4d4d8">M</text><text x="748" y="105" fill="#71717a">Measure</text>
+      <circle cx="914" cy="65" r="24" fill="#101314" stroke="#06b6d4" stroke-opacity=".5"/><text x="914" y="69" fill="#d4d4d8">L</text><text x="914" y="105" fill="#67e8f9">Learn</text>
+    </g>
+  </g>
+
+  <g filter="url(#atlasShadow)">
+    <rect x="1280" y="210" width="440" height="820" rx="40" fill="#0a0b0c" stroke="#ffffff" stroke-opacity=".11"/>
+  </g>
+  <rect x="1430" y="228" width="140" height="6" rx="3" fill="#ffffff" fill-opacity=".16"/>
+  <text x="1320" y="300" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2.2">THE DECISION STARTS WITH YOU</text>
+  <text x="1320" y="347" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="30" font-weight="700" letter-spacing="-1.4">What kind of brand</text>
+  <text x="1320" y="381" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="30" font-weight="700" letter-spacing="-1.4">are you operating?</text>
+  <g font-family="Inter, sans-serif" font-size="13">
+    <rect x="1320" y="420" width="360" height="58" rx="29" fill="#10b981"/>
+    <text x="1350" y="455" fill="#06130f" font-weight="700">Solo founder</text><text x="1640" y="455" fill="#06130f" text-anchor="end">01</text>
+    <rect x="1320" y="490" width="360" height="58" rx="29" fill="#ffffff" fill-opacity=".03" stroke="#ffffff" stroke-opacity=".1"/>
+    <text x="1350" y="525" fill="#d4d4d8">Creator-led brand</text><text x="1640" y="525" fill="#71717a" text-anchor="end">02</text>
+    <rect x="1320" y="560" width="360" height="58" rx="29" fill="#ffffff" fill-opacity=".03" stroke="#ffffff" stroke-opacity=".1"/>
+    <text x="1350" y="595" fill="#d4d4d8">Developer / API brand</text><text x="1640" y="595" fill="#71717a" text-anchor="end">03</text>
+    <rect x="1320" y="630" width="360" height="58" rx="29" fill="#ffffff" fill-opacity=".03" stroke="#ffffff" stroke-opacity=".1"/>
+    <text x="1350" y="665" fill="#d4d4d8">Agency / multi-brand</text><text x="1640" y="665" fill="#71717a" text-anchor="end">04</text>
+    <rect x="1320" y="700" width="360" height="58" rx="29" fill="#ffffff" fill-opacity=".03" stroke="#ffffff" stroke-opacity=".1"/>
+    <text x="1350" y="735" fill="#d4d4d8">Enterprise team</text><text x="1640" y="735" fill="#71717a" text-anchor="end">05</text>
+  </g>
+  <path d="M1500 780V820" stroke="#10b981" stroke-opacity=".65"/>
+  <circle cx="1500" cy="820" r="4" fill="#6ee7b7"/>
+  <rect x="1320" y="844" width="360" height="126" rx="24" fill="#10b981" fill-opacity=".07" stroke="#10b981" stroke-opacity=".24"/>
+  <text x="1344" y="876" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2">YOUR STARTING ROUTE</text>
+  <text x="1344" y="915" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="24" font-weight="700">Pallyy → Metricool</text>
+  <text x="1344" y="943" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="12">Pilot the simpler control plane first.</text>
+  <text x="1320" y="1003" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">MOBILE: ONE DECISION PER SCREEN</text>
+
+  <g transform="translate(80 1080)">
+    <text x="0" y="0" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">SYSTEM NOTES</text>
+    <text x="0" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Type</text>
+    <text x="0" y="69" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Poppins / Inter / JetBrains Mono</text>
+    <text x="255" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Palette</text>
+    <circle cx="267" cy="67" r="11" fill="#0a0a0b" stroke="#fff" stroke-opacity=".2"/><circle cx="299" cy="67" r="11" fill="#10b981"/><circle cx="331" cy="67" r="11" fill="#06b6d4"/><circle cx="363" cy="67" r="11" fill="#f7f7f8"/>
+    <text x="480" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">State motion</text>
+    <text x="480" y="69" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Selection realigns paths with transform + opacity. Reduced motion: complete static route.</text>
+    <text x="1130" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Imagery</text>
+    <text x="1130" y="69" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Topology is the hero.</text>
+    <text x="20" y="126" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Source annotation</text>
+    <text x="20" y="157" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Role routes use official pricing/docs retrieved 28 Aug 2026; recommendations are editorial, not vendor claims.</text>
+    <text x="820" y="126" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Anti-reference</text>
+    <text x="820" y="157" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Logo clouds, fake universes, equal-card comparison, affiliate-first winners.</text>
+  </g>
+</svg>

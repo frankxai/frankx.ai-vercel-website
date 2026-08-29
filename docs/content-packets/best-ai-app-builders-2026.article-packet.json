@@ -1,0 +1,633 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "cnt_frankx_best_ai_app_builders_2026",
+  "status": "READY_FOR_FRANK",
+  "authority": "PUBLISH",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "www.frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "frankx-ai-vercel-website / prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+    "notion_record": "not-required-for-repository-publication"
+  },
+  "brief": {
+    "working_title": "Best AI App Builders 2026: v0, Replit, Lovable",
+    "subject": "Choosing an AI app-building surface and designing its handoff to repository agents, source control, deployment, workflows, marketing, sales, operations, and evidence",
+    "origin": "User-authorized FrankX comparison, primary vendor documentation, current GitHub/Vercel release patterns, and first-party FrankX v0 experience",
+    "thesis": "The responsible 2026 choice is not one magic builder; it is a builder whose graduation path matches product risk, combined with owned source, independent code review, preview deployment, governed production, business-system integration, and measurable outcomes.",
+    "reader": "Founder, product leader, designer, marketer, or AI architect choosing how to create and operate a web product",
+    "reader_baseline": "The reader treats v0, Replit, Lovable, Claude Code, Codex, n8n, and model providers as one interchangeable category.",
+    "reader_delta": "The reader can select a creation surface by product and ownership boundary, then implement the eight-layer graduation architecture across the company.",
+    "stakes": "A fast prototype can become an unowned, insecure, unobservable production dependency if source, data, identity, release, and recovery boundaries are left implicit.",
+    "strongest_objection": "Without a controlled same-prompt bakeoff, no honest article can rank all builders by output quality.",
+    "commercial_relationship": "All provider references use direct official links. No issued customer-referral URL was verified for this release, so no affiliate link is published."
+  },
+  "content_graph": {
+    "cluster_id": "cluster_ai_app_builder_architecture_2026",
+    "canonical_url": "https://www.frankx.ai/blog/best-ai-app-builders-2026",
+    "existing_related_urls": [
+      "https://www.frankx.ai/blog/ultimate-guide-ai-coding-agents-2026",
+      "https://www.frankx.ai/blog/best-no-code-ai-agent-builders-2026",
+      "https://www.frankx.ai/blog/best-ai-coding-tools-for-beginners-2026",
+      "https://www.frankx.ai/blog/chatgpt-sites-founder-guide-2026",
+      "https://www.frankx.ai/design-lab/v0"
+    ],
+    "internal_links": [
+      "Beginner AI coding guide for first-tool learning intent",
+      "Ultimate AI coding agents guide for repository-agent intent",
+      "No-code AI agent builders for workflow-agent intent",
+      "ChatGPT Sites founder guide for one specific creation surface",
+      "v0 Design Lab as first-party FrankX usage evidence",
+      "Agent control-plane and launch-system pages for governance and go-to-market"
+    ],
+    "entities": [
+      "v0",
+      "Replit Agent",
+      "Lovable",
+      "Bolt",
+      "Base44",
+      "Claude Code",
+      "Codex",
+      "GitHub",
+      "Vercel",
+      "n8n",
+      "Make",
+      "AI app builder",
+      "vibe coding"
+    ]
+  },
+  "search": {
+    "primary_intent": "Compare the best AI app builders in 2026 and choose a production-ready stack",
+    "query_set": [
+      "best AI app builders 2026",
+      "v0 vs Replit vs Lovable",
+      "Lovable vs v0",
+      "Replit Agent vs Lovable",
+      "app builder to coding agent handoff",
+      "AI builder stack for business"
+    ],
+    "serp_snapshot": {
+      "captured_at": "2026-08-27T22:34:11Z",
+      "locale": "en-US",
+      "device": "desktop",
+      "dominant_intent": "Comparison and ranking pages organized around features, pricing, output quality, use-case winners, and prompt-to-app recommendations",
+      "information_gap": "A category-correct comparison that separates builders from repository agents and workflows, then connects prototypes to governed production and company operations",
+      "result_ledger": [
+        "https://www.vibecodingacademy.ai/blog/ai-app-builder-complete-guide-2026",
+        "https://bubble.io/blog/lovable-vs-replit-vs-bubble-comparison/",
+        "https://lovable.dev/guides/lovable-vs-v0",
+        "https://fabricate.build/blog/best-ai-app-builder-2026",
+        "https://layout.dev/blog/best-ai-app-builders-2026-comparison"
+      ]
+    },
+    "answer_units": [
+      "Which app builder fits each starting state",
+      "v0, Replit, Lovable, Bolt, and Base44 capability boundaries",
+      "Claude Code and Codex handoff",
+      "The eight-layer AI builder stack",
+      "Department workflows for product, marketing, sales, and operations",
+      "Prototype-to-production release sequence",
+      "A production gate and 30-day adoption plan"
+    ],
+    "structured_data": [
+      "Article",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "indexation": "index",
+    "crawler_policy_checked": true
+  },
+  "sources": [
+    {
+      "source_id": "src_v0_docs",
+      "url": "https://v0.dev/docs",
+      "title": "v0 documentation",
+      "publisher": "Vercel",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_v0_github",
+      "url": "https://v0.dev/docs/github",
+      "title": "v0 GitHub integration",
+      "publisher": "Vercel",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_v0_deployments",
+      "url": "https://v0.dev/docs/deployments",
+      "title": "v0 deployments",
+      "publisher": "Vercel",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_replit_agent",
+      "url": "https://docs.replit.com/features/agent/overview",
+      "title": "Replit Agent overview",
+      "publisher": "Replit",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_replit_publish",
+      "url": "https://docs.replit.com/build/publish-your-app",
+      "title": "Publish your app",
+      "publisher": "Replit",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_replit_security",
+      "url": "https://docs.replit.com/features/security/project-security-center",
+      "title": "Security Center",
+      "publisher": "Replit",
+      "source_type": "primary_security_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_lovable_welcome",
+      "url": "https://docs.lovable.dev/introduction/welcome",
+      "title": "Lovable documentation",
+      "publisher": "Lovable",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_lovable_cloud",
+      "url": "https://docs.lovable.dev/features/cloud",
+      "title": "Lovable Cloud",
+      "publisher": "Lovable",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_lovable_ownership",
+      "url": "https://docs.lovable.dev/tips-tricks/deployment-hosting-ownership",
+      "title": "Deployment, hosting, and ownership",
+      "publisher": "Lovable",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_bolt_support",
+      "url": "https://support.bolt.new/",
+      "title": "Bolt Help Center",
+      "publisher": "StackBlitz",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_bolt_versions_github",
+      "url": "https://support.bolt.new/concepts/version-history-github",
+      "title": "Version history and GitHub",
+      "publisher": "StackBlitz",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_bolt_git",
+      "url": "https://support.bolt.new/integrations/git",
+      "title": "Git integration",
+      "publisher": "StackBlitz",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_base44_docs",
+      "url": "https://docs.base44.com/",
+      "title": "Base44 documentation",
+      "publisher": "Base44",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_base44_agents",
+      "url": "https://docs.base44.com/Building-your-app/AI-agents-for-apps",
+      "title": "AI agents for apps",
+      "publisher": "Base44",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_base44_workflows",
+      "url": "https://docs.base44.com/Building-your-app/Creating-workflows",
+      "title": "Creating workflows",
+      "publisher": "Base44",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_base44_integrations",
+      "url": "https://docs.base44.com/Integrations/Using-integrations",
+      "title": "Using integrations",
+      "publisher": "Base44",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_anthropic_claude_code",
+      "url": "https://docs.anthropic.com/en/docs/claude-code/overview",
+      "title": "Claude Code overview",
+      "publisher": "Anthropic",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_openai_codex_cli",
+      "url": "https://developers.openai.com/codex/cli",
+      "title": "Codex CLI",
+      "publisher": "OpenAI",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_openai_codex_ide",
+      "url": "https://developers.openai.com/codex/ide",
+      "title": "Codex IDE extension",
+      "publisher": "OpenAI",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_openai_codex_cloud",
+      "url": "https://developers.openai.com/codex/cloud",
+      "title": "Codex cloud",
+      "publisher": "OpenAI",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_cursor_docs",
+      "url": "https://cursor.com/docs",
+      "title": "Cursor documentation",
+      "publisher": "Cursor",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_mistral_vibe",
+      "url": "https://docs.mistral.ai/vibe",
+      "title": "Mistral Vibe",
+      "publisher": "Mistral AI",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_lindy_intro",
+      "url": "https://docs.lindy.ai/fundamentals/lindy-101/introduction",
+      "title": "Introduction to Lindy",
+      "publisher": "Lindy",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_github_agents",
+      "url": "https://docs.github.com/en/copilot/concepts/agents/about-third-party-coding-agents",
+      "title": "About third-party coding agents",
+      "publisher": "GitHub",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_github_push_protection",
+      "url": "https://docs.github.com/en/code-security/concepts/secret-security/push-protection",
+      "title": "Push protection",
+      "publisher": "GitHub",
+      "source_type": "primary_security_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_vercel_git",
+      "url": "https://vercel.com/docs/git",
+      "title": "Git integrations",
+      "publisher": "Vercel",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_github_protected_branches",
+      "url": "https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches",
+      "title": "About protected branches",
+      "publisher": "GitHub",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_n8n_executions",
+      "url": "https://docs.n8n.io/build/understand-workflows/understand-executions/view-all-executions",
+      "title": "View all executions",
+      "publisher": "n8n",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_make_apps",
+      "url": "https://help.make.com/introduction-to-make-apps",
+      "title": "Introduction to Make apps",
+      "publisher": "Make",
+      "source_type": "primary_product_documentation",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_owasp_llm_top10",
+      "url": "https://genai.owasp.org/llm-top-10/",
+      "title": "OWASP Top 10 for LLM Applications",
+      "publisher": "OWASP",
+      "source_type": "primary_security_guidance",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_nist_airmf",
+      "url": "https://airc.nist.gov/airmf-resources/airmf/",
+      "title": "AI Risk Management Framework",
+      "publisher": "NIST",
+      "source_type": "primary_governance_framework",
+      "retrieved_at": "2026-08-27"
+    },
+    {
+      "source_id": "src_frankx_article_method",
+      "repository_path": "content/blog/best-ai-app-builders-2026.mdx",
+      "title": "FrankX comparison method disclosure",
+      "publisher": "FrankX",
+      "source_type": "first_party_editorial_method",
+      "retrieved_at": "2026-08-27"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm_category_distinction",
+      "text": "Prompt-to-app builders, repository coding agents, workflow runtimes, model providers, deployment platforms, and control/evidence systems overlap but have different primary system boundaries.",
+      "type": "inference",
+      "support": "derived",
+      "source_ids": [
+        "src_v0_docs",
+        "src_replit_agent",
+        "src_lovable_welcome",
+        "src_bolt_support",
+        "src_base44_docs",
+        "src_anthropic_claude_code",
+        "src_openai_codex_cli",
+        "src_openai_codex_ide",
+        "src_openai_codex_cloud",
+        "src_cursor_docs",
+        "src_mistral_vibe",
+        "src_lindy_intro"
+      ]
+    },
+    {
+      "claim_id": "clm_v0_handoffs",
+      "text": "v0 documents GitHub integration and Vercel deployment paths, making it a strong fit when a web product is already shaped around a Next.js/Vercel estate.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_v0_docs",
+        "src_v0_github",
+        "src_v0_deployments"
+      ]
+    },
+    {
+      "claim_id": "clm_replit_environment",
+      "text": "Replit Agent combines natural-language planning and implementation with a cloud workspace and managed publication surface.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_replit_agent"
+      ]
+    },
+    {
+      "claim_id": "clm_lovable_mobility",
+      "text": "Lovable documents managed full-stack cloud capabilities plus Git synchronization and external hosting paths that support developer handoff and movement.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_lovable_welcome",
+        "src_lovable_cloud",
+        "src_lovable_ownership"
+      ]
+    },
+    {
+      "claim_id": "clm_agents_not_builders",
+      "text": "Claude Code and Codex are best evaluated as coding agents for source-controlled engineering work, not as direct substitutes for every prompt-to-app product surface.",
+      "type": "inference",
+      "support": "derived",
+      "source_ids": [
+        "src_anthropic_claude_code",
+        "src_openai_codex_cli",
+        "src_openai_codex_ide",
+        "src_openai_codex_cloud",
+        "src_github_agents"
+      ]
+    },
+    {
+      "claim_id": "clm_no_benchmark",
+      "text": "This article does not provide a controlled same-prompt output-quality ranking; recommendations are based on documented capabilities, system boundaries, and graduation paths.",
+      "type": "first_party",
+      "support": "direct",
+      "source_ids": [
+        "src_frankx_article_method"
+      ]
+    },
+    {
+      "claim_id": "clm_replit_publish_security",
+      "text": "Replit documents a managed publication flow and a Security Center that performs project-level security checks.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_replit_publish",
+        "src_replit_security"
+      ]
+    },
+    {
+      "claim_id": "clm_bolt_git_boundary",
+      "text": "Bolt distinguishes its built-in version history from GitHub and documents Git integration for source synchronization and collaboration.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_bolt_versions_github",
+        "src_bolt_git"
+      ]
+    },
+    {
+      "claim_id": "clm_base44_breadth",
+      "text": "Base44 documents in-app AI agents, workflows, and integrations as parts of its managed business-application surface.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_base44_agents",
+        "src_base44_workflows",
+        "src_base44_integrations"
+      ]
+    },
+    {
+      "claim_id": "clm_coding_agent_surfaces",
+      "text": "Codex documents CLI, IDE, and cloud surfaces; Cursor and Mistral Vibe are also documented coding-agent or agentic-development surfaces.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_openai_codex_cli",
+        "src_openai_codex_ide",
+        "src_openai_codex_cloud",
+        "src_cursor_docs",
+        "src_mistral_vibe"
+      ]
+    },
+    {
+      "claim_id": "clm_git_release_controls",
+      "text": "Vercel documents Git-based preview deployments, while GitHub protected branches can require reviews and status checks before merge.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_vercel_git",
+        "src_github_protected_branches"
+      ]
+    },
+    {
+      "claim_id": "clm_push_protection",
+      "text": "GitHub push protection is designed to block supported secrets before they are committed or pushed.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_github_push_protection"
+      ]
+    },
+    {
+      "claim_id": "clm_workflow_surfaces",
+      "text": "n8n documents execution history and retry controls; Make and Lindy document connector-led workflow and agent surfaces.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_n8n_executions",
+        "src_make_apps",
+        "src_lindy_intro"
+      ]
+    },
+    {
+      "claim_id": "clm_governance_frameworks",
+      "text": "OWASP catalogs risks for LLM applications, and NIST organizes AI risk work around Govern, Map, Measure, and Manage.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "src_owasp_llm_top10",
+        "src_nist_airmf"
+      ]
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/best-ai-app-builders-2026.mdx",
+    "canonical_title": "Best AI App Builders 2026: v0, Replit, Lovable",
+    "description": "Choose v0, Replit, Lovable, Bolt, or Base44—and design the handoff to Claude Code, Codex, GitHub, deployment, sales, and operations.",
+    "author_id": "frankx",
+    "published_at": null,
+    "modified_at": "2026-08-27"
+  },
+  "media": [
+    {
+      "asset_id": "fx-blog-ai-app-builders-hero",
+      "version_id": "v1-2026-08-27",
+      "placement": "hero",
+      "media_type": "repo_native_svg",
+      "path": "/images/blog/visual-system/best-ai-app-builders-2026-hero.svg",
+      "mime_type": "image/svg+xml",
+      "width": 1600,
+      "height": 900,
+      "bytes": 4512,
+      "sha256": "1c4b1e3eb25cd7ceb35fa94893ea73c2efb266acb5c9bdaf57d520e0aeaac0d0",
+      "creator": "FrankX Content Intelligence OS",
+      "rights_status": "approved-original-editorial-art",
+      "rights": "FrankX original architecture; product names used nominatively; no third-party logos or screenshots",
+      "alt": "An AI app builder graduation stack connecting intent, creation, owned source, coding-agent review, release, business systems, and evidence."
+    },
+    {
+      "asset_id": "fx-blog-ai-app-builder-graduation-map",
+      "version_id": "v1-2026-08-27-map",
+      "placement": "opening_architecture_map",
+      "media_type": "repo_native_svg",
+      "path": "/images/blog/visual-system/infographics/best-ai-app-builders-2026-map.svg",
+      "mime_type": "image/svg+xml",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 5553,
+      "sha256": "edda04f61997a8d735313fcec92f739e511189e98656d4112a918efa775be956",
+      "creator": "FrankX Content Intelligence OS",
+      "rights_status": "approved-original-editorial-art",
+      "rights": "FrankX original architecture",
+      "alt": "The governed graduation path from an AI app builder to production and measurable business operations."
+    },
+    {
+      "asset_id": "fx-blog-ai-app-builders-hero",
+      "version_id": "v1-2026-08-27-og-1200x630",
+      "placement": "open_graph",
+      "media_type": "deterministic_png_rendition",
+      "path": "/images/blog/visual-system/social/best-ai-app-builders-2026-og.png",
+      "mime_type": "image/png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 171622,
+      "sha256": "f13d7698c8816f01207e999823e17148c53bcb4e8dc0ccb410c94aaec220b8ca",
+      "creator": "FrankX Content Intelligence OS",
+      "rights_status": "approved-original-editorial-art",
+      "rights": "FrankX original architecture; deterministic crop of the approved hero",
+      "alt": "The AI builder stack from validated intent through owned source, release, business systems, and evidence."
+    }
+  ],
+  "affiliates": [],
+  "distribution": [],
+  "reviews": [
+    {
+      "lane": "truth_rights",
+      "verdict": "pass",
+      "reason": "Independent builder_research re-review passed all atomic capability claims, source bindings, benchmark caveats, affiliate treatment, and nominative rights usage on 2026-08-27."
+    },
+    {
+      "lane": "commissioning_editor",
+      "verdict": "pass",
+      "reason": "Independent builder_research re-review passed the category routing, builder-to-repository handoff, organization workflow, production gate, and authored voice on 2026-08-27."
+    },
+    {
+      "lane": "seo_geo",
+      "verdict": "pass",
+      "reason": "Independent canonical_audit passed canonical ownership, intent separation, www metadata, FAQPage extraction, internal links, dated SERP evidence, and crawler configuration on 2026-08-27."
+    },
+    {
+      "lane": "art_critic",
+      "verdict": "pass",
+      "reason": "Independent builder_research re-review passed the corrected evidence loop, governing rail, hero, real 1200x630 OG rendition, provenance, alt text, and checksums on 2026-08-27."
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "No GitHub pull request or Vercel preview exists yet."
+    }
+  ],
+  "publication": {
+    "branch": "agent/codex/content-wave-20260827",
+    "pull_request": "blocked",
+    "preview_url": "blocked",
+    "live_url": "blocked",
+    "verified_at": null,
+    "rollback": "555c19f9119c6ca8b09b8de51c8202c69a6f932b"
+  },
+  "measurement": {
+    "hypothesis": "A category-correct, architecture-led comparison will earn qualified builder-intent discovery and move readers into owned-source and governed-release workflows instead of producing shallow tool clicks.",
+    "primary_metric": "Qualified organic entrances that continue to the v0 lab, coding-agent guide, workflow-agent guide, or production architecture pages",
+    "guardrails": [
+      "No same-prompt benchmark implication",
+      "No universal winner",
+      "No fabricated core-provider affiliate route",
+      "No recommendation based on commission",
+      "No claim that generated code is production-ready without review"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "2026-10-27",
+    "freshness_triggers": [
+      "Material capability, ownership, hosting, or Git-integration change",
+      "Provider-issued FrankX affiliate approval",
+      "New first-party controlled benchmark evidence",
+      "Canonical or search-intent collision",
+      "Security or production-boundary change"
+    ]
+  },
+  "blocked": []
+}
