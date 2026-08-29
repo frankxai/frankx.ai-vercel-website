@@ -1,0 +1,357 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "cnt_social_media_tools_founders_2026",
+  "status": "READY_FOR_FRANK",
+  "authority": "PUBLISH",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "frankx-ai-vercel-website",
+    "notion_record": "not_applicable"
+  },
+  "brief": {
+    "working_title": "Best Social Media Management Tools for Founders (2026)",
+    "subject": "Choosing a right-sized social publishing, analytics, and agent-automation control plane across founder, creator, developer, agency, and enterprise roles",
+    "origin": "User-authorized FrankX tool-intelligence program, official vendor documentation retrieved 28 August 2026, current research papers, and an original role-routing registry",
+    "thesis": "The best social media tool is not the platform with the most features; it is the smallest replaceable control plane that fits the operating role, preserves human judgment, and returns useful evidence.",
+    "reader": "Founder, creator, developer, agency operator, or enterprise social leader with purchase intent",
+    "reader_baseline": "The reader sees Metricool, Pallyy, Postiz, Blotato, Buffer, HubSpot, Sprout Social, and Hootsuite as one feature-comparison category.",
+    "reader_delta": "The reader can route by operating role, normalize price units, distinguish API from MCP and self-hosting, and run a governed 30-day proof.",
+    "stakes": "A superficially impressive tool can add recurring cost, fragmented memory, permission risk, and dashboard debt without improving publishing quality or decisions.",
+    "strongest_objection": "Official documentation establishes public capability boundaries but does not prove comparative usability or production reliability under one controlled workload.",
+    "commercial_relationship": "Several vendors publish affiliate or partner programs, but no tracked FrankX relationship is asserted and all launch links use official destinations."
+  },
+  "content_graph": {
+    "cluster_id": "cluster_social_tool_intelligence_2026",
+    "canonical_url": "https://www.frankx.ai/blog/best-social-media-management-tools-founders-2026",
+    "existing_related_urls": [
+      "https://www.frankx.ai/tools",
+      "https://www.frankx.ai/research",
+      "https://www.frankx.ai/blog/multi-agent-orchestration-patterns-2026"
+    ],
+    "internal_links": [
+      "Social Media Tool Decision Atlas as the living evidence and comparison surface",
+      "Pallyy versus Metricool face-off for one-brand decision intent",
+      "Research hub for architecture sources",
+      "Multi-agent orchestration guide for implementation depth"
+    ],
+    "entities": [
+      "Pallyy",
+      "Metricool",
+      "Buffer",
+      "Postiz",
+      "Blotato",
+      "HubSpot",
+      "Sprout Social",
+      "Hootsuite",
+      "Later",
+      "SocialBee",
+      "Publer",
+      "Typefully",
+      "Mixpost",
+      "Ayrshare",
+      "Upload-Post",
+      "Model Context Protocol"
+    ]
+  },
+  "search": {
+    "primary_intent": "Compare the best social media management tools in 2026 and choose one by founder or brand operating role",
+    "query_set": [
+      "best social media management tools 2026",
+      "best social media tool for founders",
+      "Metricool vs Pallyy",
+      "Metricool vs Buffer",
+      "Postiz vs Blotato",
+      "social media API for developers",
+      "social media MCP server"
+    ],
+    "serp_snapshot": {
+      "captured_at": "2026-08-28T12:00:00Z",
+      "locale": "en-US",
+      "device": "desktop",
+      "dominant_intent": "Generic listicles, vendor-authored comparisons, feature tables, and API-provider self-rankings",
+      "information_gap": "A current primary-source registry that routes by operator role, separates product categories, distinguishes API and MCP, exposes commercial status, and connects the choice to a governed agent architecture"
+    },
+    "answer_units": [
+      "Best tool by operating role",
+      "Direct Metricool verdict",
+      "Fifteen-tool current field guide",
+      "API versus MCP versus self-hosting",
+      "Multi-agent publishing control plane",
+      "Normalized founder cost model",
+      "30-day adoption proof",
+      "Affiliate independence policy"
+    ],
+    "structured_data": ["Article", "FAQPage", "BreadcrumbList"],
+    "indexation": "index",
+    "crawler_policy_checked": true
+  },
+  "sources": [
+    {
+      "source_id": "src_social_registry",
+      "repository_path": "data/social-media-tools.ts",
+      "title": "FrankX governed social media tool registry",
+      "publisher": "FrankX",
+      "source_type": "first_party_registry",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_pallyy_pricing",
+      "url": "https://pallyy.com/pricing",
+      "title": "Pallyy Pricing",
+      "publisher": "Pallyy",
+      "source_type": "official_pricing",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_pallyy_api",
+      "url": "https://pallyy.com/features/api",
+      "title": "Pallyy API",
+      "publisher": "Pallyy",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_metricool_pricing",
+      "url": "https://metricool.com/pricing/",
+      "title": "Metricool Pricing",
+      "publisher": "Metricool",
+      "source_type": "official_pricing",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_metricool_mcp_api",
+      "url": "https://help.metricool.com/mcp-vs-api-access-what-is-the-difference-5y3ib",
+      "title": "MCP vs API access: what is the difference?",
+      "publisher": "Metricool",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_buffer_pricing",
+      "url": "https://buffer.com/pricing",
+      "title": "Buffer Pricing",
+      "publisher": "Buffer",
+      "source_type": "official_pricing",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_postiz_docs",
+      "url": "https://docs.postiz.com/public-api/introduction",
+      "title": "Postiz Public API Introduction",
+      "publisher": "Postiz",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_blotato_pricing",
+      "url": "https://www.blotato.com/pricing",
+      "title": "Blotato Pricing",
+      "publisher": "Blotato",
+      "source_type": "official_pricing",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_sprout_pricing",
+      "url": "https://sproutsocial.com/pricing/",
+      "title": "Sprout Social Pricing",
+      "publisher": "Sprout Social",
+      "source_type": "official_pricing",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_hubspot_social",
+      "url": "https://knowledge.hubspot.com/social/create-and-publish-social-posts",
+      "title": "Create and publish social posts",
+      "publisher": "HubSpot",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_ayrshare_pricing",
+      "url": "https://www.ayrshare.com/pricing/",
+      "title": "Ayrshare Pricing",
+      "publisher": "Ayrshare",
+      "source_type": "official_pricing",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_nist_genai",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+      "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
+      "publisher": "NIST",
+      "source_type": "official_standard",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    },
+    {
+      "source_id": "src_mcp_spec",
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28",
+      "title": "Model Context Protocol Specification 2026-07-28",
+      "publisher": "Model Context Protocol",
+      "source_type": "official_specification",
+      "retrieved_at": "2026-08-28T12:00:00Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm_pallyy_default",
+      "text": "Pallyy is the editorial default for one compact founder brand because its current public plans cover the core workflow at clear one-brand prices.",
+      "type": "inference",
+      "support": "derived",
+      "source_ids": ["src_pallyy_pricing", "src_pallyy_api", "src_social_registry"]
+    },
+    {
+      "claim_id": "clm_metricool_mcp",
+      "text": "Metricool documents MCP on every plan and API on Advanced and Custom plans.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": ["src_metricool_pricing", "src_metricool_mcp_api"]
+    },
+    {
+      "claim_id": "clm_category_error",
+      "text": "Founder schedulers, analytics suites, creator studios, social APIs, self-hosted products, enterprise suites, and CRM-connected platforms optimize different system boundaries.",
+      "type": "inference",
+      "support": "derived",
+      "source_ids": ["src_social_registry"]
+    },
+    {
+      "claim_id": "clm_buffer_unit",
+      "text": "Buffer's public paid pricing begins around six dollars per channel per month, so portfolio cost depends on channel count.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": ["src_buffer_pricing"]
+    },
+    {
+      "claim_id": "clm_postiz_control",
+      "text": "Postiz documents a public API and offers a source-access and self-hosting route that creates both control and an operations obligation.",
+      "type": "inference",
+      "support": "derived",
+      "source_ids": ["src_postiz_docs", "src_social_registry"]
+    },
+    {
+      "claim_id": "clm_enterprise_boundary",
+      "text": "Sprout Social and HubSpot solve wider governance or commercial-system jobs than founder scheduling alone.",
+      "type": "inference",
+      "support": "derived",
+      "source_ids": ["src_sprout_pricing", "src_hubspot_social"]
+    },
+    {
+      "claim_id": "clm_api_infra",
+      "text": "Ayrshare is an API-infrastructure category with public entry pricing materially above a founder scheduler.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": ["src_ayrshare_pricing"]
+    },
+    {
+      "claim_id": "clm_human_gate",
+      "text": "A governed multi-agent publishing loop should keep authority and outcome evidence outside the replaceable scheduler boundary.",
+      "type": "inference",
+      "support": "contextual",
+      "source_ids": ["src_nist_genai", "src_mcp_spec", "src_social_registry"]
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/best-social-media-management-tools-founders-2026.mdx",
+    "canonical_title": "Best Social Media Management Tools for Founders (2026)",
+    "description": "Compare 15 social media tools for solo founders, creator-led brands, developers, agencies, and enterprises—by cost, API, MCP, evidence, and fit.",
+    "author_id": "frank-riemer",
+    "published_at": null,
+    "modified_at": "2026-08-28"
+  },
+  "media": [
+    {
+      "asset_id": "fx-social-tools-founders-hero",
+      "version_id": "v1-2026-08-28",
+      "placement": "hero",
+      "media_type": "repo_native_svg",
+      "path": "/images/blog/visual-system/best-social-media-management-tools-founders-2026-hero.svg",
+      "rights": "FrankX original editorial architecture; product names used nominatively; no third-party logos or screenshots",
+      "alt": "Five operating-role columns route solo founders, creator brands, developer brands, agencies, and enterprise teams to right-sized social media tool categories.",
+      "sha256": "b684849f78f4682f5e1dfad038d746236d6e292b11196c4cbcec8af95f6fd451"
+    },
+    {
+      "asset_id": "fx-social-tool-control-plane",
+      "version_id": "v1-2026-08-28",
+      "placement": "opening_architecture_map",
+      "media_type": "repo_native_svg",
+      "path": "/images/blog/visual-system/infographics/social-media-tool-control-plane.svg",
+      "rights": "FrankX original editorial architecture",
+      "alt": "A governed social media control plane separates brand memory, agents, human approval, publishing, and measured learning.",
+      "sha256": "305c971a4f269a44d2a129b3802c78ebd4c435e17b418bfc22c9eb8a8be6eabc"
+    },
+    {
+      "asset_id": "fx-social-tools-founders-og",
+      "version_id": "v1-2026-08-28-1200x630",
+      "placement": "open_graph",
+      "media_type": "deterministic_png_rendition",
+      "path": "/images/blog/visual-system/social/best-social-media-management-tools-founders-2026-og.png",
+      "rights": "FrankX original editorial architecture; deterministic crop of approved hero",
+      "alt": "The best social media tool is the one your brand can operate.",
+      "sha256": "70616557b2bcc491f49d1667fcebb930654c16f7d026226f2973450e9cdbdfbb"
+    }
+  ],
+  "affiliates": [],
+  "distribution": [],
+  "reviews": [
+    {
+      "lane": "truth_rights",
+      "verdict": "pass",
+      "reason": "All atomic product and price statements bind to official sources; the article declares the documentation-versus-benchmark boundary and uses original media without third-party logos."
+    },
+    {
+      "lane": "commissioning_editor",
+      "verdict": "pass",
+      "reason": "The article answers the purchase question immediately, corrects category confusion, and provides a practical role route, control architecture, cost model, and pilot."
+    },
+    {
+      "lane": "icp_reader",
+      "verdict": "pass",
+      "reason": "A founder can identify a starting product and the evidence required to justify added complexity without reading every vendor section."
+    },
+    {
+      "lane": "seo_geo",
+      "verdict": "pass",
+      "reason": "Primary intent, direct answer, entity coverage, comparison tables, visible FAQs, internal canonical links, update date, and structured data are present."
+    },
+    {
+      "lane": "art_critic",
+      "verdict": "pass",
+      "reason": "Original deterministic hero, architecture infographic, and social rendition carry the selected Decision Atlas art direction with governed provenance."
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "GitHub pull request, Vercel preview, and production URL verification remain release steps."
+    }
+  ],
+  "publication": {
+    "branch": "agent/codex/social-tool-intelligence-20260828",
+    "pull_request": "blocked",
+    "preview_url": "blocked",
+    "live_url": "blocked",
+    "verified_at": null,
+    "rollback": "9dd02f721682b9dc2a9f0dfee06688763abf91cc"
+  },
+  "measurement": {
+    "hypothesis": "A role-routed, primary-source comparison will attract qualified high-intent discovery and move readers into the live decision atlas rather than producing shallow vendor clicks.",
+    "primary_metric": "Qualified organic entrances that select a role, open a comparison, or continue to an official evidence source",
+    "guardrails": [
+      "No universal winner",
+      "No fabricated affiliate relationship",
+      "No same-workload benchmark implication",
+      "No product price without a current primary source",
+      "No autonomous publishing recommendation without a human authority boundary"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "2026-09-28",
+    "freshness_triggers": [
+      "Any public plan, price, network, API, MCP, or self-hosting change",
+      "A verified FrankX commercial relationship",
+      "New first-party pilot evidence",
+      "A material entrant or category change",
+      "Search-intent or canonical collision"
+    ]
+  },
+  "blocked": []
+}

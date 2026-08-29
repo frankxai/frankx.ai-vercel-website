@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">The AI builder stack and graduation path</title>
+  <desc id="desc">Validated intent moves through an app builder into owned source, coding-agent review, preview and production, workflows, business records, and an evidence loop.</desc>
+  <rect width="1600" height="1000" fill="#07090b"/>
+  <rect x="54" y="54" width="1492" height="892" rx="28" fill="#0b0e11" stroke="#ffffff" stroke-opacity="0.10"/>
+  <text x="100" y="126" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="700">THE AI BUILDER STACK</text>
+  <text x="100" y="190" fill="#f8fafc" font-family="Poppins, Inter, Arial, sans-serif" font-size="46" font-weight="760">Creation is one edge of the operating system</text>
+  <text x="100" y="232" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="21">The company owns the handoffs: source, data, release, action, records and evidence.</text>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="98" y="300" width="316" height="176" rx="18" fill="#0d1414" stroke="#10b981" stroke-opacity="0.60"/>
+    <text x="126" y="342" fill="#10b981" font-size="16" font-weight="750">01 / INTENT</text>
+    <text x="126" y="389" fill="#f8fafc" font-size="28" font-weight="720">User + constraint</text>
+    <text x="126" y="427" fill="#94a3b8" font-size="17">Evidence · non-goals · risk</text>
+
+    <rect x="462" y="300" width="316" height="176" rx="18" fill="#0c1216" stroke="#06b6d4" stroke-opacity="0.60"/>
+    <text x="490" y="342" fill="#06b6d4" font-size="16" font-weight="750">02 / CREATE</text>
+    <text x="490" y="389" fill="#f8fafc" font-size="28" font-weight="720">App builder</text>
+    <text x="490" y="427" fill="#94a3b8" font-size="17">One complete product slice</text>
+
+    <rect x="826" y="300" width="316" height="176" rx="18" fill="#0d1414" stroke="#10b981" stroke-opacity="0.60"/>
+    <text x="854" y="342" fill="#10b981" font-size="16" font-weight="750">03 / OWN</text>
+    <text x="854" y="389" fill="#f8fafc" font-size="28" font-weight="720">GitHub boundary</text>
+    <text x="854" y="427" fill="#94a3b8" font-size="17">History · branch · contract</text>
+
+    <rect x="1190" y="300" width="316" height="176" rx="18" fill="#0c1216" stroke="#06b6d4" stroke-opacity="0.60"/>
+    <text x="1218" y="342" fill="#06b6d4" font-size="16" font-weight="750">04 / HARDEN</text>
+    <text x="1218" y="389" fill="#f8fafc" font-size="28" font-weight="720">Code agent + CI</text>
+    <text x="1218" y="427" fill="#94a3b8" font-size="17">Tests · security · review</text>
+
+    <rect x="1190" y="560" width="316" height="176" rx="18" fill="#0d1414" stroke="#10b981" stroke-opacity="0.60"/>
+    <text x="1218" y="602" fill="#10b981" font-size="16" font-weight="750">05 / RELEASE</text>
+    <text x="1218" y="649" fill="#f8fafc" font-size="26" font-weight="720">Preview → runtime</text>
+    <text x="1218" y="687" fill="#94a3b8" font-size="17">Approval · production · rollback</text>
+
+    <rect x="826" y="560" width="316" height="176" rx="18" fill="#0c1216" stroke="#06b6d4" stroke-opacity="0.60"/>
+    <text x="854" y="602" fill="#06b6d4" font-size="16" font-weight="750">06 / CONNECT</text>
+    <text x="854" y="649" fill="#f8fafc" font-size="28" font-weight="720">Workflow plane</text>
+    <text x="854" y="687" fill="#94a3b8" font-size="17">Rules · retries · approvals</text>
+
+    <rect x="462" y="560" width="316" height="176" rx="18" fill="#0d1414" stroke="#10b981" stroke-opacity="0.60"/>
+    <text x="490" y="602" fill="#10b981" font-size="16" font-weight="750">07 / RECORD</text>
+    <text x="490" y="649" fill="#f8fafc" font-size="28" font-weight="720">Business systems</text>
+    <text x="490" y="687" fill="#94a3b8" font-size="17">CRM · billing · support · content</text>
+
+    <rect x="98" y="560" width="316" height="176" rx="18" fill="#0c1216" stroke="#06b6d4" stroke-opacity="0.60"/>
+    <text x="126" y="602" fill="#06b6d4" font-size="16" font-weight="750">08 / LEARN</text>
+    <text x="126" y="649" fill="#f8fafc" font-size="28" font-weight="720">Evidence loop</text>
+    <text x="126" y="687" fill="#94a3b8" font-size="17">Outcomes · incidents · cost</text>
+  </g>
+
+  <g fill="none" stroke="#cbd5e1" stroke-opacity="0.45" stroke-width="2">
+    <path d="M414 388H462M778 388H826M1142 388H1190M1348 476V560M1190 648H1142M826 648H778M462 648H414"/>
+    <path d="M98 648H72C50 648 50 388 72 388H98"/>
+  </g>
+  <g fill="#cbd5e1" fill-opacity="0.72">
+    <path d="M452 380l16 8-16 8zM816 380l16 8-16 8zM1180 380l16 8-16 8zM1340 550l8 16 8-16zM1152 640l-16 8 16 8zM788 640l-16 8 16 8zM424 640l-16 8 16 8zM88 380l16 8-16 8z"/>
+  </g>
+
+  <rect x="98" y="796" width="1408" height="102" rx="16" fill="#070a0d" stroke="#ffffff" stroke-opacity="0.11"/>
+  <text x="128" y="838" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">GOVERNING RAIL</text>
+  <text x="350" y="838" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="18">identity / data / permissions / secrets / cost / review / observability / recovery</text>
+  <text x="128" y="872" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="15">STANDARDIZE THE HANDOFF · KEEP THE BUILDER REPLACEABLE · MEASURE THE USER OUTCOME</text>
+
+  <text x="100" y="922" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="17">FrankX original architecture · 27 August 2026</text>
+</svg>

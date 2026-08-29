@@ -1,19 +1,239 @@
 {
   "meta": {
     "name": "FrankX Blog Visual Operating System",
-    "generatedAt": "2026-06-18T00:47:18.413Z",
+    "generatedAt": "2026-08-28T12:00:00.000Z",
     "generationMode": "hybrid-built-in-image-gen-plus-deterministic-social-png",
     "builtInImageGeneration": "used for premium cinematic bitmap hero headers; deterministic PNG overlays used for social cards to avoid text artifacts",
     "counts": {
-      "headers": 68,
-      "infographics": 21,
-      "socialCards": 180,
+      "headers": 72,
+      "infographics": 25,
+      "socialCards": 182,
       "socialCopyPacks": 60,
       "premiumBitmapHeaders": 56
     },
     "reviewPolicy": "Public assets must not expose internal quality badges. Reject stock-like, generic, over-purple, logo-like, readable-text-artifacted, weak-mobile-crop, repeated-dashboard, or unclear-topic assets."
   },
   "posts": [
+    {
+      "slug": "4-hour-ai-architect-deal-framework-2026",
+      "title": "The 4-Hour Workweek, Rebuilt for AI Architects in 2026",
+      "category": "Creator Systems",
+      "date": "2026-08-27",
+      "assetId": "fx-blog-4-hour-ai-architect-hero",
+      "infographicAssetId": "fx-blog-4-hour-ai-architect-deal-map",
+      "versionId": "v1-2026-08-27",
+      "hero": "/images/blog/visual-system/4-hour-ai-architect-deal-framework-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/4-hour-ai-architect-deal-framework-2026-map.svg",
+      "social": {
+        "og": "/images/blog/visual-system/social/4-hour-ai-architect-deal-framework-2026-og.png"
+      },
+      "prompt": "FrankX deterministic control-plane editorial: DEAL as Definition, Elimination, Automation and Liberation with evidence and exception rails; no book cover, author likeness, third-party logos, stock imagery, robots, or generic AI-brain motif.",
+      "source": "design.md + taste.md + original FrankX DEAL 2026 architecture",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "rights": "FrankX original architecture; nominative reference to The 4-Hour Workweek; no publisher imagery.",
+      "creator": "FrankX Content Intelligence OS",
+      "rightsApproval": "approved-original-editorial-art",
+      "media": [
+        {
+          "assetId": "fx-blog-4-hour-ai-architect-hero",
+          "renditionId": "hero-svg-1600x900",
+          "path": "/images/blog/visual-system/4-hour-ai-architect-deal-framework-2026-hero.svg",
+          "mimeType": "image/svg+xml",
+          "width": 1600,
+          "height": 900,
+          "bytes": 5124,
+          "sha256": "483f5a3800d0dbc4676b7e7bc33eb81f1e5d819159170b7227220f90af6a6be1"
+        },
+        {
+          "assetId": "fx-blog-4-hour-ai-architect-deal-map",
+          "renditionId": "map-svg-1600x1000",
+          "path": "/images/blog/visual-system/infographics/4-hour-ai-architect-deal-framework-2026-map.svg",
+          "mimeType": "image/svg+xml",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 5782,
+          "sha256": "8ba3b51299d0646e870656223589f74d832c7c28f1f45eb1cfd7e0744fc08280"
+        },
+        {
+          "assetId": "fx-blog-4-hour-ai-architect-hero",
+          "renditionId": "og-png-1200x630",
+          "path": "/images/blog/visual-system/social/4-hour-ai-architect-deal-framework-2026-og.png",
+          "mimeType": "image/png",
+          "width": 1200,
+          "height": 630,
+          "bytes": 179110,
+          "sha256": "782790a8f4a28eb36e8bc960deb233cca783543559995b90bd2797ffe09ec8bb"
+        }
+      ],
+      "notes": "Hero and section map are immutable v1 assets. Live article typography remains HTML; the hero SVG supplies the on-page art and the deterministic PNG rendition supplies Open Graph metadata."
+    },
+    {
+      "slug": "best-ai-app-builders-2026",
+      "title": "Best AI App Builders 2026: v0, Replit, Lovable",
+      "category": "Creator Systems",
+      "date": "2026-08-27",
+      "assetId": "fx-blog-ai-app-builders-hero",
+      "infographicAssetId": "fx-blog-ai-app-builder-graduation-map",
+      "versionId": "v1-2026-08-27",
+      "hero": "/images/blog/visual-system/best-ai-app-builders-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/best-ai-app-builders-2026-map.svg",
+      "social": {
+        "og": "/images/blog/visual-system/social/best-ai-app-builders-2026-og.png"
+      },
+      "prompt": "FrankX deterministic architecture editorial: app builder to owned source, repository agent, release, workflow, business records and evidence; no vendor logos, dashboard collage, stock imagery, robots, or generic AI-brain motif.",
+      "source": "design.md + taste.md + primary product documentation + original FrankX graduation-path architecture",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "rights": "FrankX original architecture; product names used nominatively; no third-party logos.",
+      "creator": "FrankX Content Intelligence OS",
+      "rightsApproval": "approved-original-editorial-art",
+      "media": [
+        {
+          "assetId": "fx-blog-ai-app-builders-hero",
+          "renditionId": "hero-svg-1600x900",
+          "path": "/images/blog/visual-system/best-ai-app-builders-2026-hero.svg",
+          "mimeType": "image/svg+xml",
+          "width": 1600,
+          "height": 900,
+          "bytes": 4512,
+          "sha256": "1c4b1e3eb25cd7ceb35fa94893ea73c2efb266acb5c9bdaf57d520e0aeaac0d0"
+        },
+        {
+          "assetId": "fx-blog-ai-app-builder-graduation-map",
+          "renditionId": "map-svg-1600x1000",
+          "path": "/images/blog/visual-system/infographics/best-ai-app-builders-2026-map.svg",
+          "mimeType": "image/svg+xml",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 5553,
+          "sha256": "edda04f61997a8d735313fcec92f739e511189e98656d4112a918efa775be956"
+        },
+        {
+          "assetId": "fx-blog-ai-app-builders-hero",
+          "renditionId": "og-png-1200x630",
+          "path": "/images/blog/visual-system/social/best-ai-app-builders-2026-og.png",
+          "mimeType": "image/png",
+          "width": 1200,
+          "height": 630,
+          "bytes": 171622,
+          "sha256": "f13d7698c8816f01207e999823e17148c53bcb4e8dc0ccb410c94aaec220b8ca"
+        }
+      ],
+      "notes": "Hero and section map are immutable v1 assets. The visual teaches the category distinction without implying a same-prompt benchmark."
+    },
+    {
+      "slug": "best-social-media-management-tools-founders-2026",
+      "title": "Best Social Media Management Tools for Founders (2026)",
+      "category": "Creator Systems",
+      "date": "2026-08-28",
+      "assetId": "fx-social-tools-founders-hero",
+      "infographicAssetId": "fx-social-tool-control-plane",
+      "versionId": "v1-2026-08-28",
+      "hero": "/images/blog/visual-system/best-social-media-management-tools-founders-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/social-media-tool-control-plane.svg",
+      "social": {
+        "og": "/images/blog/visual-system/social/best-social-media-management-tools-founders-2026-og.png"
+      },
+      "prompt": "FrankX Decision Atlas editorial: five operating roles mapped to right-sized social control planes, followed by a governed source-to-approval-to-learning rail; no vendor logos, screenshots, stock imagery, robots, or generic AI-brain motif.",
+      "source": "design.md + taste.md + official vendor documentation + original FrankX role-routing and control-plane architecture",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "rights": "FrankX original architecture; product names used nominatively; no third-party logos or screenshots.",
+      "creator": "FrankX Content Intelligence OS",
+      "rightsApproval": "approved-original-editorial-art",
+      "media": [
+        {
+          "assetId": "fx-social-tools-founders-hero",
+          "renditionId": "hero-svg-1600x900",
+          "path": "/images/blog/visual-system/best-social-media-management-tools-founders-2026-hero.svg",
+          "mimeType": "image/svg+xml",
+          "width": 1600,
+          "height": 900,
+          "bytes": 6384,
+          "sha256": "b684849f78f4682f5e1dfad038d746236d6e292b11196c4cbcec8af95f6fd451"
+        },
+        {
+          "assetId": "fx-social-tool-control-plane",
+          "renditionId": "map-svg-1600x1000",
+          "path": "/images/blog/visual-system/infographics/social-media-tool-control-plane.svg",
+          "mimeType": "image/svg+xml",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 6510,
+          "sha256": "305c971a4f269a44d2a129b3802c78ebd4c435e17b418bfc22c9eb8a8be6eabc"
+        },
+        {
+          "assetId": "fx-social-tools-founders-hero",
+          "renditionId": "og-png-1200x630",
+          "path": "/images/blog/visual-system/social/best-social-media-management-tools-founders-2026-og.png",
+          "mimeType": "image/png",
+          "width": 1200,
+          "height": 630,
+          "bytes": 186103,
+          "sha256": "70616557b2bcc491f49d1667fcebb930654c16f7d026226f2973450e9cdbdfbb"
+        }
+      ],
+      "notes": "Hero, architecture map, and Open Graph rendition are immutable v1 Decision Atlas assets. Official product names are typography, not copied brand marks."
+    },
+    {
+      "slug": "pallyy-vs-metricool-2026",
+      "title": "Pallyy vs Metricool (2026): Which Is Better?",
+      "category": "Creator Systems",
+      "date": "2026-08-28",
+      "assetId": "fx-pallyy-metricool-hero",
+      "infographicAssetId": "fx-pallyy-metricool-map",
+      "versionId": "v1-2026-08-28",
+      "hero": "/images/blog/visual-system/pallyy-vs-metricool-2026-hero.svg",
+      "infographic": "/images/blog/visual-system/infographics/pallyy-vs-metricool-2026-map.svg",
+      "social": {
+        "og": "/images/blog/visual-system/social/pallyy-vs-metricool-2026-og.png"
+      },
+      "prompt": "FrankX deterministic comparison editorial: Pallyy's focused one-brand operating surface balanced against Metricool's broader analytics and MCP-connected surface, decided by operating job; no vendor logos, screenshots, copied marks, or stock imagery.",
+      "source": "design.md + taste.md + official Pallyy and Metricool documentation + original FrankX decision tree",
+      "generationMode": "repo-native-svg",
+      "reviewStatus": "accepted",
+      "deploymentStatus": "ready",
+      "rights": "FrankX original architecture; Pallyy and Metricool names used nominatively; no third-party logos or screenshots.",
+      "creator": "FrankX Content Intelligence OS",
+      "rightsApproval": "approved-original-editorial-art",
+      "media": [
+        {
+          "assetId": "fx-pallyy-metricool-hero",
+          "renditionId": "hero-svg-1600x900",
+          "path": "/images/blog/visual-system/pallyy-vs-metricool-2026-hero.svg",
+          "mimeType": "image/svg+xml",
+          "width": 1600,
+          "height": 900,
+          "bytes": 6000,
+          "sha256": "f0529823ace61c65f7678e66ac9b109ab2118f11ebd2dce23a96f5d4e695c08a"
+        },
+        {
+          "assetId": "fx-pallyy-metricool-map",
+          "renditionId": "map-svg-1600x1000",
+          "path": "/images/blog/visual-system/infographics/pallyy-vs-metricool-2026-map.svg",
+          "mimeType": "image/svg+xml",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 6003,
+          "sha256": "fcf3e24910feb1398f95cd96a4f351ee2ff0560706eb20ad693b8f045fbcd9ea"
+        },
+        {
+          "assetId": "fx-pallyy-metricool-hero",
+          "renditionId": "og-png-1200x630",
+          "path": "/images/blog/visual-system/social/pallyy-vs-metricool-2026-og.png",
+          "mimeType": "image/png",
+          "width": 1200,
+          "height": 630,
+          "bytes": 195324,
+          "sha256": "4c6b5f311dd5bac18992e183d6b97aab5814085dc805df9a6f991f5cce2463e5"
+        }
+      ],
+      "notes": "Hero, decision map, and Open Graph rendition are immutable v1 assets with the evidence boundary visible in the art."
+    },
     {
       "slug": "claude-agent-sdk-credit-pause-agent-stack-2026",
       "title": "Anthropic Paused the Claude Agent SDK Credit Change. Here's What Builders Should Do Now.",

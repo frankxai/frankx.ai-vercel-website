@@ -22,14 +22,14 @@ export const productsListItemData: ProductListItem[] = [
     name: "The Creator's Soulbook",
     tagline: 'Life Architecture OS',
     href: '/soulbook',
-    status: 'active',
+    status: 'early-access',
   },
   {
     id: 'suno-prompts-bundle',
     name: '5 Suno Prompt Bundles',
     tagline: 'Genre-Specific Music Generation',
     href: '/products/suno-prompt-library',
-    status: 'active',
+    status: 'early-access',
   },
   {
     id: 'creative-ai-toolkit',
@@ -72,7 +72,7 @@ export const productsFaq = [
   },
   {
     q: 'Which products are available now?',
-    a: 'Vibe OS, The Creator\'s Soulbook, and the Suno Prompt Bundles are available now. Other products are in Early Access—join the list to get priority launch access and exclusive pricing.',
+    a: "Vibe OS has a public guide you can inspect now. The Creator's Soulbook, Suno Prompt Bundles, and other listed products remain previews or early-access routes until delivery is verified.",
   },
   {
     q: 'What do I get by joining Early Access?',

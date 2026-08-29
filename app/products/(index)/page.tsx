@@ -95,7 +95,7 @@ const products = [
     tagline: 'Life Architecture OS',
     description:
       'Life operating system with 7 pillars, frameworks, and AI coaching prompts. Complete Obsidian vault included.',
-    status: 'active',
+    status: 'early-access',
     href: '/soulbook',
     color: 'amber',
     highlights: [
@@ -111,7 +111,7 @@ const products = [
     tagline: 'Genre-Specific Music Generation',
     description:
       'Five curated prompt bundles for specific genres: electronic, hip-hop, ambient, cinematic, and lo-fi.',
-    status: 'active',
+    status: 'early-access',
     href: '/products/suno-prompt-library',
     color: 'cyan',
     highlights: [
@@ -291,7 +291,7 @@ export default function ProductsPage() {
   return (
     <>
       <ProductsBackground />
-      <main id="main" className="relative min-h-screen">
+      <main className="relative min-h-screen">
         {/* Hero Section */}
         <section className="relative pt-32 pb-16">
           {/* Axi — mascot accent */}
@@ -569,7 +569,7 @@ export default function ProductsPage() {
                 },
                 {
                   q: "Which products are available now?",
-                  a: "Vibe OS, The Creator's Soulbook, and the Suno Prompt Bundles are available now. Other products are in Early Access—join the list to get priority launch access and exclusive pricing.",
+                  a: "Vibe OS has a public guide you can inspect now. The Creator's Soulbook, Suno Prompt Bundles, and other listed products remain previews or early-access routes until delivery is verified.",
                 },
                 {
                   q: "What do I get by joining Early Access?",
@@ -615,8 +615,8 @@ export default function ProductsPage() {
                     Start building with our systems today
                   </h2>
                   <p className="text-slate-400">
-                    Vibe OS, The Creator's Soulbook, and Suno Prompt Bundles are available now.
-                    Join early access for upcoming launches with exclusive pricing.
+                    Inspect the public Vibe OS guide now. Other listed products remain previews or
+                    early-access routes until their delivery path is verified.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
