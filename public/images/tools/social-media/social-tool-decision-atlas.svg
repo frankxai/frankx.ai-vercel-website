@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Social media tool decision atlas</title>
+  <desc id="desc">Five role lanes map solo founders, creator-led brands, developer brands, agencies, and enterprise teams to suitable social media tool categories and operating systems.</desc>
+  <defs>
+    <radialGradient id="field" cx="50%" cy="44%" r="62%">
+      <stop offset="0" stop-color="#244f40" stop-opacity=".34"/>
+      <stop offset=".52" stop-color="#15211c" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#080b0a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="path" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8eb3a1" stop-opacity=".16"/>
+      <stop offset=".5" stop-color="#dfc58e" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#8eb3a1" stop-opacity=".16"/>
+    </linearGradient>
+    <filter id="glow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="980" fill="#080b0a"/>
+  <rect width="1600" height="980" fill="url(#field)"/>
+  <g stroke="#eef0e8" stroke-opacity=".055">
+    <path d="M0 140H1600M0 280H1600M0 420H1600M0 560H1600M0 700H1600M0 840H1600"/>
+    <path d="M160 0V980M320 0V980M480 0V980M640 0V980M800 0V980M960 0V980M1120 0V980M1280 0V980M1440 0V980"/>
+  </g>
+
+  <text x="72" y="62" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="13" letter-spacing="4">FRANKX / DECISION ATLAS / 2026</text>
+  <text x="1528" y="62" fill="#6e7873" font-family="ui-monospace, monospace" font-size="12" text-anchor="end">15 SOURCED TOOLS · 5 OPERATING ROLES</text>
+  <path d="M72 88H1528" stroke="#eef0e8" stroke-opacity=".12"/>
+
+  <text x="72" y="142" fill="#f1f1e9" font-family="Georgia, serif" font-size="38">The decision starts with the operator.</text>
+  <text x="72" y="178" fill="#8b928e" font-family="Arial, sans-serif" font-size="15">Choose the smallest control plane that preserves judgment, feedback, and a safe path to automation.</text>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(72 238)">
+      <rect width="274" height="112" fill="#0e1311" stroke="#dfc58e" stroke-opacity=".32"/>
+      <text x="18" y="28" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">01 / ONE BRAND</text>
+      <text x="18" y="60" fill="#f1f1e9" font-family="Georgia, serif" font-size="25">Solo founder</text>
+      <text x="18" y="86" fill="#818985" font-size="12">Low overhead · weekly rhythm</text>
+      <circle cx="262" cy="18" r="4" fill="#dfc58e" filter="url(#glow)"/>
+    </g>
+    <g transform="translate(72 368)">
+      <rect width="274" height="112" fill="#0e1311" stroke="#eef0e8" stroke-opacity=".12"/>
+      <text x="18" y="28" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">02 / VOICE + FORMAT</text>
+      <text x="18" y="60" fill="#f1f1e9" font-family="Georgia, serif" font-size="25">Creator-led brand</text>
+      <text x="18" y="86" fill="#818985" font-size="12">Distinct voice · channel adaptation</text>
+    </g>
+    <g transform="translate(72 498)">
+      <rect width="274" height="112" fill="#0e1311" stroke="#eef0e8" stroke-opacity=".12"/>
+      <text x="18" y="28" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">03 / OWNED LOGIC</text>
+      <text x="18" y="60" fill="#f1f1e9" font-family="Georgia, serif" font-size="25">Developer brand</text>
+      <text x="18" y="86" fill="#818985" font-size="12">API boundary · source control</text>
+    </g>
+    <g transform="translate(72 628)">
+      <rect width="274" height="112" fill="#0e1311" stroke="#eef0e8" stroke-opacity=".12"/>
+      <text x="18" y="28" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">04 / MANY BRANDS</text>
+      <text x="18" y="60" fill="#f1f1e9" font-family="Georgia, serif" font-size="25">Agency</text>
+      <text x="18" y="86" fill="#818985" font-size="12">Approvals · margin · separation</text>
+    </g>
+    <g transform="translate(72 758)">
+      <rect width="274" height="112" fill="#0e1311" stroke="#eef0e8" stroke-opacity=".12"/>
+      <text x="18" y="28" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">05 / GOVERNANCE</text>
+      <text x="18" y="60" fill="#f1f1e9" font-family="Georgia, serif" font-size="25">Enterprise</text>
+      <text x="18" y="86" fill="#818985" font-size="12">Teams · service · attribution</text>
+    </g>
+  </g>
+
+  <g fill="none" stroke="url(#path)" stroke-width="1.4">
+    <path d="M346 294C470 294 494 294 610 294"/>
+    <path d="M346 424C470 424 494 424 610 424"/>
+    <path d="M346 554C470 554 494 554 610 554"/>
+    <path d="M346 684C470 684 494 684 610 684"/>
+    <path d="M346 814C470 814 494 814 610 814"/>
+  </g>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(610 236)">
+      <rect width="390" height="116" fill="#121816" stroke="#dfc58e" stroke-opacity=".52"/>
+      <text x="20" y="28" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">FOUNDER ROUTE</text>
+      <text x="20" y="63" fill="#f1f1e9" font-family="Georgia, serif" font-size="27">Pallyy → Metricool → Buffer</text>
+      <text x="20" y="90" fill="#8b928e" font-size="12">Focused cockpit · analytics upgrade · simple baseline</text>
+    </g>
+    <g transform="translate(610 366)">
+      <rect width="390" height="116" fill="#121816" stroke="#8eb3a1" stroke-opacity=".28"/>
+      <text x="20" y="28" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">CREATOR ROUTE</text>
+      <text x="20" y="63" fill="#f1f1e9" font-family="Georgia, serif" font-size="27">Typefully → Later → Metricool</text>
+      <text x="20" y="90" fill="#8b928e" font-size="12">Text voice · visual planning · broad measurement</text>
+    </g>
+    <g transform="translate(610 496)">
+      <rect width="390" height="116" fill="#121816" stroke="#8eb3a1" stroke-opacity=".28"/>
+      <text x="20" y="28" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">DEVELOPER ROUTE</text>
+      <text x="20" y="63" fill="#f1f1e9" font-family="Georgia, serif" font-size="27">Ayrshare → Postiz → Upload-Post</text>
+      <text x="20" y="90" fill="#8b928e" font-size="12">Managed API · open control · lean white-label</text>
+    </g>
+    <g transform="translate(610 626)">
+      <rect width="390" height="116" fill="#121816" stroke="#8eb3a1" stroke-opacity=".28"/>
+      <text x="20" y="28" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">AGENCY ROUTE</text>
+      <text x="20" y="63" fill="#f1f1e9" font-family="Georgia, serif" font-size="27">Metricool → SocialBee → Publer</text>
+      <text x="20" y="90" fill="#8b928e" font-size="12">Multi-brand cockpit · content ops · lean economics</text>
+    </g>
+    <g transform="translate(610 756)">
+      <rect width="390" height="116" fill="#121816" stroke="#8eb3a1" stroke-opacity=".28"/>
+      <text x="20" y="28" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2">ENTERPRISE ROUTE</text>
+      <text x="20" y="63" fill="#f1f1e9" font-family="Georgia, serif" font-size="27">Sprout → Hootsuite → HubSpot</text>
+      <text x="20" y="90" fill="#8b928e" font-size="12">Social governance · suite breadth · CRM attribution</text>
+    </g>
+  </g>
+
+  <g fill="none" stroke="#8eb3a1" stroke-opacity=".28" stroke-width="1.2">
+    <path d="M1000 294C1082 294 1070 358 1134 358"/>
+    <path d="M1000 424C1080 424 1072 430 1134 430"/>
+    <path d="M1000 554C1080 554 1072 502 1134 502"/>
+    <path d="M1000 684C1080 684 1072 574 1134 574"/>
+    <path d="M1000 814C1095 814 1072 646 1134 646"/>
+  </g>
+
+  <g transform="translate(1134 236)" font-family="Arial, sans-serif">
+    <rect width="394" height="636" fill="#0b0f0e" stroke="#eef0e8" stroke-opacity=".14"/>
+    <text x="24" y="35" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="10" letter-spacing="2.4">THE SAFE CONTROL PLANE</text>
+    <path d="M24 56H370" stroke="#eef0e8" stroke-opacity=".12"/>
+
+    <g transform="translate(24 86)">
+      <rect width="346" height="72" fill="#121816" stroke="#eef0e8" stroke-opacity=".1"/>
+      <text x="16" y="26" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="9">01 / SOURCE</text>
+      <text x="16" y="52" fill="#f1f1e9" font-family="Georgia, serif" font-size="20">Brand memory + evidence</text>
+    </g>
+    <path d="M197 158V184" stroke="#dfc58e" stroke-opacity=".5"/>
+    <g transform="translate(24 184)">
+      <rect width="346" height="72" fill="#121816" stroke="#eef0e8" stroke-opacity=".1"/>
+      <text x="16" y="26" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="9">02 / AGENTS</text>
+      <text x="16" y="52" fill="#f1f1e9" font-family="Georgia, serif" font-size="20">Research · plan · adapt</text>
+    </g>
+    <path d="M197 256V282" stroke="#dfc58e" stroke-opacity=".5"/>
+    <g transform="translate(24 282)">
+      <rect width="346" height="72" fill="#201d14" stroke="#dfc58e" stroke-opacity=".46"/>
+      <text x="16" y="26" fill="#dfc58e" font-family="ui-monospace, monospace" font-size="9">03 / AUTHORITY</text>
+      <text x="16" y="52" fill="#f1f1e9" font-family="Georgia, serif" font-size="20">Named human approval</text>
+    </g>
+    <path d="M197 354V380" stroke="#dfc58e" stroke-opacity=".5"/>
+    <g transform="translate(24 380)">
+      <rect width="346" height="72" fill="#121816" stroke="#eef0e8" stroke-opacity=".1"/>
+      <text x="16" y="26" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="9">04 / SIDE EFFECT</text>
+      <text x="16" y="52" fill="#f1f1e9" font-family="Georgia, serif" font-size="20">API / MCP publication</text>
+    </g>
+    <path d="M197 452V478" stroke="#dfc58e" stroke-opacity=".5"/>
+    <g transform="translate(24 478)">
+      <rect width="346" height="72" fill="#101a16" stroke="#8eb3a1" stroke-opacity=".3"/>
+      <text x="16" y="26" fill="#8eb3a1" font-family="ui-monospace, monospace" font-size="9">05 / LEARNING</text>
+      <text x="16" y="52" fill="#f1f1e9" font-family="Georgia, serif" font-size="20">Receipt → measure → brief</text>
+    </g>
+    <text x="24" y="596" fill="#6f7874" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1.1">THE SCHEDULER IS NOT MEMORY.</text>
+  </g>
+
+  <path d="M72 914H1528" stroke="#eef0e8" stroke-opacity=".12"/>
+  <text x="72" y="944" fill="#6e7873" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.4">OFFICIAL SOURCES VERIFIED 28 AUG 2026 · RECOMMENDATIONS ARE EDITORIAL · COMMERCIAL STATUS DOES NOT AFFECT FIT</text>
+</svg>

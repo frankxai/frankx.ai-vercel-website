@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1400" viewBox="0 0 1800 1400" role="img" aria-labelledby="title desc">
+  <title id="title">Direction three: Editorial Field Guide</title>
+  <desc id="desc">An editorial desktop and mobile direction for a deeply researched guide to social media management tools.</desc>
+  <defs>
+    <linearGradient id="paperLight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2eadf"/>
+      <stop offset="1" stop-color="#d7cec1"/>
+    </linearGradient>
+    <filter id="fieldShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="30" flood-color="#000" flood-opacity=".46"/>
+    </filter>
+  </defs>
+
+  <rect width="1800" height="1400" fill="#070708"/>
+  <circle cx="1560" cy="184" r="270" fill="#10b981" fill-opacity=".04"/>
+  <path d="M0 84H1800M0 1320H1800" stroke="#ffffff" stroke-opacity=".07"/>
+
+  <text x="80" y="72" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="4">DIRECTION 03 · EDITORIAL FIELD GUIDE</text>
+  <text x="80" y="130" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="44" font-weight="700" letter-spacing="-2">The founder’s annotated guide</text>
+  <text x="80" y="166" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="19">Quiet authority, magazine pacing, and a persistent evidence rail for readers who want the argument.</text>
+
+  <g filter="url(#fieldShadow)">
+    <rect x="80" y="210" width="1160" height="820" rx="26" fill="#0c0d0e" stroke="#ffffff" stroke-opacity=".1"/>
+  </g>
+  <path d="M80 265H1240" stroke="#ffffff" stroke-opacity=".07"/>
+  <text x="116" y="243" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">FRANKX FIELD NOTE 026 · 28 AUG 2026</text>
+  <text x="1100" y="243" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">17 MIN</text>
+
+  <g transform="translate(116 310)">
+    <text x="0" y="0" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3">SOCIAL OPERATING SYSTEMS</text>
+    <text x="0" y="72" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="54" font-weight="700" letter-spacing="-2.8">The tool is not</text>
+    <text x="0" y="128" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="54" font-weight="700" letter-spacing="-2.8">the strategy.</text>
+    <text x="0" y="177" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="17">Choose the operating model first. Then choose the control plane</text>
+    <text x="0" y="204" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="17">that makes the next useful action easier to repeat and inspect.</text>
+  </g>
+
+  <g transform="translate(116 568)">
+    <rect width="650" height="292" rx="4" fill="url(#paperLight)"/>
+    <path d="M36 38H614M36 248H614" stroke="#262522" stroke-opacity=".18"/>
+    <text x="36" y="74" fill="#34312d" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">THE SHORT ANSWER</text>
+    <text x="36" y="116" fill="#171614" font-family="Poppins, sans-serif" font-size="27" font-weight="700">Pallyy for focused simplicity.</text>
+    <text x="36" y="153" fill="#171614" font-family="Poppins, sans-serif" font-size="27" font-weight="700">Metricool for intelligence.</text>
+    <text x="36" y="190" fill="#171614" font-family="Poppins, sans-serif" font-size="27" font-weight="700">Postiz for open control.</text>
+    <text x="36" y="227" fill="#171614" font-family="Poppins, sans-serif" font-size="27" font-weight="700">Sprout for governed scale.</text>
+    <text x="36" y="274" fill="#5e5952" font-family="Inter, sans-serif" font-size="11">Different winners because these are different businesses.</text>
+  </g>
+
+  <g transform="translate(802 310)">
+    <rect width="398" height="550" rx="22" fill="#111314" stroke="#ffffff" stroke-opacity=".09"/>
+    <text x="28" y="42" fill="#67e8f9" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2.2">EVIDENCE RAIL</text>
+    <text x="28" y="83" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="21" font-weight="600">What we checked</text>
+    <g font-family="Inter, sans-serif" font-size="12">
+      <circle cx="34" cy="121" r="3" fill="#10b981"/><text x="50" y="125" fill="#d4d4d8">15 official pricing pages</text>
+      <circle cx="34" cy="151" r="3" fill="#10b981"/><text x="50" y="155" fill="#d4d4d8">API, MCP, and self-host docs</text>
+      <circle cx="34" cy="181" r="3" fill="#10b981"/><text x="50" y="185" fill="#d4d4d8">Plan gates and account models</text>
+      <circle cx="34" cy="211" r="3" fill="#10b981"/><text x="50" y="215" fill="#d4d4d8">Affiliate programs, kept separate</text>
+    </g>
+    <path d="M28 244H370" stroke="#ffffff" stroke-opacity=".08"/>
+    <text x="28" y="282" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="21" font-weight="600">What we did not test</text>
+    <text x="28" y="316" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="12">A controlled same-content publishing trial</text>
+    <text x="28" y="339" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="12">across every vendor. Product claims remain</text>
+    <text x="28" y="362" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="12">vendor claims until that pilot exists.</text>
+    <path d="M28 394H370" stroke="#ffffff" stroke-opacity=".08"/>
+    <text x="28" y="432" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="21" font-weight="600">Reader path</text>
+    <text x="28" y="466" fill="#6ee7b7" font-family="Inter, sans-serif" font-size="12">01 Choose your brand shape</text>
+    <text x="28" y="492" fill="#d4d4d8" font-family="Inter, sans-serif" font-size="12">02 Compare the viable control planes</text>
+    <text x="28" y="518" fill="#d4d4d8" font-family="Inter, sans-serif" font-size="12">03 Pilot one for 30 days</text>
+  </g>
+
+  <g transform="translate(116 900)">
+    <text x="0" y="0" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">NEXT CHAPTER</text>
+    <text x="0" y="39" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="24" font-weight="600">Pallyy vs Metricool: simplicity or intelligence?</text>
+    <path d="M0 62H1084" stroke="#ffffff" stroke-opacity=".08"/>
+  </g>
+
+  <g filter="url(#fieldShadow)">
+    <rect x="1280" y="210" width="440" height="820" rx="40" fill="#0c0d0e" stroke="#ffffff" stroke-opacity=".11"/>
+  </g>
+  <rect x="1430" y="228" width="140" height="6" rx="3" fill="#ffffff" fill-opacity=".16"/>
+  <text x="1320" y="298" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2.4">FIELD NOTE 026 · 17 MIN</text>
+  <text x="1320" y="353" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="34" font-weight="700" letter-spacing="-1.6">The tool is not</text>
+  <text x="1320" y="392" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="34" font-weight="700" letter-spacing="-1.6">the strategy.</text>
+  <text x="1320" y="429" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Choose the operating model first.</text>
+
+  <rect x="1320" y="472" width="360" height="216" rx="4" fill="url(#paperLight)"/>
+  <text x="1344" y="504" fill="#5e5952" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.8">THE SHORT ANSWER</text>
+  <text x="1344" y="544" fill="#171614" font-family="Poppins, sans-serif" font-size="20" font-weight="700">Pallyy · simplicity</text>
+  <text x="1344" y="580" fill="#171614" font-family="Poppins, sans-serif" font-size="20" font-weight="700">Metricool · intelligence</text>
+  <text x="1344" y="616" fill="#171614" font-family="Poppins, sans-serif" font-size="20" font-weight="700">Postiz · open control</text>
+  <text x="1344" y="652" fill="#171614" font-family="Poppins, sans-serif" font-size="20" font-weight="700">Sprout · governed scale</text>
+
+  <text x="1320" y="744" fill="#67e8f9" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2">EVIDENCE RAIL</text>
+  <g font-family="Inter, sans-serif" font-size="12">
+    <path d="M1320 778H1680M1320 828H1680M1320 878H1680" stroke="#ffffff" stroke-opacity=".08"/>
+    <text x="1320" y="808" fill="#d4d4d8">15 official pricing pages</text><text x="1680" y="808" fill="#6ee7b7" text-anchor="end">checked</text>
+    <text x="1320" y="858" fill="#d4d4d8">API / MCP plan gates</text><text x="1680" y="858" fill="#6ee7b7" text-anchor="end">mapped</text>
+    <text x="1320" y="908" fill="#d4d4d8">Same-content trial</text><text x="1680" y="908" fill="#fcd34d" text-anchor="end">not run</text>
+  </g>
+  <rect x="1320" y="944" width="360" height="48" rx="24" fill="#10b981"/>
+  <text x="1434" y="974" fill="#06130f" font-family="Inter, sans-serif" font-size="13" font-weight="700">Open the decision map</text>
+
+  <g transform="translate(80 1080)">
+    <text x="0" y="0" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">SYSTEM NOTES</text>
+    <text x="0" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Type</text>
+    <text x="0" y="69" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Poppins / Inter / JetBrains Mono; warm paper only as an editorial instrument</text>
+    <text x="520" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Palette</text>
+    <circle cx="532" cy="67" r="11" fill="#0a0a0b" stroke="#fff" stroke-opacity=".2"/><circle cx="564" cy="67" r="11" fill="#10b981"/><circle cx="596" cy="67" r="11" fill="#f2eadf"/><circle cx="628" cy="67" r="11" fill="#171614"/>
+    <text x="740" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Motion</text>
+    <text x="740" y="69" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Evidence rail quietly tracks chapter. Reduced motion: anchored rail.</text>
+    <text x="1230" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Imagery</text>
+    <text x="1230" y="69" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Official UI only.</text>
+    <text x="0" y="126" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Source annotation</text>
+    <text x="0" y="157" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Inline footnotes map every price and capability to official docs retrieved 28 Aug 2026.</text>
+    <text x="790" y="126" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Anti-reference</text>
+    <text x="790" y="157" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Lifestyle magazine filler, faux newspaper texture, review-score theatre, hidden disclosure.</text>
+  </g>
+</svg>
