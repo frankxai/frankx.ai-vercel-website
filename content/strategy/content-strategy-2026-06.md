@@ -6,7 +6,7 @@ Supersedes earlier strategy notes. This is data-proven, not aspirational — it'
 
 **Search-intent, year-dated, comparison / "what-works-now" posts on the hottest AI tooling are the entire traffic engine.** Ten of the top thirteen pages by traffic are this exact shape (video-gen comparison #1 at 9%, prompt-engineering, frontier-models, Suno). Hub-polish and brand pages drew ~zero traffic. Attention comes from a *content library*, not from chrome.
 
-Corollary: **the research hub punches above its weight** (`/research/agent-benchmarks` is #3). Benchmark/data content ranks.
+Corollary: **the research hub punches above its weight** (`/research/model-arena` — head-to-head LLM eval battles — is the live successor to the deleted `/research/agent-benchmarks`). Benchmark/data content ranks. (Note: this June doc is historical; the current content command thread supersedes it.)
 
 ## The flywheel
 

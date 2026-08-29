@@ -5,6 +5,7 @@ type JsonLdType =
   | 'Person'
   | 'Organization'
   | 'WebSite'
+  | 'WebPage'
   | 'Article'
   | 'Product'
   | 'Book'

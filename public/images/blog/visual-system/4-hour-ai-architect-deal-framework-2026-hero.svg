@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">The 4-Hour Workweek, Rebuilt for AI Architects in 2026</title>
+  <desc id="desc">A dark technical editorial visual showing Definition, Elimination, Automation and Liberation as four governed stages around a founder control plane.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050607"/>
+      <stop offset="0.58" stop-color="#0a0a0b"/>
+      <stop offset="1" stop-color="#07131a"/>
+    </linearGradient>
+    <radialGradient id="a" cx="22%" cy="18%" r="56%">
+      <stop offset="0" stop-color="#10b981" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b" cx="86%" cy="72%" r="52%">
+      <stop offset="0" stop-color="#06b6d4" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#a)"/>
+  <rect width="1600" height="900" fill="url(#b)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <rect x="86" y="78" width="1428" height="744" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.10"/>
+
+  <text x="118" y="148" fill="#10b981" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="700">FRANKX / FOUNDER OPERATING SYSTEM</text>
+  <text x="118" y="258" fill="#f8fafc" font-family="Poppins, Inter, Arial, sans-serif" font-size="58" font-weight="760">The 4-Hour Workweek,</text>
+  <text x="118" y="329" fill="#f8fafc" font-family="Poppins, Inter, Arial, sans-serif" font-size="58" font-weight="760">Rebuilt for AI Architects</text>
+  <text x="122" y="397" fill="#aeb8c7" font-family="Inter, Arial, sans-serif" font-size="25">A four-hour ceiling for compulsory founder control.</text>
+  <text x="122" y="433" fill="#aeb8c7" font-family="Inter, Arial, sans-serif" font-size="25">Protected room for chosen craft, people and life.</text>
+
+  <path d="M130 646H1438" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>
+  <path d="M292 646H510M614 646H832M936 646H1154M1258 646H1438" stroke="#10b981" stroke-opacity="0.58" stroke-width="4"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="118" y="520" width="270" height="176" rx="18" fill="#0d1214" stroke="#10b981" stroke-opacity="0.55"/>
+    <text x="146" y="566" fill="#10b981" font-size="18" font-weight="750">01 / DEFINITION</text>
+    <text x="146" y="611" fill="#f8fafc" font-size="24" font-weight="700">Purpose + rights</text>
+    <text x="146" y="657" fill="#94a3b8" font-size="18">Choose the outcome.</text>
+
+    <rect x="420" y="520" width="270" height="176" rx="18" fill="#0d1214" stroke="#06b6d4" stroke-opacity="0.55"/>
+    <text x="448" y="566" fill="#06b6d4" font-size="18" font-weight="750">02 / ELIMINATION</text>
+    <text x="448" y="611" fill="#f8fafc" font-size="24" font-weight="700">Kill the queue</text>
+    <text x="448" y="657" fill="#94a3b8" font-size="18">Remove before routing.</text>
+
+    <rect x="722" y="520" width="270" height="176" rx="18" fill="#0d1214" stroke="#10b981" stroke-opacity="0.55"/>
+    <text x="750" y="566" fill="#10b981" font-size="18" font-weight="750">03 / AUTOMATION</text>
+    <text x="750" y="611" fill="#f8fafc" font-size="24" font-weight="700">Bounded agents</text>
+    <text x="750" y="657" fill="#94a3b8" font-size="18">Execute with evidence.</text>
+
+    <rect x="1016" y="520" width="260" height="176" rx="18" fill="#0d1214" stroke="#06b6d4" stroke-opacity="0.55"/>
+    <text x="1044" y="566" fill="#06b6d4" font-size="17" font-weight="750">04 / LIBERATION</text>
+    <text x="1044" y="611" fill="#f8fafc" font-size="24" font-weight="700">Absence test</text>
+    <text x="1044" y="657" fill="#94a3b8" font-size="18">Protect chosen life.</text>
+  </g>
+
+  <rect x="1326" y="500" width="134" height="214" rx="67" fill="#071012" stroke="#10b981" stroke-opacity="0.65" stroke-width="2"/>
+  <circle cx="1393" cy="567" r="28" fill="#10b981" fill-opacity="0.16" stroke="#10b981" stroke-opacity="0.7"/>
+  <path d="M1379 568l10 10 19-23" fill="none" stroke="#a7f3d0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1393" y="622" text-anchor="middle" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">EVIDENCE</text>
+  <text x="1393" y="652" text-anchor="middle" fill="#67e8f9" font-family="JetBrains Mono, Consolas, monospace" font-size="13">+ EXCEPTIONS</text>
+
+  <text x="118" y="772" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="19">Definition and elimination precede automation. Liberation is the constraint.</text>
+  <text x="1472" y="772" text-anchor="end" fill="#64748b" font-family="JetBrains Mono, Consolas, monospace" font-size="16">2026.08.27</text>
+</svg>

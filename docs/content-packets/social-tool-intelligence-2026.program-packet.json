@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.0.0",
+  "program_id": "prg_social_tool_intelligence_2026",
+  "status": "READY_FOR_FRANK",
+  "authority": "PUBLISH",
+  "name": "FrankX Social Tool Intelligence 2026",
+  "governing_thesis": "Founders should choose a social platform by operating role, control boundary, and evidence—not by feature count, brand temperature, or affiliate commission.",
+  "editorial_constraint": "Every canonical must own a distinct reader job, expose official sources, state its evidence class, answer the decision directly, and preserve the documentation-versus-pilot boundary.",
+  "commercial_constraint": "Program availability is recorded only after editorial fit; a tracked link requires verified enrollment and adjacent disclosure, and commission can never alter role score or architecture.",
+  "commercial_policy": {
+    "editorial_independence": true,
+    "least_complex_architecture": true,
+    "adjacent_disclosure_required": true,
+    "unverified_attribution_forbidden": true
+  },
+  "requested_object_count": 8,
+  "request_manifest": [
+    {
+      "requested_id": "req_social_atlas",
+      "requested_label": "Living social media tool resource hub",
+      "classification": "canonical",
+      "resolved_id": "cnt_social_tool_decision_atlas_2026",
+      "resolution": "Owns current registry, role routing, evidence links, comparison interaction, architecture, and commercial-status disclosure."
+    },
+    {
+      "requested_id": "req_founder_ultimate_guide",
+      "requested_label": "Ultimate founder social media management tool guide",
+      "classification": "canonical",
+      "resolved_id": "cnt_social_media_tools_founders_2026",
+      "resolution": "Owns the broad high-intent search decision and category-correct operating model."
+    },
+    {
+      "requested_id": "req_pallyy_metricool",
+      "requested_label": "Pallyy versus Metricool face-off",
+      "classification": "canonical",
+      "resolved_id": "cnt_pallyy_vs_metricool_2026",
+      "resolution": "Owns the one-brand versus analytics-and-MCP comparison intent."
+    },
+    {
+      "requested_id": "req_metricool_buffer",
+      "requested_label": "Metricool versus Buffer face-off",
+      "classification": "canonical",
+      "resolved_id": "cnt_metricool_vs_buffer_2026",
+      "resolution": "Will own analytics-cockpit versus simple-channel-priced scheduler intent after proof-wave evidence."
+    },
+    {
+      "requested_id": "req_postiz_blotato",
+      "requested_label": "Postiz versus Blotato face-off",
+      "classification": "canonical",
+      "resolved_id": "cnt_postiz_vs_blotato_2026",
+      "resolution": "Will own open-control versus AI-content-automation intent without pretending the products are identical."
+    },
+    {
+      "requested_id": "req_social_api",
+      "requested_label": "Best social media APIs for agents and developers",
+      "classification": "canonical",
+      "resolved_id": "cnt_social_media_apis_agents_2026",
+      "resolution": "Will own API-first product and agent infrastructure intent across Ayrshare, Upload-Post, Postiz, Mixpost, Buffer, and Typefully."
+    },
+    {
+      "requested_id": "req_enterprise_social",
+      "requested_label": "Sprout Social versus Hootsuite versus HubSpot",
+      "classification": "canonical",
+      "resolved_id": "cnt_enterprise_social_suites_2026",
+      "resolution": "Will own governance-suite versus CRM-system intent for enterprise readers."
+    },
+    {
+      "requested_id": "req_agent_setup",
+      "requested_label": "Multi-agent social publishing architecture guide",
+      "classification": "canonical",
+      "resolved_id": "cnt_multi_agent_social_publishing_2026",
+      "resolution": "Will own implementation intent for source memory, approvals, API or MCP execution, receipts, and learning."
+    }
+  ],
+  "canonicals": [
+    {
+      "content_id": "cnt_social_tool_decision_atlas_2026",
+      "object_type": "research_note",
+      "brand_id": "frankx",
+      "reader_job": "Inspect and compare the current social tool field by operating role with primary evidence in one living surface",
+      "intent_key": "living_social_tool_decision_atlas",
+      "thesis": "A governed registry and role router is more useful than a static universal leaderboard.",
+      "unique_artifact": "Interactive fifteen-tool Decision Atlas backed by one typed source, claim, price, capability, and commercial-status registry",
+      "disposition": "new",
+      "existing_canonical": "none",
+      "maturity": "deployable_now",
+      "wave": 1,
+      "commercial_role": "Neutral comparison and evidence destination; official product links only at launch"
+    },
+    {
+      "content_id": "cnt_social_media_tools_founders_2026",
+      "object_type": "article",
+      "brand_id": "frankx",
+      "reader_job": "Choose the best social media management category and product for the reader's current operating role",
+      "intent_key": "best_social_media_management_tools_founders_2026",
+      "thesis": "The best tool is the smallest control plane that fits the role, preserves judgment, and produces learning.",
+      "unique_artifact": "Fifteen-tool field guide, category map, normalized cost model, agent control plane, and thirty-day adoption proof",
+      "disposition": "new",
+      "existing_canonical": "none",
+      "maturity": "deployable_now",
+      "wave": 1,
+      "commercial_role": "Broad high-intent discovery that routes to the neutral atlas and official evidence"
+    },
+    {
+      "content_id": "cnt_pallyy_vs_metricool_2026",
+      "object_type": "article",
+      "brand_id": "frankx",
+      "reader_job": "Decide whether Pallyy or Metricool fits the next thirty days",
+      "intent_key": "pallyy_vs_metricool_2026",
+      "thesis": "Pallyy is the one-brand default; Metricool earns its wider surface through analytics, brand count, reporting, or MCP use.",
+      "unique_artifact": "Current plan tables, API-versus-MCP boundary, scenario verdict, decision tree, and thirty-day pilot",
+      "disposition": "new",
+      "existing_canonical": "none",
+      "maturity": "deployable_now",
+      "wave": 1,
+      "commercial_role": "Specific comparison intent with official direct links and explicit no-relationship disclosure"
+    },
+    {
+      "content_id": "cnt_metricool_vs_buffer_2026",
+      "object_type": "article",
+      "brand_id": "frankx",
+      "reader_job": "Choose between an analytics-led brand cockpit and a simpler channel-priced scheduler",
+      "intent_key": "metricool_vs_buffer_2026",
+      "thesis": "Metricool wins when measurement and multiple brands are the job; Buffer wins when familiarity and a small channel set reduce friction.",
+      "unique_artifact": "Normalized brand-versus-channel price model and report-usage decision test",
+      "disposition": "new",
+      "existing_canonical": "none",
+      "maturity": "bounded_pilot",
+      "wave": 2,
+      "commercial_role": "Future comparison route subject to proof-wave engagement and source refresh"
+    },
+    {
+      "content_id": "cnt_postiz_vs_blotato_2026",
+      "object_type": "article",
+      "brand_id": "frankx",
+      "reader_job": "Choose between open publishing control and an integrated AI content-distribution workflow",
+      "intent_key": "postiz_vs_blotato_2026",
+      "thesis": "Postiz and Blotato are adjacent control-plane choices, not interchangeable schedulers.",
+      "unique_artifact": "Control-versus-generation topology, credit and operations cost model, and automation failure test",
+      "disposition": "new",
+      "existing_canonical": "none",
+      "maturity": "bounded_pilot",
+      "wave": 2,
+      "commercial_role": "Future comparison route subject to first-wave evidence"
+    },
+    {
+      "content_id": "cnt_social_media_apis_agents_2026",
+      "object_type": "article",
+      "brand_id": "frankx",
+      "reader_job": "Select a social API boundary for a product, automation, or governed agent system",
+      "intent_key": "best_social_media_apis_agents_2026",
+      "thesis": "An API provider should execute approved side effects while the product retains memory, policy, idempotency, receipts, and recovery.",
+      "unique_artifact": "Endpoint and control-boundary matrix across managed, self-hosted, and white-label routes",
+      "disposition": "new",
+      "existing_canonical": "none",
+      "maturity": "bounded_pilot",
+      "wave": 2,
+      "commercial_role": "Developer-intent canonical with architecture-first vendor routing"
+    },
+    {
+      "content_id": "cnt_enterprise_social_suites_2026",
+      "object_type": "article",
+      "brand_id": "frankx",
+      "reader_job": "Choose an enterprise social suite by governance, service, listening, and CRM boundary",
+      "intent_key": "sprout_hootsuite_hubspot_2026",
+      "thesis": "Sprout and Hootsuite are dedicated social suites; HubSpot wins only when the CRM and revenue record are the governing system.",
+      "unique_artifact": "Governance, service, attribution, permission, and total-seat-cost evaluation model",
+      "disposition": "new",
+      "existing_canonical": "none",
+      "maturity": "research_speculative",
+      "wave": 3,
+      "commercial_role": "Enterprise decision route requiring deeper workflow evidence"
+    },
+    {
+      "content_id": "cnt_multi_agent_social_publishing_2026",
+      "object_type": "article",
+      "brand_id": "frankx",
+      "reader_job": "Implement a safe multi-agent social publishing and learning loop",
+      "intent_key": "multi_agent_social_publishing_architecture_2026",
+      "thesis": "Human authority, source truth, execution adapters, receipts, and outcome learning must remain explicit and replaceable.",
+      "unique_artifact": "Reference contracts for brand memory, approval payloads, API or MCP adapters, receipts, recovery, and evaluation",
+      "disposition": "new",
+      "existing_canonical": "none",
+      "maturity": "bounded_pilot",
+      "wave": 3,
+      "commercial_role": "Architecture canonical that connects tool discovery to FrankX agent-system expertise"
+    }
+  ],
+  "adaptations": [],
+  "wave_gates": [
+    {
+      "wave": 1,
+      "gate": "Publish exactly the atlas, ultimate guide, and Pallyy-versus-Metricool face-off after source, rights, content, accessibility, preview, and production verification."
+    },
+    {
+      "wave": 2,
+      "gate": "Advance only when first-wave search and atlas behavior shows qualified interest, every target vendor record is refreshed, and each canonical owns a distinct intent."
+    },
+    {
+      "wave": 3,
+      "gate": "Advance only with deeper enterprise or implementation evidence, no canonical collision, and a bounded production or workflow evaluation plan."
+    }
+  ],
+  "release_evidence": {
+    "preview_urls": [],
+    "live_urls": [],
+    "distribution_receipts": []
+  },
+  "shared_measurement": {
+    "program_hypothesis": "A living role-based evidence atlas connected to distinct high-intent canonicals will earn search and answer-engine trust while moving qualified readers toward better tool and architecture decisions.",
+    "primary_metric": "Qualified organic entrances that select a role, compare tools, open official evidence, or continue between distinct program canonicals",
+    "guardrails": [
+      "No more than three proof-wave canonicals",
+      "No universal winner",
+      "No unverified commercial attribution",
+      "No commission-ranked recommendation",
+      "No documentation-backed claim presented as a production benchmark",
+      "No distribution without separate DISTRIBUTE authority"
+    ],
+    "review_windows_days": [7, 28, 90]
+  },
+  "blocked": []
+}

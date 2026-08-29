@@ -40,7 +40,8 @@ export default function StreamCompare({
             Compare streams at a glance
           </h2>
           <p className="text-slate-400">
-            Each stream is independent — subscribe to what matters.
+            Distinct editorial lanes, delivered through the currently available
+            email categories.
           </p>
         </motion.div>
 

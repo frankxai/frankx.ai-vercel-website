@@ -43,6 +43,7 @@ export interface BlogPost {
   category: string
   tags: string[]
   image?: string
+  ogImage?: string
   readingTime: string
   keywords?: string[]
   readingGoal?: string

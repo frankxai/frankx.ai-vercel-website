@@ -189,7 +189,7 @@ export default function Models2026Page() {
                 <Link href="/blog/claude-opus-4-6-analysis-2026" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#a855f7]/10 border border-[#a855f7]/20 hover:border-[#a855f7]/40 text-[#a855f7] text-sm transition-colors">
                   <Crown className="w-4 h-4" /> New: Claude Opus 4.6 Deep Analysis
                 </Link>
-                <Link href="/research/agent-benchmarks" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 text-white/60 text-sm transition-colors">
+                <Link href="/research/model-arena" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 text-white/60 text-sm transition-colors">
                   <TrendingUp className="w-4 h-4" /> Benchmark Methodology
                 </Link>
               </div>
@@ -489,7 +489,7 @@ export default function Models2026Page() {
                 <h3 className="font-medium text-sm mb-1 group-hover:text-[#10b981] transition-colors">Enterprise AI Architecture</h3>
                 <p className="text-xs text-white/40">Production patterns, adoption trends, market data</p>
               </Link>
-              <Link href="/research/agent-benchmarks" className="group p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#3b82f6]/30 transition-colors">
+              <Link href="/research/model-arena" className="group p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#3b82f6]/30 transition-colors">
                 <p className="text-xs text-[#3b82f6] font-mono mb-2">Research</p>
                 <h3 className="font-medium text-sm mb-1 group-hover:text-[#3b82f6] transition-colors">AI Agent Benchmarks</h3>
                 <p className="text-xs text-white/40">SWE-bench, ARC-AGI, AgentBench methodology</p>

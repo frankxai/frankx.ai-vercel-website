@@ -3,50 +3,20 @@ name: CI
 on:
   push:
     branches: [main, staging]
-    paths:
-      - 'app/**'
-      - 'components/**'
-      - 'content/**'
-      - 'lib/**'
-      - 'data/**'
-      - 'types/**'
-      - 'taste.md'
-      - 'scripts/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - '.npmrc'
-      - 'next.config.*'
-      - 'tsconfig*.json'
-      - '.eslintrc*'
-      - 'eslint.config.*'
-      - '.github/workflows/ci.yml'
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: [main, staging]
-    paths:
-      - 'app/**'
-      - 'components/**'
-      - 'content/**'
-      - 'lib/**'
-      - 'data/**'
-      - 'types/**'
-      - 'taste.md'
-      - 'scripts/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - '.npmrc'
-      - 'next.config.*'
-      - 'tsconfig*.json'
-      - '.eslintrc*'
-      - 'eslint.config.*'
-      - '.github/workflows/ci.yml'
+
+# CI is an exact required landing check and test:build-integrity scans workflow
+# security controls. Keep it always-reporting; never add paths/paths-ignore.
 
 # Cancel superseded runs on rapid pushes to the same ref
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read
 
 env:
   NODE_VERSION: '22'
@@ -59,6 +29,8 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       # No `version:` here on purpose. action-setup errors out if the version is
       # specified both here and as `packageManager` in package.json; package.json

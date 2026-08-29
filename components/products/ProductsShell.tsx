@@ -96,7 +96,7 @@ const products = [
     tagline: 'Life Architecture OS',
     description:
       'Life operating system with 7 pillars, frameworks, and AI coaching prompts. Complete Obsidian vault included.',
-    status: 'active',
+    status: 'early-access',
     href: '/soulbook',
     color: 'cyan',
     highlights: [
@@ -112,7 +112,7 @@ const products = [
     tagline: 'Genre-Specific Music Generation',
     description:
       'Five curated prompt bundles for specific genres: electronic, hip-hop, ambient, cinematic, and lo-fi.',
-    status: 'active',
+    status: 'early-access',
     href: '/products/suno-prompt-library',
     color: 'violet',
     highlights: [
@@ -618,8 +618,8 @@ export default function ProductsShell() {
                     Start building with our systems today
                   </h2>
                   <p className="text-[17px] text-slate-300/90 leading-relaxed">
-                    Vibe OS, The Creator's Soulbook, and Suno Prompt Bundles are available now.
-                    Join early access for upcoming launches with exclusive pricing.
+                    Inspect the public Vibe OS guide now. Other listed products remain previews or
+                    early-access routes until their delivery path is verified.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
@@ -634,13 +634,13 @@ export default function ProductsShell() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                   <Link
-                    href="/inner-circle"
+                    href="/founder-stack"
                     onClick={() =>
-                      trackEvent('cta_click', { location: 'products-page', target: 'inner-circle' })
+                      trackEvent('cta_click', { location: 'products-page', target: 'founder-stack' })
                     }
                     className="group flex-1 flex items-center justify-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/[0.04] px-6 py-3 font-medium text-cyan-200 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                   >
-                    Reserve invite
+                    Map my Founder Stack
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
