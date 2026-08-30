@@ -1,9 +1,169 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
+import { posix } from 'node:path'
 import test from 'node:test'
+import ts from 'typescript'
 import { ciAlwaysReportingErrors } from './helpers/workflow-yaml-contract.mjs'
 
 const read = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
+
+
+const parseModule = (source, fileName) =>
+  ts.createSourceFile(
+    fileName,
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    fileName.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
+  )
+
+const hasExportModifier = (node) =>
+  node.modifiers?.some(
+    (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
+  ) ?? false
+
+const hasClosedDynamicParams = (source) => {
+  const module = parseModule(source, 'app/work/[slug]/page.tsx')
+
+  return module.statements.some(
+    (statement) =>
+      ts.isVariableStatement(statement) &&
+      hasExportModifier(statement) &&
+      (statement.declarationList.flags & ts.NodeFlags.Const) !== 0 &&
+      statement.declarationList.declarations.some(
+        (declaration) =>
+          ts.isIdentifier(declaration.name) &&
+          declaration.name.text === 'dynamicParams' &&
+          declaration.initializer?.kind === ts.SyntaxKind.FalseKeyword,
+      ),
+  )
+}
+
+const hasExportedFunction = (source, functionName) => {
+  const module = parseModule(source, 'app/work/[slug]/page.tsx')
+
+  return module.statements.some(
+    (statement) =>
+      ts.isFunctionDeclaration(statement) &&
+      hasExportModifier(statement) &&
+      statement.name?.text === functionName,
+  )
+}
+
+const callsIdentifier = (source, identifier) => {
+  const module = parseModule(source, 'app/work/[slug]/page.tsx')
+  let found = false
+
+  const visit = (node) => {
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.expression.text === identifier
+    ) {
+      found = true
+    }
+    ts.forEachChild(node, visit)
+  }
+
+  visit(module)
+  return found
+}
+
+const collectRuntimeModuleSpecifiers = (source, fileName) => {
+  const module = parseModule(source, fileName)
+  const specifiers = new Set()
+
+  const visit = (node) => {
+    if (ts.isImportDeclaration(node)) {
+      if (
+        !node.importClause?.isTypeOnly &&
+        ts.isStringLiteral(node.moduleSpecifier)
+      ) {
+        specifiers.add(node.moduleSpecifier.text)
+      }
+      return
+    }
+
+    if (ts.isExportDeclaration(node)) {
+      if (!node.isTypeOnly && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
+        specifiers.add(node.moduleSpecifier.text)
+      }
+      return
+    }
+
+    if (
+      ts.isCallExpression(node) &&
+      node.arguments.length === 1 &&
+      ts.isStringLiteral(node.arguments[0]) &&
+      (node.expression.kind === ts.SyntaxKind.ImportKeyword ||
+        (ts.isIdentifier(node.expression) &&
+          node.expression.text === 'require'))
+    ) {
+      specifiers.add(node.arguments[0].text)
+    }
+
+    ts.forEachChild(node, visit)
+  }
+
+  visit(module)
+  return [...specifiers]
+}
+
+const resolveLocalModule = async (fromPath, specifier) => {
+  if (!specifier.startsWith('.') && !specifier.startsWith('@/')) return null
+
+  const unresolved = specifier.startsWith('@/')
+    ? specifier.slice(2)
+    : posix.join(posix.dirname(fromPath), specifier)
+  const suffixes = [
+    '',
+    '.ts',
+    '.tsx',
+    '.js',
+    '.jsx',
+    '/index.ts',
+    '/index.tsx',
+    '/index.js',
+    '/index.jsx',
+  ]
+
+  for (const suffix of suffixes) {
+    const candidate = posix.normalize(unresolved + suffix)
+    try {
+      return { path: candidate, source: await read(candidate) }
+    } catch (error) {
+      if (error?.code !== 'ENOENT') throw error
+    }
+  }
+
+  throw new Error(
+    'Unable to resolve local import ' + specifier + ' from ' + fromPath,
+  )
+}
+
+const requestTimeImportViolations = async (entryPath) => {
+  const visited = new Set()
+  const violations = []
+
+  const visit = async (modulePath) => {
+    if (visited.has(modulePath)) return
+    visited.add(modulePath)
+
+    const source = await read(modulePath)
+    for (const specifier of collectRuntimeModuleSpecifiers(source, modulePath)) {
+      if (specifier === 'next/headers' || specifier === 'next/server') {
+        violations.push(modulePath + ' -> ' + specifier)
+        continue
+      }
+
+      const localModule = await resolveLocalModule(modulePath, specifier)
+      if (localModule) await visit(localModule.path)
+    }
+  }
+
+  await visit(entryPath)
+  return violations
+}
 
 test('live model pricing cannot cross the request-time boundary during prerender', async () => {
   const source = await read('lib/llm-hub/openrouter.ts')
@@ -94,18 +254,25 @@ test('CI always reports and runs the dependency boundary and AgentDB runtime con
 })
 
 test('unknown work slugs stay inside a static segment 404', async () => {
-  const [page, notFound] = await Promise.all([
+  const [page, notFound, importViolations] = await Promise.all([
     read('app/work/[slug]/page.tsx'),
     read('app/work/[slug]/not-found.tsx'),
+    requestTimeImportViolations('app/work/[slug]/not-found.tsx'),
   ])
 
-  assert.match(page, /export const dynamicParams = false/)
-  assert.match(page, /export function generateStaticParams\(\)/)
-  assert.match(page, /notFound\(\)/)
-  assert.doesNotMatch(
-    notFound,
-    /next\/headers|headers\(|cookies\(|connection\(/,
-    'the segment 404 must not cross into request-time APIs during static fallback',
+  assert.ok(
+    hasClosedDynamicParams(page),
+    'dynamicParams must be an exported const initialized to false',
+  )
+  assert.ok(
+    hasExportedFunction(page, 'generateStaticParams'),
+    'the route must export generateStaticParams',
+  )
+  assert.ok(callsIdentifier(page, 'notFound'), 'the route must call notFound()')
+  assert.deepEqual(
+    importViolations,
+    [],
+    'the complete segment 404 import graph must stay outside request-time APIs',
   )
   assert.match(notFound, /href="\/work"/)
 })
