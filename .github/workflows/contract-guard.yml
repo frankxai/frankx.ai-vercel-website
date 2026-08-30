@@ -71,7 +71,14 @@ jobs:
       # path is this checkout plus about a second.
       - name: Scope
         id: scope
-        run: node scripts/guard-scope.mjs contract-guard
+        run: |
+          if git cat-file -e HEAD^1:scripts/guard-scope.mjs; then
+            git show HEAD^1:scripts/guard-scope.mjs > "$RUNNER_TEMP/guard-scope-base.mjs"
+            node "$RUNNER_TEMP/guard-scope-base.mjs" contract-guard
+          else
+            echo "in_scope=true" >> "$GITHUB_OUTPUT"
+            echo "[guard-scope] contract-guard: IN SCOPE — no base script; fail closed"
+          fi
 
       - uses: actions/setup-node@v5
         if: steps.scope.outputs.in_scope == 'true'
