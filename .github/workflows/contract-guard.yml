@@ -45,6 +45,10 @@ on:
       # Cover the whole workflows tree so GitOps PRs remain mergeable without
       # an admin override.
       - '.github/workflows/**'
+      # Docs-only PRs must report because these checks are required.
+      - 'CLAUDE.md'
+      - 'AGENTS.md'
+      - 'docs/**'
 
 concurrency:
   group: contract-guard-${{ github.ref }}

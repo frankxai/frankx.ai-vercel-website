@@ -45,6 +45,10 @@ on:
       # Third trap: workflow-only PRs never report this required check.
       # Cover the whole workflows tree so GitOps PRs remain mergeable.
       - '.github/workflows/**'
+      # Docs-only PRs must report because these checks are required.
+      - 'CLAUDE.md'
+      - 'AGENTS.md'
+      - 'docs/**'
 
 concurrency:
   group: merge-gate-${{ github.ref }}
