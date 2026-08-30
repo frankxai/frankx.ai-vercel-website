@@ -110,23 +110,38 @@ const importedBinding = (
   return null
 }
 
-const subtreeCallsSymbol = (node, expectedSymbol, checker) => {
-  let found = false
-
-  const visit = (child) => {
-    if (
-      ts.isCallExpression(child) &&
-      ts.isIdentifier(child.expression) &&
-      checker.getSymbolAtLocation(child.expression) === expectedSymbol
-    ) {
-      found = true
-      return
-    }
-    ts.forEachChild(child, visit)
+const guardExecutesSymbolCall = (
+  statement,
+  expectedSymbol,
+  checker,
+) => {
+  if (ts.isExpressionStatement(statement)) {
+    const expression = statement.expression
+    return (
+      ts.isCallExpression(expression) &&
+      ts.isIdentifier(expression.expression) &&
+      checker.getSymbolAtLocation(expression.expression) === expectedSymbol
+    )
   }
 
-  visit(node)
-  return found
+  if (ts.isBlock(statement)) {
+    const firstExecutable = statement.statements.find(
+      (child) => !ts.isEmptyStatement(child),
+    )
+    return firstExecutable
+      ? guardExecutesSymbolCall(firstExecutable, expectedSymbol, checker)
+      : false
+  }
+
+  if (ts.isLabeledStatement(statement)) {
+    return guardExecutesSymbolCall(
+      statement.statement,
+      expectedSymbol,
+      checker,
+    )
+  }
+
+  return false
 }
 
 const unavailableEngagementFacts = (
@@ -248,7 +263,7 @@ const hasUnknownEngagementGuard = (source) => {
       return (
         facts.rejectsMissing &&
         facts.rejectsPrivate &&
-        subtreeCallsSymbol(
+        guardExecutesSymbolCall(
           statement.thenStatement,
           notFoundImport.symbol,
           checker,
