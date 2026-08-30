@@ -9,30 +9,49 @@ name: Unrun Guards
 #
 # Four earlier instances (next.config.mjs, lockfile-only, workflow-only in #599,
 # CLAUDE.md-only in #612) were each answered by appending the path to both
-# filters. This job removes the need for a fifth: it reads those filters and,
-# when neither matches anything in the pull request, reports the contexts as
-# successful commit statuses with a description saying the guard had nothing to
-# inspect. See scripts/report-unrun-required-guards.mjs.
+# filters. This job removes the need for a fifth: when neither filter matches
+# anything in the pull request, it reports the contexts as successful commit
+# statuses. See scripts/report-unrun-required-guards.mjs.
 #
-# Deliberately NOT a job named "Contract Guard" or "Merge Gate": a second check
-# run under a required context would race the real guard's verdict on pull
-# requests where both run. Posting a commit status only when the guard provably
-# cannot run keeps exactly one source of truth per context.
+# ---------------------------------------------------------------------------
+# Why workflow_run and not pull_request
 #
-# Deliberately has no `paths:` filter of its own — a filter here would be the
-# same trap one level up, and the job costs seconds (node builtins, no install).
+# This job holds `statuses: write` on two required contexts, which makes it a
+# bypass target. On a `pull_request` trigger GitHub evaluates the workflow YAML
+# *and* every `paths:` filter from the pull request's own merge ref, so one
+# branch could, in a single commit:
+#
+#   1. narrow contract-guard.yml and merge-gate.yml so neither job schedules, and
+#   2. rewrite this file's `run:` step to stamp both contexts green anyway.
+#
+# Branch protection would go satisfied with neither guard having executed, on a
+# branch that deploys frankx.ai. Checking out the base commit instead of the
+# merge tree does not fix that: it protects the *script*, while step 2 above
+# only needs this *workflow file*, which a pull_request trigger always takes
+# from the pull request.
+#
+# `workflow_run` is evaluated from the default branch — this YAML, and the
+# script it runs, are always main's copies no matter what the pull request
+# contains. The pull request's only remaining influence is data: its number, its
+# head SHA, and its file list, all read back from the API.
+#
+# CI is the anchor because it is the one workflow that always reports: it is a
+# required context and its own header forbids ever giving it a paths filter. A
+# pull request that deletes or filters ci.yml to dodge this stops reporting the
+# required `CI` context and stays BLOCKED — failing closed.
+# ---------------------------------------------------------------------------
 
 on:
-  pull_request:
-    # 'edited' is absent on purpose: no verdict here depends on the pull request
-    # title or body, unlike Contract Guard's [contract-change] override.
-    types: [opened, synchronize, reopened, ready_for_review]
-    branches: [main, staging]
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
 
 concurrency:
-  group: unrun-guards-${{ github.ref }}
+  group: unrun-guards-${{ github.event.workflow_run.head_sha }}
   cancel-in-progress: true
 
+# statuses: write is the whole point and the reason for the trigger choice
+# above. contents/pull-requests stay read — nothing here writes to the tree.
 permissions:
   contents: read
   pull-requests: read
@@ -41,18 +60,18 @@ permissions:
 jobs:
   unrun-guards:
     name: Unrun Guards
-    # Mirrors the guards being stood in for: both skip drafts, so a draft has no
-    # missing verdict to report, and 'ready_for_review' re-runs all three.
-    # Fork pull requests get a read-only token and cannot post statuses; the
-    # repository's own agent branches are the case this exists for.
-    if: >-
-      github.event.pull_request.draft == false &&
-      github.event.pull_request.head.repo.full_name == github.repository
+    # CI also runs on pushes to main and staging, which have no pull request and
+    # no required-context problem. Conclusion is deliberately not filtered: a red
+    # CI blocks the pull request on its own, and whether a guard could run is
+    # independent of whether CI passed.
+    if: github.event.workflow_run.event == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      # Shallow on purpose: the workflow files at HEAD are the only input read
-      # off disk, and the changed-file list comes from the pull request API.
+      # No `ref:` on purpose. In a workflow_run context github.sha is the default
+      # branch head, so this is main's copy of the script — the point of the
+      # trigger. Naming the pull request's ref here would hand the checkout back
+      # to untrusted code and undo it.
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
@@ -68,6 +87,5 @@ jobs:
         run: node scripts/report-unrun-required-guards.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
