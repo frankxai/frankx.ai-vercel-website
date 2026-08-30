@@ -52,7 +52,7 @@ interface CategoryMeta {
 
 /* ── Data ── */
 
-const STACK_LAST_REVIEWED = 'August 2026'
+const STACK_CURATED = 'April 2026'
 
 const categories: CategoryMeta[] = [
   {
@@ -527,7 +527,7 @@ export default function StackGalleryClient() {
               The FrankX Stack
             </h1>
             <p className="mt-6 text-xl leading-relaxed text-white/55 sm:text-2xl">
-              Reviewed {STACK_LAST_REVIEWED} {'\u2014'} tools I actually use and recommend.
+              Curated {STACK_CURATED} {'\u2014'} tools I actually use and recommend.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/35">
               Battle-tested across shipped products. Affiliate links help keep this site free {'\u2014'} they never affect what makes the list.
@@ -617,7 +617,7 @@ export default function StackGalleryClient() {
             {/* ── Footer note ── */}
             <motion.div {...fadeUp} className="mt-32 text-center">
               <p className="text-xs text-white/30">
-                Reviewed {STACK_LAST_REVIEWED} {'\u00b7'} Built by Frank {'\u00b7'} Curated, not sponsored.
+                Curated {STACK_CURATED} {'\u00b7'} Built by Frank {'\u00b7'} Curated, not sponsored.
               </p>
             </motion.div>
           </motion.div>

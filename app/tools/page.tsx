@@ -127,8 +127,8 @@ export default function ToolsPage() {
       <section className="border-b border-white/5 pt-28 pb-20 lg:pb-24">
         <div className="mx-auto max-w-6xl px-6">
           <Breadcrumbs items={[{ label: 'Tools', href: '/tools' }]} />
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-300/60">
-            FrankX Tools
+          <p className="text-[11px] font-semibold tracking-[0.08em] text-emerald-300/60">
+            FrankX tools
           </p>
           <h1 className="mt-5 max-w-3xl text-balance font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             The <span className="font-serif font-medium italic text-emerald-200">instrument</span> room
@@ -164,7 +164,7 @@ export default function ToolsPage() {
               { value: String(inDevelopment.length), label: 'On the bench' },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col">
-                <dt className="order-last mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                <dt className="order-last mt-2 text-[11px] font-semibold tracking-[0.04em] text-slate-500">
                   {stat.label}
                 </dt>
                 <dd className="font-mono text-2xl font-medium text-slate-100">{stat.value}</dd>
@@ -177,7 +177,7 @@ export default function ToolsPage() {
       {/* Live instruments */}
       <section aria-labelledby="instruments-title" className="border-b border-white/5 py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-300/60">
+          <p className="text-[11px] font-semibold tracking-[0.08em] text-emerald-300/60">
             Built here / live now
           </p>
           <h2 id="instruments-title" className="mt-4 max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
@@ -211,12 +211,12 @@ export default function ToolsPage() {
                   </p>
                 </div>
                 <div className="flex items-start justify-between gap-4 lg:flex-col lg:items-end lg:text-right">
-                  <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-emerald-300">
+                  <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.02em] text-emerald-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
                     Live
                   </span>
                   <span className="font-mono text-xs text-slate-500">{tool.time}</span>
-                  <span className="hidden items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 transition-colors group-hover:text-emerald-200 lg:inline-flex">
+                  <span className="hidden items-center gap-1.5 text-xs font-semibold tracking-[0.02em] text-slate-500 transition-colors group-hover:text-emerald-200 lg:inline-flex">
                     Open
                     <ArrowRight
                       className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:transform-none"
@@ -229,14 +229,14 @@ export default function ToolsPage() {
           </div>
 
           <p className="mt-8 text-sm text-slate-500">
-            Also live:{' '}
+            System documentation, not an instrument:{' '}
             <Link
               href="/tools/visual-intelligence"
               className="font-medium text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-emerald-200 hover:decoration-emerald-300/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
             >
               the Visual Intelligence System
             </Link>{' '}
-            — the image pipeline behind this site, documented layer by layer.
+            — the image pipeline behind this site, explained layer by layer.
           </p>
         </div>
       </section>
@@ -246,7 +246,7 @@ export default function ToolsPage() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 lg:grid-cols-[1.25fr_0.75fr]">
             <div className="bg-void p-8 sm:p-12">
-              <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-300/60">
+              <p className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.08em] text-emerald-300/60">
                 <Compass className="h-4 w-4" aria-hidden="true" />
                 Tool intelligence / current evidence
               </p>
@@ -268,7 +268,7 @@ export default function ToolsPage() {
               </p>
               <Link
                 href="/tools/social-media"
-                className="mt-9 inline-flex items-center gap-3 rounded-full border border-emerald-300/40 px-6 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-200 transition-colors hover:border-emerald-300 hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
+                className="mt-9 inline-flex items-center gap-3 rounded-full border border-emerald-300/40 px-6 py-3 text-xs font-semibold tracking-[0.02em] text-emerald-200 transition-colors hover:border-emerald-300 hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
               >
                 Open the social tool atlas
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -293,7 +293,7 @@ export default function ToolsPage() {
                   <strong className="block font-mono text-2xl font-medium text-white">
                     {item.value}
                   </strong>
-                  <span className="mt-2 block text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                  <span className="mt-2 block text-[10px] font-semibold tracking-[0.04em] text-slate-500">
                     {item.label}
                   </span>
                 </div>
@@ -306,7 +306,7 @@ export default function ToolsPage() {
       {/* In development */}
       <section aria-labelledby="bench-title" className="border-b border-white/5 py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
+          <p className="text-[11px] font-semibold tracking-[0.08em] text-slate-500">
             On the bench / not live yet
           </p>
           <h2 id="bench-title" className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
@@ -331,7 +331,7 @@ export default function ToolsPage() {
                     {tool.name}
                   </span>
                   <span className="min-w-0 flex-1 text-sm text-slate-500">{tool.will}</span>
-                  <span className="ml-auto shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-amber-300/70">
+                  <span className="ml-auto shrink-0 font-mono text-[11px] tracking-[0.02em] text-amber-300/70">
                     In build
                   </span>
                 </Link>
@@ -344,7 +344,7 @@ export default function ToolsPage() {
       {/* The fork: built here vs runs the studio */}
       <section aria-labelledby="fork-title" className="py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-300/60">
+          <p className="text-[11px] font-semibold tracking-[0.08em] text-emerald-300/60">
             Two kinds of tools
           </p>
           <h2 id="fork-title" className="mt-4 max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
@@ -368,7 +368,7 @@ export default function ToolsPage() {
               </p>
               <Link
                 href="/resources"
-                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300 transition-colors hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
+                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-semibold tracking-[0.02em] text-emerald-300 transition-colors hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
               >
                 Browse the resource hub
                 <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -393,7 +393,7 @@ export default function ToolsPage() {
               </p>
               <Link
                 href="/stack"
-                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300 transition-colors hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
+                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-semibold tracking-[0.02em] text-emerald-300 transition-colors hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
               >
                 Browse the stack
                 <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
