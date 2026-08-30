@@ -530,11 +530,11 @@ export default function StackGalleryClient() {
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/70">
               Battle-tested across shipped products. Affiliate links help keep this site free {'\u2014'} they never affect what makes the list.
             </p>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/35">
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/70">
               Looking for the instruments built here {'\u2014'} calculators, canvases, decision atlases?{' '}
               <Link
                 href="/tools"
-                className="text-white/60 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60"
+                className="text-white/80 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60"
               >
                 They live at /tools
               </Link>
