@@ -23,7 +23,32 @@ set +e  # Don't auto-abort on non-zero — we control exit codes explicitly.
 CURRENT_SHA="${VERCEL_GIT_COMMIT_SHA:-$(git rev-parse HEAD 2>/dev/null)}"
 PREVIOUS_SHA="${VERCEL_GIT_PREVIOUS_SHA:-}"
 
-# 0. Draft PR check — cheapest possible skip, runs before any git work.
+# 0. Production is never skipped. This must run before preview-only guards.
+if [ "${VERCEL_ENV:-}" = "production" ]; then
+  echo "[should-deploy] Production deployment — PROCEEDING."
+  exit 1
+fi
+
+# 0a. Agents may push intermediate preview checkpoints without spending build
+#     minutes, including branch pushes made before a pull request exists.
+#     The final coherent commit MUST omit [agent-wip].
+COMMIT_MESSAGE="${VERCEL_GIT_COMMIT_MESSAGE:-}"
+if [ -z "$COMMIT_MESSAGE" ]; then
+  COMMIT_MESSAGE="$(git log -1 --format=%B HEAD 2>/dev/null)"
+fi
+if echo "$COMMIT_MESSAGE" | grep -Fq "[agent-wip]"; then
+  echo "[should-deploy] Explicit agent work-in-progress checkpoint — SKIPPING build."
+  exit 0
+fi
+
+# 0b. If the parent was an ignored checkpoint, force the first coherent commit
+#     to build before draft/path filters can skip it.
+if git log -1 --format=%B HEAD^ 2>/dev/null | grep -Fq "[agent-wip]"; then
+  echo "[should-deploy] Coherent checkpoint follows [agent-wip] — PROCEEDING."
+  exit 1
+fi
+
+# 0c. Draft PR check — cheapest remaining skip, runs before path diff work.
 #    VERCEL_GIT_PULL_REQUEST_ID is only set for PR-linked preview builds
 #    (empty for production and non-PR previews), so this never touches
 #    production. Repo is public — unauthenticated GitHub API call, no token.
