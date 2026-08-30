@@ -3,7 +3,9 @@
 Receipt for the `/tools` information-architecture rebuild and the review fixes
 requested on PR #596. Captures and audits below were produced against the PR
 head on a local dev server (`pnpm dev`, dark scheme, deviceScaleFactor 1) on
-2026-08-30 (`2026-08-30T15:19Z`).
+2026-08-30 (`2026-08-30T15:49Z`), after merging `main` (through #617) and
+promoting the AI System Builder to the live instruments per #616 — the
+captures show four live instrument rows.
 
 ## Captures
 

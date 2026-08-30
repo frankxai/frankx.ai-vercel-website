@@ -9,6 +9,7 @@ import {
   Network,
   Shield,
   Target,
+  Wrench,
 } from 'lucide-react'
 
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
@@ -23,7 +24,7 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 export const metadata = createMetadata({
   title: 'Tools — Instruments Built in the FrankX Studio',
   description:
-    'Free, in-browser instruments built by FrankX: the AI ROI calculator, the strategy canvas, and the social tool decision atlas. The third-party stack lives at /stack.',
+    'Free, in-browser instruments built by FrankX: the AI ROI calculator, the strategy canvas, the social tool decision atlas, and the AI system builder. The third-party stack lives at /stack.',
   path: '/tools',
 })
 
@@ -55,6 +56,15 @@ const instruments = [
     output: `A shortlist for your operating role, from ${SOCIAL_TOOL_ROLES.length} routes — solo founder to enterprise.`,
     time: '~5 min',
     href: '/tools/social-media',
+  },
+  {
+    index: '04',
+    name: 'AI System Builder',
+    icon: Wrench,
+    what: 'A guided intake for a full AI system — requirements, architecture, and deployment choices, step by step, with a browsable AI component library.',
+    output: 'A worked-through system definition across requirements, architecture, and deployment.',
+    time: '~15 min',
+    href: '/tools/builder',
   },
 ]
 
@@ -90,11 +100,6 @@ const inDevelopment = [
     will: 'AI readiness across roles, skills, and adoption plans',
     href: '/tools/team-readiness',
   },
-  {
-    name: 'System Builder',
-    will: 'Guided architecture intake for a full AI system',
-    href: '/tools/builder',
-  },
 ]
 
 export default function ToolsPage() {
@@ -107,7 +112,7 @@ export default function ToolsPage() {
         data={{
           name: 'FrankX Tools',
           description:
-            'Free, in-browser instruments built by FrankX: calculators, planning canvases, and tool decision atlases.',
+            'Free, in-browser instruments built by FrankX: calculators, planning canvases, tool decision atlases, and a system builder.',
           url: canonicalUrl,
           dateModified: SOCIAL_TOOL_LAST_VERIFIED,
           mainEntity: {
@@ -134,9 +139,9 @@ export default function ToolsPage() {
             The <span className="font-serif font-medium italic text-emerald-200">instrument</span> room
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-400">
-            Calculators, canvases, and decision atlases built in this studio. Free, in the
-            browser, no signup. The third-party stack that runs the studio is a different
-            page — the fork at the end of this one points there.
+            Calculators, canvases, decision atlases, and a system builder — built in this
+            studio. Free, in the browser, no signup. The third-party stack that runs the
+            studio is a different page — the fork at the end of this one points there.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-5">
@@ -181,7 +186,7 @@ export default function ToolsPage() {
             Built here / live now
           </p>
           <h2 id="instruments-title" className="mt-4 max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
-            Three instruments, each with a job
+            Each instrument has one job
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">
             Everything in this section works today. Each row says what goes in and what
