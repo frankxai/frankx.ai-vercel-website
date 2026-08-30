@@ -38,7 +38,30 @@ if [ -n "${VERCEL_GIT_PULL_REQUEST_ID:-}" ] && [ -n "${VERCEL_GIT_REPO_OWNER:-}"
   fi
 fi
 
-# 1. Env-var-only redeploy (Vercel dashboard "Redeploy"): same SHA twice.
+# 1. Explicit autonomous-agent checkpoint protocol.
+#    [agent-wip] may suppress preview spend only; production always ignores it.
+#    The first coherent commit after a WIP checkpoint is forced to build before
+#    path filters, so skipping intermediate work can never strand a stale preview.
+COMMIT_MESSAGE="${VERCEL_GIT_COMMIT_MESSAGE:-}"
+if [ -z "$COMMIT_MESSAGE" ]; then
+  COMMIT_MESSAGE=$(git log -1 --format=%B HEAD 2>/dev/null)
+fi
+
+if [ "${VERCEL_ENV:-}" != "production" ]; then
+  case "$COMMIT_MESSAGE" in
+    *"[agent-wip]"*)
+      echo "[should-deploy] Explicit agent WIP checkpoint — SKIPPING preview build."
+      exit 0
+      ;;
+  esac
+
+  if git log -1 --format=%B HEAD^ 2>/dev/null | grep -Fq "[agent-wip]"; then
+    echo "[should-deploy] Coherent checkpoint follows [agent-wip] — PROCEEDING."
+    exit 1
+  fi
+fi
+
+# 2. Env-var-only redeploy (Vercel dashboard "Redeploy"): same SHA twice.
 #    The user clicked redeploy precisely because something changed (env vars).
 #    File diff would be empty → would falsely SKIP. Always PROCEED in this case.
 if [ -n "$PREVIOUS_SHA" ] && [ "$CURRENT_SHA" = "$PREVIOUS_SHA" ]; then
@@ -46,7 +69,7 @@ if [ -n "$PREVIOUS_SHA" ] && [ "$CURRENT_SHA" = "$PREVIOUS_SHA" ]; then
   exit 1
 fi
 
-# 2. Pick a base SHA to diff against:
+# 3. Pick a base SHA to diff against:
 #    - Prefer VERCEL_GIT_PREVIOUS_SHA (handles merge commits + multi-commit pushes correctly)
 #    - Fall back to HEAD^ (for previews where Vercel doesn't set the env var)
 BASE_SHA=""
@@ -95,7 +118,7 @@ RELEVANT_PATHS=(
   instrumentation.ts
 )
 
-# 3. Run the diff. Capture the exit code explicitly so we can distinguish:
+# 4. Run the diff. Capture the exit code explicitly so we can distinguish:
 #    rc=0 → no diff → SKIP
 #    rc=1 → diff exists → PROCEED
 #    rc=other → git error (corrupt repo, missing object, shallow clone parent unreachable) → PROCEED safely
