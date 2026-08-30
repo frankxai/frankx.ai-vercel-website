@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1600 840" role="img" aria-labelledby="title desc">
+  <title id="title">The AI Architect Guide 2026 — seven-plane architecture</title>
+  <desc id="desc">A provider-neutral reference architecture with seven system planes: Experience, Orchestration, Context and state, Model fabric, Action and integration, Evidence, and Policy and trust.</desc>
+  <defs>
+    <linearGradient id="background" x1="80" y1="20" x2="1510" y2="880" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07100D"/>
+      <stop offset="0.52" stop-color="#090B0E"/>
+      <stop offset="1" stop-color="#081015"/>
+    </linearGradient>
+    <radialGradient id="emeraldGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 340) rotate(45) scale(560 650)">
+      <stop stop-color="#10B981" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyanGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1370 690) rotate(-135) scale(520 620)">
+      <stop stop-color="#22D3EE" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="420" y1="0" x2="1500" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34D399" stop-opacity="0.70"/>
+      <stop offset="0.55" stop-color="#22D3EE" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="840" fill="url(#background)"/>
+  <rect width="1600" height="840" fill="url(#emeraldGlow)"/>
+  <rect width="1600" height="840" fill="url(#cyanGlow)"/>
+  <g stroke="#FFFFFF" stroke-opacity="0.035">
+    <path d="M0 150H1600M0 300H1600M0 450H1600M0 600H1600M0 750H1600"/>
+    <path d="M200 0V840M400 0V840M600 0V840M800 0V840M1000 0V840M1200 0V840M1400 0V840"/>
+  </g>
+
+  <text x="100" y="88" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="7" fill="#34D399">THE AI ARCHITECT GUIDE · 2026</text>
+  <text x="100" y="166" font-family="Poppins, Inter, Arial, sans-serif" font-size="64" font-weight="650" letter-spacing="-1.6" fill="#FFFFFF">Seven planes. One governed system.</text>
+  <text x="100" y="216" font-family="Inter, Arial, sans-serif" font-size="24" fill="#A9B1B0">Design the seams where probabilistic capability meets business authority.</text>
+  <rect x="100" y="240" width="1400" height="1" fill="url(#rule)"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="100" y="294" font-size="13" font-weight="700" letter-spacing="4.5" fill="#76817F">CONTROL SURFACE</text>
+    <text x="100" y="346" font-size="22" font-weight="650" fill="#FFFFFF">Every plane has</text>
+    <text x="100" y="378" font-size="22" font-weight="650" fill="#FFFFFF">a distinct owner,</text>
+    <text x="100" y="410" font-size="22" font-weight="650" fill="#FFFFFF">failure mode,</text>
+    <text x="100" y="442" font-size="22" font-weight="650" fill="#FFFFFF">and release gate.</text>
+    <path d="M100 478H340" stroke="#34D399" stroke-opacity="0.65"/>
+    <text x="100" y="518" font-size="16" fill="#91A09D">Architecture is the</text>
+    <text x="100" y="544" font-size="16" fill="#91A09D">operating evidence—</text>
+    <text x="100" y="570" font-size="16" fill="#91A09D">not the provider list.</text>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(420 264)">
+      <rect width="1080" height="62" rx="14" fill="#111715" stroke="url(#edge)"/>
+      <circle cx="36" cy="31" r="18" fill="#10B981" fill-opacity="0.16" stroke="#34D399" stroke-opacity="0.65"/>
+      <text x="36" y="37" text-anchor="middle" font-size="16" font-weight="750" fill="#6EE7B7">1</text>
+      <text x="78" y="39" font-size="25" font-weight="680" fill="#FFFFFF">Experience</text>
+      <text x="490" y="38" font-size="18" fill="#AAB5B2">intent · disclosure · review · correction</text>
+    </g>
+    <g transform="translate(420 336)">
+      <rect width="1080" height="62" rx="14" fill="#111516" stroke="url(#edge)"/>
+      <circle cx="36" cy="31" r="18" fill="#10B981" fill-opacity="0.14" stroke="#34D399" stroke-opacity="0.58"/>
+      <text x="36" y="37" text-anchor="middle" font-size="16" font-weight="750" fill="#6EE7B7">2</text>
+      <text x="78" y="39" font-size="25" font-weight="680" fill="#FFFFFF">Orchestration</text>
+      <text x="490" y="38" font-size="18" fill="#AAB5B2">sequence · branches · retries · stops</text>
+    </g>
+    <g transform="translate(420 408)">
+      <rect width="1080" height="62" rx="14" fill="#101517" stroke="url(#edge)"/>
+      <circle cx="36" cy="31" r="18" fill="#14B8A6" fill-opacity="0.14" stroke="#5EEAD4" stroke-opacity="0.56"/>
+      <text x="36" y="37" text-anchor="middle" font-size="16" font-weight="750" fill="#99F6E4">3</text>
+      <text x="78" y="39" font-size="25" font-weight="680" fill="#FFFFFF">Context &amp; state</text>
+      <text x="490" y="38" font-size="18" fill="#AAB5B2">retrieval · provenance · memory · lifecycle</text>
+    </g>
+    <g transform="translate(420 480)">
+      <rect width="1080" height="62" rx="14" fill="#101417" stroke="url(#edge)"/>
+      <circle cx="36" cy="31" r="18" fill="#06B6D4" fill-opacity="0.14" stroke="#67E8F9" stroke-opacity="0.55"/>
+      <text x="36" y="37" text-anchor="middle" font-size="16" font-weight="750" fill="#A5F3FC">4</text>
+      <text x="78" y="39" font-size="25" font-weight="680" fill="#FFFFFF">Model fabric</text>
+      <text x="490" y="38" font-size="18" fill="#AAB5B2">routing · fallback · structured output · validation</text>
+    </g>
+    <g transform="translate(420 552)">
+      <rect width="1080" height="62" rx="14" fill="#101417" stroke="url(#edge)"/>
+      <circle cx="36" cy="31" r="18" fill="#06B6D4" fill-opacity="0.13" stroke="#67E8F9" stroke-opacity="0.50"/>
+      <text x="36" y="37" text-anchor="middle" font-size="16" font-weight="750" fill="#A5F3FC">5</text>
+      <text x="78" y="39" font-size="25" font-weight="680" fill="#FFFFFF">Action &amp; integration</text>
+      <text x="490" y="38" font-size="18" fill="#AAB5B2">tools · identity · scope · side effects</text>
+    </g>
+    <g transform="translate(420 624)">
+      <rect width="1080" height="62" rx="14" fill="#101417" stroke="url(#edge)"/>
+      <circle cx="36" cy="31" r="18" fill="#22D3EE" fill-opacity="0.12" stroke="#67E8F9" stroke-opacity="0.46"/>
+      <text x="36" y="37" text-anchor="middle" font-size="16" font-weight="750" fill="#A5F3FC">6</text>
+      <text x="78" y="39" font-size="25" font-weight="680" fill="#FFFFFF">Evidence</text>
+      <text x="490" y="38" font-size="18" fill="#AAB5B2">evals · telemetry · quality · economics</text>
+    </g>
+    <g transform="translate(420 696)">
+      <rect width="1080" height="62" rx="14" fill="#101417" stroke="url(#edge)"/>
+      <circle cx="36" cy="31" r="18" fill="#22D3EE" fill-opacity="0.11" stroke="#67E8F9" stroke-opacity="0.42"/>
+      <text x="36" y="37" text-anchor="middle" font-size="16" font-weight="750" fill="#A5F3FC">7</text>
+      <text x="78" y="39" font-size="25" font-weight="680" fill="#FFFFFF">Policy &amp; trust</text>
+      <text x="490" y="38" font-size="18" fill="#AAB5B2">authority · privacy · audit · incident response</text>
+    </g>
+  </g>
+
+  <rect x="100" y="790" width="1400" height="1" fill="url(#rule)"/>
+  <text x="100" y="824" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="650" letter-spacing="2.5" fill="#8493A8">FRANKX.AI · OUTCOME → AUTHORITY → EVIDENCE → SCALE</text>
+  <text x="1500" y="824" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="16" fill="#8493A8">PROVIDER-NEUTRAL REFERENCE ARCHITECTURE</text>
+</svg>
