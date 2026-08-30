@@ -50,6 +50,35 @@ on:
       - 'CLAUDE.md'
       - 'AGENTS.md'
       - 'docs/**'
+      # Fifth trap: BRANCH_AUDIT.md at the repo root (#618). '*' does not match
+      # a slash, so this is root-level markdown only — README.md, CLAUDE.md,
+      # BRANCH_AUDIT.md — and not '**/*.md'.
+      #
+      # Appending the path is the correct fix, and #620 is the evidence. That
+      # pull request tried three times to avoid a fifth append and each attempt
+      # opened a production-gate bypass on the branch that deploys frankx.ai:
+      #
+      #   1. A separate workflow that reported this context when the filter
+      #      excluded everything. Commit statuses are SHA-global, so a SUCCESS
+      #      minted from an unguarded staging diff satisfied main's protection
+      #      after a retarget; and the Files API caps at 3,000 entries, so a
+      #      branch could bury a guarded file behind 3,000 unguarded ones.
+      #   2. The same idea moved to a workflow_run trigger. That fixed which
+      #      code runs, but a workflow_run job cannot report a required context
+      #      scoped to the pull request, so the SHA-global hole stayed.
+      #   3. Deleting the filter and having this job decide its own scope from
+      #      a script. For a pull_request trigger the workflow YAML and every
+      #      script it runs come from the MERGE REF, which the pull request
+      #      controls — so a branch could leave the scope list looking complete
+      #      while rewriting the script to skip, and this job would report
+      #      SUCCESS having inspected nothing.
+      #
+      # The filter is load-bearing precisely because it fails CLOSED: an
+      # unmatched pull request is stuck, which is visible and annoying. Every
+      # mechanism that converts "did not run" into "succeeded" fails OPEN, which
+      # is invisible. When the next unreachable file class appears, add its path
+      # to this list. Do not build a reporter.
+      - '*.md'
 
 concurrency:
   group: contract-guard-${{ github.ref }}
