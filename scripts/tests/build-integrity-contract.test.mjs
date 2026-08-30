@@ -1,9 +1,231 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
+import ts from 'typescript'
 import { ciAlwaysReportingErrors } from './helpers/workflow-yaml-contract.mjs'
 
 const read = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
+
+const parseModule = (source, fileName) =>
+  ts.createSourceFile(
+    fileName,
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    fileName.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
+  )
+
+const createModuleProgram = (source, fileName) => {
+  const sourceFile = parseModule(source, fileName)
+  const options = {
+    jsx: ts.JsxEmit.Preserve,
+    module: ts.ModuleKind.ESNext,
+    noLib: true,
+    noResolve: true,
+    target: ts.ScriptTarget.Latest,
+  }
+  const host = {
+    fileExists: (candidate) => candidate === fileName,
+    getCanonicalFileName: (candidate) => candidate,
+    getCurrentDirectory: () => '',
+    getDefaultLibFileName: () => 'lib.d.ts',
+    getDirectories: () => [],
+    getNewLine: () => '\n',
+    getSourceFile: (candidate) =>
+      candidate === fileName ? sourceFile : undefined,
+    readFile: (candidate) => (candidate === fileName ? source : undefined),
+    useCaseSensitiveFileNames: () => true,
+    writeFile: () => {},
+  }
+  const program = ts.createProgram([fileName], options, host)
+
+  return {
+    checker: program.getTypeChecker(),
+    module: program.getSourceFile(fileName),
+  }
+}
+
+const hasExportModifier = (node) =>
+  node.modifiers?.some(
+    (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
+  ) ?? false
+
+const findExportedFunction = (module, functionName) =>
+  module.statements.find(
+    (statement) =>
+      ts.isFunctionDeclaration(statement) &&
+      hasExportModifier(statement) &&
+      statement.name?.text === functionName,
+  )
+
+const unwrapParentheses = (expression) => {
+  let current = expression
+  while (current && ts.isParenthesizedExpression(current)) {
+    current = current.expression
+  }
+  return current
+}
+
+const returnedExpression = (functionLike) => {
+  if (!functionLike?.body) return undefined
+  if (!ts.isBlock(functionLike.body)) return unwrapParentheses(functionLike.body)
+
+  const returnStatement = functionLike.body.statements.find(ts.isReturnStatement)
+  return unwrapParentheses(returnStatement?.expression)
+}
+
+const propertyAccessMatches = (expression, objectName, propertyName) =>
+  ts.isPropertyAccessExpression(expression) &&
+  ts.isIdentifier(expression.expression) &&
+  expression.expression.text === objectName &&
+  expression.name.text === propertyName
+
+const callbackParameterName = (callback) => {
+  if (
+    (!ts.isArrowFunction(callback) && !ts.isFunctionExpression(callback)) ||
+    callback.parameters.length !== 1 ||
+    !ts.isIdentifier(callback.parameters[0].name)
+  ) {
+    return undefined
+  }
+
+  return callback.parameters[0].name.text
+}
+
+const resolvesToNamedImport = (
+  checker,
+  identifier,
+  importedName,
+  moduleSpecifier,
+) => {
+  const symbol = checker.getSymbolAtLocation(identifier)
+
+  return Boolean(
+    symbol?.declarations?.some((declaration) => {
+      if (
+        !ts.isImportSpecifier(declaration) ||
+        declaration.isTypeOnly ||
+        (declaration.propertyName?.text ?? declaration.name.text) !== importedName
+      ) {
+        return false
+      }
+
+      let ancestor = declaration.parent
+      while (ancestor && !ts.isImportDeclaration(ancestor)) {
+        ancestor = ancestor.parent
+      }
+
+      return Boolean(
+        ancestor &&
+          !ancestor.importClause?.isTypeOnly &&
+          ts.isStringLiteral(ancestor.moduleSpecifier) &&
+          ancestor.moduleSpecifier.text === moduleSpecifier,
+      )
+    }),
+  )
+}
+
+const hasPublicWorkParamPipeline = (source) => {
+  const fileName = 'app/work/[slug]/page.tsx'
+  const { checker, module } = createModuleProgram(source, fileName)
+  if (!module) return false
+
+  const generateStaticParams = findExportedFunction(
+    module,
+    'generateStaticParams',
+  )
+  const mapCall = returnedExpression(generateStaticParams)
+
+  if (
+    !mapCall ||
+    !ts.isCallExpression(mapCall) ||
+    !ts.isPropertyAccessExpression(mapCall.expression) ||
+    mapCall.expression.name.text !== 'map' ||
+    mapCall.arguments.length !== 1
+  ) {
+    return false
+  }
+
+  const mapCallback = mapCall.arguments[0]
+  const mapParameter = callbackParameterName(mapCallback)
+  const mapResult = returnedExpression(mapCallback)
+  const slugProperty =
+    mapResult && ts.isObjectLiteralExpression(mapResult)
+      ? mapResult.properties.find(
+          (property) =>
+            ts.isPropertyAssignment(property) &&
+            ((ts.isIdentifier(property.name) && property.name.text === 'slug') ||
+              (ts.isStringLiteral(property.name) && property.name.text === 'slug')),
+        )
+      : undefined
+
+  if (
+    !mapParameter ||
+    !slugProperty ||
+    !ts.isPropertyAssignment(slugProperty) ||
+    !propertyAccessMatches(slugProperty.initializer, mapParameter, 'slug')
+  ) {
+    return false
+  }
+
+  const filterCall = unwrapParentheses(mapCall.expression.expression)
+  if (
+    !filterCall ||
+    !ts.isCallExpression(filterCall) ||
+    !ts.isPropertyAccessExpression(filterCall.expression) ||
+    filterCall.expression.name.text !== 'filter' ||
+    filterCall.arguments.length !== 1
+  ) {
+    return false
+  }
+
+  const registryCall = unwrapParentheses(filterCall.expression.expression)
+  if (
+    !registryCall ||
+    !ts.isCallExpression(registryCall) ||
+    !ts.isIdentifier(registryCall.expression) ||
+    registryCall.arguments.length !== 0 ||
+    !resolvesToNamedImport(
+      checker,
+      registryCall.expression,
+      'listEngagements',
+      '@/content/work',
+    )
+  ) {
+    return false
+  }
+
+  const filterCallback = filterCall.arguments[0]
+  const filterParameter = callbackParameterName(filterCallback)
+  const predicate = returnedExpression(filterCallback)
+
+  return Boolean(
+    filterParameter &&
+      predicate &&
+      ts.isBinaryExpression(predicate) &&
+      predicate.operatorToken.kind === ts.SyntaxKind.ExclamationEqualsEqualsToken &&
+      propertyAccessMatches(predicate.left, filterParameter, 'status') &&
+      ts.isStringLiteral(predicate.right) &&
+      predicate.right.text === 'private',
+  )
+}
+
+const hasClosedDynamicParams = (source) => {
+  const module = parseModule(source, 'app/work/[slug]/page.tsx')
+
+  return module.statements.some(
+    (statement) =>
+      ts.isVariableStatement(statement) &&
+      hasExportModifier(statement) &&
+      (statement.declarationList.flags & ts.NodeFlags.Const) !== 0 &&
+      statement.declarationList.declarations.some(
+        (declaration) =>
+          ts.isIdentifier(declaration.name) &&
+          declaration.name.text === 'dynamicParams' &&
+          declaration.initializer?.kind === ts.SyntaxKind.FalseKeyword,
+      ),
+  )
+}
 
 test('live model pricing cannot cross the request-time boundary during prerender', async () => {
   const source = await read('lib/llm-hub/openrouter.ts')
@@ -87,8 +309,36 @@ test('CI always reports and runs the dependency boundary and AgentDB runtime con
     'node --test scripts/tests/agentdb-runtime.test.mjs',
   )
   assert.equal(
+    packageJson.scripts['test:build-artifact-integrity'],
+    'node --experimental-strip-types --test scripts/tests/build-artifact-integrity.test.mjs',
+    'the artifact contract must load the TypeScript work registry it verifies',
+  )
+  assert.equal(
     packageJson.scripts.postbuild,
     'npm run test:build-artifact-integrity && npm run test:vault-metadata:rendered',
     'every production build must verify the emitted prerender manifest',
+  )
+})
+
+test('unknown work slugs stay outside the closed static route set', async () => {
+  const page = await read('app/work/[slug]/page.tsx')
+
+  assert.ok(
+    hasClosedDynamicParams(page),
+    'dynamicParams must be an exported const initialized to false',
+  )
+  assert.ok(
+    hasPublicWorkParamPipeline(page),
+    'generateStaticParams must map public listEngagements slugs after excluding private entries',
+  )
+  assert.equal(
+    hasPublicWorkParamPipeline(
+      page.replace(
+        'export function generateStaticParams() {',
+        'export function generateStaticParams() {\n  const listEngagements = () => []',
+      ),
+    ),
+    false,
+    'a locally shadowed listEngagements function must not satisfy the registry contract',
   )
 })
