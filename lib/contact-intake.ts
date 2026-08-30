@@ -32,8 +32,8 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { z } from 'zod'
 
-import {
 import { siteConfig } from '@/lib/seo'
+import {
   INTENTS,
   INTENT_LABEL,
   INTENT_IS_COMMERCIAL,
