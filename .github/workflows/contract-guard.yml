@@ -5,6 +5,37 @@ name: Contract Guard
 #
 # Deliberately separate from ci.yml: this needs full history for merge-base,
 # and ci.yml's checkout stays shallow so the build job is not slowed down.
+#
+# ---------------------------------------------------------------------------
+# Why there is no `paths:` filter, and why one must never come back
+#
+# This is a required status check. GitHub creates no check run at all for a
+# workflow whose `paths:` filter excludes every changed file, so the required
+# context stayed "expected" forever and the pull request was BLOCKED with every
+# other check green and nothing red to fix.
+#
+# That trap was hit four times. Each was answered by appending the offending
+# path to the filter: next.config.mjs (2026-08-14), lockfile-only,
+# workflow-only (#599), CLAUDE.md-only (#612). Appending only ever covers a file
+# class someone has already been blocked by — #618 (BRANCH_AUDIT.md at the repo
+# root) was the fifth, and there is always a sixth.
+#
+# An earlier attempt at this fix reported the context from a separate workflow
+# when the filter excluded everything. Three rounds of security review killed
+# it: converting "the guard did not run" into "the guard succeeded", from
+# outside the guard, makes every edge case in that translation a bypass —
+# SHA-global commit statuses shared between a staging and a main pull request,
+# the 3,000-entry cap on the Files API, and merge-ref YAML edits among them.
+#
+# So the filter is gone instead. This job schedules on every non-draft pull
+# request and decides for itself whether it has anything to inspect, reporting
+# its own required context either way. Nothing outside the guard ever vouches
+# for the guard. A pull request that tries to narrow its scope still runs it,
+# because there is no longer a filter to narrow.
+#
+# The scope list moved to scripts/guard-scope.mjs unchanged. Put a path there,
+# never here, and only when this guard genuinely needs to inspect it.
+# ---------------------------------------------------------------------------
 
 on:
   pull_request:
@@ -14,49 +45,6 @@ on:
     # the reviewer signal quietly disappeared.
     types: [opened, synchronize, reopened, edited, ready_for_review]
     branches: [main, staging]
-    # Broad on purpose. A contract can guard a script or a public asset as well
-    # as a component, so narrowing this would silently skip the check on exactly
-    # the pull requests that pair such a surface with its contract.
-    paths:
-      - 'app/**'
-      - 'components/**'
-      - 'lib/**'
-      - 'data/**'
-      - 'content/**'
-      - 'public/**'
-      - 'scripts/**'
-      - 'types/**'
-      # Required-check trap: this job is a required status check, so a pull
-      # request touching only a path absent from this list can never merge —
-      # the check is expected and never reports. next.config.mjs reached that
-      # state on 2026-08-14. It also genuinely affects the guarded surfaces
-      # (headers, redirects, image config), so it belongs here on merit.
-      - 'next.config.mjs'
-      # Same trap, second instance: a lockfile-only pull request touched no path
-      # above, so this required check was expected and never reported, leaving
-      # the pull request unmergeable without an admin override. A dependency
-      # change also belongs here on merit — it swaps the framework the guarded
-      # surfaces are built from, and a Next upgrade moves middleware, redirect
-      # and rendering behaviour that the contracts assert on.
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      # Third trap: a workflow-only PR (design-contract concurrency, CI budget
-      # tweaks) never reports this required check, so GitHub stays BLOCKED.
-      # Cover the whole workflows tree so GitOps PRs remain mergeable without
-      # an admin override.
-      - '.github/workflows/**'
-      # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
-      # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
-      - 'CLAUDE.md'
-      - 'AGENTS.md'
-      - 'docs/**'
-      # There is no fifth trap entry to add. .github/workflows/unrun-guards.yml
-      # reads the BASE BRANCH copy of this list and reports the Contract Guard
-      # context as successful when a pull request touches nothing in it, so this
-      # filter can stay narrow: add a path here only when the guard genuinely
-      # needs to inspect it, never to make an unrelated pull request mergeable.
-      # Narrowing it on a branch does not buy that branch a free pass — base is
-      # what the reporter reads, so the pull request just stays BLOCKED.
 
 concurrency:
   group: contract-guard-${{ github.ref }}
@@ -78,7 +66,15 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      # First real step, before setup-node and before the check itself. Uses the
+      # runner's preinstalled node and node builtins only, so the early-exit
+      # path is this checkout plus about a second.
+      - name: Scope
+        id: scope
+        run: node scripts/guard-scope.mjs contract-guard
+
       - uses: actions/setup-node@v5
+        if: steps.scope.outputs.in_scope == 'true'
         with:
           node-version: '22'
           # setup-node defaults package-manager-cache to true, sees
@@ -89,6 +85,7 @@ jobs:
       # No install step on purpose — the check uses only node builtins and git,
       # so it returns a verdict in seconds rather than after a dependency install.
       - name: Check contract guards
+        if: steps.scope.outputs.in_scope == 'true'
         run: node scripts/check-contract-guard.mjs
         env:
           GITHUB_BASE_REF: ${{ github.base_ref }}

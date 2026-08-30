@@ -9,8 +9,12 @@
  *     touching nothing in that list SKIPS the production build. Its own header
  *     states the bias: "Skipping a build that should have run is a correctness
  *     bug (stale prod)."
- *   - the `paths:` filters in ci.yml, merge-gate.yml and contract-guard.yml — a
- *     pull request touching nothing in them runs none of those jobs.
+ *   - the scope lists in scripts/guard-scope.mjs — Contract Guard and Merge Gate
+ *     now schedule on every pull request and consult these to decide whether
+ *     they have anything to inspect. They used to be `paths:` filters on those
+ *     workflows; a filter made the required check unreportable and had to go,
+ *     but the list itself is still what decides whether a change is examined,
+ *     so it still needs this coverage.
  *
  * Both lists were written by hand from the directories that existed at the time.
  * Neither is derived from what the app actually imports, so a source directory
@@ -24,6 +28,8 @@
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
+
+import { SCOPES, matches } from './guard-scope.mjs'
 
 /** Roots whose imports decide what ships. */
 const SOURCE_ROOTS = ['app', 'components', 'lib', 'data']
@@ -124,7 +130,6 @@ for (const dir of imported.keys()) {
 
 for (const gate of PR_GATES) {
   const blocks = pathsBlocks(readFileSync(gate, 'utf8'))
-  if (blocks.length === 0) continue // no paths filter means the job always runs
   blocks.forEach((entries, index) => {
     for (const dir of imported.keys()) {
       if (entries.has(`${dir}/**`)) continue
@@ -137,6 +142,24 @@ for (const gate of PR_GATES) {
       })
     }
   })
+}
+
+// Contract Guard and Merge Gate carry no paths filter by design, so the loop
+// above finds nothing to check in them. Their scope lists decide the same thing
+// one level in — whether the job that did start actually inspects the change —
+// and a source directory missing from one is the same silent gap that types/
+// was, just reported as a green guard instead of an absent one.
+for (const [guard, scope] of Object.entries(SCOPES)) {
+  for (const dir of imported.keys()) {
+    if (scope.some((pattern) => matches(pattern, `${dir}/probe`))) continue
+    failures.push({
+      dir,
+      file: 'scripts/guard-scope.mjs',
+      detail:
+        `add "${dir}/**" to the ${guard} scope — a ${dir}-only pull request ` +
+        'starts that guard and it reports success without inspecting anything',
+    })
+  }
 }
 
 const summary = [...imported]

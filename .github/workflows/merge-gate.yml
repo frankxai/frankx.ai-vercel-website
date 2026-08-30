@@ -15,48 +15,42 @@ name: Merge Gate
 #
 # Steps are grouped so a failure names its own category in the checks UI rather
 # than surfacing as one opaque "merge:gate failed".
+#
+# ---------------------------------------------------------------------------
+# Why there is no `paths:` filter, and why one must never come back
+#
+# This is a required status check. GitHub creates no check run at all for a
+# workflow whose `paths:` filter excludes every changed file, so the required
+# context stayed "expected" forever and the pull request was BLOCKED with every
+# other check green and nothing red to fix.
+#
+# That trap was hit four times. Each was answered by appending the offending
+# path to the filter: next.config.mjs (2026-08-14), lockfile-only,
+# workflow-only (#599), CLAUDE.md-only (#612). Appending only ever covers a file
+# class someone has already been blocked by — #618 (BRANCH_AUDIT.md at the repo
+# root) was the fifth, and there is always a sixth.
+#
+# An earlier attempt at this fix reported the context from a separate workflow
+# when the filter excluded everything. Three rounds of security review killed
+# it: converting "the gate did not run" into "the gate succeeded", from outside
+# the gate, makes every edge case in that translation a bypass — SHA-global
+# commit statuses shared between a staging and a main pull request, the
+# 3,000-entry cap on the Files API, and merge-ref YAML edits among them.
+#
+# So the filter is gone instead. This job schedules on every non-draft pull
+# request and decides for itself whether it has anything to inspect, reporting
+# its own required context either way. Nothing outside the gate ever vouches for
+# the gate. A pull request that tries to narrow its scope still runs it, because
+# there is no longer a filter to narrow.
+#
+# The scope list moved to scripts/guard-scope.mjs unchanged. Put a path there,
+# never here, and only when this gate genuinely needs to inspect it.
+# ---------------------------------------------------------------------------
 
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: [main, staging]
-    paths:
-      - 'app/**'
-      - 'components/**'
-      - 'content/**'
-      - 'lib/**'
-      - 'data/**'
-      - 'public/**'
-      - 'scripts/**'
-      - 'types/**'
-      # workflow-validate.mjs reads .claude/workflows and resolves agentType
-      # against .claude/agents. Without these, a pull request touching only a
-      # workflow or a referenced agent skips this job — the validation step
-      # would be unable to protect its own inputs.
-      - '.claude/workflows/**'
-      - '.claude/agents/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      # Required-check trap: a required status check with a paths filter blocks
-      # every pull request that misses the filter, because the check stays
-      # expected and never reports. next.config.mjs hit that on 2026-08-14, and
-      # its redirects and headers are exactly what the link checks cover.
-      - 'next.config.mjs'
-      # Third trap: workflow-only PRs never report this required check.
-      # Cover the whole workflows tree so GitOps PRs remain mergeable.
-      - '.github/workflows/**'
-      # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
-      # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
-      - 'CLAUDE.md'
-      - 'AGENTS.md'
-      - 'docs/**'
-      # There is no fifth trap entry to add. .github/workflows/unrun-guards.yml
-      # reads the BASE BRANCH copy of this list and reports the Merge Gate
-      # context as successful when a pull request touches nothing in it, so this
-      # filter can stay narrow: add a path here only when the gate genuinely
-      # needs to inspect it, never to make an unrelated pull request mergeable.
-      # Narrowing it on a branch does not buy that branch a free pass — base is
-      # what the reporter reads, so the pull request just stays BLOCKED.
 
 concurrency:
   group: merge-gate-${{ github.ref }}
@@ -79,13 +73,27 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
+          # HEAD^1 (the base tip) and HEAD (the merged result) are what the
+          # scope check diffs. Nothing else in this job needs history.
+          fetch-depth: 2
           persist-credentials: false
 
+      # First real step, before pnpm, before setup-node, before install. Uses
+      # the runner's preinstalled node and node builtins only, so the
+      # early-exit path is this checkout plus about a second. Every step below
+      # is conditioned on it — Actions has no "exit the job green" primitive,
+      # so the conditional is repeated rather than implied.
+      - name: Scope
+        id: scope
+        run: node scripts/guard-scope.mjs merge-gate
+
       - uses: pnpm/action-setup@v4
+        if: steps.scope.outputs.in_scope == 'true'
         with:
           run_install: false
 
       - uses: actions/setup-node@v5
+        if: steps.scope.outputs.in_scope == 'true'
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
@@ -94,19 +102,24 @@ jobs:
       # merge:gate step this workflow forgets to run is enforced on Frank's
       # machine and nowhere else. Node builtins only, so it needs no install.
       - name: merge:gate CI coverage
+        if: steps.scope.outputs.in_scope == 'true'
         run: node scripts/check-merge-gate-coverage.mjs
 
       # Same class, other direction: the coverage check above protects the list
-      # of checks, this protects the list of paths that decides whether any
-      # check — or the production build — runs at all. Also node builtins only.
-      - name: Deploy and PR path coverage
+      # of checks, this protects the scope lists that decide whether either
+      # guard inspects anything — and whether the production build runs at all.
+      # Also node builtins only.
+      - name: Deploy and guard scope coverage
+        if: steps.scope.outputs.in_scope == 'true'
         run: node scripts/check-deploy-path-coverage.mjs
 
       - run: pnpm install --frozen-lockfile
+        if: steps.scope.outputs.in_scope == 'true'
 
       # First, and cheap. A contract test that does not parse cannot protect
       # anything, and that failure is invisible to every check that follows.
       - name: Contract test syntax
+        if: steps.scope.outputs.in_scope == 'true'
         run: pnpm run test:syntax
 
       # Keep this list in sync with the merge:gate script in package.json. The
@@ -119,6 +132,7 @@ jobs:
       # test:auction-bid to merge:gate only, which left main red on this job for
       # every pull request until they were added below.
       - name: Contract tests
+        if: steps.scope.outputs.in_scope == 'true'
         run: |
           pnpm run test:media-guard
           pnpm run test:homepage-release
@@ -137,6 +151,7 @@ jobs:
           pnpm run test:music-release-registry
 
       - name: Content and claims integrity
+        if: steps.scope.outputs.in_scope == 'true'
         run: |
           pnpm run research:agentic-life:audit
           pnpm run content:check
@@ -154,6 +169,7 @@ jobs:
       # merge:gate:ci already excludes for that reason; this job matches the
       # repo's existing CI variant rather than re-litigating it.
       - name: Internal links
+        if: steps.scope.outputs.in_scope == 'true'
         run: |
           pnpm run routes:build
           pnpm run links:check:static
@@ -164,6 +180,7 @@ jobs:
       # Deliberately placed after routes:build for the reason documented above —
       # against the committed index it would miss a page added by this very PR.
       - name: Intelligence surface consistency
+        if: steps.scope.outputs.in_scope == 'true'
         run: pnpm run intelligence:check
 
       # The external snapshot ships committed, so CI re-checks that every figure
@@ -171,12 +188,14 @@ jobs:
       # normalise + join logic still holds against the committed fixtures. Both
       # are offline — no egress, no API key, no cost.
       - name: External intelligence provenance
+        if: steps.scope.outputs.in_scope == 'true'
         run: |
           pnpm run intelligence:validate
           pnpm run test:intelligence-ingest
           pnpm run test:intelligence-layer
 
       - name: Workflow definitions
+        if: steps.scope.outputs.in_scope == 'true'
         run: |
           pnpm run workflow:validate
           pnpm run workflow:test
