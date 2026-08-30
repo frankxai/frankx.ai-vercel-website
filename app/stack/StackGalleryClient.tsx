@@ -516,7 +516,7 @@ export default function StackGalleryClient() {
       <div className="relative z-10">
         {/* ── Hero ── */}
         <section className="flex flex-col items-center justify-center px-6 pt-32 pb-16 text-center">
-          <motion.div {...fadeUpHero} className="mx-auto max-w-3xl">
+          <motion.div {...fadeUpHero} initial={false} className="mx-auto max-w-3xl">
             <span className="mb-6 inline-block rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/[0.08] px-4 py-1.5 text-[11px] font-medium tracking-[0.2em] text-[#D4AF37] uppercase">
               Curated Stack
             </span>
@@ -603,7 +603,7 @@ export default function StackGalleryClient() {
             })}
 
             {/* ── Footer note ── */}
-            <motion.div {...fadeUp} className="mt-32 text-center">
+            <motion.div {...fadeUp} initial={false} className="mt-32 text-center">
               <p className="text-xs text-white/70">
                 Built by Frank {'\u00b7'} Curated, not sponsored.
               </p>
