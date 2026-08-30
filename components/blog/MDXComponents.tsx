@@ -11,6 +11,7 @@ import LearnHubCallout from '@/components/learn/LearnHubCallout'
 import { EcosystemBadge, EcosystemStack } from '@/components/blog/EcosystemBadges'
 import { MascotInsight } from '@/components/blog/MascotInsight'
 import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
+import PlatformMarkGrid from '@/components/blog/PlatformMarkGrid'
 import {
   VoiceArchitectureChoice,
   VoiceCostBaseline,
@@ -302,6 +303,7 @@ export const mdxComponents: MDXComponents = {
   LiquidGlassImage,
   InfographicImage: LiquidGlassImage,
   Diagram,
+  PlatformMarkGrid,
   Callout,
   AffiliateLink,
   FunnelCTA,
