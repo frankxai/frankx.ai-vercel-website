@@ -2,11 +2,11 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
-import { stripBrandTitleSuffix } from '../../lib/seo.ts'
+import { stripBrandTitleSuffix } from '../../lib/brand-title-suffix.ts'
 
 test('createMetadata strips a trailing FrankX suffix so the root title template cannot double-brand', async () => {
   const src = await readFile('lib/seo.ts', 'utf8')
-  assert.match(src, /export function stripBrandTitleSuffix/)
+  assert.match(src, /from '\.\/brand-title-suffix'/)
   assert.match(src, /const pageTitle = stripBrandTitleSuffix\(title\)/)
   assert.match(src, /title: pageTitle/)
   assert.match(src, /title: socialTitle/)
