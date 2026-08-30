@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ArrowUpRight } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { getEngagement, listEngagements } from '@/content/work'
 import { SubstratePositioningStrip } from '@/components/work/SubstratePositioningStrip'
 import { ShippedList } from '@/components/work/ShippedList'
@@ -12,7 +12,7 @@ import { EngagementCTA } from '@/components/work/EngagementCTA'
 import { AntiPositioning } from '@/components/partnerships/AntiPositioning'
 import type { Engagement } from '@/content/work/types'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 // Public engagements are fully enumerated at build time. Unknown and private
 // slugs stay outside the route's closed static parameter set. Opening the

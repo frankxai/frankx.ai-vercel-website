@@ -6,6 +6,7 @@ import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 import { innerCircleWaitlistEmail } from '@/lib/email-templates-inner-circle'
 import { mvuRsvpConfirmation, mvuRsvpAlert } from '@/lib/email-templates-mvu'
 import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
+import { siteConfig } from '@/lib/seo'
 
 export const runtime = 'nodejs'
 
@@ -146,7 +147,7 @@ async function subscriptionRateLimit(request: NextRequest, email: string) {
 async function sendPreferenceConfirmation(email: string, topics: TopicKey[]) {
   const token = createPreferenceToken(email, topics)
   if (!token) throw new Error('Preference signing is not configured')
-  const url = `https://frankx.ai/newsletter/preferences?token=${encodeURIComponent(token)}`
+  const url = `${siteConfig.url}/newsletter/preferences?token=${encodeURIComponent(token)}`
   const labels = topics.length ? topics.join(', ') : 'no optional topics'
   await sendEmail({
     to: email,
@@ -186,7 +187,7 @@ function premiumPacksConfirmation(name: string) {
       'along the way. No spam, and nothing to pay until a pack is in your hands.',
       '',
       'In the meantime, the free Foundation pack is ready now:',
-      'https://frankx.ai/agents/packs/meta',
+      `${siteConfig.url}/agents/packs/meta`,
       '',
       '— Frank',
     ].join('\n'),
@@ -258,7 +259,7 @@ async function sendWelcomeEmail(
   if (listType === 'music-lab') {
     template = musicPromptsEmail({
       recipientName: name || 'Creator',
-      downloadUrl: 'https://frankx.ai/api/download?product=5-suno-prompts',
+      downloadUrl: `${siteConfig.url}/api/download?product=5-suno-prompts`,
       recipientEmail: email,
     })
   } else if (listType === 'ikigai-branding') {
