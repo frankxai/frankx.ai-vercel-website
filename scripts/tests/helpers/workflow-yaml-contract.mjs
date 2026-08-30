@@ -72,12 +72,17 @@ export function topLevelMappingBlock(workflow, key) {
   return lines.slice(start, end).join("\n");
 }
 
+// 'edited' is required, not merely allowed. A pull_request run builds the merge
+// commit, so CI's verdict is about one base branch, and check runs are
+// SHA-scoped. Retargeting a pull request fires only 'edited', so without it a
+// green build of the staging merge result stays green on the same head after
+// the pull request is pointed at main, where the merge result differs.
 const canonicalCiTriggerLines = [
   "on:",
   "  push:",
   "    branches: [main, staging]",
   "  pull_request:",
-  "    types: [opened, synchronize, reopened, ready_for_review]",
+  "    types: [opened, synchronize, reopened, edited, ready_for_review]",
   "    branches: [main, staging]"
 ];
 

@@ -1,12 +1,18 @@
 name: Starlight design contract
 
 on:
+  # Deliberately unfiltered, and it must stay that way. The pinned kernel's
+  # validate-adoption.mjs rejects any `types:` here — "canonical design job
+  # requires an unfiltered pull_request trigger" — so adding one turns this
+  # required check red.
+  #
+  # Known consequence: the default action list is [opened, synchronize,
+  # reopened], which omits 'edited'. Retargeting a pull request therefore does
+  # not re-run this check, and its SHA-scoped verdict from the old base stands.
+  # Every other required context in this repo listens for 'edited' for exactly
+  # that reason. This one cannot be fixed here — it needs the rule relaxed in
+  # frankxai/starlight-design-intelligence to allow the canonical action list.
   pull_request:
-    # Spelled out because the default action list is [opened, synchronize,
-    # reopened] — it omits 'edited', so retargeting a pull request left this
-    # required context showing a SHA-scoped verdict earned against the old base,
-    # and it omits 'ready_for_review', so a draft marked ready never re-ran.
-    types: [opened, synchronize, reopened, edited, ready_for_review]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
