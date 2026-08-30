@@ -50,7 +50,42 @@ const hasExportedFunction = (source, functionName) => {
   )
 }
 
-const importedBinding = (module, moduleSpecifier, importedName) => {
+const createBoundModule = (source, fileName) => {
+  const sourceFile = parseModule(source, fileName)
+  const options = {
+    jsx: ts.JsxEmit.Preserve,
+    module: ts.ModuleKind.ESNext,
+    noLib: true,
+    noResolve: true,
+    target: ts.ScriptTarget.Latest,
+  }
+  const host = {
+    fileExists: (requested) => requested === fileName,
+    readFile: (requested) => (requested === fileName ? source : undefined),
+    getSourceFile: (requested) =>
+      requested === fileName ? sourceFile : undefined,
+    getDefaultLibFileName: () => 'lib.d.ts',
+    writeFile: () => {},
+    getCurrentDirectory: () => '/',
+    getDirectories: () => [],
+    getCanonicalFileName: (requested) => requested,
+    useCaseSensitiveFileNames: () => true,
+    getNewLine: () => '\n',
+  }
+  const program = ts.createProgram([fileName], options, host)
+
+  return {
+    checker: program.getTypeChecker(),
+    module: program.getSourceFile(fileName),
+  }
+}
+
+const importedBinding = (
+  module,
+  checker,
+  moduleSpecifier,
+  importedName,
+) => {
   for (const statement of module.statements) {
     if (
       !ts.isImportDeclaration(statement) ||
@@ -65,21 +100,24 @@ const importedBinding = (module, moduleSpecifier, importedName) => {
 
     for (const element of bindings.elements) {
       const sourceName = element.propertyName?.text ?? element.name.text
-      if (sourceName === importedName) return element.name.text
+      if (sourceName !== importedName) continue
+
+      const symbol = checker.getSymbolAtLocation(element.name)
+      if (symbol) return { declaration: element, symbol }
     }
   }
 
   return null
 }
 
-const subtreeCallsBinding = (node, bindingName) => {
+const subtreeCallsSymbol = (node, expectedSymbol, checker) => {
   let found = false
 
   const visit = (child) => {
     if (
       ts.isCallExpression(child) &&
       ts.isIdentifier(child.expression) &&
-      child.expression.text === bindingName
+      checker.getSymbolAtLocation(child.expression) === expectedSymbol
     ) {
       found = true
       return
@@ -91,11 +129,16 @@ const subtreeCallsBinding = (node, bindingName) => {
   return found
 }
 
-const unavailableEngagementFacts = (condition, engagementName) => {
+const unavailableEngagementFacts = (
+  condition,
+  engagementSymbol,
+  checker,
+) => {
   let rejectsMissing = false
   let rejectsPrivate = false
   const isEngagement = (node) =>
-    ts.isIdentifier(node) && node.text === engagementName
+    ts.isIdentifier(node) &&
+    checker.getSymbolAtLocation(node) === engagementSymbol
   const isStatusAccess = (node) =>
     ts.isPropertyAccessExpression(node) &&
     isEngagement(node.expression) &&
@@ -132,18 +175,23 @@ const unavailableEngagementFacts = (condition, engagementName) => {
 }
 
 const hasUnknownEngagementGuard = (source) => {
-  const module = parseModule(source, 'app/work/[slug]/page.tsx')
-  const notFoundBinding = importedBinding(
+  const fileName = '/app/work/[slug]/page.tsx'
+  const { checker, module } = createBoundModule(source, fileName)
+  if (!module) return false
+
+  const notFoundImport = importedBinding(
     module,
+    checker,
     'next/navigation',
     'notFound',
   )
-  const getEngagementBinding = importedBinding(
+  const getEngagementImport = importedBinding(
     module,
+    checker,
     '@/content/work',
     'getEngagement',
   )
-  if (!notFoundBinding || !getEngagementBinding) return false
+  if (!notFoundImport || !getEngagementImport) return false
 
   const pageFunction = module.statements.find(
     (statement) =>
@@ -156,31 +204,37 @@ const hasUnknownEngagementGuard = (source) => {
   )
   if (!pageFunction?.body) return false
 
-  let engagementName = null
+  let engagementSymbol = null
   let declarationIndex = -1
 
   pageFunction.body.statements.forEach((statement, index) => {
-    if (!ts.isVariableStatement(statement) || engagementName) return
+    if (!ts.isVariableStatement(statement) || engagementSymbol) return
 
     for (const declaration of statement.declarationList.declarations) {
-      const initializer = ts.isAwaitExpression(declaration.initializer)
-        ? declaration.initializer.expression
-        : declaration.initializer
+      const declaredSymbol = ts.isIdentifier(declaration.name)
+        ? checker.getSymbolAtLocation(declaration.name)
+        : null
+      const rawInitializer = declaration.initializer
+      const initializer =
+        rawInitializer && ts.isAwaitExpression(rawInitializer)
+          ? rawInitializer.expression
+          : rawInitializer
       if (
-        ts.isIdentifier(declaration.name) &&
+        declaredSymbol &&
         initializer &&
         ts.isCallExpression(initializer) &&
         ts.isIdentifier(initializer.expression) &&
-        initializer.expression.text === getEngagementBinding
+        checker.getSymbolAtLocation(initializer.expression) ===
+          getEngagementImport.symbol
       ) {
-        engagementName = declaration.name.text
+        engagementSymbol = declaredSymbol
         declarationIndex = index
         break
       }
     }
   })
 
-  if (!engagementName) return false
+  if (!engagementSymbol) return false
 
   return pageFunction.body.statements
     .slice(declarationIndex + 1)
@@ -188,12 +242,17 @@ const hasUnknownEngagementGuard = (source) => {
       if (!ts.isIfStatement(statement)) return false
       const facts = unavailableEngagementFacts(
         statement.expression,
-        engagementName,
+        engagementSymbol,
+        checker,
       )
       return (
         facts.rejectsMissing &&
         facts.rejectsPrivate &&
-        subtreeCallsBinding(statement.thenStatement, notFoundBinding)
+        subtreeCallsSymbol(
+          statement.thenStatement,
+          notFoundImport.symbol,
+          checker,
+        )
       )
     })
 }
