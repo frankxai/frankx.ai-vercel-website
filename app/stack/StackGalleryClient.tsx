@@ -446,7 +446,7 @@ function StackCardContent({ item }: { item: StackItem }) {
           <Icon className="h-5 w-5 text-white/70" strokeWidth={1.5} />
         </div>
         <ArrowUpRight
-          className="h-4 w-4 text-white/30 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/70"
+          className="h-4 w-4 text-white/70 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
           strokeWidth={1.5}
         />
       </div>
@@ -526,7 +526,7 @@ export default function StackGalleryClient() {
             <p className="mt-6 text-xl leading-relaxed text-white/55 sm:text-2xl">
               Tools I actually use and recommend.
             </p>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/35">
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/70">
               Battle-tested across shipped products. Affiliate links help keep this site free {'\u2014'} they never affect what makes the list.
             </p>
           </motion.div>
@@ -534,6 +534,7 @@ export default function StackGalleryClient() {
           {/* Filter tabs */}
           <motion.div
             {...fadeUp}
+            initial={false}
             className="mt-12 flex flex-wrap items-center justify-center gap-2"
           >
             {filterTabs.map((tab) => {
@@ -560,7 +561,7 @@ export default function StackGalleryClient() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
@@ -603,7 +604,7 @@ export default function StackGalleryClient() {
 
             {/* ── Footer note ── */}
             <motion.div {...fadeUp} className="mt-32 text-center">
-              <p className="text-xs text-white/30">
+              <p className="text-xs text-white/70">
                 Built by Frank {'\u00b7'} Curated, not sponsored.
               </p>
             </motion.div>
