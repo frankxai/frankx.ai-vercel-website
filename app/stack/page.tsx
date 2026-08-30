@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import StackGalleryClient from './StackGalleryClient'
 
+const stackOg = '/images/brand/frankx-public-workspace-og-1200x630.png'
+
 export const metadata: Metadata = {
   title: 'The FrankX Stack — Curated AI Tools & Templates',
   description:
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og/stack.png',
+        url: stackOg,
         width: 1200,
         height: 630,
         alt: 'The FrankX Stack — Curated AI Tools & Templates',
@@ -29,6 +31,7 @@ export const metadata: Metadata = {
     title: 'The FrankX Stack — Curated AI Tools & Templates',
     description:
       'Hand-curated AI tools, templates, and infrastructure I actually use and recommend.',
+    images: [stackOg],
   },
 }
 
