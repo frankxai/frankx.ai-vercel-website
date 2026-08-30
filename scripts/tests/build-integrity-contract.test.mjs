@@ -92,3 +92,20 @@ test('CI always reports and runs the dependency boundary and AgentDB runtime con
     'every production build must verify the emitted prerender manifest',
   )
 })
+
+test('unknown work slugs stay inside a static segment 404', async () => {
+  const [page, notFound] = await Promise.all([
+    read('app/work/[slug]/page.tsx'),
+    read('app/work/[slug]/not-found.tsx'),
+  ])
+
+  assert.match(page, /export const dynamicParams = false/)
+  assert.match(page, /export function generateStaticParams\(\)/)
+  assert.match(page, /notFound\(\)/)
+  assert.doesNotMatch(
+    notFound,
+    /next\/headers|headers\(|cookies\(|connection\(/,
+    'the segment 404 must not cross into request-time APIs during static fallback',
+  )
+  assert.match(notFound, /href="\/work"/)
+})
