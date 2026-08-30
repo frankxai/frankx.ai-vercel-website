@@ -14,6 +14,10 @@ import type { Engagement } from '@/content/work/types'
 
 const SITE_URL = 'https://frankx.ai'
 
+// Engagements are repository-backed and fully enumerated at build time.
+// Reject unknown slugs before they fall through to the request-aware global 404.
+export const dynamicParams = false
+
 export function generateStaticParams() {
   // Only public-statable engagements (status !== 'private') render as routes.
   return listEngagements()
