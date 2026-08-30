@@ -9,10 +9,11 @@ name: Unrun Guards
 #
 # Four earlier instances (next.config.mjs, lockfile-only, workflow-only in #599,
 # CLAUDE.md-only in #612) were each answered by appending the path to both
-# filters. This job removes the need for a fifth: it reads those filters and,
-# when neither matches anything in the pull request, reports the contexts as
-# successful commit statuses with a description saying the guard had nothing to
-# inspect. See scripts/report-unrun-required-guards.mjs.
+# filters. This job removes the need for a fifth: it reads those filters from
+# the **base SHA** (not the PR tree) and, when neither matches anything in the
+# pull request (including rename sources), reports the contexts as successful
+# commit statuses. Same-repo branches cannot rewrite the filters to skip a
+# real guard. See scripts/report-unrun-required-guards.mjs.
 #
 # Deliberately NOT a job named "Contract Guard" or "Merge Gate": a second check
 # run under a required context would race the real guard's verdict on pull
@@ -51,8 +52,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      # Shallow on purpose: the workflow files at HEAD are the only input read
-      # off disk, and the changed-file list comes from the pull request API.
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
@@ -60,8 +59,6 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-          # Defaults to true, sees packageManager: pnpm in package.json, then
-          # fails looking for a pnpm binary this job deliberately never installs.
           package-manager-cache: false
 
       - name: Report guards the paths filters exclude
@@ -70,4 +67,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
