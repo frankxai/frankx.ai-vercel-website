@@ -40,7 +40,11 @@ on:
       # and rendering behaviour that the contracts assert on.
       - 'package.json'
       - 'pnpm-lock.yaml'
-      - '.github/workflows/contract-guard.yml'
+      # Third trap: a workflow-only PR (design-contract concurrency, CI budget
+      # tweaks) never reports this required check, so GitHub stays BLOCKED.
+      # Cover the whole workflows tree so GitOps PRs remain mergeable without
+      # an admin override.
+      - '.github/workflows/**'
 
 concurrency:
   group: contract-guard-${{ github.ref }}
