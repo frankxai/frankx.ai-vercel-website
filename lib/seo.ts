@@ -31,6 +31,21 @@ export const siteConfig = {
   ],
 }
 
+
+/** Trailing brand already applied by root `title.template` (`%s | FrankX`). */
+const BRAND_TITLE_SUFFIX =
+  /(?:\s*[|·—–-]\s*)(?:FrankX(?:\.AI|\.ai)?|FrankX\.AI)\s*$/i
+
+export function stripBrandTitleSuffix(title: string): string {
+  let next = title.trim()
+  for (let i = 0; i < 2; i += 1) {
+    const stripped = next.replace(BRAND_TITLE_SUFFIX, '').trim()
+    if (stripped === next || stripped.length === 0) break
+    next = stripped
+  }
+  return next
+}
+
 type CreateMetadataOptions = {
   title: string
   description: string
@@ -68,9 +83,11 @@ export function createMetadata({
 }: CreateMetadataOptions): Metadata {
   const url = new URL(path, siteConfig.url).toString()
   const canonicalUrl = canonical ?? url
+  const pageTitle = stripBrandTitleSuffix(title)
+  const socialTitle = `${pageTitle} | ${siteConfig.shortName}`
 
   return {
-    title,
+    title: pageTitle,
     description,
     keywords,
     alternates: {
@@ -86,7 +103,7 @@ export function createMetadata({
         }
       : {}),
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       type,
       url: canonicalUrl,
@@ -96,7 +113,7 @@ export function createMetadata({
           url: image,
           width: 1200,
           height: 630,
-          alt: title,
+          alt: pageTitle,
         },
       ],
       ...(publishedTime ? { publishedTime } : {}),
@@ -105,7 +122,7 @@ export function createMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: socialTitle,
       description,
       images: [image],
       creator: siteConfig.twitter,
