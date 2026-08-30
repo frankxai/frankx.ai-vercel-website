@@ -14,10 +14,10 @@ import type { Engagement } from '@/content/work/types'
 
 const SITE_URL = 'https://frankx.ai'
 
-// Public engagements are generated at build time. Unknown slugs still execute
-// the repository lookup so notFound() selects this segment's static 404 instead
-// of the request-aware global boundary.
-export const dynamicParams = true
+// Public engagements are fully enumerated at build time. Unknown and private
+// slugs stay outside the route's closed static parameter set, so they cannot
+// cross into the request-aware global 404 during runtime rendering.
+export const dynamicParams = false
 
 export function generateStaticParams() {
   // Only public-statable engagements (status !== 'private') render as routes.
