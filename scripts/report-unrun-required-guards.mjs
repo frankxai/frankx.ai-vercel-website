@@ -38,7 +38,8 @@
  *     BLOCKED. Failing closed is the correct outcome for that branch.
  *   - The changed-file list is the only pull-request-controlled input, and it is
  *     data, not code: a file list can only ever make this post FEWER contexts,
- *     because any match at all silences the report.
+ *     because any match at all silences the report. Rename sources are included
+ *     for the same reason — see the comment on the file loop below.
  *
  * The base branch tip is used rather than the pull request's recorded base SHA
  * because a filter widened on main after the pull request opened is in force for
@@ -129,13 +130,20 @@ async function report(pr) {
     return
   }
 
+  // Rename sources count. A `paths:` filter treats a rename as touching both
+  // names, so moving app/x.tsx to x.md at the root schedules the real guard on
+  // the path that disappeared — and reporting from the new name alone would put
+  // a fabricated success next to that guard's genuine verdict.
   const changed = []
   for (let page = 1; ; page += 1) {
     const batch = await api(`/repos/${GITHUB_REPOSITORY}/pulls/${pr.number}/files?per_page=100&page=${page}`)
-    changed.push(...batch.map((f) => f.filename))
+    for (const f of batch) {
+      changed.push(f.filename)
+      if (f.previous_filename) changed.push(f.previous_filename)
+    }
     if (batch.length < 100) break
   }
-  console.log(`[unrun-guards] ${label}: ${changed.length} changed file(s): ${changed.join(', ')}`)
+  console.log(`[unrun-guards] ${label}: ${changed.length} path(s) incl. rename sources: ${changed.join(', ')}`)
 
   for (const { context, file, job } of GUARDS) {
     const base = encodeURIComponent(pr.base.ref)

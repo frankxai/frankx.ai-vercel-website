@@ -446,13 +446,13 @@ function StackCardContent({ item }: { item: StackItem }) {
           <Icon className="h-5 w-5 text-white/70" strokeWidth={1.5} />
         </div>
         <ArrowUpRight
-          className="h-4 w-4 text-white/30 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/70"
+          className="h-4 w-4 text-white/70 transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
           strokeWidth={1.5}
         />
       </div>
       <div className="flex-1">
         <h3 className="text-base font-semibold tracking-tight text-white">{item.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-white/45">{item.description}</p>
+        <p className="mt-2 text-sm leading-relaxed text-white/70">{item.description}</p>
       </div>
       <div className="flex flex-wrap items-center gap-1.5">
         {item.tags.map((tag) => (
@@ -516,7 +516,7 @@ export default function StackGalleryClient() {
       <div className="relative z-10">
         {/* ── Hero ── */}
         <section className="flex flex-col items-center justify-center px-6 pt-32 pb-16 text-center">
-          <motion.div {...fadeUpHero} className="mx-auto max-w-3xl">
+          <motion.div {...fadeUpHero} initial={false} className="mx-auto max-w-3xl">
             <span className="mb-6 inline-block rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/[0.08] px-4 py-1.5 text-[11px] font-medium tracking-[0.2em] text-[#D4AF37] uppercase">
               Curated Stack
             </span>
@@ -526,7 +526,7 @@ export default function StackGalleryClient() {
             <p className="mt-6 text-xl leading-relaxed text-white/55 sm:text-2xl">
               Tools I actually use and recommend.
             </p>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/35">
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/70">
               Battle-tested across shipped products. Affiliate links help keep this site free {'\u2014'} they never affect what makes the list.
             </p>
           </motion.div>
@@ -534,6 +534,7 @@ export default function StackGalleryClient() {
           {/* Filter tabs */}
           <motion.div
             {...fadeUp}
+            initial={false}
             className="mt-12 flex flex-wrap items-center justify-center gap-2"
           >
             {filterTabs.map((tab) => {
@@ -560,7 +561,7 @@ export default function StackGalleryClient() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
@@ -572,21 +573,21 @@ export default function StackGalleryClient() {
 
               return (
                 <section key={category.id} className="pt-20">
-                  <motion.div {...fadeUp} className="mb-8 max-w-2xl">
+                  <motion.div {...fadeUp} initial={false} className="mb-8 max-w-2xl">
                     <span className="mb-3 inline-block text-[11px] font-medium tracking-[0.2em] text-[#D4AF37]/80 uppercase">
                       {category.label}
                     </span>
                     <h2 className="font-serif text-3xl font-bold tracking-tight text-white sm:text-4xl">
                       {category.title}
                     </h2>
-                    <p className="mt-3 text-sm leading-relaxed text-white/45">
+                    <p className="mt-3 text-sm leading-relaxed text-white/70">
                       {category.tagline}
                     </p>
                   </motion.div>
 
                   <motion.div
                     variants={containerVariants}
-                    initial="hidden"
+                    initial={false}
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.05 }}
                     className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
@@ -602,8 +603,8 @@ export default function StackGalleryClient() {
             })}
 
             {/* ── Footer note ── */}
-            <motion.div {...fadeUp} className="mt-32 text-center">
-              <p className="text-xs text-white/30">
+            <motion.div {...fadeUp} initial={false} className="mt-32 text-center">
+              <p className="text-xs text-white/70">
                 Built by Frank {'\u00b7'} Curated, not sponsored.
               </p>
             </motion.div>
