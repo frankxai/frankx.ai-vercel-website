@@ -14,6 +14,12 @@ import type { Engagement } from '@/content/work/types'
 
 const SITE_URL = 'https://frankx.ai'
 
+// Public engagements are fully enumerated at build time. Unknown and private
+// slugs stay outside the route's closed static parameter set. Opening the
+// fallback lets Next reach the global 404, whose headers() call causes a
+// static-to-dynamic runtime error on this prerendered route.
+export const dynamicParams = false
+
 export function generateStaticParams() {
   // Only public-statable engagements (status !== 'private') render as routes.
   return listEngagements()

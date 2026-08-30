@@ -45,6 +45,11 @@ on:
       # Cover the whole workflows tree so GitOps PRs remain mergeable without
       # an admin override.
       - '.github/workflows/**'
+      # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
+      # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
+      - 'CLAUDE.md'
+      - 'AGENTS.md'
+      - 'docs/**'
 
 concurrency:
   group: contract-guard-${{ github.ref }}
