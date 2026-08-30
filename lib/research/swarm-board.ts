@@ -34,7 +34,7 @@ export const swarmRecommendations: SwarmRecommendation[] = [
     doNot: 'Do not treat Artificial Analysis Index ties as a “win.”',
     evidence: 'independent-composite',
     evidenceNote: 'AA Intelligence Index 61 for Grok 4.6 (vendor + AA, 12 Aug 2026). No SIS arena receipt for Grok.',
-    href: '/research/grok-4-6',
+    href: '/llm-hub/grok-4-6',
   },
   {
     job: 'Receipt-gated model battles',
@@ -89,7 +89,7 @@ export const flagshipModels: FlagshipModel[] = [
     architecture: 'Post-training / agent RL refresh. 500k context.',
     evidence: 'independent-composite',
     note: 'AA Index 61 (vendor + AA, 12 Aug 2026). No SIS arena receipt.',
-    href: '/research/grok-4-6',
+    href: '/llm-hub/grok-4-6',
     status: 'ga',
   },
   {
@@ -151,7 +151,7 @@ export const hubFaqs = [
   },
   {
     q: 'Did you run Grok 4.6 against Claude in Model Arena?',
-    a: 'No. Model Arena only publishes SIS JSON receipts. The current harness dispatches Claude Code Agent models. Vendor and Artificial Analysis scores for Grok 4.6 stay labeled and live on /research/grok-4-6.',
+    a: 'No. Model Arena only publishes SIS JSON receipts. The current harness dispatches Claude Code Agent models. Vendor and Artificial Analysis scores for Grok 4.6 stay labeled and live on /llm-hub/grok-4-6.',
   },
   {
     q: 'Is Grok Imagine the same as Grok 4.6?',
