@@ -524,7 +524,7 @@ export default function StackGalleryClient() {
               The FrankX Stack
             </h1>
             <p className="mt-6 text-xl leading-relaxed text-white/55 sm:text-2xl">
-              April 2026 {'\u2014'} tools I actually use and recommend.
+              Tools I actually use and recommend.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/35">
               Battle-tested across shipped products. Affiliate links help keep this site free {'\u2014'} they never affect what makes the list.
@@ -604,7 +604,7 @@ export default function StackGalleryClient() {
             {/* ── Footer note ── */}
             <motion.div {...fadeUp} className="mt-32 text-center">
               <p className="text-xs text-white/30">
-                Updated April 2026 {'\u00b7'} Built by Frank {'\u00b7'} Curated, not sponsored.
+                Built by Frank {'\u00b7'} Curated, not sponsored.
               </p>
             </motion.div>
           </motion.div>
