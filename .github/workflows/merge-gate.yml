@@ -42,7 +42,14 @@ on:
       # expected and never reports. next.config.mjs hit that on 2026-08-14, and
       # its redirects and headers are exactly what the link checks cover.
       - 'next.config.mjs'
-      - '.github/workflows/merge-gate.yml'
+      # Third trap: workflow-only PRs never report this required check.
+      # Cover the whole workflows tree so GitOps PRs remain mergeable.
+      - '.github/workflows/**'
+      # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
+      # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
+      - 'CLAUDE.md'
+      - 'AGENTS.md'
+      - 'docs/**'
 
 concurrency:
   group: merge-gate-${{ github.ref }}
@@ -106,6 +113,7 @@ jobs:
       # every pull request until they were added below.
       - name: Contract tests
         run: |
+          pnpm run test:media-guard
           pnpm run test:homepage-release
           pnpm run test:collaboration-release
           pnpm run test:expert-authority
@@ -118,6 +126,7 @@ jobs:
           pnpm run test:learning-routes
           pnpm run test:blog-discoverability
           pnpm run test:social-identity
+          pnpm run test:seo-title
           pnpm run test:music-release-registry
 
       - name: Content and claims integrity
@@ -158,6 +167,7 @@ jobs:
         run: |
           pnpm run intelligence:validate
           pnpm run test:intelligence-ingest
+          pnpm run test:intelligence-layer
 
       - name: Workflow definitions
         run: |

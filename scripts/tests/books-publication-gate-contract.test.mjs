@@ -73,10 +73,37 @@ test('chapter and glossary routes inherit the same draft parent gate', async () 
     chapter.indexOf('if (!book) notFound()') < chapter.indexOf("readFileSync(filePath, 'utf-8')"),
     'the chapter page must reject the parent before reading manuscript content',
   );
-  assert.match(glossary, /export default function GlossaryPage/);
-  assert.equal((glossary.match(/getBookBySlug\(params\.bookSlug\)/g) ?? []).length, 2);
+    assert.match(glossary, /params: Promise<\{\s*bookSlug: string;\s*\}>/);
+  assert.match(glossary, /export default async function GlossaryPage/);
+  assert.match(glossary, /const \{ bookSlug \} = await params/);
+  assert.match(glossary, /export async function generateStaticParams/);
+  assert.equal((glossary.match(/getBookBySlug\(bookSlug\)/g) ?? []).length, 2);
+  assert.doesNotMatch(
+    glossary,
+    /params\.bookSlug/,
+    'Next 16 passes params as a Promise — glossary must unwrap it before lookup',
+  );
   assert.ok(
     glossary.indexOf('if (!book || !glossary)') < glossary.indexOf('getTermsByCategory(glossary)'),
     'the glossary page must reject the parent before rendering glossary data',
   );
+});
+
+test('published book glossaries resolve from bundled JSON, not runtime fs', async () => {
+  const [loader, spartan, hoffnung] = await Promise.all([
+    read('lib/glossary.ts'),
+    read('data/glossaries/spartan-mindset.json'),
+    read('data/glossaries/hoffnung.json'),
+  ]);
+
+  assert.doesNotMatch(loader, /from ['"]fs['"]/, 'glossary loader must not depend on runtime filesystem');
+  assert.match(loader, /data\/glossaries\/spartan-mindset\.json/);
+  assert.match(loader, /data\/glossaries\/hoffnung\.json/);
+
+  const spartanData = JSON.parse(spartan);
+  const hoffnungData = JSON.parse(hoffnung);
+  assert.ok(Array.isArray(spartanData.terms) && spartanData.terms.length > 0);
+  assert.ok(Array.isArray(hoffnungData.terms) && hoffnungData.terms.length > 0);
+  assert.equal(spartanData.bookSlug, 'spartan-mindset');
+  assert.equal(hoffnungData.book || hoffnungData.bookSlug, 'hoffnung');
 });
