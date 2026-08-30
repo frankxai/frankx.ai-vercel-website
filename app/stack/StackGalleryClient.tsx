@@ -446,13 +446,13 @@ function StackCardContent({ item }: { item: StackItem }) {
           <Icon className="h-5 w-5 text-white/70" strokeWidth={1.5} />
         </div>
         <ArrowUpRight
-          className="h-4 w-4 text-white/70 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
+          className="h-4 w-4 text-white/70 transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
           strokeWidth={1.5}
         />
       </div>
       <div className="flex-1">
         <h3 className="text-base font-semibold tracking-tight text-white">{item.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-white/45">{item.description}</p>
+        <p className="mt-2 text-sm leading-relaxed text-white/70">{item.description}</p>
       </div>
       <div className="flex flex-wrap items-center gap-1.5">
         {item.tags.map((tag) => (
@@ -573,21 +573,21 @@ export default function StackGalleryClient() {
 
               return (
                 <section key={category.id} className="pt-20">
-                  <motion.div {...fadeUp} className="mb-8 max-w-2xl">
+                  <motion.div {...fadeUp} initial={false} className="mb-8 max-w-2xl">
                     <span className="mb-3 inline-block text-[11px] font-medium tracking-[0.2em] text-[#D4AF37]/80 uppercase">
                       {category.label}
                     </span>
                     <h2 className="font-serif text-3xl font-bold tracking-tight text-white sm:text-4xl">
                       {category.title}
                     </h2>
-                    <p className="mt-3 text-sm leading-relaxed text-white/45">
+                    <p className="mt-3 text-sm leading-relaxed text-white/70">
                       {category.tagline}
                     </p>
                   </motion.div>
 
                   <motion.div
                     variants={containerVariants}
-                    initial="hidden"
+                    initial={false}
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.05 }}
                     className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
