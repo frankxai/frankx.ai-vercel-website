@@ -92,7 +92,17 @@ jobs:
       # so the conditional is repeated rather than implied.
       - name: Scope
         id: scope
-        run: node scripts/guard-scope.mjs merge-gate
+        run: |
+          # Decide skip from the BASE tree's script, never the PR merge tree.
+          # A PR that empties SCOPES would otherwise skip every inspection
+          # while this required check still reports success (Cursor HIGH).
+          if git cat-file -e HEAD^1:scripts/guard-scope.mjs; then
+            git show HEAD^1:scripts/guard-scope.mjs > "$RUNNER_TEMP/guard-scope-base.mjs"
+            node "$RUNNER_TEMP/guard-scope-base.mjs" merge-gate
+          else
+            echo "in_scope=true" >> "$GITHUB_OUTPUT"
+            echo "[guard-scope] merge-gate: IN SCOPE — no base script; fail closed"
+          fi
 
       - uses: pnpm/action-setup@v4
         if: steps.scope.outputs.in_scope == 'true'
