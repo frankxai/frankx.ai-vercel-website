@@ -1,9 +1,53 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
+import ts from 'typescript'
 import { ciAlwaysReportingErrors } from './helpers/workflow-yaml-contract.mjs'
 
 const read = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
+
+
+const parseModule = (source, fileName) =>
+  ts.createSourceFile(
+    fileName,
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    fileName.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
+  )
+
+const hasExportModifier = (node) =>
+  node.modifiers?.some(
+    (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
+  ) ?? false
+
+const hasClosedDynamicParams = (source) => {
+  const module = parseModule(source, 'app/work/[slug]/page.tsx')
+
+  return module.statements.some(
+    (statement) =>
+      ts.isVariableStatement(statement) &&
+      hasExportModifier(statement) &&
+      (statement.declarationList.flags & ts.NodeFlags.Const) !== 0 &&
+      statement.declarationList.declarations.some(
+        (declaration) =>
+          ts.isIdentifier(declaration.name) &&
+          declaration.name.text === 'dynamicParams' &&
+          declaration.initializer?.kind === ts.SyntaxKind.FalseKeyword,
+      ),
+  )
+}
+
+const hasExportedFunction = (source, functionName) => {
+  const module = parseModule(source, 'app/work/[slug]/page.tsx')
+
+  return module.statements.some(
+    (statement) =>
+      ts.isFunctionDeclaration(statement) &&
+      hasExportModifier(statement) &&
+      statement.name?.text === functionName,
+  )
+}
 
 test('live model pricing cannot cross the request-time boundary during prerender', async () => {
   const source = await read('lib/llm-hub/openrouter.ts')
@@ -90,5 +134,18 @@ test('CI always reports and runs the dependency boundary and AgentDB runtime con
     packageJson.scripts.postbuild,
     'npm run test:build-artifact-integrity && npm run test:vault-metadata:rendered',
     'every production build must verify the emitted prerender manifest',
+  )
+})
+
+test('unknown work slugs stay outside the closed static route set', async () => {
+  const page = await read('app/work/[slug]/page.tsx')
+
+  assert.ok(
+    hasClosedDynamicParams(page),
+    'dynamicParams must be an exported const initialized to false',
+  )
+  assert.ok(
+    hasExportedFunction(page, 'generateStaticParams'),
+    'the route must export generateStaticParams',
   )
 })
