@@ -3,48 +3,39 @@
  * Reports the required guard contexts that a pull request's own file list makes
  * impossible to run.
  *
- * `Contract Guard` and `Merge Gate` are required status checks AND carry
- * `paths:` filters. GitHub never creates a check run for a workflow its filter
- * excludes, so the required context stays "expected" forever and the pull
- * request is BLOCKED with nothing red to fix. The repo hit that trap four times
- * (next.config.mjs, lockfile-only, workflow-only in #599, CLAUDE.md-only in
- * #612) and each time answered by appending the offending path to both filters.
+ * Path filters and job names are read from the **base SHA** copies of the
+ * guard workflows, not from the pull request tree. A same-repo branch must
+ * not rewrite those filters so this job stamps `Contract Guard` / `Merge Gate`
+ * successful while the real guards never schedule.
  *
- * That answer does not generalise. It only covers file classes someone has
- * already been blocked by, and extending it to documentation would mean running
- * a 20-minute contract suite on every README typo to prove a contract nobody
- * touched is still intact.
+ * Changed paths include GitHub `previous_filename` on renames, matching how
+ * workflow `paths:` filters treat a rename as touching both names.
  *
- * This closes the trap from the other side: when a guard's own filter excludes
- * every file in the pull request, the guard has nothing to inspect, and this
- * posts its required context as a success commit status with a description
- * saying why. The filters stay narrow, the guards keep running on the code they
- * exist to protect, and no file class can ever deadlock again — including ones
- * nobody has thought of yet.
- *
- * The paths are read out of the guard workflows themselves rather than restated
- * here. A filter that widens or narrows changes this script's behaviour in the
- * same commit, so the two cannot drift.
- *
- * Reports nothing when a guard's filter does match — a guard that actually runs
- * must report its own verdict, and a fabricated success alongside a real failure
- * would be exactly the weakening this file exists to avoid.
+ * Reports nothing when a base filter matches — a guard that actually runs
+ * must report its own verdict.
  */
-import { readFileSync } from 'node:fs'
 
-/**
- * Required context -> the workflow that owns it. `job` is asserted against the
- * workflow's own `name:` so renaming a job fails here instead of silently
- * posting a context that branch protection no longer requires.
- */
 const GUARDS = [
   { context: 'Contract Guard', file: '.github/workflows/contract-guard.yml', job: 'contract-guard' },
   { context: 'Merge Gate', file: '.github/workflows/merge-gate.yml', job: 'merge-gate' },
 ]
 
-const { GITHUB_REPOSITORY, GITHUB_TOKEN, PR_NUMBER, PR_HEAD_SHA, RUN_URL } = process.env
+const {
+  GITHUB_REPOSITORY,
+  GITHUB_TOKEN,
+  PR_NUMBER,
+  PR_HEAD_SHA,
+  PR_BASE_SHA,
+  RUN_URL,
+} = process.env
 
-for (const [key, value] of Object.entries({ GITHUB_REPOSITORY, GITHUB_TOKEN, PR_NUMBER, PR_HEAD_SHA })) {
+for (const [key, value] of Object.entries({
+  GITHUB_REPOSITORY,
+  GITHUB_TOKEN,
+  PR_NUMBER,
+  PR_HEAD_SHA,
+  PR_BASE_SHA,
+})) {
   if (!value) throw new Error(`${key} is required`)
 }
 
@@ -62,7 +53,6 @@ const api = async (path, init) => {
   return res.json()
 }
 
-/** Every `paths:` list in a workflow, flattened. Mirrors check-deploy-path-coverage.mjs. */
 function pathsFilter(text) {
   const lines = text.split(/\r?\n/)
   const entries = []
@@ -80,29 +70,38 @@ function pathsFilter(text) {
   return entries
 }
 
-/**
- * Only the two glob shapes the guard filters actually use. Anything else throws
- * rather than being guessed at: a pattern this cannot evaluate must not be read
- * as "no match", because that would post a success for a guard that did run.
- */
 function matches(pattern, file) {
   if (pattern.endsWith('/**')) return file.startsWith(`${pattern.slice(0, -2)}`)
   if (!pattern.includes('*')) return file === pattern
   throw new Error(`unsupported paths pattern ${pattern} — teach matches() this shape before shipping it`)
 }
 
+async function workflowAtBase(file) {
+  const data = await api(
+    `/repos/${GITHUB_REPOSITORY}/contents/${file}?ref=${encodeURIComponent(PR_BASE_SHA)}`,
+  )
+  if (data.encoding !== 'base64' || typeof data.content !== 'string') {
+    throw new Error(`${file} at base ${PR_BASE_SHA} is not a base64 file`)
+  }
+  return Buffer.from(data.content.replace(/\n/g, ''), 'base64').toString('utf8')
+}
+
 const changed = []
 for (let page = 1; ; page += 1) {
   const batch = await api(`/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files?per_page=100&page=${page}`)
-  changed.push(...batch.map((f) => f.filename))
+  for (const f of batch) {
+    changed.push(f.filename)
+    if (f.previous_filename) changed.push(f.previous_filename)
+  }
   if (batch.length < 100) break
 }
-console.log(`[unrun-guards] ${changed.length} changed file(s): ${changed.join(', ')}`)
+console.log(`[unrun-guards] ${changed.length} changed path(s) (incl. rename sources): ${changed.join(', ')}`)
+console.log(`[unrun-guards] filters from base ${PR_BASE_SHA}; statuses on head ${PR_HEAD_SHA}`)
 
 for (const { context, file, job } of GUARDS) {
-  const text = readFileSync(file, 'utf8')
+  const text = await workflowAtBase(file)
   if (!new RegExp(`^\\s+${job}:\\n(?:.*\\n)*?\\s+name: ${context}\\s*$`, 'm').test(text)) {
-    throw new Error(`${file} no longer defines job ${job} as "${context}" — the context mapping is stale`)
+    throw new Error(`${file} at base no longer defines job ${job} as "${context}" — the context mapping is stale`)
   }
 
   const patterns = pathsFilter(text)
@@ -126,5 +125,5 @@ for (const { context, file, job } of GUARDS) {
       description: 'No guarded path changed — guard has nothing to inspect.',
     }),
   })
-  console.log(`[unrun-guards] ${context}: reported success — no changed file is inside its paths filter`)
+  console.log(`[unrun-guards] ${context}: reported success — no changed file is inside base paths filter`)
 }
