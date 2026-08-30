@@ -17,6 +17,12 @@ test('createMetadata strips a trailing FrankX suffix so the root title template 
   )
 })
 
+test('brand-title helper stays import-free so node:test cannot regress onto extensionless social-links', async () => {
+  const helper = await readFile('lib/brand-title-suffix.ts', 'utf8')
+  assert.doesNotMatch(helper, /^\s*import\b/m)
+  assert.match(helper, /export function stripBrandTitleSuffix/)
+})
+
 test('trailing brand suffixes collapse once without eating titles that mention FrankX in the body', () => {
   assert.equal(
     stripBrandTitleSuffix('Tools | ROI Calculator, Strategy Canvas & More | FrankX'),
@@ -32,5 +38,10 @@ test('trailing brand suffixes collapse once without eating titles that mention F
     stripBrandTitleSuffix('Something-FrankX'),
     'Something-FrankX',
     'glued hyphen must not count as a brand separator',
+  )
+  assert.equal(
+    stripBrandTitleSuffix('Title - FrankX'),
+    'Title',
+    'spaced hyphen is a real brand separator',
   )
 })
