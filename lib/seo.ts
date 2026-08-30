@@ -34,7 +34,7 @@ export const siteConfig = {
 
 /** Trailing brand already applied by root `title.template` (`%s | FrankX`). */
 const BRAND_TITLE_SUFFIX =
-  /(?:\s*[|·—–-]\s*)(?:FrankX(?:\.AI|\.ai)?|FrankX\.AI)\s*$/i
+  /(?:\s*[|·—–]\s*|\s+-\s+)(?:FrankX(?:\.AI|\.ai)?)\s*$/i
 
 export function stripBrandTitleSuffix(title: string): string {
   let next = title.trim()
