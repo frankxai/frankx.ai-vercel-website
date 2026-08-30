@@ -1,20 +1,21 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getBookGlossary, getTermsByCategory, getAlphabeticalIndex } from '@/lib/glossary';
+import { getAllGlossaries, getBookGlossary, getTermsByCategory, getAlphabeticalIndex } from '@/lib/glossary';
 import { getBookBySlug } from '@/app/books/lib/books-registry';
 import { getThemeClasses } from '@/app/books/lib/theme-classes';
 import { GlassCard } from '@/components/liquid-glass';
 import type { Metadata } from 'next';
 
 interface GlossaryPageProps {
-  params: {
+  params: Promise<{
     bookSlug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: GlossaryPageProps): Promise<Metadata> {
-  const book = getBookBySlug(params.bookSlug);
-  const glossary = getBookGlossary(params.bookSlug);
+  const { bookSlug } = await params;
+  const book = getBookBySlug(bookSlug);
+  const glossary = getBookGlossary(bookSlug);
 
   if (!book || !glossary) {
     return { title: 'Glossary Not Found' };
@@ -26,9 +27,16 @@ export async function generateMetadata({ params }: GlossaryPageProps): Promise<M
   };
 }
 
-export default function GlossaryPage({ params }: GlossaryPageProps) {
-  const book = getBookBySlug(params.bookSlug);
-  const glossary = getBookGlossary(params.bookSlug);
+export async function generateStaticParams() {
+  return getAllGlossaries()
+    .filter((glossary) => getBookBySlug(glossary.bookSlug))
+    .map((glossary) => ({ bookSlug: glossary.bookSlug }));
+}
+
+export default async function GlossaryPage({ params }: GlossaryPageProps) {
+  const { bookSlug } = await params;
+  const book = getBookBySlug(bookSlug);
+  const glossary = getBookGlossary(bookSlug);
 
   if (!book || !glossary) {
     notFound();
@@ -47,7 +55,7 @@ export default function GlossaryPage({ params }: GlossaryPageProps) {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link
-              href={`/books/${params.bookSlug}`}
+              href={`/books/${bookSlug}`}
               className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -121,7 +129,7 @@ export default function GlossaryPage({ params }: GlossaryPageProps) {
                         </h3>
                         {term.chapter && (
                           <Link
-                            href={`/books/${params.bookSlug}`}
+                            href={`/books/${bookSlug}`}
                             className={`text-sm ${tc.textPrimary} hover:underline flex-shrink-0`}
                           >
                             Ch. {term.chapter}
@@ -170,7 +178,7 @@ export default function GlossaryPage({ params }: GlossaryPageProps) {
         {/* Back to Book */}
         <div className="pt-12 border-t border-white/10">
           <Link
-            href={`/books/${params.bookSlug}`}
+            href={`/books/${bookSlug}`}
             className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg ${tc.bgPrimary} ${tc.textPrimary} hover:brightness-110 transition-all font-medium`}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
