@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 
+import { stripBrandTitleSuffix } from './brand-title-suffix'
 import { socialHandles } from './social-links'
+
+export { stripBrandTitleSuffix }
 
 // Vercel serves `www` as the primary production host and redirects the apex.
 // Canonicals and structured data should point directly at the primary host.
@@ -32,19 +35,6 @@ export const siteConfig = {
 }
 
 
-/** Trailing brand already applied by root `title.template` (`%s | FrankX`). */
-const BRAND_TITLE_SUFFIX =
-  /(?:\s*[|·—–-]\s*)(?:FrankX(?:\.AI|\.ai)?|FrankX\.AI)\s*$/i
-
-export function stripBrandTitleSuffix(title: string): string {
-  let next = title.trim()
-  for (let i = 0; i < 2; i += 1) {
-    const stripped = next.replace(BRAND_TITLE_SUFFIX, '').trim()
-    if (stripped === next || stripped.length === 0) break
-    next = stripped
-  }
-  return next
-}
 
 type CreateMetadataOptions = {
   title: string
