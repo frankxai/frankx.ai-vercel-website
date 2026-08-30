@@ -24,3 +24,26 @@ test('live LLM Hub pricing surfaces are absent from the prerender manifest', asy
     `request-time pricing surfaces must not be prerendered: ${livePricingRoutes.join(', ')}`,
   )
 })
+
+
+test('unknown work slugs emit a closed static parameter set', async () => {
+  const manifest = await readBuildJson('prerender-manifest.json')
+  const workRoute = manifest.dynamicRoutes?.['/work/[slug]']
+  const emittedEngagements = Object.entries(manifest.routes ?? {}).filter(
+    ([, route]) => route.srcRoute === '/work/[slug]',
+  )
+
+  assert.ok(
+    workRoute,
+    'the emitted prerender manifest must describe /work/[slug]',
+  )
+  assert.equal(
+    workRoute.fallback,
+    false,
+    'unknown work slugs must not receive an on-demand fallback',
+  )
+  assert.ok(
+    emittedEngagements.length > 0,
+    'generateStaticParams must emit at least one public work engagement',
+  )
+})
