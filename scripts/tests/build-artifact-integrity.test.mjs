@@ -26,16 +26,16 @@ test('live LLM Hub pricing surfaces are absent from the prerender manifest', asy
 })
 
 
-test('unknown work slugs emit a closed static parameter set', async () => {
+test('unknown work slugs emit a route-local fallback', async () => {
   const manifest = await readBuildJson('prerender-manifest.json')
   const workRoute = manifest.dynamicRoutes?.['/work/[slug]']
   assert.ok(
     workRoute,
     'the emitted prerender manifest must describe /work/[slug]',
   )
-  assert.equal(
+  assert.notEqual(
     workRoute.fallback,
     false,
-    'unknown work slugs must not receive an on-demand fallback',
+    'unknown work slugs must enter the route-local notFound() boundary',
   )
 })
