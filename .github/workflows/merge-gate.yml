@@ -42,7 +42,9 @@ on:
       # expected and never reports. next.config.mjs hit that on 2026-08-14, and
       # its redirects and headers are exactly what the link checks cover.
       - 'next.config.mjs'
-      - '.github/workflows/merge-gate.yml'
+      # Third trap: workflow-only PRs never report this required check.
+      # Cover the whole workflows tree so GitOps PRs remain mergeable.
+      - '.github/workflows/**'
 
 concurrency:
   group: merge-gate-${{ github.ref }}
