@@ -22,7 +22,7 @@ const hasExportModifier = (node) =>
     (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
   ) ?? false
 
-const hasClosedDynamicParams = (source) => {
+const hasOpenDynamicParams = (source) => {
   const module = parseModule(source, 'app/work/[slug]/page.tsx')
 
   return module.statements.some(
@@ -34,7 +34,7 @@ const hasClosedDynamicParams = (source) => {
         (declaration) =>
           ts.isIdentifier(declaration.name) &&
           declaration.name.text === 'dynamicParams' &&
-          declaration.initializer?.kind === ts.SyntaxKind.FalseKeyword,
+          declaration.initializer?.kind === ts.SyntaxKind.TrueKeyword,
       ),
   )
 }
@@ -253,7 +253,7 @@ test('CI always reports and runs the dependency boundary and AgentDB runtime con
   )
 })
 
-test('unknown work slugs stay inside a static segment 404', async () => {
+test('unknown work slugs reach the static segment 404', async () => {
   const [page, notFound, importViolations] = await Promise.all([
     read('app/work/[slug]/page.tsx'),
     read('app/work/[slug]/not-found.tsx'),
@@ -261,8 +261,8 @@ test('unknown work slugs stay inside a static segment 404', async () => {
   ])
 
   assert.ok(
-    hasClosedDynamicParams(page),
-    'dynamicParams must be an exported const initialized to false',
+    hasOpenDynamicParams(page),
+    'dynamicParams must be an exported const initialized to true',
   )
   assert.ok(
     hasExportedFunction(page, 'generateStaticParams'),
