@@ -2,6 +2,11 @@ name: Starlight design contract
 
 on:
   pull_request:
+    # Spelled out because the default action list is [opened, synchronize,
+    # reopened] — it omits 'edited', so retargeting a pull request left this
+    # required context showing a SHA-scoped verdict earned against the old base,
+    # and it omits 'ready_for_review', so a draft marked ready never re-ran.
+    types: [opened, synchronize, reopened, edited, ready_for_review]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
