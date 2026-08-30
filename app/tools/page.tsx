@@ -494,7 +494,7 @@ export default function ToolsPage() {
                   </GlowPulse>
                   <PremiumButton variant="ghost" size="xl" href="/tools/builder">
                     <Settings className="w-5 h-5 mr-2" />
-                    Tool Builder (Coming Soon)
+                    AI System Builder
                   </PremiumButton>
                 </div>
               </GlassmorphicCard>
