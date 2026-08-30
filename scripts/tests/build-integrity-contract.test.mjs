@@ -50,23 +50,152 @@ const hasExportedFunction = (source, functionName) => {
   )
 }
 
-const callsIdentifier = (source, identifier) => {
-  const module = parseModule(source, 'app/work/[slug]/page.tsx')
+const importedBinding = (module, moduleSpecifier, importedName) => {
+  for (const statement of module.statements) {
+    if (
+      !ts.isImportDeclaration(statement) ||
+      !ts.isStringLiteral(statement.moduleSpecifier) ||
+      statement.moduleSpecifier.text !== moduleSpecifier
+    ) {
+      continue
+    }
+
+    const bindings = statement.importClause?.namedBindings
+    if (!bindings || !ts.isNamedImports(bindings)) continue
+
+    for (const element of bindings.elements) {
+      const sourceName = element.propertyName?.text ?? element.name.text
+      if (sourceName === importedName) return element.name.text
+    }
+  }
+
+  return null
+}
+
+const subtreeCallsBinding = (node, bindingName) => {
   let found = false
+
+  const visit = (child) => {
+    if (
+      ts.isCallExpression(child) &&
+      ts.isIdentifier(child.expression) &&
+      child.expression.text === bindingName
+    ) {
+      found = true
+      return
+    }
+    ts.forEachChild(child, visit)
+  }
+
+  visit(node)
+  return found
+}
+
+const unavailableEngagementFacts = (condition, engagementName) => {
+  let rejectsMissing = false
+  let rejectsPrivate = false
+  const isEngagement = (node) =>
+    ts.isIdentifier(node) && node.text === engagementName
+  const isStatusAccess = (node) =>
+    ts.isPropertyAccessExpression(node) &&
+    isEngagement(node.expression) &&
+    node.name.text === 'status'
+  const isPrivate = (node) =>
+    ts.isStringLiteral(node) && node.text === 'private'
 
   const visit = (node) => {
     if (
-      ts.isCallExpression(node) &&
-      ts.isIdentifier(node.expression) &&
-      node.expression.text === identifier
+      ts.isPrefixUnaryExpression(node) &&
+      node.operator === ts.SyntaxKind.ExclamationToken &&
+      isEngagement(node.operand)
     ) {
-      found = true
+      rejectsMissing = true
     }
+
+    if (
+      ts.isBinaryExpression(node) &&
+      [
+        ts.SyntaxKind.EqualsEqualsToken,
+        ts.SyntaxKind.EqualsEqualsEqualsToken,
+      ].includes(node.operatorToken.kind) &&
+      ((isStatusAccess(node.left) && isPrivate(node.right)) ||
+        (isPrivate(node.left) && isStatusAccess(node.right)))
+    ) {
+      rejectsPrivate = true
+    }
+
     ts.forEachChild(node, visit)
   }
 
-  visit(module)
-  return found
+  visit(condition)
+  return { rejectsMissing, rejectsPrivate }
+}
+
+const hasUnknownEngagementGuard = (source) => {
+  const module = parseModule(source, 'app/work/[slug]/page.tsx')
+  const notFoundBinding = importedBinding(
+    module,
+    'next/navigation',
+    'notFound',
+  )
+  const getEngagementBinding = importedBinding(
+    module,
+    '@/content/work',
+    'getEngagement',
+  )
+  if (!notFoundBinding || !getEngagementBinding) return false
+
+  const pageFunction = module.statements.find(
+    (statement) =>
+      ts.isFunctionDeclaration(statement) &&
+      hasExportModifier(statement) &&
+      statement.modifiers?.some(
+        (modifier) => modifier.kind === ts.SyntaxKind.DefaultKeyword,
+      ) &&
+      statement.body,
+  )
+  if (!pageFunction?.body) return false
+
+  let engagementName = null
+  let declarationIndex = -1
+
+  pageFunction.body.statements.forEach((statement, index) => {
+    if (!ts.isVariableStatement(statement) || engagementName) return
+
+    for (const declaration of statement.declarationList.declarations) {
+      const initializer = ts.isAwaitExpression(declaration.initializer)
+        ? declaration.initializer.expression
+        : declaration.initializer
+      if (
+        ts.isIdentifier(declaration.name) &&
+        initializer &&
+        ts.isCallExpression(initializer) &&
+        ts.isIdentifier(initializer.expression) &&
+        initializer.expression.text === getEngagementBinding
+      ) {
+        engagementName = declaration.name.text
+        declarationIndex = index
+        break
+      }
+    }
+  })
+
+  if (!engagementName) return false
+
+  return pageFunction.body.statements
+    .slice(declarationIndex + 1)
+    .some((statement) => {
+      if (!ts.isIfStatement(statement)) return false
+      const facts = unavailableEngagementFacts(
+        statement.expression,
+        engagementName,
+      )
+      return (
+        facts.rejectsMissing &&
+        facts.rejectsPrivate &&
+        subtreeCallsBinding(statement.thenStatement, notFoundBinding)
+      )
+    })
 }
 
 const collectRuntimeModuleSpecifiers = (source, fileName) => {
@@ -268,7 +397,10 @@ test('unknown work slugs reach the static segment 404', async () => {
     hasExportedFunction(page, 'generateStaticParams'),
     'the route must export generateStaticParams',
   )
-  assert.ok(callsIdentifier(page, 'notFound'), 'the route must call notFound()')
+  assert.ok(
+    hasUnknownEngagementGuard(page),
+    'the default page must reject missing/private engagements through the imported notFound binding',
+  )
   assert.deepEqual(
     importViolations,
     [],
