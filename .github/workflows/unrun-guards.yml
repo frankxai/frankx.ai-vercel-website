@@ -1,0 +1,73 @@
+name: Unrun Guards
+
+# Closes the required-check trap in general instead of one file class at a time.
+#
+# `Contract Guard` and `Merge Gate` are required contexts that carry `paths:`
+# filters. A pull request matching neither filter — BRANCH_AUDIT.md at the repo
+# root, #618 — gets no check run for either, so both stay "expected", and the
+# pull request is BLOCKED forever with every check that did run green.
+#
+# Four earlier instances (next.config.mjs, lockfile-only, workflow-only in #599,
+# CLAUDE.md-only in #612) were each answered by appending the path to both
+# filters. This job removes the need for a fifth: it reads those filters and,
+# when neither matches anything in the pull request, reports the contexts as
+# successful commit statuses with a description saying the guard had nothing to
+# inspect. See scripts/report-unrun-required-guards.mjs.
+#
+# Deliberately NOT a job named "Contract Guard" or "Merge Gate": a second check
+# run under a required context would race the real guard's verdict on pull
+# requests where both run. Posting a commit status only when the guard provably
+# cannot run keeps exactly one source of truth per context.
+#
+# Deliberately has no `paths:` filter of its own — a filter here would be the
+# same trap one level up, and the job costs seconds (node builtins, no install).
+
+on:
+  pull_request:
+    # 'edited' is absent on purpose: no verdict here depends on the pull request
+    # title or body, unlike Contract Guard's [contract-change] override.
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [main, staging]
+
+concurrency:
+  group: unrun-guards-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read
+  statuses: write
+
+jobs:
+  unrun-guards:
+    name: Unrun Guards
+    # Mirrors the guards being stood in for: both skip drafts, so a draft has no
+    # missing verdict to report, and 'ready_for_review' re-runs all three.
+    # Fork pull requests get a read-only token and cannot post statuses; the
+    # repository's own agent branches are the case this exists for.
+    if: >-
+      github.event.pull_request.draft == false &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Shallow on purpose: the workflow files at HEAD are the only input read
+      # off disk, and the changed-file list comes from the pull request API.
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          # Defaults to true, sees packageManager: pnpm in package.json, then
+          # fails looking for a pnpm binary this job deliberately never installs.
+          package-manager-cache: false
+
+      - name: Report guards the paths filters exclude
+        run: node scripts/report-unrun-required-guards.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

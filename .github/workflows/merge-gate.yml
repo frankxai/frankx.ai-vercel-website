@@ -50,6 +50,11 @@ on:
       - 'CLAUDE.md'
       - 'AGENTS.md'
       - 'docs/**'
+      # There is no fifth trap entry to add. .github/workflows/unrun-guards.yml
+      # reads this list and reports the Merge Gate context as successful when a
+      # pull request touches nothing in it, so this filter can stay narrow: add
+      # a path here only when the gate genuinely needs to inspect it, never to
+      # make an unrelated pull request mergeable.
 
 concurrency:
   group: merge-gate-${{ github.ref }}
