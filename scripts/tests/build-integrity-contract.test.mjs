@@ -15,21 +15,48 @@ const parseModule = (source, fileName) =>
     fileName.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
   )
 
+const createModuleProgram = (source, fileName) => {
+  const sourceFile = parseModule(source, fileName)
+  const options = {
+    jsx: ts.JsxEmit.Preserve,
+    module: ts.ModuleKind.ESNext,
+    noLib: true,
+    noResolve: true,
+    target: ts.ScriptTarget.Latest,
+  }
+  const host = {
+    fileExists: (candidate) => candidate === fileName,
+    getCanonicalFileName: (candidate) => candidate,
+    getCurrentDirectory: () => '',
+    getDefaultLibFileName: () => 'lib.d.ts',
+    getDirectories: () => [],
+    getNewLine: () => '\n',
+    getSourceFile: (candidate) =>
+      candidate === fileName ? sourceFile : undefined,
+    readFile: (candidate) => (candidate === fileName ? source : undefined),
+    useCaseSensitiveFileNames: () => true,
+    writeFile: () => {},
+  }
+  const program = ts.createProgram([fileName], options, host)
+
+  return {
+    checker: program.getTypeChecker(),
+    module: program.getSourceFile(fileName),
+  }
+}
+
 const hasExportModifier = (node) =>
   node.modifiers?.some(
     (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
   ) ?? false
 
-const findExportedFunction = (source, functionName) => {
-  const module = parseModule(source, 'app/work/[slug]/page.tsx')
-
-  return module.statements.find(
+const findExportedFunction = (module, functionName) =>
+  module.statements.find(
     (statement) =>
       ts.isFunctionDeclaration(statement) &&
       hasExportModifier(statement) &&
       statement.name?.text === functionName,
   )
-}
 
 const unwrapParentheses = (expression) => {
   let current = expression
@@ -65,8 +92,48 @@ const callbackParameterName = (callback) => {
   return callback.parameters[0].name.text
 }
 
+const resolvesToNamedImport = (
+  checker,
+  identifier,
+  importedName,
+  moduleSpecifier,
+) => {
+  const symbol = checker.getSymbolAtLocation(identifier)
+
+  return Boolean(
+    symbol?.declarations?.some((declaration) => {
+      if (
+        !ts.isImportSpecifier(declaration) ||
+        declaration.isTypeOnly ||
+        (declaration.propertyName?.text ?? declaration.name.text) !== importedName
+      ) {
+        return false
+      }
+
+      let ancestor = declaration.parent
+      while (ancestor && !ts.isImportDeclaration(ancestor)) {
+        ancestor = ancestor.parent
+      }
+
+      return Boolean(
+        ancestor &&
+          !ancestor.importClause?.isTypeOnly &&
+          ts.isStringLiteral(ancestor.moduleSpecifier) &&
+          ancestor.moduleSpecifier.text === moduleSpecifier,
+      )
+    }),
+  )
+}
+
 const hasPublicWorkParamPipeline = (source) => {
-  const generateStaticParams = findExportedFunction(source, 'generateStaticParams')
+  const fileName = 'app/work/[slug]/page.tsx'
+  const { checker, module } = createModuleProgram(source, fileName)
+  if (!module) return false
+
+  const generateStaticParams = findExportedFunction(
+    module,
+    'generateStaticParams',
+  )
   const mapCall = returnedExpression(generateStaticParams)
 
   if (
@@ -117,8 +184,13 @@ const hasPublicWorkParamPipeline = (source) => {
     !registryCall ||
     !ts.isCallExpression(registryCall) ||
     !ts.isIdentifier(registryCall.expression) ||
-    registryCall.expression.text !== 'listEngagements' ||
-    registryCall.arguments.length !== 0
+    registryCall.arguments.length !== 0 ||
+    !resolvesToNamedImport(
+      checker,
+      registryCall.expression,
+      'listEngagements',
+      '@/content/work',
+    )
   ) {
     return false
   }
@@ -258,5 +330,15 @@ test('unknown work slugs stay outside the closed static route set', async () => 
   assert.ok(
     hasPublicWorkParamPipeline(page),
     'generateStaticParams must map public listEngagements slugs after excluding private entries',
+  )
+  assert.equal(
+    hasPublicWorkParamPipeline(
+      page.replace(
+        'export function generateStaticParams() {',
+        'export function generateStaticParams() {\n  const listEngagements = () => []',
+      ),
+    ),
+    false,
+    'a locally shadowed listEngagements function must not satisfy the registry contract',
   )
 })
