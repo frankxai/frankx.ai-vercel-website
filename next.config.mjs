@@ -130,15 +130,27 @@ const nextConfig = {
         destination: 'https://arcanea.ai/:path*',
         permanent: true,
       },
-      // Creator Lab signup → product page
+      // Creator Lab routes → /acos. The "Creator Lab OS" page sold a 30-day
+      // guided cohort that has never run, at $297/$997/Custom, and its tier
+      // CTAs pointed back at /creator-lab and /creator-lab-starter — which
+      // redirected to that same page. Purchase intent went in a circle and
+      // never reached anything buyable. /acos is the real, shippable product.
+      // permanent: false so an honest rebuild of the page can reclaim the URL.
       {
         source: '/creator-lab',
-        destination: '/products/agentic-creator-os',
+        destination: '/acos',
         permanent: false,
       },
       {
         source: '/creator-lab-starter',
-        destination: '/products/agentic-creator-os',
+        destination: '/acos',
+        permanent: false,
+      },
+      // Exact path only: /products/agentic-creator-os/docs/* is real ACOS
+      // documentation and stays reachable.
+      {
+        source: '/products/agentic-creator-os',
+        destination: '/acos',
         permanent: false,
       },
       // Research Hub content relocation redirects

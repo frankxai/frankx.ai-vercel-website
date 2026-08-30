@@ -4,7 +4,12 @@ on:
   push:
     branches: [main, staging]
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+    # 'edited' matters here for the base branch, not the title: a pull_request
+    # run builds the merge commit, so this verdict is about one base. Retargeting
+    # fires only 'edited', and check runs are SHA-scoped, so without it a green
+    # build of the staging merge result stays green on the same head after the
+    # pull request is pointed at main, where the merge result differs.
+    types: [opened, synchronize, reopened, edited, ready_for_review]
     branches: [main, staging]
 
 # CI is an exact required landing check and test:build-integrity scans workflow

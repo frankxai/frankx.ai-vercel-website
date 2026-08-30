@@ -841,7 +841,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
   for (const route of discovered) {
     if (route.sitemap === false || noindexRoutes.has(route.href)) continue
-    const url = `${BASE_URL}${route.href}`
+    const url = route.href === '/' ? BASE_URL : `${BASE_URL}${route.href}`
     if (seenUrls.has(url)) continue
     seenUrls.add(url)
     const def = defaults[route.type] ?? defaults.section
