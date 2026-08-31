@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Choose the OpenAI build surface by what must survive the conversation</title>
+  <desc id="desc">A five-row decision map routes conversational setup to a Custom GPT, repeatable working methods to a skill, owned service capabilities to MCP, visual decisions to optional Apps SDK UI, and shared ChatGPT and Codex distribution to a plugin.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07090b"/>
+      <stop offset="1" stop-color="#07120f"/>
+    </linearGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#10b981"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <pattern id="grid" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path d="M52 0H0V52" fill="none" stroke="#ffffff" stroke-opacity="0.022"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="1040" rx="36" fill="url(#bg)"/>
+  <rect width="1600" height="1040" rx="36" fill="url(#grid)"/>
+  <rect x="66" y="66" width="8" height="26" rx="4" fill="#10b981"/>
+  <text x="92" y="88" fill="#a7f3d0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">BUILD-SURFACE DECISION MAP</text>
+  <text x="66" y="160" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="760" letter-spacing="-1.4">Choose by what must survive the conversation.</text>
+  <text x="66" y="201" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="21">Start with the smallest shape. Add infrastructure only when the value demands it.</text>
+
+  <rect x="66" y="246" width="1468" height="62" rx="16" fill="#0f1519" stroke="#ffffff" stroke-opacity="0.1"/>
+  <text x="96" y="285" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="740" letter-spacing="2">DURABLE VALUE</text>
+  <text x="580" y="285" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="740" letter-spacing="2">BUILD SURFACE</text>
+  <text x="910" y="285" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="740" letter-spacing="2">ARCHITECTURAL REASON</text>
+
+  <!-- Row 1 -->
+  <rect x="66" y="324" width="1468" height="112" rx="18" fill="#0c1115" stroke="#ffffff" stroke-opacity="0.08"/>
+  <circle cx="104" cy="380" r="20" fill="#64748b" fill-opacity="0.15" stroke="#94a3b8" stroke-opacity="0.45"/>
+  <text x="104" y="387" text-anchor="middle" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">1</text>
+  <text x="142" y="371" fill="#f1f5f9" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Conversation setup</text>
+  <text x="142" y="400" fill="#7f8e9b" font-family="Inter, Arial, sans-serif" font-size="16">Instructions, knowledge, a focused role</text>
+  <rect x="562" y="347" width="264" height="66" rx="18" fill="#172027" stroke="#94a3b8" stroke-opacity="0.42"/>
+  <text x="694" y="388" text-anchor="middle" fill="#f1f5f9" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="720">Custom GPT</text>
+  <text x="910" y="370" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="18">Fastest shareable specialist surface.</text>
+  <text x="910" y="399" fill="#71808d" font-family="Inter, Arial, sans-serif" font-size="16">Keep it light when the conversation carries the value.</text>
+
+  <!-- Row 2 -->
+  <rect x="66" y="450" width="1468" height="112" rx="18" fill="#0b1412" stroke="#34d399" stroke-opacity="0.16"/>
+  <circle cx="104" cy="506" r="20" fill="#10b981" fill-opacity="0.13" stroke="#34d399" stroke-opacity="0.55"/>
+  <text x="104" y="513" text-anchor="middle" fill="#a7f3d0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">2</text>
+  <text x="142" y="497" fill="#f1f5f9" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Repeatable way of working</text>
+  <text x="142" y="526" fill="#7f8e9b" font-family="Inter, Arial, sans-serif" font-size="16">A method the host can run with existing tools</text>
+  <rect x="562" y="473" width="264" height="66" rx="18" fill="#0f211b" stroke="#34d399" stroke-opacity="0.5"/>
+  <text x="694" y="514" text-anchor="middle" fill="#a7f3d0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="720">Skill</text>
+  <text x="910" y="496" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="18">Portable instructions, references, and workflow.</text>
+  <text x="910" y="525" fill="#71808d" font-family="Inter, Arial, sans-serif" font-size="16">Version the method without standing up a service.</text>
+
+  <!-- Row 3 -->
+  <rect x="66" y="576" width="1468" height="112" rx="18" fill="#091318" stroke="#22d3ee" stroke-opacity="0.17"/>
+  <circle cx="104" cy="632" r="20" fill="#22d3ee" fill-opacity="0.1" stroke="#67e8f9" stroke-opacity="0.52"/>
+  <text x="104" y="639" text-anchor="middle" fill="#a5f3fc" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">3</text>
+  <text x="142" y="623" fill="#f1f5f9" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Owned system capability</text>
+  <text x="142" y="652" fill="#7f8e9b" font-family="Inter, Arial, sans-serif" font-size="16">External data, auth, state, tools, side effects</text>
+  <rect x="562" y="599" width="264" height="66" rx="18" fill="#0b1d24" stroke="#22d3ee" stroke-opacity="0.48"/>
+  <text x="694" y="640" text-anchor="middle" fill="#a5f3fc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="720">MCP server</text>
+  <text x="910" y="622" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="18">A controlled tool and data boundary you operate.</text>
+  <text x="910" y="651" fill="#71808d" font-family="Inter, Arial, sans-serif" font-size="16">Add identity, policy, telemetry, and failure handling.</text>
+
+  <!-- Row 4 -->
+  <rect x="66" y="702" width="1468" height="112" rx="18" fill="#0d1217" stroke="#ffffff" stroke-opacity="0.08"/>
+  <circle cx="104" cy="758" r="20" fill="#a78bfa" fill-opacity="0.1" stroke="#c4b5fd" stroke-opacity="0.45"/>
+  <text x="104" y="765" text-anchor="middle" fill="#ddd6fe" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">4</text>
+  <text x="142" y="749" fill="#f1f5f9" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Visual decision or editing task</text>
+  <text x="142" y="778" fill="#7f8e9b" font-family="Inter, Arial, sans-serif" font-size="16">Inspect, compare, configure, review, confirm</text>
+  <rect x="562" y="725" width="264" height="66" rx="18" fill="#181425" stroke="#a78bfa" stroke-opacity="0.42" stroke-dasharray="6 6"/>
+  <text x="694" y="754" text-anchor="middle" fill="#ddd6fe" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="720">Apps SDK UI</text>
+  <text x="694" y="778" text-anchor="middle" fill="#8f86a9" font-family="Inter, Arial, sans-serif" font-size="13">OPTIONAL MCP LAYER</text>
+  <text x="910" y="748" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="18">Interface only where pixels reduce cognitive load.</text>
+  <text x="910" y="777" fill="#71808d" font-family="Inter, Arial, sans-serif" font-size="16">Keep data tools independent from render tools.</text>
+
+  <!-- Row 5 -->
+  <rect x="66" y="828" width="1468" height="112" rx="18" fill="#0b1714" stroke="#34d399" stroke-opacity="0.28"/>
+  <circle cx="104" cy="884" r="20" fill="#10b981" fill-opacity="0.16" stroke="#6ee7b7" stroke-opacity="0.58"/>
+  <text x="104" y="891" text-anchor="middle" fill="#d1fae5" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">5</text>
+  <text x="142" y="875" fill="#f1f5f9" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Shared ChatGPT + Codex distribution</text>
+  <text x="142" y="904" fill="#7f8e9b" font-family="Inter, Arial, sans-serif" font-size="16">One installable package for proven capability</text>
+  <rect x="562" y="851" width="264" height="66" rx="18" fill="#10241d" stroke="#6ee7b7" stroke-opacity="0.58"/>
+  <text x="694" y="892" text-anchor="middle" fill="#d1fae5" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="720">Plugin</text>
+  <text x="910" y="874" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="18">Package skills and optional MCP/UI together.</text>
+  <text x="910" y="903" fill="#71808d" font-family="Inter, Arial, sans-serif" font-size="16">Distribution comes after the capability earns it.</text>
+
+  <rect x="66" y="970" width="1468" height="5" rx="2.5" fill="url(#rule)"/>
+  <text x="66" y="1008" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">OPERATING RULE</text>
+  <text x="250" y="1008" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="650">Every new layer must earn its operational cost.</text>
+</svg>
