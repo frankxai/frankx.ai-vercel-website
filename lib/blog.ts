@@ -44,6 +44,15 @@ export interface BlogPost {
   tags: string[]
   image?: string
   ogImage?: string
+  heroTreatment?: 'editorial-cover'
+  heroArt?: string
+  heroEyebrow?: string
+  heroSubtitle?: string
+  heroAccent?: string
+  heroCapabilityPath?: string[]
+  heroReferenceLogo?: string
+  heroReferenceAlt?: string
+  heroReferenceLabel?: string
   readingTime: string
   keywords?: string[]
   readingGoal?: string
@@ -153,6 +162,7 @@ function buildBlogPost(slug: string, data: Record<string, any>, content: string)
     readingTime: readTime.text,
     ...normalized,
     image: resolveBlogImage(normalized.image, slug),
+    heroArt: resolveBlogImage(normalized.heroArt, slug),
   } as BlogPost
 }
 

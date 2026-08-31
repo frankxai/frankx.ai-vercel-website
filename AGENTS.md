@@ -88,6 +88,17 @@ The canonical cross-repo standard lives in [`frankxai/starlight-design-intellige
 
 For a high-value new page or redesign, use that kernel together with this repo's `design.md` and `taste.md`. Capture the current desktop and mobile source first; if it cannot be captured, stop before visual ideation. Compare exactly three directions, then require reviewed copy, typography, motion/reduced-motion, mobile, URL, analytics, independent-review, and post-deploy evidence. Do not call a surface "world-class," "legendary," or production-complete without the receipt.
 
+### Editorial header contract
+
+For any new or revised article header, guide cover, hero image, or OG/social cover, invoke `.codex/skills/frankx-editorial-headers`.
+
+- The default flagship header is title-bearing: art below, one responsive live HTML `h1` and exact identity above, plus a deterministic 1200×630 title-bearing OG export.
+- Image models create the art layer only. They never spell the headline or redraw a logo.
+- Third-party marks require an exact official asset, source, clear-space decision, and relationship-neutral label. No logo wallpaper and no implied partnership.
+- Mobile is art-directed separately; it is not a center crop of desktop.
+- A text-free flagship hero is an exception that requires a recorded reason.
+- Flagship work preserves four to six current benchmarks, exactly three directions, the selected direction, and a validated header packet.
+
 ---
 
 ## 5. Where things live (verified present in this checkout)

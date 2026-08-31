@@ -1,0 +1,7 @@
+interface:
+  display_name: "FrankX Editorial Headers"
+  short_description: "Direct exact, responsive editorial covers"
+  brand_color: "#10B981"
+  default_prompt: "Use $frankx-editorial-headers to create a title-bearing responsive editorial header and exact OG/social package for this article."
+policy:
+  allow_implicit_invocation: true

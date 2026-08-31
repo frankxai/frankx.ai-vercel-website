@@ -10,6 +10,7 @@ import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
 import { ArticleHeaderActions } from '@/components/blog/ArticleHeaderActions'
+import EditorialCoverHero from '@/components/blog/EditorialCoverHero'
 import {
   getAllBlogPostSummaries,
   getAllBlogPosts,
@@ -96,9 +97,11 @@ export default async function BlogPostPage({
 
   const canonicalUrl = `${siteConfig.url}/blog/${post.slug}`
   const wordCount = post.content.split(/\s+/).filter(Boolean).length
-  const imageUrl = post.image
-    ? new URL(post.image, siteConfig.url).toString()
+  const schemaImage = post.ogImage || post.image
+  const imageUrl = schemaImage
+    ? new URL(schemaImage, siteConfig.url).toString()
     : new URL(siteConfig.ogImage, siteConfig.url).toString()
+  const usesEditorialCover = post.heroTreatment === 'editorial-cover' && Boolean(post.heroArt || post.image)
 
   // Article Schema
   const articleSchema = {
@@ -166,7 +169,7 @@ export default async function BlogPostPage({
 
             <header className="mt-8 space-y-6">
               {/* Category & Meta */}
-              <div className="flex flex-wrap items-center gap-3 text-xs font-medium">
+              {!usesEditorialCover && <div className="flex flex-wrap items-center gap-3 text-xs font-medium">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-emerald-400">
                   <Tag className="h-3.5 w-3.5" />
                   {post.category}
@@ -187,12 +190,29 @@ export default async function BlogPostPage({
                   <FileText className="h-3.5 w-3.5 text-white/40" />
                   {wordCount.toLocaleString()} words
                 </span>
-              </div>
+              </div>}
 
               {/* Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white tracking-tight">
-                {post.title}
-              </h1>
+              {usesEditorialCover ? (
+                <EditorialCoverHero
+                  title={post.title}
+                  accent={post.heroAccent}
+                  art={post.heroArt || post.image!}
+                  eyebrow={post.heroEyebrow}
+                  subtitle={post.heroSubtitle || post.description}
+                  category={post.category}
+                  date={post.date}
+                  readingTime={post.readingTime}
+                  capabilityPath={post.heroCapabilityPath}
+                  referenceLogo={post.heroReferenceLogo}
+                  referenceAlt={post.heroReferenceAlt}
+                  referenceLabel={post.heroReferenceLabel}
+                />
+              ) : (
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white tracking-tight">
+                  {post.title}
+                </h1>
+              )}
 
               {post.tldr ? (
                 <div className="max-w-3xl rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
@@ -222,7 +242,7 @@ export default async function BlogPostPage({
               </div>
 
               {/* Hero Image - 16/9 premium with proper margins, padding, sizing for overlays */}
-              <div className="mt-8 mb-8">
+              {!usesEditorialCover && <div className="mt-8 mb-8">
                 <HeroImage
                   src={post.image}
                   title={post.title}
@@ -230,7 +250,7 @@ export default async function BlogPostPage({
                   alt={post.title}
                   priority
                 />
-              </div>
+              </div>}
 
               {/* Reading Goal */}
               {post.readingGoal && (

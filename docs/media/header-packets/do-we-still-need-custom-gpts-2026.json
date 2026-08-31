@@ -1,0 +1,70 @@
+{
+  "schema": "frankx.editorial-header/v1",
+  "tier": "FLAGSHIP",
+  "brand": "FrankX",
+  "title": "Do We Still Need Custom GPTs in 2026?",
+  "layers": {
+    "art": "/images/blog/editorial/headers/custom-gpts-apps-sdk-2026-hero.webp",
+    "titleMode": "live-html",
+    "identityMode": "exact"
+  },
+  "renditions": {
+    "desktop": {
+      "kind": "responsive-html-cover",
+      "sourceWidth": 1600,
+      "sourceHeight": 900,
+      "title": "live-html"
+    },
+    "mobile": {
+      "kind": "responsive-html-cover",
+      "composition": "left scrim with 62 percent art focal point",
+      "title": "live-html"
+    },
+    "og": {
+      "kind": "deterministic-raster",
+      "asset": "/images/blog/visual-system/social/custom-gpts-apps-sdk-2026-og.png",
+      "width": 1200,
+      "height": 630
+    }
+  },
+  "logos": [
+    {
+      "asset": "/favicon.svg",
+      "owner": "FrankX",
+      "source": "repo-owned",
+      "relationship": "publisher"
+    },
+    {
+      "asset": "/images/logos/openai.svg",
+      "owner": "OpenAI",
+      "source": "https://openai.com/brand/",
+      "relationship": "editorial-reference"
+    }
+  ],
+  "research": {
+    "capturedAt": "2026-08-31",
+    "benchmarks": [
+      "https://vercel.com/blog/workflow-builder-build-your-own-workflow-automation-platform",
+      "https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/",
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://linear.app/now/design-is-more-than-code",
+      "https://frankx.ai/blog/ai-skills-operating-layer"
+    ],
+    "directions": [
+      "editorial-systems-cover",
+      "systems-ledger",
+      "cinematic-signal"
+    ],
+    "selectedDirection": "editorial-systems-cover"
+  },
+  "checks": {
+    "singleSemanticH1": true,
+    "intentionalTitleBreaks": true,
+    "mobileCropDirected": true,
+    "feedThumbnailLegible": true,
+    "logoProvenanceRecorded": true,
+    "relationshipNeutral": true,
+    "ogExactTitle": true,
+    "textFreeExceptionNotUsed": true
+  }
+}
