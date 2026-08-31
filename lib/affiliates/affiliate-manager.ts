@@ -170,8 +170,9 @@ const creativeTools: Affiliate[] = [
     name: 'Canva Pro',
     url: 'https://www.canva.com/pro/',
     category: 'creative-tool',
-    commission: 'Up to $36 per subscriber',
-    cookieDuration: '30 days',
+    commission: 'No public program open to new applicants',
+    cookieDuration: 'N/A',
+    signupUrl: 'https://www.canva.com/help/canva-affiliate-marketing-program/',
     oracleCompatible: true,
   },
   {

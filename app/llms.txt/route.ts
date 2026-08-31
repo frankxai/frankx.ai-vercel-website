@@ -90,6 +90,11 @@ ${libraryLinks}
 - [Agent Catalog](${SITE_URL}/agents): The 99-agent Creator OS, packaged as installable artifacts
 - [LLM Hub JSON](${SITE_URL}/llm-hub.json): Machine-readable model registry for agents
 
+## Canva Founder System
+- [Canva for Founders](${SITE_URL}/canva): Independent, source-led operating system for governed visual production
+- [Canva MCP implementation guide](${SITE_URL}/guides/canva-mcp-for-founders): Setup, approval boundaries, and the FrankX agent graph
+- [Canva agent-readable brief](${SITE_URL}/canva/llms.txt): Concise claims, relationship disclosure, key pages, and first-party sources
+
 ## Research Hub
 - [Research Index](${SITE_URL}/research): All research domains
 - [Research Sources](${SITE_URL}/research/sources): How research is sourced

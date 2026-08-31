@@ -132,6 +132,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/frank-riemer', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/media-kit', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/founder-stack', priority: 0.95, changeFrequency: 'weekly' as const },
+    { url: '/canva', priority: 0.95, changeFrequency: 'weekly' as const },
     { url: '/founder-signal', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/founders-circle', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/human-layer', priority: 0.85, changeFrequency: 'monthly' as const },
