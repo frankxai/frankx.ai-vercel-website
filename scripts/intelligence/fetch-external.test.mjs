@@ -164,7 +164,18 @@ test('production policy is declarative and only models.dev is licence-confirmed'
   const verifier = await readFile(VERIFY_SCRIPT, 'utf8')
   assert.match(verifier, /source-policy\.json/)
   assert.doesNotMatch(verifier, /fetch-external\.mjs[\s\S]*SOURCES|license_marker/)
-  await assert.rejects(access(join(ROOT, 'components/intelligence/AttributionFootnotes.tsx')))
+
+  // The #532 repair deleted the original AttributionFootnotes, which consumed the
+  // pre-envelope snapshot shape; this assertion used to pin its absence. The component
+  // was deliberately re-created for the page rebuild against the @1 envelope, so the
+  // guard now checks the resurrected version is envelope-native: it must read the
+  // loader's types (not a private shape) and must render held sources rather than
+  // silently dropping them — the defect the original had.
+  const footnotes = await readFile(join(ROOT, 'components/intelligence/AttributionFootnotes.tsx'), 'utf8')
+  assert.match(footnotes, /from '@\/lib\/intelligence\/loader'/)
+  assert.match(footnotes, /unverified/)
+  assert.match(footnotes, /blocked/)
+  assert.match(footnotes, /No figures from this source/)
 })
 
 test('prior rows from currently unverified sources are purged', async () => {

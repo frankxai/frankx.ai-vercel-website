@@ -96,8 +96,8 @@ export interface ArenaRound {
   receiptUrl: string | null
 }
 
-// Latest round backed by a real, first-party receipt file. Rounds without receipts never move this date.
-export const LAST_MEASURED = '2026-07-01'
+// The last-measured date now comes from lib/intelligence/receipts.ts `lastMeasured()`,
+// derived from the receipt files themselves — a hardcoded copy here could drift.
 
 // Retained historical rounds (Claude-focused) + placeholder for new wave runs
 export const ROUNDS: ArenaRound[] = [
