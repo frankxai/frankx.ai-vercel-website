@@ -36,6 +36,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: commonDisallows,
       },
     ],
-    sitemap: 'https://frankx.ai/sitemap.xml',
+    sitemap: 'https://www.frankx.ai/sitemap.xml',
   }
 }
