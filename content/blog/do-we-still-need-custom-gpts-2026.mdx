@@ -1,0 +1,290 @@
+---
+title: "Do We Still Need Custom GPTs in 2026?"
+description: "Custom GPTs still work as fast conversational products. Here is where skills, MCP servers, Apps SDK UI, and universal plugins now fit—and how to decide what to build next."
+date: "2026-08-31"
+lastUpdated: "2026-08-31"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["Custom GPTs", "Apps SDK", "MCP", "OpenAI Plugins", "AI Architecture"]
+image: "/images/blog/editorial/headers/custom-gpts-apps-sdk-2026-hero.webp"
+ogImage: "/images/blog/visual-system/social/custom-gpts-apps-sdk-2026-og.png"
+featured: true
+readingGoal: "Decide which Custom GPTs to keep, which capabilities to promote into skills or MCP, and when an Apps SDK UI or universal plugin is worth building."
+tldr: "Yes—Custom GPTs remain useful for focused conversational experiences, fast prototypes, curated knowledge, and a small number of actions. Promote repeatable methods into skills, owned tools and data into MCP servers, visual work into optional Apps SDK UI, and proven cross-host capability into universal plugins for ChatGPT and Codex."
+keywords: ["do we still need custom GPTs", "Custom GPTs 2026", "OpenAI Apps SDK", "OpenAI plugins", "MCP vs Custom GPT", "skills vs MCP", "ChatGPT Codex plugins"]
+schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Treat the Custom GPT as a discovery and delivery surface. Promote only the part that earns repeat use: method to skill, owned capability to MCP, visual decision to optional UI, and proven distribution to a plugin."
+  coePillar: "Capability architecture and governed distribution"
+  personas:
+    - persona: "Founder"
+      pick: "Custom GPT first when speed and conversation are the product"
+    - persona: "AI architect"
+      pick: "Skill or MCP when capability must be reusable, controlled, and observable"
+    - persona: "Product team"
+      pick: "Apps SDK UI only when a visual interaction makes the job materially better"
+---
+
+Yes. Custom GPTs still earn a place in the 2026 stack—a narrower and more useful one.
+
+Keep a Custom GPT when the value lives in a focused conversation: instructions, curated knowledge, a recognizable point of view, and perhaps a few actions. Promote the work when the valuable part needs to survive that conversation. Repeatable methods become skills. Owned tools, identity, data, state, and side effects belong behind an MCP server. Visual review or editing can justify an Apps SDK UI. A proven capability that should travel across ChatGPT and Codex can become a universal plugin.
+
+That is the architecture decision. A Custom GPT is still a product surface. It should no longer carry every responsibility of the product.
+
+<Callout type="info">
+Method: I checked OpenAI's current first-party documentation on 31 August 2026. The [GPT Actions documentation](https://developers.openai.com/api/docs/actions/introduction) still describes Custom GPTs using instructions, knowledge, and third-party APIs. The newer [plugin architecture](https://developers.openai.com/plugins/concepts/plugins) packages skills and optional MCP servers for ChatGPT and Codex, with optional UI. OpenAI has not published a Custom GPT deprecation notice in those sources.
+</Callout>
+
+<Diagram
+  src="/images/blog/visual-system/infographics/custom-gpts-capability-promotion-2026.svg"
+  width={1600}
+  height={960}
+  scrollable
+  alt="A Custom GPT containing instructions, knowledge, and actions is evaluated for repeat workflows, shared method, identity or state, and observable side effects. Proven value is promoted into a plugin containing a skill, an MCP server, and optional Apps SDK UI."
+  caption="The wrapper proves the experience. The durable layer preserves the method, tools, data, and controls that earn repeat use."
+/>
+
+## The short answer: what should you build?
+
+| What carries the value? | Best starting surface | Promotion trigger |
+| --- | --- | --- |
+| A specialized conversation, knowledge collection, or point of view | **Custom GPT** | Users return for a repeatable method or connected capability |
+| A repeatable method that can use tools the host already has | **Skill** | The method needs external systems, identity, state, or side effects |
+| Owned tools, external data, authentication, state, or controlled actions | **MCP server** | The work becomes materially easier to inspect or edit visually |
+| Comparison, configuration, editing, review, or confirmation | **Apps SDK UI attached to MCP** | The capability is stable enough to distribute across hosts |
+| A proven package for ChatGPT and Codex | **Universal plugin** | Usage evidence supports the operating and support cost |
+| A generic wrapper with no distinct method, data, or return use | **Retire it** | A sharper customer problem appears |
+
+The important word is **starting**. OpenAI's own plugin guidance says to begin with the smallest useful shape: a skill when existing tools are enough, MCP when you need your own tools or infrastructure, and UI when the job genuinely benefits from it.
+
+## What changed around Custom GPTs?
+
+The first Custom GPT wave made specialization easy. A builder could combine four things:
+
+- a name and conversational promise;
+- system instructions;
+- uploaded knowledge;
+- GPT Actions described through an OpenAPI schema.
+
+That remains a fast way to test whether people want a specialist experience. It is also a weak place to hide the only copy of a valuable operating method, customer state, business policy, or integration contract.
+
+The surrounding OpenAI stack is now more explicit:
+
+1. **Skills preserve a method.** They package instructions, references, and workflows that ChatGPT or Codex can use with available tools.
+2. **MCP servers preserve a capability boundary.** They expose tools and data from infrastructure you operate, including authentication, policy, state, and observability.
+3. **Apps SDK UI makes selected MCP work visual.** It can render comparison, editing, review, configuration, and confirmation experiences inside the conversation.
+4. **Plugins package distribution.** The [universal plugin directory](https://developers.openai.com/plugins) is shared across ChatGPT and Codex, and a plugin can contain skills, MCP, or both.
+
+I read this as an architectural evolution, not a forced migration. Custom GPTs still specialize a conversation. Plugins distribute reusable capability. They can coexist because they solve different layers of the problem.
+
+## Where Custom GPTs still win
+
+Custom GPTs are the right choice when speed, curation, and conversational focus matter more than infrastructure.
+
+### 1. A specialist assistant with a strong point of view
+
+A writing editor, course guide, diagnostic coach, research lens, or brand-voice partner can be valuable because of its instructions and knowledge. If the result is a better conversation, keep the surface simple.
+
+### 2. A prototype before product investment
+
+A Custom GPT lets you test the promise, language, failure modes, and repeat demand before you build a service. The first useful receipt is not a launch screenshot. It is a user returning with the same job.
+
+### 3. A curated knowledge experience
+
+When the content is bounded, maintainable, and safe to place in the product, a GPT can make a body of knowledge easier to navigate. The knowledge source should still have an owner and update process outside the interface.
+
+### 4. A low-risk action surface
+
+GPT Actions can connect a focused assistant to third-party APIs. That can be enough for a narrow, reversible workflow. The moment an action changes money, identity, permissions, customer records, or other durable state, the architecture needs stronger controls and evidence.
+
+### 5. A front door to a deeper system
+
+A GPT can remain the conversational entry point even after the durable capability moves behind MCP. The user keeps the familiar experience; the product gains a controlled service boundary.
+
+## Where a Custom GPT becomes the wrong container
+
+Promote the capability when one or more of these conditions appears:
+
+- the same workflow must run in more than one assistant or agent;
+- the method needs versioning, tests, evaluation, or shared references;
+- the experience depends on account identity or private customer data;
+- the tool changes durable state or creates meaningful side effects;
+- the work needs retries, rate limits, logs, audit history, or recovery;
+- multiple surfaces must share the same capability contract;
+- a visual interface would reduce decision load or prevent mistakes;
+- the GPT configuration has become the only place the business logic exists.
+
+This is the same maturity principle behind the [skill maturity model](/blog/skill-maturity-model): capability becomes durable when the method, evidence, controls, and ownership can survive a single prompt surface.
+
+## Where the Apps SDK now fits
+
+The Apps SDK is best understood as the interface layer for selected MCP capabilities.
+
+OpenAI's current [UI guidance](https://developers.openai.com/plugins/build/chatgpt-ui) describes components rendered inside ChatGPT and recommends separating data tools from render tools. That separation matters. The server can return structured results for reasoning or automation without forcing a screen into every interaction. A UI appears only where it improves the job.
+
+Good Apps SDK UI jobs include:
+
+- comparing a small set of options with meaningful attributes;
+- editing structured content while preserving context;
+- reviewing an artifact before a consequential action;
+- configuring a connected service;
+- inspecting status, provenance, or evidence;
+- confirming a transaction with clear scope.
+
+Poor UI jobs include repeating the assistant's prose in a card, adding a dashboard because dashboards look substantial, or rebuilding an entire standalone application inside a chat. OpenAI's own essay on [what makes a great ChatGPT app](https://developers.openai.com/blog/what-makes-a-great-chatgpt-app) argues for small, reusable conversational capabilities rather than porting a whole product into the interface.
+
+The practical rule: **tools carry capability; UI carries visual judgment.**
+
+<Diagram
+  src="/images/blog/visual-system/infographics/openai-build-surface-decision-map-2026.svg"
+  width={1600}
+  height={1040}
+  scrollable
+  alt="A decision map routes conversational setup to a Custom GPT, repeatable methods to a skill, owned tools and data to MCP, visual decisions to optional Apps SDK UI, and shared ChatGPT and Codex distribution to a plugin."
+  caption="Choose the surface by what must remain durable after the conversation ends. Every additional layer must earn its operating cost."
+/>
+
+## Skills or MCP: the decision that matters most
+
+This is the highest-leverage split in the new architecture.
+
+Choose a **skill** when the value is a reusable way of working and the host already has the tools required to execute it. A good skill can encode research standards, a design critique, a release checklist, a writing system, or a governed workflow. It remains readable, versionable, and portable.
+
+Choose **MCP** when the value depends on a system you own or operate. That includes proprietary data, authenticated services, customer-specific state, calculations, transactions, queues, or tools with meaningful failure states. MCP gives the capability a contract that can be reused by more than one conversational surface.
+
+Choose **both** when the method and the system are distinct assets. The skill explains how to conduct the work. MCP supplies the tools and data. This is often the strongest plugin shape because each layer has one clear responsibility.
+
+## Four architectures I would actually ship
+
+### Pattern A: Custom GPT first
+
+Use this for a new diagnostic, coach, guide, or specialist assistant.
+
+**Shape:** instructions + curated knowledge + one bounded promise.
+
+**Evidence before promotion:** repeat sessions, a stable task pattern, and identifiable failure modes.
+
+**Next move:** extract the method into a skill once it becomes reusable.
+
+### Pattern B: Skill first
+
+Use this for an editorial system, research method, design review, planning ritual, or release discipline.
+
+**Shape:** versioned instructions + references + acceptance criteria.
+
+**Evidence before promotion:** the skill produces consistent results across multiple jobs and users.
+
+**Next move:** add MCP only when existing host tools cannot provide the required data or action.
+
+### Pattern C: MCP first
+
+Use this for product data, customer accounts, transactions, private memory, operational systems, and controlled workflows.
+
+**Shape:** narrow tools + explicit input/output schemas + authentication + policy + logs.
+
+**Evidence before UI:** users can complete the job reliably through structured tool calls.
+
+**Next move:** add an Apps SDK component for the moments that require inspection, editing, or confirmation.
+
+### Pattern D: Universal plugin
+
+Use this when a proven capability should install once and work across ChatGPT and Codex.
+
+**Shape:** skill, MCP, or both; optional UI where visual work deserves it.
+
+**Evidence before distribution:** stable contracts, clear descriptions, safe defaults, support ownership, and a reason for users to return.
+
+**Next move:** list the plugin only after its smallest shape is useful on its own.
+
+## What I would do with an existing Custom GPT portfolio
+
+Do not migrate everything. Run a keep, promote, retire audit.
+
+| Portfolio decision | Evidence | Action |
+| --- | --- | --- |
+| **Keep** | Users value the conversation, knowledge, or voice | Tighten the promise, sources, and instructions; keep infrastructure light |
+| **Promote method** | The same sequence produces value repeatedly | Move the workflow into a versioned skill; keep the GPT as an entry point if useful |
+| **Promote capability** | The GPT depends on private data, identity, state, or actions | Put the durable behavior behind a narrow MCP server with policy and telemetry |
+| **Add UI** | Users must compare, edit, inspect, or confirm | Add one focused Apps SDK component connected to the relevant tool result |
+| **Package plugin** | The capability is stable and useful in ChatGPT and Codex | Package the skill and optional MCP/UI; write precise discovery metadata |
+| **Retire** | No repeat use, no distinct method, no proprietary capability | Archive the configuration and reuse any valid research elsewhere |
+
+For each GPT, capture six fields:
+
+1. The recurring job it performs.
+2. The part users return for.
+3. The method that should be versioned.
+4. The data or action that requires an owned boundary.
+5. The one moment, if any, that deserves UI.
+6. The evidence that justifies another layer.
+
+If those answers are empty, the GPT is probably an experiment that has finished teaching you.
+
+## Applied to the products I am building
+
+The portfolio becomes clearer when each layer has a deliberate job.
+
+| Product direction | Conversational surface | Durable layer | Visual layer |
+| --- | --- | --- | --- |
+| **FrankX decision systems** | Focused GPT for diagnosis and guided choice | Skills for research, writing, architecture, and release standards | UI only for evidence-rich comparisons or configuration |
+| **Starlight intelligence workflows** | GPT as an accessible front door | Skills for operating methods; MCP for memory, connected data, and controlled actions | Memory review, source inspection, and approval moments |
+| **Arcanea learning and creation** | GPT for mentoring and guided practice | Skills for curricula and creative methods; MCP for accounts, progress, and marketplace systems | Portfolios, progress, publishing, and commerce remain product-grade surfaces |
+| **Agentic income systems** | GPT for readiness diagnosis and opportunity framing | MCP or a standalone service for customer state, workflows, analytics, and transactions | UI for plan review, operating status, and consequential approvals |
+
+This preserves the speed that made Custom GPTs attractive while moving business-critical value into assets that can be governed, tested, and reused.
+
+## A practical 30-day promotion sequence
+
+### Week 1: inventory the wrappers
+
+List every active GPT, owner, user, recurring job, knowledge source, action, and last meaningful use. Assign **keep**, **promote**, or **retire**. Do not reward a GPT for having an icon and a polished name.
+
+### Week 2: extract one proven method
+
+Choose the GPT with the strongest return use. Move its stable method, references, constraints, and acceptance criteria into a skill. Preserve the GPT only as a delivery surface.
+
+### Week 3: isolate one owned capability
+
+If the workflow touches external data or actions, define the smallest MCP tool contract that completes one job safely. Add authentication, explicit errors, logs, and a recovery path before expanding the tool set.
+
+### Week 4: earn the interface and distribution
+
+Add UI only to the decision that is measurably clearer with pixels. Package the capability as a plugin only when its descriptions, tool behavior, safety boundaries, and support owner are ready for broader use.
+
+At the end of the month, you should have fewer wrappers and one more durable capability. That is a better outcome than migrating a catalog for architectural fashion.
+
+## The final architecture rule
+
+A Custom GPT should own the conversation. A skill should own the method. An MCP server should own the capability boundary. Apps SDK UI should own the visual decision. A plugin should own the distribution package.
+
+Keep those responsibilities separate and the stack becomes easier to test, replace, govern, and improve.
+
+## FAQ
+
+### Are Custom GPTs deprecated in 2026?
+
+No deprecation is stated in the current OpenAI sources cited here. OpenAI still documents GPT Actions for Custom GPTs. The plugin architecture adds a shared capability and distribution model around skills, MCP, and optional UI.
+
+### Is the Apps SDK replacing Custom GPTs?
+
+No. They operate at different layers. A Custom GPT specializes a conversation. Apps SDK UI renders selected MCP-backed experiences inside the conversation. You may use either, both, or neither depending on the job.
+
+### Do I need an MCP server for every Custom GPT?
+
+No. Use MCP when you need tools or infrastructure you operate: authentication, external services, private data, state, side effects, policy, or telemetry. A focused knowledge or coaching GPT may never need it.
+
+### Should every MCP tool have an Apps SDK UI?
+
+No. Many tools are better as structured data for the model. Add UI when comparison, editing, inspection, configuration, or confirmation materially improves accuracy or trust.
+
+### What is the difference between a skill and a plugin?
+
+A skill packages a reusable method. A plugin is the installable distribution package and can contain skills, MCP servers, or both. UI is optional and attaches to the MCP side of that package.
+
+### What should I build first?
+
+Start with the smallest surface that can prove value. Use a Custom GPT for the conversation, a skill for the method, or MCP for an owned capability. Promote only after repeat evidence appears.
+
+### Where should I go next?
+
+Read the [skill maturity model](/blog/skill-maturity-model) if the method is the asset. Use the [AI architecture hub](/ai-architecture) if the capability needs a production boundary. For weekly architecture notes and build receipts, join the [/newsletter](/newsletter).

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 961,
+    "total": 962,
     "aliases": 58,
     "byType": {
       "core": 24,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 264,
+      "blog": 265,
       "research": 16,
       "guide": 26,
       "library": 56,
@@ -2081,6 +2081,19 @@
         "creator-systems",
         "ai-systems",
         "production"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/do-we-still-need-custom-gpts-2026",
+      "title": "Do We Still Need Custom GPTs in 2026?",
+      "description": "Custom GPTs still work as fast conversational products. Here is where skills, MCP servers, Apps SDK UI, and universal plugins now fit—and how to decide what to build next.",
+      "tags": [
+        "Custom GPTs",
+        "Apps SDK",
+        "MCP",
+        "OpenAI Plugins",
+        "AI Architecture"
       ],
       "type": "blog"
     },
