@@ -6,8 +6,8 @@ import HeroImage from '@/components/ui/HeroImage'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { portalsForGuide } from '@/lib/learn/related-portals'
-import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { createMetadata } from '@/lib/seo'
+import JsonLd from '@/components/seo/JsonLd'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import AgenticObsidianHero from '@/components/guides/AgenticObsidianHero'
 import CommunityPlatformGuidePage from '@/components/guides/community-platform/CommunityPlatformGuidePage'
 import { getCommunityPlatforms } from '@/lib/community-platforms'
@@ -15,7 +15,7 @@ import { getCommunityPlatforms } from '@/lib/community-platforms'
 // Static generation - content is read at build time
 export const dynamicParams = false
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 function resolveAbsoluteUrl(primary: string | undefined, fallback?: string) {
   for (const candidate of [primary, fallback]) {
@@ -67,15 +67,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     mainEntityOfPage: canonicalUrl,
     url: canonicalUrl,
     author: { '@type': 'Person', name: guide.author },
-    publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+    publisher: { '@type': 'Organization', name: 'FrankX', url: SITE_URL },
     ...(schemaImage ? { image: schemaImage } : {}),
   }
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       <JsonLd type="Article" data={articleSchema} id={`guide-article-${guide.slug}`} />
-      {guide.faqs && guide.faqs.length > 0 ? (
-        <FAQPageJsonLd faqs={guide.faqs} id={`guide-faq-${guide.slug}`} />
-      ) : null}
       {guide.slug === 'community-platform-for-creators' ? (
         <CommunityPlatformGuidePage guide={guide} platforms={getCommunityPlatforms()} />
       ) : (

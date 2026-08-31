@@ -14,8 +14,6 @@ import {
   getAllBlogPostSummaries,
   getAllBlogPosts,
   getBlogPost,
-  extractFAQFromContent,
-  normalizeFAQText,
 } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
@@ -146,35 +144,9 @@ export default async function BlogPostPage({
     ...(post.tldr && { abstract: post.tldr }),
   }
 
-  // Visible body FAQs are canonical. Legacy frontmatter is used only when the
-  // document has no rendered FAQ section, matching scripts/generate-schema.mjs.
-  const bodyFaqs = extractFAQFromContent(post.content)
-  const frontmatterFaqs = (post.faq || [])
-    .map((faq) => ({
-      question: normalizeFAQText(faq.question || faq.q),
-      answer: normalizeFAQText(faq.answer || faq.a),
-    }))
-    .filter((faq) => faq.question && faq.answer)
-  const extractedFaqs = bodyFaqs.length > 0 ? bodyFaqs : frontmatterFaqs
-
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
       <JsonLd type="Article" data={articleSchema} />
-      {extractedFaqs.length > 0 && (
-        <JsonLd
-          type="FAQPage"
-          data={{
-            mainEntity: extractedFaqs.map(faq => ({
-              '@type': 'Question',
-              name: faq.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.answer,
-              },
-            })),
-          }}
-        />
-      )}
 
       {/* Aurora Background Effect */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">

@@ -1,16 +1,17 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 948,
+    "total": 958,
+    "aliases": 58,
     "byType": {
-      "core": 23,
-      "section": 425,
+      "core": 24,
+      "section": 429,
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 259,
+      "blog": 263,
       "research": 16,
-      "guide": 25,
+      "guide": 26,
       "library": 56,
       "newsletter": 1,
       "os": 11,
@@ -18,8 +19,7 @@
       "product": 21,
       "video": 3,
       "workshop": 8
-    },
-    "aliases": 58
+    }
   },
   "routes": [
     {
@@ -1101,6 +1101,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ai-architect-guide-2026",
+      "title": "The AI Architect Guide 2026",
+      "description": "A field guide to the decisions, system planes, evidence gates, and operating artifacts required to turn AI capability into a reliable workflow.",
+      "tags": [
+        "AI Architecture",
+        "Agentic Systems",
+        "MCP",
+        "Evals",
+        "AI Governance"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ai-architecture-2026-four-decisions-hard-to-reverse",
       "title": "AI Architecture 2026: Four Decisions Hard to Reverse",
       "description": "Most AI system decisions are cheap to change. Four are not: the vendor boundary, the orchestration shape, the trust boundary, and where a long run lives.",
@@ -1623,6 +1636,19 @@
         "self-hosting",
         "frontier-models",
         "ai-2026"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-social-media-management-tools-founders-2026",
+      "title": "Best Social Media Management Tools for Founders (2026)",
+      "description": "Compare 15 social media tools for solo founders, creator-led brands, developers, agencies, and enterprises—by cost, API, MCP, evidence, and fit.",
+      "tags": [
+        "social-media-tools",
+        "founder-marketing",
+        "creator-systems",
+        "multi-agent-systems",
+        "marketing-automation"
       ],
       "type": "blog"
     },
@@ -2943,27 +2969,26 @@
     {
       "href": "/blog/music-as-consciousness-technology",
       "title": "12,000 Songs Later: What AI Music Taught Me About Creative Systems",
-      "description": "After creating 12,000+ songs with Suno AI, I discovered music isn't entertainment—it's creative technology. Here's what three years of daily creation revealed.",
+      "description": "An experiential field note on iteration, taste, emotional specificity, and what high-volume AI music practice can—and cannot—prove.",
       "tags": [
         "Music",
         "AI Creativity",
-        "Creative Technology",
+        "Creative Systems",
         "Suno AI",
-        "Creative Process"
+        "Iteration"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/music-intelligence-vibe-architecture-sonic-neuroscience",
-      "title": "Music Intelligence & Vibe Architecture: Sonic Neuroscience and Flow",
-      "description": "How sound frequency modulation, Suno AI v4 pipelines, and harmonic neuroscience engineer peak cognitive flow states and creative output.",
+      "title": "Music Intelligence: Designing a Better Listening Environment",
+      "description": "A founder-safe guide to music, attention, listening rituals, and generative audio without deterministic frequency claims.",
       "tags": [
         "music-intelligence",
+        "attention",
         "suno-ai",
-        "sonic-neuroscience",
-        "flow-state",
-        "vibe-os",
-        "frequency"
+        "human-layer",
+        "deep-listening"
       ],
       "type": "blog"
     },
@@ -3139,6 +3164,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/pallyy-vs-metricool-2026",
+      "title": "Pallyy vs Metricool (2026): Which Is Better?",
+      "description": "Pallyy vs Metricool on price, analytics, publishing, API, MCP, brands, approvals, and founder fit—with a direct 2026 recommendation.",
+      "tags": [
+        "pallyy",
+        "metricool",
+        "social-media-tools",
+        "founder-marketing",
+        "marketing-automation"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/personal-ai-assistant-setup-workshop",
       "title": "Build Your Personal AI Assistant: The Complete Setup Workshop",
       "description": "Create a customized AI development environment from scratch. Learn to configure Claude Code, build CLAUDE.md files, create custom skills, and connect MCP servers to your workflow.",
@@ -3306,15 +3344,13 @@
     },
     {
       "href": "/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience",
-      "title": "Quantum Reality & Biological Resonance: The Molecular Architecture of Intent",
-      "description": "Rigorous scientific synthesis of bioelectric morphogenetic fields (Michael Levin), molecular epigenetics of intention, and neuroplasticity.",
+      "title": "Intent, Prediction, and Biology: Where the Evidence Ends",
+      "description": "A corrected field note separating mental rehearsal, stress physiology, bioelectric research, and symbolic language without turning proximity into causation.",
       "tags": [
-        "quantum-biology",
-        "bioelectricity",
-        "epigenetics",
-        "michael-levin",
+        "human-layer",
         "neuroplasticity",
-        "reality-architecture"
+        "mental-rehearsal",
+        "evidence-boundaries"
       ],
       "type": "blog"
     },
@@ -3360,12 +3396,13 @@
     },
     {
       "href": "/blog/reality-architecture-generative-ai-neuroscience",
-      "title": "Reality Architecture: Imagination to Product, Faster with AI",
-      "description": "Neuroscience of imagination meets generative AI. The 5-phase framework for turning mental models into shipped products — at machine speed.",
+      "title": "Reality Architecture: From Mental Rehearsal to Shipped Work",
+      "description": "A grounded founder framework for turning a mental model into tests, artifacts, and decisions with generative AI.",
       "tags": [
-        "intelligence-dispatches",
-        "ai-systems",
-        "production"
+        "founder-systems",
+        "mental-rehearsal",
+        "generative-ai",
+        "prototyping"
       ],
       "type": "blog"
     },
@@ -3814,15 +3851,15 @@
     },
     {
       "href": "/blog/ultimate-canva-ai-workflow-2026",
-      "title": "The Ultimate Canva AI Workflow in 2026",
-      "description": "The complete Canva AI workflow for 2026: Magic Studio, Brand Kit, Bulk Create, and the repurposing pipeline that turns one asset into a week of content. Honest ROI and who it's for.",
+      "title": "The Canva AI Workflow for Founders: From Brief to Brand System",
+      "description": "A governed Canva workflow for founders: connect the official MCP server, protect brand assets, review every release, and measure what compounds.",
       "tags": [
         "Canva",
-        "AI Design",
-        "Magic Studio",
-        "Creator Tools",
-        "Workflow",
-        "Brand Kit"
+        "Canva MCP",
+        "AI Architecture",
+        "Founder Systems",
+        "Brand Operations",
+        "Content Workflow"
       ],
       "type": "blog"
     },
@@ -4090,6 +4127,19 @@
         "Publishing",
         "Creator Systems",
         "Legacy"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/your-moat-was-never-the-model",
+      "title": "Your Moat Was Never the Model",
+      "description": "Five frontier models shipped in six weeks. My stack barely noticed. Here is the Substrate Test: four questions that tell you whether you own anything durable.",
+      "tags": [
+        "ai-architecture",
+        "agents",
+        "memory",
+        "orchestration",
+        "substrate"
       ],
       "type": "blog"
     },
@@ -4383,6 +4433,18 @@
       ],
       "type": "section",
       "sitemap": false
+    },
+    {
+      "href": "/canva",
+      "title": "Canva for Founders",
+      "description": "A governed Canva content operating system connecting the official MCP server, human review, owned media, distribution, and measurable learning",
+      "tags": [
+        "canva",
+        "mcp",
+        "founder systems",
+        "content operations"
+      ],
+      "type": "core"
     },
     {
       "href": "/changelog",
@@ -5239,6 +5301,15 @@
       "type": "section"
     },
     {
+      "href": "/founder-stack",
+      "title": "Founder Stack",
+      "tags": [
+        "founder",
+        "stack"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/founders-circle",
       "title": "Founder's Circle",
       "type": "community"
@@ -5251,7 +5322,8 @@
         "circle",
         "apply"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/foundry",
@@ -5560,6 +5632,19 @@
       "type": "guide"
     },
     {
+      "href": "/guides/canva-mcp-for-founders",
+      "title": "Canva MCP for Founders: Build a Governed Creative Operating System",
+      "description": "A practical architecture guide to Canva's official remote MCP server: setup, permissions, human approval gates, reliability, and a production-ready founder workflow.",
+      "tags": [
+        "canva",
+        "mcp",
+        "agentic-engineering",
+        "creative-operations",
+        "founder-systems"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/claude-anthropic-guide",
       "title": "Claude AI Guide for Creators",
       "description": "Master Anthropic's Claude for creative writing, content strategy, coding assistance, and building AI-powered workflows that amplify your creative output",
@@ -5830,6 +5915,15 @@
       "tags": [
         "hospitality",
         "intelligence"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/human-layer",
+      "title": "Human Layer",
+      "tags": [
+        "human",
+        "layer"
       ],
       "type": "section"
     },
@@ -9094,6 +9188,16 @@
       "type": "tool"
     },
     {
+      "href": "/tools/social-media",
+      "title": "Social Media",
+      "tags": [
+        "tools",
+        "social",
+        "media"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/tools/strategy-canvas",
       "title": "Strategy Canvas",
       "type": "tool"
@@ -9128,6 +9232,14 @@
       "href": "/updates",
       "title": "Updates",
       "type": "static"
+    },
+    {
+      "href": "/v0",
+      "title": "V0",
+      "tags": [
+        "v0"
+      ],
+      "type": "section"
     },
     {
       "href": "/valentines-day",
