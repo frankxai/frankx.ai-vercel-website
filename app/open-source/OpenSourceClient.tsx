@@ -162,7 +162,7 @@ const products: Product[] = [
   {
     id: 'starlight-swarm-os',
     name: 'Starlight Swarm OS',
-    version: 'v2.0.0',
+    version: 'v6.0.1',
     tagline: '3-Layer Multi-Model Discipline Swarm Engine',
     description:
       'Sovereign multi-model agent orchestration for Google Antigravity, Claude Code, Codex, and OpenCode. Features the Pre-Flight Planning Triad (Prometheus/Metis/Momus), the Sisyphus 100% Completion Discipline Engine, and cognitive persona routing.',
@@ -194,7 +194,7 @@ const products: Product[] = [
         description: 'Persistent lessons across 6 vaults with ambient SIP v1.1.1 attestation and instant hybrid vector/BM25 retrieval.',
       },
     ],
-    quickStart: 'npx @arcanea/starlight-intelligence-system install',
+    quickStart: 'npx -p @arcanea/starlight-intelligence-system starlight init',
     techStack: ['Google Antigravity', 'Claude Code', 'TypeScript', 'AST-Grep', 'SQLite', 'MCP SDK'],
     githubUrl: 'https://github.com/frankxai/Starlight-Intelligence-System',
     docsUrl: '#starlight-swarm-os',
@@ -399,9 +399,8 @@ export default function OpenSourceClient() {
           <GoldDivider />
 
           <p className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-zinc-400">
-            Three production-ready tools. Zero vendor lock-in. Zero monthly fees.
-            Use them, fork them, improve them. The best AI infrastructure should
-            belong to everyone.
+            Four production-ready tools. Zero vendor lock-in, zero monthly fees.
+            Use them, fork them, improve them.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">

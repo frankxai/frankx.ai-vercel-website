@@ -161,9 +161,9 @@ export default function ConnectPage() {
             href="/agents?from=connect"
             className="group border-l border-white/25 pl-4"
           >
-            <p className="text-3xl font-medium tracking-[-0.04em]">99</p>
+            <p className="text-3xl font-medium tracking-[-0.04em]">85</p>
             <p className="mt-1 text-sm leading-6 text-white/65 group-hover:text-white">
-              specialist agent roles documented in public
+              specialist agent roles shipped and documented in public
             </p>
           </Link>
           <Link

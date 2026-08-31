@@ -2,10 +2,10 @@ import path from 'node:path'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 
+// sharp is not a project dependency; this is a one-off asset render.
+// Run with: npx --yes -p sharp node render-directions.mjs
 const require = createRequire(import.meta.url)
-const sharp = require(
-  'C:/Users/frank/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp',
-)
+const sharp = require('sharp')
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const repo = path.resolve(here, '../../..')
