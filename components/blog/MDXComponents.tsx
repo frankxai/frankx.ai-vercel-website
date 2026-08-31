@@ -33,18 +33,29 @@ import {
   LoomEmbed,
 } from '@/components/embeds'
 
-// Enhanced YouTubeEmbed with inline VideoObject schema for SEO
-function YouTubeEmbed(props: { id: string; title?: string; [key: string]: unknown }) {
+// Add VideoObject only when a video is the page's central watch experience.
+// Supporting editorial embeds should opt out with structuredData={false}.
+function YouTubeEmbed({
+  structuredData = true,
+  ...props
+}: {
+  id: string
+  title?: string
+  structuredData?: boolean
+  [key: string]: unknown
+}) {
   const schema = buildInlineVideoSchema(props.id, props.title)
   return (
     <>
       <BaseYouTubeEmbed {...props} />
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-      >
-        {JSON.stringify(schema)}
-      </script>
+      {structuredData ? (
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+        >
+          {JSON.stringify(schema)}
+        </script>
+      ) : null}
     </>
   )
 }
