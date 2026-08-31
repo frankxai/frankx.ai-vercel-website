@@ -1,16 +1,12 @@
 {
   "schema": "frankx/external-intelligence@1",
-  "_description": "External model intelligence from policy-approved public sources. Every ingested figure carries source, licence and retrieval time. Link-only sources are normalised once at the top level and never ingested. Regenerate with: pnpm intelligence:fetch",
-  "generated_at": null,
-  "_seed_note": "Seeded from data/model-registry.json with no external figures yet. The weekly intelligence-refresh workflow populates pricing/adoption on an unrestricted runner; this sandbox blocks the source hosts.",
+  "_description": "External model intelligence from policy-approved public sources. Every ingested figure carries source, licence and retrieval time. Link-only sources are normalised once at the top level and never ingested.",
+  "generated_at": "2026-08-31T06:11:59.768Z",
   "sources": [
     {
       "id": "models-dev",
       "url": "https://models.dev/api.json",
       "license": "MIT",
-      "attribution": "models.dev (SST)",
-      "retrieved_at": null,
-      "status": "pending",
       "license_state": "confirmed",
       "license_notice": "Copyright (c) 2025 models.dev",
       "license_evidence": [
@@ -24,29 +20,34 @@
           "url": "https://raw.githubusercontent.com/anomalyco/models.dev/dev/LICENSE",
           "sha256": "dc2dc41c9fea2fd3c41c21c6f484844cab367800b88ff24781f980ad3a9d160a"
         }
-      ]
+      ],
+      "attribution": "models.dev (SST)",
+      "retrieved_at": "2026-08-31T06:11:59.768Z",
+      "status": "ok"
     },
     {
       "id": "openrouter-models",
       "url": "https://openrouter.ai/api/v1/models",
       "license": "OpenRouter ToS — redistribution not yet verified",
-      "attribution": "OpenRouter",
-      "retrieved_at": null,
-      "status": "pending",
       "license_state": "unverified",
       "license_notice": null,
-      "license_evidence": []
+      "license_evidence": [],
+      "attribution": "OpenRouter",
+      "retrieved_at": null,
+      "status": "unverified",
+      "note": "licence unverified; redistribution is not enabled"
     },
     {
       "id": "openrouter-rankings",
       "url": "https://openrouter.ai/api/v1/datasets/rankings-daily",
       "license": "OpenRouter rankings terms — redistribution not yet verified",
-      "attribution": "OpenRouter rankings",
-      "retrieved_at": null,
-      "status": "pending",
       "license_state": "unverified",
       "license_notice": null,
-      "license_evidence": []
+      "license_evidence": [],
+      "attribution": "OpenRouter rankings",
+      "retrieved_at": null,
+      "status": "unverified",
+      "note": "licence unverified; redistribution is not enabled"
     }
   ],
   "link_only": [
@@ -75,8 +76,18 @@
       "name": "Claude Fable 5",
       "org": "anthropic",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Claude Fable 5"
+      },
+      "pricing": {
+        "in_usd_per_m": 10,
+        "out_usd_per_m": 50,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 1000000,
       "benchmarks": []
@@ -86,8 +97,18 @@
       "name": "Claude Haiku 4.5",
       "org": "anthropic",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Claude Haiku 4.5"
+      },
+      "pricing": {
+        "in_usd_per_m": 1,
+        "out_usd_per_m": 5,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 200000,
       "benchmarks": []
@@ -97,8 +118,18 @@
       "name": "Claude Opus 4.5",
       "org": "anthropic",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Claude Opus 4.5"
+      },
+      "pricing": {
+        "in_usd_per_m": 5,
+        "out_usd_per_m": 25,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 200000,
       "benchmarks": []
@@ -108,8 +139,18 @@
       "name": "Claude Opus 4.6",
       "org": "anthropic",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Claude Opus 4.6"
+      },
+      "pricing": {
+        "in_usd_per_m": 5,
+        "out_usd_per_m": 25,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 200000,
       "benchmarks": []
@@ -119,8 +160,18 @@
       "name": "Claude Opus 4.8",
       "org": "anthropic",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Claude Opus 4.8"
+      },
+      "pricing": {
+        "in_usd_per_m": 5,
+        "out_usd_per_m": 25,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 1000000,
       "benchmarks": []
@@ -130,8 +181,18 @@
       "name": "Claude Opus 5",
       "org": "anthropic",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Claude Opus 5"
+      },
+      "pricing": {
+        "in_usd_per_m": 5,
+        "out_usd_per_m": 25,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 1000000,
       "benchmarks": []
@@ -141,8 +202,18 @@
       "name": "Claude Sonnet 4.5",
       "org": "anthropic",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Claude Sonnet 4.5"
+      },
+      "pricing": {
+        "in_usd_per_m": 3,
+        "out_usd_per_m": 15,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 200000,
       "benchmarks": []
@@ -152,8 +223,18 @@
       "name": "Claude Sonnet 4.6",
       "org": "anthropic",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Claude Sonnet 4.6"
+      },
+      "pricing": {
+        "in_usd_per_m": 3,
+        "out_usd_per_m": 15,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 200000,
       "benchmarks": []
@@ -163,8 +244,18 @@
       "name": "Claude Sonnet 5",
       "org": "anthropic",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Claude Sonnet 5"
+      },
+      "pricing": {
+        "in_usd_per_m": 2,
+        "out_usd_per_m": 10,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 1000000,
       "benchmarks": []
@@ -196,8 +287,18 @@
       "name": "Gemini 3.5 Flash",
       "org": "google",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Gemini 3.5 Flash"
+      },
+      "pricing": {
+        "in_usd_per_m": 1.5,
+        "out_usd_per_m": 9,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 1000000,
       "benchmarks": []
@@ -218,8 +319,18 @@
       "name": "Gemini 3.7 Flash",
       "org": "google",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Gemini 3.7 Flash"
+      },
+      "pricing": {
+        "in_usd_per_m": 0.75,
+        "out_usd_per_m": 3.75,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 1048576,
       "benchmarks": []
@@ -251,8 +362,18 @@
       "name": "GPT-5.2 Pro",
       "org": "openai",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "GPT-5.2 Pro"
+      },
+      "pricing": {
+        "in_usd_per_m": 21,
+        "out_usd_per_m": 168,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 196000,
       "benchmarks": []
@@ -262,8 +383,18 @@
       "name": "GPT-5.5",
       "org": "openai",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "GPT-5.5"
+      },
+      "pricing": {
+        "in_usd_per_m": 5,
+        "out_usd_per_m": 30,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 1000000,
       "benchmarks": []
@@ -295,8 +426,18 @@
       "name": "Grok 4.3",
       "org": "xai",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Grok 4.3"
+      },
+      "pricing": {
+        "in_usd_per_m": 1.25,
+        "out_usd_per_m": 2.5,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 1000000,
       "benchmarks": []
@@ -306,8 +447,18 @@
       "name": "Grok 4.6",
       "org": "xai",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Grok 4.6"
+      },
+      "pricing": {
+        "in_usd_per_m": 2,
+        "out_usd_per_m": 6,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 500000,
       "benchmarks": []
@@ -317,8 +468,18 @@
       "name": "Kimi K2.6",
       "org": "moonshot",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Kimi K2.6"
+      },
+      "pricing": {
+        "in_usd_per_m": 0.95,
+        "out_usd_per_m": 4,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 262144,
       "benchmarks": []
@@ -372,8 +533,18 @@
       "name": "Mistral Large 3",
       "org": "mistralai",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Mistral Large 3"
+      },
+      "pricing": {
+        "in_usd_per_m": 0.5,
+        "out_usd_per_m": 1.5,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 256000,
       "benchmarks": []
@@ -383,8 +554,18 @@
       "name": "Microsoft Phi-4 (open-weight family)",
       "org": "microsoft",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Phi-4"
+      },
+      "pricing": {
+        "in_usd_per_m": 0.125,
+        "out_usd_per_m": 0.5,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 16000,
       "benchmarks": []
@@ -394,8 +575,18 @@
       "name": "Qwen3.7-Max",
       "org": "alibaba",
       "in_registry": true,
-      "names": {},
-      "pricing": null,
+      "names": {
+        "models-dev": "Qwen3.7 Max"
+      },
+      "pricing": {
+        "in_usd_per_m": 2.5,
+        "out_usd_per_m": 7.5,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "modified": true
+      },
       "adoption": null,
       "context_tokens": 1000000,
       "benchmarks": []
