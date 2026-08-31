@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1400" viewBox="0 0 1800 1400" role="img" aria-labelledby="title desc">
+  <title id="title">Direction one: Evidence Console</title>
+  <desc id="desc">A dense, source-forward desktop and mobile direction for comparing social media management tools.</desc>
+  <defs>
+    <linearGradient id="consoleAmbient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10b981" stop-opacity=".12"/>
+      <stop offset=".52" stop-color="#0a0a0b" stop-opacity="0"/>
+      <stop offset="1" stop-color="#06b6d4" stop-opacity=".08"/>
+    </linearGradient>
+    <filter id="consoleShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#000" flood-opacity=".44"/>
+    </filter>
+  </defs>
+
+  <rect width="1800" height="1400" fill="#070708"/>
+  <rect width="1800" height="1400" fill="url(#consoleAmbient)"/>
+  <path d="M0 84H1800M0 1320H1800" stroke="#ffffff" stroke-opacity=".07"/>
+
+  <text x="80" y="72" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="4">DIRECTION 01 · EVIDENCE CONSOLE</text>
+  <text x="80" y="130" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="44" font-weight="700" letter-spacing="-2">The research terminal</text>
+  <text x="80" y="166" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="19">Maximum comparability. Minimum editorial theatre. Every recommendation exposes its source and date.</text>
+
+  <g filter="url(#consoleShadow)">
+    <rect x="80" y="210" width="1160" height="820" rx="26" fill="#0d0f10" stroke="#ffffff" stroke-opacity=".11"/>
+  </g>
+  <rect x="80" y="210" width="1160" height="54" rx="26" fill="#141718"/>
+  <circle cx="112" cy="237" r="6" fill="#10b981"/>
+  <circle cx="134" cy="237" r="6" fill="#06b6d4" fill-opacity=".72"/>
+  <circle cx="156" cy="237" r="6" fill="#ffffff" fill-opacity=".18"/>
+  <text x="190" y="243" fill="#9ca3af" font-family="JetBrains Mono, monospace" font-size="12">frankx.ai/tools/social-media · verified 2026-08-28</text>
+
+  <text x="118" y="320" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="3">SOCIAL TOOL INTELLIGENCE / 15 PLATFORMS</text>
+  <text x="118" y="374" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="42" font-weight="700" letter-spacing="-2">Choose by operating constraint.</text>
+  <text x="118" y="410" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="17">Price is one field. Control plane, evidence, and workflow fit decide the system.</text>
+
+  <g font-family="Inter, sans-serif" font-size="13">
+    <rect x="118" y="451" width="168" height="40" rx="20" fill="#10b981"/>
+    <text x="145" y="477" fill="#06130f" font-weight="700">Solo founder</text>
+    <rect x="298" y="451" width="174" height="40" rx="20" fill="#ffffff" fill-opacity=".045" stroke="#ffffff" stroke-opacity=".12"/>
+    <text x="326" y="477" fill="#d4d4d8">Creator brand</text>
+    <rect x="484" y="451" width="172" height="40" rx="20" fill="#ffffff" fill-opacity=".045" stroke="#ffffff" stroke-opacity=".12"/>
+    <text x="510" y="477" fill="#d4d4d8">Developer/API</text>
+    <rect x="668" y="451" width="154" height="40" rx="20" fill="#ffffff" fill-opacity=".045" stroke="#ffffff" stroke-opacity=".12"/>
+    <text x="695" y="477" fill="#d4d4d8">Agency</text>
+    <rect x="834" y="451" width="172" height="40" rx="20" fill="#ffffff" fill-opacity=".045" stroke="#ffffff" stroke-opacity=".12"/>
+    <text x="861" y="477" fill="#d4d4d8">Enterprise</text>
+  </g>
+
+  <rect x="118" y="526" width="1084" height="50" rx="10" fill="#171a1b"/>
+  <g fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="1.6">
+    <text x="138" y="557">PLATFORM</text><text x="330" y="557">ENTRY</text><text x="448" y="557">ANALYTICS</text><text x="604" y="557">API</text><text x="704" y="557">MCP</text><text x="798" y="557">SELF-HOST</text><text x="938" y="557">FIT SIGNAL</text>
+  </g>
+
+  <g font-family="Inter, sans-serif" font-size="14">
+    <g transform="translate(0 0)"><rect x="118" y="588" width="1084" height="55" rx="8" fill="#10b981" fill-opacity=".07" stroke="#10b981" stroke-opacity=".22"/><text x="138" y="621" fill="#f4f4f5" font-weight="700">Pallyy</text><text x="330" y="621" fill="#d4d4d8">$25 Pro</text><text x="448" y="621" fill="#6ee7b7">5 years</text><text x="604" y="621" fill="#6ee7b7">Paid</text><text x="704" y="621" fill="#52525b">—</text><text x="798" y="621" fill="#52525b">—</text><text x="938" y="621" fill="#f4f4f5">one-brand clarity</text></g>
+    <g transform="translate(0 65)"><rect x="118" y="588" width="1084" height="55" rx="8" fill="#ffffff" fill-opacity=".022"/><text x="138" y="621" fill="#f4f4f5" font-weight="700">Metricool</text><text x="330" y="621" fill="#d4d4d8">$20 annual</text><text x="448" y="621" fill="#6ee7b7">deep + ads</text><text x="604" y="621" fill="#fcd34d">Advanced</text><text x="704" y="621" fill="#6ee7b7">Free+</text><text x="798" y="621" fill="#52525b">—</text><text x="938" y="621" fill="#f4f4f5">analytics control</text></g>
+    <g transform="translate(0 130)"><rect x="118" y="588" width="1084" height="55" rx="8" fill="#ffffff" fill-opacity=".022"/><text x="138" y="621" fill="#f4f4f5" font-weight="700">Buffer</text><text x="330" y="621" fill="#d4d4d8">$6 / channel</text><text x="448" y="621" fill="#d4d4d8">core</text><text x="604" y="621" fill="#6ee7b7">Free+</text><text x="704" y="621" fill="#52525b">—</text><text x="798" y="621" fill="#52525b">—</text><text x="938" y="621" fill="#f4f4f5">simple baseline</text></g>
+    <g transform="translate(0 195)"><rect x="118" y="588" width="1084" height="55" rx="8" fill="#ffffff" fill-opacity=".022"/><text x="138" y="621" fill="#f4f4f5" font-weight="700">Postiz</text><text x="330" y="621" fill="#d4d4d8">$29 cloud</text><text x="448" y="621" fill="#d4d4d8">team+</text><text x="604" y="621" fill="#6ee7b7">Cloud</text><text x="704" y="621" fill="#d4d4d8">agent</text><text x="798" y="621" fill="#6ee7b7">Yes</text><text x="938" y="621" fill="#f4f4f5">open control</text></g>
+    <g transform="translate(0 260)"><rect x="118" y="588" width="1084" height="55" rx="8" fill="#ffffff" fill-opacity=".022"/><text x="138" y="621" fill="#f4f4f5" font-weight="700">Blotato</text><text x="330" y="621" fill="#d4d4d8">$29</text><text x="448" y="621" fill="#d4d4d8">included</text><text x="604" y="621" fill="#6ee7b7">Paid</text><text x="704" y="621" fill="#6ee7b7">Yes</text><text x="798" y="621" fill="#52525b">—</text><text x="938" y="621" fill="#f4f4f5">content engine</text></g>
+  </g>
+  <text x="118" y="970" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">SOURCE CLASS: OFFICIAL PRICING + PRODUCT DOCS · AFFILIATE PAYOUT NEVER A RANKING INPUT</text>
+
+  <g filter="url(#consoleShadow)">
+    <rect x="1280" y="210" width="440" height="820" rx="40" fill="#0d0f10" stroke="#ffffff" stroke-opacity=".12"/>
+  </g>
+  <rect x="1430" y="228" width="140" height="6" rx="3" fill="#ffffff" fill-opacity=".16"/>
+  <text x="1320" y="300" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2.4">15 PLATFORMS · LIVE LEDGER</text>
+  <text x="1320" y="346" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="31" font-weight="700" letter-spacing="-1.4">Choose by constraint.</text>
+  <text x="1320" y="377" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Solo founder · selected</text>
+  <rect x="1320" y="410" width="360" height="46" rx="23" fill="#10b981"/>
+  <text x="1428" y="439" fill="#06130f" font-family="Inter, sans-serif" font-size="14" font-weight="700">Change role</text>
+  <g font-family="Inter, sans-serif">
+    <rect x="1320" y="492" width="360" height="142" rx="18" fill="#10b981" fill-opacity=".075" stroke="#10b981" stroke-opacity=".24"/>
+    <text x="1344" y="523" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">BEST FIT</text>
+    <text x="1344" y="559" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="25" font-weight="700">Pallyy</text>
+    <text x="1344" y="588" fill="#d4d4d8" font-size="13">$25 Pro · one social set</text>
+    <text x="1344" y="613" fill="#a1a1aa" font-size="12">API · approvals · 5-year analytics</text>
+    <rect x="1320" y="650" width="360" height="114" rx="18" fill="#ffffff" fill-opacity=".028"/>
+    <text x="1344" y="681" fill="#67e8f9" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">IF ANALYTICS MATTER MORE</text>
+    <text x="1344" y="716" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="22" font-weight="700">Metricool</text>
+    <text x="1344" y="742" fill="#a1a1aa" font-size="12">MCP on Free · API on Advanced</text>
+    <rect x="1320" y="780" width="360" height="114" rx="18" fill="#ffffff" fill-opacity=".028"/>
+    <text x="1344" y="811" fill="#67e8f9" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">IF AN AGENT MUST PUBLISH</text>
+    <text x="1344" y="846" fill="#f7f7f8" font-family="Poppins, sans-serif" font-size="22" font-weight="700">Postiz / Blotato</text>
+    <text x="1344" y="872" fill="#a1a1aa" font-size="12">Different center: control vs creation</text>
+  </g>
+  <text x="1320" y="966" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">MOBILE: FACT SHEETS, NOT SHRUNK TABLE</text>
+
+  <g transform="translate(80 1080)">
+    <text x="0" y="0" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">SYSTEM NOTES</text>
+    <text x="0" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Type</text>
+    <text x="0" y="69" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Poppins / Inter / JetBrains Mono</text>
+    <text x="255" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Palette</text>
+    <circle cx="267" cy="67" r="11" fill="#0a0a0b" stroke="#fff" stroke-opacity=".2"/><circle cx="299" cy="67" r="11" fill="#10b981"/><circle cx="331" cy="67" r="11" fill="#06b6d4"/><circle cx="363" cy="67" r="11" fill="#f7f7f8"/>
+    <text x="480" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Motion</text>
+    <text x="480" y="69" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Row focus traces one evidence column. Reduced motion: instant state.</text>
+    <text x="1030" y="38" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Imagery</text>
+    <text x="1030" y="69" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">No marks without a verified public kit.</text>
+    <text x="0" y="126" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Source annotation</text>
+    <text x="0" y="157" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Every value links to official docs; retrieved 28 Aug 2026. Product claims are not test results.</text>
+    <text x="760" y="126" fill="#f4f4f5" font-family="Poppins, sans-serif" font-size="20" font-weight="600">Anti-reference</text>
+    <text x="760" y="157" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14">Bloomberg cosplay, card walls, fake precision, green checks without plan gates.</text>
+  </g>
+</svg>

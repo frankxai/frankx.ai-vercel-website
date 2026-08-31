@@ -9,19 +9,11 @@ import {
   Cloud,
   Cpu,
   Database,
-  Globe,
   LayoutTemplate,
-  Link2,
-  Mail,
-  Mic,
-  Music,
   Network,
-  Radio,
   Server,
   Sparkles,
   Terminal,
-  TrendingUp,
-  Workflow,
   Wrench,
   Zap,
   type LucideIcon,
@@ -34,8 +26,6 @@ import { containerVariants, itemVariants, fadeUp, fadeUpHero } from '@/lib/motio
 type CategoryId =
   | 'templates'
   | 'agents'
-  | 'growth'
-  | 'media'
   | 'infra'
   | 'databases'
   | 'devtools'
@@ -66,49 +56,37 @@ const categories: CategoryMeta[] = [
     id: 'templates',
     label: 'AI App Templates',
     title: 'Starters worth cloning',
-    tagline: 'Production-grade scaffolds that save you weeks of plumbing.',
+    tagline: 'Production-grade scaffolds that save you weeks.',
   },
   {
     id: 'agents',
     label: 'Agent Frameworks',
     title: 'Orchestration primitives',
-    tagline: 'The frameworks I reach for when building multi-agent autonomous systems.',
-  },
-  {
-    id: 'growth',
-    label: 'Growth, Outbound & Newsletters',
-    title: 'Audience & revenue engines',
-    tagline: 'High-leverage outbound data waterfalls, modern CRMs, and creator newsletter platforms.',
-  },
-  {
-    id: 'media',
-    label: 'Voice, Audio & Generative Media',
-    title: 'Sensory intelligence',
-    tagline: 'Frontier voice synthesis, low-latency media APIs, and musical intelligence engines.',
+    tagline: 'The frameworks I reach for when building autonomous systems.',
   },
   {
     id: 'infra',
     label: 'Infrastructure & Hosting',
     title: 'Where it runs',
-    tagline: 'From edge functions to GPU clusters — the reliable substrate that powers intelligence.',
+    tagline: 'From edge functions to GPU clusters — the boring stuff that matters.',
   },
   {
     id: 'databases',
     label: 'Databases & Memory',
     title: 'State and recall',
-    tagline: 'Vectors, edge SQLite, caches, and memory layers agents need to remember.',
+    tagline: 'Vectors, rows, caches, and everything agents need to remember.',
   },
   {
     id: 'devtools',
-    label: 'Developer Tools & Editors',
+    label: 'Developer Tools',
     title: 'Daily drivers',
-    tagline: 'The frontier editors, CLI harnesses, and toolchains that ship my code.',
+    tagline: 'The editors and CLIs that ship my code.',
   },
   {
     id: 'selfhost',
     label: 'OSS & Self-Host',
     title: 'Run it yourself',
-    tagline: 'Sovereign open-source stacks when you need full local privacy and zero vendor lock-in.',
+    tagline: 'Open-source stacks when you want full control.',
   },
 ]
 
@@ -155,21 +133,21 @@ const items: StackItem[] = [
     icon: Box,
   },
   {
-    id: 'bolt-diy',
-    title: 'Bolt.diy',
-    description: 'Open-source Bolt with bring-your-own-model. Full-stack apps from a prompt, locally.',
+    id: 'langchain-templates',
+    title: 'LangChain Template Hub',
+    description: 'Production patterns for RAG, agents, and evals. Good reference architectures to learn from.',
     category: 'templates',
-    url: 'https://bolt.diy?utm_source=frankxai',
-    tags: ['Open source', 'Web builder'],
-    glowColor: 'amber',
-    icon: LayoutTemplate,
+    url: 'https://templates.langchain.com?utm_source=frankxai',
+    tags: ['LangChain', 'Multi-agent'],
+    glowColor: 'violet',
+    icon: Network,
   },
 
   // ── Agent Frameworks ──
   {
     id: 'claude-agent-sdk',
     title: 'Claude Agent SDK',
-    description: 'Anthropic’s official agent framework. Tool use, MCP, subagents, and deep orchestration primitives.',
+    description: 'Anthropic\u2019s official agent framework. Tool use, MCP, subagents, and deep orchestration primitives.',
     category: 'agents',
     url: 'https://docs.anthropic.com/en/docs/agent-sdk?utm_source=frankxai',
     tags: ['Anthropic', 'Production'],
@@ -217,105 +195,11 @@ const items: StackItem[] = [
     icon: Bot,
   },
 
-  // ── Growth, Outbound & Newsletters ──
-  {
-    id: 'clay',
-    title: 'Clay',
-    description: 'AI-powered data enrichment and automated waterfall prospecting. The gold standard for modern B2B outbound.',
-    category: 'growth',
-    url: 'https://www.clay.com?utm_source=frankxai',
-    tags: ['Outbound', 'AI Enrichment', 'B2B'],
-    glowColor: 'magenta',
-    icon: TrendingUp,
-  },
-  {
-    id: 'beehiiv',
-    title: 'Beehiiv',
-    description: 'The creator-first newsletter platform with built-in referral engines, 3D recommendations, and monetization rails.',
-    category: 'growth',
-    url: 'https://www.beehiiv.com?via=frankx',
-    tags: ['Newsletter', 'Audience', 'Affiliate'],
-    glowColor: 'amber',
-    icon: Mail,
-  },
-  {
-    id: 'loops',
-    title: 'Loops.so',
-    description: 'Modern email platform built for SaaS and AI apps. React Email native, clean API triggers, and zero marketing bloat.',
-    category: 'growth',
-    url: 'https://loops.so?utm_source=frankxai',
-    tags: ['Lifecycle', 'API-first', 'Modern'],
-    glowColor: 'violet',
-    icon: Mail,
-  },
-  {
-    id: 'dub',
-    title: 'Dub.co',
-    description: 'Open-source link management infrastructure. Branded short domains, geo-targeting, and deep conversion analytics.',
-    category: 'growth',
-    url: 'https://dub.co?utm_source=frankxai',
-    tags: ['Links', 'Analytics', 'Open source'],
-    glowColor: 'blue',
-    icon: Link2,
-  },
-  {
-    id: 'attio',
-    title: 'Attio',
-    description: 'Next-generation CRM for modern startups. Real-time data sync, dynamic data models, and native API-first design.',
-    category: 'growth',
-    url: 'https://attio.com?utm_source=frankxai',
-    tags: ['CRM', 'API-first', 'Modern'],
-    glowColor: 'indigo',
-    icon: Globe,
-  },
-
-  // ── Voice, Audio & Generative Media ──
-  {
-    id: 'elevenlabs',
-    title: 'ElevenLabs',
-    description: 'Frontier neural voice synthesis, real-time conversational agents, and emotional speech modulation.',
-    category: 'media',
-    url: 'https://elevenlabs.io/?from=frankx',
-    tags: ['Voice AI', 'Conversational', 'Affiliate'],
-    glowColor: 'cyan',
-    icon: Mic,
-  },
-  {
-    id: 'fal-ai',
-    title: 'fal.ai',
-    description: 'Ultra-fast media inference platform. Real-time FLUX, SD3.5, video pipelines, and serverless ComfyUI execution.',
-    category: 'media',
-    url: 'https://fal.ai?utm_source=frankxai',
-    tags: ['Generative Media', 'Low Latency', 'GPU'],
-    glowColor: 'purple',
-    icon: Radio,
-  },
-  {
-    id: 'suno',
-    title: 'Suno AI',
-    description: 'Generative musical composition and multi-genre audio engine. Powers sonic branding and dynamic soundtracking.',
-    category: 'media',
-    url: 'https://suno.com?utm_source=frankxai',
-    tags: ['Music', 'Audio AI', 'Creative'],
-    glowColor: 'orange',
-    icon: Music,
-  },
-  {
-    id: 'openrouter',
-    title: 'OpenRouter',
-    description: 'Unified LLM routing gateway. Access 200+ models with a single API key, intelligent fallback, and granular cost metrics.',
-    category: 'media',
-    url: 'https://openrouter.ai?utm_source=frankxai',
-    tags: ['LLM Gateway', 'BYOK', 'Cost-Opt'],
-    glowColor: 'emerald',
-    icon: Zap,
-  },
-
   // ── Infrastructure & Hosting ──
   {
     id: 'railway',
     title: 'Railway',
-    description: 'One-click deploy for anything with a Dockerfile. The easiest way to run backends, queues, and agent workers.',
+    description: 'One-click deploy for anything with a Dockerfile. The easiest way to run backends and side projects.',
     category: 'infra',
     url: 'https://railway.app?referralCode=frankx',
     tags: ['Deploy', 'Affiliate'],
@@ -325,7 +209,7 @@ const items: StackItem[] = [
   {
     id: 'vercel',
     title: 'Vercel',
-    description: 'The Next.js cloud. Edge functions, preview deploys, and the gold standard DX for modern web experiences.',
+    description: 'The Next.js cloud. Edge functions, preview deploys, and the best DX for frontend work.',
     category: 'infra',
     url: 'https://vercel.com?utm_source=frankxai',
     tags: ['Edge', 'Free tier'],
@@ -355,7 +239,7 @@ const items: StackItem[] = [
   {
     id: 'runpod',
     title: 'RunPod',
-    description: 'GPU cloud with community and secure instances. Cost-effective fine-tuning and model inference.',
+    description: 'GPU cloud with community and secure instances. The cheapest way to fine-tune and host models.',
     category: 'infra',
     url: 'https://runpod.io?ref=frankx',
     tags: ['GPU', 'Affiliate'],
@@ -365,10 +249,10 @@ const items: StackItem[] = [
   {
     id: 'hetzner',
     title: 'Hetzner',
-    description: 'Dedicated bare-metal servers in Europe. Unreasonably cheap and fast for high-load, 24/7 background tasks.',
+    description: 'Budget dedicated servers in Germany. Unreasonably cheap for anything CPU-heavy and always-on.',
     category: 'infra',
     url: 'https://hetzner.com?utm_source=frankxai',
-    tags: ['Bare Metal', 'EU', 'Budget'],
+    tags: ['Budget', 'EU'],
     glowColor: 'blue',
     icon: Server,
   },
@@ -377,17 +261,17 @@ const items: StackItem[] = [
   {
     id: 'supabase',
     title: 'Supabase',
-    description: 'Postgres with pgvector, auth, storage, and realtime. The open-source standard for AI applications.',
+    description: 'Postgres with pgvector, auth, storage, and realtime. The open-source Firebase I actually use.',
     category: 'databases',
     url: 'https://supabase.com?via=frankx',
-    tags: ['Open source', 'Postgres', 'Affiliate'],
+    tags: ['Open source', 'Affiliate'],
     glowColor: 'emerald',
     icon: Database,
   },
   {
     id: 'neon',
     title: 'Neon',
-    description: 'Serverless Postgres with instant branching. Clone your database like a git branch for every preview deploy.',
+    description: 'Serverless Postgres with branching. Clone your database like a git branch for every preview deploy.',
     category: 'databases',
     url: 'https://neon.tech?utm_source=frankxai',
     tags: ['Serverless', 'Postgres'],
@@ -397,7 +281,7 @@ const items: StackItem[] = [
   {
     id: 'turso',
     title: 'Turso',
-    description: 'Edge SQLite built on libSQL. Millisecond reads globally, perfect for user-scoped data and embedded agents.',
+    description: 'Edge SQLite built on libSQL. Millisecond reads globally, perfect for user-scoped data.',
     category: 'databases',
     url: 'https://turso.tech?utm_source=frankxai',
     tags: ['Edge', 'SQLite'],
@@ -407,7 +291,7 @@ const items: StackItem[] = [
   {
     id: 'upstash',
     title: 'Upstash Redis',
-    description: 'Serverless Redis and QStash with HTTP access. Perfect for rate limiting, queues, and edge caching.',
+    description: 'Serverless Redis with HTTP access. Perfect for rate limiting, queues, and edge caching.',
     category: 'databases',
     url: 'https://upstash.com?utm_source=frankxai',
     tags: ['Serverless', 'Cache'],
@@ -415,31 +299,31 @@ const items: StackItem[] = [
     icon: Zap,
   },
   {
-    id: 'mem0',
-    title: 'Mem0',
-    description: 'Intelligent memory layer for agents with user, session, and agent scopes. Drop-in persistence for LLMs.',
-    category: 'databases',
-    url: 'https://mem0.ai?utm_source=frankxai',
-    tags: ['Open source', 'Agent memory'],
-    glowColor: 'violet',
-    icon: Cpu,
-  },
-  {
     id: 'pinecone',
     title: 'Pinecone',
-    description: 'Managed vector database for hyper-scale semantic search and enterprise retrieval systems.',
+    description: 'Managed vector database. When you need search at billions of vectors without operating infra.',
     category: 'databases',
     url: 'https://pinecone.io?utm_source=frankxai',
     tags: ['Vector', 'Managed'],
     glowColor: 'indigo',
     icon: Network,
   },
+  {
+    id: 'mem0',
+    title: 'Mem0',
+    description: 'Memory layer for agents with user, session, and agent scopes. Drop-in persistence for LLM apps.',
+    category: 'databases',
+    url: 'https://mem0.ai?utm_source=frankxai',
+    tags: ['Open source', 'Agent memory'],
+    glowColor: 'violet',
+    icon: Cpu,
+  },
 
-  // ── Developer Tools & Editors ──
+  // ── Developer Tools ──
   {
     id: 'cursor',
     title: 'Cursor',
-    description: 'AI-first code editor forked from VS Code. Composer and multi-file agent mode make complex refactors trivial.',
+    description: 'AI-first code editor forked from VS Code. Composer and agent mode make rewrites feel trivial.',
     category: 'devtools',
     url: 'https://cursor.com?utm_source=frankxai',
     tags: ['Editor', 'AI'],
@@ -449,7 +333,7 @@ const items: StackItem[] = [
   {
     id: 'claude-code',
     title: 'Claude Code',
-    description: 'Anthropic’s terminal agent. Lives in your CLI, navigates entire codebases, and executes real PRs.',
+    description: 'Anthropic\u2019s CLI agent. Lives in your terminal, reads your repo, ships real PRs.',
     category: 'devtools',
     url: 'https://claude.com/claude-code?utm_source=frankxai',
     tags: ['Anthropic', 'Terminal'],
@@ -457,9 +341,19 @@ const items: StackItem[] = [
     icon: Terminal,
   },
   {
+    id: 'continue',
+    title: 'Continue.dev',
+    description: 'Open-source Copilot alternative. Bring your own model, configure your own rules.',
+    category: 'devtools',
+    url: 'https://continue.dev?utm_source=frankxai',
+    tags: ['Open source', 'Editor'],
+    glowColor: 'blue',
+    icon: Wrench,
+  },
+  {
     id: 'cline',
     title: 'Cline',
-    description: 'Autonomous VS Code agent that reads, writes, and executes shell tasks across your workspace.',
+    description: 'Autonomous VS Code agent that reads, writes, and executes across your workspace.',
     category: 'devtools',
     url: 'https://github.com/cline/cline?utm_source=frankxai',
     tags: ['VS Code', 'Open source'],
@@ -467,21 +361,21 @@ const items: StackItem[] = [
     icon: Bot,
   },
   {
-    id: 'continue',
-    title: 'Continue.dev',
-    description: 'Open-source Copilot alternative. Bring your own model and customize prompt engineering rules.',
+    id: 'bolt-diy',
+    title: 'Bolt.diy',
+    description: 'Open-source Bolt with bring-your-own-model. Full-stack apps from a prompt, locally.',
     category: 'devtools',
-    url: 'https://continue.dev?utm_source=frankxai',
-    tags: ['Open source', 'Editor'],
-    glowColor: 'blue',
-    icon: Wrench,
+    url: 'https://bolt.diy?utm_source=frankxai',
+    tags: ['Open source', 'Web builder'],
+    glowColor: 'amber',
+    icon: LayoutTemplate,
   },
 
   // ── OSS & Self-Host ──
   {
     id: 'ollama',
     title: 'Ollama',
-    description: 'Run open weights models (Llama 3, Qwen, DeepSeek, Mistral) locally with one command.',
+    description: 'Run LLMs locally with one command. Llama, Mistral, Qwen, and everything in between.',
     category: 'selfhost',
     url: 'https://ollama.com?utm_source=frankxai',
     tags: ['Local', 'Open source'],
@@ -499,19 +393,19 @@ const items: StackItem[] = [
     icon: LayoutTemplate,
   },
   {
-    id: 'n8n',
-    title: 'n8n',
-    description: 'Workflow automation with native AI nodes. Open-source Zapier with code execution and agent support.',
+    id: 'librechat',
+    title: 'LibreChat',
+    description: 'Multi-model team chat with plugins, agents, and auth. Great for internal AI tooling.',
     category: 'selfhost',
-    url: 'https://n8n.io?utm_source=frankxai',
-    tags: ['Workflow', 'Open source'],
-    glowColor: 'rose',
-    icon: Workflow,
+    url: 'https://librechat.ai?utm_source=frankxai',
+    tags: ['Self-host', 'Team'],
+    glowColor: 'indigo',
+    icon: Network,
   },
   {
     id: 'dify',
     title: 'Dify',
-    description: 'Visual LLM app development platform. Design visual flows, prompt templates, and RAG pipelines.',
+    description: 'Visual LLM app builder. Design flows, prompts, and RAG pipelines without writing glue code.',
     category: 'selfhost',
     url: 'https://dify.ai?utm_source=frankxai',
     tags: ['Visual', 'Open source'],
@@ -519,13 +413,13 @@ const items: StackItem[] = [
     icon: Wrench,
   },
   {
-    id: 'librechat',
-    title: 'LibreChat',
-    description: 'Multi-model team chat with plugins, agents, and auth. Ideal for self-hosted enterprise AI workspaces.',
+    id: 'n8n',
+    title: 'n8n',
+    description: 'Workflow automation with AI nodes. Zapier with code, self-hostable, and agent-ready.',
     category: 'selfhost',
-    url: 'https://librechat.ai?utm_source=frankxai',
-    tags: ['Self-host', 'Team'],
-    glowColor: 'indigo',
+    url: 'https://n8n.io?utm_source=frankxai',
+    tags: ['Workflow', 'Open source'],
+    glowColor: 'rose',
     icon: Network,
   },
 ]
@@ -535,13 +429,10 @@ const items: StackItem[] = [
 const filterTabs: { id: 'all' | CategoryId; label: string }[] = [
   { id: 'all', label: 'All' },
   { id: 'templates', label: 'Templates' },
-  { id: 'agents', label: 'Agent Systems' },
-  { id: 'growth', label: 'Growth & CRM' },
-  { id: 'media', label: 'Voice & Media' },
+  { id: 'agents', label: 'AI Tools' },
   { id: 'infra', label: 'Infrastructure' },
-  { id: 'databases', label: 'Databases & State' },
-  { id: 'devtools', label: 'Dev Tools' },
-  { id: 'selfhost', label: 'OSS & Self-Host' },
+  { id: 'devtools', label: 'Developer Tools' },
+  { id: 'databases', label: 'Databases' },
 ]
 
 /* ── Card ── */
@@ -555,13 +446,13 @@ function StackCardContent({ item }: { item: StackItem }) {
           <Icon className="h-5 w-5 text-white/70" strokeWidth={1.5} />
         </div>
         <ArrowUpRight
-          className="h-4 w-4 text-white/30 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/70"
+          className="h-4 w-4 text-white/70 transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
           strokeWidth={1.5}
         />
       </div>
       <div className="flex-1">
         <h3 className="text-base font-semibold tracking-tight text-white">{item.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-white/45">{item.description}</p>
+        <p className="mt-2 text-sm leading-relaxed text-white/70">{item.description}</p>
       </div>
       <div className="flex flex-wrap items-center gap-1.5">
         {item.tags.map((tag) => (
@@ -625,25 +516,26 @@ export default function StackGalleryClient() {
       <div className="relative z-10">
         {/* ── Hero ── */}
         <section className="flex flex-col items-center justify-center px-6 pt-32 pb-16 text-center">
-          <motion.div {...fadeUpHero} className="mx-auto max-w-3xl">
+          <motion.div {...fadeUpHero} initial={false} className="mx-auto max-w-3xl">
             <span className="mb-6 inline-block rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/[0.08] px-4 py-1.5 text-[11px] font-medium tracking-[0.2em] text-[#D4AF37] uppercase">
-              Curated Stack · 2026 Edition
+              Curated Stack
             </span>
             <h1 className="font-serif text-5xl font-bold tracking-tight text-white sm:text-7xl">
               The FrankX Stack
             </h1>
             <p className="mt-6 text-xl leading-relaxed text-white/55 sm:text-2xl">
-              Frontier AI tools, outbound intelligence & sovereign infrastructure I actually build with.
+              Tools I actually use and recommend.
             </p>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/35">
-              Battle-tested across shipped products and agent swarms. Curated with zero-slop integrity — only what genuinely works makes the list.
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/70">
+              Battle-tested across shipped products. Affiliate links help keep this site free {'\u2014'} they never affect what makes the list.
             </p>
           </motion.div>
 
           {/* Filter tabs */}
           <motion.div
             {...fadeUp}
-            className="mt-12 flex flex-wrap items-center justify-center gap-2 max-w-4xl"
+            initial={false}
+            className="mt-12 flex flex-wrap items-center justify-center gap-2"
           >
             {filterTabs.map((tab) => {
               const isActive = activeFilter === tab.id
@@ -669,7 +561,7 @@ export default function StackGalleryClient() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
@@ -681,21 +573,21 @@ export default function StackGalleryClient() {
 
               return (
                 <section key={category.id} className="pt-20">
-                  <motion.div {...fadeUp} className="mb-8 max-w-2xl">
+                  <motion.div {...fadeUp} initial={false} className="mb-8 max-w-2xl">
                     <span className="mb-3 inline-block text-[11px] font-medium tracking-[0.2em] text-[#D4AF37]/80 uppercase">
                       {category.label}
                     </span>
                     <h2 className="font-serif text-3xl font-bold tracking-tight text-white sm:text-4xl">
                       {category.title}
                     </h2>
-                    <p className="mt-3 text-sm leading-relaxed text-white/45">
+                    <p className="mt-3 text-sm leading-relaxed text-white/70">
                       {category.tagline}
                     </p>
                   </motion.div>
 
                   <motion.div
                     variants={containerVariants}
-                    initial="hidden"
+                    initial={false}
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.05 }}
                     className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
@@ -711,9 +603,9 @@ export default function StackGalleryClient() {
             })}
 
             {/* ── Footer note ── */}
-            <motion.div {...fadeUp} className="mt-32 text-center">
-              <p className="text-xs text-white/30">
-                Curated & Tested · Built by Frank · Verified for 2026
+            <motion.div {...fadeUp} initial={false} className="mt-32 text-center">
+              <p className="text-xs text-white/70">
+                Built by Frank {'\u00b7'} Curated, not sponsored.
               </p>
             </motion.div>
           </motion.div>

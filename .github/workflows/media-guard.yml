@@ -2,6 +2,12 @@ name: Media Guard
 
 on:
   pull_request:
+    # 'edited' matters here for the base branch, not the title: this job diffs
+    # against origin/${{ github.base_ref }}, so its verdict is only ever about
+    # one base. Retargeting fires only 'edited', and check runs are SHA-scoped,
+    # so without it a SUCCESS earned against staging stays green on the same
+    # head after the pull request is pointed at main.
+    types: [opened, synchronize, reopened, edited, ready_for_review]
     branches: [main, staging]
 
 permissions:
@@ -10,12 +16,14 @@ permissions:
 jobs:
   media-guard:
     name: Media Guard
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Fetch PR base for an accurate media diff
         run: git fetch --no-tags origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}

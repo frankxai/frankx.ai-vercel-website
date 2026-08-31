@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" role="img" aria-labelledby="t d">
+<title id="t">The seven planes of a production AI system</title>
+<desc id="d">Seven stacked planes from Model access at the base to Experience at the top. Between each pair is a named boundary: vendor, relevance, trust, privilege, correctness, evidence, human.</desc>
+<defs>
+<linearGradient id="seam" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#10b981" stop-opacity=".85"/><stop offset="100%" stop-color="#06b6d4" stop-opacity=".25"/>
+</linearGradient>
+<linearGradient id="plane" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" stop-color="#12121a"/><stop offset="100%" stop-color="#0d0d14"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="760" fill="#0a0a0b"/>
+<text x="60" y="52" fill="#ffffff" font-family="Poppins,Inter,system-ui,sans-serif" font-size="26" font-weight="700">The seven planes</text>
+<text x="60" y="80" fill="#94a3b8" font-family="Inter,system-ui,sans-serif" font-size="15">Read from the base up. Nothing above works if the plane under it is unreliable.</text>
+
+<g font-family="Inter,system-ui,sans-serif">
+<!-- 07 -->
+<g transform="translate(60,110)">
+<rect width="1080" height="66" rx="14" fill="url(#plane)" stroke="#ffffff" stroke-opacity=".09"/>
+<text x="24" y="30" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="13">07</text>
+<text x="72" y="28" fill="#ffffff" font-size="17" font-weight="600">Experience</text>
+<text x="72" y="50" fill="#94a3b8" font-size="14">Stream partial work, and let a human interrupt it or approve it.</text>
+<text x="1056" y="40" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12" text-anchor="end">Streaming · Interruption · Approval</text>
+</g>
+<g transform="translate(84,182)"><rect width="2" height="20" fill="url(#seam)"/><text x="18" y="15" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">human boundary — approval and interruption live here or nowhere</text></g>
+<!-- 06 -->
+<g transform="translate(60,208)">
+<rect width="1080" height="66" rx="14" fill="url(#plane)" stroke="#ffffff" stroke-opacity=".09"/>
+<text x="24" y="30" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="13">06</text>
+<text x="72" y="28" fill="#ffffff" font-size="17" font-weight="600">Observability</text>
+<text x="72" y="50" fill="#94a3b8" font-size="14">Record every model call, tool call, and token as one traceable run.</text>
+<text x="1056" y="40" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12" text-anchor="end">Traces · Spans · Cost</text>
+</g>
+<g transform="translate(84,280)"><rect width="2" height="20" fill="url(#seam)"/><text x="18" y="15" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">evidence boundary — below this line you are guessing</text></g>
+<!-- 05 -->
+<g transform="translate(60,306)">
+<rect width="1080" height="66" rx="14" fill="url(#plane)" stroke="#ffffff" stroke-opacity=".09"/>
+<text x="24" y="30" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="13">05</text>
+<text x="72" y="28" fill="#ffffff" font-size="17" font-weight="600">Evaluation</text>
+<text x="72" y="50" fill="#94a3b8" font-size="14">Decide whether a change made the system better, before users do.</text>
+<text x="1056" y="40" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12" text-anchor="end">Offline · Trajectories · Online</text>
+</g>
+<g transform="translate(84,378)"><rect width="2" height="20" fill="url(#seam)"/><text x="18" y="15" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">correctness boundary — the loop is only as good as what grades it</text></g>
+<!-- 04 -->
+<g transform="translate(60,404)">
+<rect width="1080" height="66" rx="14" fill="url(#plane)" stroke="#ffffff" stroke-opacity=".09"/>
+<text x="24" y="30" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="13">04</text>
+<text x="72" y="28" fill="#ffffff" font-size="17" font-weight="600">Orchestration</text>
+<text x="72" y="50" fill="#94a3b8" font-size="14">Choose the shape: fixed workflow, one agent loop, or many.</text>
+<text x="1056" y="40" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12" text-anchor="end">Loop · Durable execution</text>
+</g>
+<g transform="translate(84,476)"><rect width="2" height="20" fill="url(#seam)"/><text x="18" y="15" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">privilege boundary — the loop decides what gets called with real permissions</text></g>
+<!-- 03 -->
+<g transform="translate(60,502)">
+<rect width="1080" height="66" rx="14" fill="url(#plane)" stroke="#ffffff" stroke-opacity=".09"/>
+<text x="24" y="30" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="13">03</text>
+<text x="72" y="28" fill="#ffffff" font-size="17" font-weight="600">Tool surface</text>
+<text x="72" y="50" fill="#94a3b8" font-size="14">Expose capability with schemas, scopes, and an audit trail.</text>
+<text x="1056" y="40" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12" text-anchor="end">MCP · Schemas · Scopes</text>
+</g>
+<g transform="translate(84,574)"><rect width="2" height="20" fill="url(#seam)"/><text x="18" y="15" fill="#f59e0b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">trust boundary — everything returned from here is untrusted input</text></g>
+<!-- 02 -->
+<g transform="translate(60,600)">
+<rect width="1080" height="66" rx="14" fill="url(#plane)" stroke="#ffffff" stroke-opacity=".09"/>
+<text x="24" y="30" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="13">02</text>
+<text x="72" y="28" fill="#ffffff" font-size="17" font-weight="600">Context and retrieval</text>
+<text x="72" y="50" fill="#94a3b8" font-size="14">Put the right tokens in the window, and leave the rest out.</text>
+<text x="1056" y="40" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12" text-anchor="end">Hybrid search · Rerank</text>
+</g>
+<g transform="translate(84,672)"><rect width="2" height="16" fill="url(#seam)"/><text x="18" y="13" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">relevance boundary — retrieval failures arrive disguised as model failures</text></g>
+<!-- 01 -->
+<g transform="translate(60,694)">
+<rect width="1080" height="52" rx="14" fill="url(#plane)" stroke="#10b981" stroke-opacity=".28"/>
+<text x="24" y="31" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="13">01</text>
+<text x="72" y="30" fill="#ffffff" font-size="17" font-weight="600">Model access</text>
+<text x="1056" y="30" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12" text-anchor="end">Gateway · Routing · Fallback · Cache</text>
+</g>
+</g>
+</svg>

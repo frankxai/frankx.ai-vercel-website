@@ -1,6 +1,7 @@
 'use client'
 
 import { Fragment, useMemo, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -17,7 +18,13 @@ import {
 import sourcesData from '@/data/ai-architecture/official-sources.json'
 import { trackEvent } from '@/lib/analytics'
 
-type Deployment = 'Vercel' | 'Railway' | 'GCP'
+/**
+ * What execution shape a reference needs. This replaced a three-vendor
+ * `deployment` field, because the vendor is an example and the execution shape
+ * is the thing that actually decides which platforms stay open to you.
+ */
+type Runtime = 'Request-scoped' | 'Durable runtime' | 'Managed service' | 'Either'
+type DocsKind = 'documentation' | 'reference-architecture' | 'architecture-notes'
 
 type ArchitectureSource = {
   id: string
@@ -26,9 +33,11 @@ type ArchitectureSource = {
   layer: string
   summary: string
   bestFor: string
-  deployment: Deployment[]
+  runtime: Runtime
   flow: string[]
   docsUrl: string
+  docsKind: DocsKind
+  verifiedOn: string
   source: {
     kind: 'repository' | 'template-directory'
     label: string
@@ -37,18 +46,84 @@ type ArchitectureSource = {
 }
 
 const sources = sourcesData as ArchitectureSource[]
-const deploymentFilters: Array<'All' | Deployment> = ['All', 'Vercel', 'Railway', 'GCP']
 
-const deploymentStyle: Record<Deployment, string> = {
-  Vercel: 'border-white/[0.15] surface-3 text-white',
-  Railway: 'glass-purple text-violet-200',
-  GCP: 'glass-cyan text-cyan-200',
+const DOCS_LABEL: Record<DocsKind, string> = {
+  documentation: 'Official documentation',
+  'reference-architecture': 'Official reference architecture',
+  'architecture-notes': 'Official architecture notes',
 }
 
-function DeploymentBadge({ deployment }: { deployment: Deployment }) {
+/** Filter by plane, not by vendor. Derived from the catalog so it cannot drift. */
+const planeFilters: string[] = ['All', ...Array.from(new Set(sources.map((s) => s.layer)))]
+
+const runtimeStyle: Record<Runtime, string> = {
+  'Request-scoped': 'border-white/[0.15] surface-3 text-white',
+  'Durable runtime': 'glass-purple text-violet-200',
+  'Managed service': 'glass-cyan text-cyan-200',
+  Either: 'border-white/10 text-slate-400',
+}
+
+/**
+ * Official deploy entry points, labeled by the lane they cover. The clone link
+ * is derived from the catalog's already-verified vercel/chatbot repository; the
+ * other three are top-level vendor surfaces. Vendor pages do not render inside
+ * this site (their frame policy forbids it), so each card opens the official
+ * surface directly.
+ */
+type TemplateLane = {
+  id: string
+  platform: string
+  title: string
+  blurb: string
+  action: string
+  href: string
+  secondary?: { label: string; href: string }
+}
+
+const templateLanes: TemplateLane[] = [
+  {
+    id: 'vercel-ai-chatbot',
+    platform: 'Vercel',
+    title: 'Next.js AI chatbot',
+    blurb:
+      'The canonical request-scoped agent surface — streaming UI, auth, persistence, and a model gateway, cloned into your own repository.',
+    action: 'Deploy a clone',
+    href: 'https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fchatbot',
+    secondary: { label: 'Source repository', href: 'https://github.com/vercel/chatbot' },
+  },
+  {
+    id: 'v0',
+    platform: 'v0 by Vercel',
+    title: 'Generate the experience plane',
+    blurb:
+      'Prompt-to-component for the surface in front of your loop. Export the code into your repository; the boundaries stay yours to draw.',
+    action: 'Open v0',
+    href: 'https://v0.app',
+  },
+  {
+    id: 'vercel-templates-ai',
+    platform: 'Vercel',
+    title: 'AI template gallery',
+    blurb: 'Maintained starters for the request-scoped lane, filterable by stack and use case.',
+    action: 'Browse the gallery',
+    href: 'https://vercel.com/templates/ai',
+  },
+  {
+    id: 'railway-templates',
+    platform: 'Railway',
+    title: 'Template marketplace',
+    blurb:
+      'Durable-runtime starters — workers, queues, Postgres, and the services that outlive a request.',
+    action: 'Browse the marketplace',
+    // railway.com/templates 301s here; link the verified final URL directly.
+    href: 'https://railway.com/deploy',
+  },
+]
+
+function RuntimeBadge({ runtime }: { runtime: Runtime }) {
   return (
-    <span className={`rounded-full border px-2.5 py-1 text-xs ${deploymentStyle[deployment]}`}>
-      {deployment}
+    <span className={`rounded-full border px-2.5 py-1 text-xs ${runtimeStyle[runtime]}`}>
+      {runtime === 'Either' ? 'Runs either way' : runtime}
     </span>
   )
 }
@@ -56,20 +131,23 @@ function DeploymentBadge({ deployment }: { deployment: Deployment }) {
 function SystemTopology() {
   const stages = [
     {
-      name: 'Vercel experience',
-      detail: 'Next.js, AI SDK, streaming UI, auth, edge entry',
+      name: 'Experience',
+      detail: 'Streaming UI, auth, the request that a person is waiting on',
+      examples: 'Vercel · Cloudflare · Netlify · any Node host',
       icon: Cloud,
       accent: 'text-emerald-300',
     },
     {
-      name: 'Railway runtime',
-      detail: 'Workers, queues, MCP services, databases, browser jobs',
+      name: 'Durable runtime',
+      detail: 'Workers, queues, MCP services, and anything that outlives a request',
+      examples: 'Railway · Fly.io · Modal · Cloudflare · ECS · Cloud Run',
       icon: ServerCog,
       accent: 'text-violet-300',
     },
     {
-      name: 'GCP intelligence',
-      detail: 'Vertex AI, governed data, managed evaluation, enterprise scale',
+      name: 'Managed intelligence',
+      detail: 'Model endpoints, governed data, hosted evaluation',
+      examples: 'Vertex · Bedrock · Azure AI · OpenAI · Anthropic',
       icon: Layers3,
       accent: 'text-cyan-300',
     },
@@ -79,23 +157,26 @@ function SystemTopology() {
     <div className="surface-3 rounded-[2rem] border border-white/[0.08] p-4 shadow-2xl shadow-black/30 sm:p-6">
       <div className="mb-6 flex items-center justify-between gap-4 border-b border-white/10 pb-4">
         <div>
-          <p className="font-mono text-xs text-emerald-300">Recommended control plane</p>
-          <h2 className="mt-1 text-lg font-semibold text-white">One system, three clear jobs</h2>
+          <p className="font-mono text-xs text-emerald-300">Three jobs, not three vendors</p>
+          <h2 className="mt-1 text-lg font-semibold text-white">The split that survives a migration</h2>
         </div>
         <ShieldCheck className="h-6 w-6 text-emerald-300" aria-hidden="true" />
       </div>
-      <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-center">
+      {/* stretch, not center: the three cards carry different amounts of copy and
+          centering them independently leaves their tops and bottoms ragged. */}
+      <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
         {stages.map((stage, index) => {
           const Icon = stage.icon
           return (
             <Fragment key={stage.name}>
-              <div className="surface-2 min-h-40 rounded-2xl border border-white/[0.08] p-5">
+              <div className="surface-2 flex min-h-40 flex-col rounded-2xl border border-white/[0.08] p-5">
                 <Icon className={`h-6 w-6 ${stage.accent}`} aria-hidden="true" />
                 <h3 className="mt-8 font-semibold text-white">{stage.name}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-400">{stage.detail}</p>
+                <p className="mt-auto pt-4 font-mono text-[11px] leading-5 text-slate-600">{stage.examples}</p>
               </div>
               {index < stages.length - 1 && (
-                <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-slate-600 lg:rotate-0" aria-hidden="true" />
+                <ArrowRight className="mx-auto h-5 w-5 rotate-90 self-center text-slate-600 lg:rotate-0" aria-hidden="true" />
               )}
             </Fragment>
           )
@@ -103,16 +184,16 @@ function SystemTopology() {
       </div>
       <div className="glass-emerald mt-5 flex items-start gap-3 rounded-2xl p-4 text-sm text-slate-300">
         <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
-        <p>Keep the web request short. Move durable work to workers. Use managed AI and data services only where their governance or scale earns the complexity.</p>
+        <p>Keep the web request short. Move durable work to something that outlives it. Use managed AI and data services only where their governance or scale earns the complexity. Which vendor fills each job is the reversible part.</p>
       </div>
     </div>
   )
 }
 
 export function OfficialArchitectureAtlas() {
-  const [filter, setFilter] = useState<'All' | Deployment>('All')
+  const [filter, setFilter] = useState<string>('All')
   const visibleSources = useMemo(
-    () => filter === 'All' ? sources : sources.filter((source) => source.deployment.includes(filter)),
+    () => filter === 'All' ? sources : sources.filter((source) => source.layer === filter),
     [filter],
   )
 
@@ -130,7 +211,9 @@ export function OfficialArchitectureAtlas() {
               Build the agent system you can operate.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-              Official reference architectures, working repositories, and a practical Vercel–Railway–GCP deployment split. Every external link in this catalog was checked on 12 July 2026.
+              Official reference architectures and working repositories, organised by plane rather
+              than publisher. Each entry shows when its documentation and source links were last
+              checked.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
@@ -158,9 +241,9 @@ export function OfficialArchitectureAtlas() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-8 md:grid-cols-3">
             {[
-              ['Vercel', 'Own the experience', 'Streaming UI, authentication, API entry, and preview delivery.'],
-              ['Railway', 'Run persistent work', 'Workers, queues, databases, MCP services, and long jobs.'],
-              ['GCP', 'Add managed intelligence', 'Vertex AI, enterprise data, evaluation, governance, and scale.'],
+              ['Request-scoped', 'Own the experience', 'Streaming UI, authentication, API entry, preview delivery. Anything a person is actively waiting on.'],
+              ['Durable runtime', 'Run persistent work', 'Workers, queues, databases, MCP services, long jobs. Anything that outlives the request that started it.'],
+              ['Managed service', 'Rent the hard parts', 'Model endpoints, governed data, hosted evaluation. Buy these where their governance or scale earns the dependency.'],
             ].map(([name, title, body]) => (
               <div key={name} className="border-l border-white/10 pl-5">
                 <p className="font-mono text-xs text-slate-500">{name}</p>
@@ -172,6 +255,37 @@ export function OfficialArchitectureAtlas() {
         </div>
       </section>
 
+      <section className="border-b border-white/[0.06] py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="font-mono text-xs text-cyan-300">Where a long run lives</p>
+          <h2 className="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            The platform question is one question, and it is not which logo.
+          </h2>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
+            An agent loop that runs for eleven minutes is a different deployment problem from a completion that
+            returns in two seconds. Every platform below answers it; they differ in what they hand you and what
+            they leave you operating.
+          </p>
+          <figure className="mt-10">
+            <div className="overflow-x-auto rounded-2xl border border-white/[0.08] bg-[#050a14] p-3 sm:p-4">
+              <Image
+                src="/images/diagrams/ai-architecture/platform-matrix.svg"
+                alt="Eight deployment platforms — Vercel, Cloudflare, AWS, Google Cloud, Azure, Railway, Fly.io and Modal — compared on unit of execution, where a long agent loop lives, and what you still operate yourself. Presented as equals, not ranked."
+                width={1200}
+                height={780}
+                unoptimized
+                loading="lazy"
+                className="mx-auto h-auto w-full min-w-[960px]"
+              />
+            </div>
+            <figcaption className="mt-3 text-sm text-white/45">
+              Eight platforms as equals. Managed platforms hand you a primitive and take the operations;
+              self-assembled clouds hand you every primitive and take your Tuesdays.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section id="official-architectures" className="scroll-mt-20 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
@@ -180,15 +294,19 @@ export function OfficialArchitectureAtlas() {
               <h2 className="mt-3 max-w-2xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
                 Start from maintained architecture, then adapt it deliberately.
               </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/50">
+                Filtered by the same seven planes the field guide uses below. Pick the plane you
+                cannot currently name an owner for — that is where the next incident comes from.
+              </p>
             </div>
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter architectures by deployment target">
-              {deploymentFilters.map((item) => (
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter architectures by plane">
+              {planeFilters.map((item) => (
                 <button
                   key={item}
                   type="button"
                   onClick={() => {
                     setFilter(item)
-                    trackEvent('ai_architecture_filter_selected', { deployment: item })
+                    trackEvent('ai_architecture_filter_selected', { plane: item })
                   }}
                   aria-pressed={filter === item}
                   className={`rounded-full border px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 ${filter === item ? 'border-white bg-white text-slate-950' : 'border-white/10 text-slate-400 hover:border-white/25 hover:text-white'}`}
@@ -212,7 +330,13 @@ export function OfficialArchitectureAtlas() {
                   <p className="mt-3 max-w-lg leading-7 text-slate-400">{source.summary}</p>
                   <p className="mt-4 text-sm leading-6 text-slate-300"><span className="text-slate-500">Use it for:</span> {source.bestFor}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {source.deployment.map((deployment) => <DeploymentBadge key={deployment} deployment={deployment} />)}
+                    <RuntimeBadge runtime={source.runtime} />
+                    <time
+                      dateTime={source.verifiedOn}
+                      className="rounded-full border border-white/10 px-2.5 py-1 font-mono text-xs text-slate-500"
+                    >
+                      Links checked {source.verifiedOn}
+                    </time>
                   </div>
                 </div>
 
@@ -232,13 +356,72 @@ export function OfficialArchitectureAtlas() {
                   <div className="mt-8 flex flex-wrap gap-3 border-t border-white/10 pt-5">
                     <a href={source.docsUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('ai_architecture_source_opened', { architecture_id: source.id, link_kind: 'official_docs' })} className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200">
                       <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                      Official architecture
+                      {DOCS_LABEL[source.docsKind]}
                     </a>
                     <a href={source.source.url} target="_blank" rel="noreferrer" onClick={() => trackEvent('ai_architecture_source_opened', { architecture_id: source.id, link_kind: source.source.kind })} className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white">
                       <Github className="h-4 w-4" aria-hidden="true" />
                       {source.source.label}
                     </a>
                   </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/[0.06] py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="font-mono text-xs text-cyan-300">Deploy lanes</p>
+          <h2 className="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Templates are scaffolding, not decisions.
+          </h2>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
+            Official starting points for the lanes above. Deploying one buys you a working lane —
+            the seams between planes, and what crosses them, still belong to you.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {templateLanes.map((lane) => (
+              <article
+                key={lane.id}
+                className="surface-2 flex flex-col rounded-2xl border border-white/[0.08] p-6"
+              >
+                <p className="font-mono text-xs text-slate-500">{lane.platform}</p>
+                <h3 className="mt-3 text-xl font-semibold text-white">{lane.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{lane.blurb}</p>
+                <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6">
+                  <a
+                    href={lane.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() =>
+                      trackEvent('ai_architecture_template_opened', {
+                        template_id: lane.id,
+                        link_kind: 'primary',
+                      })
+                    }
+                    className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                  >
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    {lane.action}
+                  </a>
+                  {lane.secondary ? (
+                    <a
+                      href={lane.secondary.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() =>
+                        trackEvent('ai_architecture_template_opened', {
+                          template_id: lane.id,
+                          link_kind: 'repository',
+                        })
+                      }
+                      className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                    >
+                      <Github className="h-4 w-4" aria-hidden="true" />
+                      {lane.secondary.label}
+                    </a>
+                  ) : null}
                 </div>
               </article>
             ))}

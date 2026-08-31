@@ -18,6 +18,13 @@ name: Merge Gate
 
 on:
   pull_request:
+    # 'edited' matters here for the base branch, not the title: retargeting a
+    # pull request from staging to main fires only 'edited', and check runs are
+    # SHA-scoped. Without it, a SUCCESS earned against the staging merge diff
+    # stays green on the same head after the retarget, even when the main merge
+    # diff contains guarded paths this gate never looked at. Contract Guard
+    # already listened for it; this did not.
+    types: [opened, synchronize, reopened, edited, ready_for_review]
     branches: [main, staging]
     paths:
       - 'app/**'
@@ -41,7 +48,36 @@ on:
       # expected and never reports. next.config.mjs hit that on 2026-08-14, and
       # its redirects and headers are exactly what the link checks cover.
       - 'next.config.mjs'
-      - '.github/workflows/merge-gate.yml'
+      # Third trap: workflow-only PRs never report this required check.
+      # Cover the whole workflows tree so GitOps PRs remain mergeable.
+      - '.github/workflows/**'
+      # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
+      # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
+      - 'CLAUDE.md'
+      - 'AGENTS.md'
+      - 'docs/**'
+      # Fifth trap: BRANCH_AUDIT.md at the repo root (#618). '*' does not match
+      # a slash, so this is root-level markdown only — README.md, CLAUDE.md,
+      # BRANCH_AUDIT.md — and not '**/*.md'.
+      #
+      # Appending the path is the correct fix, and #620 is the evidence. That
+      # pull request tried three times to avoid a fifth append and each attempt
+      # opened a production-gate bypass on the branch that deploys frankx.ai:
+      # an external reporter (defeated by SHA-global commit statuses and the
+      # 3,000-entry Files API cap), the same reporter on a workflow_run trigger
+      # (which cannot report a required context scoped to the pull request), and
+      # deleting the filter so this job judged its own scope from a script
+      # (which for a pull_request trigger comes from the MERGE REF the pull
+      # request controls, so a branch could make this gate skip every step and
+      # still report SUCCESS).
+      #
+      # The filter is load-bearing precisely because it fails CLOSED: an
+      # unmatched pull request is stuck, which is visible and annoying. Every
+      # mechanism that converts "did not run" into "succeeded" fails OPEN, which
+      # is invisible. When the next unreachable file class appears, add its path
+      # to this list. Do not build a reporter. See contract-guard.yml for the
+      # long form.
+      - '*.md'
 
 concurrency:
   group: merge-gate-${{ github.ref }}
@@ -58,10 +94,13 @@ env:
 jobs:
   merge-gate:
     name: Merge Gate
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - uses: pnpm/action-setup@v4
         with:
@@ -102,6 +141,7 @@ jobs:
       # every pull request until they were added below.
       - name: Contract tests
         run: |
+          pnpm run test:media-guard
           pnpm run test:homepage-release
           pnpm run test:collaboration-release
           pnpm run test:expert-authority
@@ -114,6 +154,7 @@ jobs:
           pnpm run test:learning-routes
           pnpm run test:blog-discoverability
           pnpm run test:social-identity
+          pnpm run test:seo-title
           pnpm run test:music-release-registry
 
       - name: Content and claims integrity
@@ -145,6 +186,16 @@ jobs:
       # against the committed index it would miss a page added by this very PR.
       - name: Intelligence surface consistency
         run: pnpm run intelligence:check
+
+      # The external snapshot ships committed, so CI re-checks that every figure
+      # in it still carries source/licence/retrieved_at, and that the ingest's
+      # normalise + join logic still holds against the committed fixtures. Both
+      # are offline — no egress, no API key, no cost.
+      - name: External intelligence provenance
+        run: |
+          pnpm run intelligence:validate
+          pnpm run test:intelligence-ingest
+          pnpm run test:intelligence-layer
 
       - name: Workflow definitions
         run: |

@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 
+import { stripBrandTitleSuffix } from './brand-title-suffix'
 import { socialHandles } from './social-links'
+
+export { stripBrandTitleSuffix }
 
 // Vercel serves `www` as the primary production host and redirects the apex.
 // Canonicals and structured data should point directly at the primary host.
@@ -30,6 +33,8 @@ export const siteConfig = {
     'multi-agent systems',
   ],
 }
+
+
 
 type CreateMetadataOptions = {
   title: string
@@ -68,9 +73,11 @@ export function createMetadata({
 }: CreateMetadataOptions): Metadata {
   const url = new URL(path, siteConfig.url).toString()
   const canonicalUrl = canonical ?? url
+  const pageTitle = stripBrandTitleSuffix(title)
+  const socialTitle = `${pageTitle} | ${siteConfig.shortName}`
 
   return {
-    title,
+    title: pageTitle,
     description,
     keywords,
     alternates: {
@@ -86,7 +93,7 @@ export function createMetadata({
         }
       : {}),
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       type,
       url: canonicalUrl,
@@ -96,7 +103,7 @@ export function createMetadata({
           url: image,
           width: 1200,
           height: 630,
-          alt: title,
+          alt: pageTitle,
         },
       ],
       ...(publishedTime ? { publishedTime } : {}),
@@ -105,7 +112,7 @@ export function createMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: socialTitle,
       description,
       images: [image],
       creator: siteConfig.twitter,

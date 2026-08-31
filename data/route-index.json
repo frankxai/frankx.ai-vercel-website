@@ -1,17 +1,17 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 923,
-    "aliases": 61,
+    "total": 958,
+    "aliases": 58,
     "byType": {
-      "core": 23,
-      "section": 419,
+      "core": 24,
+      "section": 429,
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 240,
+      "blog": 263,
       "research": 16,
-      "guide": 25,
+      "guide": 26,
       "library": 56,
       "newsletter": 1,
       "os": 11,
@@ -64,6 +64,15 @@
       "href": "/affiliates",
       "title": "Affiliates",
       "type": "community"
+    },
+    {
+      "href": "/agent-hub",
+      "title": "Agent Hub",
+      "tags": [
+        "agent",
+        "hub"
+      ],
+      "type": "section"
     },
     {
       "href": "/agent-team",
@@ -744,6 +753,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/4-hour-ai-architect-deal-framework-2026",
+      "title": "The 4-Hour Workweek, Rebuilt for AI Architects in 2026",
+      "description": "Every DEAL chapter rebuilt for founders using AI agents, governed automation, human specialists, and deliberate freedom.",
+      "tags": [
+        "ai-architect",
+        "creator-systems",
+        "automation",
+        "founder-ops",
+        "future-of-work"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/4-week-personal-ai-coe-2026-rebuild",
       "title": "The 4-Week Personal AI Center of Excellence: 2026 Rebuild Blueprint",
       "description": "How to stand up an elite, sovereign Personal AI Center of Excellence (CoE) under $100/month with automated skills, safety gates, and memory infrastructure.",
@@ -1063,6 +1085,48 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ai-agents-worth-evaluating-august-2026",
+      "title": "The AI Agents Worth Evaluating in August 2026",
+      "description": "Mira, Viktor, Hermes, ChatGPT Work, and Claude Cowork compared by job, cost, and capability. What to evaluate on August 21, 2026.",
+      "tags": [
+        "AI Agents",
+        "Mira",
+        "Viktor",
+        "Hermes Agent",
+        "ChatGPT Work",
+        "Claude Cowork",
+        "OpenClaw",
+        "Manus"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-architect-guide-2026",
+      "title": "The AI Architect Guide 2026",
+      "description": "A field guide to the decisions, system planes, evidence gates, and operating artifacts required to turn AI capability into a reliable workflow.",
+      "tags": [
+        "AI Architecture",
+        "Agentic Systems",
+        "MCP",
+        "Evals",
+        "AI Governance"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-architecture-2026-four-decisions-hard-to-reverse",
+      "title": "AI Architecture 2026: Four Decisions Hard to Reverse",
+      "description": "Most AI system decisions are cheap to change. Four are not: the vendor boundary, the orchestration shape, the trust boundary, and where a long run lives.",
+      "tags": [
+        "ai-architecture",
+        "agents",
+        "mcp",
+        "orchestration",
+        "prompt-injection"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ai-architecture-patterns-solo-builders",
       "title": "AI Architecture Patterns for Solo Builders",
       "description": "The system design decisions that matter when one person builds what teams used to require — from monolith to agents.",
@@ -1285,6 +1349,19 @@
         "creator economy",
         "monetization",
         "passive income"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-ai-app-builders-2026",
+      "title": "Best AI App Builders 2026: v0, Replit, Lovable",
+      "description": "Choose v0, Replit, Lovable, Bolt, or Base44—and design the handoff to Claude Code, Codex, GitHub, deployment, sales, and operations.",
+      "tags": [
+        "ai-app-builders",
+        "vibe-coding",
+        "ai-architecture",
+        "coding-agents",
+        "digital-products"
       ],
       "type": "blog"
     },
@@ -1559,6 +1636,19 @@
         "self-hosting",
         "frontier-models",
         "ai-2026"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/best-social-media-management-tools-founders-2026",
+      "title": "Best Social Media Management Tools for Founders (2026)",
+      "description": "Compare 15 social media tools for solo founders, creator-led brands, developers, agencies, and enterprises—by cost, API, MCP, evidence, and fit.",
+      "tags": [
+        "social-media-tools",
+        "founder-marketing",
+        "creator-systems",
+        "multi-agent-systems",
+        "marketing-automation"
       ],
       "type": "blog"
     },
@@ -2182,6 +2272,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/gemini-3-7-flash-what-google-shipped-august-2026",
+      "title": "Gemini 3.7 Flash: what Google actually shipped on 13 August 2026",
+      "description": "Google's 13 August Flash update, in vendor numbers and one live AGY admission. Not a harness winner. Not a ChatGPT killer.",
+      "tags": [
+        "Gemini 3.7 Flash",
+        "Google",
+        "AI Models",
+        "Coding Agents",
+        "AGY"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/gemma-3-analysis-2026",
       "title": "Gemma 4: Google's Open-Weight Family Now Runs a 31B Frontier Model on One GPU",
       "description": "Google's current open-weight Gemma is Gemma 4 (April 2026), now Apache 2.0, in E2B/E4B/12B/26B-A4B/31B tiers. The 31B dense model hits 1452 LMArena Elo and runs in ~18GB VRAM at Q4.",
@@ -2307,6 +2410,84 @@
       "type": "blog"
     },
     {
+      "href": "/blog/graph-engineering-ai-agents",
+      "title": "Graph Engineering: AI Architect’s Guide to Reliable Agents",
+      "description": "Execution, context and control graphs for reliable AI agents, with runtime choices, failure modes and a 90-day adoption plan.",
+      "tags": [
+        "Graph Engineering",
+        "AI Agents",
+        "Agent Orchestration",
+        "Multi-Agent Systems",
+        "Context Engineering"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-antigravity-adk",
+      "title": "Graph Engineering with Google Antigravity and ADK 2.0",
+      "description": "Separate Antigravity coding loops, ADK 2.0 workflow graphs and Temporal durability in one exact Google agent architecture.",
+      "tags": [
+        "Google Antigravity",
+        "Google ADK",
+        "ADK 2.0",
+        "Temporal",
+        "Graph Engineering"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-claude-code",
+      "title": "Claude Agent Engineering: Loops, Workflows and Graphs",
+      "description": "Map Claude Code loops, subagents, Skills, teams and dynamic workflows into a production graph with explicit state, gates and recovery.",
+      "tags": [
+        "Claude Code",
+        "Dynamic Workflows",
+        "Subagents",
+        "Agent Teams",
+        "Graph Engineering"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-grok-build",
+      "title": "Graph Engineering with Grok Build: Parallel Coding Graphs",
+      "description": "Design parallel Grok Build coding graphs with isolated workspaces, evidence gates and durable control outside the coding harness.",
+      "tags": [
+        "Grok Build",
+        "xAI",
+        "Graph Engineering",
+        "Coding Agents",
+        "Parallel Development"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-hermes-agent",
+      "title": "Graph Engineering with Hermes Agent: Durable Worker Graphs",
+      "description": "Use Hermes Kanban tasks, dependencies, worker lanes, reviews and recovery as a durable worker graph without mistaking it for event replay.",
+      "tags": [
+        "Hermes Agent",
+        "Nous Research",
+        "Kanban",
+        "Multi-Agent Systems",
+        "Graph Engineering"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/graph-engineering-openai-codex",
+      "title": "Graph Engineering with OpenAI Codex: Skills and Delivery",
+      "description": "Build Codex delivery graphs with subagents, worktrees, Skills, the SDK, evidence gates, durable state and release controls.",
+      "tags": [
+        "OpenAI Codex",
+        "Codex SDK",
+        "Agent Skills",
+        "Subagents",
+        "Graph Engineering"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/grok-4-3-analysis-2026",
       "title": "Grok 4.3: xAI Trades the Crown for the Price Tag",
       "description": "xAI's Grok 4.3 scores 53 on the Artificial Analysis Intelligence Index, lifts GDPval-AA to 1500 Elo, ships a 1M context window with always-on reasoning, and cuts price ~40% to $1.25/$2.50.",
@@ -2345,6 +2526,19 @@
         "evals",
         "codex",
         "antigravity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/grok-voice-vs-openai-realtime-vs-elevenlabs",
+      "title": "Grok Voice vs OpenAI Realtime vs ElevenLabs (2026)",
+      "description": "Compare price, latency, architecture, tools, and voice quality—then choose a production voice-agent stack for web, mobile, or phone.",
+      "tags": [
+        "Voice Agents",
+        "Grok Voice",
+        "OpenAI Realtime",
+        "ElevenLabs",
+        "AI Architecture"
       ],
       "type": "blog"
     },
@@ -2466,6 +2660,19 @@
         "prompt-engineering",
         "schema-validation",
         "deterministic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/is-revolut-safe-netherlands-2026",
+      "title": "Is Revolut Safe in the Netherlands? Bank Licence, Dutch IBAN and €100k Protection",
+      "description": "A regulator-first answer to whether Revolut is safe in the Netherlands: bank status, DNB register, Dutch IBAN, deposit insurance, and risks protection does not cover.",
+      "tags": [
+        "Revolut",
+        "Netherlands",
+        "bank safety",
+        "Dutch IBAN",
+        "deposit guarantee"
       ],
       "type": "blog"
     },
@@ -2748,41 +2955,40 @@
     },
     {
       "href": "/blog/multi-agent-orchestration-patterns-2026",
-      "title": "Multi-Agent Orchestration Patterns: Building Production Systems in 2026",
-      "description": "Beyond simple agent comparisons. Deep dive into orchestration patterns, handoff strategies, state management, and observability for production multi-agent systems.",
+      "title": "AI Agent Orchestration: Loops, DAGs and Durable Graphs",
+      "description": "Choose pipelines, loops, routers, state machines or dynamic graphs using state duration, consequence, recovery and evidence.",
       "tags": [
-        "Multi-Agent",
-        "LangGraph",
-        "CrewAI",
-        "Orchestration",
-        "Production AI"
+        "AI Agent Orchestration",
+        "Agentic Workflows",
+        "State Machines",
+        "Multi-Agent Systems",
+        "Graph Engineering"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/music-as-consciousness-technology",
       "title": "12,000 Songs Later: What AI Music Taught Me About Creative Systems",
-      "description": "After creating 12,000+ songs with Suno AI, I discovered music isn't entertainment—it's creative technology. Here's what three years of daily creation revealed.",
+      "description": "An experiential field note on iteration, taste, emotional specificity, and what high-volume AI music practice can—and cannot—prove.",
       "tags": [
         "Music",
         "AI Creativity",
-        "Creative Technology",
+        "Creative Systems",
         "Suno AI",
-        "Creative Process"
+        "Iteration"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/music-intelligence-vibe-architecture-sonic-neuroscience",
-      "title": "Music Intelligence & Vibe Architecture: Sonic Neuroscience and Flow",
-      "description": "How sound frequency modulation, Suno AI v4 pipelines, and harmonic neuroscience engineer peak cognitive flow states and creative output.",
+      "title": "Music Intelligence: Designing a Better Listening Environment",
+      "description": "A founder-safe guide to music, attention, listening rituals, and generative audio without deterministic frequency claims.",
       "tags": [
         "music-intelligence",
+        "attention",
         "suno-ai",
-        "sonic-neuroscience",
-        "flow-state",
-        "vibe-os",
-        "frequency"
+        "human-layer",
+        "deep-listening"
       ],
       "type": "blog"
     },
@@ -2958,6 +3164,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/pallyy-vs-metricool-2026",
+      "title": "Pallyy vs Metricool (2026): Which Is Better?",
+      "description": "Pallyy vs Metricool on price, analytics, publishing, API, MCP, brands, approvals, and founder fit—with a direct 2026 recommendation.",
+      "tags": [
+        "pallyy",
+        "metricool",
+        "social-media-tools",
+        "founder-marketing",
+        "marketing-automation"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/personal-ai-assistant-setup-workshop",
       "title": "Build Your Personal AI Assistant: The Complete Setup Workshop",
       "description": "Create a customized AI development environment from scratch. Learn to configure Claude Code, build CLAUDE.md files, create custom skills, and connect MCP servers to your workflow.",
@@ -3125,15 +3344,13 @@
     },
     {
       "href": "/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience",
-      "title": "Quantum Reality & Biological Resonance: The Molecular Architecture of Intent",
-      "description": "Rigorous scientific synthesis of bioelectric morphogenetic fields (Michael Levin), molecular epigenetics of intention, and neuroplasticity.",
+      "title": "Intent, Prediction, and Biology: Where the Evidence Ends",
+      "description": "A corrected field note separating mental rehearsal, stress physiology, bioelectric research, and symbolic language without turning proximity into causation.",
       "tags": [
-        "quantum-biology",
-        "bioelectricity",
-        "epigenetics",
-        "michael-levin",
+        "human-layer",
         "neuroplasticity",
-        "reality-architecture"
+        "mental-rehearsal",
+        "evidence-boundaries"
       ],
       "type": "blog"
     },
@@ -3179,12 +3396,65 @@
     },
     {
       "href": "/blog/reality-architecture-generative-ai-neuroscience",
-      "title": "Reality Architecture: Imagination to Product, Faster with AI",
-      "description": "Neuroscience of imagination meets generative AI. The 5-phase framework for turning mental models into shipped products — at machine speed.",
+      "title": "Reality Architecture: From Mental Rehearsal to Shipped Work",
+      "description": "A grounded founder framework for turning a mental model into tests, artifacts, and decisions with generative AI.",
       "tags": [
-        "intelligence-dispatches",
-        "ai-systems",
-        "production"
+        "founder-systems",
+        "mental-rehearsal",
+        "generative-ai",
+        "prototyping"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/revolut-fees-netherlands-2026",
+      "title": "Revolut Fees Netherlands 2026: Exchange, Weekend, ATM and Card Costs",
+      "description": "The current Revolut Netherlands fees that matter most: Standard exchange allowance, weekend fee, ATM limit, card delivery, transfers, and the costs people miss.",
+      "tags": [
+        "Revolut",
+        "Netherlands",
+        "fees",
+        "travel money",
+        "currency exchange"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/revolut-plans-netherlands-2026",
+      "title": "Revolut Plans Netherlands 2026: Standard vs Plus vs Premium vs Metal vs Ultra",
+      "description": "A source-checked guide to Revolut's five Dutch personal plans, current monthly prices, exchange and ATM limits, and the rule for choosing without overpaying.",
+      "tags": [
+        "Revolut",
+        "Netherlands",
+        "fintech",
+        "travel money",
+        "banking"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/revolut-referral-code-netherlands-2026",
+      "title": "Revolut Referral Code Netherlands 2026: Who Gets the €100 and What Counts",
+      "description": "Frank's current Revolut referral can pay Frank €100 after a personally invited friend qualifies. Here is who gets the reward, the current steps, deadline, and why the link is not public.",
+      "tags": [
+        "Revolut",
+        "referral",
+        "Netherlands",
+        "invite reward",
+        "fintech"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/revolut-vs-wise-vs-bunq-netherlands-2026",
+      "title": "Revolut vs Wise vs bunq Netherlands 2026: Choose by Use Case",
+      "description": "A source-led comparison of Revolut, Wise, and bunq for Dutch residents: account model, pricing, FX, ATM use, IBANs, deposit protection, travel, and who each fits.",
+      "tags": [
+        "Revolut",
+        "Wise",
+        "bunq",
+        "Netherlands",
+        "fintech comparison"
       ],
       "type": "blog"
     },
@@ -3330,6 +3600,32 @@
         "capital-allocation",
         "digital-assets",
         "acos"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/stanford-cs329z-engineering-ai-agents",
+      "title": "Stanford CS329Z: The AI Agent Engineering Roadmap",
+      "description": "A fact-checked architect’s roadmap to Stanford CS329Z: agent loops, compound systems, evaluation, safety and production adoption.",
+      "tags": [
+        "Stanford CS329Z",
+        "Engineering AI Agents",
+        "Compound AI Systems",
+        "Agent Evaluation",
+        "AI Architecture"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/stanford-mstar-walk-graph",
+      "title": "Stanford M* Walk Graph: Multimodal Inference Explained",
+      "description": "A fact-checked guide to Stanford M*: Walk Graphs, multimodal model serving, benchmark limits and an architect’s adoption plan.",
+      "tags": [
+        "Stanford M*",
+        "Walk Graph",
+        "Multimodal Inference",
+        "Model Serving",
+        "AI Infrastructure"
       ],
       "type": "blog"
     },
@@ -3555,15 +3851,15 @@
     },
     {
       "href": "/blog/ultimate-canva-ai-workflow-2026",
-      "title": "The Ultimate Canva AI Workflow in 2026",
-      "description": "The complete Canva AI workflow for 2026: Magic Studio, Brand Kit, Bulk Create, and the repurposing pipeline that turns one asset into a week of content. Honest ROI and who it's for.",
+      "title": "The Canva AI Workflow for Founders: From Brief to Brand System",
+      "description": "A governed Canva workflow for founders: connect the official MCP server, protect brand assets, review every release, and measure what compounds.",
       "tags": [
         "Canva",
-        "AI Design",
-        "Magic Studio",
-        "Creator Tools",
-        "Workflow",
-        "Brand Kit"
+        "Canva MCP",
+        "AI Architecture",
+        "Founder Systems",
+        "Brand Operations",
+        "Content Workflow"
       ],
       "type": "blog"
     },
@@ -3831,6 +4127,19 @@
         "Publishing",
         "Creator Systems",
         "Legacy"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/your-moat-was-never-the-model",
+      "title": "Your Moat Was Never the Model",
+      "description": "Five frontier models shipped in six weeks. My stack barely noticed. Here is the Substrate Test: four questions that tell you whether you own anything durable.",
+      "tags": [
+        "ai-architecture",
+        "agents",
+        "memory",
+        "orchestration",
+        "substrate"
       ],
       "type": "blog"
     },
@@ -4124,6 +4433,18 @@
       ],
       "type": "section",
       "sitemap": false
+    },
+    {
+      "href": "/canva",
+      "title": "Canva for Founders",
+      "description": "A governed Canva content operating system connecting the official MCP server, human review, owned media, distribution, and measurable learning",
+      "tags": [
+        "canva",
+        "mcp",
+        "founder systems",
+        "content operations"
+      ],
+      "type": "core"
     },
     {
       "href": "/changelog",
@@ -4980,6 +5301,15 @@
       "type": "section"
     },
     {
+      "href": "/founder-stack",
+      "title": "Founder Stack",
+      "tags": [
+        "founder",
+        "stack"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/founders-circle",
       "title": "Founder's Circle",
       "type": "community"
@@ -4992,7 +5322,8 @@
         "circle",
         "apply"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/foundry",
@@ -5301,6 +5632,19 @@
       "type": "guide"
     },
     {
+      "href": "/guides/canva-mcp-for-founders",
+      "title": "Canva MCP for Founders: Build a Governed Creative Operating System",
+      "description": "A practical architecture guide to Canva's official remote MCP server: setup, permissions, human approval gates, reliability, and a production-ready founder workflow.",
+      "tags": [
+        "canva",
+        "mcp",
+        "agentic-engineering",
+        "creative-operations",
+        "founder-systems"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/claude-anthropic-guide",
       "title": "Claude AI Guide for Creators",
       "description": "Master Anthropic's Claude for creative writing, content strategy, coding assistance, and building AI-powered workflows that amplify your creative output",
@@ -5575,6 +5919,15 @@
       "type": "section"
     },
     {
+      "href": "/human-layer",
+      "title": "Human Layer",
+      "tags": [
+        "human",
+        "layer"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/infogenius",
       "title": "Infogenius",
       "tags": [
@@ -5603,6 +5956,34 @@
     {
       "href": "/insights",
       "title": "Insights",
+      "type": "section"
+    },
+    {
+      "href": "/insights/from-personal-superintelligence-to-human-sovereignty",
+      "title": "From Personal Superintelligence TO Human Sovereignty",
+      "tags": [
+        "insights",
+        "from",
+        "personal",
+        "superintelligence",
+        "to",
+        "human",
+        "sovereignty"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/insights/meta-the-future-is-for-everyone",
+      "title": "Meta The Future IS For Everyone",
+      "tags": [
+        "insights",
+        "meta",
+        "the",
+        "future",
+        "is",
+        "for",
+        "everyone"
+      ],
       "type": "section"
     },
     {
@@ -8731,6 +9112,29 @@
       "type": "section"
     },
     {
+      "href": "/the-future-is-for-everyone",
+      "title": "The Future IS For Everyone",
+      "tags": [
+        "the",
+        "future",
+        "is",
+        "for",
+        "everyone"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/the-future-we-choose",
+      "title": "The Future WE Choose",
+      "tags": [
+        "the",
+        "future",
+        "we",
+        "choose"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/the-light-within",
       "title": "The Light Within",
       "tags": [
@@ -8746,6 +9150,14 @@
       "tags": [
         "the",
         "secret"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/thefutureisforeveryone",
+      "title": "Thefutureisforeveryone",
+      "tags": [
+        "thefutureisforeveryone"
       ],
       "type": "section"
     },
@@ -8774,6 +9186,16 @@
       "href": "/tools/roi-calculator",
       "title": "ROI Calculator",
       "type": "tool"
+    },
+    {
+      "href": "/tools/social-media",
+      "title": "Social Media",
+      "tags": [
+        "tools",
+        "social",
+        "media"
+      ],
+      "type": "section"
     },
     {
       "href": "/tools/strategy-canvas",
@@ -8810,6 +9232,14 @@
       "href": "/updates",
       "title": "Updates",
       "type": "static"
+    },
+    {
+      "href": "/v0",
+      "title": "V0",
+      "tags": [
+        "v0"
+      ],
+      "type": "section"
     },
     {
       "href": "/valentines-day",
@@ -9102,8 +9532,6 @@
   "aliases": {
     "/academy": "/ai-architect-academy",
     "/aco": "/agents",
-    "/ai-coe": "/acos",
-    "/ai-computer": "/ai-architecture",
     "/aiarchitectacademy": "/ai-architect-academy",
     "/ais": "/allies/ana-cancino",
     "/alliance/cecilia": "/allies/ana-cancino",
@@ -9157,7 +9585,6 @@
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
     "/workshops/ikigai": "/workshops/ikigai-branding",
-    "/workshops/ikigai-branding/present/speaker": "/workshops/ikigai-branding/present",
     "/workshops/ikigai/v2": "/workshops/ikigai-branding",
     "/workshops/ikigai/v3": "/workshops/ikigai-branding",
     "/workshops/ikigai/v4": "/workshops/ikigai-branding"

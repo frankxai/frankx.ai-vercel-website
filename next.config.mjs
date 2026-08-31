@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 /**
- * Load curated path aliases for 301 redirects.
+ * Load curated path aliases for permanent redirects (HTTP 308).
  * Source: data/redirect-aliases.json (operator-curated; agent proposals require approval).
  * Format: { aliases: { from: to, ... } } — see file for schema doc.
  * Failing safely to {} means a bad file never breaks the build.
@@ -29,6 +29,28 @@ function loadRedirectAliases() {
 }
 
 const REDIRECT_ALIASES = loadRedirectAliases()
+
+const GAME_TAILWIND_BROWSER_SCRIPT = 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4'
+
+function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = []) {
+  const scriptSourceSuffix =
+    additionalScriptSources.length > 0 ? ` ${additionalScriptSources.join(' ')}` : ''
+
+  return [
+    "default-src 'self'",
+    `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com${scriptSourceSuffix}`,
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com data:",
+    "img-src 'self' data: blob: https: http:",
+    "media-src 'self' https:",
+    "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
+    "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    `frame-ancestors ${frameAncestors}`,
+  ].join('; ')
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -79,6 +101,20 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Static game builds live outside /games so the App Router owns both
+      // /games and /games/:slug. Vercel cleanUrls canonicalizes .html and
+      // index.html requests before these rules, so effective aliases and
+      // destinations stay extensionless and converge without redirect loops.
+      {
+        source: '/games/hub',
+        destination: '/game-embeds/legacy-hub',
+        permanent: true,
+      },
+      {
+        source: '/games/games/:path*',
+        destination: '/game-embeds/:path*',
+        permanent: true,
+      },
       // Curated path aliases — loaded from data/redirect-aliases.json.
       // Includes /ikigai → /workshops/ikigai-branding and the rest of the
       // legacy URL recovery set. Operator + agent additions land here on approval.
@@ -94,15 +130,27 @@ const nextConfig = {
         destination: 'https://arcanea.ai/:path*',
         permanent: true,
       },
-      // Creator Lab signup → product page
+      // Creator Lab routes → /acos. The "Creator Lab OS" page sold a 30-day
+      // guided cohort that has never run, at $297/$997/Custom, and its tier
+      // CTAs pointed back at /creator-lab and /creator-lab-starter — which
+      // redirected to that same page. Purchase intent went in a circle and
+      // never reached anything buyable. /acos is the real, shippable product.
+      // permanent: false so an honest rebuild of the page can reclaim the URL.
       {
         source: '/creator-lab',
-        destination: '/products/agentic-creator-os',
+        destination: '/acos',
         permanent: false,
       },
       {
         source: '/creator-lab-starter',
-        destination: '/products/agentic-creator-os',
+        destination: '/acos',
+        permanent: false,
+      },
+      // Exact path only: /products/agentic-creator-os/docs/* is real ACOS
+      // documentation and stays reachable.
+      {
+        source: '/products/agentic-creator-os',
+        destination: '/acos',
         permanent: false,
       },
       // Research Hub content relocation redirects
@@ -118,6 +166,14 @@ const nextConfig = {
       },
       {
         source: '/arena',
+        destination: '/research/model-arena',
+        permanent: true,
+      },
+      // P0 fix 2026-08-27: /research/agent-benchmarks was deleted (404) but still
+      // drew ~5 visitors/week with dangling internal links. Redirect to the live
+      // model-arena hub, which is the semantic successor (head-to-head LLM evals).
+      {
+        source: '/research/agent-benchmarks',
         destination: '/research/model-arena',
         permanent: true,
       },
@@ -260,11 +316,11 @@ const nextConfig = {
         destination: '/ai-architecture',
         permanent: true,
       },
-      {
-        source: '/ai-architect',
-        destination: '/ai-architecture',
-        permanent: true,
-      },
+      // /ai-architect used to permanently redirect (HTTP 308) to
+      // /ai-architecture. It is now its own page:
+      // the review as something you run, where /ai-architecture is the reference
+      // you read. The child redirect stays, minus the two paths that are real
+      // pages of their own.
       {
         source: '/ai-architect/:path((?!ai-coe-hub).*)',
         destination: '/ai-architecture/:path',
@@ -378,20 +434,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com data:",
-              "img-src 'self' data: blob: https: http:",
-              "media-src 'self' https:",
-              "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
-              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io",
-              "object-src 'none'",
-              "base-uri 'self'",
-              "form-action 'self'",
-              "frame-ancestors 'none'",
-            ].join('; '),
+            value: siteContentSecurityPolicy("'none'"),
           },
           {
             key: 'X-DNS-Prefetch-Control',
@@ -416,6 +459,22 @@ const nextConfig = {
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
+          },
+        ],
+      },
+      {
+        // Relocated game documents are embedded by the same-origin player at
+        // /games/:slug. This rule follows the site-wide rule so these headers
+        // override it without weakening framing or script policy elsewhere.
+        source: '/game-embeds/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: siteContentSecurityPolicy("'self'", [GAME_TAILWIND_BROWSER_SCRIPT]),
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
           },
         ],
       },

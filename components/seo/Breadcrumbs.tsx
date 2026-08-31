@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ChevronRight, Home } from 'lucide-react'
 
 import JsonLd from '@/components/seo/JsonLd'
+import { siteConfig } from '@/lib/seo'
 
 type BreadcrumbItem = {
   label: string
@@ -20,13 +21,13 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://frankx.ai',
+        item: siteConfig.url,
       },
       ...items.map((item, index) => ({
         '@type': 'ListItem',
         position: index + 2,
         name: item.label,
-        item: `https://frankx.ai${item.href}`,
+        item: new URL(item.href, siteConfig.url).toString(),
       })),
     ],
   }

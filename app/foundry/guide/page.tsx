@@ -1,16 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { siteConfig } from '@/lib/seo'
+
 export const metadata: Metadata = {
   title: 'The Operating Guide — FrankX Foundry',
   description:
     'How to operate an installed business OS: day-1 onboarding, the 30-minute weekly rhythm, the quality gates, and how harness updates arrive. Written for founders, no AI background assumed.',
-  alternates: { canonical: 'https://frankx.ai/foundry/guide' },
+  alternates: { canonical: `${siteConfig.url}/foundry/guide` },
   openGraph: {
     title: 'The Operating Guide — FrankX Foundry',
     description:
       'Day-1 onboarding, the 30-minute weekly rhythm, the quality gates, and how harness updates arrive.',
-    url: 'https://frankx.ai/foundry/guide',
+    url: `${siteConfig.url}/foundry/guide`,
     images: [
       {
         url: '/images/blog/agentic-os-family-hero.png',
@@ -34,9 +36,10 @@ export default function FoundryGuidePage() {
           How to run a business on an operating system.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-white/60">
-          For founders who just got an OS installed — or instantiated the open-source template
-          themselves. No AI background assumed. Ten minutes to read; thirty minutes a week to
-          operate.
+          For founders who just got an OS installed — or instantiated the
+          open-source template themselves. No AI background assumed. The
+          operating rhythm is adapted to the company, the work, and the
+          founder’s available attention.
         </p>
 
         <div className="mt-16 space-y-14 text-base leading-relaxed">

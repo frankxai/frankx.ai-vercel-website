@@ -6,7 +6,7 @@ import { bookReviews, getReviewBySlug } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 import type { BookReview } from '@/app/books/types';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = 'https://www.frankx.ai';
 
 function absoluteUrl(src?: string) {
   if (!src) return undefined;

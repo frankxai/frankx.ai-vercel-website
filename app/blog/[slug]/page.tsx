@@ -10,7 +10,11 @@ import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
 import { ArticleHeaderActions } from '@/components/blog/ArticleHeaderActions'
-import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
+import {
+  getAllBlogPostSummaries,
+  getAllBlogPosts,
+  getBlogPost,
+} from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
@@ -44,6 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/blog/${post.slug}`,
     type: 'article',
     image:
+      post.ogImage ||
       post.image ||
       `/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.description)}`,
     publishedTime: post.date,
@@ -66,10 +71,11 @@ export default async function BlogPostPage({
     notFound()
   }
 
-  const allPosts = getAllBlogPosts()
+  // Recommendations are a client component and only consume metadata. Passing
+  // full MDX bodies here serializes the entire blog corpus into every article.
+  const allPosts = getAllBlogPostSummaries()
   const documents = allPosts.map((postItem) => ({
     title: postItem.title,
-    content: postItem.content || '',
     url: `/blog/${postItem.slug}`,
     tags: postItem.tags,
     image: postItem.image,
@@ -80,7 +86,6 @@ export default async function BlogPostPage({
 
   const currentDocument = {
     title: post.title,
-    content: post.content,
     url: `/blog/${post.slug}`,
     tags: post.tags,
     image: post.image,
@@ -139,27 +144,9 @@ export default async function BlogPostPage({
     ...(post.tldr && { abstract: post.tldr }),
   }
 
-  // Extract FAQ from content body for FAQPage schema
-  const extractedFaqs = extractFAQFromContent(post.content)
-
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
       <JsonLd type="Article" data={articleSchema} />
-      {extractedFaqs.length > 0 && (
-        <JsonLd
-          type="FAQPage"
-          data={{
-            mainEntity: extractedFaqs.map(faq => ({
-              '@type': 'Question',
-              name: faq.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.answer,
-              },
-            })),
-          }}
-        />
-      )}
 
       {/* Aurora Background Effect */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -380,4 +367,3 @@ export default async function BlogPostPage({
     </main>
   )
 }
-

@@ -18,9 +18,10 @@
     "smoke:json": "node scripts/run-smoke-evals.mjs --json",
     "test:newsletter": "node --experimental-strip-types --test scripts/tests/submit-newsletter.test.mjs",
     "test:privacy-analytics": "node --experimental-strip-types --test scripts/tests/privacy-analytics.test.mjs",
-    "test:build-integrity": "node --test scripts/tests/build-integrity-contract.test.mjs scripts/tests/managed-next-process.test.mjs scripts/tests/library-higher-consciousness-contract.test.mjs",
+    "test:build-integrity": "node --test scripts/tests/build-integrity-contract.test.mjs scripts/tests/managed-next-process.test.mjs scripts/tests/library-higher-consciousness-contract.test.mjs scripts/tests/game-embed-security-contract.test.mjs scripts/tests/books-publication-gate-contract.test.mjs scripts/tests/guide-image-generator-security-contract.test.mjs",
+    "test:books-publication-gate": "node --test scripts/tests/books-publication-gate-contract.test.mjs",
     "test:agentdb-runtime": "node --test scripts/tests/agentdb-runtime.test.mjs",
-    "test:build-artifact-integrity": "node --test scripts/tests/build-artifact-integrity.test.mjs",
+    "test:build-artifact-integrity": "node --experimental-strip-types --test scripts/tests/build-artifact-integrity.test.mjs",
     "test:vault-metadata:rendered": "node --test scripts/tests/vault-metadata-rendered.test.mjs",
     "test:tallinn-experience": "node --test scripts/tests/tallinn-experience-foundry-contract.test.mjs",
     "test:ai-architecture": "node scripts/check-ai-architecture-contract.mjs",
@@ -31,8 +32,9 @@
     "test:alba-gut": "node --test scripts/tests/alba-gut-intelligence-contract.test.mjs",
     "test:community-platform-guide": "node --test scripts/tests/community-platform-guide-contract.test.mjs",
     "test:learning-routes": "node --experimental-strip-types --test scripts/tests/learning-routes-contract.test.mjs",
-    "test:blog-discoverability": "node --experimental-strip-types --test scripts/tests/blog-discoverability-contract.test.mjs",
+    "test:blog-discoverability": "node --experimental-strip-types --test scripts/tests/blog-discoverability-contract.test.mjs scripts/tests/blog-faq-schema-contract.test.mjs scripts/tests/blog-recommendation-payload-contract.test.mjs",
     "test:social-identity": "node --experimental-strip-types --test scripts/tests/social-identity-contract.test.mjs",
+    "test:seo-title": "node --experimental-strip-types --test scripts/tests/seo-title-brand-suffix-contract.test.mjs",
     "test:core-qualities": "node --test scripts/tests/core-qualities-contract.test.mjs",
     "research:agentic-life:audit": "node scripts/audit-agentic-life-research.mjs",
     "research:agentic-life:receipt": "node scripts/audit-agentic-life-research.mjs --write",
@@ -90,10 +92,15 @@
     "diagrams:guard": "node scripts/diagrams/guard.mjs",
     "diagrams:baseline": "node scripts/diagrams/guard.mjs --update-baseline",
     "ci:check": "npm run merge:gate && npm run lint && npm run content:validate && npm run diagrams:guard",
-    "merge:gate": "npm run test:syntax && npm run test:build-integrity && npm run test:agentdb-runtime && npm run test:homepage-release && npm run test:music-release-registry && npm run test:collaboration-release && npm run test:expert-authority && npm run test:ai-architecture && npm run test:email-safety && npm run test:checkout-sku && npm run test:auction-bid && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run test:blog-discoverability && npm run test:social-identity && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run intelligence:check && npm run learn:check && npm run links:check:static && npm run links:check:ci && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
-    "merge:gate:ci": "npm run test:syntax && npm run test:build-integrity && npm run test:agentdb-runtime && npm run test:homepage-release && npm run test:music-release-registry && npm run test:collaboration-release && npm run test:expert-authority && npm run test:ai-architecture && npm run test:email-safety && npm run test:checkout-sku && npm run test:auction-bid && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run test:blog-discoverability && npm run test:social-identity && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run learn:check && npm run links:check:static && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
+    "merge:gate": "npm run test:syntax && npm run test:media-guard && npm run test:build-integrity && npm run test:agentdb-runtime && npm run test:homepage-release && npm run test:music-release-registry && npm run test:collaboration-release && npm run test:expert-authority && npm run test:ai-architecture && npm run test:email-safety && npm run test:checkout-sku && npm run test:auction-bid && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run test:blog-discoverability && npm run test:social-identity && npm run test:seo-title && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run intelligence:check && npm run intelligence:validate && npm run test:intelligence-ingest && npm run test:intelligence-layer && npm run learn:check && npm run links:check:static && npm run links:check:ci && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
+    "merge:gate:ci": "npm run test:syntax && npm run test:media-guard && npm run test:build-integrity && npm run test:agentdb-runtime && npm run test:homepage-release && npm run test:music-release-registry && npm run test:collaboration-release && npm run test:expert-authority && npm run test:ai-architecture && npm run test:email-safety && npm run test:checkout-sku && npm run test:auction-bid && npm run test:agentic-life-research && npm run test:community-platform-guide && npm run test:learning-routes && npm run test:blog-discoverability && npm run test:social-identity && npm run test:seo-title && npm run type-check && npm run research:agentic-life:audit && npm run content:check && npm run claims:audit:strict && npm run ai-slop:audit:strict && npm run learn:check && npm run links:check:static && npm run newsletter:validate && npm run workflow:validate && npm run workflow:test",
     "learn:check": "node scripts/check-learning-paths.mjs",
     "intelligence:check": "node scripts/check-intelligence-freshness.mjs",
+    "intelligence:fetch": "node scripts/intelligence/fetch-external.mjs",
+    "intelligence:validate": "node scripts/intelligence/fetch-external.mjs --offline",
+    "test:intelligence-layer": "node --experimental-strip-types --test scripts/tests/intelligence-layer.test.mjs",
+    "intelligence:licenses": "node scripts/intelligence/verify-licenses.mjs",
+    "test:intelligence-ingest": "node --test scripts/intelligence/*.test.mjs",
     "links:check": "node scripts/check-links.mjs",
     "links:check:ci": "bash scripts/run-links-check-with-dev.sh",
     "links:check:static": "node scripts/check-internal-links.mjs",
@@ -152,8 +159,8 @@
     "newsletter:stage": "node scripts/newsletter/send.mjs stage",
     "newsletter:send": "node scripts/newsletter/send.mjs send",
     "test:contract-guard": "node scripts/check-contract-guard.mjs",
-    "test:syntax": "node scripts/check-test-syntax.mjs",
-    "test:music-release-registry": "node --experimental-strip-types --test scripts/tests/music-release-registry.test.mjs"
+    "test:media-guard": "node --test scripts/tests/media-guard.contract.mjs",
+    "test:syntax": "node scripts/check-test-syntax.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -261,5 +268,16 @@
     "*.{json,md,mdx,css}": [
       "prettier --write --ignore-unknown"
     ]
-  }
+  },
+  "pnpm": {
+    "overrides": {
+      "@opentelemetry/propagator-jaeger": "^2.9.0",
+      "hono": "^4.13.1",
+      "ip-address": "^10.4.0",
+      "nanoid": "^3.3.18",
+      "postcss": "^8.5.26"
+    }
+  },
+  "license": "UNLICENSED",
+  "author": "Frank Riemer <hello@frankx.ai>"
 }

@@ -1,0 +1,257 @@
+---
+title: "Graph Engineering with Google Antigravity and ADK 2.0"
+description: "Separate Antigravity coding loops, ADK 2.0 workflow graphs and Temporal durability in one exact Google agent architecture."
+date: "2026-08-24"
+lastUpdated: "2026-08-25"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["Google Antigravity", "Google ADK", "ADK 2.0", "Temporal", "Graph Engineering"]
+image: "/images/blog/graph-engineering/graph-engineering-hero.webp"
+featured: false
+flagship: false
+readingGoal: "Assign Antigravity, ADK 2.0 and Temporal to the correct layers of a production agent graph"
+tldr: "Google Antigravity is an alpha coding-agent SDK whose loop runs through a bundled compiled runtime. ADK 2.0 is Google's GA graph engine with validated nodes, edges, routing, fan-out, loops and interruption. Temporal adds durable history, timers and recovery. Production architecture should compose these layers instead of treating them as interchangeable."
+architectNote:
+  recommendation: "Use ADK 2.0 to own graph semantics, Temporal to own durable process history and Antigravity only inside bounded coding nodes."
+  coePillar: "Agent platform architecture"
+keywords: ["Google ADK 2.0 graph", "Google Antigravity architecture", "ADK workflow graph", "Antigravity SDK alpha", "Temporal ADK agents"]
+schema: ["Article", "FAQPage"]
+faqSource: "body"
+faq:
+  - q: "Is Google Antigravity the same runtime as ADK 2.0?"
+    a: "No. Antigravity is a coding-agent harness and SDK; ADK 2.0 is a general agent and workflow framework with explicit graph primitives."
+  - q: "Is the Antigravity SDK fully open source?"
+    a: "The Python SDK is Apache-2.0, but the official README says it depends on a compiled runtime binary bundled in platform-specific wheels. Cloning the source alone is insufficient to run it."
+  - q: "Is ADK 2.0 production-ready?"
+    a: "ADK 2.0 reached GA in May 2026 and continues to release actively. Because it is a young breaking generation, most teams should run a migration and determinism pilot before broad adoption."
+  - q: "Does ADK 2.0 replace Temporal?"
+    a: "No. ADK owns agent graph semantics; Temporal supplies event history, deterministic replay, durable timers, task queues and recovery across process failure."
+  - q: "Can an Antigravity agent run as an ADK node?"
+    a: "Google has introduced Antigravity integration in ADK labs and support for single-turn Antigravity agents as subagents, but the boundary should remain typed and treated as a pilot."
+  - q: "What is the recommended production topology?"
+    a: "Use Temporal as the outer durable process, an ADK Workflow for each graph transaction, Antigravity only for bounded coding work, and deterministic policy plus human approval before consequential effects."
+series:
+  slug: "graph-engineering-field-guide"
+  title: "Graph Engineering Field Guide"
+  part: 9
+  total: 9
+---
+
+Google now has two agent systems that are easy to collapse into one mental model.
+
+Do not.
+
+[Google Antigravity](https://github.com/google-antigravity) is a coding-agent platform with an alpha Python SDK and a fast-moving CLI. [Google ADK](https://github.com/google/adk-python) is a general agent development framework whose 2.0 generation includes a GA graph workflow engine. [Temporal](https://github.com/temporalio/temporal) is a durable execution platform that can preserve process history and recover work after failures.
+
+They solve three different problems:
+
+> Antigravity performs bounded coding work. ADK defines the agent graph. Temporal makes the business process survive.
+
+This is the final implementation guide in the [Graph Engineering Field Guide](/blog/graph-engineering-ai-agents). Read it beside the [three coupled graphs model](/blog/graph-engineering-ai-agents), the [orchestration pattern guide](/blog/multi-agent-orchestration-patterns-2026) and the [four hard-to-reverse architecture decisions](/blog/ai-architecture-2026-four-decisions-hard-to-reverse).
+
+## TLDR
+
+- **Antigravity SDK:** alpha coding harness, stateful loop, tools, MCP, policies and triggers; depends on a bundled compiled runtime.
+- **ADK 2.0:** GA workflow graph with typed nodes, validated edges, routes, fan-out/fan-in, conditional loops, retries, state and interruption.
+- **Temporal:** durable history, deterministic replay, timers, task queues and activity recovery.
+- Use ADK to model the graph, not Antigravity.
+- Use Temporal when losing the process would lose business truth.
+- Put Antigravity inside a bounded coding node with explicit artifacts and approval gates.
+
+## The freshness picture
+
+| System | Position on 24 August 2026 | License and maturity | Architecture call |
+|---|---|---|---|
+| [Antigravity Python SDK](https://github.com/google-antigravity/antigravity-sdk-python) | Package `0.1.14`; classifier says Alpha | Apache-2.0 Python layer; compiled runtime dependency | Pilot coding nodes only |
+| [Antigravity CLI](https://github.com/google-antigravity/antigravity-cli) | `1.1.19`, released 22 August | Official, active and rapidly changing | Pilot for operator workflows |
+| [ADK Python](https://github.com/google/adk-python) | `v2.7.1`, released 17 August; 2.0 GA since 19 May | Apache-2.0, first-party, active cadence | Pilot broadly; adopt for validated greenfield use |
+| [Temporal server](https://github.com/temporalio/temporal/releases) | `v1.31.2`, released 8 July | MIT, mature server/cloud ecosystem | Adopt for durable orchestration |
+| [Temporal Python SDK](https://github.com/temporalio/sdk-python/releases) | `1.31.0`, released 29 July | MIT, signed release, active | Adopt where Python workers fit |
+
+Freshness is not a single score. Antigravity is current but alpha. ADK is GA but only months into a breaking 2.x architecture. Temporal is older and operationally mature. The architect's job is to map maturity to responsibility.
+
+## Antigravity: a loop behind an SDK
+
+The [Antigravity SDK README](https://github.com/google-antigravity/antigravity-sdk-python/blob/main/README.md) describes a three-layer Python architecture:
+
+| SDK layer | Key primitives | What it owns |
+|---|---|---|
+| Simplified | `Agent` | Binary discovery, tool wiring, hooks, defaults and a high-level chat loop |
+| Session | `Conversation`, `ChatResponse`, `Step`, `ToolCall`, `HookRunner`, `ToolRunner`, `TriggerRunner` | Stateful interaction, streaming, tools, policy and background inputs |
+| Adapter | `Connection`, `ConnectionStrategy`, `LocalConnection` | Transport and backend integration |
+
+The useful capabilities are concrete. `Agent` is an async context manager. `Conversation` accumulates step history and turn count. `ChatResponse` streams text; separate streams expose thoughts and typed tool calls. Custom Python functions and [MCP connections](https://github.com/google-antigravity/antigravity-sdk-python/tree/main/docs) extend tools. Policies can `deny`, `allow`, `ask_user` or `enforce`. Triggers can push scheduled or file-change events into a live conversation. The [official examples](https://github.com/google-antigravity/antigravity-sdk-python/tree/main/examples) make the loop straightforward to embed.
+
+The decisive boundary appears in the installation note: the SDK relies on a **compiled runtime binary included in platform-specific wheels**. Cloning the repository is not enough to run it. The package metadata still classifies the project as [Development Status 3 — Alpha](https://github.com/google-antigravity/antigravity-sdk-python/blob/main/pyproject.toml).
+
+That does not invalidate the SDK. It changes the trust model. The open Python surface is not the whole executable runtime. You can inspect configuration, types, adapters and policy wiring while the inner loop remains coupled to a binary release. Pin wheels, record hashes, inventory supported platforms and test policy enforcement after every upgrade.
+
+Triggers also need correct framing. They inject events into one stateful loop; they are not a durable distributed scheduler. Current trigger documentation does not promise automatic restart or ordering across failures. Use them for responsive local behavior, not for business-critical timers.
+
+## ADK 2.0: the actual graph engine
+
+ADK 2.0 made graph structure a first-class runtime object. The official [ADK 2.0 documentation](https://google.github.io/adk-docs/2.0/) marks the generation generally available, while the [release page](https://github.com/google/adk-python/releases/tag/v2.7.1) shows continued active maintenance.
+
+The [graph workflow guide](https://github.com/google/adk-python/blob/main/docs/guides/workflow/graph/index.md) defines the exact model:
+
+| Graph concept | ADK 2.0 primitive |
+|---|---|
+| Compiled workflow | `Workflow` |
+| Entry | `START` sentinel |
+| Deterministic code node | `@node` compiled to `FunctionNode` |
+| Agent node | `LlmAgent` wrapper |
+| Tool node | `ToolNode` from a `BaseTool` |
+| Subgraph | Nested `Workflow` / `BaseNode` |
+| Transition | `Edge(from_node, to_node, route=...)` |
+| Conditional signal | `Event(route=...)` |
+| Fallback branch | `DEFAULT_ROUTE` |
+| Dynamic invocation | `ctx.run_node` |
+| Recovery | `RetryConfig` and interruption/resume |
+
+The syntax can express sequential chains, parallel fan-out, fan-in and conditional branches. Conditional routes may form loops. Unconditional cycles fail validation. Compilation also checks unique node names, one `START`, reachability, duplicate edges, default-route constraints and compatible schemas.
+
+That validation is not a cosmetic feature. It moves graph correctness out of a prompt and into an executable contract. An LLM can select a route by emitting an event, but the workflow defines which route names and targets are legal.
+
+ADK's wider framework adds [workflow agents](https://google.github.io/adk-docs/agents/workflow-agents/), tools, sessions and [runtime event processing](https://google.github.io/adk-docs/runtime/). The 2.0 Task API adds structured agent-to-agent delegation, including multi-turn and human-in-the-loop patterns. These are agent graph primitives, not merely a coding UI.
+
+The freshness warning is migration. ADK 2.0 changed the Agent API, Event schema and session model; `BaseAgent` became `BaseNode`, and custom legacy run overrides can bypass new behavior. Session compatibility has version boundaries. Broad exception handling can also swallow retry or interruption signals. Treat a 1.x-to-2.x move as a runtime migration, not a dependency bump.
+
+## Temporal: durability is a different contract
+
+ADK can model loops and retries. That does not automatically make every business process durable across host loss, deployments or multi-day waits.
+
+Temporal records a Workflow's commands and external events in an append-only Event History. On recovery, deterministic Workflow code replays that history. Side effects run as Activities with retries, timeouts and heartbeats. Child Workflows, durable timers, Signals, Queries, Updates, task queues and `continue_as_new` support long-lived coordination. The official [architecture explanation](https://docs.temporal.io/encyclopedia/architecture/how-temporal-works) and [Python message-passing guide](https://docs.temporal.io/develop/python/workflows/message-passing) define these guarantees.
+
+This is not “ADK but more enterprise.” It is a separate substrate.
+
+| Concern | ADK 2.0 | Temporal |
+|---|---|---|
+| Agent/node semantics | Primary owner | Carries opaque activity/workflow inputs |
+| Conditional graph routing | Primary owner | Possible in code, but not agent-specific |
+| Agent sessions and events | Primary owner | Can persist references and business state |
+| Multi-day process history | Application-dependent | Primary owner |
+| Durable timers and worker recovery | Application-dependent | Primary owner |
+| Side-effect retry discipline | Node/tool policy | Activity policy with recorded history |
+| Process messaging | ADK tasks/events | Signals, Queries and Updates |
+
+Temporal's Python SDK now advertises optional integrations for agent frameworks, including Google ADK, in its [package configuration](https://github.com/temporalio/sdk-python/blob/main/pyproject.toml). Treat any specific bridge at its documented maturity level; the underlying architectural separation remains valid even when integration code changes.
+
+## The exact adoption topology
+
+Use this topology for a production Google agent platform:
+
+| Layer | Concrete owner | State and authority |
+|---|---|---|
+| 1. Ingress | API/event adapter | Authenticate request, assign idempotency key, store immutable intent |
+| 2. Durable process | Temporal Workflow | Business status, deadlines, retries, escalation, process messages and recovery |
+| 3. Agent transaction | ADK 2.0 `Workflow` | Typed graph state, legal routes, fan-out/fan-in, conditional repair loops and HITL interruption |
+| 4. Specialist worker | `FunctionNode`, `LlmAgent`, `ToolNode` or bounded Antigravity agent | Produce one typed artifact under scoped tools and budget |
+| 5. Evidence gate | Deterministic tests plus independent evaluator | Verify schemas, citations, tests, policy and risk |
+| 6. Consequence | Temporal Activity behind approval | Commit, deploy, message, payment or other side effect |
+| 7. Audit | Temporal history plus ADK trace/artifacts | Explain who did what, with which version and evidence |
+
+The event sequence is equally important:
+
+1. Temporal receives an idempotent business request.
+2. A Temporal Activity invokes one bounded ADK Workflow transaction.
+3. ADK compiles and validates the graph before execution.
+4. ADK fans independent analysis nodes out and joins their typed outputs.
+5. If coding is required, a bounded Antigravity node receives an isolated workspace, fixed base revision and tool policy.
+6. Deterministic verification evaluates the returned patch or artifact.
+7. ADK returns a typed decision and evidence bundle.
+8. Temporal records that result, waits for approval when required and executes the consequential Activity.
+9. Failures retry at the narrowest safe layer: node, activity or whole graph transaction—never all three blindly.
+
+This topology separates three meanings of “state”: Antigravity conversation state, ADK graph state and Temporal process history. Persist identifiers between them rather than copying entire transcripts into every layer.
+
+## Practical adoption plan
+
+### Phase 1: ADK graph conformance
+
+Implement one workflow with a deterministic node, one agent node, parallel branches, a conditional repair loop, schema validation and a human interruption. Test invalid graphs as deliberately as valid ones. Capture the exact ADK package version because 2.x is moving quickly.
+
+### Phase 2: Antigravity boundary test
+
+Run ten isolated coding tasks through the SDK wheel. Verify read-only defaults, capability escalation, policy callbacks, MCP failure, process termination and source-to-wheel provenance. Inspect the [Antigravity SDK license](https://github.com/google-antigravity/antigravity-sdk-python/blob/main/LICENSE) and deployment platforms before procurement approval.
+
+### Phase 3: Temporal envelope
+
+Wrap one high-value workflow with an idempotency key, Activity timeout, retry policy, durable timer, Signal or Update, worker restart and deployment version test. Keep non-deterministic model/tool calls in Activities.
+
+### Phase 4: promotion gate
+
+Promote only when traces can answer: Which business request created this run? Which ADK graph and node versions executed? Which Antigravity wheel and binary were used? Which evidence authorized the side effect? Can the process recover after each component is killed?
+
+Use the [agent observability stack](/blog/observability-stack-multi-agent-systems-2026) to define those receipts before production traffic.
+
+## Failure drills before production
+
+### Drill 1: Antigravity binary mismatch
+
+Deploy an unsupported or changed wheel to one worker. The node must fail closed, report its package and platform identity and avoid leaving a claimed task indefinitely.
+
+### Drill 2: Invalid ADK graph
+
+Add an unreachable node, duplicate edge or unconditional cycle. Compilation should reject the workflow before any external tool receives authority.
+
+### Drill 3: Interrupted node with side effects
+
+Pause for human approval after a node has prepared an external action. Resume twice. The side effect must execute once through an idempotent Temporal Activity, not once per ADK replay or resume.
+
+### Drill 4: Temporal worker loss
+
+Kill the worker after ADK returns but before the consequential Activity completes. Temporal history should recover the process without repeating a recorded successful action.
+
+### Drill 5: Poisoned parallel branch
+
+Return a schema-valid but evidentially weak result from one ADK branch. Fan-in must retain provenance and reject the aggregate rather than letting majority agreement substitute for proof.
+
+## Adoption decision
+
+| Component | Call | Boundary |
+|---|---|---|
+| ADK 2.0 for greenfield Google agent graphs | **Pilot, then adopt** | Promote after graph, migration and determinism tests |
+| Antigravity SDK/CLI | **Pilot** | Bounded coding nodes and operator workflows only |
+| Temporal for critical long-running processes | **Adopt** | Outer durability layer, with trained operators and replay discipline |
+| Antigravity as graph authority | **Not for core** | Alpha SDK and opaque compiled loop do not provide the required graph contract |
+| ADK alone as universal durability layer | **Not for core durability** | Use only when process loss is acceptable or durability is supplied elsewhere |
+
+The strongest Google architecture is not the one with the most Google components. It is the one with the clearest ownership boundaries.
+
+## The AI Architect's call
+
+ADK 2.0 is the strategic graph primitive here. Its `Workflow`, nodes, edges, routes, validation, fan-out, conditional loops, state and interruption form an inspectable execution contract. It deserves a serious pilot and can become the default graph layer for Google-native teams.
+
+Antigravity is a different bet: an ergonomic coding loop with promising tools, policies, triggers and session primitives, delivered through an alpha SDK around a compiled runtime. Use it where that exact harness creates value. Do not promote its conversation state into business process truth.
+
+Temporal completes the topology when work must survive. It should own time, recovery and consequential activity history. ADK should own legal agent transitions. Antigravity should own bounded coding work. Policy and humans should own irreversible authority.
+
+## Verification receipt
+
+I inspected the Antigravity SDK README and package metadata, ADK 2.0 graph guide and release record, and Temporal’s current architecture and Python release pages. The publishing environment did not include the Antigravity wheel, ADK, or a Temporal worker, so this is a source-level architecture inspection rather than a performance run. Antigravity stays pilot, and ADK promotion remains conditional on the conformance and failure tests above.
+
+## FAQ
+
+### Is Google Antigravity the same as ADK 2.0?
+
+No. Antigravity is a coding-agent harness with a Python SDK and CLI. ADK is a general agent framework with an explicit graph workflow engine. They can integrate, but their runtime contracts are different.
+
+### Is Antigravity fully inspectable from source?
+
+Not end to end. The Python SDK is public and Apache-2.0, but its official README states that execution depends on a compiled runtime binary included in platform-specific wheels. A source clone alone cannot run the SDK.
+
+### Is ADK 2.0 ready to adopt?
+
+It is GA and actively released. For new Google-native systems, pilot it with production-shaped graphs and promote after validation, retry, interruption, session migration and observability tests. Existing 1.x systems need a deliberate migration.
+
+### Does ADK replace Temporal?
+
+No. ADK gives agents graph semantics. Temporal gives long-running processes durable event history, deterministic replay, timers, task queues and worker recovery. Use both when those responsibilities coexist.
+
+### Can Antigravity run inside an ADK graph?
+
+Google’s official [ADK Python API reference](https://google.github.io/adk-docs/api-reference/python/google-adk.html#module-google.adk.labs.antigravity) exposes the integration under `google.adk.labs.antigravity`, including the single-use subagent constraint. Keep the input, artifact, timeout and tool authority explicit, and retain pilot status while that labs bridge matures.
+
+### What should own the final side effect?
+
+A deterministic policy gate and, where required, a human approval should authorize it. Execute the effect as an idempotent Temporal Activity. Neither an Antigravity conversation nor an ADK model route should silently deploy, pay or publish.

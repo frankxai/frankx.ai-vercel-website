@@ -47,7 +47,7 @@ const realRoutes = new Set(enumerateRoutes().map((r) => r.href))
 
 /**
  * Pre-existing shadowed routes, grandfathered so this gate can block NEW
- * shadowing today rather than waiting on four unrelated URL decisions.
+ * shadowing today rather than waiting on unrelated URL decisions.
  *
  * Each of these aliases points away from a real page that still exists in the
  * tree. Whether that is deliberate (a soft retirement that keeps the file) or
@@ -56,10 +56,11 @@ const realRoutes = new Set(enumerateRoutes().map((r) => r.href))
  * list; do not add to it.
  */
 const GRANDFATHERED_SHADOWS = new Map([
-  ['/ai-coe', '/acos'],                                                        // 465-line page
-  ['/ai-computer', '/ai-architecture'],                                        // 445-line page
+  // Legitimate soft retirement: the 140-line assessment was superseded by the
+  // 530-line quiz it points at. The permanent redirect (HTTP 308) is the
+  // correct consolidation, so this
+  // one stays. The unreachable source file is dead code, flagged not deleted.
   ['/soul-frequency-assessment', '/soul-frequency-quiz'],                      // 140-line page
-  ['/workshops/ikigai-branding/present/speaker', '/workshops/ikigai-branding/present'], // 283-line page
 ])
 
 for (const from of Object.keys(aliases)) {
@@ -103,6 +104,107 @@ if (existsSync(join(ROOT, ARENA))) {
     )
   }
   notes.push(`checked ${new Set(arenaModels).size} arena models against ${registryNames.length} registry entries`)
+}
+
+// ── 3. Every contestant named in a receipt must exist in the registry ────────
+// Same drift class as check 2, but on the evidence side: a receipt naming a model the
+// hub has never heard of means the measurement cannot be traced back to a real entry.
+const RECEIPTS_DIR = 'public/research/arena-receipts'
+const normalise = (s) => String(s).toLowerCase().replace(/[^a-z0-9]/g, '')
+const registryFile = readJson('data/model-registry.json')
+const registryNorm = Object.entries(registryFile.models ?? {}).flatMap(([slug, m]) =>
+  [normalise(slug), normalise(m.name)].filter(Boolean),
+)
+
+const receiptRoundIds = new Set()
+if (existsSync(join(ROOT, RECEIPTS_DIR))) {
+  const { readdirSync } = await import('node:fs')
+  const files = readdirSync(join(ROOT, RECEIPTS_DIR)).filter((f) => f.endsWith('.json'))
+  let contestantCount = 0
+
+  for (const file of files) {
+    let receipt
+    try {
+      receipt = readJson(`${RECEIPTS_DIR}/${file}`)
+    } catch (e) {
+      problems.push(`receipt-invalid: ${file} is not parseable JSON (${e.message}).`)
+      continue
+    }
+    // A receipt without a round_id cannot be referenced by a routing verdict, which
+    // makes check 4 below unable to protect anything for this file.
+    if (!receipt.round_id) {
+      problems.push(`receipt-invalid: ${file} has no round_id.`)
+    } else {
+      receiptRoundIds.add(receipt.round_id)
+    }
+    for (const contestant of receipt.contestants ?? []) {
+      contestantCount++
+      if (!registryNorm.includes(normalise(contestant))) {
+        problems.push(
+          `receipt-drift: "${contestant}" is a contestant in ${file} but has no entry in ` +
+            `data/model-registry.json. A measurement that cannot be traced to a registered ` +
+            `model cannot be published as one.`,
+        )
+      }
+    }
+  }
+  notes.push(`checked ${contestantCount} receipt contestant(s) across ${files.length} receipt(s)`)
+}
+
+// ── 4. No routing verdict may cite a round that has no receipt ───────────────
+// The no-number-without-a-receipt law, mechanised. routing-verdicts.json does not exist
+// yet (it arrives with the first-party harness); guard rather than assume, so this gate
+// starts protecting the moment the file lands instead of needing to be remembered then.
+const VERDICTS = 'data/model-arena/routing-verdicts.json'
+if (existsSync(join(ROOT, VERDICTS))) {
+  const verdicts = readJson(VERDICTS)
+  let citedCount = 0
+  for (const verdict of verdicts.verdicts ?? []) {
+    for (const roundId of verdict.evidence?.round_ids ?? []) {
+      citedCount++
+      if (!receiptRoundIds.has(roundId)) {
+        problems.push(
+          `verdict-without-receipt: verdict "${verdict.task_class ?? '(unnamed)'}" cites round ` +
+            `"${roundId}", but no receipt in ${RECEIPTS_DIR} carries that round_id. ` +
+            `A routing recommendation must be traceable to evidence that exists.`,
+        )
+      }
+    }
+  }
+  notes.push(`checked ${citedCount} verdict round citation(s) against ${receiptRoundIds.size} receipt(s)`)
+}
+
+// ── 5. The external snapshot must not go quietly stale ──────────────────────
+// A snapshot that stops refreshing looks identical to one that refreshed and found no
+// change. The weekly workflow is the only thing that advances generated_at, so a stale
+// timestamp means the refresh has been failing unnoticed — the void-loop failure mode.
+const SNAPSHOT = 'data/intelligence/external.json'
+const MAX_SNAPSHOT_AGE_DAYS = 14
+if (existsSync(join(ROOT, SNAPSHOT))) {
+  const snapshot = readJson(SNAPSHOT)
+  const seeded = Boolean(snapshot._seed_note) || (snapshot.sources ?? []).every((s) => s.status !== 'ok')
+
+  if (seeded) {
+    // Never-populated is a different condition from gone-stale and needs a different
+    // message; failing here would block every build until the first snapshot merges.
+    notes.push(
+      'external snapshot is still the seed (no source has reached ok) — staleness not applicable yet',
+    )
+  } else if (!snapshot.generated_at) {
+    problems.push(`snapshot-invalid: ${SNAPSHOT} has ingested figures but no generated_at timestamp.`)
+  } else {
+    const ageDays = Math.floor((Date.now() - Date.parse(snapshot.generated_at)) / 86_400_000)
+    if (!Number.isFinite(ageDays)) {
+      problems.push(`snapshot-invalid: ${SNAPSHOT} generated_at is not a parseable date.`)
+    } else if (ageDays > MAX_SNAPSHOT_AGE_DAYS) {
+      problems.push(
+        `snapshot-stale: ${SNAPSHOT} was generated ${ageDays} days ago (limit ${MAX_SNAPSHOT_AGE_DAYS}). ` +
+          `The weekly intelligence-refresh workflow has probably been failing — check its runs.`,
+      )
+    } else {
+      notes.push(`external snapshot is ${ageDays} day(s) old (limit ${MAX_SNAPSHOT_AGE_DAYS})`)
+    }
+  }
 }
 
 // ── report ───────────────────────────────────────────────────────────────────

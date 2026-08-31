@@ -49,7 +49,7 @@ test('the aggregate default gates providers before mount and redacts page-view U
   assert.equal(sanitizeAnalyticsUrl('https://frankx.ai/connect?email=person@example.com#form'), '/connect')
   assert.match(component, /useState<boolean \| null>\(null\)/)
   assert.match(component, /privacyNavigator\.globalPrivacyControl/)
-  assert.match(component, /if \(!measurementAllowed\) return null/)
+  assert.match(component, /if \(measurementAllowed !== true\) return null/)
   assert.match(component, /<Analytics beforeSend=\{privacySafeBeforeSend\} \/>/)
   assert.match(component, /<SpeedInsights \/>/)
   assert.match(client, /inject\(\{ beforeSend: privacySafeBeforeSend \}\)/)

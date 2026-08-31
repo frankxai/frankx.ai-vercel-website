@@ -1,4 +1,5 @@
 import { MusicLabShell } from '@/components/music-lab/MusicLabShell'
+import { siteConfig } from '@/lib/seo'
 
 const musicLabItems = [
   ['Digital Violin', '/music-lab/violin'],
@@ -17,12 +18,12 @@ export default function MusicLabPage() {
     '@type': 'CollectionPage',
     name: 'FrankX Music Lab',
     description: 'Responsive browser instruments, guided notes, and performance tools.',
-    url: 'https://frankx.ai/music-lab',
+    url: `${siteConfig.url}/music-lab`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-        { '@type': 'ListItem', position: 2, name: 'Music Lab', item: 'https://frankx.ai/music-lab' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+        { '@type': 'ListItem', position: 2, name: 'Music Lab', item: `${siteConfig.url}/music-lab` },
       ],
     },
     mainEntity: {
@@ -31,7 +32,7 @@ export default function MusicLabPage() {
         '@type': 'ListItem',
         position: index + 1,
         name,
-        url: `https://frankx.ai${path}`,
+        url: `${siteConfig.url}${path}`,
       })),
     },
   }

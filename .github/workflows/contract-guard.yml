@@ -12,7 +12,7 @@ on:
     # without it, adding [contract-change] after a red run would not re-run the
     # check, and removing it after a green one would leave the check green while
     # the reviewer signal quietly disappeared.
-    types: [opened, synchronize, reopened, edited]
+    types: [opened, synchronize, reopened, edited, ready_for_review]
     branches: [main, staging]
     # Broad on purpose. A contract can guard a script or a public asset as well
     # as a component, so narrowing this would silently skip the check on exactly
@@ -32,15 +32,65 @@ on:
       # state on 2026-08-14. It also genuinely affects the guarded surfaces
       # (headers, redirects, image config), so it belongs here on merit.
       - 'next.config.mjs'
-      - '.github/workflows/contract-guard.yml'
+      # Same trap, second instance: a lockfile-only pull request touched no path
+      # above, so this required check was expected and never reported, leaving
+      # the pull request unmergeable without an admin override. A dependency
+      # change also belongs here on merit — it swaps the framework the guarded
+      # surfaces are built from, and a Next upgrade moves middleware, redirect
+      # and rendering behaviour that the contracts assert on.
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      # Third trap: a workflow-only PR (design-contract concurrency, CI budget
+      # tweaks) never reports this required check, so GitHub stays BLOCKED.
+      # Cover the whole workflows tree so GitOps PRs remain mergeable without
+      # an admin override.
+      - '.github/workflows/**'
+      # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
+      # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
+      - 'CLAUDE.md'
+      - 'AGENTS.md'
+      - 'docs/**'
+      # Fifth trap: BRANCH_AUDIT.md at the repo root (#618). '*' does not match
+      # a slash, so this is root-level markdown only — README.md, CLAUDE.md,
+      # BRANCH_AUDIT.md — and not '**/*.md'.
+      #
+      # Appending the path is the correct fix, and #620 is the evidence. That
+      # pull request tried three times to avoid a fifth append and each attempt
+      # opened a production-gate bypass on the branch that deploys frankx.ai:
+      #
+      #   1. A separate workflow that reported this context when the filter
+      #      excluded everything. Commit statuses are SHA-global, so a SUCCESS
+      #      minted from an unguarded staging diff satisfied main's protection
+      #      after a retarget; and the Files API caps at 3,000 entries, so a
+      #      branch could bury a guarded file behind 3,000 unguarded ones.
+      #   2. The same idea moved to a workflow_run trigger. That fixed which
+      #      code runs, but a workflow_run job cannot report a required context
+      #      scoped to the pull request, so the SHA-global hole stayed.
+      #   3. Deleting the filter and having this job decide its own scope from
+      #      a script. For a pull_request trigger the workflow YAML and every
+      #      script it runs come from the MERGE REF, which the pull request
+      #      controls — so a branch could leave the scope list looking complete
+      #      while rewriting the script to skip, and this job would report
+      #      SUCCESS having inspected nothing.
+      #
+      # The filter is load-bearing precisely because it fails CLOSED: an
+      # unmatched pull request is stuck, which is visible and annoying. Every
+      # mechanism that converts "did not run" into "succeeded" fails OPEN, which
+      # is invisible. When the next unreachable file class appears, add its path
+      # to this list. Do not build a reporter.
+      - '*.md'
 
 concurrency:
   group: contract-guard-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   contract-guard:
     name: Contract Guard
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -48,6 +98,7 @@ jobs:
         with:
           # merge-base against the base branch needs real history.
           fetch-depth: 0
+          persist-credentials: false
 
       - uses: actions/setup-node@v5
         with:

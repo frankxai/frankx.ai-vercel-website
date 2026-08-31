@@ -11,7 +11,7 @@
  *   1. Operator notification  → frank@frankx.ai          (Resend, reply_to = requester)
  *   2. Requester auto-reply   → instant branded ack      (Resend, reply_to = frank@frankx.ai)
  *   3. Durable record         → Notion "Inquiries" DB    (the CRM — survives Vercel restarts)
- *   4. Local log              → JSONL                    (/admin/intake dashboard + fallback)
+ *   4. Instance log           → JSONL                    (/admin/intake diagnostics only on Vercel)
  *   5. Team ping              → Slack webhook            (real-time awareness)
  *
  * Env vars (all optional — the system ships working with just RESEND_API_KEY;
@@ -32,6 +32,7 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { z } from 'zod'
 
+import { siteConfig } from '@/lib/seo'
 import {
   INTENTS,
   INTENT_LABEL,
@@ -110,7 +111,7 @@ const NOTION_TOKEN = process.env.NOTION_TOKEN
 const NOTION_DB = process.env.NOTION_INQUIRIES_DB_ID
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL
 const BOOKING_URL =
-  process.env.NEXT_PUBLIC_BOOKING_URL || 'https://frankx.ai/contact'
+  process.env.NEXT_PUBLIC_BOOKING_URL || `${siteConfig.url}/contact`
 
 /**
  * Resolve a private (operator-only) storage path. On Vercel, that's `/tmp`
@@ -174,7 +175,7 @@ async function sendOperatorNotification(
     '',
     '---',
     'Reply directly to this email — it goes to the requester.',
-    'Pipeline: https://frankx.ai/admin/intake',
+    `Pipeline: ${siteConfig.url}/admin/intake`,
   ]
 
   try {
@@ -226,14 +227,14 @@ function buildAckBody(payload: IntakePayload): { text: string; html: string } {
     `Hi ${firstNameText},`,
     '',
     'Thanks — your message reached Frank directly. This is an automatic',
-    'confirmation so you know it landed; a real reply follows, usually within',
-    '1–2 working days (Madrid time).',
+    'confirmation so you know it landed; a real reply follows after Frank',
+    'reviews the request.',
     '',
     `What you sent: ${INTENT_LABEL[payload.intent]}`,
     '',
     commercial
       ? `If it's faster to just talk, grab a 20-minute intro slot: ${BOOKING_URL}`
-      : `In the meantime, the work is all public: https://frankx.ai/agentic-builder-lab`,
+      : `In the meantime, the work is all public: ${siteConfig.url}/agentic-builder-lab`,
     '',
     '— Frank',
     'frank@frankx.ai · frankx.ai',
@@ -242,14 +243,14 @@ function buildAckBody(payload: IntakePayload): { text: string; html: string } {
   const html = `
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:520px;margin:0 auto;color:#0f172a;line-height:1.6">
   <p>Hi ${firstNameHtml},</p>
-  <p>Thanks — your message reached Frank directly. This is an automatic confirmation so you know it landed; a real reply follows, usually within <strong>1–2 working days</strong> (Madrid time).</p>
+  <p>Thanks — your message reached Frank directly. This is an automatic confirmation so you know it landed; a real reply follows after Frank reviews the request.</p>
   <p style="background:#f1f5f9;border-radius:8px;padding:12px 16px;font-size:14px;color:#475569">
     <strong>What you sent:</strong> ${INTENT_LABEL[payload.intent]}
   </p>
   <p>${
     commercial
       ? `If it's faster to just talk, <a href="${BOOKING_URL}" style="color:#0891b2">grab a 20-minute intro slot</a>.`
-      : `In the meantime, the work is all public — see the <a href="https://frankx.ai/agentic-builder-lab" style="color:#0891b2">Agentic Builder Lab</a>.`
+      : `In the meantime, the work is all public — see the <a href="${siteConfig.url}/agentic-builder-lab" style="color:#0891b2">Agentic Builder Lab</a>.`
   }</p>
   <p style="margin-top:24px;color:#64748b;font-size:14px">— Frank<br/>frank@frankx.ai · frankx.ai</p>
 </div>`.trim()
@@ -315,16 +316,7 @@ async function writeToNotion(
             ],
           },
           Message: {
-            rich_text: [
-              {
-                text: {
-                  content:
-                    payload.message.length > 1900
-                      ? payload.message.slice(0, 1897) + '…'
-                      : payload.message,
-                },
-              },
-            ],
+            rich_text: splitNotionRichText(payload.message),
           },
         },
       }),
@@ -333,6 +325,18 @@ async function writeToNotion(
   } catch {
     return 'failed'
   }
+}
+
+const NOTION_RICH_TEXT_CHUNK_SIZE = 1900
+
+function splitNotionRichText(value: string) {
+  const chunks: Array<{ text: { content: string } }> = []
+  for (let offset = 0; offset < value.length; offset += NOTION_RICH_TEXT_CHUNK_SIZE) {
+    chunks.push({
+      text: { content: value.slice(offset, offset + NOTION_RICH_TEXT_CHUNK_SIZE) },
+    })
+  }
+  return chunks
 }
 
 // ── Stage 4: local JSONL log ─────────────────────────────────────────────────
@@ -393,11 +397,12 @@ export interface IntakeResult {
 /**
  * Runs the full intake pipeline. All five stages fire in parallel; none blocks
  * another. The inquiry is considered "reached Frank" — and the form returns
- * ok:true — when **any one** of the three durable sinks succeeded:
+ * ok:true — when a provider-backed durable sink succeeded, or a local
+ * development log was written outside Vercel:
  *
  *   1. operator notification email (Resend → frank@frankx.ai), OR
  *   2. Notion "Inquiries" CRM row, OR
- *   3. local JSONL log entry.
+ *   3. local JSONL log entry outside Vercel.
  *
  * Returns ok:false only when **all three** failed — only then is the inquiry
  * truly lost, and only then should the form admit the failure to the user.
@@ -433,16 +438,19 @@ export async function processIntake(
 
   const logged = await appendIntakeLog(entry)
   // Stage outcomes only — never log name/email/message/referrer/userAgent to
-  // stdout. The full entry (PII included) lives in the private JSONL sink
-  // via appendIntakeLog, which is the only sanctioned durable copy.
+  // stdout. The full entry (PII included) is written only to the private JSONL
+  // sink. On Vercel that file is ephemeral and diagnostic, never durable proof.
   console.log(
     '[intake]',
     JSON.stringify({ ts: entry.ts, intent: entry.intent, notify, ack, notion, slack, audience, logged }),
   )
 
-  // The inquiry is "lost" only if it neither notified Frank, reached the CRM,
-  // nor wrote to the local log. Any one durable sink = success.
+  const durableLog = logged && !process.env.VERCEL
+
+  // `/tmp` is instance-ephemeral on Vercel. It may help diagnose a request on
+  // the same warm instance, but it must never turn an otherwise lost inquiry
+  // into a successful response.
   const reachedFrank =
-    notify === 'sent' || notion === 'added' || logged
+    notify === 'sent' || notion === 'added' || durableLog
   return { ok: reachedFrank, entry, logged }
 }

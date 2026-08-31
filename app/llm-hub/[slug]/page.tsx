@@ -15,6 +15,7 @@ import { getEditorial } from '@/lib/llm-hub/editorial'
 import { comparisonsForModel } from '@/lib/llm-hub/comparisons'
 import { articleForModel } from '@/lib/llm-hub/articles'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
+import { siteConfig } from '@/lib/seo'
 import { ldJson } from '@/lib/seo/jsonld'
 import { CapabilityBadge } from '@/components/llm-hub/CapabilityBadge'
 
@@ -52,11 +53,11 @@ export async function generateMetadata({
       `${model.name.toLowerCase()} vs`,
       'best llm 2026',
     ],
-    alternates: { canonical: `https://frankx.ai/llm-hub/${slug}` },
+    alternates: { canonical: `${siteConfig.url}/llm-hub/${slug}` },
     openGraph: {
       title,
       description,
-      url: `https://frankx.ai/llm-hub/${slug}`,
+      url: `${siteConfig.url}/llm-hub/${slug}`,
       type: 'article',
     },
   }
@@ -116,9 +117,9 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai/' },
-      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: 'https://frankx.ai/llm-hub' },
-      { '@type': 'ListItem', position: 3, name: model.name, item: `https://frankx.ai/llm-hub/${slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: `${siteConfig.url}/llm-hub` },
+      { '@type': 'ListItem', position: 3, name: model.name, item: `${siteConfig.url}/llm-hub/${slug}` },
     ],
   }
 

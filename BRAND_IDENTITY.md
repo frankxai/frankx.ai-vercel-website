@@ -30,10 +30,10 @@
 - Creator Transformation Guide
 
 ### Bio (Short - 160 chars for Twitter)
-AI Architect & Creator helping creators build practical AI systems. Founder @FrankX_AI • 12,000+ AI songs • human-first systems
+Founder and AI Architect helping founders build practical AI operating systems without losing the judgment that makes the company theirs.
 
 ### Bio (Medium - 1 paragraph)
-Frank X. Riemer is a musician-technologist, founder of FrankX.AI, and an AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems that turn ideas into shipped work.
+Frank X. Riemer is the founder of FrankX.AI, a musician-technologist, and an AI Architect. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps founders build practical AI systems that turn consequential ideas into durable work.
 
 ### Bio (Long - Full Background)
 Frank X. Riemer is a musician, technologist, and creator transformation guide who spent the first half of his career as a professional violinist before discovering his calling at the intersection of creativity, business, and artificial intelligence.
@@ -164,13 +164,14 @@ linktr.ee/frankx.ai              ✅ CORRECT
 ## Brand Voice & Messaging
 
 ### Core Mission
-Translate Frank's musician-technologist and enterprise AI experience into language, prompts, and experiences that turn overwhelmed creators, entrepreneurs, and operators into confident AI-enabled builders.
+Translate Frank's founder, musician-technologist, and enterprise AI experience into operating systems that help founders diagnose constraints, build useful leverage, and improve judgment in the AI age.
 
 ### Brand Pillars
-1. **Creator-First** - Empower independent creators, not corporations
-2. **Soul + Systems** - Bridge spirituality and technology
-3. **Action-Oriented** - Inspiration + Implementation
-4. **Studio Energy** - Warm, intimate, late-night creative sessions
+1. **Founder-First** - One avatar across entrepreneur, solopreneur, coach, and creator-led contexts
+2. **Human + Systems** - Preserve founder judgment while building technical leverage
+3. **Evidence + Experience** - Keep established, emerging, experiential, and symbolic claims distinct
+4. **Action-Oriented** - Diagnosis, implementation, and compounding
+5. **Studio Energy** - Warm, exacting, independent work shown from the source
 
 ### Signature Phrases
 - "The studio lights are on."

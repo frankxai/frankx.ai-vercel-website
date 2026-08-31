@@ -17,9 +17,13 @@ const pendingBlogHeroPaths = new Set(
 
 // FAQ item for AI-extractable structured content
 export interface FAQItem {
-  q: string
-  a: string
+  q?: string
+  a?: string
+  question?: string
+  answer?: string
 }
+
+export type FAQSource = 'body' | 'frontmatter'
 
 // Multi-part series membership. Articles sharing a series.slug are linked
 // together (prev/next nav + "Part N of M") by SeriesNav.
@@ -39,6 +43,7 @@ export interface BlogPost {
   category: string
   tags: string[]
   image?: string
+  ogImage?: string
   readingTime: string
   keywords?: string[]
   readingGoal?: string
@@ -51,6 +56,7 @@ export interface BlogPost {
   // AI-First Content Fields
   tldr?: string // 50-word summary for AI extraction
   faq?: FAQItem[] // Question-answer pairs for FAQPage schema
+  faqSource?: FAQSource // Explicit JSON-LD source when a post contains both representations
   schema?: string[] // Schema types to generate (Article, FAQPage, HowTo)
   lastUpdated?: string // Freshness signal for search engines
 
@@ -150,7 +156,18 @@ function buildBlogPost(slug: string, data: Record<string, any>, content: string)
   } as BlogPost
 }
 
-export const getAllBlogPosts = cache((): BlogPost[] => {
+// React cache() is request-scoped, so it re-reads and parses the whole local
+// corpus for every prerendered article. Production content is immutable for the
+// lifetime of a build/runtime module; retain one corpus per worker instead.
+// Development deliberately bypasses this cache so MDX edits remain visible.
+let productionBlogPosts: BlogPost[] | undefined
+let productionBlogPostSummaries: BlogPostSummary[] | undefined
+
+export function getAllBlogPosts(): BlogPost[] {
+  if (process.env.NODE_ENV === 'production' && productionBlogPosts) {
+    return productionBlogPosts
+  }
+
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
     .filter((name) => name.endsWith('.mdx'))
@@ -163,12 +180,24 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
       return buildBlogPost(slug, data, content)
     })
 
-  return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
-})
+  const sortedPosts = allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+  if (process.env.NODE_ENV === 'production') {
+    productionBlogPosts = sortedPosts
+  }
+  return sortedPosts
+}
 
-export const getAllBlogPostSummaries = cache((): BlogPostSummary[] => {
-  return getAllBlogPosts().map(({ content: _content, ...post }) => post)
-})
+export function getAllBlogPostSummaries(): BlogPostSummary[] {
+  if (process.env.NODE_ENV === 'production' && productionBlogPostSummaries) {
+    return productionBlogPostSummaries
+  }
+
+  const summaries = getAllBlogPosts().map(({ content: _content, ...post }) => post)
+  if (process.env.NODE_ENV === 'production') {
+    productionBlogPostSummaries = summaries
+  }
+  return summaries
+}
 
 export const getBlogPost = cache((slug: string): BlogPost | null => {
   if (!isCanonicalBlogSlug(slug)) return null
@@ -228,6 +257,21 @@ export function getSeriesPosts(seriesSlug: string): BlogPost[] {
  *   2. ### Question? followed by answer paragraph(s)
  * Only looks within ## FAQ or ## Frequently Asked Questions sections.
  */
+export function normalizeFAQText(value: unknown): string {
+  return String(value ?? '')
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/`+([^`]+)`+/g, '$1')
+    .replace(/\\([\\`*_{}\[\]()#+\-.!])/g, '$1')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/__([^_]+)__/g, '$1')
+    .replace(/~~([^~]+)~~/g, '$1')
+    .replace(/(^|\s)[*-]\s+/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 export function extractFAQFromContent(content: string): { question: string; answer: string }[] {
   // Find the FAQ section.
   // NOTE: no `m` flag on purpose — with `m`, `$` matches at every end-of-line,
@@ -263,5 +307,16 @@ export function extractFAQFromContent(content: string): { question: string; answ
     }
   }
 
+  const seen = new Set<string>()
   return faqs
+    .map(({ question, answer }) => ({
+      question: normalizeFAQText(question),
+      answer: normalizeFAQText(answer),
+    }))
+    .filter(({ question, answer }) => {
+      const key = question.toLocaleLowerCase('en-US')
+      if (!question || !answer || seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
 }

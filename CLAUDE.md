@@ -51,10 +51,11 @@ For a high-value new page or redesign, apply the canonical kernel with the two l
 
 ## Brand voice
 
-Frank: AI Architect and Creator, ships products/code/content, translates enterprise-scale AI/cloud experience into practical systems for creators and operators. Independent project — not affiliated with, endorsed by, or sponsored by Oracle.
+Frank: founder and AI Architect who translates enterprise-scale AI/cloud experience into practical operating systems for founders. Entrepreneur, solopreneur, coach, and creator-led operator are founder contexts. Independent project — not affiliated with, endorsed by, or sponsored by Oracle.
 
 - **DO:** lead with results, precise technical language, show don't tell, confident but understated.
-- **DON'T:** spiritual language, grandiose claims, self-help-guru tone, emoji in user-facing copy (unless explicitly requested).
+- **DO:** use the governed Human Layer on its dedicated surfaces: `established`, `emerging`, `experiential`, and `symbolic` lenses, with explicit uncertainty and safety boundaries.
+- **DON'T:** guru authority, grandiose or medical-certainty claims, unlabeled metaphysics presented as science, or emoji in user-facing copy (unless explicitly requested). Plant medicine is research and harm reduction only; never provide sourcing, dosing, protocols, or treatment promises.
 
 ---
 
@@ -84,4 +85,15 @@ Project-level slash commands live in `.claude/commands/` — confirmed present: 
 
 ---
 
-_This file replaces a prior version that was a verbatim, unadapted copy of the private `frankxai/FrankX` repo's CLAUDE.md and stated that pushing to this repo's `main` does not deploy to production. That was backwards — this repo's `main` is what deploys to frankx.ai._
+## This repo is the trunk, not a mirror
+
+The private `frankxai/FrankX` repo is where authoring and agent tooling live. It is **behind this one**, and it is not a source to copy from wholesale.
+
+Two rules follow, for any agent working either side:
+
+- **No bulk copy from `FrankX` into this repo.** No directory sync onto `app/`, `components/`, `content/`, `lib/`, or `data/`.
+- **For a file that exists in both repos, this repo's version is the authority.** Genuinely new work from the private repo arrives as a port of named files on a branch with a PR — read this repo's version of every file the change touches first.
+
+---
+
+_This file replaces a prior version that was a verbatim, unadapted copy of the private `frankxai/FrankX` repo's CLAUDE.md and stated that pushing to this repo's `main` does not deploy to production. That was backwards — this repo's `main` is what deploys to frankx.ai. The sync-direction note above is the same defect measured from the other end: the private repo's contract described this repo as a downstream copy, and it has not been one for some time._

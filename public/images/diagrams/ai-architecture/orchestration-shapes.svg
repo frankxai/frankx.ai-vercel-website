@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" width="1200" height="740" role="img" aria-labelledby="osT osD">
+<title id="osT">Choosing an orchestration shape</title>
+<desc id="osD">A three-question decision path. If you can name every step in advance, use a fixed workflow. If not, and the task is one coherent piece of work, use a single agent loop. If not, and the work mutates shared state, use sequential sub-agents; otherwise use parallel sub-agents. Each outcome lists what it costs and how it fails.</desc>
+<defs>
+<linearGradient id="osPlane" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" stop-color="#12121a"/><stop offset="100%" stop-color="#0d0d14"/>
+</linearGradient>
+<marker id="osArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#10b981" fill-opacity=".8"/>
+</marker>
+</defs>
+<rect width="1200" height="740" fill="#0a0a0b"/>
+<text x="60" y="52" fill="#ffffff" font-family="Poppins,Inter,system-ui,sans-serif" font-size="26" font-weight="700">Which orchestration shape</text>
+<text x="60" y="80" fill="#94a3b8" font-family="Inter,system-ui,sans-serif" font-size="15">Three questions, four outcomes. Each outcome buys something and gives something up.</text>
+
+<g font-family="Inter,system-ui,sans-serif">
+
+<!-- Question 1 -->
+<g transform="translate(60,120)">
+<rect width="400" height="72" rx="14" fill="url(#osPlane)" stroke="#ffffff" stroke-opacity=".09"/>
+<text x="22" y="30" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">Q1</text>
+<text x="22" y="56" fill="#e2e8f0" font-size="15">Can you name every step in advance?</text>
+</g>
+<line x1="460" y1="156" x2="592" y2="156" stroke="#10b981" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#osArrow)"/>
+<text x="470" y="148" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">yes</text>
+<line x1="120" y1="192" x2="120" y2="264" stroke="#10b981" stroke-opacity=".3" stroke-width="1.5" marker-end="url(#osArrow)"/>
+<text x="132" y="236" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">no</text>
+
+<!-- Outcome 1 -->
+<g transform="translate(600,112)">
+<rect width="540" height="88" rx="14" fill="url(#osPlane)" stroke="#10b981" stroke-opacity=".28"/>
+<text x="22" y="30" fill="#ffffff" font-size="17" font-weight="600">Fixed workflow</text>
+<text x="22" y="54" fill="#94a3b8" font-size="13">Costs: no adaptation when the input is not what you planned for.</text>
+<text x="22" y="74" fill="#94a3b8" font-size="13">Fails by: staying confident, going silently wrong once reality drifts.</text>
+</g>
+
+<!-- Question 2 -->
+<g transform="translate(60,272)">
+<rect width="400" height="72" rx="14" fill="url(#osPlane)" stroke="#ffffff" stroke-opacity=".09"/>
+<text x="22" y="30" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">Q2</text>
+<text x="22" y="56" fill="#e2e8f0" font-size="15">Is it one coherent piece of work?</text>
+</g>
+<line x1="460" y1="308" x2="592" y2="308" stroke="#10b981" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#osArrow)"/>
+<text x="470" y="300" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">yes</text>
+<line x1="120" y1="344" x2="120" y2="416" stroke="#10b981" stroke-opacity=".3" stroke-width="1.5" marker-end="url(#osArrow)"/>
+<text x="132" y="388" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">no</text>
+
+<!-- Outcome 2 -->
+<g transform="translate(600,264)">
+<rect width="540" height="88" rx="14" fill="url(#osPlane)" stroke="#10b981" stroke-opacity=".28"/>
+<text x="22" y="30" fill="#ffffff" font-size="17" font-weight="600">Single agent loop</text>
+<text x="22" y="54" fill="#94a3b8" font-size="13">Costs: latency and spend grow with the length of the loop.</text>
+<text x="22" y="74" fill="#94a3b8" font-size="13">Fails by: losing track of its own earlier decisions as the window fills.</text>
+</g>
+
+<!-- Question 3 -->
+<g transform="translate(60,424)">
+<rect width="400" height="72" rx="14" fill="url(#osPlane)" stroke="#ffffff" stroke-opacity=".09"/>
+<text x="22" y="30" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">Q3</text>
+<text x="22" y="56" fill="#e2e8f0" font-size="15">Does the work mutate shared state?</text>
+</g>
+<line x1="460" y1="460" x2="592" y2="460" stroke="#10b981" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#osArrow)"/>
+<text x="470" y="452" fill="#34d399" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">yes</text>
+<path d="M120,496 L120,604 L592,604" fill="none" stroke="#10b981" stroke-opacity=".3" stroke-width="1.5" marker-end="url(#osArrow)"/>
+<text x="132" y="552" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">no</text>
+
+<!-- Outcome 3 -->
+<g transform="translate(600,416)">
+<rect width="540" height="88" rx="14" fill="url(#osPlane)" stroke="#10b981" stroke-opacity=".28"/>
+<text x="22" y="30" fill="#ffffff" font-size="17" font-weight="600">Sequential sub-agents</text>
+<text x="22" y="54" fill="#94a3b8" font-size="13">Costs: throughput. You gave up the parallelism on purpose.</text>
+<text x="22" y="74" fill="#94a3b8" font-size="13">Fails by: being slow enough that someone parallelises the writes again.</text>
+</g>
+
+<!-- Outcome 4 -->
+<g transform="translate(600,560)">
+<rect width="540" height="88" rx="14" fill="url(#osPlane)" stroke="#10b981" stroke-opacity=".28"/>
+<text x="22" y="30" fill="#ffffff" font-size="17" font-weight="600">Parallel sub-agents</text>
+<text x="22" y="54" fill="#94a3b8" font-size="13">Costs: a merge step you have to design, and results that can contradict.</text>
+<text x="22" y="74" fill="#94a3b8" font-size="13">Fails by: duplicating work, then disagreeing with no way to adjudicate.</text>
+</g>
+
+<text x="60" y="700" fill="#64748b" font-family="JetBrains Mono,ui-monospace,monospace" font-size="12">The default answer is Q1. Most systems shipped as agents were workflows that nobody wrote down.</text>
+</g>
+</svg>

@@ -18,9 +18,16 @@ import PremiumButton from '@/components/ui/PremiumButton'
 import { GlowCard } from '@/components/ui/glow-card'
 
 /* ──────────────────────────────────────────────
-   CHECKOUT URLS — update when LemonSqueezy store is live
-   https://app.lemonsqueezy.com/products
-   Until then: waitlist redirect to newsletter
+   CHECKOUT — both tiers are waitlist, on purpose.
+   The Stripe rail exists in code (app/api/checkout/route.ts knows the
+   'agentic-creator-os' SKU at $47), but the Vercel production project has
+   no STRIPE_SECRET_KEY and no STRIPE_PRICE_ACOS, so /api/checkout answers
+   503 for every SKU. Swapping these hrefs for a CheckoutButton before those
+   two vars are set would replace an honest email capture with a button that
+   fails in an alert().
+   To wire it: set STRIPE_SECRET_KEY + STRIPE_PRICE_ACOS in Vercel, confirm
+   the price ID is the real $47 one, then use CheckoutButton with
+   productId="agentic-creator-os" (the key that test:checkout-sku enforces).
    ────────────────────────────────────────────── */
 const CHECKOUT = {
   starter: '/newsletter?ref=acos-creator-kit',
@@ -127,10 +134,31 @@ const structuredData = {
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Cross-platform (Claude Code)',
   description: 'The Operating System for Generative Creators. 75+ skills, 38 agents, 35+ commands for Claude Code.',
+  // Only the free tier is available today. The paid tiers are marked PreOrder
+  // because both CTAs are a waitlist — without it this markup tells search
+  // engines a $47 and a $197 product are in stock and buyable, and neither is.
   offers: [
-    { '@type': 'Offer', price: '0', priceCurrency: 'USD', name: 'Open Source' },
-    { '@type': 'Offer', price: '47', priceCurrency: 'USD', name: 'Creator Kit' },
-    { '@type': 'Offer', price: '197', priceCurrency: 'USD', name: 'Pro System' },
+    {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      name: 'Open Source',
+      availability: 'https://schema.org/InStock',
+    },
+    {
+      '@type': 'Offer',
+      price: '47',
+      priceCurrency: 'USD',
+      name: 'Creator Kit',
+      availability: 'https://schema.org/PreOrder',
+    },
+    {
+      '@type': 'Offer',
+      price: '197',
+      priceCurrency: 'USD',
+      name: 'Pro System',
+      availability: 'https://schema.org/PreOrder',
+    },
   ],
   author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
   url: 'https://github.com/frankxai/agentic-creator-os',
@@ -431,7 +459,7 @@ export default function ACOSPage() {
               >
                 {tier.featured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white">
-                    Most Popular
+                    Start Here
                   </div>
                 )}
                 <div className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
@@ -522,8 +550,8 @@ export default function ACOSPage() {
               <Github className="h-5 w-5" />
               View on GitHub
             </PremiumButton>
-            <PremiumButton variant="primary" size="lg" href={CHECKOUT.starter} target="_blank" rel="noopener noreferrer">
-              Get Creator Kit — $47
+            <PremiumButton variant="primary" size="lg" href={CHECKOUT.starter}>
+              Join Waitlist
             </PremiumButton>
           </div>
         </div>

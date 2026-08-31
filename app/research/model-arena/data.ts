@@ -87,11 +87,17 @@ export interface ArenaRound {
   card: string
   contestants: string[]
   judged: boolean
+  // 'harness' = measured by our eval harness with a receipt; 'public-reports' = compiled
+  // from vendor announcements and public benchmarks — no harness run, no receipt.
+  evidence: 'harness' | 'public-reports'
   tally: string
   headline: string
   tasks: ArenaTask[]
-  receiptUrl: string
+  receiptUrl: string | null
 }
+
+// Latest round backed by a real, first-party receipt file. Rounds without receipts never move this date.
+export const LAST_MEASURED = '2026-07-01'
 
 // Retained historical rounds (Claude-focused) + placeholder for new wave runs
 export const ROUNDS: ArenaRound[] = [
@@ -103,28 +109,26 @@ export const ROUNDS: ArenaRound[] = [
     card: 'Claude Sonnet 5 shipped 2026-06-30. ...',
     contestants: ['Sonnet 5', 'Opus 4.8', 'Haiku 4.5'],
     judged: false,
+    evidence: 'harness',
     tally: 'Sonnet 5 2/2 · Opus 4.8 2/2 · Haiku 4.5 2/2 (both tasks saturated)',
     headline: 'Every contestant solved both tasks...',
     tasks: [ /* ... */ ],
     receiptUrl: '/research/arena-receipts/2026-07-01-r5-sonnet5-arrives.json',
   },
-  // NEW: August 2026 Wave — initial routing evidence run (Opus-class judged where subjective; mechanical for constraints)
+  // August 2026 Wave — compiled from public vendor reports. NOT a harness run: no round was
+  // dispatched, no receipt exists. Kept as routing orientation only, labelled as such on the page.
   {
     id: 'august-2026-wave-routing',
     date: '2026-08-17',
-    title: 'August 2026 Wave — Multi-Model Routing Evidence',
-    card: 'New releases tested for orchestration, volume agentic, open efficiency, and verify lanes in multi-agent systems.',
+    title: 'August 2026 Wave — Public-Report Orientation',
+    card: 'New releases (Grok 4.6, Gemini 3.7 Flash, DeepSeek-V4-Pro, Qwen3.8-27B) mapped to likely lanes — orchestration, fast volume agentic, open/local value — from vendor-reported benchmarks. Vendor-reported strengths: Grok 4.6 on orchestration-style agentic work, Gemini 3.7 Flash on high-speed coding volume, Qwen3.8-27B on consumer-hardware viability, DeepSeek-V4-Pro on cost-per-capability. Harness rounds for this wave have not run yet.',
     contestants: ['Grok 4.6', 'Gemini 3.7 Flash', 'DeepSeek-V4-Pro', 'Qwen3.8-27B'],
-    judged: true,
-    tally: 'Grok 4.6 (orchestration) · Gemini 3.7 Flash (speed/volume) · DeepSeek V4 Pro & Qwen (value/open)',
-    headline: 'Capability wave strong on agentic and speed. Routing splits by lane: Grok for swarm, Gemini for fast volume, open models for cost/local.',
-    tasks: [
-      { id: 'swarm-orchestration-contracts', category: 'multi-agent handoffs + state + cost caps', winner: 'Grok 4.6' },
-      { id: 'fast-agentic-volume-coding', category: 'high-speed coding + evals', winner: 'Gemini 3.7 Flash' },
-      { id: 'open-local-multi-agent', category: 'consumer hardware + Apache 2.0 viability', winner: 'Qwen3.8-27B' },
-      { id: 'cost-value-agentic', category: 'DeepSWE-style + automation under budget', winner: 'DeepSeek-V4-Pro' },
-    ],
-    receiptUrl: `${RUNS_BASE}/2026-08-17-august-wave-routing.json`,
+    judged: false,
+    evidence: 'public-reports',
+    tally: 'No harness tally — vendor-reported strengths only',
+    headline: 'Vendor reports point to a strong agentic/speed wave. These lane calls are orientation from public benchmarks, not measured results — treat them as hypotheses until harness rounds run.',
+    tasks: [],
+    receiptUrl: null,
   },
 ]
 
@@ -163,7 +167,7 @@ export const ROUTING_IMPLICATIONS = [
 
 export const CAVEATS = [
   'n small per task — directional signals. Re-test in your own harness.',
-  'New wave entries include vendor benchmarks + early harness projections; full Opus-class blind rounds recommended.',
+  'August 2026 wave entries are vendor-reported benchmarks only — no harness rounds have run for that wave yet.',
   'Pricing introductory for Gemini 3.7 Flash; weights for GLM-5.3 delayed.',
   'Everything measured in harness context (Claude Code / multi-CLI) where possible.',
 ]
@@ -200,5 +204,5 @@ export const METHODOLOGY_STEPS: MethodologyStep[] = [
   },
 ]
 
-// Add new wave methodology note
-export const AUGUST_WAVE_NOTE = 'August 2026 wave tested with emphasis on multi-agent handoffs, cost caps, evals, and fallback strategies. Full receipts in the Starlight worktree and linked GitHub.'
+// August wave status note — no harness rounds have run for this wave; there are no receipts for it.
+export const AUGUST_WAVE_NOTE = 'The August 2026 wave has not been through the harness yet. Its lane calls above are compiled from public vendor reports and carry no receipts; they will be replaced by measured rounds when the wave is dispatched.'
