@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Direction C — Constellation Brief</title>
+  <desc id="desc">A graph-first spatial intelligence surface with an architecture constellation, contextual editorial panels, and a mobile guided sequence.</desc>
+  <defs>
+    <radialGradient id="cGlow"><stop offset="0" stop-color="#175d6b" stop-opacity=".26"/><stop offset="1" stop-color="#040607" stop-opacity="0"/></radialGradient>
+    <style>.display{font-family:Poppins,Arial,sans-serif;font-weight:700}.body{font-family:Inter,Arial,sans-serif}.mono{font-family:'JetBrains Mono',monospace}.muted{fill:#859397}.hair{stroke:#29363a;stroke-width:1}.tiny{font-size:11px;letter-spacing:1.4px}.small{font-size:14px}.node{fill:#091012;stroke:#334449;stroke-width:1}.edge{fill:none;stroke:#3b6b74;stroke-width:1.2}</style>
+  </defs>
+  <rect width="1600" height="1000" fill="#030506"/>
+  <text x="64" y="58" class="mono tiny" fill="#67d9ec">DIRECTION C</text>
+  <text x="64" y="94" class="display" font-size="34" fill="#eef5f6">Constellation Brief</text>
+  <text x="64" y="121" class="body small" fill="#93a0a3">A spatial architecture is the hero. Editorial context follows the selected node, making the graph the primary reading instrument.</text>
+  <g transform="translate(64 164)">
+    <rect width="1090" height="760" rx="20" fill="#050809" stroke="#29363a"/>
+    <rect width="1090" height="60" rx="20" fill="#070b0c"/>
+    <text x="24" y="36" class="display" font-size="13" fill="#eef5f6">FRANKX / ARCHITECTURE INTELLIGENCE</text><text x="861" y="36" class="mono" font-size="9" fill="#859397">24—31 AUG 2026 · LIVE MAP</text>
+    <line y1="60" x2="1090" y2="60" class="hair"/>
+    <circle cx="625" cy="390" r="330" fill="url(#cGlow)"/>
+    <g transform="translate(38 98)">
+      <text class="mono tiny" fill="#67d9ec">WEEKLY REVIEW / GRAPH 01</text>
+      <text y="54" class="display" font-size="39" fill="#f0f7f8">Where intelligence</text><text y="99" class="display" font-size="39" fill="#f0f7f8">became infrastructure.</text>
+      <text y="137" class="body" font-size="15" fill="#95a2a5">Select a node to read the change,</text><text y="159" class="body" font-size="15" fill="#95a2a5">its source, and the architecture decision.</text>
+      <g transform="translate(0 211)">
+        <rect width="246" height="137" rx="13" fill="#081012" stroke="#304147"/>
+        <text x="16" y="26" class="mono" font-size="9" fill="#67d9ec">SELECTED / HARNESS LAYER</text>
+        <text x="16" y="57" class="display" font-size="18" fill="#eef5f6">Agents are becoming</text><text x="16" y="81" class="display" font-size="18" fill="#eef5f6">replaceable runtimes.</text>
+        <text x="16" y="111" class="body" font-size="11" fill="#859397">Vercel AI SDK now normalizes</text><text x="16" y="127" class="body" font-size="11" fill="#859397">Codex, Claude, Cursor, Grok + more.</text>
+      </g>
+      <g transform="translate(0 377)"><text class="mono tiny" fill="#6b797c">OPERATING THESIS</text><text y="32" class="body" font-size="14" fill="#c4ced0">State belongs to you.</text><text y="55" class="body" font-size="14" fill="#c4ced0">Harnesses are adapters.</text><text y="78" class="body" font-size="14" fill="#c4ced0">Models are workload routes.</text><text y="101" class="body" font-size="14" fill="#c4ced0">Connectors are governed capabilities.</text></g>
+    </g>
+    <g transform="translate(350 90)">
+      <path d="M120 170L260 80L420 142L575 65L665 205L578 352L405 420L242 351L120 170" class="edge"/>
+      <path d="M260 80L242 351M420 142L405 420M575 65L405 420M120 170L578 352M260 80L665 205" class="edge" opacity=".62"/>
+      <g><circle cx="120" cy="170" r="42" fill="#0a1717" stroke="#2f7e72"/><text x="91" y="166" class="mono" font-size="8" fill="#67e8b7">EVENTS</text><text x="96" y="183" class="body" font-size="10" fill="#d5e0df">Git · App</text></g>
+      <g><circle cx="260" cy="80" r="47" class="node"/><text x="231" y="77" class="mono" font-size="8" fill="#67d9ec">MCP GATE</text><text x="236" y="94" class="body" font-size="10" fill="#d5e0df">identity</text></g>
+      <g><circle cx="420" cy="142" r="58" fill="#102127" stroke="#53cde3" stroke-width="2"/><text x="378" y="138" class="mono" font-size="8" fill="#82e6f5">HARNESS ROUTER</text><text x="387" y="158" class="display" font-size="12" fill="#f2f8f9">selected</text></g>
+      <g><circle cx="575" cy="65" r="45" class="node"/><text x="550" y="62" class="mono" font-size="8" fill="#d3b774">MODELS</text><text x="546" y="80" class="body" font-size="10" fill="#d5e0df">role-routed</text></g>
+      <g><circle cx="665" cy="205" r="49" class="node"/><text x="634" y="202" class="mono" font-size="8" fill="#67d9ec">SANDBOX</text><text x="641" y="220" class="body" font-size="10" fill="#d5e0df">bounded</text></g>
+      <g><circle cx="578" cy="352" r="54" class="node"/><text x="542" y="348" class="mono" font-size="8" fill="#67e8b7">EVIDENCE</text><text x="548" y="367" class="body" font-size="10" fill="#d5e0df">eval · trace</text></g>
+      <g><circle cx="405" cy="420" r="50" class="node"/><text x="373" y="416" class="mono" font-size="8" fill="#d3b774">DURABILITY</text><text x="380" y="434" class="body" font-size="10" fill="#d5e0df">workflow</text></g>
+      <g><circle cx="242" cy="351" r="57" fill="#0e1e18" stroke="#35ad7b"/><text x="207" y="347" class="mono" font-size="8" fill="#75ecba">GRAPH STATE</text><text x="206" y="366" class="body" font-size="10" fill="#d5e0df">owned contract</text></g>
+    </g>
+    <g transform="translate(350 604)">
+      <rect width="700" height="105" rx="14" fill="#070c0e" stroke="#29363a"/>
+      <text x="18" y="26" class="mono" font-size="9" fill="#6b797c">MODEL ROLE RAIL</text>
+      <g class="body" font-size="12" fill="#d5e0df"><text x="18" y="58">OpenAI / orchestration</text><text x="177" y="58">Anthropic / deep build</text><text x="351" y="58">Google / multimodal</text><text x="502" y="58">Grok / parallel build</text><text x="18" y="83">Open weights / private or cost-bound execution</text></g>
+    </g>
+  </g>
+  <g transform="translate(1192 164)">
+    <text class="mono tiny" fill="#6b797c">MOBILE / GUIDED GRAPH</text>
+    <rect y="22" width="330" height="760" rx="42" fill="#05090a" stroke="#334449" stroke-width="2"/>
+    <rect x="96" y="36" width="138" height="6" rx="3" fill="#29363a"/>
+    <text x="24" y="83" class="display" font-size="11" fill="#eef5f6">FRANKX / INTELLIGENCE</text><text x="250" y="83" class="mono" font-size="8" fill="#859397">01</text>
+    <line x1="24" y1="101" x2="306" y2="101" class="hair"/>
+    <text x="24" y="139" class="mono" font-size="8" fill="#67d9ec">ARCHITECTURE MAP · SWIPE 1/4</text>
+    <text x="24" y="183" class="display" font-size="27" fill="#eef5f6">Where intelligence</text><text x="24" y="218" class="display" font-size="27" fill="#eef5f6">became infrastructure.</text>
+    <g transform="translate(24 255)">
+      <rect width="282" height="256" rx="16" fill="#070d0f" stroke="#29363a"/>
+      <path d="M38 134L98 64L176 104L236 48L246 178L164 211L82 198L38 134" class="edge"/>
+      <circle cx="38" cy="134" r="23" class="node"/><circle cx="98" cy="64" r="25" class="node"/><circle cx="176" cy="104" r="34" fill="#102127" stroke="#53cde3" stroke-width="2"/><circle cx="236" cy="48" r="22" class="node"/><circle cx="246" cy="178" r="24" class="node"/><circle cx="164" cy="211" r="24" class="node"/><circle cx="82" cy="198" r="27" fill="#0e1e18" stroke="#35ad7b"/>
+      <text x="144" y="101" class="mono" font-size="7" fill="#82e6f5">HARNESS</text><text x="149" y="114" class="body" font-size="8" fill="#eef5f6">selected</text>
+      <text x="62" y="202" class="mono" font-size="6" fill="#75ecba">STATE</text>
+    </g>
+    <text x="24" y="548" class="mono" font-size="8" fill="#67d9ec">SELECTED / HARNESS LAYER</text>
+    <text x="24" y="581" class="display" font-size="17" fill="#eef5f6">Write the agent once.</text><text x="24" y="606" class="display" font-size="17" fill="#eef5f6">Swap the runtime.</text>
+    <text x="24" y="635" class="body" font-size="11" fill="#8e9b9e">The same interface now reaches Codex,</text><text x="24" y="652" class="body" font-size="11" fill="#8e9b9e">Claude Code, Cursor, Grok Build + more.</text>
+    <rect x="24" y="686" width="282" height="48" rx="24" fill="#dff7f9"/><text x="84" y="715" class="display" font-size="12" fill="#061012">OPEN NODE RECEIPT</text>
+  </g>
+  <g transform="translate(1192 958)"><text class="mono tiny" fill="#6b797c">TYPE</text><text x="54" class="body" font-size="12" fill="#c5ced0">Poppins / Inter / JetBrains Mono</text><text x="290" class="mono tiny" fill="#6b797c">MOTION</text><text x="360" class="body" font-size="12" fill="#c5ced0">one guided edge pulse</text></g>
+</svg>
