@@ -85,8 +85,10 @@ ${libraryLinks}
 
 ## Model & Agent Intelligence (the decision layers)
 - [LLM Hub](${SITE_URL}/llm-hub): Every frontier model - context, pricing, benchmarks, verdicts, each entry sourced
+- [Cost Calculator](${SITE_URL}/llm-hub#cost-calculator): Interactive token volume and multi-tier routing simulator
 - [Model Arena](${SITE_URL}/research/model-arena): First-party measured model rounds with published run receipts
 - [Agent Hub](${SITE_URL}/agent-hub): Agent platforms and frameworks compared, every claim carrying an evidence grade
+- [Golden 7 AI Architectures](${SITE_URL}/ai-architectures): Production-grade blueprints for sovereign swarms, GraphRAG & MCP meshes
 - [Agent Catalog](${SITE_URL}/agents): The 99-agent Creator OS, packaged as installable artifacts
 - [LLM Hub JSON](${SITE_URL}/llm-hub.json): Machine-readable model registry for agents
 

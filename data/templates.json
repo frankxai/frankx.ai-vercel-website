@@ -16,16 +16,31 @@
       "Beat structure formulas for 12 genres",
       "Hook writing patterns with syllable mapping"
     ],
-    "techStack": ["Claude Code", "Suno AI"],
+    "techStack": [
+      "Claude Code",
+      "Suno AI"
+    ],
     "thumbnail": "/images/shop/templates/suno-mastery-skill.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["Claude Code 1.0+", "Suno v4"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Claude Code 1.0+",
+      "Suno v4"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
+    "vercelDeployUrl": "",
     "downloads": 0,
     "rating": 0,
     "featured": true,
-    "tags": ["music", "suno", "claude-code", "skill"]
+    "tags": [
+      "music",
+      "suno",
+      "claude-code",
+      "skill"
+    ]
   },
   {
     "id": "claude-code-content-engine",
@@ -36,7 +51,7 @@
     "price": 37,
     "originalPrice": 67,
     "tier": "starter",
-    "description": "Claude Code skill that automates your entire content pipeline. From research to blog drafts, SEO optimization, social media threads, and newsletter generation — all from a single prompt.",
+    "description": "Claude Code skill that automates your entire content pipeline. From research to blog drafts, SEO optimization, social media threads, and newsletter generation \u2014 all from a single prompt.",
     "features": [
       "Blog article generation with SEO structure",
       "X/Twitter thread formatter",
@@ -44,16 +59,33 @@
       "Newsletter draft generator",
       "Internal linking suggestions"
     ],
-    "techStack": ["Claude Code", "MDX", "SEO"],
+    "techStack": [
+      "Claude Code",
+      "MDX",
+      "SEO"
+    ],
     "thumbnail": "/images/shop/templates/content-engine-skill.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["Claude Code 1.0+", "Any blog platform"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Claude Code 1.0+",
+      "Any blog platform"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
+    "vercelDeployUrl": "",
     "downloads": 0,
     "rating": 0,
     "featured": false,
-    "tags": ["content", "seo", "blog", "claude-code", "skill"]
+    "tags": [
+      "content",
+      "seo",
+      "blog",
+      "claude-code",
+      "skill"
+    ]
   },
   {
     "id": "claude-code-dev-tools",
@@ -72,16 +104,34 @@
       "Performance anti-patterns list",
       "Accessibility checks built-in"
     ],
-    "techStack": ["React", "Next.js 15", "TypeScript"],
+    "techStack": [
+      "React",
+      "Next.js 15",
+      "TypeScript"
+    ],
     "thumbnail": "/images/shop/templates/dev-tools-skill.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["Claude Code 1.0+", "Next.js 14-15", "React 18-19"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Claude Code 1.0+",
+      "Next.js 14-15",
+      "React 18-19"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
+    "vercelDeployUrl": "",
     "downloads": 0,
     "rating": 0,
     "featured": true,
-    "tags": ["react", "nextjs", "typescript", "claude-code", "skill"]
+    "tags": [
+      "react",
+      "nextjs",
+      "typescript",
+      "claude-code",
+      "skill"
+    ]
   },
   {
     "id": "claude-code-seo-intelligence",
@@ -100,16 +150,32 @@
       "Topic cluster mapping",
       "Technical SEO audit checklist"
     ],
-    "techStack": ["Claude Code", "SEO", "Schema.org"],
+    "techStack": [
+      "Claude Code",
+      "SEO",
+      "Schema.org"
+    ],
     "thumbnail": "/images/shop/templates/seo-intelligence-skill.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["Claude Code 1.0+", "Any website"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Claude Code 1.0+",
+      "Any website"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
     "downloads": 0,
     "rating": 0,
     "featured": false,
-    "tags": ["seo", "schema", "keywords", "claude-code", "skill"]
+    "tags": [
+      "seo",
+      "schema",
+      "keywords",
+      "claude-code",
+      "skill"
+    ]
   },
   {
     "id": "claude-code-agent-orchestration",
@@ -128,16 +194,33 @@
       "Production deployment checklist",
       "Memory and context management"
     ],
-    "techStack": ["Claude Code", "MCP", "TypeScript"],
+    "techStack": [
+      "Claude Code",
+      "MCP",
+      "TypeScript"
+    ],
     "thumbnail": "/images/shop/templates/agent-orchestration-skill.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["Claude Code 1.0+", "MCP Protocol"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Claude Code 1.0+",
+      "MCP Protocol"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
+    "vercelDeployUrl": "",
     "downloads": 0,
     "rating": 0,
     "featured": true,
-    "tags": ["agents", "mcp", "orchestration", "claude-code", "skill"]
+    "tags": [
+      "agents",
+      "mcp",
+      "orchestration",
+      "claude-code",
+      "skill"
+    ]
   },
   {
     "id": "n8n-content-pipeline",
@@ -150,22 +233,38 @@
     "tier": "pro",
     "description": "Complete n8n workflow that automates content creation from ideation to publication. Connects Claude API for writing, SEO tools for optimization, and publishing APIs for distribution.",
     "features": [
-      "Research → Draft → Edit → Publish pipeline",
+      "Research \u2192 Draft \u2192 Edit \u2192 Publish pipeline",
       "Claude API integration nodes",
       "SEO scoring and optimization",
       "Multi-platform publishing (blog, X, LinkedIn)",
       "Content calendar automation"
     ],
-    "techStack": ["n8n", "Claude API", "Webhook"],
+    "techStack": [
+      "n8n",
+      "Claude API",
+      "Webhook"
+    ],
     "thumbnail": "/images/shop/templates/n8n-content-pipeline.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["n8n 1.0+", "Claude API", "Any CMS"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "n8n 1.0+",
+      "Claude API",
+      "Any CMS"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
     "downloads": 0,
     "rating": 0,
     "featured": true,
-    "tags": ["n8n", "workflow", "content", "automation"]
+    "tags": [
+      "n8n",
+      "workflow",
+      "content",
+      "automation"
+    ]
   },
   {
     "id": "n8n-lead-enrichment",
@@ -178,22 +277,39 @@
     "tier": "pro",
     "description": "n8n workflow that enriches incoming leads with company data, social profiles, and AI-generated engagement scores. Integrates with any CRM via webhooks.",
     "features": [
-      "Email → Company enrichment",
+      "Email \u2192 Company enrichment",
       "Social profile discovery",
       "AI lead scoring (Claude-powered)",
       "CRM sync via webhook",
       "Slack notification on hot leads"
     ],
-    "techStack": ["n8n", "Claude API", "CRM"],
+    "techStack": [
+      "n8n",
+      "Claude API",
+      "CRM"
+    ],
     "thumbnail": "/images/shop/templates/n8n-lead-enrichment.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["n8n 1.0+", "Any CRM", "Slack"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "n8n 1.0+",
+      "Any CRM",
+      "Slack"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
     "downloads": 0,
     "rating": 0,
     "featured": false,
-    "tags": ["n8n", "workflow", "leads", "crm", "automation"]
+    "tags": [
+      "n8n",
+      "workflow",
+      "leads",
+      "crm",
+      "automation"
+    ]
   },
   {
     "id": "n8n-customer-support",
@@ -212,16 +328,31 @@
       "Satisfaction survey automation",
       "Weekly analytics digest"
     ],
-    "techStack": ["n8n", "Claude API", "Email"],
+    "techStack": [
+      "n8n",
+      "Claude API",
+      "Email"
+    ],
     "thumbnail": "/images/shop/templates/n8n-customer-support.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["n8n 1.0+", "Any email provider"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "n8n 1.0+",
+      "Any email provider"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
     "downloads": 0,
     "rating": 0,
     "featured": false,
-    "tags": ["n8n", "workflow", "support", "automation"]
+    "tags": [
+      "n8n",
+      "workflow",
+      "support",
+      "automation"
+    ]
   },
   {
     "id": "nextjs-saas-boilerplate",
@@ -242,16 +373,34 @@
       "Tailwind CSS + Framer Motion",
       "TypeScript strict mode"
     ],
-    "techStack": ["Next.js 15", "TypeScript", "Tailwind", "Lemon Squeezy"],
+    "techStack": [
+      "Next.js 15",
+      "TypeScript",
+      "Tailwind",
+      "Lemon Squeezy"
+    ],
     "thumbnail": "/images/shop/templates/nextjs-saas-boilerplate.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["Next.js 15", "Vercel", "Node.js 20+"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Next.js 15",
+      "Vercel",
+      "Node.js 20+"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
+    "vercelDeployUrl": "",
     "downloads": 0,
     "rating": 0,
     "featured": true,
-    "tags": ["nextjs", "saas", "boilerplate", "fullstack"]
+    "tags": [
+      "nextjs",
+      "saas",
+      "boilerplate",
+      "fullstack"
+    ]
   },
   {
     "id": "nextjs-ai-chat",
@@ -270,16 +419,32 @@
       "File upload and analysis",
       "Dark glassmorphic chat UI"
     ],
-    "techStack": ["Next.js 15", "Vercel AI SDK", "TypeScript"],
+    "techStack": [
+      "Next.js 15",
+      "Vercel AI SDK",
+      "TypeScript"
+    ],
     "thumbnail": "/images/shop/templates/nextjs-ai-chat.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["Next.js 15", "Vercel AI SDK 4.0+"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Next.js 15",
+      "Vercel AI SDK 4.0+"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
+    "vercelDeployUrl": "",
     "downloads": 0,
     "rating": 0,
     "featured": false,
-    "tags": ["nextjs", "ai", "chat", "starter-kit"]
+    "tags": [
+      "nextjs",
+      "ai",
+      "chat",
+      "starter-kit"
+    ]
   },
   {
     "id": "nextjs-blog-cms",
@@ -299,16 +464,33 @@
       "Related posts engine",
       "RSS feed generation"
     ],
-    "techStack": ["Next.js 15", "MDX", "Tailwind"],
+    "techStack": [
+      "Next.js 15",
+      "MDX",
+      "Tailwind"
+    ],
     "thumbnail": "/images/shop/templates/nextjs-blog-cms.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["Next.js 15", "MDX 3.0"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Next.js 15",
+      "MDX 3.0"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
+    "vercelDeployUrl": "",
     "downloads": 0,
     "rating": 0,
     "featured": false,
-    "tags": ["nextjs", "blog", "mdx", "seo", "starter-kit"]
+    "tags": [
+      "nextjs",
+      "blog",
+      "mdx",
+      "seo",
+      "starter-kit"
+    ]
   },
   {
     "id": "mcp-custom-tools",
@@ -327,16 +509,32 @@
       "Authentication middleware",
       "Docker deployment config"
     ],
-    "techStack": ["TypeScript", "MCP SDK", "Node.js"],
+    "techStack": [
+      "TypeScript",
+      "MCP SDK",
+      "Node.js"
+    ],
     "thumbnail": "/images/shop/templates/mcp-custom-tools.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["MCP SDK 1.0+", "Node.js 20+"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "MCP SDK 1.0+",
+      "Node.js 20+"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
+    "vercelDeployUrl": "",
     "downloads": 0,
     "rating": 0,
     "featured": false,
-    "tags": ["mcp", "tools", "typescript", "config"]
+    "tags": [
+      "mcp",
+      "tools",
+      "typescript",
+      "config"
+    ]
   },
   {
     "id": "mcp-multi-server",
@@ -355,16 +553,31 @@
       "Image generation pipeline",
       "Email automation via Resend"
     ],
-    "techStack": ["MCP", "Claude Code", "Various APIs"],
+    "techStack": [
+      "MCP",
+      "Claude Code",
+      "Various APIs"
+    ],
     "thumbnail": "/images/shop/templates/mcp-multi-server.png",
     "gallery": [],
     "includesOCI": false,
-    "compatibility": ["Claude Code 1.0+", "MCP Protocol"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Claude Code 1.0+",
+      "MCP Protocol"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
     "downloads": 0,
     "rating": 0,
     "featured": false,
-    "tags": ["mcp", "config", "multi-server", "production"]
+    "tags": [
+      "mcp",
+      "config",
+      "multi-server",
+      "production"
+    ]
   },
   {
     "id": "rag-system-blueprint",
@@ -385,16 +598,31 @@
       "Cost optimization guide",
       "Oracle GenAI integration variant"
     ],
-    "techStack": ["Python", "LangChain", "Vector DB"],
+    "techStack": [
+      "Python",
+      "LangChain",
+      "Vector DB"
+    ],
     "thumbnail": "/images/shop/templates/rag-system-blueprint.png",
     "gallery": [],
     "includesOCI": true,
-    "compatibility": ["Python 3.10+", "Any vector DB"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Python 3.10+",
+      "Any vector DB"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
     "downloads": 0,
     "rating": 0,
     "featured": true,
-    "tags": ["rag", "blueprint", "architecture", "enterprise"]
+    "tags": [
+      "rag",
+      "blueprint",
+      "architecture",
+      "enterprise"
+    ]
   },
   {
     "id": "multi-agent-blueprint",
@@ -415,15 +643,33 @@
       "Failure recovery patterns",
       "Oracle ADK integration variant"
     ],
-    "techStack": ["TypeScript", "Claude API", "MCP"],
+    "techStack": [
+      "TypeScript",
+      "Claude API",
+      "MCP"
+    ],
     "thumbnail": "/images/shop/templates/multi-agent-blueprint.png",
     "gallery": [],
     "includesOCI": true,
-    "compatibility": ["Node.js 20+", "Claude API", "MCP Protocol"],
-    "lemonSqueezy": { "productId": "", "variantId": "" },
+    "compatibility": [
+      "Node.js 20+",
+      "Claude API",
+      "MCP Protocol"
+    ],
+    "lemonSqueezy": {
+      "productId": "",
+      "variantId": ""
+    },
+    "vercelDeployUrl": "",
     "downloads": 0,
     "rating": 0,
     "featured": true,
-    "tags": ["agents", "blueprint", "orchestration", "enterprise", "acos"]
+    "tags": [
+      "agents",
+      "blueprint",
+      "orchestration",
+      "enterprise",
+      "acos"
+    ]
   }
 ]

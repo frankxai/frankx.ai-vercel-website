@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 958,
+    "total": 961,
     "aliases": 58,
     "byType": {
       "core": 24,
-      "section": 429,
+      "section": 431,
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 263,
+      "blog": 264,
       "research": 16,
       "guide": 26,
       "library": 56,
@@ -1086,17 +1086,18 @@
     },
     {
       "href": "/blog/ai-agents-worth-evaluating-august-2026",
-      "title": "The AI Agents Worth Evaluating in August 2026",
-      "description": "Mira, Viktor, Hermes, ChatGPT Work, and Claude Cowork compared by job, cost, and capability. What to evaluate on August 21, 2026.",
+      "title": "The AI Agents Worth Evaluating in August 2026: The Definitive Field Guide",
+      "description": "Claude Code, ChatGPT Work, Hermes Agent, Manus, Devin, Cursor, and Viktor compared by job, autonomy, and unit economics. What to evaluate on August 21, 2026.",
       "tags": [
         "AI Agents",
-        "Mira",
-        "Viktor",
-        "Hermes Agent",
+        "Claude Code",
         "ChatGPT Work",
-        "Claude Cowork",
-        "OpenClaw",
-        "Manus"
+        "Hermes Agent",
+        "Manus",
+        "Devin",
+        "Cursor",
+        "Viktor",
+        "OpenClaw"
       ],
       "type": "blog"
     },
@@ -1136,6 +1137,19 @@
         "AI Systems",
         "ACOS",
         "MCP"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-capability-abundant-architecture-still-the-work",
+      "title": "AI Capability Is Abundant. Architecture Is Still the Work.",
+      "description": "Five recent stories from my work show where AI skills and architecture create real value: turning workshops, field notes, compute, content, and infrastructure ideas into systems that can survive change.",
+      "tags": [
+        "ai-architecture",
+        "ai-skills",
+        "agentic-systems",
+        "ai-coe",
+        "founder-systems"
       ],
       "type": "blog"
     },
@@ -7330,6 +7344,17 @@
       "type": "section"
     },
     {
+      "href": "/music-lab/guitar-tabs",
+      "title": "Guitar Tabs",
+      "tags": [
+        "music",
+        "lab",
+        "guitar",
+        "tabs"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/music-lab/piano",
       "title": "Piano",
       "tags": [
@@ -7347,6 +7372,16 @@
         "lab",
         "piano",
         "songs"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/music-lab/violin",
+      "title": "Violin",
+      "tags": [
+        "music",
+        "lab",
+        "violin"
       ],
       "type": "section"
     },
