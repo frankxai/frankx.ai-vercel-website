@@ -38,7 +38,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-homepage-hero"
+      "vercelDeployUrl": ""
     },
     {
       "id": 2,
@@ -54,7 +54,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-products-catalog"
+      "vercelDeployUrl": ""
     },
     {
       "id": 3,
@@ -70,7 +70,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-research-hub"
+      "vercelDeployUrl": ""
     },
     {
       "id": 4,
@@ -86,7 +86,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-blog-engine"
+      "vercelDeployUrl": ""
     },
     {
       "id": 5,
@@ -102,7 +102,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-inner-circle"
+      "vercelDeployUrl": ""
     },
     {
       "id": 6,
@@ -118,7 +118,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-acos-showcase"
+      "vercelDeployUrl": ""
     },
     {
       "id": 7,
@@ -134,7 +134,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-ai-academy"
+      "vercelDeployUrl": ""
     },
     {
       "id": 8,
@@ -150,7 +150,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-creator-profile"
+      "vercelDeployUrl": ""
     },
     {
       "id": 9,
@@ -166,7 +166,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-design-system"
+      "vercelDeployUrl": ""
     },
     {
       "id": 10,
@@ -182,7 +182,7 @@
       "status": "completed",
       "quality": "premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-music-lab"
+      "vercelDeployUrl": ""
     },
     {
       "id": 11,
@@ -198,7 +198,7 @@
       "status": "completed",
       "quality": "ultra-premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-soulbook"
+      "vercelDeployUrl": ""
     },
     {
       "id": 12,
@@ -214,7 +214,7 @@
       "status": "completed",
       "quality": "ultra-premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-ai-team"
+      "vercelDeployUrl": ""
     },
     {
       "id": 13,
@@ -230,7 +230,7 @@
       "status": "completed",
       "quality": "ultra-premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-labs-premium"
+      "vercelDeployUrl": ""
     },
     {
       "id": 14,
@@ -246,7 +246,7 @@
       "status": "completed",
       "quality": "ultra-premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-inner-circle-v2"
+      "vercelDeployUrl": ""
     },
     {
       "id": 15,
@@ -262,7 +262,7 @@
       "status": "completed",
       "quality": "ultra-premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-ai-coaching"
+      "vercelDeployUrl": ""
     },
     {
       "id": 16,
@@ -278,7 +278,7 @@
       "status": "completed",
       "quality": "ultra-premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=frankx-builder-community"
+      "vercelDeployUrl": ""
     },
     {
       "id": 17,
@@ -294,7 +294,7 @@
       "status": "completed",
       "quality": "ultra-premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=agentic-microsaas-hub&env=ANTHROPIC_API_KEY,OPENAI_API_KEY"
+      "vercelDeployUrl": ""
     },
     {
       "id": 18,
@@ -310,7 +310,7 @@
       "status": "completed",
       "quality": "ultra-premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=ai-coe-command-console&env=ANTHROPIC_API_KEY,OPENAI_API_KEY"
+      "vercelDeployUrl": ""
     },
     {
       "id": 19,
@@ -326,7 +326,7 @@
       "status": "completed",
       "quality": "ultra-premium",
       "deployed": true,
-      "vercelDeployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=music-catalog-browser"
+      "vercelDeployUrl": ""
     }
   ]
 }
