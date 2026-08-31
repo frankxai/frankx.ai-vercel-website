@@ -75,7 +75,7 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     category: "Knowledge Systems",
     description: "Knowledge substrate for large technical corpora. Combines vector semantic search with GraphRAG entity extraction so answers stay anchored to retrieved sources.",
     cloudProviders: ["OCI", "AWS", "Cloudflare"],
-    color: "cyan",
+    color: "cobalt",
     metrics: { latency: "<350ms p95", costSavings: "80% token savings via reranking", reliability: "Answers cite their source" },
     technologies: ["Upstash Context7", "Neo4j / Graph", "pgvector", "FastAPI"],
     flow: [
@@ -97,7 +97,7 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     category: "Cost & Performance",
     description: "Cuts LLM API spend substantially by dynamically routing high-volume queries to ultra-fast sub-$1 models and reserving frontier reasoning models for complex constraint verification.",
     cloudProviders: ["Multi-Cloud", "Vercel Edge"],
-    color: "violet",
+    color: "amber",
     metrics: { latency: "150ms triage", costSavings: "82% blended cost reduction", reliability: "Degrades instead of failing" },
     technologies: ["Gemini 3.7 Flash", "Claude Opus 5", "DeepSeek V4 Pro", "OpenRouter"],
     flow: [
@@ -119,7 +119,7 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     category: "Infrastructure",
     description: "Universal tool connectivity layer for AI assistants and swarms. Provides strict capability-based access control, tool discovery, response caching, and immutable audit logs.",
     cloudProviders: ["AWS", "OCI", "Cloudflare"],
-    color: "orange",
+    color: "terracotta",
     metrics: { latency: "<25ms gateway overhead", costSavings: "40% caching reduction", reliability: "Schema-validated tool calls" },
     technologies: ["MCP SDK", "Docker", "PostgreSQL", "Tailscale"],
     flow: [
@@ -163,7 +163,7 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     category: "Developer Experience",
     description: "Autonomous software development lifecycle system. Parallel coding agents generate scoped worktree branches, run unit tests, and submit draft PRs evaluated by an independent review panel.",
     cloudProviders: ["GitHub Actions", "Vercel", "Railway"],
-    color: "blue",
+    color: "stone",
     metrics: { latency: "15 min idea-to-preview", costSavings: "90% manual review saved", reliability: "Gated before production" },
     technologies: ["GitHub Actions", "Vercel Preview", "Playwright", "Santa Loop"],
     flow: [
@@ -202,13 +202,16 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
   },
 ]
 
+// Category accents, not decoration: one flat surface, one border, one badge per lane.
+// Deliberately avoids the violet-gradient / cyan-on-dark pairing that reads as generated UI,
+// and anchors on the estate's cobalt from the connect-authority release.
 const colorMap: Record<string, { bg: string; border: string; badge: string }> = {
-  emerald: { bg: "from-emerald-500/10 to-emerald-600/5", border: "border-emerald-500/20 hover:border-emerald-500/40", badge: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" },
-  cyan: { bg: "from-cyan-500/10 to-cyan-600/5", border: "border-cyan-500/20 hover:border-cyan-500/40", badge: "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30" },
-  violet: { bg: "from-violet-500/10 to-violet-600/5", border: "border-violet-500/20 hover:border-violet-500/40", badge: "bg-violet-500/20 text-violet-400 border border-violet-500/30" },
-  orange: { bg: "from-orange-500/10 to-orange-600/5", border: "border-orange-500/20 hover:border-orange-500/40", badge: "bg-orange-500/20 text-orange-400 border border-orange-500/30" },
-  rose: { bg: "from-rose-500/10 to-rose-600/5", border: "border-rose-500/20 hover:border-rose-500/40", badge: "bg-rose-500/20 text-rose-400 border border-rose-500/30" },
-  blue: { bg: "from-blue-500/10 to-blue-600/5", border: "border-blue-500/20 hover:border-blue-500/40", badge: "bg-blue-500/20 text-blue-400 border border-blue-500/30" },
+  emerald: { bg: "bg-white/[0.02]", border: "border-emerald-400/25 hover:border-emerald-400/50", badge: "bg-emerald-400/10 text-emerald-300 border border-emerald-400/30" },
+  cobalt: { bg: "bg-white/[0.02]", border: "border-[#2157d5]/35 hover:border-[#2157d5]/60", badge: "bg-[#2157d5]/15 text-[#8fb0ff] border border-[#2157d5]/40" },
+  amber: { bg: "bg-white/[0.02]", border: "border-amber-400/25 hover:border-amber-400/50", badge: "bg-amber-400/10 text-amber-300 border border-amber-400/30" },
+  terracotta: { bg: "bg-white/[0.02]", border: "border-[#d9855f]/30 hover:border-[#d9855f]/55", badge: "bg-[#d9855f]/12 text-[#e5a483] border border-[#d9855f]/35" },
+  rose: { bg: "bg-white/[0.02]", border: "border-rose-400/25 hover:border-rose-400/50", badge: "bg-rose-400/10 text-rose-300 border border-rose-400/30" },
+  stone: { bg: "bg-white/[0.02]", border: "border-stone-400/25 hover:border-stone-400/50", badge: "bg-stone-400/10 text-stone-200 border border-stone-400/30" },
 }
 
 export default function ArchitecturesPage() {
@@ -256,7 +259,7 @@ export default function ArchitecturesPage() {
             const colors = colorMap[arch.color] || colorMap.emerald
             const currentTab = activeTab[arch.id] || "flow"
             return (
-              <div key={arch.id} className={`rounded-3xl border bg-gradient-to-b ${colors.bg} ${colors.border} p-6 backdrop-blur-xl transition-all md:p-8`}>
+              <div key={arch.id} className={`rounded-3xl border ${colors.bg} ${colors.border} p-6 backdrop-blur-xl transition-colors md:p-8`}>
                 <div className="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-2">
