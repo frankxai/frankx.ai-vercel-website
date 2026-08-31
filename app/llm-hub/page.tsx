@@ -7,6 +7,7 @@ import { ModelExplorer } from '@/components/llm-hub/ModelExplorer'
 import { DecisionMatrix } from '@/components/llm-hub/DecisionMatrix'
 import { CreatorStackCard } from '@/components/llm-hub/CreatorStackCard'
 import { TaskRoutingPlayground } from '@/components/research/TaskRoutingPlayground'
+import { CostCalculator } from '@/components/llm-hub/CostCalculator'
 import { getAllPlatforms, getProviders, registryLastUpdated } from '@/lib/llm-hub/registry'
 import { buildModelRows } from '@/lib/llm-hub/rows'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
@@ -157,6 +158,12 @@ export default async function LlmHubPage() {
                 <Zap className="h-4 w-4" /> Frontier routing guide
               </Link>
               <Link
+                href="/agent-arena"
+                className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300 transition-colors hover:bg-emerald-500/20"
+              >
+                <Zap className="h-4 w-4" /> Agent Arena
+              </Link>
+              <Link
                 href="/research/model-arena"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
               >
@@ -201,6 +208,13 @@ export default async function LlmHubPage() {
                 <DecisionMatrix />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Interactive Cost-to-Outcome Calculator */}
+        <section id="cost-calculator" className="scroll-mt-20 border-t border-white/5 px-6 py-14">
+          <div className="mx-auto max-w-6xl">
+            <CostCalculator />
           </div>
         </section>
 
