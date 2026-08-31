@@ -85,12 +85,6 @@
         "mcp",
         "serve"
       ]
-    },
-    "starlight-v0": {
-      "command": "node",
-      "args": [
-        "C:Users\frankstarlight\tools\u000b0-mcpstarlight-v0-mcp.mjs"
-      ]
     }
   }
 }

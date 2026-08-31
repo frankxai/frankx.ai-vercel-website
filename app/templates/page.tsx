@@ -93,7 +93,7 @@ const premiumTemplates = [
     meta: 'Starter Kit · $47',
     color: 'text-emerald-300',
     gradient: 'from-emerald-500/20 to-emerald-500/5',
-    deployUrl: 'https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=agentic-microsaas-hub&env=ANTHROPIC_API_KEY,OPENAI_API_KEY',
+    deployUrl: null,
   },
   {
     title: 'Digital Asset & Template Marketplace',
@@ -103,7 +103,7 @@ const premiumTemplates = [
     meta: 'Marketplace OS · $49',
     color: 'text-amber-300',
     gradient: 'from-amber-500/20 to-amber-500/5',
-    deployUrl: 'https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=digital-asset-marketplace',
+    deployUrl: null,
   },
   {
     title: 'Creator Knowledge & Library OS',
@@ -113,7 +113,7 @@ const premiumTemplates = [
     meta: 'Open & Premium · Free/$29',
     color: 'text-cyan-300',
     gradient: 'from-cyan-500/20 to-cyan-500/5',
-    deployUrl: 'https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=creator-library-os',
+    deployUrl: null,
   },
   {
     title: 'Autonomous Swarm Workstation (ACOS Core)',
@@ -123,7 +123,7 @@ const premiumTemplates = [
     meta: 'Flagship OS · $47/$197',
     color: 'text-violet-300',
     gradient: 'from-violet-500/20 to-violet-500/5',
-    deployUrl: 'https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=multi-agent-framework&env=ANTHROPIC_API_KEY,OPENAI_API_KEY,GEMINI_API_KEY',
+    deployUrl: null,
   },
   {
     title: 'AI Architecture Production Templates',
@@ -133,7 +133,7 @@ const premiumTemplates = [
     meta: 'Architecture Kit · $49',
     color: 'text-blue-300',
     gradient: 'from-blue-500/20 to-blue-500/5',
-    deployUrl: 'https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=ai-architecture-templates',
+    deployUrl: null,
   },
   {
     title: 'Vibe OS & Suno Prompt Architecture',
@@ -143,7 +143,7 @@ const premiumTemplates = [
     meta: 'Music Creation · $37',
     color: 'text-rose-300',
     gradient: 'from-rose-500/20 to-rose-500/5',
-    deployUrl: 'https://vercel.com/new/clone?repository-url=https://github.com/frankxai/FrankX&project-name=suno-mastery-studio',
+    deployUrl: null,
   },
 ]
 

@@ -158,12 +158,6 @@ export default async function LlmHubPage() {
                 <Zap className="h-4 w-4" /> Frontier routing guide
               </Link>
               <Link
-                href="/agent-arena"
-                className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300 transition-colors hover:bg-emerald-500/20"
-              >
-                <Zap className="h-4 w-4" /> Agent Arena
-              </Link>
-              <Link
                 href="/research/model-arena"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
               >

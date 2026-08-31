@@ -54,7 +54,7 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     description: "Production-grade swarm architecture with deterministic Finite State Machine (FSM) transitions, memory vault persistence, and Byzantine consensus for high-value decisions.",
     cloudProviders: ["AWS", "GCP", "Self-Hosted"],
     color: "emerald",
-    metrics: { latency: "<1.2s / turn", costSavings: "65% vs single mega-prompt", reliability: "99.9% state integrity" },
+    metrics: { latency: "<1.2s / turn", costSavings: "65% vs single mega-prompt", reliability: "State survives long runs" },
     technologies: ["Claude Code", "Hermes", "Redis Memory Vault", "LangGraph"],
     flow: [
       "Queen / Leader Agent ingests intent & compiles task contract",
@@ -73,10 +73,10 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     title: "2. Dual-Engine RAG & GraphRAG",
     subtitle: "Hybrid BM25 keyword + dense vector + knowledge graph entity reranking",
     category: "Knowledge Systems",
-    description: "Enterprise knowledge substrate indexing 1M+ technical documents. Combines vector semantic search with GraphRAG entity extraction for zero-hallucination factual grounding.",
+    description: "Knowledge substrate for large technical corpora. Combines vector semantic search with GraphRAG entity extraction so answers stay anchored to retrieved sources.",
     cloudProviders: ["OCI", "AWS", "Cloudflare"],
     color: "cyan",
-    metrics: { latency: "<350ms p95", costSavings: "80% token savings via reranking", reliability: "98.4% citation accuracy" },
+    metrics: { latency: "<350ms p95", costSavings: "80% token savings via reranking", reliability: "Answers cite their source" },
     technologies: ["Upstash Context7", "Neo4j / Graph", "pgvector", "FastAPI"],
     flow: [
       "Document ingestion with semantic chunking & entity-relation extraction",
@@ -95,10 +95,10 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     title: "3. Dynamic Multi-Tier Model Router",
     subtitle: "Real-time task shape analysis routing between Fast-Path and Deep-Reasoning",
     category: "Cost & Performance",
-    description: "Slashes LLM API bills by 70-85% by dynamically routing high-volume queries to ultra-fast sub-$1 models and reserving frontier reasoning models for complex constraint verification.",
+    description: "Cuts LLM API spend substantially by dynamically routing high-volume queries to ultra-fast sub-$1 models and reserving frontier reasoning models for complex constraint verification.",
     cloudProviders: ["Multi-Cloud", "Vercel Edge"],
     color: "violet",
-    metrics: { latency: "150ms triage", costSavings: "82% blended cost reduction", reliability: "100% SLA uptime via fallback" },
+    metrics: { latency: "150ms triage", costSavings: "82% blended cost reduction", reliability: "Degrades instead of failing" },
     technologies: ["Gemini 3.7 Flash", "Claude Opus 5", "DeepSeek V4 Pro", "OpenRouter"],
     flow: [
       "Incoming request parsed for reasoning depth & token constraints",
@@ -120,7 +120,7 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     description: "Universal tool connectivity layer for AI assistants and swarms. Provides strict capability-based access control, tool discovery, response caching, and immutable audit logs.",
     cloudProviders: ["AWS", "OCI", "Cloudflare"],
     color: "orange",
-    metrics: { latency: "<25ms gateway overhead", costSavings: "40% caching reduction", reliability: "Zero schema hallucination" },
+    metrics: { latency: "<25ms gateway overhead", costSavings: "40% caching reduction", reliability: "Schema-validated tool calls" },
     technologies: ["MCP SDK", "Docker", "PostgreSQL", "Tailscale"],
     flow: [
       "Agent requests tool catalog with cryptographic session token",
@@ -142,7 +142,7 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     description: "Active defense system running automated attack vectors (indirect prompt injection, mandate forgery, capital exfiltration) to ensure agents reject and audit malicious operations.",
     cloudProviders: ["Multi-Cloud", "Self-Hosted"],
     color: "rose",
-    metrics: { latency: "Real-time stream inspection", costSavings: "100% loss prevention", reliability: "Zero silent failures" },
+    metrics: { latency: "Real-time stream inspection", costSavings: "Catches loss before spend", reliability: "Failures surface, not swallow" },
     technologies: ["PromptFoo", "starlight-evals", "Custom IAM Guardrails"],
     flow: [
       "Input boundary sanitizes untrusted third-party data & web scrapes",
@@ -164,7 +164,7 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     description: "Autonomous software development lifecycle system. Parallel coding agents generate scoped worktree branches, run unit tests, and submit draft PRs evaluated by an independent review panel.",
     cloudProviders: ["GitHub Actions", "Vercel", "Railway"],
     color: "blue",
-    metrics: { latency: "15 min idea-to-preview", costSavings: "90% manual review saved", reliability: "Zero broken production deploys" },
+    metrics: { latency: "15 min idea-to-preview", costSavings: "90% manual review saved", reliability: "Gated before production" },
     technologies: ["GitHub Actions", "Vercel Preview", "Playwright", "Santa Loop"],
     flow: [
       "Issue assigned -> Agent creates dedicated git branch & worktree",
@@ -186,7 +186,7 @@ const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
     description: "Fully sovereign AI deployment running open-weight models on consumer hardware (Mac Studio / RTX 5090). Zero telemetry, zero external API billing, complete data privacy.",
     cloudProviders: ["Local Hardware", "Air-Gapped LAN"],
     color: "emerald",
-    metrics: { latency: "45 tokens/sec local", costSavings: "100% cloud inference savings", reliability: "Runs offline with zero internet" },
+    metrics: { latency: "45 tokens/sec local", costSavings: "No cloud inference cost", reliability: "Runs offline with zero internet" },
     technologies: ["Qwen 3.8-27B", "Ollama / vLLM", "SQLite Memory", "Hermes CLI"],
     flow: [
       "Local developer prompt captured in private local terminal",
@@ -235,9 +235,6 @@ export default function ArchitecturesPage() {
             <ArrowRight className="h-4 w-4 rotate-180" /> AI Architect Hub
           </Link>
           <div className="flex items-center gap-3">
-            <Link href="/agent-arena" className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs text-emerald-300 transition hover:bg-emerald-500/20">
-              <Zap className="h-3.5 w-3.5" /> Agent Arena
-            </Link>
             <Link href="/llm-hub" className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 transition hover:text-white">
               <Boxes className="h-3.5 w-3.5" /> LLM Hub
             </Link>
@@ -304,19 +301,25 @@ export default function ArchitecturesPage() {
                     </div>
                   )}
                   {currentTab === "metrics" && (
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 text-center">
-                      <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
-                        <div className="text-xs text-white/40">Latency SLA</div>
-                        <div className="font-mono text-lg font-bold text-white mt-1">{arch.metrics.latency}</div>
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 text-center">
+                        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
+                          <div className="text-xs text-white/60">Latency target</div>
+                          <div className="font-mono text-lg font-bold text-white mt-1">{arch.metrics.latency}</div>
+                        </div>
+                        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
+                          <div className="text-xs text-white/60">Cost target</div>
+                          <div className="font-mono text-lg font-bold text-emerald-400 mt-1">{arch.metrics.costSavings}</div>
+                        </div>
+                        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
+                          <div className="text-xs text-white/60">Reliability target</div>
+                          <div className="font-mono text-lg font-bold text-cyan-400 mt-1">{arch.metrics.reliability}</div>
+                        </div>
                       </div>
-                      <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
-                        <div className="text-xs text-white/40">Cost Efficiency</div>
-                        <div className="font-mono text-lg font-bold text-emerald-400 mt-1">{arch.metrics.costSavings}</div>
-                      </div>
-                      <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
-                        <div className="text-xs text-white/40">Reliability Guarantee</div>
-                        <div className="font-mono text-lg font-bold text-cyan-400 mt-1">{arch.metrics.reliability}</div>
-                      </div>
+                      <p className="text-center text-xs leading-5 text-white/60">
+                        Design targets for this pattern, not measured results or a service guarantee.
+                        Your numbers will depend on model, corpus and traffic shape.
+                      </p>
                     </div>
                   )}
                 </div>

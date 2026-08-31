@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T21:06:18.621Z",
-  "totalAssets": 1624,
-  "totalCollections": 59,
-  "totalSize": 1332162288,
+  "generatedAt": "2026-08-31T21:56:25.963Z",
+  "totalAssets": 1722,
+  "totalCollections": 64,
+  "totalSize": 1343513156,
   "formats": {
-    "png": 858,
-    "svg": 363,
-    "webp": 215,
-    "jpg": 178,
+    "png": 866,
+    "svg": 380,
+    "webp": 282,
+    "jpg": 184,
     "jpeg": 10
   },
   "collections": [
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 594,
+      "count": 618,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -128,7 +128,7 @@
             "research",
             "engine"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/122e43a8-45fe-4476-b36c-378c1abb8fa5",
@@ -234,6 +234,71 @@
             "blog"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "blog/4-hour-ai-architect-deal-framework-2026-hero",
+          "filename": "4-hour-ai-architect-deal-framework-2026-hero.svg",
+          "src": "/images/blog/visual-system/4-hour-ai-architect-deal-framework-2026-hero.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 5124,
+          "title": "4 Hour Ai Architect Deal Framework 2026",
+          "tags": [
+            "blog",
+            "hour",
+            "architect",
+            "deal",
+            "framework",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/4-hour-ai-architect-deal-framework-2026-map",
+          "filename": "4-hour-ai-architect-deal-framework-2026-map.svg",
+          "src": "/images/blog/visual-system/infographics/4-hour-ai-architect-deal-framework-2026-map.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 5782,
+          "title": "4 Hour Ai Architect Deal Framework 2026 Map",
+          "tags": [
+            "blog",
+            "hour",
+            "architect",
+            "deal",
+            "framework",
+            "2026",
+            "map"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/4-hour-ai-architect-deal-framework-2026-og",
+          "filename": "4-hour-ai-architect-deal-framework-2026-og.png",
+          "src": "/images/blog/visual-system/social/4-hour-ai-architect-deal-framework-2026-og.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 179110,
+          "title": "4 Hour Ai Architect Deal Framework 2026 Og",
+          "tags": [
+            "blog",
+            "hour",
+            "architect",
+            "deal",
+            "framework",
+            "2026"
+          ],
+          "createdAt": "2026-08-31"
         },
         {
           "id": "blog/4c5e3592-9710-4126-829a-c2cc3dce2f68",
@@ -1165,7 +1230,7 @@
             "workflows",
             "2026"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/agentic-ai-roadmap-2026-hero-v2",
@@ -1424,7 +1489,7 @@
             "game",
             "development"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/agentic-os-family-architecture",
@@ -1822,6 +1887,112 @@
           "createdAt": "2026-06-18"
         },
         {
+          "id": "blog/ai-agents-worth-evaluating-august-2026-hero",
+          "filename": "ai-agents-worth-evaluating-august-2026-hero.jpg",
+          "src": "/images/blog/ai-agents-worth-evaluating-august-2026-hero.jpg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 209670,
+          "title": "Ai Agents Worth Evaluating August 2026",
+          "tags": [
+            "blog",
+            "agents",
+            "worth",
+            "evaluating",
+            "august",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-08-21"
+        },
+        {
+          "id": "blog/ai-architect-seven-plane-architecture-2026",
+          "filename": "ai-architect-seven-plane-architecture-2026.png",
+          "src": "/images/blog/ai-architect-seven-plane-architecture-2026.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 192190,
+          "title": "Ai Architect Seven Plane Architecture 2026",
+          "tags": [
+            "blog",
+            "architect",
+            "seven",
+            "plane",
+            "architecture",
+            "2026"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/ai-architect-seven-plane-architecture-2026",
+          "filename": "ai-architect-seven-plane-architecture-2026.svg",
+          "src": "/images/blog/ai-architect-seven-plane-architecture-2026.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 8094,
+          "title": "Ai Architect Seven Plane Architecture 2026",
+          "tags": [
+            "blog",
+            "architect",
+            "seven",
+            "plane",
+            "architecture",
+            "2026"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/ai-architecture-2026-four-decisions-hero",
+          "filename": "ai-architecture-2026-four-decisions-hero.png",
+          "src": "/images/blog/generated/ai-architecture-2026-four-decisions-hero.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 651478,
+          "title": "Ai Architecture 2026 Four Decisions",
+          "tags": [
+            "blog",
+            "architecture",
+            "2026",
+            "four",
+            "decisions",
+            "hero"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/ai-architecture-2026-four-decisions-hero",
+          "filename": "ai-architecture-2026-four-decisions-hero.webp",
+          "src": "/images/blog/generated/ai-architecture-2026-four-decisions-hero.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 163772,
+          "title": "Ai Architecture 2026 Four Decisions",
+          "tags": [
+            "blog",
+            "architecture",
+            "2026",
+            "four",
+            "decisions",
+            "hero"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
           "id": "blog/ai-architecture-patterns-solo-builders-hero",
           "filename": "ai-architecture-patterns-solo-builders-hero.webp",
           "src": "/images/blog/editorial/headers/ai-architecture-patterns-solo-builders-hero.webp",
@@ -2179,7 +2350,7 @@
             "infrastructure",
             "factories"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/ai-model-routing-guide-hero",
@@ -2462,7 +2633,7 @@
             "agentic",
             "foundry"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/aws-bedrock-agents",
@@ -2503,6 +2674,68 @@
             "hero"
           ],
           "createdAt": "2026-07-17"
+        },
+        {
+          "id": "blog/best-ai-app-builders-2026-hero",
+          "filename": "best-ai-app-builders-2026-hero.svg",
+          "src": "/images/blog/visual-system/best-ai-app-builders-2026-hero.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 4512,
+          "title": "Best Ai App Builders 2026",
+          "tags": [
+            "blog",
+            "best",
+            "app",
+            "builders",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/best-ai-app-builders-2026-map",
+          "filename": "best-ai-app-builders-2026-map.svg",
+          "src": "/images/blog/visual-system/infographics/best-ai-app-builders-2026-map.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 5553,
+          "title": "Best Ai App Builders 2026 Map",
+          "tags": [
+            "blog",
+            "best",
+            "app",
+            "builders",
+            "2026",
+            "map"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/best-ai-app-builders-2026-og",
+          "filename": "best-ai-app-builders-2026-og.png",
+          "src": "/images/blog/visual-system/social/best-ai-app-builders-2026-og.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 171622,
+          "title": "Best Ai App Builders 2026 Og",
+          "tags": [
+            "blog",
+            "best",
+            "app",
+            "builders",
+            "2026"
+          ],
+          "createdAt": "2026-08-31"
         },
         {
           "id": "blog/best-ai-browser-2026-hero-v5",
@@ -3786,6 +4019,53 @@
           "createdAt": "2026-06-18"
         },
         {
+          "id": "blog/best-social-media-management-tools-founders-2026-hero",
+          "filename": "best-social-media-management-tools-founders-2026-hero.svg",
+          "src": "/images/blog/visual-system/best-social-media-management-tools-founders-2026-hero.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 6384,
+          "title": "Best Social Media Management Tools Founders 2026",
+          "tags": [
+            "blog",
+            "best",
+            "social",
+            "media",
+            "management",
+            "tools",
+            "founders",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/best-social-media-management-tools-founders-2026-og",
+          "filename": "best-social-media-management-tools-founders-2026-og.png",
+          "src": "/images/blog/visual-system/social/best-social-media-management-tools-founders-2026-og.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 186103,
+          "title": "Best Social Media Management Tools Founders 2026 Og",
+          "tags": [
+            "blog",
+            "best",
+            "social",
+            "media",
+            "management",
+            "tools",
+            "founders",
+            "2026"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
           "id": "blog/blog-hero-aurora",
           "filename": "blog-hero-aurora.svg",
           "src": "/images/blog/blog-hero-aurora.svg",
@@ -4907,6 +5187,27 @@
           "createdAt": "2026-08-10"
         },
         {
+          "id": "blog/coding-agent-control-plane-2026",
+          "filename": "coding-agent-control-plane-2026.svg",
+          "src": "/images/blog/visual-system/infographics/coding-agent-control-plane-2026.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 8575,
+          "title": "Coding Agent Control Plane 2026",
+          "tags": [
+            "blog",
+            "coding",
+            "agent",
+            "control",
+            "plane",
+            "2026"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
           "id": "blog/conscious-ai-entrepreneurs-hero-v2",
           "filename": "conscious-ai-entrepreneurs-hero-v2.png",
           "src": "/images/blog/conscious-ai-entrepreneurs-hero-v2.png",
@@ -5151,7 +5452,7 @@
             "vault",
             "systems"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/cost-per-verified-outcome-infrastructure-roi",
@@ -5173,7 +5474,7 @@
             "infrastructure",
             "roi"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/creative-os",
@@ -6081,7 +6382,7 @@
             "model",
             "convergence"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek-hero",
@@ -6192,7 +6493,7 @@
             "wave",
             "routing"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/frontier-routing-availability-stack",
@@ -7145,6 +7446,25 @@
           "createdAt": "2026-06-18"
         },
         {
+          "id": "blog/graph-engineering-hero",
+          "filename": "graph-engineering-hero.webp",
+          "src": "/images/blog/graph-engineering/graph-engineering-hero.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 118370,
+          "title": "Graph Engineering",
+          "tags": [
+            "blog",
+            "graph",
+            "engineering",
+            "hero"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
           "id": "blog/great-transition-hero",
           "filename": "great-transition-hero.png",
           "src": "/images/blog/great-transition-hero.png",
@@ -7283,7 +7603,29 @@
             "2026",
             "hero"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "blog/grok-openai-elevenlabs-voice-agents-2026",
+          "filename": "grok-openai-elevenlabs-voice-agents-2026.webp",
+          "src": "/images/blog/grok-openai-elevenlabs-voice-agents-2026.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 73012,
+          "title": "Grok Openai Elevenlabs Voice Agents 2026",
+          "tags": [
+            "blog",
+            "grok",
+            "openai",
+            "elevenlabs",
+            "voice",
+            "agents",
+            "2026"
+          ],
+          "createdAt": "2026-08-31"
         },
         {
           "id": "blog/heygen-vs-synthesia-vs-argil-2026-hero-v8",
@@ -7389,7 +7731,7 @@
             "matrix",
             "2026"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/iacos-research-os",
@@ -7427,7 +7769,7 @@
             "ten",
             "gates"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infogenius-davinci-cognitive-engine",
@@ -7447,7 +7789,7 @@
             "cognitive",
             "engine"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infogenius-davinci-thermodynamics-fluids",
@@ -7467,7 +7809,7 @@
             "thermodynamics",
             "fluids"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infogenius-frankx-sovereign-mesh",
@@ -7487,7 +7829,7 @@
             "sovereign",
             "mesh"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infogenius-photorealistic-silicon-die",
@@ -7507,7 +7849,7 @@
             "silicon",
             "die"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infogenius-starlight-neural-cosmos",
@@ -7527,7 +7869,7 @@
             "neural",
             "cosmos"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-agentic-hierarchy",
@@ -7546,7 +7888,7 @@
             "agentic",
             "hierarchy"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-ai-factory-thermodynamics",
@@ -7565,7 +7907,7 @@
             "factory",
             "thermodynamics"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-context-compression-headroom",
@@ -7585,7 +7927,7 @@
             "compression",
             "headroom"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-cost-per-outcome-roi",
@@ -7606,7 +7948,7 @@
             "outcome",
             "roi"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-fsm-swarm-orchestration",
@@ -7626,7 +7968,7 @@
             "swarm",
             "orchestration"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-hyperscaler-mesh-topology",
@@ -7646,7 +7988,7 @@
             "mesh",
             "topology"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-liquid-cooling-dynamics",
@@ -7666,7 +8008,7 @@
             "cooling",
             "dynamics"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-mcp-zerotrust-mesh",
@@ -7686,7 +8028,7 @@
             "zerotrust",
             "mesh"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-skill-standard-evals",
@@ -7706,7 +8048,7 @@
             "standard",
             "evals"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/infographic-sram-wafer-scale-silicon",
@@ -7727,7 +8069,7 @@
             "scale",
             "silicon"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/inner-hr-ai-agent-hero",
@@ -7766,7 +8108,7 @@
             "premium",
             "hero"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/intelligence-atlas-governance",
@@ -7958,7 +8300,7 @@
             "compilers",
             "orchestration"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/karpathys-ai-vision-deep-dive-hero",
@@ -8119,7 +8461,7 @@
             "graphs",
             "memory"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/liquid-cooling-power-thermodynamics-ai-factories",
@@ -8140,7 +8482,7 @@
             "thermodynamics",
             "factories"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/llama-4-analysis-2026-hero-premium",
@@ -8356,6 +8698,24 @@
           "createdAt": "2026-06-18"
         },
         {
+          "id": "blog/loop-to-graph",
+          "filename": "loop-to-graph.webp",
+          "src": "/images/blog/graph-engineering/loop-to-graph.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 105198,
+          "title": "Loop To Graph",
+          "tags": [
+            "blog",
+            "loop",
+            "graph"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
           "id": "blog/lpu-wafer-scale-inference-economics-2026",
           "filename": "lpu-wafer-scale-inference-economics-2026.jpg",
           "src": "/images/blog/generated/lpu-wafer-scale-inference-economics-2026.jpg",
@@ -8375,7 +8735,7 @@
             "economics",
             "2026"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/magnifica-humanitas-benevolent-future-arcanea-hero",
@@ -8570,7 +8930,7 @@
             "architecture",
             "2026"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/mcp-server-architecture-workshop-hero",
@@ -9046,7 +9406,7 @@
             "agentic",
             "systems"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/multi-agent-orchestration-patterns-2026-hero",
@@ -9268,7 +9628,7 @@
             "sonic",
             "neuroscience"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/my-100-month-ai-stack-every-tool-i-actually-use-premium-hero",
@@ -9717,6 +10077,65 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "blog/pallyy-vs-metricool-2026-hero",
+          "filename": "pallyy-vs-metricool-2026-hero.svg",
+          "src": "/images/blog/visual-system/pallyy-vs-metricool-2026-hero.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 6000,
+          "title": "Pallyy Vs Metricool 2026",
+          "tags": [
+            "blog",
+            "pallyy",
+            "metricool",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/pallyy-vs-metricool-2026-map",
+          "filename": "pallyy-vs-metricool-2026-map.svg",
+          "src": "/images/blog/visual-system/infographics/pallyy-vs-metricool-2026-map.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 6003,
+          "title": "Pallyy Vs Metricool 2026 Map",
+          "tags": [
+            "blog",
+            "pallyy",
+            "metricool",
+            "2026",
+            "map"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/pallyy-vs-metricool-2026-og",
+          "filename": "pallyy-vs-metricool-2026-og.png",
+          "src": "/images/blog/visual-system/social/pallyy-vs-metricool-2026-og.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 195324,
+          "title": "Pallyy Vs Metricool 2026 Og",
+          "tags": [
+            "blog",
+            "pallyy",
+            "metricool",
+            "2026"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
           "id": "blog/personal-ai-assistant-setup-workshop-hero",
           "filename": "personal-ai-assistant-setup-workshop-hero.png",
           "src": "/images/blog/personal-ai-assistant-setup-workshop-hero.png",
@@ -9774,7 +10193,7 @@
             "coe",
             "blueprint"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/phi-analysis-2026-hero",
@@ -10533,7 +10952,7 @@
             "molecular",
             "resonance"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/qwen3-max-analysis-2026-hero-premium",
@@ -10991,7 +11410,7 @@
             "hero",
             "omega"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/skills-vs-agents-vs-prompts-vs-mcp",
@@ -11011,7 +11430,49 @@
             "prompts",
             "mcp"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "blog/social-media-tool-control-plane",
+          "filename": "social-media-tool-control-plane.svg",
+          "src": "/images/blog/visual-system/infographics/social-media-tool-control-plane.svg",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 6510,
+          "title": "Social Media Tool Control Plane",
+          "tags": [
+            "blog",
+            "social",
+            "media",
+            "tool",
+            "control",
+            "plane"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "blog/social-media-tool-decision-atlas-og",
+          "filename": "social-media-tool-decision-atlas-og.png",
+          "src": "/images/blog/visual-system/social/social-media-tool-decision-atlas-og.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 224060,
+          "title": "Social Media Tool Decision Atlas Og",
+          "tags": [
+            "blog",
+            "social",
+            "media",
+            "tool",
+            "decision",
+            "atlas"
+          ],
+          "createdAt": "2026-08-31"
         },
         {
           "id": "blog/soul-frequency-framework-hero",
@@ -11089,7 +11550,7 @@
             "swarm",
             "mesh"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/sovereign-creator-wealth-os",
@@ -11108,7 +11569,7 @@
             "creator",
             "wealth"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/starlight-intelligence-system-how-ai-agents-learn-hero",
@@ -11176,7 +11637,7 @@
             "fsm",
             "2026"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "blog/suno-ai-12000-songs-production-lessons-premium-hero",
@@ -11654,6 +12115,25 @@
           "createdAt": "2026-08-10"
         },
         {
+          "id": "blog/three-coupled-graphs",
+          "filename": "three-coupled-graphs.webp",
+          "src": "/images/blog/graph-engineering/three-coupled-graphs.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 131352,
+          "title": "Three Coupled Graphs",
+          "tags": [
+            "blog",
+            "three",
+            "coupled",
+            "graphs"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
           "id": "blog/trinity-ai-conscious-operating-system-hero",
           "filename": "trinity-ai-conscious-operating-system-hero.png",
           "src": "/images/blog/trinity-ai-conscious-operating-system-hero.png",
@@ -11811,6 +12291,28 @@
             "hero"
           ],
           "createdAt": "2026-06-18"
+        },
+        {
+          "id": "blog/ultimate-guide-ai-coding-agents-2026-hero",
+          "filename": "ultimate-guide-ai-coding-agents-2026-hero.webp",
+          "src": "/images/blog/generated/ultimate-guide-ai-coding-agents-2026-hero.webp",
+          "thumbnail": "/images/blog/ultimate-guide-ai-coding-agents-2026-hero_thumb.jpeg",
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 65018,
+          "title": "Ultimate Guide Ai Coding Agents 2026",
+          "tags": [
+            "blog",
+            "ultimate",
+            "guide",
+            "coding",
+            "agents",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-08-31"
         },
         {
           "id": "blog/ultimate-guide-ai-coding-agents-2026-map",
@@ -12353,7 +12855,7 @@
       "id": "mascot",
       "name": "Mascot Concepts",
       "description": "ACOS mascot design exploration — three-tailed beast guardians, holographic entities, chrome mech-spirits, data constellations.",
-      "count": 37,
+      "count": 42,
       "coverImage": "/images/mascot/axi-v1-full.png",
       "accent": "from-purple-500/20 to-pink-500/20",
       "borderAccent": "border-purple-500/30",
@@ -12484,6 +12986,25 @@
             "waving"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "mascot/creation-engine-droid",
+          "filename": "creation-engine-droid.jpg",
+          "src": "/images/mascot/creation-engine-droid.jpg",
+          "thumbnail": null,
+          "collection": "mascot",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 841796,
+          "title": "Creation Engine Droid",
+          "tags": [
+            "mascot",
+            "creation",
+            "engine",
+            "droid"
+          ],
+          "createdAt": "2026-08-21"
         },
         {
           "id": "mascot/frank-omega-chibi-avatar-v1",
@@ -12677,6 +13198,63 @@
             "thinking"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "mascot/frequency-alchemist-sonic",
+          "filename": "frequency-alchemist-sonic.jpg",
+          "src": "/images/mascot/frequency-alchemist-sonic.jpg",
+          "thumbnail": null,
+          "collection": "mascot",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 607575,
+          "title": "Frequency Alchemist Sonic",
+          "tags": [
+            "mascot",
+            "frequency",
+            "alchemist",
+            "sonic"
+          ],
+          "createdAt": "2026-08-21"
+        },
+        {
+          "id": "mascot/hermes-swarm-operator",
+          "filename": "hermes-swarm-operator.jpg",
+          "src": "/images/mascot/hermes-swarm-operator.jpg",
+          "thumbnail": null,
+          "collection": "mascot",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 800099,
+          "title": "Hermes Swarm Operator",
+          "tags": [
+            "mascot",
+            "hermes",
+            "swarm",
+            "operator"
+          ],
+          "createdAt": "2026-08-21"
+        },
+        {
+          "id": "mascot/luminor-crown-guardian",
+          "filename": "luminor-crown-guardian.jpg",
+          "src": "/images/mascot/luminor-crown-guardian.jpg",
+          "thumbnail": null,
+          "collection": "mascot",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 740297,
+          "title": "Luminor Crown Guardian",
+          "tags": [
+            "mascot",
+            "luminor",
+            "crown",
+            "guardian"
+          ],
+          "createdAt": "2026-08-21"
         },
         {
           "id": "mascot/mascot-v05-techno-beast-standing",
@@ -13063,6 +13641,25 @@
             "familiar"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "mascot/starlight-codex-architect",
+          "filename": "starlight-codex-architect.jpg",
+          "src": "/images/mascot/starlight-codex-architect.jpg",
+          "thumbnail": null,
+          "collection": "mascot",
+          "format": "jpg",
+          "width": null,
+          "height": null,
+          "fileSize": 798771,
+          "title": "Starlight Codex Architect",
+          "tags": [
+            "mascot",
+            "starlight",
+            "codex",
+            "architect"
+          ],
+          "createdAt": "2026-08-21"
         }
       ]
     },
@@ -14719,7 +15316,7 @@
       "id": "infographics",
       "name": "Educational Infographics",
       "description": "ACOS, Arcanea, and Vibe OS educational series — system architecture breakdowns and learning visualizations.",
-      "count": 117,
+      "count": 134,
       "coverImage": "/images/infographics/unsorted/1769252302972.webp",
       "accent": "from-blue-500/20 to-indigo-500/20",
       "borderAccent": "border-blue-500/30",
@@ -16289,7 +16886,7 @@
             "loop",
             "diagram"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "infographics/arcanea-infographic-2d",
@@ -16345,6 +16942,26 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "infographics/failure-mode-catalog-header",
+          "filename": "failure-mode-catalog-header.webp",
+          "src": "/images/infographics/ai-architecture/failure-mode-catalog-header.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 175800,
+          "title": "Failure Mode Catalog Header",
+          "tags": [
+            "infographics",
+            "failure",
+            "mode",
+            "catalog",
+            "header"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
           "id": "infographics/founder-stack-diagram",
           "filename": "founder-stack-diagram.png",
           "src": "/images/infographics/founder-stack-diagram.png",
@@ -16361,7 +16978,7 @@
             "stack",
             "diagram"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "infographics/gemini-1gkbfs1gkbfs1gkb",
@@ -16400,6 +17017,195 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "infographics/og-ai-architecture",
+          "filename": "og-ai-architecture.webp",
+          "src": "/images/infographics/ai-architecture/og-ai-architecture.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 39776,
+          "title": "Og Ai Architecture",
+          "tags": [
+            "infographics",
+            "architecture"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/platform-equals-ring",
+          "filename": "platform-equals-ring.webp",
+          "src": "/images/infographics/ai-architecture/platform-equals-ring.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 57660,
+          "title": "Platform Equals Ring",
+          "tags": [
+            "infographics",
+            "platform",
+            "equals",
+            "ring"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/platform-glyph-aws",
+          "filename": "platform-glyph-aws.webp",
+          "src": "/images/infographics/ai-architecture/platform-glyph-aws.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 24558,
+          "title": "Platform Glyph Aws",
+          "tags": [
+            "infographics",
+            "platform",
+            "glyph",
+            "aws"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/platform-glyph-azure",
+          "filename": "platform-glyph-azure.webp",
+          "src": "/images/infographics/ai-architecture/platform-glyph-azure.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 26676,
+          "title": "Platform Glyph Azure",
+          "tags": [
+            "infographics",
+            "platform",
+            "glyph",
+            "azure"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/platform-glyph-cloudflare",
+          "filename": "platform-glyph-cloudflare.webp",
+          "src": "/images/infographics/ai-architecture/platform-glyph-cloudflare.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 27274,
+          "title": "Platform Glyph Cloudflare",
+          "tags": [
+            "infographics",
+            "platform",
+            "glyph",
+            "cloudflare"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/platform-glyph-gcp",
+          "filename": "platform-glyph-gcp.webp",
+          "src": "/images/infographics/ai-architecture/platform-glyph-gcp.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 30552,
+          "title": "Platform Glyph Gcp",
+          "tags": [
+            "infographics",
+            "platform",
+            "glyph",
+            "gcp"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/platform-glyph-railway",
+          "filename": "platform-glyph-railway.webp",
+          "src": "/images/infographics/ai-architecture/platform-glyph-railway.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 21146,
+          "title": "Platform Glyph Railway",
+          "tags": [
+            "infographics",
+            "platform",
+            "glyph",
+            "railway"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/platform-glyph-self-hosted",
+          "filename": "platform-glyph-self-hosted.webp",
+          "src": "/images/infographics/ai-architecture/platform-glyph-self-hosted.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 24594,
+          "title": "Platform Glyph Self Hosted",
+          "tags": [
+            "infographics",
+            "platform",
+            "glyph",
+            "self",
+            "hosted"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/platform-glyph-supabase",
+          "filename": "platform-glyph-supabase.webp",
+          "src": "/images/infographics/ai-architecture/platform-glyph-supabase.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 31846,
+          "title": "Platform Glyph Supabase",
+          "tags": [
+            "infographics",
+            "platform",
+            "glyph",
+            "supabase"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/platform-glyph-vercel",
+          "filename": "platform-glyph-vercel.webp",
+          "src": "/images/infographics/ai-architecture/platform-glyph-vercel.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 29592,
+          "title": "Platform Glyph Vercel",
+          "tags": [
+            "infographics",
+            "platform",
+            "glyph",
+            "vercel"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
           "id": "infographics/prompt-architecture-diagram",
           "filename": "prompt-architecture-diagram.png",
           "src": "/images/infographics/prompt-architecture-diagram.png",
@@ -16416,7 +17222,130 @@
             "architecture",
             "diagram"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/protocol-layer-handshake-accent",
+          "filename": "protocol-layer-handshake-accent.webp",
+          "src": "/images/infographics/ai-architecture/protocol-layer-handshake-accent.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 91864,
+          "title": "Protocol Layer Handshake Accent",
+          "tags": [
+            "infographics",
+            "protocol",
+            "layer",
+            "handshake",
+            "accent"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/reference-stack-static-fallback",
+          "filename": "reference-stack-static-fallback.webp",
+          "src": "/images/infographics/ai-architecture/reference-stack-static-fallback.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 143436,
+          "title": "Reference Stack Static Fallback",
+          "tags": [
+            "infographics",
+            "reference",
+            "stack",
+            "static",
+            "fallback"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/seven-plane-stack-hero-variant-1",
+          "filename": "seven-plane-stack-hero-variant-1.webp",
+          "src": "/images/infographics/ai-architecture/seven-plane-stack-hero-variant-1.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 138730,
+          "title": "Seven Plane Stack Hero Variant 1",
+          "tags": [
+            "infographics",
+            "seven",
+            "plane",
+            "stack",
+            "hero",
+            "variant"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/seven-plane-stack-hero-variant-2",
+          "filename": "seven-plane-stack-hero-variant-2.webp",
+          "src": "/images/infographics/ai-architecture/seven-plane-stack-hero-variant-2.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 75154,
+          "title": "Seven Plane Stack Hero Variant 2",
+          "tags": [
+            "infographics",
+            "seven",
+            "plane",
+            "stack",
+            "hero",
+            "variant"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/seven-plane-stack-hero-variant-3",
+          "filename": "seven-plane-stack-hero-variant-3.webp",
+          "src": "/images/infographics/ai-architecture/seven-plane-stack-hero-variant-3.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 182934,
+          "title": "Seven Plane Stack Hero Variant 3",
+          "tags": [
+            "infographics",
+            "seven",
+            "plane",
+            "stack",
+            "hero",
+            "variant"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "infographics/seven-plane-stack-hero",
+          "filename": "seven-plane-stack-hero.webp",
+          "src": "/images/infographics/ai-architecture/seven-plane-stack-hero.webp",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 182934,
+          "title": "Seven Plane Stack",
+          "tags": [
+            "infographics",
+            "seven",
+            "plane",
+            "stack",
+            "hero"
+          ],
+          "createdAt": "2026-08-20"
         },
         {
           "id": "infographics/skill-anatomy",
@@ -16529,7 +17458,7 @@
             "architecture",
             "diagram"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "infographics/v7-01-pillars-premium",
@@ -17515,7 +18444,7 @@
             "books",
             "name"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/02-hills",
@@ -17532,7 +18461,7 @@
             "books",
             "hills"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/03-music",
@@ -17549,7 +18478,7 @@
             "books",
             "music"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/04-valley",
@@ -17566,7 +18495,7 @@
             "books",
             "valley"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/05-friendship",
@@ -17583,7 +18512,7 @@
             "books",
             "friendship"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/06-lamb",
@@ -17600,7 +18529,7 @@
             "books",
             "lamb"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/07-songs",
@@ -17617,7 +18546,7 @@
             "books",
             "songs"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/08-shard",
@@ -17634,7 +18563,7 @@
             "books",
             "shard"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/09-five-stones",
@@ -17652,7 +18581,7 @@
             "five",
             "stones"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/agentic-builder-cover",
@@ -17804,7 +18733,7 @@
             "books",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "books/decentralized-creator-cover",
@@ -18575,7 +19504,7 @@
       "id": "logos",
       "name": "Logo Library",
       "description": "FrankX brand logos in various formats and configurations.",
-      "count": 19,
+      "count": 27,
       "coverImage": "/images/logos/anthropic.svg",
       "accent": "from-white/10 to-gray-500/20",
       "borderAccent": "border-white/20",
@@ -18613,7 +19542,41 @@
             "logos",
             "antigravity"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "logos/aws",
+          "filename": "aws.webp",
+          "src": "/images/logos/aws.webp",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 24558,
+          "title": "Aws",
+          "tags": [
+            "logos",
+            "aws"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "logos/azure",
+          "filename": "azure.webp",
+          "src": "/images/logos/azure.webp",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 26676,
+          "title": "Azure",
+          "tags": [
+            "logos",
+            "azure"
+          ],
+          "createdAt": "2026-08-20"
         },
         {
           "id": "logos/cerebras",
@@ -18630,7 +19593,24 @@
             "logos",
             "cerebras"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "logos/cloudflare",
+          "filename": "cloudflare.webp",
+          "src": "/images/logos/cloudflare.webp",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 27274,
+          "title": "Cloudflare",
+          "tags": [
+            "logos",
+            "cloudflare"
+          ],
+          "createdAt": "2026-08-20"
         },
         {
           "id": "logos/elevenlabs",
@@ -18665,7 +19645,25 @@
             "frankx",
             "omega"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "logos/google-cloud",
+          "filename": "google-cloud.webp",
+          "src": "/images/logos/google-cloud.webp",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 30552,
+          "title": "Google Cloud",
+          "tags": [
+            "logos",
+            "google",
+            "cloud"
+          ],
+          "createdAt": "2026-08-20"
         },
         {
           "id": "logos/google",
@@ -18699,7 +19697,7 @@
             "logos",
             "groq"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "logos/hermes",
@@ -18716,7 +19714,7 @@
             "logos",
             "hermes"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "logos/huggingface",
@@ -18801,7 +19799,7 @@
             "logos",
             "nvidia"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "logos/openai",
@@ -18835,7 +19833,7 @@
             "logos",
             "openclaw"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "logos/perplexity",
@@ -18853,6 +19851,41 @@
             "perplexity"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "logos/railway",
+          "filename": "railway.webp",
+          "src": "/images/logos/railway.webp",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 21146,
+          "title": "Railway",
+          "tags": [
+            "logos",
+            "railway"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "logos/self-hosted",
+          "filename": "self-hosted.webp",
+          "src": "/images/logos/self-hosted.webp",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 24594,
+          "title": "Self Hosted",
+          "tags": [
+            "logos",
+            "self",
+            "hosted"
+          ],
+          "createdAt": "2026-08-20"
         },
         {
           "id": "logos/stability",
@@ -18887,6 +19920,40 @@
             "suno"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "logos/supabase",
+          "filename": "supabase.webp",
+          "src": "/images/logos/supabase.webp",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 31846,
+          "title": "Supabase",
+          "tags": [
+            "logos",
+            "supabase"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "logos/vercel",
+          "filename": "vercel.webp",
+          "src": "/images/logos/vercel.webp",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 29592,
+          "title": "Vercel",
+          "tags": [
+            "logos",
+            "vercel"
+          ],
+          "createdAt": "2026-08-20"
         },
         {
           "id": "logos/xai",
@@ -20779,13 +21846,204 @@
       "id": "diagrams",
       "name": "Technical Diagrams",
       "description": "Blog-specific technical diagrams organized by article.",
-      "count": 96,
-      "coverImage": "/images/diagrams/blog/acos-zero-to-production-quickstart/acos-system-status.svg",
+      "count": 110,
+      "coverImage": "/images/diagrams/ai-architecture/precision-atelier/01-production-ai-architecture.webp",
       "accent": "from-slate-500/20 to-gray-500/20",
       "borderAccent": "border-slate-500/30",
       "sortOrder": 29,
       "hidden": true,
       "assets": [
+        {
+          "id": "diagrams/01-production-ai-architecture",
+          "filename": "01-production-ai-architecture.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/01-production-ai-architecture.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 181454,
+          "title": "01 Production Ai Architecture",
+          "tags": [
+            "diagrams",
+            "production",
+            "architecture"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/02-agent-control-plane",
+          "filename": "02-agent-control-plane.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/02-agent-control-plane.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 176514,
+          "title": "02 Agent Control Plane",
+          "tags": [
+            "diagrams",
+            "agent",
+            "control",
+            "plane"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/03-agency-coordination-design-space",
+          "filename": "03-agency-coordination-design-space.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/03-agency-coordination-design-space.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 148570,
+          "title": "03 Agency Coordination Design Space",
+          "tags": [
+            "diagrams",
+            "agency",
+            "coordination",
+            "design",
+            "space"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/04-coordination-pattern-atlas",
+          "filename": "04-coordination-pattern-atlas.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/04-coordination-pattern-atlas.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 175686,
+          "title": "04 Coordination Pattern Atlas",
+          "tags": [
+            "diagrams",
+            "coordination",
+            "pattern",
+            "atlas"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/05-context-governed-memory",
+          "filename": "05-context-governed-memory.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/05-context-governed-memory.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 139080,
+          "title": "05 Context Governed Memory",
+          "tags": [
+            "diagrams",
+            "context",
+            "governed",
+            "memory"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/06-trusted-agent-action-boundary",
+          "filename": "06-trusted-agent-action-boundary.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/06-trusted-agent-action-boundary.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 126158,
+          "title": "06 Trusted Agent Action Boundary",
+          "tags": [
+            "diagrams",
+            "trusted",
+            "agent",
+            "action",
+            "boundary"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/07-durable-agent-runtime",
+          "filename": "07-durable-agent-runtime.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/07-durable-agent-runtime.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 244362,
+          "title": "07 Durable Agent Runtime",
+          "tags": [
+            "diagrams",
+            "durable",
+            "agent",
+            "runtime"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/08-mcp-a2a-boundaries",
+          "filename": "08-mcp-a2a-boundaries.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/08-mcp-a2a-boundaries.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 109242,
+          "title": "08 Mcp A2a Boundaries",
+          "tags": [
+            "diagrams",
+            "mcp",
+            "a2a",
+            "boundaries"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/09-model-routing-resilience",
+          "filename": "09-model-routing-resilience.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/09-model-routing-resilience.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 135704,
+          "title": "09 Model Routing Resilience",
+          "tags": [
+            "diagrams",
+            "model",
+            "routing",
+            "resilience"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/10-evaluation-governance-flywheel",
+          "filename": "10-evaluation-governance-flywheel.webp",
+          "src": "/images/diagrams/ai-architecture/precision-atelier/10-evaluation-governance-flywheel.webp",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 175044,
+          "title": "10 Evaluation Governance Flywheel",
+          "tags": [
+            "diagrams",
+            "evaluation",
+            "governance",
+            "flywheel"
+          ],
+          "createdAt": "2026-08-31"
+        },
         {
           "id": "diagrams/acos-system-status",
           "filename": "acos-system-status.svg",
@@ -22450,6 +23708,42 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "diagrams/orchestration-shapes",
+          "filename": "orchestration-shapes.svg",
+          "src": "/images/diagrams/ai-architecture/orchestration-shapes.svg",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 6102,
+          "title": "Orchestration Shapes",
+          "tags": [
+            "diagrams",
+            "orchestration",
+            "shapes"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "diagrams/platform-matrix",
+          "filename": "platform-matrix.svg",
+          "src": "/images/diagrams/ai-architecture/platform-matrix.svg",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 7760,
+          "title": "Platform Matrix",
+          "tags": [
+            "diagrams",
+            "platform",
+            "matrix"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
           "id": "diagrams/project-skill-placement",
           "filename": "project-skill-placement.svg",
           "src": "/images/diagrams/blog/building-custom-skills-acos/project-skill-placement.svg",
@@ -22489,6 +23783,25 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "diagrams/seven-plane-stack",
+          "filename": "seven-plane-stack.svg",
+          "src": "/images/diagrams/ai-architecture/seven-plane-stack.svg",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 7037,
+          "title": "Seven Plane Stack",
+          "tags": [
+            "diagrams",
+            "seven",
+            "plane",
+            "stack"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
           "id": "diagrams/skill-directory-structure",
           "filename": "skill-directory-structure.svg",
           "src": "/images/diagrams/blog/building-custom-skills-acos/skill-directory-structure.svg",
@@ -22526,6 +23839,368 @@
             "tree"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "diagrams/trust-boundary",
+          "filename": "trust-boundary.svg",
+          "src": "/images/diagrams/ai-architecture/trust-boundary.svg",
+          "thumbnail": null,
+          "collection": "diagrams",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 7348,
+          "title": "Trust Boundary",
+          "tags": [
+            "diagrams",
+            "trust",
+            "boundary"
+          ],
+          "createdAt": "2026-08-31"
+        }
+      ]
+    },
+    {
+      "id": "ai-architecture",
+      "name": "Ai Architecture",
+      "description": "Visual assets from the Ai Architecture collection.",
+      "count": 17,
+      "coverImage": "/images/ai-architecture/failure-mode-catalog-header.webp",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "ai-architecture/failure-mode-catalog-header",
+          "filename": "failure-mode-catalog-header.webp",
+          "src": "/images/ai-architecture/failure-mode-catalog-header.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 175800,
+          "title": "Failure Mode Catalog Header",
+          "tags": [
+            "ai-architecture",
+            "failure",
+            "mode",
+            "catalog",
+            "header"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/og-ai-architecture",
+          "filename": "og-ai-architecture.webp",
+          "src": "/images/ai-architecture/og-ai-architecture.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 39776,
+          "title": "Og Ai Architecture",
+          "tags": [
+            "ai-architecture",
+            "architecture"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/platform-equals-ring",
+          "filename": "platform-equals-ring.webp",
+          "src": "/images/ai-architecture/platform-equals-ring.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 57660,
+          "title": "Platform Equals Ring",
+          "tags": [
+            "ai-architecture",
+            "platform",
+            "equals",
+            "ring"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/platform-glyph-aws",
+          "filename": "platform-glyph-aws.webp",
+          "src": "/images/ai-architecture/platform-glyph-aws.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 24558,
+          "title": "Platform Glyph Aws",
+          "tags": [
+            "ai-architecture",
+            "platform",
+            "glyph",
+            "aws"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/platform-glyph-azure",
+          "filename": "platform-glyph-azure.webp",
+          "src": "/images/ai-architecture/platform-glyph-azure.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 26676,
+          "title": "Platform Glyph Azure",
+          "tags": [
+            "ai-architecture",
+            "platform",
+            "glyph",
+            "azure"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/platform-glyph-cloudflare",
+          "filename": "platform-glyph-cloudflare.webp",
+          "src": "/images/ai-architecture/platform-glyph-cloudflare.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 27274,
+          "title": "Platform Glyph Cloudflare",
+          "tags": [
+            "ai-architecture",
+            "platform",
+            "glyph",
+            "cloudflare"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/platform-glyph-gcp",
+          "filename": "platform-glyph-gcp.webp",
+          "src": "/images/ai-architecture/platform-glyph-gcp.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 30552,
+          "title": "Platform Glyph Gcp",
+          "tags": [
+            "ai-architecture",
+            "platform",
+            "glyph",
+            "gcp"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/platform-glyph-railway",
+          "filename": "platform-glyph-railway.webp",
+          "src": "/images/ai-architecture/platform-glyph-railway.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 21146,
+          "title": "Platform Glyph Railway",
+          "tags": [
+            "ai-architecture",
+            "platform",
+            "glyph",
+            "railway"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/platform-glyph-self-hosted",
+          "filename": "platform-glyph-self-hosted.webp",
+          "src": "/images/ai-architecture/platform-glyph-self-hosted.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 24594,
+          "title": "Platform Glyph Self Hosted",
+          "tags": [
+            "ai-architecture",
+            "platform",
+            "glyph",
+            "self",
+            "hosted"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/platform-glyph-supabase",
+          "filename": "platform-glyph-supabase.webp",
+          "src": "/images/ai-architecture/platform-glyph-supabase.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 31846,
+          "title": "Platform Glyph Supabase",
+          "tags": [
+            "ai-architecture",
+            "platform",
+            "glyph",
+            "supabase"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/platform-glyph-vercel",
+          "filename": "platform-glyph-vercel.webp",
+          "src": "/images/ai-architecture/platform-glyph-vercel.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 29592,
+          "title": "Platform Glyph Vercel",
+          "tags": [
+            "ai-architecture",
+            "platform",
+            "glyph",
+            "vercel"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/protocol-layer-handshake-accent",
+          "filename": "protocol-layer-handshake-accent.webp",
+          "src": "/images/ai-architecture/protocol-layer-handshake-accent.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 91864,
+          "title": "Protocol Layer Handshake Accent",
+          "tags": [
+            "ai-architecture",
+            "protocol",
+            "layer",
+            "handshake",
+            "accent"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/reference-stack-static-fallback",
+          "filename": "reference-stack-static-fallback.webp",
+          "src": "/images/ai-architecture/reference-stack-static-fallback.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 143436,
+          "title": "Reference Stack Static Fallback",
+          "tags": [
+            "ai-architecture",
+            "reference",
+            "stack",
+            "static",
+            "fallback"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/seven-plane-stack-hero-variant-1",
+          "filename": "seven-plane-stack-hero-variant-1.webp",
+          "src": "/images/ai-architecture/seven-plane-stack-hero-variant-1.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 138730,
+          "title": "Seven Plane Stack Hero Variant 1",
+          "tags": [
+            "ai-architecture",
+            "seven",
+            "plane",
+            "stack",
+            "hero",
+            "variant"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/seven-plane-stack-hero-variant-2",
+          "filename": "seven-plane-stack-hero-variant-2.webp",
+          "src": "/images/ai-architecture/seven-plane-stack-hero-variant-2.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 75154,
+          "title": "Seven Plane Stack Hero Variant 2",
+          "tags": [
+            "ai-architecture",
+            "seven",
+            "plane",
+            "stack",
+            "hero",
+            "variant"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/seven-plane-stack-hero-variant-3",
+          "filename": "seven-plane-stack-hero-variant-3.webp",
+          "src": "/images/ai-architecture/seven-plane-stack-hero-variant-3.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 182934,
+          "title": "Seven Plane Stack Hero Variant 3",
+          "tags": [
+            "ai-architecture",
+            "seven",
+            "plane",
+            "stack",
+            "hero",
+            "variant"
+          ],
+          "createdAt": "2026-08-20"
+        },
+        {
+          "id": "ai-architecture/seven-plane-stack-hero",
+          "filename": "seven-plane-stack-hero.webp",
+          "src": "/images/ai-architecture/seven-plane-stack-hero.webp",
+          "thumbnail": null,
+          "collection": "ai-architecture",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 182934,
+          "title": "Seven Plane Stack",
+          "tags": [
+            "ai-architecture",
+            "seven",
+            "plane",
+            "stack",
+            "hero"
+          ],
+          "createdAt": "2026-08-20"
         }
       ]
     },
@@ -22623,6 +24298,56 @@
             "studio"
           ],
           "createdAt": "2026-05-28"
+        }
+      ]
+    },
+    {
+      "id": "canva",
+      "name": "Canva",
+      "description": "Visual assets from the Canva collection.",
+      "count": 2,
+      "coverImage": "/images/canva/canva-founder-operating-graph-og.png",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "canva/canva-founder-operating-graph-og",
+          "filename": "canva-founder-operating-graph-og.png",
+          "src": "/images/canva/canva-founder-operating-graph-og.png",
+          "thumbnail": null,
+          "collection": "canva",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 41717,
+          "title": "Canva Founder Operating Graph Og",
+          "tags": [
+            "canva",
+            "founder",
+            "operating",
+            "graph"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "canva/canva-founder-operating-graph-og",
+          "filename": "canva-founder-operating-graph-og.svg",
+          "src": "/images/canva/canva-founder-operating-graph-og.svg",
+          "thumbnail": null,
+          "collection": "canva",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 4123,
+          "title": "Canva Founder Operating Graph Og",
+          "tags": [
+            "canva",
+            "founder",
+            "operating",
+            "graph"
+          ],
+          "createdAt": "2026-08-31"
         }
       ]
     },
@@ -23517,7 +25242,7 @@
             "a2a",
             "spec"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/a2a-spec-cover",
@@ -23536,7 +25261,7 @@
             "spec",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/acos-playbook-3d",
@@ -23554,7 +25279,7 @@
             "acos",
             "playbook"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/acos-playbook-cover",
@@ -23573,7 +25298,7 @@
             "playbook",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/ai-agent-stack-3d",
@@ -23591,7 +25316,7 @@
             "agent",
             "stack"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/ai-agent-stack-cover",
@@ -23610,7 +25335,7 @@
             "stack",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/ai-writing-system-3d",
@@ -23628,7 +25353,7 @@
             "writing",
             "system"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/ai-writing-system-cover",
@@ -23647,7 +25372,7 @@
             "system",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/challenge-5day-3d",
@@ -23665,7 +25390,7 @@
             "challenge",
             "5day"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/challenge-5day-cover",
@@ -23684,7 +25409,7 @@
             "5day",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/founder-stack-3d",
@@ -23702,7 +25427,7 @@
             "founder",
             "stack"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/founder-stack-cover",
@@ -23721,7 +25446,7 @@
             "stack",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/generative-media-3d",
@@ -23739,7 +25464,7 @@
             "generative",
             "media"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/generative-media-cover",
@@ -23758,7 +25483,7 @@
             "media",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/golden-age-3d",
@@ -23776,7 +25501,7 @@
             "golden",
             "age"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/golden-age-cover",
@@ -23795,7 +25520,7 @@
             "age",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/ifs-ai-3d",
@@ -23812,7 +25537,7 @@
             "lead-magnets",
             "ifs"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/ifs-ai-cover",
@@ -23830,7 +25555,7 @@
             "ifs",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/spartan-mindset-3d",
@@ -23848,7 +25573,7 @@
             "spartan",
             "mindset"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/spartan-mindset-cover",
@@ -23867,7 +25592,7 @@
             "mindset",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/top-50-prompts-3d",
@@ -23885,7 +25610,7 @@
             "top",
             "prompts"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/top-50-prompts-cover",
@@ -23904,7 +25629,7 @@
             "prompts",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/wordless-laws-3d",
@@ -23922,7 +25647,7 @@
             "wordless",
             "laws"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "lead-magnets/wordless-laws-cover",
@@ -23941,7 +25666,7 @@
             "laws",
             "cover"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         }
       ]
     },
@@ -24848,6 +26573,37 @@
       ]
     },
     {
+      "id": "mvu",
+      "name": "Mvu",
+      "description": "Visual assets from the Mvu collection.",
+      "count": 1,
+      "coverImage": "/images/mvu/unhooking-the-mind-og.svg",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "mvu/unhooking-the-mind-og",
+          "filename": "unhooking-the-mind-og.svg",
+          "src": "/images/mvu/unhooking-the-mind-og.svg",
+          "thumbnail": null,
+          "collection": "mvu",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 2162,
+          "title": "Unhooking The Mind Og",
+          "tags": [
+            "mvu",
+            "unhooking",
+            "the",
+            "mind"
+          ],
+          "createdAt": "2026-08-20"
+        }
+      ]
+    },
+    {
       "id": "newsletter",
       "name": "Newsletter",
       "description": "Visual assets from the Newsletter collection.",
@@ -25548,7 +27304,7 @@
             "qualities",
             "connection"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "qualities/freedom",
@@ -25565,7 +27321,7 @@
             "qualities",
             "freedom"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "qualities/mastery",
@@ -25582,7 +27338,7 @@
             "qualities",
             "mastery"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         },
         {
           "id": "qualities/meaning",
@@ -25599,7 +27355,7 @@
             "qualities",
             "meaning"
           ],
-          "createdAt": "2026-08-18"
+          "createdAt": "2026-08-20"
         }
       ]
     },
@@ -30525,6 +32281,213 @@
             "wide"
           ],
           "createdAt": "2026-06-18"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "name": "Tools",
+      "description": "Visual assets from the Tools collection.",
+      "count": 1,
+      "coverImage": "/images/tools/social-media/social-tool-decision-atlas.svg",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "tools/social-tool-decision-atlas",
+          "filename": "social-tool-decision-atlas.svg",
+          "src": "/images/tools/social-media/social-tool-decision-atlas.svg",
+          "thumbnail": null,
+          "collection": "tools",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 10937,
+          "title": "Social Tool Decision Atlas",
+          "tags": [
+            "tools",
+            "social",
+            "tool",
+            "decision",
+            "atlas"
+          ],
+          "createdAt": "2026-08-31"
+        }
+      ]
+    },
+    {
+      "id": "v0",
+      "name": "V0",
+      "description": "Visual assets from the V0 collection.",
+      "count": 9,
+      "coverImage": "/images/v0/studies/01-homepage-authority.webp",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "v0/01-homepage-authority",
+          "filename": "01-homepage-authority.webp",
+          "src": "/images/v0/studies/01-homepage-authority.webp",
+          "thumbnail": null,
+          "collection": "v0",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 19688,
+          "title": "01 Homepage Authority",
+          "tags": [
+            "v0",
+            "homepage",
+            "authority"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "v0/02-product-storefront",
+          "filename": "02-product-storefront.webp",
+          "src": "/images/v0/studies/02-product-storefront.webp",
+          "thumbnail": null,
+          "collection": "v0",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 32272,
+          "title": "02 Product Storefront",
+          "tags": [
+            "v0",
+            "product",
+            "storefront"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "v0/03-research-hub",
+          "filename": "03-research-hub.webp",
+          "src": "/images/v0/studies/03-research-hub.webp",
+          "thumbnail": null,
+          "collection": "v0",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 51480,
+          "title": "03 Research Hub",
+          "tags": [
+            "v0",
+            "research",
+            "hub"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "v0/04-blog-landing",
+          "filename": "04-blog-landing.webp",
+          "src": "/images/v0/studies/04-blog-landing.webp",
+          "thumbnail": null,
+          "collection": "v0",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 25758,
+          "title": "04 Blog Landing",
+          "tags": [
+            "v0",
+            "blog",
+            "landing"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "v0/10-music-lab",
+          "filename": "10-music-lab.webp",
+          "src": "/images/v0/studies/10-music-lab.webp",
+          "thumbnail": null,
+          "collection": "v0",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 19168,
+          "title": "10 Music Lab",
+          "tags": [
+            "v0",
+            "music",
+            "lab"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "v0/16-community",
+          "filename": "16-community.webp",
+          "src": "/images/v0/studies/16-community.webp",
+          "thumbnail": null,
+          "collection": "v0",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 29798,
+          "title": "16 Community",
+          "tags": [
+            "v0",
+            "community"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "v0/18-ai-coe-console",
+          "filename": "18-ai-coe-console.webp",
+          "src": "/images/v0/studies/18-ai-coe-console.webp",
+          "thumbnail": null,
+          "collection": "v0",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 47828,
+          "title": "18 Ai Coe Console",
+          "tags": [
+            "v0",
+            "coe",
+            "console"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "v0/creator-launch-os-desktop",
+          "filename": "creator-launch-os-desktop.webp",
+          "src": "/images/v0/template/creator-launch-os-desktop.webp",
+          "thumbnail": null,
+          "collection": "v0",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 53450,
+          "title": "Creator Launch Os Desktop",
+          "tags": [
+            "v0",
+            "creator",
+            "launch",
+            "desktop"
+          ],
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "v0/creator-launch-os-mobile",
+          "filename": "creator-launch-os-mobile.webp",
+          "src": "/images/v0/template/creator-launch-os-mobile.webp",
+          "thumbnail": null,
+          "collection": "v0",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 29782,
+          "title": "Creator Launch Os Mobile",
+          "tags": [
+            "v0",
+            "creator",
+            "launch",
+            "mobile"
+          ],
+          "createdAt": "2026-08-31"
         }
       ]
     },

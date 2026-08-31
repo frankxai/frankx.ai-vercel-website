@@ -15,7 +15,7 @@ export default function OrganizationJsonLd() {
         url: siteConfig.url,
         jobTitle: 'AI Architect & Founder',
         description: 'AI architect, startup builder, author, and researcher developing human-led multi-agent systems, sovereign creator infrastructure, and the Arcanea universe.',
-        image: `${siteConfig.url}/images/brand/frankx-avatar.png`,
+        image: `${siteConfig.url}/images/portraits/frankx-avatar.png`,
         sameAs: SCHEMA_SAME_AS,
         knowsAbout: [
           'Artificial Intelligence',
