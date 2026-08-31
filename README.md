@@ -223,3 +223,12 @@ git add -A && git commit -m "sync: update from dev repo" && git push
 Built with Next.js 16, TypeScript, and Claude Code.
 
 Copyright FrankX. All rights reserved.
+
+<!-- kernel:start v393ecb58 -->
+## Built on the Omotenashi Kernel
+
+段取り *prep* · おもてなし *serve* · 見立て *build with what you are given* · 場を読む *read the room*
+
+Every agent turn ends with a made thing, never a status report.
+Free and MIT — [read the kernel](https://github.com/frankxai/omotenashi-kernel).
+<!-- kernel:end -->

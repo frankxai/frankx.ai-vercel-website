@@ -1,0 +1,660 @@
+{
+  "acos-agents-pack.zip": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/acos-agents-pack.zip",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/acos-agents-pack.zip?download=1",
+    "sizeBytes": 1454080,
+    "contentType": "application/zip",
+    "uploadedAt": "2026-08-19T23:35:21.608Z"
+  },
+  "acos-complete.zip": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/acos-complete.zip",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/acos-complete.zip?download=1",
+    "sizeBytes": 23234560,
+    "contentType": "application/zip",
+    "uploadedAt": "2026-08-19T23:35:33.369Z"
+  },
+  "acos-hooks-pack.zip": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/acos-hooks-pack.zip",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/acos-hooks-pack.zip?download=1",
+    "sizeBytes": 81920,
+    "contentType": "application/zip",
+    "uploadedAt": "2026-08-19T23:35:34.109Z"
+  },
+  "acos-skills-pack.zip": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/acos-skills-pack.zip",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/acos-skills-pack.zip?download=1",
+    "sizeBytes": 23695360,
+    "contentType": "application/zip",
+    "uploadedAt": "2026-08-19T23:35:45.785Z"
+  },
+  "agentic-obsidian-second-brain-starter-kit-v1.sha256": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-starter-kit-v1.sha256",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-starter-kit-v1.sha256?download=1",
+    "sizeBytes": 115,
+    "contentType": "application/octet-stream",
+    "uploadedAt": "2026-08-19T23:35:46.389Z"
+  },
+  "agentic-obsidian-second-brain-starter-kit-v1.zip": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-starter-kit-v1.zip",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-starter-kit-v1.zip?download=1",
+    "sizeBytes": 3847,
+    "contentType": "application/zip",
+    "uploadedAt": "2026-08-19T23:35:46.841Z"
+  },
+  "agentic-obsidian-second-brain-v1/ACCEPTANCE-TEST.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-v1/ACCEPTANCE-TEST.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-v1/ACCEPTANCE-TEST.md?download=1",
+    "sizeBytes": 1944,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:47.649Z"
+  },
+  "agentic-obsidian-second-brain-v1/skills/obsidian-vault-steward/SKILL.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-v1/skills/obsidian-vault-steward/SKILL.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-v1/skills/obsidian-vault-steward/SKILL.md?download=1",
+    "sizeBytes": 1773,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:48.089Z"
+  },
+  "agentic-obsidian-second-brain-v1/templates/session-close.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-v1/templates/session-close.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-v1/templates/session-close.md?download=1",
+    "sizeBytes": 693,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:48.608Z"
+  },
+  "agentic-obsidian-second-brain-v1/VAULT.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-v1/VAULT.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/agentic-obsidian-second-brain-v1/VAULT.md?download=1",
+    "sizeBytes": 2116,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:49.009Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/01-founder-operating-map.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/01-founder-operating-map.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/01-founder-operating-map.md?download=1",
+    "sizeBytes": 1542,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:49.601Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/02-trinity-ai-offer-ladder.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/02-trinity-ai-offer-ladder.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/02-trinity-ai-offer-ladder.md?download=1",
+    "sizeBytes": 1703,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:50.002Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/03-openclaw-jarvis-local-lab.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/03-openclaw-jarvis-local-lab.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/03-openclaw-jarvis-local-lab.md?download=1",
+    "sizeBytes": 1714,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:50.786Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/04-agent-swarm-roles.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/04-agent-swarm-roles.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/04-agent-swarm-roles.md?download=1",
+    "sizeBytes": 1429,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:51.185Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/05-content-strategy-and-media-loop.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/05-content-strategy-and-media-loop.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/05-content-strategy-and-media-loop.md?download=1",
+    "sizeBytes": 1392,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:51.606Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/06-image-video-carousel-workflows.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/06-image-video-carousel-workflows.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/06-image-video-carousel-workflows.md?download=1",
+    "sizeBytes": 1298,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:52.051Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/07-academy-podcast-influencer-system.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/07-academy-podcast-influencer-system.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/07-academy-podcast-influencer-system.md?download=1",
+    "sizeBytes": 1206,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:52.505Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/08-12-week-startup-roadmap.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/08-12-week-startup-roadmap.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/08-12-week-startup-roadmap.md?download=1",
+    "sizeBytes": 1211,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:53.070Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/09-client-proof-and-reflection-loop.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/09-client-proof-and-reflection-loop.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/09-client-proof-and-reflection-loop.md?download=1",
+    "sizeBytes": 902,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:53.519Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/academy-architect.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/academy-architect.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/academy-architect.md?download=1",
+    "sizeBytes": 357,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:53.998Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/brand-guardian.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/brand-guardian.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/brand-guardian.md?download=1",
+    "sizeBytes": 572,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:54.447Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/carousel-publisher.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/carousel-publisher.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/carousel-publisher.md?download=1",
+    "sizeBytes": 350,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:54.892Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/content-strategist.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/content-strategist.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/content-strategist.md?download=1",
+    "sizeBytes": 398,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:55.338Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/founder-chief-of-staff.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/founder-chief-of-staff.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/founder-chief-of-staff.md?download=1",
+    "sizeBytes": 489,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:55.786Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/growth-analyst.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/growth-analyst.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/growth-analyst.md?download=1",
+    "sizeBytes": 407,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:56.228Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/image-director.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/image-director.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/image-director.md?download=1",
+    "sizeBytes": 393,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:56.691Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/openclaw-jarvis-operator.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/openclaw-jarvis-operator.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/openclaw-jarvis-operator.md?download=1",
+    "sizeBytes": 528,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:57.164Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/podcast-producer.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/podcast-producer.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/podcast-producer.md?download=1",
+    "sizeBytes": 380,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:57.628Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/repo-accelerator.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/repo-accelerator.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/repo-accelerator.md?download=1",
+    "sizeBytes": 452,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:58.259Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/swarm-operator.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/swarm-operator.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/swarm-operator.md?download=1",
+    "sizeBytes": 601,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:58.709Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/agents/video-producer.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/video-producer.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/agents/video-producer.md?download=1",
+    "sizeBytes": 347,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:59.187Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/install/ACOS-CODEX-CLAUDE-HERMES.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/install/ACOS-CODEX-CLAUDE-HERMES.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/install/ACOS-CODEX-CLAUDE-HERMES.md?download=1",
+    "sizeBytes": 1689,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:35:59.622Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/manifest.json": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/manifest.json",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/manifest.json?download=1",
+    "sizeBytes": 1029,
+    "contentType": "application/json",
+    "uploadedAt": "2026-08-19T23:36:00.072Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/privacy-boundaries.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/privacy-boundaries.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/privacy-boundaries.md?download=1",
+    "sizeBytes": 1040,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:00.521Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/README.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/README.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/README.md?download=1",
+    "sizeBytes": 2358,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:00.923Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0/skills/ahmad-founder-creator-os/SKILL.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/skills/ahmad-founder-creator-os/SKILL.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0/skills/ahmad-founder-creator-os/SKILL.md?download=1",
+    "sizeBytes": 2082,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:01.374Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0.sha256": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0.sha256",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0.sha256?download=1",
+    "sizeBytes": 102,
+    "contentType": "application/octet-stream",
+    "uploadedAt": "2026-08-19T23:36:01.848Z"
+  },
+  "ahmad-founder-creator-kit-v0.1.0.zip": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0.zip",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/ahmad-founder-creator-kit-v0.1.0.zip?download=1",
+    "sizeBytes": 17513,
+    "contentType": "application/zip",
+    "uploadedAt": "2026-08-19T23:36:02.277Z"
+  },
+  "alba-gut-intelligence-partner-brief.docx": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/alba-gut-intelligence-partner-brief.docx",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/alba-gut-intelligence-partner-brief.docx?download=1",
+    "sizeBytes": 303005,
+    "contentType": "application/octet-stream",
+    "uploadedAt": "2026-08-19T23:36:03.455Z"
+  },
+  "community-platform-matrix-2026.csv": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/community-platform-matrix-2026.csv",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/community-platform-matrix-2026.csv?download=1",
+    "sizeBytes": 103962,
+    "contentType": "text/csv",
+    "uploadedAt": "2026-08-19T23:36:04.261Z"
+  },
+  "community-platform-vendor-due-diligence-checklist.csv": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/community-platform-vendor-due-diligence-checklist.csv",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/community-platform-vendor-due-diligence-checklist.csv?download=1",
+    "sizeBytes": 12300,
+    "contentType": "text/csv",
+    "uploadedAt": "2026-08-19T23:36:04.777Z"
+  },
+  "epicways-intelligence-starter-kit-v0.1.0.sha256": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/epicways-intelligence-starter-kit-v0.1.0.sha256",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/epicways-intelligence-starter-kit-v0.1.0.sha256?download=1",
+    "sizeBytes": 110,
+    "contentType": "application/octet-stream",
+    "uploadedAt": "2026-08-19T23:36:05.263Z"
+  },
+  "epicways-intelligence-starter-kit-v0.1.0.zip": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/epicways-intelligence-starter-kit-v0.1.0.zip",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/epicways-intelligence-starter-kit-v0.1.0.zip?download=1",
+    "sizeBytes": 13129,
+    "contentType": "application/zip",
+    "uploadedAt": "2026-08-19T23:36:05.692Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/01-owner-operating-map.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/01-owner-operating-map.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/01-owner-operating-map.md?download=1",
+    "sizeBytes": 2119,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:06.091Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/02-guest-and-booking-intelligence.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/02-guest-and-booking-intelligence.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/02-guest-and-booking-intelligence.md?download=1",
+    "sizeBytes": 1455,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:06.498Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/03-restaurant-service-loop.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/03-restaurant-service-loop.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/03-restaurant-service-loop.md?download=1",
+    "sizeBytes": 1108,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:06.955Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/04-hotel-stay-loop.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/04-hotel-stay-loop.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/04-hotel-stay-loop.md?download=1",
+    "sizeBytes": 1029,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:07.444Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/05-menu-and-local-producer-memory.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/05-menu-and-local-producer-memory.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/05-menu-and-local-producer-memory.md?download=1",
+    "sizeBytes": 970,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:07.898Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/06-team-enablement-playbook.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/06-team-enablement-playbook.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/06-team-enablement-playbook.md?download=1",
+    "sizeBytes": 922,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:08.554Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/07-michelin-momentum-and-content.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/07-michelin-momentum-and-content.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/07-michelin-momentum-and-content.md?download=1",
+    "sizeBytes": 1441,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:08.951Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/08-private-data-and-guest-trust.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/08-private-data-and-guest-trust.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/08-private-data-and-guest-trust.md?download=1",
+    "sizeBytes": 1008,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:09.425Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/09-premium-hospitality-rollout.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/09-premium-hospitality-rollout.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/09-premium-hospitality-rollout.md?download=1",
+    "sizeBytes": 1285,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:09.869Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/agents/booking-concierge-agent.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/booking-concierge-agent.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/booking-concierge-agent.md?download=1",
+    "sizeBytes": 719,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:10.310Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/agents/event-arrangement-agent.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/event-arrangement-agent.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/event-arrangement-agent.md?download=1",
+    "sizeBytes": 653,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:10.752Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/agents/guest-memory-agent.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/guest-memory-agent.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/guest-memory-agent.md?download=1",
+    "sizeBytes": 707,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:11.189Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/agents/hotel-ops-steward.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/hotel-ops-steward.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/hotel-ops-steward.md?download=1",
+    "sizeBytes": 630,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:11.639Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/agents/menu-story-agent.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/menu-story-agent.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/menu-story-agent.md?download=1",
+    "sizeBytes": 587,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:12.116Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/agents/review-reputation-agent.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/review-reputation-agent.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/review-reputation-agent.md?download=1",
+    "sizeBytes": 632,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:12.575Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/agents/service-briefing-agent.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/service-briefing-agent.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/service-briefing-agent.md?download=1",
+    "sizeBytes": 626,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:13.026Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/agents/team-training-agent.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/team-training-agent.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/agents/team-training-agent.md?download=1",
+    "sizeBytes": 563,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:13.467Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/install/CLAUDE-CODE-CODEX-ACOS.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/install/CLAUDE-CODE-CODEX-ACOS.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/install/CLAUDE-CODE-CODEX-ACOS.md?download=1",
+    "sizeBytes": 1256,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:13.928Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/manifest.json": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/manifest.json",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/manifest.json?download=1",
+    "sizeBytes": 1386,
+    "contentType": "application/json",
+    "uploadedAt": "2026-08-19T23:36:14.342Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/plugin-roadmap.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/plugin-roadmap.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/plugin-roadmap.md?download=1",
+    "sizeBytes": 906,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:14.829Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/privacy-boundaries.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/privacy-boundaries.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/privacy-boundaries.md?download=1",
+    "sizeBytes": 1108,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:15.314Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/README.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/README.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/README.md?download=1",
+    "sizeBytes": 3219,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:15.765Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0/skills/hospitality-intelligence-system/SKILL.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/skills/hospitality-intelligence-system/SKILL.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0/skills/hospitality-intelligence-system/SKILL.md?download=1",
+    "sizeBytes": 1344,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:16.182Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0.sha256": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0.sha256",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0.sha256?download=1",
+    "sizeBytes": 111,
+    "contentType": "application/octet-stream",
+    "uploadedAt": "2026-08-19T23:36:16.660Z"
+  },
+  "jojo-hospitality-intelligence-kit-v0.1.0.zip": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0.zip",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/jojo-hospitality-intelligence-kit-v0.1.0.zip?download=1",
+    "sizeBytes": 16833,
+    "contentType": "application/zip",
+    "uploadedAt": "2026-08-19T23:36:17.090Z"
+  },
+  "pdfs/FrankX-5Day-Challenge-Workbook.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-5Day-Challenge-Workbook.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-5Day-Challenge-Workbook.pdf?download=1",
+    "sizeBytes": 303523,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:18.238Z"
+  },
+  "pdfs/FrankX-A2A-Protocol-Spec-2026.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-A2A-Protocol-Spec-2026.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-A2A-Protocol-Spec-2026.pdf?download=1",
+    "sizeBytes": 299022,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:19.501Z"
+  },
+  "pdfs/FrankX-ACOS-Playbook-2026.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-ACOS-Playbook-2026.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-ACOS-Playbook-2026.pdf?download=1",
+    "sizeBytes": 327796,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:20.798Z"
+  },
+  "pdfs/FrankX-Agent-Swarm-Blueprint-2026.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Agent-Swarm-Blueprint-2026.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Agent-Swarm-Blueprint-2026.pdf?download=1",
+    "sizeBytes": 339899,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:21.895Z"
+  },
+  "pdfs/FrankX-AI-Writing-System-2026.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-AI-Writing-System-2026.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-AI-Writing-System-2026.pdf?download=1",
+    "sizeBytes": 339760,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:23.575Z"
+  },
+  "pdfs/FrankX-Founder-AI-Stack-2026.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Founder-AI-Stack-2026.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Founder-AI-Stack-2026.pdf?download=1",
+    "sizeBytes": 310999,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:24.792Z"
+  },
+  "pdfs/FrankX-Generative-Media-Playbook.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Generative-Media-Playbook.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Generative-Media-Playbook.pdf?download=1",
+    "sizeBytes": 305619,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:25.931Z"
+  },
+  "pdfs/FrankX-Golden-Age-of-Intelligence.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Golden-Age-of-Intelligence.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Golden-Age-of-Intelligence.pdf?download=1",
+    "sizeBytes": 295037,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:27.067Z"
+  },
+  "pdfs/FrankX-IFS-AI-Architecture.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-IFS-AI-Architecture.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-IFS-AI-Architecture.pdf?download=1",
+    "sizeBytes": 303012,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:28.230Z"
+  },
+  "pdfs/FrankX-Spartan-Mindset-Guide.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Spartan-Mindset-Guide.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Spartan-Mindset-Guide.pdf?download=1",
+    "sizeBytes": 300019,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:29.337Z"
+  },
+  "pdfs/FrankX-The-Wordless-Laws-Book-One.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-The-Wordless-Laws-Book-One.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-The-Wordless-Laws-Book-One.pdf?download=1",
+    "sizeBytes": 317186,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:30.475Z"
+  },
+  "pdfs/FrankX-Top-50-AI-Prompts-2026.pdf": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Top-50-AI-Prompts-2026.pdf",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/pdfs/FrankX-Top-50-AI-Prompts-2026.pdf?download=1",
+    "sizeBytes": 331823,
+    "contentType": "application/pdf",
+    "uploadedAt": "2026-08-19T23:36:31.430Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/AGENT_TEAM.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/AGENT_TEAM.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/AGENT_TEAM.md?download=1",
+    "sizeBytes": 2824,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:31.901Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/BUSINESS_MODEL.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/BUSINESS_MODEL.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/BUSINESS_MODEL.md?download=1",
+    "sizeBytes": 1557,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:32.452Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/DATA_BOUNDARIES.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/DATA_BOUNDARIES.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/DATA_BOUNDARIES.md?download=1",
+    "sizeBytes": 1555,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:32.854Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/DOWNLOAD.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/DOWNLOAD.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/DOWNLOAD.md?download=1",
+    "sizeBytes": 886,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:33.305Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/INSTALL_RUNBOOK.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/INSTALL_RUNBOOK.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/INSTALL_RUNBOOK.md?download=1",
+    "sizeBytes": 2110,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:33.904Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/manifest.json": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/manifest.json",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/manifest.json?download=1",
+    "sizeBytes": 1455,
+    "contentType": "application/json",
+    "uploadedAt": "2026-08-19T23:36:34.317Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/MCP_RAILWAY_ARCHITECTURE.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/MCP_RAILWAY_ARCHITECTURE.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/MCP_RAILWAY_ARCHITECTURE.md?download=1",
+    "sizeBytes": 2774,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:34.982Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/PARTNER_IMPLEMENTATION.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/PARTNER_IMPLEMENTATION.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/PARTNER_IMPLEMENTATION.md?download=1",
+    "sizeBytes": 924,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:35.441Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/README.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/README.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/README.md?download=1",
+    "sizeBytes": 1745,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:35.849Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/SUCCESS_GATES.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/SUCCESS_GATES.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/SUCCESS_GATES.md?download=1",
+    "sizeBytes": 1891,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:36.261Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0/V0_PROMPT.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/V0_PROMPT.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0/V0_PROMPT.md?download=1",
+    "sizeBytes": 1277,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:36.718Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0.sha256": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0.sha256",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0.sha256?download=1",
+    "sizeBytes": 110,
+    "contentType": "application/octet-stream",
+    "uploadedAt": "2026-08-19T23:36:37.178Z"
+  },
+  "property-intelligence-starter-kit-v0.1.0.zip": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0.zip",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/property-intelligence-starter-kit-v0.1.0.zip?download=1",
+    "sizeBytes": 10643,
+    "contentType": "application/zip",
+    "uploadedAt": "2026-08-19T23:36:37.599Z"
+  },
+  "starlight-community-os-blueprint.md": {
+    "url": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/starlight-community-os-blueprint.md",
+    "downloadUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/downloads/starlight-community-os-blueprint.md?download=1",
+    "sizeBytes": 16257,
+    "contentType": "text/plain",
+    "uploadedAt": "2026-08-19T23:36:38.033Z"
+  }
+}

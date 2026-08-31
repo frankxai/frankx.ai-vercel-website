@@ -237,7 +237,7 @@ function TemplateCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.04, duration: 0.4 }}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all duration-300 hover:border-white/[0.15] hover:bg-white/[0.05]"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-[background-color,border-color] duration-300 hover:border-white/[0.15] hover:bg-white/[0.05]"
     >
       {/* Header */}
       <div className="p-5 pb-0">
@@ -296,13 +296,26 @@ function TemplateCard({
             <span className="text-sm text-white/30 line-through">${template.originalPrice}</span>
           )}
         </div>
-        <CheckoutButton
-          variantId={template.lemonSqueezy.variantId || undefined}
-          price={template.price}
-          originalPrice={template.originalPrice}
-          label="Get"
-          size="sm"
-        />
+        <div className="flex items-center gap-2">
+          {'vercelDeployUrl' in template && template.vercelDeployUrl && (
+            <a
+              href={template.vercelDeployUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 hover:bg-white/15 px-2.5 py-1.5 text-[11px] font-semibold text-white transition-colors"
+              title="1-Click Vercel Deploy"
+            >
+              <span>▲ Deploy</span>
+            </a>
+          )}
+          <CheckoutButton
+            variantId={template.lemonSqueezy.variantId || undefined}
+            price={template.price}
+            originalPrice={template.originalPrice}
+            label="Get"
+            size="sm"
+          />
+        </div>
       </div>
     </motion.div>
   )
@@ -381,11 +394,29 @@ export default function ShopTemplatesPage() {
               Faster
             </h1>
 
-            <p className="mb-10 max-w-2xl text-lg text-white/50">
+            <p className="mb-8 max-w-2xl text-lg text-white/50">
               Production-tested templates from the systems behind frankx.ai.
               Claude Code skills, n8n workflows, Next.js starters, and full AI architecture blueprints.
               Built by an AI architect who ships in production.
             </p>
+
+            {/* Quick Actions */}
+            <div className="flex flex-wrap items-center gap-3 mb-10">
+              <Link
+                href="/v0"
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-5 py-2.5 text-sm font-semibold text-black transition-colors shadow-lg shadow-emerald-500/20"
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Launch /v0 Live Demos</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/templates"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition-colors"
+              >
+                <span>Free Templates Hub</span>
+              </Link>
+            </div>
           </motion.div>
 
           {/* Stats bar */}
@@ -447,7 +478,7 @@ export default function ShopTemplatesPage() {
                 placeholder="Search templates..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/30 transition-colors focus:border-cyan-500/40 focus:outline-none"
+                className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/30 transition-colors focus:border-cyan-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
               />
             </div>
 
@@ -458,7 +489,7 @@ export default function ShopTemplatesPage() {
                 <button
                   key={cat}
                   onClick={() => setCategory(cat)}
-                  className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-all ${
+                  className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-[background-color,border-color,color] ${
                     category === cat
                       ? 'border-cyan-500/30 bg-cyan-500/20 text-cyan-400'
                       : 'border-transparent bg-white/[0.04] text-white/40 hover:text-white/60'
@@ -474,7 +505,7 @@ export default function ShopTemplatesPage() {
           <div className="flex items-center gap-1 rounded-lg bg-white/[0.04] p-1">
             <button
               onClick={() => setViewMode('tiers')}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-[background-color,border-color,color] ${
                 viewMode === 'tiers'
                   ? 'bg-white/[0.1] text-white'
                   : 'text-white/40 hover:text-white/60'
@@ -484,7 +515,7 @@ export default function ShopTemplatesPage() {
             </button>
             <button
               onClick={() => setViewMode('grid')}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-[background-color,border-color,color] ${
                 viewMode === 'grid'
                   ? 'bg-white/[0.1] text-white'
                   : 'text-white/40 hover:text-white/60'

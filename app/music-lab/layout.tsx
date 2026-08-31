@@ -1,11 +1,17 @@
-import { createMetadata } from '@/lib/seo'
+import type { Metadata } from 'next'
 
-export const metadata = createMetadata({
-  title: 'Music Lab | AI Music Production Studio | FrankX',
-  description: 'AI-powered music production lab. Create tracks with Suno, explore genre fusion, and master prompt-driven music composition workflows.',
-  path: '/music-lab',
-})
+export const metadata: Metadata = {
+  title: 'Music Lab — Browser Instruments, Guided Notes & Performance',
+  description: 'Play responsive browser instruments, follow guided piano and violin notes, and practice timing with focused performance tools.',
+  alternates: { canonical: '/music-lab' },
+  openGraph: {
+    title: 'FrankX Music Lab',
+    description: 'Play. Practice. Perform with responsive browser instruments and guided notes.',
+    url: 'https://frankx.ai/music-lab',
+    type: 'website',
+  },
+}
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function MusicLabLayout({ children }: { children: React.ReactNode }) {
   return children
 }

@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import React, { useState } from "react"
+import Link from "next/link"
+import { motion } from "framer-motion"
 import {
   ArrowRight,
   Boxes,
@@ -12,454 +12,331 @@ import {
   Database,
   Server,
   Cloud,
-  Building,
   Sparkles,
   ExternalLink,
   CheckCircle2,
   Zap,
-  Globe,
-} from 'lucide-react'
+  Terminal,
+  Cpu,
+  Code2,
+  Copy,
+  Check,
+} from "lucide-react"
 
-// Architecture showcase data
-const architectures = [
+interface ArchitectureSpec {
+  id: string
+  title: string
+  subtitle: string
+  category: string
+  description: string
+  cloudProviders: string[]
+  color: string
+  metrics: {
+    latency: string
+    costSavings: string
+    reliability: string
+  }
+  technologies: string[]
+  flow: string[]
+  codeSnippet: {
+    lang: string
+    filename: string
+    code: string
+  }
+}
+
+const GOLDEN_SEVEN_ARCHITECTURES: ArchitectureSpec[] = [
   {
-    id: 'enterprise-rag',
-    title: 'Enterprise RAG Platform',
-    subtitle: 'Multi-tenant knowledge retrieval system',
-    description:
-      'Production-grade RAG architecture with vector databases, intelligent chunking, and hybrid search. Handles 1M+ documents with sub-second retrieval.',
-    category: 'Knowledge Management',
-    cloudProviders: ['AWS', 'GCP'],
-    metrics: {
-      documents: '1M+',
-      latency: '<500ms',
-      accuracy: '94%',
+    id: "sovereign-agent-swarm",
+    title: "1. Sovereign Agent Swarm (Multi-Agent FSM)",
+    subtitle: "Hierarchical leader-worker orchestration with fail-closed state machines",
+    category: "Multi-Agent Systems",
+    description: "Production-grade swarm architecture with deterministic Finite State Machine (FSM) transitions, memory vault persistence, and Byzantine consensus for high-value decisions.",
+    cloudProviders: ["AWS", "GCP", "Self-Hosted"],
+    color: "emerald",
+    metrics: { latency: "<1.2s / turn", costSavings: "65% vs single mega-prompt", reliability: "State survives long runs" },
+    technologies: ["Claude Code", "Hermes", "Redis Memory Vault", "LangGraph"],
+    flow: [
+      "Queen / Leader Agent ingests intent & compiles task contract",
+      "FSM validates pre-flight machine performance & IAM scope",
+      "Worker subagents execute parallel tool loops via dedicated git worktrees",
+      "Crown / Verifier Agent performs blind cross-model check before merge",
+    ],
+    codeSnippet: {
+      lang: "typescript",
+      filename: "swarm-orchestrator.ts",
+      code: "export async function dispatchSubagentTask(contract: TaskContract) {\n  const plan = await generateObject({\n    model: google('gemini-3.7-flash'),\n    schema: z.object({\n      assignedLanes: z.array(z.string()),\n      maxTurns: z.number().max(10),\n      allowDangerous: z.boolean(),\n    }),\n    prompt: `Compile execution plan for: ${contract.goal}`,\n  })\n  return plan.object\n}",
     },
-    technologies: ['Pinecone', 'OpenAI', 'LangChain', 'FastAPI'],
-    image: '/images/architectures/rag-platform.png',
-    color: 'emerald',
-    prototypeSlug: 'enterprise-rag-platform',
   },
   {
-    id: 'multi-agent-orchestrator',
-    title: 'Multi-Agent Code Assistant',
-    subtitle: 'Coordinated AI agents for development workflows',
-    description:
-      'Intelligent agent orchestration for code review, testing, and deployment. Features handoff protocols, shared memory, and quality gates.',
-    category: 'Developer Tools',
-    cloudProviders: ['AWS', 'OCI'],
-    metrics: {
-      agents: '8',
-      tasks: '50k/day',
-      accuracy: '97%',
+    id: "dual-engine-graph-rag",
+    title: "2. Dual-Engine RAG & GraphRAG",
+    subtitle: "Hybrid BM25 keyword + dense vector + knowledge graph entity reranking",
+    category: "Knowledge Systems",
+    description: "Knowledge substrate for large technical corpora. Combines vector semantic search with GraphRAG entity extraction so answers stay anchored to retrieved sources.",
+    cloudProviders: ["OCI", "AWS", "Cloudflare"],
+    color: "cobalt",
+    metrics: { latency: "<350ms p95", costSavings: "80% token savings via reranking", reliability: "Answers cite their source" },
+    technologies: ["Upstash Context7", "Neo4j / Graph", "pgvector", "FastAPI"],
+    flow: [
+      "Document ingestion with semantic chunking & entity-relation extraction",
+      "Parallel dual-retrieval: BM25 keyword match + vector embedding search",
+      "Graph traversal across parent-child nodes & cross-domain citations",
+      "Cross-encoder reranker delivers top-5 dense context windows to LLM",
+    ],
+    codeSnippet: {
+      lang: "typescript",
+      filename: "hybrid-graph-rag.ts",
+      code: "export async function hybridRetrieve(query: string) {\n  const [vectorHits, keywordHits, graphEntities] = await Promise.all([\n    vectorStore.similaritySearch(query, { k: 20 }),\n    bm25Index.search(query, { limit: 20 }),\n    knowledgeGraph.queryEntities(query),\n  ])\n  return crossEncoderRerank({ candidates: [...vectorHits, ...keywordHits], entities: graphEntities, topK: 5 })\n}",
     },
-    technologies: ['Claude', 'LangGraph', 'Redis', 'GitHub'],
-    image: '/images/architectures/multi-agent.png',
-    color: 'cyan',
-    prototypeSlug: 'multi-agent-code-assistant',
   },
   {
-    id: 'ai-gateway',
-    title: 'Enterprise AI Gateway',
-    subtitle: 'Centralized LLM access and governance',
-    description:
-      'Unified gateway for multiple LLM providers with rate limiting, caching, cost attribution, and compliance controls.',
-    category: 'Infrastructure',
-    cloudProviders: ['Multi-Cloud'],
-    metrics: {
-      requests: '10M/day',
-      savings: '40%',
-      uptime: '99.99%',
+    id: "dynamic-tier-router",
+    title: "3. Dynamic Multi-Tier Model Router",
+    subtitle: "Real-time task shape analysis routing between Fast-Path and Deep-Reasoning",
+    category: "Cost & Performance",
+    description: "Cuts LLM API spend substantially by dynamically routing high-volume queries to ultra-fast sub-$1 models and reserving frontier reasoning models for complex constraint verification.",
+    cloudProviders: ["Multi-Cloud", "Vercel Edge"],
+    color: "amber",
+    metrics: { latency: "150ms triage", costSavings: "82% blended cost reduction", reliability: "Degrades instead of failing" },
+    technologies: ["Gemini 3.7 Flash", "Claude Opus 5", "DeepSeek V4 Pro", "OpenRouter"],
+    flow: [
+      "Incoming request parsed for reasoning depth & token constraints",
+      "Low-complexity & triage requests sent to Gemini 3.7 Flash / DeepSeek",
+      "Complex architecture, math & multi-file refactors routed to Opus 5 / Fable 5",
+      "Automatic fallback cascade on provider 429 / 500 error",
+    ],
+    codeSnippet: {
+      lang: "typescript",
+      filename: "model-router.ts",
+      code: "export function routeModelByTask(taskShape: TaskShape) {\n  if (taskShape.complexity === 'deep-reasoning' || taskShape.hasStrictConstraints) {\n    return 'anthropic/claude-opus-5'\n  }\n  if (taskShape.type === 'realtime-search') {\n    return 'xai/grok-4-6'\n  }\n  return 'google/gemini-3.7-flash'\n}",
     },
-    technologies: ['Kong', 'Redis', 'OpenAI', 'Anthropic'],
-    image: '/images/architectures/ai-gateway.png',
-    color: 'violet',
-    prototypeSlug: null,
   },
   {
-    id: 'llmops-pipeline',
-    title: 'LLMOps Pipeline',
-    subtitle: 'Continuous evaluation and improvement',
-    description:
-      'End-to-end pipeline for model evaluation, prompt versioning, A/B testing, and production monitoring with drift detection.',
-    category: 'MLOps',
-    cloudProviders: ['GCP', 'Azure'],
-    metrics: {
-      evals: '1000/day',
-      prompts: '500+',
-      coverage: '95%',
+    id: "enterprise-mcp-mesh",
+    title: "4. Zero-Trust Enterprise MCP Mesh",
+    subtitle: "Centralized Model Context Protocol hub with IAM, caching & audit trail",
+    category: "Infrastructure",
+    description: "Universal tool connectivity layer for AI assistants and swarms. Provides strict capability-based access control, tool discovery, response caching, and immutable audit logs.",
+    cloudProviders: ["AWS", "OCI", "Cloudflare"],
+    color: "terracotta",
+    metrics: { latency: "<25ms gateway overhead", costSavings: "40% caching reduction", reliability: "Schema-validated tool calls" },
+    technologies: ["MCP SDK", "Docker", "PostgreSQL", "Tailscale"],
+    flow: [
+      "Agent requests tool catalog with cryptographic session token",
+      "MCP Gateway checks IAM permissions and returns scoped tool schema",
+      "Tool invocation executed in isolated micro-container",
+      "Append-only audit log records input parameters & returned payload",
+    ],
+    codeSnippet: {
+      lang: "typescript",
+      filename: "mcp-gateway.ts",
+      code: "server.setRequestHandler(CallToolRequestSchema, async (request) => {\n  await auditLog.record(request)\n  return executeScopedTool(request.params)\n})",
     },
-    technologies: ['Weights & Biases', 'LangSmith', 'Prometheus', 'dbt'],
-    image: '/images/architectures/llmops.png',
-    color: 'rose',
-    prototypeSlug: null,
   },
   {
-    id: 'mcp-hub',
-    title: 'MCP Server Hub',
-    subtitle: 'Model Context Protocol ecosystem',
-    description:
-      'Centralized MCP server management with tool registry, authentication, and monitoring for Claude Code and other AI assistants.',
-    category: 'AI Infrastructure',
-    cloudProviders: ['OCI', 'AWS'],
-    metrics: {
-      servers: '25+',
-      tools: '150+',
-      daily: '100k calls',
+    id: "red-blue-security-engine",
+    title: "5. Continuous Red/Blue Security Engine",
+    subtitle: "Automated prompt injection probes, spend-cap enforcement & fail-closed gates",
+    category: "Security & Safety",
+    description: "Active defense system running automated attack vectors (indirect prompt injection, mandate forgery, capital exfiltration) to ensure agents reject and audit malicious operations.",
+    cloudProviders: ["Multi-Cloud", "Self-Hosted"],
+    color: "rose",
+    metrics: { latency: "Real-time stream inspection", costSavings: "Catches loss before spend", reliability: "Failures surface, not swallow" },
+    technologies: ["PromptFoo", "starlight-evals", "Custom IAM Guardrails"],
+    flow: [
+      "Input boundary sanitizes untrusted third-party data & web scrapes",
+      "Red-team probe generator continuously tests refusal boundaries",
+      "Payment & API execution gates enforce strict cryptographic spend caps",
+      "Any unauthorized mutation triggers immediate fail-closed circuit trip",
+    ],
+    codeSnippet: {
+      lang: "typescript",
+      filename: "security-gate.ts",
+      code: "export function verifySpendCap(tx: TransactionMandate): boolean {\n  if (!tx.signature || isExpired(tx)) {\n    auditLog.recordSecurityViolation(tx, 'EXPIRED_OR_UNSIGNED')\n    return false // FAIL CLOSED\n  }\n  return tx.amount <= DAILY_SPEND_CAP\n}",
     },
-    technologies: ['Claude', 'MCP', 'PostgreSQL', 'Docker'],
-    image: '/images/architectures/mcp-hub.png',
-    color: 'orange',
-    prototypeSlug: null,
   },
   {
-    id: 'ai-coe',
-    title: 'AI Center of Excellence',
-    subtitle: 'Enterprise AI governance framework',
-    description:
-      'Complete organizational framework for AI governance including templates, policies, training programs, and measurement systems.',
-    category: 'Governance',
-    cloudProviders: ['Multi-Cloud'],
-    metrics: {
-      templates: '50+',
-      policies: '30+',
-      teams: '100+',
+    id: "agentic-sdlc-ci-cd",
+    title: "6. Agentic SDLC & Automated Verification Gate",
+    subtitle: "Draft-first PR pipelines with multi-LLM adversarial review & visual QA",
+    category: "Developer Experience",
+    description: "Autonomous software development lifecycle system. Parallel coding agents generate scoped worktree branches, run unit tests, and submit draft PRs evaluated by an independent review panel.",
+    cloudProviders: ["GitHub Actions", "Vercel", "Railway"],
+    color: "stone",
+    metrics: { latency: "15 min idea-to-preview", costSavings: "90% manual review saved", reliability: "Gated before production" },
+    technologies: ["GitHub Actions", "Vercel Preview", "Playwright", "Santa Loop"],
+    flow: [
+      "Issue assigned -> Agent creates dedicated git branch & worktree",
+      "Agent implements feature, runs unit tests & type checks locally",
+      "Draft PR opened -> fires lightweight preview deploy & visual QA",
+      "Independent Reviewer Model (Santa Gate) verifies code craft & taste",
+    ],
+    codeSnippet: {
+      lang: "yaml",
+      filename: ".github/workflows/agent-gate.yml",
+      code: "name: Agentic Quality Gate\non: [pull_request]\njobs:\n  verify:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: pnpm install && pnpm run build\n      - name: Visual Anti-Slop Audit\n        run: python scripts/verify_anti_slop.py -Path ./app",
     },
-    technologies: ['Confluence', 'Jira', 'Custom Dashboards'],
-    image: '/images/architectures/ai-coe.png',
-    color: 'blue',
-    prototypeSlug: null,
+  },
+  {
+    id: "local-edge-sovereign-node",
+    title: "7. Local Edge Sovereign Node",
+    subtitle: "Zero-cloud air-gapped agent runtime with local 27B weights and private memory",
+    category: "Sovereignty & Privacy",
+    description: "Fully sovereign AI deployment running open-weight models on consumer hardware (Mac Studio / RTX 5090). Zero telemetry, zero external API billing, complete data privacy.",
+    cloudProviders: ["Local Hardware", "Air-Gapped LAN"],
+    color: "emerald",
+    metrics: { latency: "45 tokens/sec local", costSavings: "No cloud inference cost", reliability: "Runs offline with zero internet" },
+    technologies: ["Qwen 3.8-27B", "Ollama / vLLM", "SQLite Memory", "Hermes CLI"],
+    flow: [
+      "Local developer prompt captured in private local terminal",
+      "Local vLLM / Ollama server executes Qwen 3.8-27B with 32k context",
+      "Persistent state stored in encrypted SQLite vector database",
+      "Zero telemetry transmitted outside the local machine",
+    ],
+    codeSnippet: {
+      lang: "bash",
+      filename: "docker-compose.sovereign.yml",
+      code: "services:\n  ollama-node:\n    image: ollama/ollama:latest\n    deploy:\n      resources:\n        reservations:\n          devices:\n            - driver: nvidia\n              count: all\n              capabilities: [gpu]\n    ports:\n      - 11434:11434",
+    },
   },
 ]
 
-const colorMap: Record<string, { bg: string; border: string; badge: string; glow: string }> = {
-  emerald: {
-    bg: 'from-emerald-500/10 to-emerald-600/5',
-    border: 'border-emerald-500/20 hover:border-emerald-500/40',
-    badge: 'bg-emerald-500/20 text-emerald-400',
-    glow: 'group-hover:shadow-emerald-500/10',
-  },
-  cyan: {
-    bg: 'from-cyan-500/10 to-cyan-600/5',
-    border: 'border-cyan-500/20 hover:border-cyan-500/40',
-    badge: 'bg-cyan-500/20 text-cyan-400',
-    glow: 'group-hover:shadow-cyan-500/10',
-  },
-  violet: {
-    bg: 'from-violet-500/10 to-violet-600/5',
-    border: 'border-violet-500/20 hover:border-violet-500/40',
-    badge: 'bg-violet-500/20 text-violet-400',
-    glow: 'group-hover:shadow-violet-500/10',
-  },
-  rose: {
-    bg: 'from-rose-500/10 to-rose-600/5',
-    border: 'border-rose-500/20 hover:border-rose-500/40',
-    badge: 'bg-rose-500/20 text-rose-400',
-    glow: 'group-hover:shadow-rose-500/10',
-  },
-  orange: {
-    bg: 'from-orange-500/10 to-orange-600/5',
-    border: 'border-orange-500/20 hover:border-orange-500/40',
-    badge: 'bg-orange-500/20 text-orange-400',
-    glow: 'group-hover:shadow-orange-500/10',
-  },
-  blue: {
-    bg: 'from-blue-500/10 to-blue-600/5',
-    border: 'border-blue-500/20 hover:border-blue-500/40',
-    badge: 'bg-blue-500/20 text-blue-400',
-    glow: 'group-hover:shadow-blue-500/10',
-  },
+// Category accents, not decoration: one flat surface, one border, one badge per lane.
+// Deliberately avoids the violet-gradient / cyan-on-dark pairing that reads as generated UI,
+// and anchors on the estate's cobalt from the connect-authority release.
+const colorMap: Record<string, { bg: string; border: string; badge: string }> = {
+  emerald: { bg: "bg-white/[0.02]", border: "border-emerald-400/25 hover:border-emerald-400/50", badge: "bg-emerald-400/10 text-emerald-300 border border-emerald-400/30" },
+  cobalt: { bg: "bg-white/[0.02]", border: "border-[#2157d5]/35 hover:border-[#2157d5]/60", badge: "bg-[#2157d5]/15 text-[#8fb0ff] border border-[#2157d5]/40" },
+  amber: { bg: "bg-white/[0.02]", border: "border-amber-400/25 hover:border-amber-400/50", badge: "bg-amber-400/10 text-amber-300 border border-amber-400/30" },
+  terracotta: { bg: "bg-white/[0.02]", border: "border-[#d9855f]/30 hover:border-[#d9855f]/55", badge: "bg-[#d9855f]/12 text-[#e5a483] border border-[#d9855f]/35" },
+  rose: { bg: "bg-white/[0.02]", border: "border-rose-400/25 hover:border-rose-400/50", badge: "bg-rose-400/10 text-rose-300 border border-rose-400/30" },
+  stone: { bg: "bg-white/[0.02]", border: "border-stone-400/25 hover:border-stone-400/50", badge: "bg-stone-400/10 text-stone-200 border border-stone-400/30" },
 }
 
-function ArchitecturesBackground() {
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0a0a0b]" />
-      {/* Hexagonal pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.015]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 15v22L30 52 0 37V15z' fill='none' stroke='%2306b6d4' stroke-width='0.5'/%3E%3C/svg%3E")`,
-          backgroundSize: '60px 52px',
-        }}
-      />
-      <motion.div
-        className="absolute -left-60 top-40 h-[600px] w-[600px] rounded-full opacity-15"
-        style={{
-          background: 'radial-gradient(circle, rgba(6,182,212,0.4) 0%, transparent 70%)',
-        }}
-        animate={{ scale: [1, 1.1, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute -right-40 bottom-20 h-[500px] w-[500px] rounded-full opacity-10"
-        style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
-        }}
-        animate={{ scale: [1.1, 1, 1.1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-      />
-    </div>
-  )
-}
+export default function ArchitecturesPage() {
+  const [activeTab, setActiveTab] = useState<Record<string, "flow" | "code" | "metrics">>({})
+  const [copiedId, setCopiedId] = useState<string | null>(null)
 
-function ArchitectureCard({
-  architecture,
-  index,
-}: {
-  architecture: (typeof architectures)[0]
-  index: number
-}) {
-  const colors = colorMap[architecture.color]
+  const handleCopy = (id: string, code: string) => {
+    navigator.clipboard.writeText(code)
+    setCopiedId(id)
+    setTimeout(() => setCopiedId(null), 2000)
+  }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group"
-    >
-      <div
-        className={`relative flex h-full flex-col rounded-2xl border bg-gradient-to-br backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl ${colors.border} ${colors.bg} ${colors.glow}`}
-      >
-        {/* Image placeholder */}
-        <div className="relative h-48 overflow-hidden rounded-t-2xl bg-slate-900/50">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Boxes className="h-16 w-16 text-white/10" />
-          </div>
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] to-transparent" />
-          {/* Category badge */}
-          <div className="absolute left-4 top-4">
-            <span className={`rounded-full px-3 py-1 text-xs font-medium ${colors.badge}`}>
-              {architecture.category}
-            </span>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="flex flex-1 flex-col p-6">
-          <h3 className="mb-1 text-xl font-bold text-white">{architecture.title}</h3>
-          <p className="mb-3 text-sm text-slate-400">{architecture.subtitle}</p>
-          <p className="mb-4 text-sm text-slate-500 line-clamp-3">{architecture.description}</p>
-
-          {/* Metrics */}
-          <div className="mb-4 grid grid-cols-3 gap-2">
-            {Object.entries(architecture.metrics).map(([key, value]) => (
-              <div key={key} className="text-center">
-                <p className="text-lg font-bold text-white">{value}</p>
-                <p className="text-[10px] uppercase tracking-wider text-slate-500">{key}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Technologies */}
-          <div className="mb-4 flex flex-wrap gap-1">
-            {architecture.technologies.slice(0, 4).map((tech) => (
-              <span
-                key={tech}
-                className="rounded bg-white/5 px-2 py-0.5 text-[10px] text-slate-400"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          {/* Cloud providers */}
-          <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
-            <div className="flex items-center gap-2">
-              <Cloud className="h-4 w-4 text-slate-500" />
-              <span className="text-xs text-slate-500">
-                {architecture.cloudProviders.join(' / ')}
-              </span>
-            </div>
-            {architecture.prototypeSlug ? (
-              <Link
-                href={`/prototype/${architecture.prototypeSlug}`}
-                className="flex items-center gap-1 text-xs font-medium text-slate-400 transition-colors hover:text-white"
-              >
-                View details
-                <ArrowRight className="h-3 w-3" />
-              </Link>
-            ) : (
-              <span className="text-xs text-slate-600">Coming soon</span>
-            )}
-          </div>
-        </div>
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[#0a0a0b]" />
+        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(6,182,212,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+        <div className="absolute left-1/3 top-0 h-[500px] w-[700px]" style={{ background: "radial-gradient(ellipse at top, rgba(6,182,212,0.07) 0%, transparent 70%)", filter: "blur(90px)" }} />
       </div>
-    </motion.div>
-  )
-}
 
-export default function AIArchitecturesPage() {
-  return (
-    <>
-      <ArchitecturesBackground />
-      <main className="relative min-h-screen">
-        {/* Hero Section */}
-        <section className="pt-32 pb-16">
-          <div className="mx-auto max-w-6xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-6 flex items-center gap-3"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-400">
-                <Boxes className="h-5 w-5" />
-              </div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
-                Architecture Gallery
-              </span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="mb-6 max-w-4xl text-4xl font-bold leading-tight text-white sm:text-5xl"
-            >
-              Real-World
-              <span className="block bg-gradient-to-r from-cyan-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent">
-                AI Architectures
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mb-8 max-w-2xl text-lg text-slate-400"
-            >
-              Production architectures built for enterprise scale. Each showcases proven patterns, real metrics,
-              and lessons learned from live deployments.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-wrap gap-4"
-            >
-              <Link
-                href="/prototypes"
-                className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/20"
-              >
-                <Layers className="h-4 w-4" />
-                Browse Prototypes
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/ai-architecture"
-                className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
-              >
-                View Methodology
-              </Link>
-            </motion.div>
+      <main className="relative z-10 mx-auto max-w-6xl px-6 py-16">
+        <nav className="mb-8 flex items-center justify-between">
+          <Link href="/ai-architect" className="inline-flex items-center gap-2 text-sm text-white/50 transition hover:text-white">
+            <ArrowRight className="h-4 w-4 rotate-180" /> AI Architect Hub
+          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/llm-hub" className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 transition hover:text-white">
+              <Boxes className="h-3.5 w-3.5" /> LLM Hub
+            </Link>
           </div>
+        </nav>
+
+        <section className="mb-14">
+          <p className="mb-3 font-mono text-xs uppercase tracking-wider text-cyan-400">Enterprise Blueprints · Updated August 2026</p>
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-5xl">
+            The Golden 7 <span className="text-white/40">AI Architectures</span>
+          </h1>
+          <p className="max-w-3xl text-lg leading-relaxed text-white/60">
+            Production-grade reference architectures for sovereign AI swarms, hybrid knowledge retrieval, dynamic model routing, and zero-trust MCP tool meshes. Copy-paste runnable blueprints.
+          </p>
         </section>
 
-        {/* Stats Bar */}
-        <section className="py-8 border-y border-white/5">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
-              {[
-                { icon: Boxes, value: architectures.length, label: 'Architectures' },
-                { icon: Globe, value: '4', label: 'Cloud Providers' },
-                { icon: Zap, value: '50M+', label: 'Requests/Day' },
-                { icon: CheckCircle2, value: '99.9%', label: 'Avg Uptime' },
-              ].map((stat) => {
-                const Icon = stat.icon
-                return (
-                  <div key={stat.label} className="flex items-center gap-3">
-                    <Icon className="h-5 w-5 text-slate-500" />
-                    <div>
-                      <p className="text-xl font-bold text-white">{stat.value}</p>
-                      <p className="text-xs text-slate-500">{stat.label}</p>
+        <div className="space-y-8">
+          {GOLDEN_SEVEN_ARCHITECTURES.map((arch) => {
+            const colors = colorMap[arch.color] || colorMap.emerald
+            const currentTab = activeTab[arch.id] || "flow"
+            return (
+              <div key={arch.id} className={`rounded-3xl border ${colors.bg} ${colors.border} p-6 backdrop-blur-xl transition-colors md:p-8`}>
+                <div className="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+                  <div>
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <span className={`rounded-full px-2.5 py-0.5 font-mono text-[11px] font-medium ${colors.badge}`}>{arch.category}</span>
+                      {arch.cloudProviders.map((cloud) => (
+                        <span key={cloud} className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-white/50">{cloud}</span>
+                      ))}
                     </div>
+                    <h2 className="text-2xl font-bold text-white tracking-tight">{arch.title}</h2>
+                    <p className="mt-1 text-sm text-white/60">{arch.subtitle}</p>
                   </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Architecture Grid */}
-        <section className="py-16">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="mb-8 flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-white">Featured Architectures</h2>
-              <span className="text-sm text-slate-500">{architectures.length} total</span>
-            </div>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {architectures.map((architecture, index) => (
-                <ArchitectureCard key={architecture.id} architecture={architecture} index={index} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-4xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <Sparkles className="mx-auto mb-4 h-8 w-8 text-violet-400" />
-              <h2 className="mb-4 text-2xl font-bold text-white">How These Are Built</h2>
-              <p className="mb-8 mx-auto max-w-2xl text-slate-400">
-                Every architecture follows the AI Architect methodology: business-first design, cloud-agnostic
-                patterns, security by default, and pragmatic innovation.
-              </p>
-              <Link
-                href="/ai-architecture"
-                className="inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-6 py-3 font-medium text-violet-400 transition-all hover:border-violet-500/50 hover:bg-violet-500/20"
-              >
-                Explore the Methodology
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-4xl px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="mb-4 text-2xl font-bold text-white">Need a Custom Architecture?</h2>
-              <p className="mb-8 text-slate-400">
-                Work with an enterprise AI architect to design production-ready solutions for your specific needs.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/contact"
-                  className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 px-8 py-4 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-cyan-500/25"
-                >
-                  Get in Touch
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <a
-                  href="https://github.com/frankxai/ai-architect-academy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-full border border-white/20 px-8 py-4 font-medium text-white transition-all hover:bg-white/10"
-                >
-                  Open Source Patterns
-                  <ExternalLink className="h-4 w-4" />
-                </a>
+                  <div className="flex rounded-xl border border-white/10 bg-black/40 p-1 text-xs">
+                    <button onClick={() => setActiveTab({ ...activeTab, [arch.id]: "flow" })} className={`rounded-lg px-3 py-1 font-medium transition ${currentTab === "flow" ? "bg-white/10 text-white" : "text-white/50 hover:text-white"}`}>Lifecycle Flow</button>
+                    <button onClick={() => setActiveTab({ ...activeTab, [arch.id]: "code" })} className={`rounded-lg px-3 py-1 font-medium transition ${currentTab === "code" ? "bg-white/10 text-white" : "text-white/50 hover:text-white"}`}>Code Blueprint</button>
+                    <button onClick={() => setActiveTab({ ...activeTab, [arch.id]: "metrics" })} className={`rounded-lg px-3 py-1 font-medium transition ${currentTab === "metrics" ? "bg-white/10 text-white" : "text-white/50 hover:text-white"}`}>SLA & Tradeoffs</button>
+                  </div>
+                </div>
+                <p className="mb-6 text-sm text-white/70 leading-relaxed max-w-4xl">{arch.description}</p>
+                <div className="rounded-2xl border border-white/5 bg-black/50 p-5">
+                  {currentTab === "flow" && (
+                    <div className="space-y-3">
+                      <h4 className="text-xs uppercase font-mono tracking-wider text-white/40 mb-3">Execution Pipeline</h4>
+                      {arch.flow.map((step, idx) => (
+                        <div key={idx} className="flex items-start gap-3 text-xs text-white/80">
+                          <span className="shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-white/10 font-mono text-[10px] text-cyan-300">{idx + 1}</span>
+                          <p className="pt-0.5 leading-relaxed">{step}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {currentTab === "code" && (
+                    <div>
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="font-mono text-xs text-white/40">{arch.codeSnippet.filename}</span>
+                        <button onClick={() => handleCopy(arch.id, arch.codeSnippet.code)} className="flex items-center gap-1 text-[11px] text-white/60 hover:text-white transition">
+                          {copiedId === arch.id ? (<><Check className="h-3 w-3 text-emerald-400" /> Copied</>) : (<><Copy className="h-3 w-3" /> Copy Code</>)}
+                        </button>
+                      </div>
+                      <pre className="overflow-x-auto rounded-xl bg-black/80 p-4 font-mono text-xs leading-relaxed text-cyan-300/90 border border-white/5">
+                        <code>{arch.codeSnippet.code}</code>
+                      </pre>
+                    </div>
+                  )}
+                  {currentTab === "metrics" && (
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 text-center">
+                        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
+                          <div className="text-xs text-white/60">Latency target</div>
+                          <div className="font-mono text-lg font-bold text-white mt-1">{arch.metrics.latency}</div>
+                        </div>
+                        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
+                          <div className="text-xs text-white/60">Cost target</div>
+                          <div className="font-mono text-lg font-bold text-emerald-400 mt-1">{arch.metrics.costSavings}</div>
+                        </div>
+                        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
+                          <div className="text-xs text-white/60">Reliability target</div>
+                          <div className="font-mono text-lg font-bold text-cyan-400 mt-1">{arch.metrics.reliability}</div>
+                        </div>
+                      </div>
+                      <p className="text-center text-xs leading-5 text-white/60">
+                        Design targets for this pattern, not measured results or a service guarantee.
+                        Your numbers will depend on model, corpus and traffic shape.
+                      </p>
+                    </div>
+                  )}
+                </div>
+                <div className="mt-5 flex flex-wrap items-center gap-1.5 text-xs text-white/40">
+                  <span className="font-mono text-[11px] text-white/30 mr-1">Stack:</span>
+                  {arch.technologies.map((t) => (
+                    <span key={t} className="rounded-md border border-white/5 bg-white/[0.02] px-2 py-0.5 text-[11px]">{t}</span>
+                  ))}
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
+            )
+          })}
+        </div>
       </main>
-    </>
+    </div>
   )
 }
