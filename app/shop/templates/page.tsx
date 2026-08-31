@@ -237,7 +237,7 @@ function TemplateCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.04, duration: 0.4 }}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all duration-300 hover:border-white/[0.15] hover:bg-white/[0.05]"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-[background-color,border-color] duration-300 hover:border-white/[0.15] hover:bg-white/[0.05]"
     >
       {/* Header */}
       <div className="p-5 pb-0">
@@ -404,7 +404,7 @@ export default function ShopTemplatesPage() {
             <div className="flex flex-wrap items-center gap-3 mb-10">
               <Link
                 href="/v0"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-5 py-2.5 text-sm font-semibold text-black transition-all shadow-lg shadow-emerald-500/20"
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-5 py-2.5 text-sm font-semibold text-black transition-colors shadow-lg shadow-emerald-500/20"
               >
                 <Sparkles className="h-4 w-4" />
                 <span>Launch /v0 Live Demos</span>
@@ -412,7 +412,7 @@ export default function ShopTemplatesPage() {
               </Link>
               <Link
                 href="/templates"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition-all"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition-colors"
               >
                 <span>Free Templates Hub</span>
               </Link>
@@ -478,7 +478,7 @@ export default function ShopTemplatesPage() {
                 placeholder="Search templates..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/30 transition-colors focus:border-cyan-500/40 focus:outline-none"
+                className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/30 transition-colors focus:border-cyan-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
               />
             </div>
 
@@ -489,7 +489,7 @@ export default function ShopTemplatesPage() {
                 <button
                   key={cat}
                   onClick={() => setCategory(cat)}
-                  className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-all ${
+                  className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-[background-color,border-color,color] ${
                     category === cat
                       ? 'border-cyan-500/30 bg-cyan-500/20 text-cyan-400'
                       : 'border-transparent bg-white/[0.04] text-white/40 hover:text-white/60'
@@ -505,7 +505,7 @@ export default function ShopTemplatesPage() {
           <div className="flex items-center gap-1 rounded-lg bg-white/[0.04] p-1">
             <button
               onClick={() => setViewMode('tiers')}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-[background-color,border-color,color] ${
                 viewMode === 'tiers'
                   ? 'bg-white/[0.1] text-white'
                   : 'text-white/40 hover:text-white/60'
@@ -515,7 +515,7 @@ export default function ShopTemplatesPage() {
             </button>
             <button
               onClick={() => setViewMode('grid')}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-[background-color,border-color,color] ${
                 viewMode === 'grid'
                   ? 'bg-white/[0.1] text-white'
                   : 'text-white/40 hover:text-white/60'

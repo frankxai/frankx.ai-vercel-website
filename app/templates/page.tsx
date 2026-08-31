@@ -231,7 +231,7 @@ function TemplateCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08 }}
-      className="group relative p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden hover:border-white/10 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+      className="group relative p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden hover:border-white/10 transition-[border-color,transform] duration-300 hover:-translate-y-1 flex flex-col justify-between"
     >
       <div className={`absolute inset-0 bg-gradient-to-br ${template.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
@@ -241,9 +241,9 @@ function TemplateCard({
             <Icon className={`w-5 h-5 ${template.color}`} />
           </div>
           {external ? (
-            <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all" />
+            <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-[color,transform]" />
           ) : (
-            <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all" />
+            <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-[color,transform]" />
           )}
         </div>
 
@@ -328,7 +328,7 @@ export default function TemplatesPage() {
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   href="/v0"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm transition-colors shadow-lg shadow-emerald-500/20"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>Explore 19 v0 Interactive Prototypes</span>
@@ -336,7 +336,7 @@ export default function TemplatesPage() {
                 </Link>
                 <Link
                   href="/shop/templates"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-colors"
                 >
                   <Crown className="w-4 h-4 text-amber-300" />
                   <span>Shop Commercial Kits</span>
