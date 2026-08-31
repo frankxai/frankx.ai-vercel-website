@@ -6,6 +6,7 @@ import {
   Heart,
   Database,
   Route,
+  Cpu,
   Github,
   ArrowRight,
   Terminal,
@@ -157,6 +158,46 @@ const products: Product[] = [
     techStack: ['Anthropic SDK', 'OpenAI (optional)', 'MCP SDK', 'TypeScript'],
     githubUrl: 'https://github.com/frankxai/starlight-router',
     docsUrl: '#starlight-router',
+  },
+  {
+    id: 'starlight-swarm-os',
+    name: 'Starlight Swarm OS',
+    version: 'v2.0.0',
+    tagline: '3-Layer Multi-Model Discipline Swarm Engine',
+    description:
+      'Sovereign multi-model agent orchestration for Google Antigravity, Claude Code, Codex, and OpenCode. Features the Pre-Flight Planning Triad (Prometheus/Metis/Momus), the Sisyphus 100% Completion Discipline Engine, and cognitive persona routing.',
+    icon: Cpu,
+    accent: '#38BDF8',
+    features: [
+      '3-Layer Planning Triad (Scoping → Gaps → Adversary)',
+      'Sisyphus 100% Completion Rule & Diagnostics',
+      'Cognitive Model Matching (Claude/GPT/Gemini)',
+      '6 Semantic Memory Vaults + SQLite Hybrid Retrieval',
+      'Hashline Guard & AST-Grep (sg) Integration',
+      'Native Google Antigravity & Claude Code Swarms',
+    ],
+    v11Features: [
+      {
+        title: 'Pre-Flight Planning Triad',
+        description: 'Prometheus scopes milestones, Metis finds blind spots, and Momus ruthlessly reviews before high-LOC execution begins.',
+      },
+      {
+        title: '100% Completion Discipline',
+        description: 'Never stops at 80% or 95%. Mandatory diagnostic verification (tsc, unit tests, lint) before reporting completion.',
+      },
+      {
+        title: 'Cognitive Model Matching',
+        description: 'Hard cognitive alignment: Mechanics to Claude/Kimi, autonomous deep craft to GPT-5.6 Sol, global 1M+ context to Gemini 3.7.',
+      },
+      {
+        title: 'Sovereign Memory Vaults',
+        description: 'Persistent lessons across 6 vaults with ambient SIP v1.1.1 attestation and instant hybrid vector/BM25 retrieval.',
+      },
+    ],
+    quickStart: 'npx @arcanea/starlight-intelligence-system install',
+    techStack: ['Google Antigravity', 'Claude Code', 'TypeScript', 'AST-Grep', 'SQLite', 'MCP SDK'],
+    githubUrl: 'https://github.com/frankxai/Starlight-Intelligence-System',
+    docsUrl: '#starlight-swarm-os',
   },
 ]
 
