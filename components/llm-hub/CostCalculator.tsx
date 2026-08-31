@@ -260,7 +260,7 @@ export function CostCalculator() {
             <motion.div
               key={model.id}
               layout
-              className={`flex flex-col justify-between rounded-2xl border p-4 transition-all ${
+              className={`flex flex-col justify-between rounded-2xl border p-4 transition-colors ${
                 isCheapest
                   ? "border-emerald-500/50 bg-emerald-500/[0.05] ring-1 ring-emerald-500/30"
                   : "border-white/10 bg-white/[0.01] hover:border-white/20"

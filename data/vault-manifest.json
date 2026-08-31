@@ -1,9 +1,9 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-31T21:56:25.963Z",
+  "generatedAt": "2026-08-31T22:54:07.379Z",
   "totalAssets": 1722,
   "totalCollections": 64,
-  "totalSize": 1343513156,
+  "totalSize": 1340261464,
   "formats": {
     "png": 866,
     "svg": 380,
@@ -12996,7 +12996,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 841796,
+          "fileSize": 130181,
           "title": "Creation Engine Droid",
           "tags": [
             "mascot",
@@ -13004,7 +13004,7 @@
             "engine",
             "droid"
           ],
-          "createdAt": "2026-08-21"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "mascot/frank-omega-chibi-avatar-v1",
@@ -13208,7 +13208,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 607575,
+          "fileSize": 79691,
           "title": "Frequency Alchemist Sonic",
           "tags": [
             "mascot",
@@ -13216,7 +13216,7 @@
             "alchemist",
             "sonic"
           ],
-          "createdAt": "2026-08-21"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "mascot/hermes-swarm-operator",
@@ -13227,7 +13227,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 800099,
+          "fileSize": 114779,
           "title": "Hermes Swarm Operator",
           "tags": [
             "mascot",
@@ -13235,7 +13235,7 @@
             "swarm",
             "operator"
           ],
-          "createdAt": "2026-08-21"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "mascot/luminor-crown-guardian",
@@ -13246,7 +13246,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 740297,
+          "fileSize": 99830,
           "title": "Luminor Crown Guardian",
           "tags": [
             "mascot",
@@ -13254,7 +13254,7 @@
             "crown",
             "guardian"
           ],
-          "createdAt": "2026-08-21"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "mascot/mascot-v05-techno-beast-standing",
@@ -13651,7 +13651,7 @@
           "format": "jpg",
           "width": null,
           "height": null,
-          "fileSize": 798771,
+          "fileSize": 112365,
           "title": "Starlight Codex Architect",
           "tags": [
             "mascot",
@@ -13659,7 +13659,7 @@
             "codex",
             "architect"
           ],
-          "createdAt": "2026-08-21"
+          "createdAt": "2026-08-31"
         }
       ]
     },
