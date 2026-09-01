@@ -10,7 +10,7 @@ import { socialLinks } from '@/lib/social-links'
 export const metadata = createMetadata({
   title: 'FrankX — AI Architect & Musician · Building Sovereign Systems',
   description:
-    'AI Architect & Musician. Building sovereign systems for a freer world. Turn-key modular starter kits and elite cognitive mental models.',
+    "Frank Riemer's living studio for music, agent systems, books, field notes, and practical tools.",
   keywords: [
     'Frank Riemer',
     'FrankX',
