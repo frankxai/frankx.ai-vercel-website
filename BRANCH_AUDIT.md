@@ -4,7 +4,66 @@
 **Baseline:** `main` @ 93849c62 (all CI gates verified green locally: build-integrity, type-check, lint, ai-slop)
 **Method:** every branch diffed against `main` with `public/reading/` excluded, then cross-referenced against its pull-request outcome. "Unlanded" = files the branch touched that still differ from `main` today.
 
+**Protection pass:** 2026-08-30 — 24 branches verified present on the remote and confirmed to hold work that is not in `main`. They are listed under DO-NOT-DELETE below, which is authoritative over every tier table in this file.
+
 Deletion is reversible until GitHub garbage-collects the ref (typically weeks). Revive with `git checkout origin/<branch>`.
+
+## DO-NOT-DELETE — protected branches
+
+**Added 2026-08-30. This section outranks every other list in this file, including Tier A.**
+
+If you are an automated prune, a cleanup agent, or a human running a batch: read these four rules before you close or delete anything. They are not advisory.
+
+1. **Never close a pull request or delete a branch on age alone.** A date filter cannot tell the difference between work that landed and work that was forgotten. Both look stale. Only one is safe to remove.
+2. **Check whether the idea is in `main` first.** The test is per-file, not per-date: for every file the branch touched, is the branch's version already byte-identical to `main`'s? If any file still differs, the branch holds the only copy of that work and you may not delete it. `git cherry main <branch>` marking every commit `+` means nothing landed.
+3. **A human KEEP comment is an absolute veto.** If Frank has commented KEEP, or anything meaning KEEP, on a pull request or a branch, that decision stands until Frank himself reverses it. No staleness rule, no batch job, and no agent overrides it. This rule exists because it was broken twice — PRs #243 and #473 both carried an explicit "KEEP. Unique work stays on this branch." and both were closed anyway.
+4. **Every branch in the table below is off-limits.** Do not delete it, do not close its pull request, do not add it to `.github/cleanup-queue.txt`. If you believe one should go, say so and stop — the decision is Frank's.
+
+A closed pull request is not permission to delete its branch. Closing is a review outcome; deleting destroys the work. The 40 PRs closed across this repo and `arcanea-ai-app` were closed on staleness, not on merit, and their branches still hold the only copy of what they proposed.
+
+All 24 branches below were verified present on the remote on 2026-08-30. Unlanded counts exclude `public/reading/` and were measured per-file against `main`, not by date.
+
+| Branch | PR | Last commit | Unlanded | Why it is protected |
+|---|---|---|---|---|
+| `agent/claude/checkout-revenue-fix` | 243 | 2026-08-14 | 4 | **Overridden KEEP.** Wires the $47 kit CTA to real Stripe checkout and removes fabricated claims. Revenue path; closed unmerged despite an explicit KEEP comment. |
+| `agent/hermes/frankx-decision-instrument-20260812` | 473 | 2026-08-15 | 22 | **Overridden KEEP.** Decision-instrument hero for the production agentic article; closed unmerged despite an explicit KEEP comment. |
+| `agent/antigravity/lead-funnels-v1` | — | 2026-08-05 | 671 | Lead-funnel system v1. The largest body of unlanded work in the repo and never opened as a pull request. |
+| `agent/codex/ai-architect-guide-2026-preview` | — | 2026-08-27 | 4 | AI Architect Guide 2026 preview. Newest unlanded branch here; nothing of it is in `main`. |
+| `agent/gemini/agency-swarm-brand-factory` | — | 2026-08-18 | 29 | Agency-swarm brand factory. Never proposed for review; 29 of 30 touched files still differ from `main`. |
+| `agent/codex/frankx-earbuds-2026` | — | 2026-06-26 | 62 | FrankX earbuds 2026 product surface. Orphaned work, never opened as a pull request. |
+| `codex/openai-devday-resource` | — | 2026-07-03 | 17 | OpenAI DevDay resource. Every touched file still differs from `main`. |
+| `feat/map-v1-v2-v3-upgrades` | — | 2026-07-15 | 97 | Map v1/v2/v3 upgrades. Orphaned work; 97 files exist only here. |
+| `claude/multi-agent-newsletter-system-anKSZ` | — | 2026-06-10 | see note | Multi-agent newsletter system. **Shares no merge base with `main`** — an unrelated history, so a merge-base diff reports 0 and looks empty. It is not empty. The work is real and entirely absent from `main`. Any tool that measures this branch by merge-base will misread it as safe. |
+| `agent/hermes/salvage-media-guard-20260823` | 522 | 2026-08-24 | 9 | Media-guard hardening — content validation with base-controlled enforcement. Closed unmerged. |
+| `agent/codex/human-mastery-patternos` | 484 | 2026-08-24 | 13 | Human Mastery PatternOS v0. Closed unmerged; flagged as a contract change, which is a reason to review it, not to discard it. |
+| `agent/codex/frankx-agent-intelligence-20260804` | 420 | 2026-08-04 | 56 | Canonical agent registry and Frank Intelligence. Closed unmerged; the registry exists nowhere else. |
+| `codex/best-ai-hardware` | 284 | 2026-07-15 | 42 | AI hardware intelligence hub. Closed unmerged. |
+| `codex/frankx-constellation-elevation-20260722` | 352 | 2026-07-22 | 57 | FrankX constellation elevation. Closed unmerged. |
+| `claude/ai-architecture-templates-65188c` | 210 | 2026-07-19 | 41 | `/ai-architecture` to 2026 SOTA — blueprints, BYOK suite, free templates. Closed unmerged. |
+| `agent/codex/starlight-retreat-vision-20260714` | 276 | 2026-07-14 | 54 | Starlight Retreats founding vision. Closed unmerged. |
+| `claude/premium-ops-ruxnO` | 202 | 2026-07-02 | 20 | Five doors framework, Strategic Advisor door, premium copy. Closed unmerged. |
+| `codex/openai-mastery-hub-20260729` | 399 | 2026-07-29 | 19 | Role-based OpenAI mastery hub. Closed unmerged. |
+| `claude/build-llm-research-hub-75ba8` | 166 | 2026-07-30 | 35 | Model Hub expansion — multimodal `/models`, LLM Arena, provenance. Closed unmerged. |
+| `agent/hermes/accelerator-surface` | 321 | 2026-07-16 | 15 | Venture Fabric + Portfolio OS public constellation. Closed unmerged. |
+| `agent/c940/research-hub-recommend-preserve-20260818` | — | 2026-08-17 | 6 | Was proposed for deletion. Re-verified: 6 of 22 touched files still differ from `main` and all 8 commits are `+` under `git cherry`. Not absorbed. |
+| `agent/codex/vault-refresh-388` | — | 2026-07-28 | 4 | Was proposed for deletion. Re-verified: all 4 touched files still differ from `main`. Route-owned Vault identity plus three test gates. Not absorbed. |
+| `agent/gemini/tallinn-reconciliation-main-prod` | — | 2026-07-15 | 17 | Was proposed for deletion. Re-verified: 17 of 61 touched files still differ from `main`. Not absorbed. |
+| `agent/gemini/auctions-upgrade` | — | 2026-07-14 | 5 | Was proposed for deletion. Re-verified: 5 of 6 touched files still differ from `main`, including the whole `/auctions` route and its bid API. Not absorbed. |
+
+Also still protected from earlier tiers, unchanged by this pass: `agent/witali-father-code` (family memorial, `/witali` + `/father-code`) and every `archive/*` snapshot in Tier C.
+
+### Safe-to-delete re-verification, 2026-08-30
+
+Four branches were put forward as safe to delete. **None of them are.** All four are in the protected table above.
+
+| Candidate | Verdict | Evidence |
+|---|---|---|
+| `agent/c940/research-hub-recommend-preserve-20260818` | **Not safe** | 6/22 touched files differ from `main`; 8/8 commits `+` under `git cherry main` |
+| `agent/codex/vault-refresh-388` | **Not safe** | 4/4 touched files differ from `main`; 4/4 commits `+` |
+| `agent/gemini/tallinn-reconciliation-main-prod` | **Not safe** | 17/61 touched files differ from `main`; 5/5 commits `+` |
+| `agent/gemini/auctions-upgrade` | **Not safe** | 5/6 touched files differ from `main`; 1/1 commit `+` |
+
+`.github/cleanup-queue.txt` was left empty by this pass, and it should stay empty. Populating it is a deletion, and deletion is Frank's call.
 
 ## Why the old audit was replaced
 

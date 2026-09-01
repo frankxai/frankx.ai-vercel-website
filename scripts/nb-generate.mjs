@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// Canonical source: frankxai/FrankX scripts/nb-generate.mjs — edit it there, then copy down.
+// A copy lives here because lib/gen and lib/visual-intelligence consume it directly.
 /**
  * scripts/nb-generate.mjs
  *

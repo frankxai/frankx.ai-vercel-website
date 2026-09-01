@@ -8252,5 +8252,251 @@
     "suitableFor": [
       "blog-hero"
     ]
+  },
+  {
+    "path": "/images/ai-architecture/seven-plane-stack-hero.webp",
+    "directory": "ai-architecture",
+    "category": "ai-architecture",
+    "filename": "seven-plane-stack-hero.webp",
+    "tags": [
+      "hero",
+      "architecture",
+      "seven-plane",
+      "technical"
+    ],
+    "mood": "technical",
+    "theme": "dark",
+    "suitableFor": [
+      "hero",
+      "field-guide"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/reference-stack-static-fallback.webp",
+    "directory": "ai-architecture",
+    "category": "ai-architecture",
+    "filename": "reference-stack-static-fallback.webp",
+    "tags": [
+      "diagram",
+      "seven-plane",
+      "technical",
+      "fallback"
+    ],
+    "mood": "technical",
+    "theme": "dark",
+    "suitableFor": [
+      "diagram",
+      "infographic"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/failure-mode-catalog-header.webp",
+    "directory": "ai-architecture",
+    "category": "ai-architecture",
+    "filename": "failure-mode-catalog-header.webp",
+    "tags": [
+      "failure-modes",
+      "technical",
+      "header"
+    ],
+    "mood": "technical",
+    "theme": "dark",
+    "suitableFor": [
+      "section-header"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/og-ai-architecture.webp",
+    "directory": "ai-architecture",
+    "category": "ai-architecture",
+    "filename": "og-ai-architecture.webp",
+    "tags": [
+      "og",
+      "social",
+      "architecture"
+    ],
+    "mood": "technical",
+    "theme": "dark",
+    "suitableFor": [
+      "og-image"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/protocol-layer-handshake-accent.webp",
+    "directory": "ai-architecture",
+    "category": "ai-architecture",
+    "filename": "protocol-layer-handshake-accent.webp",
+    "tags": [
+      "protocol",
+      "mcp",
+      "handshake",
+      "accent"
+    ],
+    "mood": "technical",
+    "theme": "dark",
+    "suitableFor": [
+      "section-accent"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/platform-equals-ring.webp",
+    "directory": "ai-architecture",
+    "category": "ai-architecture",
+    "filename": "platform-equals-ring.webp",
+    "tags": [
+      "platforms",
+      "multi-cloud",
+      "ring",
+      "topology"
+    ],
+    "mood": "technical",
+    "theme": "dark",
+    "suitableFor": [
+      "diagram"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/platform-glyph-vercel.webp",
+    "directory": "ai-architecture",
+    "category": "logos",
+    "filename": "platform-glyph-vercel.webp",
+    "tags": [
+      "logo",
+      "platform",
+      "vercel",
+      "official"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "logo-icon",
+      "badge"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/platform-glyph-aws.webp",
+    "directory": "ai-architecture",
+    "category": "logos",
+    "filename": "platform-glyph-aws.webp",
+    "tags": [
+      "logo",
+      "platform",
+      "aws",
+      "official"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "logo-icon",
+      "badge"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/platform-glyph-gcp.webp",
+    "directory": "ai-architecture",
+    "category": "logos",
+    "filename": "platform-glyph-gcp.webp",
+    "tags": [
+      "logo",
+      "platform",
+      "gcp",
+      "official"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "logo-icon",
+      "badge"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/platform-glyph-azure.webp",
+    "directory": "ai-architecture",
+    "category": "logos",
+    "filename": "platform-glyph-azure.webp",
+    "tags": [
+      "logo",
+      "platform",
+      "azure",
+      "official"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "logo-icon",
+      "badge"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/platform-glyph-cloudflare.webp",
+    "directory": "ai-architecture",
+    "category": "logos",
+    "filename": "platform-glyph-cloudflare.webp",
+    "tags": [
+      "logo",
+      "platform",
+      "cloudflare",
+      "official"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "logo-icon",
+      "badge"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/platform-glyph-railway.webp",
+    "directory": "ai-architecture",
+    "category": "logos",
+    "filename": "platform-glyph-railway.webp",
+    "tags": [
+      "logo",
+      "platform",
+      "railway",
+      "official"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "logo-icon",
+      "badge"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/platform-glyph-supabase.webp",
+    "directory": "ai-architecture",
+    "category": "logos",
+    "filename": "platform-glyph-supabase.webp",
+    "tags": [
+      "logo",
+      "platform",
+      "supabase",
+      "official"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "logo-icon",
+      "badge"
+    ]
+  },
+  {
+    "path": "/images/ai-architecture/platform-glyph-self-hosted.webp",
+    "directory": "ai-architecture",
+    "category": "logos",
+    "filename": "platform-glyph-self-hosted.webp",
+    "tags": [
+      "logo",
+      "platform",
+      "self-hosted",
+      "official"
+    ],
+    "mood": "branded",
+    "theme": "dark",
+    "suitableFor": [
+      "logo-icon",
+      "badge"
+    ]
   }
 ]

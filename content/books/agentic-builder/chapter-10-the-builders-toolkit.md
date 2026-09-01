@@ -86,7 +86,7 @@ The MCP ecosystem has 1,400+ servers. These 20 are the most useful for an agenti
 
 **Design:**
 16. `@figma/mcp-server` — Design context, component mapping
-17. `@canva/mcp-server` — Design generation, brand kit access
+17. `https://mcp.canva.com/mcp` — Canva's official remote MCP endpoint for design and Brand Kit workflows; discover the current tool inventory at runtime
 18. `@v0/mcp-server` — UI component generation
 
 **Search & Research:**

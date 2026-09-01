@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Direction C — The Editorial Field Manual</title>
+  <desc id="desc">Alternative editorial visual direction for the FrankX Canva founder system with evidence and implementation notes.</desc>
+  <defs>
+    <linearGradient id="c-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#090A0B"/><stop offset="1" stop-color="#111310"/></linearGradient>
+    <style>.display{font-family:Poppins,Arial,sans-serif}.body{font-family:Inter,Arial,sans-serif}.serif{font-family:'Playfair Display',Georgia,serif}.mono{font-family:'JetBrains Mono',monospace}.white{fill:#F7FAF9}.muted{fill:#A6ADA9}.dim{fill:#707A76}.emerald{fill:#10B981}</style>
+  </defs>
+  <rect width="1800" height="1200" fill="url(#c-bg)"/>
+  <text x="64" y="64" class="mono dim" font-size="14" letter-spacing="4">DIRECTION C · PRESERVED ALTERNATIVE</text>
+  <text x="64" y="112" class="display white" font-size="40" font-weight="650">The Editorial Field Manual</text>
+  <text x="64" y="146" class="body muted" font-size="17">First read: the founder has entered a rigorous guide where sources, decisions, and implementation stay in view.</text>
+
+  <!-- Desktop composition -->
+  <rect x="64" y="188" width="1120" height="682" rx="28" fill="#0B0D0D" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <rect x="64" y="188" width="1120" height="54" rx="28" fill="#101211"/>
+  <circle cx="94" cy="215" r="5" fill="#586460"/><circle cx="112" cy="215" r="5" fill="#586460"/><circle cx="130" cy="215" r="5" fill="#586460"/>
+  <text x="165" y="221" class="mono dim" font-size="11">frankx.ai/canva</text>
+  <line x1="100" y1="272" x2="1148" y2="272" stroke="#FFFFFF" stroke-opacity=".1"/>
+  <text x="100" y="302" class="mono emerald" font-size="10" letter-spacing="3">FIELD NOTE 01 / INDEPENDENT CANVA GUIDE</text>
+  <text x="100" y="363" class="display white" font-size="48" font-weight="650">Turn one founder insight into</text>
+  <text x="100" y="419" class="display white" font-size="48" font-weight="650">an agent-run visual publishing system.</text>
+  <text x="100" y="461" class="body muted" font-size="16">Brief the system once. Canva MCP supplies branded creative operations.</text>
+  <text x="100" y="486" class="body muted" font-size="16">FrankX connects the workflow to search, trust, and measurable demand.</text>
+  <rect x="100" y="516" width="256" height="48" rx="24" fill="#10B981"/>
+  <text x="126" y="546" class="body" fill="#03100C" font-size="14" font-weight="700">Inspect the agent architecture</text>
+  <text x="380" y="546" class="body white" font-size="14">Read the founder playbook →</text>
+
+  <line x1="100" y1="610" x2="1148" y2="610" stroke="#FFFFFF" stroke-opacity=".1"/>
+  <text x="100" y="646" class="mono dim" font-size="10" letter-spacing="2">OPERATING PRINCIPLE</text>
+  <text x="100" y="688" class="serif white" font-size="28" font-style="italic">“The design tool is not the strategy.</text>
+  <text x="100" y="724" class="serif white" font-size="28" font-style="italic">The evidence loop is the strategy.”</text>
+  <text x="100" y="765" class="body muted" font-size="13">FrankX field note · applied to founder-led distribution</text>
+
+  <line x1="650" y1="640" x2="650" y2="808" stroke="#FFFFFF" stroke-opacity=".1"/>
+  <text x="688" y="646" class="mono emerald" font-size="10" letter-spacing="2">WHAT CHANGES MONDAY</text>
+  <circle cx="696" cy="684" r="4" fill="#10B981"/><text x="714" y="689" class="body white" font-size="14">Connect the official MCP endpoint.</text>
+  <circle cx="696" cy="724" r="4" fill="#10B981"/><text x="714" y="729" class="body white" font-size="14">Route output through brand review.</text>
+  <circle cx="696" cy="764" r="4" fill="#10B981"/><text x="714" y="769" class="body white" font-size="14">Publish a canonical, cited guide.</text>
+  <circle cx="696" cy="804" r="4" fill="#10B981"/><text x="714" y="809" class="body white" font-size="14">Measure qualified next actions.</text>
+  <text x="1000" y="646" class="mono dim" font-size="10" letter-spacing="2">SOURCE 01</text>
+  <text x="1000" y="676" class="body white" font-size="13">Canva MCP docs</text>
+  <text x="1000" y="702" class="mono dim" font-size="9">canva.dev/docs/mcp</text>
+  <text x="1000" y="752" class="mono dim" font-size="10" letter-spacing="2">VERIFIED</text>
+  <text x="1000" y="781" class="body emerald" font-size="13">30 Aug 2026</text>
+  <text x="100" y="846" class="mono dim" font-size="10">STILL POSTURE: ZERO AUTO-MOTION. READING PROGRESS IS THE ONLY STATE CHANGE.</text>
+
+  <!-- Mobile recomposition -->
+  <text x="1236" y="186" class="mono dim" font-size="11" letter-spacing="2">MOBILE · 390 × 844</text>
+  <rect x="1236" y="204" width="390" height="666" rx="42" fill="#0B0D0D" stroke="#FFFFFF" stroke-opacity=".15"/>
+  <rect x="1379" y="216" width="104" height="19" rx="10" fill="#050708"/>
+  <text x="1264" y="286" class="mono emerald" font-size="9" letter-spacing="2">FIELD NOTE 01 / INDEPENDENT GUIDE</text>
+  <text x="1264" y="332" class="display white" font-size="29" font-weight="650">Turn one insight</text>
+  <text x="1264" y="368" class="display white" font-size="29" font-weight="650">into a publishing</text>
+  <text x="1264" y="404" class="display white" font-size="29" font-weight="650">system.</text>
+  <text x="1264" y="441" class="body muted" font-size="13">Canva MCP handles branded creative.</text>
+  <text x="1264" y="462" class="body muted" font-size="13">FrankX closes the evidence loop.</text>
+  <rect x="1264" y="490" width="246" height="46" rx="23" fill="#10B981"/><text x="1286" y="519" class="body" fill="#03100C" font-size="13" font-weight="700">Inspect the agent architecture</text>
+  <line x1="1264" y1="580" x2="1598" y2="580" stroke="#FFFFFF" stroke-opacity=".1"/>
+  <text x="1264" y="618" class="mono dim" font-size="9" letter-spacing="2">OPERATING PRINCIPLE</text>
+  <text x="1264" y="661" class="serif white" font-size="22" font-style="italic">“The design tool is not</text>
+  <text x="1264" y="691" class="serif white" font-size="22" font-style="italic">the strategy. The evidence</text>
+  <text x="1264" y="721" class="serif white" font-size="22" font-style="italic">loop is the strategy.”</text>
+  <text x="1264" y="764" class="mono emerald" font-size="9">SOURCE VERIFIED · 30 AUG 2026</text>
+  <text x="1264" y="806" class="body white" font-size="13">Next: connect the official endpoint →</text>
+
+  <!-- Direction evidence -->
+  <line x1="64" y1="914" x2="1736" y2="914" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <text x="64" y="952" class="mono emerald" font-size="11" letter-spacing="2">TYPE POSTURE</text>
+  <text x="64" y="985" class="display white" font-size="24" font-weight="650">Poppins argues. Inter explains.</text>
+  <text x="64" y="1013" class="serif muted" font-size="17" font-style="italic">Playfair appears once, where conviction needs a human voice.</text>
+  <text x="520" y="952" class="mono emerald" font-size="11" letter-spacing="2">SEMANTIC MATERIALS</text>
+  <rect x="520" y="972" width="74" height="42" rx="12" fill="#0A0A0B" stroke="#FFFFFF" stroke-opacity=".2"/><rect x="604" y="972" width="74" height="42" rx="12" fill="#10B981"/><rect x="688" y="972" width="74" height="42" rx="12" fill="#D6DDD9"/><rect x="772" y="972" width="74" height="42" rx="12" fill="#272D2A"/>
+  <text x="520" y="1037" class="mono dim" font-size="10">VOID · ACTION · PAPER · RULE</text>
+  <text x="930" y="952" class="mono emerald" font-size="11" letter-spacing="2">SIGNATURE MEMORY</text>
+  <text x="930" y="985" class="body white" font-size="16" font-weight="650">Every major claim carries its source.</text>
+  <text x="930" y="1013" class="body muted" font-size="14">The page behaves like a field manual, not a campaign.</text>
+  <text x="1360" y="952" class="mono emerald" font-size="11" letter-spacing="2">ANTI-REFERENCE</text>
+  <text x="1360" y="985" class="body white" font-size="15" font-weight="650">No generic founder manifesto.</text>
+  <text x="1360" y="1013" class="body muted" font-size="13">No serif saturation, fake marginalia,</text><text x="1360" y="1034" class="body muted" font-size="13">or nostalgic print cosplay.</text>
+  <text x="64" y="1090" class="mono dim" font-size="10">SOURCE PRINCIPLES · FrankX taste.md (owned) · Canva technical docs (reference-only) · disciplined editorial hierarchy, principle only</text>
+  <text x="64" y="1118" class="mono dim" font-size="10">PRODUCTION · semantic article layout + sticky source rail on desktop · inline sources on mobile · static-first · reading progress only</text>
+  <text x="64" y="1146" class="mono dim" font-size="10">RIGHTS · FrankX copy/layout: owned-or-generated-source · direct product claims link to first-party docs · no third-party imagery or copied layouts</text>
+</svg>

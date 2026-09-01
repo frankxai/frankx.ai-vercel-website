@@ -7,6 +7,7 @@ import { ModelExplorer } from '@/components/llm-hub/ModelExplorer'
 import { DecisionMatrix } from '@/components/llm-hub/DecisionMatrix'
 import { CreatorStackCard } from '@/components/llm-hub/CreatorStackCard'
 import { TaskRoutingPlayground } from '@/components/research/TaskRoutingPlayground'
+import { CostCalculator } from '@/components/llm-hub/CostCalculator'
 import { getAllPlatforms, getProviders, registryLastUpdated } from '@/lib/llm-hub/registry'
 import { buildModelRows } from '@/lib/llm-hub/rows'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
@@ -201,6 +202,13 @@ export default async function LlmHubPage() {
                 <DecisionMatrix />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Interactive Cost-to-Outcome Calculator */}
+        <section id="cost-calculator" className="scroll-mt-20 border-t border-white/5 px-6 py-14">
+          <div className="mx-auto max-w-6xl">
+            <CostCalculator />
           </div>
         </section>
 

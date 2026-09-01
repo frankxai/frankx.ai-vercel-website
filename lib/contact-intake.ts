@@ -32,6 +32,7 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { z } from 'zod'
 
+import { siteConfig } from '@/lib/seo'
 import {
   INTENTS,
   INTENT_LABEL,
@@ -110,7 +111,7 @@ const NOTION_TOKEN = process.env.NOTION_TOKEN
 const NOTION_DB = process.env.NOTION_INQUIRIES_DB_ID
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL
 const BOOKING_URL =
-  process.env.NEXT_PUBLIC_BOOKING_URL || 'https://frankx.ai/contact'
+  process.env.NEXT_PUBLIC_BOOKING_URL || `${siteConfig.url}/contact`
 
 /**
  * Resolve a private (operator-only) storage path. On Vercel, that's `/tmp`
@@ -174,7 +175,7 @@ async function sendOperatorNotification(
     '',
     '---',
     'Reply directly to this email — it goes to the requester.',
-    'Pipeline: https://frankx.ai/admin/intake',
+    `Pipeline: ${siteConfig.url}/admin/intake`,
   ]
 
   try {
@@ -233,7 +234,7 @@ function buildAckBody(payload: IntakePayload): { text: string; html: string } {
     '',
     commercial
       ? `If it's faster to just talk, grab a 20-minute intro slot: ${BOOKING_URL}`
-      : `In the meantime, the work is all public: https://frankx.ai/agentic-builder-lab`,
+      : `In the meantime, the work is all public: ${siteConfig.url}/agentic-builder-lab`,
     '',
     '— Frank',
     'frank@frankx.ai · frankx.ai',
@@ -249,7 +250,7 @@ function buildAckBody(payload: IntakePayload): { text: string; html: string } {
   <p>${
     commercial
       ? `If it's faster to just talk, <a href="${BOOKING_URL}" style="color:#0891b2">grab a 20-minute intro slot</a>.`
-      : `In the meantime, the work is all public — see the <a href="https://frankx.ai/agentic-builder-lab" style="color:#0891b2">Agentic Builder Lab</a>.`
+      : `In the meantime, the work is all public — see the <a href="${siteConfig.url}/agentic-builder-lab" style="color:#0891b2">Agentic Builder Lab</a>.`
   }</p>
   <p style="margin-top:24px;color:#64748b;font-size:14px">— Frank<br/>frank@frankx.ai · frankx.ai</p>
 </div>`.trim()

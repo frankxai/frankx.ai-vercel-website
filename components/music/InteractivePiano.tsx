@@ -51,6 +51,21 @@ const NOTES: NoteDef[] = [
   { note: 'C6', freq: 1046.5, label: 'C', black: false },
 ]
 
+// Salamander Grand Piano samples already approved for the Music Lab piano.
+// A compact anchor set keeps guided mode quick; nearby notes are pitch-shifted.
+const GUIDED_SAMPLE_CDN = 'https://tonejs.github.io/audio/salamander/'
+const GUIDED_PIANO_SAMPLES = [
+  { name: 'C4', frequency: 261.63 },
+  { name: 'Ds4', frequency: 311.13 },
+  { name: 'Fs4', frequency: 369.99 },
+  { name: 'A4', frequency: 440 },
+  { name: 'C5', frequency: 523.25 },
+  { name: 'Ds5', frequency: 622.25 },
+  { name: 'Fs5', frequency: 739.99 },
+  { name: 'A5', frequency: 880 },
+  { name: 'C6', frequency: 1046.5 },
+] as const
+
 // Keyboard mapping (computer keyboard → piano notes) — extends desktop play
 const KEY_TO_NOTE: Record<string, string> = {
   // Lower octave
@@ -379,10 +394,13 @@ function useAudio(): AudioEngine {
   const reverbRef = useRef<ConvolverNode | null>(null)
   const dryRef = useRef<GainNode | null>(null)
   const wetRef = useRef<GainNode | null>(null)
+  const sampleBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
+  const sampleLoadRef = useRef<Promise<void> | null>(null)
+  const sampleAbortRef = useRef<AbortController | null>(null)
 
   const ensureCtx = useCallback(() => {
     if (!ctxRef.current || ctxRef.current.state === 'closed') {
-      const ctx = new AudioContext()
+      const ctx = new AudioContext({ latencyHint: 'interactive' })
       ctxRef.current = ctx
 
       // Master gain — controlled by volume slider
@@ -425,6 +443,20 @@ function useAudio(): AudioEngine {
       dry.connect(master)
       reverb.connect(wet)
       wet.connect(master)
+
+      const controller = new AbortController()
+      sampleAbortRef.current = controller
+      sampleLoadRef.current = Promise.all(GUIDED_PIANO_SAMPLES.map(async (sample) => {
+        try {
+          const response = await fetch(`${GUIDED_SAMPLE_CDN}${sample.name}.mp3`, { signal: controller.signal })
+          if (!response.ok) return
+          const data = await response.arrayBuffer()
+          const buffer = await ctx.decodeAudioData(data)
+          sampleBuffersRef.current.set(sample.name, buffer)
+        } catch {
+          // The oscillator voice remains available when a sample cannot load.
+        }
+      })).then(() => undefined)
     }
     if (ctxRef.current.state === 'suspended') {
       void ctxRef.current.resume()
@@ -437,6 +469,37 @@ function useAudio(): AudioEngine {
     const dry = dryRef.current!
     const reverb = reverbRef.current!
     const now = ctx.currentTime
+
+    const nearestSample = GUIDED_PIANO_SAMPLES.reduce((nearest, candidate) => (
+      Math.abs(Math.log2(frequency / candidate.frequency)) < Math.abs(Math.log2(frequency / nearest.frequency))
+        ? candidate
+        : nearest
+    ))
+    const sampleBuffer = sampleBuffersRef.current.get(nearestSample.name)
+
+    if (sampleBuffer) {
+      const gain = ctx.createGain()
+      gain.gain.setValueAtTime(0.0001, now)
+      gain.gain.linearRampToValueAtTime(0.72, now + 0.006)
+      gain.gain.setTargetAtTime(0.48, now + 0.08, 0.35)
+      gain.gain.setTargetAtTime(0.0001, now + Math.max(duration, 0.24), 0.32)
+
+      const tone = ctx.createBiquadFilter()
+      tone.type = 'lowpass'
+      tone.frequency.value = 9600
+      tone.Q.value = 0.45
+      tone.connect(gain)
+      gain.connect(dry)
+      gain.connect(reverb)
+
+      const source = ctx.createBufferSource()
+      source.buffer = sampleBuffer
+      source.playbackRate.value = frequency / nearestSample.frequency
+      source.connect(tone)
+      source.start(now)
+      source.stop(now + Math.min(4, Math.max(duration + 1.2, 1.5)))
+      return
+    }
 
     // Two-osc warmth: triangle (fundamental) + sine (octave below at 0.4 of triangle)
     const noteGain = ctx.createGain()
@@ -516,7 +579,11 @@ function useAudio(): AudioEngine {
 
   // Cleanup on unmount
   useEffect(() => {
+    const sampleBuffers = sampleBuffersRef.current
     return () => {
+      sampleAbortRef.current?.abort()
+      sampleLoadRef.current = null
+      sampleBuffers.clear()
       if (ctxRef.current && ctxRef.current.state !== 'closed') {
         try { void ctxRef.current.close() } catch { /* ok */ }
       }
