@@ -163,6 +163,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/roi-calculator',
     '/tools/strategy-canvas',
     '/tools/builder',
+    '/stack',
     '/superpowers',
   ]
 
