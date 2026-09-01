@@ -1,7 +1,8 @@
 /**
  * Work engagements schema.
  *
- * Three tiers per engagement.status:
+ * Four tiers per engagement.status:
+ * - 'draft'   — pre-public work awaiting consent or editorial ratification
  * - 'live'    — actively building / coaching / supporting (public hub card)
  * - 'past'    — shipped + done (public hub card + case study)
  * - 'private' — under NDA or operator-only (NOT rendered on public hub)
@@ -14,7 +15,12 @@
  * - 'advisory'       — Strategic guidance, retainer-style, no IP build
  */
 
-export type EngagementStatus = 'live' | 'past' | 'private'
+export type EngagementStatus = 'draft' | 'live' | 'past' | 'private'
+
+export type PublicEngagementStatus = Extract<
+  EngagementStatus,
+  'live' | 'past'
+>
 
 export type EngagementType =
   | 'substrate'
@@ -92,4 +98,8 @@ export type Engagement = {
 
   // SEO
   seo: { title: string; description: string }
+}
+
+export type PublicEngagement = Engagement & {
+  status: PublicEngagementStatus
 }
