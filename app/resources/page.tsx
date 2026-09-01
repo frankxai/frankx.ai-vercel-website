@@ -17,6 +17,7 @@ import {
   Sparkles,
   Star,
   Wand2,
+  Wrench,
 } from 'lucide-react'
 
 function ResourcesBackground() {
@@ -138,6 +139,33 @@ const foundationItems = [
   },
 ]
 
+const toolItems = [
+  {
+    name: 'All Interactive Tools',
+    description: 'The full instrument room — live tools plus what is in build.',
+    href: '/tools',
+    icon: Wrench,
+  },
+  {
+    name: 'AI ROI Calculator',
+    description: 'Model costs, payback months, and break-even for an AI initiative.',
+    href: '/tools/roi-calculator',
+    icon: Sparkles,
+  },
+  {
+    name: 'AI Strategy Canvas',
+    description: 'Six-section planning canvas with guided questions and templates.',
+    href: '/tools/strategy-canvas',
+    icon: Layers,
+  },
+  {
+    name: 'Social Tool Decision Atlas',
+    description: 'Evidence-checked comparison of social tools by role and price.',
+    href: '/tools/social-media',
+    icon: Star,
+  },
+]
+
 const intelligenceItems = [
   {
     name: 'Intelligence Atlas',
@@ -167,6 +195,12 @@ const intelligenceItems = [
 
 const affiliateProgramItems = [
   {
+    name: 'The FrankX Stack',
+    description: 'Third-party tools I actually use and recommend, by category.',
+    href: '/stack',
+    icon: Wrench,
+  },
+  {
     name: 'Affiliate Resource Hub',
     description: 'See the full, transparent policy and all active partner recommendations.',
     href: '/affiliates',
@@ -184,13 +218,6 @@ const affiliateProgramItems = [
     description: 'Top no-code automation path for agent workflows and ops.',
     href: 'https://n8n.io',
     icon: Bot,
-    external: true,
-  },
-  {
-    name: 'Railway Program',
-    description: 'Fast infrastructure option for deploying full-stack AI systems.',
-    href: 'https://railway.app',
-    icon: Star,
     external: true,
   },
 ]
@@ -427,6 +454,7 @@ export default function ResourcesPage() {
         </section>
 
         <ResourceGrid title="Start Here" subtitle="Free Resources" items={foundationItems} />
+        <ResourceGrid title="Interactive Tools" subtitle="Built By FrankX" items={toolItems} />
         <ResourceGrid title="Products" subtitle="Systems" items={productItems} />
         <ResourceGrid title="Intelligence" subtitle="Research + Hubs" items={intelligenceItems} />
         <ResourceGrid title="Affiliate Programs" subtitle="Agent-Vetted Picks" items={affiliateProgramItems} />

@@ -1,8 +1,9 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Tools | ROI Calculator, Strategy Canvas & More | FrankX',
-  description: 'Free AI tools: Agent ROI Calculator, Strategy Canvas, and Builder. Quantify the impact of AI agents on your workflow.',
+  title: 'Tools | ROI Calculator, Strategy Canvas & Decision Atlases | FrankX',
+  description:
+    'Free, in-browser instruments built by FrankX: the AI ROI Calculator, the Strategy Canvas, and the Social Tool Decision Atlas.',
   path: '/tools',
 })
 
