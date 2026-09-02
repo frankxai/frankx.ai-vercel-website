@@ -1,6 +1,8 @@
 # Research Substrate — Contemplative Rails
 
-> The canon every rail entry leans on. Verbatim from the original handoff §4. Treat this as the primary corpus.
+> The editorial reading map every rail entry leans on. Verbatim from the original handoff §4.
+>
+> Canonical source files, original-language witnesses, provenance, and rights decisions live in [`research/sacred-texts`](../../research/sacred-texts/README.md). This page is an editorial index, not the primary-text store.
 
 ## Christian mystical tradition
 

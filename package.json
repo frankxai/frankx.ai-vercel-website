@@ -84,6 +84,7 @@
     "publish:artifact": "node scripts/publish.mjs",
     "qa:check": "node scripts/qa-gatekeeper.mjs",
     "validate:rails": "node scripts/rails/validate-frontmatter.mjs && node scripts/rails/validate-no-arcanea.mjs && node scripts/rails/validate-no-emojis.mjs && node scripts/rails/validate-cross-links.mjs",
+    "validate:sacred-texts": "node scripts/validate-sacred-texts.mjs",
     "factory:validate": "npm run content:validate && npm run qa:check",
     "factory:publish": "npm run qa:check && npm run publish:artifact",
     "diagrams:inventory": "node scripts/diagrams/inventory.mjs --write",

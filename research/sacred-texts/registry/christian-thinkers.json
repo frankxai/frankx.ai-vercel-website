@@ -1,0 +1,146 @@
+{
+  "$schema": "../schemas/thinker-registry.schema.json",
+  "registry_id": "christian-thinkers-foundation-v1",
+  "tradition": "christian",
+  "status": "seeded",
+  "editorial_frame": "Nine thinkers whose work tests interiority, reason, surrender, darkness, responsibility, attention, and contemplation without reducing their theological differences.",
+  "thinkers": [
+    {
+      "id": "augustine-of-hippo",
+      "name": "Augustine of Hippo",
+      "life": "354–430",
+      "source_languages": ["la"],
+      "core_concerns": ["inner consciousness", "memory", "time", "desire", "moral struggle"],
+      "primary_works": [
+        {"id": "confessiones", "title": "Confessiones", "priority_locations": ["I.1", "VIII.12", "X.8–27", "XI.14–31"]},
+        {"id": "de-trinitate", "title": "De Trinitate", "priority_locations": ["VIII–XV"]},
+        {"id": "soliloquia", "title": "Soliloquia", "priority_locations": ["I–II"]}
+      ],
+      "poetic_mode": "lyrical prayer and recursive interior prose",
+      "capture_priority": "high"
+    },
+    {
+      "id": "thomas-aquinas",
+      "name": "Thomas Aquinas",
+      "life": "c. 1225–1274",
+      "source_languages": ["la"],
+      "core_concerns": ["reason", "natural law", "metaphysics", "faith and philosophy"],
+      "primary_works": [
+        {"id": "summa-theologiae", "title": "Summa theologiae", "priority_locations": ["I q.2–13", "I–II q.90–97"]},
+        {"id": "de-ente-et-essentia", "title": "De ente et essentia", "priority_locations": ["complete"]},
+        {"id": "pange-lingua", "title": "Pange lingua gloriosi Corporis mysterium", "priority_locations": ["complete"], "attribution": "traditional"},
+        {"id": "lauda-sion", "title": "Lauda Sion Salvatorem", "priority_locations": ["complete"], "attribution": "traditional"}
+      ],
+      "poetic_mode": "compressed metaphysical and liturgical hymnody",
+      "capture_priority": "high"
+    },
+    {
+      "id": "meister-eckhart",
+      "name": "Meister Eckhart",
+      "life": "c. 1260–c. 1328",
+      "source_languages": ["gmh", "la"],
+      "core_concerns": ["detachment from ego", "direct awareness of God", "poverty of spirit", "the ground of the soul"],
+      "primary_works": [
+        {"id": "reden-der-unterweisung", "title": "Die rede der underscheidunge", "priority_locations": ["complete"]},
+        {"id": "predigt-52", "title": "Predigt 52: Beati pauperes spiritu", "priority_locations": ["complete"]},
+        {"id": "von-abegescheidenheit", "title": "Von abegescheidenheit", "priority_locations": ["complete"], "attribution": "disputed corpus boundary"}
+      ],
+      "poetic_mode": "paradox, apophatic reversal, vernacular sermon",
+      "capture_priority": "high"
+    },
+    {
+      "id": "teresa-of-avila",
+      "name": "Teresa of Ávila",
+      "life": "1515–1582",
+      "source_languages": ["es"],
+      "core_concerns": ["stages of contemplative transformation", "prayer", "interior freedom", "divine intimacy"],
+      "primary_works": [
+        {"id": "libro-de-la-vida", "title": "Libro de la vida", "priority_locations": ["8", "11–22", "27–40"]},
+        {"id": "castillo-interior", "title": "Las moradas o Castillo interior", "priority_locations": ["complete"]},
+        {"id": "vivo-sin-vivir-en-mi", "title": "Vivo sin vivir en mí", "priority_locations": ["complete"]},
+        {"id": "ya-toda-me-entregue", "title": "Ya toda me entregué y di", "priority_locations": ["complete"]}
+      ],
+      "poetic_mode": "intimate paradox, ardor, plainspoken ecstasy",
+      "capture_priority": "highest"
+    },
+    {
+      "id": "john-of-the-cross",
+      "name": "John of the Cross",
+      "life": "1542–1591",
+      "source_languages": ["es"],
+      "core_concerns": ["purification", "emptiness", "spiritual darkness", "union", "transforming love"],
+      "primary_works": [
+        {"id": "noche-oscura", "title": "Noche oscura", "priority_locations": ["complete"]},
+        {"id": "cantico-espiritual", "title": "Cántico espiritual", "priority_locations": ["complete"]},
+        {"id": "llama-de-amor-viva", "title": "Llama de amor viva", "priority_locations": ["complete"]},
+        {"id": "entreme-donde-no-supe", "title": "Coplas sobre un éxtasis de harta contemplación", "priority_locations": ["complete"]},
+        {"id": "fuente-aunque-es-de-noche", "title": "Cantar del alma que se goza de conocer a Dios por fe", "priority_locations": ["complete"]}
+      ],
+      "poetic_mode": "erotic-symbolic mysticism, darkness as passage, exact musical refrain",
+      "capture_priority": "highest"
+    },
+    {
+      "id": "blaise-pascal",
+      "name": "Blaise Pascal",
+      "life": "1623–1662",
+      "source_languages": ["fr", "la"],
+      "core_concerns": ["reason", "existential anxiety", "meaning", "the heart", "human greatness and misery"],
+      "primary_works": [
+        {"id": "pensees", "title": "Pensées", "priority_locations": ["Lafuma 199/Brunschvicg 72", "Lafuma 418/Brunschvicg 233", "Lafuma 423/Brunschvicg 277"]},
+        {"id": "memorial", "title": "Mémorial", "priority_locations": ["complete"]},
+        {"id": "priere-maladies", "title": "Prière pour demander à Dieu le bon usage des maladies", "priority_locations": ["complete"]}
+      ],
+      "poetic_mode": "fragment, antithesis, pressure between abyss and certainty",
+      "capture_priority": "high"
+    },
+    {
+      "id": "soren-kierkegaard",
+      "name": "Søren Kierkegaard",
+      "life": "1813–1855",
+      "source_languages": ["da"],
+      "core_concerns": ["individual faith", "despair", "authenticity", "responsibility", "anxiety"],
+      "primary_works": [
+        {"id": "frygt-og-baeven", "title": "Frygt og Bæven", "priority_locations": ["Problema I–III"]},
+        {"id": "begrebet-angest", "title": "Begrebet Angest", "priority_locations": ["complete"]},
+        {"id": "sygdommen-til-doeden", "title": "Sygdommen til Døden", "priority_locations": ["Part I"]},
+        {"id": "kjerlighedens-gjerninger", "title": "Kjerlighedens Gjerninger", "priority_locations": ["Series I–II"]},
+        {"id": "opbyggelige-taler", "title": "Opbyggelige Taler", "priority_locations": ["selected discourses"]}
+      ],
+      "poetic_mode": "pseudonymous drama, inward address, dialectical repetition",
+      "capture_priority": "high"
+    },
+    {
+      "id": "simone-weil",
+      "name": "Simone Weil",
+      "life": "1909–1943",
+      "source_languages": ["fr"],
+      "core_concerns": ["attention", "suffering", "affliction", "decreation", "self-emptying", "obligation"],
+      "primary_works": [
+        {"id": "attente-de-dieu", "title": "Attente de Dieu", "priority_locations": ["letters and essays"], "editorial_note": "posthumous collection"},
+        {"id": "cahiers", "title": "Cahiers", "priority_locations": ["attention", "décréation", "malheur"]},
+        {"id": "enracinement", "title": "L'Enracinement", "priority_locations": ["needs of the soul"]},
+        {"id": "pesanteur-et-grace", "title": "La Pesanteur et la grâce", "priority_locations": ["selected fragments"], "editorial_note": "posthumous selection arranged by Gustave Thibon"}
+      ],
+      "poetic_mode": "severe aphorism, crystalline attention, self-erasing syntax",
+      "capture_priority": "high",
+      "publication_mode": "locator-only pending edition-level rights review"
+    },
+    {
+      "id": "thomas-merton",
+      "name": "Thomas Merton",
+      "life": "1915–1968",
+      "source_languages": ["en"],
+      "core_concerns": ["contemplation", "ego", "silence", "interreligious dialogue", "nonviolence"],
+      "primary_works": [
+        {"id": "new-seeds", "title": "New Seeds of Contemplation", "priority_locations": ["Things in Their Identity", "The False Self", "A Body of Broken Bones"]},
+        {"id": "conjectures", "title": "Conjectures of a Guilty Bystander", "priority_locations": ["Fourth and Walnut"]},
+        {"id": "asian-journal", "title": "The Asian Journal of Thomas Merton", "priority_locations": ["interreligious encounters"]},
+        {"id": "collected-poems", "title": "The Collected Poems of Thomas Merton", "priority_locations": ["locator map only"]}
+      ],
+      "poetic_mode": "spare contemplative image, social conscience, silence against persona",
+      "capture_priority": "high",
+      "publication_mode": "locator-only; poetry requires explicit permission"
+    }
+  ]
+}
+

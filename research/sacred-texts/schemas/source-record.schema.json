@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frankx.ai/schemas/sacred-texts/source-record.schema.json",
+  "title": "Sacred Text Source Record",
+  "type": "object",
+  "required": ["source_id", "author_id", "work_id", "title", "language", "source_url", "source_kind", "capture_scope", "textual_status", "rights", "status", "captured_at"],
+  "properties": {
+    "source_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "author_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "work_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "title": {"type": "string", "minLength": 1},
+    "language": {"type": "string", "minLength": 2},
+    "source_url": {"type": "string", "format": "uri"},
+    "source_kind": {"enum": ["manuscript", "facsimile", "critical-edition", "digital-edition", "repository", "catalog", "rights-policy", "legal-authority"]},
+    "edition_note": {"type": "string"},
+    "capture_scope": {"enum": ["full", "excerpt", "locator-only", "metadata-only", "private-research"]},
+    "textual_status": {"enum": ["diplomatic", "normalized", "critical", "liturgical", "catalog-only", "not-applicable", "unknown"]},
+    "rights": {
+      "type": "object",
+      "required": ["work_status", "edition_status", "translation_status", "review_status", "evidence_url"],
+      "properties": {
+        "work_status": {"enum": ["public-domain", "copyrighted", "permission-granted", "unresolved", "not-applicable"]},
+        "edition_status": {"enum": ["public-domain", "licensed", "copyrighted", "unresolved", "not-applicable"]},
+        "translation_status": {"enum": ["none", "public-domain", "licensed", "copyrighted", "unresolved", "not-applicable"]},
+        "review_status": {"enum": ["cleared", "restricted", "provisional", "unreviewed"]},
+        "evidence_url": {"type": "string", "format": "uri"},
+        "note": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "status": {"enum": ["lead", "verified", "captured", "blocked", "superseded"]},
+    "captured_at": {"type": "string", "format": "date"},
+    "local_path": {"type": "string"},
+    "reviewer": {"type": "string"}
+  },
+  "additionalProperties": false
+}
+
