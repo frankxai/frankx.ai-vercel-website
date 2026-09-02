@@ -52,7 +52,7 @@ const quarters = [
     theme: 'Revenue from content. Audience from value. Flywheel accelerating.',
     goals: [
       'First $1,000 month from digital products (templates, courses, tools)',
-      'AI Architect Newsletter — weekly, 500+ subscribers',
+      'AI Architect Newsletter — weekly, on a real cadence',
       'Investor Intelligence vertical — premium AI agent products',
       'Music catalog expansion — 100 new tracks across genres',
       'Inner Circle launch — premium community for AI builders',

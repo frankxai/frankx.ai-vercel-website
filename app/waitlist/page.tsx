@@ -1,4 +1,5 @@
 import { EmailSignup } from '@/components/email-signup'
+import { WAITLIST_INTENT_LABELS } from '@/lib/diagnostic/waitlist-intents'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -14,15 +15,9 @@ type WaitlistPageProps = {
   }
 }
 
-const intentLabelMap: Record<string, string> = {
-  'course-conscious-ai-foundations': 'Conscious AI Foundations',
-  'course-agent-architecture-systems': 'Agent Architecture Systems',
-  'course-creator-business-systems': 'Creator Business Systems',
-}
-
 export default function WaitlistPage({ searchParams }: WaitlistPageProps) {
   const intent = searchParams?.intent ?? ''
-  const selectedIntentLabel = intentLabelMap[intent]
+  const selectedIntentLabel = WAITLIST_INTENT_LABELS[intent]
 
   return (
     <main className="min-h-screen bg-[#030712] text-white">

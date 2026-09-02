@@ -36,7 +36,7 @@ const features = [
   },
   {
     name: 'Creator Community',
-    description: 'Join 500+ creators amplifying their output with AI.',
+    description: 'Creators amplifying their output with AI. Open to join.',
     Icon: Users,
     href: '/realm',
     cta: 'Join Now',

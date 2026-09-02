@@ -26,7 +26,7 @@ const SHORT_BIO = `Frank Riemer is an AI Architect & Creator, founder of FrankX,
 
 const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
 
-He is a prolific AI music creator — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a book on the convergence of human and artificial intelligence.
+He is a prolific AI music creator — 845 tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a book on the convergence of human and artificial intelligence.
 
 His work bridges three disciplines: enterprise AI architecture, generative creator workflows, and practical systems for human creativity. He writes, ships, and creates daily. FrankX is independent and is not affiliated with, endorsed by, or sponsored by Oracle.
 

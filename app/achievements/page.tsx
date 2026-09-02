@@ -36,8 +36,8 @@ const milestones = [
     year: '2025',
     items: [
       {
-        title: '12,000+ AI-Generated Songs',
-        description: 'Created over 12,000 tracks on Suno covering tech house, orchestral, ambient, hip-hop, and experimental genres. 456 followers, 13K hooks.',
+        title: '845 AI-Generated Tracks',
+        description: 'A 845-track Suno catalog spanning tech house, orchestral, ambient, hip-hop, and experimental genres. 26,193 plays, 545 followers, counted 2026-08-19.',
         category: 'Music',
         icon: Music,
       },

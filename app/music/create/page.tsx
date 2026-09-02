@@ -298,7 +298,7 @@ export default function CreateMusicPage() {
               Create Music with AI
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-white/60 sm:text-xl">
-              From prompt to production. 500+ tracks and counting.
+              From prompt to production. An 845-track catalog and counting.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm text-white/40">
               <span className="rounded-full border border-white/10 px-3 py-1">Suno AI</span>
@@ -437,7 +437,7 @@ export default function CreateMusicPage() {
             <span className="text-sm font-medium tracking-wider text-emerald-400 uppercase">Behind the Process</span>
             <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">How Frank Creates at Scale</h2>
             <p className="mt-3 text-white/50">
-              The workflow behind 500+ tracks. Systems thinking applied to music production.
+              The workflow behind 845 tracks. Systems thinking applied to music production.
             </p>
           </motion.div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -524,7 +524,7 @@ export default function CreateMusicPage() {
             <span className="text-sm font-medium tracking-wider text-violet-400 uppercase">The Catalog</span>
             <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">Listen to Frank&apos;s Music</h2>
             <p className="mt-3 text-white/50">
-              500+ tracks across every genre. Built entirely with AI music generation and prompt engineering.
+              845 tracks across every genre. Built entirely with AI music generation and prompt engineering.
             </p>
           </motion.div>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -571,7 +571,7 @@ export default function CreateMusicPage() {
         >
           <h2 className="text-2xl font-bold text-white">Get 5 Free Suno Prompts</h2>
           <p className="mx-auto mt-3 max-w-lg text-white/50">
-            Professional-quality prompts for neoclassical, orchestral, electronic, hip hop, and ambient — tested across 500+ tracks. Plus weekly AI music tips.
+            Professional-quality prompts for neoclassical, orchestral, electronic, hip hop, and ambient — tested across 845 tracks. Plus weekly AI music tips.
           </p>
           <div className="mx-auto mt-6 max-w-sm">
             <EmailSignup

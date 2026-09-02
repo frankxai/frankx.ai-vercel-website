@@ -115,7 +115,7 @@ const RESOURCES = [
 ]
 
 const AI_ORCHESTRATION = [
-  { name: 'Suno AI', desc: 'Generate full orchestral tracks from text prompts. Frank\'s primary tool — 500+ tracks including orchestral compositions.', accent: 'text-emerald-400' },
+  { name: 'Suno AI', desc: 'Generate full orchestral tracks from text prompts. Frank\'s primary tool — 845 tracks including orchestral compositions.', accent: 'text-emerald-400' },
   { name: 'AIVA', desc: 'AI composer trained on classical music. Generates score-ready orchestral compositions with part separation.', accent: 'text-violet-400' },
   { name: 'Amper/Shutterstock', desc: 'AI-composed production music with orchestral presets. Useful for understanding arrangement patterns.', accent: 'text-blue-400' },
   { name: 'MuseScore + AI plugins', desc: 'Notation software with AI-assisted arrangement suggestions. Write a melody, get orchestration ideas.', accent: 'text-amber-400' },

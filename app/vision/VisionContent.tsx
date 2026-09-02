@@ -94,7 +94,7 @@ const timeline = [
     items: [
       'frankx.ai launched and live',
       'First 80+ blog articles published',
-      'AI music catalog started (12,000+ tracks)',
+      'AI music catalog started (845 tracks)',
       'ACOS v1 — first autonomous coding system',
       'Arcanea mythology and creative universe born',
     ],

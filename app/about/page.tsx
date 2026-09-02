@@ -108,7 +108,7 @@ export default function AboutPage() {
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">freer world.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-white/80 sm:text-xl font-medium">
-              Builder since age 5. Co-builder of 7-figure enterprises. Former AI architect at Oracle. Prolific musician with 12,000+ tracks.
+              Builder since age 5. Co-builder of 7-figure enterprises. Former AI architect at Oracle. Prolific musician with an 845-track catalog.
             </p>
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/60">
               From pouring concrete on construction sites to architecting multi-agent AI swarms and sovereign business starter kits, my mission is singular: empower builders and creators to achieve total economic, creative, and technical independence.

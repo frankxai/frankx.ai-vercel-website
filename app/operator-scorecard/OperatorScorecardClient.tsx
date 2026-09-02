@@ -6,10 +6,12 @@ import Link from 'next/link'
 import { useReducedMotion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { ArrowRight, ArrowLeft, Lock, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Download, Lock, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react'
 
 import { QUESTIONS, scoreScorecard, type ScorecardResult } from '@/lib/scorecard/engine'
-import { CTA_BY_TIER } from '@/lib/scorecard/cta'
+import { routeOffer } from '@/lib/diagnostic/route-offer'
+import { buildBrief } from '@/lib/diagnostic/brief'
+import { trackEvent } from '@/lib/analytics'
 import { DimensionRadar } from '@/components/scorecard/DimensionRadar'
 
 type Stage = 'intro' | 'question' | 'reveal' | 'report'
@@ -520,11 +522,12 @@ export default function OperatorScorecardClient() {
                       Full architecture report
                     </div>
                     <h3 className="mt-3 text-xl font-semibold text-white md:text-2xl">
-                      Your full architecture report is ready — where should it live?
+                      Your full architecture report is ready.
                     </h3>
                     <p className="mt-2 max-w-xl text-sm text-white/70">
                       One dimension is capping every other score. It has a name, and the exact three moves
-                      that close it fastest.
+                      that close it fastest. The report opens on this page and you can download it as a file
+                      — the email is for the weekly newsletter, not for delivering the report.
                     </p>
 
                     <form onSubmit={submitEmail} className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -545,7 +548,7 @@ export default function OperatorScorecardClient() {
                         disabled={submitting}
                         className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-emerald-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 disabled:cursor-not-allowed disabled:opacity-60"
                       >
-                        {submitting ? 'Unlocking…' : 'Send my report'}
+                        {submitting ? 'Opening…' : 'Open my report'}
                         <ArrowRight className="h-4 w-4" aria-hidden="true" />
                       </button>
                     </form>
@@ -609,7 +612,9 @@ export default function OperatorScorecardClient() {
                   </div>
                 </div>
 
-                <TierCtaCard tierId={result.tier.id} />
+                <BriefExport result={result} />
+
+                <OfferCard result={result} />
 
                 <div className="flex flex-col items-center gap-3 pt-2 text-center">
                   <button
@@ -633,28 +638,125 @@ export default function OperatorScorecardClient() {
   )
 }
 
-function TierCtaCard({ tierId }: { tierId: keyof typeof CTA_BY_TIER }) {
-  const cta = CTA_BY_TIER[tierId]
+// The brief is the activation event: the visitor leaves with a file, not a memory of a
+// number. Everything happens in the browser — the result never leaves the page, which is
+// also why there is nothing to "unlock" here.
+function BriefExport({ result }: { result: ScorecardResult }) {
+  const [copied, setCopied] = useState(false)
+
+  const download = (format: 'md' | 'json') => {
+    const brief = buildBrief(result, new Date().toISOString().slice(0, 10))
+    const body = format === 'md' ? brief.markdown : JSON.stringify(brief.json, null, 2)
+    const mime = format === 'md' ? 'text/markdown' : 'application/json'
+    const url = URL.createObjectURL(new Blob([body], { type: `${mime};charset=utf-8` }))
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `${brief.filename}.${format}`
+    link.click()
+    URL.revokeObjectURL(url)
+    trackEvent('scorecard_brief_export', { format, ceiling: result.ceiling.dimension })
+  }
+
+  const copy = async () => {
+    const brief = buildBrief(result, new Date().toISOString().slice(0, 10))
+    try {
+      await navigator.clipboard.writeText(brief.markdown)
+      setCopied(true)
+      trackEvent('scorecard_brief_export', { format: 'clipboard', ceiling: result.ceiling.dimension })
+    } catch {
+      /* Clipboard permission denied — the download buttons still work. */
+    }
+  }
+
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-7 md:p-9">
+      <div className="font-mono text-xs uppercase tracking-[0.25em] text-white/50">Take it with you</div>
+      <h3 className="mt-3 text-xl font-semibold text-white md:text-2xl">Your architecture brief</h3>
+      <p className="mt-2 text-sm leading-relaxed text-white/70">
+        Your score, your ceiling, the three moves, and the one practice that closes it — as a file you can
+        paste into your own agent. It was assembled in this browser and no copy was sent anywhere.
+      </p>
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        <button
+          type="button"
+          onClick={() => download('md')}
+          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white/85 transition hover:border-white/30 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+        >
+          <Download className="h-4 w-4" aria-hidden="true" />
+          Markdown
+        </button>
+        <button
+          type="button"
+          onClick={() => download('json')}
+          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white/85 transition hover:border-white/30 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+        >
+          <Download className="h-4 w-4" aria-hidden="true" />
+          JSON
+        </button>
+        <button
+          type="button"
+          onClick={copy}
+          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white/85 transition hover:border-white/30 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+        >
+          {copied ? <CheckCircle2 className="h-4 w-4" aria-hidden="true" /> : null}
+          {copied ? 'Copied' : 'Copy to clipboard'}
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// Routes on the named ceiling rather than the tier. The previous version of this card sent
+// the two highest tiers to a "short first call" — a 1:1 engagement that is not a business
+// model here — so the destination has moved to the product that packages the missing
+// practice, and to the waitlist while that product has no passing release gate.
+function OfferCard({ result }: { result: ScorecardResult }) {
+  const route = useMemo(() => routeOffer(result), [result])
+
   return (
     <div className="rounded-2xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/10 to-transparent p-7 md:p-9">
-      <div className="font-mono text-xs uppercase tracking-[0.25em] text-emerald-300">{cta.eyebrow}</div>
-      <h3 className="mt-3 text-xl font-semibold text-white md:text-2xl">{cta.headline}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-white/70">{cta.body}</p>
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+      <div className="font-mono text-xs uppercase tracking-[0.25em] text-emerald-300">What closes it</div>
+      <h3 className="mt-3 text-xl font-semibold text-white md:text-2xl">{route.methodTitle}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-white/70">{route.practice}</p>
+
+      <div className="mt-6 rounded-xl border border-white/10 bg-black/20 p-5">
+        <div className="font-mono text-xs uppercase tracking-[0.25em] text-white/45">Free, published, today</div>
+        <p className="mt-2 text-sm text-white/75">{route.freeNext.gives}</p>
         <Link
-          href={cta.ctaHref}
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-emerald-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+          href={route.freeNext.href}
+          className="mt-4 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-emerald-300 transition hover:text-emerald-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
         >
-          {cta.ctaLabel}
+          {route.freeNext.label}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
-        <Link
-          href={cta.secondaryHref}
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white/80 transition hover:border-white/30 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-        >
-          {cta.secondaryLabel}
-        </Link>
       </div>
+
+      {route.offer && (
+        <div className="mt-4 rounded-xl border border-white/10 bg-black/20 p-5">
+          <div className="font-mono text-xs uppercase tracking-[0.25em] text-white/45">
+            {route.offer.kind === 'waitlist' ? 'Not on sale yet' : 'Available now'}
+          </div>
+          <p className="mt-2 text-sm font-semibold text-white">{route.offer.label}</p>
+          <p className="mt-1 text-sm text-white/70">{route.offer.reason}</p>
+          <p className="mt-3 text-xs text-white/45">
+            {route.offer.priceBand}. {route.offer.gateNote} {route.offer.foundingBenefit}
+          </p>
+          <Link
+            href={route.offer.href}
+            onClick={() =>
+              trackEvent('scorecard_offer_click', {
+                product: route.offer!.productId,
+                kind: route.offer!.kind,
+                ceiling: result.ceiling.dimension,
+              })
+            }
+            className="mt-4 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-emerald-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+          >
+            {route.offer.kind === 'waitlist' ? 'Join the list and name your price' : 'Get it'}
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+      )}
     </div>
   )
 }

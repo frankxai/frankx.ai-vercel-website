@@ -217,7 +217,7 @@ const ring4Nodes: SystemNode[] = [
   {
     id: 'suno',
     label: 'Suno',
-    description: 'AI music platform. 12,000+ tracks published under @frankx.',
+    description: 'AI music platform. 845 tracks published under @frankx.',
     details: ['Primary music distribution', '65+ self-hosted tracks', 'Genre: Pop, Neoclassical, Electronic, Dance'],
     icon: <Music className="h-5 w-5" />,
   },
@@ -350,7 +350,7 @@ const techStack = [
   {
     name: 'Suno',
     role: 'Music',
-    description: 'AI music generation. 12,000+ tracks. Catalog sync via n8n automation.',
+    description: 'AI music generation. 845 tracks. Catalog sync via n8n automation.',
     color: 'rose' as const,
     icon: <Music className="h-6 w-6" />,
   },

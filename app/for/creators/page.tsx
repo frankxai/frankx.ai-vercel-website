@@ -45,7 +45,7 @@ const creatorTools = [
     title: 'Prompt Library',
     description: 'Battle-tested prompts for music, writing, image gen, and coding. Copy and adapt.',
     href: '/prompt-library',
-    stat: '130+ prompts',
+    stat: '104 patterns',
     color: 'cyan',
   },
   {
