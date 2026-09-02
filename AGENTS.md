@@ -78,6 +78,16 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 - **Never rename a working URL.** `/library/{slug}` stays `/library/{slug}`. Never delete a page with traffic — unlink from nav and noindex it instead.
 - **Local design contract:** `design.md` (tokens — colors, type, spacing, components) and `taste.md` (restraint test, language-refusal list, polish pass) govern UI and presentation in this repo. Read both before touching `app/`, `components/`, or `content/` presentation.
 
+### Research authority boundaries
+
+- `research/sacred-texts/` is the current canonical home for historical sacred-source witnesses, original-language texts, provenance, and rights records used by the contemplative rails.
+- `research/sacred-texts/collections/sacred-visions/` is a FrankX editorial collection, not a repository and not Arcanea canon.
+- `content/rails/` owns FrankX essays and public contemplative surfaces; `docs/rails/` owns their roadmap and editorial policy.
+- `research-intelligence-os` and `research-intelligence-systems` provide reusable research methods; they do not own this corpus.
+- The planned `reality-intelligence-system` does not exist yet. Its roadmap is for portable framework extraction, not silent reassignment of FrankX prose or source ownership.
+- `arcanean-library` is fiction-only. Never place historical religious texts, real-world theology, documentary evidence, or modern scholarship there.
+- Before moving this material, update the portfolio placement record and preserve source, translation, interpretation, and new composition as separate layers.
+
 ### World-class release kernel
 
 The canonical cross-repo standard lives in [`frankxai/starlight-design-intelligence`](https://github.com/frankxai/starlight-design-intelligence):

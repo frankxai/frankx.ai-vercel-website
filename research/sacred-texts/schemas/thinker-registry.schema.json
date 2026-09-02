@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frankx.ai/schemas/sacred-texts/thinker-registry.schema.json",
+  "title": "Sacred Texts Thinker Registry",
+  "type": "object",
+  "required": ["registry_id", "tradition", "status", "editorial_frame", "thinkers"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "registry_id": {"type": "string", "minLength": 1},
+    "tradition": {"type": "string", "minLength": 1},
+    "status": {"enum": ["proposed", "seeded", "reviewed", "canonical"]},
+    "editorial_frame": {"type": "string", "minLength": 1},
+    "thinkers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "life", "source_languages", "core_concerns", "primary_works", "poetic_mode", "capture_priority"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "name": {"type": "string"},
+          "life": {"type": "string"},
+          "source_languages": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "core_concerns": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "primary_works": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["id", "title", "priority_locations"],
+              "properties": {
+                "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+                "title": {"type": "string"},
+                "priority_locations": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+                "attribution": {"type": "string"},
+                "editorial_note": {"type": "string"}
+              },
+              "additionalProperties": false
+            }
+          },
+          "poetic_mode": {"type": "string"},
+          "capture_priority": {"enum": ["standard", "high", "highest"]},
+          "publication_mode": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+
