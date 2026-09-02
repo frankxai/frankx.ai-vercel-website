@@ -214,6 +214,25 @@ export const ARTIFACTS: ArtifactNode[] = [
     gives: 'The full shape of the operating system, and the waitlist for the packaged version.',
   },
   {
+    // The AI Architect Academy *product* belongs to another property: its registry row reads
+    // surface aiarchitectacademy.com, stage concept. frankx.ai must not capture demand for a
+    // surface it does not own, and that surface has no verified live waitlist to link out to —
+    // an outbound CTA to a concept-stage page is the 404-CTA defect this graph exists to stop.
+    // What frankx.ai does own is the free, already-published academy route, so the edge stays
+    // as an artifact and no product edge is fabricated to replace it.
+    id: 'artifact/ai-architect-academy',
+    kind: 'artifact',
+    title: 'The AI architect academy, open',
+    owner: OWNER,
+    provenance: { source: 'app/ai-architect-academy/page.tsx', measuredAt: '2026-09-02' },
+    version: '1.0.0',
+    visibility: 'public',
+    evaluation:
+      'Void if the route starts selling a cohort. The cohort product lives on aiarchitectacademy.com and must be sold there, not here.',
+    href: '/ai-architect-academy',
+    gives: 'The design patterns and learning paths in the open, with the repo behind them.',
+  },
+  {
     id: 'artifact/start-here',
     kind: 'artifact',
     title: 'Start here',
@@ -262,22 +281,6 @@ export const PRODUCTS: ProductNode[] = [
     mustBeat: 'Free Substack build logs, on publishing the numbers that were wrong',
     foundingBenefit: 'Lifetime access, and the raw measurement scripts.',
   },
-  {
-    id: 'product/ai-architect-academy',
-    kind: 'product',
-    title: 'AI Architect Academy',
-    owner: OWNER,
-    provenance: { source: REGISTRY, measuredAt: '2026-09-01' },
-    version: '1.0.0',
-    visibility: 'public',
-    evaluation: 'Ungated concept. No cohort is scheduled; do not imply a date.',
-    registryId: 'ai-architect-academy',
-    gate: 'UNGATED',
-    priceBand: 'EUR 299-999 (hypothesis, no cohort has run)',
-    buyer: 'Engineers and architects being asked to lead AI work they have not done before',
-    mustBeat: 'Maven cohort courses (~$1-2k), on decisions rather than tool tours',
-    foundingBenefit: 'Founding cohort price lock, and direct input on curriculum order.',
-  },
 ]
 
 export const METHODS: MethodNode[] = [
@@ -323,8 +326,10 @@ export const METHODS: MethodNode[] = [
     closesDimension: 'agentFluency',
     practice:
       'Configure a second agent with one narrow job, and run a real task through it rather than a demo.',
-    artifacts: ['artifact/agent-team', 'artifact/stack'],
-    products: ['product/ai-architect-academy'],
+    artifacts: ['artifact/agent-team', 'artifact/stack', 'artifact/ai-architect-academy'],
+    // No product edge: the packaged version of this practice is the AI Architect Academy,
+    // which is another property's product (aiarchitectacademy.com). See the artifact node.
+    products: [],
   },
   {
     id: 'method/distribution',
@@ -355,7 +360,10 @@ export const METHODS: MethodNode[] = [
     practice:
       'Cut the list to one entry point and one upgrade, then write what each costs in a single sentence with no hedging.',
     artifacts: ['artifact/acos'],
-    products: ['product/ai-architect-academy'],
+    // Artifact-only on purpose. Nothing frankx.ai owns packages offer clarity yet, and
+    // routing this ceiling at a product that does not close it would be the generic-funnel
+    // failure the diagnostic exists to avoid.
+    products: [],
   },
   {
     id: 'method/runway',

@@ -652,8 +652,13 @@ function BriefExport({ result }: { result: ScorecardResult }) {
     const link = document.createElement('a')
     link.href = url
     link.download = `${brief.filename}.${format}`
+    // Firefox only follows a click on an anchor that is in the document, and WebKit races
+    // a synchronous revoke against the save. The download is the activation event, so both
+    // browsers silently dropping it is not a cosmetic bug.
+    document.body.appendChild(link)
     link.click()
-    URL.revokeObjectURL(url)
+    link.remove()
+    setTimeout(() => URL.revokeObjectURL(url), 0)
     trackEvent('scorecard_brief_export', { format, ceiling: result.ceiling.dimension })
   }
 

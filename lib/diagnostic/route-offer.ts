@@ -64,7 +64,9 @@ function toOffer(product: ProductNode, method: MethodNode): Offer {
     label: product.title,
     href: sellable ? `/checkout/${product.registryId}` : `/waitlist?intent=${product.registryId}`,
     priceBand: product.priceBand,
-    reason: `${method.title.toLowerCase()} is the gap this scored lowest on, and ${product.title} is the packaged version of that practice. It has to beat ${product.mustBeat}.`,
+    // Says who it is for and what bar it has to clear. Restating the score back at someone
+    // who just read it is not a reason, and it is what made the previous copy read generic.
+    reason: `For ${product.buyer.charAt(0).toLowerCase()}${product.buyer.slice(1)}. It has to beat ${product.mustBeat}.`,
     foundingBenefit: product.foundingBenefit,
     gateNote: sellable
       ? 'Available now.'
