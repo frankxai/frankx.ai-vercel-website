@@ -52,6 +52,8 @@ test('newsletter preference writes require signed ownership and never resubscrib
   const createContact = route.indexOf('let resendResponse = await createContact(fullBody)')
   const duplicateGuard = route.indexOf('if (resendResponse.status === 409)')
   const welcomeDelivery = route.indexOf('await sendWelcomeEmail(email, name, listType, intention)')
+  const growthCapture = route.indexOf('const growthCapture = await captureGrowthLead')
+  const growthFailureGuard = route.indexOf('if (!growthCapture.ok)')
 
   assert.match(route, /createHmac\('sha256', PREFERENCES_SECRET\)/)
   assert.match(route, /timingSafeEqual\(receivedBytes, expectedBytes\)/)
@@ -62,6 +64,15 @@ test('newsletter preference writes require signed ownership and never resubscrib
   assert.match(route, /emailRatelimit\.limit\(`subscribe:email:\$\{emailDigest\}`\)/)
   assert.match(route, /rateLimit === 'unavailable'[\s\S]{0,240}?status: 503/)
   assert.ok(preferenceGuard >= 0 && preferenceGuard < createContact)
+  assert.ok(
+    growthCapture > preferenceGuard && growthCapture < createContact,
+    'canonical capture must complete after preference-only requests and before provider writes',
+  )
+  assert.ok(growthFailureGuard > growthCapture && growthFailureGuard < createContact)
+  assert.match(route, /process\.env\.GROWTH_CAPTURE_URL/)
+  assert.match(route, /gfrfcqyprekhazzugdkr\.supabase\.co\/functions\/v1\/growth-capture/)
+  assert.match(route, /signal: AbortSignal\.timeout\(5_000\)/)
+  assert.match(route, /Subscription storage is temporarily unavailable/)
   assert.ok(duplicateGuard > createContact && duplicateGuard < welcomeDelivery)
   assert.doesNotMatch(route, /updateAudienceContact/)
   assert.doesNotMatch(route, /properties\.topics/)
