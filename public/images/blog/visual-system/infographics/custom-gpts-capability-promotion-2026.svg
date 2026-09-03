@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-labelledby="title desc">
+  <title id="title">Promote the capability, not the conversational wrapper</title>
+  <desc id="desc">A Custom GPT containing instructions, knowledge, and actions is evaluated for repeated value, shared method, identity and state, and observable side effects. Proven value is promoted into a universal plugin containing a skill, an MCP server, and optional Apps SDK UI.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07090b"/>
+      <stop offset="0.55" stop-color="#0a0f12"/>
+      <stop offset="1" stop-color="#07130f"/>
+    </linearGradient>
+    <linearGradient id="plugin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1b18"/>
+      <stop offset="1" stop-color="#08100f"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#64748b" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M 44 0 L 0 0 0 44" fill="none" stroke="#ffffff" stroke-opacity="0.025"/>
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="960" rx="36" fill="url(#bg)"/>
+  <rect width="1600" height="960" rx="36" fill="url(#grid)"/>
+  <path d="M70 112 H1530" stroke="#ffffff" stroke-opacity="0.09"/>
+  <rect x="70" y="66" width="8" height="26" rx="4" fill="#10b981"/>
+  <text x="96" y="88" fill="#a7f3d0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">CAPABILITY PROMOTION</text>
+  <text x="70" y="164" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="760" letter-spacing="-1.5">Promote the capability, not the wrapper.</text>
+  <text x="70" y="205" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="22">Custom GPTs validate the experience. Skills and MCP preserve what earns repeat use.</text>
+
+  <!-- Custom GPT -->
+  <rect x="70" y="266" width="350" height="456" rx="26" fill="#0d1115" stroke="#ffffff" stroke-opacity="0.13"/>
+  <circle cx="112" cy="312" r="17" fill="#172027" stroke="#64748b"/>
+  <text x="112" y="319" text-anchor="middle" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">1</text>
+  <text x="146" y="319" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="720">Custom GPT</text>
+  <text x="106" y="362" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">FAST CONVERSATIONAL WRAPPER</text>
+
+  <rect x="106" y="397" width="278" height="68" rx="14" fill="#111820" stroke="#ffffff" stroke-opacity="0.08"/>
+  <rect x="123" y="416" width="8" height="30" rx="4" fill="#64748b"/>
+  <text x="149" y="438" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="650">Instructions</text>
+
+  <rect x="106" y="481" width="278" height="68" rx="14" fill="#111820" stroke="#ffffff" stroke-opacity="0.08"/>
+  <rect x="123" y="500" width="8" height="30" rx="4" fill="#64748b"/>
+  <text x="149" y="522" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="650">Knowledge</text>
+
+  <rect x="106" y="565" width="278" height="68" rx="14" fill="#111820" stroke="#ffffff" stroke-opacity="0.08"/>
+  <rect x="123" y="584" width="8" height="30" rx="4" fill="#64748b"/>
+  <text x="149" y="606" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="650">GPT Actions</text>
+
+  <text x="106" y="678" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="16">Keep when conversation is the product.</text>
+  <text x="106" y="702" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="15">Prototype · teach · share · discover demand</text>
+
+  <!-- Promotion signal -->
+  <rect x="480" y="300" width="324" height="388" rx="24" fill="#0a1113" stroke="#34d399" stroke-opacity="0.32"/>
+  <text x="520" y="344" fill="#6ee7b7" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="750" letter-spacing="2.6">PROMOTION SIGNAL</text>
+  <text x="520" y="382" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="700">Value survives the chat</text>
+
+  <circle cx="532" cy="433" r="11" fill="#10b981" fill-opacity="0.18" stroke="#34d399"/>
+  <path d="M527 433 l4 4 7-9" fill="none" stroke="#a7f3d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="558" y="439" fill="#dbe4e8" font-family="Inter, Arial, sans-serif" font-size="18">Repeated workflow</text>
+
+  <circle cx="532" cy="487" r="11" fill="#10b981" fill-opacity="0.18" stroke="#34d399"/>
+  <path d="M527 487 l4 4 7-9" fill="none" stroke="#a7f3d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="558" y="493" fill="#dbe4e8" font-family="Inter, Arial, sans-serif" font-size="18">Shared method</text>
+
+  <circle cx="532" cy="541" r="11" fill="#10b981" fill-opacity="0.18" stroke="#34d399"/>
+  <path d="M527 541 l4 4 7-9" fill="none" stroke="#a7f3d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="558" y="547" fill="#dbe4e8" font-family="Inter, Arial, sans-serif" font-size="18">Identity or state</text>
+
+  <circle cx="532" cy="595" r="11" fill="#10b981" fill-opacity="0.18" stroke="#34d399"/>
+  <path d="M527 595 l4 4 7-9" fill="none" stroke="#a7f3d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="558" y="601" fill="#dbe4e8" font-family="Inter, Arial, sans-serif" font-size="18">Observable side effects</text>
+
+  <text x="520" y="652" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="15">No repeat evidence? Keep testing—or retire it.</text>
+
+  <path d="M817 494 H878" stroke="url(#arrow)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M868 482 L886 494 868 506" fill="none" stroke="#34d399" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- Universal plugin -->
+  <rect x="900" y="240" width="630" height="512" rx="30" fill="url(#plugin)" stroke="#34d399" stroke-width="2" stroke-opacity="0.72"/>
+  <rect x="930" y="270" width="204" height="38" rx="19" fill="#10b981" fill-opacity="0.14" stroke="#34d399" stroke-opacity="0.4"/>
+  <text x="1032" y="296" text-anchor="middle" fill="#a7f3d0" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="720" letter-spacing="1.5">UNIVERSAL PLUGIN</text>
+  <text x="930" y="344" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="740">Shared capability package</text>
+  <text x="930" y="377" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">Distribute the smallest durable shape to ChatGPT and Codex.</text>
+
+  <rect x="930" y="413" width="260" height="210" rx="20" fill="#0c1514" stroke="#34d399" stroke-opacity="0.38"/>
+  <text x="960" y="455" fill="#6ee7b7" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="740" letter-spacing="2">SKILL</text>
+  <text x="960" y="491" fill="#f1f5f9" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Reusable method</text>
+  <text x="960" y="529" fill="#aab7c3" font-family="Inter, Arial, sans-serif" font-size="16">Instructions</text>
+  <text x="960" y="556" fill="#aab7c3" font-family="Inter, Arial, sans-serif" font-size="16">References</text>
+  <text x="960" y="583" fill="#aab7c3" font-family="Inter, Arial, sans-serif" font-size="16">Versioned workflow</text>
+
+  <rect x="1210" y="413" width="290" height="210" rx="20" fill="#0b1418" stroke="#22d3ee" stroke-opacity="0.36"/>
+  <text x="1240" y="455" fill="#67e8f9" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="740" letter-spacing="2">MCP SERVER</text>
+  <text x="1240" y="491" fill="#f1f5f9" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Owned capability</text>
+  <text x="1240" y="529" fill="#aab7c3" font-family="Inter, Arial, sans-serif" font-size="16">Tools + auth</text>
+  <text x="1240" y="556" fill="#aab7c3" font-family="Inter, Arial, sans-serif" font-size="16">Data + state</text>
+  <text x="1240" y="583" fill="#aab7c3" font-family="Inter, Arial, sans-serif" font-size="16">Telemetry + policy</text>
+
+  <path d="M1355 623 V644" stroke="#22d3ee" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="5 7"/>
+  <rect x="1210" y="644" width="290" height="70" rx="17" fill="#10191c" stroke="#ffffff" stroke-opacity="0.13" stroke-dasharray="6 7"/>
+  <text x="1240" y="675" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="680">Apps SDK UI</text>
+  <text x="1240" y="699" fill="#7f8e9b" font-family="Inter, Arial, sans-serif" font-size="14">Optional: inspect · edit · compare · confirm</text>
+
+  <!-- Triage strip -->
+  <rect x="70" y="804" width="1460" height="92" rx="22" fill="#0a0e11" stroke="#ffffff" stroke-opacity="0.09"/>
+  <line x1="556" y1="826" x2="556" y2="874" stroke="#ffffff" stroke-opacity="0.1"/>
+  <line x1="1043" y1="826" x2="1043" y2="874" stroke="#ffffff" stroke-opacity="0.1"/>
+  <text x="106" y="843" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="740">KEEP</text>
+  <text x="106" y="871" fill="#7f8e9b" font-family="Inter, Arial, sans-serif" font-size="15">Conversation carries the value</text>
+  <text x="592" y="843" fill="#6ee7b7" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="740">PROMOTE</text>
+  <text x="592" y="871" fill="#7f8e9b" font-family="Inter, Arial, sans-serif" font-size="15">The method or capability repeats</text>
+  <text x="1079" y="843" fill="#fca5a5" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="740">RETIRE</text>
+  <text x="1079" y="871" fill="#7f8e9b" font-family="Inter, Arial, sans-serif" font-size="15">No distinct value or return use</text>
+</svg>
