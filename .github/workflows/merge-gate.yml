@@ -43,6 +43,7 @@ on:
       - '.claude/agents/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
       # Required-check trap: a required status check with a paths filter blocks
       # every pull request that misses the filter, because the check stays
       # expected and never reports. next.config.mjs hit that on 2026-08-14, and
