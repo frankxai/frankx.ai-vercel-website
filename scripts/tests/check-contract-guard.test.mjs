@@ -110,3 +110,63 @@ test('the existing override remains available for unrelated contracts', async (t
   assert.equal(result.status, 0)
   assert.match(result.stderr, /Acknowledged/i)
 })
+
+// #590 and #591 deadlocked here: the allowlist named public/images/homepage/,
+// a directory with no files in this repo, while homepage imagery actually
+// lives under public/images/home/. Every homepage change that ships its own
+// artwork tripped the mixed-scope rule, which has no title-tag override.
+test('homepage imagery ships with the homepage', async (t) => {
+  const cwd = await createRepository({
+    'app/page.tsx': 'export default function Page() { return <HomePageElite /> }\n',
+    'components/home/HomePageElite.tsx': 'export default function HomePageElite() { return null }\n',
+    'public/images/home/proof-rooms/music-lab-workbench-v1.webp': 'webp-placeholder\n',
+    'scripts/tests/homepage-mind-palace-contract.test.mjs':
+      "const entrypoint = 'app/page.tsx'\nconst homepage = 'components/home/HomePageElite.tsx'\n",
+  })
+  t.after(() => rm(cwd, { recursive: true, force: true }))
+
+  await writeFile(
+    path.join(cwd, 'components/home/HomePageElite.tsx'),
+    'export default function HomePageElite() { return <img src="/images/home/proof-rooms/music-lab-workbench-v1.webp" /> }\n',
+  )
+  await writeFile(
+    path.join(cwd, 'public/images/home/proof-rooms/music-lab-workbench-v1.webp'),
+    'webp-placeholder-revised\n',
+  )
+  git(cwd, 'add', '.')
+  git(cwd, 'commit', '-m', 'add homepage proof-room artwork')
+
+  const result = runGuard(cwd, 'Homepage: evolve architecture and music proof rooms')
+  assert.equal(result.status, 0, result.stderr)
+  assert.doesNotMatch(result.stderr, /bundled with unrelated executable surfaces/i)
+})
+
+// Negative control for the case above. Same fixture shape, same title, one
+// asset path changed — so a green result there cannot come from the guard
+// failing to see the asset, or from mixed-scope classification not running.
+test('a non-homepage asset is still not a homepage companion', async (t) => {
+  const cwd = await createRepository({
+    'app/page.tsx': 'export default function Page() { return <HomePageElite /> }\n',
+    'components/home/HomePageElite.tsx': 'export default function HomePageElite() { return null }\n',
+    'public/images/blog/unrelated-post-hero.webp': 'webp-placeholder\n',
+    'scripts/tests/homepage-mind-palace-contract.test.mjs':
+      "const entrypoint = 'app/page.tsx'\nconst homepage = 'components/home/HomePageElite.tsx'\n",
+  })
+  t.after(() => rm(cwd, { recursive: true, force: true }))
+
+  await writeFile(
+    path.join(cwd, 'components/home/HomePageElite.tsx'),
+    'export default function HomePageElite() { return <img src="/images/blog/unrelated-post-hero.webp" /> }\n',
+  )
+  await writeFile(
+    path.join(cwd, 'public/images/blog/unrelated-post-hero.webp'),
+    'webp-placeholder-revised\n',
+  )
+  git(cwd, 'add', '.')
+  git(cwd, 'commit', '-m', 'mix homepage and blog artwork')
+
+  const result = runGuard(cwd, 'Homepage: evolve architecture and music proof rooms')
+  assert.equal(result.status, 1)
+  assert.match(result.stderr, /bundled with unrelated executable surfaces/i)
+  assert.match(result.stderr, /public\/images\/blog\/unrelated-post-hero\.webp/)
+})

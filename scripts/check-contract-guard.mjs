@@ -83,10 +83,14 @@ const isContractTest = (p) => p.startsWith(`${TEST_DIR}/`) && p.endsWith(TEST_SU
 const isHomepageSurface = (p) =>
   p === HOMEPAGE_ENTRYPOINT || p.startsWith(HOMEPAGE_COMPONENT_PREFIX)
 
+// public/images/home/ is where homepage artwork actually lives; the repo has
+// never had a public/images/homepage/ directory. Naming the wrong one made
+// every homepage change that ships its own imagery trip the mixed-scope rule,
+// which has no title-tag override.
 const isHomepageCompanion = (p) =>
   isHomepageSurface(p) ||
   p.startsWith('data/homepage-') ||
-  p.startsWith('public/images/homepage/') ||
+  p.startsWith('public/images/home/') ||
   p.startsWith('public/images/music/') ||
   p.startsWith('scripts/tests/homepage-')
 
