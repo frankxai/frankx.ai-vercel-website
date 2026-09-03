@@ -120,6 +120,29 @@ RELEVANT_PATHS=(
   instrumentation.ts
 )
 
+# 2b. Preview that differs from main in no relevant way. Measured 2026-09-01: with six
+#     harnesses working, "Merge branch 'main' into agent/..." commits rebuilt previews
+#     that reviewed nothing — the branch had merely caught up to main, and production
+#     already built that content.
+#
+#     "Is this a merge from main" turned out to be the wrong question: once a feature
+#     branch lands, BOTH its parents are ancestors of main, so ancestry cannot tell the
+#     two merge directions apart after the fact. The question that actually matters for
+#     a preview is simpler — does this branch differ from main at all?
+#
+#     Runs after RELEVANT_PATHS is defined, and only when origin/main is available
+#     locally (Vercel clones are shallow by default); otherwise falls through and builds.
+if [ -n "${VERCEL_GIT_COMMIT_REF:-}" ] && [ "${VERCEL_GIT_COMMIT_REF:-}" != "main" ] \
+   && git rev-parse --verify -q origin/main >/dev/null 2>&1; then
+  git diff --quiet origin/main HEAD -- "${RELEVANT_PATHS[@]}" 2>/dev/null
+  MAIN_RC=$?
+  if [ "$MAIN_RC" -eq 0 ]; then
+    echo "[should-deploy] Branch has no relevant diff against origin/main — SKIPPING build."
+    echo "[should-deploy] Nothing to preview that production has not already built."
+    exit 0
+  fi
+fi
+
 # 3. Run the diff. Capture the exit code explicitly so we can distinguish:
 #    rc=0 → no diff → SKIP
 #    rc=1 → diff exists → PROCEED
