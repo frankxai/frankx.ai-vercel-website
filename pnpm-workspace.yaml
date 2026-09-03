@@ -1,3 +1,18 @@
+# `overrides` lives here, not under `pnpm.overrides` in package.json. pnpm 10.28
+# still applies the package.json field but warns it is ignored; pnpm 11 actually
+# ignores it, and drops every pin from a regenerated lockfile with no error and a
+# still-passing `--frozen-lockfile`. Measured 2026-09-03: under pnpm 11.25.0 the
+# package.json form silently reverted @opentelemetry/propagator-jaeger to 2.7.1
+# and reintroduced postcss 8.5.23. scripts/check-pnpm-overrides.mjs guards this.
+overrides:
+  '@opentelemetry/propagator-jaeger': '^2.9.0'
+  'hono': '^4.13.1'
+  'ip-address': '^10.4.0'
+  'nanoid': '^3.3.18'
+  'postcss': '^8.5.26'
+  '@vercel/blob>undici': '6.28.0'
+  'jsdom@28.1.0>undici': '7.29.0'
+
 allowBuilds:
   'agentdb@3.0.0-alpha.20': false
   'argon2@0.44.0': false

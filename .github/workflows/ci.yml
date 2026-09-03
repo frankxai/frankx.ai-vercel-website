@@ -49,6 +49,13 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
+      # Before install on purpose: this reads package.json, pnpm-workspace.yaml
+      # and pnpm-lock.yaml with node builtins only, and a lockfile whose pins
+      # have been silently dropped is still self-consistent enough for
+      # --frozen-lockfile to succeed. Installing first would hide it.
+      - name: pnpm override guard
+        run: node scripts/check-pnpm-overrides.mjs
+
       - run: pnpm install --frozen-lockfile
 
       - name: Build integrity contract
