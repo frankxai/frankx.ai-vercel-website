@@ -97,3 +97,17 @@ Two rules follow, for any agent working either side:
 ---
 
 _This file replaces a prior version that was a verbatim, unadapted copy of the private `frankxai/FrankX` repo's CLAUDE.md and stated that pushing to this repo's `main` does not deploy to production. That was backwards — this repo's `main` is what deploys to frankx.ai. The sync-direction note above is the same defect measured from the other end: the private repo's contract described this repo as a downstream copy, and it has not been one for some time._
+
+<!-- STARLIGHT-EDITORIAL:START -->
+## Editorial contract
+
+Brand: **FrankX** (`frankx`)
+
+- Read `CREATOR.md` before changing public or customer-facing copy.
+- Apply the registered brand voice and the shared editorial gate.
+- Reject generated prestige language, rhetorical contrast formulas, invented claims, and abstract labels that hide simple facts.
+- Keep public labels in sentence case.
+- Run the changed-copy editorial audit before release.
+
+Pinned source: https://github.com/frankxai/starlight-design-intelligence/blob/50ae34c7ac06e6c083f277ca96c3bde8f0a39b43/brand-packs/frankx/COPY.md
+<!-- STARLIGHT-EDITORIAL:END -->
