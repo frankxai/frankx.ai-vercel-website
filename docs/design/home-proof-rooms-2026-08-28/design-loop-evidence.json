@@ -1,0 +1,136 @@
+{
+  "version": "2026-06-23",
+  "task": "Evolve the homepage AI Architecture and Music Lab segments into proof-led premium entry rooms.",
+  "surface": "FrankX homepage AI Architecture and Music Lab scenes",
+  "audience": "AI architects, technical founders, AI CoE leaders, and technically curious AI music creators",
+  "first_read": "Two distinct working practices: production AI architecture and AI music creation, each with an inspectable artifact and one clear next step.",
+  "standards": [
+    "AGENTS.md",
+    "design.md",
+    "taste.md",
+    "design-agent-standards/OUTCOMES.md",
+    "design-agent-standards/AGENTIC_DESIGN_LOOP.md",
+    "design-agent-standards/PREMIUM_ASSET_STANDARD.md",
+    "starlight-design-intelligence/skills/world-class-web-release/SKILL.md",
+    "starlight-design-intelligence/brand-packs/frankx/DESIGN.md"
+  ],
+  "references": [
+    {
+      "label": "User-provided current desktop capture",
+      "source": "C:/Users/frank/AppData/Local/Temp/codex-clipboard-2aa0b400-8e58-44f6-9c07-d532cfffae45.png",
+      "reason": "Establishes the exact two current scenes and their visual weaknesses."
+    },
+    {
+      "label": "Live desktop before capture",
+      "source": "C:/Users/frank/.codex/visualizations/2026/08/28/01a047bc-d4cf-7e02-a84c-9b2fe57b0868/frankx-home-before-desktop.png",
+      "reason": "Records current live composition in host-page context."
+    },
+    {
+      "label": "Live mobile before captures",
+      "source": "C:/Users/frank/.codex/visualizations/2026/08/28/01a047bc-d4cf-7e02-a84c-9b2fe57b0868/frankx-home-before-mobile-architecture.png and frankx-home-before-mobile-music.png",
+      "reason": "Records mobile hierarchy and the missing architecture proof image."
+    }
+  ],
+  "direction": {
+    "keep": [
+      "AI Architecture and Music Lab route identities",
+      "Existing crawlable internal routes",
+      "Dark-first FrankX pacing and asymmetric editorial grid",
+      "One earned page-level scroll set-piece already owned by Mind Palace"
+    ],
+    "avoid": [
+      "Text-heavy generated infographics",
+      "Repeated landing-page card templates",
+      "Generic purple-blue SaaS gradients",
+      "Fake dashboards, node clouds, decorative 3D, and unreadable microcopy",
+      "Text entrance animation and new scroll choreography"
+    ],
+    "signature": "Two proof rooms where each crawlable resource link is visibly connected to one layer of a real working artifact.",
+    "system": [
+      "Poppins headings, Inter prose, JetBrains Mono evidence labels",
+      "Restrained emerald architecture spectrum and amber music spectrum over #0a0a0b",
+      "Tier B text-free generated stills with Tier C deterministic proof overlays",
+      "One rounded-full 44px-plus primary CTA per room",
+      "Track A focus/hover state only with complete reduced-motion parity",
+      "Mobile artifact-first composition"
+    ]
+  },
+  "asset_quality": {
+    "tier": "B",
+    "source_method": "generated-media",
+    "provenance": "generated",
+    "why_premium": "The stills are art-directed for the exact 16:10 homepage crop and carry a specific workbench/studio metaphor; exact labels, links, and evidence remain deterministic HTML/SVG.",
+    "shortcut_risk": "medium",
+    "context_tested": false
+  },
+  "artifacts": [
+    {
+      "label": "AI Architecture generated still",
+      "path_or_url": "public/images/home/proof-rooms/ai-architecture-workbench-v1.webp",
+      "kind": "homepage proof-room image",
+      "inspected": true,
+      "evidence": "1586x992 WebP, 110272 bytes; full-resolution inspection passed."
+    },
+    {
+      "label": "Music Lab generated still",
+      "path_or_url": "public/images/home/proof-rooms/music-lab-workbench-v1.webp",
+      "kind": "homepage proof-room image",
+      "inspected": true,
+      "evidence": "1586x992 WebP, 102288 bytes; full-resolution inspection passed."
+    },
+    {
+      "label": "Protected Vercel preview",
+      "path_or_url": "https://frankx-ai-vercel-website-git-agen-91cd2c-starlight-intelligence.vercel.app/",
+      "kind": "deployment preview",
+      "inspected": true,
+      "evidence": "Deployment dpl_9VWH2E5ExCdjSqumAWiUWutiJtzD reached READY after production compile, TypeScript, 1388-page static generation, and post-build tests."
+    }
+  ],
+  "checks": [
+    {
+      "name": "asset-tier",
+      "status": "pass",
+      "evidence": "Tier B stills are justified because existing text-heavy images fail the final crop and cannot serve as inspectable proof."
+    },
+    {
+      "name": "export-inspection",
+      "status": "pass",
+      "evidence": "Both generated sources were inspected at full resolution, converted to exact-ratio WebP exports, and checked for text, logos, artifacts, and focal-safe composition."
+    },
+    {
+      "name": "production-build",
+      "status": "pass",
+      "evidence": "Vercel deployment dpl_9VWH2E5ExCdjSqumAWiUWutiJtzD compiled successfully, completed TypeScript, generated all 1388 static pages, passed post-build tests, and reached READY."
+    },
+    {
+      "name": "preview-semantics",
+      "status": "pass",
+      "evidence": "Authenticated Vercel CLI fetch returned HTTP 200 and confirmed both section IDs, both generated image paths, both primary CTAs, and both labeled starting-point navigations in deployed HTML."
+    },
+    {
+      "name": "visual-qa",
+      "status": "blocked",
+      "evidence": "Desktop, mobile, focus, and reduced-motion implementation capture pending."
+    },
+    {
+      "name": "links",
+      "status": "pass",
+      "evidence": "All eight CTA and resource destinations returned HTTP 200 from the exact Vercel preview on 2026-08-28."
+    },
+    {
+      "name": "performance-gate",
+      "status": "blocked",
+      "evidence": "Local build and browser QA are held by the machine-performance reserve gate; use preview/CI or rerun when capacity recovers."
+    }
+  ],
+  "score": {
+    "total": 24,
+    "max": 30,
+    "notes": "Provisional evidence score. The selected direction scored 28/30 in the design council; six release points remain withheld until rendered desktop/mobile and independent final visual QA are available."
+  },
+  "decision": "blocked",
+  "known_risks": [
+    "Rendered desktop/mobile capture, keyboard/reduced-motion inspection, and independent final visual review remain blocked by the machine-performance browser reserve gate.",
+    "The preview is Vercel-auth protected; reviewers need project access or the PR deployment link."
+  ]
+}

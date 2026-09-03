@@ -644,23 +644,30 @@ function ProductsTools() {
 }
 
 // ============================================================================
-// HUB SHOWCASE — Reusable alternating layout
+// HUB SHOWCASE — Proof-led homepage entry room
 // ============================================================================
 
 interface HubShowcaseProps {
+  id: string
   eyebrow: string
   title: string
   description: string
   imageSrc: string
   imageAlt: string
-  links: { label: string; href: string }[]
+  links: {
+    label: string
+    detail: string
+    href: string
+    marker: { left: string; top: string }
+  }[]
   ctaLabel: string
   ctaHref: string
-  color: 'emerald' | 'cyan' | 'violet' | 'amber' | 'orange' | 'blue'
-  imageFirst?: boolean
+  color: 'emerald' | 'amber'
+  mediaSide: 'left' | 'right'
 }
 
 function HubShowcase({
+  id,
   eyebrow,
   title,
   description,
@@ -670,84 +677,164 @@ function HubShowcase({
   ctaLabel,
   ctaHref,
   color,
-  imageFirst = false,
+  mediaSide,
 }: HubShowcaseProps) {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const headingId = `${id}-title`
+  const activeLabel = links[activeIndex]?.label ?? title
+  const theme = color === 'emerald'
+    ? {
+        room: 'border-emerald-300/[0.15] bg-[#0a1110]/95',
+        eyebrow: 'text-emerald-300/[0.80]',
+        cta: 'bg-emerald-300 text-[#03120d] hover:bg-emerald-200 focus-visible:ring-emerald-300/70',
+        link: 'hover:border-emerald-300/25 hover:bg-emerald-300/[0.06] focus-visible:border-emerald-300/40 focus-visible:bg-emerald-300/[0.08]',
+        index: 'text-emerald-300/[0.75]',
+        marker: 'border-emerald-200/[0.80] bg-emerald-300 text-[#03120d] shadow-[0_0_24px_rgba(16,185,129,0.34)]',
+        markerIdle: 'border-emerald-200/[0.35] bg-[#07120f]/80 text-emerald-100/[0.75]',
+        markerLine: 'bg-emerald-200/[0.70]',
+        visualBorder: 'border-emerald-200/[0.15]',
+        visualLabel: 'border-emerald-200/20 bg-[#07120f]/75 text-emerald-100/[0.80]',
+      }
+    : {
+        room: 'border-amber-300/[0.15] bg-[#120e08]/95',
+        eyebrow: 'text-amber-300/[0.80]',
+        cta: 'bg-amber-300 text-[#1a1002] hover:bg-amber-200 focus-visible:ring-amber-300/70',
+        link: 'hover:border-amber-300/25 hover:bg-amber-300/[0.06] focus-visible:border-amber-300/40 focus-visible:bg-amber-300/[0.08]',
+        index: 'text-amber-300/[0.75]',
+        marker: 'border-amber-100/[0.80] bg-amber-300 text-[#1a1002] shadow-[0_0_24px_rgba(245,158,11,0.30)]',
+        markerIdle: 'border-amber-100/[0.35] bg-[#160f06]/80 text-amber-100/[0.75]',
+        markerLine: 'bg-amber-200/[0.70]',
+        visualBorder: 'border-amber-200/[0.15]',
+        visualLabel: 'border-amber-200/20 bg-[#160f06]/75 text-amber-100/[0.80]',
+      }
+
+  const textColumn = mediaSide === 'right'
+    ? 'lg:col-span-4 lg:col-start-1'
+    : 'lg:col-span-4 lg:col-start-9'
+  const mediaColumn = mediaSide === 'right'
+    ? 'lg:col-span-8 lg:col-start-5'
+    : 'lg:col-span-8 lg:col-start-1'
+
   const imageBlock = (
-    <motion.div
-      initial={{ opacity: 0, x: imageFirst ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="relative aspect-[16/10] rounded-2xl overflow-hidden"
+    <Link
+      href={ctaHref}
+      aria-label={`${ctaLabel}: ${title}`}
+      onClick={() => trackEvent('homepage_proof_room_cta_clicked', {
+        room: id,
+        destination: ctaHref,
+        placement: 'visual',
+      })}
+      className={`group/media relative block aspect-[16/10] overflow-hidden rounded-[1.5rem] border ${theme.visualBorder} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/[0.55] focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]`}
     >
       <Image
         src={imageSrc}
         alt={imageAlt}
         fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, 60vw"
+        className="object-cover transition-transform duration-700 ease-out motion-safe:group-hover/media:scale-[1.012] motion-reduce:transition-none"
+        sizes="(max-width: 1023px) calc(100vw - 48px), 760px"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/60 to-transparent" />
-    </motion.div>
-  )
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050606]/80 via-transparent to-black/20" />
 
-  const textBlock = (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className="flex flex-col justify-center"
-    >
-      <p className="mb-3 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
-        {eyebrow}
-      </p>
-      <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-        {title}
-      </h2>
-      <p className="text-base text-white/50 leading-relaxed mb-6">
-        {description}
-      </p>
-
-      <div className="space-y-2 mb-6">
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors group/link"
-          >
-            <ArrowRight className="w-3.5 h-3.5 text-emerald-500/60 group-hover/link:translate-x-0.5 transition-transform" />
-            {link.label}
-          </Link>
-        ))}
+      <div className="absolute inset-x-4 top-4 flex items-center justify-between gap-3 sm:inset-x-5 sm:top-5" aria-hidden="true">
+        <span className={`rounded-full border px-3 py-1.5 font-mono text-[10px] leading-none backdrop-blur-md sm:text-[11px] ${theme.visualLabel}`}>
+          Working artifact
+        </span>
+        <span className="font-mono text-[10px] text-white/60 sm:text-[11px]">
+          Three starting points
+        </span>
       </div>
 
-      <Link
-        href={ctaHref}
-        className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
-      >
-        {ctaLabel}
-        <ArrowRight className="w-4 h-4" />
-      </Link>
-    </motion.div>
+      <div className="absolute inset-0" aria-hidden="true">
+        {links.map((link, index) => {
+          const isActive = index === activeIndex
+          return (
+            <div
+              key={link.href}
+              className={`absolute -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-200 motion-reduce:transition-none ${isActive ? 'scale-100 opacity-100' : 'scale-90 opacity-60'}`}
+              style={{ left: link.marker.left, top: link.marker.top }}
+            >
+              <span className={`relative flex h-8 w-8 items-center justify-center rounded-full border font-mono text-[11px] font-semibold sm:h-9 sm:w-9 ${isActive ? theme.marker : theme.markerIdle}`}>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span className={`absolute left-1/2 top-full mt-2 h-8 w-px -translate-x-1/2 origin-top transition-transform duration-200 motion-reduce:transition-none ${theme.markerLine} ${isActive ? 'scale-y-100' : 'scale-y-0'}`} />
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="absolute inset-x-4 bottom-4 flex min-h-12 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/55 px-4 py-2.5 backdrop-blur-md sm:inset-x-5 sm:bottom-5 sm:px-5" aria-hidden="true">
+        <span className="hidden font-mono text-[11px] text-white/50 sm:block">Current path</span>
+        <span className="min-w-0 truncate text-xs font-medium text-white/90 sm:text-right sm:text-sm">{activeLabel}</span>
+      </div>
+    </Link>
   )
 
   return (
-    <section className="py-24 lg:py-32 border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-          {imageFirst ? (
-            <>
-              <div className="lg:col-span-3">{imageBlock}</div>
-              <div className="lg:col-span-2">{textBlock}</div>
-            </>
-          ) : (
-            <>
-              <div className="lg:col-span-2">{textBlock}</div>
-              <div className="lg:col-span-3">{imageBlock}</div>
-            </>
-          )}
-        </div>
+    <section id={id} aria-labelledby={headingId} className="border-t border-white/5 py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <GlowCard color={color} className={`rounded-[2rem] ${theme.room}`}>
+          <div className="grid gap-x-10 gap-y-7 p-5 sm:p-7 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8 lg:p-10 xl:gap-x-16 xl:p-12">
+            <header className={`order-1 self-end ${textColumn} lg:row-start-1`}>
+              <p className={`mb-3 text-xs font-medium tracking-[0.08em] ${theme.eyebrow}`}>
+                {eyebrow}
+              </p>
+              <h2 id={headingId} className="text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl lg:text-5xl">
+                {title}
+              </h2>
+            </header>
+
+            <div className={`order-2 ${mediaColumn} lg:row-span-2 lg:row-start-1`}>
+              {imageBlock}
+            </div>
+
+            <div className={`order-3 flex flex-col self-start ${textColumn} lg:row-start-2`}>
+              <p className="max-w-xl text-[15px] leading-7 text-white/[0.68] sm:text-base">
+                {description}
+              </p>
+
+              <Link
+                href={ctaHref}
+                onClick={() => trackEvent('homepage_proof_room_cta_clicked', {
+                  room: id,
+                  destination: ctaHref,
+                  placement: 'primary',
+                })}
+                className={`group/cta mt-6 inline-flex min-h-12 w-fit items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none ${theme.cta}`}
+              >
+                {ctaLabel}
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/cta:translate-x-0.5 motion-reduce:transition-none" />
+              </Link>
+
+              <nav aria-label={`${title} starting points`} className="mt-7" onPointerLeave={() => setActiveIndex(0)}>
+                <p className="mb-2 font-mono text-[10px] text-white/60 sm:text-[11px]">Start here</p>
+                <ul className="space-y-2">
+                  {links.map((link, index) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onFocus={() => setActiveIndex(index)}
+                        onPointerEnter={() => setActiveIndex(index)}
+                        onClick={() => trackEvent('homepage_proof_room_resource_clicked', {
+                          room: id,
+                          destination: link.href,
+                          position: index + 1,
+                        })}
+                        className={`group/link grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl border border-white/[0.07] px-3.5 py-3 transition-[background-color,border-color] duration-200 focus-visible:outline-none motion-reduce:transition-none ${theme.link}`}
+                      >
+                        <span className={`font-mono text-[10px] ${theme.index}`}>{String(index + 1).padStart(2, '0')}</span>
+                        <span>
+                          <span className="block text-sm font-medium text-white/[0.88]">{link.label}</span>
+                          <span className="mt-0.5 block text-xs leading-5 text-white/[0.48]">{link.detail}</span>
+                        </span>
+                        <ArrowRight className="h-4 w-4 text-white/[0.38] transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:text-white/70 motion-reduce:transition-none" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </GlowCard>
       </div>
     </section>
   )
@@ -1513,37 +1600,70 @@ export default function HomePageElite({
 
         {/* 6. AI Architecture hub showcase */}
         <HubShowcase
-          eyebrow="Enterprise AI"
+          id="ai-architecture"
+          eyebrow="Production AI systems"
           title="AI Architecture"
-          description="Production-minded AI architecture, agentic workflows, and orchestration patterns documented with the decisions, constraints, and human controls still visible."
-          imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
-          imageAlt="Production Agentic AI Systems"
+          description="Reference designs for agent workflows, MCP infrastructure, orchestration, and human oversight—documented with the constraints and deployment choices intact."
+          imageSrc="/images/home/proof-rooms/ai-architecture-workbench-v1.webp"
+          imageAlt="Four-layer graphite architecture model connected by one emerald signal path"
           links={[
-            { label: 'Production Agentic AI Systems', href: '/blog/production-agentic-ai-systems' },
-            { label: 'MCP Server Architecture', href: '/blog/mcp-server-architecture-workshop' },
-            { label: 'Agent Patterns & Pillars', href: '/blog/production-agent-patterns-7-pillars' },
+            {
+              label: 'Agentic architecture decision framework',
+              detail: 'Choose the right maturity and operating model.',
+              href: '/blog/production-agentic-ai-systems',
+              marker: { left: '65%', top: '24%' },
+            },
+            {
+              label: 'Build your first MCP server',
+              detail: 'Connect models to tools, data, and guarded actions.',
+              href: '/blog/mcp-server-architecture-workshop',
+              marker: { left: '54%', top: '49%' },
+            },
+            {
+              label: 'Seven pillars of production agents',
+              detail: 'Review orchestration, memory, safety, and AgentOps.',
+              href: '/blog/production-agent-patterns-7-pillars',
+              marker: { left: '48%', top: '72%' },
+            },
           ]}
-          ctaLabel="Explore AI Architecture"
+          ctaLabel="Open the AI Architecture field guide"
           ctaHref="/ai-architecture"
-          color="blue"
-          imageFirst
+          color="emerald"
+          mediaSide="right"
         />
 
         {/* 7. Music Lab hub showcase */}
         <HubShowcase
-          eyebrow="Music Production"
+          id="music-lab"
+          eyebrow="AI music production"
           title="Music Lab"
-          description="An evolving Suno music archive with production notes, genre experiments, and prompt methods shared from the studio as they are learned."
-          imageSrc="/images/blog/suno-prompt-engineering-complete-guide-hero.png"
-          imageAlt="Suno Prompt Engineering Guide"
+          description="A working archive of AI songs, Suno prompt systems, production notes, and playable instruments—built from daily studio practice."
+          imageSrc="/images/home/proof-rooms/music-lab-workbench-v1.webp"
+          imageAlt="Late-night music workbench with tactile controls and an amber waveform"
           links={[
-            { label: 'Suno Prompt Engineering Guide', href: '/blog/suno-prompt-engineering-complete-guide' },
-            { label: 'Science of State Change', href: '/blog/science-of-state-change-music' },
-            { label: 'Browse All Tracks', href: '/music' },
+            {
+              label: 'Suno prompt engineering guide',
+              detail: 'Shape genre, tempo, instruments, vocals, and mood.',
+              href: '/blog/suno-prompt-engineering-complete-guide',
+              marker: { left: '50%', top: '33%' },
+            },
+            {
+              label: 'How music changes your state',
+              detail: 'Use tempo, mode, and lyrics with more intention.',
+              href: '/blog/science-of-state-change-music',
+              marker: { left: '68%', top: '41%' },
+            },
+            {
+              label: 'Browse releases and tracks',
+              detail: 'Listen to the public archive and current experiments.',
+              href: '/music',
+              marker: { left: '49%', top: '69%' },
+            },
           ]}
-          ctaLabel="Enter Music Lab"
+          ctaLabel="Open the Music Lab"
           ctaHref="/music-lab"
-          color="orange"
+          color="amber"
+          mediaSide="left"
         />
 
         {/* 8. Creative Worlds — Arcanea banner */}
