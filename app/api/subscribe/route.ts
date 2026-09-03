@@ -55,6 +55,78 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MAX_EMAIL_LEN = 320
 const MAX_NAME_LEN = 100
 const MAX_SOURCE_LEN = 120
+const GROWTH_CAPTURE_URL =
+  process.env.GROWTH_CAPTURE_URL ??
+  'https://gfrfcqyprekhazzugdkr.supabase.co/functions/v1/growth-capture'
+
+interface GrowthCaptureInput {
+  email: string
+  name: string
+  listType: string
+  source: string
+  intention: string
+  raw: Record<string, unknown>
+}
+
+function optionalText(value: unknown) {
+  return typeof value === 'string' && value.trim() ? value.trim() : undefined
+}
+
+function pagePathFromReferer(request: NextRequest) {
+  const referer = request.headers.get('referer')
+  if (!referer) return undefined
+  try {
+    const url = new URL(referer)
+    return url.pathname + url.search
+  } catch {
+    return undefined
+  }
+}
+
+async function captureGrowthLead(request: NextRequest, input: GrowthCaptureInput) {
+  const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    Origin: new URL(request.url).origin,
+  }
+  if (clientIp) headers['x-growth-client-ip'] = clientIp
+
+  try {
+    const response = await fetch(GROWTH_CAPTURE_URL, {
+      method: 'POST',
+      headers,
+      cache: 'no-store',
+      signal: AbortSignal.timeout(5_000),
+      body: JSON.stringify({
+        email: input.email,
+        name: input.name || undefined,
+        program: 'frankx-' + input.listType,
+        source: input.source || input.listType,
+        intention: input.intention || undefined,
+        referrer: request.headers.get('referer') ?? undefined,
+        page_path: pagePathFromReferer(request),
+        utm_source: optionalText(input.raw.utm_source),
+        utm_medium: optionalText(input.raw.utm_medium),
+        utm_campaign: optionalText(input.raw.utm_campaign),
+        utm_content: optionalText(input.raw.utm_content),
+        utm_term: optionalText(input.raw.utm_term),
+        metadata: { list_type: input.listType },
+      }),
+    })
+    const result = (await response.json().catch(() => null)) as
+      | { accepted?: boolean }
+      | null
+
+    if (!response.ok || result?.accepted !== true) {
+      console.error('Growth Core capture rejected:', response.status)
+      return { ok: false, status: response.status === 429 ? 429 : 503 }
+    }
+    return { ok: true, status: response.status }
+  } catch (error) {
+    console.error('Growth Core capture unavailable:', error)
+    return { ok: false, status: 503 }
+  }
+}
 
 function resolveListType(value: unknown): keyof typeof LIST_CONFIG {
   return typeof value === 'string' && value in LIST_CONFIG
@@ -416,6 +488,29 @@ export async function POST(request: NextRequest) {
         welcomeSent: false,
         message: 'Your verified email preferences are saved.',
       })
+    }
+
+    const growthCapture = await captureGrowthLead(request, {
+      email,
+      name,
+      listType,
+      source,
+      intention,
+      raw,
+    })
+    if (!growthCapture.ok) {
+      return NextResponse.json(
+        {
+          error:
+            growthCapture.status === 429
+              ? 'Too many requests. Please try again shortly.'
+              : 'Subscription storage is temporarily unavailable. Please try again.',
+        },
+        {
+          status: growthCapture.status,
+          headers: growthCapture.status === 429 ? { 'Retry-After': '600' } : undefined,
+        },
+      )
     }
 
     const config = LIST_CONFIG[listType]
