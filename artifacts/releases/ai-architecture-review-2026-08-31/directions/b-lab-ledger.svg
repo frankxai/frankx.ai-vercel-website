@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Direction B — Lab Ledger</title>
+  <desc id="desc">A chronology-led editorial weekly review presented as a technical journal with a contrasting bone reading surface and a distinct mobile digest.</desc>
+  <defs>
+    <style>.display{font-family:Poppins,Arial,sans-serif;font-weight:700}.serif{font-family:'Playfair Display',Georgia,serif}.body{font-family:Inter,Arial,sans-serif}.mono{font-family:'JetBrains Mono',monospace}.muted{fill:#6a6c68}.hair{stroke:#c9c5b8;stroke-width:1}.tiny{font-size:11px;letter-spacing:1.4px}.small{font-size:14px}</style>
+  </defs>
+  <rect width="1600" height="1000" fill="#070706"/>
+  <text x="64" y="58" class="mono tiny" fill="#d6b766">DIRECTION B</text>
+  <text x="64" y="94" class="display" font-size="34" fill="#f4f2e9">Lab Ledger</text>
+  <text x="64" y="121" class="body small" fill="#9f9e96">A reading-first technical journal. The chronology is the interface; the architecture arrives as a precise foldout.</text>
+  <g transform="translate(64 164)">
+    <rect width="1090" height="760" rx="5" fill="#efede3"/>
+    <g transform="translate(42 37)">
+      <text class="display" font-size="14" fill="#171815">FRANKX INTELLIGENCE</text><text x="806" class="mono tiny" fill="#575954">WEEK 35 / 2026 · ISSUE 01</text>
+      <line y1="24" x2="1006" y2="24" stroke="#171815" stroke-width="2"/>
+      <text y="65" class="mono tiny muted">THE WEEKLY AI ARCHITECTURE REVIEW</text>
+      <text y="129" class="serif" font-size="55" fill="#121310">The control plane won the week.</text>
+      <text y="167" class="serif" font-size="24" font-style="italic" fill="#4c4e49">Models advanced. The operating system around them advanced faster.</text>
+      <line y1="194" x2="1006" y2="194" class="hair"/>
+      <g transform="translate(0 224)">
+        <text class="mono tiny" fill="#797b75">EDITORIAL</text>
+        <text y="40" class="serif" font-size="21" fill="#1c1d1a">The consequential releases were not a single</text><text y="70" class="serif" font-size="21" fill="#1c1d1a">benchmark crown. They were boundaries:</text><text y="100" class="serif" font-size="21" fill="#1c1d1a">Responses, harnesses, connectors, policies, receipts.</text>
+        <text y="146" class="body" font-size="14" fill="#565852">The operating recommendation is therefore deliberately</text><text y="168" class="body" font-size="14" fill="#565852">boring: own canonical state, keep models replaceable,</text><text y="190" class="body" font-size="14" fill="#565852">and make every external action observable and revocable.</text>
+      </g>
+      <g transform="translate(420 224)">
+        <text class="mono tiny" fill="#797b75">SEVEN-DAY LEDGER</text>
+        <line x1="0" y1="27" x2="586" y2="27" class="hair"/>
+        <g class="body" font-size="13" fill="#292a27">
+          <text y="60">24 AUG</text><text x="94" y="60" font-weight="700">AWS</text><text x="177" y="60">GPT-5.6 Terra + Luna reach GovCloud</text>
+          <text y="99">25 AUG</text><text x="94" y="99" font-weight="700">OPENAI</text><text x="177" y="99">Reusable Runme + WebMCP workflows</text>
+          <text y="138">26 AUG</text><text x="94" y="138" font-weight="700">GITHUB</text><text x="177" y="138">Global model policy becomes GA</text>
+          <text y="177">26 AUG</text><text x="94" y="177" font-weight="700">GOOGLE</text><text x="177" y="177">Gemini 3.5 Transcribe becomes GA</text>
+          <text y="216">27 AUG</text><text x="94" y="216" font-weight="700">VERCEL</text><text x="177" y="216">Cursor joins HarnessAgent</text>
+          <text y="255">28 AUG</text><text x="94" y="255" font-weight="700">TENCENT</text><text x="177" y="255">Hy4 Preview reaches AI Gateway</text>
+        </g>
+        <g stroke="#d2cec1"><line y1="72" x2="586" y2="72"/><line y1="111" x2="586" y2="111"/><line y1="150" x2="586" y2="150"/><line y1="189" x2="586" y2="189"/><line y1="228" x2="586" y2="228"/><line y1="267" x2="586" y2="267"/></g>
+      </g>
+      <g transform="translate(0 483)">
+        <line y1="0" x2="1006" y2="0" stroke="#171815" stroke-width="2"/>
+        <text y="34" class="mono tiny" fill="#797b75">ARCHITECTURE FOLDOUT</text>
+        <g transform="translate(0 58)">
+          <rect width="1006" height="133" fill="#171815"/>
+          <g class="mono" font-size="10" fill="#d6b766"><text x="22" y="28">01 / TRIGGERS</text><text x="214" y="28">02 / CONNECTORS</text><text x="410" y="28">03 / GRAPH STATE</text><text x="611" y="28">04 / HARNESS</text><text x="808" y="28">05 / EVIDENCE</text></g>
+          <g class="body" font-size="14" fill="#f1efe6"><text x="22" y="62">GitHub · Slack · Gmail</text><text x="214" y="62">MCP · scoped tokens</text><text x="410" y="62">Postgres contract</text><text x="611" y="62">Codex · Claude · Cursor</text><text x="808" y="62">trace · eval · receipt</text></g>
+          <path d="M22 90H974" stroke="#565c56"/><g fill="#d6b766"><circle cx="22" cy="90" r="4"/><circle cx="214" cy="90" r="4"/><circle cx="410" cy="90" r="4"/><circle cx="611" cy="90" r="4"/><circle cx="808" cy="90" r="4"/><circle cx="974" cy="90" r="4"/></g>
+          <text x="22" y="116" class="mono" font-size="9" fill="#a9aaa4">ONE OWNED CHAIN OF CUSTODY / EVERY VENDOR REMAINS REPLACEABLE</text>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(1192 164)">
+    <text class="mono tiny" fill="#7f817b">MOBILE / DAILY DIGEST</text>
+    <rect y="22" width="330" height="760" rx="38" fill="#efede3" stroke="#565852" stroke-width="2"/>
+    <rect x="98" y="36" width="134" height="6" rx="3" fill="#bdb9ad"/>
+    <text x="24" y="84" class="display" font-size="11" fill="#171815">FRANKX INTELLIGENCE</text><text x="234" y="84" class="mono" font-size="8" fill="#6a6c68">W35 / 26</text>
+    <line x1="24" y1="103" x2="306" y2="103" stroke="#171815"/>
+    <text x="24" y="139" class="mono" font-size="8" fill="#6a6c68">WEEKLY ARCHITECTURE REVIEW</text>
+    <text x="24" y="187" class="serif" font-size="31" fill="#171815">The control plane</text><text x="24" y="225" class="serif" font-size="31" fill="#171815">won the week.</text>
+    <text x="24" y="260" class="serif" font-style="italic" font-size="14" fill="#565852">Models advanced. Their operating</text><text x="24" y="282" class="serif" font-style="italic" font-size="14" fill="#565852">system advanced faster.</text>
+    <line x1="24" y1="310" x2="306" y2="310" class="hair"/>
+    <text x="24" y="342" class="mono" font-size="8" fill="#6a6c68">THE SIX SIGNALS</text>
+    <g class="body" font-size="11" fill="#292a27"><text x="24" y="377">24</text><text x="64" y="377" font-weight="700">AWS</text><text x="122" y="377">Terra + Luna / GovCloud</text><text x="24" y="414">25</text><text x="64" y="414" font-weight="700">OPENAI</text><text x="122" y="414">Reusable agent workflows</text><text x="24" y="451">26</text><text x="64" y="451" font-weight="700">GITHUB</text><text x="122" y="451">Model policy / plugins</text><text x="24" y="488">27</text><text x="64" y="488" font-weight="700">VERCEL</text><text x="122" y="488">Harness abstraction</text></g>
+    <g stroke="#d2cec1"><line x1="24" y1="389" x2="306" y2="389"/><line x1="24" y1="426" x2="306" y2="426"/><line x1="24" y1="463" x2="306" y2="463"/><line x1="24" y1="500" x2="306" y2="500"/></g>
+    <rect x="24" y="533" width="282" height="111" fill="#171815"/><text x="40" y="558" class="mono" font-size="8" fill="#d6b766">THE OPERATING DECISION</text><text x="40" y="590" class="serif" font-size="18" fill="#f1efe6">Own state.</text><text x="40" y="614" class="serif" font-size="18" fill="#f1efe6">Rent intelligence.</text>
+    <rect x="24" y="675" width="282" height="48" rx="2" fill="#d6b766"/><text x="76" y="704" class="display" font-size="12" fill="#171815">READ THE SOURCE LEDGER</text>
+  </g>
+  <g transform="translate(1192 958)"><text class="mono tiny" fill="#7f817b">TYPE</text><text x="54" class="body" font-size="12" fill="#c7c6bf">Playfair / Inter / JetBrains Mono</text><text x="290" class="mono tiny" fill="#7f817b">MOTION</text><text x="360" class="body" font-size="12" fill="#c7c6bf">none; print-like restraint</text></g>
+</svg>

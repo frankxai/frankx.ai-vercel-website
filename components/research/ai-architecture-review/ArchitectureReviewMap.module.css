@@ -1,0 +1,41 @@
+.flow {
+  --xy-background-color: #050907;
+  --xy-background-pattern-dots-color: rgba(118, 146, 134, 0.2);
+  --xy-controls-button-background-color-default: rgba(8, 14, 11, 0.94);
+  --xy-controls-button-background-color-hover-default: rgba(17, 29, 23, 0.98);
+  --xy-controls-button-color-default: #b7c6bf;
+  --xy-controls-button-border-color-default: rgba(148, 163, 184, 0.16);
+  --xy-edge-stroke-default: rgba(105, 154, 133, 0.58);
+  --xy-edge-stroke-selected-default: #73e9b7;
+  --xy-minimap-background-color-default: #050907;
+}
+
+.flow :global(.react-flow__controls) {
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 999px;
+  box-shadow: none;
+}
+
+.flow :global(.react-flow__controls-button) {
+  border-bottom: 0;
+}
+
+.flow :global(.react-flow__edge.evidence-edge path) {
+  stroke: #72e6b7;
+  stroke-dasharray: 7 7;
+  animation: evidence-trace 1.8s linear infinite;
+}
+
+@keyframes evidence-trace {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow :global(.react-flow__edge.evidence-edge path) {
+    animation: none;
+    stroke-dasharray: none;
+  }
+}

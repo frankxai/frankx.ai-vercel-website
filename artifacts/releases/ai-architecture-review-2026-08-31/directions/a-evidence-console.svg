@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Direction A — Evidence Console</title>
+  <desc id="desc">A product-technical weekly AI architecture review with an editorial lead, interactive graph, receipts, and a separately designed mobile rail.</desc>
+  <defs>
+    <linearGradient id="aGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1511"/>
+      <stop offset="1" stop-color="#06100f"/>
+    </linearGradient>
+    <filter id="aSoft"><feGaussianBlur stdDeviation="18"/></filter>
+    <style>
+      .display{font-family:Poppins,Arial,sans-serif;font-weight:700}.body{font-family:Inter,Arial,sans-serif}.mono{font-family:'JetBrains Mono',monospace}.muted{fill:#83928d}.hair{stroke:#22312c;stroke-width:1}.tiny{font-size:12px;letter-spacing:1.6px}.small{font-size:15px}.label{font-size:13px;font-weight:600}.node{fill:#0b1210;stroke:#31443c;stroke-width:1}
+    </style>
+  </defs>
+  <rect width="1600" height="1000" fill="#030605"/>
+  <circle cx="1190" cy="260" r="250" fill="#19d392" opacity=".06" filter="url(#aSoft)"/>
+  <text x="64" y="58" class="mono tiny" fill="#72e6b7">DIRECTION A / RECOMMENDED</text>
+  <text x="64" y="94" class="display" font-size="34" fill="#f2f7f4">Evidence Console</text>
+  <text x="64" y="121" class="body small muted">Editorial authority up front. A working architecture graph beside it. Every claim opens into a source or repository receipt.</text>
+
+  <g transform="translate(64 164)">
+    <rect width="1090" height="760" rx="18" fill="url(#aGlow)" stroke="#29372f"/>
+    <rect x="1" y="1" width="1088" height="54" rx="17" fill="#080d0b"/>
+    <circle cx="24" cy="27" r="5" fill="#21d696"/><text x="40" y="32" class="display" font-size="14" fill="#eef6f2">FRANKX / RESEARCH</text>
+    <text x="852" y="32" class="mono tiny" fill="#9aa8a2">ISSUE 01 · 24–31 AUG 2026</text>
+    <line x1="0" y1="56" x2="1090" y2="56" class="hair"/>
+
+    <g transform="translate(42 91)">
+      <rect width="306" height="25" rx="12" fill="#123a2c" stroke="#1d7453"/>
+      <text x="14" y="17" class="mono" font-size="10" fill="#7aefbe">WEEKLY ARCHITECTURE REVIEW · VERIFIED</text>
+      <text x="0" y="74" class="display" font-size="45" fill="#f2f7f4">The model race</text>
+      <text x="0" y="124" class="display" font-size="45" fill="#f2f7f4">moved up a layer.</text>
+      <text x="0" y="170" class="body" font-size="17" fill="#a8b3ae">This week changed how agents are governed,</text>
+      <text x="0" y="196" class="body" font-size="17" fill="#a8b3ae">connected, and reviewed—not just which model</text>
+      <text x="0" y="222" class="body" font-size="17" fill="#a8b3ae">wins a benchmark.</text>
+      <g transform="translate(0 264)">
+        <text class="mono tiny" fill="#66756f">PRIMARY SIGNALS</text>
+        <text y="35" class="display" font-size="24" fill="#f2f7f4">12 labs · 17 changes · 100 repo commits</text>
+        <text y="62" class="body small" fill="#83928d">Seven-day window · primary sources only</text>
+      </g>
+      <g transform="translate(0 382)">
+        <rect width="405" height="78" rx="12" fill="#090f0d" stroke="#27372f"/>
+        <text x="18" y="25" class="mono tiny" fill="#72e6b7">EDITOR'S DECISION</text>
+        <text x="18" y="52" class="body small" fill="#e6ede9">Own the graph. Normalize the harness. Gate the connectors.</text>
+      </g>
+    </g>
+
+    <g transform="translate(510 91)">
+      <rect width="538" height="438" rx="14" fill="#050a08" stroke="#2b3a33"/>
+      <text x="20" y="28" class="mono tiny" fill="#66756f">OPERATING ARCHITECTURE / INTERACTIVE XYFLOW</text>
+      <g transform="translate(30 56)">
+        <rect x="0" y="104" width="112" height="56" rx="10" class="node"/><text x="19" y="137" class="label body" fill="#dce7e1">App events</text>
+        <rect x="164" y="28" width="145" height="58" rx="10" class="node"/><text x="190" y="54" class="mono" font-size="10" fill="#72e6b7">MCP POLICY</text><text x="190" y="72" class="label body" fill="#dce7e1">Connector gate</text>
+        <rect x="164" y="178" width="145" height="58" rx="10" class="node"/><text x="190" y="205" class="mono" font-size="10" fill="#6cd7ed">GRAPH STATE</text><text x="190" y="223" class="label body" fill="#dce7e1">Owned contract</text>
+        <rect x="362" y="103" width="145" height="60" rx="10" fill="#10271f" stroke="#35a879"/><text x="382" y="130" class="mono" font-size="10" fill="#72e6b7">HARNESS ROUTER</text><text x="382" y="149" class="label body" fill="#f0f7f3">Bounded agents</text>
+        <path d="M112 132H144Q154 132 154 122V67Q154 57 164 57" fill="none" stroke="#4b7866"/>
+        <path d="M112 132H144Q154 132 154 142V197Q154 207 164 207" fill="none" stroke="#4b7866"/>
+        <path d="M309 57H332Q346 57 346 72V119Q346 133 362 133" fill="none" stroke="#36b986"/>
+        <path d="M309 207H332Q346 207 346 192V148Q346 133 362 133" fill="none" stroke="#36b986"/>
+        <g transform="translate(57 286)">
+          <rect width="388" height="70" rx="12" fill="#080e0c" stroke="#27372f"/>
+          <text x="16" y="22" class="mono tiny" fill="#66756f">MODEL ROLES</text>
+          <g class="body" font-size="12" fill="#dce7e1"><text x="16" y="48">OpenAI</text><text x="94" y="48">Anthropic</text><text x="185" y="48">Google</text><text x="250" y="48">xAI</text><text x="296" y="48">Open weights</text></g>
+        </g>
+      </g>
+    </g>
+
+    <g transform="translate(42 570)">
+      <line x1="0" y1="0" x2="1006" y2="0" class="hair"/>
+      <text y="35" class="mono tiny" fill="#66756f">WEEKLY DELTAS</text>
+      <g transform="translate(0 57)">
+        <rect width="318" height="98" rx="12" fill="#080e0c" stroke="#26362f"/><text x="16" y="25" class="mono" font-size="10" fill="#72e6b7">OPENAI · API</text><text x="16" y="52" class="display" font-size="16" fill="#e8efeb">Responses becomes the boundary</text><text x="16" y="76" class="body" font-size="12" fill="#83928d">Assistants sunset · event triggers land</text>
+        <rect x="344" width="318" height="98" rx="12" fill="#080e0c" stroke="#26362f"/><text x="360" y="25" class="mono" font-size="10" fill="#6cd7ed">VERCEL · HARNESS</text><text x="360" y="52" class="display" font-size="16" fill="#e8efeb">Agents become interchangeable</text><text x="360" y="76" class="body" font-size="12" fill="#83928d">Cursor joins one HarnessAgent interface</text>
+        <rect x="688" width="318" height="98" rx="12" fill="#080e0c" stroke="#26362f"/><text x="704" y="25" class="mono" font-size="10" fill="#d9bb72">GITHUB · GOVERNANCE</text><text x="704" y="52" class="display" font-size="16" fill="#e8efeb">Policy follows the model</text><text x="704" y="76" class="body" font-size="12" fill="#83928d">Defaults, plugins, agentic code review</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(1192 164)">
+    <text class="mono tiny" fill="#66756f">MOBILE / PURPOSE-BUILT RAIL</text>
+    <rect y="22" width="330" height="760" rx="42" fill="#07100c" stroke="#33463e" stroke-width="2"/>
+    <rect x="96" y="36" width="138" height="6" rx="3" fill="#29372f"/>
+    <text x="24" y="83" class="display" font-size="12" fill="#e6ede9">FRANKX</text><text x="224" y="83" class="mono" font-size="9" fill="#83928d">ISSUE 01</text>
+    <line x1="24" y1="100" x2="306" y2="100" class="hair"/>
+    <rect x="24" y="126" width="208" height="22" rx="11" fill="#123a2c"/><text x="36" y="141" class="mono" font-size="8" fill="#72e6b7">WEEKLY REVIEW · VERIFIED</text>
+    <text x="24" y="190" class="display" font-size="29" fill="#f2f7f4">The model race</text><text x="24" y="226" class="display" font-size="29" fill="#f2f7f4">moved up a layer.</text>
+    <text x="24" y="260" class="body" font-size="13" fill="#98a59f">The architecture changed more than</text><text x="24" y="280" class="body" font-size="13" fill="#98a59f">the benchmark table.</text>
+    <g transform="translate(24 312)">
+      <rect width="282" height="178" rx="14" fill="#050a08" stroke="#2b3a33"/>
+      <text x="14" y="24" class="mono" font-size="8" fill="#66756f">TRACE VIEW · TAP TO EXPAND</text>
+      <rect x="18" y="56" width="70" height="36" rx="8" class="node"/><text x="32" y="78" class="body" font-size="9" fill="#dce7e1">Events</text>
+      <rect x="108" y="40" width="76" height="36" rx="8" class="node"/><text x="123" y="62" class="body" font-size="9" fill="#dce7e1">Graph OS</text>
+      <rect x="108" y="106" width="76" height="36" rx="8" class="node"/><text x="122" y="128" class="body" font-size="9" fill="#dce7e1">MCP gate</text>
+      <rect x="204" y="73" width="61" height="38" rx="8" fill="#10271f" stroke="#35a879"/><text x="215" y="96" class="body" font-size="9" fill="#e6ede9">Router</text>
+      <path d="M88 74H98Q103 74 103 64Q103 58 108 58M88 74H98Q103 74 103 98V124Q103 124 108 124M184 58H194Q199 58 199 76V92Q199 92 204 92M184 124H194Q199 124 199 108V92Q199 92 204 92" fill="none" stroke="#3e6c5a"/>
+    </g>
+    <text x="24" y="535" class="mono" font-size="9" fill="#72e6b7">THE DECISION</text>
+    <text x="24" y="565" class="display" font-size="18" fill="#e8efeb">Own the graph.</text><text x="24" y="591" class="display" font-size="18" fill="#e8efeb">Normalize the harness.</text><text x="24" y="617" class="display" font-size="18" fill="#e8efeb">Gate every connector.</text>
+    <rect x="24" y="661" width="282" height="52" rx="26" fill="#eaf4ee"/><text x="79" y="693" class="display" font-size="13" fill="#05100b">OPEN THE EVIDENCE LEDGER</text>
+  </g>
+  <g transform="translate(1192 958)"><text class="mono tiny" fill="#66756f">TYPE</text><text x="54" class="body" font-size="12" fill="#cbd5d0">Poppins / Inter / JetBrains Mono</text><text x="290" class="mono tiny" fill="#66756f">MOTION</text><text x="360" class="body" font-size="12" fill="#cbd5d0">one evidence-trace sweep</text></g>
+</svg>

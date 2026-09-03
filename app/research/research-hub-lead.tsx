@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, GitBranch, Network, ShieldCheck } from 'lucide-react'
 import {
   SWARM_BOARD_AS_OF,
   swarmRecommendations,
@@ -18,6 +18,57 @@ const evidenceLabel: Record<string, string> = {
 export default function ResearchHubLead() {
   return (
     <>
+      <section className="border-b border-white/[0.06] py-10 md:py-14" aria-labelledby="weekly-architecture-review">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/research/ai-architecture-review"
+            className="group grid overflow-hidden rounded-2xl border border-emerald-300/20 bg-[#07100c] transition-colors hover:border-emerald-300/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70 lg:grid-cols-[1fr_430px]"
+          >
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="flex flex-wrap items-center gap-2 font-mono text-[9px] tracking-[0.14em] text-emerald-200">
+                <span className="rounded-full border border-emerald-300/25 bg-emerald-300/[0.07] px-2.5 py-1.5">
+                  WEEKLY ARCHITECTURE REVIEW
+                </span>
+                <span className="text-white/35">24–31 AUG 2026</span>
+              </div>
+              <h2
+                id="weekly-architecture-review"
+                className="mt-6 max-w-3xl font-display text-3xl font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:text-4xl"
+              >
+                The model race moved up a layer.
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60">
+                A source-led review of agent runtimes, model endpoints, MCP control, connector
+                identity, and the graph-owned architecture emerging across our repositories.
+              </p>
+              <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-emerald-200">
+                Read the evidence console
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </span>
+            </div>
+
+            <div className="grid border-t border-white/10 bg-black/15 sm:grid-cols-3 lg:grid-cols-1 lg:border-l lg:border-t-0">
+              {[
+                { icon: ShieldCheck, value: '17', label: 'dated changes' },
+                { icon: GitBranch, value: '100', label: 'public commits sampled' },
+                { icon: Network, value: '8', label: 'governed architecture layers' },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="flex items-center gap-4 border-b border-white/10 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0 lg:border-b lg:border-r-0"
+                >
+                  <item.icon className="h-5 w-5 text-emerald-200" aria-hidden="true" />
+                  <span>
+                    <span className="block font-display text-2xl font-semibold text-white">{item.value}</span>
+                    <span className="block text-[11px] text-white/45">{item.label}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </Link>
+        </div>
+      </section>
+
       <section id="recommend" className="py-12 md:py-16 border-b border-white/[0.04]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-[10px] uppercase tracking-[0.22em] text-emerald-300/80 mb-3">

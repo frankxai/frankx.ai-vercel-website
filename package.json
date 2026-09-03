@@ -25,6 +25,7 @@
     "test:vault-metadata:rendered": "node --test scripts/tests/vault-metadata-rendered.test.mjs",
     "test:tallinn-experience": "node --test scripts/tests/tallinn-experience-foundry-contract.test.mjs",
     "test:ai-architecture": "node scripts/check-ai-architecture-contract.mjs",
+    "test:weekly-ai-architecture-review": "node --experimental-strip-types --test scripts/tests/weekly-ai-architecture-review-contract.test.mjs",
     "test:email-safety": "node --test scripts/tests/email-send-surface-contract.test.mjs",
     "test:checkout-sku": "node --test scripts/tests/checkout-sku-contract.test.mjs",
     "test:auction-bid": "node --test scripts/tests/auction-bid-route-contract.test.mjs",

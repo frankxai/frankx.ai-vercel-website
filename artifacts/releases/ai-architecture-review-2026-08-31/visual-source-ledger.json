@@ -1,0 +1,50 @@
+{
+  "schema": "starlight.visual_source_ledger.v1",
+  "captured_at": "2026-08-31T02:00:00Z",
+  "entries": [
+    {
+      "id": "frankx-live-home",
+      "kind": "live-reference",
+      "url": "https://www.frankx.ai/",
+      "rights_state": "first-party",
+      "used_for": "current obsidian shell, navigation rhythm, Poppins-led hierarchy",
+      "selected": true
+    },
+    {
+      "id": "frankx-live-ai-architecture",
+      "kind": "live-reference",
+      "url": "https://www.frankx.ai/ai-architecture",
+      "rights_state": "first-party",
+      "used_for": "technical content density, architecture terminology, internal route continuity",
+      "selected": true
+    },
+    {
+      "id": "frankx-brand-pack",
+      "kind": "brand-system",
+      "url": "https://github.com/frankxai/starlight-design-intelligence/tree/main/brand-packs/frankx",
+      "rights_state": "first-party",
+      "used_for": "product/technical mode, obsidian/emerald/cyan palette, type and motion rules",
+      "selected": true
+    },
+    {
+      "id": "simple-icons",
+      "kind": "logo-source",
+      "url": "https://github.com/simple-icons/simple-icons",
+      "rights_state": "CC0-1.0 data; trademarks remain owned by their respective holders",
+      "used_for": "deterministic GitHub, Vercel, Supabase, Temporal, Notion, LangChain, DeepSeek, Mistral, Qwen, and MiniMax marks",
+      "selected": true
+    },
+    {
+      "id": "provider-marks-existing",
+      "kind": "logo-source",
+      "url": "https://github.com/frankxai/frankx.ai-vercel-website/tree/main/public/images/logos",
+      "rights_state": "existing first-party repository assets; provider trademarks remain owned by their respective holders",
+      "used_for": "OpenAI, Anthropic, Google, and xAI identification",
+      "selected": true
+    }
+  ],
+  "anti_reference": {
+    "description": "Generic neon dashboard grids, anonymous glass cards, and benchmark-winner podiums",
+    "reason": "They blur evidence classes and make an editorial architecture decision look like a template."
+  }
+}

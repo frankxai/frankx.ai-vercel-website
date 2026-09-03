@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 961,
+    "total": 962,
     "aliases": 58,
     "byType": {
       "core": 24,
-      "section": 431,
+      "section": 432,
       "community": 17,
       "tool": 61,
       "static": 15,
@@ -8604,6 +8604,17 @@
         "sovereignty"
       ],
       "type": "research"
+    },
+    {
+      "href": "/research/ai-architecture-review",
+      "title": "AI Architecture Review",
+      "tags": [
+        "research",
+        "ai",
+        "architecture",
+        "review"
+      ],
+      "type": "section"
     },
     {
       "href": "/research/ai-contemplative-practice",
