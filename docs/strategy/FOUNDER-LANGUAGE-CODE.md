@@ -8,6 +8,8 @@ Speak to **the founder**.
 
 Entrepreneur, co-founder, solopreneur, coach, expert, and creator-led operator are contexts—not separate avatars—when the person carries risk, makes consequential decisions, and owns the outcome.
 
+This is a language and routing adapter, not an erasure instruction. FrankX remains a living studio and portfolio: AI architecture, founder systems, music, books, experiments, research, and the Human Layer reinforce one another. Apply the founder lens by naming a consequential situation and offering the right next route—not by rewriting every surface into generic founder coaching or replacing the homepage. The homepage is governed by [`HOMEPAGE-PRESERVATION-CONTRACT.md`](./HOMEPAGE-PRESERVATION-CONTRACT.md).
+
 Preferred second person:
 
 - “You are building…”
