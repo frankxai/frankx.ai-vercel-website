@@ -121,6 +121,7 @@
     "claims:audit:strict": "node scripts/audit-marketing-claims.mjs --strict",
     "ai-slop:audit": "node scripts/audit-ai-slop.mjs",
     "ai-slop:audit:strict": "node scripts/audit-ai-slop.mjs --strict",
+    "editorial:signals": "node scripts/audit-editorial-signals.mjs",
     "agents:worktrees": "bash scripts/agents/setup-worktrees.sh",
     "agents:manifest-check": "node scripts/agents/validate-agent-harness.mjs",
     "agents:manifest-check:all": "node scripts/agents/validate-agent-harness.mjs --all",
