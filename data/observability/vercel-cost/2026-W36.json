@@ -1,0 +1,42 @@
+{
+  "week": "2026-W36",
+  "generatedAt": "2026-08-31T07:10:05Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-08-24T07:10:05Z",
+  "windowEnd": "2026-08-31T07:10:05Z",
+  "metrics": {
+    "count_total": 100,
+    "count_total_note": "Lower bound — 5 pages (100 deploys) fetched covering ~1.3 of 7 days (Aug 30 00:52 – Aug 31 07:10 UTC); pagination stopped due to context constraints. Projected full-window total: 400–600+.",
+    "count_production": 20,
+    "count_preview": 80,
+    "count_skipped": 17,
+    "count_error": 2,
+    "count_ready": 81,
+    "duration_p50_seconds": null,
+    "duration_p95_seconds": null,
+    "duration_max_seconds": null,
+    "total_build_minutes": null,
+    "duration_method": "not_sampled",
+    "duration_proxy_note": "Build duration requires get_deployment per READY deploy; not sampled due to context constraints. W34 proxy (same Turbopack stack): p50=526s, p95=546s.",
+    "error_deploys": [
+      {"id": "dpl_6Qd344ZoVof4LoSZHTWNUAgsqFNd", "branch": "agent/hermes/www-canonical-foundry-work", "created": 1788120565701},
+      {"id": "dpl_2vHC6ryC1gGcisEn9xfpZXjNAt5r", "branch": "agent/codex/work-route-static-404-20260830", "created": 1788057638912}
+    ]
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W35",
+    "note": "2026-W35 snapshot not found — baseline run. No deltas available.",
+    "duration_p50_seconds": "baseline",
+    "count_total": "baseline",
+    "total_build_minutes": "baseline"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_total >>300 (RED): 100 deploys sampled in ~1.3 days; projected 7-day total 400–600+. Intensive CI debugging activity (work-route-static-404, fix-docs-required-check, hermes/www-canonical-*). Pagination incomplete — true count unknown.",
+    "count_error=2 (RED ≥2 threshold): dpl_6Qd344ZoVof4LoSZHTWNUAgsqFNd (hermes/www-canonical-foundry-work, import error fixed in next commit) and dpl_2vHC6ryC1gGcisEn9xfpZXjNAt5r (codex/work-route-static-404, test assertion failure). Both branch-specific, not systemic.",
+    "duration_p50 proxy ~526s (RED >360s): Build times unchanged from W34 (same Turbopack + Next.js stack). Fresh sampling not performed — requires get_deployment per READY deploy.",
+    "2026-W35 snapshot missing — no delta comparison possible. This run establishes the W36 baseline.",
+    "deploy_skip_guard shipped this week (PR #607, merged to main): vercel.json ignoreCommand now suppresses [agent-wip] preview builds. Effect on deploy count will be measurable in W37."
+  ]
+}
