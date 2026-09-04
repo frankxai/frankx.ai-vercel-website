@@ -6,11 +6,14 @@ crossTags:
   - reality
   - consciousness
   - faith
-thesisSentence: "God is not an entity somewhere, and not just a projection of the mind. Both reductions miss what every serious tradition that has lived through centuries has been pointing at — a depth dimension to reality from which existence, consciousness, love, intelligibility, and beauty all arise."
+thesisSentence: "Different traditions ask whether reality has a depth not exhausted by ordinary description. Their answers sometimes resemble one another and often conflict; this essay tests those resonances without treating them as one doctrine."
 dateWritten: "2026-05-03"
 datePublished: "2026-05-03"
-version: "1.0"
+version: "1.1"
 status: live
+provenance: mixed
+editorialStatus: comparative-religion-review-required
+authorityBoundary: "FrankX working synthesis; not Starlight canon, religious authority, or scientific consensus"
 traditions:
   - christian-mysticism
   - advaita-vedanta
@@ -59,7 +62,7 @@ faq:
 aiInvolvement: "Worked through with Claude as research partner over multiple sessions. The breadth wouldn't be possible without it. The synthesis is mine."
 ---
 
-God is not an entity somewhere, and not just a projection of the mind. Both reductions miss what every serious tradition that has lived through centuries has been pointing at — a depth dimension to reality from which existence, consciousness, love, intelligibility, and beauty all arise. This entry is a synthesis of how seven contemplative traditions and three modern scientific frames converge on that depth, and where they do not.
+Different traditions ask whether reality has a depth not exhausted by ordinary description. Their answers sometimes resemble one another and often conflict. This essay is a personal comparative synthesis: it is not Starlight canon, religious authority, or scientific consensus.
 
 The traditions disagree on at least three real points. These do not collapse into "all paths up the same mountain." The disagreements are part of what makes the synthesis honest.
 
@@ -87,11 +90,11 @@ The traditions disagree on at least three real points. These do not collapse int
 
 The 20th and 21st centuries added vocabularies the traditions did not have. Three frames are particularly relevant.
 
-**[David Bohm's](/canon/bohm) implicate order.** Bohm, a physicist who worked with Einstein, proposed in *Wholeness and the Implicate Order* (1980) that the explicate order we observe is unfolded from a deeper implicate order in which all things are enfolded into all others. Not metaphor — a serious physical proposal that consciousness and matter share a deeper ground. Bohm later collaborated with Krishnamurti on dialogues that read as Advaita meeting quantum mechanics.
+**[David Bohm's](/canon/bohm) implicate order.** Bohm developed an interpretation and theoretical vocabulary in which observable order unfolds from a deeper implicate order. He also extended this language philosophically toward mind and wholeness. Those extensions are serious proposals, not experimental proof that consciousness and matter share a metaphysical ground. His dialogues with Krishnamurti belong to philosophical comparison, not a result of quantum mechanics.
 
-**[Penrose-Hameroff Orch OR](/canon/penrose-hameroff).** Roger Penrose (Nobel laureate, 2020) and Stuart Hameroff proposed that consciousness arises from quantum processes in microtubules within neurons, developed across *The Emperor's New Mind* (1989), *Shadows of the Mind* (1994), and the 2014 *Physics of Life Reviews* review. The theory remains contested. What is no longer contested is that quantum processes occur in biological systems at body temperature — which removes the original "warm wet brain" objection. Whether consciousness *is* quantum remains open. That the question is now physics, not philosophy alone, is itself a shift.
+**[Penrose-Hameroff Orch OR](/canon/penrose-hameroff).** Roger Penrose (Nobel laureate, 2020) and Stuart Hameroff proposed that consciousness arises from quantum processes in microtubules within neurons, developed across *The Emperor's New Mind* (1989), *Shadows of the Mind* (1994), and the 2014 *Physics of Life Reviews* review. The theory remains contested. Quantum effects in some biological systems do not establish that neuronal microtubules sustain the specific coherent processes Orch OR requires, nor that consciousness is quantum. The proposal remains a speculative research program with substantial physical and neuroscientific objections.
 
-**Donald Hoffman's interface theory.** In *The Case Against Reality* (2019), Hoffman argues from evolutionary game theory that natural selection optimizes for fitness, not truth — that what we perceive is a user interface, not a window onto reality. The implications align with Advaita's *maya* and Kabbalah's *Sefirot*-as-mediators in ways neither tradition could have anticipated.
+**Donald Hoffman's interface theory.** In *The Case Against Reality* (2019), Hoffman argues from evolutionary models that perception may optimize fitness rather than veridical representation. Comparisons with Advaita's *maya* or Kabbalistic mediation are this essay's interpretive analogies; they do not make the systems historically or philosophically identical.
 
 To these can be added Rupert Sheldrake's morphic resonance (contested but persistently interesting), Bernardo Kastrup's analytic idealism, and Iain McGilchrist's hemispheric thesis on attention and reality.
 
@@ -99,9 +102,9 @@ The rail does not claim science proves mysticism. It maps where the questions co
 
 ---
 
-## Where these all agree
+## Recurring family resemblances
 
-If the vocabularies are stripped and only what each tradition (and the science) actually points at is held — there is a convergent core.
+Across the traditions selected here, recurring themes can be compared without asserting universal agreement. Science is not counted as another tradition and does not ratify these themes.
 
 1. Reality has a depth dimension that ordinary perception does not access.
 2. Love or its analog (compassion, mercy, agape) is built into the structure, not added by humans.
@@ -111,7 +114,7 @@ If the vocabularies are stripped and only what each tradition (and the science) 
 6. The ego, the small self, has to surrender for the deeper Self to be lived.
 7. The path is both inward — contemplation — and outward — love in action.
 
-That is the convergent core. Anyone who claims these traditions disagree at the foundation has not sat with them long enough.
+These are family resemblances proposed by this essay, not a hidden doctrine shared by every tradition.
 
 ## Where they actually disagree
 
@@ -129,7 +132,7 @@ These three are real. Any synthesis that erases them is dishonest.
 
 ## Where this leaves the question
 
-For now, the position this synthesis lands on:
+For now, the original FrankX philosophical position—not a claim about what all traditions or Starlight canon must hold—is:
 
 God — or what the word fails to name — is the deepest layer of Reality itself. Not a thing among things. Not a being among beings. The *is-ness* underneath all that is. More personal than the impersonal traditions admit, because the ground produces persons capable of being addressed. More immanent than the dualist traditions admit, because the gap was never real. Imagination is one of the channels through which it moves, but Reality is bigger than imagination.
 
@@ -139,4 +142,4 @@ The walk continues at [/on-reality/](/on-reality), [/on-consciousness/](/on-cons
 
 ---
 
-This entry will revise as the inquiry continues. v1.0, written 3 May 2026.
+This entry will revise as the inquiry continues. v1.1, provenance correction 4 September 2026.
