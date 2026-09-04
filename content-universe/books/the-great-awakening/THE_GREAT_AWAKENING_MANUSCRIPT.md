@@ -1,4 +1,7 @@
 # THE GREAT AWAKENING
+
+> **Editorial status — staging / claims review required.** This manuscript is original FrankX philosophical and literary material. It is not Starlight canon, religious revelation, historical consensus, or scientific authority. Statements about consciousness, ecology, society, economics, and physics require claim-level sourcing or explicit interpretation labels before publication. Superseded claims remain in place for review rather than being silently deleted.
+
 ## Consciousness, Technology, and the Birth of Humanity's Golden Age
 
 **A Vision by FrankX**
