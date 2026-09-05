@@ -29,6 +29,13 @@ if [ "${VERCEL_ENV:-}" = "production" ]; then
   exit 1
 fi
 
+# An explicit same-SHA redeploy must take precedence over preview cost guards.
+# Operators use it after changing environment variables without changing files.
+if [ -n "$PREVIOUS_SHA" ] && [ "$CURRENT_SHA" = "$PREVIOUS_SHA" ]; then
+  echo "[should-deploy] Manual redeploy on same commit ($CURRENT_SHA) — PROCEEDING (likely env-var change)."
+  exit 1
+fi
+
 # 0a. Agents may push intermediate preview checkpoints without spending build
 #     minutes, including branch pushes made before a pull request exists.
 #     The final coherent commit MUST omit [agent-wip].
@@ -63,19 +70,17 @@ if [ -n "${VERCEL_GIT_PULL_REQUEST_ID:-}" ] && [ -n "${VERCEL_GIT_REPO_OWNER:-}"
   fi
 fi
 
-# 1. Env-var-only redeploy (Vercel dashboard "Redeploy"): same SHA twice.
-#    The user clicked redeploy precisely because something changed (env vars).
-#    File diff would be empty → would falsely SKIP. Always PROCEED in this case.
-if [ -n "$PREVIOUS_SHA" ] && [ "$CURRENT_SHA" = "$PREVIOUS_SHA" ]; then
-  echo "[should-deploy] Manual redeploy on same commit ($CURRENT_SHA) — PROCEEDING (likely env-var change)."
-  exit 1
-fi
-
-# 2. Pick a base SHA to diff against:
+# 1. Pick a base SHA to diff against:
 #    - Prefer VERCEL_GIT_PREVIOUS_SHA (handles merge commits + multi-commit pushes correctly)
-#    - Fall back to HEAD^ (for previews where Vercel doesn't set the env var)
+#    - Fall back to HEAD^ only when Vercel did not supply a previous SHA.
+#      An explicit but unavailable base may precede relevant changes that HEAD^
+#      cannot see. Do not turn missing history into a docs-only verdict.
 BASE_SHA=""
-if [ -n "$PREVIOUS_SHA" ] && git cat-file -e "$PREVIOUS_SHA" 2>/dev/null; then
+if [ -n "$PREVIOUS_SHA" ]; then
+  if ! git cat-file -e "${PREVIOUS_SHA}^{commit}" 2>/dev/null; then
+    echo "[should-deploy] Previous deployment commit is unavailable — PROCEEDING."
+    exit 1
+  fi
   BASE_SHA="$PREVIOUS_SHA"
   echo "[should-deploy] Diffing against VERCEL_GIT_PREVIOUS_SHA $BASE_SHA"
 elif git rev-parse HEAD^ >/dev/null 2>&1; then
@@ -103,6 +108,8 @@ RELEVANT_PATHS=(
   types
   package.json
   pnpm-lock.yaml
+  # Dependency overrides and lifecycle approvals affect every install.
+  pnpm-workspace.yaml
   next.config.mjs
   vercel.json
   tailwind.config.js
@@ -120,7 +127,7 @@ RELEVANT_PATHS=(
   instrumentation.ts
 )
 
-# 3. Run the diff. Capture the exit code explicitly so we can distinguish:
+# 2. Run the diff. Capture the exit code explicitly so we can distinguish:
 #    rc=0 → no diff → SKIP
 #    rc=1 → diff exists → PROCEED
 #    rc=other → git error (corrupt repo, missing object, shallow clone parent unreachable) → PROCEED safely
