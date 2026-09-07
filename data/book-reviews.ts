@@ -1,8 +1,10 @@
 import type { BookReview } from '@/app/books/types';
 import { handbookToHigherConsciousnessReview } from '@/data/handbook-to-higher-consciousness';
+import { spiritualReadingGuides, taoReadingGuide } from './spiritual-reading-guides';
 
 export const bookReviews: BookReview[] = [
   handbookToHigherConsciousnessReview,
+  ...spiritualReadingGuides,
   {
     slug: 'e-squared',
     title: 'E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality',
@@ -6780,6 +6782,7 @@ export const bookReviews: BookReview[] = [
   },
   {
     slug: 'tao-te-ching',
+    guide: taoReadingGuide,
     title: 'Tao Te Ching',
     author: 'Lao Tzu',
     coverImage: '/images/library/tao-te-ching-reading-capture.jpg',

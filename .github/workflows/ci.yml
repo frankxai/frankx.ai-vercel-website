@@ -79,6 +79,9 @@ jobs:
       - name: Sacred-texts corpus
         run: pnpm run validate:sacred-texts
 
+      - name: Library search and reading guides
+        run: pnpm run test:library
+
       - name: Build
         run: pnpm run build
         env:

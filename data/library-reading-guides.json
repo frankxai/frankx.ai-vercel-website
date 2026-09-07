@@ -1,0 +1,1345 @@
+[
+  {
+    "slug": "bible",
+    "title": "The Bible",
+    "author": "Multiple authors; Christian scriptural traditions",
+    "tradition": "Christianity",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Christianity",
+      "Ethics"
+    ],
+    "summary": "A collection of narrative, law, poetry, prophecy, Gospels, and letters. Read each genre on its own terms, with attention to its historical and religious setting.",
+    "context": "Christian traditions receive different biblical canons. The Old Testament overlaps with Jewish scripture, but its arrangement and interpretation are not interchangeable with Jewish readings.",
+    "editionNote": "Choose a named translation with notes. Catholic, Protestant, and Orthodox editions differ in their contents; compare translations before building an argument around a single English word.",
+    "readingPath": [
+      {
+        "title": "Mark",
+        "note": "Begin with a complete Gospel to follow its narrative."
+      },
+      {
+        "title": "Psalms and Ecclesiastes",
+        "note": "Compare prayer, lament, and wisdom as different forms of attention."
+      },
+      {
+        "title": "Genesis and Exodus",
+        "note": "Return to the larger narrative of creation, covenant, and liberation."
+      }
+    ],
+    "keyInsights": [
+      "Literary genre changes how a passage should be read.",
+      "Read individual verses within the argument or narrative around them.",
+      "Interpretive disagreements are part of the history of biblical reading."
+    ],
+    "sources": [
+      {
+        "title": "BibleGateway: available translations",
+        "url": "https://www.biblegateway.com/versions/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "tanakh",
+      "bhagavad-gita",
+      "quran"
+    ],
+    "aliases": [
+      "holy bible",
+      "old testament",
+      "new testament",
+      "Jesus",
+      "Gospels",
+      "Psalms"
+    ]
+  },
+  {
+    "slug": "tanakh",
+    "title": "The Tanakh",
+    "author": "Multiple authors; Jewish scriptural tradition",
+    "tradition": "Judaism",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Judaism",
+      "Ethics"
+    ],
+    "summary": "The Jewish Bible comprises Torah, Nevi’im (Prophets), and Ketuvim (Writings). Reading alongside commentary reveals a continuing tradition of argument and interpretation.",
+    "context": "Torah names the first five books in this context. It is not another name for the whole Tanakh. Jewish interpretation should remain visible in a cross-tradition library.",
+    "editionNote": "Sefaria places Hebrew texts alongside named translations and commentaries. Check the selected version and distinguish the biblical passage from later interpretation.",
+    "readingPath": [
+      {
+        "title": "Genesis",
+        "note": "Read the family narratives with an accompanying commentary."
+      },
+      {
+        "title": "Exodus",
+        "note": "Follow liberation, covenant, and communal responsibility."
+      },
+      {
+        "title": "Psalms and Job",
+        "note": "Compare praise and protest without forcing them into one voice."
+      }
+    ],
+    "keyInsights": [
+      "A collection contains multiple genres and historical voices.",
+      "Commentary can preserve disagreement rather than eliminate it.",
+      "Torah, Prophets, and Writings form distinct divisions."
+    ],
+    "sources": [
+      {
+        "title": "Sefaria: Tanakh",
+        "url": "https://www.sefaria.org/texts/Tanakh",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "bible",
+      "quran"
+    ],
+    "aliases": [
+      "Torah",
+      "Hebrew Bible",
+      "Neviim",
+      "Ketuvim"
+    ]
+  },
+  {
+    "slug": "quran",
+    "title": "The Quran",
+    "author": "Islamic scripture",
+    "tradition": "Islam",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Islam",
+      "Ethics"
+    ],
+    "summary": "The central scripture of Islam, received by Muslims as divine revelation in Arabic. Its recitation, ethical address, and theological claims belong together.",
+    "context": "An English translation is an interpretation of the Arabic text. Tafsir adds a further layer of commentary; neither should silently replace the source.",
+    "editionNote": "Use Quran.com with a named translation and consult tafsir for context. Record the surah and verse when citing a passage.",
+    "readingPath": [
+      {
+        "title": "Al-Fatihah",
+        "note": "Begin with the opening chapter and its place in prayer."
+      },
+      {
+        "title": "Maryam and Yusuf",
+        "note": "Read sustained narratives with commentary."
+      },
+      {
+        "title": "A guided full reading",
+        "note": "Use a study edition to follow recurring themes across surahs."
+      }
+    ],
+    "keyInsights": [
+      "Arabic remains central to the text’s religious life.",
+      "Translation choices affect the reading of key concepts.",
+      "A verse’s surrounding discourse matters for interpretation."
+    ],
+    "sources": [
+      {
+        "title": "Quran.com: text and translations",
+        "url": "https://quran.com/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "bible",
+      "tanakh",
+      "bhagavad-gita"
+    ],
+    "aliases": [
+      "Koran",
+      "Qur’an",
+      "Qur an",
+      "surah",
+      "Allah"
+    ]
+  },
+  {
+    "slug": "bhagavad-gita",
+    "title": "The Bhagavad Gita",
+    "author": "Traditionally attributed to Vyasa",
+    "tradition": "Hindu traditions",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Hinduism",
+      "Philosophy",
+      "Yoga"
+    ],
+    "summary": "A dialogue between Krishna and Arjuna about action, knowledge, devotion, and liberation, situated within the Mahabharata.",
+    "context": "Arjuna’s crisis is ethical and religious. Reducing the work to productivity advice strips away the devotional setting and the difficulty of his decision.",
+    "editionNote": "Eknath Easwaran offers an accessible English edition. Compare a second named translation when studying philosophical terms or differences between Hindu schools.",
+    "readingPath": [
+      {
+        "title": "Arjuna’s crisis",
+        "note": "Read chapters 1–2 for the situation that makes the teaching necessary."
+      },
+      {
+        "title": "Action and devotion",
+        "note": "Read chapters 3 and 12 together."
+      },
+      {
+        "title": "The whole dialogue",
+        "note": "Return to the full work before isolating a favourite teaching."
+      }
+    ],
+    "keyInsights": [
+      "The text considers several paths within a larger religious vision.",
+      "Action without attachment does not mean absence of responsibility.",
+      "Different schools interpret the relation between self and ultimate reality differently."
+    ],
+    "sources": [
+      {
+        "title": "Blue Mountain Center: The Bhagavad Gita",
+        "url": "https://www.bmcm.org/store/the-bhagavad-gita/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "upanishads",
+      "yoga-sutras",
+      "autobiography-of-a-yogi"
+    ],
+    "aliases": [
+      "Gita",
+      "Krishna",
+      "Arjuna",
+      "karma yoga"
+    ]
+  },
+  {
+    "slug": "upanishads",
+    "title": "The Upanishads",
+    "author": "Multiple teachers and textual traditions",
+    "tradition": "Hindu traditions",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Hinduism",
+      "Philosophy"
+    ],
+    "summary": "A family of texts exploring self, ultimate reality, knowledge, and liberation through dialogues, stories, and instruction.",
+    "context": "The Upanishads are not one book by one author. Their interpretations shape several Vedanta traditions with substantial philosophical differences.",
+    "editionNote": "Easwaran’s edition is a selection. Check its contents rather than assuming any single English volume contains every Upanishad.",
+    "readingPath": [
+      {
+        "title": "Katha",
+        "note": "Start with Nachiketa’s encounter with death."
+      },
+      {
+        "title": "Isha and Kena",
+        "note": "Compare the compact forms of philosophical questioning."
+      },
+      {
+        "title": "Chandogya and Brihadaranyaka",
+        "note": "Read longer dialogues with scholarly or traditional notes."
+      }
+    ],
+    "keyInsights": [
+      "Stories and teacher-student exchanges carry philosophical work.",
+      "Atman and Brahman require contextual reading.",
+      "Later schools disagree about how the texts fit together."
+    ],
+    "sources": [
+      {
+        "title": "Blue Mountain Center: The Upanishads",
+        "url": "https://www.bmcm.org/store/the-upanishads/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "bhagavad-gita",
+      "yoga-sutras"
+    ],
+    "aliases": [
+      "Vedanta",
+      "Atman",
+      "Brahman",
+      "Katha"
+    ]
+  },
+  {
+    "slug": "dhammapada",
+    "title": "The Dhammapada",
+    "author": "Teachings attributed to the Buddha",
+    "tradition": "Buddhism",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Buddhism",
+      "Ethics",
+      "Meditation"
+    ],
+    "summary": "A Buddhist verse collection concerned with conduct, attention, suffering, and the path of practice.",
+    "context": "The verses belong within Buddhist ethical and contemplative teaching. Reading them only as motivational sayings obscures that context.",
+    "editionNote": "Choose a named translation. Easwaran’s edition includes an interpretive introduction; keep that commentary distinct from the translated verses.",
+    "readingPath": [
+      {
+        "title": "The opening pairs",
+        "note": "Notice the connection between intention and action."
+      },
+      {
+        "title": "Heedfulness",
+        "note": "Read the verses as ethical instruction as well as advice about attention."
+      },
+      {
+        "title": "A second translation",
+        "note": "Compare a small passage rather than collecting isolated quotations."
+      }
+    ],
+    "keyInsights": [
+      "Attention and conduct are linked throughout the collection.",
+      "Compact verses benefit from wider Buddhist context.",
+      "A translation is a reading of the text, not a neutral copy."
+    ],
+    "sources": [
+      {
+        "title": "Blue Mountain Center: The Dhammapada",
+        "url": "https://www.bmcm.org/store/the-dhammapada/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "heart-sutra",
+      "the-miracle-of-mindfulness"
+    ],
+    "aliases": [
+      "Buddha",
+      "Pali",
+      "dharma"
+    ]
+  },
+  {
+    "slug": "heart-sutra",
+    "title": "The Heart Sutra",
+    "author": "Mahayana Buddhist scripture",
+    "tradition": "Mahayana Buddhism",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Buddhism",
+      "Philosophy"
+    ],
+    "summary": "A short Perfection of Wisdom scripture centred on emptiness and the relation between form and emptiness.",
+    "context": "Emptiness is a Buddhist philosophical teaching. It should not be flattened into nihilism or treated as an early statement of quantum physics.",
+    "editionNote": "84000’s Toh 21 translation supplies source identification and notes. Other traditions transmit different versions and recitation practices.",
+    "readingPath": [
+      {
+        "title": "Read the complete sutra",
+        "note": "Its brevity makes reading the whole text possible before analysis."
+      },
+      {
+        "title": "Study the notes",
+        "note": "Track terms such as form and emptiness in their Buddhist context."
+      },
+      {
+        "title": "Read with commentary",
+        "note": "Choose a teacher or scholar who explains the tradition explicitly."
+      }
+    ],
+    "keyInsights": [
+      "The whole text provides context for its best-known lines.",
+      "Short scripture can require substantial conceptual background.",
+      "Philosophical parallels do not establish scientific equivalence."
+    ],
+    "sources": [
+      {
+        "title": "84000: The Heart of the Perfection of Wisdom",
+        "url": "https://84000.co/translation/toh21",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "dhammapada",
+      "the-miracle-of-mindfulness"
+    ],
+    "aliases": [
+      "Prajnaparamita",
+      "emptiness",
+      "Avalokiteshvara"
+    ]
+  },
+  {
+    "slug": "guru-granth-sahib",
+    "title": "Sri Guru Granth Sahib",
+    "author": "Sikh Gurus and other devotional poets",
+    "tradition": "Sikhism",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Sikhism",
+      "Devotion",
+      "Music"
+    ],
+    "summary": "The Sikh scripture, revered as the living Guru, brings together devotional compositions with a deep relationship to music and communal practice.",
+    "context": "Its status in Sikh life exceeds that of a philosophical anthology. Read with awareness of worship, service, and the community that preserves it.",
+    "editionNote": "Use an identified Gurmukhi text and named English translation. Musical organization and terminology deserve explanation from Sikh sources.",
+    "readingPath": [
+      {
+        "title": "Sikh orientation",
+        "note": "Begin with an introduction to the scripture’s role as Guru."
+      },
+      {
+        "title": "Japji Sahib",
+        "note": "Study the opening composition with Sikh commentary."
+      },
+      {
+        "title": "Listen with context",
+        "note": "Explore the relation between the written compositions and kirtan."
+      }
+    ],
+    "keyInsights": [
+      "The scripture includes multiple devotional voices.",
+      "Music is part of its organization and reception.",
+      "Translation alone does not reproduce its communal or liturgical life."
+    ],
+    "sources": [
+      {
+        "title": "SGPC: Sri Guru Granth Sahib",
+        "url": "https://sgpc.net/sri-guru-granth-sahib/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "bhagavad-gita",
+      "quran"
+    ],
+    "aliases": [
+      "Adi Granth",
+      "Gurbani",
+      "Japji",
+      "Guru Nanak"
+    ]
+  },
+  {
+    "slug": "yoga-sutras",
+    "title": "The Yoga Sutras",
+    "author": "Attributed to Patanjali",
+    "tradition": "Classical Yoga",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Yoga",
+      "Philosophy",
+      "Meditation"
+    ],
+    "summary": "A compact classical account of yoga concerned with mind, practice, and liberation. Its scope extends well beyond physical postures.",
+    "context": "Read classical Yoga on its own philosophical terms. Later yoga movements and modern wellness practices draw on it selectively.",
+    "editionNote": "Edwin F. Bryant’s translation and commentary offers a substantial study edition. Distinguish the sutra from the commentary surrounding it.",
+    "readingPath": [
+      {
+        "title": "An orientation to the system",
+        "note": "Use the introduction to understand the philosophical vocabulary."
+      },
+      {
+        "title": "Practice and the eight limbs",
+        "note": "Study the ethical and contemplative framework together."
+      },
+      {
+        "title": "A slow complete reading",
+        "note": "Return to difficult aphorisms after reading their commentaries."
+      }
+    ],
+    "keyInsights": [
+      "Aphorisms assume a context that commentary makes visible.",
+      "Ethical discipline belongs to the system of practice.",
+      "Modern uses of the word yoga do not all describe the same tradition."
+    ],
+    "sources": [
+      {
+        "title": "Macmillan: Edwin F. Bryant edition",
+        "url": "https://us.macmillan.com/books/9780865477360/theyogasutrasofpatanyjali/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "bhagavad-gita",
+      "vijnana-bhairava-tantra",
+      "autobiography-of-a-yogi"
+    ],
+    "aliases": [
+      "Patanjali",
+      "Patañjali",
+      "eight limbs",
+      "ashtanga"
+    ]
+  },
+  {
+    "slug": "zhuangzi",
+    "title": "Zhuangzi",
+    "author": "Zhuangzi and later contributors",
+    "tradition": "Daoism",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Taoism",
+      "Philosophy"
+    ],
+    "summary": "A Daoist philosophical collection that uses stories, humour, paradox, and shifting perspectives to unsettle rigid judgments.",
+    "context": "The work has a complex textual history. Its stories invite interpretation; a single neat doctrine rarely captures their full effect.",
+    "editionNote": "Burton Watson’s complete translation differs in scope from editions of the Inner Chapters only. Check which chapters an edition contains.",
+    "readingPath": [
+      {
+        "title": "Inner Chapters",
+        "note": "Begin with the first seven chapters as a coherent starting selection."
+      },
+      {
+        "title": "Read the stories twice",
+        "note": "Notice how a second perspective changes the apparent lesson."
+      },
+      {
+        "title": "Explore the wider collection",
+        "note": "Use notes to understand differences across textual layers."
+      }
+    ],
+    "keyInsights": [
+      "Perspective can change what looks useful or useless.",
+      "Parable and humour do philosophical work.",
+      "A complete-work edition and a selected edition serve different reading goals."
+    ],
+    "sources": [
+      {
+        "title": "Columbia University Press: The Complete Works of Zhuangzi",
+        "url": "https://cup.columbia.edu/book/the-complete-works-of-zhuangzi/9780231164740/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "tao-te-ching",
+      "meditations"
+    ],
+    "aliases": [
+      "Chuang Tzu",
+      "Chuang-tzu",
+      "Zhuang Zhou",
+      "Daoism"
+    ]
+  },
+  {
+    "slug": "vijnana-bhairava-tantra",
+    "title": "Vijñāna-bhairava-tantra",
+    "author": "Anonymous; Shaiva Tantric tradition",
+    "tradition": "Shaiva Tantra",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Tantra",
+      "Meditation",
+      "Hinduism"
+    ],
+    "summary": "A historical Shaiva Tantric dialogue presenting 112 contemplative practices within a religious understanding of awareness.",
+    "context": "Tantra names multiple traditions, not a single book or a synonym for sexuality. This text belongs to a particular Shaiva context.",
+    "editionNote": "Christopher Wallis’s translation and introductory study identify the text and its setting. Keep modern adaptations distinct from a source translation.",
+    "readingPath": [
+      {
+        "title": "Historical introduction",
+        "note": "Locate the text in Shaiva Tantra before reading techniques."
+      },
+      {
+        "title": "The framing dialogue",
+        "note": "Read the opening exchange before the individual contemplations."
+      },
+      {
+        "title": "Study selected passages",
+        "note": "Use commentary to clarify terms; this guide is a reading map, not initiation."
+      }
+    ],
+    "keyInsights": [
+      "The dialogue frames the practices within a religious worldview.",
+      "Translation choices shape how contemplative instructions are understood.",
+      "The text represents one strand within a much broader Tantric history."
+    ],
+    "sources": [
+      {
+        "title": "Christopher Wallis: introduction and verse one",
+        "url": "https://hareesh.org/blog/2022/5/30/vbt-intro-and-verse-one",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "tantra-illuminated",
+      "yoga-sutras",
+      "upanishads"
+    ],
+    "aliases": [
+      "Vijnana Bhairava",
+      "Vigyan Bhairav",
+      "Vijnanabhairava",
+      "112 meditations",
+      "tantra"
+    ]
+  },
+  {
+    "slug": "tantra-illuminated",
+    "title": "Tantra Illuminated",
+    "author": "Christopher D. Wallis",
+    "tradition": "Study of Hindu Tantra",
+    "kind": "Modern commentary",
+    "categories": [
+      "Tantra",
+      "Hinduism",
+      "Philosophy"
+    ],
+    "summary": "A modern introduction to the history and philosophy of Tantric traditions, useful for placing popular uses of the word Tantra in context.",
+    "context": "Wallis writes as a scholar-practitioner. The book is a modern study, not an ancient scripture or the voice of every Tantric lineage.",
+    "editionNote": "Check the edition. Read alongside a named primary text to distinguish historical explanation from the source being explained.",
+    "readingPath": [
+      {
+        "title": "Historical map",
+        "note": "Begin with the account of traditions and lineages."
+      },
+      {
+        "title": "Key philosophical terms",
+        "note": "Keep a short glossary in the author’s terms."
+      },
+      {
+        "title": "Pair a primary text",
+        "note": "Read the Vijñāna-bhairava-tantra with that context in view."
+      }
+    ],
+    "keyInsights": [
+      "History clarifies differences obscured by modern marketing.",
+      "A scholar-practitioner’s perspective should remain attributed.",
+      "Primary text and modern explanation serve complementary roles."
+    ],
+    "sources": [
+      {
+        "title": "Christopher Wallis: Tantra Illuminated",
+        "url": "https://hareesh.org/books-nuova-pagina/tantra-illuminated",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "vijnana-bhairava-tantra",
+      "yoga-sutras"
+    ],
+    "aliases": [
+      "Christopher Hareesh Wallis",
+      "Tantrik",
+      "Kashmir Shaivism"
+    ]
+  },
+  {
+    "slug": "autobiography-of-a-yogi",
+    "title": "Autobiography of a Yogi",
+    "author": "Paramahansa Yogananda",
+    "tradition": "Yoga; Self-Realization Fellowship",
+    "kind": "Spiritual memoir",
+    "categories": [
+      "Spiritual Memoir",
+      "Yoga",
+      "Inner Work"
+    ],
+    "summary": "Yogananda’s account of his life, teachers, and spiritual search connects personal narrative with his presentation of yoga to a wider readership.",
+    "context": "First published in 1946, the book includes miraculous events as religious testimony. Those narratives do not independently establish scientific claims.",
+    "editionNote": "The Self-Realization Fellowship edition represents its maintained publishing tradition. Earlier editions differ, so identify the edition when citing.",
+    "readingPath": [
+      {
+        "title": "Childhood and search",
+        "note": "Follow the narrative before extracting teachings."
+      },
+      {
+        "title": "Teachers and lineage",
+        "note": "Notice how relationships shape the account of practice."
+      },
+      {
+        "title": "Reflect on the genre",
+        "note": "Separate the author’s testimony, teachings, and your interpretation."
+      }
+    ],
+    "keyInsights": [
+      "Spiritual autobiography joins remembered life with religious meaning.",
+      "Teacher-student relationships organize much of the narrative.",
+      "Personal testimony should remain visibly attributed."
+    ],
+    "sources": [
+      {
+        "title": "Self-Realization Fellowship: Autobiography of a Yogi",
+        "url": "https://yogananda.org/autobiography-of-a-yogi",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "the-surrender-experiment",
+      "bhagavad-gita",
+      "be-here-now"
+    ],
+    "aliases": [
+      "Paramahamsa",
+      "Yogananda",
+      "Kriya Yoga"
+    ]
+  },
+  {
+    "slug": "the-untethered-soul",
+    "title": "The Untethered Soul",
+    "author": "Michael A. Singer",
+    "tradition": "Contemporary spirituality",
+    "kind": "Contemporary teaching",
+    "categories": [
+      "Contemporary Spirituality",
+      "Inner Work",
+      "Meditation"
+    ],
+    "summary": "Singer invites readers to notice the inner voice and examine their relationship with thoughts, emotions, and resistance.",
+    "context": "This is a contemporary spiritual teaching. Its account of consciousness and energy belongs to Singer’s framework rather than an established scientific model.",
+    "editionNote": "Begin with the original book before its sequels. Keep the language of the witness tied to the author’s interpretation.",
+    "readingPath": [
+      {
+        "title": "The inner voice",
+        "note": "Notice the distinction Singer draws between thought and awareness."
+      },
+      {
+        "title": "Resistance",
+        "note": "Read his account of holding on and letting go."
+      },
+      {
+        "title": "A daily observation",
+        "note": "Use one ordinary frustration to examine your response without forcing an outcome."
+      }
+    ],
+    "keyInsights": [
+      "Thought can be noticed without immediately being obeyed.",
+      "Singer places inner resistance at the centre of his teaching.",
+      "Acceptance does not remove practical responsibility or personal boundaries."
+    ],
+    "sources": [
+      {
+        "title": "Michael A. Singer: The Untethered Soul",
+        "url": "https://untetheredsoul.com/untethered-soul",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "living-untethered",
+      "the-surrender-experiment",
+      "the-miracle-of-mindfulness"
+    ],
+    "aliases": [
+      "Michael Singer",
+      "untethered",
+      "witness",
+      "letting go"
+    ]
+  },
+  {
+    "slug": "the-surrender-experiment",
+    "title": "The Surrender Experiment",
+    "author": "Michael A. Singer",
+    "tradition": "Contemporary spirituality",
+    "kind": "Spiritual memoir",
+    "categories": [
+      "Spiritual Memoir",
+      "Inner Work",
+      "Contemporary Spirituality"
+    ],
+    "summary": "Singer’s memoir describes how his practice of surrender developed through everyday decisions, community, and business life.",
+    "context": "Read the outcomes as one person’s account. A successful life story does not demonstrate that adopting the same philosophy guarantees similar results.",
+    "editionNote": "This is the autobiographical companion to The Untethered Soul. The shift in genre matters: narrative examples are not universal rules.",
+    "readingPath": [
+      {
+        "title": "The early decisions",
+        "note": "Notice what Singer means by surrender in specific situations."
+      },
+      {
+        "title": "Community and business",
+        "note": "Track where reflection meets practical responsibility."
+      },
+      {
+        "title": "Compare the teaching",
+        "note": "Return to The Untethered Soul to separate the framework from its illustration."
+      }
+    ],
+    "keyInsights": [
+      "Memoir supplies examples rather than controlled evidence.",
+      "Surrender in the story still involves action and decisions.",
+      "Your interpretation can differ from the narrator’s account of causation."
+    ],
+    "sources": [
+      {
+        "title": "Michael A. Singer: The Surrender Experiment",
+        "url": "https://untetheredsoul.com/surrender-experiment",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "the-untethered-soul",
+      "autobiography-of-a-yogi",
+      "wisdom-untethered"
+    ],
+    "aliases": [
+      "Michael Singer",
+      "surrender"
+    ]
+  },
+  {
+    "slug": "living-untethered",
+    "title": "Living Untethered",
+    "author": "Michael A. Singer",
+    "tradition": "Contemporary spirituality",
+    "kind": "Contemporary teaching",
+    "categories": [
+      "Contemporary Spirituality",
+      "Inner Work",
+      "Meditation"
+    ],
+    "summary": "A continuation of Singer’s teaching on awareness, emotional patterns, and the work of releasing inner resistance.",
+    "context": "The spiritual framework is experiential. Read its claims about energy and consciousness as Singer’s account, not as clinical explanation.",
+    "editionNote": "The 2022 book’s subtitle is Beyond the Human Predicament. It follows The Untethered Soul, which provides a useful orientation.",
+    "readingPath": [
+      {
+        "title": "Awareness",
+        "note": "Identify the perspective from which Singer asks you to observe experience."
+      },
+      {
+        "title": "Stored reactions",
+        "note": "Read his explanation of recurring resistance."
+      },
+      {
+        "title": "Ordinary practice",
+        "note": "Reflect on a manageable daily reaction and preserve space for deliberate action."
+      }
+    ],
+    "keyInsights": [
+      "Singer moves from an account of awareness toward everyday practice.",
+      "Observation and action can coexist.",
+      "Spiritual language should not be mistaken for a medical diagnosis."
+    ],
+    "sources": [
+      {
+        "title": "New Harbinger: Living Untethered",
+        "url": "https://www.newharbinger.com/9781648480935/living-untethered/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "the-untethered-soul",
+      "wisdom-untethered",
+      "when-things-fall-apart"
+    ],
+    "aliases": [
+      "Michael Singer",
+      "Beyond the Human Predicament"
+    ]
+  },
+  {
+    "slug": "wisdom-untethered",
+    "title": "Wisdom Untethered",
+    "author": "Michael A. Singer",
+    "tradition": "Contemporary spirituality",
+    "kind": "Contemporary teaching",
+    "categories": [
+      "Contemporary Spirituality",
+      "Inner Work"
+    ],
+    "summary": "The Time for Questions brings Singer’s teaching into a question-led format concerned with applying spiritual ideas to ordinary life.",
+    "context": "Published in March 2026. This entry is a source-based orientation to the book, not a claim of a completed personal reading or a chapter-by-chapter review.",
+    "editionNote": "Use the publisher’s edition record and the author’s introduction. Readers new to Singer may prefer to begin with The Untethered Soul.",
+    "readingPath": [
+      {
+        "title": "Choose a question",
+        "note": "Start with the life question closest to your current concern."
+      },
+      {
+        "title": "Trace the framework",
+        "note": "Connect the answer to Singer’s recurring account of awareness and resistance."
+      },
+      {
+        "title": "Compare earlier books",
+        "note": "Use the original work for the underlying vocabulary."
+      }
+    ],
+    "keyInsights": [
+      "The question format gives the teaching a different entry point.",
+      "Application requires judgment about your own circumstances.",
+      "A publisher’s description establishes scope, not the truth of every claim."
+    ],
+    "sources": [
+      {
+        "title": "New Harbinger: Wisdom Untethered",
+        "url": "https://www.newharbinger.com/9798900220345/wisdom-untethered/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "the-untethered-soul",
+      "living-untethered",
+      "the-surrender-experiment"
+    ],
+    "aliases": [
+      "Michael Singer",
+      "The Time for Questions"
+    ]
+  },
+  {
+    "slug": "the-power-of-now",
+    "title": "The Power of Now",
+    "author": "Eckhart Tolle",
+    "tradition": "Contemporary spirituality",
+    "kind": "Contemporary teaching",
+    "categories": [
+      "Contemporary Spirituality",
+      "Inner Work",
+      "Meditation"
+    ],
+    "summary": "Tolle’s teaching on presence examines identification with thought and the tendency to live through remembered pasts and imagined futures.",
+    "context": "Its metaphysical account belongs to Tolle’s spiritual framework. Read it as a perspective to examine, without treating every concept as a scientific category.",
+    "editionNote": "Start with the original book and distinguish its teaching from quotations circulating online.",
+    "readingPath": [
+      {
+        "title": "Presence",
+        "note": "Track the distinction between immediate experience and thought about it."
+      },
+      {
+        "title": "Identification",
+        "note": "Notice the language Tolle uses for the relationship to mind."
+      },
+      {
+        "title": "Compare a Buddhist voice",
+        "note": "Read Thich Nhat Hanh alongside Tolle to hear differences in context."
+      }
+    ],
+    "keyInsights": [
+      "The teaching centres attention on present experience.",
+      "Practical planning and contemplative presence need not be opposites.",
+      "Shared vocabulary across teachers can conceal different philosophies."
+    ],
+    "sources": [
+      {
+        "title": "Eckhart Tolle: books",
+        "url": "https://eckharttolle.com/books/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "the-untethered-soul",
+      "the-miracle-of-mindfulness",
+      "a-new-earth"
+    ],
+    "aliases": [
+      "Eckhart",
+      "presence",
+      "Now"
+    ]
+  },
+  {
+    "slug": "a-new-earth",
+    "title": "A New Earth",
+    "author": "Eckhart Tolle",
+    "tradition": "Contemporary spirituality",
+    "kind": "Contemporary teaching",
+    "categories": [
+      "Contemporary Spirituality",
+      "Inner Work"
+    ],
+    "summary": "Tolle extends his account of presence into a discussion of ego, identity, and human relationships.",
+    "context": "Read his account of ego as the vocabulary of a spiritual teacher, rather than a replacement for psychological models.",
+    "editionNote": "This is a separate work from The Power of Now. Compare how its social emphasis changes the earlier teaching.",
+    "readingPath": [
+      {
+        "title": "Identity",
+        "note": "Follow the ways Tolle describes attachment to roles and stories."
+      },
+      {
+        "title": "Relationships",
+        "note": "Consider the consequences of that account for ordinary interaction."
+      },
+      {
+        "title": "Return to presence",
+        "note": "Compare the book’s argument with The Power of Now."
+      }
+    ],
+    "keyInsights": [
+      "Identity and awareness have distinct roles in Tolle’s account.",
+      "A useful concept still requires careful application.",
+      "An expansive social vision is a proposition to consider."
+    ],
+    "sources": [
+      {
+        "title": "Eckhart Tolle: books",
+        "url": "https://eckharttolle.com/books/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "the-power-of-now",
+      "the-untethered-soul"
+    ],
+    "aliases": [
+      "Eckhart",
+      "ego"
+    ]
+  },
+  {
+    "slug": "be-here-now",
+    "title": "Be Here Now",
+    "author": "Ram Dass",
+    "tradition": "Modern yoga-inspired spirituality",
+    "kind": "Spiritual memoir",
+    "categories": [
+      "Spiritual Memoir",
+      "Inner Work",
+      "Contemporary Spirituality"
+    ],
+    "summary": "An illustrated meeting of spiritual autobiography and practice, shaped by Ram Dass’s transformation and encounter with Indian devotional traditions.",
+    "context": "The book belongs to a particular cross-cultural moment. Its devotional language and visual form are part of the reading experience.",
+    "editionNote": "The Lama Foundation is the original publisher. Choose an edition that preserves the illustrated central section.",
+    "readingPath": [
+      {
+        "title": "The personal story",
+        "note": "Begin with the narrative that frames the teaching."
+      },
+      {
+        "title": "The illustrated section",
+        "note": "Read at its own visual pace."
+      },
+      {
+        "title": "The practice material",
+        "note": "Distinguish suggested disciplines from the memoir and imagery."
+      }
+    ],
+    "keyInsights": [
+      "Form and content are closely linked in this book.",
+      "Devotion gives presence a different emphasis from secular mindfulness.",
+      "Personal transformation is narrated from a particular perspective."
+    ],
+    "sources": [
+      {
+        "title": "Lama Foundation: Be Here Now",
+        "url": "https://store.lamafoundation.org/products/be-here-now",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "autobiography-of-a-yogi",
+      "the-miracle-of-mindfulness",
+      "the-power-of-now"
+    ],
+    "aliases": [
+      "Richard Alpert",
+      "Ramdas",
+      "Neem Karoli Baba"
+    ]
+  },
+  {
+    "slug": "the-miracle-of-mindfulness",
+    "title": "The Miracle of Mindfulness",
+    "author": "Thich Nhat Hanh",
+    "tradition": "Vietnamese Zen Buddhism",
+    "kind": "Contemporary teaching",
+    "categories": [
+      "Buddhism",
+      "Meditation",
+      "Inner Work"
+    ],
+    "summary": "A Buddhist introduction to bringing attention into ordinary activities, with a gentle emphasis on everyday practice.",
+    "context": "Mindfulness here sits within Thich Nhat Hanh’s Buddhist teaching. Preserve that context when borrowing its language for work or self-development.",
+    "editionNote": "Consult the Plum Village or Parallax edition record. Read the practices in context instead of treating isolated instructions as a productivity technique.",
+    "readingPath": [
+      {
+        "title": "Everyday attention",
+        "note": "Read the examples of attention within ordinary tasks."
+      },
+      {
+        "title": "Practice and attitude",
+        "note": "Notice how care changes the quality of an action."
+      },
+      {
+        "title": "Buddhist context",
+        "note": "Pair the book with an introductory primary text such as the Dhammapada."
+      }
+    ],
+    "keyInsights": [
+      "Ordinary activities can become occasions for attention.",
+      "The manner of practice matters alongside the activity.",
+      "Mindfulness has an ethical and religious context here."
+    ],
+    "sources": [
+      {
+        "title": "Plum Village: The Miracle of Mindfulness",
+        "url": "https://plumvillage.org/books/the-miracle-of-mindfulness",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "dhammapada",
+      "heart-sutra",
+      "the-untethered-soul"
+    ],
+    "aliases": [
+      "Thich Nhat Hanh",
+      "Thay",
+      "mindfulness"
+    ]
+  },
+  {
+    "slug": "when-things-fall-apart",
+    "title": "When Things Fall Apart",
+    "author": "Pema Chödrön",
+    "tradition": "Tibetan Buddhism",
+    "kind": "Contemporary teaching",
+    "categories": [
+      "Buddhism",
+      "Inner Work",
+      "Meditation"
+    ],
+    "summary": "Contemplative reflections on meeting uncertainty and difficulty, grounded in Pema Chödrön’s Buddhist teaching.",
+    "context": "The book offers a spiritual approach to experience. It does not promise that suffering disappears when a reader adopts the right attitude.",
+    "editionNote": "Use a named Shambhala edition. Keep its Buddhist vocabulary visible when comparing it with contemporary self-help.",
+    "readingPath": [
+      {
+        "title": "Uncertainty",
+        "note": "Notice the invitation to stay present without demanding an immediate resolution."
+      },
+      {
+        "title": "Compassion",
+        "note": "Read the treatment of difficulty alongside care for self and others."
+      },
+      {
+        "title": "A considered comparison",
+        "note": "Pair with Singer and identify where their teachings diverge."
+      }
+    ],
+    "keyInsights": [
+      "Uncertainty can be examined without forcing a reassuring story.",
+      "Compassion accompanies the discussion of difficulty.",
+      "Acceptance leaves room for practical care and change."
+    ],
+    "sources": [
+      {
+        "title": "Shambhala: When Things Fall Apart",
+        "url": "https://www.shambhala.com/when-things-fall-apart-3628.html",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "living-untethered",
+      "the-miracle-of-mindfulness",
+      "mans-search-for-meaning"
+    ],
+    "aliases": [
+      "Pema Chodron",
+      "uncertainty",
+      "compassion"
+    ]
+  },
+  {
+    "slug": "analects",
+    "title": "The Analects",
+    "author": "Sayings of Confucius, compiled by followers",
+    "tradition": "Confucian traditions",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Confucianism",
+      "Philosophy",
+      "Ethics"
+    ],
+    "summary": "A collection of conversations and sayings concerned with ethical cultivation, learning, relationships, and government.",
+    "context": "The collection transmits Confucius’s teaching through followers. Its authority is ethical and cultural; it is not a revealed scripture or a manuscript authored by Confucius.",
+    "editionNote": "David Hinton’s complete translation provides one entry point. Compare interpretations of ren and li rather than assuming one English word exhausts them.",
+    "readingPath": [
+      {
+        "title": "Learning",
+        "note": "Follow the recurring discussion of study and character."
+      },
+      {
+        "title": "Relationships",
+        "note": "Read ethics within the roles and responsibilities described."
+      },
+      {
+        "title": "Government",
+        "note": "Compare political advice with the account of personal cultivation."
+      }
+    ],
+    "keyInsights": [
+      "Learning is connected with the formation of character.",
+      "Relationships give ethical concepts their setting.",
+      "Translation choices shape the understanding of central terms."
+    ],
+    "sources": [
+      {
+        "title": "Pan Macmillan: The Analects, David Hinton",
+        "url": "https://www.panmacmillan.com/authors/confucius/the-analects/9781529080117",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "tao-te-ching",
+      "meditations",
+      "tattvartha-sutra"
+    ],
+    "aliases": [
+      "Confucius",
+      "Kongzi",
+      "Lunyu",
+      "ren",
+      "li"
+    ]
+  },
+  {
+    "slug": "tattvartha-sutra",
+    "title": "Tattvartha Sutra: That Which Is",
+    "author": "Umasvati",
+    "tradition": "Jainism",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Jainism",
+      "Philosophy",
+      "Ethics"
+    ],
+    "summary": "A systematic Jain work concerned with reality, the soul, karma, and liberation, available in English as That Which Is.",
+    "context": "This sutra is a foundational doctrinal text, not the entirety of Jain scripture. Jain traditions and commentaries should remain distinguishable.",
+    "editionNote": "Nathmal Tatia’s translation, sponsored by the Institute of Jainology, offers a named study edition.",
+    "readingPath": [
+      {
+        "title": "The introductory framework",
+        "note": "Orient yourself to the text’s account of knowledge and liberation."
+      },
+      {
+        "title": "Its categories of reality",
+        "note": "Build a glossary before drawing comparisons with other traditions."
+      },
+      {
+        "title": "Ethics and liberation",
+        "note": "Read conduct as part of the larger doctrinal system."
+      }
+    ],
+    "keyInsights": [
+      "A systematic text depends on its definitions.",
+      "Jain karma and liberation have their own conceptual context.",
+      "Comparison works best after understanding the text’s own terms."
+    ],
+    "sources": [
+      {
+        "title": "Yale University Press: That Which Is",
+        "url": "https://yalebooks.co.uk/book/9780300165296/that-which-is/",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "bhagavad-gita",
+      "dhammapada",
+      "analects"
+    ],
+    "aliases": [
+      "Tattvarthasutra",
+      "Umaswati",
+      "Jain",
+      "ahimsa"
+    ]
+  },
+  {
+    "slug": "avesta",
+    "title": "Avesta: Selected Texts",
+    "author": "Multiple Zoroastrian textual traditions",
+    "tradition": "Zoroastrianism",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Zoroastrianism",
+      "Devotion"
+    ],
+    "summary": "An entry into a Zoroastrian scriptural and liturgical corpus, beginning with selected Yasna material and the Gathas.",
+    "context": "The Avesta is not one authored book. The Gathas belong within the Yasna; later Middle Persian literature forms another body of sources.",
+    "editionNote": "Avesta.org hosts legacy translations with different provenances. Identify the section and translator; use SOAS’s Multimedia Yasna for ritual and manuscript context.",
+    "readingPath": [
+      {
+        "title": "A corpus orientation",
+        "note": "Distinguish the Avesta from later Middle Persian writings."
+      },
+      {
+        "title": "Yasna and Gathas",
+        "note": "Read selected passages with their place in the larger liturgy identified."
+      },
+      {
+        "title": "Ritual context",
+        "note": "Consult the Multimedia Yasna project alongside the English text."
+      }
+    ],
+    "keyInsights": [
+      "Liturgy and textual interpretation belong together.",
+      "Corpus, section, and translation are different levels of identification.",
+      "Historical translation archives are useful without being definitive editions."
+    ],
+    "sources": [
+      {
+        "title": "Avesta.org: Yasna translations",
+        "url": "https://www.avesta.org/yasna/index.html",
+        "note": "Edition and reading reference."
+      },
+      {
+        "title": "SOAS: Multimedia Yasna",
+        "url": "https://muya.soas.ac.uk/tool/film-multimedia/",
+        "note": "Academic context for manuscript and ritual study."
+      }
+    ],
+    "relatedSlugs": [
+      "quran",
+      "guru-granth-sahib"
+    ],
+    "aliases": [
+      "Zarathustra",
+      "Zoroaster",
+      "Gathas",
+      "Yasna",
+      "Zoroastrian"
+    ]
+  },
+  {
+    "slug": "kitab-i-aqdas",
+    "title": "The Kitáb-i-Aqdas",
+    "author": "Bahá’u’lláh",
+    "tradition": "Bahá’í Faith",
+    "kind": "Primary text",
+    "categories": [
+      "Sacred Texts",
+      "Bahai",
+      "Ethics"
+    ],
+    "summary": "Bahá’u’lláh’s book of laws, read within the Bahá’í Faith alongside supplementary texts, questions and answers, and explanatory notes.",
+    "context": "Religious prescriptions have a specific community and interpretive setting. A cross-tradition reading guide should preserve that context.",
+    "editionNote": "The Bahá’í Reference Library publishes the authorized English translation. Distinguish the main text from its supplementary material and notes.",
+    "readingPath": [
+      {
+        "title": "The introduction",
+        "note": "Begin with the authorized edition’s account of the work."
+      },
+      {
+        "title": "The main text",
+        "note": "Follow its religious and ethical address."
+      },
+      {
+        "title": "Questions and notes",
+        "note": "Use the accompanying material to understand interpretation and application."
+      }
+    ],
+    "keyInsights": [
+      "An authorized edition makes its interpretive layers visible.",
+      "Religious law should be read in the context of its faith.",
+      "Supplementary writings can explain without becoming identical to the main text."
+    ],
+    "sources": [
+      {
+        "title": "Bahá’í Reference Library: The Kitáb-i-Aqdas",
+        "url": "https://www.bahai.org/library/authoritative-texts/bahaullah/kitab-i-aqdas",
+        "note": "Edition and reading reference."
+      }
+    ],
+    "relatedSlugs": [
+      "quran",
+      "guru-granth-sahib"
+    ],
+    "aliases": [
+      "Bahaullah",
+      "Bahai",
+      "Baha i",
+      "Most Holy Book",
+      "Kitab i Aqdas"
+    ]
+  }
+]
