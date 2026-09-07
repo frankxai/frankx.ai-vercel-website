@@ -31,6 +31,15 @@ test('query, category, and collection restrictions intersect; clear state return
   assert.deepEqual(alphabetical, [...alphabetical].sort((a, b) => a.localeCompare(b)));
 });
 
+test('multiword searches require every word, including an author surname', () => {
+  const catalogue = [...books, { ...books[0], slug: 'our-band-could-be-your-life', title: 'Our Band Could Be Your Life', author: 'Michael Azerrad', aliases: [], categories: ['Music'], description: 'Thirteen American underground bands and the once invisible infrastructure they built.' }];
+  const results = filterLibrary(catalogue, 'Michael Singer', '');
+  assert.equal(results.length, 4);
+  assert.ok(results.every(book => book.author === 'Michael A. Singer'));
+  assert.deepEqual(filterLibrary(catalogue, 'bible', '').map(book => book.slug).sort(), ['bible', 'tanakh']);
+  assert.equal(search('Yogananda autobiography')[0].slug, 'autobiography-of-a-yogi');
+});
+
 test('reading guides have distinct identities, source references, and no invented ratings or quotations', () => {
   const slugs = guides.map(book => book.slug);
   assert.equal(new Set(slugs).size, slugs.length);

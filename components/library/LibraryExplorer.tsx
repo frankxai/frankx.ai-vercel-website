@@ -41,7 +41,7 @@ export function LibraryExplorer({ books, children, initial = emptyFilters }: { b
         <div className="relative">
           <Search className="pointer-events-none absolute left-4 top-4 h-5 w-5 text-emerald-300" aria-hidden="true" />
           <input id="library-search" type="search" value={filters.q} onChange={event => update({ ...filters, q: event.target.value })} placeholder="Title, author, tradition, or idea…" autoComplete="off"
-            className="min-h-[52px] w-full rounded-xl border border-white/20 bg-[#0a0a0b] py-3 pl-12 pr-12 text-base text-white placeholder:text-white/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300" />
+            className="min-h-[52px] w-full rounded-xl border border-white/20 bg-[#0a0a0b] py-3 pl-12 pr-12 text-base text-white placeholder:text-white/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 [&::-webkit-search-cancel-button]:appearance-none" />
           {filters.q && <button type="button" onClick={() => update({ ...filters, q: '' })} aria-label="Clear search" className="absolute right-1 top-1 flex h-11 w-11 items-center justify-center rounded-lg text-white/70 focus-visible:ring-2 focus-visible:ring-emerald-300"><X className="h-5 w-5" aria-hidden="true" /></button>}
         </div>
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
