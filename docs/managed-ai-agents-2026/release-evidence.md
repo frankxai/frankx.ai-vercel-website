@@ -2,7 +2,7 @@
 
 ## Scope and authorization
 
-Additive article at `/blog/managed-ai-agents-for-founders-2026`, original hero, three precise SVG figures, official brand sources and editorial evidence. Base commit: `14e584b373dcb4de182743f31f5947eb0310c74e`. Isolated clone and agent branch. Generated route and hero indexes include the new article assets. Three labels in the existing image viewer now use factual, sentence-case copy: “Inspect image,” “View image” and “Image viewer.” This removes the unsupported claim that every image is 4K. No homepage, navigation, pricing integration, dependency or production-runtime changes.
+Additive article at `/blog/managed-ai-agents-for-founders-2026`, original hero, three precise SVG figures, official brand sources and editorial evidence. Base commit: `14e584b373dcb4de182743f31f5947eb0310c74e`. Isolated clone and agent branch. Generated route and hero indexes include the new article assets. Three labels in the existing image viewer now use factual, sentence-case copy: “Inspect image,” “View image” and “Image viewer.” This removes the unsupported claim that every image is 4K. The viewer modal now renders through a body portal above navigation, fixing a confirmed control overlap. No homepage, navigation content, pricing integration or dependency changes.
 
 The user explicitly approved proceeding with a draft GitHub PR and Vercel preview despite the unavailable initial mobile capture. Production merge remains blocked until mobile review. This is a draft delivery, not a world-class or production-complete certification.
 
@@ -57,4 +57,4 @@ The GitHub PR and Notion strategy page will hold the final desktop preview recei
 
 ## Second preview findings
 
-Native Git deployment `81b1f92` reached READY. The platform map now shows all columns inside the article width. Opening the image works, but hit testing the zoom control resolves to the fixed navigation's Founder Stack link. The page content forms a z-index 10 stacking context below the navigation at 50, so increasing a nested modal's z-index alone cannot fix it. Required correction: render the image modal through a body portal above navigation, then verify zoom, close and Escape on the preview.
+Native Git deployment `81b1f92` reached READY. The platform map now shows all columns inside the article width. Opening the image works, but hit testing the zoom control resolves to the fixed navigation's Founder Stack link. The page content forms a z-index 10 stacking context below the navigation at 50, so increasing a nested modal's z-index alone cannot fix it. The correction uses a mounted body portal at z-index 100 and explicit dialog semantics. Final preview checks must cover hit testing, zoom, close and Escape. This does not replace the pending full focus and mobile review.

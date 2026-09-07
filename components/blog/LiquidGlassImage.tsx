@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import React, { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Maximize2, Minimize2, ZoomIn, ZoomOut, RotateCcw, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -28,9 +29,12 @@ export function LiquidGlassImage({
   aspectRatio = '16/9',
 }: LiquidGlassImageProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(1)
   const [isDragging, setIsDragging] = useState(false)
   const imageRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => setMounted(true), [])
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -122,7 +126,7 @@ export function LiquidGlassImage({
       </figure>
 
       {/* ── Fullscreen Liquid Glass Lightbox Modal ────────────────────── */}
-      <AnimatePresence>
+      {mounted && createPortal(<AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -130,7 +134,10 @@ export function LiquidGlassImage({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
             onClick={handleClose}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-[#050507]/90 backdrop-blur-3xl"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Image viewer"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10 bg-[#050507]/90 backdrop-blur-3xl"
           >
             {/* Header Telemetry & Close Bar */}
             <div
@@ -225,7 +232,7 @@ export function LiquidGlassImage({
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>, document.body)}
     </>
   )
 }
