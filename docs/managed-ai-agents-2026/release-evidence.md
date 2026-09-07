@@ -19,7 +19,7 @@ The initial concept boards and prior browser captures are not committed evidence
 - All three figures rasterized and visually inspected for content, text fit and readable contrast.
 - OpenAI construction-sheet asset rejected during review; replaced with official white Blossom logo.
 - Figure numbers generated from explicit assumptions; brand files have source URLs and hashes.
-- Existing scrollable table and diagram components reused; diagram alt text describes the full relationship.
+- Existing scrollable table and image-viewer components reused; figure alt text describes the full relationship.
 - No new motion or analytics code; existing article analytics inherited.
 - Initial strict language audit: 2,512 files, zero hits.
 
@@ -40,8 +40,8 @@ The checkout uses the repository-pinned pnpm 10.28.0 and unchanged frozen lockfi
 
 ## Production holds
 
-- [ ] Current mobile article capture and table/diagram scrolling review.
-- [ ] Keyboard and focus review, including diagram scrolling.
+- [ ] Current mobile article capture, table scrolling and figure enlargement review.
+- [ ] Keyboard and focus review, including the image viewer.
 - [ ] Independent editorial, visual and image review.
 - [ ] Required GitHub checks and broader merge gate on the final candidate.
 - [ ] Human production approval.
@@ -51,6 +51,6 @@ The checkout uses the repository-pinned pnpm 10.28.0 and unchanged frozen lockfi
 
 Native Git deployment `befe48b` reached READY. The article renders 4,392 words and 11 tables, with one H1, the intended description, production canonical URL and original hero in Open Graph metadata. The hero viewer opens and closes. The shared blog template emits Article and BreadcrumbList schemas; the five body FAQs pass the offline extractor but are not emitted as FAQPage by this template.
 
-Desktop inspection at 1363 pixels found the three 960-pixel-minimum diagrams clipped inside the 752-pixel article column. Required correction: use the existing image viewer to show each complete figure inline and allow enlargement. Mobile and independent review remain pending. This is a real review checkpoint, not a production-ready candidate.
+Desktop inspection at 1363 pixels found the three 960-pixel-minimum diagrams clipped inside the 752-pixel article column. This branch now uses the existing `InfographicImage` viewer for all three figures, with actual dimensions and visible enlargement instructions. The full local build passed again after this correction. The follow-up preview must verify the complete figures and controls. Mobile and independent review remain pending.
 
 The GitHub PR and Notion strategy page will hold the final desktop preview receipt and deployment links. No production merge is authorized by this evidence file.

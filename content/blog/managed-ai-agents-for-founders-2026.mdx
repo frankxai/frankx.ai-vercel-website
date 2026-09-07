@@ -40,7 +40,7 @@ Start with the software and subscriptions you already understand. A new tool ear
 
 ## The managed-agent map
 
-<Diagram src="/images/blog/managed-ai-agents/platform-map.svg" alt="Four distinct layers: workspaces for people, runtimes for product execution, n8n for integration workflows, and OpenClaw or Hermes on hosting such as Railway for persistent assistants. Vendor marks identify products; they do not indicate a ranking." width={1200} height={1000} scrollable caption="Choose the layer first. Products within a layer are candidates; products across layers may be complementary. Official marks are used for editorial identification, with no affiliation implied." />
+<InfographicImage src="/images/blog/managed-ai-agents/platform-map.svg" alt="Four distinct layers: workspaces for people, runtimes for product execution, n8n for integration workflows, and OpenClaw or Hermes on hosting such as Railway for persistent assistants. Vendor marks identify products; they do not indicate a ranking." width={1200} height={1000} caption="Select the figure to enlarge it. Choose the layer first. Products within a layer are candidates; products across layers may be complementary. Official marks are used for editorial identification, with no affiliation implied." />
 
 Here is the comparison I would put in front of a founder before any purchase. “You still own” is the column that usually determines the real commitment.
 
@@ -185,7 +185,7 @@ This is a capacity assumption, not an observed Hermes or OpenClaw bill. Doubling
 
 ### Price an accepted outcome
 
-<Diagram src="/images/blog/managed-ai-agents/outcome-economics.svg" alt="Illustrative monthly economics: 1,000 jobs cost 200 dollars in model usage, 40 dollars in managed runtime, 50 dollars in other infrastructure and 2,000 dollars in review time. Total 2,290 dollars divided by 900 accepted outcomes is 2.54 dollars each. These are assumptions, not benchmark results." width={1200} height={840} scrollable caption="An authored planning example. Human review is an economic cost here, even when it does not create a new cash invoice. Replace every assumption with pilot measurements." />
+<InfographicImage src="/images/blog/managed-ai-agents/outcome-economics.svg" alt="Illustrative monthly economics: 1,000 jobs cost 200 dollars in model usage, 40 dollars in managed runtime, 50 dollars in other infrastructure and 2,000 dollars in review time. Total 2,290 dollars divided by 900 accepted outcomes is 2.54 dollars each. These are assumptions, not benchmark results." width={1200} height={840} caption="Select the figure to enlarge it. An authored planning example. Human review is an economic cost here, even when it does not create a new cash invoice. Replace every assumption with pilot measurements." />
 
 For this example, assume 1,000 jobs at $0.20 in model usage each, 30 running minutes per job at $0.08 an hour, $50 in other infrastructure, and two minutes of review per job valued at $60 an hour. Assume 900 outcomes are accepted. Tool fees, extra retries and incident labor are zero in this deliberately bounded example; add them when present.
 
@@ -216,7 +216,7 @@ Keep allocated engineering and operator labor consistent across candidates. Incl
 
 ## An architecture for internal and external production
 
-<Diagram src="/images/blog/managed-ai-agents/production-contract.svg" alt="A versioned job contract enters one durable execution owner, which invokes a bounded agent worker. The worker produces a draft and evidence for a policy or human review. Rejected work returns for bounded revision. Approved work goes to an idempotent executor and delivery receipt. Each transition updates a durable job record." width={1200} height={1120} scrollable caption="A reference pattern, not a vendor feature claim. One owner controls job state; the worker proposes outputs; validated actions produce a receipt." />
+<InfographicImage src="/images/blog/managed-ai-agents/production-contract.svg" alt="A versioned job contract enters one durable execution owner, which invokes a bounded agent worker. The worker produces a draft and evidence for a policy or human review. Rejected work returns for bounded revision. Approved work goes to an idempotent executor and delivery receipt. Each transition updates a durable job record." width={1200} height={1120} caption="Select the figure to enlarge it. A reference pattern, not a vendor feature claim. One owner controls job state; the worker proposes outputs; validated actions produce a receipt." />
 
 An internal workflow can start with a lightweight version of this pattern: a task brief, an agent workspace, a review and a saved artifact. An external product needs explicit identity and isolation throughout it.
 
