@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import React, { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Maximize2, Minimize2, ZoomIn, ZoomOut, RotateCcw, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -28,9 +29,12 @@ export function LiquidGlassImage({
   aspectRatio = '16/9',
 }: LiquidGlassImageProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(1)
   const [isDragging, setIsDragging] = useState(false)
   const imageRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => setMounted(true), [])
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -82,7 +86,7 @@ export function LiquidGlassImage({
         <button
           type="button"
           onClick={handleOpen}
-          aria-label={alt ? `Inspect 4K image: ${alt}` : 'Inspect 4K image'}
+          aria-label={alt ? `Inspect image: ${alt}` : 'Inspect image'}
           className={cn(
             'relative block w-full text-left overflow-hidden rounded-2xl md:rounded-3xl border border-white/[0.12] bg-[#0A0A0B]/80 backdrop-blur-2xl cursor-zoom-in transition-[border-color,box-shadow] duration-500 shadow-2xl hover:border-emerald-500/40 hover:shadow-emerald-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40',
             className
@@ -108,7 +112,7 @@ export function LiquidGlassImage({
           {/* Interactive Inspection Badge on Hover */}
           <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/20 bg-[#0A0A0B]/70 backdrop-blur-xl text-xs font-medium text-white/90 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-[opacity,transform] duration-300 shadow-lg">
             <Maximize2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Inspect 4K View</span>
+            <span>View image</span>
           </div>
         </button>
 
@@ -122,7 +126,7 @@ export function LiquidGlassImage({
       </figure>
 
       {/* ── Fullscreen Liquid Glass Lightbox Modal ────────────────────── */}
-      <AnimatePresence>
+      {mounted && isOpen && createPortal(<AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -130,7 +134,10 @@ export function LiquidGlassImage({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
             onClick={handleClose}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-[#050507]/90 backdrop-blur-3xl"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Image viewer"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10 bg-[#050507]/90 backdrop-blur-3xl"
           >
             {/* Header Telemetry & Close Bar */}
             <div
@@ -138,8 +145,8 @@ export function LiquidGlassImage({
             >
               <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-[#111113]/80 backdrop-blur-xl">
                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/80">
-                  Infographic Telemetry Inspector
+                <span className="text-xs font-semibold text-white/80">
+                  Image viewer
                 </span>
                 <span className="text-xs text-white/40 border-l border-white/10 pl-2">
                   {Math.round(zoomLevel * 100)}%
@@ -225,7 +232,7 @@ export function LiquidGlassImage({
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>, document.body)}
     </>
   )
 }
