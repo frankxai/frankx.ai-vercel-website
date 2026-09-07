@@ -58,3 +58,7 @@ The GitHub PR and Notion strategy page will hold the final desktop preview recei
 ## Second preview findings
 
 Native Git deployment `81b1f92` reached READY. The platform map now shows all columns inside the article width. Opening the image works, but hit testing the zoom control resolves to the fixed navigation's Founder Stack link. The page content forms a z-index 10 stacking context below the navigation at 50, so increasing a nested modal's z-index alone cannot fix it. The correction uses a mounted body portal at z-index 100 and explicit dialog semantics. Final preview checks must cover hit testing, zoom, close and Escape. This does not replace the pending full focus and mobile review.
+
+## Third preview findings
+
+Native Git deployment `1313545` reached READY. The body portal fixes the navigation overlap: hit testing resolves to the zoom control, and zoom to 150% plus reset to 100% pass. Closing fades the dialog to opacity zero but leaves it mounted and intercepting pointer events. Required correction: unmount the portal synchronously when closed, then verify that the dialog is removed and the article is interactive.
