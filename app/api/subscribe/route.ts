@@ -5,6 +5,7 @@ import { welcomeEmail1 } from '@/lib/email-templates-welcome'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 import { innerCircleWaitlistEmail } from '@/lib/email-templates-inner-circle'
 import { mvuRsvpConfirmation, mvuRsvpAlert } from '@/lib/email-templates-mvu'
+import { sanitizeIntent } from '@/lib/diagnostic/waitlist-intents'
 import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 import { siteConfig } from '@/lib/seo'
 
@@ -328,6 +329,9 @@ export async function POST(request: NextRequest) {
     const name = String(raw.name ?? '').trim().slice(0, MAX_NAME_LEN)
     const source = String(raw.source ?? '').trim().slice(0, MAX_SOURCE_LEN)
     const intention = String(raw.intention ?? '').trim().slice(0, 280)
+    // Product attribution for a waitlist signup. Without it a per-product CTA lands as an
+    // anonymous row on a generic list and the demand read cannot tell the products apart.
+    const intent = sanitizeIntent(raw.intent)
     const listType = resolveListType(raw.listType)
     const hasExplicitTopics = Object.prototype.hasOwnProperty.call(raw, 'topics')
     const explicitTopics = hasExplicitTopics ? canonicalizeTopics(raw.topics) : null
@@ -424,6 +428,7 @@ export async function POST(request: NextRequest) {
     // live exclusively in Resend's native topic state.
     const properties: Record<string, string> = { source: listType }
     if (source) properties.referrer = source
+    if (intent) properties.intent = intent
     // Persist the RSVP intention so the approve/decline decision and the room's
     // makeup are backed by a queryable segment, not only the alert emails.
     if (intention) properties.intention = intention
