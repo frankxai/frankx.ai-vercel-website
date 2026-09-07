@@ -126,7 +126,7 @@ export function LiquidGlassImage({
       </figure>
 
       {/* ── Fullscreen Liquid Glass Lightbox Modal ────────────────────── */}
-      {mounted && createPortal(<AnimatePresence>
+      {mounted && isOpen && createPortal(<AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}

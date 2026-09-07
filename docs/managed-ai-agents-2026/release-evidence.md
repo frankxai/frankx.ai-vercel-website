@@ -61,4 +61,4 @@ Native Git deployment `81b1f92` reached READY. The platform map now shows all co
 
 ## Third preview findings
 
-Native Git deployment `1313545` reached READY. The body portal fixes the navigation overlap: hit testing resolves to the zoom control, and zoom to 150% plus reset to 100% pass. Closing fades the dialog to opacity zero but leaves it mounted and intercepting pointer events. Required correction: unmount the portal synchronously when closed, then verify that the dialog is removed and the article is interactive.
+Native Git deployment `1313545` reached READY. The body portal fixes the navigation overlap: hit testing resolves to the zoom control, and zoom to 150% plus reset to 100% pass. Closing fades the dialog to opacity zero but leaves it mounted and intercepting pointer events. The portal now also requires `isOpen`, so closing removes it synchronously. The full local build passes with this correction. The final PR receipt must verify removal and restored article interaction on the deployment.
