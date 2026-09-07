@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { bookReviews, getReviewBySlug } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 import type { BookReview } from '@/app/books/types';
+import { BookCover } from '@/components/library/BookCover';
+import { ReadingGuide } from '@/components/library/ReadingGuide';
 
 const SITE_URL = 'https://www.frankx.ai';
 
@@ -37,12 +39,11 @@ export async function generateMetadata({
 
   const description = reviewDescription(review);
   const canonical = `${SITE_URL}/library/${review.slug}`;
-  const ogImage = review.hasCover
-    ? absoluteUrl(review.coverImage)
-    : absoluteUrl(review.capture?.images?.[0]?.src);
+  const ogImage = `${canonical}/opengraph-image`;
+  const articleKind = review.guide ? 'Reading Guide & Editions' : 'Book Review & Key Insights';
 
   return {
-    title: `${review.title} by ${review.author} — Book Review & Key Insights | FrankX Library`,
+    title: `${review.title} — ${articleKind}`,
     description,
     keywords: [
       ...review.categories,
@@ -52,17 +53,17 @@ export async function generateMetadata({
       'book review',
       'book summary',
     ],
-    authors: [{ name: 'Frank' }],
+    authors: [{ name: review.guide ? 'FrankX Library' : 'Frank Riemer' }],
     alternates: { canonical },
     openGraph: {
-      title: `${review.title} — Book Review & Key Insights`,
+      title: `${review.title} — ${articleKind}`,
       description,
       type: 'article',
       url: canonical,
       siteName: 'FrankX Library',
-      authors: ['Frank'],
+      authors: [review.guide ? 'FrankX Library' : 'Frank Riemer'],
       publishedTime: review.reviewDate,
-      ...(ogImage ? { images: [{ url: ogImage, alt: `${review.title} — book cover` }] } : {}),
+      ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630, alt: `${review.title} — FrankX reading guide` }] } : {}),
     },
     twitter: {
       card: 'summary_large_image',
@@ -75,7 +76,7 @@ export async function generateMetadata({
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1" role="img" aria-label={`${rating} out of 5 stars`}>
       {[1, 2, 3, 4, 5].map((star) => (
         <svg
           key={star}
@@ -149,6 +150,26 @@ function JsonLd({ review }: { review: BookReview }) {
     },
   ];
 
+  if (review.guide) {
+    // An editorial guide is not a personal review and carries no star rating.
+    const reviewIndex = graph.findIndex(item => item['@type'] === 'Review');
+    if (reviewIndex !== -1) graph.splice(reviewIndex, 1);
+    const book = {
+      '@type': 'Book', '@id': `${url}#book`, name: review.title,
+      ...(review.guide.kind !== 'Primary text' ? { author: { '@type': 'Person', name: review.author } } : {}),
+      subjectOf: { '@type': 'Article', '@id': url },
+    };
+    graph.push(book);
+    const article = graph.find(item => item['@type'] === 'Article');
+    if (article) {
+      article.headline = `${review.title} — Reading Guide & Editions`;
+      article.author = { '@type': 'Organization', name: 'FrankX Library', url: `${SITE_URL}/library` };
+      article.about = { '@id': `${url}#book` };
+      article.citation = review.guide.sources.map(source => ({ '@type': 'CreativeWork', name: source.title, url: source.url }));
+      article.image = `${url}/opengraph-image`;
+    }
+  }
+
   if (review.faq && review.faq.length > 0) {
     graph.push({
       '@type': 'FAQPage',
@@ -183,7 +204,7 @@ function JsonLd({ review }: { review: BookReview }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
     />
   );
 }
@@ -203,14 +224,10 @@ export default async function ReviewPage({
 
   const otherReviews = bookReviews
     .filter((r) => r.slug !== review.slug)
+    .sort((a, b) => b.categories.filter(category => review.categories.includes(category)).length - a.categories.filter(category => review.categories.includes(category)).length)
     .slice(0, 3);
 
-  const headerImage = review.hasCover
-    ? {
-        src: review.coverImage,
-        alt: `${review.title} by ${review.author} — book cover`,
-      }
-    : review.capture?.images?.[0];
+
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -218,7 +235,7 @@ export default async function ReviewPage({
       <div className="max-w-3xl mx-auto px-6 pt-28 pb-4">
         <Link
           href="/library"
-          className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
         >
           <svg
             className="w-4 h-4"
@@ -240,38 +257,16 @@ export default async function ReviewPage({
       {/* Review Header */}
       <header className="max-w-3xl mx-auto px-6 pb-12">
         <div className="flex items-start gap-6">
-          {headerImage ? (
-            <div className="w-24 h-36 rounded-xl border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
-              <Image
-                src={headerImage.src}
-                alt={headerImage.alt}
-                width={192}
-                height={288}
-                priority
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ) : (
-            <div className="w-24 h-36 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex-shrink-0 flex items-center justify-center">
-              <span className="text-4xl font-serif text-white/20">
-                {review.title.charAt(0)}
-              </span>
-            </div>
-          )}
+          <BookCover title={review.title} author={review.author} src={review.hasCover ? review.coverImage : review.capture?.images?.[0]?.src} imageAlt={review.hasCover ? undefined : review.capture?.images?.[0]?.alt} priority className="w-20 sm:w-28" />
           <div>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
               {review.title}
             </h1>
-            <p className="text-lg text-white/50 mb-3">by {review.author}</p>
-            <StarRating rating={review.rating} />
+            <p className="text-lg text-white/75 mb-3">by {review.author}</p>
+            {review.guide ? <p className="text-sm text-emerald-200">{review.guide.kind} · Reading guide</p> : <StarRating rating={review.rating} />}
             <div className="flex flex-wrap gap-2 mt-4">
               {review.categories.map((cat) => (
-                <span
-                  key={cat}
-                  className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 text-white/50 border border-white/10"
-                >
-                  {cat}
-                </span>
+                <Link key={cat} href={`/library?category=${encodeURIComponent(cat)}`} className="inline-flex min-h-11 items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/75 hover:border-emerald-300/40 focus-visible:ring-2 focus-visible:ring-emerald-300">{cat}</Link>
               ))}
             </div>
           </div>
@@ -347,6 +342,8 @@ export default async function ReviewPage({
           </div>
         </section>
       )}
+
+      {review.guide && <ReadingGuide guide={review.guide} />}
 
       {/* Above-fold conversion bar — added 2026-05-20 per /hub-audit library P1.1 */}
       <section className="max-w-3xl mx-auto px-6 pb-12" aria-label="Newsletter call-to-action">

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 961,
+    "total": 993,
     "aliases": 58,
     "byType": {
       "core": 24,
@@ -12,7 +12,7 @@
       "blog": 264,
       "research": 16,
       "guide": 26,
-      "library": 56,
+      "library": 88,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
@@ -6155,11 +6155,40 @@
       "type": "library"
     },
     {
+      "href": "/library/a-new-earth",
+      "title": "A New Earth — Eckhart Tolle",
+      "description": "Tolle extends his account of presence into a discussion of ego, identity, and human relationships.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Eckhart",
+        "ego"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/altered-traits",
       "title": "Altered Traits",
       "tags": [
         "altered",
         "traits"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/analects",
+      "title": "The Analects — Sayings of Confucius, compiled by followers",
+      "description": "A collection of conversations and sayings concerned with ethical cultivation, learning, relationships, and government.",
+      "tags": [
+        "Sacred Texts",
+        "Confucianism",
+        "Philosophy",
+        "Ethics",
+        "Confucius",
+        "Kongzi",
+        "Lunyu",
+        "ren",
+        "li"
       ],
       "type": "library"
     },
@@ -6188,6 +6217,36 @@
       "type": "library"
     },
     {
+      "href": "/library/autobiography-of-a-yogi",
+      "title": "Autobiography of a Yogi — Paramahansa Yogananda",
+      "description": "Yogananda’s account of his life, teachers, and spiritual search connects personal narrative with his presentation of yoga to a wider readership.",
+      "tags": [
+        "Spiritual Memoir",
+        "Yoga",
+        "Inner Work",
+        "Paramahamsa",
+        "Yogananda",
+        "Kriya Yoga"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/avesta",
+      "title": "Avesta: Selected Texts — Multiple Zoroastrian textual traditions",
+      "description": "An entry into a Zoroastrian scriptural and liturgical corpus, beginning with selected Yasna material and the Gathas.",
+      "tags": [
+        "Sacred Texts",
+        "Zoroastrianism",
+        "Devotion",
+        "Zarathustra",
+        "Zoroaster",
+        "Gathas",
+        "Yasna",
+        "Zoroastrian"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/awaken-the-giant-within",
       "title": "Awaken the Giant Within",
       "tags": [
@@ -6195,6 +6254,20 @@
         "the",
         "giant",
         "within"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/be-here-now",
+      "title": "Be Here Now — Ram Dass",
+      "description": "An illustrated meeting of spiritual autobiography and practice, shaped by Ram Dass’s transformation and encounter with Indian devotional traditions.",
+      "tags": [
+        "Spiritual Memoir",
+        "Inner Work",
+        "Contemporary Spirituality",
+        "Richard Alpert",
+        "Ramdas",
+        "Neem Karoli Baba"
       ],
       "type": "library"
     },
@@ -6214,6 +6287,39 @@
       "tags": [
         "becoming",
         "supernatural"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/bhagavad-gita",
+      "title": "The Bhagavad Gita — Traditionally attributed to Vyasa",
+      "description": "A dialogue between Krishna and Arjuna about action, knowledge, devotion, and liberation, situated within the Mahabharata.",
+      "tags": [
+        "Sacred Texts",
+        "Hinduism",
+        "Philosophy",
+        "Yoga",
+        "Gita",
+        "Krishna",
+        "Arjuna",
+        "karma yoga"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/bible",
+      "title": "The Bible — Multiple authors; Christian scriptural traditions",
+      "description": "A collection of narrative, law, poetry, prophecy, Gospels, and letters. Read each genre on its own terms, with attention to its historical and religious setting.",
+      "tags": [
+        "Sacred Texts",
+        "Christianity",
+        "Ethics",
+        "holy bible",
+        "old testament",
+        "new testament",
+        "Jesus",
+        "Gospels",
+        "Psalms"
       ],
       "type": "library"
     },
@@ -6294,11 +6400,77 @@
       "type": "library"
     },
     {
+      "href": "/library/collections/business",
+      "title": "Build a lasting business",
+      "tags": [
+        "business"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/creative-life",
+      "title": "Art, music & creative life",
+      "tags": [
+        "creative",
+        "life"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/inner-life",
+      "title": "Awareness & inner life",
+      "tags": [
+        "inner",
+        "life"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/meaning",
+      "title": "Meaning, habits & growth",
+      "tags": [
+        "meaning"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/philosophy",
+      "title": "Philosophy & the examined life",
+      "tags": [
+        "philosophy"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/sacred-texts",
+      "title": "Sacred texts & traditions",
+      "tags": [
+        "sacred",
+        "texts"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/deep-work",
       "title": "Deep Work",
       "tags": [
         "deep",
         "work"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/dhammapada",
+      "title": "The Dhammapada — Teachings attributed to the Buddha",
+      "description": "A Buddhist verse collection concerned with conduct, attention, suffering, and the path of practice.",
+      "tags": [
+        "Sacred Texts",
+        "Buddhism",
+        "Ethics",
+        "Meditation",
+        "Buddha",
+        "Pali",
+        "dharma"
       ],
       "type": "library"
     },
@@ -6331,6 +6503,22 @@
       "type": "library"
     },
     {
+      "href": "/library/guru-granth-sahib",
+      "title": "Sri Guru Granth Sahib — Sikh Gurus and other devotional poets",
+      "description": "The Sikh scripture, revered as the living Guru, brings together devotional compositions with a deep relationship to music and communal practice.",
+      "tags": [
+        "Sacred Texts",
+        "Sikhism",
+        "Devotion",
+        "Music",
+        "Adi Granth",
+        "Gurbani",
+        "Japji",
+        "Guru Nanak"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/handbook-to-higher-consciousness",
       "title": "Handbook TO Higher Consciousness",
       "tags": [
@@ -6341,6 +6529,20 @@
         "consciousness"
       ],
       "type": "section"
+    },
+    {
+      "href": "/library/heart-sutra",
+      "title": "The Heart Sutra — Mahayana Buddhist scripture",
+      "description": "A short Perfection of Wisdom scripture centred on emptiness and the relation between form and emptiness.",
+      "tags": [
+        "Sacred Texts",
+        "Buddhism",
+        "Philosophy",
+        "Prajnaparamita",
+        "emptiness",
+        "Avalokiteshvara"
+      ],
+      "type": "library"
     },
     {
       "href": "/library/how-music-works",
@@ -6382,12 +6584,41 @@
       "type": "library"
     },
     {
+      "href": "/library/kitab-i-aqdas",
+      "title": "The Kitáb-i-Aqdas — Bahá’u’lláh",
+      "description": "Bahá’u’lláh’s book of laws, read within the Bahá’í Faith alongside supplementary texts, questions and answers, and explanatory notes.",
+      "tags": [
+        "Sacred Texts",
+        "Bahai",
+        "Ethics",
+        "Bahaullah",
+        "Bahai",
+        "Baha i",
+        "Most Holy Book",
+        "Kitab i Aqdas"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/life-keith-richards",
       "title": "Life",
       "tags": [
         "life",
         "keith",
         "richards"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/living-untethered",
+      "title": "Living Untethered — Michael A. Singer",
+      "description": "A continuation of Singer’s teaching on awareness, emotional patterns, and the work of releasing inner resistance.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Meditation",
+        "Michael Singer",
+        "Beyond the Human Predicament"
       ],
       "type": "library"
     },
@@ -6507,6 +6738,22 @@
       "type": "library"
     },
     {
+      "href": "/library/quran",
+      "title": "The Quran — Islamic scripture",
+      "description": "The central scripture of Islam, received by Muslims as divine revelation in Arabic. Its recitation, ethical address, and theological claims belong together.",
+      "tags": [
+        "Sacred Texts",
+        "Islam",
+        "Ethics",
+        "Koran",
+        "Qur’an",
+        "Qur an",
+        "surah",
+        "Allah"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/rockstar-energy",
       "title": "Rockstar Energy",
       "tags": [
@@ -6536,12 +6783,57 @@
       "type": "library"
     },
     {
+      "href": "/library/tanakh",
+      "title": "The Tanakh — Multiple authors; Jewish scriptural tradition",
+      "description": "The Jewish Bible comprises Torah, Nevi’im (Prophets), and Ketuvim (Writings). Reading alongside commentary reveals a continuing tradition of argument and interpretation.",
+      "tags": [
+        "Sacred Texts",
+        "Judaism",
+        "Ethics",
+        "Torah",
+        "Hebrew Bible",
+        "Neviim",
+        "Ketuvim"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tantra-illuminated",
+      "title": "Tantra Illuminated — Christopher D. Wallis",
+      "description": "A modern introduction to the history and philosophy of Tantric traditions, useful for placing popular uses of the word Tantra in context.",
+      "tags": [
+        "Tantra",
+        "Hinduism",
+        "Philosophy",
+        "Christopher Hareesh Wallis",
+        "Tantrik",
+        "Kashmir Shaivism"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/tao-te-ching",
       "title": "Tao Te Ching",
       "tags": [
         "tao",
         "te",
         "ching"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tattvartha-sutra",
+      "title": "Tattvartha Sutra: That Which Is — Umasvati",
+      "description": "A systematic Jain work concerned with reality, the soul, karma, and liberation, available in English as That Which Is.",
+      "tags": [
+        "Sacred Texts",
+        "Jainism",
+        "Philosophy",
+        "Ethics",
+        "Tattvarthasutra",
+        "Umaswati",
+        "Jain",
+        "ahimsa"
       ],
       "type": "library"
     },
@@ -6608,6 +6900,20 @@
       "type": "library"
     },
     {
+      "href": "/library/the-miracle-of-mindfulness",
+      "title": "The Miracle of Mindfulness — Thich Nhat Hanh",
+      "description": "A Buddhist introduction to bringing attention into ordinary activities, with a gentle emphasis on everyday practice.",
+      "tags": [
+        "Buddhism",
+        "Meditation",
+        "Inner Work",
+        "Thich Nhat Hanh",
+        "Thay",
+        "mindfulness"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-power-of-eight",
       "title": "The Power of Eight",
       "tags": [
@@ -6619,11 +6925,53 @@
       "type": "library"
     },
     {
+      "href": "/library/the-power-of-now",
+      "title": "The Power of Now — Eckhart Tolle",
+      "description": "Tolle’s teaching on presence examines identification with thought and the tendency to live through remembered pasts and imagined futures.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Meditation",
+        "Eckhart",
+        "presence",
+        "Now"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-secret",
       "title": "The Secret",
       "tags": [
         "the",
         "secret"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-surrender-experiment",
+      "title": "The Surrender Experiment — Michael A. Singer",
+      "description": "Singer’s memoir describes how his practice of surrender developed through everyday decisions, community, and business life.",
+      "tags": [
+        "Spiritual Memoir",
+        "Inner Work",
+        "Contemporary Spirituality",
+        "Michael Singer",
+        "surrender"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-untethered-soul",
+      "title": "The Untethered Soul — Michael A. Singer",
+      "description": "Singer invites readers to notice the inner voice and examine their relationship with thoughts, emotions, and resistance.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Meditation",
+        "Michael Singer",
+        "untethered",
+        "witness",
+        "letting go"
       ],
       "type": "library"
     },
@@ -6689,12 +7037,86 @@
       "type": "library"
     },
     {
+      "href": "/library/upanishads",
+      "title": "The Upanishads — Multiple teachers and textual traditions",
+      "description": "A family of texts exploring self, ultimate reality, knowledge, and liberation through dialogues, stories, and instruction.",
+      "tags": [
+        "Sacred Texts",
+        "Hinduism",
+        "Philosophy",
+        "Vedanta",
+        "Atman",
+        "Brahman",
+        "Katha"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/vijnana-bhairava-tantra",
+      "title": "Vijñāna-bhairava-tantra — Anonymous; Shaiva Tantric tradition",
+      "description": "A historical Shaiva Tantric dialogue presenting 112 contemplative practices within a religious understanding of awareness.",
+      "tags": [
+        "Sacred Texts",
+        "Tantra",
+        "Meditation",
+        "Hinduism",
+        "Vijnana Bhairava",
+        "Vigyan Bhairav",
+        "Vijnanabhairava",
+        "112 meditations",
+        "tantra"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/when-things-fall-apart",
+      "title": "When Things Fall Apart — Pema Chödrön",
+      "description": "Contemplative reflections on meeting uncertainty and difficulty, grounded in Pema Chödrön’s Buddhist teaching.",
+      "tags": [
+        "Buddhism",
+        "Inner Work",
+        "Meditation",
+        "Pema Chodron",
+        "uncertainty",
+        "compassion"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/will-it-fly",
       "title": "Will It Fly?",
       "tags": [
         "will",
         "it",
         "fly"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/wisdom-untethered",
+      "title": "Wisdom Untethered — Michael A. Singer",
+      "description": "The Time for Questions brings Singer’s teaching into a question-led format concerned with applying spiritual ideas to ordinary life.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Michael Singer",
+        "The Time for Questions"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/yoga-sutras",
+      "title": "The Yoga Sutras — Attributed to Patanjali",
+      "description": "A compact classical account of yoga concerned with mind, practice, and liberation. Its scope extends well beyond physical postures.",
+      "tags": [
+        "Sacred Texts",
+        "Yoga",
+        "Philosophy",
+        "Meditation",
+        "Patanjali",
+        "Patañjali",
+        "eight limbs",
+        "ashtanga"
       ],
       "type": "library"
     },
@@ -6706,6 +7128,21 @@
         "are",
         "the",
         "placebo"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/zhuangzi",
+      "title": "Zhuangzi — Zhuangzi and later contributors",
+      "description": "A Daoist philosophical collection that uses stories, humour, paradox, and shifting perspectives to unsettle rigid judgments.",
+      "tags": [
+        "Sacred Texts",
+        "Taoism",
+        "Philosophy",
+        "Chuang Tzu",
+        "Chuang-tzu",
+        "Zhuang Zhou",
+        "Daoism"
       ],
       "type": "library"
     },

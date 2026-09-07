@@ -1,6 +1,6 @@
 import { bookReviews } from '@/data/book-reviews'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = 'https://www.frankx.ai'
 
 function escapeXml(str: string): string {
   return str
@@ -42,9 +42,9 @@ ${categoryLine}
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>FrankX Library — book deep-dives</title>
+    <title>FrankX Library — reading guides and book notes</title>
     <link>${SITE_URL}/library</link>
-    <description>Permanent deep-dives on every book Frank reads — quotes, chapters, related reading, and videos.</description>
+    <description>Editorial reading guides, edition notes, and book reviews across philosophy, spiritual traditions, creativity, and business.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${SITE_URL}/library/rss.xml" rel="self" type="application/rss+xml"/>
