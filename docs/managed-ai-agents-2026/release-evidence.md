@@ -1,0 +1,50 @@
+# Managed AI agents article: draft release evidence
+
+## Scope and authorization
+
+Additive article at `/blog/managed-ai-agents-for-founders-2026`, original hero, three precise SVG figures, official brand sources and editorial evidence. Base commit: `14e584b373dcb4de182743f31f5947eb0310c74e`. Isolated clone and agent branch. Generated route and hero indexes include the new article assets. Three labels in the existing image viewer now use factual, sentence-case copy: “Inspect image,” “View image” and “Image viewer.” This removes the unsupported claim that every image is 4K. No homepage, navigation, pricing integration, dependency or production-runtime changes.
+
+The user explicitly approved proceeding with a draft GitHub PR and Vercel preview despite the unavailable initial mobile capture. Production merge remains blocked until mobile review. This is a draft delivery, not a world-class or production-complete certification.
+
+## Direction and editorial decision
+
+Three directions were compared in the prior review: architecture-led founder control room, editorial field guide, and cost-led data story. Implementation follows the architecture-led direction with exact economics supporting it. All-capital display copy and arbitrary vendor scores were rejected. The article distinguishes desk research, vendor claims and authored assumptions.
+
+The initial concept boards and prior browser captures are not committed evidence. This record does not assert a new independent review. The maker is Codex; independent verifier and human approver remain unassigned for production.
+
+## Evidence collected
+
+- Official-source pricing and capability review: September 7, 2026; source ledger committed.
+- Original hero generated and inspected; 163,672-byte WebP derivative.
+- All three figures rasterized and visually inspected for content, text fit and readable contrast.
+- OpenAI construction-sheet asset rejected during review; replaced with official white Blossom logo.
+- Figure numbers generated from explicit assumptions; brand files have source URLs and hashes.
+- Existing scrollable table and diagram components reused; diagram alt text describes the full relationship.
+- No new motion or analytics code; existing article analytics inherited.
+- Initial strict language audit: 2,512 files, zero hits.
+
+## Required local checks
+
+- `corepack pnpm run type-check`: passed.
+- `corepack pnpm run lint`: passed, zero errors; seven existing repository warnings outside the changed component.
+- `corepack pnpm run ai-slop:audit:strict`: passed, 2,512 files and zero hits.
+- Article MDX compiled with GFM; title 55 characters, description 149 characters, TL;DR 59 words; referenced hero exists.
+- Existing FAQ contract suite: 10/10 passed. Article schema extraction yields five questions from the visible body.
+- Repository internal-link check: all hrefs resolve across 2,684 scanned files. Article-specific linked routes also checked.
+- MDX safety, content integrity, AEO and pnpm override guards: passed.
+- Cost arithmetic reconciles with the committed assumptions.
+- `CI=true NEXT_TELEMETRY_DISABLED=1 corepack pnpm run build`: passed, including compilation, Next's TypeScript check, all 1,408 static pages and the postbuild rendered vault metadata test.
+- Local builds initially stopped at the existing optional sibling-repository sync requirement. The sibling sync supports `CI=true` when that authoring repository is absent; the passing build used that supported automated mode. No gate was modified. The branch also includes main's independent preview guard and history fix in PR #651.
+
+The checkout uses the repository-pinned pnpm 10.28.0 and unchanged frozen lockfile. A raw Node fetch batch timed out in this execution environment; that is not evidence the vendor websites failed. Official sources were inspected through web research, and the n8n license route additionally returned HTTP 200 through curl.
+
+## Production holds
+
+- [ ] Current mobile article capture and table/diagram scrolling review.
+- [ ] Keyboard and focus review, including diagram scrolling.
+- [ ] Independent editorial, visual and image review.
+- [ ] Required GitHub checks and broader merge gate on the final candidate.
+- [ ] Human production approval.
+- [ ] Post-merge live URL, metadata, image and analytics verification.
+
+The GitHub PR and Notion strategy page will hold the desktop preview receipt and final deployment links after the native preview exists. This file records the local pre-push candidate. No production merge is authorized by this evidence file.

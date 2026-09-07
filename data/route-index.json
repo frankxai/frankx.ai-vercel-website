@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 961,
+    "total": 962,
     "aliases": 58,
     "byType": {
       "core": 24,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 61,
       "static": 15,
-      "blog": 264,
+      "blog": 265,
       "research": 16,
       "guide": 26,
       "library": 56,
@@ -2783,6 +2783,19 @@
         "Arcanea",
         "Starlight Intelligence",
         "Sovereignty"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/managed-ai-agents-for-founders-2026",
+      "title": "Managed AI agents for founders: the 2026 decision guide",
+      "description": "Compare Claude Managed Agents, OpenAI, Hyperagent, n8n, OpenClaw and Hermes by workflow, operating responsibility and the full cost of accepted work.",
+      "tags": [
+        "AI Agents",
+        "Founder Stack",
+        "AI Architecture",
+        "Automation",
+        "Unit Economics"
       ],
       "type": "blog"
     },

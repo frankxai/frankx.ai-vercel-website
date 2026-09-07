@@ -1,0 +1,21 @@
+{
+  "assumptions": {
+    "jobs": 1000,
+    "accepted": 900,
+    "modelPerJob": 0.2,
+    "runtimeHoursPerJob": 0.5,
+    "runtimeHourly": 0.08,
+    "otherInfrastructure": 50,
+    "reviewMinutesPerJob": 2,
+    "reviewHourly": 60
+  },
+  "computed": {
+    "model": 200,
+    "runtime": 40,
+    "review": 2000.0000000000002,
+    "technical": 290,
+    "total": 2290,
+    "costPerAccepted": 2.5444444444444443
+  },
+  "status": "Illustration, not a benchmark"
+}

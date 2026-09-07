@@ -1,0 +1,41 @@
+{
+  "retrieved": "2026-09-07",
+  "purpose": "Subordinate editorial identification. No affiliation or endorsement. Vendor assets remain unchanged and retain their respective rights. No general trademark license asserted.",
+  "assets": [
+    {
+      "file": "public/images/blog/managed-ai-agents/brands/claude.svg",
+      "source": "https://claude.ai/favicon.svg",
+      "sha256": "b150888bc7257af83e3b85d3c2be4294f88986026f8168f6c12fc1fde6697350"
+    },
+    {
+      "file": "public/images/blog/managed-ai-agents/brands/openai.svg",
+      "source": "https://cdn.openai.com/brand/openai-logos.zip#OpenAI-logos/SVGs/OAI_OpenAI-Blossom_White.svg",
+      "sha256": "01d158767c4eec0e47bd617e67759c33da0accd1438be1a8d29dfdb99ce87285"
+    },
+    {
+      "file": "public/images/blog/managed-ai-agents/brands/vercel.svg",
+      "source": "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg",
+      "sha256": "d753ab3f420a3593eb5d0d796a2114d6a6f9688428ea99270bf1d2912e386a1f"
+    },
+    {
+      "file": "public/images/blog/managed-ai-agents/brands/n8n.svg",
+      "source": "https://n8n.io/brandguidelines/logo-white.svg",
+      "sha256": "8e6ff3a85953b1e09b0ec16a25b0f66b38eb77434f7834c0ac3716b952635d9a"
+    },
+    {
+      "file": "public/images/blog/managed-ai-agents/brands/railway.svg",
+      "source": "https://railway.com/brand/logo-light.svg",
+      "sha256": "a86197e5d189b7d60cbc48cac505d9eb8bb37e5cd81da96036bd1a51d38932b0"
+    },
+    {
+      "file": "public/images/blog/managed-ai-agents/brands/openclaw.svg",
+      "source": "https://openclaw.ai/favicon.svg",
+      "sha256": "fa7e2ec07ebfa696bcc8c27d7e36425cbb7b1772f6f7f04ce390cf5f1c35cf0e"
+    },
+    {
+      "file": "public/images/blog/managed-ai-agents/brands/hermes.png",
+      "source": "https://hermes-agent.nousresearch.com/icon.png",
+      "sha256": "5fbced606189c9bfc2925a16f8903333041cabbf1f8699fe9fe9b3e24504048f"
+    }
+  ]
+}
