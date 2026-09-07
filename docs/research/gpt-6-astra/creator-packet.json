@@ -24,7 +24,7 @@
   },
   "content_graph": {
     "cluster_id": "astra-in-practice-202609",
-    "canonical_url": "https://frankx.ai/blog/gpt-6-astra-for-content-creators",
+    "canonical_url": "https://www.frankx.ai/blog/gpt-6-astra-for-content-creators",
     "existing_related_urls": [
       "/blog/ultimate-canva-ai-workflow-2026",
       "/blog/gpt-6-astra-chatgpt-work-codex-founders",
@@ -248,13 +248,13 @@
     {
       "lane": "production_verifier",
       "verdict": "blocked",
-      "reason": "Awaiting full repository gates and Vercel preview."
+      "reason": "Source, build, static and runtime-link checks passed; desktop preview inspected. Mobile rendered evidence is unavailable in the current browser."
     }
   ],
   "publication": {
     "branch": "agent/codex/astra-field-notes",
-    "pull_request": null,
-    "preview_url": null,
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/655",
+    "preview_url": "https://frankx-ai-vercel-website-ppe9tv3y3-starlight-intelligence.vercel.app",
     "live_url": null,
     "verified_at": null,
     "rollback": "Revert the release PR; restore previous Vercel deployment."
@@ -274,6 +274,6 @@
     ]
   },
   "blocked": [
-    "Repository gates and rendered preview verification pending."
+    "Mobile rendered verification and final release evidence pending."
   ]
 }
