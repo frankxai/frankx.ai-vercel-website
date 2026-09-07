@@ -18,6 +18,11 @@ interface ModelPricing {
 
 const MODELS: ModelPricing[] = [
   {
+    id: "gpt-6-astra", name: "GPT-6 Astra", org: "OpenAI",
+    inputPer1M: 10, outputPer1M: 50, color: "#10b981", tier: "flagship",
+    tps: "Not measured", note: "Standard short-context rates checked 7 September 2026; evaluate before routing.",
+  },
+  {
     id: "deepseek-v4-pro",
     name: "DeepSeek V4 Pro",
     org: "DeepSeek",
@@ -65,7 +70,7 @@ const MODELS: ModelPricing[] = [
     id: "gpt-5-6-sol",
     name: "GPT-5.6 Sol",
     org: "OpenAI",
-    inputPer1M: 5.00,
+    inputPer1M: 4.00,
     outputPer1M: 20.00,
     color: "#10b981",
     tier: "flagship",
@@ -158,15 +163,15 @@ export function CostCalculator() {
             <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-2 text-emerald-400">
               <Calculator className="h-5 w-5" />
             </div>
-            <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">Interactive Model ROI Engine</span>
+            <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">Token spending estimate</span>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">Cost-to-Outcome Calculator</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">Monthly token-cost calculator</h2>
           <p className="mt-1 max-w-2xl text-sm text-white/60">
-            Model intelligence pricing varies up to 40x between tiers. Simulate monthly token spend across frontier models
-            and evaluate hybrid routing savings.
+            Estimate standard short-context token spending. This example excludes retries, tools, cache creation and review time; it does not measure ROI or execution quality.
           </p>
         </div>
 
+        <a href="https://starlight-research-hub.vercel.app/models#cost" className="text-sm text-emerald-300 underline underline-offset-4">Include retries and review time in the accepted-task calculator</a>
         <div className="flex flex-wrap gap-2">
           {PRESETS.map((p) => (
             <button
@@ -247,7 +252,7 @@ export function CostCalculator() {
             </div>
           </div>
           <div className="shrink-0 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-center">
-            <div className="text-xs text-white/60">Estimated Blended ROI</div>
+            <div className="text-xs text-white/60">Estimated token-cost reduction</div>
             <div className="font-mono text-lg font-bold text-emerald-300">Save {hybridSavingsVsFlagship.pct}%</div>
           </div>
         </div>
@@ -292,7 +297,6 @@ export function CostCalculator() {
                 <div className="flex justify-between text-[11px] text-white/40">
                   <span>In: ${model.inputCost.toFixed(2)}</span>
                   <span>Out: ${model.outputCost.toFixed(2)}</span>
-                  <span>Speed: {model.tps}</span>
                 </div>
               </div>
             </motion.div>

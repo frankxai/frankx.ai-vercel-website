@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.1.0",
+  "content_id": "cnt_frankx_gpt6_astra_founders_202609",
+  "status": "DRAFT",
+  "authority": "PUBLISH",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "frankx-ai-vercel-website",
+    "notion_record": "not used for this repository-owned commission"
+  },
+  "brief": {
+    "working_title": "GPT-6 Astra for founders: ChatGPT, Work and Codex",
+    "subject": "GPT-6 Astra in founders workflows",
+    "origin": "User-commissioned September 3 launch review against existing hub and evaluation infrastructure.",
+    "thesis": "Commission a complete outcome and inspect the handoff.",
+    "reader": "founders practitioners",
+    "reader_baseline": "Already uses AI tools; needs a concrete adoption decision.",
+    "reader_delta": "Choose the right surface for a founder project and define evidence that the work is ready to use.",
+    "stakes": "Time, operating cost and trust in publishable or deployable outputs.",
+    "strongest_objection": "Vendor benchmarks do not establish performance on the reader's own workflow.",
+    "commercial_relationship": "none"
+  },
+  "content_graph": {
+    "cluster_id": "astra-in-practice-202609",
+    "canonical_url": "https://frankx.ai/blog/gpt-6-astra-chatgpt-work-codex-founders",
+    "existing_related_urls": [
+      "/blog/codex-plugins-for-teams",
+      "/blog/chatgpt-sites-founder-guide-2026",
+      "/blog/gpt-6-astra-for-content-creators",
+      "/blog/gpt-6-astra-ai-architecture-model-economics",
+      "/llm-hub/gpt-6-astra"
+    ],
+    "internal_links": [
+      "/blog/codex-plugins-for-teams",
+      "/blog/chatgpt-sites-founder-guide-2026",
+      "/blog/gpt-6-astra-for-content-creators",
+      "/blog/gpt-6-astra-ai-architecture-model-economics",
+      "/llm-hub/gpt-6-astra"
+    ],
+    "entities": [
+      "GPT-6 Astra",
+      "ChatGPT Work",
+      "Codex",
+      "OpenAI"
+    ]
+  },
+  "search": {
+    "primary_intent": "Choose the right surface for a founder project and define evidence that the work is ready to use.",
+    "query_set": [
+      "GPT-6 Astra for founders: ChatGPT, Work and Codex"
+    ],
+    "serp_snapshot": {
+      "captured_at": null,
+      "locale": "en",
+      "device": null,
+      "dominant_intent": "User commission; no competitive ranking claimed.",
+      "information_gap": "Evidence-aware workflow acceptance and model economics."
+    },
+    "answer_units": [
+      "Assign the work to the right surface",
+      "Commission a campaign around an actual decision",
+      "Web design needs a working journey",
+      "Marketing gains depend on source discipline",
+      "Run one comparison before changing your operating model"
+    ],
+    "structured_data": [
+      "Article",
+      "BreadcrumbList"
+    ],
+    "indexation": "index",
+    "crawler_policy_checked": false
+  },
+  "sources": [
+    {
+      "source_id": "astra-release",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "title": "GPT-6 Astra: A new generation of intelligence",
+      "publisher": "OpenAI",
+      "source_type": "vendor_report",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "astra-guide",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "title": "Using GPT-6 Astra",
+      "publisher": "OpenAI",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "work-guide",
+      "url": "https://learn.chatgpt.com/docs/get-started-with-work",
+      "title": "Get started with ChatGPT Work",
+      "publisher": "OpenAI",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "model-selection",
+      "url": "https://learn.chatgpt.com/docs/models",
+      "title": "Models in ChatGPT Work and Codex",
+      "publisher": "OpenAI",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "local-evidence",
+      "repository_path": "frankxai/llm-evals@fdb25d51f0bdf5914b5f41bf5d1197da7d6e121b",
+      "url": "https://starlight-research-hub.vercel.app/api/evidence",
+      "title": "Sanitized Astra evaluation plan",
+      "publisher": "FrankX / Starlight",
+      "source_type": "first_party",
+      "retrieved_at": "2026-09-07"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "workflow-thesis",
+      "text": "Commission a complete outcome and inspect the handoff.",
+      "type": "opinion",
+      "support": "contextual",
+      "source_ids": []
+    },
+    {
+      "claim_id": "evidence-boundary",
+      "text": "No local Astra connector success rate or calibrated judge result is claimed.",
+      "type": "first_party",
+      "support": "direct",
+      "source_ids": [
+        "local-evidence"
+      ]
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/gpt-6-astra-chatgpt-work-codex-founders.mdx",
+    "canonical_title": "GPT-6 Astra for founders: ChatGPT, Work and Codex",
+    "description": "Turn GPT-6 Astra into a useful founder workflow across ChatGPT, Work and Codex, with clear briefs, source checks, web design tests and reviewable handoffs.",
+    "author_id": "frank-riemer",
+    "published_at": null,
+    "modified_at": "2026-09-07"
+  },
+  "visual_plan": {
+    "tier": "EXPLAINER",
+    "reason": "Bounded capability review; exact acceptance diagram replaces decorative narrative scenes.",
+    "status": "IN_PRODUCTION",
+    "visual_packet_ref": "docs/research/gpt-6-astra/media-manifest.json",
+    "competitive_snapshot_at": null,
+    "character_mode": "NOT_APPLICABLE",
+    "character_exemption": "Exact workflow boundaries are the visual subject.",
+    "canonical_character_refs": [],
+    "required_roles": [
+      "orientation",
+      "architecture",
+      "og"
+    ]
+  },
+  "media": [
+    {
+      "asset_id": "frankx.astra.founders.orientation",
+      "version_id": "v1",
+      "path": "/research/astra/founders-v1.svg",
+      "sha256": "b6b7ea0ca23e8763c0157cfde86dab6a3a480fa8e630b2c3970601aadba16205",
+      "width": 1200,
+      "height": 630,
+      "mime_type": "image/svg+xml",
+      "alt": "GPT-6 Astra for founders. One brief. Three surfaces. Acceptance / Sources, function, handoff.",
+      "provenance": "Original deterministic SVG authored for this article; no source logos or product UI.",
+      "rights": "Original editorial diagram; no third-party media assets.",
+      "roles": [
+        "orientation",
+        "architecture"
+      ],
+      "approval_state": "pending_visual_review",
+      "rollback": "Remove the three new articles and named v1 files in a revert PR.",
+      "placement": "article.hero",
+      "media_type": "image/svg+xml"
+    },
+    {
+      "asset_id": "frankx.astra.founders.og",
+      "version_id": "v1",
+      "placement": "article.og",
+      "media_type": "image/png",
+      "rights": "Existing FrankX image endpoint with authored article title and series subtitle.",
+      "alt": "GPT-6 Astra for founders: ChatGPT, Work and Codex",
+      "provenance": "Existing /api/og renderer; no new external media."
+    }
+  ],
+  "affiliates": [],
+  "distribution": [],
+  "reviews": [
+    {
+      "lane": "truth_rights",
+      "verdict": "pass",
+      "reason": "Primary sources checked; no private media or invented live measurements."
+    },
+    {
+      "lane": "commissioning_editor",
+      "verdict": "pass",
+      "reason": "Distinct reader job; creator specialist and root performed independent cross-review."
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "Awaiting full repository gates and Vercel preview."
+    }
+  ],
+  "publication": {
+    "branch": "agent/codex/astra-field-notes",
+    "pull_request": null,
+    "preview_url": null,
+    "live_url": null,
+    "verified_at": null,
+    "rollback": "Revert the release PR; restore previous Vercel deployment."
+  },
+  "measurement": {
+    "hypothesis": "Practical articles lead readers to inspect model evidence and define an acceptance task.",
+    "primary_metric": "Article-to-hub engagement; not measured in this release.",
+    "guardrails": [
+      "No unsupported measured claims",
+      "No duplicated canonical article"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "2026-10-07",
+    "freshness_triggers": [
+      "Model/pricing/connector documentation changes",
+      "New evaluation receipts"
+    ]
+  },
+  "blocked": [
+    "Repository gates and rendered preview verification pending."
+  ]
+}

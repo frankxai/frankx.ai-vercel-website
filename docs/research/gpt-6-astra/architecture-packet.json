@@ -1,0 +1,240 @@
+{
+  "schema_version": "1.1.0",
+  "content_id": "cnt_frankx_gpt6_astra_architecture_202609",
+  "status": "DRAFT",
+  "authority": "PUBLISH",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "frankx-ai-vercel-website",
+    "notion_record": "not used for this repository-owned commission"
+  },
+  "brief": {
+    "working_title": "GPT-6 Astra: model economics and production architecture",
+    "subject": "GPT-6 Astra in architecture workflows",
+    "origin": "User-commissioned September 3 launch review against existing hub and evaluation infrastructure.",
+    "thesis": "Choose and promote models by accepted work under task-specific constraints.",
+    "reader": "architecture practitioners",
+    "reader_baseline": "Already uses AI tools; needs a concrete adoption decision.",
+    "reader_delta": "Define a model-selection and promotion process that accounts for quality, latency, correction effort and operating cost.",
+    "stakes": "Time, operating cost and trust in publishable or deployable outputs.",
+    "strongest_objection": "Vendor benchmarks do not establish performance on the reader's own workflow.",
+    "commercial_relationship": "none"
+  },
+  "content_graph": {
+    "cluster_id": "astra-in-practice-202609",
+    "canonical_url": "https://frankx.ai/blog/gpt-6-astra-ai-architecture-model-economics",
+    "existing_related_urls": [
+      "/blog/ai-architecture-2026-four-decisions-hard-to-reverse",
+      "/blog/production-agentic-ai-systems",
+      "/blog/ai-model-routing-guide",
+      "/llm-hub/gpt-6-astra"
+    ],
+    "internal_links": [
+      "/blog/ai-architecture-2026-four-decisions-hard-to-reverse",
+      "/blog/production-agentic-ai-systems",
+      "/blog/ai-model-routing-guide",
+      "/llm-hub/gpt-6-astra"
+    ],
+    "entities": [
+      "GPT-6 Astra",
+      "ChatGPT Work",
+      "Codex",
+      "OpenAI"
+    ]
+  },
+  "search": {
+    "primary_intent": "Define a model-selection and promotion process that accounts for quality, latency, correction effort and operating cost.",
+    "query_set": [
+      "GPT-6 Astra: model economics and production architecture"
+    ],
+    "serp_snapshot": {
+      "captured_at": null,
+      "locale": "en",
+      "device": null,
+      "dominant_intent": "User commission; no competitive ranking claimed.",
+      "information_gap": "Evidence-aware workflow acceptance and model economics."
+    },
+    "answer_units": [
+      "\u201cBest\u201d needs a workload and a constraint",
+      "Price the accepted outcome",
+      "Keep model judgment separate from authority",
+      "Build an evaluator with more than one kind of judgment",
+      "Promote a route with a reversible decision"
+    ],
+    "structured_data": [
+      "Article",
+      "BreadcrumbList"
+    ],
+    "indexation": "index",
+    "crawler_policy_checked": false
+  },
+  "sources": [
+    {
+      "source_id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "title": "OpenAI API pricing",
+      "publisher": "OpenAI",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "claude-pricing",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "title": "Claude API pricing",
+      "publisher": "Anthropic",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "eval-practice",
+      "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+      "title": "Evaluation best practices",
+      "publisher": "OpenAI",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "async-tools",
+      "url": "https://developers.openai.com/api/docs/guides/async-tool-calling",
+      "title": "Async tool calling",
+      "publisher": "OpenAI",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "openai-deprecations",
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "title": "OpenAI API deprecations",
+      "publisher": "OpenAI",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "local-evidence",
+      "repository_path": "frankxai/llm-evals@fdb25d51f0bdf5914b5f41bf5d1197da7d6e121b",
+      "url": "https://starlight-research-hub.vercel.app/api/evidence",
+      "title": "Sanitized Astra evaluation plan",
+      "publisher": "FrankX / Starlight",
+      "source_type": "first_party",
+      "retrieved_at": "2026-09-07"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "workflow-thesis",
+      "text": "Choose and promote models by accepted work under task-specific constraints.",
+      "type": "opinion",
+      "support": "contextual",
+      "source_ids": []
+    },
+    {
+      "claim_id": "evidence-boundary",
+      "text": "No local Astra connector success rate or calibrated judge result is claimed.",
+      "type": "first_party",
+      "support": "direct",
+      "source_ids": [
+        "local-evidence"
+      ]
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/gpt-6-astra-ai-architecture-model-economics.mdx",
+    "canonical_title": "GPT-6 Astra: model economics and production architecture",
+    "description": "Evaluate GPT-6 Astra for organizational adoption with workload routing, independent grading, accepted-task economics and a controlled path into production.",
+    "author_id": "frank-riemer",
+    "published_at": null,
+    "modified_at": "2026-09-07"
+  },
+  "visual_plan": {
+    "tier": "EXPLAINER",
+    "reason": "Bounded capability review; exact acceptance diagram replaces decorative narrative scenes.",
+    "status": "IN_PRODUCTION",
+    "visual_packet_ref": "docs/research/gpt-6-astra/media-manifest.json",
+    "competitive_snapshot_at": null,
+    "character_mode": "NOT_APPLICABLE",
+    "character_exemption": "Exact workflow boundaries are the visual subject.",
+    "canonical_character_refs": [],
+    "required_roles": [
+      "orientation",
+      "architecture",
+      "og"
+    ]
+  },
+  "media": [
+    {
+      "asset_id": "frankx.astra.architecture.orientation",
+      "version_id": "v1",
+      "path": "/research/astra/architecture-v1.svg",
+      "sha256": "ba3e4fef0d91d712b6f1ea9d5a3876b79f8293cb863c5bae2d1dedfed983e47d",
+      "width": 1200,
+      "height": 630,
+      "mime_type": "image/svg+xml",
+      "alt": "GPT-6 Astra in production. Route by accepted work. Promotion / Evidence, canary, rollback.",
+      "provenance": "Original deterministic SVG authored for this article; no source logos or product UI.",
+      "rights": "Original editorial diagram; no third-party media assets.",
+      "roles": [
+        "orientation",
+        "architecture"
+      ],
+      "approval_state": "pending_visual_review",
+      "rollback": "Remove the three new articles and named v1 files in a revert PR.",
+      "placement": "article.hero",
+      "media_type": "image/svg+xml"
+    },
+    {
+      "asset_id": "frankx.astra.architecture.og",
+      "version_id": "v1",
+      "placement": "article.og",
+      "media_type": "image/png",
+      "rights": "Existing FrankX image endpoint with authored article title and series subtitle.",
+      "alt": "GPT-6 Astra: model economics and production architecture",
+      "provenance": "Existing /api/og renderer; no new external media."
+    }
+  ],
+  "affiliates": [],
+  "distribution": [],
+  "reviews": [
+    {
+      "lane": "truth_rights",
+      "verdict": "pass",
+      "reason": "Primary sources checked; no private media or invented live measurements."
+    },
+    {
+      "lane": "commissioning_editor",
+      "verdict": "pass",
+      "reason": "Distinct reader job; creator specialist and root performed independent cross-review."
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "Awaiting full repository gates and Vercel preview."
+    }
+  ],
+  "publication": {
+    "branch": "agent/codex/astra-field-notes",
+    "pull_request": null,
+    "preview_url": null,
+    "live_url": null,
+    "verified_at": null,
+    "rollback": "Revert the release PR; restore previous Vercel deployment."
+  },
+  "measurement": {
+    "hypothesis": "Practical articles lead readers to inspect model evidence and define an acceptance task.",
+    "primary_metric": "Article-to-hub engagement; not measured in this release.",
+    "guardrails": [
+      "No unsupported measured claims",
+      "No duplicated canonical article"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "2026-10-07",
+    "freshness_triggers": [
+      "Model/pricing/connector documentation changes",
+      "New evaluation receipts"
+    ]
+  },
+  "blocked": [
+    "Repository gates and rendered preview verification pending."
+  ]
+}
