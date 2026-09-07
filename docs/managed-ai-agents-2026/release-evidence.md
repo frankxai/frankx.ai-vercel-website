@@ -47,4 +47,10 @@ The checkout uses the repository-pinned pnpm 10.28.0 and unchanged frozen lockfi
 - [ ] Human production approval.
 - [ ] Post-merge live URL, metadata, image and analytics verification.
 
-The GitHub PR and Notion strategy page will hold the desktop preview receipt and final deployment links after the native preview exists. This file records the local pre-push candidate. No production merge is authorized by this evidence file.
+## First preview findings
+
+Native Git deployment `befe48b` reached READY. The article renders 4,392 words and 11 tables, with one H1, the intended description, production canonical URL and original hero in Open Graph metadata. The hero viewer opens and closes. The shared blog template emits Article and BreadcrumbList schemas; the five body FAQs pass the offline extractor but are not emitted as FAQPage by this template.
+
+Desktop inspection at 1363 pixels found the three 960-pixel-minimum diagrams clipped inside the 752-pixel article column. Required correction: use the existing image viewer to show each complete figure inline and allow enlargement. Mobile and independent review remain pending. This is a real review checkpoint, not a production-ready candidate.
+
+The GitHub PR and Notion strategy page will hold the final desktop preview receipt and deployment links. No production merge is authorized by this evidence file.
