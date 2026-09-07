@@ -6788,7 +6788,7 @@ export const bookReviews: BookReview[] = [
     coverImage: '/images/library/tao-te-ching-reading-capture.jpg',
     rating: 5,
     reviewDate: '2026-07-12',
-    categories: ['Philosophy', 'Spirituality', 'Classic'],
+    categories: ['Philosophy', 'Spirituality', 'Classic', 'Taoism', 'Sacred Texts'],
     readingTime: '6 min',
     keyInsights: [
       'The alternative to force is not passivity. It is designing clear conditions, then letting the right action move without unnecessary resistance.',
