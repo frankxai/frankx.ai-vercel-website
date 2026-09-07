@@ -54,3 +54,7 @@ Native Git deployment `befe48b` reached READY. The article renders 4,392 words a
 Desktop inspection at 1363 pixels found the three 960-pixel-minimum diagrams clipped inside the 752-pixel article column. This branch now uses the existing `InfographicImage` viewer for all three figures, with actual dimensions and visible enlargement instructions. The full local build passed again after this correction. The follow-up preview must verify the complete figures and controls. Mobile and independent review remain pending.
 
 The GitHub PR and Notion strategy page will hold the final desktop preview receipt and deployment links. No production merge is authorized by this evidence file.
+
+## Second preview findings
+
+Native Git deployment `81b1f92` reached READY. The platform map now shows all columns inside the article width. Opening the image works, but hit testing the zoom control resolves to the fixed navigation's Founder Stack link. The page content forms a z-index 10 stacking context below the navigation at 50, so increasing a nested modal's z-index alone cannot fix it. Required correction: render the image modal through a body portal above navigation, then verify zoom, close and Escape on the preview.
