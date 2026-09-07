@@ -79,6 +79,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'vbmwpibfe0yzx3fd.public.blob.vercel-storage.com',
+        pathname: '/images/library/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
       },
       {
