@@ -83,6 +83,33 @@ const nextConfig = {
         pathname: '/images/library/**',
       },
       {
+        // Suno cover art for the 800+ track catalog on /music.
+        //
+        // These are configured even though Suno currently blocks hotlinking:
+        // sampling 10 distinct catalog covers through the image optimizer
+        // returned 403 from their CDN for all 10, and
+        // data/homepage-featured-release.ts records the same discovery.
+        //
+        // Configuring them is still required, because next/image *throws at
+        // render* for an unconfigured host — the page 500s in development and
+        // emits URLs the optimizer answers with 400 in production, before any
+        // error handler can run. With the host allowed, a dead cover instead
+        // fails at load time, where components/music/MusicCoverImage.tsx
+        // catches it and shows the placeholder. If Suno restores hotlinking,
+        // the covers return with no further change.
+        //
+        // The durable fix is re-hosting the art in-repo, as that featured
+        // release did.
+        protocol: 'https',
+        hostname: 'cdn2.suno.ai',
+      },
+      {
+        // Older CDN variant: 6 imageUrl entries in data/music/suno-catalog.json
+        // and 61 coverUrl entries in data/music-asset-registry.json.
+        protocol: 'https',
+        hostname: 'cdn1.suno.ai',
+      },
+      {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
