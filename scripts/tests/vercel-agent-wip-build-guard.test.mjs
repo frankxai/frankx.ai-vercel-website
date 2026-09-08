@@ -246,3 +246,57 @@ test('production is never skipped by the branch comparison', (t) => {
   assert.equal(result.status, 1, result.stdout + result.stderr)
   assert.match(result.stdout, /Production deployment/)
 })
+
+// This guard used to scan the whole commit body, so a commit that merely
+// described the marker matched it. Measured 2026-09-08 on
+// starlight-intelligence-web, which had been given a copy of this file: commit
+// f0abfcb explained what [agent-wip] does and deployment
+// dpl_DFrAVq1r2rpZkTpQtiKgz9U4orcc was cancelled in 3.3 seconds by this check.
+// The failure runs toward NOT building, which is the direction that ships stale.
+test('a commit that only describes the marker in its body still builds', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  commit('app/page.tsx', 'export default function Page() { return null }\n')
+
+  const result = run(
+    {
+      VERCEL_ENV: 'preview',
+      VERCEL_GIT_COMMIT_MESSAGE:
+        'fix(vercel): give the ignore step filters that can skip a preview\n\n' +
+        'should-deploy.sh covered two cases: production always builds, [agent-wip]\n' +
+        'always skips. Every other preview built.\n',
+    },
+    dir,
+  )
+
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Relevant changes detected/)
+})
+
+test('the marker in the subject still skips', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+
+  const result = run(
+    {
+      VERCEL_ENV: 'preview',
+      VERCEL_GIT_COMMIT_MESSAGE: '[agent-wip] checkpoint\n\nbody text\n',
+    },
+    dir,
+  )
+
+  assert.equal(result.status, 0, result.stdout + result.stderr)
+  assert.match(result.stdout, /work-in-progress/)
+})
+
+test('a parent that only describes the marker does not force a build', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  commit('docs/notes.md', 'first\n', 'docs: record the checkpoint convention\n\nExplains how [agent-wip] works.')
+  commit('docs/notes.md', 'second\n', 'docs: more notes')
+
+  const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_MESSAGE: 'docs: more notes' }, dir)
+
+  assert.equal(result.status, 0, result.stdout + result.stderr)
+  assert.match(result.stdout, /No relevant paths changed/)
+})
