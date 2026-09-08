@@ -9,6 +9,9 @@ export const metadata: Metadata = createMetadata({
   description:
     "Napoleon Hill's 13 principles read as mechanisms, not mysticism: definiteness of purpose as a spec, auto-suggestion as mental rehearsal, the mastermind as your council.",
   path: '/think-and-grow-rich',
+  // Consolidates search signal with the Library OS deep-dive at /library/think-and-grow-rich,
+  // which covers the same book more fully. Reversible: drop this line to rank both independently.
+  canonical: 'https://www.frankx.ai/library/think-and-grow-rich',
   keywords: ['think and grow rich', 'napoleon hill', '13 principles', 'definiteness of purpose', 'manifestation system'],
 })
 
@@ -43,11 +46,23 @@ export default function ThinkAndGrowRichPage() {
           isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
         }}
       />
+      <JsonLd
+        type="Book"
+        data={{
+          name: thinkAndGrowRich.title,
+          author: { '@type': 'Person', name: thinkAndGrowRich.author },
+          datePublished: String(thinkAndGrowRich.year),
+          inLanguage: 'en',
+          about: 'Napoleon Hill\'s principles of achievement, read as grounded mechanisms',
+          url: 'https://frankx.ai/think-and-grow-rich',
+        }}
+      />
       <FAQPageJsonLd faqs={faqs} />
       <BookPage
         title={thinkAndGrowRich.title}
         author={thinkAndGrowRich.author}
         year={thinkAndGrowRich.year}
+        libraryUrl="/library/think-and-grow-rich"
         oneLine={thinkAndGrowRich.oneLine}
         honestTake={thinkAndGrowRich.honestTake}
         principlesHeading="The principles, as mechanisms"

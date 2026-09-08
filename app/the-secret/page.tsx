@@ -9,6 +9,11 @@ export const metadata: Metadata = createMetadata({
   description:
     "What The Secret and the Law of Attraction actually get right, what to ignore, and the grounded mechanisms underneath — with experiments you can run.",
   path: '/the-secret',
+  // This "honest take" essay and the Library OS deep-dive at /library/the-secret both
+  // cover the same book. Point the canonical at the richer Library review so the two
+  // surfaces consolidate their search signal instead of competing. Reversible: drop
+  // this line to let each page rank independently.
+  canonical: 'https://www.frankx.ai/library/the-secret',
   keywords: ['the secret', 'law of attraction', 'rhonda byrne', 'does the law of attraction work', 'manifestation'],
 })
 
@@ -43,11 +48,23 @@ export default function TheSecretPage() {
           isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
         }}
       />
+      <JsonLd
+        type="Book"
+        data={{
+          name: theSecret.title,
+          author: { '@type': 'Person', name: theSecret.author },
+          datePublished: String(theSecret.year),
+          inLanguage: 'en',
+          about: 'The Law of Attraction, manifestation, and the grounded mechanisms behind them',
+          url: 'https://frankx.ai/the-secret',
+        }}
+      />
       <FAQPageJsonLd faqs={faqs} />
       <BookPage
         title={theSecret.title}
         author={theSecret.author}
         year={theSecret.year}
+        libraryUrl="/library/the-secret"
         oneLine={theSecret.oneLine}
         honestTake={theSecret.honestTake}
         principlesHeading="Ask, Believe, Receive — reframed"

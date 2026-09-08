@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, BookOpen, FlaskConical, Music, Sparkles, Compass } from 'lucide-react'
+import { trackEvent } from '@/lib/analytics'
 import EmailCapture from '@/components/EmailCapture'
 import {
   SectionHeading,
@@ -56,6 +57,7 @@ export default function ManifestationClient() {
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/manifestation/quest"
+                onClick={() => trackEvent('manifestation_cta_click', { location: 'hero', target: 'quest' })}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors"
               >
                 Start the 10-day quest
@@ -63,6 +65,7 @@ export default function ManifestationClient() {
               </Link>
               <Link
                 href="/research/manifestation-law-of-attraction-ai-systems"
+                onClick={() => trackEvent('manifestation_cta_click', { location: 'hero', target: 'research' })}
                 className="inline-flex items-center gap-2 px-6 py-3 border border-white/15 text-white/80 font-medium rounded-full hover:bg-white/5 transition-colors"
               >
                 Read the research
@@ -128,6 +131,7 @@ export default function ManifestationClient() {
             <Link
               key={c.href}
               href={c.href}
+              onClick={() => trackEvent('manifestation_nav_card_click', { target: c.href })}
               className="group relative block rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:bg-white/[0.04] hover:border-violet-500/30 transition-all"
             >
               <div className="inline-flex p-2.5 rounded-xl bg-violet-500/10 text-violet-300 mb-4">
@@ -169,6 +173,7 @@ export default function ManifestationClient() {
             <Link
               key={book.slug}
               href={`/${book.slug}`}
+              onClick={() => trackEvent('manifestation_book_click', { book: book.slug })}
               className="group rounded-2xl border border-white/10 bg-white/[0.02] p-7 hover:border-violet-500/30 transition-all"
             >
               <div className="flex items-center gap-2 text-xs text-white/40 mb-3">
@@ -201,12 +206,14 @@ export default function ManifestationClient() {
           <div className="flex flex-wrap items-center gap-4 mb-8">
             <Link
               href="/products/vibe-os"
+              onClick={() => trackEvent('manifestation_cta_click', { location: 'vibe-os-section', target: 'vibe-os' })}
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors"
             >
               Explore Vibe OS <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/music-lab"
+              onClick={() => trackEvent('manifestation_cta_click', { location: 'vibe-os-section', target: 'music-lab' })}
               className="inline-flex items-center gap-2 px-6 py-3 border border-white/15 text-white/80 font-medium rounded-full hover:bg-white/5 transition-colors"
             >
               The Music Lab
@@ -216,7 +223,7 @@ export default function ManifestationClient() {
             <p className="text-white/70 font-medium mb-3">
               Get the field notes — the experiments, the music, the loop, as I refine them.
             </p>
-            <EmailCapture product="manifestation" buttonText="Send me the field notes" />
+            <EmailCapture product="manifestation" listType="manifestation" buttonText="Send me the field notes" />
           </div>
         </div>
       </section>
