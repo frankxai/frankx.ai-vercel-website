@@ -30,6 +30,15 @@ export interface ModelEntry {
   acos_tier?: string
   frankx_notes?: string
   sources?: string[]
+  evaluation?: {
+    status: string
+    planned_cases: number
+    measured_cases: number
+    judge_model: string | null
+    production_ready: boolean
+    url: string
+    evidence_url: string
+  }
 }
 
 export interface OrganizationEntry {
@@ -159,7 +168,7 @@ export function getCapabilityGroups(): Array<{
 
 export function formatContext(tokens?: number): string {
   if (!tokens) return '—'
-  if (tokens >= 1_000_000) return `${(tokens / 1_000_000).toFixed(tokens % 1_000_000 === 0 ? 0 : 1)}M`
+  if (tokens >= 1_000_000) return `${Number((tokens / 1_000_000).toFixed(2))}M`
   if (tokens >= 1_000) return `${(tokens / 1_000).toFixed(0)}K`
   return `${tokens}`
 }

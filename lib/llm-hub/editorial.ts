@@ -24,6 +24,16 @@ export interface ModelEditorial {
 }
 
 export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
+  'gpt-6-astra': {
+    tagline: 'A candidate for demanding work across research, software and creative tools. Evaluate the complete handoff.',
+    bestFor: [
+      'Evaluate multi-step research with source and artifact checks',
+      'Compare repository work against the current model baseline',
+      'Test creative-tool coordination and editable handoffs',
+    ],
+    watchOut: 'Vendor-reported benchmarks are not local results. Twelve synthetic evaluation cases are defined but unrun. Standard API pricing is $10/$50 per million input/output tokens up to 272K input; longer context and other processing tiers differ. No calibrated LLM judge or live connector success rate is claimed.',
+    creatorUse: 'Coordinate documented tools, then inspect outputs and editable sources. Adobe, Canva and HeyGen have separate access requirements. Astra does not natively output audio or video.',
+  },
   'gemini-3-7-flash': {
     tagline: 'Google\u2019s current Flash tier \u2014 a coding and agent refresh at an introductory price with a known expiry.',
     bestFor: [
@@ -125,11 +135,11 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
   'claude-sonnet-5': {
     tagline: 'The new mid-tier default \u2014 1M context and frontier computer-use at Sonnet economics.',
     bestFor: [
-      'Production coding and integrations at $3/$15',
+      'Production coding and integrations at $2/$10',
       'Computer-use agents (81.2% OSWorld, vendor-reported)',
       '1M-context work without flagship pricing',
     ],
-    watchOut: 'Opus still leads hard agentic coding \u2014 69.2% vs 63.2% SWE-Bench Pro, which Anthropic states plainly. Launch benchmarks are vendor-reported. The $2/$10 introductory rate ends 2026-08-31; budget against $3/$15.',
+    watchOut: 'Opus still leads hard agentic coding \u2014 69.2% vs 63.2% SWE-Bench Pro, which Anthropic states plainly. Launch benchmarks are vendor-reported. Anthropic cancelled the planned September price increase; current standard pricing is $2/$10 (checked 2026-09-07).',
     creatorUse: 'The reliable default for content-engine and production coding work. Route to Opus only when the task earns the premium.',
     openrouterId: 'anthropic/claude-sonnet-5',
   },

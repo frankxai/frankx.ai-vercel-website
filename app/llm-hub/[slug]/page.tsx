@@ -201,7 +201,7 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
           <section className="mb-10 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
               <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider" style={{ color: accent }}>
-                Best for
+                {model.evaluation ? 'Workloads to evaluate' : 'Best for'}
               </h2>
               <ul className="space-y-2 text-sm text-white/65">
                 {ed.bestFor.map((b) => (
@@ -227,10 +227,24 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
           </section>
         ) : null}
 
+        {model.evaluation ? (
+          <section className="mb-10 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6">
+            <h2 className="text-xl font-semibold">Evaluation status: {model.evaluation.status.replaceAll('_', ' ')}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-white/70">{model.evaluation.planned_cases} synthetic decision cases defined; {model.evaluation.measured_cases} model observations. These cases do not measure live connector execution or creative artifact quality. No calibrated judge or production promotion is recorded.</p>
+            <div className="mt-4 flex flex-wrap gap-5 text-sm text-emerald-200">
+              <a href={model.evaluation.url} className="underline underline-offset-4">Evaluation protocol</a>
+              <a href={model.evaluation.evidence_url} className="underline underline-offset-4">Public evidence JSON</a>
+              <Link href="/blog/gpt-6-astra-for-content-creators" className="underline underline-offset-4">Creator workflows</Link>
+              <Link href="/blog/gpt-6-astra-chatgpt-work-codex-founders" className="underline underline-offset-4">Founder guide</Link>
+            </div>
+          </section>
+        ) : null}
+
         {/* Benchmarks */}
         {benchmarkEntries.length > 0 ? (
           <section className="mb-10">
             <h2 className="mb-4 text-2xl font-bold">Benchmarks</h2>
+            {model.evaluation ? <p className="mb-4 text-sm text-white/65">OpenAI-published launch results; not FrankX measurements. Percentage units are named in the rows. The AA Intelligence Index is an index score. <a href="https://openai.com/index/gpt-6-astra/" className="text-emerald-200 underline">Source and comparison context.</a></p> : null}
             <div className="overflow-hidden rounded-xl border border-white/10">
               <table className="w-full text-left text-sm">
                 <tbody>

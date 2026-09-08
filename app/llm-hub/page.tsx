@@ -28,7 +28,7 @@ const SOURCES = [
 const FAQ = [
   {
     q: 'What is the best LLM in 2026?',
-    a: 'There is no single winner. As of 14 August 2026, Grok 4.6 is the current xAI flagship and scores 61 on the Artificial Analysis Intelligence Index, matching GPT-5.6 Sol on that composite. Other seats still depend on the task — see the decision matrix and dated model pages rather than a global crown.',
+    a: 'There is no single winner. As of the September 7 update, Claude Fable 5.1 leads Artificial Analysis’s intelligence index (~56.8), with GPT-6 Astra (~54.7) and Claude Opus 5 (~54.1) close behind — within noise of each other on general capability. Astra separately leads decisively on agentic coding (Terminal-Bench 4: 64.6% vendor-reported); our own 12-case Astra evaluation suite is defined but has not run yet. See the decision matrix and dated model pages for task-specific picks.',
   },
   {
     q: 'How is this different from OpenRouter or Artificial Analysis?',
@@ -36,11 +36,11 @@ const FAQ = [
   },
   {
     q: 'Which is the cheapest frontier reasoning model?',
-    a: 'DeepSeek V3.2 leads on pure cost ($0.27 / $1.10 per 1M tokens, MIT license). Gemini 3.5 Flash is the cheapest closed-frontier option at $0.30 / $2.50. Both deliver frontier-class reasoning for production agentic workloads.',
+    a: 'GPT-5.6 Luna is the cheapest frontier-adjacent option at $0.20 / $1.20 per 1M tokens, built for classification, routing and triage rather than deep reasoning. For genuine frontier reasoning, DeepSeek V3.2 leads on pure cost ($0.27 / $1.10, MIT license) and Gemini 3.5 Flash is the cheapest closed-frontier option ($0.30 / $2.50). A lower token price does not establish lower cost per accepted task — include failed attempts, tools and human correction before comparing.',
   },
   {
     q: 'What is the best agentic LLM in 2026?',
-    a: 'By category: coding agents — Gemini 3.5 Flash (76.2% Terminal-Bench 2.1) and Claude Opus 4.6; long-horizon enterprise — Gemini Spark and Claude Agent Teams; computer-use — GPT-5.2 Operator and Claude Opus 4.6 (72.7% OSWorld).',
+    a: 'By category: agentic coding — GPT-6 Astra leads Terminal-Bench 4 at 64.6% (vendor-reported, unverified by us), with Gemini 3.5 Flash (76.2% on the older Terminal-Bench 2.1 — not directly comparable to Astra’s 4.0 score) and Claude Opus 4.6 as prior-generation references; long-horizon enterprise — Gemini Spark and Claude Agent Teams; computer-use — GPT-5.2 Operator and Claude Opus 4.6 (72.7% OSWorld). Published benchmarks help choose candidates, but a production decision needs observed task quality, failure recovery, latency and cost — our own Astra evaluation suite is defined but has not run.',
   },
   {
     q: 'Is the pricing live?',
@@ -131,14 +131,14 @@ export default async function LlmHubPage() {
         <section className="px-6 pb-12 pt-16">
           <div className="mx-auto max-w-6xl">
             <p className="mb-4 font-mono text-sm uppercase tracking-wider text-emerald-400">
-              Frontier Intelligence Directory · Updated {formatUpdated(registryLastUpdated())}
+              Frontier Intelligence Directory · Latest registry change {formatUpdated(registryLastUpdated())}
             </p>
             <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
               LLM Provider Hub <span className="text-white/40">2026</span>
             </h1>
             <p className="mb-4 max-w-3xl text-lg text-white/60">
-              The decision layer on top of the raw data. Every frontier provider, model, and agentic platform — categorized
-              by capability, priced live, and paired with a verdict. Built for humans and agents.
+              Explore selected providers and models by capability, inspect their sources, and compare candidate routes.
+              Live pricing is available for mapped models; curated entries retain their source context.
             </p>
             <p className="mb-8 max-w-3xl text-sm text-white/40">
               We cite OpenRouter, Artificial Analysis, and LMArena as sources, and add what they don’t: task-first navigation,
@@ -183,6 +183,18 @@ export default async function LlmHubPage() {
               <Stat label="Agentic platforms" value={platforms.length.toString()} />
               <Stat label="Live-priced" value={liveCount > 0 ? `${liveCount}` : 'registry'} />
             </div>
+            <section aria-labelledby="astra-update" className="mt-10 rounded-3xl border border-emerald-500/25 bg-emerald-500/5 p-6 md:p-8">
+              <p className="mb-3 text-xs text-emerald-300">September release · Sources checked 7 September 2026</p>
+              <h2 id="astra-update" className="text-2xl font-semibold">GPT-6 Astra: model facts before accepted work</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70">The new entry connects model facts, pricing and three free practical guides. Twelve synthetic evaluation cases are defined and have not run; treat any capability claim below as vendor-reported until a scored evaluation run backs it.</p>
+              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+                <Link href="/llm-hub/gpt-6-astra" className="rounded-full bg-emerald-300 px-5 py-2 font-medium text-slate-950">Read the Astra entry</Link>
+                <Link href="/blog/gpt-6-astra-chatgpt-work-codex-founders" className="py-2 text-emerald-200 underline underline-offset-4">For founders</Link>
+                <Link href="/blog/gpt-6-astra-for-content-creators" className="py-2 text-emerald-200 underline underline-offset-4">For creators</Link>
+                <Link href="/blog/gpt-6-astra-ai-architecture-model-economics" className="py-2 text-emerald-200 underline underline-offset-4">For AI architects</Link>
+              </div>
+              <p className="mt-5 text-xs leading-relaxed text-white/60">This update covers Astra and the Sonnet 5 price correction. Earlier routing notes below retain their historical scope.</p>
+            </section>
           </div>
         </section>
 
@@ -192,13 +204,13 @@ export default async function LlmHubPage() {
             <div className="mb-8 flex flex-col gap-1">
               <h2 className="text-2xl font-bold">Start here: pick your constraint</h2>
               <p className="text-sm text-white/40">
-                The fastest path from “which model?” to an answer. One dominant constraint → a recommendation.
+                Earlier editorial routing hypotheses, retained for context. Use the September comparison above and run your acceptance suite before adopting a route.
               </p>
             </div>
             <div className="grid gap-8">
               <TaskRoutingPlayground />
               <div className="mt-6">
-                <h3 className="text-base font-semibold text-white/80 mb-3">Curated Routing Table</h3>
+                <h3 className="text-base font-semibold text-white/80 mb-3">Earlier routing hypotheses</h3>
                 <DecisionMatrix />
               </div>
             </div>

@@ -26,7 +26,7 @@ export const PUBLISHED_BENCHMARKS: PublishedBenchmarks = {
   model: 'Claude Sonnet 5',
   released: '2026-06-30',
   items: [ /* ... retained from prior ... */ ],
-  pricing: '$2 / $10 per million tokens (input/output) through Aug 31, 2026 — then $3 / $15',
+  pricing: '$2 / $10 per million input/output tokens; Anthropic cancelled the September increase (checked 2026-09-07)',
   note: 'Sonnet 5 edges the flagship Opus 4.8 on knowledge work while running at roughly 40% of the list price.',
   sources: [ /* ... */ ]
 }
