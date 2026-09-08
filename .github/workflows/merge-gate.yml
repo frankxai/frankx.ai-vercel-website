@@ -162,6 +162,7 @@ jobs:
         run: |
           pnpm run research:agentic-life:audit
           pnpm run content:check
+          pnpm run images:check
           pnpm run claims:audit:strict
           pnpm run learn:check
           pnpm run newsletter:validate
