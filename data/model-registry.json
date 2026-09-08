@@ -9,7 +9,7 @@
       "id": "gpt-6-astra",
       "organization": "openai",
       "family": "gpt",
-      "released": "2026-09-03",
+      "released": "2026-09-04",
       "status": "ga",
       "context_window": 1050000,
       "max_output_tokens": 128000,
@@ -33,24 +33,27 @@
       },
       "benchmarks": {
         "automationbench_percent": 41.4,
-        "terminal_bench_4_percent": 57.9,
+        "terminal_bench_4_percent": 64.6,
         "deepswe_v1_1_percent": 74.1,
-        "aa_intelligence_index_v4_1_1": 61.2
+        "aa_intelligence_index_v4_1_1": 54.7
       },
-      "benchmark_provenance": "OpenAI launch table, vendor-reported; not FrankX measurements.",
+      "benchmark_provenance": "OpenAI launch table and Artificial Analysis, vendor/aggregator-reported; not FrankX measurements. Astra leads decisively on Terminal-Bench 4 (64.6% vs Claude Fable 5.1's 52.6%), but on the broader Artificial Analysis intelligence index it is mid-pack and within noise of Fable 5.1 (~56.8) and Opus 5 (~54.1) — treat as a strong agentic-coding result, not a general capability lead.",
       "key_capabilities": [
         "Text input/output and image input; audio and video are not native model outputs",
         "API reasoning effort: low, medium, high, xhigh, max",
         "Async tool calling; the application executes tools and manages pending jobs",
-        "ChatGPT, Work and Codex availability depends on client, plan, workspace and rollout"
+        "ChatGPT, Work and Codex availability depends on client, plan, workspace and rollout",
+        "A separate openai/gpt-6-astra-fast variant exists at 2x price ($20/$100 per 1M) for lower latency with no stated capability difference — not a default upgrade",
+        "OpenAI's own deployment-safety documentation rates Astra at the 'Critical' level of cyber capability; the publicly released model ships with classifiers that decline cyber-exploitation, bio/chem, violence and fraud requests"
       ],
-      "frankx_notes": "A candidate for demanding research, coding and creator workflows. OpenAI reports stronger AutomationBench and Terminal-Bench 4 results than Sol; Fable 5.1 leads the cited intelligence index. No global winner is implied. The dedicated local suite defines twelve synthetic decisions and has not run. Live Adobe, Canva and HeyGen execution and independent quality judging remain unmeasured. Sources checked 7 September 2026; no dated immutable Astra snapshot was listed.",
+      "frankx_notes": "A candidate for demanding research, coding and creator workflows. OpenAI reports a decisive Terminal-Bench 4 win over Sol; on the broader Artificial Analysis intelligence index, Astra is roughly tied with Fable 5.1 and Opus 5, not a clear leader. No global winner is implied. The dedicated local suite defines twelve synthetic decisions and has not run. Live Adobe, Canva and HeyGen execution and independent quality judging remain unmeasured. Sources checked 7 September 2026. Limited preview shipped 2026-09-03; general paid/API rollout 2026-09-04 (registry date reflects the paid rollout).",
       "sources": [
         "https://openai.com/index/gpt-6-astra/",
         "https://developers.openai.com/api/docs/models/gpt-6-astra",
         "https://developers.openai.com/api/docs/pricing",
         "https://learn.chatgpt.com/docs/models",
-        "https://starlight-research-hub.vercel.app/evaluations"
+        "https://deploymentsafety.openai.com/gpt-6-astra",
+        "https://github.com/frankxai/llm-evals"
       ],
       "evaluation": {
         "status": "not_run",
@@ -58,8 +61,8 @@
         "measured_cases": 0,
         "judge_model": null,
         "production_ready": false,
-        "url": "https://starlight-research-hub.vercel.app/evaluations",
-        "evidence_url": "https://starlight-research-hub.vercel.app/api/evidence"
+        "url": "https://github.com/frankxai/llm-evals",
+        "evidence_url": "https://github.com/frankxai/llm-evals"
       }
     },
     "claude-fable-5": {
@@ -1312,6 +1315,6 @@
     "sonnet": "claude-sonnet-5",
     "haiku": "claude-haiku-4-5"
   },
-  "last_updated": "2026-08-19",
+  "last_updated": "2026-09-08",
   "_update_scope": "Astra addition and Sonnet 5 pricing correction only; other model records retain their earlier source coverage."
 }

@@ -108,7 +108,7 @@
     {
       "source_id": "local-evidence",
       "repository_path": "frankxai/llm-evals@fdb25d51f0bdf5914b5f41bf5d1197da7d6e121b",
-      "url": "https://starlight-research-hub.vercel.app/api/evidence",
+      "url": "https://github.com/frankxai/llm-evals",
       "title": "Sanitized Astra evaluation plan",
       "publisher": "FrankX / Starlight",
       "source_type": "first_party",

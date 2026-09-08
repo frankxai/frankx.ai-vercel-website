@@ -26,7 +26,7 @@ My architectural recommendation is to make model replacement a controlled config
 
 ## “Best” needs a workload and a constraint
 
-An intelligence index, a repository benchmark and a workflow test measure different things. The [model hub](https://starlight-research-hub.vercel.app/models) keeps those columns separate and identifies the publisher of each result. None is a substitute for your own acceptance set.
+An intelligence index, a repository benchmark and a workflow test measure different things. The [model hub](/llm-hub) keeps those columns separate and identifies the publisher of each result. None is a substitute for your own acceptance set.
 
 Define the work before the candidate list. An invoice extraction route may need schema correctness, exact source values and a tight processing budget. A repository migration may tolerate more reasoning time if it reduces repair. A customer-facing assistant may prioritize reliable tail latency and correct escalation.
 
@@ -57,7 +57,7 @@ Cost per accepted task =
 
 Include failed attempts in the numerator. An unknown tool charge stays unknown; recording zero makes an incomplete account look efficient. For batch production, divide total observed spend and review cost by the number of accepted artifacts.
 
-Use the [interactive calculator](https://starlight-research-hub.vercel.app/models#cost) to test assumptions. It covers standard short context and excludes cache creation, processing-tier adjustments and taxes. Equal token counts across providers are only a planning convenience because tokenizers differ.
+Use the [interactive calculator on the LLM hub](/llm-hub) to test assumptions. It covers standard short context and excludes cache creation, processing-tier adjustments and taxes. Equal token counts across providers are only a planning convenience because tokenizers differ.
 
 One pricing detail deserves precision: Anthropic lists Fable 5.1 cache reads at $0.25 per million tokens, which is 2.5% of its $10 base input rate. Cache creation has separate prices. [Anthropic pricing](https://platform.claude.com/docs/en/about-claude/pricing).
 
@@ -91,7 +91,7 @@ Before a run, the workload owner should set the acceptance threshold, latency li
 
 Promote only after reviewing critical failures separately from the average. Start with a limited share of eligible work, monitor correction effort and errors, and retain a route back to the baseline. Broaden responsibility when the observed result supports it.
 
-For routine classification and extraction, begin with a lower-cost candidate and escalate only when the evidence requires it. For complex work, compare Astra with a credible baseline under the same acceptance contract. The [model routing guide](/blog/ai-model-routing-guide) provides the general pattern; the [Astra evaluation page](https://starlight-research-hub.vercel.app/evaluations) records the specific implementation and its remaining gaps.
+For routine classification and extraction, begin with a lower-cost candidate and escalate only when the evidence requires it. For complex work, compare Astra with a credible baseline under the same acceptance contract. The [model routing guide](/blog/ai-model-routing-guide) provides the general pattern; the [Astra evaluation cases on GitHub](https://github.com/frankxai/llm-evals) record the specific implementation and its remaining gaps — twelve cases defined, zero run as of this writing.
 
 The architecture earns its value when the next model release becomes a testable candidate, a reviewable decision and a reversible rollout.
 

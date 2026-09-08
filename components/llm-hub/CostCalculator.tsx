@@ -171,7 +171,6 @@ export function CostCalculator() {
           </p>
         </div>
 
-        <a href="https://starlight-research-hub.vercel.app/models#cost" className="text-sm text-emerald-300 underline underline-offset-4">Include retries and review time in the accepted-task calculator</a>
         <div className="flex flex-wrap gap-2">
           {PRESETS.map((p) => (
             <button

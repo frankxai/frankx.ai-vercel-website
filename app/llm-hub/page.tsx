@@ -28,7 +28,7 @@ const SOURCES = [
 const FAQ = [
   {
     q: 'What is the best LLM in 2026?',
-    a: 'There is no single winner. The September 7 update adds GPT-6 Astra with source-backed prices and vendor-reported benchmarks. Compare models on your workload, including acceptance quality, execution time and total cost. The Astra evaluation suite is defined but has not run.',
+    a: 'There is no single winner. As of the September 7 update, Claude Fable 5.1 leads Artificial Analysis’s intelligence index (~56.8), with GPT-6 Astra (~54.7) and Claude Opus 5 (~54.1) close behind — within noise of each other on general capability. Astra separately leads decisively on agentic coding (Terminal-Bench 4: 64.6% vendor-reported); our own 12-case Astra evaluation suite is defined but has not run yet. See the decision matrix and dated model pages for task-specific picks.',
   },
   {
     q: 'How is this different from OpenRouter or Artificial Analysis?',
@@ -36,11 +36,11 @@ const FAQ = [
   },
   {
     q: 'Which is the cheapest frontier reasoning model?',
-    a: 'The cheapest useful route depends on the workload and acceptance threshold. Compare current input, output and caching rates, then include failed attempts, tools and human correction. A lower token price does not establish lower cost per accepted task.',
+    a: 'GPT-5.6 Luna is the cheapest frontier-adjacent option at $0.20 / $1.20 per 1M tokens, built for classification, routing and triage rather than deep reasoning. For genuine frontier reasoning, DeepSeek V3.2 leads on pure cost ($0.27 / $1.10, MIT license) and Gemini 3.5 Flash is the cheapest closed-frontier option ($0.30 / $2.50). A lower token price does not establish lower cost per accepted task — include failed attempts, tools and human correction before comparing.',
   },
   {
     q: 'What is the best agentic LLM in 2026?',
-    a: 'Use a representative case set with the same tool contract and acceptance rules. Published benchmarks help choose candidates, but a production decision needs observed task quality, failure recovery, latency and cost. Historical routing guidance below is separate from the unrun Astra evaluation.',
+    a: 'By category: agentic coding — GPT-6 Astra leads Terminal-Bench 4 at 64.6% (vendor-reported, unverified by us), with Gemini 3.5 Flash (76.2% on the older Terminal-Bench 2.1 — not directly comparable to Astra’s 4.0 score) and Claude Opus 4.6 as prior-generation references; long-horizon enterprise — Gemini Spark and Claude Agent Teams; computer-use — GPT-5.2 Operator and Claude Opus 4.6 (72.7% OSWorld). Published benchmarks help choose candidates, but a production decision needs observed task quality, failure recovery, latency and cost — our own Astra evaluation suite is defined but has not run.',
   },
   {
     q: 'Is the pricing live?',
@@ -185,15 +185,15 @@ export default async function LlmHubPage() {
             </div>
             <section aria-labelledby="astra-update" className="mt-10 rounded-3xl border border-emerald-500/25 bg-emerald-500/5 p-6 md:p-8">
               <p className="mb-3 text-xs text-emerald-300">September release · Sources checked 7 September 2026</p>
-              <h2 id="astra-update" className="text-2xl font-semibold">GPT-6 Astra: from capability to accepted work</h2>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70">The new entry connects model facts, pricing and three free practical guides. Twelve synthetic evaluation cases are defined; live tool execution and a calibrated judge remain unmeasured.</p>
+              <h2 id="astra-update" className="text-2xl font-semibold">GPT-6 Astra: model facts before accepted work</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70">The new entry connects model facts, pricing and three free practical guides. Twelve synthetic evaluation cases are defined and have not run; treat any capability claim below as vendor-reported until a scored evaluation run backs it.</p>
               <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm">
                 <Link href="/llm-hub/gpt-6-astra" className="rounded-full bg-emerald-300 px-5 py-2 font-medium text-slate-950">Read the Astra entry</Link>
                 <Link href="/blog/gpt-6-astra-chatgpt-work-codex-founders" className="py-2 text-emerald-200 underline underline-offset-4">For founders</Link>
                 <Link href="/blog/gpt-6-astra-for-content-creators" className="py-2 text-emerald-200 underline underline-offset-4">For creators</Link>
                 <Link href="/blog/gpt-6-astra-ai-architecture-model-economics" className="py-2 text-emerald-200 underline underline-offset-4">For AI architects</Link>
               </div>
-              <p className="mt-5 text-xs leading-relaxed text-white/60">This update covers Astra and the Sonnet 5 price correction. Earlier routing notes below retain their historical scope. <a href="https://starlight-research-hub.vercel.app/models" className="text-emerald-200 underline">Open the reviewed September comparison and accepted-task calculator.</a></p>
+              <p className="mt-5 text-xs leading-relaxed text-white/60">This update covers Astra and the Sonnet 5 price correction. Earlier routing notes below retain their historical scope.</p>
             </section>
           </div>
         </section>
