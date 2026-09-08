@@ -168,3 +168,81 @@ test('the first coherent commit after agent-wip is forced to build', () => {
     rmSync(dir, { recursive: true, force: true })
   }
 })
+
+// The branch-vs-main skip is only worth anything if it fires inside Vercel's
+// shallow preview clone, where origin/main does not resolve. Measured
+// 2026-09-07: 0 of the previous 20 preview deployments were skipped.
+function remoteFixture(t) {
+  const { dir, git, commit } = fixture(t)
+  const bare = mkdtempSync(path.join(tmpdir(), 'frankx-vercel-remote-'))
+  t.after(() => rmSync(bare, { recursive: true, force: true }))
+  assert.equal(spawnSync('git', ['init', '--bare', '-b', 'main', bare]).status, 0)
+  git('branch', '-M', 'main')
+  // file:// forces the smart protocol, which is what supports --depth.
+  git('remote', 'add', 'origin', `file://${bare.split(path.sep).join('/')}`)
+  return { dir, git, commit, bare }
+}
+
+test('a branch matching main is skipped even when origin/main is absent', (t) => {
+  const { dir, git, commit } = remoteFixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  git('push', 'origin', 'main')
+  git('checkout', '-b', 'agent/claude/no-op')
+  commit('docs/notes.md', 'internal only\n')
+  // Vercel's clone has no remote-tracking main; the guard must fetch one.
+  git('update-ref', '-d', 'refs/remotes/origin/main')
+
+  const result = run(
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/no-op' },
+    dir,
+  )
+
+  assert.equal(result.status, 0, result.stdout + result.stderr)
+  assert.match(result.stdout, /no relevant diff against main \(FETCH_HEAD\)/)
+})
+
+test('a branch that changes rendered output still builds', (t) => {
+  const { dir, git, commit } = remoteFixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  git('push', 'origin', 'main')
+  git('checkout', '-b', 'agent/claude/real-change')
+  commit('app/page.tsx', 'export default function Page() { return null }\n')
+  git('update-ref', '-d', 'refs/remotes/origin/main')
+
+  const result = run(
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/real-change' },
+    dir,
+  )
+
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Relevant changes detected/)
+})
+
+test('an unreachable main falls through to the base-SHA diff instead of skipping', (t) => {
+  const { dir, commit, git } = fixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  commit('app/page.tsx', 'export default function Page() { return null }\n')
+  git('remote', 'add', 'origin', 'file:///frankx/does/not/exist')
+
+  const result = run(
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/offline' },
+    dir,
+  )
+
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /main not reachable for branch comparison/)
+})
+
+test('production is never skipped by the branch comparison', (t) => {
+  const { dir, git, commit } = remoteFixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  git('push', 'origin', 'main')
+
+  const result = run(
+    { VERCEL_ENV: 'production', VERCEL_GIT_COMMIT_REF: 'agent/claude/whatever' },
+    dir,
+  )
+
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Production deployment/)
+})
