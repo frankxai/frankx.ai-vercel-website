@@ -36,6 +36,7 @@ import {
   type Track,
   type Album,
 } from '@/lib/music'
+import { MusicCoverImage } from '@/components/music/MusicCoverImage'
 import { SunoTrackCTA } from '@/components/music/SunoTrackCTA'
 
 // ============================================================================
@@ -540,17 +541,12 @@ function LatestDropsSection() {
               className="group rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden hover:border-white/25 transition-all"
             >
               <div className="relative aspect-square overflow-hidden">
-                {track.imageUrl ? (
-                  <Image
-                    src={track.imageUrl}
-                    alt={track.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-amber-500/20" />
-                )}
+                <MusicCoverImage
+                  src={track.imageUrl}
+                  alt={track.title}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  fallbackClassName="bg-gradient-to-br from-emerald-500/20 to-amber-500/20"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <span className="absolute left-3 bottom-3 text-[11px] uppercase tracking-[0.16em] px-2.5 py-1 rounded-full bg-black/60 border border-white/20 text-white/80">
                   {dropDate(track.createdAt)}
@@ -607,17 +603,12 @@ function PlaylistsSection() {
               className="group rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden hover:border-white/25 transition-all"
             >
               <div className="relative aspect-square overflow-hidden">
-                {playlist.imageUrl ? (
-                  <Image
-                    src={playlist.imageUrl}
-                    alt={playlist.name}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-emerald-500/20" />
-                )}
+                <MusicCoverImage
+                  src={playlist.imageUrl}
+                  alt={playlist.name}
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  fallbackClassName="bg-gradient-to-br from-cyan-500/20 to-emerald-500/20"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-4">
                   <h3 className="text-white font-semibold text-sm leading-tight mb-1">
