@@ -127,6 +127,46 @@ RELEVANT_PATHS=(
   instrumentation.ts
 )
 
+# 1b. Preview whose branch differs from main in no way that changes rendered
+#     output. Measured 2026-09-01: with six harnesses working, "Merge branch
+#     'main' into agent/..." commits rebuilt previews that reviewed nothing —
+#     the branch had merely caught up to main, and production already built
+#     that content.
+#
+#     "Is this a merge from main" is the wrong question: once a feature branch
+#     lands, BOTH its parents are ancestors of main, so ancestry cannot tell the
+#     two merge directions apart after the fact. What matters for a preview is
+#     simpler — does this branch differ from main at all?
+#
+#     Vercel clones previews shallow and without a remote-tracking origin/main,
+#     so the ref this needs is normally absent. An earlier version of this check
+#     was conditioned on origin/main already resolving and therefore never fired.
+#     A depth-1 fetch is enough: `git diff A B -- paths` compares two trees
+#     directly and needs no merge base.
+#
+#     Fail-safe to PROCEED: a failed fetch, an absent ref, or a git error all
+#     fall through to the base-SHA diff below rather than risking a false skip.
+if [ -n "${VERCEL_GIT_COMMIT_REF:-}" ] && [ "${VERCEL_GIT_COMMIT_REF:-}" != "main" ]; then
+  MAIN_REF=""
+  if git rev-parse --verify -q origin/main >/dev/null 2>&1; then
+    MAIN_REF="origin/main"
+  elif command -v timeout >/dev/null 2>&1 \
+       && timeout 45 git fetch --no-tags --depth=1 origin main >/dev/null 2>&1; then
+    MAIN_REF="FETCH_HEAD"
+  elif ! command -v timeout >/dev/null 2>&1 \
+       && git fetch --no-tags --depth=1 origin main >/dev/null 2>&1; then
+    MAIN_REF="FETCH_HEAD"
+  fi
+
+  if [ -z "$MAIN_REF" ]; then
+    echo "[should-deploy] main not reachable for branch comparison — continuing to base-SHA diff."
+  elif git diff --quiet "$MAIN_REF" HEAD -- "${RELEVANT_PATHS[@]}" 2>/dev/null; then
+    echo "[should-deploy] Branch has no relevant diff against main ($MAIN_REF) — SKIPPING build."
+    echo "[should-deploy] Nothing to preview that production has not already built."
+    exit 0
+  fi
+fi
+
 # 2. Run the diff. Capture the exit code explicitly so we can distinguish:
 #    rc=0 → no diff → SKIP
 #    rc=1 → diff exists → PROCEED

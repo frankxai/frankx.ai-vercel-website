@@ -1,0 +1,50 @@
+{
+  "week": "2026-W37",
+  "generatedAt": "2026-09-08T00:00:00Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-08-31T21:20:43Z",
+  "windowEnd": "2026-09-07T21:20:43Z",
+  "windowClosed": true,
+  "pagesFetched": 4,
+  "paginationNote": "list_deployments returns at most 20 rows regardless of the limit argument. The window was walked with until=<oldest created> until a page returned fewer than 20 rows: 20 + 20 + 20 + 18 = 78. The first emission of this snapshot took page 1 alone (20 rows spanning 13.5h) and reported it as a 7-day total, which is why it read GREEN on 20 deploys.",
+  "metrics": {
+    "count_total": 78,
+    "count_production": 19,
+    "count_preview": 59,
+    "count_skipped": 10,
+    "count_error": 2,
+    "count_ready": 66,
+    "duration_p50_seconds": 192,
+    "duration_p95_seconds": 376,
+    "duration_max_seconds": 381,
+    "total_build_minutes": 279,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 13,
+    "ready_deploys_total": 66,
+    "duration_note": "13/66 READY deploys sampled via get_deployment. Sorted (s): 176.5, 179.7, 183.1, 186.4, 187.9, 189.1, 191.8, 194.8, 347.6, 354.5, 356.3, 372.4, 381.3. p50=191.8s (0-based idx 6). p95=375.9s (0-based idx 11.4). total_build_minutes = (mean 253.9s / 60) x 66 READY = 279min. Bimodal: eight builds at 177-195s and five at 348-381s. The slow mode is the full cache create-and-upload path (1.14 GB, 52s create + 15s upload observed on dpl_GkmB8TWKyfyxZxi1YVBCNv2uVXo6).",
+    "error_deploys": [
+      { "id": "dpl_nY5tavJ7HajGqPTLsKrHuhTPGDEk", "branch": "codex/security-undici-production-paths-20260902", "created": 1788387296874 },
+      { "id": "dpl_8jym5x2zjmX8KiYyphKRrtN38PSE", "branch": "agent/codex/next-avif-rce-20260902", "created": 1788382242868 }
+    ]
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W35",
+    "prior_week_note": "W36 recorded a self-declared lower bound (100 rows over ~1.3 of 7 days) and no duration sample, so it is not a usable baseline. W35 is the last fully enumerated week: total=230, READY=184, ERROR=9, CANCELED=37, p50=535s, p95=621s, build_min=1684. W35 and W36 are both still unmerged on their own branches; main's newest snapshot is W34.",
+    "count_total_delta_pct": -66.1,
+    "count_ready_delta_pct": -64.1,
+    "count_error_change": "9 -> 2 (-77.8%)",
+    "duration_p50_delta_seconds": -343,
+    "duration_p50_delta_pct": -64.1,
+    "total_build_minutes_delta": -1405,
+    "total_build_minutes_delta_pct": -83.4
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=2 meets the >=2/week RED threshold. Both are preview builds on security-patch branches (Undici pins, Next AVIF RCE) that failed and were fixed on the next push. Branch-specific, not infrastructure. This is the only metric outside tolerance.",
+    "duration_p50=192s is GREEN for the first time since this snapshot series began (W33 535s, W34 526s, W35 535s). Turbopack plus the .vercelignore and prebuild-cache work has roughly a third off the previous median.",
+    "count_total=78 and total_build_minutes=279 are both comfortably GREEN. W35's 230 deploys / 1684 minutes was the peak.",
+    "count_skipped=10 of 78 (12.8%). All ten are supersession cancels on rapid successive pushes. Zero are ignoreCommand skips of a branch that matched main, because that check did not exist on main until this pull request: it lived only on two unmerged agent branches, and the version there was conditioned on origin/main resolving, which it does not in Vercel's shallow preview clone.",
+    "Bursts, not steady rate, dominate the frequency leg. 20 of the 78 (26%) landed inside one 13.5h span, and six of those inside 400 seconds when several agent branches were pushed at once. The same push fired builds across arcanea-ai-app, dpi-open-core, starlight-research-hub and starlightintelligence-ai simultaneously; 5 of that cross-project batch failed."
+  ]
+}
