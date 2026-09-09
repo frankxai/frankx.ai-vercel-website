@@ -73,10 +73,15 @@ In a state of chronic sympathetic activation, the body makes a dark, Darwinian b
 
 My father did not smoke cigarettes. He was not an alcoholic. He did not eat fast food; my mother cooked fresh, whole foods every single day from our garden.
 
-Yet inside his tissues, an invisible war was raging. He was running a perpetual internal marathon with a 100-pound pack, never dropping the load, never granting his cells permission to enter the parasympathetic state of restoration.
+Yet inside his tissues, an invisible strain was accumulating. He was running an endless marathon with an unyielding pack, never granting his nervous system permission to enter restorative parasympathetic recovery.
 
-He thought he was being strong.  
-In reality, he was accumulating a massive biological debt—and biology always collects with compound interest.
+We must be biologically exact here, because honesty matters: work stress did not cause his cancer. A massive pooled analysis of over 116,000 adults across multi-cohort studies published in the *British Medical Journal* (Heikkilä et al., 2013) found no causal association between work stress and overall cancer risk. 
+
+His sacrifice did not create the malignant cells, and no child should ever carry the false guilt that a parent's work for their family triggered their illness. 
+
+What chronic overwork actually cost was his margin. It cost him the baseline physiological reserve that buffers illness. It cost him the habit of listening to his body when fatigue signaled an internal problem. And it cost him years of not stepping into a clinic for routine preventative check-ups, ignoring early whispers until they became an irreversible roar.
+
+He thought he was being strong. In reality, he was spending down his reserves with zero margin—and biology always demands an accounting.
 
 ---
 

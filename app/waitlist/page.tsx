@@ -18,6 +18,13 @@ const intentLabelMap: Record<string, string> = {
   'course-conscious-ai-foundations': 'Conscious AI Foundations',
   'course-agent-architecture-systems': 'Agent Architecture Systems',
   'course-creator-business-systems': 'Creator Business Systems',
+  'creative-ai-toolkit': 'Creative AI Toolkit',
+  'creation-chronicles': 'Creation Chronicles',
+  'suno-prompt-library': 'Suno Prompt Library',
+  'aurora-ui-kit': 'Aurora UI Kit',
+  'agentic-content-engine': 'Agentic Content Engine',
+  'bv-kit': 'Creator BV Kit',
+  'prompt-vault': 'Prompt Vault',
 }
 
 export default function WaitlistPage({ searchParams }: WaitlistPageProps) {
