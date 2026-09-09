@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import Script from 'next/script'
 import { ArrowRight, Heart } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'
@@ -21,21 +20,6 @@ const categoryColors: Record<string, string> = {
   Product: 'text-amber-400',
   System: 'text-emerald-400',
   Growth: 'text-rose-400',
-}
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: "GenCreator Blueprints",
-  description: 'Actionable frameworks for specific creative workflows. Copy, customize, execute.',
-  url: 'https://frankx.ai/gencreator/blueprints',
-  numberOfItems: blueprints.length,
-  itemListElement: blueprints.map((bp, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    name: bp.title,
-    description: bp.description,
-  })),
 }
 
 export default function BlueprintsPage() {
@@ -159,10 +143,6 @@ export default function BlueprintsPage() {
           </div>
         </div>
       </section>
-
-      <Script id="blueprints-schema" type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </Script>
     </div>
   )
 }
