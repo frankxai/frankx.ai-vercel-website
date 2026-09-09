@@ -82,6 +82,9 @@ jobs:
       - name: Library search and reading guides
         run: pnpm run test:library
 
+      - name: Site search relevance
+        run: pnpm run test:site-search
+
       - name: Build
         run: pnpm run build
         env:
