@@ -1091,13 +1091,9 @@
       "tags": [
         "AI Agents",
         "Claude Code",
-        "ChatGPT Work",
         "Hermes Agent",
-        "Manus",
         "Devin",
-        "Cursor",
-        "Viktor",
-        "OpenClaw"
+        "Cursor"
       ],
       "type": "blog"
     },
@@ -1143,7 +1139,7 @@
     {
       "href": "/blog/ai-capability-abundant-architecture-still-the-work",
       "title": "AI Capability Is Abundant. Architecture Is Still the Work.",
-      "description": "Five recent stories from my work show where AI skills and architecture create real value: turning workshops, field notes, compute, content, and infrastructure ideas into systems that can survive change.",
+      "description": "Where AI skills and architecture create real value: turning workshops, field notes, compute, and infrastructure into durable systems that survive change.",
       "tags": [
         "ai-architecture",
         "ai-skills",
@@ -2731,7 +2727,7 @@
     },
     {
       "href": "/blog/is-revolut-safe-netherlands-2026",
-      "title": "Is Revolut Safe in the Netherlands? Bank Licence, Dutch IBAN and €100k Protection",
+      "title": "Is Revolut Safe in the Netherlands? Bank Licence, IBAN & Protection",
       "description": "A regulator-first answer to whether Revolut is safe in the Netherlands: bank status, DNB register, Dutch IBAN, deposit insurance, and risks protection does not cover.",
       "tags": [
         "Revolut",
