@@ -5,6 +5,9 @@ import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { createMetadata } from '@/lib/seo'
 
 const CANONICAL = 'https://www.frankx.ai/ai-architecture'
+const GUIDE_COMMIT = 'dfd96760debe7424655932f6ad5857a3c82f14b3'
+const GUIDE_SOURCE = `https://github.com/frankxai/ai-architect/tree/${GUIDE_COMMIT}/guide`
+const GUIDE_REVIEWS = `https://github.com/frankxai/ai-architect/blob/${GUIDE_COMMIT}/guide/editorial/review-gates.md`
 
 // Article-shaped metadata belongs to the hub alone. Kept off the segment layout
 // so the client-rendered catalog children do not inherit og:type=article and the
@@ -15,10 +18,11 @@ export const metadata = createMetadata({
     'How to structure a system that calls a language model: the seven planes, choosing between workflow and agent, the 2026-07-28 MCP revision, the OWASP GenAI LLM Top 10 2026, and where these systems actually break.',
   path: '/ai-architecture',
   type: 'article',
-  updatedTime: '2026-08-25',
+  updatedTime: '2026-09-07',
 })
 
 const CONTENTS = [
+  { href: GUIDE_SOURCE, label: '2026 working edition (GitHub)' },
   { href: '#what-is-ai-architecture', label: 'What it is' },
   { href: '#reference-stack', label: 'The seven planes' },
   { href: '#choosing-a-shape', label: 'Workflow or agent' },
@@ -48,6 +52,7 @@ export default function AIArchitecturePage() {
       <OfficialArchitectureAtlas />
 
       <nav
+        id="working-edition"
         aria-label="Field guide contents"
         className="border-t border-white/5 px-6 py-10"
       >
@@ -67,6 +72,17 @@ export default function AIArchitecturePage() {
               </li>
             ))}
           </ul>
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-slate-400">
+            The AI Architect Guide 2026 working edition adds 16 manuscript files, a source and
+            claim ledger, an executable authority-boundary lab, and a September briefing. Its
+            GitHub link is pinned to the reviewed source version.{' '}
+            <a
+              href={GUIDE_REVIEWS}
+              className="rounded-sm text-emerald-300 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+            >
+              Final-book reviews remain open.
+            </a>
+          </p>
         </div>
       </nav>
 
