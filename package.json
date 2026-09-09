@@ -69,7 +69,7 @@
     "content:check": "node scripts/check-mdx-safety.mjs && node scripts/check-content-integrity.mjs && node scripts/check-publish-holds.mjs && node scripts/aeo-blog-audit.mjs",
     "images:check": "node scripts/check-image-hosts.mjs",
     "prebuild": "npm run guards:check && npm run content:check && npm run sync-ais && node scripts/prebuild-cache.mjs && node scripts/build-route-index.mjs",
-    "postbuild": "npm run test:build-artifact-integrity && npm run test:vault-metadata:rendered && npm run test:gencreator-metadata:rendered",
+    "postbuild": "npm run test:build-artifact-integrity && npm run test:vault-metadata:rendered",
     "routes:build": "node scripts/build-route-index.mjs",
     "data-room:dry-run": "node scripts/data-room/upload-data-room-docs.mjs --dry-run --all",
     "data-room:upload": "node scripts/data-room/upload-data-room-docs.mjs --all",

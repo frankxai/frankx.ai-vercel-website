@@ -86,3 +86,6 @@ jobs:
         run: pnpm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+
+      - name: GenCreator rendered metadata
+        run: pnpm run test:gencreator-metadata:rendered
