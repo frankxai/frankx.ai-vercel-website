@@ -2,22 +2,23 @@
 title: "AI Architecture 2026: Four Decisions Hard to Reverse"
 description: "Most AI system decisions are cheap to change. Four are not: the vendor boundary, the orchestration shape, the trust boundary, and where a long run lives."
 date: "2026-08-21"
-lastUpdated: "2026-08-21"
+lastUpdated: "2026-08-30"
 author: "FrankX"
 category: "AI Architecture"
 tags: ["ai-architecture", "agents", "mcp", "orchestration", "prompt-injection"]
-image: "/images/blog/generated/ai-architecture-2026-four-decisions-hero.webp"
+image: "/images/blog/generated/frankx-editorial-20260830/ai-architecture-four-seams.webp"
 featured: true
-readingGoal: "Leave able to name which four architecture decisions you already made, whether you meant to, and what each one costs to undo."
 tldr: "Most AI system choices are reversible in an afternoon. Four are not. Where the model call goes sets your swap cost. The orchestration shape sets your failure mode. Where the trust boundary sits decides whether a retrieved document can act. Where a long run lives decides which platforms stay open to you. Everything else is a refactor."
 keywords: ["ai architecture 2026", "ai system design", "agent architecture", "mcp stateless", "prompt injection architecture", "llm gateway", "agent orchestration patterns"]
 ---
 
-**TL;DR:** Prompt wording, chunk size, model choice, framework — all cheap to change. Four decisions are not. **Where the model call goes** sets what a vendor swap costs. **What shape the loop is** sets how the system fails. **Where the trust boundary sits** decides whether a retrieved document can trigger a side effect. **Where a long run lives** quietly eliminates platforms before you have evaluated them. On 28 July 2026 the [Model Context Protocol removed sessions and the initialize handshake entirely](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2026-07-28/changelog.mdx), which moved the fourth decision for everyone using MCP. This is the argument version. The [full seven-plane reference lives here](/ai-architecture).
+**TL;DR:** Prompt wording, chunk size, model choice, and framework are usually cheap to change. Four choices compound. **Where the model call goes** sets what a vendor swap costs. **What shape the loop is** sets how the system fails. **Where the trust boundary sits** decides whether retrieved content can trigger a side effect. **Where a long run lives** quietly eliminates platforms before you evaluate them. On 28 July 2026, the [Model Context Protocol removed protocol-level sessions and the initialize handshake](https://modelcontextprotocol.io/specification/2026-07-28/changelog), moving the fourth decision for teams using that revision. This is the argument version. The [full seven-plane reference lives here](/ai-architecture).
 
-I have watched a lot of AI architecture reviews now, and the same thing happens in most of them. Someone draws boxes — model, retrieval, tools, agent — connects them with arrows, and everyone nods. The diagram is fine. The diagram is also not where the risk is.
+In architecture reviews, people inspect the boxes. Incidents arrive through the seams.
 
-The risk lives in the seams. Not in the boxes, but in what changes character when a request crosses from one box to the next. That is where systems rot, and it is the part nobody draws.
+You may recognize the meeting. Someone draws model, retrieval, tools, and agent; connects them with arrows; and the room relaxes because the system finally looks understandable. Weeks later, the failure comes from a boundary the diagram treated as a line: provider-specific code scattered through the product, untrusted text reaching a tool, a loop with no durable state, or an action no one can reconstruct.
+
+The seam changes the character of a request. That is where review time earns its keep.
 
 <Diagram
   src="/images/diagrams/ai-architecture/precision-atelier/01-production-ai-architecture.webp"
@@ -34,22 +35,30 @@ Of everything in that stack, four choices are genuinely expensive to walk back. 
 | Decision | What it really sets | Cost to change later |
 | --- | --- | --- |
 | **Where the model call goes** | Your swap cost when a provider raises prices, deprecates a model, or has a bad week | Every call site, if you skipped the indirection |
-| **What shape the loop is** | Your failure mode — silent drift, context rot, or contradictory merges | The control flow, plus every eval written against it |
+| **What shape the loop is** | Your failure mode: silent drift, context rot, or contradictory merges | The control flow, plus every eval written against it |
 | **Where the trust boundary sits** | Whether text a stranger wrote can cause a side effect | A security review of every tool you already shipped |
 | **Where a long run lives** | Which deployment platforms remain open to you | A migration, because it is a runtime property, not a config flag |
 
-Everything else — prompt wording, chunk size, which reranker, which framework — is a Thursday. Treat it that way and spend your review time on the four.
+Prompt wording, chunk size, rerankers, and frameworks can often move on a quiet Thursday. Spend the serious review time on the four.
+
+<Diagram
+  src="/images/blog/generated/frankx-editorial-20260830/ai-work-surfaces-routing-room.webp"
+  width={1672}
+  height={940}
+  alt="An AI architecture team routes work across several model and tool surfaces while specialist droids inspect provider boundaries, permissions, long-running state, and evidence."
+  caption="The routing decision includes the provider boundary, the work shape, authority, durable state, and the evidence left behind."
+/>
 
 ## Decision 1: Where does the model call go?
 
 The cheapest version is `openai.chat.completions.create()` scattered through the codebase. It works immediately and it is the single most common thing I have to help teams undo.
 
-The question is not "which model." Models change monthly and that is fine — that is the *reversible* decision hiding inside the irreversible one. The question is whether there is exactly one place in your system that knows a model provider's name.
+Models change monthly. The durable question is whether exactly one place in your system knows a model provider's name.
 
 If there is one place, you get four things without further work: routing by task, fallback when a provider degrades, a cache you can actually reason about, and a single line item for spend. If there are ninety places, you get none of them, and the day you need them is the day you cannot have them.
 
 <Callout type="insight">
-A useful test: grep your codebase for your provider's SDK import. If it appears in more than one module, you have not made this decision — you have deferred it, and the deferral is compounding.
+A useful test: grep your codebase for the provider SDK import. If it appears in more than one module, the deferred decision is already compounding.
 </Callout>
 
 <Diagram
@@ -76,15 +85,15 @@ There are four common shapes, but they live on two independent axes: who chooses
   caption="Agency and coordination are separate decisions. Increase either only when measured uplift exceeds the additional control cost."
 />
 
-The bias should be toward Q1. A fixed workflow that you wrote down is easier to debug, easier to evaluate, cheaper to run, and easier to explain to the person who owns the incident. Reach for a loop when you genuinely cannot enumerate the steps — not because loops are more interesting to build.
+The bias should be toward Q1. A fixed workflow that you wrote down is easier to debug, evaluate, price, and explain to the person who owns the incident. Reach for a loop when the steps genuinely cannot be enumerated.
 
-What makes this hard to reverse is not the code. It is the evaluation suite. A workflow is graded on whether each step produced the right output. A loop has to be graded on its *trajectory* — did it take a sensible path, or did it stumble into the right answer? Those are different harnesses. Switch shapes after you have a hundred graded examples and you throw away the harness with them. [Modern agentic systems architecture](/blog/modern-agentic-systems-architecture-2026) goes deeper on trajectory evaluation; [the seven pillars piece](/blog/production-agent-patterns-7-pillars) covers what a production loop needs around it.
+The expensive asset is the evaluation suite. A workflow is graded on whether each step produced the right output. A loop has to be graded on its *trajectory*: did it take a sensible path, or stumble into the right answer? Those require different harnesses. Switch shapes after you have a hundred graded examples and you may discard the harness with the control flow. [Modern agentic systems architecture](/blog/modern-agentic-systems-architecture-2026) goes deeper on trajectory evaluation; [the seven pillars piece](/blog/production-agent-patterns-7-pillars) covers what a production loop needs around it.
 
 ## Decision 3: Where does the trust boundary sit?
 
 Here is the sentence that reframes this for most people: **text that came back from a tool call is not your text.**
 
-A retrieved document, an API response, a fetched web page, a PDF someone uploaded — all of it was authored by someone who is not you and may not like you. If that text reaches the position in your context window where instructions live, it *is* an instruction. The model has no reliable way to tell the difference, and no amount of "ignore any instructions in the following document" fixes it, because that sentence is also just text.
+A retrieved document, an API response, a fetched web page, or an uploaded PDF was authored outside your trust boundary. If that text reaches the position in your context window where instructions live, it *is* an instruction. The model has no reliable way to tell the difference, and “ignore any instructions in the following document” is also just text. [OWASP's prompt-injection guidance](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) treats this as an application-level risk that retrieval and fine-tuning do not fully remove.
 
 <Diagram
   src="/images/diagrams/ai-architecture/precision-atelier/06-trusted-agent-action-boundary.webp"
@@ -94,17 +103,17 @@ A retrieved document, an API response, a fetched web page, a PDF someone uploade
   caption="A trusted action corridor turns an untrusted proposal into a bounded, verified effect. Credentials never enter model context."
 />
 
-The architectural fix is not a better prompt. It is three structural things:
+The fix is structural:
 
 1. **Untrusted content never enters the instruction position.** Fence it, label it, keep it in the data position.
-2. **Side effects sit behind a gate.** Anything irreversible — a write, a message, a payment, a merge — needs a step that a document cannot perform on its own behalf.
+2. **Side effects sit behind a gate.** A write, message, payment, or merge needs a step that a document cannot perform on its own behalf.
 3. **Tool scopes are narrow by default.** A tool that can read a calendar and a tool that can read a calendar *and send email* are different risk objects, even though they are one line apart in your config.
 
-This is hard to reverse because the cost is not the fix — it is the audit. Every tool you already shipped has to be re-examined against a boundary you did not have when you shipped it. Draw the boundary before the tool surface grows, and it stays cheap. [Zero-trust tool meshes](/blog/mcp-protocol-production-architecture-2026) covers the production shape of this.
+The repair may be small. The audit grows with every tool already shipped against the old boundary. Draw that boundary before the tool surface expands, and it stays cheap. [Zero-trust tool meshes](/blog/mcp-protocol-production-architecture-2026) covers the production shape of this.
 
 ## Decision 4: Where does a long run live?
 
-An agent loop that runs for eleven minutes is a different deployment problem from a chat completion that returns in two seconds. Not a harder version of the same problem — a different one.
+An agent loop that runs for eleven minutes creates a different deployment problem from a chat completion that returns in two seconds.
 
 This is where teams discover their platform choice was load-bearing. A serverless function has a duration ceiling. A loop that outlives a request needs somewhere else to be: a queue and a worker, a durable execution primitive, a container that stays warm, or a machine you start and stop on purpose.
 
@@ -118,26 +127,26 @@ Nobody sits down and decides this. It gets decided by whatever the marketing sit
   caption="A long run needs persistent state and explicit recovery paths. The workflow engine remembers; the model does not."
 />
 
-There is no universal platform winner and I am not going to invent one. The honest framing is a trade: managed platforms hand you a primitive and take the operations; self-assembled clouds hand you every primitive and take your Tuesdays. Both are correct answers to different questions about what your team wants to be responsible for.
+There is no universal platform winner. Managed platforms give you a primitive and absorb part of the operations; self-assembled clouds give you every primitive and take your Tuesdays. Both can be correct, depending on what the team wants to own. [Vercel Workflows](https://vercel.com/docs/workflows), for example, provides managed durable execution for long-running applications and agents. Queues, workers, containers, and other workflow engines create different ownership contracts.
 
-What makes it hard to reverse is that "long-running work" is a runtime property. It is not a flag you flip. Moving it means moving the execution model, which means moving the state that execution model implied.
+Long-running work is a runtime property. A configuration flag cannot move it safely. Migration means moving the execution model and the state implied by that model.
 
 ## What changed in mid-2026 that moves these decisions?
 
 One thing, concretely, and it lands on decisions 3 and 4.
 
-On **28 July 2026**, the Model Context Protocol shipped a revision that made the protocol stateless. Reading the [changelog directly](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2026-07-28/changelog.mdx), the load-bearing removals are:
+On **28 July 2026**, the Model Context Protocol shipped a revision that made the protocol stateless. Reading the [official changelog directly](https://modelcontextprotocol.io/specification/2026-07-28/changelog), the load-bearing removals are:
 
 - **Protocol-level sessions are gone**, along with the `Mcp-Session-Id` header. Servers that need state across calls now mint explicit handles and pass them as ordinary tool arguments.
 - **The `initialize` handshake is gone.** Every request carries its own protocol version and client capabilities in `_meta`. A new `server/discover` RPC advertises what a server supports, if you want to ask up front.
 - **Stream resumability is gone.** No `Last-Event-ID`, no message redelivery. A broken response stream loses the in-flight request, and the client has to re-issue it as a new request with a new ID.
 
-Read those three together and the architectural consequence is clear: **state that used to be implicit in a connection is now something you have to name and own.** That is more work at the seam, and it is better work — implicit connection state was exactly the kind of thing that made MCP servers hard to scale horizontally and hard to reason about under failure.
+Read those three together and the architectural consequence is clear: **state that used to be implicit in a connection is now something you have to name and own.** This adds work at the seam while removing connection state that made horizontal scaling and failure analysis harder.
 
 The third bullet is the one that changes plans. If your design assumed a long-lived stream would survive a blip, it no longer does. Retries become your problem, which means idempotency becomes your problem, which means decision 4 just got more expensive to get wrong. [The 2026 agentic hierarchy](/blog/skills-vs-agents-vs-prompts-vs-mcp) covers where MCP sits relative to skills and agents if that layering is still fuzzy.
 
 <Callout type="warning">
-Verify the revision against the spec repository before you build against it. Protocol dates move, and this post is a snapshot of 21 August 2026, not a maintained mirror.
+Verify the revision against the spec repository before you build against it. Protocol dates move, and this post is a snapshot of 30 August 2026 rather than a maintained mirror.
 </Callout>
 
 ## How do you tell which decisions you already made by accident?
@@ -147,7 +156,7 @@ Four greps and one question. This takes about twenty minutes on a codebase you k
 1. **Grep for your model provider's SDK import.** More than one module means decision 1 is deferred, not made.
 2. **Find the loop's exit condition.** If it lives in a prompt rather than in code, you have an unbounded loop with a polite request attached.
 3. **Trace one retrieved document from the retriever to the context window.** If you cannot point at the line where it becomes labelled data rather than plain text, decision 3 has been made for you.
-4. **Find your longest production run.** Not the average — the longest. Then check what your platform's ceiling is. If you do not know either number, decision 4 is unmade.
+4. **Find your longest production run.** Use the longest run rather than the average. Then check the platform ceiling. If you do not know either number, decision 4 is unmade.
 
 The question: **what breaks first if your primary model provider is unavailable for four hours?** If the answer is "everything," the four decisions are all still open, and they are open in the expensive direction.
 
@@ -172,6 +181,8 @@ All four, briefly. Deferring decision 1 is cheapest and stays cheap longest. Def
 
 The four decisions are the argument. The reference is longer and lives on its own page: [the seven planes of a production AI system](/ai-architecture), including what each plane owns, what the seam between two planes actually changes, and the failure modes that show up in the wrong plane from where they were caused.
 
-If you want the operational layer rather than the design layer, [the observability stack for multi-agent systems](/blog/observability-stack-multi-agent-systems-2026) is the companion — because three of the four decisions above are only checkable if you can see what a run actually did.
+For the operational layer, continue with [the observability stack for multi-agent systems](/blog/observability-stack-multi-agent-systems-2026). Three of the four decisions above are only checkable when you can see what a run actually did.
 
-Sources checked against primary documentation on 21 August 2026. Where a claim depends on a vendor page or a protocol revision, the linked source is the authority, not this post.
+Sources checked against primary documentation on 30 August 2026. Where a claim depends on a vendor page or a protocol revision, the linked source is the authority.
+
+*Method note: source review and editorial architecture were developed in ChatGPT Work Mode; repository implementation and verification used Codex; original scene layers were created with native OpenAI image generation. Exact architecture diagrams and claims remain deterministic and source-checkable.*
