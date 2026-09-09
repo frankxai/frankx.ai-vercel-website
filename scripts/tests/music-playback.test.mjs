@@ -1,5 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
+import { homepageFeaturedRelease } from '../../data/homepage-featured-release.ts'
 import { safeMediaUrl, spotifyAlbumEmbed, suggestTracks, routeMusicSuggestion, buildPlaybackCatalog, verifiedPlaybackUrl } from '../../lib/music-playback.ts'
 
 test('Spotify accepts canonical album URLs only and media rejects active schemes or credentials', () => {
@@ -50,4 +52,25 @@ test('catalog keeps unverified public tracks external and includes verified arch
   assert.equal('sha256' in result[0], false)
   assert.equal(entries.length, 1)
   assert.equal(buildPlaybackCatalog([], [registered], []).length, 0)
+})
+
+test('checked-in catalog exposes every verified export and keeps missing screenshot tracks external', () => {
+  const readData = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'))
+  const inventory = readData('../../data/inventories/frankx/music.json')
+  const archive = readData('../../data/music-asset-registry.json')
+  const proof = readData('../../data/music-playback-sources.json')
+  const catalog = buildPlaybackCatalog([...inventory.tracks, { ...homepageFeaturedRelease, status: 'published' }], archive.tracks, proof.tracks)
+  const playable = catalog.filter(track => track.streamUrl)
+  assert.ok(playable.length > 0)
+  assert.equal(playable.length, proof.tracks.length)
+  assert.ok(catalog.slice(0, 6).every(track => track.streamUrl))
+  assert.ok(playable.every(track => typeof track.id === 'string' && track.id.length > 0))
+  for (const rendition of proof.tracks) {
+    assert.equal(playable.find(track => track.sunoId === rendition.sunoId)?.streamUrl, rendition.audioUrl)
+  }
+  for (const id of ['e7d082d3-8ecd-4fdb-a8fa-582026554153', '7d1195a9-13da-492c-9665-e9d640e0be0a']) {
+    const track = catalog.find(candidate => candidate.sunoId === id)
+    assert.ok(track, 'the reported track remains discoverable')
+    if (!proof.tracks.some(rendition => rendition.sunoId === id)) assert.equal(track.streamUrl, undefined)
+  }
 })

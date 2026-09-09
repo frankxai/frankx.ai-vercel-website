@@ -41,6 +41,13 @@ click-to-load, require a real published/released album URL, and yield the runtim
 
 ## Verification and operation
 
+The September 9 repair verified all 61 published archive exports (271,118,825
+bytes). Type checking, lint, strict language audit, production build and both
+post-build artifact/metadata suites passed locally. The checked-in catalog test
+also covers archive records without inventory IDs and the two tracks reported
+in the failed-preview screenshots. Deployed browser evidence belongs in the PR
+receipt and must identify the tested revision.
+
 Run the repository type/lint/language/build gates and:
 
 ```bash
