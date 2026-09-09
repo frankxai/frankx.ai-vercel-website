@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 993,
+    "total": 1001,
     "aliases": 58,
     "byType": {
       "core": 24,
-      "section": 431,
+      "section": 433,
       "community": 17,
-      "tool": 61,
+      "tool": 62,
       "static": 15,
-      "blog": 264,
+      "blog": 269,
       "research": 16,
       "guide": 26,
       "library": 88,
@@ -2047,6 +2047,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/das-fundament-und-der-glaube",
+      "title": "Das Fundament und der Glaube: Was mein Vater mit Händen baute, und was wir im Geist errichten müssen",
+      "description": "Ein Vermächtnis an Witali Riemer zu seinem 57. Geburtstag. Über die Hingabe eines Baumeisters, das fatale Nocebo der Schulmedizin und Vitalität im KI-Zeitalter.",
+      "tags": [
+        "state-engineering",
+        "vitalitaet",
+        "mindset",
+        "vater-code",
+        "epigenetik"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/deepseek-r1-open-weight-reasoning-analysis",
       "title": "DeepSeek R1: What Open-Weight Reasoning Actually Means",
       "description": "The model that disrupted AI pricing. How DeepSeek R1 works, where it excels, and what it means for builders choosing between open and closed models.",
@@ -2406,6 +2419,45 @@
         "ai-2026",
         "benchmarks",
         "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-6-astra-ai-architecture-model-economics",
+      "title": "GPT-6 Astra: model economics and production architecture",
+      "description": "Evaluate GPT-6 Astra for organizational adoption with workload routing, independent grading, accepted-task economics and a controlled path into production.",
+      "tags": [
+        "gpt-6-astra",
+        "ai-architecture",
+        "llm-evaluation",
+        "model-routing",
+        "enterprise-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-6-astra-chatgpt-work-codex-founders",
+      "title": "GPT-6 Astra for founders: ChatGPT, Work and Codex",
+      "description": "Turn GPT-6 Astra into a useful founder workflow across ChatGPT, Work and Codex, with clear briefs, source checks, web design tests and reviewable handoffs.",
+      "tags": [
+        "gpt-6-astra",
+        "chatgpt-work",
+        "codex",
+        "founder-systems",
+        "ai-strategy"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-6-astra-for-content-creators",
+      "title": "GPT-6 Astra for creators: build a studio that finishes",
+      "description": "Evaluate GPT-6 Astra for creative production with Adobe, Canva and HeyGen, including tool access, editable handoffs and the cost of usable results.",
+      "tags": [
+        "gpt-6-astra",
+        "chatgpt-work",
+        "content-creation",
+        "ai-tools",
+        "creative-workflows"
       ],
       "type": "blog"
     },
@@ -3755,6 +3807,19 @@
         "ai-architecture",
         "ai-systems",
         "production"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/the-builder-and-the-belief",
+      "title": "The Builder and the Belief: What My Father Built With His Hands, and What We Must Build in Our Minds",
+      "description": "A tribute to Witali Riemer on his 57th birthday. How a master builder gave everything for his family, the fatal medical nocebo, and engineering vitality in the AI age.",
+      "tags": [
+        "state-engineering",
+        "vitality",
+        "mindset",
+        "father-code",
+        "epigenetics"
       ],
       "type": "blog"
     },
@@ -5280,6 +5345,15 @@
       ],
       "type": "section",
       "sitemap": false
+    },
+    {
+      "href": "/father-code",
+      "title": "Father Code",
+      "tags": [
+        "father",
+        "code"
+      ],
+      "type": "section"
     },
     {
       "href": "/feed",
@@ -7496,6 +7570,15 @@
     {
       "href": "/llm-hub/gpt-5-5",
       "title": "GPT-5.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-6-astra",
+      "title": "GPT-6 Astra — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -9806,6 +9889,14 @@
         "short"
       ],
       "type": "video"
+    },
+    {
+      "href": "/witali",
+      "title": "Witali",
+      "tags": [
+        "witali"
+      ],
+      "type": "section"
     },
     {
       "href": "/work",
