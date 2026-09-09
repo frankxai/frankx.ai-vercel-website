@@ -65,6 +65,8 @@ test('checked-in catalog exposes every verified export and keeps missing screens
   assert.equal(playable.length, proof.tracks.length)
   assert.ok(catalog.slice(0, 6).every(track => track.streamUrl))
   assert.ok(playable.every(track => typeof track.id === 'string' && track.id.length > 0))
+  assert.equal(suggestTracks(catalog, 'Open the Arc')[0]?.sunoId, '7d1195a9-13da-492c-9665-e9d640e0be0a')
+  assert.equal(suggestTracks(catalog, 'Star Show Us')[0]?.sunoId, homepageFeaturedRelease.sunoId)
   for (const rendition of proof.tracks) {
     assert.equal(playable.find(track => track.sunoId === rendition.sunoId)?.streamUrl, rendition.audioUrl)
   }

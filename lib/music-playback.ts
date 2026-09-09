@@ -30,6 +30,7 @@ export function spotifyAlbumEmbed(value?: string): string | undefined {
 
 /** Suggestions never change the current track. Unknown requests return no match. */
 export function suggestTracks(tracks: PlaybackTrack[], request: string): PlaybackTrack[] {
+  const requestedTitle = request.trim().toLowerCase().replace(/\s+/g, ' ')
   const terms = request.toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? []
   const tokens = terms.filter(t => t.length > 2 && !['music', 'song', 'songs', 'play', 'some', 'the', 'with', 'want'].includes(t))
   if (!tokens.length) return []
@@ -38,7 +39,9 @@ export function suggestTracks(tracks: PlaybackTrack[], request: string): Playbac
     const text = [track.title, ...track.genre, ...track.mood].join(' ').toLowerCase()
     const instrumental = /instrumental|solo piano|no vocals|wordless/.test(text)
     const matched = tokens.reduce((score, token) => score + (text.includes(token) ? 1 : 0), 0)
-    const score = focus ? (instrumental ? matched + 1 : 0) : matched
+    const title = track.title.trim().toLowerCase().replace(/\s+/g, ' ')
+    const titleMatch = title === requestedTitle ? 1000 : title.startsWith(requestedTitle) ? 100 : 0
+    const score = title === requestedTitle ? titleMatch + matched : focus ? (instrumental ? matched + 1 : 0) : titleMatch + matched
     return { track, score }
   }).filter(item => item.score > 0).sort((a, b) => b.score - a.score || a.track.id.localeCompare(b.track.id)).slice(0, 6).map(item => item.track)
 }
