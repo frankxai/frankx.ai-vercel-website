@@ -78,7 +78,7 @@ const timeline = [
     year: 'Now',
     title: 'The foundation still carries',
     text:
-      'The houses still stand. The rental income still flows. The family still lives inside decisions he made before the next generation could understand them.',
+      'The houses still stand. The family still lives inside decisions he made before the next generation could understand them.',
   },
 ]
 
@@ -194,10 +194,10 @@ export default function WitaliPage() {
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/father-code"
+                href="/the-builders-line"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-200 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-amber-100"
               >
-                Read the father code
+                Read The Builder’s Line
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
@@ -356,10 +356,10 @@ export default function WitaliPage() {
                 to stand on.
               </p>
               <Link
-                href="/father-code"
+                href="/the-builders-line"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-amber-200 transition hover:text-amber-100"
               >
-                Continue into the Father Code
+                Continue into The Builder’s Line
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

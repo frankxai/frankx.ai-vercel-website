@@ -1,13 +1,13 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-09T00:03:39.217Z",
-  "totalAssets": 1725,
+  "generatedAt": "2026-09-09T14:38:30.515Z",
+  "totalAssets": 1738,
   "totalCollections": 64,
-  "totalSize": 1342758367,
+  "totalSize": 1344741969,
   "formats": {
-    "png": 866,
-    "svg": 380,
-    "webp": 282,
+    "png": 868,
+    "svg": 381,
+    "webp": 292,
     "jpg": 187,
     "jpeg": 10
   },
@@ -84,7 +84,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 620,
+      "count": 630,
       "coverImage": "/images/blog/editorial/headers/01-ai-doesnt-have-to-be-soulless-hero.webp",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -299,6 +299,108 @@
             "2026"
           ],
           "createdAt": "2026-09-08"
+        },
+        {
+          "id": "blog/4-hour-direction-a-late-control-room",
+          "filename": "4-hour-direction-a-late-control-room.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/4-hour-direction-a-late-control-room.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 127278,
+          "title": "4 Hour Direction A Late Control Room",
+          "tags": [
+            "blog",
+            "hour",
+            "direction",
+            "late",
+            "control",
+            "room"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "blog/4-hour-direction-b-absence-test",
+          "filename": "4-hour-direction-b-absence-test.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/4-hour-direction-b-absence-test.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 242724,
+          "title": "4 Hour Direction B Absence Test",
+          "tags": [
+            "blog",
+            "hour",
+            "direction",
+            "absence",
+            "test"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "blog/4-hour-direction-c-four-room-atelier",
+          "filename": "4-hour-direction-c-four-room-atelier.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/4-hour-direction-c-four-room-atelier.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 173090,
+          "title": "4 Hour Direction C Four Room Atelier",
+          "tags": [
+            "blog",
+            "hour",
+            "direction",
+            "four",
+            "room",
+            "atelier"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "blog/4-hour-founder-control-plane",
+          "filename": "4-hour-founder-control-plane.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/4-hour-founder-control-plane.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 207938,
+          "title": "4 Hour Founder Control Plane",
+          "tags": [
+            "blog",
+            "hour",
+            "founder",
+            "control",
+            "plane"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "blog/4-hour-virtual-assistant-to-ai-team",
+          "filename": "4-hour-virtual-assistant-to-ai-team.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/4-hour-virtual-assistant-to-ai-team.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 136946,
+          "title": "4 Hour Virtual Assistant To Ai Team",
+          "tags": [
+            "blog",
+            "hour",
+            "virtual",
+            "assistant",
+            "team"
+          ],
+          "createdAt": "2026-09-09"
         },
         {
           "id": "blog/4c5e3592-9710-4126-829a-c2cc3dce2f68",
@@ -1909,6 +2011,46 @@
           "createdAt": "2026-09-08"
         },
         {
+          "id": "blog/ai-app-builders-handoff-mobile",
+          "filename": "ai-app-builders-handoff-mobile.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/ai-app-builders-handoff-mobile.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 249052,
+          "title": "Ai App Builders Handoff Mobile",
+          "tags": [
+            "blog",
+            "app",
+            "builders",
+            "handoff",
+            "mobile"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "blog/ai-app-builders-product-foundry",
+          "filename": "ai-app-builders-product-foundry.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/ai-app-builders-product-foundry.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 193942,
+          "title": "Ai App Builders Product Foundry",
+          "tags": [
+            "blog",
+            "app",
+            "builders",
+            "product",
+            "foundry"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
           "id": "blog/ai-architect-seven-plane-architecture-2026",
           "filename": "ai-architect-seven-plane-architecture-2026.png",
           "src": "/images/blog/ai-architect-seven-plane-architecture-2026.png",
@@ -1991,6 +2133,25 @@
             "hero"
           ],
           "createdAt": "2026-09-08"
+        },
+        {
+          "id": "blog/ai-architecture-four-seams",
+          "filename": "ai-architecture-four-seams.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/ai-architecture-four-seams.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 285602,
+          "title": "Ai Architecture Four Seams",
+          "tags": [
+            "blog",
+            "architecture",
+            "four",
+            "seams"
+          ],
+          "createdAt": "2026-09-09"
         },
         {
           "id": "blog/ai-architecture-patterns-solo-builders-hero",
@@ -2595,6 +2756,26 @@
           "createdAt": "2026-09-08"
         },
         {
+          "id": "blog/ai-work-surfaces-routing-room",
+          "filename": "ai-work-surfaces-routing-room.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/ai-work-surfaces-routing-room.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 190936,
+          "title": "Ai Work Surfaces Routing Room",
+          "tags": [
+            "blog",
+            "work",
+            "surfaces",
+            "routing",
+            "room"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
           "id": "blog/ai-workshops-for-students-what-worked-hero",
           "filename": "ai-workshops-for-students-what-worked-hero.webp",
           "src": "/images/blog/editorial/headers/ai-workshops-for-students-what-worked-hero.webp",
@@ -2615,6 +2796,26 @@
             "hero"
           ],
           "createdAt": "2026-09-08"
+        },
+        {
+          "id": "blog/architect-droid-crew-continuity",
+          "filename": "architect-droid-crew-continuity.webp",
+          "src": "/images/blog/generated/frankx-editorial-20260830/architect-droid-crew-continuity.webp",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "webp",
+          "width": null,
+          "height": null,
+          "fileSize": 146486,
+          "title": "Architect Droid Crew Continuity",
+          "tags": [
+            "blog",
+            "architect",
+            "droid",
+            "crew",
+            "continuity"
+          ],
+          "createdAt": "2026-09-09"
         },
         {
           "id": "blog/autonomous-agentic-foundry",
@@ -19384,7 +19585,7 @@
       "id": "brands",
       "name": "Partner Logos",
       "description": "Third-party brand logos and partner visual assets.",
-      "count": 10,
+      "count": 13,
       "coverImage": "/images/brands/anthropic.svg",
       "accent": "from-gray-500/20 to-slate-500/20",
       "borderAccent": "border-gray-500/30",
@@ -19460,6 +19661,25 @@
           "createdAt": "2026-09-08"
         },
         {
+          "id": "brands/lovable-full-white",
+          "filename": "lovable-full-white.png",
+          "src": "/images/brands/official-2026/lovable-full-white.png",
+          "thumbnail": null,
+          "collection": "brands",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 22349,
+          "title": "Lovable Full White",
+          "tags": [
+            "brands",
+            "lovable",
+            "full",
+            "white"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
           "id": "brands/meta",
           "filename": "meta.svg",
           "src": "/images/brands/meta.svg",
@@ -19492,6 +19712,24 @@
             "midjourney"
           ],
           "createdAt": "2026-09-08"
+        },
+        {
+          "id": "brands/mistral-emblem",
+          "filename": "mistral-emblem.png",
+          "src": "/images/brands/official-2026/mistral-emblem.png",
+          "thumbnail": null,
+          "collection": "brands",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 6818,
+          "title": "Mistral Emblem",
+          "tags": [
+            "brands",
+            "mistral",
+            "emblem"
+          ],
+          "createdAt": "2026-09-09"
         },
         {
           "id": "brands/openai",
@@ -19560,6 +19798,23 @@
             "suno"
           ],
           "createdAt": "2026-09-08"
+        },
+        {
+          "id": "brands/v0-dark",
+          "filename": "v0-dark.svg",
+          "src": "/images/brands/official-2026/v0-dark.svg",
+          "thumbnail": null,
+          "collection": "brands",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 441,
+          "title": "V0 Dark",
+          "tags": [
+            "brands",
+            "dark"
+          ],
+          "createdAt": "2026-09-09"
         }
       ]
     },

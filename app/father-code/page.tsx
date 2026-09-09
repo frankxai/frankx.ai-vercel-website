@@ -4,12 +4,14 @@ import {
   ArrowRight,
   Brain,
   CheckCircle2,
+  Compass,
   Flame,
   Hammer,
   Handshake,
   Heart,
   Home,
   Network,
+  RefreshCw,
   Shield,
   Sparkles,
   Users,
@@ -18,24 +20,24 @@ import {
 const SITE_URL = 'https://frankx.ai'
 
 export const metadata: Metadata = {
-  title: 'The Father Code — Builder Ethics for the Age of AI | FrankX',
+  title: "The Builder's Line — What My Father Built With His Hands, What We Must Build in Our Minds | FrankX",
   description:
-    'A principle system drawn from Witali Riemer: vision before resource, building as proof, home as infrastructure, and human agency in the age of AI.',
+    "A son's translation of master builder Witali Riemer's craftsman ethics: foundation before facade, quiet mastery, and the sacred counterweight of protecting the builder.",
   alternates: {
-    canonical: `${SITE_URL}/father-code`,
+    canonical: `${SITE_URL}/the-builders-line`,
   },
   openGraph: {
-    title: 'The Father Code — Builder Ethics for the Age of AI',
+    title: "The Builder's Line — What My Father Built With His Hands, What We Must Build in Our Minds",
     description:
-      'A public translation of Witali Riemer’s builder ethics for founders, families, creators, and fatherless people who need a code that carries.',
-    url: `${SITE_URL}/father-code`,
+      'A son’s translation of Witali Riemer’s craftsman ethics for founders, creators, engineers, and strivers who need an operating code that carries life without breaking the builder.',
+    url: `${SITE_URL}/the-builders-line`,
     type: 'article',
   },
   twitter: {
     card: 'summary',
-    title: 'The Father Code',
+    title: "The Builder's Line — A Son's Inheritance",
     description:
-      'Builder ethics for people creating lives, families, companies, and futures in the age of AI.',
+      'Craftsman ethics and sovereign state architecture for people building homes, systems, companies, and lives in the age of AI.',
   },
 }
 
@@ -43,106 +45,137 @@ const principles = [
   {
     number: '01',
     icon: Sparkles,
-    title: 'Vision precedes resource',
+    title: 'The Ruin Is Raw Material',
     text:
-      'See the house before the money, papers, welcome, certainty, or category exists. Resource follows committed vision more often than it precedes it.',
+      'What looks broken to an untrained eye is unorganized potential. Do not lament starting with a tangled problem, an imperfect foundation, or humble origins.',
   },
   {
     number: '02',
     icon: Hammer,
-    title: 'Building is the argument',
+    title: 'Foundation Before Facade',
     text:
-      'Do not exhaust yourself debating systems that refuse to recognize you. Build proof until reality has to answer.',
+      'If the load-bearing members are hollow, surface ornament is a deceit. Data models, core logic, and substrate integrity come before polish.',
   },
   {
     number: '03',
-    icon: Shield,
-    title: 'No permission-seeking',
+    icon: Compass,
+    title: 'Decide, Then Resource',
     text:
-      'Validation may come late. The work cannot. Start before the institution, market, or audience knows how to name what you are making.',
+      'Do not wait for perfect weather, abundant capital, or external permission to decide the structure will stand. Commitment shapes the reality around it.',
   },
   {
     number: '04',
-    icon: Home,
-    title: 'Home is sacred infrastructure',
+    icon: CheckCircle2,
+    title: 'Measure Twice, Cut Once',
     text:
-      'Shelter is not lifestyle. A good home is the base layer for safety, intimacy, discipline, memory, and future possibility.',
+      'Rigour and precision up front are always cheaper than downstream remediation. Never rush the framing to satisfy an impatient eye.',
   },
   {
     number: '05',
-    icon: Heart,
-    title: 'Work is love made structural',
+    icon: Shield,
+    title: 'Silence Before Crowds',
     text:
-      'Labor is not punishment when it carries a family. Work can become protection, dignity, and care made visible.',
+      'True craftsmanship requires no audience. Avoid seeking applause during early construction; let the level, the plumb line, and the finished roof speak.',
   },
   {
     number: '06',
-    icon: CheckCircle2,
-    title: 'Excellence must speak',
+    icon: Network,
+    title: 'Hands in the Material',
     text:
-      'Quiet greatness is noble, but hidden excellence can become underpaid greatness. Let the work speak — then learn to make it heard.',
+      'Architecture that never touches code, stone, prompts, or real users ceases to be craftsmanship and degenerates into abstract opinion.',
   },
   {
     number: '07',
-    icon: Users,
-    title: 'Leadership creates the frame',
+    icon: Home,
+    title: 'Home Is Sacred Infrastructure',
     text:
-      'A household, company, or creative world drifts without direction. Leadership is not domination. It is the willingness to carry the frame.',
+      'Shelter is not a lifestyle trophy. A true home is the base layer for safety, intimacy, recovery, discipline, and future possibility.',
   },
   {
     number: '08',
-    icon: Handshake,
-    title: 'Relationships are load-bearing',
+    icon: Brain,
+    title: 'AI Amplifies Agency, Never Replaces It',
     text:
-      'No serious build survives without people: family, friends, neighbors, customers, helpers, lenders, teachers, witnesses.',
+      'Neural models multiply leverage and speed. They cannot provide ethics, standards, taste, backbone, or a purpose worth building for.',
   },
   {
     number: '09',
-    icon: Brain,
-    title: 'AI amplifies agency; it does not replace it',
+    icon: Heart,
+    title: 'Build to Shelter Others',
     text:
-      'Tools can multiply output. They cannot give you ethics, standards, taste, backbone, duty, or a reason worth building for.',
+      'Creative strength is either generative or it is vanity. Build systems, assets, and shelters that carry and protect human life.',
   },
   {
     number: '10',
     icon: Flame,
-    title: 'Build beyond your lifetime',
+    title: 'Leave a Line, Not a Monument',
     text:
-      'The real test is not whether the work flatters you now. The test is whether someone not yet born can stand inside what you made.',
+      'The ultimate test is not whether the work flatters you in the moment. The test is whether someone not yet born can stand inside what you created.',
+  },
+]
+
+const counterweights = [
+  {
+    number: '11',
+    icon: Shield,
+    title: 'The Builder Is Part of the Structure',
+    text:
+      'Biological depletion is a load-bearing structural fault, not a moral failure. If the builder collapses from chronic overdraw, the entire roof falls in.',
+  },
+  {
+    number: '12',
+    icon: Handshake,
+    title: 'Asking Is a Craftsman’s Tool',
+    text:
+      'Refusing help is not nobility; it is introducing a single point of failure into the project. No master framer lifts a heavy ridge beam alone out of pride.',
+  },
+  {
+    number: '13',
+    icon: RefreshCw,
+    title: 'Maintenance Is Construction',
+    text:
+      'Sleep, nervous system down-regulation, movement, and medical screenings are not time stolen from building. They are the mortar that keeps the wall standing.',
+  },
+  {
+    number: '14',
+    icon: Users,
+    title: 'The Line Continues Through People',
+    text:
+      'A completed house or digital platform is only half the legacy. Build so that the human relationships you foster outlast the structures you leave behind.',
   },
 ]
 
 const audiences = [
-  'Fatherless people who need a usable code, not a vague ache.',
-  'Immigrant sons and daughters whose families had to rebuild without recognition.',
-  'Founders and AI builders drowning in digital abstraction and forgetting physical reality.',
-  'Men and women building homes, companies, art, systems, and family lines under pressure.',
+  'Sons and daughters carrying an immigrant parent’s quiet sacrifices forward into modern crafts.',
+  'Strivers and creators who lacked a father’s presence and need a grounded, usable standard.',
+  'Founders, engineers, and AI architects drowning in digital abstraction who need physical grounding.',
+  'Builders carrying heavy responsibilities who must learn to protect their own biological vessel.',
 ]
 
 const videoSeeds = [
   {
-    title: 'Vision precedes resource',
-    hook: 'My father saw the house before the money existed.',
+    title: 'Foundation before facade',
+    hook: 'My father never polished what could not bear structural weight.',
   },
   {
-    title: 'Building is the argument',
-    hook: 'He did not debate Germany for rejecting his credentials. He built four houses on German soil.',
+    title: 'Decide before the means arrive',
+    hook: 'He saw the house standing before the money or the papers existed.',
   },
   {
-    title: 'Work is not punishment',
-    hook: 'As a kid, I thought construction sites were stealing my freedom. Later I realized they were giving me backbone.',
+    title: 'The ruin is raw material',
+    hook: 'Others saw an abandoned brick wreck. He saw apple trees and dry cellars.',
   },
   {
-    title: 'The danger of humility',
-    hook: 'My father let the work speak for itself. Sometimes the world cannot hear quiet excellence.',
+    title: 'The unshielded builder',
+    hook: 'He gave us a home, but he starved his own biological engine. Never make that trade.',
   },
   {
-    title: 'No permission-seeking',
-    hook: 'Some people wait until the world validates them. Builders start before the papers arrive.',
+    title: 'The line continues',
+    hook: 'He built with stone and mortar. I build with code and intelligence. Same line.',
   },
   {
-    title: 'AI still needs human standards',
-    hook: 'AI can automate tasks. It cannot give you ethics, taste, grit, or responsibility.',
+    title: 'Maintenance is building',
+    hook: 'Rest is not time stolen from the build. Rest is the mortar that prevents the collapse.',
   },
 ]
 
@@ -150,7 +183,7 @@ function JsonLd() {
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: 'The Father Code — Builder Ethics for the Age of AI',
+    headline: "The Builder's Line — What My Father Built With His Hands, What We Must Build in Our Minds",
     description: metadata.description,
     author: {
       '@type': 'Person',
@@ -163,14 +196,14 @@ function JsonLd() {
       url: SITE_URL,
     },
     datePublished: '2026-07-09',
-    dateModified: '2026-07-09',
-    mainEntityOfPage: `${SITE_URL}/father-code`,
-    about: principles.map((principle) => principle.title).join(', '),
+    dateModified: '2026-09-09',
+    mainEntityOfPage: `${SITE_URL}/the-builders-line`,
+    about: principles.map((p) => p.title).join(', '),
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Father Code', item: `${SITE_URL}/father-code` },
+        { '@type': 'ListItem', position: 2, name: "The Builder's Line", item: `${SITE_URL}/the-builders-line` },
       ],
     },
   }
@@ -205,7 +238,7 @@ function SectionHeading({
   )
 }
 
-export default function FatherCodePage() {
+export default function BuildersLinePage() {
   return (
     <main className="min-h-screen bg-[#080807] text-white">
       <JsonLd />
@@ -217,16 +250,16 @@ export default function FatherCodePage() {
         <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-28 sm:pb-24 sm:pt-36 lg:px-8">
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.22em] text-amber-200/80">
-              <Network className="h-3.5 w-3.5" />
-              Builder ethics for the age of AI
+              <Hammer className="h-3.5 w-3.5" />
+              A Son’s Inheritance & Builder Ethics
             </div>
             <h1 className="font-display text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
-              The Father Code
+              The Builder’s Line
             </h1>
             <p className="mt-7 max-w-3xl text-xl leading-8 text-zinc-300 sm:text-2xl sm:leading-9">
-              A principle system drawn from Witali Riemer: father, immigrant, craftsman, and
-              builder. Not nostalgia. Not masculinity theater. A code for building homes,
-              companies, systems, and futures that can carry other people.
+              What my father built with his hands, what we must build in our minds. A craftsman code
+              drawn from master builder Witali Riemer: foundation before facade, quiet relentless execution,
+              and the essential counterweight—protecting the builder from being consumed by the build.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -237,10 +270,10 @@ export default function FatherCodePage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="#principles"
+                href="/blog/the-builder-and-the-belief"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/[0.06]"
               >
-                Enter the code
+                Read the flagship essay
               </Link>
             </div>
           </div>
@@ -252,22 +285,22 @@ export default function FatherCodePage() {
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
               <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-amber-300/70">
-                The boundary
+                The Son’s Perspective
               </p>
               <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Share the lesson. Protect the wound.
+                I am not a father yet. I am an apprentice of the line.
               </h2>
             </div>
             <div className="space-y-4 text-base leading-8 text-zinc-300">
               <p>
-                The raw family video and transcript are source artifacts, not public fuel. The
-                deathbed layer stays sacred. What becomes public is the distilled wisdom: the code
-                he lived loudly enough for his family to inherit.
+                I spent a decade on scaffolding between ages five and fifteen, watching a Volga-German
+                immigrant haul forty thousand bricks in Seesen with bare hands and an unbreakable plumb line.
+                He taught me that you do not polish what cannot bear structural load.
               </p>
               <p>
-                This is how private grief becomes clean transmission: not exposure, not trauma
-                bait, not a performance of pain — edited wisdom made useful for people who need a
-                father-line they can practice.
+                Yet he also died at forty-eight from cancer, having worked twenty-five years with zero margin
+                for rest. True inheritance is not repeating your father’s blindspots out of loyalty; it is
+                honoring the foundation he built while installing the structural counterweights he lacked.
               </p>
             </div>
           </div>
@@ -276,9 +309,9 @@ export default function FatherCodePage() {
 
       <section id="principles" className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
         <SectionHeading
-          eyebrow="The Witali Code"
-          title="Ten principles that turn memory into a usable operating system."
-          description="The point is not to imitate the exact medium of his work. The point is to inherit the standards beneath it."
+          eyebrow="The 10 Craftsman Principles"
+          title="Ten foundational axioms of structural honesty."
+          description="The medium changes—from brick and mortar to code, agents, and systems. The craftsman standards beneath it remain permanent."
         />
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -305,13 +338,46 @@ export default function FatherCodePage() {
         </div>
       </section>
 
+      <section className="border-t border-white/10 bg-amber-500/[0.02]">
+        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
+          <SectionHeading
+            eyebrow="The Missing Counterweights"
+            title="Four structural laws that preserve the builder."
+            description="Relentless execution without margin is not heroism; it is self-destruction. These four principles ensure the builder survives the build."
+          />
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {counterweights.map((counterweight) => {
+              const Icon = counterweight.icon
+              return (
+                <article
+                  key={counterweight.number}
+                  className="rounded-3xl border border-amber-400/20 bg-amber-400/[0.03] p-6 shadow-2xl shadow-black/20"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <Icon className="h-7 w-7 text-amber-300" />
+                    <span className="font-display text-sm font-semibold text-amber-300/30">
+                      {counterweight.number}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-display text-2xl font-semibold text-white">
+                    {counterweight.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-zinc-300">{counterweight.text}</p>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-white/10 bg-white/[0.025]">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <SectionHeading
-              eyebrow="Who needs this"
-              title="Not everyone needs your exact biography. Many people need the code hidden inside it."
-              description="The archetype is father. The access point is builder. The relevance is universal."
+              eyebrow="Who Needs This"
+              title="A line for those who build things that matter."
+              description="The lineage is craftsman. The perspective is filial. The application is universal."
             />
             <div className="grid gap-4 sm:grid-cols-2">
               {audiences.map((audience) => (
@@ -331,8 +397,8 @@ export default function FatherCodePage() {
       <section className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
         <SectionHeading
           eyebrow="Short-form spine"
-          title="The content should start from principles, not from the wound."
-          description="Each piece can be 45–90 seconds: one hook, one memory, one principle, one application for builders now."
+          title="Principles forged in stone, carried into the mind."
+          description="Tactile, grounded truths for founders and creators who refuse to burn themselves out."
         />
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -356,7 +422,7 @@ export default function FatherCodePage() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium uppercase tracking-[0.22em] text-zinc-300">
                 <Heart className="h-3.5 w-3.5" />
-                The transfer
+                The Continuous Line
               </div>
               <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                 Make the wisdom portable.
@@ -364,21 +430,30 @@ export default function FatherCodePage() {
             </div>
             <div className="space-y-4 text-base leading-8 text-zinc-300">
               <p>
-                The public work is not to make Witali into a brand. The public work is to translate
-                what he lived into a code that helps people build with dignity, standards, and
-                responsibility.
+                My father built with brick, wood, concrete, and hands.
+                We build with language, code, AI models, and distributed systems.
+                Different material. Same line.
               </p>
               <p>
-                He built with brick, wood, concrete, and hands. You build with language, code, AI,
-                music, systems, and worlds. Different material. Same line.
+                Do not sacrifice your life to the thing you are building. Your people need the shelter
+                of your work, but they need the warmth of your life even more.
               </p>
-              <Link
-                href="/witali"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-amber-200 transition hover:text-amber-100"
-              >
-                Return to Witali’s memorial page
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <div className="flex flex-wrap gap-4 pt-2">
+                <Link
+                  href="/witali"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-amber-200 transition hover:text-amber-100"
+                >
+                  Return to Witali’s memorial
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/blog/the-builder-and-the-belief"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-400 transition hover:text-zinc-200"
+                >
+                  Read the essay
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
