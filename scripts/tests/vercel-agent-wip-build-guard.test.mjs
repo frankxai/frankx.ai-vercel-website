@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -9,8 +9,20 @@ import test from 'node:test'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const script = path.join(root, 'scripts/should-deploy.sh')
 
+function getBashCommand() {
+  if (process.platform === 'win32') {
+    const gitBash = path.join(process.env.ProgramFiles || 'C:\\Program Files', 'Git\\bin\\bash.exe')
+    if (existsSync(gitBash)) return gitBash
+    const gitUsrBash = path.join(process.env.ProgramFiles || 'C:\\Program Files', 'Git\\usr\\bin\\bash.exe')
+    if (existsSync(gitUsrBash)) return gitUsrBash
+  }
+  return 'bash'
+}
+
 function run(env, cwd = root) {
-  return spawnSync('bash', [script], {
+  const bashCmd = getBashCommand()
+  const scriptArg = process.platform === 'win32' ? script.replace(/\\/g, '/') : script
+  return spawnSync(bashCmd, [scriptArg], {
     cwd,
     encoding: 'utf8',
     env: {
@@ -113,7 +125,9 @@ test('a first preview without a parent proceeds', (t) => {
 })
 
 test('Vercel ignore command is valid Bash', () => {
-  const result = spawnSync('bash', ['-n', script], { encoding: 'utf8' })
+  const bashCmd = getBashCommand()
+  const scriptArg = process.platform === 'win32' ? script.replace(/\\/g, '/') : script
+  const result = spawnSync(bashCmd, ['-n', scriptArg], { encoding: 'utf8' })
   assert.equal(result.status, 0, result.stderr)
 })
 
