@@ -1,6 +1,7 @@
 'use client'
 
 import { ExternalLink, ArrowRight } from 'lucide-react'
+import { MusicLoadButton } from '@/components/music/MusicRuntime'
 
 interface SunoTrackCTAProps {
   sunoId: string
@@ -38,20 +39,14 @@ export function SunoTrackCTA({
             href={`https://suno.com/song/${sunoId}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`Open ${title} on Suno`}
             className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
           >
             <ExternalLink className="w-4 h-4 text-white/50" />
           </a>
         </div>
 
-        <iframe
-          src={`https://suno.com/embed/${sunoId}`}
-          className="w-full aspect-[2/1] rounded-lg"
-          frameBorder="0"
-          allow="autoplay; clipboard-write"
-          loading="lazy"
-          title={title}
-        />
+        <MusicLoadButton sunoId={sunoId} title={title} />
       </div>
 
       {albumTitle && albumUrl && (

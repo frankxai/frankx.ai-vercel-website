@@ -40,6 +40,7 @@ export interface Album {
   price: number
   lemonSqueezyProductId: string | null
   playlistUrl: string | null
+  spotifyUrl?: string | null
   releaseDate: string | null
   status: string
 }
