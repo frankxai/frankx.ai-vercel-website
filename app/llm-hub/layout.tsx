@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'LLM Provider Hub 2026 — Every Frontier Model + Agentic Platform',
+  title: 'LLM Hub 2026 — GPT-6 Astra, Pricing and Evaluation',
   description:
-    'Compare every major LLM provider in 2026: Anthropic, OpenAI, Google DeepMind, xAI, Meta, Mistral, DeepSeek, Cohere, Alibaba Qwen. Frontier models, agentic platforms, pricing, capabilities, side by side.',
+    'Compare selected LLM providers, inspect GPT-6 Astra sources and pricing, and explore workload evaluation with free founder, creator and architecture guides.',
   keywords: [
     'llm provider comparison',
     'best llm 2026',
@@ -12,15 +12,15 @@ export const metadata: Metadata = {
     'llm hub',
     'gemini 3.5 flash',
     'claude opus 4.6',
-    'gpt-5.2',
+    'gpt-6-astra',
     'antigravity 2.0',
     'open source llm 2026',
   ],
   alternates: { canonical: 'https://frankx.ai/llm-hub' },
   openGraph: {
-    title: 'LLM Provider Hub 2026 — Every Frontier Model + Agentic Platform',
+    title: 'LLM Hub 2026 — GPT-6 Astra, Pricing and Evaluation',
     description:
-      'Categorized directory of every frontier LLM provider, model, and agentic platform — pricing, benchmarks, capabilities. Updated continuously.',
+      'A reviewed LLM directory with GPT-6 Astra, source-backed prices, evaluation status and practical guides. Entries retain their source dates.',
     url: 'https://frankx.ai/llm-hub',
     type: 'website',
   },

@@ -1,25 +1,25 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 948,
+    "total": 1001,
+    "aliases": 58,
     "byType": {
-      "core": 23,
-      "section": 425,
+      "core": 24,
+      "section": 433,
       "community": 17,
-      "tool": 61,
+      "tool": 62,
       "static": 15,
-      "blog": 259,
+      "blog": 269,
       "research": 16,
-      "guide": 25,
-      "library": 56,
+      "guide": 26,
+      "library": 88,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
       "product": 21,
       "video": 3,
       "workshop": 8
-    },
-    "aliases": 58
+    }
   },
   "routes": [
     {
@@ -1086,17 +1086,31 @@
     },
     {
       "href": "/blog/ai-agents-worth-evaluating-august-2026",
-      "title": "The AI Agents Worth Evaluating in August 2026",
-      "description": "Mira, Viktor, Hermes, ChatGPT Work, and Claude Cowork compared by job, cost, and capability. What to evaluate on August 21, 2026.",
+      "title": "The AI Agents Worth Evaluating in August 2026: The Definitive Field Guide",
+      "description": "Claude Code, ChatGPT Work, Hermes Agent, Manus, Devin, Cursor, and Viktor compared by job, autonomy, and unit economics. What to evaluate on August 21, 2026.",
       "tags": [
         "AI Agents",
-        "Mira",
-        "Viktor",
-        "Hermes Agent",
+        "Claude Code",
         "ChatGPT Work",
-        "Claude Cowork",
-        "OpenClaw",
-        "Manus"
+        "Hermes Agent",
+        "Manus",
+        "Devin",
+        "Cursor",
+        "Viktor",
+        "OpenClaw"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-architect-guide-2026",
+      "title": "The AI Architect Guide 2026",
+      "description": "A field guide to the decisions, system planes, evidence gates, and operating artifacts required to turn AI capability into a reliable workflow.",
+      "tags": [
+        "AI Architecture",
+        "Agentic Systems",
+        "MCP",
+        "Evals",
+        "AI Governance"
       ],
       "type": "blog"
     },
@@ -1123,6 +1137,19 @@
         "AI Systems",
         "ACOS",
         "MCP"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/ai-capability-abundant-architecture-still-the-work",
+      "title": "AI Capability Is Abundant. Architecture Is Still the Work.",
+      "description": "Five recent stories from my work show where AI skills and architecture create real value: turning workshops, field notes, compute, content, and infrastructure ideas into systems that can survive change.",
+      "tags": [
+        "ai-architecture",
+        "ai-skills",
+        "agentic-systems",
+        "ai-coe",
+        "founder-systems"
       ],
       "type": "blog"
     },
@@ -1627,6 +1654,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/best-social-media-management-tools-founders-2026",
+      "title": "Best Social Media Management Tools for Founders (2026)",
+      "description": "Compare 15 social media tools for solo founders, creator-led brands, developers, agencies, and enterprises—by cost, API, MCP, evidence, and fit.",
+      "tags": [
+        "social-media-tools",
+        "founder-marketing",
+        "creator-systems",
+        "multi-agent-systems",
+        "marketing-automation"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/brand-evolution-from-consciousness-to-systems",
       "title": "Brand Evolution: From Consciousness to Systems",
       "description": "How FrankX shifted from 'soul-aligned AI' language to a systems architect identity. A transparent look at brand iteration for creators.",
@@ -2007,6 +2047,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/das-fundament-und-der-glaube",
+      "title": "Das Fundament und der Glaube: Was mein Vater mit Händen baute, und was wir im Geist errichten müssen",
+      "description": "Ein Vermächtnis an Witali Riemer zu seinem 57. Geburtstag. Über die Hingabe eines Baumeisters, das fatale Nocebo der Schulmedizin und Vitalität im KI-Zeitalter.",
+      "tags": [
+        "state-engineering",
+        "vitalitaet",
+        "mindset",
+        "vater-code",
+        "epigenetik"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/deepseek-r1-open-weight-reasoning-analysis",
       "title": "DeepSeek R1: What Open-Weight Reasoning Actually Means",
       "description": "The model that disrupted AI pricing. How DeepSeek R1 works, where it excels, and what it means for builders choosing between open and closed models.",
@@ -2366,6 +2419,45 @@
         "ai-2026",
         "benchmarks",
         "agentic-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-6-astra-ai-architecture-model-economics",
+      "title": "GPT-6 Astra: model economics and production architecture",
+      "description": "Evaluate GPT-6 Astra for organizational adoption with workload routing, independent grading, accepted-task economics and a controlled path into production.",
+      "tags": [
+        "gpt-6-astra",
+        "ai-architecture",
+        "llm-evaluation",
+        "model-routing",
+        "enterprise-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-6-astra-chatgpt-work-codex-founders",
+      "title": "GPT-6 Astra for founders: ChatGPT, Work and Codex",
+      "description": "Turn GPT-6 Astra into a useful founder workflow across ChatGPT, Work and Codex, with clear briefs, source checks, web design tests and reviewable handoffs.",
+      "tags": [
+        "gpt-6-astra",
+        "chatgpt-work",
+        "codex",
+        "founder-systems",
+        "ai-strategy"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-6-astra-for-content-creators",
+      "title": "GPT-6 Astra for creators: build a studio that finishes",
+      "description": "Evaluate GPT-6 Astra for creative production with Adobe, Canva and HeyGen, including tool access, editable handoffs and the cost of usable results.",
+      "tags": [
+        "gpt-6-astra",
+        "chatgpt-work",
+        "content-creation",
+        "ai-tools",
+        "creative-workflows"
       ],
       "type": "blog"
     },
@@ -2943,27 +3035,26 @@
     {
       "href": "/blog/music-as-consciousness-technology",
       "title": "12,000 Songs Later: What AI Music Taught Me About Creative Systems",
-      "description": "After creating 12,000+ songs with Suno AI, I discovered music isn't entertainment—it's creative technology. Here's what three years of daily creation revealed.",
+      "description": "An experiential field note on iteration, taste, emotional specificity, and what high-volume AI music practice can—and cannot—prove.",
       "tags": [
         "Music",
         "AI Creativity",
-        "Creative Technology",
+        "Creative Systems",
         "Suno AI",
-        "Creative Process"
+        "Iteration"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/music-intelligence-vibe-architecture-sonic-neuroscience",
-      "title": "Music Intelligence & Vibe Architecture: Sonic Neuroscience and Flow",
-      "description": "How sound frequency modulation, Suno AI v4 pipelines, and harmonic neuroscience engineer peak cognitive flow states and creative output.",
+      "title": "Music Intelligence: Designing a Better Listening Environment",
+      "description": "A founder-safe guide to music, attention, listening rituals, and generative audio without deterministic frequency claims.",
       "tags": [
         "music-intelligence",
+        "attention",
         "suno-ai",
-        "sonic-neuroscience",
-        "flow-state",
-        "vibe-os",
-        "frequency"
+        "human-layer",
+        "deep-listening"
       ],
       "type": "blog"
     },
@@ -3139,6 +3230,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/pallyy-vs-metricool-2026",
+      "title": "Pallyy vs Metricool (2026): Which Is Better?",
+      "description": "Pallyy vs Metricool on price, analytics, publishing, API, MCP, brands, approvals, and founder fit—with a direct 2026 recommendation.",
+      "tags": [
+        "pallyy",
+        "metricool",
+        "social-media-tools",
+        "founder-marketing",
+        "marketing-automation"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/personal-ai-assistant-setup-workshop",
       "title": "Build Your Personal AI Assistant: The Complete Setup Workshop",
       "description": "Create a customized AI development environment from scratch. Learn to configure Claude Code, build CLAUDE.md files, create custom skills, and connect MCP servers to your workflow.",
@@ -3306,15 +3410,13 @@
     },
     {
       "href": "/blog/quantum-reality-molecular-resonance-epigenetics-neuroscience",
-      "title": "Quantum Reality & Biological Resonance: The Molecular Architecture of Intent",
-      "description": "Rigorous scientific synthesis of bioelectric morphogenetic fields (Michael Levin), molecular epigenetics of intention, and neuroplasticity.",
+      "title": "Intent, Prediction, and Biology: Where the Evidence Ends",
+      "description": "A corrected field note separating mental rehearsal, stress physiology, bioelectric research, and symbolic language without turning proximity into causation.",
       "tags": [
-        "quantum-biology",
-        "bioelectricity",
-        "epigenetics",
-        "michael-levin",
+        "human-layer",
         "neuroplasticity",
-        "reality-architecture"
+        "mental-rehearsal",
+        "evidence-boundaries"
       ],
       "type": "blog"
     },
@@ -3360,12 +3462,13 @@
     },
     {
       "href": "/blog/reality-architecture-generative-ai-neuroscience",
-      "title": "Reality Architecture: Imagination to Product, Faster with AI",
-      "description": "Neuroscience of imagination meets generative AI. The 5-phase framework for turning mental models into shipped products — at machine speed.",
+      "title": "Reality Architecture: From Mental Rehearsal to Shipped Work",
+      "description": "A grounded founder framework for turning a mental model into tests, artifacts, and decisions with generative AI.",
       "tags": [
-        "intelligence-dispatches",
-        "ai-systems",
-        "production"
+        "founder-systems",
+        "mental-rehearsal",
+        "generative-ai",
+        "prototyping"
       ],
       "type": "blog"
     },
@@ -3708,6 +3811,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/the-builder-and-the-belief",
+      "title": "The Builder and the Belief: What My Father Built With His Hands, and What We Must Build in Our Minds",
+      "description": "A tribute to Witali Riemer on his 57th birthday. How a master builder gave everything for his family, the fatal medical nocebo, and engineering vitality in the AI age.",
+      "tags": [
+        "state-engineering",
+        "vitality",
+        "mindset",
+        "father-code",
+        "epigenetics"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/the-creative-os",
       "title": "The Creative OS: A Guide to Building Your Creative Operating System",
       "description": "Learn how to design and build your own Creative Operating System (Creative OS) to enhance your creativity, productivity, and impact.",
@@ -3814,15 +3930,15 @@
     },
     {
       "href": "/blog/ultimate-canva-ai-workflow-2026",
-      "title": "The Ultimate Canva AI Workflow in 2026",
-      "description": "The complete Canva AI workflow for 2026: Magic Studio, Brand Kit, Bulk Create, and the repurposing pipeline that turns one asset into a week of content. Honest ROI and who it's for.",
+      "title": "The Canva AI Workflow for Founders: From Brief to Brand System",
+      "description": "A governed Canva workflow for founders: connect the official MCP server, protect brand assets, review every release, and measure what compounds.",
       "tags": [
         "Canva",
-        "AI Design",
-        "Magic Studio",
-        "Creator Tools",
-        "Workflow",
-        "Brand Kit"
+        "Canva MCP",
+        "AI Architecture",
+        "Founder Systems",
+        "Brand Operations",
+        "Content Workflow"
       ],
       "type": "blog"
     },
@@ -4090,6 +4206,19 @@
         "Publishing",
         "Creator Systems",
         "Legacy"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/your-moat-was-never-the-model",
+      "title": "Your Moat Was Never the Model",
+      "description": "Five frontier models shipped in six weeks. My stack barely noticed. Here is the Substrate Test: four questions that tell you whether you own anything durable.",
+      "tags": [
+        "ai-architecture",
+        "agents",
+        "memory",
+        "orchestration",
+        "substrate"
       ],
       "type": "blog"
     },
@@ -4383,6 +4512,18 @@
       ],
       "type": "section",
       "sitemap": false
+    },
+    {
+      "href": "/canva",
+      "title": "Canva for Founders",
+      "description": "A governed Canva content operating system connecting the official MCP server, human review, owned media, distribution, and measurable learning",
+      "tags": [
+        "canva",
+        "mcp",
+        "founder systems",
+        "content operations"
+      ],
+      "type": "core"
     },
     {
       "href": "/changelog",
@@ -5206,6 +5347,15 @@
       "sitemap": false
     },
     {
+      "href": "/father-code",
+      "title": "Father Code",
+      "tags": [
+        "father",
+        "code"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/feed",
       "title": "Feed",
       "type": "section"
@@ -5239,6 +5389,15 @@
       "type": "section"
     },
     {
+      "href": "/founder-stack",
+      "title": "Founder Stack",
+      "tags": [
+        "founder",
+        "stack"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/founders-circle",
       "title": "Founder's Circle",
       "type": "community"
@@ -5251,7 +5410,8 @@
         "circle",
         "apply"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/foundry",
@@ -5560,6 +5720,19 @@
       "type": "guide"
     },
     {
+      "href": "/guides/canva-mcp-for-founders",
+      "title": "Canva MCP for Founders: Build a Governed Creative Operating System",
+      "description": "A practical architecture guide to Canva's official remote MCP server: setup, permissions, human approval gates, reliability, and a production-ready founder workflow.",
+      "tags": [
+        "canva",
+        "mcp",
+        "agentic-engineering",
+        "creative-operations",
+        "founder-systems"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/claude-anthropic-guide",
       "title": "Claude AI Guide for Creators",
       "description": "Master Anthropic's Claude for creative writing, content strategy, coding assistance, and building AI-powered workflows that amplify your creative output",
@@ -5834,6 +6007,15 @@
       "type": "section"
     },
     {
+      "href": "/human-layer",
+      "title": "Human Layer",
+      "tags": [
+        "human",
+        "layer"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/infogenius",
       "title": "Infogenius",
       "tags": [
@@ -6047,11 +6229,40 @@
       "type": "library"
     },
     {
+      "href": "/library/a-new-earth",
+      "title": "A New Earth — Eckhart Tolle",
+      "description": "Tolle extends his account of presence into a discussion of ego, identity, and human relationships.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Eckhart",
+        "ego"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/altered-traits",
       "title": "Altered Traits",
       "tags": [
         "altered",
         "traits"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/analects",
+      "title": "The Analects — Sayings of Confucius, compiled by followers",
+      "description": "A collection of conversations and sayings concerned with ethical cultivation, learning, relationships, and government.",
+      "tags": [
+        "Sacred Texts",
+        "Confucianism",
+        "Philosophy",
+        "Ethics",
+        "Confucius",
+        "Kongzi",
+        "Lunyu",
+        "ren",
+        "li"
       ],
       "type": "library"
     },
@@ -6080,6 +6291,36 @@
       "type": "library"
     },
     {
+      "href": "/library/autobiography-of-a-yogi",
+      "title": "Autobiography of a Yogi — Paramahansa Yogananda",
+      "description": "Yogananda’s account of his life, teachers, and spiritual search connects personal narrative with his presentation of yoga to a wider readership.",
+      "tags": [
+        "Spiritual Memoir",
+        "Yoga",
+        "Inner Work",
+        "Paramahamsa",
+        "Yogananda",
+        "Kriya Yoga"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/avesta",
+      "title": "Avesta: Selected Texts — Multiple Zoroastrian textual traditions",
+      "description": "An entry into a Zoroastrian scriptural and liturgical corpus, beginning with selected Yasna material and the Gathas.",
+      "tags": [
+        "Sacred Texts",
+        "Zoroastrianism",
+        "Devotion",
+        "Zarathustra",
+        "Zoroaster",
+        "Gathas",
+        "Yasna",
+        "Zoroastrian"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/awaken-the-giant-within",
       "title": "Awaken the Giant Within",
       "tags": [
@@ -6087,6 +6328,20 @@
         "the",
         "giant",
         "within"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/be-here-now",
+      "title": "Be Here Now — Ram Dass",
+      "description": "An illustrated meeting of spiritual autobiography and practice, shaped by Ram Dass’s transformation and encounter with Indian devotional traditions.",
+      "tags": [
+        "Spiritual Memoir",
+        "Inner Work",
+        "Contemporary Spirituality",
+        "Richard Alpert",
+        "Ramdas",
+        "Neem Karoli Baba"
       ],
       "type": "library"
     },
@@ -6106,6 +6361,39 @@
       "tags": [
         "becoming",
         "supernatural"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/bhagavad-gita",
+      "title": "The Bhagavad Gita — Traditionally attributed to Vyasa",
+      "description": "A dialogue between Krishna and Arjuna about action, knowledge, devotion, and liberation, situated within the Mahabharata.",
+      "tags": [
+        "Sacred Texts",
+        "Hinduism",
+        "Philosophy",
+        "Yoga",
+        "Gita",
+        "Krishna",
+        "Arjuna",
+        "karma yoga"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/bible",
+      "title": "The Bible — Multiple authors; Christian scriptural traditions",
+      "description": "A collection of narrative, law, poetry, prophecy, Gospels, and letters. Read each genre on its own terms, with attention to its historical and religious setting.",
+      "tags": [
+        "Sacred Texts",
+        "Christianity",
+        "Ethics",
+        "holy bible",
+        "old testament",
+        "new testament",
+        "Jesus",
+        "Gospels",
+        "Psalms"
       ],
       "type": "library"
     },
@@ -6186,11 +6474,77 @@
       "type": "library"
     },
     {
+      "href": "/library/collections/business",
+      "title": "Build a lasting business",
+      "tags": [
+        "business"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/creative-life",
+      "title": "Art, music & creative life",
+      "tags": [
+        "creative",
+        "life"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/inner-life",
+      "title": "Awareness & inner life",
+      "tags": [
+        "inner",
+        "life"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/meaning",
+      "title": "Meaning, habits & growth",
+      "tags": [
+        "meaning"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/philosophy",
+      "title": "Philosophy & the examined life",
+      "tags": [
+        "philosophy"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/collections/sacred-texts",
+      "title": "Sacred texts & traditions",
+      "tags": [
+        "sacred",
+        "texts"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/deep-work",
       "title": "Deep Work",
       "tags": [
         "deep",
         "work"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/dhammapada",
+      "title": "The Dhammapada — Teachings attributed to the Buddha",
+      "description": "A Buddhist verse collection concerned with conduct, attention, suffering, and the path of practice.",
+      "tags": [
+        "Sacred Texts",
+        "Buddhism",
+        "Ethics",
+        "Meditation",
+        "Buddha",
+        "Pali",
+        "dharma"
       ],
       "type": "library"
     },
@@ -6223,6 +6577,22 @@
       "type": "library"
     },
     {
+      "href": "/library/guru-granth-sahib",
+      "title": "Sri Guru Granth Sahib — Sikh Gurus and other devotional poets",
+      "description": "The Sikh scripture, revered as the living Guru, brings together devotional compositions with a deep relationship to music and communal practice.",
+      "tags": [
+        "Sacred Texts",
+        "Sikhism",
+        "Devotion",
+        "Music",
+        "Adi Granth",
+        "Gurbani",
+        "Japji",
+        "Guru Nanak"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/handbook-to-higher-consciousness",
       "title": "Handbook TO Higher Consciousness",
       "tags": [
@@ -6233,6 +6603,20 @@
         "consciousness"
       ],
       "type": "section"
+    },
+    {
+      "href": "/library/heart-sutra",
+      "title": "The Heart Sutra — Mahayana Buddhist scripture",
+      "description": "A short Perfection of Wisdom scripture centred on emptiness and the relation between form and emptiness.",
+      "tags": [
+        "Sacred Texts",
+        "Buddhism",
+        "Philosophy",
+        "Prajnaparamita",
+        "emptiness",
+        "Avalokiteshvara"
+      ],
+      "type": "library"
     },
     {
       "href": "/library/how-music-works",
@@ -6274,12 +6658,41 @@
       "type": "library"
     },
     {
+      "href": "/library/kitab-i-aqdas",
+      "title": "The Kitáb-i-Aqdas — Bahá’u’lláh",
+      "description": "Bahá’u’lláh’s book of laws, read within the Bahá’í Faith alongside supplementary texts, questions and answers, and explanatory notes.",
+      "tags": [
+        "Sacred Texts",
+        "Bahai",
+        "Ethics",
+        "Bahaullah",
+        "Bahai",
+        "Baha i",
+        "Most Holy Book",
+        "Kitab i Aqdas"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/life-keith-richards",
       "title": "Life",
       "tags": [
         "life",
         "keith",
         "richards"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/living-untethered",
+      "title": "Living Untethered — Michael A. Singer",
+      "description": "A continuation of Singer’s teaching on awareness, emotional patterns, and the work of releasing inner resistance.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Meditation",
+        "Michael Singer",
+        "Beyond the Human Predicament"
       ],
       "type": "library"
     },
@@ -6399,6 +6812,22 @@
       "type": "library"
     },
     {
+      "href": "/library/quran",
+      "title": "The Quran — Islamic scripture",
+      "description": "The central scripture of Islam, received by Muslims as divine revelation in Arabic. Its recitation, ethical address, and theological claims belong together.",
+      "tags": [
+        "Sacred Texts",
+        "Islam",
+        "Ethics",
+        "Koran",
+        "Qur’an",
+        "Qur an",
+        "surah",
+        "Allah"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/rockstar-energy",
       "title": "Rockstar Energy",
       "tags": [
@@ -6428,12 +6857,57 @@
       "type": "library"
     },
     {
+      "href": "/library/tanakh",
+      "title": "The Tanakh — Multiple authors; Jewish scriptural tradition",
+      "description": "The Jewish Bible comprises Torah, Nevi’im (Prophets), and Ketuvim (Writings). Reading alongside commentary reveals a continuing tradition of argument and interpretation.",
+      "tags": [
+        "Sacred Texts",
+        "Judaism",
+        "Ethics",
+        "Torah",
+        "Hebrew Bible",
+        "Neviim",
+        "Ketuvim"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tantra-illuminated",
+      "title": "Tantra Illuminated — Christopher D. Wallis",
+      "description": "A modern introduction to the history and philosophy of Tantric traditions, useful for placing popular uses of the word Tantra in context.",
+      "tags": [
+        "Tantra",
+        "Hinduism",
+        "Philosophy",
+        "Christopher Hareesh Wallis",
+        "Tantrik",
+        "Kashmir Shaivism"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/tao-te-ching",
       "title": "Tao Te Ching",
       "tags": [
         "tao",
         "te",
         "ching"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/tattvartha-sutra",
+      "title": "Tattvartha Sutra: That Which Is — Umasvati",
+      "description": "A systematic Jain work concerned with reality, the soul, karma, and liberation, available in English as That Which Is.",
+      "tags": [
+        "Sacred Texts",
+        "Jainism",
+        "Philosophy",
+        "Ethics",
+        "Tattvarthasutra",
+        "Umaswati",
+        "Jain",
+        "ahimsa"
       ],
       "type": "library"
     },
@@ -6500,6 +6974,20 @@
       "type": "library"
     },
     {
+      "href": "/library/the-miracle-of-mindfulness",
+      "title": "The Miracle of Mindfulness — Thich Nhat Hanh",
+      "description": "A Buddhist introduction to bringing attention into ordinary activities, with a gentle emphasis on everyday practice.",
+      "tags": [
+        "Buddhism",
+        "Meditation",
+        "Inner Work",
+        "Thich Nhat Hanh",
+        "Thay",
+        "mindfulness"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-power-of-eight",
       "title": "The Power of Eight",
       "tags": [
@@ -6511,11 +6999,53 @@
       "type": "library"
     },
     {
+      "href": "/library/the-power-of-now",
+      "title": "The Power of Now — Eckhart Tolle",
+      "description": "Tolle’s teaching on presence examines identification with thought and the tendency to live through remembered pasts and imagined futures.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Meditation",
+        "Eckhart",
+        "presence",
+        "Now"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/the-secret",
       "title": "The Secret",
       "tags": [
         "the",
         "secret"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-surrender-experiment",
+      "title": "The Surrender Experiment — Michael A. Singer",
+      "description": "Singer’s memoir describes how his practice of surrender developed through everyday decisions, community, and business life.",
+      "tags": [
+        "Spiritual Memoir",
+        "Inner Work",
+        "Contemporary Spirituality",
+        "Michael Singer",
+        "surrender"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/the-untethered-soul",
+      "title": "The Untethered Soul — Michael A. Singer",
+      "description": "Singer invites readers to notice the inner voice and examine their relationship with thoughts, emotions, and resistance.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Meditation",
+        "Michael Singer",
+        "untethered",
+        "witness",
+        "letting go"
       ],
       "type": "library"
     },
@@ -6581,12 +7111,86 @@
       "type": "library"
     },
     {
+      "href": "/library/upanishads",
+      "title": "The Upanishads — Multiple teachers and textual traditions",
+      "description": "A family of texts exploring self, ultimate reality, knowledge, and liberation through dialogues, stories, and instruction.",
+      "tags": [
+        "Sacred Texts",
+        "Hinduism",
+        "Philosophy",
+        "Vedanta",
+        "Atman",
+        "Brahman",
+        "Katha"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/vijnana-bhairava-tantra",
+      "title": "Vijñāna-bhairava-tantra — Anonymous; Shaiva Tantric tradition",
+      "description": "A historical Shaiva Tantric dialogue presenting 112 contemplative practices within a religious understanding of awareness.",
+      "tags": [
+        "Sacred Texts",
+        "Tantra",
+        "Meditation",
+        "Hinduism",
+        "Vijnana Bhairava",
+        "Vigyan Bhairav",
+        "Vijnanabhairava",
+        "112 meditations",
+        "tantra"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/when-things-fall-apart",
+      "title": "When Things Fall Apart — Pema Chödrön",
+      "description": "Contemplative reflections on meeting uncertainty and difficulty, grounded in Pema Chödrön’s Buddhist teaching.",
+      "tags": [
+        "Buddhism",
+        "Inner Work",
+        "Meditation",
+        "Pema Chodron",
+        "uncertainty",
+        "compassion"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/will-it-fly",
       "title": "Will It Fly?",
       "tags": [
         "will",
         "it",
         "fly"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/wisdom-untethered",
+      "title": "Wisdom Untethered — Michael A. Singer",
+      "description": "The Time for Questions brings Singer’s teaching into a question-led format concerned with applying spiritual ideas to ordinary life.",
+      "tags": [
+        "Contemporary Spirituality",
+        "Inner Work",
+        "Michael Singer",
+        "The Time for Questions"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/yoga-sutras",
+      "title": "The Yoga Sutras — Attributed to Patanjali",
+      "description": "A compact classical account of yoga concerned with mind, practice, and liberation. Its scope extends well beyond physical postures.",
+      "tags": [
+        "Sacred Texts",
+        "Yoga",
+        "Philosophy",
+        "Meditation",
+        "Patanjali",
+        "Patañjali",
+        "eight limbs",
+        "ashtanga"
       ],
       "type": "library"
     },
@@ -6598,6 +7202,21 @@
         "are",
         "the",
         "placebo"
+      ],
+      "type": "library"
+    },
+    {
+      "href": "/library/zhuangzi",
+      "title": "Zhuangzi — Zhuangzi and later contributors",
+      "description": "A Daoist philosophical collection that uses stories, humour, paradox, and shifting perspectives to unsettle rigid judgments.",
+      "tags": [
+        "Sacred Texts",
+        "Taoism",
+        "Philosophy",
+        "Chuang Tzu",
+        "Chuang-tzu",
+        "Zhuang Zhou",
+        "Daoism"
       ],
       "type": "library"
     },
@@ -6958,6 +7577,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/gpt-6-astra",
+      "title": "GPT-6 Astra — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/gpt-oss",
       "title": "gpt-oss (120b / 20b) — Model Hub",
       "tags": [
@@ -7236,6 +7864,17 @@
       "type": "section"
     },
     {
+      "href": "/music-lab/guitar-tabs",
+      "title": "Guitar Tabs",
+      "tags": [
+        "music",
+        "lab",
+        "guitar",
+        "tabs"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/music-lab/piano",
       "title": "Piano",
       "tags": [
@@ -7253,6 +7892,16 @@
         "lab",
         "piano",
         "songs"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/music-lab/violin",
+      "title": "Violin",
+      "tags": [
+        "music",
+        "lab",
+        "violin"
       ],
       "type": "section"
     },
@@ -9094,6 +9743,16 @@
       "type": "tool"
     },
     {
+      "href": "/tools/social-media",
+      "title": "Social Media",
+      "tags": [
+        "tools",
+        "social",
+        "media"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/tools/strategy-canvas",
       "title": "Strategy Canvas",
       "type": "tool"
@@ -9128,6 +9787,14 @@
       "href": "/updates",
       "title": "Updates",
       "type": "static"
+    },
+    {
+      "href": "/v0",
+      "title": "V0",
+      "tags": [
+        "v0"
+      ],
+      "type": "section"
     },
     {
       "href": "/valentines-day",
@@ -9222,6 +9889,14 @@
         "short"
       ],
       "type": "video"
+    },
+    {
+      "href": "/witali",
+      "title": "Witali",
+      "tags": [
+        "witali"
+      ],
+      "type": "section"
     },
     {
       "href": "/work",

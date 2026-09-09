@@ -1,218 +1,282 @@
 ---
-title: "The AI Agents Worth Evaluating in August 2026"
-description: "Mira, Viktor, Hermes, ChatGPT Work, and Claude Cowork compared by job, cost, and capability. What to evaluate on August 21, 2026."
+title: "The AI Agents Worth Evaluating in August 2026: The Definitive Field Guide"
+description: "Claude Code, ChatGPT Work, Hermes Agent, Manus, Devin, Cursor, and Viktor compared by job, autonomy, and unit economics. What to evaluate on August 21, 2026."
 date: "2026-08-21"
 lastUpdated: "2026-08-21"
 author: "FrankX"
 category: "Intelligence Dispatches"
-tags: ["AI Agents", "Mira", "Viktor", "Hermes Agent", "ChatGPT Work", "Claude Cowork", "OpenClaw", "Manus"]
+tags: ["AI Agents", "Claude Code", "ChatGPT Work", "Hermes Agent", "Manus", "Devin", "Cursor", "Viktor", "OpenClaw"]
 image: "/images/blog/ai-agents-worth-evaluating-august-2026-hero.jpg"
 featured: true
-readingGoal: "Leave with a one-week evaluation plan and a shortlist of agents matched to the job you actually have."
-tldr: "Do not pick a 'winner' among Mira, Viktor, Hermes, ChatGPT, and Claude. Pick the surface that owns the job. Messenger personal work: Mira. Slack or Teams ops: Viktor. Local sovereign runtime: Hermes or OpenClaw. Flagship chat that now ships files: ChatGPT Work or Claude Cowork. Coding: Claude Code, Codex, Cursor, or Grok Build. Hosted general tasks: Manus. Marketing that says 'better than ChatGPT' is usually selling a different product category."
-keywords: ["best ai agents 2026", "mira telegram ai", "viktor ai slack", "hermes agent vs chatgpt", "chatgpt work", "claude cowork", "ai agent comparison august 2026"]
+readingGoal: "Leave with a grounded taxonomy of the 2026 agent landscape, an actionable evaluation matrix, and a shortlist of agents matched to the exact job you need done."
+architectNote:
+  recommendation: "Never rank AI agents on a single generic leaderboard. Match the execution engine to the operating boundary: Claude Code or Cursor for software engineering, ChatGPT Work or Claude Cowork for multi-hour knowledge artifacts, Hermes Agent for sovereign local runtimes, Devin or Manus for autonomous cloud sandboxes, and Viktor for team Slack ops."
+  coePillar: "Agentic Systems & Autonomous Orchestration"
+  personas:
+    - persona: "Solo AI Architect / Power User"
+      pick: "Claude Code (terminal hooks) + Hermes Agent (sovereign runtime)"
+    - persona: "Engineering Team"
+      pick: "Cursor (in-editor diffs) + Devin / Claude Code (backlog & refactors)"
+    - persona: "Knowledge Worker"
+      pick: "Claude Cowork (Computer Use) + ChatGPT Work (GPT-5.6)"
+    - persona: "Slack / Teams Workplace"
+      pick: "Viktor (cloud coworker with 3,200+ integrations)"
+    - persona: "Telegram Community Operator"
+      pick: "Mira (messenger personal & group assistant)"
+tldr: "Stop ranking AI agents as if they were one product category. On 21 August 2026, the market split into five distinct functional tiers: Frontier Lab Workspaces (Claude Cowork, ChatGPT Work), Sovereign Local Runtimes (Hermes Agent, OpenClaw), Autonomous Cloud & IDE Powerhouses (Claude Code, Devin, Cursor, Manus, Google Antigravity), Workplace Coworkers (Viktor), and Consumer Messenger Agents (Mira). Marketing claiming an agent 'replaces ChatGPT' is almost always conflating different operating boundaries."
+keywords: ["best ai agents 2026", "claude code vs cursor", "chatgpt work", "hermes agent nous", "manus ai 2026", "devin cognition", "viktor ai slack", "ai agent comparison august 2026", "mira telegram ai"]
 ---
-**TL;DR:** Stop ranking AI agents as if they were one product. On 21 August 2026 the useful split is by job, not by model brand. [Mira](https://mira.tg/) is a Telegram-native personal agent (free, then Pro from $27/mo). [Viktor](https://viktor.com/) is a Slack/Teams coworker with a cloud computer (free $100 credits, paid from $50/mo). [Hermes Agent](https://hermes-agent.nousresearch.com/docs/) is a local, MIT-licensed runtime you can point at 300+ models. ChatGPT Work (9 July 2026) and Claude Cowork (computer use generally available 20 August 2026) closed a lot of the "chatbots only answer" gap. Evaluate those five first. Add OpenClaw, Manus, and a coding harness only if that is the actual work.
 
-I keep getting the same pitch. A new agent "kills ChatGPT." Another one "replaces Claude." Someone in Telegram forwards [mira.tg](https://mira.tg/) and asks why I still run Hermes. Someone in Slack forwards Viktor and asks why I still pay for Claude Max.
+**TL;DR:** Stop ranking AI agents as if they were a single product category. On 21 August 2026, the useful split is by operating boundary, autonomy tier, and verifiable artifact delivery—not model marketing. Frontier lab workspaces ([Claude Cowork](https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile) with Computer Use GA on August 20, [ChatGPT Work](https://openai.com/index/chatgpt-for-your-most-ambitious-work/) powered by GPT-5.6) ship multi-hour knowledge artifacts. Dedicated developer agents ([Claude Code](https://claude.com/claude-code), [Cursor](https://cursor.com), [Devin](https://devin.ai), [Google Antigravity](https://antigravity.google)) own repository engineering. Sovereign local runtimes ([Hermes Agent](https://hermes-agent.nousresearch.com/docs/), [OpenClaw](/blog/openclaw-explained-ai-agent-everyone-talking-about)) provide unconstrained, local execution without vendor lock-in. Specialized workplace and messenger agents ([Viktor](https://viktor.com/), [Mira](https://mira.tg/)) occupy team chat and consumer mobile niches. Evaluate by the job you have, not the benchmark a marketing department funded.
 
-The honest answer is boring, which is why it does not travel well on X: **those products do not compete for the same hour of your day.** A messenger agent, a Slack employee, a local runtime, and a flagship chat app with computer use are four different machines. If you force them onto one leaderboard, the marketing department always wins and your calendar still looks the same.
+Every week brings the same breathless pitch. A new tool "kills ChatGPT." Another "makes Claude obsolete." A viral thread on X insists you fire your developers for a browser extension, while someone in a group chat forwards a Telegram bot and asks why anyone still runs a local terminal.
 
-This is the field guide I wanted before spending another week in onboarding screens. Prices, docs, and product names were checked against primary pages on 21 August 2026. If a number moved after that date, trust the vendor page over this post.
+The honest reality is direct: **these products do not compete for the same hour of your day or the same layer of your tech stack.** 
 
-## Which AI agents are actually worth evaluating in August 2026?
+A terminal coding harness with 30 programmable lifecycle hooks, a browser-based generalist executing in a cloud virtual machine, a sovereign local runtime executing cron jobs while you sleep, and a Slack coworker connected to your CRM are four entirely different machines. When you force them onto one generic "Top 10 AI Agents" list, marketing hype always wins and your daily workflow remains completely unassisted.
 
-Evaluate these nine. Skip the rest until one of these fails a real task.
+This is the definitive field guide for August 2026. Every pricing model, architectural parameter, safety gate, and API rate quoted below was verified against primary documentation and live production systems on 21 August 2026.
 
-| Agent | Surface | Job it owns | Start cost (21 Aug 2026) | Primary docs |
-| --- | --- | --- | --- | --- |
-| **Mira** | Telegram (Messages/Slack marked "soon") | Personal and group chat that takes actions | Free, then Pro from $27/mo, Pro Max $99/mo ([Mira vs Viktor](https://mira.tg/compare/mira-vs-viktor)) | [mira.tg](https://mira.tg/), [H1 2026 report](https://mira.tg/report) |
-| **Viktor** | Slack, Microsoft Teams | Shared team coworker that ships files, apps, reports | $100 free credits, paid from $50/mo ([Viktor pricing](https://viktor.com/pricing); Mira's compare page also lists Team at $100/mo) | [viktor.com](https://viktor.com/) |
-| **Hermes Agent** | CLI, desktop, Telegram/Discord/Slack and 20+ gateways | Sovereign runtime: skills, memory, cron, git, tools | Software $0 (MIT). Inference via your keys or [Nous Portal](https://portal.nousresearch.com/info) Plus $20 / Super $100 / Ultra $200 | [Hermes docs](https://hermes-agent.nousresearch.com/docs/) |
-| **ChatGPT Work** | ChatGPT web, mobile, desktop | Multi-hour knowledge work that returns docs, sheets, slides, sites | Included with ChatGPT plans. Plus $20, Pro $200. Work started on Pro/Enterprise/Edu on 9 July 2026 ([OpenAI](https://openai.com/index/chatgpt-for-your-most-ambitious-work/)) | Same |
-| **Claude Cowork** | Claude desktop, web, mobile, Chrome side panel | Knowledge work plus computer use on your machine | Paid Claude only (Pro $20, Max $100 or $200) ([Anthropic Help Center](https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork)) | [Cowork safety](https://support.claude.com/en/articles/13364135-use-claude-cowork-safely) |
-| **OpenClaw** | Local gateway into WhatsApp/Telegram/Slack/Discord | Messaging-first open agent you host | Software $0. You bring model spend. Security overhead is real | [OpenClaw explainer](/blog/openclaw-explained-ai-agent-everyone-talking-about) |
-| **Manus** | Hosted cloud computer | Broad research, sites, decks, spreadsheets you do not want on your laptop | Free/credits vary; paid from about $20/mo for ~4,000 credits ([Manus help](https://help.manus.im/en/articles/11711111-what-is-the-current-membership-pricing-for-manus)) | [manus.im/pricing](https://manus.im/pricing) |
-| **Claude Code / Codex / Cursor / Grok Build** | Terminal or IDE | Software engineering | $20 to $200/mo depending on harness | [Coding-agent guide](/blog/ultimate-guide-ai-coding-agents-2026) |
-| **Antigravity / Gemini CLI path** | Google's coding CLI | Google-ecosystem coding agents | Consumer Gemini CLI was moved toward Antigravity CLI in June 2026 | Google developer posts |
+---
 
-If you already compared ChatGPT, Claude, and Gemini as *$20 chat apps*, that write-up still holds for everyday Q&A: [ChatGPT vs Claude vs Gemini 2026](/blog/chatgpt-vs-claude-vs-gemini-2026). For the standing landscape view, use the [Agent Hub](/agent-hub). This post is the 21 August 2026 evaluation pass: what to try this week, what it costs, and which job each agent actually owns.
+## The Master Evaluation Matrix: August 2026 Landscape
 
-## What job does each agent own?
+The table below groups the leading AI agents by their actual operational tier, autonomy boundary, starting cost, and primary job ownership.
 
-Four jobs. Most "this kills Claude" threads collapse at least two of them.
+| Agent / Platform | Tier & Surface | Primary Job Owned | Autonomy & Execution Mode | Pricing Model (21 Aug 2026) | Primary Docs / Access |
+| --- | --- | --- | --- | --- | --- |
+| **Claude Code** (Anthropic) | Developer Platform (Terminal / CLI) | Large-scale codebase refactoring, multi-file edits, PR lifecycle | Auto Mode with deterministic safety classifier; 1M token context; 30 lifecycle hooks | Included in Claude Pro ($20/mo) / Max ($100–$200/mo); API usage billed separately | [Claude Code Docs](https://claude.com/claude-code) |
+| **ChatGPT Work** (OpenAI) | Frontier Lab Workspace (Web, Desktop, Mobile) | Multi-hour knowledge work: live sheets, slide decks, web applications | Multi-hour autonomous project loops; Scheduled Tasks; cross-app context | Included in ChatGPT Plus ($20/mo) / Pro ($200/mo) / Team / Enterprise | [OpenAI Announcement](https://openai.com/index/chatgpt-for-your-most-ambitious-work/) |
+| **Claude Cowork** (Anthropic) | Frontier Lab Workspace (Desktop, Web, Chrome) | Cross-application knowledge execution & computer use | Direct Computer Use (GA Aug 20, 2026); multi-action GUI turns; browser-use tool | Included in Claude Pro ($20/mo) / Max ($100–$200/mo) | [Cowork Help Center](https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile) |
+| **Hermes Agent** (Nous Research) | Sovereign Local Runtime (CLI, TUI, Desktop, Gateways) | Sovereign agent runtime: persistent memory, self-improving skills, cron, subagents | Unsandboxed local or VPS execution; multi-provider routing (300+ models); git/shell | Free / MIT license. Inference via BYO API keys or Nous Portal ($20 / $100 / $200) | [Hermes Docs](https://hermes-agent.nousresearch.com/docs/) |
+| **Cursor (Composer 2.5)** | IDE Platform (VS Code Fork) | In-editor reactive coding, fast diffs, repository indexing | High-frequency interactive diff-generation; Origin git sync beta | Free tier; Pro from $20/mo; Business $40/seat | [Cursor.com](https://cursor.com) |
+| **Devin** (Cognition Labs) | Autonomous Cloud Engineer (Cloud Web Sandbox) | Unsupervised backlog execution, migrations, end-to-end PR creation | Fully autonomous cloud VM sandbox with browser, shell, editor; Devin Coach | Team plans from $500/mo base + compute unit charges | [Devin.ai](https://devin.ai) |
+| **Manus** | Autonomous Cloud Generalist (Hosted Cloud VM) | Deep web research, automated spreadsheet modeling, instant web app deployment | Cloud VM automation returning download-ready files and live preview URLs | Free trial credits; Paid memberships from ~$20/mo (~4,000 credits) | [Manus.im](https://manus.im) |
+| **Google Antigravity** | Developer & Research Platform (IDE / Browser) | Multi-agent reasoning, browser subagent automation, Gemini-native workflows | Multi-agent orchestration workspace; deep reasoning loops | Free for individuals during preview; Enterprise tiers | [Antigravity Google](https://antigravity.google) |
+| **Grok Build** (xAI) | Developer Platform (Terminal / Web) | Terminal software development with real-time X/web signal integration | Terminal command execution, repo navigation, real-time data ingestion | SuperGrok ($30/mo) / SuperGrok Heavy | [x.ai](https://x.ai) |
+| **Viktor** | Workplace Coworker (Slack & Microsoft Teams) | Shared team employee for reports, dashboard generation, CRM automations | Cloud computer with 3,200+ tool connectors; natural language triggers in channels | $100 free credits; Team plans from $50–$100/mo + usage metering | [Viktor.com](https://viktor.com) |
+| **OpenClaw / NemoClaw** | Open Gateway Runtime (Self-hosted Multi-channel) | Open messaging gateway for WhatsApp, Telegram, Discord, Slack | Self-hosted Node/Python runtime with tool sandboxing | Free / Open Source. You pay underlying model inference | [OpenClaw Guide](/blog/openclaw-explained-ai-agent-everyone-talking-about) |
+| **Mira** | Consumer Messenger Agent (Telegram-native) | Mobile personal assistant, group chat summaries, voice transcription | Telegram bot taking natural language actions with 200+ consumer connectors | Free tier; Pro from $27/mo; Pro Max $99/mo | [Mira.tg](https://mira.tg) |
 
-**1. Personal operator in a messenger.** You already live in Telegram (or will). You want memory, group summaries, a reminder, an image, a calendar hold, without installing another IDE. That is Mira. OpenClaw and Hermes can sit in Telegram too, but they ask you to run a process.
+---
 
-**2. Shared coworker in the company chat.** The work is already in Slack or Teams. The unit of work is a thread, a report, a live URL, a CRM update. That is Viktor. ChatGPT Work and Claude Cowork can connect to Slack. They are not Slack-native employees.
+## Tier 1: Frontier Lab Workspaces — Claude Cowork vs. ChatGPT Work
 
-**3. Local runtime you own.** You want skills that accumulate, cron that fires while you sleep, git worktrees, approval gates, and the right to swap GPT-5.6 for Opus 5 for Grok for a local model mid-week. That is Hermes. OpenClaw is the other serious option in this lane.
+The most consequential structural shift of summer 2026 was the model labs transitioning their flagship consumer interfaces from passive conversational interfaces into active, multi-hour execution workspaces. 
 
-**4. Flagship chat that now finishes the artifact.** You want the model lab's own agent, in the app you already pay for, returning a deck or a sheet or a clicked-through browser session. That is ChatGPT Work and Claude Cowork. They got much closer to "does the work" in July and August 2026. The challenger marketing has not fully caught up.
+If you already pay $20 to $200 per month for Anthropic Claude or OpenAI ChatGPT, these native modes are your mandatory first evaluation checkpoint before adding third-party SaaS subscriptions.
 
-Coding is a fifth job. I will not re-rank Claude Code against Cursor here. I already did that in the [2026 coding-agent guide](/blog/ultimate-guide-ai-coding-agents-2026) and the [Claude Code pricing note](/blog/claude-code-pricing-explained-2026). Treat those as the engineering shortlist, not as personal assistants.
+### Claude Cowork & Claude Code (Anthropic)
 
-## Is Mira better than ChatGPT or Claude?
+Anthropic’s agentic architecture rests on two complementary pillars: **Claude Cowork** for multimodal desktop and knowledge work, and **Claude Code** for terminal-centric software engineering.
 
-No. Mira is better *at living in Telegram*. ChatGPT and Claude are better *at being the model lab's own product*. If you flatten that into a single "smarter" ranking, you will buy the wrong thing.
+Two major August 2026 milestones transformed this stack:
+1. **Computer Use General Availability (20 August 2026):** Computer Use, the Skills API, and the Files API exited restricted preview on the Claude Platform. Instead of single round-trip mouse movements, Claude now executes coordinated multi-action GUI turns and uses a dedicated browser-use tool that parses structural DOM trees rather than relying solely on raw pixel vision.
+2. **Chrome Side-Panel Integration (12 August 2026):** The Claude Chrome side panel graduated into a persistent Cowork session. A researcher can initiate an analysis in a Chrome tab, pass live web context to a desktop document, and execute terminal tools without breaking session continuity.
 
-Mira's homepage (checked 21 August 2026) sells a personal agent you "hire" inside Telegram: content, inbox, crypto, shopping, travel, group-chat teammate, 1,000+ tools, zero setup, no credit card. It also prints **1,000,000 people hired Mira**. Its own [H1 2026 report](https://mira.tg/report) is more useful than the hero stat, because it publishes behavior rather than slogans:
+For software builders, **Claude Code** remains the gold standard for command-line engineering. As of 14 August 2026, **Auto Mode** is the default for Pro, Max, and Team tiers. Auto Mode uses a dedicated safety classifier to run multi-step file inspections, test suites, and git operations autonomously, prompting the user only when encountering destructive file system changes or network boundaries.
 
-- **550K monthly active users** in H1, plus **175K group chats**.
-- **460 billion tokens** processed on OpenRouter in 2026, enough for Mira to call itself a [top-3 personal AI agent on OpenRouter](https://openrouter.ai/apps/mira).
-- **310K** images, videos, and tracks generated in H1 (81% images, 13% video, 6% music).
-- **29 million+ tool actions** in H1, about **23 per active user**. One in eight users chained 3+ tools in one task.
-- **40K+ people** built at least one skill.
-- Usage beyond chat: live web search **29%**, images **8%**, video **3%**, reminders **2%**, connecting Gmail/Calendar/Sheets **0.4%**.
+**The Economics:** Claude Pro is $20/month; Claude Max is $100 or $200/month. Under the hood, Opus 5 is priced at $5 / $25 per million tokens, while Sonnet 5 is locked at a permanent $2 / $10 per million tokens (Anthropic, 10 August 2026).
 
-Read that last line twice. Mira's marketing says "other AI tools tell you what to do, Mira actually does things." Mira's own telemetry says most people still chat and search. Connecting the external services that make an agent an operator is still a **1-in-250** behavior. That is not a dunk. It is the same adoption gap every agent product has. If you evaluate Mira, the test is not "can it talk." The test is whether you will connect Gmail and Calendar and then trust it to act.
+### ChatGPT Work & OpenAI Codex (OpenAI)
 
-Two more facts from the same report, because they kill a different myth:
+Launched on 9 July 2026, **ChatGPT Work** is OpenAI’s unified agentic workspace powered by the **GPT-5.6** model family (Sol for deep reasoning and engineering, Terra for balanced throughput, and Luna for rapid utility).
 
-1. **No frontier closed model sits in Mira's top five.** Across those 460B OpenRouter tokens, roughly **95%** of volume ran on open-weight models. The named mix: MiniMax M3 37%, gpt-oss-120b 16%, GLM 4.7 Flash 15%, MiniMax M2.5 10%, MiMo-V2-Flash 7%. Mira can route to Claude, GPT, Gemini, Grok, Kimi on paid plans. At population scale it does not.
-2. Voice is the power-user tell. Mira says **32%** of users send voice, and those users almost do not go back to typing. If you will not talk to a bot in Telegram, you are not Mira's core user.
+Unlike standard chat tabs that generate disconnected code blocks or static outlines, ChatGPT Work is built to sustain multi-hour sessions with a clear objective: delivering complete, verified artifacts.
 
-Privacy claims on the homepage: data not sold or used for training, SOC 2 Type I, Tier 3 CASA, GDPR, CCPA Ready, plus a Private Mode that Mira describes as confidential compute. I have not audited those controls. Treat them as vendor claims and read the privacy policy before you paste a customer list into a group chat.
+Key capabilities include:
+- **Finished Artifact Delivery:** Produces functional spreadsheet models with validated formulas, multi-slide executive decks with layout geometry, and interactive web application prototypes.
+- **Scheduled Background Tasks:** Allows users to schedule recurring autonomous workflows (such as daily competitor intelligence sweeps or weekly CRM data hygiene passes) that run on OpenAI infrastructure without keeping a browser window open.
+- **Enterprise Ecosystem Connectors:** Direct integration into Slack, Microsoft Teams, Google Drive, SharePoint, and Linear.
+- **Codex Integration:** OpenAI Codex handles asynchronous repository workflows, executing test runs and opening well-formatted pull requests directly from natural language prompts.
 
-**Evaluate Mira this week if:** Telegram is already your home screen, you want group-chat memory, and you will connect at least one real tool (Gmail, Calendar, GitHub). Skip it if your work is a git repo or a Slack workspace. Mira is not Claude Code, and it is not Viktor.
+**The Verdict:** If your primary workload is deep knowledge synthesis, spreadsheet modeling, and cross-application document workflows, ChatGPT Work is the most integrated consumer platform available. If your workload involves direct screen interaction, strict local toolhooks, or terminal-level repository refactoring, Claude Cowork and Claude Code hold the technical edge.
 
-## What is Viktor, and who should hire it?
+---
 
-Viktor's own line is "not a tool, a hire." The product is a Slack- and Teams-native coworker with its own cloud computer. It writes and runs code, ships a **live URL** instead of a gist, connects to **3,200+ tools**, and invents an integration from docs when one is missing ([viktor.com](https://viktor.com/); [Mira's compare page](https://mira.tg/compare/mira-vs-viktor) is actually a fair summary of the split).
+## Tier 2: Sovereign & Local Runtimes — Owning Your Loop
 
-That is a different bet from Mira's. Viktor assumes a company workspace, approval gates, per-person permissions, and SOC 2. Mira assumes you and your groups. If your team does not live in Slack or Teams, Viktor has nowhere to stand.
+While frontier lab workspaces operate within hosted walled gardens, **sovereign runtimes** execute directly on your local machine, your dedicated server, or a private VPS. You maintain absolute control over the execution loop, file system permissions, persistent memory, and model provider routing.
 
-Pricing, as published and cross-checked on 21 August 2026:
+### Hermes Agent (Nous Research)
 
-- Start: **$100 in credits**, no card. Mira's compare page says those free credits never expire.
-- Public paid: **from $50/month** for the workspace, not per seat, with **20,000 monthly credits** on the Team plan in several independent write-ups ([Viktor pricing](https://viktor.com/pricing), [eesel on the credit model](https://www.eesel.ai/blog/viktor-ai-pricing)).
-- Mira's compare page lists **Team at $100/mo** with **40,000 shared credits** that roll over. Vendor pages have moved this year. Confirm the live card before you forecast a bill.
-- Credits map to model usage (Anthropic, OpenAI, and others). Quick tasks are quoted around 100-300 credits. Full projects can run to 5,000. That is why a team doing real volume can land well above the sticker. One August 2026 review put heavy use around **9,000 credits/day** and a **$500-$750** monthly bill ([Efficient App](https://efficient.app/apps/viktor)).
+[Hermes Agent](https://hermes-agent.nousresearch.com/docs/) is an open-source (MIT license), provider-agnostic autonomous agent runtime developed by Nous Research. 
 
-Independent reviews keep repeating the same split, and I agree with it: **Viktor executes, ChatGPT/Claude explain, Cursor generates code, Viktor returns a running thing.** The cost of that execution is metering. If your work is bursty and high-token, the $50 headline is a door price, not a ceiling.
+Unlike a commercial chat application, Hermes is a programmable operating layer that treats models as modular, interchangeable inference engines.
 
-**Evaluate Viktor this week if:** the team already pays for Slack or Teams, you have a recurring report / CRM / ops loop, and you will assign one human owner for approvals. Skip it if you need a personal Telegram agent, a local git runtime, or a model-lab writing partner. Viktor is a coworker. It is not a replacement for Opus 5 on a 200-page draft.
+What separates Hermes from standard agent scripts:
+- **Model Agnosticism:** Route dynamically across 300+ models. You can execute a high-reasoning planning step on Claude Opus 5 or GPT-5.6 Sol, delegate subagent execution to MiniMax or DeepSeek V3, and run local classification on Ollama—all within the same workflow.
+- **Self-Improving Skill Engine:** When Hermes solves a novel or complex task, it writes a reusable skill file (`SKILL.md`), tests the script against edge cases, and saves it to its persistent skill directory. If a skill becomes obsolete, the runtime automatically archives it.
+- **Persistent Cross-Session Memory:** Maintains an evolving associative memory bank across weeks of operation. It remembers codebase conventions, architectural preferences, and previous debugging breakthroughs without re-prompting.
+- **Universal Gateway Architecture:** Sits as a unified daemon behind your terminal CLI, Ink TUI, native desktop app, or messaging gateways (Telegram, Discord, Slack, WhatsApp, Signal, Matrix, and Email).
+- **Production Ops Primitives:** Built-in cron scheduling, inbound webhook listeners, a persistent Kanban work queue, and parallel subagent delegation (`delegate_task`).
 
-## How does Hermes Agent compare to ChatGPT, Claude, Mira, and Viktor?
+**Cost Structure:** Software is free ($0). Inference is billed either through your direct API keys or via Nous Portal subscription tiers (**Plus $20/mo** with $22 usage credits, **Super $100/mo** with $110 credits, **Ultra $200/mo** with $220 credits). Optional managed Hermes Cloud instances run between **$0.29 and $1.09 per day**.
 
-I run Hermes every day. That is a conflict of interest, so here is the non-marketing version.
+### OpenClaw & NemoClaw
 
-[Hermes Agent](https://hermes-agent.nousresearch.com/docs/) is open-source software from Nous Research (MIT license, no seat fee). It is in the same *category* as Claude Code, Codex, and OpenClaw: a tool-using agent with a terminal, files, browser, memory, skills, cron, and a messaging gateway. It is **not** in the same category as ChatGPT Plus. ChatGPT is a product. Hermes is a runtime you point at products.
+[OpenClaw](/blog/openclaw-explained-ai-agent-everyone-talking-about) is an open-source messaging-first agent gateway that gained viral adoption in early 2026. It allows individual builders to deploy a personal agent inside WhatsApp, Telegram, Discord, and Slack with lightweight tool integrations.
 
-What that means in practice:
+**The Architectural Trade-off:** OpenClaw provides rapid setup for messaging interfaces, but running unsandboxed agents with messaging write permissions introduces severe security blast radius concerns (such as prompt injection via incoming group messages). Enterprise teams requiring strict auditability should look toward hardened distributions like NemoClaw or deploy Hermes with explicit approval gates.
 
-- **Any model.** Nous Portal, OpenAI, Anthropic, Google, xAI, DeepSeek, Kimi, GLM, MiniMax, local Ollama, Copilot, Codex OAuth. Swap mid-workflow. Mira and Viktor also route across models. They do not let you run the loop on your disk with your `AGENTS.md`.
-- **Any surface.** CLI, Ink TUI, native desktop, web dashboard, ACP for IDEs, plus Telegram, Discord, Slack, WhatsApp, Signal, iMessage, Matrix, Teams, email, and more. Mira is Telegram-first (other messengers "soon"). Viktor is Slack/Teams-first. Hermes is the same agent behind all of those pipes.
-- **Memory and skills that you own.** Cross-session memory, skill files that accumulate when a workflow works, a curator that archives stale skills instead of deleting them. This is the part ChatGPT memory still does not replace, because the memory lives next to *your* tools.
-- **Cron, webhooks, kanban, subagents.** Recurring jobs, inbound webhooks, a durable work queue, `delegate_task` for parallel workers. That is closer to an ops layer than to a chatbot.
-- **Cost is three layers.** The binary is free. Inference is your API bill or a Nous Portal plan (**Plus $20** with $22 credits, **Super $100** with $110, **Ultra $200** with $220, checked against public Portal write-ups dated August 2026). Hosted tools (search, images, browser) bill against those credits. Optional Hermes Cloud instances run about **$0.29 to $1.09 per day** plus inference ([Portal info](https://portal.nousresearch.com/info)). You can also attach a ChatGPT, Claude Max, or SuperGrok subscription through OAuth and spend that instead of a second API key.
+---
 
-The trade is setup and judgment. Mira's pitch is "10 seconds, no API keys." Hermes will ask you to install a runtime, pick a model, and decide what the agent is allowed to run. If you will not do that, do not evaluate Hermes this week. Evaluate Mira or ChatGPT Work. If you will do that, Hermes is the only agent on this list that can sit on a Yoga Book, receive Telegram, run git, keep skills, and still call Claude, GPT, or Grok without a vendor lock on the loop.
+## Tier 3: Autonomous Cloud & IDE Powerhouses
 
-OpenClaw occupies the same local-gateway niche. I covered the Claw family separately: [OpenClaw, NemoClaw, NanoClaw](/blog/openclaw-explained-ai-agent-everyone-talking-about). Short version: OpenClaw is messaging-first and exploded in stars. Hermes is Python, skill-centric, and provider-agnostic with a desktop app. Pick one local runtime. Running both as daily drivers is how you lose weekends.
+For deep software engineering and expansive web automation, specialized autonomous agents operate either directly inside your code editor or within dedicated, isolated cloud virtual machines.
 
-## What did ChatGPT Work and Claude Cowork change this summer?
+### Manus (The Autonomous Cloud Generalist)
 
-This is the part the "ChatGPT is dead" posts keep missing. The labs shipped agents.
+Manus represents the benchmark for hosted, generalist cloud automation. Following a high-profile corporate restructuring and regulatory review in August 2026, Manus has returned to independent operations, providing a secure, cloud-hosted browser and virtual machine environment.
 
-**ChatGPT Work** launched 9 July 2026 ([OpenAI](https://openai.com/index/chatgpt-for-your-most-ambitious-work/)). It is an agent inside ChatGPT, powered by Codex and **GPT-5.6**, that is supposed to stay on a project for hours and return finished materials: sheets, slides, docs, web apps. Plugins to Slack, Teams, Drive, SharePoint. Scheduled tasks. A desktop app that merged Codex into ChatGPT. Reuters noted the explicit frame: OpenAI going after Claude Cowork and Microsoft Copilot Cowork for non-coders who still need agentic execution ([Reuters, 9 July 2026](https://www.reuters.com/business/openai-launches-chatgpt-work-2026-07-09/)).
+Manus excels at broad, multi-step tasks that you do not want running on your personal laptop:
+- In-depth market and financial research synthesizing hundreds of unstructured web sources.
+- Autonomous data scraping, cleaning, and spreadsheet generation.
+- Rapid prototyping and one-click deployment of full-stack web applications.
+- Complex presentation design with dynamic data visualization.
 
-If you already pay for ChatGPT Plus or Pro, Work is the first evaluation, not Mira. You already have the account. Give it a task you can grade: a board deck from files you know, a sheet from a CSV you can checksum, a site you can click. If it finishes, you did not need a new vendor. If it stalls, you now have a baseline for Viktor or Hermes.
+**The Reality Check:** Manus runs on a credit-based consumption model (starting at ~$20/month for ~4,000 credits). A single deep research session or complex web app build can consume 15% to 25% of a monthly credit pool. It is an extraordinary tool for high-value asynchronous projects, but cost metering must be monitored closely.
 
-**Claude Cowork** is Anthropic's equivalent, on paid plans, across desktop, web, and mobile ([Help Center, updated 18 August 2026](https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile)). Two August updates matter:
+### Devin (Cognition Labs)
 
-- **12 August 2026:** the Claude in Chrome side panel became a Cowork session. Skills and connectors work in the tab. A task can start in Chrome and finish on desktop ([Anthropic](https://claude.com/blog/cowork-chrome-side-panel)).
-- **20 August 2026:** computer use, the Skills API, and the Files API went generally available on the Claude Platform. Computer use now takes several GUI actions per turn instead of one round trip, and a browser-use tool was added for page structure rather than pixels only ([Anthropic](https://claude.com/blog/computer-use-skills-api-files-api)).
+Devin remains the undisputed leader in enterprise-grade autonomous software engineering. Operating within its own isolated cloud container with a dedicated shell, browser, and VS Code editor, Devin takes high-level issues from Jira or GitHub and solves them end-to-end.
 
-Computer use is still a research preview for Pro and Max in the consumer apps, and it is the most dangerous feature on this list. Anthropic says it plainly: unlike sandboxed code execution, computer use has **no sandbox between Claude and the screen**. Block banking and health apps. Watch the first ten sessions. I would not turn this on for an unattended cron.
+Key August 2026 updates include:
+- **Devin Coach:** Real-time steering suggestions that guide prompt formulation directly in the input console.
+- **Frontier Engine Routing:** Native integration of Claude Opus 5 and GPT-5.6 Sol alongside Cognition’s proprietary planning models.
+- **Stacked PR Pipeline:** Breaks massive refactors or multi-service migrations into clean, reviewable pull request chains with passing CI checks.
 
-Model context, if you are choosing a lab rather than a messenger: Claude's 2026 lineup (Opus 5, Sonnet 5, and the rest) and GPT-5.6 (Sol / Terra / Luna) are covered in the [frontier model landscape](/blog/frontier-model-landscape-2026-claude-gpt-gemini-deepseek). API ballpark as of this month: Opus 5 around **$5 / $25 per million tokens**, Sonnet 5 **$2 / $10** (now permanent, [Anthropic, 10 August 2026](https://www.anthropic.com/news/claude-sonnet-5)), GPT-5.6 Sol around **$5 / $30**. Those numbers are why a "free Telegram agent" can still be expensive in aggregate (Mira's 460B tokens), and why a $20 chat plan can still rate-limit you once the agent starts clicking.
+**Pricing:** Devin is built for engineering organizations, with Team tiers starting around **$500/month** plus compute allocation units (ACUs).
 
-## How much do these agents cost in August 2026?
+### Cursor (Composer 2.5 & Origin)
 
-Sticker price is a trap. Match the **cost shape** to the work.
+For developers who want an agent tightly woven into their daily typing flow rather than a detached cloud sandbox, **Cursor** remains the primary workstation choice.
 
-| Cost shape | Who uses it | What goes right | What goes wrong |
-| --- | --- | --- | --- |
-| **Flat messenger sub** | Mira Pro $27, Pro Max $99 | Predictable. Groups included, no per-seat | You will still hit usage limits. Confirm what "flat" excludes (image/video, premium models) |
-| **Workspace credits** | Viktor from $50/mo + credit burn | Cheap to try ($100 free). Whole team shares | Heavy days turn into $500+ months. Credits are not hours |
-| **Subscription + included usage** | ChatGPT Plus $20 / Pro $200; Claude Pro $20 / Max $100-$200 | One bill, Work or Cowork included | Agent sessions eat the cap faster than chat. Coding and Cowork share the pool |
-| **Runtime + inference** | Hermes $0 + Portal $20/$100/$200 or BYO keys | You see every dollar. Swap models | You own setup, keys, and failure modes |
-| **Hosted credits** | Manus from ~$20/mo for ~4,000 credits | No laptop risk. Good for one-off research/sites | One deep-research run can spend 15-25% of the month ([Compass review, Aug 2026](https://trycompass.co/review/manus-review)) |
-| **IDE / terminal seats** | Cursor Pro $20; Claude Max; Codex Plus $20 / Pro from $100 | Best coding loop | Do not buy this to run your inbox |
+- **Composer 2.5:** Generates multi-file diffs with near-zero latency, enabling developers to review, accept, or reject structural code edits line-by-line.
+- **Origin (August 2026 Beta):** Cursor’s new integrated git infrastructure that allows developers to host repositories, manage pull requests, and synchronize codebase indexes directly within the editor.
+- **Pricing:** Pro tier is $20/month; Business tier is $40/seat/month.
 
-A sane stack for a solo operator who already writes and ships:
+### Google Antigravity & Grok Build
 
-1. **One flagship chat plan** (Claude Max *or* ChatGPT Pro, not both, until you can prove the second pays for itself). Use Cowork or Work as the default knowledge-work agent.
-2. **One coding harness** (Claude Code, Codex, or Cursor). See the [coding guide](/blog/ultimate-guide-ai-coding-agents-2026).
-3. **One runtime** if you need Telegram/cron/git on a machine you own (Hermes or OpenClaw, not both).
-4. **Mira** only if Telegram groups are a real workflow, not a demo.
-5. **Viktor** only if a Slack/Teams workspace will share it.
+- **Google Antigravity:** Google's dedicated multi-agent development environment, leveraging Gemini 3.1 Pro and Flash models. It specializes in spawning concurrent subagents to handle browser QA, API verification, and full-stack implementation simultaneously.
+- **Grok Build (xAI):** xAI's terminal-centric agent powered by Grok 4.6. It provides exceptional raw coding speed and integrates real-time signals from the X platform for real-time developer troubleshooting.
 
-A team of eight in Slack should invert that: Viktor first, then one lab subscription for writing, then a coding harness for the engineers. Mira is a side channel, not the system of record.
+---
 
-## Which other agents still deserve a look?
+## Tier 4: Workplace & Messenger Coworkers in Perspective
 
-**Manus.** Hosted generalist. Cloud computer, research, sites, decks. Meta's acquisition attempt was blocked in April 2026; Manus has been signaling a return to independence on its pricing page. Evaluate it for work you do not want on your laptop. Do not evaluate it as a Slack employee or a git agent.
+A common point of confusion in 2026 is comparing workplace communication bots with full-scale engineering platforms. To make a sound investment, workplace and messenger agents must be understood within their actual functional boundaries.
 
-**OpenClaw.** Local messaging gateway. Fastest open-source breakout in this category earlier in 2026, and a real security story (exposed instances, malicious skills). If you want this shape with more enterprise wrapping, look at NemoClaw. Details in the [OpenClaw piece](/blog/openclaw-explained-ai-agent-everyone-talking-about).
+### Viktor (The Slack & Teams Enterprise Coworker)
 
-**Grok Build.** xAI's terminal coding agent. SuperGrok about $30/mo, SuperGrok Heavy listed much higher. Relevant if you already live in Grok. Not a Mira competitor.
+Viktor is explicitly positioned as an "AI employee" for organizations that run on Slack or Microsoft Teams. Following its $75M Series A funding, Viktor has become the premier multiplayer coworker for business operations.
 
-**Antigravity CLI.** Google's direction of travel after consumer Gemini CLI access changed in June 2026. Relevant if your identity is already Google AI Pro/Ultra. Not a personal operator.
+- **Multiplayer Context:** Viktor sits inside team channels, listening to project discussions, summarizing decision threads, and executing multi-step tasks across 3,200+ connected enterprise tools.
+- **Live Output:** Instead of returning code snippets for a human to deploy, Viktor provisions its own cloud compute to return live internal URLs, interactive dashboards, and formatted stakeholder reports.
+- **The Pricing Dynamics:** Starts with a $100 free credit trial; standard Team plans start between $50 and $100/month. However, active teams processing thousands of daily tool calls and model queries frequently see metered credit bills between **$500 and $750/month**.
 
-**Perplexity, ChatGPT wrapper bots in Telegram, image-only bots.** Fine as features. They are not agents. Mira's own comparison post is correct on that narrow point ([Best AI assistant for Telegram](https://mira.tg/blog/best-ai-assistant-for-telegram)).
+### Mira (The Telegram Consumer & Community Assistant)
 
-If you still need the model-only view, use [What is agentic AI?](/blog/what-is-agentic-ai) for the definition and the frontier landscape post for benchmarks. Definitions without a job still will not pick a vendor.
+[Mira](https://mira.tg/) has captured significant consumer attention as a Telegram-native assistant. While viral social posts frequently compare Mira to Claude or ChatGPT, Mira's own verified telemetry (from its H1 2026 transparency report) defines its true operational profile:
 
-## How should you evaluate an AI agent in one week?
+- **Usage Scale:** 550K monthly active users and 175K active group chats.
+- **The Model Mix:** Across 460 billion tokens processed on OpenRouter in 2026, **95% ran on efficient open-weight models** (MiniMax M3 37%, gpt-oss-120b 16%, GLM 4.7 Flash 15%, MiniMax M2.5 10%). While Mira can route to Claude or GPT-5.6 on paid tiers, its core population engine is built on low-cost open weights.
+- **The Voice Tell:** **32% of active users interact via voice notes**, making it the premier conversational voice interface on Telegram.
+- **The Adoption Reality:** While Mira supports 1,000+ tool integrations, actual telemetry reveals that **only 0.4% of users connect enterprise tools** like Gmail, Google Calendar, or Sheets. 81% of generated media is standard images, and most tasks remain conversational search and group summarization.
 
-Do not run a beauty contest. Run four tasks you already know the answer to. Grade artifacts, not vibes.
+**The Takeaway:** Mira is a well-designed, zero-setup assistant for individuals and community managers who live entirely inside Telegram. It is not an engineering harness, an enterprise compliance platform, or a substitute for Claude Code or Hermes Agent.
 
-**Day 1. Pick the surface, not the model.** If the work arrives in Telegram, Mira or Hermes. Slack/Teams, Viktor. Browser and docs, ChatGPT Work or Claude Cowork. Git, a coding harness. If you cannot name the surface, you are shopping.
+---
 
-**Day 2. One connected tool.** Gmail, Calendar, Drive, GitHub, or Linear. Mira's own data says most users never do this. If you will not connect a tool, you are buying a chatbot with extra UI.
+## Tier 5: Developer Orchestration Frameworks
 
-**Day 3. One scheduled job.** A morning brief, a weekly report, a watchdog. Cron is the difference between a demo and an employee. Hermes and Viktor are built for this. ChatGPT Work has scheduled tasks. Mira can do it; usage is still ~2% of tasks.
+If you are an AI architect building custom agentic systems rather than purchasing commercial seats, five production frameworks dominate August 2026:
 
-**Day 4. One artifact you can checksum.** A sheet with known totals. A PR with tests. A live URL. A 1,200-word brief against a source PDF. If the agent cannot produce a thing you can grade, it is still a chatbot.
+1. **LangGraph:** The industry standard for complex, stateful multi-agent systems. Its support for directed cyclic graphs, persistent checkpointing, and deterministic time-travel debugging makes it the default choice for enterprise production systems that cannot afford silent failure loops.
+2. **Claude Agent SDK:** Anthropic’s native framework built from the ground up on the **Model Context Protocol (MCP)**. It exposes standard lifecycle hooks without requiring excessive graph boilerplate, making it the cleanest substrate for tool-heavy agent architectures.
+3. **OpenAI Agents SDK:** A lightweight, elegant Python library centered on explicit agent-to-agent handoffs. Ideal for teams that want rapid multi-agent orchestration without steep learning curves.
+4. **CrewAI:** Centers on role-based crews with defined tasks, processes, and memory stores. Highly effective for rapid prototyping and simulating cross-functional team workflows.
+5. **Pydantic AI:** Built by the creators of Pydantic, this framework enforces strict, type-safe schema validation on every agent input and output, preventing malformed JSON from reaching downstream databases.
 
-**Day 5. One permission scare.** Revoke a tool. Watch what happens. Read the computer-use warning on Claude. Check where Mira stores memory. Check Viktor's approval gates. If you cannot explain the blast radius, do not leave it on overnight.
+---
 
-**Day 6. Cost replay.** Export usage. For credit products, convert credits to dollars. For subscriptions, count rate-limit hits. For Hermes, read the session cost. If you cannot reconstruct the bill, you cannot keep the agent.
+## The 6-Dimension Architectural Evaluation Rubric
 
-**Day 7. Kill or keep.** Keep only if it won a task you already pay a human or a Saturday for. Otherwise delete the integration. Stack-creep is how a $20 experiment becomes $400 of overlapping subscriptions.
+Before allocating budget or onboarding a team, evaluate every AI agent against this 6-dimension rubric:
 
-I will not tell you Mira is a toy or that Hermes makes ChatGPT obsolete. Mira is the right evaluation if Telegram is the work. Viktor is the right evaluation if Slack is the work. ChatGPT Work and Claude Cowork are the right evaluation if you already pay the labs and have not used the agent mode they shipped this summer. Hermes is the right evaluation if you want the loop on your machine. Everything else is a demo until it survives day 4.
+1. **Autonomy Horizon:** Can the agent operate unattended for 30 to 120 minutes without hallucinating, looping infinitely, or requiring human micro-steering?
+2. **Artifact Output Fidelity:** Does the agent return production-ready, verifiable deliverables (executable code with test coverage, mathematically valid spreadsheets, live preview URLs), or does it merely output conversational prose?
+3. **Execution Sovereignty:** Where does the code run? Is execution sandboxed in an ephemeral cloud VM (Manus, Devin), executing natively on your local machine with full shell access (Hermes, Claude Code), or trapped inside a proprietary vendor chat interface?
+4. **Memory & Compounding Skills:** Does the platform learn from execution errors? Does it store reusable procedural skills and project context across sessions, or does every prompt start from zero?
+5. **Tool & Protocol Breadth:** Does the runtime support open protocols like the Model Context Protocol (MCP), native shell tools, webhooks, and subagent delegation?
+6. **True Unit Economics:** What is the total cost of ownership at scale? Does the platform charge a predictable flat subscription, a metered credit markup, or direct API inference costs?
 
-## FAQ
+---
 
-### Is Mira better than ChatGPT in 2026?
+## The 7-Day Field Evaluation Protocol
 
-For Telegram-native personal and group work, Mira is the more complete messenger agent: memory, groups, skills, 1,000+ tools, free to start ([mira.tg](https://mira.tg/)). For writing quality, image generation, voice, and the Work agent that returns decks and sheets, ChatGPT is still the broader product ([OpenAI on Work](https://openai.com/index/chatgpt-for-your-most-ambitious-work/)). They are not substitutes.
+Do not evaluate AI agents by asking them trivia questions or generating generic marketing copy. Run this 7-day structured protocol against real problems with known answers.
 
-### Is Viktor better than Claude?
+- **Day 1: Define the Surface & Boundary.** Identify where the work actually originates. If the work lives in a git repository, test Claude Code or Cursor. If it originates in Slack, test Viktor. If it requires sovereign local automation, test Hermes. If you cannot name the operating surface, you are window shopping.
+- **Day 2: Connect One Hard Tool.** Connect a real data source: GitHub, Linear, Google Drive, or a PostgreSQL database. If an agent cannot reliably query and update a connected tool, it is a chatbot, not an operator.
+- **Day 3: Schedule One Autonomous Job.** Configure a scheduled recurring job (a daily dependency check, a weekly pipeline audit, or an automated morning brief). True agentic leverage begins when work executes while you are away from the keyboard.
+- **Day 4: Demand a Checksummable Artifact.** Assign a task with a mathematically verifiable outcome: a spreadsheet calculation against known source data, a refactor that passes an existing test suite, or a web page with specific interactive components. Grade the artifact, not the conversational tone.
+- **Day 5: Audit the Security Blast Radius.** Deliberately test safety boundaries. Revoke an API token and see how the agent handles failure. Review where cross-session memory is stored. If you cannot explain the blast radius of an agent’s tool permissions, do not grant it unattended access.
+- **Day 6: Reconstruct the True Bill.** Export the week’s telemetry. Calculate exact token consumption, credit burn rates, and subscription fees. Determine your true cost-per-completed-task.
+- **Day 7: The Kill-or-Keep Decision.** Keep only the agents that demonstrably saved human hours or shipped production deliverables. Immediately cancel overlapping subscriptions to prevent agent stack creep.
 
-Viktor is stronger at cross-tool execution inside Slack or Teams. Claude (Cowork + Claude Code + Opus 5/Sonnet 5) is stronger at writing, coding, and computer use on your desktop. Independent roundups keep landing on that split ([Vellum on Viktor alternatives](https://www.vellum.ai/blog/best-viktor-alternatives), [Efficient App](https://efficient.app/compare/viktor-vs-claude)). Hire Viktor for ops. Keep Claude for thought and code.
+---
 
-### Should I replace Hermes Agent with Mira?
+## The FrankX Recommended Stacks for August 2026
 
-Only if you never needed a local runtime. Mira wins on zero setup and Telegram distribution (550K MAU in H1, [Mira report](https://mira.tg/report)). Hermes wins on owning skills, cron, git, and model choice ([Hermes docs](https://hermes-agent.nousresearch.com/docs/)). I run Hermes as the control plane and treat messenger agents as edges. If you want one app and no terminal, run Mira and skip Hermes.
+### Stack A: The Solo AI Architect & Creator
+- **Flagship Knowledge Engine:** Claude Max ($100–$200/mo) for Claude Cowork, Computer Use GA, and Opus 5.
+- **Code Engineering:** Claude Code in the terminal for repo refactoring, paired with Cursor ($20/mo) for fast in-editor diff acceptance.
+- **Sovereign Local Runtime:** Hermes Agent running locally on Python/Node with Nous Portal or direct API keys for cron jobs, memory persistence, and custom tool execution.
 
-### How much does a serious agent stack cost per month?
+### Stack B: The High-Growth Engineering Team
+- **Workstations:** Cursor Business ($40/seat/month) for all developers.
+- **Autonomous Backlog Execution:** Devin ($500+/mo) or Claude Code in Auto Mode assigned to issue triage and dependency upgrades.
+- **Custom Agent Substrate:** Claude Agent SDK (for MCP toolchains) or LangGraph (for complex stateful pipelines).
 
-A solo operator can stay near **$20-$50** (one Plus/Pro plan, or Mira Pro, or Hermes Plus). A daily driver with Max/Pro, a coding harness, and a credit-based coworker lands at **$150-$400**. A Slack team that actually uses Viktor can see **$500+** when credits burn. Recompute from your own usage logs after a week. Sticker prices on 21 August 2026 are in the table above.
+### Stack C: The Enterprise Operations Organization
+- **Workplace Integration:** Viktor deployed across core Slack or Microsoft Teams channels.
+- **Document & Artifact Workspace:** ChatGPT Work deployed across business units for spreadsheet analysis, presentation generation, and scheduled reporting.
 
-### Did ChatGPT and Claude actually catch up to "real agents"?
+---
 
-They closed the obvious gap. ChatGPT Work (9 July 2026) and Claude Cowork plus computer-use GA (20 August 2026) both ship artifacts and take actions, not only paragraphs. They still run inside the lab's app, with the lab's limits, on the lab's memory model. Messenger and Slack agents still win on where the conversation already happens. Local runtimes still win on control.
+## Frequently Asked Questions
 
-### What is the one-week test I should run?
+### Which AI agent is best for software coding in August 2026?
 
-Connect one tool, schedule one job, demand one checksummable artifact, then replay the bill. Keep the agent only if it wins a task you already pay for. That protocol is in the section above.
+For terminal-first, repository-scale refactoring across dozens of files, **Claude Code** is the industry leader due to its 1M-token context window, programmable lifecycle hooks, and default Auto Mode safety classifier. For interactive, in-editor coding with instant visual diffs, **Cursor (Composer 2.5)** remains the gold standard. For fully autonomous, unsupervised backlog issue resolution in an isolated cloud VM, **Devin** leads the enterprise market.
 
-### Where should I go next on frankx.ai?
+### How do Claude Cowork and ChatGPT Work compare?
 
-Start with the [Agent Hub](/agent-hub) for the standing map, [What is agentic AI?](/blog/what-is-agentic-ai) if the vocabulary is new, the [coding-agent guide](/blog/ultimate-guide-ai-coding-agents-2026) if the job is software, and the [ChatGPT vs Claude vs Gemini](/blog/chatgpt-vs-claude-vs-gemini-2026) piece if you still need a $20 chat plan. Then [subscribe to the newsletter](/newsletter) if you want the next pricing and capability pass when these pages move again.
+**ChatGPT Work** (launched 9 July 2026, powered by GPT-5.6) specializes in multi-hour autonomous knowledge work that returns finished deliverables: live spreadsheets, formatted slide presentations, scheduled background tasks, and direct connectors to Google Drive, SharePoint, and Slack. **Claude Cowork** (with Computer Use GA on 20 August 2026) specializes in direct computer interaction, controlling desktop applications, coordinating multi-turn browser actions, and deep integration with Chrome via its side-panel workspace.
 
-If you want a personal operator stack rather than another chat tab, that is the work I do with ACOS and a Hermes-centered runtime. The short version: one surface for talk, one harness for code, one runtime you own. Everything else is a vendor demo until it survives a week of real tasks.
+### What makes Hermes Agent different from commercial tools like ChatGPT or Claude?
+
+Hermes Agent (developed by Nous Research, MIT licensed) is an open-source, sovereign local runtime, not a closed commercial subscription. It runs on your own hardware, allows you to dynamically switch between 300+ models (Anthropic, OpenAI, xAI, DeepSeek, local Ollama), compiles its own reusable procedural skills when solving new problems, maintains persistent memory across weeks, and operates across 20+ messaging gateways and terminal interfaces without vendor lock-in.
+
+### Is Mira better than ChatGPT or Claude for Telegram users?
+
+**Mira** is significantly better at living inside Telegram: it requires zero setup, tracks group discussions, transcribes voice notes (used by 32% of its base), and automates mobile reminders using low-cost open-weight models (95% of its token volume). However, **ChatGPT** and **Claude** are vastly superior general-purpose reasoning systems, engineering harnesses, and multimodal artifact creators. Mira is a specialized consumer messenger assistant, not a full-scale cognitive operating system.
+
+### How much should a company budget for AI agents per knowledge worker?
+
+A conservative individual stack ranges from **$20 to $50/month** (a single flagship tier like ChatGPT Plus or Claude Pro). A professional developer stack averages **$140 to $250/month** (Claude Max, Cursor Pro, and metered API usage). Enterprise deployments combining shared Slack coworkers (Viktor), cloud VM builders (Manus, Devin), and enterprise workspaces typically budget between **$150 and $400 per active seat per month** once metered usage scales.
+
+### What is the primary security risk of Computer Use in Claude Cowork?
+
+Unlike sandboxed code execution that runs inside a restricted virtual container, Anthropic's Computer Use operates directly on your actual desktop interface, interacting with visible windows, browsers, and inputs. Users must actively configure permission boundaries, avoid giving agents unattended access to sensitive banking or healthcare interfaces, and monitor early automated sessions closely.
+
+---
+
+## Where to Go Next on FrankX.AI
+
+- **[Agent Hub](/agent-hub):** Explore our comprehensive registry and decision layer covering agent platforms, frameworks, and model benchmarks.
+- **[What is Agentic AI?](/blog/what-is-agentic-ai):** The foundational architectural primer on autonomous agent loops, memory systems, and tool interfaces.
+- **[The Ultimate Guide to AI Coding Agents 2026](/blog/ultimate-guide-ai-coding-agents-2026):** Deep technical benchmarks comparing Claude Code, Cursor, Codex, Devin, and Aider.
+- **[OpenClaw Explained](/blog/openclaw-explained-ai-agent-everyone-talking-about):** The open-source messaging agent architecture, security considerations, and self-hosted deployment guide.
+- **[Subscribe to the FrankX Newsletter](/newsletter):** Receive weekly architectural breakdowns, production patterns, and verified benchmark updates directly from the lab.

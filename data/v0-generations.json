@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-08T03:00:00Z",
+  "generatedAt": "2026-08-24T17:30:00Z",
   "waves": [
     {
       "wave": 1,
@@ -14,6 +14,13 @@
       "thinkingEnabled": true,
       "brandContext": "FrankX glassmorphism dark theme — ultra-premium",
       "generatedAt": "2026-02-08T03:42:00Z"
+    },
+    {
+      "wave": 3,
+      "model": "v0-pro (GPT-5 + MCP Starlight)",
+      "thinkingEnabled": true,
+      "brandContext": "FrankX Sovereign Creator OS — Next.js 16 + Vercel 1-Click Blueprints",
+      "generatedAt": "2026-08-24T17:30:00Z"
     }
   ],
   "generations": [
@@ -21,6 +28,7 @@
       "id": 1,
       "wave": 1,
       "title": "Homepage Hero",
+      "subtitle": "Liquid gradient hero with floating stat cards and scroll indicators",
       "chatId": "kp1UCsrMJI8",
       "demoUrl": "https://demo-kzmp73pqpq4yhafic577.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/kp1UCsrMJI8",
@@ -28,12 +36,15 @@
       "category": "landing-page",
       "color": "emerald",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 2,
       "wave": 1,
       "title": "Products Page",
+      "subtitle": "Filter system with featured ACOS card and animated gradient orbs",
       "chatId": "oyx6iwcSNW0",
       "demoUrl": "https://demo-kzmnco49r01u38scvpt5.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/oyx6iwcSNW0",
@@ -41,12 +52,15 @@
       "category": "product-page",
       "color": "violet",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 3,
       "wave": 1,
       "title": "Research Hub",
+      "subtitle": "Two-column grid with sidebar, category filters, credibility signals",
       "chatId": "hz3M0ZGsSF5",
       "demoUrl": "https://demo-kzmfrqnxel1daa64b510.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/hz3M0ZGsSF5",
@@ -54,12 +68,15 @@
       "category": "dashboard",
       "color": "cyan",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 4,
       "wave": 1,
       "title": "Blog Landing",
+      "subtitle": "Premium blog index with featured posts and reading time estimates",
       "chatId": "vDtmFp45TVR",
       "demoUrl": "https://demo-kzmp0oaq7ysi02dfvmnl.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/vDtmFp45TVR",
@@ -67,12 +84,15 @@
       "category": "landing-page",
       "color": "amber",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 5,
       "wave": 1,
       "title": "Inner Circle",
+      "subtitle": "Membership page with tier comparison and exclusive content preview",
       "chatId": "uaPnlaw4BIK",
       "demoUrl": "https://demo-kzmqkdpccsp0s5d342f9.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/uaPnlaw4BIK",
@@ -80,12 +100,15 @@
       "category": "product-page",
       "color": "rose",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 6,
       "wave": 1,
       "title": "ACOS Product",
+      "subtitle": "Agent orchestration showcase with metrics, features, and pricing",
       "chatId": "f6ToNz0ER5c",
       "demoUrl": "https://demo-kzmpc9qb5oxmrzbm1yz0.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/f6ToNz0ER5c",
@@ -93,12 +116,15 @@
       "category": "product-page",
       "color": "emerald",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 7,
       "wave": 1,
       "title": "AI Academy",
+      "subtitle": "Learning platform with course cards, progress tracking, and certifications",
       "chatId": "kmqMZu6QQHA",
       "demoUrl": "https://demo-kzmqdniz3r3vtbckv0w2.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/kmqMZu6QQHA",
@@ -106,12 +132,15 @@
       "category": "landing-page",
       "color": "blue",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 8,
       "wave": 1,
       "title": "About Page",
+      "subtitle": "Personal brand page with timeline, skills visualization, and values",
       "chatId": "vf8toBMjzWP",
       "demoUrl": "https://demo-kzmjven0djm9woxa21xi.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/vf8toBMjzWP",
@@ -119,12 +148,15 @@
       "category": "landing-page",
       "color": "teal",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 9,
       "wave": 1,
       "title": "Design System",
+      "subtitle": "Component showcase with color palette, typography, and spacing tokens",
       "chatId": "nmegM49Dti2",
       "demoUrl": "https://demo-kzmljrx9qevuoynjg4t1.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/nmegM49Dti2",
@@ -132,12 +164,15 @@
       "category": "component",
       "color": "violet",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 10,
       "wave": 1,
       "title": "Music Lab",
+      "subtitle": "Audio production hub with waveform visualizations and track management",
       "chatId": "r9XYZI8P0Mv",
       "demoUrl": "https://demo-kzmnibzj21qauou5xlcm.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/r9XYZI8P0Mv",
@@ -145,12 +180,15 @@
       "category": "dashboard",
       "color": "orange",
       "status": "completed",
-      "quality": "premium"
+      "quality": "premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 11,
       "wave": 2,
       "title": "Soulbook (v0-pro)",
+      "subtitle": "Premium self-discovery platform with pillar visualizations and golden path",
       "chatId": "qlakULoe76B",
       "demoUrl": "https://demo-kzmq92zhek8h1nsceani.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/qlakULoe76B",
@@ -159,26 +197,30 @@
       "color": "amber",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": false
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 12,
       "wave": 2,
       "title": "AI Team (v0-pro)",
+      "subtitle": "AI collaboration ecosystem with constellation graph and department cards",
       "chatId": "oPNEc2DTmO8",
       "demoUrl": "https://demo-kzmqowwh4n4vh5jyh6jo.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/oPNEc2DTmO8",
-      "fileCount": 0,
+      "fileCount": 4,
       "category": "landing-page",
       "color": "cyan",
-      "status": "pending",
+      "status": "completed",
       "quality": "ultra-premium",
-      "deployed": false
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 13,
       "wave": 2,
       "title": "Labs Premium (v0-pro)",
+      "subtitle": "Build sessions hub with animated beaker, lab flow, and replay archive",
       "chatId": "bTEnogK4Jrn",
       "demoUrl": "https://demo-kzmo42sze9qnoaml93ym.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/bTEnogK4Jrn",
@@ -187,12 +229,14 @@
       "color": "violet",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 14,
       "wave": 2,
       "title": "Inner Circle v2 (v0-pro)",
+      "subtitle": "Premium membership with animated shield, tiered pricing, and FAQ accordion",
       "chatId": "tZ41YuKQJoo",
       "demoUrl": "https://demo-kzmisu11l2vafqrmp560.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/tZ41YuKQJoo",
@@ -201,12 +245,14 @@
       "color": "rose",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 15,
       "wave": 2,
       "title": "Coaching (v0-pro)",
+      "subtitle": "AI coaching platform with program tiers, methodology, and booking flow",
       "chatId": "ixe64JX8hmQ",
       "demoUrl": "https://demo-kzmid0zlxhgrfar9tmd2.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/ixe64JX8hmQ",
@@ -215,12 +261,14 @@
       "color": "emerald",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true
+      "deployed": true,
+      "vercelDeployUrl": ""
     },
     {
       "id": 16,
       "wave": 2,
       "title": "Community (v0-pro)",
+      "subtitle": "Builder community hub with activity feed, member cards, and events",
       "chatId": "eCYweJC6UTl",
       "demoUrl": "https://demo-kzmn6q9sjk9cmrje1k4y.vusercontent.net",
       "chatUrl": "https://v0.dev/chat/eCYweJC6UTl",
@@ -229,7 +277,56 @@
       "color": "blue",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true
+      "deployed": true,
+      "vercelDeployUrl": ""
+    },
+    {
+      "id": 17,
+      "wave": 3,
+      "title": "Agentic Micro-SaaS Hub",
+      "subtitle": "Turnkey Next.js 16 + Edge API + Stripe/LemonSqueezy + MCP Agent Bridge",
+      "chatId": "uLvAQCH92Q6",
+      "demoUrl": "https://demo-kzmfwbazgsw0i9pf5b3g.vusercontent.net",
+      "chatUrl": "https://v0.dev/chat/uLvAQCH92Q6",
+      "fileCount": 6,
+      "category": "micro-saas",
+      "color": "emerald",
+      "status": "completed",
+      "quality": "ultra-premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
+    },
+    {
+      "id": 18,
+      "wave": 3,
+      "title": "AI CoE Command Console",
+      "subtitle": "Enterprise AI governance, model arena benchmarks, prompt registry & token telemetry",
+      "chatId": "kDrmtjc6u0W",
+      "demoUrl": "https://demo-kzmg2hfy774lsmrau3jo.vusercontent.net",
+      "chatUrl": "https://v0.dev/chat/kDrmtjc6u0W",
+      "fileCount": 14,
+      "category": "dashboard",
+      "color": "cyan",
+      "status": "completed",
+      "quality": "ultra-premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
+    },
+    {
+      "id": 19,
+      "wave": 3,
+      "title": "AI Music & Sound Catalog Browser",
+      "subtitle": "Production audio studio with waveform player, Suno prompt matrix & stem licensing",
+      "chatId": "morpYvu35Ym",
+      "demoUrl": "https://demo-kzmk1cfvg45y1i0npw7e.vusercontent.net",
+      "chatUrl": "https://v0.dev/chat/morpYvu35Ym",
+      "fileCount": 13,
+      "category": "creator-tool",
+      "color": "amber",
+      "status": "completed",
+      "quality": "ultra-premium",
+      "deployed": true,
+      "vercelDeployUrl": ""
     }
   ]
 }

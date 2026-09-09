@@ -211,3 +211,6 @@ link-checker-report.txt
 .lighthouse.json
 .extract-design-system/
 .claude/skills/.replaced/
+
+# scratch exports from the v0 template engine
+v0.html

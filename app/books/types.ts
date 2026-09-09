@@ -160,4 +160,15 @@ export interface BookReview {
   chapters?: BookChapterSummary[]; // chapter-by-chapter breakdown
   continueReading?: RelatedReadingItem[]; // external related books
   videos?: BookVideo[]; // YouTube / podcast deep-dives
+  guide?: {
+    tradition: string;
+    kind: 'Primary text' | 'Modern commentary' | 'Spiritual memoir' | 'Contemporary teaching';
+    claimBasis: 'Established' | 'Experiential' | 'Symbolic';
+    context: string;
+    editionNote: string;
+    readingPath: Array<{ title: string; note: string }>;
+    sources: Array<{ title: string; url: string; note: string }>;
+    relatedSlugs: string[];
+    aliases?: string[];
+  };
 }

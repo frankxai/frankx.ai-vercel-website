@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Direction A — The Operating Graph</title>
+  <desc id="desc">Selected visual direction showing desktop and mobile compositions for the FrankX Canva founder system.</desc>
+  <defs>
+    <linearGradient id="a-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07090A"/><stop offset="1" stop-color="#0B1112"/></linearGradient>
+    <linearGradient id="a-line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#10B981"/><stop offset="1" stop-color="#06B6D4"/></linearGradient>
+    <filter id="a-glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .display{font-family:Poppins,Arial,sans-serif}.body{font-family:Inter,Arial,sans-serif}.mono{font-family:'JetBrains Mono',monospace}
+      .white{fill:#F7FAF9}.muted{fill:#9AA9A5}.dim{fill:#64736F}.emerald{fill:#10B981}.cyan{fill:#06B6D4}
+    </style>
+  </defs>
+  <rect width="1800" height="1200" fill="url(#a-bg)"/>
+  <circle cx="1180" cy="310" r="300" fill="#10B981" opacity=".035"/>
+
+  <text x="64" y="64" class="mono emerald" font-size="14" letter-spacing="4">DIRECTION A · SELECTED</text>
+  <text x="64" y="112" class="display white" font-size="40" font-weight="650">The Operating Graph</text>
+  <text x="64" y="146" class="body muted" font-size="17">First read: a founder can see the whole system, then enter through the node that matches the job.</text>
+  <rect x="1480" y="44" width="256" height="72" rx="36" fill="#0D1816" stroke="#10B981" stroke-opacity=".35"/>
+  <text x="1510" y="74" class="mono emerald" font-size="11" letter-spacing="2">DECISION OWNER</text>
+  <text x="1510" y="98" class="body white" font-size="16" font-weight="650">Frank · brief-led</text>
+
+  <!-- Desktop composition -->
+  <rect x="64" y="188" width="1120" height="682" rx="28" fill="#090D0E" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <rect x="64" y="188" width="1120" height="54" rx="28" fill="#0D1213"/>
+  <circle cx="94" cy="215" r="5" fill="#586460"/><circle cx="112" cy="215" r="5" fill="#586460"/><circle cx="130" cy="215" r="5" fill="#586460"/>
+  <text x="165" y="221" class="mono dim" font-size="11">frankx.ai/canva</text>
+  <text x="100" y="292" class="mono emerald" font-size="11" letter-spacing="3">CANVA FOR FOUNDERS / INDEPENDENT FRANKX GUIDE</text>
+  <text x="100" y="350" class="display white" font-size="46" font-weight="650">Turn one founder insight into</text>
+  <text x="100" y="404" class="display white" font-size="46" font-weight="650">an agent-run visual publishing system.</text>
+  <text x="100" y="443" class="body muted" font-size="16">Brief the system once. Canva MCP supplies branded creative operations.</text>
+  <text x="100" y="468" class="body muted" font-size="16">FrankX connects the workflow to search, trust, and measurable demand.</text>
+  <rect x="100" y="496" width="256" height="48" rx="24" fill="#10B981"/>
+  <text x="126" y="526" class="body" fill="#03100C" font-size="14" font-weight="700">Inspect the agent architecture</text>
+  <text x="380" y="526" class="body white" font-size="14">Read the founder playbook →</text>
+
+  <!-- Graph -->
+  <path d="M215 656 C305 610 342 610 426 656 S550 702 635 656 S778 610 860 656 S997 702 1074 656" fill="none" stroke="url(#a-line)" stroke-width="2" opacity=".55"/>
+  <path d="M426 656 C485 740 578 752 635 656" fill="none" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="5 7" opacity=".5"/>
+  <g filter="url(#a-glow)"><circle cx="215" cy="656" r="5" fill="#10B981"/><circle cx="426" cy="656" r="5" fill="#10B981"/><circle cx="635" cy="656" r="5" fill="#06B6D4"/><circle cx="860" cy="656" r="5" fill="#10B981"/><circle cx="1074" cy="656" r="5" fill="#06B6D4"/></g>
+  <g class="body" font-size="13">
+    <rect x="132" y="615" width="166" height="82" rx="18" fill="#111918" stroke="#10B981" stroke-opacity=".36"/><text x="152" y="643" class="white" font-weight="650">01 · Founder brief</text><text x="152" y="669" class="muted">Intent + evidence</text>
+    <rect x="340" y="615" width="172" height="82" rx="18" fill="#111918" stroke="#10B981" stroke-opacity=".36"/><text x="360" y="643" class="white" font-weight="650">02 · Orchestrator</text><text x="360" y="669" class="muted">Plan + guardrails</text>
+    <rect x="544" y="607" width="182" height="98" rx="22" fill="#17152A" stroke="#7D2AE8" stroke-opacity=".8"/><circle cx="571" cy="636" r="12" fill="#7D2AE8"/><text x="592" y="641" class="white" font-weight="700">Canva MCP</text><text x="564" y="673" class="muted">Brand · create · export</text>
+    <rect x="775" y="615" width="170" height="82" rx="18" fill="#111918" stroke="#06B6D4" stroke-opacity=".36"/><text x="795" y="643" class="white" font-weight="650">04 · FrankX CMS</text><text x="795" y="669" class="muted">Guide + source graph</text>
+    <rect x="985" y="615" width="178" height="82" rx="18" fill="#111918" stroke="#06B6D4" stroke-opacity=".36"/><text x="1005" y="643" class="white" font-weight="650">05 · Demand loop</text><text x="1005" y="669" class="muted">Search + superfans</text>
+  </g>
+  <text x="100" y="803" class="mono dim" font-size="11">INTERACTION: CLICK A NODE → OPEN THE RELEVANT GUIDE, OFFICIAL DOC, OR MEASUREMENT VIEW</text>
+  <text x="100" y="831" class="mono emerald" font-size="11">ONE MOTION SET-PIECE: THE PRIMARY PATH DRAWS ONCE; REDUCED MOTION SHOWS THE COMPLETE GRAPH.</text>
+
+  <!-- Mobile recomposition -->
+  <text x="1236" y="186" class="mono dim" font-size="11" letter-spacing="2">MOBILE · 390 × 844</text>
+  <rect x="1236" y="204" width="390" height="666" rx="42" fill="#090D0E" stroke="#FFFFFF" stroke-opacity=".15"/>
+  <rect x="1379" y="216" width="104" height="19" rx="10" fill="#050708"/>
+  <text x="1264" y="286" class="mono emerald" font-size="9" letter-spacing="2">CANVA FOR FOUNDERS · INDEPENDENT</text>
+  <text x="1264" y="332" class="display white" font-size="29" font-weight="650">Turn one insight</text>
+  <text x="1264" y="368" class="display white" font-size="29" font-weight="650">into a publishing</text>
+  <text x="1264" y="404" class="display white" font-size="29" font-weight="650">system.</text>
+  <text x="1264" y="440" class="body muted" font-size="13">Canva MCP handles branded creative</text>
+  <text x="1264" y="461" class="body muted" font-size="13">operations. FrankX closes the loop.</text>
+  <rect x="1264" y="486" width="246" height="46" rx="23" fill="#10B981"/><text x="1286" y="515" class="body" fill="#03100C" font-size="13" font-weight="700">Inspect the agent architecture</text>
+  <text x="1264" y="569" class="mono dim" font-size="9" letter-spacing="2">THE GRAPH BECOMES A PATH</text>
+  <g class="body" font-size="12">
+    <path d="M1280 612 L1280 791" stroke="#10B981" stroke-width="2" opacity=".55"/>
+    <circle cx="1280" cy="624" r="5" fill="#10B981"/><text x="1300" y="628" class="white" font-weight="650">Founder brief</text><text x="1300" y="646" class="muted">Intent + evidence</text>
+    <circle cx="1280" cy="688" r="5" fill="#7D2AE8"/><text x="1300" y="692" class="white" font-weight="650">Canva MCP</text><text x="1300" y="710" class="muted">Brand · create · export</text>
+    <circle cx="1280" cy="752" r="5" fill="#06B6D4"/><text x="1300" y="756" class="white" font-weight="650">FrankX demand loop</text><text x="1300" y="774" class="muted">Publish · measure · learn</text>
+  </g>
+
+  <!-- Direction evidence -->
+  <line x1="64" y1="914" x2="1736" y2="914" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <text x="64" y="952" class="mono emerald" font-size="11" letter-spacing="2">TYPE POSTURE</text>
+  <text x="64" y="985" class="display white" font-size="24" font-weight="650">Poppins makes the promise.</text>
+  <text x="64" y="1013" class="body muted" font-size="15">Inter carries explanation. JetBrains Mono labels system state.</text>
+  <text x="520" y="952" class="mono emerald" font-size="11" letter-spacing="2">SEMANTIC MATERIALS</text>
+  <rect x="520" y="972" width="74" height="42" rx="12" fill="#0A0A0B" stroke="#FFFFFF" stroke-opacity=".2"/><rect x="604" y="972" width="74" height="42" rx="12" fill="#10B981"/><rect x="688" y="972" width="74" height="42" rx="12" fill="#06B6D4"/><rect x="772" y="972" width="74" height="42" rx="12" fill="#7D2AE8"/>
+  <text x="520" y="1037" class="mono dim" font-size="10">VOID · ACTION · SYSTEM · CANVA-ONLY</text>
+  <text x="930" y="952" class="mono emerald" font-size="11" letter-spacing="2">SIGNATURE MEMORY</text>
+  <text x="930" y="985" class="body white" font-size="16" font-weight="650">The clickable system is the hero proof.</text>
+  <text x="930" y="1013" class="body muted" font-size="14">Every node explains a real founder job and opens evidence.</text>
+  <text x="1360" y="952" class="mono emerald" font-size="11" letter-spacing="2">ANTI-REFERENCE</text>
+  <text x="1360" y="985" class="body white" font-size="15" font-weight="650">No generic automation canvas.</text>
+  <text x="1360" y="1013" class="body muted" font-size="13">No draggable-demo theater, card wall,</text><text x="1360" y="1034" class="body muted" font-size="13">or purple bleed beyond Canva-owned UI.</text>
+  <text x="64" y="1090" class="mono dim" font-size="10">SOURCE PRINCIPLES · FrankX taste.md (owned) · Canva MCP + brand guidelines (reference-only) · React Flow accessibility + workflow patterns (reference-only)</text>
+  <text x="64" y="1118" class="mono dim" font-size="10">PRODUCTION · deterministic React/XYFlow + official logo asset · WCAG focus states · semantic mobile list · no copied composition · no generated imagery</text>
+  <text x="64" y="1146" class="mono dim" font-size="10">RIGHTS · FrankX copy/layout: owned-or-generated-source · Canva mark: licensed-production within published brand terms · all other references: reference-only</text>
+</svg>

@@ -20,6 +20,49 @@ export interface OutboundLink {
 
 export const outboundLinks: OutboundLink[] = [
   {
+    slug: 'canva',
+    destination: 'https://www.canva.com/',
+    label: 'Canva',
+    category: 'tool',
+    description:
+      'Official Canva product page. Independent editorial link; not compensated as of 2026-08-30.',
+  },
+  {
+    slug: 'canva-mcp',
+    destination: 'https://www.canva.dev/docs/mcp/',
+    label: 'Official Canva MCP Documentation',
+    category: 'tool',
+    description: 'Official remote MCP server documentation and current capability overview.',
+  },
+  {
+    slug: 'canva-mcp-tools',
+    destination: 'https://www.canva.dev/docs/mcp/tools/',
+    label: 'Official Canva MCP Tools Documentation',
+    category: 'tool',
+    description: 'Official tool inventory, including Brand Kit and library capabilities.',
+  },
+  {
+    slug: 'canva-brand',
+    destination: 'https://www.canva.dev/docs/connect/guidelines/brand/',
+    label: 'Official Canva Brand Guidelines',
+    category: 'other',
+    description: 'Approved logo usage, clear space, naming, and non-endorsement rules.',
+  },
+  {
+    slug: 'canva-canvassador',
+    destination: 'https://www.canva.com/help/canva-affiliate-marketing-program/',
+    label: 'Official Canva Canvassador Status',
+    category: 'other',
+    description: 'Official current affiliate pathway and application status.',
+  },
+  {
+    slug: 'canva-youtube',
+    destination: 'https://www.youtube.com/@canva',
+    label: 'Official Canva YouTube Channel',
+    category: 'social',
+    description: 'First-party Canva product demonstrations and launch videos.',
+  },
+  {
     slug: 'ikigai-coach',
     destination:
       'https://chatgpt.com/g/g-69301df74bd8819184c26dfc0b50d65a-ikigai-branding-coach',

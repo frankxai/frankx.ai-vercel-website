@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -9,13 +9,26 @@ import test from 'node:test'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const script = path.join(root, 'scripts/should-deploy.sh')
 
+function getBashCommand() {
+  if (process.platform === 'win32') {
+    const gitBash = path.join(process.env.ProgramFiles || 'C:\\Program Files', 'Git\\bin\\bash.exe')
+    if (existsSync(gitBash)) return gitBash
+    const gitUsrBash = path.join(process.env.ProgramFiles || 'C:\\Program Files', 'Git\\usr\\bin\\bash.exe')
+    if (existsSync(gitUsrBash)) return gitUsrBash
+  }
+  return 'bash'
+}
+
 function run(env, cwd = root) {
-  return spawnSync('bash', [script], {
+  const bashCmd = getBashCommand()
+  const scriptArg = process.platform === 'win32' ? script.replace(/\\/g, '/') : script
+  return spawnSync(bashCmd, [scriptArg], {
     cwd,
     encoding: 'utf8',
     env: {
       ...process.env,
       VERCEL_GIT_PULL_REQUEST_ID: '',
+      VERCEL_GIT_COMMIT_SHA: '',
       VERCEL_GIT_PREVIOUS_SHA: '',
       VERCEL_GIT_REPO_OWNER: '',
       VERCEL_GIT_REPO_SLUG: '',
@@ -24,8 +37,97 @@ function run(env, cwd = root) {
   })
 }
 
+function fixture(t) {
+  const dir = mkdtempSync(path.join(tmpdir(), 'frankx-vercel-history-'))
+  t.after(() => rmSync(dir, { recursive: true, force: true }))
+  const git = (...args) => {
+    const result = spawnSync('git', args, { cwd: dir, encoding: 'utf8' })
+    assert.equal(result.status, 0, result.stderr)
+    return result.stdout.trim()
+  }
+  git('init')
+  git('config', 'user.name', 'Contract Test')
+  git('config', 'user.email', 'contract@example.invalid')
+  const commit = (file, content, message = 'fixture change') => {
+    mkdirSync(path.dirname(path.join(dir, file)), { recursive: true })
+    writeFileSync(path.join(dir, file), content)
+    git('add', file)
+    git('commit', '-m', message)
+    return git('rev-parse', 'HEAD')
+  }
+  return { dir, git, commit }
+}
+
+test('workspace security and lifecycle configuration triggers a preview build', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('README.md', 'baseline\n')
+  commit('pnpm-workspace.yaml', "allowBuilds:\n  'sharp@0.34.5': true\n")
+  const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_MESSAGE: 'dependency policy change' }, dir)
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Relevant changes detected/)
+})
+
+test('a requested same-commit redeploy takes precedence over agent-wip', (t) => {
+  const { dir, commit } = fixture(t)
+  const sha = commit('README.md', 'baseline\n', '[agent-wip] checkpoint')
+  const result = run({
+    VERCEL_ENV: 'preview',
+    VERCEL_GIT_COMMIT_SHA: sha,
+    VERCEL_GIT_PREVIOUS_SHA: sha,
+    VERCEL_GIT_COMMIT_MESSAGE: '[agent-wip] checkpoint',
+  }, dir)
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Manual redeploy/)
+})
+
+test('an explicit unavailable deployment base cannot fall back to a docs-only parent', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('app/page.tsx', 'runtime change\n')
+  commit('README.md', 'docs after runtime change\n')
+  const result = run({
+    VERCEL_ENV: 'preview',
+    VERCEL_GIT_PREVIOUS_SHA: 'ffffffffffffffffffffffffffffffffffffffff',
+    VERCEL_GIT_COMMIT_MESSAGE: 'docs after runtime change',
+  }, dir)
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Previous deployment commit is unavailable/)
+})
+
+test('a known previous deployment includes relevant changes before the latest docs commit', (t) => {
+  const { dir, commit } = fixture(t)
+  const previous = commit('README.md', 'baseline\n')
+  commit('app/page.tsx', 'runtime change\n')
+  commit('README.md', 'later docs\n')
+  const result = run({
+    VERCEL_ENV: 'preview',
+    VERCEL_GIT_PREVIOUS_SHA: previous,
+    VERCEL_GIT_COMMIT_MESSAGE: 'later docs',
+  }, dir)
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Relevant changes detected/)
+})
+
+test('a docs-only preview retains the inexpensive skip path', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('README.md', 'baseline\n')
+  commit('README.md', 'edited docs\n')
+  const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_MESSAGE: 'edited docs' }, dir)
+  assert.equal(result.status, 0, result.stdout + result.stderr)
+  assert.match(result.stdout, /No relevant paths changed/)
+})
+
+test('a first preview without a parent proceeds', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('README.md', 'first commit\n')
+  const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_MESSAGE: 'first commit' }, dir)
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /No base commit available/)
+})
+
 test('Vercel ignore command is valid Bash', () => {
-  const result = spawnSync('bash', ['-n', script], { encoding: 'utf8' })
+  const bashCmd = getBashCommand()
+  const scriptArg = process.platform === 'win32' ? script.replace(/\\/g, '/') : script
+  const result = spawnSync(bashCmd, ['-n', scriptArg], { encoding: 'utf8' })
   assert.equal(result.status, 0, result.stderr)
 })
 
@@ -79,4 +181,136 @@ test('the first coherent commit after agent-wip is forced to build', () => {
   } finally {
     rmSync(dir, { recursive: true, force: true })
   }
+})
+
+// The branch-vs-main skip is only worth anything if it fires inside Vercel's
+// shallow preview clone, where origin/main does not resolve. Measured
+// 2026-09-07: 0 of the previous 20 preview deployments were skipped.
+function remoteFixture(t) {
+  const { dir, git, commit } = fixture(t)
+  const bare = mkdtempSync(path.join(tmpdir(), 'frankx-vercel-remote-'))
+  t.after(() => rmSync(bare, { recursive: true, force: true }))
+  assert.equal(spawnSync('git', ['init', '--bare', '-b', 'main', bare]).status, 0)
+  git('branch', '-M', 'main')
+  // file:// forces the smart protocol, which is what supports --depth.
+  git('remote', 'add', 'origin', `file://${bare.split(path.sep).join('/')}`)
+  return { dir, git, commit, bare }
+}
+
+test('a branch matching main is skipped even when origin/main is absent', (t) => {
+  const { dir, git, commit } = remoteFixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  git('push', 'origin', 'main')
+  git('checkout', '-b', 'agent/claude/no-op')
+  commit('docs/notes.md', 'internal only\n')
+  // Vercel's clone has no remote-tracking main; the guard must fetch one.
+  git('update-ref', '-d', 'refs/remotes/origin/main')
+
+  const result = run(
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/no-op' },
+    dir,
+  )
+
+  assert.equal(result.status, 0, result.stdout + result.stderr)
+  assert.match(result.stdout, /no relevant diff against main \(FETCH_HEAD\)/)
+})
+
+test('a branch that changes rendered output still builds', (t) => {
+  const { dir, git, commit } = remoteFixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  git('push', 'origin', 'main')
+  git('checkout', '-b', 'agent/claude/real-change')
+  commit('app/page.tsx', 'export default function Page() { return null }\n')
+  git('update-ref', '-d', 'refs/remotes/origin/main')
+
+  const result = run(
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/real-change' },
+    dir,
+  )
+
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Relevant changes detected/)
+})
+
+test('an unreachable main falls through to the base-SHA diff instead of skipping', (t) => {
+  const { dir, commit, git } = fixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  commit('app/page.tsx', 'export default function Page() { return null }\n')
+  git('remote', 'add', 'origin', 'file:///frankx/does/not/exist')
+
+  const result = run(
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/offline' },
+    dir,
+  )
+
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /main not reachable for branch comparison/)
+})
+
+test('production is never skipped by the branch comparison', (t) => {
+  const { dir, git, commit } = remoteFixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  git('push', 'origin', 'main')
+
+  const result = run(
+    { VERCEL_ENV: 'production', VERCEL_GIT_COMMIT_REF: 'agent/claude/whatever' },
+    dir,
+  )
+
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Production deployment/)
+})
+
+// This guard used to scan the whole commit body, so a commit that merely
+// described the marker matched it. Measured 2026-09-08 on
+// starlight-intelligence-web, which had been given a copy of this file: commit
+// f0abfcb explained what [agent-wip] does and deployment
+// dpl_DFrAVq1r2rpZkTpQtiKgz9U4orcc was cancelled in 3.3 seconds by this check.
+// The failure runs toward NOT building, which is the direction that ships stale.
+test('a commit that only describes the marker in its body still builds', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  commit('app/page.tsx', 'export default function Page() { return null }\n')
+
+  const result = run(
+    {
+      VERCEL_ENV: 'preview',
+      VERCEL_GIT_COMMIT_MESSAGE:
+        'fix(vercel): give the ignore step filters that can skip a preview\n\n' +
+        'should-deploy.sh covered two cases: production always builds, [agent-wip]\n' +
+        'always skips. Every other preview built.\n',
+    },
+    dir,
+  )
+
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Relevant changes detected/)
+})
+
+test('the marker in the subject still skips', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+
+  const result = run(
+    {
+      VERCEL_ENV: 'preview',
+      VERCEL_GIT_COMMIT_MESSAGE: '[agent-wip] checkpoint\n\nbody text\n',
+    },
+    dir,
+  )
+
+  assert.equal(result.status, 0, result.stdout + result.stderr)
+  assert.match(result.stdout, /work-in-progress/)
+})
+
+test('a parent that only describes the marker does not force a build', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  commit('docs/notes.md', 'first\n', 'docs: record the checkpoint convention\n\nExplains how [agent-wip] works.')
+  commit('docs/notes.md', 'second\n', 'docs: more notes')
+
+  const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_MESSAGE: 'docs: more notes' }, dir)
+
+  assert.equal(result.status, 0, result.stdout + result.stderr)
+  assert.match(result.stdout, /No relevant paths changed/)
 })

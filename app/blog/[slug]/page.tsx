@@ -14,8 +14,6 @@ import {
   getAllBlogPostSummaries,
   getAllBlogPosts,
   getBlogPost,
-  extractFAQFromContent,
-  normalizeFAQText,
 } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
@@ -146,35 +144,9 @@ export default async function BlogPostPage({
     ...(post.tldr && { abstract: post.tldr }),
   }
 
-  // Visible body FAQs are canonical. Legacy frontmatter is used only when the
-  // document has no rendered FAQ section, matching scripts/generate-schema.mjs.
-  const bodyFaqs = extractFAQFromContent(post.content)
-  const frontmatterFaqs = (post.faq || [])
-    .map((faq) => ({
-      question: normalizeFAQText(faq.question || faq.q),
-      answer: normalizeFAQText(faq.answer || faq.a),
-    }))
-    .filter((faq) => faq.question && faq.answer)
-  const extractedFaqs = bodyFaqs.length > 0 ? bodyFaqs : frontmatterFaqs
-
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
       <JsonLd type="Article" data={articleSchema} />
-      {extractedFaqs.length > 0 && (
-        <JsonLd
-          type="FAQPage"
-          data={{
-            mainEntity: extractedFaqs.map(faq => ({
-              '@type': 'Question',
-              name: faq.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.answer,
-              },
-            })),
-          }}
-        />
-      )}
 
       {/* Aurora Background Effect */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -183,86 +155,91 @@ export default async function BlogPostPage({
       </div>
 
       <article className="relative pt-28 pb-24">
-        <div className="px-6">
-          <div className="mx-auto max-w-4xl">
-            <Breadcrumbs
-              items={[
-                { label: 'Blog', href: '/blog' },
-                { label: post.title, href: `/blog/${post.slug}` },
-              ]}
-            />
+        {/* Main Article Container with unified alignment */}
+        <div className="mx-auto max-w-4xl xl:max-w-6xl px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { label: 'Blog', href: '/blog' },
+              { label: post.title, href: `/blog/${post.slug}` },
+            ]}
+          />
 
-            <header className="mt-8 space-y-6">
-              {/* Category & Meta */}
-              <div className="flex flex-wrap items-center gap-3 text-xs font-medium">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-emerald-400">
-                  <Tag className="h-3.5 w-3.5" />
-                  {post.category}
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
-                  <Calendar className="h-3.5 w-3.5 text-white/40" />
-                  {new Date(post.date).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
-                  })}
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
-                  <Clock className="h-3.5 w-3.5 text-white/40" />
-                  {post.readingTime}
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
-                  <FileText className="h-3.5 w-3.5 text-white/40" />
-                  {wordCount.toLocaleString()} words
-                </span>
+          <header className="mt-8 space-y-6">
+            {/* Category & Meta */}
+            <div className="flex flex-wrap items-center gap-3 text-xs font-medium">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-emerald-400">
+                <Tag className="h-3.5 w-3.5" />
+                {post.category}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
+                <Calendar className="h-3.5 w-3.5 text-white/40" />
+                {new Date(post.date).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
+                <Clock className="h-3.5 w-3.5 text-white/40" />
+                {post.readingTime}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
+                <FileText className="h-3.5 w-3.5 text-white/40" />
+                {wordCount.toLocaleString()} words
+              </span>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] text-white tracking-tight">
+              {post.title}
+            </h1>
+
+            {/* Description / TL;DR */}
+            {post.tldr ? (
+              <div className="max-w-3xl rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-400">TL;DR</p>
+                <p className="mt-2 text-base leading-relaxed text-white/80 md:text-lg">{post.tldr}</p>
               </div>
+            ) : (
+              <p className="max-w-3xl text-lg md:text-xl leading-relaxed text-white/70">
+                {post.description}
+              </p>
+            )}
 
-              {/* Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white tracking-tight">
-                {post.title}
-              </h1>
-
-              {post.tldr ? (
-                <div className="max-w-3xl rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-400">TL;DR</p>
-                  <p className="mt-2 text-base leading-relaxed text-white/80 md:text-lg">{post.tldr}</p>
+            {/* Author Card */}
+            <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-6 md:flex-row md:items-center md:justify-between transition-colors duration-200 hover:border-white/[0.14]">
+              <div className="flex items-center gap-4">
+                <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover border border-emerald-500/30" />
+                <div>
+                  <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
+                  <div className="text-xs font-medium text-emerald-400">AI Architect & Independent Creator</div>
+                  <div className="text-xs text-white/40">Ex-Oracle AI Architect · Starlight & ACOS Systems</div>
                 </div>
-              ) : (
-                <p className="max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">
-                  {post.description}
-                </p>
-              )}
-
-              {/* Author Card */}
-              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-6 md:flex-row md:items-center md:justify-between transition-colors duration-200 hover:border-white/[0.14]">
-
-                <div className="flex items-center gap-4">
-                  <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover border border-emerald-500/30" />
-                  <div>
-                    <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                    <div className="text-xs font-medium text-emerald-400">AI Architect & Independent Creator</div>
-                    <div className="text-xs text-white/40">Ex-Oracle AI Architect · Starlight & ACOS Systems</div>
-                  </div>
-                </div>
-
-                {/* Interactive Header Actions */}
-                <ArticleHeaderActions title={post.title} url={canonicalUrl} />
               </div>
 
-              {/* Hero Image - 16/9 premium with proper margins, padding, sizing for overlays */}
-              <div className="mt-8 mb-8">
-                <HeroImage
-                  src={post.image}
-                  title={post.title}
-                  subtitle={post.description}
-                  alt={post.title}
-                  priority
-                />
-              </div>
+              {/* Interactive Header Actions */}
+              <ArticleHeaderActions title={post.title} url={canonicalUrl} />
+            </div>
 
+            {/* Hero Image - 16/9 premium with proper margins, padding, sizing for overlays */}
+            <div className="mt-8 mb-8">
+              <HeroImage
+                src={post.image}
+                title={post.title}
+                subtitle={post.description}
+                alt={post.title}
+                priority
+              />
+            </div>
+          </header>
+
+          {/* Two-Column Grid on xl+: Article Content (Left) + Table of Contents (Right Rail) */}
+          <div className="mt-10 xl:grid xl:grid-cols-[minmax(0,1fr)_18rem] xl:gap-12 xl:items-start">
+            {/* Main Reading Column */}
+            <div className="min-w-0 max-w-3xl xl:max-w-none">
               {/* Reading Goal */}
               {post.readingGoal && (
-                <div className="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-6">
+                <div className="mb-8 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-6">
                   <div className="flex items-start gap-3">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
                       {/* Target / aim SVG — avoids emoji rendering inconsistency */}
@@ -282,7 +259,7 @@ export default async function BlogPostPage({
 
               {/* AI Architect Recommendation — the signature routing box */}
               {post.architectNote && (
-                <div className="rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
+                <div className="mb-10 rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
                   <div className="flex items-start gap-3">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-500/20">
                       <svg className="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -312,73 +289,67 @@ export default async function BlogPostPage({
                   </div>
                 </div>
               )}
-            </header>
-          </div>
-        </div>
 
-        <div className="px-6 pt-12">
-          <div className="mx-auto max-w-3xl xl:max-w-[72rem]">
-            <div className="xl:flex xl:items-start xl:gap-12">
-              <div className="mx-auto min-w-0 max-w-3xl xl:mx-0 xl:flex-1">
-                <div className="article-prose">
-                  <MDXContent source={post.content} />
-                </div>
+              {/* MDX Body */}
+              <div className="article-prose">
+                <MDXContent source={post.content} />
               </div>
-              <aside className="hidden w-[17rem] shrink-0 xl:block" aria-label="Article sections">
-                <div className="sticky top-28">
-                  <TableOfContents variant="rail" />
+
+              {/* Value-driven CTA cards with SparkBorder */}
+              <div className="mt-16">
+                <BlogFooterCTA />
+              </div>
+
+              {/* Tags */}
+              {post.tags && post.tags.length > 0 && (
+                <div className="mt-12 border-t border-white/10 pt-8">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/60">Tags</h3>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <Link
+                        key={tag}
+                        href={`/blog?tag=${encodeURIComponent(tag.toLowerCase())}`}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/55 transition-[background-color,border-color,color] duration-200 hover:bg-emerald-500/10 hover:border-emerald-500/25 hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+                      >
+                        #{tag}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </aside>
+              )}
+
+              <RelatedResearch blogSlug={slug} />
+              <RelatedQualities href={`/blog/${post.slug}`} />
+
+              {/* Axi article footer accent */}
+              <div className="mt-12 flex items-center gap-4 border-t border-white/10 pt-8">
+                <Image
+                  src="/images/mascot/axi-v3-icon.png"
+                  alt="Axi"
+                  width={36}
+                  height={36}
+                  className="rounded-lg opacity-60"
+                />
+                <p className="text-xs text-white/30">
+                  Read on <span className="text-white/50">FrankX.AI</span> — AI Architecture, Music & Creator Intelligence
+                </p>
+              </div>
             </div>
+
+            {/* Sticky Right-Rail Sidebar */}
+            <aside className="hidden xl:block" aria-label="Article sections">
+              <div className="sticky top-28 space-y-6">
+                <TableOfContents variant="rail" />
+              </div>
+            </aside>
           </div>
+
           <TableOfContents variant="mobile" />
-
-          {/* Wider container for cards and meta sections */}
-          <div className="mx-auto max-w-4xl">
-            {/* Value-driven CTA cards with SparkBorder */}
-            <div className="mt-16">
-              <BlogFooterCTA />
-            </div>
-
-            {post.tags && post.tags.length > 0 && (
-              <div className="mt-12 border-t border-white/10 pt-8">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/60">Tags</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <Link
-                      key={tag}
-                      href={`/blog?tag=${encodeURIComponent(tag.toLowerCase())}`}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/55 transition-all duration-200 hover:bg-emerald-500/10 hover:border-emerald-500/25 hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
-                    >
-                      #{tag}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <RelatedResearch blogSlug={slug} />
-            <RelatedQualities href={`/blog/${post.slug}`} />
-
-            {/* Axi article footer accent */}
-            <div className="mt-12 flex items-center gap-4 border-t border-white/10 pt-8">
-              <Image
-                src="/images/mascot/axi-v3-icon.png"
-                alt="Axi"
-                width={36}
-                height={36}
-                className="rounded-lg opacity-60"
-              />
-              <p className="text-xs text-white/30">
-                Read on <span className="text-white/50">FrankX.AI</span> — AI Architecture, Music & Creator Intelligence
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Newsletter */}
-        <div className="px-6 pt-20">
-          <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-4xl xl:max-w-6xl px-4 sm:px-6 lg:px-8 pt-20">
+          <div className="max-w-3xl">
             <InlineLeadMagnet
               variant="banner"
               headline="Stay in the intelligence loop"
@@ -389,10 +360,8 @@ export default async function BlogPostPage({
         </div>
 
         {/* Related Posts */}
-        <div className="px-6 pt-4">
-          <div className="mx-auto max-w-4xl">
-            <Recommendations documents={documents} currentDocument={currentDocument} />
-          </div>
+        <div className="mx-auto max-w-4xl xl:max-w-6xl px-4 sm:px-6 lg:px-8 pt-8">
+          <Recommendations documents={documents} currentDocument={currentDocument} />
         </div>
       </article>
     </main>

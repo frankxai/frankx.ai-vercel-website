@@ -4,7 +4,12 @@ on:
   push:
     branches: [main, staging]
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+    # 'edited' matters here for the base branch, not the title: a pull_request
+    # run builds the merge commit, so this verdict is about one base. Retargeting
+    # fires only 'edited', and check runs are SHA-scoped, so without it a green
+    # build of the staging merge result stays green on the same head after the
+    # pull request is pointed at main, where the merge result differs.
+    types: [opened, synchronize, reopened, edited, ready_for_review]
     branches: [main, staging]
 
 # CI is an exact required landing check and test:build-integrity scans workflow
@@ -44,6 +49,13 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
+      # Before install on purpose: this reads package.json, pnpm-workspace.yaml
+      # and pnpm-lock.yaml with node builtins only, and a lockfile whose pins
+      # have been silently dropped is still self-consistent enough for
+      # --frozen-lockfile to succeed. Installing first would hide it.
+      - name: pnpm override guard
+        run: node scripts/check-pnpm-overrides.mjs
+
       - run: pnpm install --frozen-lockfile
 
       - name: Build integrity contract
@@ -63,6 +75,12 @@ jobs:
 
       - name: Language refusal gate
         run: pnpm run ai-slop:audit:strict
+
+      - name: Sacred-texts corpus
+        run: pnpm run validate:sacred-texts
+
+      - name: Library search and reading guides
+        run: pnpm run test:library
 
       - name: Build
         run: pnpm run build

@@ -1,171 +1,791 @@
 FrankX.AI Link Checker Report
 ================================================================================
-Generated: 2026-08-18T10:54:12.983Z
-Total Issues Found: 13
+Generated: 2026-08-31T22:14:49.373Z
+Total Issues Found: 72
 ================================================================================
 
 === ISSUES BY TYPE ===
 
-404 - Not Found: 1 issues
+Redirects: 2 issues
+--------------------------------------------------------------------------------
+
+1. Page: Resources
+   Href: /products/agentic-creator-os
+   Link text: "Agentic Creator OSBuild autonomous agents and developer-grade workflows.Explore"
+   Status code: 307
+
+2. Page: Agentic AI Center
+   Href: /products/agentic-creator-os
+   Link text: "Build with ACOSThe Agentic Creator OS as a practical reference system for agent teams, skills, and w..."
+   Status code: 307
+
+Other errors: 70 issues
 --------------------------------------------------------------------------------
 
 1. Page: Homepage
-   Href: /blueprint
-   Link text: "Sovereign Creator BlueprintThe complete 4-layer architecture connecting local-first agents, digital ..."
-   Status code: 404
+   Href: /music
+   Link text: "Enter Music→"
+   Status code: 500
 
-Other errors: 12 issues
---------------------------------------------------------------------------------
+2. Page: Homepage
+   Href: /library
+   Link text: "C3Knowledge systemsLibraryBooks, deep reads, notes, and reusable methods for learning in public.fran..."
+   Status code: 500
 
-1. Page: Blog
-   Href: /blog
-   Link text: "/blog"
+3. Page: Homepage
+   Href: /library
+   Link text: "C3Knowledge systemsLibraryBooks, deep reads, notes, and reusable methods for learning in public.fran..."
+   Status code: 500
 
-2. Page: Assessment
-   Href: /assessment
-   Link text: "/assessment"
+4. Page: Homepage
+   Href: /music
+   Link text: "Browse All Tracks"
+   Status code: 500
 
-3. Page: Enterprise
-   Href: /enterprise
-   Link text: "/enterprise"
+5. Page: Homepage
+   Href: /library
+   Link text: "Browse the Library"
+   Status code: 500
 
-4. Page: Coaching
-   Href: /coaching
-   Link text: "/coaching"
+6. Page: Homepage
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
 
-5. Page: Courses
-   Href: /courses
-   Link text: "/courses"
+7. Page: Homepage
+   Href: /library
+   Link text: "Library"
+   Status code: 500
 
-6. Page: Agentic AI Center
-   Href: /agentic-ai-center
-   Link text: "/agentic-ai-center"
+8. Page: Homepage
+   Href: /library
+   Link text: "Library"
+   Status code: 500
 
-7. Page: Founder Playbook
-   Href: /founder-playbook
-   Link text: "/founder-playbook"
+9. Page: Homepage
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
 
-8. Page: Realm
-   Href: /realm
-   Link text: "/realm"
+10. Page: Products
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
 
-9. Page: Library
+11. Page: Products
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+12. Page: Products
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+13. Page: Products
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+14. Page: Resources
+   Href: /music
+   Link text: "Vibe OS SessionsAI music experiments and studio notes.Explore"
+   Status code: 500
+
+15. Page: Resources
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+16. Page: Resources
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+17. Page: Resources
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+18. Page: Resources
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+19. Page: Blog
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+20. Page: Blog
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+21. Page: Blog
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+22. Page: Blog
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+23. Page: Assessment
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+24. Page: Assessment
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+25. Page: Assessment
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+26. Page: Assessment
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+27. Page: Enterprise
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+28. Page: Enterprise
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+29. Page: Enterprise
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+30. Page: Enterprise
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+31. Page: Coaching
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+32. Page: Coaching
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+33. Page: Coaching
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+34. Page: Coaching
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+35. Page: Courses
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+36. Page: Courses
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+37. Page: Courses
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+38. Page: Courses
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+39. Page: Agentic AI Center
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+40. Page: Agentic AI Center
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+41. Page: Agentic AI Center
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+42. Page: Agentic AI Center
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+43. Page: Founder Playbook
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+44. Page: Founder Playbook
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+45. Page: Founder Playbook
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+46. Page: Founder Playbook
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+47. Page: Realm
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+48. Page: Realm
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+49. Page: Realm
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+50. Page: Realm
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+51. Page: Library
    Href: /library
    Link text: "/library"
+   Status code: 500
 
-10. Page: Library OS Approach
-   Href: /library/approach
-   Link text: "/library/approach"
+52. Page: Library OS Approach
+   Href: /library
+   Link text: "Back to Library"
+   Status code: 500
 
-11. Page: Build Your Library
-   Href: /library/build
-   Link text: "/library/build"
+53. Page: Library OS Approach
+   Href: /library
+   Link text: "See it live →"
+   Status code: 500
 
-12. Page: Tao Te Ching Field Note
-   Href: /library/tao-te-ching
-   Link text: "/library/tao-te-ching"
+54. Page: Library OS Approach
+   Href: /library
+   Link text: "Browse the live library"
+   Status code: 500
+
+55. Page: Library OS Approach
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+56. Page: Library OS Approach
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+57. Page: Library OS Approach
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+58. Page: Library OS Approach
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+59. Page: Build Your Library
+   Href: /library
+   Link text: "frankx.ai/library"
+   Status code: 500
+
+60. Page: Build Your Library
+   Href: /library
+   Link text: "Browse the live library"
+   Status code: 500
+
+61. Page: Build Your Library
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+62. Page: Build Your Library
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+63. Page: Build Your Library
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+64. Page: Build Your Library
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+65. Page: Tao Te Ching Field Note
+   Href: /library
+   Link text: "Back to Library"
+   Status code: 500
+
+66. Page: Tao Te Ching Field Note
+   Href: /library/blitzscaling
+   Link text: "Blitzscaling: The Lightning-Fast Path to Building Massively Valuable CompaniesReid Hoffman and Chris..."
+   Status code: 500
+
+67. Page: Tao Te Ching Field Note
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+68. Page: Tao Te Ching Field Note
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+69. Page: Tao Te Ching Field Note
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+70. Page: Tao Te Ching Field Note
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
 
 
 === ISSUES BY PAGE ===
 
-Homepage: 1 issues
+Homepage: 9 issues
 --------------------------------------------------------------------------------
 
-1. Link returns 404 - Page not found
-   Href: /blueprint
-   Link text: "Sovereign Creator BlueprintThe complete 4-layer architecture connecting local-first agents, digital ..."
-   Status code: 404
+1. Link returns error status: 500
+   Href: /music
+   Link text: "Enter Music→"
+   Status code: 500
 
-Blog: 1 issues
+2. Link returns error status: 500
+   Href: /library
+   Link text: "C3Knowledge systemsLibraryBooks, deep reads, notes, and reusable methods for learning in public.fran..."
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "C3Knowledge systemsLibraryBooks, deep reads, notes, and reusable methods for learning in public.fran..."
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /music
+   Link text: "Browse All Tracks"
+   Status code: 500
+
+5. Link returns error status: 500
+   Href: /library
+   Link text: "Browse the Library"
+   Status code: 500
+
+6. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+7. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+8. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+9. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Products: 4 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /blog
-   Link text: "/blog"
+1. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
 
-Assessment: 1 issues
+2. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Resources: 6 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /assessment
-   Link text: "/assessment"
+1. Link redirects - Status: 307
+   Href: /products/agentic-creator-os
+   Link text: "Agentic Creator OSBuild autonomous agents and developer-grade workflows.Explore"
+   Status code: 307
 
-Enterprise: 1 issues
+2. Link returns error status: 500
+   Href: /music
+   Link text: "Vibe OS SessionsAI music experiments and studio notes.Explore"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+5. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+6. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Blog: 4 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /enterprise
-   Link text: "/enterprise"
+1. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
 
-Coaching: 1 issues
+2. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Assessment: 4 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /coaching
-   Link text: "/coaching"
+1. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
 
-Courses: 1 issues
+2. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Enterprise: 4 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /courses
-   Link text: "/courses"
+1. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
 
-Agentic AI Center: 1 issues
+2. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Coaching: 4 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /agentic-ai-center
-   Link text: "/agentic-ai-center"
+1. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
 
-Founder Playbook: 1 issues
+2. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Courses: 4 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /founder-playbook
-   Link text: "/founder-playbook"
+1. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
 
-Realm: 1 issues
+2. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Agentic AI Center: 5 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /realm
-   Link text: "/realm"
+1. Link redirects - Status: 307
+   Href: /products/agentic-creator-os
+   Link text: "Build with ACOSThe Agentic Creator OS as a practical reference system for agent teams, skills, and w..."
+   Status code: 307
+
+2. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+5. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Founder Playbook: 4 issues
+--------------------------------------------------------------------------------
+
+1. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+2. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Realm: 4 issues
+--------------------------------------------------------------------------------
+
+1. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+2. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
 
 Library: 1 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
+1. Page failed to load - Status: 500
    Href: /library
    Link text: "/library"
+   Status code: 500
 
-Library OS Approach: 1 issues
+Library OS Approach: 7 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /library/approach
-   Link text: "/library/approach"
+1. Link returns error status: 500
+   Href: /library
+   Link text: "Back to Library"
+   Status code: 500
 
-Build Your Library: 1 issues
+2. Link returns error status: 500
+   Href: /library
+   Link text: "See it live →"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /library
+   Link text: "Browse the live library"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+5. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+6. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+7. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Build Your Library: 6 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /library/build
-   Link text: "/library/build"
+1. Link returns error status: 500
+   Href: /library
+   Link text: "frankx.ai/library"
+   Status code: 500
 
-Tao Te Ching Field Note: 1 issues
+2. Link returns error status: 500
+   Href: /library
+   Link text: "Browse the live library"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+5. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+6. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
+
+Tao Te Ching Field Note: 6 issues
 --------------------------------------------------------------------------------
 
-1. Page failed to load - Status: 0 - fetch failed
-   Href: /library/tao-te-ching
-   Link text: "/library/tao-te-ching"
+1. Link returns error status: 500
+   Href: /library
+   Link text: "Back to Library"
+   Status code: 500
+
+2. Link returns error status: 500
+   Href: /library/blitzscaling
+   Link text: "Blitzscaling: The Lightning-Fast Path to Building Massively Valuable CompaniesReid Hoffman and Chris..."
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /music
+   Link text: "Music Showcase"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+5. Link returns error status: 500
+   Href: /library
+   Link text: "Library"
+   Status code: 500
+
+6. Link returns error status: 500
+   Href: /rss.xml
+   Link text: "RSS"
+   Status code: 500
 
 
 === SUMMARY ===
 Total pages tested: 15
-Total unique internal URLs checked: 93
-Total issues found: 13
-  - 404 errors: 1
+Total unique internal URLs checked: 402
+Total issues found: 72
+  - 404 errors: 0
   - External link issues: 0
-  - Redirects: 0
-  - Other errors: 12
+  - Redirects: 2
+  - Other errors: 70

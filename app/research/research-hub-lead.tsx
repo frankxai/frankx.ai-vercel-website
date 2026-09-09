@@ -138,7 +138,7 @@ export default function ResearchHubLead() {
               </p>
             </Link>
             <Link
-              href="/research/grok-4-6"
+              href="/llm-hub/grok-4-6"
               className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:bg-white/[0.04]"
             >
               <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">Vendor + AA · 12 Aug 2026</p>

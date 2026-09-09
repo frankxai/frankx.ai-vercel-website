@@ -1,93 +1,506 @@
 [
   {
     "page": "Homepage",
-    "link": "Sovereign Creator BlueprintThe complete 4-layer architecture connecting local-first agents, digital assets, and independent revenue streams.Learn more",
-    "href": "/blueprint",
-    "issue": "Link returns 404 - Page not found",
-    "statusCode": 404
+    "link": "Enter Music→",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Homepage",
+    "link": "C3Knowledge systemsLibraryBooks, deep reads, notes, and reusable methods for learning in public.frankx.ai/library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Homepage",
+    "link": "C3Knowledge systemsLibraryBooks, deep reads, notes, and reusable methods for learning in public.frankx.ai/library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Homepage",
+    "link": "Browse All Tracks",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Homepage",
+    "link": "Browse the Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Homepage",
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Homepage",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Homepage",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Homepage",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Products",
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Products",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Products",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Products",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Resources",
+    "link": "Agentic Creator OSBuild autonomous agents and developer-grade workflows.Explore",
+    "href": "/products/agentic-creator-os",
+    "issue": "Link redirects - Status: 307",
+    "statusCode": 307
+  },
+  {
+    "page": "Resources",
+    "link": "Vibe OS SessionsAI music experiments and studio notes.Explore",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Resources",
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Resources",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Resources",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Resources",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Blog",
-    "link": "/blog",
-    "href": "/blog",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Assessment",
-    "link": "/assessment",
-    "href": "/assessment",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Assessment",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Assessment",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Assessment",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Enterprise",
-    "link": "/enterprise",
-    "href": "/enterprise",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Enterprise",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Enterprise",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Enterprise",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Coaching",
-    "link": "/coaching",
-    "href": "/coaching",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Coaching",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Coaching",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Coaching",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Courses",
-    "link": "/courses",
-    "href": "/courses",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Courses",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Courses",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Courses",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Agentic AI Center",
-    "link": "/agentic-ai-center",
-    "href": "/agentic-ai-center",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Build with ACOSThe Agentic Creator OS as a practical reference system for agent teams, skills, and workflows.Open",
+    "href": "/products/agentic-creator-os",
+    "issue": "Link redirects - Status: 307",
+    "statusCode": 307
+  },
+  {
+    "page": "Agentic AI Center",
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Agentic AI Center",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Agentic AI Center",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Agentic AI Center",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Founder Playbook",
-    "link": "/founder-playbook",
-    "href": "/founder-playbook",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Founder Playbook",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Founder Playbook",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Founder Playbook",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Realm",
-    "link": "/realm",
-    "href": "/realm",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Realm",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Realm",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Realm",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Library",
     "link": "/library",
     "href": "/library",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "issue": "Page failed to load - Status: 500",
+    "statusCode": 500
   },
   {
     "page": "Library OS Approach",
-    "link": "/library/approach",
-    "href": "/library/approach",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Back to Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Library OS Approach",
+    "link": "See it live →",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Library OS Approach",
+    "link": "Browse the live library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Library OS Approach",
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Library OS Approach",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Library OS Approach",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Library OS Approach",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Build Your Library",
-    "link": "/library/build",
-    "href": "/library/build",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "frankx.ai/library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Build Your Library",
+    "link": "Browse the live library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Build Your Library",
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Build Your Library",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Build Your Library",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Build Your Library",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   },
   {
     "page": "Tao Te Ching Field Note",
-    "link": "/library/tao-te-ching",
-    "href": "/library/tao-te-ching",
-    "issue": "Page failed to load - Status: 0 - fetch failed",
-    "statusCode": 0
+    "link": "Back to Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Tao Te Ching Field Note",
+    "link": "Blitzscaling: The Lightning-Fast Path to Building Massively Valuable CompaniesReid Hoffman and Chris Yeh",
+    "href": "/library/blitzscaling",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Tao Te Ching Field Note",
+    "link": "Music Showcase",
+    "href": "/music",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Tao Te Ching Field Note",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Tao Te Ching Field Note",
+    "link": "Library",
+    "href": "/library",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Tao Te Ching Field Note",
+    "link": "RSS",
+    "href": "/rss.xml",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
   }
 ]

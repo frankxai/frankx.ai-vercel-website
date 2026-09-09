@@ -11,6 +11,12 @@
     ],
     "jw_o0xr8MWU": [
       "nvidia-gtc-2026-ai-architect-breakdown"
+    ],
+    "1GNYx2P1OB8": [
+      "ultimate-canva-ai-workflow-2026"
+    ],
+    "WJ8Jj44ehWE": [
+      "ultimate-canva-ai-workflow-2026"
     ]
   },
   "blogToVideo": {
@@ -25,6 +31,10 @@
     ],
     "nvidia-gtc-2026-ai-architect-breakdown": [
       "jw_o0xr8MWU"
+    ],
+    "ultimate-canva-ai-workflow-2026": [
+      "1GNYx2P1OB8",
+      "WJ8Jj44ehWE"
     ]
   },
   "videoToWatchlist": {

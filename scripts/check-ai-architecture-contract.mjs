@@ -13,6 +13,20 @@ await Promise.all([
 ])
 
 const failures = []
+const hub = await readFile(new URL('app/ai-architecture/page.tsx', root), 'utf8')
+if (!/const GUIDE_COMMIT = '[a-f0-9]{40}'/.test(hub)) {
+  failures.push('working guide needs an immutable full source commit')
+}
+if (!hub.includes('ai-architect/tree/${GUIDE_COMMIT}/guide') ||
+    !hub.includes('ai-architect/blob/${GUIDE_COMMIT}/guide/editorial/review-gates.md') ||
+    !hub.includes('2026 working edition (GitHub)') ||
+    !hub.includes('Final-book reviews remain open.')) {
+  failures.push('working guide must expose canonical source, draft label, and final-review limits')
+}
+const pillar = await readFile(new URL('components/ai-architecture/pillar/PillarGuide.tsx', root), 'utf8')
+for (const unsupported of ['almost all production failure', 'will be cheaper, faster', 'no merge step can adjudicate', '4 August 2026']) {
+  if (pillar.includes(unsupported)) failures.push(`unsupported guide assertion returned: ${unsupported}`)
+}
 if (sources.length < 10) failures.push('official source atlas contains fewer than ten architectures')
 if (!sources.every((source) =>
   source.docsUrl &&

@@ -17,6 +17,28 @@ function logClick(entry: Record<string, unknown>) {
   }
 }
 
+function hasPrivacyOptOut(request: NextRequest) {
+  return (
+    request.headers.get('dnt') === '1' ||
+    request.headers.get('sec-gpc') === '1'
+  )
+}
+
+function sanitizeReferrer(value: string | null) {
+  if (!value) return null
+  try {
+    const url = new URL(value)
+    return `${url.origin}${url.pathname}`
+  } catch {
+    return null
+  }
+}
+
+function getDeviceClass(userAgent: string | null) {
+  if (!userAgent) return 'unknown'
+  return /mobile|android|iphone|ipad/i.test(userAgent) ? 'mobile' : 'desktop'
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
@@ -28,14 +50,16 @@ export async function GET(
     return NextResponse.redirect(new URL('/404', request.url), 302)
   }
 
-  logClick({
-    slug,
-    destination: link.destination,
-    category: link.category,
-    referrer: request.headers.get('referer') ?? null,
-    userAgent: request.headers.get('user-agent') ?? null,
-    timestamp: new Date().toISOString(),
-  })
+  if (!hasPrivacyOptOut(request)) {
+    logClick({
+      slug,
+      destination: link.destination,
+      category: link.category,
+      referrer: sanitizeReferrer(request.headers.get('referer')),
+      device: getDeviceClass(request.headers.get('user-agent')),
+      timestamp: new Date().toISOString(),
+    })
+  }
 
   return NextResponse.redirect(link.destination, 302)
 }

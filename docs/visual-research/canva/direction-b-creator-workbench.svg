@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Direction B — The Creator Workbench</title>
+  <desc id="desc">Alternative visual direction showing a studio workbench for the FrankX Canva founder system.</desc>
+  <defs>
+    <linearGradient id="b-bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#080A0B"/><stop offset="1" stop-color="#0A0D0D"/></linearGradient>
+    <linearGradient id="b-paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E9F4EF"/><stop offset="1" stop-color="#BFE6D8"/></linearGradient>
+    <style>.display{font-family:Poppins,Arial,sans-serif}.body{font-family:Inter,Arial,sans-serif}.mono{font-family:'JetBrains Mono',monospace}.white{fill:#F7FAF9}.muted{fill:#9AA9A5}.dim{fill:#64736F}.emerald{fill:#10B981}</style>
+  </defs>
+  <rect width="1800" height="1200" fill="url(#b-bg)"/>
+  <text x="64" y="64" class="mono dim" font-size="14" letter-spacing="4">DIRECTION B · PRESERVED ALTERNATIVE</text>
+  <text x="64" y="112" class="display white" font-size="40" font-weight="650">The Creator Workbench</text>
+  <text x="64" y="146" class="body muted" font-size="17">First read: this is a working studio where one idea becomes a family of publishable artifacts.</text>
+
+  <!-- Desktop composition -->
+  <rect x="64" y="188" width="1120" height="682" rx="28" fill="#0B0F10" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <rect x="64" y="188" width="1120" height="54" rx="28" fill="#0F1414"/>
+  <circle cx="94" cy="215" r="5" fill="#586460"/><circle cx="112" cy="215" r="5" fill="#586460"/><circle cx="130" cy="215" r="5" fill="#586460"/>
+  <text x="165" y="221" class="mono dim" font-size="11">frankx.ai/canva</text>
+  <text x="100" y="292" class="mono emerald" font-size="11" letter-spacing="3">CANVA FOR FOUNDERS / INDEPENDENT FRANKX GUIDE</text>
+  <text x="100" y="344" class="display white" font-size="43" font-weight="650">Turn one founder insight into</text>
+  <text x="100" y="395" class="display white" font-size="43" font-weight="650">an agent-run visual publishing system.</text>
+  <text x="100" y="437" class="body muted" font-size="16">Brief the system once. Canva MCP supplies branded creative operations.</text>
+  <text x="100" y="462" class="body muted" font-size="16">FrankX connects the workflow to search, trust, and measurable demand.</text>
+  <rect x="100" y="492" width="256" height="48" rx="24" fill="#10B981"/>
+  <text x="126" y="522" class="body" fill="#03100C" font-size="14" font-weight="700">Inspect the agent architecture</text>
+  <text x="380" y="522" class="body white" font-size="14">Read the founder playbook →</text>
+
+  <!-- Workbench rail and stage -->
+  <rect x="100" y="586" width="202" height="228" rx="20" fill="#101515" stroke="#FFFFFF" stroke-opacity=".1"/>
+  <text x="122" y="618" class="mono dim" font-size="10" letter-spacing="2">OUTPUT QUEUE</text>
+  <rect x="122" y="642" width="158" height="42" rx="12" fill="#17201E"/><rect x="134" y="653" width="20" height="20" rx="5" fill="#10B981" opacity=".32"/><text x="164" y="670" class="body white" font-size="12">Founder guide</text>
+  <rect x="122" y="696" width="158" height="42" rx="12" fill="#17201E"/><rect x="134" y="707" width="20" height="20" rx="5" fill="#06B6D4" opacity=".32"/><text x="164" y="724" class="body white" font-size="12">Architecture post</text>
+  <rect x="122" y="750" width="158" height="42" rx="12" fill="#17201E"/><rect x="134" y="761" width="20" height="20" rx="5" fill="#7D2AE8" opacity=".55"/><text x="164" y="778" class="body white" font-size="12">Canva visual</text>
+
+  <rect x="326" y="568" width="548" height="262" rx="22" fill="#111817" stroke="#10B981" stroke-opacity=".24"/>
+  <text x="350" y="604" class="mono emerald" font-size="10" letter-spacing="2">ACTIVE ARTIFACT · FOUNDER SYSTEM MAP</text>
+  <rect x="350" y="628" width="298" height="174" rx="14" fill="url(#b-paper)"/>
+  <text x="370" y="660" class="mono" fill="#14463A" font-size="9" letter-spacing="1.5">FROM INSIGHT TO DEMAND</text>
+  <text x="370" y="700" class="display" fill="#0B1A16" font-size="25" font-weight="700">Build the asset.</text>
+  <text x="370" y="730" class="display" fill="#0B1A16" font-size="25" font-weight="700">Keep the evidence.</text>
+  <path d="M371 758 H620" stroke="#0B1A16" stroke-opacity=".25"/>
+  <circle cx="386" cy="780" r="6" fill="#10B981"/><circle cx="428" cy="780" r="6" fill="#16A9AF"/><circle cx="470" cy="780" r="6" fill="#7D2AE8"/>
+  <text x="680" y="651" class="mono dim" font-size="9">SOURCE</text><text x="680" y="673" class="body white" font-size="13">Founder brief v3</text>
+  <text x="680" y="710" class="mono dim" font-size="9">BRAND</text><text x="680" y="732" class="body white" font-size="13">FrankX / Tech</text>
+  <text x="680" y="769" class="mono dim" font-size="9">STATE</text><text x="680" y="791" class="body emerald" font-size="13">Human reviewed</text>
+
+  <rect x="898" y="586" width="242" height="228" rx="20" fill="#101515" stroke="#FFFFFF" stroke-opacity=".1"/>
+  <text x="920" y="618" class="mono dim" font-size="10" letter-spacing="2">INSPECTOR</text>
+  <text x="920" y="655" class="body white" font-size="13" font-weight="650">Canva MCP operation</text>
+  <text x="920" y="682" class="body muted" font-size="12">Create from reviewed brief</text>
+  <line x1="920" y1="704" x2="1116" y2="704" stroke="#FFFFFF" stroke-opacity=".08"/>
+  <text x="920" y="736" class="mono dim" font-size="9">NEXT ACTION</text>
+  <rect x="920" y="753" width="164" height="38" rx="19" fill="#17152A" stroke="#7D2AE8" stroke-opacity=".7"/><text x="942" y="777" class="body white" font-size="12">Open in Canva ↗</text>
+  <text x="100" y="846" class="mono dim" font-size="10">MOTION: ARTIFACT FOCUS SHIFTS ON CLICK; NO AUTO-CAROUSEL, NO TEXT MOTION.</text>
+
+  <!-- Mobile recomposition -->
+  <text x="1236" y="186" class="mono dim" font-size="11" letter-spacing="2">MOBILE · 390 × 844</text>
+  <rect x="1236" y="204" width="390" height="666" rx="42" fill="#090D0E" stroke="#FFFFFF" stroke-opacity=".15"/>
+  <rect x="1379" y="216" width="104" height="19" rx="10" fill="#050708"/>
+  <text x="1264" y="286" class="mono emerald" font-size="9" letter-spacing="2">CANVA FOR FOUNDERS · INDEPENDENT</text>
+  <text x="1264" y="332" class="display white" font-size="29" font-weight="650">Turn one insight</text>
+  <text x="1264" y="368" class="display white" font-size="29" font-weight="650">into a publishing</text>
+  <text x="1264" y="404" class="display white" font-size="29" font-weight="650">system.</text>
+  <rect x="1264" y="438" width="246" height="46" rx="23" fill="#10B981"/><text x="1286" y="467" class="body" fill="#03100C" font-size="13" font-weight="700">Inspect the agent architecture</text>
+  <text x="1264" y="530" class="mono dim" font-size="9" letter-spacing="2">ACTIVE ARTIFACT</text>
+  <rect x="1264" y="552" width="334" height="212" rx="18" fill="#101716" stroke="#10B981" stroke-opacity=".24"/>
+  <rect x="1282" y="570" width="204" height="176" rx="12" fill="url(#b-paper)"/>
+  <text x="1297" y="597" class="mono" fill="#14463A" font-size="7">FROM INSIGHT TO DEMAND</text>
+  <text x="1297" y="631" class="display" fill="#0B1A16" font-size="19" font-weight="700">Build the asset.</text>
+  <text x="1297" y="656" class="display" fill="#0B1A16" font-size="19" font-weight="700">Keep the evidence.</text>
+  <path d="M1297 680 H1465" stroke="#0B1A16" stroke-opacity=".25"/>
+  <text x="1297" y="714" class="body" fill="#24584B" font-size="10">Founder guide · reviewed</text>
+  <circle cx="1535" cy="597" r="12" fill="#7D2AE8"/><text x="1512" y="633" class="mono dim" font-size="8">CANVA</text>
+  <text x="1508" y="686" class="mono dim" font-size="8">1 / 3</text>
+
+  <!-- Direction evidence -->
+  <line x1="64" y1="914" x2="1736" y2="914" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <text x="64" y="952" class="mono emerald" font-size="11" letter-spacing="2">TYPE POSTURE</text>
+  <text x="64" y="985" class="display white" font-size="24" font-weight="650">Display headline, tool-grade labels.</text>
+  <text x="64" y="1013" class="body muted" font-size="15">The artifact uses the same typography, not a template aesthetic.</text>
+  <text x="520" y="952" class="mono emerald" font-size="11" letter-spacing="2">SEMANTIC MATERIALS</text>
+  <rect x="520" y="972" width="74" height="42" rx="12" fill="#0A0A0B" stroke="#FFFFFF" stroke-opacity=".2"/><rect x="604" y="972" width="74" height="42" rx="12" fill="#10B981"/><rect x="688" y="972" width="74" height="42" rx="12" fill="#CFEADF"/><rect x="772" y="972" width="74" height="42" rx="12" fill="#7D2AE8"/>
+  <text x="520" y="1037" class="mono dim" font-size="10">VOID · ACTION · ARTIFACT · CANVA-ONLY</text>
+  <text x="930" y="952" class="mono emerald" font-size="11" letter-spacing="2">SIGNATURE MEMORY</text>
+  <text x="930" y="985" class="body white" font-size="16" font-weight="650">The live artifact is the center of gravity.</text>
+  <text x="930" y="1013" class="body muted" font-size="14">Queue, canvas, and inspector prove useful production work.</text>
+  <text x="1360" y="952" class="mono emerald" font-size="11" letter-spacing="2">ANTI-REFERENCE</text>
+  <text x="1360" y="985" class="body white" font-size="15" font-weight="650">No generic template gallery.</text>
+  <text x="1360" y="1013" class="body muted" font-size="13">No fake productivity dashboard, stock</text><text x="1360" y="1034" class="body muted" font-size="13">mockups, or rainbow creator-tool palette.</text>
+  <text x="64" y="1090" class="mono dim" font-size="10">SOURCE PRINCIPLES · FrankX taste.md (owned) · Canva developer production capabilities (reference-only) · Ableton-style tool density, principle only</text>
+  <text x="64" y="1118" class="mono dim" font-size="10">PRODUCTION · deterministic HTML/CSS artifact previews · static-first · click-selected output queue · accessible labels · no generated imagery</text>
+  <text x="64" y="1146" class="mono dim" font-size="10">RIGHTS · FrankX copy/layout/artifacts: owned-or-generated-source · Canva mark, if used: licensed-production within published terms · references: reference-only</text>
+</svg>

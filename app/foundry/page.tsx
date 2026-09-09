@@ -5,17 +5,18 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { FoundryApplicationForm } from '@/components/foundry/FoundryApplicationForm'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { FOUNDRY_FAQS } from '@/lib/foundry-faqs'
+import { siteConfig } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'FrankX Foundry — Operating Systems for Businesses We Believe In',
   description:
     'The Foundry installs complete AI operating systems into businesses: website, agent harness, quality gates, compounding memory. Evaluated applications only. Priority for sustainable, healthcare, and meaningful products.',
-  alternates: { canonical: 'https://frankx.ai/foundry' },
+  alternates: { canonical: `${siteConfig.url}/foundry` },
   openGraph: {
     title: 'FrankX Foundry',
     description:
       'Complete AI operating systems, installed into businesses we believe in. Application-only.',
-    url: 'https://frankx.ai/foundry',
+    url: `${siteConfig.url}/foundry`,
     images: [
       {
         url: '/images/blog/agentic-os-family-hero.png',
@@ -144,17 +145,17 @@ export default function FoundryPage() {
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai',
+          { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url,
           },
-          { '@type': 'ListItem', position: 2, name: 'Foundry', item: 'https://frankx.ai/foundry',
+          { '@type': 'ListItem', position: 2, name: 'Foundry', item: `${siteConfig.url}/foundry`,
           },
         ],
       },
       {
         '@type': 'Service',
         name: 'FrankX Foundry',
-        url: 'https://frankx.ai/foundry',
-        provider: { '@type': 'Person', name: 'Frank', url: 'https://frankx.ai',
+        url: `${siteConfig.url}/foundry`,
+        provider: { '@type': 'Person', name: 'Frank', url: siteConfig.url,
         },
         description:
           'Evaluated installs of the Agentic Business OS: website, AI-agent harness, quality gates, and compounding business memory.',

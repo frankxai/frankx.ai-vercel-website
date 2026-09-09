@@ -29,21 +29,39 @@ if [ "${VERCEL_ENV:-}" = "production" ]; then
   exit 1
 fi
 
+# An explicit same-SHA redeploy must take precedence over preview cost guards.
+# Operators use it after changing environment variables without changing files.
+if [ -n "$PREVIOUS_SHA" ] && [ "$CURRENT_SHA" = "$PREVIOUS_SHA" ]; then
+  echo "[should-deploy] Manual redeploy on same commit ($CURRENT_SHA) — PROCEEDING (likely env-var change)."
+  exit 1
+fi
+
 # 0a. Agents may push intermediate preview checkpoints without spending build
 #     minutes, including branch pushes made before a pull request exists.
 #     The final coherent commit MUST omit [agent-wip].
-COMMIT_MESSAGE="${VERCEL_GIT_COMMIT_MESSAGE:-}"
-if [ -z "$COMMIT_MESSAGE" ]; then
-  COMMIT_MESSAGE="$(git log -1 --format=%B HEAD 2>/dev/null)"
+#
+#     Subject line only. CLAUDE.md puts the marker in the commit subject, and
+#     scanning the whole body means any commit that merely *describes* the marker
+#     matches it. Measured 2026-09-08 on starlight-intelligence-web, which had
+#     been given a copy of this file: commit f0abfcb explained what [agent-wip]
+#     does, and deployment dpl_DFrAVq1r2rpZkTpQtiKgz9U4orcc was cancelled in 3.3
+#     seconds by this very check. A body scan fails toward NOT building, so the
+#     preview that would have verified the change never ran.
+COMMIT_SUBJECT="${VERCEL_GIT_COMMIT_MESSAGE:-}"
+if [ -z "$COMMIT_SUBJECT" ]; then
+  COMMIT_SUBJECT="$(git log -1 --format=%s HEAD 2>/dev/null)"
 fi
-if echo "$COMMIT_MESSAGE" | grep -Fq "[agent-wip]"; then
+COMMIT_SUBJECT="$(printf '%s\n' "$COMMIT_SUBJECT" | head -n 1)"
+if printf '%s' "$COMMIT_SUBJECT" | grep -Fq "[agent-wip]"; then
   echo "[should-deploy] Explicit agent work-in-progress checkpoint — SKIPPING build."
   exit 0
 fi
 
 # 0b. If the parent was an ignored checkpoint, force the first coherent commit
-#     to build before draft/path filters can skip it.
-if git log -1 --format=%B HEAD^ 2>/dev/null | grep -Fq "[agent-wip]"; then
+#     to build before draft/path filters can skip it. Subject only, to match 0a:
+#     a body scan here errs toward building, so it is wasteful rather than
+#     dangerous, but two definitions of "is a checkpoint" is worse than either.
+if git log -1 --format=%s HEAD^ 2>/dev/null | grep -Fq "[agent-wip]"; then
   echo "[should-deploy] Coherent checkpoint follows [agent-wip] — PROCEEDING."
   exit 1
 fi
@@ -63,19 +81,17 @@ if [ -n "${VERCEL_GIT_PULL_REQUEST_ID:-}" ] && [ -n "${VERCEL_GIT_REPO_OWNER:-}"
   fi
 fi
 
-# 1. Env-var-only redeploy (Vercel dashboard "Redeploy"): same SHA twice.
-#    The user clicked redeploy precisely because something changed (env vars).
-#    File diff would be empty → would falsely SKIP. Always PROCEED in this case.
-if [ -n "$PREVIOUS_SHA" ] && [ "$CURRENT_SHA" = "$PREVIOUS_SHA" ]; then
-  echo "[should-deploy] Manual redeploy on same commit ($CURRENT_SHA) — PROCEEDING (likely env-var change)."
-  exit 1
-fi
-
-# 2. Pick a base SHA to diff against:
+# 1. Pick a base SHA to diff against:
 #    - Prefer VERCEL_GIT_PREVIOUS_SHA (handles merge commits + multi-commit pushes correctly)
-#    - Fall back to HEAD^ (for previews where Vercel doesn't set the env var)
+#    - Fall back to HEAD^ only when Vercel did not supply a previous SHA.
+#      An explicit but unavailable base may precede relevant changes that HEAD^
+#      cannot see. Do not turn missing history into a docs-only verdict.
 BASE_SHA=""
-if [ -n "$PREVIOUS_SHA" ] && git cat-file -e "$PREVIOUS_SHA" 2>/dev/null; then
+if [ -n "$PREVIOUS_SHA" ]; then
+  if ! git cat-file -e "${PREVIOUS_SHA}^{commit}" 2>/dev/null; then
+    echo "[should-deploy] Previous deployment commit is unavailable — PROCEEDING."
+    exit 1
+  fi
   BASE_SHA="$PREVIOUS_SHA"
   echo "[should-deploy] Diffing against VERCEL_GIT_PREVIOUS_SHA $BASE_SHA"
 elif git rev-parse HEAD^ >/dev/null 2>&1; then
@@ -103,6 +119,8 @@ RELEVANT_PATHS=(
   types
   package.json
   pnpm-lock.yaml
+  # Dependency overrides and lifecycle approvals affect every install.
+  pnpm-workspace.yaml
   next.config.mjs
   vercel.json
   tailwind.config.js
@@ -120,7 +138,47 @@ RELEVANT_PATHS=(
   instrumentation.ts
 )
 
-# 3. Run the diff. Capture the exit code explicitly so we can distinguish:
+# 1b. Preview whose branch differs from main in no way that changes rendered
+#     output. Measured 2026-09-01: with six harnesses working, "Merge branch
+#     'main' into agent/..." commits rebuilt previews that reviewed nothing —
+#     the branch had merely caught up to main, and production already built
+#     that content.
+#
+#     "Is this a merge from main" is the wrong question: once a feature branch
+#     lands, BOTH its parents are ancestors of main, so ancestry cannot tell the
+#     two merge directions apart after the fact. What matters for a preview is
+#     simpler — does this branch differ from main at all?
+#
+#     Vercel clones previews shallow and without a remote-tracking origin/main,
+#     so the ref this needs is normally absent. An earlier version of this check
+#     was conditioned on origin/main already resolving and therefore never fired.
+#     A depth-1 fetch is enough: `git diff A B -- paths` compares two trees
+#     directly and needs no merge base.
+#
+#     Fail-safe to PROCEED: a failed fetch, an absent ref, or a git error all
+#     fall through to the base-SHA diff below rather than risking a false skip.
+if [ -n "${VERCEL_GIT_COMMIT_REF:-}" ] && [ "${VERCEL_GIT_COMMIT_REF:-}" != "main" ]; then
+  MAIN_REF=""
+  if git rev-parse --verify -q origin/main >/dev/null 2>&1; then
+    MAIN_REF="origin/main"
+  elif command -v timeout >/dev/null 2>&1 \
+       && timeout 45 git fetch --no-tags --depth=1 origin main >/dev/null 2>&1; then
+    MAIN_REF="FETCH_HEAD"
+  elif ! command -v timeout >/dev/null 2>&1 \
+       && git fetch --no-tags --depth=1 origin main >/dev/null 2>&1; then
+    MAIN_REF="FETCH_HEAD"
+  fi
+
+  if [ -z "$MAIN_REF" ]; then
+    echo "[should-deploy] main not reachable for branch comparison — continuing to base-SHA diff."
+  elif git diff --quiet "$MAIN_REF" HEAD -- "${RELEVANT_PATHS[@]}" 2>/dev/null; then
+    echo "[should-deploy] Branch has no relevant diff against main ($MAIN_REF) — SKIPPING build."
+    echo "[should-deploy] Nothing to preview that production has not already built."
+    exit 0
+  fi
+fi
+
+# 2. Run the diff. Capture the exit code explicitly so we can distinguish:
 #    rc=0 → no diff → SKIP
 #    rc=1 → diff exists → PROCEED
 #    rc=other → git error (corrupt repo, missing object, shallow clone parent unreachable) → PROCEED safely

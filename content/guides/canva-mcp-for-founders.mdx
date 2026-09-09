@@ -1,0 +1,541 @@
+---
+title: "Canva MCP for Founders: Build a Governed Creative Operating System"
+description: "A practical architecture guide to Canva's official remote MCP server: setup, permissions, human approval gates, reliability, and a production-ready founder workflow."
+date: "2026-08-30"
+author: "Frank Riemer"
+category: "AI Architecture"
+tags: ["canva", "mcp", "agentic-engineering", "creative-operations", "founder-systems"]
+image: "/images/canva/canva-founder-operating-graph-og.png"
+featured: true
+readingGoal: "Connect Canva to an AI assistant, then govern the connection as a reliable creative production system rather than an open-ended automation."
+tldr: "Canva's official remote MCP server gives an authenticated AI assistant tools for design discovery, generation, editing, assets, exports, folders, comments, and selected brand workflows. The founder advantage comes from the control system around those tools: per-user identity, explicit intent, source-grounded briefs, candidate review, transactional edits, publication approval, and measurable distribution."
+---
+
+# Canva MCP for Founders
+
+The valuable move is not asking an AI assistant to “make a graphic.”
+
+It is turning a founder decision into a governed chain of work:
+
+**research → brief → design candidate → review → controlled edit → export → publish → learn**
+
+Canva's official Model Context Protocol server gives an AI assistant a standardized connection to Canva. It can expose design discovery, generation, editing, assets, folders, exports, comments, and brand capabilities as tools inside an MCP-capable assistant. The official remote endpoint is:
+
+```text
+https://mcp.canva.com/mcp
+```
+
+That endpoint is only the integration boundary. It does not define your editorial standard, brand judgment, approval policy, publishing controls, or measurement loop. Those are your operating system.
+
+This field guide shows how I would design that system for a founder who wants more creative throughput without turning brand stewardship over to an autonomous loop.
+
+<Callout type="info">
+This is an independent compatibility and architecture guide for Canva. FrankX is not endorsed or certified by Canva. Technical and policy claims were checked against official Canva documentation on August 30, 2026. Re-check the linked sources before a production launch because tools, plan availability, limits, and policies can change.
+</Callout>
+
+## The System Boundary
+
+MCP standardizes how an assistant discovers and invokes tools. In this architecture, Canva remains the system that stores designs, assets, folders, permissions, and exports. Your agent remains responsible for interpreting intent and coordinating work. Your publishing stack remains responsible for what reaches the market.
+
+| Layer | Owns | Does not own |
+| --- | --- | --- |
+| Founder | Intent, constraints, approval, risk appetite | Low-level tool sequencing |
+| Orchestrator | Brief structure, routing, state, evidence, failure handling | Canva permissions or final brand judgment |
+| Canva MCP | Authenticated Canva tool access | Your content strategy or publishing authority |
+| Canva | Designs, assets, folders, Brand Kits, comments, exports | Your website release process |
+| Human review | Candidate choice, claims, visual quality, final release | Repetitive retrieval and formatting |
+| FrankX site | Canonical content, SEO/GEO structure, analytics, conversion | Editing the source Canva design |
+
+This separation matters. When a visual performs poorly, you can identify whether the failure began in the brief, tool selection, candidate quality, review, placement, or distribution. Without boundaries, every problem looks like “the AI made something weak.”
+
+## Two Connection Paths
+
+Canva documents two related paths. Choose the one that matches the job.
+
+### Path A: Connect your own AI assistant
+
+Use the Canva AI Connector when you want a supported assistant to work with the Canva account you already use. Canva's current help article lists connection paths for ChatGPT, Claude, and manual configurations, with plan and admin eligibility requirements. The names and placement of settings can change, so follow Canva's maintained [AI Connector setup guide](https://www.canva.com/help/mcp-agent-setup/) for your client rather than copying an old configuration from a blog.
+
+This path fits:
+
+- founder-led creative production
+- a small team working in its own Canva accounts
+- interactive design search, generation, editing, and export
+- workflows where the person who asks for the work can approve it
+
+### Path B: Integrate Canva into your own AI product
+
+Use the developer path when you are building an assistant, platform, or connector for other users. Canva's [MCP overview](https://www.canva.dev/docs/mcp/) says custom integrations may need their redirect URI allowlisted and reviewed. Each user still authenticates individually. Your product must also implement the partner-side security, permission, accessibility, reliability, and policy controls described in Canva's [MCP usage policy](https://www.canva.dev/docs/mcp/usage-policy/).
+
+This path fits:
+
+- a product that offers Canva capabilities to its users
+- a shared agent definition used by multiple authenticated people
+- an internal platform with formal IT and compliance ownership
+- a workflow that needs integration tests, telemetry, and support procedures
+
+Do not blur the two. A connection that works in a founder's personal assistant is not automatically a production-ready multi-user integration.
+
+## What the Official Server Can Do
+
+The current [Canva MCP tool catalog](https://www.canva.dev/docs/mcp/tools/) groups capabilities across the following operating domains.
+
+| Domain | Founder use | Control to add |
+| --- | --- | --- |
+| Discovery | Find designs, pages, content, assets, and folders | Scope searches to the current task; do not index the account by default |
+| Generation | Produce design candidates from a brief | Require the user to select a candidate |
+| Editing | Change text, fills, media, and supported elements through a transaction | Read first; preview; commit only after approval |
+| Brand | List Brand Kits and use brand templates where the plan permits | Keep one active brand context unless the user explicitly requests a merge |
+| Assets | Upload a public HTTPS asset for use in a design | Verify rights, origin, and destination before upload |
+| Export | Produce supported output formats | Validate dimensions, licensing, and publication destination |
+| Collaboration | Read and add comments or replies | Keep feedback attributable; do not treat every comment as approval |
+| Folders | Create, find, list, and move content | Use a predictable project taxonomy and avoid silent reorganization |
+
+Plan availability differs by tool. The developer overview currently describes core generation, editing, search, export, comments, and uploads across plans, while resizing and some template or Brand Kit workflows require higher tiers. The end-user AI Connector help article lists its own eligible plans. Treat the tool list returned to the authenticated client as runtime truth, and the official catalog as planning truth.
+
+## Identity and Permissions
+
+The Canva MCP permission model should change how you architect the agent.
+
+### Authentication is per person
+
+Canva requires each user to authenticate. There is no organization-wide service account for the MCP connection. Access follows that person's Canva account, team memberships, and rights to each design or asset.
+
+This is good architecture. It prevents a shared agent from becoming a shared superuser.
+
+For a multi-user product:
+
+- share agent configuration and workflow logic, not OAuth tokens
+- authenticate every invoking user with their own Canva account
+- evaluate permissions at runtime
+- segment logs by user session
+- never reuse one person's Canva context for another person
+- make the content being accessed visible before a consequential action
+
+### Permissions remain object-specific
+
+An authenticated user can only perform operations allowed by their access to a design, folder, asset, or Brand Kit. An agent must not treat “Canva connected” as “all Canva content writable.”
+
+Build for partial access:
+
+```yaml
+authorization_policy:
+  identity: current_authenticated_user
+  discovery: explicit_task_scope
+  edit: requires_object_edit_permission
+  export: requires_destination_and_format
+  publish: never_granted_to_canva_agent
+  cross_user_cache: prohibited
+```
+
+This is an architecture example, not Canva configuration syntax. Its purpose is to make the policy visible and testable in your own control plane.
+
+## The FrankX Reference Architecture
+
+The recommended FrankX pattern separates cognition, creation, judgment, and distribution.
+
+| Node | Input | Output | Gate |
+| --- | --- | --- | --- |
+| 1. Founder intent | Audience, offer, channel, desired action | One decision brief | Founder accepts scope |
+| 2. Evidence desk | First-party sources, product truth, current claims | Source ledger and allowed claims | Unsupported claims removed |
+| 3. Creative orchestrator | Decision brief and source ledger | Structured Canva brief | Brand and channel constraints pass |
+| 4. Canva MCP | Authenticated request | Search result, candidate, draft edit, or export | Tool call approval where the client supports it |
+| 5. Visual editor | Candidate set or editing transaction | Reviewed design state | Human selects candidate and approves commit |
+| 6. Release system | Approved export and canonical copy | Site or campaign asset | URL, accessibility, disclosure, and device checks pass |
+| 7. Intelligence loop | Search, conversion, retention, and qualitative signals | Next hypothesis | Learning updates the brief, not the Brand Kit data |
+
+In graph terms, the state machine is:
+
+```text
+INTENT
+  -> SOURCED_BRIEF
+  -> CANVA_READ
+  -> CANDIDATES
+  -> HUMAN_SELECTION
+  -> EDIT_TRANSACTION
+  -> HUMAN_COMMIT
+  -> EXPORT_VALIDATION
+  -> RELEASE_APPROVAL
+  -> PUBLISHED
+  -> MEASURED
+```
+
+Every arrow needs an explicit transition condition. If the candidate is not selected, there is no design creation. If the editing transaction is not committed, there is no saved edit. If release approval fails, the export does not publish.
+
+See the interactive architecture and current Canva operating brief on the [FrankX Canva hub](/canva#agent-graph).
+
+## Setup: From Connection to Controlled Production
+
+### Step 1: Define one narrow job
+
+Start with a single outcome such as:
+
+> Turn an approved long-form article into one founder-grade LinkedIn document, using the active Brand Kit, with no new claims and a human approval before export.
+
+Avoid starting with “manage all our content.” That creates ambiguous access, weak evaluation, and no reliable stop condition.
+
+Write down:
+
+- the authenticated operator
+- allowed source material
+- Canva folder or design scope
+- permitted tools
+- prohibited actions
+- approval points
+- export destination
+- success metric
+
+### Step 2: Confirm account, plan, and admin eligibility
+
+For an end-user connection, check Canva's [current AI Connector eligibility](https://www.canva.com/help/mcp-agent-setup/). On managed teams, an administrator can control third-party integration access. For a product integration, confirm the developer access and redirect URI requirements in the [MCP overview](https://www.canva.dev/docs/mcp/).
+
+If the expected tool is missing, do not assume an outage. It may be unavailable because of the client, plan, admin policy, or the authenticated user's object permissions.
+
+### Step 3: Configure the official remote endpoint
+
+In an MCP client that accepts a remote server, use Canva's documented endpoint:
+
+```text
+https://mcp.canva.com/mcp
+```
+
+If your client needs a different transport, follow the current official example in Canva's documentation. Do not paste an unverified package command or third-party proxy into production configuration.
+
+For a supported consumer assistant, use the maintained connection flow in that assistant and Canva's official help article. For a custom product, use the authentication method and redirect flow described by Canva rather than inventing a static token pattern.
+
+### Step 4: Authenticate as the operating user
+
+Complete Canva's OAuth flow using the account that should own or access the resulting designs. Record the user identity in your audit context, but never log tokens or secrets.
+
+For a shared agent, repeat authentication per person. Do not “simplify” the architecture by moving one founder token into a common runtime.
+
+### Step 5: Discover tools at runtime
+
+List the tools exposed to the client. Do not assume the catalog is fixed or that every client surfaces identical tool names. Canva's verification guide explicitly recommends listing tools from the client and comparing behavior with the [MCP Inspector verification process](https://www.canva.dev/docs/mcp/verify-integration/).
+
+Start with a read-only test:
+
+> Find my most recently edited Canva design and return its title and last modified time. Do not edit, copy, move, or export anything.
+
+Confirm that:
+
+- the assistant asks for tool approval when the client supports approvals
+- the correct Canva account is active
+- returned designs match that user's access
+- no write operation occurs
+- the result does not expose another user's content
+
+### Step 6: Test the smallest write path
+
+Use a disposable test design. Ask the assistant to read the current text, start an edit, change one non-sensitive line, show the intended change, then wait.
+
+The important boundary is the transaction:
+
+1. read design content
+2. start the editing transaction
+3. perform the requested operation in draft
+4. review the result
+5. commit or cancel
+
+Canva's verification documentation states that edits remain in draft until commit. Your interface should never say “saved” before the commit succeeds.
+
+### Step 7: Add the release gate
+
+A successful Canva export is not a publishing decision.
+
+Before release, verify:
+
+- the claim set matches approved source material
+- the correct Brand Kit and template context were used
+- logo and partner marks follow their current usage rules
+- alt text or an equivalent textual description exists
+- mobile and desktop placements have been inspected
+- file format, dimensions, and weight match the destination
+- licensing errors are resolved rather than hidden
+- affiliate, sponsorship, or compatibility language is accurate
+- analytics identify the asset and destination without storing Canva credentials or signed URLs
+
+## Human Review Gates That Earn Their Cost
+
+Review every consequential transition, not every keystroke.
+
+| Gate | Human decision | Why it cannot be delegated safely |
+| --- | --- | --- |
+| Brief gate | Is this the right audience, promise, and action? | The agent cannot choose founder strategy by probability |
+| Candidate gate | Which concept represents the brand? | Canva generation returns options; taste and context select one |
+| Claims gate | Are all factual and commercial claims supported? | Polished layouts can make weak claims appear authoritative |
+| Commit gate | Should these exact edits be saved? | The edit transaction is reversible until commit |
+| Export gate | Is the output licensed, accessible, and channel-ready? | Export success is not release readiness |
+| Publish gate | Should this reach the public and carry the FrankX name? | Publication creates brand and legal consequences |
+
+The result is not slower creative work. It is faster work with fewer expensive reversals.
+
+## A Production Brief the Agent Can Execute
+
+Use a structured brief rather than a paragraph of taste adjectives.
+
+```yaml
+project:
+  name: founder_canva_mcp_guide
+  objective: move qualified founders from architecture education to implementation
+audience:
+  primary: founder operating a content-led AI business
+  awareness: understands AI assistants, new to governed MCP workflows
+source_policy:
+  allowed:
+    - approved FrankX article copy
+    - current Canva first-party documentation
+  new_factual_claims: prohibited
+brand:
+  active_kit: frankx
+  tone: direct, technical, calm
+  visual_rule: one dominant idea per frame
+deliverable:
+  format: linkedin_document
+  pages: 8
+  call_to_action: read_the_full_guide
+approvals:
+  candidate_selection: human
+  edit_commit: human
+  export: human
+  publishing: release_owner
+```
+
+This schema is your agent contract. It is not a Canva tool payload. The orchestrator translates approved fields into whichever tools are actually available at runtime.
+
+## Security and Data Governance
+
+Canva's current [MCP usage policy](https://www.canva.dev/docs/mcp/usage-policy/) establishes boundaries that should shape your product design from the beginning.
+
+### Explicit action, not silent inventory
+
+Do not crawl, prefetch, enumerate, or index a user's designs, folders, or Brand Kits without a deliberate user action. Scheduled or background retrieval should be opt-in, controllable, and off by default.
+
+For a founder workflow, that means “find the launch deck in my Q3 folder” is valid intent. “Continuously copy everything in Canva into our vector database” is not a reasonable default and may violate policy.
+
+### Brand Kit data stays inside its permitted purpose
+
+Canva's policy says Brand Kit data accessed through MCP is for generating or modifying Canva designs. Do not export it into a separate design engine, turn it into generalized style embeddings, or use it to train or improve an external model.
+
+Your learning loop can retain campaign outcomes, approved copy decisions, and abstract performance hypotheses. It should not ingest or reproduce Canva's internal template or Brand Kit structures.
+
+### Signed URLs are temporary delivery mechanisms
+
+Canva's verification documentation notes that thumbnail, export, and download URLs can be signed and short-lived. Do not treat them as durable asset URLs. Move an approved export into your governed publishing storage, record the source design identifier where appropriate, and avoid retaining the signed delivery URL.
+
+### Logs should prove control, not collect content
+
+Record:
+
+- timestamp and authenticated user reference
+- workflow and request ID
+- tool name and outcome
+- design or folder identifier where operationally necessary
+- approval state
+- error category and retry count
+- export format and governed destination
+
+Do not record:
+
+- OAuth tokens or secrets
+- full design content by default
+- Brand Kit contents
+- temporary signed URLs
+- another user's context
+- prompts or assets for unrelated future model training
+
+### Publishing remains outside the design agent
+
+The Canva agent may create and export. It should not receive silent authority to publish to the FrankX website, ad account, newsletter, or social feed. Release is a separate capability with its own identity, checks, and audit trail.
+
+## Reliability Engineering
+
+Creative operations still need production engineering.
+
+### Expect asynchronous and long-running work
+
+Generation can take longer than a read operation. Canva's troubleshooting documentation recommends allowing up to 60 seconds for `generate-design` when timeouts occur. Your orchestrator should show a real state such as `generating`, `awaiting_selection`, or `failed`, not repeat the request because the first response was slow.
+
+### Respect rate limits
+
+The [official tool catalog](https://www.canva.dev/docs/mcp/tools/) publishes per-tool request-per-minute limits and plan availability. Current limits vary by operation. Discovery commonly allows more calls than generation, copy, import, export, or transaction boundaries.
+
+Production behavior should include:
+
+- bounded exponential backoff for rate-limit responses
+- idempotency or duplicate detection around retries
+- queues for bursty campaign work
+- a visible failure after the retry budget is exhausted
+- no attempt to evade per-user limits through parallel agents
+- telemetry by tool, status, latency, and workflow
+
+### Treat generated candidates as a set
+
+Generation returns candidates for selection. Do not fabricate a candidate identifier or auto-select an option without approval. Persist the user's selection as workflow state, then create the design from that real candidate.
+
+### Treat editing as a transaction
+
+Do not regenerate a whole design when the user asked for a targeted edit. Read, start the editing transaction, use the returned editable element identifiers, perform the operation, then commit. If a concurrent browser edit makes the transaction stale, cancel, start a fresh transaction, re-apply, and review again.
+
+### Upload before placing an external asset
+
+If the workflow uses an external image or logo URL, the URL must be publicly accessible over HTTPS for Canva to fetch it. Upload the asset first, then use the returned asset identifier in the edit. A raw URL is not a substitute for a successful upload.
+
+## Failure Modes and Recovery
+
+| Symptom | Likely boundary | Recovery |
+| --- | --- | --- |
+| Connector is missing | Plan, client, or admin eligibility | Check the current Canva help article and admin third-party integration controls |
+| Authentication succeeds but content is missing | Wrong account, team, or object permissions | Display the active Canva identity; verify sharing and edit rights |
+| Expected tool is absent | Client exposure or plan availability | List tools at runtime; do not call an assumed tool |
+| Canva is connected but another tool handles the prompt | Ambiguous routing across multiple MCP servers | Say “in Canva,” add routing policy, or ask the user to choose |
+| Generation times out | Client timeout below the operation duration | Hold state, extend the supported timeout, and avoid blind duplicate calls |
+| Candidate creation fails | Invalid or fabricated candidate reference | Use only a candidate returned by the generation call |
+| Edit appears successful but does not persist | Transaction was not committed or became stale | Inspect status; restart the transaction; re-apply; commit after review |
+| Asset upload returns a fetch error | URL is not public HTTPS or does not return successfully | Validate the URL and rights, then retry before editing |
+| Export fails with a license requirement | Design contains premium elements unavailable to the account | Resolve licensing or replace the element; never conceal the error |
+| Download link later stops working | Signed URL expired | Re-export; store approved outputs in publishing storage, not the signed URL |
+| Repeated rate-limit responses | Burst or unbounded retry loop | Queue work, back off, surface the limit, and reduce concurrency |
+
+For custom integrations, Canva recommends comparing the same call with [MCP Inspector](https://www.canva.dev/docs/mcp/verify-integration/). If Inspector succeeds and your product fails, inspect your request formatting and response handling. If both fail in the same way, check the upstream status and returned error.
+
+## The Evaluation Suite
+
+A production workflow should pass these cases before it touches a real campaign.
+
+### Clean success case
+
+1. The user requests a known design by name.
+2. The agent reads the content.
+3. The user requests one targeted text edit.
+4. The agent opens a transaction and previews the change.
+5. The user approves.
+6. The agent commits and exports the correct format.
+7. The release system validates the output but does not auto-publish.
+
+### Incomplete brief case
+
+The user asks: “Make campaign assets.”
+
+Expected behavior: the orchestrator asks for the audience, channel, source copy, active brand, and desired action. It does not search the entire design library or generate speculative claims.
+
+### Permission boundary case
+
+The user asks to edit a design they can view but not edit.
+
+Expected behavior: discovery may succeed; editing fails or remains unavailable; the agent explains the permission boundary and does not request a stronger identity behind the scenes.
+
+### Ambiguous tool-routing case
+
+The user asks: “Make a poster,” while Canva and a general image generator are connected.
+
+Expected behavior: the assistant asks which production environment to use, or routes to Canva when the workflow explicitly declares Canva as the design system.
+
+### Adversarial extraction case
+
+The user asks to copy every Brand Kit and template structure into an external training set.
+
+Expected behavior: refuse that action and explain the Canva policy boundary. No discovery or export tools run.
+
+## Operating Metrics
+
+Measure verified production outcomes, not raw design volume.
+
+| Metric | Definition | Why it matters |
+| --- | --- | --- |
+| Brief acceptance rate | Briefs approved without strategic rewrite | Tests the intake system |
+| Candidate selection rate | Generation runs that produce a usable selected candidate | Tests brief-to-visual translation |
+| Edit recovery rate | Failed or stale transactions recovered without duplicate output | Tests orchestration quality |
+| First-pass release rate | Exports passing claims, brand, accessibility, and device review | Tests the full system |
+| Time to approved asset | Intent recorded to release-approved export | Measures useful velocity |
+| Reuse depth | Approved source assets adapted across governed channels | Measures leverage without content sprawl |
+| Qualified action rate | Visitors who take the intended next step after seeing the asset | Connects creative work to founder value |
+
+The metric that matters most is not “designs created per week.” It is **approved assets that move the right audience into the right next action without creating brand debt**.
+
+## A 30-Day Founder Rollout
+
+### Week 1: Establish the boundary
+
+- choose one workflow and one Canva folder
+- connect one authenticated operator
+- document allowed tools and approval gates
+- pass read-only, permission, and failure tests
+- create an audit record without sensitive content
+
+### Week 2: Run a controlled production loop
+
+- turn one approved article into one design format
+- require candidate selection and commit approval
+- export into governed storage
+- inspect desktop and mobile placements
+- record time, errors, and review changes
+
+### Week 3: Add distribution variants
+
+- reuse the same sourced brief for two additional channels
+- keep one canonical message and adapt hierarchy by format
+- measure qualified actions, not impressions alone
+- add bounded retries and alerting for repeated failures
+
+### Week 4: Promote the workflow
+
+- write the standard operating procedure
+- assign an owner and review date
+- add regression tests for tool routing and permissions
+- approve the workflow for a second operator with their own authentication
+- keep new channels behind the same release gate
+
+At the end of the month, you should have a small creative operating system with receipts, not a pile of generated experiments.
+
+## Frequently Asked Questions
+
+### What is the official Canva MCP server URL?
+
+Canva documents the remote endpoint as `https://mcp.canva.com/mcp`. Use the exact endpoint from the [official Canva MCP overview](https://www.canva.dev/docs/mcp/) and re-check it before deployment.
+
+### Does Canva MCP use one organization-wide login?
+
+No. Canva requires each user to authenticate individually. Access follows that user's designs, shared content, team memberships, and object permissions. A shared agent may share its logic, but not another user's Canva OAuth identity.
+
+### Can an agent access every design after Canva is connected?
+
+No. Operations match the authenticated user's access. Editing is available only when that user has edit permission for the target design or asset.
+
+### Should I let the agent auto-publish Canva exports?
+
+Not by default. Keep export and publication as separate capabilities. A human or governed release service should check claims, rights, brand, accessibility, device presentation, destination, and disclosure before publication.
+
+### Can I copy Brand Kit data into another model or design engine?
+
+Canva's current usage policy says Brand Kits retrieved through MCP may only be used to generate or modify Canva designs. It prohibits extracting, caching, transforming, or reusing that data outside permitted Canva-rendered outputs, including external model training or generalized style embeddings.
+
+### Why do tool names or available actions differ between clients?
+
+Clients can surface the connection differently, and plan or permission availability can vary. List the tools exposed at runtime and use Canva's current documentation as the source of truth. Do not build routing around a remembered screenshot of one client.
+
+### How do I keep Canva from losing a prompt to another connected tool?
+
+Declare the production environment in the brief and say “in Canva” when routing matters. In a custom product, add explicit tool-routing evaluations. If the request is genuinely ambiguous, ask the user rather than selecting a server silently.
+
+### Is the Canva AI Connector the same as a custom product integration?
+
+No. The end-user connector is a maintained connection experience for supported assistants and eligible Canva accounts. A custom product integration carries additional redirect, OAuth, security, policy, reliability, and review obligations.
+
+## Source Ledger
+
+Verified August 30, 2026:
+
+- [Canva Model Context Protocol overview](https://www.canva.dev/docs/mcp/) — endpoint, capabilities, authentication, permissions, plan notes, and access path
+- [MCP tools and rate limits](https://www.canva.dev/docs/mcp/tools/) — current tool catalog, limits, and plan availability
+- [Canva AI Connector setup](https://www.canva.com/help/mcp-agent-setup/) — supported connection paths, end-user eligibility, admin controls, and troubleshooting
+- [Verify your Canva MCP integration](https://www.canva.dev/docs/mcp/verify-integration/) — runtime tool discovery, transactional editing, candidate selection, routing tests, and signed URL handling
+- [Canva MCP usage policy](https://www.canva.dev/docs/mcp/usage-policy/) — brand, privacy, Brand Kit, permission, retry, and distribution requirements
+- [Canva MCP prohibited use](https://www.canva.dev/docs/mcp/prohibited-use/) — extraction, reverse engineering, competitive use, and AI training boundaries
+- [Troubleshooting and common questions](https://www.canva.dev/docs/mcp/troubleshooting/) — timeouts, individual authentication, and domain requirements
+
+## Continue the System
+
+Start with the [FrankX Canva operating hub](/canva) for the interactive graph, content roadmap, and current partnership disclosure. Then use [The Ultimate Canva AI Workflow for Founders](/blog/ultimate-canva-ai-workflow-2026) to turn this architecture into a repeatable editorial and campaign rhythm.
+
+The endpoint connects the tools. The operating model makes the work trustworthy.

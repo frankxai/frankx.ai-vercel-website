@@ -5,7 +5,9 @@ import { welcomeEmail1 } from '@/lib/email-templates-welcome'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 import { innerCircleWaitlistEmail } from '@/lib/email-templates-inner-circle'
 import { mvuRsvpConfirmation, mvuRsvpAlert } from '@/lib/email-templates-mvu'
+import { sanitizeIntent } from '@/lib/diagnostic/waitlist-intents'
 import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
+import { siteConfig } from '@/lib/seo'
 
 export const runtime = 'nodejs'
 
@@ -146,7 +148,7 @@ async function subscriptionRateLimit(request: NextRequest, email: string) {
 async function sendPreferenceConfirmation(email: string, topics: TopicKey[]) {
   const token = createPreferenceToken(email, topics)
   if (!token) throw new Error('Preference signing is not configured')
-  const url = `https://frankx.ai/newsletter/preferences?token=${encodeURIComponent(token)}`
+  const url = `${siteConfig.url}/newsletter/preferences?token=${encodeURIComponent(token)}`
   const labels = topics.length ? topics.join(', ') : 'no optional topics'
   await sendEmail({
     to: email,
@@ -186,7 +188,7 @@ function premiumPacksConfirmation(name: string) {
       'along the way. No spam, and nothing to pay until a pack is in your hands.',
       '',
       'In the meantime, the free Foundation pack is ready now:',
-      'https://frankx.ai/agents/packs/meta',
+      `${siteConfig.url}/agents/packs/meta`,
       '',
       '— Frank',
     ].join('\n'),
@@ -258,7 +260,7 @@ async function sendWelcomeEmail(
   if (listType === 'music-lab') {
     template = musicPromptsEmail({
       recipientName: name || 'Creator',
-      downloadUrl: 'https://frankx.ai/api/download?product=5-suno-prompts',
+      downloadUrl: `${siteConfig.url}/api/download?product=5-suno-prompts`,
       recipientEmail: email,
     })
   } else if (listType === 'ikigai-branding') {
@@ -327,6 +329,9 @@ export async function POST(request: NextRequest) {
     const name = String(raw.name ?? '').trim().slice(0, MAX_NAME_LEN)
     const source = String(raw.source ?? '').trim().slice(0, MAX_SOURCE_LEN)
     const intention = String(raw.intention ?? '').trim().slice(0, 280)
+    // Product attribution for a waitlist signup. Without it a per-product CTA lands as an
+    // anonymous row on a generic list and the demand read cannot tell the products apart.
+    const intent = sanitizeIntent(raw.intent)
     const listType = resolveListType(raw.listType)
     const hasExplicitTopics = Object.prototype.hasOwnProperty.call(raw, 'topics')
     const explicitTopics = hasExplicitTopics ? canonicalizeTopics(raw.topics) : null
@@ -423,6 +428,7 @@ export async function POST(request: NextRequest) {
     // live exclusively in Resend's native topic state.
     const properties: Record<string, string> = { source: listType }
     if (source) properties.referrer = source
+    if (intent) properties.intent = intent
     // Persist the RSVP intention so the approve/decline decision and the room's
     // makeup are backed by a queryable segment, not only the alert emails.
     if (intention) properties.intention = intention

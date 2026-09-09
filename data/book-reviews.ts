@@ -1,8 +1,10 @@
 import type { BookReview } from '@/app/books/types';
 import { handbookToHigherConsciousnessReview } from '@/data/handbook-to-higher-consciousness';
+import { spiritualReadingGuides, taoReadingGuide } from './spiritual-reading-guides';
 
 export const bookReviews: BookReview[] = [
   handbookToHigherConsciousnessReview,
+  ...spiritualReadingGuides,
   {
     slug: 'e-squared',
     title: 'E-Squared: Nine Do-It-Yourself Energy Experiments That Prove Your Thoughts Create Your Reality',
@@ -6780,12 +6782,13 @@ export const bookReviews: BookReview[] = [
   },
   {
     slug: 'tao-te-ching',
+    guide: taoReadingGuide,
     title: 'Tao Te Ching',
     author: 'Lao Tzu',
     coverImage: '/images/library/tao-te-ching-reading-capture.jpg',
     rating: 5,
     reviewDate: '2026-07-12',
-    categories: ['Philosophy', 'Spirituality', 'Classic'],
+    categories: ['Philosophy', 'Spirituality', 'Classic', 'Taoism', 'Sacred Texts'],
     readingTime: '6 min',
     keyInsights: [
       'The alternative to force is not passivity. It is designing clear conditions, then letting the right action move without unnecessary resistance.',

@@ -9,12 +9,12 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 import { INTENTS, type Intent } from '@/lib/contact-intake'
 import { ContactForm } from '@/components/contact/ContactForm'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const CANONICAL_PATH = '/contact'
 const PRIMARY_EMAIL = 'frank@frankx.ai'
 

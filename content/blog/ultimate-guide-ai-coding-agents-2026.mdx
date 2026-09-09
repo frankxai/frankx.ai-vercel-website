@@ -1,470 +1,183 @@
 ---
-title: "The Ultimate Guide to AI Coding Agents in 2026"
-description: "Master AI-powered development with the complete guide to coding agents."
-date: "2026-01-16"
-lastUpdated: "2026-08-18"
+title: "AI Coding Agents in 2026: Claude Code, Codex, OpenCode, and What to Install First"
+description: "If you already pay for Claude, start with Claude Code. If you already pay for ChatGPT, start with Codex CLI. If you need a model-agnostic terminal, start with OpenCode. Official installs, a five-station loop, and no bake-off ranking."
+date: "2026-01-20"
+lastUpdated: "2026-08-30"
 author: "FrankX"
-category: "Creator Systems"
-tags: ["creator-systems", "ai-systems", "production"]
-image: "/images/blog/ultimate-guide-ai-coding-agents-2026.png"
+tags:
+  - "AI Coding Agents"
+  - "Claude Code"
+  - "Codex CLI"
+  - "OpenCode"
+  - "Gemini CLI"
+  - "Developer Tools"
+category: "AI Development"
 featured: true
-readingGoal: "You'll master production agent architecture, tool integration patterns, and resilient multi-agent orchestration systems."
-tldr: "AI coding agents like Claude Code, OpenCode, and Cline transform development by combining LLM intelligence with tool execution. This guide covers setup, configuration, the evolution framework (CLAUDE.md, skill.md, agent.md), MCP servers, and multi-agent orchestration. Start with Claude Code for the best experience, then evolve your system as you master each level."
-keywords: ["creator systems", "creator-systems", "ai-systems", "production", "ai architecture", "frankx"]
+draft: false
+image: "/images/blog/generated/ultimate-guide-ai-coding-agents-2026-hero.webp"
+imageAlt: "Five-station coding-agent control room: intent, repo graph, tool loop, permission gate, and a reviewable diff, on a dark grid floor."
+readingTime: "14 min"
+tldr: "Pick the CLI that matches the subscription you already pay for. Claude Code if you pay Anthropic. Codex CLI if you pay OpenAI. OpenCode if you need to bring your own model. Then give the agent a repo, a done-when, and a draft PR. The rest of this page is the loop, the official install commands, and the files that make tomorrow's session cheaper."
+faq:
+  - question: "What is the best AI coding agent in 2026?"
+    answer: "There is no bake-off on this page. Start with the CLI tied to the plan you already pay for: Claude Code on Anthropic, Codex CLI on ChatGPT, OpenCode when you need a model-agnostic terminal. Fit beats a leaderboard you did not run."
+  - question: "How do I install Claude Code?"
+    answer: "Anthropic's current native install is curl -fsSL https://claude.ai/install.sh | bash on macOS, Linux, and WSL, or irm https://claude.ai/install.ps1 | iex in Windows PowerShell. Then run claude. Confirm on code.claude.com before you copy a third-party npm command."
+  - question: "How do I install Codex CLI?"
+    answer: "OpenAI's current install is curl -fsSL https://chatgpt.com/codex/install.sh | sh, or irm https://chatgpt.com/codex/install.ps1 | iex on Windows. npm i -g @openai/codex and brew install --cask codex are documented alternatives. Confirm on developers.openai.com/codex/cli."
+  - question: "Do coding agents train on my private repo?"
+    answer: "That is a vendor contract question, not a slogan. Read the current data-use policy for the plan you are on. This page does not certify that any agent 'never stores your code.'"
+  - question: "Should I show which model wrote the blog post?"
+    answer: "A quiet field note can help Superfans and can help AEO. A badge wall of every CLI does not. This revision names the harness once, at the end."
 ---
-# The Ultimate Guide to AI Coding Agents in 2026
 
-**TL;DR**: AI coding agents like Claude Code, OpenCode, and Cline transform development by combining LLM intelligence with tool execution. This guide covers setup, configuration, the evolution framework (CLAUDE.md, skill.md, agent.md), MCP servers, and multi-agent orchestration. Start with Claude Code for the best experience, then evolve your system as you master each level.
+If you already pay for Claude, start with [Claude Code](https://code.claude.com/docs/en/overview). If you already pay for ChatGPT, start with [Codex CLI](https://developers.openai.com/codex/cli). If you need a terminal that can change models, start with [OpenCode](https://opencode.ai/docs).
 
-Coding is one job. Messenger, Slack, and local-runtime agents are different jobs. For that map, read [The AI Agents Worth Evaluating in August 2026](/blog/ai-agents-worth-evaluating-august-2026).
+That is the whole decision for most founders. The rest of this page is how to keep the agent inside one repo, with a done-when you can review.
 
-If you are starting from a prompt-to-app surface instead of an existing repository, begin with the [2026 AI app builder guide](/blog/best-ai-app-builders-2026); it explains the handoff from v0, Replit, Lovable, Bolt, or Base44 into a governed coding-agent workflow.
+I am not ranking these tools. I did not rerun SWE-bench for this revision. Third-party writeups in 2026 keep trading Claude Code and Codex at the top of different benches. Treat those numbers as someone else's homework until you have your own failing test.
 
----
-
-## What Are AI Coding Agents?
-
-AI coding agents are more than chatbots that write code. They are autonomous systems that can:
-
-- **Read and understand** your entire codebase
-- **Execute commands** in your terminal
-- **Write, edit, and refactor** code across multiple files
-- **Search the web** for documentation and solutions
-- **Connect to external tools** via the Model Context Protocol (MCP)
-
-Unlike simple code completion tools, agents can handle complex, multi-step tasks like "refactor the authentication system to use JWT" or "set up a new API endpoint with tests and documentation."
-
-## The AI Coding Agent Landscape
-
-### Major Players in 2026
-
-| Agent           | Creator   | Best For                                      | License     |
-| --------------- | --------- | --------------------------------------------- | ----------- |
-| **Claude Code** | Anthropic | Official Claude integration, best MCP support | Proprietary |
-| **OpenCode**    | Community | Customization, open-source, extensibility     | Open Source |
-| **Cline**       | Community | VS Code users, visual feedback                | Open Source |
-| **Roo Code**    | Community | Multi-model experimentation                   | Open Source |
-| **Kilo Code**   | Community | Lightweight, quick tasks                      | Open Source |
-
-### How Agents Work
-
-Every coding agent follows a similar architecture:
-
-<Diagram
-  src="/images/diagrams/blog/ultimate-guide-ai-coding-agents-2026/legacy-diagram-01.svg"
-  alt="How Agents Work diagram 1"
-  caption="How Agents Work"
+<LiquidGlassImage
+  src="/images/blog/generated/ultimate-guide-ai-coding-agents-2026-hero.webp"
+  alt="Five sequential stations on a dark grid: a seed of intent, a repo graph, a tool-loop chamber, a permission gate, and a code-review panel."
+  caption="Intent, repo graph, tool loop, permission gate, diff. The CLI brand is not the architecture."
 />
 
-The agent perceives your request and codebase, reasons about the best approach, takes action, and uses feedback to refine its work.
+## Which coding agent should a founder start with?
 
----
+Match the tool to the bill you already pay. Capability at the top is close enough that switching ecosystems for a blog-post ranking is usually a waste of a week.
 
-## Getting Started with Claude Code
+| Start here | You already pay for | Official docs | What it is good at on paper |
+|---|---|---|---|
+| **Claude Code** | Claude / Anthropic API | [code.claude.com](https://code.claude.com/docs/en/overview) | Terminal agent, checkpoints, subagents, MCP, hooks. Native installer, not a random npm package. |
+| **Codex CLI** | ChatGPT / OpenAI API | [developers.openai.com/codex/cli](https://developers.openai.com/codex/cli) | Rust CLI plus IDE extension plus Codex Cloud. Documented sandbox modes and `codex exec` for headless runs. |
+| **OpenCode** | Whatever model you bring | [opencode.ai/docs](https://opencode.ai/docs) | Client/server terminal that is model-agnostic. Local LLM paths exist. Confirm the install on their docs; the package name has moved before. |
+| **Gemini CLI** | Google AI / Gemini Code Assist | [github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) | Open-source Google CLI. **Vendor news, June 2026:** Google began moving individual Gemini CLI users toward Antigravity CLI. Enterprise Code Assist licenses were described as keeping Gemini CLI. Check Google's current post before you standardise on the binary name. |
+| **Grok / xAI** | xAI | Field notes on this site: [graph-engineering-grok-build](/blog/graph-engineering-grok-build) | Useful when Grok is already in the loop. I am not publishing an install one-liner I did not re-verify today. |
 
-Claude Code is Anthropic's official CLI for Claude, offering the tightest integration with Claude models and the best MCP support.
+Cursor, Cline, Copilot, Aider, and Devin still exist. They are editors, extensions, or cloud agents. If your team lives in VS Code and refuses the terminal, start there and skip the rest of the CLI table.
 
-### Installation
+For a wider August 2026 snapshot, see [AI agents worth evaluating](/blog/ai-agents-worth-evaluating-august-2026). For the model layer rather than the harness, see [ChatGPT vs Claude vs Gemini](/blog/chatgpt-vs-claude-vs-gemini-2026) and the [Gemini 3.7 Flash shipping note](/blog/gemini-3-7-flash-what-google-shipped-august-2026).
+
+<Callout type="warning">
+This table is a routing sheet, not a bake-off. "Best" without a job, a repo, and a receipt is marketing.
+</Callout>
+
+## What does a coding agent actually do in a repo?
+
+A coding agent is a loop with tools. The model proposes the next action. The harness runs it. You own the permission boundary.
+
+<Diagram
+  src="/images/blog/visual-system/infographics/coding-agent-control-plane-2026.svg"
+  alt="Infographic of a five-station coding-agent control plane with official Anthropic, OpenAI, Google, and xAI marks on the CLI row, then intent, repo graph, tool loop, permission, and diff."
+  caption="Official partner marks are inlined SVG paths from this repo. No generated logos."
+  width={1600}
+  height={900}
+  scrollable
+/>
+
+Five stations:
+
+1. **Intent.** A job with a done-when. "Make auth nicer" is not a job. "Add a failing test for expired sessions, then make it pass, open a draft PR" is a job.
+2. **Repo graph.** The agent reads the tree that exists. `AGENTS.md`, tests, and the files already on disk beat a hallucinated architecture.
+3. **Tool loop.** Search, edit, run, read the error, repeat. The model is the planner. The loop is the product.
+4. **Permission.** Writes, network, and spend stay gated. Draft PRs stay draft. Production deploys stay human.
+5. **Diff.** You review a change you can revert. If you cannot read the diff, the session failed even if tests went green.
+
+That loop is the same whether the binary is `claude`, `codex`, or `opencode`. Brand is station zero.
+
+## How do you install Claude Code, Codex, and OpenCode from official docs?
+
+Copy from the vendor page if these drift. They do.
+
+**Claude Code**, from Anthropic's native install docs:
 
 ```bash
-# Install via npm
-npm install -g @anthropic-ai/claude-code
-
-# Or with Bun (faster)
-bun install -g @anthropic-ai/claude-code
-
-# Set your API key
-export ANTHROPIC_API_KEY="your-key-here"
-
-# Start Claude Code
+curl -fsSL https://claude.ai/install.sh | bash
 claude
 ```
 
-### First Steps
+Windows PowerShell:
 
-Once installed, try these commands:
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+After install, `claude install` updates the native binary. Anthropic still documents a Git for Windows dependency on Windows. Do not treat `@anthropic-ai/claude-code` on npm as the current default path unless their docs still say so the day you install.
+
+**Codex CLI**, from OpenAI:
 
 ```bash
-# Start in a project directory
-cd your-project
-claude
-
-# Inside Claude Code
-> "What is this project about?"
-> "Find all TODO comments in the codebase"
-> "Write tests for the utils.ts file"
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+codex
 ```
 
-### Essential Commands
+Windows PowerShell:
 
-| Command    | Purpose                         |
-| ---------- | ------------------------------- |
-| `/help`    | Show all available commands     |
-| `/clear`   | Clear conversation history      |
-| `/compact` | Compress context to save tokens |
-| `/model`   | Switch between Claude models    |
-| `/mcp`     | Manage MCP server connections   |
+```powershell
+irm https://chatgpt.com/codex/install.ps1 | iex
+```
 
----
+Documented alternatives: `npm i -g @openai/codex` and `brew install --cask codex`. Headless runs use `codex exec`.
 
-## Setting Up OpenCode
-
-OpenCode is the leading open-source alternative, offering extensive customization through its plugin system and oh-my-opencode extensions.
-
-### Installation
+**OpenCode**, from their docs:
 
 ```bash
-# Via npm
-npm install -g @opencode-ai/cli
-
-# From source for maximum control
-git clone https://github.com/opencode-ai/opencode
-cd opencode
-bun install
-bun link
+curl -fsSL https://opencode.ai/install | bash
 ```
 
-### Configuration
+They also document `npm i -g opencode-ai@latest`. If a blog still says `npm i -g opencode`, that page is stale. OpenCode's own docs are the source.
 
-Create `.opencode/config.yaml` in your project:
+<Callout type="tip">
+Install one CLI this week. Wire it to one repo. Do not install five CLIs so you can feel like a platform team.
+</Callout>
 
-```yaml
-version: "1.0"
+## Which files make the agent useful tomorrow?
 
-model:
-  provider: anthropic
-  name: claude-3-5-sonnet-20241022
-  temperature: 0.7
+The January version of this article called this an "evolution framework." The useful part was always three files and a test command.
 
-project:
-  include:
-    - "src/**/*.ts"
-    - "*.md"
-  exclude:
-    - "node_modules"
-    - ".git"
+1. **`AGENTS.md` or `CLAUDE.md` in the repo root.** How we build, what not to touch, which commands are truth. [How to write a CLAUDE.md that works](/blog/how-to-write-claude-md-that-works) is the long version.
+2. **A test or typecheck the agent can run.** If the only verification is "looks good to me," you hired a ghostwriter for git.
+3. **A permission story.** What the agent may write. What stays human: production, DNS, spend, secrets, force-push.
 
-permissions:
-  fileWrite: prompt
-  shellExec: prompt
-```
+That is the whole "maturity model." You can grow into MCP, subagents, and overnight loops later. Most solo teams never need a six-level diagram.
 
-### Oh-My-OpenCode
+Field notes from this estate, one harness at a time:
 
-The community extension pack supercharges OpenCode:
+- [Claude Code, as a graph](/blog/graph-engineering-claude-code)
+- [OpenAI Codex, as a graph](/blog/graph-engineering-openai-codex)
+- [Hermes Agent, as a graph](/blog/graph-engineering-hermes-agent)
+- [Grok Build, as a graph](/blog/graph-engineering-grok-build)
 
-```bash
-opencode plugin install oh-my-opencode
-```
+If you are choosing an app builder rather than a repo agent, use [Best AI app builders 2026](/blog/best-ai-app-builders-2026) instead of this page.
 
-This adds:
+## When does MCP matter?
 
-- Enhanced git integration
-- Code review automation
-- Project scaffolding templates
-- Custom prompts library
+MCP matters when the agent must use a tool you already trust: GitHub, a database, a browser, a design file. It does not matter on day one of "make this test pass."
 
----
+Add a server when you have a repeated job the CLI cannot see. Then pin versions and treat the server as production-adjacent. Random MCP marketplaces are how secrets leak.
 
-## The Evolution Framework
+## What this page used to get wrong
 
-The key to mastering AI coding agents is understanding the evolution from basic usage to full orchestration.
+The January 2026 draft read like an internal workshop handout. It ranked Claude Code as the default "best experience," skipped Codex and OpenCode, invented a six-level evolution ladder, and claimed reputable agents process code without storing it. That last claim is a contract, not a vibe. I pulled it.
 
-### Level 0: Basic Prompts
+It also pointed at a workshop slug that was never the job of this article. If you want the ongoing notes, [the newsletter](/newsletter) and [Agent Hub](/agent-hub) are the live surfaces.
 
-Where everyone starts:
+## FAQ
 
-```
-> "Write a function to validate email"
-> "Fix the bug on line 45"
-```
+**What is the best AI coding agent in 2026?**
+There is no bake-off here. Start with the CLI tied to the plan you already pay for.
 
-**Limitations**: No persistent context, agent doesn't know your patterns.
+**Can I run one locally?**
+Yes, with a local model behind OpenCode, Aider, or Cline, plus something like Ollama. Frontier refactors still trail hosted models. That is an observation from the public 2026 conversation, not a bench I reran tonight.
 
-### Level 1: CLAUDE.md - Project Context
+**Will the agent overwrite main?**
+Only if you let it. Keep write access on a branch. Open draft PRs. Merge stays human.
 
-Your first evolution. Create a `CLAUDE.md` file in your project root:
+**Do I need Claude, Codex, and Gemini all at once?**
+No. Two CLIs is already a coordination cost. One CLI plus a second model via OpenCode is enough for most founder repos.
 
-```markdown
-# My Project
+**Should every article show which LLM wrote it?**
+Only if it helps the reader trust the page. This revision was edited in Hermes Agent on 30 August 2026, against official Claude Code, Codex, and OpenCode docs. One sentence. No badge wall.
 
-## Overview
-
-This is a Next.js 15 e-commerce platform.
-
-## Tech Stack
-
-- TypeScript
-- Next.js 15 (App Router)
-- PostgreSQL with Drizzle
-
-## Conventions
-
-- Functional components only
-- Tests in **tests** folders
-- Use pnpm
-
-## Current Focus
-
-Working on checkout flow.
-```
-
-Now the agent understands your project context in every conversation.
-
-### Level 2: skill.md - Domain Expertise
-
-Package your knowledge into reusable skills:
-
-```markdown
-# TypeScript Best Practices
-
-## Core Principles
-
-### Strict Mode Always
-
-Enable strict mode in tsconfig.json.
-
-### Use Type Guards
-
-function isUser(value: unknown): value is User {
-return typeof value === 'object' && 'name' in value;
-}
-
-## When to Use
-
-- Writing new TypeScript code
-- Reviewing TypeScript PRs
-```
-
-Skills let you consistently apply expertise across projects.
-
-### Level 3: agent.md - Agent Personas
-
-Create specialized agents with distinct behaviors:
-
-```markdown
-# Code Reviewer Agent
-
-## Identity
-
-You are a meticulous senior code reviewer.
-
-## Personality
-
-- Thorough but not pedantic
-- Explains the "why" behind suggestions
-- Prioritizes critical issues
-
-## Response Format
-
-## Review Summary
-
-[Assessment]
-
-## Critical Issues
-
-[Must fix]
-
-## Suggestions
-
-[Nice to have]
-```
-
-### Level 4: Plugins & MCP Servers
-
-Extend capabilities with custom tools:
-
-```typescript
-// Custom MCP server for your database
-import { Server } from "@modelcontextprotocol/sdk/server/index.js";
-
-const server = new Server({
-  name: "my-database",
-  version: "1.0.0",
-});
-
-server.setRequestHandler("tools/list", async () => ({
-  tools: [
-    {
-      name: "query_customers",
-      description: "Query customer data",
-      inputSchema: {
-        /* ... */
-      },
-    },
-  ],
-}));
-```
-
-### Level 5: Orchestration
-
-Coordinate multiple agents for complex tasks:
-
-```yaml
-# Feature development workflow
-steps:
-  - agent: architect
-    task: "Design feature architecture"
-
-  - agent: coder
-    task: "Implement based on design"
-
-  - agent: reviewer
-    task: "Review implementation"
-
-  - agent: tester
-    task: "Write comprehensive tests"
-```
-
----
-
-## MCP: The Model Context Protocol
-
-MCP is the open standard that allows AI models to connect to your data and tools securely.
-
-### Why MCP Matters
-
-Before MCP, every integration was custom. Now:
-
-- **Standardized**: Write once, use everywhere
-- **Secure**: Authentication built into protocol
-- **Growing**: Hundreds of community servers
-
-### Core Components
-
-| Component     | Purpose                 | Example               |
-| ------------- | ----------------------- | --------------------- |
-| **Resources** | Expose data to models   | Database schemas      |
-| **Tools**     | Let models take actions | Send email, query API |
-| **Prompts**   | Reusable templates      | Code review prompt    |
-
-### Popular MCP Servers
-
-- **PostgreSQL Server**: Query databases naturally
-- **GitHub Server**: Manage repos and PRs
-- **Slack Server**: Send messages and manage channels
-- **Notion Server**: Access your workspace
-
----
-
-## Enterprise Considerations
-
-### When to Use Public APIs vs Private Infrastructure
-
-| Use Case                       | Recommendation                                  |
-| ------------------------------ | ----------------------------------------------- |
-| Experimentation                | Public APIs (OpenAI, Anthropic)                 |
-| Production with sensitive data | Private deployment (Oracle GenAI, Azure OpenAI) |
-| Regulatory compliance          | Dedicated AI clusters                           |
-| Custom fine-tuning needed      | Self-hosted (Llama) or dedicated clusters       |
-
-### Oracle GenAI for Enterprise
-
-For enterprises requiring:
-
-- Data sovereignty
-- Regulatory compliance (HIPAA, SOC2)
-- Consistent performance guarantees
-- Integration with existing OCI infrastructure
-
-Oracle GenAI Services and Dedicated AI Clusters provide the control enterprises need.
-
----
-
-## Best Practices
-
-### 1. Start Small, Evolve Gradually
-
-Don't try to implement everything at once. Master each level before moving to the next.
-
-### 2. Invest in Project Context
-
-A well-crafted CLAUDE.md saves hours of repeated explanations.
-
-### 3. Build Skills Over Time
-
-When you explain something twice, make it a skill.
-
-### 4. Review AI Output
-
-AI agents are powerful but not infallible. Always review generated code.
-
-### 5. Use the Right Model for the Task
-
-| Task                 | Recommended Model |
-| -------------------- | ----------------- |
-| Quick questions      | Claude Haiku      |
-| General coding       | Claude Sonnet     |
-| Complex architecture | Claude Opus       |
-
----
-
-## Frequently Asked Questions
-
-### What's the difference between Claude Code and Copilot?
-
-Claude Code is an autonomous agent that can execute multi-step tasks, read/write files, and run commands. Copilot is primarily code completion in your editor. They complement each other.
-
-### Is my code safe with AI coding agents?
-
-Reputable agents like Claude Code have strict security measures. Your code is processed but not stored or used for training. For maximum control, consider OpenCode with local models.
-
-### How much do AI coding agents cost?
-
-Claude Code uses Anthropic's API pricing (approximately $3/million tokens for Sonnet). For heavy use, costs can add up. OpenCode with local models eliminates API costs.
-
-### Can I use multiple agents together?
-
-Yes! Many developers use Claude Code for complex tasks and Copilot for inline completion. The evolution framework supports multi-agent orchestration.
-
-### What about offline use?
-
-OpenCode with local models (Llama, CodeLlama) works completely offline. Claude Code requires internet for API calls.
-
----
-
-## Getting Started Today
-
-1. **Install Claude Code** (recommended for beginners)
-
-   ```bash
-   npm install -g @anthropic-ai/claude-code
-   ```
-
-2. **Create your first CLAUDE.md** in a project
-
-3. **Try the free workshop** at [frankx.ai/workshops](/workshops)
-
-4. **Join the community** for support and sharing
-
----
-
-## Resources
-
-- [AI Coding Agents Workshop](/workshops/ai-coding-agents) - Complete hands-on training
-- [MCP Server Architecture Workshop](/workshops/mcp-server-mastery) - Build your own servers
-- [Oracle GenAI Workshop](/workshops/oracle-genai-enterprise) - Enterprise AI decisions
-- [Claude Code Documentation](https://docs.anthropic.com/claude-code) - Official docs
-- [MCP Protocol Specification](https://spec.modelcontextprotocol.io) - Technical details
-
----
-
-## Conclusion
-
-AI coding agents represent a fundamental shift in how we develop software. By understanding the evolution framework—from basic prompts through CLAUDE.md, skills, agents, and orchestration—you can progressively enhance your development workflow.
-
-Start simple, evolve deliberately, and remember: the goal isn't to replace your skills but to amplify them.
-
-Ready to begin? [Start the free AI Coding Agents workshop](/workshops/ai-coding-agents).
-
----
-
-_This guide is part of the FrankX Workshop System. Updated January 2026._
-
----
-
-## Related Articles
-
-- [Build Your Own Jarvis with Claude Code](/blog/build-your-own-jarvis-claude-code) — Personal AI assistant architecture
-- [Claude Code 2.1 MCP Revolution](/blog/claude-code-2-1-mcp-revolution) — Latest features and capabilities
-- [Agentic Creator OS](/blog/agentic-creator-os-complete-guide) — The complete creative AI system
+If you want the next note when these installers move again, [subscribe](/newsletter).

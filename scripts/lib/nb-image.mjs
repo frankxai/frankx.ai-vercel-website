@@ -1,4 +1,6 @@
 /**
+// Canonical source: frankxai/FrankX scripts/lib/nb-image.mjs — edit it there, then copy down.
+// A copy lives here because lib/gen and lib/visual-intelligence consume it directly.
  * scripts/lib/nb-image.mjs
  *
  * Single source of truth for FrankX image generation via Nano Banana 2 / Pro / 1.
