@@ -18,7 +18,7 @@ import {
 const SITE_URL = 'https://frankx.ai'
 
 export const metadata: Metadata = {
-  title: 'The Father Code — Builder Ethics for the Age of AI | FrankX',
+  title: 'The Father Code — Builder Ethics for the Age of AI',
   description:
     'A principle system drawn from Witali Riemer: vision before resource, building as proof, home as infrastructure, and human agency in the age of AI.',
   alternates: {
