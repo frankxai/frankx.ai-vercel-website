@@ -20,7 +20,7 @@ import {
 const SITE_URL = 'https://frankx.ai'
 
 export const metadata: Metadata = {
-  title: "The Builder's Line — What My Father Built With His Hands, What We Must Build in Our Minds | FrankX",
+  title: "The Builder's Line — What My Father Built With His Hands, What We Must Build in Our Minds",
   description:
     "A son's translation of master builder Witali Riemer's craftsman ethics: foundation before facade, quiet mastery, and the sacred counterweight of protecting the builder.",
   alternates: {
