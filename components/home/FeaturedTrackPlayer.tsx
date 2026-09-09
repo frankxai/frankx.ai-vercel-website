@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ExternalLink, Pause, Play } from 'lucide-react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { GlowCard } from '@/components/ui/glow-card'
 
@@ -36,9 +36,21 @@ const formatTime = (seconds: number) => {
 export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack }) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(() => parseDuration(track.duration))
   const [playbackError, setPlaybackError] = useState(false)
+
+  useEffect(() => {
+    if (!isLoading) return
+    const timeout = window.setTimeout(() => {
+      audioRef.current?.pause()
+      setIsLoading(false)
+      setIsPlaying(false)
+      setPlaybackError(true)
+    }, 15000)
+    return () => window.clearTimeout(timeout)
+  }, [isLoading])
 
   const togglePlayback = async () => {
     const audio = audioRef.current
@@ -46,10 +58,14 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
 
     if (audio.paused) {
       setPlaybackError(false)
+      setIsLoading(true)
 
       try {
         await audio.play()
-      } catch {
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') return
+        audio.pause()
+        setIsLoading(false)
         setPlaybackError(true)
         setIsPlaying(false)
       }
@@ -99,15 +115,19 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
           onLoadedMetadata={(event) => syncDuration(event.currentTarget.duration)}
           onDurationChange={(event) => syncDuration(event.currentTarget.duration)}
           onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
+          onPlay={() => setIsLoading(true)}
+          onPlaying={() => { setIsLoading(false); setIsPlaying(true) }}
+          onWaiting={(event) => { if (!event.currentTarget.paused) setIsLoading(true) }}
+          onPause={() => { setIsLoading(false); setIsPlaying(false) }}
           onEnded={() => {
             setIsPlaying(false)
+            setIsLoading(false)
             setCurrentTime(0)
           }}
           onError={() => {
             setPlaybackError(true)
             setIsPlaying(false)
+            setIsLoading(false)
           }}
         />
 
@@ -129,18 +149,29 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
 
           <div className="rounded-[1.75rem] border border-white/10 bg-void/85 p-4 sm:p-5">
             <div className="flex items-center gap-4">
-              <button
+              {playbackError ? (
+                <a
+                  href={track.sunoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Listen to ${track.title} on Suno`}
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+                >
+                  <ExternalLink className="h-5 w-5" aria-hidden="true" />
+                </a>
+              ) : <button
                 type="button"
                 onClick={togglePlayback}
                 className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
-                aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
+                aria-label={isLoading ? `Cancel loading ${track.title}` : isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
+                aria-busy={isLoading}
               >
-                {isPlaying ? (
+                {isPlaying || isLoading ? (
                   <Pause className="h-5 w-5" aria-hidden="true" />
                 ) : (
                   <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />
                 )}
-              </button>
+              </button>}
 
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xl font-semibold tracking-[-0.02em] text-white">
@@ -165,7 +196,7 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
                   step={0.1}
                   value={Math.min(currentTime, duration || 0)}
                   onChange={(event) => seek(Number(event.currentTarget.value))}
-                  disabled={!duration}
+                  disabled={playbackError || isLoading || !duration}
                   aria-label={`Seek through ${track.title}`}
                   className="relative z-10 h-4 w-full cursor-pointer appearance-none bg-transparent accent-emerald-300 disabled:cursor-not-allowed"
                 />
@@ -178,8 +209,10 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
 
             {playbackError ? (
               <p role="status" aria-live="polite" className="mt-3 text-xs text-amber-200/80">
-                Playback could not start here. The verified Suno source remains available above.
+                Listen to this release on Suno, or choose another soundtrack in the music player.
               </p>
+            ) : isLoading ? (
+              <p role="status" aria-live="polite" className="mt-3 text-xs text-white/60">Loading audio…</p>
             ) : null}
           </div>
         </div>
