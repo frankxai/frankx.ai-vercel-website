@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { safeMediaUrl, spotifyAlbumEmbed, suggestTracks, routeMusicSuggestion } from '../../lib/music-playback.ts'
+import { safeMediaUrl, spotifyAlbumEmbed, suggestTracks, routeMusicSuggestion, buildPlaybackCatalog, verifiedPlaybackUrl } from '../../lib/music-playback.ts'
 
 test('Spotify accepts canonical album URLs only and media rejects active schemes or credentials', () => {
   const id = 'A'.repeat(22)
@@ -21,4 +21,33 @@ test('recommendations abstain on unknown moods and focus requests exclude untagg
   assert.deepEqual(tracks, copy)
   assert.equal(routeMusicSuggestion('/library/some-book'), 'instrumental focus')
   assert.equal(routeMusicSuggestion('/products/something'), undefined)
+})
+
+const sourceId = '9ff8a563-4ebf-4481-85c1-9f445cfce9e1'
+const sourceUrl = `https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/${sourceId}/${sourceId}.mp3`
+const registered = { sunoId: sourceId, inventoryId: 'archived-song', title: 'Archived song', status: 'published', genre: ['piano'], assetRefs: { audioUrl: sourceUrl } }
+const verified = { sunoId: sourceId, audioUrl: sourceUrl, sha256: 'a'.repeat(64), bytes: 1024, durationSeconds: 65, codec: 'mp3', rangeVerified: true, decodeVerified: true, verifiedAt: '2026-09-09T21:00:00Z' }
+
+test('archive playback requires matching identity, published registry state and decoder/range evidence', () => {
+  assert.equal(verifiedPlaybackUrl(registered, verified), sourceUrl)
+  assert.equal(verifiedPlaybackUrl(registered), undefined)
+  assert.equal(verifiedPlaybackUrl({ ...registered, status: 'draft' }, verified), undefined)
+  for (const patch of [{ sunoId: 'other' }, { decodeVerified: false }, { rangeVerified: false }, { sha256: '' }, { durationSeconds: Infinity }, { bytes: 0 }, { verifiedAt: 'unknown' }]) {
+    assert.equal(verifiedPlaybackUrl(registered, { ...verified, ...patch }), undefined)
+  }
+  const remote = `https://cdn1.suno.ai/${sourceId}.mp3`
+  assert.equal(verifiedPlaybackUrl({ ...registered, assetRefs: { audioUrl: remote } }, { ...verified, audioUrl: remote }), undefined)
+})
+
+test('catalog keeps unverified public tracks external and includes verified archived tracks without leaking receipts', () => {
+  const externalId = 'e7d082d3-8ecd-4fdb-a8fa-582026554153'
+  const entries = [{ id: 'star-show-us', title: 'Star Show Us', sunoId: externalId, status: 'published', genre: [] }]
+  const result = buildPlaybackCatalog(entries, [registered], [verified])
+  assert.equal(result[0].streamUrl, sourceUrl)
+  assert.equal(result[0].duration, '1:05')
+  assert.equal(result[1].sunoId, externalId)
+  assert.equal(result[1].streamUrl, undefined)
+  assert.equal('sha256' in result[0], false)
+  assert.equal(entries.length, 1)
+  assert.equal(buildPlaybackCatalog([], [registered], []).length, 0)
 })

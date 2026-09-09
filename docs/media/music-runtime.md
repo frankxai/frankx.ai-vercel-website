@@ -1,68 +1,89 @@
 # Persistent music runtime
 
-The root layout mounts `MusicRuntime` once. Music pages and inline track calls
-select into that runtime, so ordinary client navigation does not create a new
-player. The mobile dock stays available throughout the shared layout.
+The root layout owns one native HTML audio element. A listener's click assigns a
+verified export and starts playback in the same event. Client navigation and
+minimize keep that element mounted. No source is requested before selection.
 
-## Current behavior
+## Playback repair, September 2026
 
-- Silent until the listener chooses playback.
-- One selected native audio source or Suno iframe; minimizing retains the node.
-- Catalog search and page-context suggestions never replace the current track.
-- Native playback reuses the existing reviewed homepage audio source. Other
-  indexed public tracks use Suno until an approved audio rendition is registered.
-- Native playback exposes browser controls and optional Media Session support.
-  Suno embeds expose Suno's controls; the app does not infer their playing state.
-- Album collections remain visible as collections in progress. A valid Spotify
-  album URL is rendered only on a published/released album and after a click.
-- The existing homepage featured player remains separate. Its native playback
-  yields the runtime. Adapting that protected homepage surface belongs in its own PR.
+The first preview reused the homepage's Suno-hosted MP3 for Star Show Us. That
+URL returned HTTP 403, and the browser never loaded a duration. The user also
+reported a Suno iframe stuck at 0:00. A successful deployment did not establish
+working media delivery.
 
-## Asset and rights boundary
+The shared runtime now uses existing published audio from the owned Blob archive.
+`data/music-playback-sources.json` records successful byte-range requests, full
+SHA-256/byte verification and ffprobe/ffmpeg decode checks. Catalog projection
+requires an exact match with a published row in `data/music-asset-registry.json`.
+Neither arbitrary catalog URLs nor inferred Suno CDN URLs become player sources.
+The verification is a delivery/decoder receipt, not a new rights grant or master
+archive claim. Recheck sources before releases; runtime errors remain recoverable.
 
-`lib/music-playback-catalog.ts` is a public projection. It does not expose raw
-prompts, private audio, source sessions or archive paths. Historical Blob URLs
-are not automatically promoted into it. The current homepage URL is an explicit
-compatibility source, not a claim of a verified master archive.
+Public tracks without verified files keep explicit external Suno links. The shared
+player does not embed Suno or pretend it can control/observe a cross-origin player.
+Search includes the public catalog, with external tracks visibly labeled. The
+default selection list contains playable exports. Spotify album embeds remain
+click-to-load, require a real published/released album URL, and yield the runtime.
 
-The future Media Fabric publisher should resolve asset IDs to approved immutable
-renditions using its manifest. Supabase owns metadata and approval, not the
-page render hot path. Private lossless masters and public compressed derivatives
-remain separate. An R2 adapter is justified for S3 archival and shared non-Vercel
-production consumers; retain the Blob adapter and switch one placement at a time.
+## Listener behavior
 
-Kura's official local export importer and the existing private archive controller
-retain acquisition receipts. The producer session system retains observed
-generation and human decisions. Join those records through source/take/version
-IDs rather than creating another unconstrained ledger. Archive status, web use,
-commercial release and copyright evidence are distinct fields.
+- Silent initial visit; one click on an available track starts native playback.
+- `playing` comes from the media `playing` event, not a selected row or `play` event.
+- Loading, paused and failed states are distinct; a 15-second loading timeout
+  offers another track or an external Suno link instead of an indefinite spinner.
+- Late rejected play promises cannot overwrite a newer selection or Stop.
+- Pause, seek, volume and browser Media Session controls use the same audio element.
+- The panel has a top minimize control, bounded mobile height and contained scroll.
+- Route suggestions never change or restart the song.
+- Cooperating native media and Spotify embeds yield to each other. The existing
+  homepage featured player is separate and still needs its own preservation-contract
+  PR; its inaccessible source is not promoted into this shared runtime.
 
-## Remaining rollout
+## Verification and operation
 
-Verify the actual native source and upload approved owned audio. Complete physical
-mobile and deployed browser QA, then adapt the existing homepage player in its
-own PR. Add preferences, a companion listening route and contextual manifests.
-Add semantic search only after benchmarking the current metadata retrieval.
-No model API or vector index is connected by this change.
-
-Separate domains and full page reloads cannot preserve the same HTML media
-element. A user-opened companion listening page is the uninterrupted cross-domain
-option; URL/state handoff alone is not gapless playback. Newsletter links should
-open a listening page rather than depend on embedded audio support in email.
-
-## Verification
-
-Run the repository type/lint/language/build gates plus:
+Run the repository type/lint/language/build gates and:
 
 ```bash
 node --experimental-strip-types --test scripts/tests/music-playback.test.mjs
 ```
 
-On desktop and a real phone: select native and embedded tracks, seek, minimize,
-navigate using a client link, confirm time/selection continuity, stop, test blocked
-media, tab through controls, and verify no simultaneous audio with a page video or
-Spotify player. Check dock safe areas and overlay conflicts before release.
+Refresh delivery evidence explicitly (downloads existing owned objects temporarily;
+requires Python, ffprobe and ffmpeg; not run automatically on every build):
 
-Rollback removes the runtime wrapper/imports from the root layout and restores
-the prior music page/inline CTA components. No storage objects, licenses, album
-statuses or public URLs are changed by this code.
+```bash
+python3 scripts/verify-music-playback.py --output data/music-playback-sources.json
+```
+
+Before adding a native source: verify its existing publication state and source ID,
+fetch the complete owned object, record its SHA-256 and size, validate the decoder,
+and check a 206 range response. Publish only a matching catalog/registry/receipt
+record. An HTTP 200 or a plausible URL alone is insufficient. Keep private masters
+and generation sessions out of the public projection.
+
+In the actual preview: start a verified track, observe nonzero duration and advancing
+time, minimize, navigate through a client link, confirm continuity, seek, pause,
+resume, switch tracks and stop. Search Star Show Us and Open the Arc to verify they
+have Suno links rather than broken native controls. Test external-media failure,
+keyboard order, the dock at mobile widths and actual Android/iOS when available.
+Do not claim physical-device testing from viewport emulation.
+
+## Architecture and remaining work
+
+Owned playback delivery is the persistent-player foundation. Suno remains a
+creation/discovery source and Spotify a release channel. Reuse Blob now; add the
+R2 adapter after a verified official export and accepted cross-platform archival
+need. Supabase owns catalog/approval/provenance; one publisher emits the immutable
+public manifest. Preserve asset/version identities across providers.
+
+Kura and the existing private archive retain intake receipts; producer sessions
+retain actual human and tool decisions. Join those identities. Add semantic
+recommendations only after evaluating the existing structured retrieval. No model
+API, new bucket or database migration is introduced by this repair.
+
+Separate domains and hard reloads cannot preserve the same media element. A
+user-opened companion listening page is the cross-domain continuity option.
+Newsletter links lead to listening pages.
+
+Rollback this repair to the prior PR revision only for investigation, since it
+restores known broken delivery. For an operational rollback, remove the runtime
+wrapper and retain external listening links. Existing media objects are untouched.
