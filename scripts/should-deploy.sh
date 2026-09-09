@@ -39,18 +39,29 @@ fi
 # 0a. Agents may push intermediate preview checkpoints without spending build
 #     minutes, including branch pushes made before a pull request exists.
 #     The final coherent commit MUST omit [agent-wip].
-COMMIT_MESSAGE="${VERCEL_GIT_COMMIT_MESSAGE:-}"
-if [ -z "$COMMIT_MESSAGE" ]; then
-  COMMIT_MESSAGE="$(git log -1 --format=%B HEAD 2>/dev/null)"
+#
+#     Subject line only. CLAUDE.md puts the marker in the commit subject, and
+#     scanning the whole body means any commit that merely *describes* the marker
+#     matches it. Measured 2026-09-08 on starlight-intelligence-web, which had
+#     been given a copy of this file: commit f0abfcb explained what [agent-wip]
+#     does, and deployment dpl_DFrAVq1r2rpZkTpQtiKgz9U4orcc was cancelled in 3.3
+#     seconds by this very check. A body scan fails toward NOT building, so the
+#     preview that would have verified the change never ran.
+COMMIT_SUBJECT="${VERCEL_GIT_COMMIT_MESSAGE:-}"
+if [ -z "$COMMIT_SUBJECT" ]; then
+  COMMIT_SUBJECT="$(git log -1 --format=%s HEAD 2>/dev/null)"
 fi
-if echo "$COMMIT_MESSAGE" | grep -Fq "[agent-wip]"; then
+COMMIT_SUBJECT="$(printf '%s\n' "$COMMIT_SUBJECT" | head -n 1)"
+if printf '%s' "$COMMIT_SUBJECT" | grep -Fq "[agent-wip]"; then
   echo "[should-deploy] Explicit agent work-in-progress checkpoint — SKIPPING build."
   exit 0
 fi
 
 # 0b. If the parent was an ignored checkpoint, force the first coherent commit
-#     to build before draft/path filters can skip it.
-if git log -1 --format=%B HEAD^ 2>/dev/null | grep -Fq "[agent-wip]"; then
+#     to build before draft/path filters can skip it. Subject only, to match 0a:
+#     a body scan here errs toward building, so it is wasteful rather than
+#     dangerous, but two definitions of "is a checkpoint" is worse than either.
+if git log -1 --format=%s HEAD^ 2>/dev/null | grep -Fq "[agent-wip]"; then
   echo "[should-deploy] Coherent checkpoint follows [agent-wip] — PROCEEDING."
   exit 1
 fi

@@ -176,4 +176,9 @@ if (asJson) {
   reasons.forEach((r) => console.log(`  - ${r}`))
 }
 
-process.exit(status === 'critical' ? 1 : 0)
+// Not process.exit(): a forced exit right after the Resend fetch races libuv's
+// handle cleanup on Windows and crashes with STATUS_ACCESS_VIOLATION mid-shutdown
+// (`Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), src\win\async.c:94`),
+// which surfaced as intermittent exitCode 3221226505 runs in the loop's own log.
+// Setting exitCode and letting the event loop drain avoids the race.
+process.exitCode = status === 'critical' ? 1 : 0
