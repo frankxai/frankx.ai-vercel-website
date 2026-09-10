@@ -40,8 +40,9 @@ pnpm-debug.log*
 .env.production.local
 .env*.local
 
-# Vercel
+# Vercel / Cloudflare
 .vercel
+.wrangler/
 
 # TypeScript
 *.tsbuildinfo

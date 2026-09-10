@@ -162,7 +162,12 @@
     "newsletter:send": "node scripts/newsletter/send.mjs send",
     "test:contract-guard": "node scripts/check-contract-guard.mjs",
     "test:media-guard": "node --test scripts/tests/media-guard.contract.mjs",
-    "test:syntax": "node scripts/check-test-syntax.mjs"
+    "test:syntax": "node scripts/check-test-syntax.mjs",
+    "analytics:summary": "node scripts/observability/analytics-cli.mjs --summary",
+    "analytics:gsc": "node scripts/observability/analytics-cli.mjs --gsc",
+    "analytics:ga4": "node scripts/observability/analytics-cli.mjs --ga4",
+    "analytics:opportunities": "node scripts/observability/analytics-cli.mjs --opportunities",
+    "analytics:inspect": "node scripts/observability/analytics-cli.mjs --inspect"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

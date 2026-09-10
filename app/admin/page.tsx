@@ -5,6 +5,7 @@ import {
   BarChart3,
   Bot,
   Calendar,
+  Compass,
   Database,
   DollarSign,
   FileText,
@@ -39,6 +40,7 @@ const groups: { label: string; tools: Tool[] }[] = [
     label: 'Command',
     tools: [
       { name: 'Command Center', href: '/command-center', description: 'Mission control overview', icon: Activity },
+      { name: 'Analytics & Search Console', href: '/admin/analytics', description: 'GA4 traffic, GSC queries & agent observatory', icon: Compass },
       { name: 'BV Command Center', href: '/admin/bv-command-center', description: 'Business velocity dashboard', icon: Gauge },
       { name: 'Daily', href: '/admin/daily', description: 'Daily operating brief', icon: Calendar },
       { name: 'Site Health', href: '/admin/site-health', description: 'Uptime, errors, vitals', icon: Activity },

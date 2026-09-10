@@ -1,15 +1,10 @@
 {
   "mcpServers": {
-    "google-analytics": {
-      "command": "npx",
+    "starlight-observability": {
+      "command": "node",
       "args": [
-        "-y",
-        "@googleanalytics/google-analytics-mcp"
-      ],
-      "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/your/credentials.json",
-        "GA4_PROPERTY_ID": "13609240621"
-      }
+        "C:/Users/frank/starlight/tools/observability-mcp-server.mjs"
+      ]
     },
     "agentdb": {
       "command": "node",
@@ -52,10 +47,6 @@
         "-y",
         "@playwright/mcp@latest"
       ]
-    },
-    "higgsfield": {
-      "type": "http",
-      "url": "https://mcp.higgsfield.ai/mcp"
     },
     "elevenlabs": {
       "command": "uvx",

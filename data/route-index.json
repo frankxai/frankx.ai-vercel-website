@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 993,
+    "total": 994,
     "aliases": 58,
     "byType": {
       "core": 24,
@@ -11,7 +11,7 @@
       "static": 15,
       "blog": 264,
       "research": 16,
-      "guide": 26,
+      "guide": 27,
       "library": 88,
       "newsletter": 1,
       "os": 11,
@@ -5886,6 +5886,19 @@
         "AI",
         "Operations",
         "Guides"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/soma-breath-golden-age-integration",
+      "title": "The SOMA Breath & Golden Age Guide: From Awakening to Sovereign Creation",
+      "description": "How to anchor breathwork downloads into daily physical reality using the Golden Age Arrival loop, sovereign second brains, and AI agent skills.",
+      "tags": [
+        "soma",
+        "breath",
+        "golden",
+        "age",
+        "integration"
       ],
       "type": "guide"
     },

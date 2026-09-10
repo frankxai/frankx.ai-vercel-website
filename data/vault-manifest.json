@@ -1,12 +1,12 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-31T22:54:07.379Z",
-  "totalAssets": 1722,
+  "generatedAt": "2026-09-10T23:14:55.630Z",
+  "totalAssets": 1733,
   "totalCollections": 64,
-  "totalSize": 1340261464,
+  "totalSize": 1341012455,
   "formats": {
-    "png": 866,
-    "svg": 380,
+    "png": 868,
+    "svg": 389,
     "webp": 282,
     "jpg": 184,
     "jpeg": 10
@@ -15316,7 +15316,7 @@
       "id": "infographics",
       "name": "Educational Infographics",
       "description": "ACOS, Arcanea, and Vibe OS educational series — system architecture breakdowns and learning visualizations.",
-      "count": 134,
+      "count": 136,
       "coverImage": "/images/infographics/unsorted/1769252302972.webp",
       "accent": "from-blue-500/20 to-indigo-500/20",
       "borderAccent": "border-blue-500/30",
@@ -16878,7 +16878,7 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 617956,
+          "fileSize": 554897,
           "title": "Acos Loop Diagram",
           "tags": [
             "infographics",
@@ -16886,7 +16886,7 @@
             "loop",
             "diagram"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-09-09"
         },
         {
           "id": "infographics/arcanea-infographic-2d",
@@ -16942,6 +16942,25 @@
           "createdAt": "2026-05-28"
         },
         {
+          "id": "infographics/economic-horizon-diagram",
+          "filename": "economic-horizon-diagram.png",
+          "src": "/images/infographics/economic-horizon-diagram.png",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 554897,
+          "title": "Economic Horizon Diagram",
+          "tags": [
+            "infographics",
+            "economic",
+            "horizon",
+            "diagram"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
           "id": "infographics/failure-mode-catalog-header",
           "filename": "failure-mode-catalog-header.webp",
           "src": "/images/infographics/ai-architecture/failure-mode-catalog-header.webp",
@@ -16959,7 +16978,7 @@
             "catalog",
             "header"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/founder-stack-diagram",
@@ -16970,7 +16989,7 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 683080,
+          "fileSize": 610200,
           "title": "Founder Stack Diagram",
           "tags": [
             "infographics",
@@ -16978,7 +16997,26 @@
             "stack",
             "diagram"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "infographics/gartner-swarm-maturity",
+          "filename": "gartner-swarm-maturity.png",
+          "src": "/images/infographics/gartner-swarm-maturity.png",
+          "thumbnail": null,
+          "collection": "infographics",
+          "format": "png",
+          "width": null,
+          "height": null,
+          "fileSize": 392011,
+          "title": "Gartner Swarm Maturity",
+          "tags": [
+            "infographics",
+            "gartner",
+            "swarm",
+            "maturity"
+          ],
+          "createdAt": "2026-09-09"
         },
         {
           "id": "infographics/gemini-1gkbfs1gkbfs1gkb",
@@ -17031,7 +17069,7 @@
             "infographics",
             "architecture"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/platform-equals-ring",
@@ -17050,7 +17088,7 @@
             "equals",
             "ring"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/platform-glyph-aws",
@@ -17069,7 +17107,7 @@
             "glyph",
             "aws"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/platform-glyph-azure",
@@ -17088,7 +17126,7 @@
             "glyph",
             "azure"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/platform-glyph-cloudflare",
@@ -17107,7 +17145,7 @@
             "glyph",
             "cloudflare"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/platform-glyph-gcp",
@@ -17126,7 +17164,7 @@
             "glyph",
             "gcp"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/platform-glyph-railway",
@@ -17145,7 +17183,7 @@
             "glyph",
             "railway"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/platform-glyph-self-hosted",
@@ -17165,7 +17203,7 @@
             "self",
             "hosted"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/platform-glyph-supabase",
@@ -17184,7 +17222,7 @@
             "glyph",
             "supabase"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/platform-glyph-vercel",
@@ -17203,7 +17241,7 @@
             "glyph",
             "vercel"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/prompt-architecture-diagram",
@@ -17214,7 +17252,7 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 539401,
+          "fileSize": 567852,
           "title": "Prompt Architecture Diagram",
           "tags": [
             "infographics",
@@ -17222,7 +17260,7 @@
             "architecture",
             "diagram"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-09-09"
         },
         {
           "id": "infographics/protocol-layer-handshake-accent",
@@ -17242,7 +17280,7 @@
             "handshake",
             "accent"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/reference-stack-static-fallback",
@@ -17262,7 +17300,7 @@
             "static",
             "fallback"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/seven-plane-stack-hero-variant-1",
@@ -17283,7 +17321,7 @@
             "hero",
             "variant"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/seven-plane-stack-hero-variant-2",
@@ -17304,7 +17342,7 @@
             "hero",
             "variant"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/seven-plane-stack-hero-variant-3",
@@ -17325,7 +17363,7 @@
             "hero",
             "variant"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/seven-plane-stack-hero",
@@ -17345,7 +17383,7 @@
             "stack",
             "hero"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "infographics/skill-anatomy",
@@ -17450,7 +17488,7 @@
           "format": "png",
           "width": null,
           "height": null,
-          "fileSize": 490123,
+          "fileSize": 392011,
           "title": "Swarm Architecture Diagram",
           "tags": [
             "infographics",
@@ -17458,7 +17496,7 @@
             "architecture",
             "diagram"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-09-09"
         },
         {
           "id": "infographics/v7-01-pillars-premium",
@@ -19504,7 +19542,7 @@
       "id": "logos",
       "name": "Logo Library",
       "description": "FrankX brand logos in various formats and configurations.",
-      "count": 27,
+      "count": 36,
       "coverImage": "/images/logos/anthropic.svg",
       "accent": "from-white/10 to-gray-500/20",
       "borderAccent": "border-white/20",
@@ -19546,6 +19584,23 @@
         },
         {
           "id": "logos/aws",
+          "filename": "aws.svg",
+          "src": "/images/logos/aws.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 883,
+          "title": "Aws",
+          "tags": [
+            "logos",
+            "aws"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "logos/aws",
           "filename": "aws.webp",
           "src": "/images/logos/aws.webp",
           "thumbnail": null,
@@ -19559,7 +19614,24 @@
             "logos",
             "aws"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "logos/azure",
+          "filename": "azure.svg",
+          "src": "/images/logos/azure.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 401,
+          "title": "Azure",
+          "tags": [
+            "logos",
+            "azure"
+          ],
+          "createdAt": "2026-09-09"
         },
         {
           "id": "logos/azure",
@@ -19576,7 +19648,7 @@
             "logos",
             "azure"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "logos/cerebras",
@@ -19597,6 +19669,23 @@
         },
         {
           "id": "logos/cloudflare",
+          "filename": "cloudflare.svg",
+          "src": "/images/logos/cloudflare.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 1178,
+          "title": "Cloudflare",
+          "tags": [
+            "logos",
+            "cloudflare"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "logos/cloudflare",
           "filename": "cloudflare.webp",
           "src": "/images/logos/cloudflare.webp",
           "thumbnail": null,
@@ -19610,7 +19699,24 @@
             "logos",
             "cloudflare"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "logos/docker",
+          "filename": "docker.svg",
+          "src": "/images/logos/docker.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 1765,
+          "title": "Docker",
+          "tags": [
+            "logos",
+            "docker"
+          ],
+          "createdAt": "2026-09-09"
         },
         {
           "id": "logos/elevenlabs",
@@ -19649,6 +19755,24 @@
         },
         {
           "id": "logos/google-cloud",
+          "filename": "google-cloud.svg",
+          "src": "/images/logos/google-cloud.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 683,
+          "title": "Google Cloud",
+          "tags": [
+            "logos",
+            "google",
+            "cloud"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "logos/google-cloud",
           "filename": "google-cloud.webp",
           "src": "/images/logos/google-cloud.webp",
           "thumbnail": null,
@@ -19663,7 +19787,7 @@
             "google",
             "cloud"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "logos/google",
@@ -19732,6 +19856,23 @@
             "huggingface"
           ],
           "createdAt": "2026-05-28"
+        },
+        {
+          "id": "logos/kubernetes",
+          "filename": "kubernetes.svg",
+          "src": "/images/logos/kubernetes.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 3565,
+          "title": "Kubernetes",
+          "tags": [
+            "logos",
+            "kubernetes"
+          ],
+          "createdAt": "2026-09-09"
         },
         {
           "id": "logos/llama",
@@ -19854,6 +19995,23 @@
         },
         {
           "id": "logos/railway",
+          "filename": "railway.svg",
+          "src": "/images/logos/railway.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 773,
+          "title": "Railway",
+          "tags": [
+            "logos",
+            "railway"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "logos/railway",
           "filename": "railway.webp",
           "src": "/images/logos/railway.webp",
           "thumbnail": null,
@@ -19867,7 +20025,7 @@
             "logos",
             "railway"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "logos/self-hosted",
@@ -19885,7 +20043,7 @@
             "self",
             "hosted"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "logos/stability",
@@ -19923,6 +20081,23 @@
         },
         {
           "id": "logos/supabase",
+          "filename": "supabase.svg",
+          "src": "/images/logos/supabase.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 303,
+          "title": "Supabase",
+          "tags": [
+            "logos",
+            "supabase"
+          ],
+          "createdAt": "2026-09-09"
+        },
+        {
+          "id": "logos/supabase",
           "filename": "supabase.webp",
           "src": "/images/logos/supabase.webp",
           "thumbnail": null,
@@ -19936,7 +20111,24 @@
             "logos",
             "supabase"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
+        },
+        {
+          "id": "logos/vercel",
+          "filename": "vercel.svg",
+          "src": "/images/logos/vercel.svg",
+          "thumbnail": null,
+          "collection": "logos",
+          "format": "svg",
+          "width": null,
+          "height": null,
+          "fileSize": 132,
+          "title": "Vercel",
+          "tags": [
+            "logos",
+            "vercel"
+          ],
+          "createdAt": "2026-09-09"
         },
         {
           "id": "logos/vercel",
@@ -19953,7 +20145,7 @@
             "logos",
             "vercel"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "logos/xai",
@@ -23888,7 +24080,7 @@
             "catalog",
             "header"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/og-ai-architecture",
@@ -23905,7 +24097,7 @@
             "ai-architecture",
             "architecture"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/platform-equals-ring",
@@ -23924,7 +24116,7 @@
             "equals",
             "ring"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/platform-glyph-aws",
@@ -23943,7 +24135,7 @@
             "glyph",
             "aws"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/platform-glyph-azure",
@@ -23962,7 +24154,7 @@
             "glyph",
             "azure"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/platform-glyph-cloudflare",
@@ -23981,7 +24173,7 @@
             "glyph",
             "cloudflare"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/platform-glyph-gcp",
@@ -24000,7 +24192,7 @@
             "glyph",
             "gcp"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/platform-glyph-railway",
@@ -24019,7 +24211,7 @@
             "glyph",
             "railway"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/platform-glyph-self-hosted",
@@ -24039,7 +24231,7 @@
             "self",
             "hosted"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/platform-glyph-supabase",
@@ -24058,7 +24250,7 @@
             "glyph",
             "supabase"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/platform-glyph-vercel",
@@ -24077,7 +24269,7 @@
             "glyph",
             "vercel"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/protocol-layer-handshake-accent",
@@ -24097,7 +24289,7 @@
             "handshake",
             "accent"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/reference-stack-static-fallback",
@@ -24117,7 +24309,7 @@
             "static",
             "fallback"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/seven-plane-stack-hero-variant-1",
@@ -24138,7 +24330,7 @@
             "hero",
             "variant"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/seven-plane-stack-hero-variant-2",
@@ -24159,7 +24351,7 @@
             "hero",
             "variant"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/seven-plane-stack-hero-variant-3",
@@ -24180,7 +24372,7 @@
             "hero",
             "variant"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         },
         {
           "id": "ai-architecture/seven-plane-stack-hero",
@@ -24200,7 +24392,7 @@
             "stack",
             "hero"
           ],
-          "createdAt": "2026-08-20"
+          "createdAt": "2026-08-31"
         }
       ]
     },
