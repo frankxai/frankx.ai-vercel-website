@@ -1219,6 +1219,90 @@
         "https://docs.x.ai/developers/release-notes",
         "https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis"
       ]
+    },
+    "gpt-image-2-5-flare": {
+      "id": "gpt-image-2.5-flare",
+      "name": "GPT Image 2.5 Flare",
+      "organization": "openai",
+      "family": "GPT Image",
+      "released": "2026-09-08",
+      "status": "available",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "capabilities": [
+        "image-gen"
+      ],
+      "key_capabilities": [
+        "Reference-based generation and selective editing (vendor-reported).",
+        "Multi-turn image consistency requires inspection on your own assets.",
+        "No FrankX image-workflow measurements recorded; evaluation protocol is planned.",
+        "USD per million tokens: text input $5, cached text $1.25; image input $8, cached image $2, image output $30. Total asset cost depends on usage and retries."
+      ],
+      "image_pricing": {
+        "currency": "USD",
+        "unit": "per_1m_tokens",
+        "text_input": 5,
+        "cached_text_input": 1.25,
+        "image_input": 8,
+        "cached_image_input": 2,
+        "image_output": 30,
+        "checked_at": "2026-09-10",
+        "source": "https://developers.openai.com/api/docs/pricing"
+      },
+      "workflow": {
+        "guide": "/guides/reference-to-campaign",
+        "protocol": "/research/image-workflows/protocol.json",
+        "status": "not_run"
+      },
+      "sources": [
+        "https://openai.com/index/introducing-chatgpt-images-2-5/",
+        "https://developers.openai.com/api/docs/pricing"
+      ],
+      "frankx_notes": "Evaluate complete asset workflows, including identity preservation, exact copy, correction time, retries and cost per approved asset. No ranking or production recommendation is established by this entry."
+    },
+    "gpt-image-2-5-sunburst": {
+      "id": "gpt-image-2.5-sunburst",
+      "name": "GPT Image 2.5 Sunburst",
+      "organization": "openai",
+      "family": "GPT Image",
+      "released": "2026-09-08",
+      "status": "available",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "capabilities": [
+        "image-gen"
+      ],
+      "key_capabilities": [
+        "Reference-based generation and selective editing (vendor-reported).",
+        "Multi-turn image consistency requires inspection on your own assets.",
+        "No FrankX image-workflow measurements recorded; evaluation protocol is planned.",
+        "USD per million tokens: text input $5, cached text $1.25; image input $8, cached image $2, image output $30. Total asset cost depends on usage and retries."
+      ],
+      "image_pricing": {
+        "currency": "USD",
+        "unit": "per_1m_tokens",
+        "text_input": 5,
+        "cached_text_input": 1.25,
+        "image_input": 8,
+        "cached_image_input": 2,
+        "image_output": 30,
+        "checked_at": "2026-09-10",
+        "source": "https://developers.openai.com/api/docs/pricing"
+      },
+      "workflow": {
+        "guide": "/guides/reference-to-campaign",
+        "protocol": "/research/image-workflows/protocol.json",
+        "status": "not_run"
+      },
+      "sources": [
+        "https://openai.com/index/introducing-chatgpt-images-2-5/",
+        "https://developers.openai.com/api/docs/pricing"
+      ],
+      "frankx_notes": "Evaluate complete asset workflows, including identity preservation, exact copy, correction time, retries and cost per approved asset. No ranking or production recommendation is established by this entry."
     }
   },
   "organizations": {
@@ -1244,7 +1328,9 @@
         "gpt-6-astra",
         "gpt-5-5",
         "gpt-5-2-pro",
-        "gpt-oss"
+        "gpt-oss",
+        "gpt-image-2-5-flare",
+        "gpt-image-2-5-sunburst"
       ],
       "flagship_model_id": "gpt-6-astra"
     },
@@ -1324,5 +1410,5 @@
     "haiku": "claude-haiku-4-5"
   },
   "last_updated": "2026-09-08",
-  "_update_scope": "Astra addition and Sonnet 5 pricing correction only; other model records retain their earlier source coverage."
+  "_update_scope": "Added GPT Image 2.5 Flare and Sunburst, separately typed image pricing and planned workflow references. Other entries retain their existing evidence."
 }

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Image workflow task-attempt summaries",
+  "description": "Each record covers one complete task attempt, aggregating its edit requests. Retain original provider receipts separately. The evaluator rejects duplicate IDs and double-counted approvals.",
+  "type": "array",
+  "minItems": 1,
+  "maxItems": 10000,
+  "items": {
+    "type": "object",
+    "required": [
+      "attempt_id",
+      "run_id",
+      "provider_model_id",
+      "fixture_set_id",
+      "task_id",
+      "comparison_mode",
+      "approved",
+      "mandatory_checks_passed",
+      "api_cost_usd",
+      "elapsed_ms",
+      "manual_correction_minutes"
+    ],
+    "properties": {
+      "attempt_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "run_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "provider_model_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "fixture_set_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "task_id": {
+        "enum": [
+          "campaign-scene",
+          "background-edit",
+          "exact-copy",
+          "revision-sequence",
+          "character-continuity",
+          "portrait-derivative"
+        ]
+      },
+      "comparison_mode": {
+        "enum": [
+          "shared_fixtures",
+          "end_to_end"
+        ]
+      },
+      "approved": {
+        "type": "boolean"
+      },
+      "mandatory_checks_passed": {
+        "type": "boolean"
+      },
+      "api_cost_usd": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "minimum": 0
+      },
+      "elapsed_ms": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "minimum": 0
+      },
+      "manual_correction_minutes": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "minimum": 0
+      }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "approved": {
+              "const": true
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "mandatory_checks_passed": {
+              "const": true
+            }
+          }
+        }
+      }
+    ]
+  }
+}

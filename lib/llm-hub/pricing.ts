@@ -12,6 +12,19 @@ function price(value: unknown): number | null {
 }
 
 export function resolveModelPricing(model: ModelEntry, live?: LivePricing) {
+  if (model.image_pricing) {
+    return {
+      input: null,
+      output: null,
+      currency: 'USD' as const,
+      unit: 'per_million_tokens' as const,
+      source: 'unknown' as const,
+      sourceUrl: null,
+      observedAt: null,
+      verifiedAt: null,
+      scope: 'Modality-specific token rates are in imagePricing. Generic text-token estimates do not apply; include image input, output, cache and retries.',
+    }
+  }
   const weightsOnly = model.pricing?.input_per_1m === 0 && model.pricing?.output_per_1m === 0
   const input = live ? price(live.inputPer1m) : weightsOnly ? null : price(model.pricing?.input_per_1m)
   const output = live ? price(live.outputPer1m) : weightsOnly ? null : price(model.pricing?.output_per_1m)

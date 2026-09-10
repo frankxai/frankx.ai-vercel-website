@@ -7,7 +7,7 @@
 import type { Capability } from './capabilities'
 import { getEditorial } from './editorial'
 import type { LivePricingMap } from './openrouter'
-import { getProviders, type OrganizationEntry } from './registry'
+import { getProviders, type ModelEntry, type OrganizationEntry } from './registry'
 import { hasOpenWeights, resolveModelPricing } from './pricing'
 
 export interface ModelRow {
@@ -33,6 +33,8 @@ export interface ModelRow {
   modalities: string[]
   capabilities: Capability[]
   tagline?: string
+  imagePricing?: ModelEntry['image_pricing']
+  workflow?: ModelEntry['workflow']
 }
 
 export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
@@ -40,7 +42,8 @@ export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
   for (const { org, models } of getProviders()) {
     const o = org as OrganizationEntry
     for (const m of models) {
-      const livePrice = live[m.id]
+      // Image token prices are not comparable to the text-token calculator.
+      const livePrice = m.image_pricing ? undefined : live[m.id]
       const pricing = resolveModelPricing(m, livePrice)
       rows.push({
         id: m.id,
@@ -71,6 +74,8 @@ export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
           ? m.capabilities
           : o.capability_focus || []) as Capability[],
         tagline: getEditorial(m.id)?.tagline,
+        imagePricing: m.image_pricing,
+        workflow: m.workflow,
       })
     }
   }

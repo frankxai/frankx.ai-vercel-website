@@ -1,17 +1,17 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1002,
+    "total": 1006,
     "aliases": 58,
     "byType": {
       "core": 24,
       "section": 434,
       "community": 17,
-      "tool": 62,
+      "tool": 64,
       "static": 15,
-      "blog": 269,
+      "blog": 270,
       "research": 16,
-      "guide": 26,
+      "guide": 27,
       "library": 88,
       "newsletter": 1,
       "os": 11,
@@ -1732,6 +1732,19 @@
         "claude code",
         "mcp",
         "productivity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/chatgpt-images-2-5-creator-founder-workflows",
+      "title": "ChatGPT Images 2.5: what creators and founders should build",
+      "description": "Choose between Flare and Sunburst, test complete image workflows, and turn approved references into campaigns, stories and reusable product assets.",
+      "tags": [
+        "image-generation",
+        "gpt-image-2-5",
+        "creative-workflows",
+        "founders",
+        "model-arena"
       ],
       "type": "blog"
     },
@@ -5948,6 +5961,18 @@
       "type": "guide"
     },
     {
+      "href": "/guides/reference-to-campaign",
+      "title": "From reference to campaign: an AI image workflow",
+      "description": "Run a complete image commission with copyable prompts, six evaluation tasks, review criteria and an agent-readable protocol.",
+      "tags": [
+        "image-generation",
+        "campaigns",
+        "founders",
+        "model-arena"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/skills-library-playbook",
       "title": "Skills Library Playbook",
       "description": "How to activate the FrankX skill stack for faster execution and better creative outcomes.",
@@ -7575,6 +7600,24 @@
     {
       "href": "/llm-hub/gpt-6-astra",
       "title": "GPT-6 Astra — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-image-2-5-flare",
+      "title": "GPT Image 2.5 Flare — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-image-2-5-sunburst",
+      "title": "GPT Image 2.5 Sunburst — Model Hub",
       "tags": [
         "llm-hub",
         "model"

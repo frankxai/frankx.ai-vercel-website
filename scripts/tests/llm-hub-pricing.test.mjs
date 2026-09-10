@@ -61,3 +61,21 @@ test('an unrun suite does not link a private repository as public evidence', () 
   assert.equal(astra.evaluation.evidence_url, null)
   assert.ok(astra.sources.every(url => !url.includes('frankxai/llm-evals')))
 })
+
+
+test('image rates cannot become generic text estimates or live price attestations', () => {
+  for (const id of ['gpt-image-2-5-flare', 'gpt-image-2-5-sunburst']) {
+    const model = registry.models[id]
+    const price = resolveModelPricing(model, {
+      inputPer1m: 5, outputPer1m: 30, source: 'openrouter', fetchedAt: '2026-09-10T12:00:00.000Z',
+    })
+    assert.equal(price.input, null)
+    assert.equal(price.output, null)
+    assert.equal(price.source, 'unknown')
+    assert.equal(price.observedAt, null)
+    assert.equal(price.sourceUrl, null)
+    assert.match(price.scope, /imagePricing/)
+    assert.equal(tokenCost(price.input, price.output, 10, 2), null)
+    assert.equal(model.image_pricing.image_output, 30)
+  }
+})

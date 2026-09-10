@@ -24,6 +24,18 @@ export interface ModelEditorial {
 }
 
 export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
+  'gpt-image-2-5-flare': {
+    tagline: 'Evaluate reference-based image generation and focused edits for everyday creative production.',
+    bestFor: ['Campaign concept exploration', 'Reference-based product scenes', 'Social asset variations'],
+    watchOut: 'Vendor capabilities, not a FrankX benchmark winner. Image and text input have separate token rates. Measure retries and editing time before choosing a production default.',
+    creatorUse: 'Start with an approved reference, generate three directions, then evaluate a focused edit. Use the linked creator guide and downloadable arena protocol.',
+  },
+  'gpt-image-2-5-sunburst': {
+    tagline: 'A candidate for detailed image edits where precision can justify a longer wait.',
+    bestFor: ['Detailed campaign revisions', 'Product identity preservation tests', 'Multi-turn continuity checks'],
+    watchOut: 'Longer generation times are part of the vendor positioning. No local latency, pass rate or cost-per-approved-asset result has been recorded.',
+    creatorUse: 'Compare against Flare on the same approved asset and edit sequence. Keep the variant only when human review finds a worthwhile improvement.',
+  },
   'gpt-6-astra': {
     tagline: 'A candidate for demanding work across research, software and creative tools. Evaluate the complete handoff.',
     bestFor: [

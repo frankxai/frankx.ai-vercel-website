@@ -1,0 +1,50 @@
+{
+  "schema": "frankx/image-workflow-routes@1",
+  "updatedAt": "2026-09-10",
+  "article": "/blog/chatgpt-images-2-5-creator-founder-workflows",
+  "guide": "/guides/reference-to-campaign",
+  "protocol": "/research/image-workflows/protocol.json",
+  "principle": "Serve the immediate task first. Product links point to existing homepages, not a claim of an integrated image feature.",
+  "routes": [
+    {
+      "intent": "understand_release",
+      "destination": "/blog/chatgpt-images-2-5-creator-founder-workflows",
+      "status": "resource"
+    },
+    {
+      "intent": "compare_models",
+      "destination": "/llm-hub",
+      "status": "resource"
+    },
+    {
+      "intent": "create_campaign",
+      "destination": "/guides/reference-to-campaign",
+      "status": "resource",
+      "productHome": "https://gencreator.ai",
+      "proposedFeature": "Reference assets, approval history and campaign derivatives",
+      "featureStatus": "proposed"
+    },
+    {
+      "intent": "story_continuity",
+      "destination": "/guides/reference-to-campaign",
+      "status": "resource",
+      "productHome": "https://arcanea.ai",
+      "proposedFeature": "Character references and continuity review across scenes",
+      "featureStatus": "proposed"
+    },
+    {
+      "intent": "inspect_evidence",
+      "destination": "/research/model-arena/receipts.json",
+      "status": "resource",
+      "imageEvaluationStatus": "not_run"
+    },
+    {
+      "intent": "automate_project_memory",
+      "destination": "/research/image-workflows/protocol.json",
+      "status": "resource",
+      "productHome": "https://starlightintelligence.ai",
+      "proposedFeature": "Versioned asset lineage, approvals and evidence-based routing",
+      "featureStatus": "proposed"
+    }
+  ]
+}

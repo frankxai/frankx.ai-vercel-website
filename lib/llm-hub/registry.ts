@@ -31,6 +31,18 @@ export interface ModelEntry {
   acos_tier?: string
   frankx_notes?: string
   sources?: string[]
+  image_pricing?: {
+    currency: string
+    unit: string
+    text_input: number
+    cached_text_input: number
+    image_input: number
+    cached_image_input: number
+    image_output: number
+    checked_at: string
+    source: string
+  }
+  workflow?: { guide: string; protocol: string; status: string }
   evaluation?: {
     status: string
     planned_cases: number
@@ -163,7 +175,8 @@ export function getCapabilityGroups(): Array<{
   const all = getProviders()
   return (Object.keys(CAPABILITIES) as Capability[]).map((capability) => ({
     capability,
-    providers: all.filter((p) => p.org.capability_focus?.includes(capability)),
+    providers: all.filter((p) => p.org.capability_focus?.includes(capability)
+      || p.models.some((model) => model.capabilities?.includes(capability))),
   }))
 }
 
