@@ -3,7 +3,7 @@ export type HomepageFeaturedRelease = {
   title: string
   sunoId: string
   sunoUrl: string
-  audioUrl: string
+  audioUrl?: string
   imageUrl: string
   genre: string[]
   duration: string
@@ -27,8 +27,8 @@ export const homepageFeaturedRelease: HomepageFeaturedRelease = {
   sunoUrl: 'https://suno.com/song/e7d082d3-8ecd-4fdb-a8fa-582026554153',
   // Cover is repo-hosted on purpose: the previous entry hotlinked cdn2.suno.ai and
   // that URL now 403s, so the homepage shipped a broken cover. Suno rotates CDN
-  // variants without notice.
-  audioUrl: 'https://cdn1.suno.ai/e7d082d3-8ecd-4fdb-a8fa-582026554153.mp3',
+  // variants without notice. Inline playback stays unavailable until the exact
+  // exported bytes live on FrankX-owned storage with range/decode evidence.
   imageUrl: '/images/music/star-show-us.jpg',
   genre: ['latin progressive house', 'violin', 'jazz'],
   duration: '4:26',
