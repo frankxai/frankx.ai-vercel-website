@@ -17,6 +17,7 @@ export interface ModelRow {
   input: number | null
   output: number | null
   live: boolean
+  openWeights: boolean
   modalities: string[]
   capabilities: Capability[]
   tagline?: string
@@ -33,7 +34,7 @@ function fmtCtx(t: number | null): string {
 
 function fmtPrice(p: number | null): string {
   if (p === null) return '—'
-  if (p === 0) return 'Open'
+  if (p === 0) return '$0.00'
   return `$${p.toFixed(2)}`
 }
 
@@ -71,7 +72,7 @@ export function ModelExplorer({ rows }: { rows: ModelRow[] }) {
     let out = rows.filter((r) => {
       if (query && !`${r.name} ${r.org}`.toLowerCase().includes(query.toLowerCase())) return false
       if (activeProvider !== 'all' && r.org !== activeProvider) return false
-      if (openOnly && r.input !== 0) return false
+      if (openOnly && !r.openWeights) return false
       if (activeCaps.size > 0 && !Array.from(activeCaps).every((c) => r.capabilities.includes(c))) return false
       return true
     })

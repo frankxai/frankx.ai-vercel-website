@@ -18,6 +18,7 @@ import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
 import { siteConfig } from '@/lib/seo'
 import { ldJson } from '@/lib/seo/jsonld'
 import { CapabilityBadge } from '@/components/llm-hub/CapabilityBadge'
+import { resolveModelPricing } from '@/lib/llm-hub/pricing'
 
 export const revalidate = 3600
 
@@ -37,7 +38,7 @@ export async function generateMetadata({
   const { slug } = await params
   const model = getModel(slug)
   if (!model) return { title: 'Model not found' }
-  const ed = getEditorial(slug)
+  const ed = getEditorial(model.id)
   const org = orgForModel(model.organization)
   const title = `${model.name} — Benchmarks, Pricing & Capabilities (2026)`
   const description =
@@ -53,11 +54,11 @@ export async function generateMetadata({
       `${model.name.toLowerCase()} vs`,
       'best llm 2026',
     ],
-    alternates: { canonical: `${siteConfig.url}/llm-hub/${slug}` },
+    alternates: { canonical: `${siteConfig.url}/llm-hub/${model.id}` },
     openGraph: {
       title,
       description,
-      url: `${siteConfig.url}/llm-hub/${slug}`,
+      url: `${siteConfig.url}/llm-hub/${model.id}`,
       type: 'article',
     },
   }
@@ -68,15 +69,15 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
   const model = getModel(slug)
   if (!model) notFound()
 
-  const ed = getEditorial(slug)
+  const ed = getEditorial(model.id)
   const org = orgForModel(model.organization)
   const accent = org?.accent_color || '#a855f7'
-  const live = (await fetchLivePricing())[slug]
+  const live = model.image_pricing ? undefined : (await fetchLivePricing())[model.id]
+  const capabilities = model.capabilities?.length ? model.capabilities : org?.capability_focus ?? []
 
-  const inputPrice = live?.inputPer1m ?? (typeof model.pricing?.input_per_1m === 'number' ? model.pricing.input_per_1m : null)
-  const outputPrice = live?.outputPer1m ?? (typeof model.pricing?.output_per_1m === 'number' ? model.pricing.output_per_1m : null)
+  const { input: inputPrice, output: outputPrice } = resolveModelPricing(model, live)
 
-  const comparisons = comparisonsForModel(slug)
+  const comparisons = comparisonsForModel(model.id)
   const articleSlug = articleForModel(model.id)
   const platforms = (org?.agentic_platforms || [])
     .map((id) => getPlatform(id))
@@ -119,7 +120,7 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
       { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: `${siteConfig.url}/llm-hub` },
-      { '@type': 'ListItem', position: 3, name: model.name, item: `${siteConfig.url}/llm-hub/${slug}` },
+      { '@type': 'ListItem', position: 3, name: model.name, item: `${siteConfig.url}/llm-hub/${model.id}` },
     ],
   }
 
@@ -162,9 +163,9 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           ) : null}
-          {org?.capability_focus && org.capability_focus.length > 0 ? (
+          {capabilities.length > 0 ? (
             <div className="mt-4 flex flex-wrap gap-1.5">
-              {org.capability_focus.map((c) => (
+              {capabilities.map((c) => (
                 <CapabilityBadge key={c} capability={c} href={`/llm-hub#${c}`} />
               ))}
             </div>
@@ -232,8 +233,8 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
             <h2 className="text-xl font-semibold">Evaluation status: {model.evaluation.status.replaceAll('_', ' ')}</h2>
             <p className="mt-3 text-sm leading-relaxed text-white/70">{model.evaluation.planned_cases} synthetic decision cases defined; {model.evaluation.measured_cases} model observations. These cases do not measure live connector execution or creative artifact quality. No calibrated judge or production promotion is recorded.</p>
             <div className="mt-4 flex flex-wrap gap-5 text-sm text-emerald-200">
-              <a href={model.evaluation.url} className="underline underline-offset-4">Evaluation protocol</a>
-              <a href={model.evaluation.evidence_url} className="underline underline-offset-4">Public evidence JSON</a>
+              {model.evaluation.url ? <a href={model.evaluation.url} className="underline underline-offset-4">Evaluation protocol</a> : <span>Protocol has no public link.</span>}
+              {model.evaluation.evidence_url ? <a href={model.evaluation.evidence_url} className="underline underline-offset-4">Public evidence JSON</a> : <span>No public receipt for this suite.</span>}
               <Link href="/blog/gpt-6-astra-for-content-creators" className="underline underline-offset-4">Creator workflows</Link>
               <Link href="/blog/gpt-6-astra-chatgpt-work-codex-founders" className="underline underline-offset-4">Founder guide</Link>
             </div>

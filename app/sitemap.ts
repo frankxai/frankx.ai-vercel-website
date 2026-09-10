@@ -5,7 +5,7 @@ import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
-import { getAllModels } from '@/lib/llm-hub/registry'
+import { getAllModels, registryLastUpdated } from '@/lib/llm-hub/registry'
 import { getAllAgentEntries } from '@/lib/agent-hub/registry'
 import { COMPARISONS } from '@/lib/llm-hub/comparisons'
 import { learningPaths } from '@/data/learning-paths'
@@ -809,7 +809,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   getAllModels().forEach((model) => {
     entries.push({
       url: `${BASE_URL}/llm-hub/${model.id}`,
-      lastModified: currentDate,
+      ...(registryLastUpdated() ? { lastModified: registryLastUpdated() } : {}),
       changeFrequency: 'weekly',
       priority: 0.7,
     })
@@ -817,7 +817,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   COMPARISONS.forEach((comparison) => {
     entries.push({
       url: `${BASE_URL}/llm-hub/compare/${comparison.slug}`,
-      lastModified: currentDate,
+      // No per-comparison modification date is recorded; omit rather than invent one.
       changeFrequency: 'weekly',
       priority: 0.7,
     })

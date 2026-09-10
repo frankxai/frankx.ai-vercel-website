@@ -1,0 +1,133 @@
+---
+title: "From reference to campaign: an AI image workflow"
+description: "Run a complete image commission with copyable prompts, six evaluation tasks, review criteria and an agent-readable protocol."
+date: "2026-09-10"
+updated: "2026-09-10"
+author: "FrankX"
+category: "Visual Creation"
+tags: ["image-generation", "campaigns", "founders", "model-arena"]
+keywords: ["AI campaign image workflow", "image editing evaluation", "reference image consistency"]
+faqs:
+  - question: "Does this guide contain measured model results?"
+    answer: "No. It defines a workflow and evaluation protocol. The image evaluation has zero measured runs; model capabilities are documented separately from local evidence."
+  - question: "Which model should I start with?"
+    answer: "Evaluate Flare for a general image commission, Sunburst for a precision edit, and your current workflow as the baseline. Keep the inputs and acceptance criteria comparable."
+  - question: "Can I use the generated image as the finished campaign?"
+    answer: "Only after checking product identity, exact copy, composition and the exported placements. Preserve editable text and source files for later changes."
+---
+
+Create one campaign from an approved reference, then test whether it survives revision. This guide supplies a brief, prompts and acceptance criteria. It does not contain measured results or promise that a particular model will pass.
+
+Read the [Images 2.5 analysis](/blog/chatgpt-images-2-5-creator-founder-workflows) for release context. Agents can download the same [evaluation protocol](/research/image-workflows/protocol.json) and [intent routing manifest](/research/image-workflows/routes.json).
+
+## 1. Prepare the source brief
+
+Choose a product, course, publication or event you can describe accurately. Gather the reference image, approved logo, color values and exact copy. Write down the details that must survive every revision. Use reference material you have permission to process.
+
+```text
+Project: [name]
+Audience and action: [who should do what]
+Reference files: [file names and roles]
+Identity constraints: [shape, label, face, clothing or other fixed details]
+Approved copy: [exact words, or specify no generated text]
+Visual direction: [lighting, composition, color and mood]
+Deliverables: [placements and dimensions supported by the selected tool]
+Reviewer: [person responsible for acceptance]
+```
+
+Keep these fields with the project. A later revision should not depend on someone remembering which reference was approved.
+
+## 2. Generate three directions
+
+Submit the same source brief for three deliberate variations. Change one creative choice per variation, such as camera angle or background. Ask for the output dimensions supported by your tool; record what it actually returns.
+
+```text
+Use the attached product reference as the identity source.
+Create a campaign image for [audience and action].
+Preserve [specific fixed details].
+Use [visual direction]. Leave a clear area for editable headline text.
+Do not invent product claims, logos or packaging details.
+For this variation, change only [one creative choice].
+```
+
+Compare the candidates at full size and thumbnail size. Select a direction only after checking the product details. Keep rejected attempts; they matter when estimating production effort.
+
+## 3. Make a focused edit
+
+Use the approved output as the next reference, not merely the original prompt. Be precise about what changes and what remains fixed.
+
+```text
+Edit the attached approved image.
+Change only the background to [new background].
+Preserve the product shape, label, camera angle, crop and lighting direction.
+Do not add or remove any other object.
+```
+
+Inspect the changed area and the supposedly unchanged areas. Check small details that a thumbnail hides. If the tool cannot reliably preserve a mandatory element, move that edit into a conventional editor and record the repair time.
+
+## 4. Test continuity over three revisions
+
+Run this sequence: replace the background, change one accent color, then create a portrait composition. Use the immediately preceding approved image as the input at each stage. Retain every intermediate file.
+
+The final review compares the latest output with both the preceding image and the original approved reference. This reveals whether an earlier decision was lost during a later edit.
+
+For a character project, substitute fixed identity details such as facial proportions, clothing and a distinctive accessory. Keep the world or scene description separate from the identity reference.
+
+## 5. Add exact copy and export
+
+Use editable text layers for prices, dates, offers and mandatory claims. If you specifically want to test generated text, use an exact-copy task and review every character. A visually plausible spelling is still a failure.
+
+```text
+Change the existing headline to exactly: "Build your next chapter".
+Preserve the product, layout and every other visible word.
+Do not paraphrase or add punctuation.
+```
+
+Export the approved landscape, square and portrait placements. Open the actual exported files. Check clipping, legibility, transparency where requested and the intended destination size. Generated raster output is not an editable design source; retain the source project separately when your editor supports one.
+
+## 6. Score a complete job
+
+For an isolated model comparison, freeze one common reference file for each task and record its checksum. Every contestant receives that same file. For the revision sequence, start from the shared fixture and then follow each contestant's own outputs through the three steps. Keep full campaign chains that start from different generated images in a separate end-to-end evaluation.
+
+Use the same six tasks for every contestant. The [downloadable JSON](/research/image-workflows/protocol.json) includes the task IDs and scoring criteria.
+
+| Task | Acceptance question |
+| --- | --- |
+| Campaign scene | Does the result preserve the source identity and satisfy the brief? |
+| Background edit | Did the requested background change without collateral changes? |
+| Exact-copy edit | Is the replacement text exact, with other words preserved? |
+| Revision sequence | Do approved details survive all three revisions? |
+| Character continuity | Does the same identity persist in a different scene? |
+| Portrait derivative | Is the composition useful without clipping mandatory content? |
+
+Score identity, instruction adherence, text accuracy when applicable, continuity when applicable and composition from 0 to 4. Zero means the requirement is absent or wrong; 1 needs major repair; 2 needs a visible correction; 3 is usable with a minor correction; 4 passes without correction. Record non-applicable criteria as null, never zero.
+
+An asset is approved only when every mandatory check passes and the human reviewer accepts it. Do not average a failed identity check into a passing score. Record disagreements between reviewers and resolve them against the source brief.
+
+## 7. Compare economics honestly
+
+Record elapsed generation time, API usage, known API cost, manual correction minutes and the number of approved assets. Unknown cost stays null. Include failed generations and retries in total spend.
+
+Calculate cost per approved asset as total known spend divided by approved assets only when all attempt costs are known and at least one asset is approved. Otherwise report the missing information. Report sample count alongside any median latency or acceptance rate.
+
+Run each task at least three times per workflow for an initial inspection: six tasks, three repetitions and three contestants produce 54 task runs, with edit sequences potentially requiring several requests each. This is a planning budget, not a claim of statistical certainty. Check actual request pricing before execution.
+
+## Calculate a local comparison
+
+Download the [local evaluator](/research/image-workflows/evaluate.mjs) and [input schema](/research/image-workflows/attempts.schema.json). It runs with Node.js and makes no network or model calls.
+
+```bash
+node evaluate.mjs attempts.json
+```
+
+Create one record per complete task attempt, summing the API costs and elapsed time of its edit requests. Use a stable `run_id` for retries of the same task and a unique `attempt_id` for each attempt. Record the actual `provider_model_id`, shared `fixture_set_id`, `task_id` and `comparison_mode`. Include boolean `approved` and `mandatory_checks_passed` fields, plus `api_cost_usd`, `elapsed_ms` and `manual_correction_minutes`; use null for unknown numeric values.
+
+The evaluator includes rejected attempts in spend, separates fixture sets and comparison modes, and refuses to count the same run as two approved assets. Its output is labeled user-supplied and unverified. It does not publish a result to the arena. Keep the full references, prompts, outputs and reviewer decisions with your source records.
+
+## Route the handoff to the right product
+
+Use [GenCreator](https://gencreator.ai) as the destination to explore campaign production, [Arcanea](https://arcanea.ai) for story creation, and [Starlight Intelligence](https://starlightintelligence.ai) for the shared operating-system direction. The reference memory, approval and model-routing features described in the article are proposed extensions; this guide does not assert they are already integrated.
+
+For publishing, continue with the existing [image-generation guide](/guides/image-generation-mastery) and [creator studio workflow article](/blog/gpt-6-astra-for-content-creators). For model selection, return to the [LLM Hub](/llm-hub). For measured evidence, inspect the [arena](/research/model-arena).
+
+Save the brief, approved source, edit history, exports and reviewer decision together. They form the useful handoff for the next person or agent who works on the project.
