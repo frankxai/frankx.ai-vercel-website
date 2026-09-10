@@ -82,7 +82,16 @@ jobs:
       - name: Library search and reading guides
         run: pnpm run test:library
 
+      - name: Site search relevance
+        run: pnpm run test:site-search
+
+      - name: Music playback catalog
+        run: pnpm run test:music-playback
+
       - name: Build
         run: pnpm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+
+      - name: GenCreator rendered metadata
+        run: pnpm run test:gencreator-metadata:rendered

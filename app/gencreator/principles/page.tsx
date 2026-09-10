@@ -1,14 +1,20 @@
 import type { Metadata } from 'next'
-import Script from 'next/script'
+import { createMetadata, siteConfig } from '@/lib/seo'
+import { ldJson } from '@/lib/seo/jsonld'
 
-export const metadata: Metadata = {
+const pageMetadata = createMetadata({
   title: 'The 12 GenCreator Principles — Foundation of Generative Creation',
   description:
     '12 operating principles that define how GenCreators think, create, and build. From "Create Daily" to "Leave Artifacts" — the philosophical foundation.',
+  path: '/gencreator/principles',
+})
+
+export const metadata: Metadata = {
+  ...pageMetadata,
   openGraph: {
+    ...pageMetadata.openGraph,
     title: 'The 12 GenCreator Principles',
     description: 'The philosophical foundation of every generative creator.',
-    url: 'https://frankx.ai/gencreator/principles',
   },
 }
 import { ArrowRight, BookOpen } from 'lucide-react'
@@ -23,8 +29,8 @@ const structuredData = {
   '@type': 'Article',
   headline: 'The 12 GenCreator Principles',
   description: '12 principles that define how generative creators think, create, and build.',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-  url: 'https://frankx.ai/gencreator/principles',
+  author: { '@type': 'Person', '@id': `${siteConfig.url}/#frank-riemer`, name: 'Frank Riemer', url: siteConfig.url },
+  url: `${siteConfig.url}/gencreator/principles`,
 }
 
 export default function PrinciplesPage() {
@@ -118,9 +124,7 @@ export default function PrinciplesPage() {
         </div>
       </section>
 
-      <Script id="principles-schema" type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </Script>
+      <script id="principles-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(structuredData) }} />
     </div>
   )
 }
