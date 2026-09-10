@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ...createMetadata({
     title: 'Creator BV Kit — The Digital Haven Blueprint | FrankX',
     description:
-      'Launch your Dutch BV in 30 days. Every template, email, checklist, and financial tool you need to legally protect your creator business in the Netherlands.',
+      'Preview the planned Creator BV Kit: templates, checklists, and financial planning tools for Dutch creator businesses. Free launch list; no checkout or download yet.',
     path: '/products/bv-kit',
     keywords: [
       'dutch bv formation',
@@ -36,32 +36,6 @@ export const metadata: Metadata = {
       'kvk registration',
     ],
   }),
-  other: {
-    'script:ld+json': JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      name: 'Creator BV Kit — The Digital Haven Blueprint',
-      description:
-        'Every template, email, checklist, and financial tool you need to legally protect your creator business in the Netherlands.',
-      brand: { '@type': 'Brand', name: 'FrankX' },
-      offers: {
-        '@type': 'Offer',
-        price: '97',
-        priceCurrency: 'EUR',
-        availability: 'https://schema.org/InStock',
-        url: 'https://frankx.ai/products/bv-kit',
-        seller: {
-          '@type': 'Person',
-          name: 'Frank Riemer',
-        },
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '12',
-      },
-    }),
-  },
 }
 
 // ── Data ──
@@ -152,9 +126,9 @@ const faqs = [
       'Absolutely. The transition from ZZP (sole proprietorship) to BV is one of the most common paths covered in the kit. You will find specific guidance on timing the transition, transferring existing clients and contracts, and handling the tax implications of the switch.',
   },
   {
-    question: 'What is the refund policy?',
+    question: 'Does joining the launch list cost anything?',
     answer:
-      'Full 14-day money-back guarantee in compliance with EU consumer rights (Directive 2011/83/EU). If the kit does not meet your expectations, email within 14 days for a complete refund. The templates and tools are yours to keep regardless.',
+      'No. Joining the launch list is free. The kit is not available to buy or download yet, and joining does not place an order.',
   },
 ]
 
@@ -204,20 +178,20 @@ export default function BVKitPage() {
           <div className="mx-auto max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#AB47C7]/30 bg-[#AB47C7]/10 px-4 py-2 text-sm font-medium text-[#AB47C7]">
               <Building2 className="h-4 w-4" />
-              Digital Product — Instant Download
+              Digital product — launch list
             </div>
 
             <h1 className="mb-6 text-4xl font-bold leading-tight text-balance md:text-6xl lg:text-7xl">
-              Launch Your Dutch BV in 30 Days{' '}
+              Plan Your Dutch BV{' '}
               <span className="bg-gradient-to-r from-[#AB47C7] via-[#43BFE3] to-[#10B981] bg-clip-text text-transparent">
                 — The Complete Creator Playbook
               </span>
             </h1>
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
-              Every template, email, checklist, and financial tool you need to legally protect your
-              creator business in the Netherlands. Built by a creator who went through the entire
-              process.
+              A planned collection of templates, emails, checklists, and financial tools for
+              creators building a business in the Netherlands. Preview the scope and join the
+              free launch list. The kit is not available to buy or download yet.
             </p>
 
             {/* Trust signals */}
@@ -234,22 +208,22 @@ export default function BVKitPage() {
               <span className="text-white/20">|</span>
               <span className="flex items-center gap-1.5">
                 <Shield className="h-4 w-4 text-[#10B981]" />
-                14-day money-back guarantee
+                Waitlist — no checkout yet
               </span>
             </div>
 
             {/* CTA */}
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <a
-                href="#buy"
+                href="/waitlist?intent=bv-kit"
                 className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#AB47C7] via-violet-600 to-[#43BFE3] px-8 py-4 text-lg font-semibold text-white shadow-xl shadow-[#AB47C7]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#AB47C7]/40"
               >
-                Get the BV Kit
+                Join the launch list
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </a>
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl font-bold text-white">€97</span>
-                <span className="text-sm text-slate-500">one-time purchase</span>
+                <span className="text-sm text-slate-500">listed price</span>
               </div>
             </div>
           </div>
@@ -258,10 +232,10 @@ export default function BVKitPage() {
         {/* What's Included */}
         <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Everything Inside the Kit</h2>
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Planned Contents of the Kit</h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-400">
-              Eight comprehensive resources covering every phase of Dutch BV formation — from first
-              decision to fully operational business.
+              Eight planned resources covering Dutch BV formation — from the initial decision
+              through business operations. Contents remain subject to review before release.
             </p>
           </div>
 
@@ -402,44 +376,44 @@ export default function BVKitPage() {
           </div>
         </section>
 
-        {/* Social Proof Placeholder */}
+        {/* Planned workflow examples */}
         <section className="mx-auto max-w-4xl px-6 py-16">
           <div className="text-center">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">What Creators Are Saying</h2>
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Workflows the Kit Is Planned to Cover</h2>
             <p className="mx-auto mb-12 max-w-2xl text-lg text-slate-400">
-              Join creators who have successfully launched their Dutch BV using this kit.
+              These examples describe the planned scope. Customer reviews are not available yet.
             </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
             {[
               {
-                quote: 'The email templates alone saved me weeks of back-and-forth with my notary.',
-                name: 'Coming soon',
+                description: 'Prepare questions and correspondence for a notary using editable email templates.',
+                name: 'Planned workflow',
                 role: 'Content Creator',
               },
               {
-                quote: 'Finally, a BV guide written by someone who actually went through the process.',
-                name: 'Coming soon',
+                description: 'Organize formation tasks and documents with a step-by-step checklist.',
+                name: 'Planned workflow',
                 role: 'Freelance Developer',
               },
               {
-                quote: 'The financial planner made salary vs. dividend optimization crystal clear.',
-                name: 'Coming soon',
+                description: 'Prepare business cost scenarios in a spreadsheet for discussion with an advisor.',
+                name: 'Planned workflow',
                 role: 'Digital Entrepreneur',
               },
-            ].map((testimonial) => (
+            ].map((workflow) => (
               <div
-                key={testimonial.role}
+                key={workflow.role}
                 className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-sm"
               >
-                <p className="mb-4 text-sm leading-relaxed text-slate-300 italic">
-                  &ldquo;{testimonial.quote}&rdquo;
+                <p className="mb-4 text-sm leading-relaxed text-slate-300">
+                  {workflow.description}
                 </p>
                 <div className="text-xs text-slate-500">
-                  <span className="font-medium text-slate-400">{testimonial.name}</span>
+                  <span className="font-medium text-slate-400">{workflow.name}</span>
                   <span className="mx-1.5">·</span>
-                  <span>{testimonial.role}</span>
+                  <span>{workflow.role}</span>
                 </div>
               </div>
             ))}
@@ -458,17 +432,16 @@ export default function BVKitPage() {
           <BVKitFAQ faqs={faqs} />
         </section>
 
-        {/* Money-Back Guarantee */}
+        {/* Launch availability */}
         <section className="mx-auto max-w-3xl px-6 py-16">
           <div className="rounded-3xl border border-[#10B981]/20 bg-[#10B981]/5 p-8 text-center md:p-12">
             <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#10B981]/15">
               <Shield className="h-8 w-8 text-[#10B981]" />
             </div>
-            <h2 className="mb-4 text-2xl font-bold md:text-3xl">14-Day Money-Back Guarantee</h2>
+            <h2 className="mb-4 text-2xl font-bold md:text-3xl">Free Launch List</h2>
             <p className="mx-auto max-w-lg leading-relaxed text-slate-400">
-              Protected by EU consumer rights (Directive 2011/83/EU). If the Creator BV Kit does
-              not meet your expectations, request a full refund within 14 days. Your investment is
-              completely protected.
+              The Creator BV Kit is not available to purchase or download yet. Joining the
+              launch list is free and does not place an order. The listed price is €97.
             </p>
           </div>
         </section>
@@ -484,26 +457,26 @@ export default function BVKitPage() {
                 Ready to Launch Your Dutch BV?
               </h2>
               <p className="mx-auto mb-8 max-w-lg text-lg leading-relaxed text-slate-400">
-                Get every template, checklist, and tool you need — packaged into one comprehensive
-                kit. Start your 30-day journey today.
+                Join the free launch list for updates on the planned templates, checklists,
+                and tools. There is no release date or checkout yet.
               </p>
 
               <div className="mb-6 flex flex-col items-center gap-4">
                 <div className="flex items-baseline gap-3">
                   <span className="text-5xl font-bold text-white">€97</span>
-                  <span className="text-slate-500">one-time</span>
+                  <span className="text-slate-500">listed price</span>
                 </div>
                 <a
                   href="/waitlist?intent=bv-kit"
                   className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#AB47C7] via-violet-600 to-[#43BFE3] px-10 py-5 text-xl font-semibold text-white shadow-xl shadow-[#AB47C7]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#AB47C7]/40"
                 >
-                  Join the Launch List
+                  Join the launch list
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
 
               <p className="text-sm text-slate-500">
-                Instant PDF + Excel delivery · 14-day money-back guarantee · EU consumer rights protected
+                No checkout yet. Join the list for launch.
               </p>
             </div>
           </div>
