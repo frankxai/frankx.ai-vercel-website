@@ -85,6 +85,9 @@ jobs:
       - name: Site search relevance
         run: pnpm run test:site-search
 
+      - name: Navigation completeness
+        run: pnpm run test:navigation-completeness
+
       - name: Build
         run: pnpm run build
         env:
