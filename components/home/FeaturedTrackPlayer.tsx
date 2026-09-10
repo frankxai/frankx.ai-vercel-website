@@ -6,11 +6,12 @@ import { ExternalLink, Pause, Play } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 import { GlowCard } from '@/components/ui/glow-card'
+import { ownedPlaybackUrl } from '@/lib/music-playback'
 
 export type FeaturedTrackPlayerTrack = {
   title: string
   sunoUrl: string
-  audioUrl: string
+  audioUrl?: string
   imageUrl: string
   genre: string[]
   duration: string
@@ -34,6 +35,7 @@ const formatTime = (seconds: number) => {
 }
 
 export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack }) {
+  const playbackUrl = ownedPlaybackUrl(track.audioUrl)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -42,7 +44,7 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
 
   const togglePlayback = async () => {
     const audio = audioRef.current
-    if (!audio) return
+    if (!audio || !playbackUrl) return
 
     if (audio.paused) {
       setPlaybackError(false)
@@ -92,24 +94,26 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
         <div className="absolute inset-0 bg-gradient-to-b from-void/20 via-void/45 to-void" />
 
         {/* Original music; no spoken-word caption track applies. */}
-        <audio
-          ref={audioRef}
-          src={track.audioUrl}
-          preload="metadata"
-          onLoadedMetadata={(event) => syncDuration(event.currentTarget.duration)}
-          onDurationChange={(event) => syncDuration(event.currentTarget.duration)}
-          onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          onEnded={() => {
-            setIsPlaying(false)
-            setCurrentTime(0)
-          }}
-          onError={() => {
-            setPlaybackError(true)
-            setIsPlaying(false)
-          }}
-        />
+        {playbackUrl ? (
+          <audio
+            ref={audioRef}
+            src={playbackUrl}
+            preload="metadata"
+            onLoadedMetadata={(event) => syncDuration(event.currentTarget.duration)}
+            onDurationChange={(event) => syncDuration(event.currentTarget.duration)}
+            onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            onEnded={() => {
+              setIsPlaying(false)
+              setCurrentTime(0)
+            }}
+            onError={() => {
+              setPlaybackError(true)
+              setIsPlaying(false)
+            }}
+          />
+        ) : null}
 
         <div className="relative z-10 flex min-h-[300px] flex-col justify-between p-5 sm:min-h-[340px] sm:p-6 lg:min-h-[380px]">
           <div className="flex items-center justify-between gap-4">
@@ -129,18 +133,30 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
 
           <div className="rounded-[1.75rem] border border-white/10 bg-void/85 p-4 sm:p-5">
             <div className="flex items-center gap-4">
-              <button
-                type="button"
-                onClick={togglePlayback}
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
-                aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
-              >
-                {isPlaying ? (
-                  <Pause className="h-5 w-5" aria-hidden="true" />
-                ) : (
-                  <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />
-                )}
-              </button>
+              {playbackUrl ? (
+                <button
+                  type="button"
+                  onClick={togglePlayback}
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+                  aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
+                >
+                  {isPlaying ? (
+                    <Pause className="h-5 w-5" aria-hidden="true" />
+                  ) : (
+                    <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />
+                  )}
+                </button>
+              ) : (
+                <a
+                  href={track.sunoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+                  aria-label={`Listen to ${track.title} on Suno`}
+                >
+                  <ExternalLink className="h-5 w-5" aria-hidden="true" />
+                </a>
+              )}
 
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xl font-semibold tracking-[-0.02em] text-white">
@@ -150,31 +166,37 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
               </div>
             </div>
 
-            <div className="mt-5">
-              <div className="relative flex h-4 items-center">
-                <div className="absolute h-1 w-full rounded-full bg-white/15" />
-                <div
-                  className="absolute h-1 rounded-full bg-emerald-300"
-                  style={{ width: `${progress}%` }}
-                  aria-hidden="true"
-                />
-                <input
-                  type="range"
-                  min={0}
-                  max={duration || 0}
-                  step={0.1}
-                  value={Math.min(currentTime, duration || 0)}
-                  onChange={(event) => seek(Number(event.currentTarget.value))}
-                  disabled={!duration}
-                  aria-label={`Seek through ${track.title}`}
-                  className="relative z-10 h-4 w-full cursor-pointer appearance-none bg-transparent accent-emerald-300 disabled:cursor-not-allowed"
-                />
+            {playbackUrl ? (
+              <div className="mt-5">
+                <div className="relative flex h-4 items-center">
+                  <div className="absolute h-1 w-full rounded-full bg-white/15" />
+                  <div
+                    className="absolute h-1 rounded-full bg-emerald-300"
+                    style={{ width: `${progress}%` }}
+                    aria-hidden="true"
+                  />
+                  <input
+                    type="range"
+                    min={0}
+                    max={duration || 0}
+                    step={0.1}
+                    value={Math.min(currentTime, duration || 0)}
+                    onChange={(event) => seek(Number(event.currentTarget.value))}
+                    disabled={!duration}
+                    aria-label={`Seek through ${track.title}`}
+                    className="relative z-10 h-4 w-full cursor-pointer appearance-none bg-transparent accent-emerald-300 disabled:cursor-not-allowed"
+                  />
+                </div>
+                <div className="mt-1 flex items-center justify-between font-mono text-[10px] text-white/55">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{duration > 0 ? formatTime(duration) : track.duration}</span>
+                </div>
               </div>
-              <div className="mt-1 flex items-center justify-between font-mono text-[10px] text-white/55">
-                <span>{formatTime(currentTime)}</span>
-                <span>{duration > 0 ? formatTime(duration) : track.duration}</span>
-              </div>
-            </div>
+            ) : (
+              <p className="mt-4 text-xs leading-5 text-white/60">
+                This release is available on Suno.
+              </p>
+            )}
 
             {playbackError ? (
               <p role="status" aria-live="polite" className="mt-3 text-xs text-amber-200/80">
