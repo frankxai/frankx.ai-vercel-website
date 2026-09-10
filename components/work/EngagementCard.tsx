@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import type { Engagement, EngagementType } from '@/content/work/types'
+import type { EngagementType, PublicEngagement } from '@/content/work/types'
 
 type EngagementCardProps = {
-  engagement: Engagement
+  engagement: PublicEngagement
 }
 
 const TYPE_LABEL: Record<EngagementType, string> = {
@@ -14,11 +14,9 @@ const TYPE_LABEL: Record<EngagementType, string> = {
   advisory: 'Advisory',
 }
 
-const STATUS_LABEL: Record<Engagement['status'], string> = {
+const STATUS_LABEL: Record<PublicEngagement['status'], string> = {
   live: 'In motion',
   past: 'Shipped',
-  // 'private' should never reach this card — guard upstream.
-  private: 'Private',
 }
 
 /**

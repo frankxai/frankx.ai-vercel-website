@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
-import { listEngagements } from '../../content/work/index.ts'
+import { listPublicEngagements } from '../../content/work/index.ts'
 
 const readBuildJson = async (path) =>
   JSON.parse(await readFile(new URL(`../../.next/${path}`, import.meta.url), 'utf8'))
@@ -26,7 +26,7 @@ test('live LLM Hub pricing surfaces are absent from the prerender manifest', asy
   )
 })
 
-test('work routes emit every public engagement and no private engagement', async () => {
+test('work routes emit every public engagement and no non-public engagement', async () => {
   const manifest = await readBuildJson('prerender-manifest.json')
   const workRoute = manifest.dynamicRoutes?.['/work/[slug]']
   assert.ok(
@@ -39,8 +39,7 @@ test('work routes emit every public engagement and no private engagement', async
     'unknown work slugs must be rejected by the closed static parameter set',
   )
 
-  const expectedPublicRoutes = listEngagements()
-    .filter((engagement) => engagement.status !== 'private')
+  const expectedPublicRoutes = listPublicEngagements()
     .map((engagement) => `/work/${engagement.slug}`)
     .sort()
   const emittedWorkRoutes = Object.entries(manifest.routes ?? {})

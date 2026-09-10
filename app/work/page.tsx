@@ -2,10 +2,10 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
 import {
-  listEngagements,
   listLiveSubstrate,
   listLiveWhitelabelOrCreator,
   listPast,
+  listPublicEngagements,
 } from '@/content/work'
 import { EngagementCard } from '@/components/work/EngagementCard'
 
@@ -22,7 +22,7 @@ export default function WorkHubPage() {
   const liveSubstrate = listLiveSubstrate()
   const liveWhitelabelOrCreator = listLiveWhitelabelOrCreator()
   const past = listPast()
-  const all = listEngagements()
+  const all = listPublicEngagements()
 
   const isEmpty =
     liveSubstrate.length === 0 &&

@@ -168,18 +168,7 @@ const hasPublicWorkParamPipeline = (source) => {
     return false
   }
 
-  const filterCall = unwrapParentheses(mapCall.expression.expression)
-  if (
-    !filterCall ||
-    !ts.isCallExpression(filterCall) ||
-    !ts.isPropertyAccessExpression(filterCall.expression) ||
-    filterCall.expression.name.text !== 'filter' ||
-    filterCall.arguments.length !== 1
-  ) {
-    return false
-  }
-
-  const registryCall = unwrapParentheses(filterCall.expression.expression)
+  const registryCall = unwrapParentheses(mapCall.expression.expression)
   if (
     !registryCall ||
     !ts.isCallExpression(registryCall) ||
@@ -188,26 +177,14 @@ const hasPublicWorkParamPipeline = (source) => {
     !resolvesToNamedImport(
       checker,
       registryCall.expression,
-      'listEngagements',
+      'listPublicEngagements',
       '@/content/work',
     )
   ) {
     return false
   }
 
-  const filterCallback = filterCall.arguments[0]
-  const filterParameter = callbackParameterName(filterCallback)
-  const predicate = returnedExpression(filterCallback)
-
-  return Boolean(
-    filterParameter &&
-      predicate &&
-      ts.isBinaryExpression(predicate) &&
-      predicate.operatorToken.kind === ts.SyntaxKind.ExclamationEqualsEqualsToken &&
-      propertyAccessMatches(predicate.left, filterParameter, 'status') &&
-      ts.isStringLiteral(predicate.right) &&
-      predicate.right.text === 'private',
-  )
+  return true
 }
 
 const hasClosedDynamicParams = (source) => {
@@ -329,16 +306,16 @@ test('unknown work slugs stay outside the closed static route set', async () => 
   )
   assert.ok(
     hasPublicWorkParamPipeline(page),
-    'generateStaticParams must map public listEngagements slugs after excluding private entries',
+    'generateStaticParams must map the explicit public engagement allowlist',
   )
   assert.equal(
     hasPublicWorkParamPipeline(
       page.replace(
         'export function generateStaticParams() {',
-        'export function generateStaticParams() {\n  const listEngagements = () => []',
+        'export function generateStaticParams() {\n  const listPublicEngagements = () => []',
       ),
     ),
     false,
-    'a locally shadowed listEngagements function must not satisfy the registry contract',
+    'a locally shadowed listPublicEngagements function must not satisfy the registry contract',
   )
 })

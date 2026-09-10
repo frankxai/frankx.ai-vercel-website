@@ -3,28 +3,27 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ArrowUpRight } from 'lucide-react'
 import { createMetadata, siteConfig } from '@/lib/seo'
-import { getEngagement, listEngagements } from '@/content/work'
+import { getPublicEngagement, listPublicEngagements } from '@/content/work'
 import { SubstratePositioningStrip } from '@/components/work/SubstratePositioningStrip'
 import { ShippedList } from '@/components/work/ShippedList'
 import { StackBlock } from '@/components/work/StackBlock'
 import { OutcomeBlock } from '@/components/work/OutcomeBlock'
 import { EngagementCTA } from '@/components/work/EngagementCTA'
 import { AntiPositioning } from '@/components/partnerships/AntiPositioning'
-import type { Engagement } from '@/content/work/types'
+import type { PublicEngagement } from '@/content/work/types'
 
 const SITE_URL = siteConfig.url
 
-// Public engagements are fully enumerated at build time. Unknown and private
-// slugs stay outside the route's closed static parameter set. Opening the
+// Public engagements are fully enumerated at build time. Unknown, draft, and
+// private slugs stay outside the route's closed static parameter set. Opening the
 // fallback lets Next reach the global 404, whose headers() call causes a
 // static-to-dynamic runtime error on this prerendered route.
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  // Only public-statable engagements (status !== 'private') render as routes.
-  return listEngagements()
-    .filter((e) => e.status !== 'private')
-    .map((e) => ({ slug: e.slug }))
+  return listPublicEngagements().map((engagement) => ({
+    slug: engagement.slug,
+  }))
 }
 
 export async function generateMetadata({
@@ -33,8 +32,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const engagement = getEngagement(slug)
-  if (!engagement || engagement.status === 'private') return {}
+  const engagement = getPublicEngagement(slug)
+  if (!engagement) return {}
 
   return createMetadata({
     title: engagement.seo.title,
@@ -50,8 +49,8 @@ export default async function WorkEngagementPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const engagement = getEngagement(slug)
-  if (!engagement || engagement.status === 'private') notFound()
+  const engagement = getPublicEngagement(slug)
+  if (!engagement) notFound()
 
   const url = `${SITE_URL}/work/${engagement.slug}`
 
@@ -147,13 +146,12 @@ export default async function WorkEngagementPage({
 /* Hero — peer-architect framing, matches /partnerships visual language        */
 /* -------------------------------------------------------------------------- */
 
-const STATUS_LABEL: Record<Engagement['status'], string> = {
+const STATUS_LABEL: Record<PublicEngagement['status'], string> = {
   live: 'In motion',
   past: 'Shipped',
-  private: 'Private',
 }
 
-function WorkHero({ engagement }: { engagement: Engagement }) {
+function WorkHero({ engagement }: { engagement: PublicEngagement }) {
   return (
     <section
       aria-labelledby="work-hero-title"
