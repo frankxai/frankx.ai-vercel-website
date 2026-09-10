@@ -154,7 +154,7 @@ const faqs = [
   {
     question: 'What is the refund policy?',
     answer:
-      'Full 14-day money-back guarantee in compliance with EU consumer rights (Directive 2011/83/EU). If the kit does not meet your expectations, email within 14 days for a complete refund. The templates and tools are yours to keep regardless.',
+      'There is no checkout on this page yet, so there is nothing to refund. EU withdrawal rights apply when a paid download actually ships.',
   },
 ]
 
@@ -234,7 +234,7 @@ export default function BVKitPage() {
               <span className="text-white/20">|</span>
               <span className="flex items-center gap-1.5">
                 <Shield className="h-4 w-4 text-[#10B981]" />
-                14-day money-back guarantee
+                Waitlist — no checkout yet
               </span>
             </div>
 
