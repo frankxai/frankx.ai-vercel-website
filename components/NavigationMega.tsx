@@ -457,12 +457,13 @@ function MegaMenuContent({ section }: { section: NavKey }) {
           <FeaturedCard data={data} />
           <div className="grid grid-cols-3 gap-4">
             {groups.map((group) => {
+              const useTwoColumns = group.items.length > 6
               return (
-                <div key={group.label}>
+                <div key={group.label} className={useTwoColumns ? 'col-span-2' : undefined}>
                   <h5 className="mb-2 px-2 text-xs font-medium text-slate-400">
                     {group.label}
                   </h5>
-                  <ul className="space-y-0.5">
+                  <ul className={useTwoColumns ? 'grid grid-cols-2 items-start gap-x-4 gap-y-0.5' : 'space-y-0.5'}>
                     {group.items.map((item) => (
                       <MenuLink key={item.name} item={item} />
                     ))}
