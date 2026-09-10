@@ -183,7 +183,7 @@ export default function PromptVaultPage() {
           <div className="mx-auto max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-4 py-2 text-sm font-medium text-[#8B5CF6]">
               <Sparkles className="h-4 w-4" />
-              66 Prompts · 14 Categories · Instant Download
+              66 prompts · 14 categories · launch list
             </div>
 
             <h1 className="mb-6 text-4xl font-bold leading-tight text-balance md:text-6xl lg:text-7xl">
@@ -223,15 +223,15 @@ export default function PromptVaultPage() {
             {/* CTA */}
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <a
-                href="#buy"
+                href="/waitlist?intent=prompt-vault"
                 className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] px-8 py-4 text-lg font-semibold text-white shadow-xl shadow-[#8B5CF6]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#8B5CF6]/40"
               >
-                Get the Prompt Vault
+                Join the launch list
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </a>
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl font-bold text-white">€19</span>
-                <span className="text-sm text-slate-500">one-time purchase</span>
+                <span className="text-sm text-slate-500">listed price</span>
               </div>
             </div>
           </div>
@@ -392,7 +392,7 @@ export default function PromptVaultPage() {
               <div className="mb-6 flex flex-col items-center gap-4">
                 <div className="flex items-baseline gap-3">
                   <span className="text-5xl font-bold text-white">€19</span>
-                  <span className="text-slate-500">one-time</span>
+                  <span className="text-slate-500">listed price</span>
                 </div>
                 <a
                   href="/waitlist?intent=prompt-vault"
@@ -404,7 +404,7 @@ export default function PromptVaultPage() {
               </div>
 
               <p className="text-sm text-slate-500">
-                PDF + Markdown files · Commercial license included · All future updates free
+                No checkout yet. Join the list for launch.
               </p>
             </div>
           </div>

@@ -204,7 +204,7 @@ export default function BVKitPage() {
           <div className="mx-auto max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#AB47C7]/30 bg-[#AB47C7]/10 px-4 py-2 text-sm font-medium text-[#AB47C7]">
               <Building2 className="h-4 w-4" />
-              Digital Product — Instant Download
+              Digital product — launch list
             </div>
 
             <h1 className="mb-6 text-4xl font-bold leading-tight text-balance md:text-6xl lg:text-7xl">
@@ -241,15 +241,15 @@ export default function BVKitPage() {
             {/* CTA */}
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <a
-                href="#buy"
+                href="/waitlist?intent=bv-kit"
                 className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#AB47C7] via-violet-600 to-[#43BFE3] px-8 py-4 text-lg font-semibold text-white shadow-xl shadow-[#AB47C7]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#AB47C7]/40"
               >
-                Get the BV Kit
+                Join the launch list
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </a>
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl font-bold text-white">€97</span>
-                <span className="text-sm text-slate-500">one-time purchase</span>
+                <span className="text-sm text-slate-500">listed price</span>
               </div>
             </div>
           </div>
@@ -491,7 +491,7 @@ export default function BVKitPage() {
               <div className="mb-6 flex flex-col items-center gap-4">
                 <div className="flex items-baseline gap-3">
                   <span className="text-5xl font-bold text-white">€97</span>
-                  <span className="text-slate-500">one-time</span>
+                  <span className="text-slate-500">listed price</span>
                 </div>
                 <a
                   href="/waitlist?intent=bv-kit"
@@ -503,7 +503,7 @@ export default function BVKitPage() {
               </div>
 
               <p className="text-sm text-slate-500">
-                Instant PDF + Excel delivery · 14-day money-back guarantee · EU consumer rights protected
+                No checkout yet. Join the list for launch.
               </p>
             </div>
           </div>
