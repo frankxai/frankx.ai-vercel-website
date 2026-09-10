@@ -85,6 +85,16 @@ export interface VerifiedRendition {
 }
 
 const OWNED_AUDIO_HOST = 'vbmwpibfe0yzx3fd.public.blob.vercel-storage.com'
+const OWNED_AUDIO_PATH = /^\/music\/([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})\/\1\.mp3$/i
+
+/** Only an owned, stable media object may be offered to the browser as a preview. */
+export function ownedPlaybackUrl(value?: string): string | undefined {
+  const safe = safeMediaUrl(value)
+  if (!safe) return undefined
+  const url = new URL(safe)
+  return url.hostname === OWNED_AUDIO_HOST && !url.port && !url.search && !url.hash &&
+    OWNED_AUDIO_PATH.test(url.pathname) ? safe : undefined
+}
 
 /** No inferred CDN URLs: both registry identity and byte/decode evidence must agree. */
 export function verifiedPlaybackUrl(track: RegisteredTrack, proof?: VerifiedRendition): string | undefined {
@@ -92,11 +102,9 @@ export function verifiedPlaybackUrl(track: RegisteredTrack, proof?: VerifiedRend
       proof.audioUrl !== track.assetRefs.audioUrl || !/^[a-f0-9]{64}$/.test(proof.sha256) ||
       !Number.isSafeInteger(proof.bytes) || proof.bytes <= 0 || !Number.isFinite(proof.durationSeconds) || proof.durationSeconds <= 0 || proof.codec !== 'mp3' ||
       !proof.rangeVerified || !proof.decodeVerified || !Number.isFinite(Date.parse(proof.verifiedAt))) return undefined
-  const safe = safeMediaUrl(proof.audioUrl)
+  const safe = ownedPlaybackUrl(proof.audioUrl)
   if (!safe) return undefined
-  const url = new URL(safe)
-  return url.hostname === OWNED_AUDIO_HOST && !url.port && !url.search && !url.hash &&
-    url.pathname === `/music/${track.sunoId}/${track.sunoId}.mp3` ? safe : undefined
+  return new URL(safe).pathname === `/music/${track.sunoId}/${track.sunoId}.mp3` ? safe : undefined
 }
 
 export function buildPlaybackCatalog(entries: CatalogEntry[], registry: RegisteredTrack[], proofs: VerifiedRendition[]): PlaybackTrack[] {
