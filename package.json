@@ -29,7 +29,7 @@
     "test:gencreator-metadata:rendered": "node --test scripts/tests/gencreator-metadata-rendered.test.mjs",
     "test:tallinn-experience": "node --test scripts/tests/tallinn-experience-foundry-contract.test.mjs",
     "test:ai-architecture": "node scripts/check-ai-architecture-contract.mjs",
-    "test:email-safety": "node --test scripts/tests/email-send-surface-contract.test.mjs",
+    "test:email-safety": "node --test scripts/tests/email-send-surface-contract.test.mjs scripts/tests/waitlist-intent.test.mjs",
     "test:checkout-sku": "node --test scripts/tests/checkout-sku-contract.test.mjs",
     "test:auction-bid": "node --test scripts/tests/auction-bid-route-contract.test.mjs",
     "test:agentic-life-research": "node --test scripts/tests/agentic-life-research-contract.test.mjs",
