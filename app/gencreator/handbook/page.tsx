@@ -1,15 +1,21 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Script from 'next/script'
+import { createMetadata, siteConfig } from '@/lib/seo'
+import { ldJson } from '@/lib/seo/jsonld'
 
-export const metadata: Metadata = {
+const pageMetadata = createMetadata({
   title: "The GenCreator's Handbook — 8 Chapters for Creative Mastery",
   description:
     'The complete operating manual for generative creators. 8 chapters from identity to legacy — tools, content, revenue, systems, daily practice, community, and long-term thinking.',
+  path: '/gencreator/handbook',
+})
+
+export const metadata: Metadata = {
+  ...pageMetadata,
   openGraph: {
+    ...pageMetadata.openGraph,
     title: "The GenCreator's Handbook",
     description: '8 chapters covering the complete GenCreator operating system.',
-    url: 'https://frankx.ai/gencreator/handbook',
   },
 }
 import { ArrowRight, Map } from 'lucide-react'
@@ -24,8 +30,8 @@ const structuredData = {
   '@type': 'Book',
   name: "The GenCreator's Handbook",
   description: '8 chapters covering the complete operating system for generative creators — from identity to legacy.',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-  url: 'https://frankx.ai/gencreator/handbook',
+  author: { '@type': 'Person', '@id': `${siteConfig.url}/#frank-riemer`, name: 'Frank Riemer', url: siteConfig.url },
+  url: `${siteConfig.url}/gencreator/handbook`,
   numberOfPages: 8,
 }
 
@@ -147,9 +153,7 @@ export default function HandbookPage() {
         </div>
       </section>
 
-      <Script id="handbook-schema" type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </Script>
+      <script id="handbook-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(structuredData) }} />
     </div>
   )
 }

@@ -198,6 +198,9 @@ function scoreItem(item: SiteSearchItem, query: string, tokens: string[]) {
     if (group.includes(token)) score += 4
   }
 
+  // Type boosts rank matches; they must not create matches.
+  if (score === 0) return 0
+
   if (item.type === 'core') score += 8
   if (item.type === 'tool' || item.type === 'product') score += 6
   if (item.type === 'blog' || item.type === 'research' || item.type === 'guide') score += 4

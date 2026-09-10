@@ -1,4 +1,5 @@
 import { EmailSignup } from '@/components/email-signup'
+import { sanitizeIntent, WAITLIST_INTENTS } from '@/lib/diagnostic/waitlist-intents'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -9,20 +10,27 @@ export const metadata = createMetadata({
 })
 
 type WaitlistPageProps = {
-  searchParams?: {
-    intent?: string
-  }
+  searchParams?: Promise<{ intent?: string | string[] }>
 }
 
 const intentLabelMap: Record<string, string> = {
   'course-conscious-ai-foundations': 'Conscious AI Foundations',
   'course-agent-architecture-systems': 'Agent Architecture Systems',
   'course-creator-business-systems': 'Creator Business Systems',
+  'creative-ai-toolkit': 'Creative AI Toolkit',
+  'creation-chronicles': 'Creation Chronicles',
+  'suno-prompt-library': 'Suno Prompt Library',
+  'aurora-ui-kit': 'Aurora UI Kit',
+  'agentic-content-engine': 'Agentic Content Engine',
 }
 
-export default function WaitlistPage({ searchParams }: WaitlistPageProps) {
-  const intent = searchParams?.intent ?? ''
-  const selectedIntentLabel = intentLabelMap[intent]
+export default async function WaitlistPage({ searchParams }: WaitlistPageProps) {
+  const intent = sanitizeIntent((await searchParams)?.intent)
+  // Keep the existing list routing for other waitlist entry points.
+  const productLaunch = intent === 'bv-kit' || intent === 'prompt-vault'
+    ? WAITLIST_INTENTS[intent]
+    : undefined
+  const selectedIntentLabel = productLaunch?.label ?? intentLabelMap[intent]
 
   return (
     <main className="min-h-screen bg-[#030712] text-white">
@@ -43,7 +51,10 @@ export default function WaitlistPage({ searchParams }: WaitlistPageProps) {
 
         <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8">
           <EmailSignup
-            listType="courses-waitlist"
+            listType={productLaunch?.listType ?? 'courses-waitlist'}
+            intent={intent || undefined}
+            intentLabel={selectedIntentLabel}
+            source="/waitlist"
             showName
             buttonText="Join Waitlist"
             placeholder="you@company.com"

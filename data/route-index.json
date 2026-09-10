@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1001,
+    "total": 1002,
     "aliases": 58,
     "byType": {
       "core": 24,
-      "section": 433,
+      "section": 434,
       "community": 17,
       "tool": 62,
       "static": 15,
@@ -1091,13 +1091,9 @@
       "tags": [
         "AI Agents",
         "Claude Code",
-        "ChatGPT Work",
         "Hermes Agent",
-        "Manus",
         "Devin",
-        "Cursor",
-        "Viktor",
-        "OpenClaw"
+        "Cursor"
       ],
       "type": "blog"
     },
@@ -1143,7 +1139,7 @@
     {
       "href": "/blog/ai-capability-abundant-architecture-still-the-work",
       "title": "AI Capability Is Abundant. Architecture Is Still the Work.",
-      "description": "Five recent stories from my work show where AI skills and architecture create real value: turning workshops, field notes, compute, content, and infrastructure ideas into systems that can survive change.",
+      "description": "Where AI skills and architecture create real value: turning workshops, field notes, compute, and infrastructure into durable systems that survive change.",
       "tags": [
         "ai-architecture",
         "ai-skills",
@@ -2048,14 +2044,14 @@
     },
     {
       "href": "/blog/das-fundament-und-der-glaube",
-      "title": "Das Fundament und der Glaube: Was mein Vater mit Händen baute, und was wir im Geist errichten müssen",
-      "description": "Ein Vermächtnis an Witali Riemer zu seinem 57. Geburtstag. Über die Hingabe eines Baumeisters, das fatale Nocebo der Schulmedizin und Vitalität im KI-Zeitalter.",
+      "title": "Die Linie des Erbauers: Was mein Vater mit Händen baute, und was wir im Geist errichten müssen",
+      "description": "Die Reflexion eines Sohnes an Witali Riemer zu seinem 57. Geburtstag. Ein wolgadeutscher Handwerksmeister, das Gewicht chronischer Erschöpfung, die Anatomie einer Prognose und die innere Architektur wahrer Vitalität.",
       "tags": [
+        "die-linie-des-erbauers",
         "state-engineering",
+        "handwerk",
         "vitalitaet",
-        "mindset",
-        "vater-code",
-        "epigenetik"
+        "autonome-gesundheit"
       ],
       "type": "blog"
     },
@@ -2731,7 +2727,7 @@
     },
     {
       "href": "/blog/is-revolut-safe-netherlands-2026",
-      "title": "Is Revolut Safe in the Netherlands? Bank Licence, Dutch IBAN and €100k Protection",
+      "title": "Is Revolut Safe in the Netherlands? Bank Licence, IBAN & Protection",
       "description": "A regulator-first answer to whether Revolut is safe in the Netherlands: bank status, DNB register, Dutch IBAN, deposit insurance, and risks protection does not cover.",
       "tags": [
         "Revolut",
@@ -3812,14 +3808,14 @@
     },
     {
       "href": "/blog/the-builder-and-the-belief",
-      "title": "The Builder and the Belief: What My Father Built With His Hands, and What We Must Build in Our Minds",
-      "description": "A tribute to Witali Riemer on his 57th birthday. How a master builder gave everything for his family, the fatal medical nocebo, and engineering vitality in the AI age.",
+      "title": "The Builder's Line: What My Father Built With His Hands, What We Must Build in Our Minds",
+      "description": "A son's reflection on Witali Riemer on his 57th birthday. An immigrant craftsman who built homes from ruins, the weight of chronic depletion, the anatomy of a medical prognosis, and the inner architecture of vitality.",
       "tags": [
+        "the-builders-line",
         "state-engineering",
+        "craftsmanship",
         "vitality",
-        "mindset",
-        "father-code",
-        "epigenetics"
+        "autonomic-health"
       ],
       "type": "blog"
     },
@@ -9663,6 +9659,16 @@
       "tags": [
         "thank",
         "you"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/the-builders-line",
+      "title": "The Builders Line",
+      "tags": [
+        "the",
+        "builders",
+        "line"
       ],
       "type": "section"
     },

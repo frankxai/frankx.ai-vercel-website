@@ -125,8 +125,8 @@
       "primaryPrice": 47,
       "originalPrice": 97,
       "currency": "USD",
-      "ctaPrimary": "Get Instant Access",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/creative-ai-toolkit",
+      "ctaPrimary": "Join Waitlist",
+      "ctaPrimaryHref": "/waitlist?intent=creative-ai-toolkit",
       "ctaPrimaryTracking": "creative-ai-toolkit-primary",
       "ctaSecondary": "Bundle with Agentic Creator OS",
       "ctaSecondaryHref": "/products/agentic-creator-os",
@@ -387,7 +387,7 @@
           "4 weeks of async support"
         ],
         "ctaLabel": "Start Creating",
-        "ctaHref": "https://frankx.gumroad.com/l/creation-chronicles-creator"
+        "ctaHref": "/waitlist?intent=creation-chronicles"
       },
       {
         "name": "Business Package",
@@ -400,7 +400,7 @@
           "Monthly strategy calls"
         ],
         "ctaLabel": "Scale Your Story",
-        "ctaHref": "https://frankx.gumroad.com/l/creation-chronicles-business",
+        "ctaHref": "/waitlist?intent=creation-chronicles",
         "featured": true
       },
       {
@@ -751,8 +751,8 @@
       "primaryPrice": 27,
       "originalPrice": 47,
       "currency": "USD",
-      "ctaPrimary": "Get Instant Access",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/suno-prompt-library",
+      "ctaPrimary": "Join Waitlist",
+      "ctaPrimaryHref": "/waitlist?intent=suno-prompt-library",
       "ctaPrimaryTracking": "suno-prompt-library-primary",
       "ctaSecondary": "Bundle with Vibe OS",
       "ctaSecondaryHref": "/products/vibe-os",
@@ -881,8 +881,8 @@
       "primaryPrice": 19,
       "originalPrice": 39,
       "currency": "USD",
-      "ctaPrimary": "Get Aurora UI Kit",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/aurora-ui-kit",
+      "ctaPrimary": "Join Waitlist",
+      "ctaPrimaryHref": "/waitlist?intent=aurora-ui-kit",
       "ctaPrimaryTracking": "aurora-ui-kit-primary",
       "ctaSecondary": "Preview Components",
       "ctaSecondaryHref": "/design-lab",
@@ -996,8 +996,8 @@
       "primaryPrice": 97,
       "originalPrice": 197,
       "currency": "USD",
-      "ctaPrimary": "Get Content Engine",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/agentic-content-engine",
+      "ctaPrimary": "Join Waitlist",
+      "ctaPrimaryHref": "/waitlist?intent=agentic-content-engine",
       "ctaPrimaryTracking": "agentic-content-engine-primary",
       "ctaSecondary": "See It In Action",
       "ctaSecondaryHref": "/blog",

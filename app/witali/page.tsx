@@ -15,7 +15,7 @@ import {
 const SITE_URL = 'https://frankx.ai'
 
 export const metadata: Metadata = {
-  title: 'Witali Riemer — The Silent Builder | FrankX',
+  title: 'Witali Riemer — The Silent Builder',
   description:
     'A memorial page for Witali Riemer: Volga German, father, builder, and the source of the builder ethics behind FrankX.',
   alternates: {
@@ -78,7 +78,7 @@ const timeline = [
     year: 'Now',
     title: 'The foundation still carries',
     text:
-      'The houses still stand. The rental income still flows. The family still lives inside decisions he made before the next generation could understand them.',
+      'The houses still stand. The family still lives inside decisions he made before the next generation could understand them.',
   },
 ]
 
@@ -126,7 +126,7 @@ function JsonLd() {
       url: SITE_URL,
     },
     datePublished: '2026-07-09',
-    dateModified: '2026-07-09',
+    dateModified: '2026-09-09',
     mainEntityOfPage: `${SITE_URL}/witali`,
     about: ['Witali Riemer', 'family legacy', 'builder ethics', 'Volga Germans'],
     breadcrumb: {
@@ -181,7 +181,7 @@ export default function WitaliPage() {
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.22em] text-amber-200/80">
               <Heart className="h-3.5 w-3.5" />
-              Eight years today
+              July 9, 2018
             </div>
             <h1 className="font-display text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
               Witali Riemer,
@@ -194,10 +194,10 @@ export default function WitaliPage() {
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/father-code"
+                href="/the-builders-line"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-200 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-amber-100"
               >
-                Read the father code
+                Read The Builder’s Line
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
@@ -356,10 +356,10 @@ export default function WitaliPage() {
                 to stand on.
               </p>
               <Link
-                href="/father-code"
+                href="/the-builders-line"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-amber-200 transition hover:text-amber-100"
               >
-                Continue into the Father Code
+                Continue into The Builder’s Line
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
