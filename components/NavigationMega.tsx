@@ -44,6 +44,7 @@ import {
 } from 'lucide-react'
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { trackEvent } from '@/lib/analytics'
+import { resolveNavigationGroups } from '@/lib/navigation-groups'
 
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
@@ -446,23 +447,23 @@ function MegaMenuContent({ section }: { section: NavKey }) {
   const hasGroups = 'groups' in data && data.groups
 
   if (hasGroups) {
-    const groups = (data as typeof data & { groups: { label: string; items: string[] }[] }).groups
+    const groups = resolveNavigationGroups<(typeof data.items)[number]>(
+      data.items,
+      (data as typeof data & { groups: { label: string; items: string[] }[] }).groups,
+    )
     return (
-      <div className="w-[760px] max-w-[calc(100vw-2rem)] p-4">
+      <div className="max-h-[calc(100dvh-6rem)] w-[760px] max-w-[calc(100vw-2rem)] overflow-y-auto overscroll-contain p-4">
         <div className="grid grid-cols-[180px_1fr] gap-4">
           <FeaturedCard data={data} />
           <div className="grid grid-cols-3 gap-4">
             {groups.map((group) => {
-              const groupItems = group.items
-                .map((name) => data.items.find((i) => i.name === name))
-                .filter(Boolean) as (typeof data.items)[0][]
               return (
                 <div key={group.label}>
                   <h5 className="mb-2 px-2 text-xs font-medium text-slate-400">
                     {group.label}
                   </h5>
                   <ul className="space-y-0.5">
-                    {groupItems.map((item) => (
+                    {group.items.map((item) => (
                       <MenuLink key={item.name} item={item} />
                     ))}
                   </ul>
