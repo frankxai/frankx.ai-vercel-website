@@ -32,9 +32,11 @@ const REDIRECT_ALIASES = loadRedirectAliases()
 
 const GAME_TAILWIND_BROWSER_SCRIPT = 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4'
 
-function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = []) {
+function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = [], additionalConnectSources = []) {
   const scriptSourceSuffix =
     additionalScriptSources.length > 0 ? ` ${additionalScriptSources.join(' ')}` : ''
+  const connectSourceSuffix =
+    additionalConnectSources.length > 0 ? ` ${additionalConnectSources.join(' ')}` : ''
 
   return [
     "default-src 'self'",
@@ -44,7 +46,7 @@ function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = [])
     "img-src 'self' data: blob: https: http:",
     "media-src 'self' https:",
     "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
-    "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io",
+    `connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io${connectSourceSuffix}`,
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
@@ -491,6 +493,22 @@ const nextConfig = {
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
+          },
+        ],
+      },
+      {
+        // Raster tiles are fetched by MapLibre. Keep this network permission
+        // local to ecosystem maps and preserve every other site directive.
+        source: '/ecosystems/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: siteContentSecurityPolicy("'none'", [], [
+              'https://a.basemaps.cartocdn.com',
+              'https://b.basemaps.cartocdn.com',
+              'https://c.basemaps.cartocdn.com',
+              'https://d.basemaps.cartocdn.com',
+            ]),
           },
         ],
       },

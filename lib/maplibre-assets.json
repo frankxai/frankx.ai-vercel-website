@@ -1,0 +1,4 @@
+{
+  "version": "6.4.1",
+  "workerUrl": "/maplibre/6.4.1/maplibre-gl-worker.mjs"
+}

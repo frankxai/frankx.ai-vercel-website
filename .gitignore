@@ -180,6 +180,9 @@ __pycache__/
 /public/schema-graph.json
 /public/sitemap-extras.xml
 
+# MapLibre worker modules are copied from the locked package before dev/build.
+/public/maplibre/
+
 # ACOS v11 status cache (regenerate: node scripts/acos-status.mjs)
 .acos/
 # Workflow Tier runtime state (operational, not source)
