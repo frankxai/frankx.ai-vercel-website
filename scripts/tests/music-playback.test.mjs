@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { homepageFeaturedRelease } from '../../data/homepage-featured-release.ts'
-import { safeMediaUrl, spotifyAlbumEmbed, suggestTracks, routeMusicSuggestion, buildPlaybackCatalog, verifiedPlaybackUrl } from '../../lib/music-playback.ts'
+import { safeMediaUrl, spotifyAlbumEmbed, suggestTracks, routeMusicSuggestion, buildPlaybackCatalog, ownedPlaybackUrl, verifiedPlaybackUrl } from '../../lib/music-playback.ts'
 
 test('Spotify accepts canonical album URLs only and media rejects active schemes or credentials', () => {
   const id = 'A'.repeat(22)
@@ -42,6 +42,12 @@ const sourceId = '9ff8a563-4ebf-4481-85c1-9f445cfce9e1'
 const sourceUrl = `https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/${sourceId}/${sourceId}.mp3`
 const registered = { sunoId: sourceId, inventoryId: 'archived-song', title: 'Archived song', status: 'published', genre: ['piano'], assetRefs: { audioUrl: sourceUrl } }
 const verified = { sunoId: sourceId, audioUrl: sourceUrl, sha256: 'a'.repeat(64), bytes: 1024, durationSeconds: 65, codec: 'mp3', rangeVerified: true, decodeVerified: true, verifiedAt: '2026-09-09T21:00:00Z' }
+
+test('inline playback accepts only a verified owned media path', () => {
+  assert.equal(ownedPlaybackUrl(sourceUrl), sourceUrl)
+  assert.equal(ownedPlaybackUrl(`https://cdn1.suno.ai/${sourceId}.mp3`), undefined)
+  assert.equal(ownedPlaybackUrl(homepageFeaturedRelease.audioUrl), undefined)
+})
 
 test('archive playback requires matching identity, published registry state and decoder/range evidence', () => {
   assert.equal(verifiedPlaybackUrl(registered, verified), sourceUrl)
