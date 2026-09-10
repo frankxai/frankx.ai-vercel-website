@@ -1,11 +1,26 @@
 #!/usr/bin/env node
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { existsSync, writeFileSync, readFileSync, mkdirSync } from 'node:fs';
+import { existsSync, writeFileSync, readFileSync, mkdirSync, unlinkSync } from 'node:fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const FRANKX_ROOT = resolve(__dirname, '..');
 const AIS_ROOT = resolve(FRANKX_ROOT, '..', 'Agent-Intelligence-System');
+
+// App routes own these discovery URLs. A stale optional AIS export in public/
+// can shadow the route and silently replace current model/content discovery.
+const routeOwnedDiscovery = new Set(['llms.txt', 'llms-full.txt'].filter(
+  name => existsSync(resolve(FRANKX_ROOT, 'app', name, 'route.ts'))
+));
+for (const name of routeOwnedDiscovery) {
+  const staleExport = resolve(FRANKX_ROOT, 'public', name);
+  if (existsSync(staleExport)) unlinkSync(staleExport);
+}
+
+function writeDiscoveryText(name, content) {
+  if (routeOwnedDiscovery.has(name)) return;
+  writeFileSync(resolve(FRANKX_ROOT, 'public', name), content, 'utf8');
+}
 
 const isCI = Boolean(process.env.VERCEL || process.env.CI || process.env.GITHUB_ACTIONS);
 
@@ -50,8 +65,8 @@ if (!aisCorePath || !aisEmitPath) {
 
   if (existsSync(fallbackAgents) && existsSync(fallbackLlms)) {
     mkdirSync(outDir, { recursive: true });
-    writeFileSync(resolve(outDir, 'llms.txt'), readFileSync(fallbackLlms, 'utf8'), 'utf8');
-    writeFileSync(resolve(outDir, 'llms-full.txt'), readFileSync(fallbackLlms, 'utf8'), 'utf8');
+    writeDiscoveryText('llms.txt', readFileSync(fallbackLlms, 'utf8'));
+    writeDiscoveryText('llms-full.txt', readFileSync(fallbackLlms, 'utf8'));
     writeFileSync(resolve(outDir, 'agents.json'), readFileSync(fallbackAgents, 'utf8'), 'utf8');
     if (existsSync(fallbackJsonLd)) {
       writeFileSync(resolve(outDir, 'schema-graph.json'), readFileSync(fallbackJsonLd, 'utf8'), 'utf8');
@@ -92,8 +107,8 @@ try {
   const profile = loadSystemProfile(profilePath);
   mkdirSync(outDir, { recursive: true });
 
-  writeFileSync(resolve(outDir, 'llms.txt'), generateLlmsText(profile), 'utf8');
-  writeFileSync(resolve(outDir, 'llms-full.txt'), generateLlmsText(profile), 'utf8');
+  writeDiscoveryText('llms.txt', generateLlmsText(profile));
+  writeDiscoveryText('llms-full.txt', generateLlmsText(profile));
   writeFileSync(resolve(outDir, 'agents.json'), generateAgentsJson(profile), 'utf8');
   writeFileSync(resolve(outDir, 'schema-graph.json'), generateJsonLd(profile), 'utf8');
 
@@ -113,4 +128,3 @@ try {
   console.error('❌ [sync-ais] Error syncing AIS assets:', error.message);
   process.exit(1);
 }
-
