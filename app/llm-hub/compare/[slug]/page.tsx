@@ -8,6 +8,7 @@ import { formatContext, getModel, getProviders, type ModelEntry, type Organizati
 import { getEditorial } from '@/lib/llm-hub/editorial'
 import { fetchLivePricing, type LivePricingMap } from '@/lib/llm-hub/openrouter'
 import { ldJson } from '@/lib/seo/jsonld'
+import { resolveModelPricing } from '@/lib/llm-hub/pricing'
 
 export const revalidate = 3600
 
@@ -31,24 +32,19 @@ export async function generateMetadata({
     title: `${cmp.title}: Benchmarks, Pricing & Verdict (2026)`,
     description: cmp.description,
     keywords: cmp.keywords,
-    alternates: { canonical: `https://frankx.ai/llm-hub/compare/${slug}` },
+    alternates: { canonical: `https://www.frankx.ai/llm-hub/compare/${slug}` },
     openGraph: {
       title: `${cmp.title} — which to use in 2026`,
       description: cmp.description,
-      url: `https://frankx.ai/llm-hub/compare/${slug}`,
+      url: `https://www.frankx.ai/llm-hub/compare/${slug}`,
       type: 'article',
     },
   }
 }
 
 function priceStr(m: ModelEntry, live: LivePricingMap, key: 'input' | 'output'): string {
-  const lp = live[m.id]
-  const v =
-    key === 'input'
-      ? lp?.inputPer1m ?? (typeof m.pricing?.input_per_1m === 'number' ? m.pricing.input_per_1m : null)
-      : lp?.outputPer1m ?? (typeof m.pricing?.output_per_1m === 'number' ? m.pricing.output_per_1m : null)
+  const v = resolveModelPricing(m, live[m.id])[key]
   if (v === null) return '—'
-  if (v === 0) return 'Open'
   return `$${v.toFixed(2)}`
 }
 
@@ -86,9 +82,9 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai/' },
-      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: 'https://frankx.ai/llm-hub' },
-      { '@type': 'ListItem', position: 3, name: cmp.title, item: `https://frankx.ai/llm-hub/compare/${slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.frankx.ai/' },
+      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: 'https://www.frankx.ai/llm-hub' },
+      { '@type': 'ListItem', position: 3, name: cmp.title, item: `https://www.frankx.ai/llm-hub/compare/${slug}` },
     ],
   }
 

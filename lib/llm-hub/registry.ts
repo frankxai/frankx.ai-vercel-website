@@ -15,6 +15,7 @@ export interface ModelEntry {
   status?: string
   architecture?: string
   parameters?: string
+  open_weights?: boolean
   context_window?: number
   context_window_beta?: number
   max_output_tokens?: number
@@ -36,8 +37,8 @@ export interface ModelEntry {
     measured_cases: number
     judge_model: string | null
     production_ready: boolean
-    url: string
-    evidence_url: string
+    url: string | null
+    evidence_url: string | null
   }
 }
 
@@ -99,7 +100,7 @@ function normaliseModel(key: string, raw: ModelEntry): ModelEntry {
 export function getModel(idOrKey: string | undefined): ModelEntry | undefined {
   if (!idOrKey) return undefined
   const models = rawModels()
-  if (models[idOrKey]) return normaliseModel(idOrKey, models[idOrKey])
+  if (Object.hasOwn(models, idOrKey)) return normaliseModel(idOrKey, models[idOrKey])
   // Fallback: match by the provider-facing versioned id.
   const found = Object.entries(models).find(([, m]) => m.id === idOrKey)
   return found ? normaliseModel(found[0], found[1]) : undefined
