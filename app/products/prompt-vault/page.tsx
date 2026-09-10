@@ -25,9 +25,9 @@ import { PromptVaultFAQ } from './faq'
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: 'Creator Prompt Vault — 66 Battle-Tested AI Prompts | FrankX',
+    title: 'Creator Prompt Vault — 66 AI Prompts | FrankX',
     description:
-      '66 production-grade AI prompts across 14 categories. From the creator who built 12,000+ AI songs and 40+ AI agents. Claude, ChatGPT, Suno, Midjourney.',
+      'Preview the planned Creator Prompt Vault: 66 AI prompts across 14 categories, with examples for Claude, ChatGPT, and Suno. Free launch list; no download yet.',
     path: '/products/prompt-vault',
     keywords: [
       'ai prompts',
@@ -41,27 +41,6 @@ export const metadata: Metadata = {
       'production prompts',
     ],
   }),
-  other: {
-    'script:ld+json': JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      name: 'Creator Prompt Vault — 66 Battle-Tested AI Prompts',
-      description:
-        '66 production-grade AI prompts across 14 categories. Built by an AI Architect who ships daily.',
-      brand: { '@type': 'Brand', name: 'FrankX' },
-      offers: {
-        '@type': 'Offer',
-        price: '19',
-        priceCurrency: 'EUR',
-        availability: 'https://schema.org/InStock',
-        url: 'https://frankx.ai/products/prompt-vault',
-        seller: {
-          '@type': 'Person',
-          name: 'Frank Riemer',
-        },
-      },
-    }),
-  },
 }
 
 // ── Data ──
@@ -114,27 +93,27 @@ const faqs = [
   {
     question: 'What AI tools do these prompts work with?',
     answer:
-      'The vault covers Claude, ChatGPT, Gemini, Suno, Midjourney, DALL-E, Stable Diffusion, Claude Code, Cursor, and more. Each prompt specifies which AI tool it is optimized for, though most can be adapted across platforms.',
+      'The planned collection covers Claude, ChatGPT, Gemini, Suno, Midjourney, and other creator tools. The samples on this page show the intended tool and task. The downloadable collection is not available yet.',
   },
   {
-    question: 'Are these generic prompts I can find online?',
+    question: 'Can I preview the prompts before joining?',
     answer:
-      'Every prompt in the vault is battle-tested in production workflows. These are the exact prompts used to build 40+ AI agents, create 12,000+ AI songs, and ship products. They include specific parameters, chain-of-thought structures, and output formatting that generic prompts lack.',
+      'Yes. This page includes excerpts for music creation, AI architecture, and code review. Read them to assess the approach before joining the free launch list.',
   },
   {
-    question: 'Do I get updates when new prompts are added?',
+    question: 'Are future prompt updates included?',
     answer:
-      'Yes. The vault is a living collection. Purchasers receive access to all future prompt additions at the same price. Current trajectory: 5-10 new prompts per month as new techniques are tested and validated.',
+      'An update policy and release schedule have not been announced. The launch list is for product announcements; it does not include access to a prompt pack or future additions.',
   },
   {
     question: 'Can I use these prompts commercially?',
     answer:
-      'Absolutely. Every prompt comes with a commercial license. Use them in your business, your agency, your products. The only restriction is redistribution — you may use the outputs commercially but cannot resell the prompt pack itself.',
+      'Commercial-use terms for the planned pack have not been published. Joining the launch list does not grant a product license. Review the published terms when the pack is available.',
   },
   {
     question: 'What format do the prompts come in?',
     answer:
-      'Delivered as a beautifully formatted PDF with a linked table of contents, plus raw markdown files for easy copy-paste. Each prompt includes: the prompt itself, usage notes, recommended AI tool, expected output format, and customization variables.',
+      'PDF and Markdown are the planned formats, with usage notes, tool suggestions, output formats, and customization variables. There is no download or checkout yet, and joining the launch list is free.',
   },
 ]
 
@@ -187,16 +166,15 @@ export default function PromptVaultPage() {
             </div>
 
             <h1 className="mb-6 text-4xl font-bold leading-tight text-balance md:text-6xl lg:text-7xl">
-              66 Battle-Tested AI Prompts{' '}
+              66 AI Prompts for Creators{' '}
               <span className="bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] bg-clip-text text-transparent">
                 — From the Creator Who Built 12,000+ AI Songs
               </span>
             </h1>
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
-              Production-grade prompts for Claude, ChatGPT, Suno, Midjourney, and more. Every
-              prompt refined through real usage across 40+ AI agents, 70+ articles, and thousands of
-              creative outputs.
+              A planned collection for Claude, ChatGPT, Suno, Midjourney, and more. Explore the
+              samples and join the free launch list. The downloadable pack is not available yet.
             </p>
 
             {/* Trust signals */}
@@ -275,7 +253,7 @@ export default function PromptVaultPage() {
           </div>
 
           <p className="mt-8 text-center text-sm text-slate-500">
-            66 total prompts · Continuously growing · All future additions included
+            Planned scope: 66 prompts · 14 categories · Release date to be announced
           </p>
         </section>
 
@@ -334,13 +312,13 @@ export default function PromptVaultPage() {
               <div>
                 <div className="mb-4 flex items-center gap-3">
                   <Sparkles className="h-5 w-5 text-[#8B5CF6]" />
-                  <span className="text-sm font-semibold text-[#8B5CF6]">Production-Grade Quality</span>
+                  <span className="text-sm font-semibold text-[#8B5CF6]">Planned Prompt Structure</span>
                 </div>
-                <h2 className="mb-4 text-3xl font-bold md:text-4xl">Prompts That Actually Work</h2>
+                <h2 className="mb-4 text-3xl font-bold md:text-4xl">A Starting Point for Your Workflow</h2>
                 <p className="text-lg leading-relaxed text-slate-400">
-                  Every prompt has been refined through hundreds of iterations in real production
-                  workflows. These are the prompts behind published products, live systems, and
-                  thousands of creative works.
+                  The planned pack organizes prompts by task, tool, and expected output.
+                  The examples above show the approach; final contents remain subject to review
+                  before release.
                 </p>
               </div>
 
@@ -351,7 +329,7 @@ export default function PromptVaultPage() {
                   'Output formatting instructions built into every prompt',
                   'Customization variables you can swap for any use case',
                   'Difficulty levels from beginner to advanced',
-                  'Tested across Claude, ChatGPT, Gemini, Suno, and Midjourney',
+                  'Tool guidance for Claude, ChatGPT, Gemini, Suno, and Midjourney',
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#10B981]" />
@@ -382,11 +360,11 @@ export default function PromptVaultPage() {
 
             <div className="relative z-10 text-center">
               <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                Unlock 66 Production-Grade Prompts
+                Follow the Creator Prompt Vault Launch
               </h2>
               <p className="mx-auto mb-8 max-w-lg text-lg leading-relaxed text-slate-400">
-                Stop writing prompts from scratch. Start with battle-tested templates that produce
-                results from day one.
+                Join the free launch list for updates on the planned collection.
+                The listed price is €19; there is no checkout or download yet.
               </p>
 
               <div className="mb-6 flex flex-col items-center gap-4">
@@ -398,7 +376,7 @@ export default function PromptVaultPage() {
                   href="/waitlist?intent=prompt-vault"
                   className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] px-10 py-5 text-xl font-semibold text-white shadow-xl shadow-[#8B5CF6]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#8B5CF6]/40"
                 >
-                  Join the Launch List
+                  Join the launch list
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>

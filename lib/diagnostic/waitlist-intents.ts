@@ -22,6 +22,9 @@ export interface WaitlistIntent {
 }
 
 export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
+  // Product launch lists linked from their existing product pages.
+  'bv-kit': { label: 'Creator BV Kit', listType: 'premium-packs' },
+  'prompt-vault': { label: 'Prompt Vault', listType: 'premium-packs' },
   // Product rows in the knowledge-to-offer graph.
   'creative-ai-toolkit': { label: 'Creative AI Toolkit', listType: 'premium-packs' },
   'creation-chronicles': { label: 'Creation Chronicles', listType: 'creation-chronicles' },
