@@ -32,7 +32,9 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.match(homepage, /import \{ FeaturedTrackPlayer \} from '@\/components\/home\/FeaturedTrackPlayer'/)
   assert.match(homepage, /<FeaturedTrackPlayer track=\{track\} \/>/)
   assert.doesNotMatch(homepage, /suno\.com\/embed/)
-  assert.match(player, /src=\{track\.audioUrl\}/)
+  // A release may stream only an owned preview. Before byte verification exists,
+  // it remains source-only rather than presenting an indefinitely loading player.
+  assert.match(player, /src=\{(?:track\.audioUrl|playbackUrl)\}/)
   assert.match(player, /src=\{track\.imageUrl\}/)
   assert.match(player, /href=\{track\.sunoUrl\}/)
   assert.match(player, /preload="metadata"/)
@@ -149,10 +151,13 @@ test('the featured release stays human-reviewed instead of following the raw cat
   // 403 cover to production — Suno rotates CDN variants without notice.
   assert.match(release, /imageUrl: '\/images\/music\/[a-z0-9-]+\.(?:jpg|jpeg|png|webp)'/)
   assert.doesNotMatch(release, /imageUrl: 'https:\/\/cdn\d?\.suno\.ai\//)
-  // Audio should be mirrored to Vercel Blob for the same reason. It is not yet,
-  // because the local BLOB_READ_WRITE_TOKEN points at a deleted store — until
-  // that is reissued the Suno CDN is the only reachable source.
-  assert.match(release, /audioUrl: 'https:\/\/(?:cdn1\.suno\.ai|[a-z0-9]+\.public\.blob\.vercel-storage\.com)\//)
+  // A reviewed release may expose an owned preview or remain source-only.
+  // External Suno CDN URLs are never evidence that browser playback is reliable.
+  const declaredPreview = release.match(/^\s+audioUrl: '([^']+)'/m)?.[1]
+  assert.ok(
+    !declaredPreview || /^https:\/\/(?:cdn1\.suno\.ai|[a-z0-9]+\.public\.blob\.vercel-storage\.com)\//.test(declaredPreview),
+    'a declared preview must be an HTTPS media URL',
+  )
   assert.doesNotMatch(release, /Music is the first door/)
   assert.match(release, /one creative artifact among the architecture/)
 })
