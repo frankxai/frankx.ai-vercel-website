@@ -26,7 +26,7 @@ export const PUBLISHED_BENCHMARKS: PublishedBenchmarks = {
   model: 'Claude Sonnet 5',
   released: '2026-06-30',
   items: [ /* ... retained from prior ... */ ],
-  pricing: '$2 / $10 per million tokens (input/output) through Aug 31, 2026 — then $3 / $15',
+  pricing: '$2 / $10 per million input/output tokens; Anthropic cancelled the September increase (checked 2026-09-07)',
   note: 'Sonnet 5 edges the flagship Opus 4.8 on knowledge work while running at roughly 40% of the list price.',
   sources: [ /* ... */ ]
 }
@@ -96,8 +96,8 @@ export interface ArenaRound {
   receiptUrl: string | null
 }
 
-// Latest round backed by a real, first-party receipt file. Rounds without receipts never move this date.
-export const LAST_MEASURED = '2026-07-01'
+// The last-measured date now comes from lib/intelligence/receipts.ts `lastMeasured()`,
+// derived from the receipt files themselves — a hardcoded copy here could drift.
 
 // Retained historical rounds (Claude-focused) + placeholder for new wave runs
 export const ROUNDS: ArenaRound[] = [

@@ -47,7 +47,8 @@ Artifacts: ${m.artifacts?.slice(0, 5).join(', ') || '—'}
     .map(
       (b) => `### ${b.title} — ${b.author}
 ${SITE_URL}/library/${b.slug}
-${b.categories?.join(', ') || ''}${b.publicationYear ? ` · ${b.publicationYear}` : ''}${b.rating ? ` · ${b.rating}/5` : ''}
+${b.categories?.join(', ') || ''}${b.publicationYear ? ` · ${b.publicationYear}` : ''}${!b.guide && b.rating ? ` · ${b.rating}/5` : ''}
+${b.guide ? `Entry: editorial reading guide · ${b.guide.kind} · ${b.guide.tradition}\nEdition note: ${b.guide.editionNote}\nSources: ${b.guide.sources.map(source => `${source.title}: ${source.url}`).join('; ')}` : b.capture ? 'Entry: reading field note with source capture.' : 'Entry: book review.'}
 
 ${b.tldr || ''}
 
@@ -111,9 +112,9 @@ ${osSection}
 
 ## Library OS — Book Intelligence
 
-The Library OS is an open-source book intelligence system built on Next.js 16. Each book has a structured deep-dive with TL;DR, key insights, quotes, chapter summaries, FAQ, related reading, and curated videos.
+The Library combines book reviews, personal reading field notes, and editorial reading guides. Available depth varies by entry. The spiritual guides identify traditions, text type, editions, reading paths, and sources; they do not claim a personal reading or assign a star rating. Some existing reviews also include quotations, chapter summaries, FAQs, or videos.
 
-- [Library Index](${SITE_URL}/library): All book reviews
+- [Library Index](${SITE_URL}/library): Search by title, author, tradition, or idea; browse six curated collections
 - [Library Approach](${SITE_URL}/library/approach): Manifesto and methodology
 - [Library Build](${SITE_URL}/library/build): How to build your own
 - [Library Quotes](${SITE_URL}/library/quotes): Curated quotations across all books

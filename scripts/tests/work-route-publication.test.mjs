@@ -10,6 +10,8 @@ const engagements = [
   { slug: 'past-fixture', status: 'past' },
   { slug: 'draft-fixture', status: 'draft' },
   { slug: 'private-fixture', status: 'private' },
+  { slug: 'future-fixture', status: 'queued' },
+  { slug: 'missing-status-fixture' },
 ]
 
 test('work route params contain only explicitly public fixtures', () => {
@@ -37,10 +39,12 @@ test('valid live and past work slugs resolve', () => {
   )
 })
 
-test('draft, private, missing, and invalid work slugs fail closed', () => {
+test('draft, private, unknown-status, missing, and invalid work slugs fail closed', () => {
   for (const slug of [
     'draft-fixture',
     'private-fixture',
+    'future-fixture',
+    'missing-status-fixture',
     'missing-fixture',
     '../draft-fixture',
   ]) {

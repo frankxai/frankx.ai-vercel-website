@@ -1,6 +1,7 @@
 import { getAllBlogPosts } from '@/lib/blog'
 import { getJournalEntrySummaries } from '@/lib/journal'
 import { bookReviews } from '@/data/book-reviews'
+import { libraryCollections } from '@/data/library-collections'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
@@ -16,7 +17,8 @@ const SITE_URL = siteConfig.url
  */
 export async function GET() {
   const recentPosts = getAllBlogPosts().slice(0, 20)
-  const featuredBooks = bookReviews.slice(0, 12)
+  const featuredSlugs = new Set(libraryCollections.flatMap(collection => collection.featured.slice(0, 2)))
+  const featuredBooks = bookReviews.filter(book => featuredSlugs.has(book.slug))
 
   const blogLinks = recentPosts
     .map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.description}`)
@@ -34,7 +36,7 @@ export async function GET() {
     .join('\n')
 
   const libraryLinks = featuredBooks
-    .map((b) => `- [${b.title} — ${b.author}](${SITE_URL}/library/${b.slug}): ${b.tldr || ''}`)
+    .map((b) => `- [${b.title} — ${b.author}](${SITE_URL}/library/${b.slug}): ${b.guide ? `${b.guide.kind}; editorial reading guide with source and edition links. ` : b.capture ? 'Reading field note. ' : 'Book review. '}${b.tldr || ''}`)
     .join('\n')
 
   const researchLinks = researchDomains
@@ -77,7 +79,7 @@ Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 ${osLinks}
 
 ## Library OS (book intelligence)
-- [Library Index](${SITE_URL}/library): All book reviews, sorted by recency
+- [Library Index](${SITE_URL}/library): Searchable book reviews, reading field notes, and editorial reading guides; six curated collections
 - [Library Approach](${SITE_URL}/library/approach): The manifesto — why books matter for creators
 - [Library Build](${SITE_URL}/library/build): How to build your own library OS
 - [Library Quotes](${SITE_URL}/library/quotes): Curated quotation collection
@@ -87,6 +89,7 @@ ${libraryLinks}
 - [LLM Hub](${SITE_URL}/llm-hub): Every frontier model - context, pricing, benchmarks, verdicts, each entry sourced
 - [Cost Calculator](${SITE_URL}/llm-hub#cost-calculator): Interactive token volume and multi-tier routing simulator
 - [Model Arena](${SITE_URL}/research/model-arena): First-party measured model rounds with published run receipts
+- [Model Arena Receipts JSON](${SITE_URL}/research/model-arena/receipts.json): Machine-readable receipts manifest — lastMeasured: null means nothing measured yet; carry it through rather than substituting a date
 - [Agent Hub](${SITE_URL}/agent-hub): Agent platforms and frameworks compared, every claim carrying an evidence grade
 - [Golden 7 AI Architectures](${SITE_URL}/ai-architectures): Production-grade blueprints for sovereign swarms, GraphRAG & MCP meshes
 - [Agent Catalog](${SITE_URL}/agents): The 99-agent Creator OS, packaged as installable artifacts

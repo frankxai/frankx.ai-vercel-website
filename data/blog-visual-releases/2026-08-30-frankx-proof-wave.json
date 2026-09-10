@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "frankx-editorial-20260830",
+  "createdAt": "2026-08-30",
+  "productionStatus": "preview-pending",
+  "generation": {
+    "engine": "OpenAI native image generation",
+    "method": "one scene per generation with a shared cast and art-direction bible",
+    "generatedLogos": false,
+    "postProcessing": "WebP quality 88; no enlargement",
+    "palette": ["#0a0a0b", "#10b981", "#06b6d4", "warm-human-light"]
+  },
+  "continuity": {
+    "world": "FrankX Architect Droid Crew",
+    "roles": ["Architect", "Trace", "Forge", "Relay", "Guard", "Memory"],
+    "direction": "premium tactile near-future editorial photography; credible rooms, legible human stakes, restrained interfaces"
+  },
+  "deterministicLayers": {
+    "platformMarks": "components/blog/PlatformMarkGrid.tsx",
+    "markLedger": "data/brand-kits/platform-mark-ledger.json",
+    "exactDiagrams": "Existing repository-native SVG and WebP architecture diagrams",
+    "rule": "Generated scenes may support the story; they may not carry exact claims, diagrams, UI copy, or trademarks."
+  },
+  "assets": [
+    {
+      "id": "crew-continuity",
+      "path": "/images/blog/generated/frankx-editorial-20260830/architect-droid-crew-continuity.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 146486,
+      "sha256": "361696312dd586d4ce71da306a78f5d95c407f02b23259ca886347aab56b6a0b",
+      "role": "continuity-and-capability-cast",
+      "article": "4-hour-ai-architect-deal-framework-2026",
+      "status": "integrated"
+    },
+    {
+      "id": "four-hour-direction-a",
+      "path": "/images/blog/generated/frankx-editorial-20260830/4-hour-direction-a-late-control-room.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 127278,
+      "sha256": "25690909d44d2191b939c660bbce79054c9f55c4020b313c9de1f6836337f1c0",
+      "role": "founder-pressure-opening",
+      "article": "4-hour-ai-architect-deal-framework-2026",
+      "status": "integrated"
+    },
+    {
+      "id": "four-hour-direction-b",
+      "path": "/images/blog/generated/frankx-editorial-20260830/4-hour-direction-b-absence-test.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 242724,
+      "sha256": "b0a730ce07ea9a467420ffa154c12008cc9a3ee9dda3f2c89ec39d3acbf91c97",
+      "role": "human-destination-and-absence-test",
+      "article": "4-hour-ai-architect-deal-framework-2026",
+      "status": "integrated"
+    },
+    {
+      "id": "four-hour-direction-c",
+      "path": "/images/blog/generated/frankx-editorial-20260830/4-hour-direction-c-four-room-atelier.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 173090,
+      "sha256": "45d418625da74c6df1c736ac0b9971037effbc9f2f9bdc8ccb2876dd8f708881",
+      "role": "flagship-hero-and-deal-world",
+      "article": "4-hour-ai-architect-deal-framework-2026",
+      "status": "integrated-selected-direction"
+    },
+    {
+      "id": "virtual-assistant-handoff",
+      "path": "/images/blog/generated/frankx-editorial-20260830/4-hour-virtual-assistant-to-ai-team.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 136946,
+      "sha256": "547ce21f5950bddcf0f5d1f0c0b4b0706ecbb8e825c33a6b0d58ff4e6bf196f0",
+      "role": "old-to-modern-delegation-transition",
+      "article": "4-hour-ai-architect-deal-framework-2026",
+      "status": "integrated"
+    },
+    {
+      "id": "founder-control-plane",
+      "path": "/images/blog/generated/frankx-editorial-20260830/4-hour-founder-control-plane.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 207938,
+      "sha256": "4d7ca4f950f8ed1acdb78b4096074bc3dc0fb48ae217e64629925f3a30980e22",
+      "role": "four-hour-weekly-control-rhythm",
+      "article": "4-hour-ai-architect-deal-framework-2026",
+      "status": "integrated"
+    },
+    {
+      "id": "app-builder-foundry",
+      "path": "/images/blog/generated/frankx-editorial-20260830/ai-app-builders-product-foundry.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 193942,
+      "sha256": "5ee41f4b212fd64343e8b91c93157fe20d8090ae9ca7aaf69a6c2d721d8ddbd7",
+      "role": "flagship-hero-and-ownership-question",
+      "article": "best-ai-app-builders-2026",
+      "status": "integrated"
+    },
+    {
+      "id": "app-builder-mobile-handoff",
+      "path": "/images/blog/generated/frankx-editorial-20260830/ai-app-builders-handoff-mobile.webp",
+      "width": 972,
+      "height": 1619,
+      "bytes": 249052,
+      "sha256": "0156b6345a24fc9925c0c308b505d8e3a565e0abad5194a47d5ee4b4fcac736d",
+      "role": "prototype-to-production-mobile-sequence",
+      "article": "best-ai-app-builders-2026",
+      "status": "integrated"
+    },
+    {
+      "id": "architecture-four-seams",
+      "path": "/images/blog/generated/frankx-editorial-20260830/ai-architecture-four-seams.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 285602,
+      "sha256": "87a03f422b1bba072755e3d6f70a36f126222e6630b4a1dadb67acf51a30556b",
+      "role": "flagship-hero-and-seam-metaphor",
+      "article": "ai-architecture-2026-four-decisions-hard-to-reverse",
+      "status": "integrated"
+    },
+    {
+      "id": "work-surfaces-routing-room",
+      "path": "/images/blog/generated/frankx-editorial-20260830/ai-work-surfaces-routing-room.webp",
+      "width": 1672,
+      "height": 940,
+      "bytes": 190936,
+      "sha256": "a816902e31eb7ce9b46b6ad4f51fda93b71ad349db19f1537a8d2fab58130f60",
+      "role": "provider-and-authority-routing-scene",
+      "article": "ai-architecture-2026-four-decisions-hard-to-reverse",
+      "status": "integrated"
+    }
+  ]
+}

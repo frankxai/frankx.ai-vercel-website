@@ -14,36 +14,10 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.match(emailSignup, /className="w-full min-w-0 flex-1 rounded-full/)
   assert.match(emailSignup, /className="min-h-11 w-full rounded-full[^\n]+sm:w-auto"/)
 
-  if (page.includes("import FounderHome from '@/components/home/FounderHome'")) {
-    const founderHome = await readRepoFile('components/home/FounderHome.tsx')
-    const founderStack = await readRepoFile('lib/founder-stack.ts')
-    const founderStackPage = await readRepoFile('app/founder-stack/page.tsx')
-    const assessment = await readRepoFile('components/founder-stack/FounderStackAssessment.tsx')
-
-    assert.match(page, /FrankX — Founder Operating Systems for the AI Age/)
-    assert.match(page, /FrankX speaks to one avatar: the founder/)
-    assert.match(page, /<FounderHome latestPosts=\{latestPosts\} faqs=\{homepageFAQs\} \/>/)
-    assert.doesNotMatch(page, /<HomePageElite\b/)
-
-    assert.match(founderHome, /Your company is not one problem\./)
-    assert.match(founderHome, /It is a stack\./)
-    assert.match(founderHome, /entrepreneur,\s+solopreneur, coach, and\s+creator-led company/)
-    assert.match(founderHome, /Diagnose\. Install\. Compound\./)
-    assert.match(founderHome, /href="\/founder-stack"/)
-    assert.match(founderHome, /listType="founder-stack"/)
-    assert.match(founderHome, /Established.*Emerging.*Experiential.*Symbolic/s)
-    assert.doesNotMatch(founderHome, /autoPlay|setInterval|useGSAP|framer-motion/)
-
-    for (const layer of ['State', 'Signal', 'Systems', 'Scale', 'Stewardship']) {
-      assert.match(founderStack, new RegExp(`name: '${layer}'`))
-    }
-    assert.match(founderStack, /export function scoreFounderStack/)
-    assert.match(founderStackPage, /Nothing is\s+stored unless you choose to join/)
-    assert.match(assessment, /aria-live="polite"/)
-    return
-  }
-
   assert.match(page, /import HomePageElite from '@\/components\/home\/HomePageElite'/)
+  assert.match(page, /<HomePageElite\b/)
+  assert.doesNotMatch(page, /import FounderHome from '@\/components\/home\/FounderHome'/)
+  assert.doesNotMatch(page, /<FounderHome\b/)
   assert.match(page, /import \{ getPublishedBooks \} from '@\/app\/books\/lib\/books-registry'/)
   assert.match(page, /import \{ homepageFeaturedRelease \} from '@\/data\/homepage-featured-release'/)
   assert.match(page, /featuredTrack=\{homepageFeaturedRelease\}/)
