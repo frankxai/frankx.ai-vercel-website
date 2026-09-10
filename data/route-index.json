@@ -162,6 +162,7 @@
     {
       "href": "/agents/packs/music",
       "title": "Music Pack",
+      "description": "Preview the music production agent pack and join its launch waitlist.",
       "tags": [
         "agents",
         "pack",
@@ -7830,11 +7831,13 @@
     {
       "href": "/music",
       "title": "Music",
+      "description": "Listen to FrankX tracks and browse playlists and releases.",
       "type": "section"
     },
     {
       "href": "/music-intelligence",
       "title": "Music Intelligence",
+      "description": "Explore music research, AI agents, tools, and free Suno templates.",
       "tags": [
         "music",
         "intelligence"
@@ -7844,7 +7847,7 @@
     {
       "href": "/music-lab",
       "title": "Music Lab",
-      "description": "AI music production",
+      "description": "Play music on browser instruments, with guided notes and rhythm games.",
       "type": "core"
     },
     {
@@ -7947,6 +7950,7 @@
     {
       "href": "/music-os",
       "title": "Music OS",
+      "description": "Review track readiness and release workflows in the Music OS cockpit.",
       "tags": [
         "music",
         "os"
