@@ -85,6 +85,9 @@ jobs:
       - name: Site search relevance
         run: pnpm run test:site-search
 
+      - name: MapLibre lifecycle and worker integrity
+        run: pnpm run test:maplibre
+
       - name: Build
         run: pnpm run build
         env:
@@ -92,3 +95,6 @@ jobs:
 
       - name: GenCreator rendered metadata
         run: pnpm run test:gencreator-metadata:rendered
+
+      - name: MapLibre served worker integrity
+        run: pnpm run test:maplibre:rendered

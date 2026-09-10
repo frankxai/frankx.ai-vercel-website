@@ -16,7 +16,6 @@ import {
   BookOpen,
   GraduationCap,
   Heart,
-  Euro,
 } from 'lucide-react'
 
 import { createMetadata } from '@/lib/seo'
@@ -396,13 +395,10 @@ export default function PromptVaultPage() {
                   <span className="text-slate-500">one-time</span>
                 </div>
                 <a
-                  href="https://frankxai.gumroad.com/l/prompt-vault"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/waitlist?intent=prompt-vault"
                   className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] px-10 py-5 text-xl font-semibold text-white shadow-xl shadow-[#8B5CF6]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#8B5CF6]/40"
                 >
-                  <Euro className="h-6 w-6" />
-                  Buy Now — Instant Download
+                  Join the Launch List
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
