@@ -10,6 +10,8 @@ import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
 import CommandPaletteProvider from '@/components/CommandPaletteProvider'
 import Footer from '@/components/Footer'
+import { MusicRuntime } from '@/components/music/MusicRuntime'
+import { getPlaybackCatalog } from '@/lib/music-playback-catalog'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
@@ -171,28 +173,30 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <SessionProvider>
-          <OrganizationJsonLd />
-          <a
-            href="#main"
-            className="skip-to-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
-          >
-            Skip to content
-          </a>
-          <ScrollProgress />
-          <CursorSpotlight />
-          {/* Global aurora ambient — brand signature glow across all pages */}
-          <div className="fixed inset-0 pointer-events-none z-0" aria-hidden>
-            <div className="absolute -top-1/4 left-1/4 h-[600px] w-[600px] rounded-full bg-cyan-500/[0.03] blur-[160px]" />
-            <div className="absolute top-1/3 -right-1/4 h-[500px] w-[500px] rounded-full bg-violet-500/[0.025] blur-[140px]" />
-            <div className="absolute -bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.02] blur-[120px]" />
-          </div>
-          <NavigationMega />
-          <CommandPaletteProvider />
-          <div id="main" tabIndex={-1} className="relative z-10 min-h-screen overflow-x-hidden outline-none">
-            {children}
-          </div>
-          <Footer />
-          <PrivacySafeAnalytics />
+          <MusicRuntime catalog={getPlaybackCatalog()}>
+            <OrganizationJsonLd />
+            <a
+              href="#main"
+              className="skip-to-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              Skip to content
+            </a>
+            <ScrollProgress />
+            <CursorSpotlight />
+            {/* Global aurora ambient — brand signature glow across all pages */}
+            <div className="fixed inset-0 pointer-events-none z-0" aria-hidden>
+              <div className="absolute -top-1/4 left-1/4 h-[600px] w-[600px] rounded-full bg-cyan-500/[0.03] blur-[160px]" />
+              <div className="absolute top-1/3 -right-1/4 h-[500px] w-[500px] rounded-full bg-violet-500/[0.025] blur-[140px]" />
+              <div className="absolute -bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.02] blur-[120px]" />
+            </div>
+            <NavigationMega />
+            <CommandPaletteProvider />
+            <div id="main" tabIndex={-1} className="relative z-10 min-h-screen overflow-x-hidden outline-none">
+              {children}
+            </div>
+            <Footer />
+            <PrivacySafeAnalytics />
+          </MusicRuntime>
         </SessionProvider>
       </body>
     </html >
