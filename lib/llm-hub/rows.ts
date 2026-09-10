@@ -7,10 +7,19 @@
 import type { Capability } from './capabilities'
 import { getEditorial } from './editorial'
 import type { LivePricingMap } from './openrouter'
-import { getProviders, type ModelEntry, type OrganizationEntry } from './registry'
+import { getProviders, type OrganizationEntry } from './registry'
+import { hasOpenWeights, resolveModelPricing } from './pricing'
 
 export interface ModelRow {
   id: string
+  apiId: string | null
+  identifierStatus: 'unverified_registry_identifier'
+  capabilitySource: 'model_registry' | 'organization_inference' | 'unspecified'
+  canonicalUrl: string
+  openWeights: boolean
+  sources: string[]
+  pricing: ReturnType<typeof resolveModelPricing>
+  evaluation: { status: string; measuredCases: number | null; productionReady: boolean | null }
   name: string
   org: string
   orgSlug: string
@@ -26,23 +35,27 @@ export interface ModelRow {
   tagline?: string
 }
 
-function staticInput(m: ModelEntry): number | null {
-  const v = m.pricing?.input_per_1m
-  return typeof v === 'number' ? v : null
-}
-function staticOutput(m: ModelEntry): number | null {
-  const v = m.pricing?.output_per_1m
-  return typeof v === 'number' ? v : null
-}
-
 export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
   const rows: ModelRow[] = []
   for (const { org, models } of getProviders()) {
     const o = org as OrganizationEntry
     for (const m of models) {
       const livePrice = live[m.id]
+      const pricing = resolveModelPricing(m, livePrice)
       rows.push({
         id: m.id,
+        apiId: m.apiId ?? null,
+        identifierStatus: 'unverified_registry_identifier',
+        capabilitySource: m.capabilities?.length ? 'model_registry' : o.capability_focus?.length ? 'organization_inference' : 'unspecified',
+        canonicalUrl: `https://www.frankx.ai/llm-hub/${m.id}`,
+        openWeights: hasOpenWeights(m),
+        sources: m.sources || [],
+        pricing,
+        evaluation: {
+          status: m.evaluation?.status ?? 'not_attested_in_registry',
+          measuredCases: m.evaluation?.measured_cases ?? null,
+          productionReady: m.evaluation?.production_ready ?? null,
+        },
         name: m.name,
         org: o.name,
         orgSlug: o.slug,
@@ -50,8 +63,8 @@ export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
         released: m.released || '',
         status: m.status || '',
         contextTokens: livePrice?.contextLength ?? m.context_window_beta ?? m.context_window ?? null,
-        input: livePrice?.inputPer1m ?? staticInput(m),
-        output: livePrice?.outputPer1m ?? staticOutput(m),
+        input: pricing.input,
+        output: pricing.output,
         live: Boolean(livePrice),
         modalities: m.modalities || [],
         capabilities: ((m.capabilities && m.capabilities.length > 0)

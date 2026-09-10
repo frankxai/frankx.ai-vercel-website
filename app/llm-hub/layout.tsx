@@ -16,12 +16,12 @@ export const metadata: Metadata = {
     'antigravity 2.0',
     'open source llm 2026',
   ],
-  alternates: { canonical: 'https://frankx.ai/llm-hub' },
+  alternates: { canonical: 'https://www.frankx.ai/llm-hub' },
   openGraph: {
     title: 'LLM Hub 2026 — GPT-6 Astra, Pricing and Evaluation',
     description:
       'A reviewed LLM directory with GPT-6 Astra, source-backed prices, evaluation status and practical guides. Entries retain their source dates.',
-    url: 'https://frankx.ai/llm-hub',
+    url: 'https://www.frankx.ai/llm-hub',
     type: 'website',
   },
 }

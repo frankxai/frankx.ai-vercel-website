@@ -22,25 +22,25 @@ const SOURCES = [
   { name: 'LMArena', role: 'Crowdsourced human-preference Elo', url: 'https://lmarena.ai/' },
   { name: 'ARC Prize Foundation', role: 'ARC-AGI abstract reasoning benchmark', url: 'https://arcprize.org/' },
   { name: 'SWE-bench', role: 'Real-world software engineering tasks', url: 'https://www.swebench.com/' },
-  { name: 'Vendor model cards', role: 'Self-reported benchmarks (labelled as such)', url: 'https://frankx.ai/ai-ops/models-2026' },
+  { name: 'Vendor model cards', role: 'Self-reported benchmarks (labelled as such)', url: 'https://www.frankx.ai/ai-ops/models-2026' },
 ]
 
 const FAQ = [
   {
     q: 'What is the best LLM in 2026?',
-    a: 'There is no single winner. As of the September 7 update, Claude Fable 5.1 leads Artificial Analysis’s intelligence index (~56.8), with GPT-6 Astra (~54.7) and Claude Opus 5 (~54.1) close behind — within noise of each other on general capability. Astra separately leads decisively on agentic coding (Terminal-Bench 4: 64.6% vendor-reported); our own 12-case Astra evaluation suite is defined but has not run yet. See the decision matrix and dated model pages for task-specific picks.',
+    a: 'There is no measured universal winner in this hub. The decision matrix proposes candidates for coding, games, writing, content and operational tasks. Select a model using the same task set, tools, context and acceptance criteria, then compare cost per accepted result. Our dedicated twelve-case Astra suite is defined but has not run.',
   },
   {
     q: 'How is this different from OpenRouter or Artificial Analysis?',
-    a: 'Those are the raw-data sources — OpenRouter for live pricing and routing, Artificial Analysis for independent benchmarks, LMArena for human preference. We cite all three. The FrankX LLM Hub adds the decision layer they don’t: task-first navigation, the agentic-platform comparison (Claude Code vs Antigravity vs Cursor vs Codex), curated verdicts, and a creator-stack lens — for humans and agents.',
+    a: 'OpenRouter supplies catalog pricing and routing; benchmark publishers provide their own evaluations. This hub connects selected model entries to workload candidates, creator workflows and public evaluation receipts. Editorial recommendations and third-party measurements retain their own evidence status.',
   },
   {
     q: 'Which is the cheapest frontier reasoning model?',
-    a: 'GPT-5.6 Luna is the cheapest frontier-adjacent option at $0.20 / $1.20 per 1M tokens, built for classification, routing and triage rather than deep reasoning. For genuine frontier reasoning, DeepSeek V3.2 leads on pure cost ($0.27 / $1.10, MIT license) and Gemini 3.5 Flash is the cheapest closed-frontier option ($0.30 / $2.50). A lower token price does not establish lower cost per accepted task — include failed attempts, tools and human correction before comparing.',
+    a: 'Use the priced models in the explorer and calculator for a dated comparison. Gemini 3.5 Flash and Flash-Lite are different products; the $0.30/$2.50 tier belongs to Flash-Lite. Token price alone cannot establish the cheapest accepted result: include failed attempts, tools and human correction.',
   },
   {
     q: 'What is the best agentic LLM in 2026?',
-    a: 'By category: agentic coding — GPT-6 Astra leads Terminal-Bench 4 at 64.6% (vendor-reported, unverified by us), with Gemini 3.5 Flash (76.2% on the older Terminal-Bench 2.1 — not directly comparable to Astra’s 4.0 score) and Claude Opus 4.6 as prior-generation references; long-horizon enterprise — Gemini Spark and Claude Agent Teams; computer-use — GPT-5.2 Operator and Claude Opus 4.6 (72.7% OSWorld). Published benchmarks help choose candidates, but a production decision needs observed task quality, failure recovery, latency and cost — our own Astra evaluation suite is defined but has not run.',
+    a: 'Agent performance depends on the model together with its tools, memory, permissions and recovery strategy. Test completed work, tool errors, escalation, latency and total spending in that environment. Published benchmark scores can shortlist candidates; they do not establish a production winner for your workload.',
   },
   {
     q: 'Is the pricing live?',
@@ -48,7 +48,7 @@ const FAQ = [
   },
   {
     q: 'Can AI agents consume this hub?',
-    a: 'Yes. The full curated dataset — models, pricing, verdicts, decision matrix, comparisons — is available as clean JSON at /llm-hub.json, plus JSON-LD structured data on every page and deep links in /llms.txt.',
+    a: 'Yes. Model rows with pricing provenance and registry evaluation status are available at /llm-hub.json. The versioned /llm-hub/manifest.json links models, editorial comparisons, candidate policies and public receipts. Treat editorial recommendations as hypotheses until task evidence qualifies them.',
   },
 ]
 
@@ -77,7 +77,7 @@ export default async function LlmHubPage() {
       position: i + 1,
       item: {
         '@type': 'Organization',
-        '@id': `https://frankx.ai/llm-hub#${p.org.slug}`,
+        '@id': `https://www.frankx.ai/llm-hub#${p.org.slug}`,
         name: p.org.name,
         url: p.org.url,
         description: p.org.one_liner,
@@ -99,8 +99,8 @@ export default async function LlmHubPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai/' },
-      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: 'https://frankx.ai/llm-hub' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.frankx.ai/' },
+      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: 'https://www.frankx.ai/llm-hub' },
     ],
   }
 
@@ -141,8 +141,8 @@ export default async function LlmHubPage() {
               Live pricing is available for mapped models; curated entries retain their source context.
             </p>
             <p className="mb-8 max-w-3xl text-sm text-white/40">
-              We cite OpenRouter, Artificial Analysis, and LMArena as sources, and add what they don’t: task-first navigation,
-              the agentic-platform comparison, curated verdicts, and a creator-stack lens.
+              Connect provider sources and catalog prices to task-specific candidates, creator workflows and public receipts.
+              Each recommendation still needs acceptance evidence from your workload.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
@@ -193,7 +193,7 @@ export default async function LlmHubPage() {
                 <Link href="/blog/gpt-6-astra-for-content-creators" className="py-2 text-emerald-200 underline underline-offset-4">For creators</Link>
                 <Link href="/blog/gpt-6-astra-ai-architecture-model-economics" className="py-2 text-emerald-200 underline underline-offset-4">For AI architects</Link>
               </div>
-              <p className="mt-5 text-xs leading-relaxed text-white/60">This update covers Astra and the Sonnet 5 price correction. Earlier routing notes below retain their historical scope.</p>
+              <p className="mt-5 text-xs leading-relaxed text-white/60">This update covers Astra and the Sonnet 5 price correction. The candidate policies below have their own review date. Historical comparisons retain their original scope.</p>
             </section>
           </div>
         </section>
@@ -204,13 +204,13 @@ export default async function LlmHubPage() {
             <div className="mb-8 flex flex-col gap-1">
               <h2 className="text-2xl font-bold">Start here: pick your constraint</h2>
               <p className="text-sm text-white/40">
-                Earlier editorial routing hypotheses, retained for context. Use the September comparison above and run your acceptance suite before adopting a route.
+                Candidate policies reviewed 10 September 2026. Each names what must pass before adoption; none certifies a production route.
               </p>
             </div>
             <div className="grid gap-8">
               <TaskRoutingPlayground />
               <div className="mt-6">
-                <h3 className="text-base font-semibold text-white/80 mb-3">Earlier routing hypotheses</h3>
+                <h3 className="text-base font-semibold text-white/80 mb-3">Task candidates to evaluate</h3>
                 <DecisionMatrix />
               </div>
             </div>
@@ -220,7 +220,7 @@ export default async function LlmHubPage() {
         {/* Interactive Cost-to-Outcome Calculator */}
         <section id="cost-calculator" className="scroll-mt-20 border-t border-white/5 px-6 py-14">
           <div className="mx-auto max-w-6xl">
-            <CostCalculator />
+            <CostCalculator rows={rows} />
           </div>
         </section>
 

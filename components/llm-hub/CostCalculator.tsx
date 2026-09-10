@@ -4,102 +4,13 @@ import React, { useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import { Calculator, Sparkles } from "lucide-react"
 
-interface ModelPricing {
-  id: string
-  name: string
-  org: string
-  inputPer1M: number
-  outputPer1M: number
-  color: string
-  tier: "fast" | "balanced" | "flagship" | "open"
-  tps: string
-  note: string
-}
+import type { ModelRow } from '@/lib/llm-hub/rows'
+import { tokenCost } from '@/lib/llm-hub/pricing'
 
-const MODELS: ModelPricing[] = [
-  {
-    id: "gpt-6-astra", name: "GPT-6 Astra", org: "OpenAI",
-    inputPer1M: 10, outputPer1M: 50, color: "#10b981", tier: "flagship",
-    tps: "Not measured", note: "Standard short-context rates checked 7 September 2026; evaluate before routing.",
-  },
-  {
-    id: "deepseek-v4-pro",
-    name: "DeepSeek V4 Pro",
-    org: "DeepSeek",
-    inputPer1M: 0.27,
-    outputPer1M: 1.10,
-    color: "#3b82f6",
-    tier: "open",
-    tps: "140 t/s",
-    note: "Cheapest frontier-class coding and agentic reasoning",
-  },
-  {
-    id: "gemini-3-7-flash",
-    name: "Gemini 3.7 Flash",
-    org: "Google",
-    inputPer1M: 0.75,
-    outputPer1M: 3.75,
-    color: "#06b6d4",
-    tier: "fast",
-    tps: "340+ t/s",
-    note: "Blazing speed leader with hybrid thinking",
-  },
-  {
-    id: "claude-sonnet-5",
-    name: "Claude Sonnet 5",
-    org: "Anthropic",
-    inputPer1M: 2.00,
-    outputPer1M: 10.00,
-    color: "#f97316",
-    tier: "balanced",
-    tps: "90 t/s",
-    note: "Balanced daily driver for coding and analysis",
-  },
-  {
-    id: "grok-4-6",
-    name: "Grok 4.6",
-    org: "xAI",
-    inputPer1M: 2.00,
-    outputPer1M: 6.00,
-    color: "#eab308",
-    tier: "balanced",
-    tps: "110 t/s",
-    note: "Real-time grounded orchestration and agent swarms",
-  },
-  {
-    id: "gpt-5-6-sol",
-    name: "GPT-5.6 Sol",
-    org: "OpenAI",
-    inputPer1M: 4.00,
-    outputPer1M: 20.00,
-    color: "#10b981",
-    tier: "flagship",
-    tps: "85 t/s",
-    note: "Unified frontier reasoning and multi-modal synthesis",
-  },
-  {
-    id: "claude-opus-5",
-    name: "Claude Opus 5",
-    org: "Anthropic",
-    inputPer1M: 5.00,
-    outputPer1M: 25.00,
-    color: "#a855f7",
-    tier: "flagship",
-    tps: "75 t/s",
-    note: "Elite situational judgment, architecture & deep code craft",
-  },
-  {
-    id: "claude-fable-5",
-    name: "Claude Fable 5",
-    org: "Anthropic",
-    inputPer1M: 10.00,
-    outputPer1M: 50.00,
-    color: "#ec4899",
-    tier: "flagship",
-    tps: "70 t/s",
-    note: "Mythos-class ceiling for long-horizon constraint precision",
-  },
-]
+const CALCULATOR_IDS = new Set([
+  'gpt-6-astra', 'deepseek-v4-pro-0813', 'gemini-3-7-flash',
+  'claude-sonnet-5', 'grok-4-6', 'claude-opus-5', 'claude-fable-5',
+])
 
 const PRESETS = [
   {
@@ -119,41 +30,35 @@ const PRESETS = [
   },
 ]
 
-export function CostCalculator() {
+export function CostCalculator({ rows }: { rows: ModelRow[] }) {
   const [inputM, setInputM] = useState<number>(10)
   const [outputM, setOutputM] = useState<number>(2)
 
   const calculations = useMemo(() => {
-    return MODELS.map((m) => {
-      const inputCost = inputM * m.inputPer1M
-      const outputCost = outputM * m.outputPer1M
-      const total = inputCost + outputCost
-      return {
+    return rows.filter(m => CALCULATOR_IDS.has(m.id)).flatMap(m => {
+      const total = tokenCost(m.input, m.output, inputM, outputM)
+      if (total === null || m.input === null || m.output === null) return []
+      return [{
         ...m,
-        inputCost,
-        outputCost,
+        note: `${m.live ? 'OpenRouter catalog' : 'Registry'} · USD per million tokens. ${m.pricing.scope}`,
+        inputCost: inputM * m.input,
+        outputCost: outputM * m.output,
         total,
-      }
+      }]
     }).sort((a, b) => a.total - b.total)
-  }, [inputM, outputM])
+  }, [inputM, outputM, rows])
 
-  const cheapest = calculations[0]
-  const mostExpensive = calculations[calculations.length - 1]
 
-  const hybridCost = useMemo(() => {
-    const fastTier = calculations.find((c) => c.id === "gemini-3-7-flash") || calculations[0]
-    const deepTier = calculations.find((c) => c.id === "claude-opus-5") || calculations[calculations.length - 1]
-    const fastPortion = fastTier.total * 0.8
-    const deepPortion = deepTier.total * 0.2
-    return fastPortion + deepPortion
+  const hybrid = useMemo(() => {
+    const fast = calculations.find(c => c.id === 'gemini-3-7-flash')
+    const deep = calculations.find(c => c.id === 'claude-opus-5')
+    if (!fast || !deep) return null
+    const total = fast.total * 0.8 + deep.total * 0.2
+    const diff = deep.total - total
+    return { total, diff, pct: deep.total > 0 ? ((diff / deep.total) * 100).toFixed(0) : '0' }
   }, [calculations])
 
-  const hybridSavingsVsFlagship = useMemo(() => {
-    const flagship = calculations.find((c) => c.id === "claude-opus-5") || mostExpensive
-    const diff = flagship.total - hybridCost
-    const pct = ((diff / flagship.total) * 100).toFixed(0)
-    return { diff, pct }
-  }, [calculations, hybridCost, mostExpensive])
+  if (!calculations.length) return <p>No token-price estimates are available. Check provider pricing before budgeting.</p>
 
   return (
     <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-xl md:p-8">
@@ -195,6 +100,7 @@ export function CostCalculator() {
           </div>
           <input
             type="range"
+            aria-label="Monthly prompt input tokens in millions"
             min={1}
             max={100}
             step={1}
@@ -217,6 +123,7 @@ export function CostCalculator() {
           </div>
           <input
             type="range"
+            aria-label="Monthly generated output tokens in millions"
             min={0.2}
             max={20}
             step={0.2}
@@ -233,29 +140,29 @@ export function CostCalculator() {
         </div>
       </div>
 
-      <div className="mb-8 overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-cyan-950/20 to-black p-5">
+      {hybrid && <div className="mb-8 overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-cyan-950/20 to-black p-5">
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
           <div className="flex items-center gap-3">
             <div className="rounded-xl border border-emerald-400/40 bg-emerald-400/20 p-2.5 text-emerald-300">
               <Sparkles className="h-5 w-5" />
             </div>
             <div>
-              <p className="font-mono text-xs uppercase tracking-wider text-emerald-400">Architect Dynamic Routing Strategy</p>
+              <p className="font-mono text-xs uppercase tracking-wider text-emerald-400">Illustrative token allocation</p>
               <h3 className="text-base font-bold text-white">
-                Hybrid 80/20 Architecture: <span className="text-emerald-300">${hybridCost.toFixed(2)}/mo</span>
+                Hybrid 80/20 Architecture: <span className="text-emerald-300">${hybrid.total.toFixed(2)}/mo</span>
               </h3>
               <p className="text-xs text-white/60">
-                Route 80% volume to Fast-Path (Gemini 3.7 Flash) + 20% to Deep-Reason (Claude Opus 5). Saves{" "}
-                <strong className="text-emerald-400">${hybridSavingsVsFlagship.diff.toFixed(2)}/mo ({hybridSavingsVsFlagship.pct}%)</strong> vs 100% flagship.
+                Illustrative split: 80% of input and output tokens to Fast-Path (Gemini 3.7 Flash) + 20% to Deep-Reason (Claude Opus 5). Saves{" "}
+                <strong className="text-emerald-400">${hybrid.diff.toFixed(2)}/mo ({hybrid.pct}%)</strong> vs 100% flagship.
               </p>
             </div>
           </div>
           <div className="shrink-0 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-center">
             <div className="text-xs text-white/60">Estimated token-cost reduction</div>
-            <div className="font-mono text-lg font-bold text-emerald-300">Save {hybridSavingsVsFlagship.pct}%</div>
+            <div className="font-mono text-lg font-bold text-emerald-300">Save {hybrid.pct}%</div>
           </div>
         </div>
-      </div>
+      </div>}
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
         {calculations.map((model, idx) => {

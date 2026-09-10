@@ -188,19 +188,19 @@ export interface MethodologyStep {
 export const METHODOLOGY_STEPS: MethodologyStep[] = [
   {
     name: 'Standardized Task Envelopes',
-    text: 'Every model receives identical constraints, schemas, and stop conditions without conversational preambles.',
+    text: 'Target protocol: give each candidate the same task, constraints, tools and stop conditions. Inspect each receipt for the conditions actually recorded.',
   },
   {
     name: 'Multi-Model Blind Evaluation',
-    text: 'Outputs are judged anonymously by non-contender frontier models using rigid rubric scoring.',
+    text: 'Target protocol: blind the model identity and calibrate an independent judge against human-reviewed examples. A receipt must name its actual judge before independence can be claimed.',
   },
   {
     name: 'Maker ≠ Checker Cross-Verification',
-    text: 'Generated solutions must be verified by a model from an independent provider before pass certification.',
+    text: 'Target protocol: verify outputs independently and preserve deterministic checks. Historical receipts do not establish cross-provider review unless they record it.',
   },
   {
     name: 'Durable Proof Receipts',
-    text: 'Every execution logs exact token metrics, latencies, AST verification outputs, and JSON receipts.',
+    text: 'Published receipts record only the fields they contain. Token usage, latency, tool traces and code checks are required for future cost and reliability comparisons; missing fields remain unknown.',
   },
 ]
 

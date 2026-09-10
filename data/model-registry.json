@@ -1,7 +1,7 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-09-07",
+  "_updated": "2026-09-10",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
   "models": {
     "gpt-6-astra": {
@@ -52,8 +52,7 @@
         "https://developers.openai.com/api/docs/models/gpt-6-astra",
         "https://developers.openai.com/api/docs/pricing",
         "https://learn.chatgpt.com/docs/models",
-        "https://deploymentsafety.openai.com/gpt-6-astra",
-        "https://github.com/frankxai/llm-evals"
+        "https://deploymentsafety.openai.com/gpt-6-astra"
       ],
       "evaluation": {
         "status": "not_run",
@@ -61,8 +60,8 @@
         "measured_cases": 0,
         "judge_model": null,
         "production_ready": false,
-        "url": "https://github.com/frankxai/llm-evals",
-        "evidence_url": "https://github.com/frankxai/llm-evals"
+        "url": null,
+        "evidence_url": null
       }
     },
     "claude-fable-5": {
@@ -721,7 +720,9 @@
         "https://artificialanalysis.ai/models/kimi-k2-6",
         "https://huggingface.co/moonshotai/Kimi-K2.6",
         "https://www.deeplearning.ai/the-batch/kimi-k2-6-matches-open-qwen3-6-max-anddeepseek-v4-falls-just-behind-top-closed-models"
-      ]
+      ],
+      "open_weights": true,
+      "open_weights_verified_at": "2026-09-10"
     },
     "deepseek-v4-pro-0813": {
       "name": "DeepSeek V4 Pro 0813",
@@ -759,8 +760,11 @@
       "sources": [
         "https://openrouter.ai/deepseek/deepseek-v4-pro-0813",
         "https://artificialanalysis.ai/models/deepseek-v4-pro",
-        "https://www.techtimes.com/articles/324241/20260813/deepseek-v4-pro-0813-goes-ga-benchmark-claims-await-independent-proof.htm"
-      ]
+        "https://www.techtimes.com/articles/324241/20260813/deepseek-v4-pro-0813-goes-ga-benchmark-claims-await-independent-proof.htm",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813"
+      ],
+      "open_weights": true,
+      "open_weights_verified_at": "2026-09-10"
     },
     "deepseek-v4": {
       "name": "DeepSeek V4",
@@ -803,7 +807,9 @@
         "https://artificialanalysis.ai/models/deepseek-v4-pro",
         "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro",
         "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
-      ]
+      ],
+      "open_weights": true,
+      "open_weights_verified_at": "2026-09-10"
     },
     "qwen3-8-27b": {
       "name": "Qwen3.8-27B",
@@ -1085,7 +1091,9 @@
         "https://mistral.ai/news/mistral-3/",
         "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
         "https://docs.vllm.ai/projects/recipes/en/latest/Mistral/Mistral-Large-3.html"
-      ]
+      ],
+      "open_weights": true,
+      "open_weights_verified_at": "2026-09-10"
     },
     "mai-thinking-1": {
       "name": "MAI-Thinking-1",
