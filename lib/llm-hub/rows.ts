@@ -24,6 +24,10 @@ export interface ModelRow {
   modalities: string[]
   capabilities: Capability[]
   tagline?: string
+  apiId?: string
+  sources?: string[]
+  imagePricing?: ModelEntry['image_pricing']
+  workflow?: ModelEntry['workflow']
 }
 
 function staticInput(m: ModelEntry): number | null {
@@ -40,7 +44,8 @@ export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
   for (const { org, models } of getProviders()) {
     const o = org as OrganizationEntry
     for (const m of models) {
-      const livePrice = live[m.id]
+      // Image token prices are not comparable to the text-token calculator.
+      const livePrice = m.image_pricing ? undefined : live[m.id]
       rows.push({
         id: m.id,
         name: m.name,
@@ -58,6 +63,10 @@ export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
           ? m.capabilities
           : o.capability_focus || []) as Capability[],
         tagline: getEditorial(m.id)?.tagline,
+        apiId: m.apiId ?? m.id,
+        sources: m.sources,
+        imagePricing: m.image_pricing,
+        workflow: m.workflow,
       })
     }
   }

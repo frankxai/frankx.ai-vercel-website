@@ -71,7 +71,8 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
   const ed = getEditorial(slug)
   const org = orgForModel(model.organization)
   const accent = org?.accent_color || '#a855f7'
-  const live = (await fetchLivePricing())[slug]
+  const live = model.image_pricing ? undefined : (await fetchLivePricing())[slug]
+  const capabilities = model.capabilities?.length ? model.capabilities : org?.capability_focus ?? []
 
   const inputPrice = live?.inputPer1m ?? (typeof model.pricing?.input_per_1m === 'number' ? model.pricing.input_per_1m : null)
   const outputPrice = live?.outputPer1m ?? (typeof model.pricing?.output_per_1m === 'number' ? model.pricing.output_per_1m : null)
@@ -162,9 +163,9 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           ) : null}
-          {org?.capability_focus && org.capability_focus.length > 0 ? (
+          {capabilities.length > 0 ? (
             <div className="mt-4 flex flex-wrap gap-1.5">
-              {org.capability_focus.map((c) => (
+              {capabilities.map((c) => (
                 <CapabilityBadge key={c} capability={c} href={`/llm-hub#${c}`} />
               ))}
             </div>

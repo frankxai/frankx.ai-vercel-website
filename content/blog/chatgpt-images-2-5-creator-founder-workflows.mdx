@@ -1,0 +1,87 @@
+---
+title: "ChatGPT Images 2.5: what creators and founders should build"
+description: "Choose between Flare and Sunburst, test complete image workflows, and turn approved references into campaigns, stories and reusable product assets."
+date: "2026-09-10"
+lastUpdated: "2026-09-10"
+author: "FrankX"
+category: "Creator Systems"
+tags: ["image-generation", "gpt-image-2-5", "creative-workflows", "founders", "model-arena"]
+keywords: ["ChatGPT Images 2.5", "GPT Image 2.5 Flare vs Sunburst", "AI image workflows for founders", "AI image editing benchmark"]
+featured: false
+readingGoal: "Choose one valuable image workflow and test its complete handoff before adopting a model."
+tldr: "ChatGPT Images 2.5 was announced on September 8, 2026. Its API variants are Flare and Sunburst. Start with a real reference and a complete creative job, then inspect identity, exact copy and continuity after revisions. Our downloadable protocol defines the evaluation; it contains no measured results. The product opportunity is preserving approved creative decisions across campaigns, stories and publishing workflows."
+content_id: "cnt_frankx_images25_workflows_202609"
+canonical: "https://www.frankx.ai/blog/chatgpt-images-2-5-creator-founder-workflows"
+---
+
+Yes, ChatGPT Images 2.5 has been released. OpenAI announced it on September 8, 2026, with two API variants: **GPT Image 2.5 Flare** and **GPT Image 2.5 Sunburst**. OpenAI describes improved reference fidelity, focused edits and consistency across revisions. Flare is positioned for general use; Sunburst targets more precise creative work with longer generation times. These are vendor claims, not results from our arena. [OpenAI announcement](https://openai.com/index/introducing-chatgpt-images-2-5/).
+
+The useful question for a founder is which part of a real production job becomes easier. A strong first image is helpful. A product image that survives three requested changes and still represents the actual product is much more valuable.
+
+My recommendation is to test one complete commission before reorganizing your stack. Keep the approved reference, make the intended edits, export the required formats, and count the repair work. The [reference-to-campaign guide](/guides/reference-to-campaign) includes the prompts and acceptance checks.
+
+## Which model should you try?
+
+| Choice | First experiment | What must justify keeping it |
+| --- | --- | --- |
+| [Flare](/llm-hub/gpt-image-2-5-flare) | Three campaign directions from one approved reference | Useful variation with recognizable product identity |
+| [Sunburst](/llm-hub/gpt-image-2-5-sunburst) | The same difficult edit on the same source image | A visible improvement worth the additional wait |
+| Your current image workflow | Run the same brief with its normal tools | Establish whether switching actually improves the finished work |
+
+Do not declare a winner from separate prompts. Use the same reference files, edit instructions and target dimensions. Give each workflow the same maximum number of attempts. Include an ordinary production baseline: your current model, a template, or a designer's usual process.
+
+This release has no first-party image results in the [Model Arena](/research/model-arena) yet. The [published protocol](/research/image-workflows/protocol.json) is a test specification, with `status: not_run` and `lastMeasured: null`. It is suitable for preparing a comparison, not citing a success rate.
+
+## What becomes possible for a creator?
+
+Start with one approved visual and make it a reusable source for the project. A course creator could develop a scene that supports a lesson cover, chapter illustrations and social excerpts. A musician could build a consistent visual world across a cover, release announcement and stills for a later video workflow. An author could establish a character reference and evaluate continuity across several story moments.
+
+These are proposed uses. The value depends on whether the actual output keeps the identity and composition the creator approved. A generated still does not establish that animation, sound or an editable design project has been produced.
+
+The workflow should keep four records: the source reference, the approved version, the requested change and the exported asset. That small amount of structure prevents a common problem: every revision becomes a fresh interpretation of the brand.
+
+## What becomes possible for a founder?
+
+A product launch is a good test because it contains several different constraints. The product must remain accurate. The message must remain legible. Each placement has a different crop. A last-minute offer change should preserve the rest of the design.
+
+Commission a small launch package: a landing-page image, square social asset and portrait announcement. First approve a direction. Then request one change at a time. Keep exact prices, dates and legal copy in editable text layers when correctness matters. Inspect every exported placement on its intended device.
+
+Measure time to the **approved package**, including manual repair. A workflow that produces attractive concepts quickly but requires repeated identity corrections may still be a poor fit for your business.
+
+## How this should work across our products
+
+The following are product directions to build and validate. Links lead to each brand's existing home; they do not promise that an Images 2.5 feature is already available there.
+
+| Brand or product | Proposed experience | What the user carries forward |
+| --- | --- | --- |
+| [FrankX](https://www.frankx.ai) | A publishing commission from a source article to an approved visual package | Article source, image brief, approved assets and reusable prompts |
+| [GenCreator](https://gencreator.ai) | A campaign workspace with reference assets, three directions and deliberate approval before derivatives | Brand references, selected direction, editable copy and an export manifest |
+| [Arcanea](https://arcanea.ai) | A story workspace that checks character continuity across scenes and storyboard frames | Character references, scene decisions and a record of revisions |
+| [Starlight Intelligence](https://starlightintelligence.ai) | Shared project memory and routing based on the job and measured results | Asset lineage, provider IDs, usage, approval state and evaluation records |
+| Music and event projects | Release artwork or event collateral grounded in an approved brief | Artwork variants, verified event facts and placement-specific exports |
+
+GenCreator should own the repeatable campaign job. Arcanea should own continuity within a creative world. Starlight should retain the project records and help choose an appropriate execution path. FrankX should explain the workflow and publish inspectable evidence. That gives each destination a reason to exist.
+
+The strongest next feature is an **approved asset library with revision history**. It can answer: which source produced this image, which version did we approve, and what must remain unchanged? A prompt collection alone cannot answer those questions.
+
+## Build the evidence into the workflow
+
+Evaluate six jobs: a campaign scene, selective background edit, exact-copy change, three-step revision sequence, character continuity and a portrait derivative. Our guide explains the scoring anchors. The JSON protocol lets an agent read the same instructions without scraping a page.
+
+For each attempt, retain the exact provider model ID, input checksums, request settings, elapsed time, usage where returned, output checksum and reviewer decision. Keep failed attempts in the denominator. Do not publish private reference images without permission; a private run can retain hashes and publish an appropriately redacted description.
+
+Use a blind human review for visual acceptance. Identity and mandatory copy are hard requirements. A beautiful image with the wrong product details fails the job. If there are too few observations to compare reliably, publish the examples and limitations instead of a leaderboard.
+
+## What will it cost?
+
+At the September 10 check, both variants list image-token rates of $8 input, $2 cached input and $30 output per million tokens. Text input is $5, with cached text input at $1.25 per million tokens. These are token rates, not a fixed price per image. [OpenAI pricing](https://developers.openai.com/api/docs/pricing).
+
+Total cost depends on the actual request, output and repeated attempts. Track API cost and human correction time separately. Then compare cost per approved asset, including the spend on rejected attempts. The [model registry JSON](/llm-hub.json) keeps image pricing separate from text-model pricing so agents can preserve that distinction.
+
+## Make the next step useful
+
+If you want to create something now, use the [reference-to-campaign guide](/guides/reference-to-campaign). If you are selecting a model, inspect the [LLM Hub](/llm-hub). If you want evidence, use the [arena receipts](/research/model-arena/receipts.json), where a missing measurement remains a missing measurement.
+
+For agents and product builders, the [workflow routing manifest](/research/image-workflows/routes.json) connects intent to those resources and marks proposed product features explicitly. It can support a handoff without sending every visitor to the same sales destination.
+
+The practical first move is small enough to finish: take one real brief through reference selection, generation, revision, review and export. Retain what worked. The reusable decisions and honest results from that process are what make the next project better.

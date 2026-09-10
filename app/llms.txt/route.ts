@@ -86,6 +86,10 @@ ${osLinks}
 ${libraryLinks}
 
 ## Model & Agent Intelligence (the decision layers)
+- [Images 2.5 creator and founder analysis](${SITE_URL}/blog/chatgpt-images-2-5-creator-founder-workflows): Release facts, model choice, product opportunities and evidence limits
+- [Reference-to-campaign guide](${SITE_URL}/guides/reference-to-campaign): Practical steps, reusable prompts, acceptance checks and product-specific handoffs
+- [Image workflow protocol JSON](${SITE_URL}/research/image-workflows/protocol.json): Versioned tasks, scoring rubric and agent instructions; planned evaluation, zero measured runs
+- [Image workflow routing JSON](${SITE_URL}/research/image-workflows/routes.json): User intent, existing destinations and proposed product capabilities, explicitly distinguished
 - [LLM Hub](${SITE_URL}/llm-hub): Every frontier model - context, pricing, benchmarks, verdicts, each entry sourced
 - [Cost Calculator](${SITE_URL}/llm-hub#cost-calculator): Interactive token volume and multi-tier routing simulator
 - [Model Arena](${SITE_URL}/research/model-arena): First-party measured model rounds with published run receipts
