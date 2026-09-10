@@ -21,8 +21,21 @@ test('recommendations abstain on unknown moods and focus requests exclude untagg
   assert.deepEqual(suggestTracks(tracks, 'music for reading').map(t => t.id), ['two'])
   assert.deepEqual(suggestTracks(tracks, 'polyrhythmic industrial'), [])
   assert.deepEqual(tracks, copy)
-  assert.equal(routeMusicSuggestion('/library/some-book'), 'instrumental focus')
+  assert.equal(routeMusicSuggestion('/library/some-book'), 'focus')
+  assert.equal(routeMusicSuggestion('/starlight-intelligence-system'), 'starlight')
+  assert.equal(routeMusicSuggestion('/design-lab/arcanea/gates'), 'arcanea')
+  assert.equal(routeMusicSuggestion('/design-lab/arcanea-other'), undefined)
   assert.equal(routeMusicSuggestion('/products/something'), undefined)
+})
+
+test('reading suggestions exclude mixed vocal arrangements while exact title requests remain available', () => {
+  const tracks = [
+    { id: 'choir', title: 'Golden Frequency Choir', sunoId: '', genre: ['male vocals in verses', 'wordless choirs', 'solo piano'], mood: [] },
+    { id: 'piano', title: 'Evening piano', sunoId: '', genre: ['instrumental', 'no vocals'], mood: [] },
+    { id: 'unknown', title: 'Instrumental feelings', sunoId: '', genre: [], mood: [] },
+  ]
+  assert.deepEqual(suggestTracks(tracks, 'music for reading').map(track => track.id), ['piano'])
+  assert.equal(suggestTracks(tracks, 'Golden Frequency Choir')[0]?.id, 'choir')
 })
 
 const sourceId = '9ff8a563-4ebf-4481-85c1-9f445cfce9e1'
@@ -67,6 +80,7 @@ test('checked-in catalog exposes every verified export and keeps missing screens
   assert.ok(playable.every(track => typeof track.id === 'string' && track.id.length > 0))
   assert.equal(suggestTracks(catalog, 'Open the Arc')[0]?.sunoId, '7d1195a9-13da-492c-9665-e9d640e0be0a')
   assert.equal(suggestTracks(catalog, 'Star Show Us')[0]?.sunoId, homepageFeaturedRelease.sunoId)
+  assert.ok(!suggestTracks(catalog, 'music for reading').some(track => track.id === 'golden-frequency-choir'))
   for (const rendition of proof.tracks) {
     assert.equal(playable.find(track => track.sunoId === rendition.sunoId)?.streamUrl, rendition.audioUrl)
   }

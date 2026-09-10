@@ -37,7 +37,10 @@ export function suggestTracks(tracks: PlaybackTrack[], request: string): Playbac
   const focus = tokens.some(t => ['focus', 'read', 'reading', 'study', 'work'].includes(t))
   return tracks.map(track => {
     const text = [track.title, ...track.genre, ...track.mood].join(' ').toLowerCase()
-    const instrumental = /instrumental|solo piano|no vocals|wordless/.test(text)
+    const musicalTags = [...track.genre, ...track.mood].join(' ').toLowerCase()
+    const positiveVoiceTags = musicalTags.replace(/\b(?:no|without)\s+(?:vocals?|voices?|singing|lyrics)\b/g, '')
+    const instrumental = /\binstrumental\b|\bsolo piano\b|\b(?:no|without)\s+(?:vocals?|lyrics)\b/.test(musicalTags) &&
+      !/\b(?:vocals?|voices?|singing|singers?|choirs?|lyrics|verses?|rap|rappers?)\b/.test(positiveVoiceTags)
     const matched = tokens.reduce((score, token) => score + (text.includes(token) ? 1 : 0), 0)
     const title = track.title.trim().toLowerCase().replace(/\s+/g, ' ')
     const titleMatch = title === requestedTitle ? 1000 : title.startsWith(requestedTitle) ? 100 : 0
@@ -47,9 +50,9 @@ export function suggestTracks(tracks: PlaybackTrack[], request: string): Playbac
 }
 
 export function routeMusicSuggestion(pathname: string): string | undefined {
-  if (/^\/(blog|library|books)(\/|$)/.test(pathname)) return 'instrumental focus'
-  if (/^\/arcanea(\/|$)/.test(pathname)) return 'arcanea'
-  if (/^\/starlight(\/|$)/.test(pathname)) return 'starlight'
+  if (/^\/(blog|library|books)(\/|$)/.test(pathname)) return 'focus'
+  if (/^\/(arcanea|design-lab\/arcanea)(\/|$)/.test(pathname)) return 'arcanea'
+  if (/^\/(starlight|starlight-intelligence-system)(\/|$)/.test(pathname)) return 'starlight'
   return undefined
 }
 

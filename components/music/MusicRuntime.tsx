@@ -33,16 +33,29 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const [expanded, setExpanded] = useState(false)
   const [request, setRequest] = useState('')
   const [searched, setSearched] = useState(false)
+  const [browseAll, setBrowseAll] = useState(false)
   const [state, setState] = useState<PlaybackState>('idle')
   const [error, setError] = useState<string | null>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
+  const disclosureRef = useRef<HTMLButtonElement>(null)
+  const searchRef = useRef<HTMLInputElement>(null)
   const activeRef = useRef<PlaybackTrack | null>(null)
   const attemptRef = useRef(0)
   const requestId = useId()
   const panelId = useId()
   const suggestion = routeMusicSuggestion(usePathname())
   const playable = catalog.filter(track => safeMediaUrl(track.streamUrl))
-  const results = searched ? suggestTracks(catalog, request) : playable.slice(0, 6)
+  const results = searched ? suggestTracks(catalog, request) : browseAll ? playable : playable.slice(0, 6)
+
+  function minimize() {
+    setExpanded(false)
+    disclosureRef.current?.focus()
+  }
+  function clearSearch() {
+    setRequest('')
+    setSearched(false)
+    searchRef.current?.focus()
+  }
 
   const yieldOtherMedia = useCallback(() => {
     document.dispatchEvent(new Event('frankx:music-focus'))
@@ -140,15 +153,15 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
     }}>
       {children}
       <div aria-hidden="true" className="h-24" />
-      <aside aria-label="Music player" className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-xl overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white sm:inset-x-auto sm:right-5 sm:w-[min(34rem,calc(100vw-2.5rem))]" style={{ marginBottom: 'env(safe-area-inset-bottom)' }}>
+      <aside aria-label="Music player" onKeyDown={event => { if (event.key === 'Escape' && expanded) { event.preventDefault(); event.stopPropagation(); minimize() } }} className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-xl overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white sm:inset-x-auto sm:right-5 sm:w-[min(34rem,calc(100vw-2.5rem))]" style={{ marginBottom: 'env(safe-area-inset-bottom)' }}>
         <div className="flex min-h-14 items-center gap-1 px-3 py-2">
-          <button type="button" onClick={() => setExpanded(value => !value)} aria-controls={panelId} aria-expanded={expanded} className="min-h-11 min-w-0 flex-1 rounded-lg px-2 text-left focus-visible:outline focus-visible:outline-emerald-300">
+          <button ref={disclosureRef} type="button" onClick={() => setExpanded(value => !value)} aria-controls={panelId} aria-expanded={expanded} className="min-h-11 min-w-0 flex-1 rounded-lg px-2 text-left focus-visible:outline focus-visible:outline-emerald-300">
             <span className="block truncate text-sm font-medium">{active?.title || 'Music by FrankX'}</span>
             <span className="block text-xs text-white/65" aria-live="polite">{active ? subtitle : 'Choose a soundtrack'}</span>
           </button>
           {active && <button type="button" onClick={toggle} aria-label={state === 'playing' || state === 'loading' ? 'Pause music' : 'Play music'} className="min-h-11 rounded-full bg-emerald-300 px-4 text-sm font-semibold text-[#0a0a0b]">{state === 'playing' || state === 'loading' ? 'Pause' : 'Play'}</button>}
           {active && <button type="button" onClick={stop} className="min-h-11 rounded-lg px-2 text-sm text-white/80" aria-label="Stop music">Stop</button>}
-          {expanded && <button type="button" onClick={() => setExpanded(false)} aria-label="Minimize player" className="min-h-11 min-w-11 rounded-lg text-xl text-white/80">−</button>}
+          {expanded && <button type="button" onClick={minimize} aria-label="Minimize player" className="min-h-11 min-w-11 rounded-lg text-xl text-white/80">−</button>}
         </div>
         <div id={panelId} hidden={!expanded} className="max-h-[55dvh] overflow-y-auto overscroll-contain border-t border-white/10 p-4">
           {/* Always mounted; no src exists before a verified track is selected. */}
@@ -165,15 +178,19 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
           <form onSubmit={event => { event.preventDefault(); setSearched(true) }}>
             <label htmlFor={requestId} className="mb-2 block text-sm text-white/80">Find a soundtrack</label>
             <div className="flex gap-2">
-              <input id={requestId} value={request} onChange={event => setRequest(event.target.value)} placeholder="Piano, Arcanea, tech house…" className="min-h-11 min-w-0 flex-1 rounded-xl border border-white/25 bg-white/5 px-3 text-base focus-visible:outline focus-visible:outline-emerald-300" />
+              <input ref={searchRef} id={requestId} value={request} onChange={event => setRequest(event.target.value)} placeholder="Piano, Arcanea, tech house…" className="min-h-11 min-w-0 flex-1 rounded-xl border border-white/25 bg-white/5 px-3 text-base focus-visible:outline focus-visible:outline-emerald-300" />
               <button type="submit" className="min-h-11 rounded-full bg-white/10 px-4 text-sm">Find</button>
             </div>
           </form>
-          <p className="mt-4 text-xs text-white/65">{searched ? 'Matching tracks' : 'Play here'}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button type="button" className="min-h-11 rounded-full border border-white/20 px-3 text-sm focus-visible:outline focus-visible:outline-emerald-300" onClick={() => { setBrowseAll(searched || !browseAll); setSearched(false); setRequest('') }}>{browseAll && !searched ? 'Show a short list' : `Browse ${playable.length} tracks`}</button>
+            {searched && <button type="button" onClick={clearSearch} className="min-h-11 rounded-full px-3 text-sm text-white/80 focus-visible:outline focus-visible:outline-emerald-300">Clear search</button>}
+          </div>
+          <p className="mt-4 text-xs text-white/65">{searched ? 'Matching tracks' : browseAll ? `${playable.length} tracks to play here` : 'Play here'}</p>
           <ul className="mt-1 divide-y divide-white/10">
             {results.map(track => <li key={track.sunoId}>
-              {track.streamUrl ? <button type="button" onClick={() => select(track)} className="flex min-h-12 w-full items-center justify-between gap-3 rounded-lg px-2 py-3 text-left hover:bg-white/5 focus-visible:outline focus-visible:outline-emerald-300" aria-label={`Play ${track.title}`}>
-                <span className="min-w-0 text-sm">{track.title}</span><span className="shrink-0 text-xs text-white/65">{track.duration}</span>
+              {track.streamUrl ? <button type="button" onClick={() => select(track)} className="flex min-h-12 w-full items-center justify-between gap-3 rounded-lg px-2 py-3 text-left hover:bg-white/5 focus-visible:outline focus-visible:outline-emerald-300" aria-label={`Play ${track.title}`} aria-current={active?.sunoId === track.sunoId ? 'true' : undefined}>
+                <span className="min-w-0 text-sm">{track.title}{active?.sunoId === track.sunoId && <span className="ml-2 text-xs text-emerald-200">Current track</span>}</span><span className="shrink-0 text-xs text-white/65">{track.duration}</span>
               </button> : <a href={`https://suno.com/song/${track.sunoId}`} target="_blank" rel="noopener noreferrer" onClick={stop} className="flex min-h-12 items-center justify-between gap-3 rounded-lg px-2 py-3 text-sm text-white/80">
                 <span className="min-w-0">{track.title}</span><span className="shrink-0 text-xs text-emerald-200">On Suno ↗</span>
               </a>}
