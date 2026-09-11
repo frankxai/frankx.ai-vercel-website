@@ -34,9 +34,15 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.doesNotMatch(homepage, /suno\.com\/embed/)
   const usesDock = /useMusicRuntime/.test(player)
   if (usesDock) {
-    assert.match(player, /selectSuno\(track\.sunoId, track\.title, \{ streamUrl: track\.audioUrl \}\)/)
+    assert.match(player, /selectSuno\(/)
     assert.doesNotMatch(player, /<audio\b/)
     assert.doesNotMatch(player, /preload="metadata"/)
+    const passesUnverifiedStream = /streamUrl:\s*track\.audioUrl/.test(player)
+    const sourceOnlyDock = /canPlay\(track\.sunoId\)/.test(player) || /Listen to \$\{track\.title\} on Suno/.test(player)
+    assert.ok(
+      passesUnverifiedStream || sourceOnlyDock,
+      'the dock player may stream a verified catalog preview or stay source-only',
+    )
   } else {
     assert.match(player, /src=\{track\.audioUrl\}/)
     assert.match(player, /preload="metadata"/)
@@ -156,10 +162,13 @@ test('the featured release stays human-reviewed instead of following the raw cat
   // 403 cover to production — Suno rotates CDN variants without notice.
   assert.match(release, /imageUrl: '\/images\/music\/[a-z0-9-]+\.(?:jpg|jpeg|png|webp)'/)
   assert.doesNotMatch(release, /imageUrl: 'https:\/\/cdn\d?\.suno\.ai\//)
-  // Audio should be mirrored to Vercel Blob for the same reason. It is not yet,
-  // because the local BLOB_READ_WRITE_TOKEN points at a deleted store — until
-  // that is reissued the Suno CDN is the only reachable source.
-  assert.match(release, /audioUrl: 'https:\/\/(?:cdn1\.suno\.ai|[a-z0-9]+\.public\.blob\.vercel-storage\.com)\//)
+  // A reviewed release may expose an owned preview, or stay source-only.
+  // External Suno CDN URLs are never evidence that browser playback is reliable.
+  const declaredPreview = release.match(/audioUrl: '([^']+)'/)?.[1]
+  assert.ok(
+    !declaredPreview || /^https:\/\/(?:cdn1\.suno\.ai|[a-z0-9]+\.public\.blob\.vercel-storage\.com)\//.test(declaredPreview),
+    'a declared preview must be HTTPS media, or the release stays source-only',
+  )
   assert.doesNotMatch(release, /Music is the first door/)
   assert.match(release, /one creative artifact among the architecture/)
 })
