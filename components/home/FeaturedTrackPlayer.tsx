@@ -11,7 +11,7 @@ export type FeaturedTrackPlayerTrack = {
   title: string
   sunoId: string
   sunoUrl: string
-  audioUrl: string
+  audioUrl?: string
   imageUrl: string
   genre: string[]
   duration: string
@@ -36,7 +36,8 @@ const formatTime = (seconds: number) => {
 
 export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack }) {
   const music = useMusicRuntime()
-  const isThisTrack = music?.activeSunoId === track.sunoId
+  const canPlayHere = Boolean(music?.canPlay(track.sunoId))
+  const isThisTrack = Boolean(canPlayHere && music?.activeSunoId === track.sunoId)
   const isPlaying = Boolean(
     isThisTrack && (music?.playbackState === 'playing' || music?.playbackState === 'loading'),
   )
@@ -46,12 +47,12 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
   const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0
 
   const togglePlayback = () => {
-    if (!music) return
+    if (!music || !canPlayHere) return
     if (isThisTrack) {
       music.toggle()
       return
     }
-    music.selectSuno(track.sunoId, track.title, { streamUrl: track.audioUrl })
+    music.selectSuno(track.sunoId, track.title)
     music.open()
   }
 
@@ -94,19 +95,30 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
 
           <div className="rounded-[1.75rem] border border-white/10 bg-void/85 p-4 sm:p-5">
             <div className="flex items-center gap-4">
-              <button
-                type="button"
-                onClick={togglePlayback}
-                disabled={!music}
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void disabled:opacity-50"
-                aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
-              >
-                {isPlaying ? (
-                  <Pause className="h-5 w-5" aria-hidden="true" />
-                ) : (
-                  <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />
-                )}
-              </button>
+              {canPlayHere ? (
+                <button
+                  type="button"
+                  onClick={togglePlayback}
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+                  aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
+                >
+                  {isPlaying ? (
+                    <Pause className="h-5 w-5" aria-hidden="true" />
+                  ) : (
+                    <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />
+                  )}
+                </button>
+              ) : (
+                <a
+                  href={track.sunoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+                  aria-label={`Listen to ${track.title} on Suno`}
+                >
+                  <ExternalLink className="h-5 w-5" aria-hidden="true" />
+                </a>
+              )}
 
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xl font-semibold tracking-[-0.02em] text-white">
@@ -116,31 +128,37 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
               </div>
             </div>
 
-            <div className="mt-5">
-              <div className="relative flex h-4 items-center">
-                <div className="absolute h-1 w-full rounded-full bg-white/15" />
-                <div
-                  className="absolute h-1 rounded-full bg-emerald-300"
-                  style={{ width: `${progress}%` }}
-                  aria-hidden="true"
-                />
-                <input
-                  type="range"
-                  min={0}
-                  max={duration || 0}
-                  step={0.1}
-                  value={Math.min(currentTime, duration || 0)}
-                  onChange={(event) => seek(Number(event.currentTarget.value))}
-                  disabled={!isThisTrack || !duration}
-                  aria-label={`Seek through ${track.title}`}
-                  className="relative z-10 h-4 w-full cursor-pointer appearance-none bg-transparent accent-emerald-300 disabled:cursor-not-allowed"
-                />
+            {canPlayHere ? (
+              <div className="mt-5">
+                <div className="relative flex h-4 items-center">
+                  <div className="absolute h-1 w-full rounded-full bg-white/15" />
+                  <div
+                    className="absolute h-1 rounded-full bg-emerald-300"
+                    style={{ width: `${progress}%` }}
+                    aria-hidden="true"
+                  />
+                  <input
+                    type="range"
+                    min={0}
+                    max={duration || 0}
+                    step={0.1}
+                    value={Math.min(currentTime, duration || 0)}
+                    onChange={(event) => seek(Number(event.currentTarget.value))}
+                    disabled={!isThisTrack || !duration}
+                    aria-label={`Seek through ${track.title}`}
+                    className="relative z-10 h-4 w-full cursor-pointer appearance-none bg-transparent accent-emerald-300 disabled:cursor-not-allowed"
+                  />
+                </div>
+                <div className="mt-1 flex items-center justify-between font-mono text-[10px] text-white/55">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{duration > 0 ? formatTime(duration) : track.duration}</span>
+                </div>
               </div>
-              <div className="mt-1 flex items-center justify-between font-mono text-[10px] text-white/55">
-                <span>{formatTime(currentTime)}</span>
-                <span>{duration > 0 ? formatTime(duration) : track.duration}</span>
-              </div>
-            </div>
+            ) : (
+              <p className="mt-4 text-xs leading-5 text-white/60">
+                This release is available on Suno.
+              </p>
+            )}
 
             {playbackError ? (
               <p role="status" aria-live="polite" className="mt-3 text-xs text-amber-200/80">
