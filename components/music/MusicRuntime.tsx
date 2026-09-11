@@ -7,9 +7,14 @@ import { SUNO_ID, routeMusicSuggestion, safeMediaUrl, suggestTracks, type Playba
 
 type PlaybackState = 'idle' | 'loading' | 'playing' | 'paused' | 'error'
 interface MusicContextValue {
-  selectSuno: (sunoId: string, title: string) => void
+  selectSuno: (sunoId: string, title: string, options?: { streamUrl?: string }) => void
   canPlay: (sunoId: string) => boolean
   activeSunoId?: string
+  playbackState: PlaybackState
+  currentTime: number
+  duration: number
+  toggle: () => void
+  seek: (seconds: number) => void
   open: () => void
   stop: () => void
 }
@@ -36,6 +41,8 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const [browseAll, setBrowseAll] = useState(false)
   const [state, setState] = useState<PlaybackState>('idle')
   const [error, setError] = useState<string | null>(null)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
   const disclosureRef = useRef<HTMLButtonElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
@@ -95,9 +102,29 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
     audio.pause()
     activeRef.current = track
     setActive(track)
+    setCurrentTime(0)
+    setDuration(0)
     audio.src = url
     audio.load()
     start()
+  }
+  function selectSuno(id: string, title: string, options?: { streamUrl?: string }) {
+    if (!SUNO_ID.test(id)) return
+    const fromCatalog = playable.find(item => item.sunoId === id)
+    if (fromCatalog) {
+      select(fromCatalog)
+      return
+    }
+    const reviewed = safeMediaUrl(options?.streamUrl)
+    if (!reviewed || !reviewed.includes(id)) return
+    select({
+      id,
+      sunoId: id,
+      title,
+      genre: [],
+      mood: [],
+      streamUrl: reviewed,
+    })
   }
   const stop = useCallback(() => {
     attemptRef.current += 1
@@ -108,12 +135,21 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
     setActive(null)
     setState('idle')
     setError(null)
+    setCurrentTime(0)
+    setDuration(0)
   }, [])
   function toggle() {
     const audio = audioRef.current
     if (!audio || !activeRef.current) return
     if (!audio.paused) { attemptRef.current += 1; audio.pause(); setState('paused') }
     else start()
+  }
+  function seek(seconds: number) {
+    const audio = audioRef.current
+    if (!audio || !activeRef.current || !Number.isFinite(seconds)) return
+    const next = Math.max(0, seconds)
+    audio.currentTime = next
+    setCurrentTime(next)
   }
 
   useEffect(() => {
@@ -147,9 +183,16 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const subtitle = state === 'error' ? 'Playback unavailable' : state === 'loading' ? 'Loading audio…' : state === 'playing' ? 'Playing' : 'Paused'
   return (
     <MusicContext.Provider value={{
-      selectSuno: id => { const track = playable.find(item => item.sunoId === id); if (track) select(track) },
-      canPlay: id => playable.some(track => track.sunoId === id), activeSunoId: active?.sunoId,
-      open: () => setExpanded(true), stop,
+      selectSuno,
+      canPlay: id => playable.some(track => track.sunoId === id),
+      activeSunoId: active?.sunoId,
+      playbackState: state,
+      currentTime,
+      duration,
+      toggle,
+      seek,
+      open: () => setExpanded(true),
+      stop,
     }}>
       {children}
       <div aria-hidden="true" className="h-24" />
@@ -170,7 +213,10 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
             onPlaying={() => { if (activeRef.current) { setState('playing'); setError(null) } }}
             onWaiting={() => { if (activeRef.current && !audioRef.current?.paused) setState('loading') }}
             onPause={() => { if (activeRef.current && audioRef.current?.paused) setState(current => current === 'error' ? current : 'paused') }}
-            onEnded={() => { if (activeRef.current) setState('paused') }}
+            onEnded={() => { if (activeRef.current) { setState('paused'); setCurrentTime(0) } }}
+            onTimeUpdate={() => { if (audioRef.current) setCurrentTime(audioRef.current.currentTime) }}
+            onLoadedMetadata={() => { if (audioRef.current && Number.isFinite(audioRef.current.duration)) setDuration(audioRef.current.duration) }}
+            onDurationChange={() => { if (audioRef.current && Number.isFinite(audioRef.current.duration) && audioRef.current.duration > 0) setDuration(audioRef.current.duration) }}
             onError={() => { if (activeRef.current && audioRef.current?.getAttribute('src')) fail('This track is unavailable right now. Try another track or listen on Suno.') }} />
           {error && <p role="status" className="mb-3 text-sm text-amber-200">{error}</p>}
           {active && <a href={`https://suno.com/song/${active.sunoId}`} target="_blank" rel="noopener noreferrer" onClick={stop} className="mb-4 inline-flex min-h-11 items-center text-sm text-emerald-200 underline underline-offset-4">Listen on Suno</a>}
