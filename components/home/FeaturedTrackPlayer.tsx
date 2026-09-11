@@ -6,7 +6,18 @@ import { ExternalLink, Pause, Play } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 import { GlowCard } from '@/components/ui/glow-card'
-import { ownedPlaybackUrl } from '@/lib/music-playback'
+import { safeMediaUrl } from '@/lib/music-playback'
+
+const OWNED_AUDIO_HOST = 'vbmwpibfe0yzx3fd.public.blob.vercel-storage.com'
+const OWNED_AUDIO_PATH = /^\/music\/([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})\/\1\.mp3$/i
+
+function ownedPlaybackUrl(value?: string): string | undefined {
+  const safe = safeMediaUrl(value)
+  if (!safe) return undefined
+  const url = new URL(safe)
+  return url.hostname === OWNED_AUDIO_HOST && !url.port && !url.search && !url.hash &&
+    OWNED_AUDIO_PATH.test(url.pathname) ? safe : undefined
+}
 
 export type FeaturedTrackPlayerTrack = {
   title: string
