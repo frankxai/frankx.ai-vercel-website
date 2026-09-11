@@ -32,12 +32,19 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.match(homepage, /import \{ FeaturedTrackPlayer \} from '@\/components\/home\/FeaturedTrackPlayer'/)
   assert.match(homepage, /<FeaturedTrackPlayer track=\{track\} \/>/)
   assert.doesNotMatch(homepage, /suno\.com\/embed/)
-  assert.match(player, /src=\{track\.audioUrl\}/)
+  const usesDock = /useMusicRuntime/.test(player)
+  if (usesDock) {
+    assert.match(player, /selectSuno\(track\.sunoId, track\.title, \{ streamUrl: track\.audioUrl \}\)/)
+    assert.doesNotMatch(player, /<audio\b/)
+    assert.doesNotMatch(player, /preload="metadata"/)
+  } else {
+    assert.match(player, /src=\{track\.audioUrl\}/)
+    assert.match(player, /preload="metadata"/)
+    assert.match(player, /useState\(\(\) => parseDuration\(track\.duration\)\)/)
+    assert.match(player, /nextDuration : currentDuration/)
+  }
   assert.match(player, /src=\{track\.imageUrl\}/)
   assert.match(player, /href=\{track\.sunoUrl\}/)
-  assert.match(player, /preload="metadata"/)
-  assert.match(player, /useState\(\(\) => parseDuration\(track\.duration\)\)/)
-  assert.match(player, /nextDuration : currentDuration/)
   assert.match(player, /role="status" aria-live="polite"/)
   assert.match(player, /from-void\/20/)
   assert.doesNotMatch(player, /#0a0a0b|#07110d/)
