@@ -480,7 +480,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/ai-architecture"
                 onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
-                className="group inline-flex h-auto min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-5 py-3 text-center text-base font-medium leading-snug text-black shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:bg-emerald-600 hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-0"
+                className="group inline-flex h-auto min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-medium leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-0"
               >
                 <span className="text-balance">Explore AI Architecture</span>
                 <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
@@ -1461,7 +1461,7 @@ function FinalCTA() {
             <div className="flex w-full max-w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
               <Link
                 href="/start"
-                className="group inline-flex h-auto min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-5 py-3 text-center text-base font-semibold leading-snug text-black shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:bg-emerald-600 hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4"
+                className="group inline-flex h-auto min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-semibold leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4"
               >
                 <span className="text-balance">Find My Starting Point</span>
                 <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
