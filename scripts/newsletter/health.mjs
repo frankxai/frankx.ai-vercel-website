@@ -176,4 +176,9 @@ if (asJson) {
   reasons.forEach((r) => console.log(`  - ${r}`))
 }
 
-process.exit(status === 'critical' ? 1 : 0)
+// process.exit() tears libuv down while the Resend fetch handle is still closing, which aborts
+// with "Assertion failed: !(handle->flags & UV_HANDLE_CLOSING)" and exit 0xC0000409 instead of the
+// intended 0 or 1. That is nondeterministic, and it means a HEALTHY run also exits nonzero — so
+// this gate could never go green no matter what the newsletter did. Setting exitCode lets the
+// event loop drain and the process exit on its own with the right code.
+process.exitCode = status === 'critical' ? 1 : 0
