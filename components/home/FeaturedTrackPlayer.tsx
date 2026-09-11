@@ -3,13 +3,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ExternalLink, Pause, Play } from 'lucide-react'
+import { useRef, useState } from 'react'
 
-import { useMusicRuntime } from '@/components/music/MusicRuntime'
 import { GlowCard } from '@/components/ui/glow-card'
 
 export type FeaturedTrackPlayerTrack = {
   title: string
-  sunoId: string
   sunoUrl: string
   audioUrl: string
   imageUrl: string
@@ -35,30 +34,46 @@ const formatTime = (seconds: number) => {
 }
 
 export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack }) {
-  const music = useMusicRuntime()
-  const isThisTrack = music?.activeSunoId === track.sunoId
-  const isPlaying = Boolean(
-    isThisTrack && (music?.playbackState === 'playing' || music?.playbackState === 'loading'),
-  )
-  const playbackError = Boolean(isThisTrack && music?.playbackState === 'error')
-  const duration = isThisTrack && music && music.duration > 0 ? music.duration : parseDuration(track.duration)
-  const currentTime = isThisTrack && music ? music.currentTime : 0
-  const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(() => parseDuration(track.duration))
+  const [playbackError, setPlaybackError] = useState(false)
 
-  const togglePlayback = () => {
-    if (!music) return
-    if (isThisTrack) {
-      music.toggle()
+  const togglePlayback = async () => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    if (audio.paused) {
+      setPlaybackError(false)
+
+      try {
+        await audio.play()
+      } catch {
+        setPlaybackError(true)
+        setIsPlaying(false)
+      }
       return
     }
-    music.selectSuno(track.sunoId, track.title, { streamUrl: track.audioUrl })
-    music.open()
+
+    audio.pause()
   }
 
   const seek = (nextTime: number) => {
-    if (!music || !isThisTrack || !Number.isFinite(nextTime)) return
-    music.seek(nextTime)
+    const audio = audioRef.current
+    if (!audio || !Number.isFinite(nextTime)) return
+
+    audio.currentTime = nextTime
+    setCurrentTime(nextTime)
   }
+
+  const syncDuration = (nextDuration: number) => {
+    setDuration((currentDuration) =>
+      Number.isFinite(nextDuration) && nextDuration > 0 ? nextDuration : currentDuration,
+    )
+  }
+
+  const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0
 
   return (
     <GlowCard color="emerald" className="overflow-hidden p-0">
@@ -75,6 +90,26 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-void/20 via-void/45 to-void" />
+
+        {/* Original music; no spoken-word caption track applies. */}
+        <audio
+          ref={audioRef}
+          src={track.audioUrl}
+          preload="metadata"
+          onLoadedMetadata={(event) => syncDuration(event.currentTarget.duration)}
+          onDurationChange={(event) => syncDuration(event.currentTarget.duration)}
+          onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          onEnded={() => {
+            setIsPlaying(false)
+            setCurrentTime(0)
+          }}
+          onError={() => {
+            setPlaybackError(true)
+            setIsPlaying(false)
+          }}
+        />
 
         <div className="relative z-10 flex min-h-[300px] flex-col justify-between p-5 sm:min-h-[340px] sm:p-6 lg:min-h-[380px]">
           <div className="flex items-center justify-between gap-4">
@@ -97,8 +132,7 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
               <button
                 type="button"
                 onClick={togglePlayback}
-                disabled={!music}
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void disabled:opacity-50"
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
                 aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
               >
                 {isPlaying ? (
@@ -131,7 +165,7 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
                   step={0.1}
                   value={Math.min(currentTime, duration || 0)}
                   onChange={(event) => seek(Number(event.currentTarget.value))}
-                  disabled={!isThisTrack || !duration}
+                  disabled={!duration}
                   aria-label={`Seek through ${track.title}`}
                   className="relative z-10 h-4 w-full cursor-pointer appearance-none bg-transparent accent-emerald-300 disabled:cursor-not-allowed"
                 />
