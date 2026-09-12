@@ -67,9 +67,9 @@ This is not as simple as declaring a new identity ("I am wealthy" said into a mi
 
 ## V. The Observer Effect
 
-Quantum physics introduced a concept that mystics have claimed for millennia: the act of observation changes what is observed.
+Quantum theory does not establish that human consciousness creates everyday physical reality. In quantum experiments, “observation” ordinarily means a physical measurement interaction and experimental arrangement; interpretations of measurement remain contested.
 
-At the quantum level, this is literal — particles behave differently when measured than when unobserved. At the human level, the principle is metaphorical but equally powerful: where you direct your attention changes your experience of reality.
+Attention operates through a different, human-scale mechanism: it changes what you notice, remember, rehearse, and act upon. The observer effect can inspire a metaphor, but it is not scientific evidence for manifestation.
 
 Two people can live in the same city, work at the same company, and have the same income — and one experiences abundance while the other experiences scarcity. The difference is not in their circumstances. It is in what they observe. What they focus on. What they count.
 
