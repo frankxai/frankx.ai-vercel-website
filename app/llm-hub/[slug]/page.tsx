@@ -15,10 +15,8 @@ import { getEditorial } from '@/lib/llm-hub/editorial'
 import { comparisonsForModel } from '@/lib/llm-hub/comparisons'
 import { articleForModel } from '@/lib/llm-hub/articles'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
-import { siteConfig } from '@/lib/seo'
 import { ldJson } from '@/lib/seo/jsonld'
 import { CapabilityBadge } from '@/components/llm-hub/CapabilityBadge'
-import { resolveModelPricing } from '@/lib/llm-hub/pricing'
 
 export const revalidate = 3600
 
@@ -38,7 +36,7 @@ export async function generateMetadata({
   const { slug } = await params
   const model = getModel(slug)
   if (!model) return { title: 'Model not found' }
-  const ed = getEditorial(model.id)
+  const ed = getEditorial(slug)
   const org = orgForModel(model.organization)
   const title = `${model.name} — Benchmarks, Pricing & Capabilities (2026)`
   const description =
@@ -54,11 +52,11 @@ export async function generateMetadata({
       `${model.name.toLowerCase()} vs`,
       'best llm 2026',
     ],
-    alternates: { canonical: `${siteConfig.url}/llm-hub/${model.id}` },
+    alternates: { canonical: `https://frankx.ai/llm-hub/${slug}` },
     openGraph: {
       title,
       description,
-      url: `${siteConfig.url}/llm-hub/${model.id}`,
+      url: `https://frankx.ai/llm-hub/${slug}`,
       type: 'article',
     },
   }
@@ -69,15 +67,15 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
   const model = getModel(slug)
   if (!model) notFound()
 
-  const ed = getEditorial(model.id)
+  const ed = getEditorial(slug)
   const org = orgForModel(model.organization)
   const accent = org?.accent_color || '#a855f7'
-  const live = model.image_pricing ? undefined : (await fetchLivePricing())[model.id]
-  const capabilities = model.capabilities?.length ? model.capabilities : org?.capability_focus ?? []
+  const live = (await fetchLivePricing())[slug]
 
-  const { input: inputPrice, output: outputPrice } = resolveModelPricing(model, live)
+  const inputPrice = live?.inputPer1m ?? (typeof model.pricing?.input_per_1m === 'number' ? model.pricing.input_per_1m : null)
+  const outputPrice = live?.outputPer1m ?? (typeof model.pricing?.output_per_1m === 'number' ? model.pricing.output_per_1m : null)
 
-  const comparisons = comparisonsForModel(model.id)
+  const comparisons = comparisonsForModel(slug)
   const articleSlug = articleForModel(model.id)
   const platforms = (org?.agentic_platforms || [])
     .map((id) => getPlatform(id))
@@ -118,9 +116,9 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
-      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: `${siteConfig.url}/llm-hub` },
-      { '@type': 'ListItem', position: 3, name: model.name, item: `${siteConfig.url}/llm-hub/${model.id}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai/' },
+      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: 'https://frankx.ai/llm-hub' },
+      { '@type': 'ListItem', position: 3, name: model.name, item: `https://frankx.ai/llm-hub/${slug}` },
     ],
   }
 
@@ -163,9 +161,9 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           ) : null}
-          {capabilities.length > 0 ? (
+          {org?.capability_focus && org.capability_focus.length > 0 ? (
             <div className="mt-4 flex flex-wrap gap-1.5">
-              {capabilities.map((c) => (
+              {org.capability_focus.map((c) => (
                 <CapabilityBadge key={c} capability={c} href={`/llm-hub#${c}`} />
               ))}
             </div>
@@ -174,21 +172,63 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
 
         {/* Spec grid */}
         <section className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <Spec label="Context" value={formatContext(model.context_window_beta || model.context_window)} />
-          <Spec label="Max output" value={formatContext(model.max_output_tokens)} />
-          <Spec
-            label="Input /1M"
-            value={inputPrice === null ? '—' : inputPrice === 0 ? 'Open' : `$${inputPrice.toFixed(2)}`}
-            live={Boolean(live)}
-          />
-          <Spec
-            label="Output /1M"
-            value={outputPrice === null ? '—' : outputPrice === 0 ? 'Open' : `$${outputPrice.toFixed(2)}`}
-            live={Boolean(live)}
-          />
+          {model.image_pricing ? (
+            <>
+              <Spec label="Context" value="n/a (image model)" />
+              <Spec label="Max output" value="n/a (image model)" />
+              <Spec
+                label="Text in /1M"
+                value={
+                  typeof model.image_pricing.text_input === 'number'
+                    ? `$${model.image_pricing.text_input.toFixed(2)}`
+                    : '—'
+                }
+              />
+              <Spec
+                label="Image out /1M"
+                value={
+                  typeof model.image_pricing.image_output === 'number'
+                    ? `$${model.image_pricing.image_output.toFixed(2)}`
+                    : '—'
+                }
+              />
+            </>
+          ) : (
+            <>
+              <Spec label="Context" value={formatContext(model.context_window_beta || model.context_window)} />
+              <Spec label="Max output" value={formatContext(model.max_output_tokens)} />
+              <Spec
+                label="Input /1M"
+                value={inputPrice === null ? '—' : inputPrice === 0 ? 'Open' : `$${inputPrice.toFixed(2)}`}
+                live={Boolean(live)}
+              />
+              <Spec
+                label="Output /1M"
+                value={outputPrice === null ? '—' : outputPrice === 0 ? 'Open' : `$${outputPrice.toFixed(2)}`}
+                live={Boolean(live)}
+              />
+            </>
+          )}
         </section>
 
-        {live ? (
+        {model.image_pricing ? (
+          <p className="-mt-6 mb-10 text-xs text-white/45">
+            Image rates from{' '}
+            {model.image_pricing.source ? (
+              <a
+                href={model.image_pricing.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                source
+              </a>
+            ) : (
+              'registry'
+            )}
+            {model.image_pricing.checked_at ? ` · checked ${model.image_pricing.checked_at}` : ''}. Chat token Specs do not apply.
+          </p>
+        ) : live ? (
           <p className="-mt-6 mb-10 inline-flex items-center gap-1.5 text-xs text-emerald-400/70">
             <Zap className="h-3 w-3" /> Live pricing via{' '}
             <a href="https://openrouter.ai/models" target="_blank" rel="noopener noreferrer" className="underline">
@@ -202,7 +242,7 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
           <section className="mb-10 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
               <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider" style={{ color: accent }}>
-                {model.evaluation ? 'Workloads to evaluate' : 'Best for'}
+                Best for
               </h2>
               <ul className="space-y-2 text-sm text-white/65">
                 {ed.bestFor.map((b) => (
@@ -228,24 +268,10 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
           </section>
         ) : null}
 
-        {model.evaluation ? (
-          <section className="mb-10 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6">
-            <h2 className="text-xl font-semibold">Evaluation status: {model.evaluation.status.replaceAll('_', ' ')}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-white/70">{model.evaluation.planned_cases} synthetic decision cases defined; {model.evaluation.measured_cases} model observations. These cases do not measure live connector execution or creative artifact quality. No calibrated judge or production promotion is recorded.</p>
-            <div className="mt-4 flex flex-wrap gap-5 text-sm text-emerald-200">
-              {model.evaluation.url ? <a href={model.evaluation.url} className="underline underline-offset-4">Evaluation protocol</a> : <span>Protocol has no public link.</span>}
-              {model.evaluation.evidence_url ? <a href={model.evaluation.evidence_url} className="underline underline-offset-4">Public evidence JSON</a> : <span>No public receipt for this suite.</span>}
-              <Link href="/blog/gpt-6-astra-for-content-creators" className="underline underline-offset-4">Creator workflows</Link>
-              <Link href="/blog/gpt-6-astra-chatgpt-work-codex-founders" className="underline underline-offset-4">Founder guide</Link>
-            </div>
-          </section>
-        ) : null}
-
         {/* Benchmarks */}
         {benchmarkEntries.length > 0 ? (
           <section className="mb-10">
             <h2 className="mb-4 text-2xl font-bold">Benchmarks</h2>
-            {model.evaluation ? <p className="mb-4 text-sm text-white/65">OpenAI-published launch results; not FrankX measurements. Percentage units are named in the rows. The AA Intelligence Index is an index score. <a href="https://openai.com/index/gpt-6-astra/" className="text-emerald-200 underline">Source and comparison context.</a></p> : null}
             <div className="overflow-hidden rounded-xl border border-white/10">
               <table className="w-full text-left text-sm">
                 <tbody>

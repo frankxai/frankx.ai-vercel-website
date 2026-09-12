@@ -38,7 +38,7 @@ export const CREATOR_STACKS: CreatorStack[] = [
     accent: '#f59e0b',
     headline: 'Generate, arrange, and master AI music',
     picks: [
-      { name: 'Suno v5', href: 'https://suno.com', why: 'Best end-to-end song generation — vocals, structure, mastering', role: 'primary' },
+      { name: 'Suno v5', href: 'https://suno.com', why: 'End-to-end song generation — vocals, structure, mastering', role: 'primary' },
       { name: 'Claude Opus 4.6', modelId: 'claude-opus-4-6', why: 'Lyric writing, prompt engineering, genre research', role: 'alt' },
     ],
     workflow: 'Draft lyrics + style prompt with Claude → generate in Suno → iterate sections → export and master. The LLM is the creative director; Suno is the band.',
@@ -51,7 +51,7 @@ export const CREATOR_STACKS: CreatorStack[] = [
     accent: '#3b82f6',
     headline: 'Generate and edit on-brand visuals',
     picks: [
-      { name: 'Nano Banana (Gemini image)', href: 'https://aistudio.google.com', why: 'Best precise object-level editing + brand consistency', role: 'primary' },
+      { name: 'Nano Banana (Gemini image)', href: 'https://aistudio.google.com', why: 'Precise object-level editing + brand consistency', role: 'primary' },
       { name: 'Imagen 4', href: 'https://deepmind.google/technologies/imagen', why: 'High-fidelity text-to-image inside the Google stack', role: 'alt' },
     ],
     workflow: 'Concept + prompt with an LLM → generate hero with Imagen/Nano Banana → object-level edits (swap, resize, recolor) → export to the design system.',
@@ -76,8 +76,8 @@ export const CREATOR_STACKS: CreatorStack[] = [
     accent: '#10b981',
     headline: 'Long-form, on-voice writing at depth',
     picks: [
-      { name: 'Claude Opus 4.6', modelId: 'claude-opus-4-6', why: 'Best long-context synthesis and voice fidelity', role: 'primary' },
-      { name: 'Claude Sonnet 4.5', modelId: 'claude-sonnet-4-5', why: 'Faster, cheaper for drafts and iteration', role: 'alt' },
+      { name: 'Claude Opus 4.6', modelId: 'claude-opus-4-6', why: 'Long-context synthesis and voice fidelity', role: 'primary' },
+      { name: 'Claude Sonnet 4.5', modelId: 'claude-sonnet-4-5', why: 'Drafts and iteration at lower cost', role: 'alt' },
     ],
     workflow: 'Research + outline with Opus (1M context holds your whole corpus) → draft → tighten with Sonnet → publish. The brand voice gate stays human.',
     deeper: { label: 'Content Studio', href: '/content-studio' },
@@ -89,7 +89,7 @@ export const CREATOR_STACKS: CreatorStack[] = [
     accent: '#a855f7',
     headline: 'Ship code with agentic assistants',
     picks: [
-      { name: 'Gemini 3.5 Flash', modelId: 'gemini-3-5-flash', why: 'Best agentic-coding benchmark at low cost (76.2% Terminal-Bench 2.1)', role: 'primary' },
+      { name: 'Gemini 3.5 Flash', modelId: 'gemini-3-5-flash', why: 'Agentic-coding candidate at low cost', role: 'primary' },
       { name: 'Claude Opus 4.6', modelId: 'claude-opus-4-6', why: 'Hardest reasoning + multi-file refactors + Agent Teams', role: 'alt' },
     ],
     workflow: 'Flash for the high-volume agent loop, Opus 4.6 for the critical reasoning path. Run inside Claude Code, Cursor, or Antigravity 2.0.',

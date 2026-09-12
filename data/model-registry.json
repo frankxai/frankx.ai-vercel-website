@@ -24,10 +24,6 @@
         "agentic-infra"
       ],
       "pricing": {
-        "input_per_1m": 10,
-        "output_per_1m": 50,
-        "cached_input_per_1m": 1,
-        "cache_write_per_1m": 12.5,
         "scope": "Standard short context, up to 272K input tokens; other processing tiers and tool charges excluded.",
         "verified_at": "2026-09-07"
       },
@@ -79,12 +75,7 @@
         "vision",
         "code"
       ],
-      "pricing": {
-        "input_per_1m": 10.0,
-        "output_per_1m": 50.0,
-        "batch_input_per_1m": 5.0,
-        "batch_output_per_1m": 25.0
-      },
+      "pricing": {},
       "benchmarks": {
         "swe_bench_verified": 95.0,
         "swe_bench_pro": 80.0,
@@ -1225,7 +1216,6 @@
       "name": "GPT Image 2.5 Flare",
       "organization": "openai",
       "family": "GPT Image",
-      "released": "2026-09-08",
       "status": "available",
       "modalities": [
         "text",
@@ -1267,7 +1257,6 @@
       "name": "GPT Image 2.5 Sunburst",
       "organization": "openai",
       "family": "GPT Image",
-      "released": "2026-09-08",
       "status": "available",
       "modalities": [
         "text",

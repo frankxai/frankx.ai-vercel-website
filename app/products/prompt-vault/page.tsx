@@ -166,10 +166,7 @@ export default function PromptVaultPage() {
             </div>
 
             <h1 className="mb-6 text-4xl font-bold leading-tight text-balance md:text-6xl lg:text-7xl">
-              66 AI Prompts for Creators{' '}
-              <span className="bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] bg-clip-text text-transparent">
-                — From the Creator Who Built 12,000+ AI Songs
-              </span>
+              66 AI Prompts for Creators
             </h1>
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
@@ -177,21 +174,11 @@ export default function PromptVaultPage() {
               samples and join the free launch list. The downloadable pack is not available yet.
             </p>
 
-            {/* Trust signals */}
+            {/* Trust signals — invented counts removed (honesty FAIL) */}
             <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
               <span className="flex items-center gap-1.5">
                 <Brain className="h-4 w-4 text-[#8B5CF6]" />
                 AI Architect & Creator
-              </span>
-              <span className="text-white/20">|</span>
-              <span className="flex items-center gap-1.5">
-                <Music className="h-4 w-4 text-[#EC4899]" />
-                12,000+ AI songs created
-              </span>
-              <span className="text-white/20">|</span>
-              <span className="flex items-center gap-1.5">
-                <Bot className="h-4 w-4 text-[#43BFE3]" />
-                40+ agents built
               </span>
             </div>
             <p className="mb-8 text-xs text-slate-600">
