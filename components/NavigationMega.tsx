@@ -665,10 +665,10 @@ export default function NavigationMega() {
               </span>
             </button>
             <Link
-              href="/founder-stack"
+              href="/ai-architecture"
               className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-1.5 text-[13px] font-semibold text-white transition-shadow duration-200 hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
-              Map Your Stack
+              Explore AI Architecture
             </Link>
           </div>
 
