@@ -41,7 +41,7 @@ interface FeaturedTrackData {
   title: string
   sunoId: string
   sunoUrl: string
-  audioUrl: string
+  audioUrl?: string
   imageUrl: string
   genre: string[]
   duration: string
