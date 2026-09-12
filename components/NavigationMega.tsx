@@ -44,7 +44,6 @@ import {
 } from 'lucide-react'
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { trackEvent } from '@/lib/analytics'
-import { resolveNavigationGroups } from '@/lib/navigation-groups'
 
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
@@ -447,24 +446,23 @@ function MegaMenuContent({ section }: { section: NavKey }) {
   const hasGroups = 'groups' in data && data.groups
 
   if (hasGroups) {
-    const groups = resolveNavigationGroups<(typeof data.items)[number]>(
-      data.items,
-      (data as typeof data & { groups: { label: string; items: string[] }[] }).groups,
-    )
+    const groups = (data as typeof data & { groups: { label: string; items: string[] }[] }).groups
     return (
-      <div className="max-h-[calc(100dvh-6rem)] w-[760px] max-w-[calc(100vw-2rem)] overflow-y-auto overscroll-contain p-4">
+      <div className="w-[760px] max-w-[calc(100vw-2rem)] p-4">
         <div className="grid grid-cols-[180px_1fr] gap-4">
           <FeaturedCard data={data} />
           <div className="grid grid-cols-3 gap-4">
             {groups.map((group) => {
-              const useTwoColumns = group.items.length > 6
+              const groupItems = group.items
+                .map((name) => data.items.find((i) => i.name === name))
+                .filter(Boolean) as (typeof data.items)[0][]
               return (
-                <div key={group.label} className={useTwoColumns ? 'col-span-2' : undefined}>
+                <div key={group.label}>
                   <h5 className="mb-2 px-2 text-xs font-medium text-slate-400">
                     {group.label}
                   </h5>
-                  <ul className={useTwoColumns ? 'grid grid-cols-2 items-start gap-x-4 gap-y-0.5' : 'space-y-0.5'}>
-                    {group.items.map((item) => (
+                  <ul className="space-y-0.5">
+                    {groupItems.map((item) => (
                       <MenuLink key={item.name} item={item} />
                     ))}
                   </ul>
@@ -665,10 +663,10 @@ export default function NavigationMega() {
               </span>
             </button>
             <Link
-              href="/founder-stack"
+              href="/ai-architecture"
               className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-1.5 text-[13px] font-semibold text-white transition-shadow duration-200 hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
-              Map Your Stack
+              Explore AI Architecture
             </Link>
           </div>
 
