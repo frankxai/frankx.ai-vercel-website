@@ -183,11 +183,6 @@ export function CostCalculator({ rows }: { rows: ModelRow[] }) {
                     <h4 className="font-semibold text-white">{model.name}</h4>
                     <p className="text-xs text-white/40">{model.org}</p>
                   </div>
-                  {isCheapest && (
-                    <span className="rounded-full border border-emerald-500/40 bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300">
-                      Lowest Cost
-                    </span>
-                  )}
                 </div>
 
                 <p className="my-3 text-xs leading-relaxed text-white/60">{model.note}</p>

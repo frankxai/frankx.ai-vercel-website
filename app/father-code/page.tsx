@@ -294,7 +294,7 @@ export default function BuildersLinePage() {
             <div className="space-y-4 text-base leading-8 text-zinc-300">
               <p>
                 I spent a decade on scaffolding between ages five and fifteen, watching a Volga-German
-                immigrant haul forty thousand bricks in Seesen with bare hands and an unbreakable plumb line.
+                immigrant haul bricks in Seesen with bare hands and an unbreakable plumb line.
                 He taught me that you do not polish what cannot bear structural load.
               </p>
               <p>
