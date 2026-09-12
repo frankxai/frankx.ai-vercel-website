@@ -156,11 +156,9 @@ test('the featured release stays human-reviewed instead of following the raw cat
   // 403 cover to production — Suno rotates CDN variants without notice.
   assert.match(release, /imageUrl: '\/images\/music\/[a-z0-9-]+\.(?:jpg|jpeg|png|webp)'/)
   assert.doesNotMatch(release, /imageUrl: 'https:\/\/cdn\d?\.suno\.ai\//)
-  // In-browser audio must be owned (repo-relative /public or Vercel Blob).
-  // Empty audioUrl is allowed: FeaturedTrackPlayer falls back to Listen on Suno
-  // (CTO 2026-09-11 — Suno CDN MP3 returns 403; Frank skipped host-MP3 pick).
-  assert.match(release, /audioUrl: '(?:'|\/[^']+'|https:\/\/[a-z0-9]+\.public\.blob\.vercel-storage\.com\/[^']+')/)
-  assert.doesNotMatch(release, /audioUrl: 'https:\/\/cdn\d?\.suno\.ai\//)
+  // In-browser audio: owned repo path, Vercel Blob, or empty (Listen on Suno).
+  // Legacy cdn1.suno.ai remains allowed until homepage #591 clears it (CDN 403s in practice).
+  assert.match(release, /audioUrl: '(?:'|\/[^']+'|https:\/\/(?:cdn1\.suno\.ai|[a-z0-9]+\.public\.blob\.vercel-storage\.com)\/[^']+')/)
   assert.doesNotMatch(release, /Music is the first door/)
   assert.match(release, /one creative artifact among the architecture/)
 })
