@@ -42,14 +42,6 @@ const facts = [
     label: 'years old when he returned to Germany with a young family',
   },
   {
-    value: '4',
-    label: 'two-story houses built by hand with the family',
-  },
-  {
-    value: '200m²',
-    label: 'approximate size of each house he brought into reality',
-  },
-  {
     value: '5–15',
     label: 'the childhood years I spent beside him on construction sites',
   },

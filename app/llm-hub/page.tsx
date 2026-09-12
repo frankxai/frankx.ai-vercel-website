@@ -36,7 +36,7 @@ const FAQ = [
   },
   {
     q: 'Which is the cheapest frontier reasoning model?',
-    a: 'Use the priced models in the explorer and calculator for a dated comparison. Gemini 3.5 Flash and Flash-Lite are different products; the $0.30/$2.50 tier belongs to Flash-Lite. Token price alone cannot establish the cheapest accepted result: include failed attempts, tools and human correction.',
+    a: 'Use the priced models in the explorer and calculator for a dated comparison. Gemini 3.5 Flash and Flash-Lite are different products. Token price alone cannot establish the cheapest accepted result: include failed attempts, tools and human correction.',
   },
   {
     q: 'What is the best agentic LLM in 2026?',
