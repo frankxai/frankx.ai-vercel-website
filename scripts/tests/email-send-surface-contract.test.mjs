@@ -47,11 +47,16 @@ test('intake treats Vercel instance logs as diagnostic and preserves full Notion
 
 test('newsletter preference writes require signed ownership and never resubscribe duplicates', async () => {
   const route = await readFile(repoFile('app/api/subscribe/route.ts'), 'utf8')
+  const legacyRoute = await readFile(repoFile('app/api/newsletter/route.ts'), 'utf8')
   const page = await readFile(repoFile('app/newsletter/preferences/page.tsx'), 'utf8')
   const preferenceGuard = route.indexOf('if (hasExplicitTopics || preferenceToken)')
   const createContact = route.indexOf('let resendResponse = await createContact(fullBody)')
   const duplicateGuard = route.indexOf('if (resendResponse.status === 409)')
   const welcomeDelivery = route.indexOf('await sendWelcomeEmail(email, name, listType, intention)')
+  const growthCapture = route.indexOf('const growthCapture = await captureGrowthLead')
+  const growthFailureGuard = route.indexOf('if (!growthCapture.ok)')
+  const legacyCapture = legacyRoute.indexOf('const growthCapture = await captureGrowthLead')
+  const legacyProvider = legacyRoute.indexOf('const provider =')
 
   assert.match(route, /createHmac\('sha256', PREFERENCES_SECRET\)/)
   assert.match(route, /timingSafeEqual\(receivedBytes, expectedBytes\)/)
@@ -62,11 +67,30 @@ test('newsletter preference writes require signed ownership and never resubscrib
   assert.match(route, /emailRatelimit\.limit\(`subscribe:email:\$\{emailDigest\}`\)/)
   assert.match(route, /rateLimit === 'unavailable'[\s\S]{0,240}?status: 503/)
   assert.ok(preferenceGuard >= 0 && preferenceGuard < createContact)
+  assert.ok(
+    growthCapture > preferenceGuard && growthCapture < createContact,
+    'canonical capture must complete after preference-only requests and before provider writes',
+  )
+  assert.ok(growthFailureGuard > growthCapture && growthFailureGuard < createContact)
+  assert.match(route, /process\.env\.GROWTH_CAPTURE_URL/)
+  assert.match(route, /gfrfcqyprekhazzugdkr\.supabase\.co\/functions\/v1\/growth-capture/)
+  assert.match(route, /signal: AbortSignal\.timeout\(5_000\)/)
+  assert.match(route, /Subscription storage is temporarily unavailable/)
   assert.ok(duplicateGuard > createContact && duplicateGuard < welcomeDelivery)
   assert.doesNotMatch(route, /updateAudienceContact/)
   assert.doesNotMatch(route, /properties\.topics/)
   assert.doesNotMatch(route, /existingContact \|\| listType === 'music-lab'/)
   assert.match(route, /No duplicate email was sent/)
+
+  assert.ok(
+    legacyCapture >= 0 && legacyCapture < legacyProvider,
+    'legacy newsletter forms must capture centrally before provider writes',
+  )
+  assert.match(legacyRoute, /program: 'frankx-newsletter'/)
+  assert.match(legacyRoute, /raw\.source \?\? raw\.tag/)
+  assert.match(legacyRoute, /signal: AbortSignal\.timeout\(5_000\)/)
+  assert.match(legacyRoute, /if \(!growthCapture\.ok\)/)
+  assert.match(legacyRoute, /Subscription storage is temporarily unavailable/)
 
   assert.match(page, /Saving changes requires email confirmation/)
   assert.match(page, /with no email address in the URL/)
