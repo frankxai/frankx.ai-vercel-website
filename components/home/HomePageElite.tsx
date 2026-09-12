@@ -412,9 +412,9 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
           {/* Left Column — Text Content */}
           <div className="order-1 min-w-0 space-y-8">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
+              <div className="inline-flex max-w-full min-w-0 flex-wrap items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
+                <span className="min-w-0 text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
               </div>
 
               <h1
@@ -493,6 +493,26 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                   &ldquo;I build to understand. I document so the people I love can build after me.&rdquo;
                 </p>
               </div>
+            </div>
+
+            {/* CTAs — full-width on 320px; labels wrap instead of overflowing the viewport */}
+            <div className="flex w-full min-w-0 max-w-full flex-col gap-3 sm:flex-row sm:gap-4">
+              <Link
+                href="/ai-architecture"
+                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
+                className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-medium leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-0"
+              >
+                <span className="text-balance">Explore AI Architecture</span>
+                <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
+              </Link>
+
+              <Link
+                href="/ecosystem"
+                onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
+                className="flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-center text-base font-medium leading-snug text-white backdrop-blur-xl transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] sm:w-auto sm:px-8 sm:py-0"
+              >
+                <span className="text-balance">Map the Ecosystem</span>
+              </Link>
             </div>
 
             <p className="max-w-xl text-[11px] leading-5 text-white/70">
@@ -1545,17 +1565,17 @@ function FinalCTA() {
               are ready for another.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex w-full min-w-0 max-w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-semibold leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4"
               >
                 Find My Starting Point
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/newsletter"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-colors"
+                className="flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-center text-base font-medium leading-snug text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] sm:w-auto sm:px-8 sm:py-4"
               >
                 Get the Newsletter
               </Link>
