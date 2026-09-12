@@ -28,7 +28,9 @@ export const homepageFeaturedRelease: HomepageFeaturedRelease = {
   // Cover is repo-hosted on purpose: the previous entry hotlinked cdn2.suno.ai and
   // that URL now 403s, so the homepage shipped a broken cover. Suno rotates CDN
   // variants without notice.
-  audioUrl: 'https://cdn1.suno.ai/e7d082d3-8ecd-4fdb-a8fa-582026554153.mp3',
+  // Owned in-browser audio is parked (CTO 2026-09-11): Suno CDN MP3 returns 403.
+  // Do not invent CDN hosts. Restore a public/ MP3 path here when Frank hosts one.
+  audioUrl: '',
   imageUrl: '/images/music/star-show-us.jpg',
   genre: ['latin progressive house', 'violin', 'jazz'],
   duration: '4:26',
