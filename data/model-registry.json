@@ -1,7 +1,7 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-09-10",
+  "_updated": "2026-09-13",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
   "models": {
     "gpt-6-astra": {
@@ -24,25 +24,29 @@
         "agentic-infra"
       ],
       "pricing": {
-        "scope": "Standard short context, up to 272K input tokens; other processing tiers and tool charges excluded.",
-        "verified_at": "2026-09-07"
+        "scope": "Standard USD rates for prompts up to 272K input tokens. Above 272K, the full request uses 2x input/cache and 1.5x output rates. Cache writes, tools and other processing tiers are charged separately.",
+        "verified_at": "2026-09-13",
+        "input_per_1m": 10,
+        "output_per_1m": 50,
+        "cached_input_per_1m": 1
       },
       "benchmarks": {
         "automationbench_percent": 41.4,
-        "terminal_bench_4_percent": 64.6,
+        "terminal_bench_4_percent": 57.9,
         "deepswe_v1_1_percent": 74.1,
-        "aa_intelligence_index_v4_1_1": 54.7
+        "aa_intelligence_index_v4_1_1": 61.2,
+        "terminal_bench_science_0_1_percent": 64.6
       },
-      "benchmark_provenance": "OpenAI launch table and Artificial Analysis, vendor/aggregator-reported; not FrankX measurements. Astra leads decisively on Terminal-Bench 4 (64.6% vs Claude Fable 5.1's 52.6%), but on the broader Artificial Analysis intelligence index it is mid-pack and within noise of Fable 5.1 (~56.8) and Opus 5 (~54.1) — treat as a strong agentic-coding result, not a general capability lead.",
+      "benchmark_provenance": "OpenAI launch comparison table, checked 13 September 2026; vendor-reported and not FrankX measurements. Terminal-Bench 4.0 is 57.9%; Terminal-Bench Science 0.1 is a separate evaluation at 64.6%. The same table reports Artificial Analysis Intelligence Index v4.1.1 at 61.2 for Astra, 65.7 for Fable 5.1 and 63.1 for Opus 5. Scores depend on evaluation version, effort and harness; no global winner is implied.",
       "key_capabilities": [
         "Text input/output and image input; audio and video are not native model outputs",
         "API reasoning effort: low, medium, high, xhigh, max",
         "Async tool calling; the application executes tools and manages pending jobs",
         "ChatGPT, Work and Codex availability depends on client, plan, workspace and rollout",
-        "A separate openai/gpt-6-astra-fast variant exists at 2x price ($20/$100 per 1M) for lower latency with no stated capability difference — not a default upgrade",
+        "OpenAI API fast mode is priced at 2x the applicable rates; verify latency and total cost on the intended workload",
         "OpenAI's own deployment-safety documentation rates Astra at the 'Critical' level of cyber capability; the publicly released model ships with classifiers that decline cyber-exploitation, bio/chem, violence and fraud requests"
       ],
-      "frankx_notes": "A candidate for demanding research, coding and creator workflows. OpenAI reports a decisive Terminal-Bench 4 win over Sol; on the broader Artificial Analysis intelligence index, Astra is roughly tied with Fable 5.1 and Opus 5, not a clear leader. No global winner is implied. The dedicated local suite defines twelve synthetic decisions and has not run. Live Adobe, Canva and HeyGen execution and independent quality judging remain unmeasured. Sources checked 7 September 2026. Limited preview shipped 2026-09-03; general paid/API rollout 2026-09-04 (registry date reflects the paid rollout).",
+      "frankx_notes": "A candidate for demanding research, coding and creator workflows. OpenAI reports Terminal-Bench 4.0 at 57.9% and the separate Terminal-Bench Science 0.1 at 64.6%; these metrics must not be conflated. Vendor benchmark tables do not establish a general capability winner. The dedicated local suite defines twelve synthetic decisions and has not run. Live Adobe, Canva and HeyGen execution and independent quality judging remain unmeasured. Model specifications, pricing and cited launch-table metrics checked 13 September 2026. The release date retains the existing paid-rollout date.",
       "sources": [
         "https://openai.com/index/gpt-6-astra/",
         "https://developers.openai.com/api/docs/models/gpt-6-astra",
@@ -58,7 +62,47 @@
         "production_ready": false,
         "url": null,
         "evidence_url": null
-      }
+      },
+      "last_verified": "2026-09-13",
+      "verification_scope": "API specifications, pricing and named launch-table benchmarks. Historical rollout date retained; local evaluation status remains not_run."
+    },
+    "claude-fable-5-1": {
+      "name": "Claude Fable 5.1",
+      "id": "claude-fable-5-1",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-09-01",
+      "status": "ga",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "pricing": {
+        "input_per_1m": 10,
+        "output_per_1m": 50,
+        "cached_input_per_1m": 0.25,
+        "verified_at": "2026-09-13",
+        "scope": "Standard Claude API rates in USD; cache writes, batch, fast mode, geography and partner-platform modifiers excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1M-token context and 128K maximum output",
+        "Adaptive thinking is always on; effort controls reasoning depth",
+        "Long-running agentic coding, research, and document workflows",
+        "Cache reads cost $0.25 per million tokens; input and output prices are unchanged from Fable 5"
+      ],
+      "acos_tier": "fable",
+      "frankx_notes": "Current Fable release, verified against Anthropic model documentation on 13 September 2026. Anthropic recommends Opus 5 for most workloads and Fable 5.1 for demanding reasoning or long-horizon work where Opus evaluation results fall short. No first-party FrankX evaluation is recorded for this version. Fable 5 arena receipts remain historical evidence for that earlier model.",
+      "sources": [
+        "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+        "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+        "https://platform.claude.com/docs/en/about-claude/pricing"
+      ],
+      "last_verified": "2026-09-13",
+      "verification_scope": "Release date, model ID, availability, context/output limits, modalities, pricing and vendor-stated positioning; no independent capability evaluation."
     },
     "claude-fable-5": {
       "name": "Claude Fable 5",
@@ -114,7 +158,9 @@
       ],
       "pricing": {
         "input_per_1m": 5.0,
-        "output_per_1m": 25.0
+        "output_per_1m": 25.0,
+        "cached_input_per_1m": 0.5,
+        "verified_at": "2026-09-13"
       },
       "benchmarks": {
         "swe_bench_verified": 96.0,
@@ -131,10 +177,15 @@
       "acos_tier": "opus",
       "frankx_notes": "Shipped 24 July 2026 at the unchanged Opus price of $5/$25, which makes it half the cost of Fable 5 while reporting higher coding numbers - the routing question between the two Anthropic flagships is now cost and task shape, not capability tiers. Benchmarks are vendor-reported. Note that published leaderboards disagree on ordering at the top of SWE-Bench Verified: DeepSeek V4 Pro 0813 reports 96.4% against this model's 96.0%, and different trackers rank them differently, so treat any '#1' claim as source-dependent.",
       "sources": [
+        "https://www.anthropic.com/news/claude-opus-5",
+        "https://platform.claude.com/docs/en/models/overview",
+        "https://platform.claude.com/docs/en/about-claude/pricing",
         "https://www.marktechpost.com/2026/07/24/meet-the-new-claude-opus-5-frontier-class-agentic-coding-and-computer-use-at-unchanged-opus-pricing/",
         "https://codersera.com/blog/claude-opus-5-benchmarks-explained-2026/",
         "https://www.morphllm.com/claude-benchmarks"
-      ]
+      ],
+      "last_verified": "2026-09-13",
+      "verification_scope": "Release date, model ID, current availability, context/output limits and standard API pricing. Existing historical benchmark claims have not been re-evaluated."
     },
     "claude-opus-4-8": {
       "name": "Claude Opus 4.8",
@@ -307,7 +358,7 @@
       "status": "ga",
       "architecture": "dense",
       "context_window": 1000000,
-      "max_output_tokens": 64000,
+      "max_output_tokens": 128000,
       "modalities": [
         "text",
         "vision",
@@ -317,7 +368,7 @@
         "input_per_1m": 2,
         "output_per_1m": 10,
         "cached_input_per_1m": 0.2,
-        "verified_at": "2026-09-07"
+        "verified_at": "2026-09-13"
       },
       "benchmarks": {
         "swe_bench_pro": 63.2,
@@ -335,11 +386,15 @@
       "acos_tier": "sonnet",
       "frankx_notes": "Supersedes Sonnet 4.6 as the mid-tier default. Pricing checked 7 September 2026: Anthropic retains $2/$10 standard pricing after cancelling the announced September increase. Opus still leads hard agentic coding (69.2% vs 63.2% SWE-Bench Pro on Opus 4.8, and further on Opus 5), which Anthropic states in its own launch material as reported by multiple outlets. Benchmarks are vendor-reported. The Starlight Model Arena does hold a receipt for this model - round 5, 2026-07-01, published at /research/arena-receipts/2026-07-01-r5-sonnet5-arrives.json.",
       "sources": [
+        "https://platform.claude.com/docs/en/models/sonnet-5/overview",
+        "https://platform.claude.com/docs/en/models/overview",
         "https://platform.claude.com/docs/en/about-claude/pricing",
         "https://www.requesty.ai/models/anthropic/claude-sonnet-5",
         "https://codersera.com/blog/claude-sonnet-5-launch-guide-2026/",
         "https://www.siliconreport.com/anthropics-claude-sonnet-5-breaks-80-on-swe-bench-verified-widens-benchmarks-over-competit-220e6417"
-      ]
+      ],
+      "last_verified": "2026-09-13",
+      "verification_scope": "Model ID, current availability, context/output limits and standard API pricing. Historical benchmark claims and published arena receipts retained without re-evaluation."
     },
     "claude-sonnet-4-6": {
       "name": "Claude Sonnet 4.6",
@@ -544,6 +599,46 @@
         "arc_agi_2": 54.2
       },
       "sources": []
+    },
+    "gemini-3-8-flash": {
+      "name": "Gemini 3.8 Flash",
+      "id": "gemini-3.8-flash",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-09-02",
+      "status": "ga",
+      "architecture": "undisclosed",
+      "context_window": 1048576,
+      "max_output_tokens": 65536,
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ],
+      "pricing": {
+        "input_per_1m": 0.75,
+        "output_per_1m": 3.75,
+        "cached_input_per_1m": 0.075,
+        "verified_at": "2026-09-13",
+        "scope": "Standard Gemini API introductory rates in USD through 2026-12-31. From 2027-01-01: input $1.50, output $7.50, cached input $0.15 per million tokens. Cache storage and tools charged separately."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text, image, audio, video and PDF input; text output",
+        "1,048,576 input-token limit and 65,536 output-token limit",
+        "Function calling, structured outputs, code execution and search grounding",
+        "Computer use is supported in preview; native audio and image generation are not supported",
+        "Thinking levels: low, medium, high; minimal is not supported"
+      ],
+      "frankx_notes": "Current stable Flash release verified against Google documentation on 13 September 2026. Google positions it for software engineering, autonomous agents and enterprise workflows. Introductory pricing expires on 31 December 2026. No first-party FrankX evaluation is recorded for this version; Gemini 3.7 results do not establish 3.8 performance.",
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+        "https://ai.google.dev/gemini-api/docs/pricing"
+      ],
+      "last_verified": "2026-09-13",
+      "verification_scope": "Release date, model ID, stable availability, input/output limits, modalities, API capabilities and pricing; no independent capability evaluation."
     },
     "gemini-3-7-flash": {
       "name": "Gemini 3.7 Flash",
@@ -1299,6 +1394,7 @@
       "name": "Anthropic",
       "url": "https://anthropic.com",
       "models": [
+        "claude-fable-5-1",
         "claude-sonnet-5",
         "claude-opus-5",
         "claude-fable-5",
@@ -1308,7 +1404,8 @@
         "claude-sonnet-4-6",
         "claude-sonnet-4-5",
         "claude-haiku-4-5"
-      ]
+      ],
+      "flagship_model_id": "claude-fable-5-1"
     },
     "openai": {
       "name": "OpenAI",
@@ -1327,12 +1424,14 @@
       "name": "Google DeepMind",
       "url": "https://deepmind.google",
       "models": [
+        "gemini-3-8-flash",
         "gemini-3-7-flash",
         "gemini-3-5-pro",
         "gemini-3-5-flash",
         "gemini-3-pro",
         "gemma-4"
-      ]
+      ],
+      "flagship_model_id": "gemini-3-8-flash"
     },
     "xai": {
       "name": "xAI",
@@ -1394,10 +1493,11 @@
   },
   "acos_routing": {
     "note": "Maps registry models to ACOS routing tiers",
-    "opus": "claude-opus-4-8",
+    "opus": "claude-opus-5",
     "sonnet": "claude-sonnet-5",
-    "haiku": "claude-haiku-4-5"
+    "haiku": "claude-haiku-4-5",
+    "fable": "claude-fable-5-1"
   },
-  "last_updated": "2026-09-08",
-  "_update_scope": "Added GPT Image 2.5 Flare and Sunburst, separately typed image pricing and planned workflow references. Other entries retain their existing evidence."
+  "last_updated": "2026-09-13",
+  "_update_scope": "Added Claude Fable 5.1 and Gemini 3.8 Flash from official sources. Corrected Sonnet 5 output limit and Astra benchmark labels/values, refreshed selected API prices, and advanced Anthropic/Google current-model references. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
 }

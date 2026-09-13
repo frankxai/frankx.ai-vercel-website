@@ -1,16 +1,16 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1006,
+    "total": 1015,
     "aliases": 58,
     "byType": {
       "core": 24,
       "section": 434,
       "community": 17,
-      "tool": 64,
+      "tool": 66,
       "static": 15,
       "blog": 270,
-      "research": 16,
+      "research": 23,
       "guide": 27,
       "library": 88,
       "newsletter": 1,
@@ -7283,6 +7283,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/claude-fable-5-1",
+      "title": "Claude Fable 5.1 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/claude-haiku-4-5",
       "title": "Claude Haiku 4.5 — Model Hub",
       "tags": [
@@ -7555,6 +7564,15 @@
     {
       "href": "/llm-hub/gemini-3-7-flash",
       "title": "Gemini 3.7 Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-3-8-flash",
+      "title": "Gemini 3.8 Flash — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -9199,6 +9217,69 @@
         "systems"
       ],
       "type": "section"
+    },
+    {
+      "href": "/research/hubs/agentic-products",
+      "title": "Creative systems & products",
+      "tags": [
+        "agentic",
+        "products"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/agentic-systems",
+      "title": "Agents & autonomous systems",
+      "tags": [
+        "agentic",
+        "systems"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/ai-infrastructure",
+      "title": "Compute & infrastructure",
+      "tags": [
+        "ai",
+        "infrastructure"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/enterprise-governance",
+      "title": "Architecture & economics",
+      "tags": [
+        "enterprise",
+        "governance"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/frontier-ai",
+      "title": "Models & intelligence",
+      "tags": [
+        "frontier",
+        "ai"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/quantum-technology",
+      "title": "Quantum & emerging technology",
+      "tags": [
+        "quantum",
+        "technology"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/reality-architecture",
+      "title": "Human potential & biology",
+      "tags": [
+        "reality",
+        "architecture"
+      ],
+      "type": "research"
     },
     {
       "href": "/research/methodology",
