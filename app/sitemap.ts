@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
+import { researchHubs } from '@/lib/research/hubs'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
 import { getAllModels, registryLastUpdated } from '@/lib/llm-hub/registry'
@@ -501,6 +502,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
           priority: page.priority,
         })
       })
+  researchHubs.forEach(hub => {
+    entries.push({ url: `${BASE_URL}/research/hubs/${hub.slug}`, lastModified: '2026-09-13', changeFrequency: 'weekly', priority: 0.85 })
+  })
+
   // Research domain pages (dynamic from registry)
   researchDomains.forEach(domain => {
     entries.push({

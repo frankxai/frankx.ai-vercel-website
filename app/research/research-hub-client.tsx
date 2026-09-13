@@ -32,7 +32,7 @@ import {
   DraftingCompass,
   Image,
 } from 'lucide-react'
-import { researchDomains, researchAgents, domainCategories } from '@/lib/research/domains'
+import { researchDomains, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
 import { domainSources } from '@/lib/research/sources'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
@@ -65,23 +65,13 @@ const colorConfig: Record<string, { border: string; text: string; bg: string; gr
   sky: { border: 'border-sky-500/30', text: 'text-sky-400', bg: 'bg-sky-500/10', gradient: 'from-sky-500/20 to-sky-500/5', glow: 'shadow-sky-500/20' },
 }
 
-// Get featured domains (3 most recently updated) — exclude removed/pending domains
-const featuredDomains = [...researchDomains]
-  .filter((d) => 
-    !d.slug.startsWith('REMOVED-') && 
-    !d.title.startsWith('[REMOVED]') && 
-    d.sourceCount > 0
-  )
-  .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
-  .slice(0, 3)
-
 const totalSources = new Set(
   Object.values(domainSources).flat().map((source) => source.url),
 ).size
 const sourcedDomainCount = researchDomains.filter(
-  (domain) => 
-    !domain.slug.startsWith('REMOVED-') && 
-    !domain.title.startsWith('[REMOVED]') && 
+  (domain) =>
+    !domain.slug.startsWith('REMOVED-') &&
+    !domain.title.startsWith('[REMOVED]') &&
     domain.sourceCount > 0 &&
     (domainSources[domain.slug]?.length ?? 0) > 0,
 ).length
@@ -89,41 +79,41 @@ const sourceCountFor = (slug: string) => domainSources[slug]?.length ?? 0
 
 function HeroSection() {
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden">
+    <section className="relative pt-28 pb-12 md:pt-32 md:pb-14 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             <span className="text-xs font-semibold text-emerald-400 tracking-wider uppercase">
-              Research hub · architecture routing
+              FrankX Research · Science, systems & human potential
             </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-            Which model for which architecture —
+            Research what matters.
             <span className="block bg-gradient-to-r from-emerald-400 to-cyan-300 bg-clip-text text-transparent">
-              with sources, tests, and a named author.
+              Build what comes next.
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-white/70 mb-8 leading-relaxed max-w-3xl">
-            The swarm recommends a job and a system shape first, then a model. Vendor scores,
-            independent composites, and first-party receipts stay labeled. Frank still publishes.
+            Explore the ideas shaping intelligent systems, creative work and human potential.
+            Seven focused hubs connect the research, the sources and the decisions you can make with them.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <Link
-              href="#recommend"
+              href="#hubs"
               className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-[background-color,color]"
             >
-              Swarm recommendations
+              Explore research hubs
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/research/model-arena"
+              href="#domains"
               className="inline-flex items-center gap-2 bg-white/5 text-white px-6 py-3 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-[background-color,color,border-color]"
             >
-              Model Arena
+              Search the research
             </Link>
             <Link
               href="#methodology"
@@ -135,14 +125,14 @@ function HeroSection() {
         </div>
 
         {/* Stats */}
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { label: 'Research domains', value: String(researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length), icon: Layers },
             { label: 'Domains with sources', value: String(sourcedDomainCount), icon: ShieldCheck },
             { label: 'Source references', value: `${totalSources}+`, icon: Search },
-            { label: 'Specialist agent roles', value: String(researchAgents.length), icon: Radar },
+            { label: 'Research hubs', value: '7', icon: Compass },
           ].map((stat, i) => (
-            <div key={i} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-xl p-4">
+            <div key={i} className="border-l border-white/15 py-1 pl-4">
               <stat.icon className="w-4 h-4 text-white/60 mb-2" />
               <p className="text-2xl font-bold text-white mb-0.5">{stat.value}</p>
               <p className="text-xs text-white/60">{stat.label}</p>
@@ -154,106 +144,12 @@ function HeroSection() {
   )
 }
 
-function FeaturedSpotlight() {
-  return (
-    <section id="featured" className="py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-3">
-            <Sparkles className="w-5 h-5 text-amber-400" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Recently refreshed
-            </h2>
-          </div>
-          <p className="text-white/60 max-w-2xl">
-            The domains I have most recently revisited, with source dates and unresolved questions
-            kept close to the synthesis.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-4">
-          {featuredDomains.map((domain, index) => {
-            const Icon = iconMap[domain.icon] || Layers
-            const colors = colorConfig[domain.color] || colorConfig.emerald
-
-            return (
-              <div key={domain.slug}>
-                <Link
-                  href={`/research/${domain.slug}`}
-                  className={`
-                    group relative block rounded-2xl border bg-white/[0.02] p-6 h-full
-                    transition-[background-color,border-color,color,opacity,box-shadow] duration-300 hover:bg-white/[0.05]
-                    ${index === 0
-                      ? `${colors.border} border-opacity-50`
-                      : 'border-white/[0.08]'
-                    }
-                  `}
-                >
-                  {/* Accent gradient */}
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} opacity-30 group-hover:opacity-60 transition-opacity duration-300`} />
-
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className={`p-3 ${colors.bg} rounded-xl ${colors.border} border`}>
-                        <Icon className={`w-6 h-6 ${colors.text}`} />
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="flex items-center gap-1 text-[10px] text-white/55">
-                          <Calendar className="w-3 h-3" />
-                          {domain.lastUpdated}
-                        </span>
-                      </div>
-                    </div>
-
-                    <h3 className="text-lg font-bold text-white mb-1.5">
-                      {domain.title}
-                    </h3>
-                    <p className="text-sm text-white/60 mb-4">
-                      {domain.subtitle}
-                    </p>
-
-                    {/* Scope preview — avoid lifting provisional claims out of context */}
-                    <p className="text-xs text-white/60 leading-relaxed line-clamp-3 mb-4">
-                      {domain.description}
-                    </p>
-
-                    {/* Footer */}
-                    <div className="flex items-center justify-between pt-3 border-t border-white/[0.04]">
-                      <span className="text-[10px] text-white/55">
-                        {sourceCountFor(domain.slug) > 0
-                          ? `${sourceCountFor(domain.slug)} source references`
-                          : 'Source registry pending'}
-                      </span>
-                      <span className={`inline-flex items-center gap-1 text-xs font-medium ${colors.text} group-hover:gap-2 transition-[gap,color]`}>
-                        Read Brief
-                        <ArrowRight className="w-3 h-3" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const categoryKeys: (DomainCategory | 'all')[] = [
-  'all',
-  'frontier-ai',
-  'agentic-systems',
-  'ai-infrastructure',
-  'quantum-technology',
-  'reality-architecture',
-  'agentic-products',
-  'enterprise-governance',
-]
+const categoryKeys: (DomainCategory | 'all')[] = ['all', 'frontier-ai', 'agentic-systems', 'ai-infrastructure', 'quantum-technology', 'reality-architecture', 'agentic-products', 'enterprise-governance']
 
 function DomainsGrid() {
   const [activeCategory, setActiveCategory] = useState<DomainCategory | 'all'>('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const [showAll, setShowAll] = useState(false)
 
   const filteredDomains = useMemo(() => {
     // Exclude removed/pending domains from display
@@ -356,6 +252,7 @@ function DomainsGrid() {
           })}
         </div>
 
+        {!searchQuery && activeCategory === 'all' && <button type="button" onClick={() => setShowAll(!showAll)} aria-expanded={showAll} className="mb-6 min-h-11 rounded-full border border-white/20 px-5 text-sm text-white/80 hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-emerald-300">{showAll ? 'Show fewer briefs' : `Show all ${filteredDomains.length} briefs`}</button>}
         {/* Results count */}
         {(searchQuery || activeCategory !== 'all') && (
           <p className="text-xs text-white/50 mb-4">
@@ -377,7 +274,7 @@ function DomainsGrid() {
           </div>
         ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredDomains.map((domain) => {
+          {(showAll || searchQuery || activeCategory !== 'all' ? filteredDomains : filteredDomains.slice(0, 12)).map((domain) => {
             const Icon = iconMap[domain.icon] || Layers
             const colors = colorConfig[domain.color] || colorConfig.emerald
 
@@ -425,45 +322,6 @@ function DomainsGrid() {
           })}
         </div>
         )}
-      </div>
-    </section>
-  )
-}
-
-function ResearchTeamSection() {
-  return (
-    <section id="team" className="py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Specialist research roles
-          </h2>
-          <p className="text-white/60 max-w-2xl">
-            Five bounded roles support scanning, evidence review, synthesis, and production.
-            They work inside directed sessions; none has authority to publish on its own.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-          {researchAgents.map((agent) => {
-            const Icon = iconMap[agent.icon] || Layers
-            const colors = colorConfig[agent.color] || colorConfig.emerald
-
-            return (
-              <div
-                key={agent.name}
-                className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 hover:bg-white/[0.04] transition-[background-color,box-shadow] group"
-              >
-                <div className={`p-2.5 ${colors.bg} rounded-xl w-fit mb-3 group-hover:shadow-lg ${colors.glow} transition-[box-shadow]`}>
-                  <Icon className={`w-5 h-5 ${colors.text}`} />
-                </div>
-                <h3 className="text-sm font-bold text-white mb-0.5">{agent.name}</h3>
-                <p className={`text-xs ${colors.text} mb-2`}>{agent.role}</p>
-                <p className="text-xs text-white/60 leading-relaxed">{agent.specialty}</p>
-              </div>
-            )
-          })}
-        </div>
       </div>
     </section>
   )
@@ -621,7 +479,7 @@ function FlagshipArticles() {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-3">
             <FileText className="w-5 h-5 text-cyan-300" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Flagship Articles</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Selected investigations</h2>
           </div>
           <p className="text-white/60 max-w-2xl">
             Long-form investigations that preserve sources, questions, and the distinction
@@ -731,8 +589,10 @@ function QualitiesResearchBridge() {
 
 export default function ResearchHubClient({
   children,
+  models,
 }: {
   children?: ReactNode
+  models?: ReactNode
 }) {
   return (
     <main className="relative min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
@@ -773,9 +633,9 @@ export default function ResearchHubClient({
         {children}
         <FlagshipArticles />
         <QualitiesResearchBridge />
-        <FeaturedSpotlight />
+
         <DomainsGrid />
-        <ResearchTeamSection />
+        {models}
         <MethodologySection />
         <LearnHubSection
           relatedPortals={[...MODEL_MAKER_PORTALS]}

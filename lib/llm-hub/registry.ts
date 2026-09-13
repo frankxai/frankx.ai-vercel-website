@@ -12,6 +12,7 @@ export interface ModelEntry {
   organization: string
   family?: string
   released?: string
+  last_verified?: string
   status?: string
   architecture?: string
   parameters?: string
