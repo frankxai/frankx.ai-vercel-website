@@ -640,6 +640,10 @@ export default function ResearchHubClient({
         <MethodologySection />
         <LearnHubSection
           relatedPortals={[...MODEL_MAKER_PORTALS]}
+          descriptionOverrides={{
+            'claude-mastery': 'Claude workflows: prompting, coding, tool use and agent development.',
+            'gemini-mastery': 'Google AI workflows: multimodal prompting, research and creative production.',
+          }}
           eyebrow="From research to practice"
           heading="Learn the tools hands-on"
           blurb="The research maps the landscape. These portals curate the videos, docs, and expert channels to actually build with each platform."
