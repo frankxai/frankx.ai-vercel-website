@@ -82,10 +82,23 @@ export const researchHubs: {
   },
 ];
 
+export function researchCategory(
+  category: DomainCategory | undefined,
+): DomainCategory | undefined {
+  const aliases: Partial<Record<DomainCategory, DomainCategory>> = {
+    "ai-systems": "agentic-systems",
+    "models-tools": "frontier-ai",
+    "creative-productivity": "agentic-products",
+    "health-science": "reality-architecture",
+    "policy-systems": "enterprise-governance",
+  };
+  return category ? (aliases[category] ?? category) : undefined;
+}
+
 export function domainsForHub(category: DomainCategory) {
   return researchDomains.filter(
     (d) =>
-      d.category === category &&
+      researchCategory(d.category) === category &&
       !d.slug.startsWith("REMOVED-") &&
       !d.title.startsWith("[REMOVED]") &&
       d.sourceCount > 0 &&

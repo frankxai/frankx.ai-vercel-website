@@ -35,6 +35,7 @@ import {
 import { researchDomains, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
 import { domainSources } from '@/lib/research/sources'
+import { researchCategory } from '@/lib/research/hubs'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { MODEL_MAKER_PORTALS } from '@/lib/learn/related-portals'
@@ -155,7 +156,7 @@ function DomainsGrid() {
     // Exclude removed/pending domains from display
     let domains = (activeCategory === 'all'
       ? researchDomains
-      : researchDomains.filter(d => d.category === activeCategory)
+      : researchDomains.filter(d => researchCategory(d.category) === activeCategory)
     ).filter((d) =>
       !d.slug.startsWith('REMOVED-') &&
       !d.title.startsWith('[REMOVED]') &&
@@ -226,7 +227,7 @@ function DomainsGrid() {
             )
             const count = key === 'all'
               ? activeDomains.length
-              : activeDomains.filter(d => d.category === key).length
+              : activeDomains.filter(d => researchCategory(d.category) === key).length
 
             return (
               <button
