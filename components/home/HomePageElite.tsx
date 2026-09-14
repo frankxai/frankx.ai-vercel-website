@@ -461,26 +461,6 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 </button>
               </div>
 
-            {/* CTAs — first desktop viewport */}
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/ai-architecture"
-                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
-              >
-                Explore AI Architecture
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-
-              <Link
-                href="/ecosystem"
-                onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-colors"
-              >
-                Map the Ecosystem
-              </Link>
-            </div>
-
               <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
                 FrankX is the working studio for founders, creators, and AI leaders building an AI
                 operating system, a Center of Excellence, or agentic products. Explore the
