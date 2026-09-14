@@ -6,6 +6,10 @@ import { Mail, Check, AlertCircle, Loader2 } from 'lucide-react'
 
 type EmailCaptureProps = {
   product?: string
+  // Segments the signup in Resend (`properties.source`) and picks its topic set.
+  // Must match a key in the subscribe route's LIST_CONFIG, else it falls back to
+  // `newsletter`. Defaults to `product` so existing call sites keep working.
+  listType?: string
   placeholder?: string
   buttonText?: string
   className?: string
@@ -13,6 +17,7 @@ type EmailCaptureProps = {
 
 export default function EmailCapture({
   product = 'general',
+  listType,
   placeholder = 'Enter your email',
   buttonText = 'Get Early Access',
   className = '',
@@ -30,7 +35,7 @@ export default function EmailCapture({
       const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, name, product }),
+        body: JSON.stringify({ email, name, product, listType: listType ?? product }),
       })
 
       const data = await response.json()
