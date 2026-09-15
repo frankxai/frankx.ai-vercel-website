@@ -111,7 +111,7 @@ export function GoldenFrequenciesPlayer({ tracks }: { tracks: GoldenFrequencyTra
               <button
                 onClick={() => togglePlay(i)}
                 disabled={!track.streamUrl}
-                className={`w-full text-left disabled:pointer-events-none disabled:opacity-60 glass-card-dawn p-4 md:p-5 flex items-center gap-4 group transition-[border-color,box-shadow,opacity] duration-300 ${}
+                className={`w-full text-left disabled:pointer-events-none disabled:opacity-60 glass-card-dawn p-4 md:p-5 flex items-center gap-4 group transition-[border-color,box-shadow,opacity] duration-300 ${
                   isPlaying ? 'border-amber-400/20 shadow-[0_0_30px_rgba(245,158,11,0.06)]' : ''
                 }`}
               >
