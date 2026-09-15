@@ -7,6 +7,7 @@ import { GoldenFrequenciesPlayer } from '@/components/hoffnung/GoldenFrequencies
 import { MeditationGrid } from '@/components/hoffnung/MeditationGrid'
 import { PersonalLetter } from '@/components/hoffnung/PersonalLetter'
 import Link from 'next/link'
+import { getGoldenFrequencyTracks } from '@/lib/music-playback-catalog'
 import './hoffnung.css'
 
 export default function HoffnungPage() {
@@ -28,7 +29,7 @@ export default function HoffnungPage() {
 
       <div className="section-divider-dawn" />
 
-      <GoldenFrequenciesPlayer />
+      <GoldenFrequenciesPlayer tracks={getGoldenFrequencyTracks()} />
 
       <div className="section-divider-dawn" />
 

@@ -2,7 +2,8 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { homepageFeaturedRelease } from '../../data/homepage-featured-release.ts'
-import { safeMediaUrl, spotifyAlbumEmbed, suggestTracks, routeMusicSuggestion, buildPlaybackCatalog, verifiedPlaybackUrl } from '../../lib/music-playback.ts'
+import { safeMediaUrl, spotifyAlbumEmbed, suggestTracks, routeMusicSuggestion, buildPlaybackCatalog, verifiedPlaybackUrl, withVerifiedStreams } from '../../lib/music-playback.ts'
+import { goldenTracks } from '../../data/hoffnung-golden-tracks.ts'
 
 test('Spotify accepts canonical album URLs only and media rejects active schemes or credentials', () => {
   const id = 'A'.repeat(22)
@@ -89,4 +90,30 @@ test('checked-in catalog exposes every verified export and keeps missing screens
     assert.ok(track, 'the reported track remains discoverable')
     if (!proof.tracks.some(rendition => rendition.sunoId === id)) assert.equal(track.streamUrl, undefined)
   }
+})
+
+test('verified stream attachment adds owned URLs only to fully evidenced tracks and leaves the input untouched', () => {
+  const externalId = 'e7d082d3-8ecd-4fdb-a8fa-582026554153'
+  const tracks = [{ sunoId: sourceId, title: 'Archived song' }, { sunoId: externalId, title: 'External' }]
+  const copy = structuredClone(tracks)
+  const result = withVerifiedStreams(tracks, [registered], [verified])
+  assert.equal(result[0].streamUrl, sourceUrl)
+  assert.equal('streamUrl' in result[1], false)
+  assert.deepEqual(tracks, copy)
+  assert.equal(withVerifiedStreams(tracks, [registered], [{ ...verified, decodeVerified: false }])[0].streamUrl, undefined)
+  assert.equal(withVerifiedStreams(tracks, [{ ...registered, status: 'draft' }], [verified])[0].streamUrl, undefined)
+})
+
+test('the /hoffnung golden frequencies player receives verified owned audio for every track, never the Suno CDN', () => {
+  const readText = path => readFileSync(new URL(path, import.meta.url), 'utf8')
+  const archive = JSON.parse(readText('../../data/music-asset-registry.json'))
+  const proof = JSON.parse(readText('../../data/music-playback-sources.json'))
+  const tracks = withVerifiedStreams(goldenTracks, archive.tracks, proof.tracks)
+  assert.equal(tracks.length, 8)
+  for (const track of tracks) {
+    assert.match(track.streamUrl ?? '', /^https:\/\/vbmwpibfe0yzx3fd\.public\.blob\.vercel-storage\.com\/music\//, track.title)
+  }
+  assert.match(readText('../../lib/music-playback-catalog.ts'), /withVerifiedStreams\(goldenTracks, registry\.tracks, verified\.tracks\)/)
+  assert.match(readText('../../app/hoffnung/page.tsx'), /<GoldenFrequenciesPlayer tracks=\{getGoldenFrequencyTracks\(\)\} \/>/)
+  assert.doesNotMatch(readText('../../components/hoffnung/GoldenFrequenciesPlayer.tsx'), /cdn1\.suno\.ai/)
 })
