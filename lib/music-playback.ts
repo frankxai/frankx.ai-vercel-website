@@ -99,6 +99,19 @@ export function verifiedPlaybackUrl(track: RegisteredTrack, proof?: VerifiedRend
     url.pathname === `/music/${track.sunoId}/${track.sunoId}.mp3` ? safe : undefined
 }
 
+/** Attach an owned stream URL to each track that has full registry and decoder evidence; others stay without one. */
+export function withVerifiedStreams<T extends { sunoId: string }>(
+  tracks: readonly T[], registry: RegisteredTrack[], proofs: VerifiedRendition[],
+): (T & { streamUrl?: string })[] {
+  const records = new Map(registry.map(record => [record.sunoId, record]))
+  const proofById = new Map(proofs.map(proof => [proof.sunoId, proof]))
+  return tracks.map(track => {
+    const record = records.get(track.sunoId)
+    const streamUrl = record && verifiedPlaybackUrl(record, proofById.get(track.sunoId))
+    return streamUrl ? { ...track, streamUrl } : { ...track }
+  })
+}
+
 export function buildPlaybackCatalog(entries: CatalogEntry[], registry: RegisteredTrack[], proofs: VerifiedRendition[]): PlaybackTrack[] {
   const tracks = new Map<string, PlaybackTrack>()
   for (const entry of entries) {
