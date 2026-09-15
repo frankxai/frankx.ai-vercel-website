@@ -138,7 +138,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
                 <button
                   key={days}
                   onClick={() => handlePeriodChange(days)}
-                  className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${
+                  className={`rounded-md px-3 py-1 text-xs font-medium transition-colors ${
                     selectedPeriod === days
                       ? 'bg-amber-400/20 text-amber-300 shadow'
                       : 'text-slate-400 hover:text-white'
@@ -337,7 +337,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
                   value={inspectUrl}
                   onChange={(e) => setInspectUrl(e.target.value)}
                   placeholder="https://frankx.ai/blog/..."
-                  className="flex-1 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:border-amber-400 focus:outline-none"
+                  className="flex-1 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:border-amber-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60"
                 />
                 <button
                   type="submit"
@@ -378,7 +378,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
                   placeholder="Filter queries..."
                   value={queryFilter}
                   onChange={(e) => setQueryFilter(e.target.value)}
-                  className="w-full sm:w-64 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:border-amber-400 focus:outline-none"
+                  className="w-full sm:w-64 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:border-amber-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60"
                 />
               </div>
 
@@ -434,7 +434,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
                     <div key={idx} className="flex-1 flex flex-col items-center group relative">
                       <div
                         style={{ height: `${heightPercent}%` }}
-                        className="w-full rounded-t bg-cyan-400/30 group-hover:bg-cyan-400/70 transition-all"
+                        className="w-full rounded-t bg-cyan-400/30 group-hover:bg-cyan-400/70 transition-colors"
                       />
                       <div className="hidden group-hover:block absolute bottom-full mb-1 z-20 whitespace-nowrap rounded border border-white/20 bg-slate-900 px-2 py-1 text-[10px] text-white shadow-lg">
                         {d.date}: <strong>{d.users}</strong> visitors ({d.pageviews} views)
