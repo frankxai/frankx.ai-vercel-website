@@ -81,6 +81,27 @@ if [ -n "${VERCEL_GIT_PULL_REQUEST_ID:-}" ] && [ -n "${VERCEL_GIT_REPO_OWNER:-}"
   fi
 fi
 
+# 0d. Direct branch push check — when VERCEL_GIT_PULL_REQUEST_ID is unset.
+#     When agents or developers push commits to a feature branch before or without
+#     opening a pull request, Vercel initiates a preview build with no PR ID.
+#     Check if an open, non-draft PR exists for this branch. If no open PR exists,
+#     or if all open PRs for this branch are drafts, SKIP the preview build to avoid
+#     burning build minutes on intermediate, unreviewed work.
+if [ -z "${VERCEL_GIT_PULL_REQUEST_ID:-}" ] && [ -n "${VERCEL_GIT_COMMIT_REF:-}" ] && [ "${VERCEL_GIT_COMMIT_REF:-}" != "main" ] && [ -n "${VERCEL_GIT_REPO_OWNER:-}" ] && [ -n "${VERCEL_GIT_REPO_SLUG:-}" ]; then
+  OPEN_PR=$(curl -sf --max-time 5 \
+    "https://api.github.com/repos/${VERCEL_GIT_REPO_OWNER}/${VERCEL_GIT_REPO_SLUG}/pulls?head=${VERCEL_GIT_REPO_OWNER}:${VERCEL_GIT_COMMIT_REF}&state=open" 2>/dev/null)
+  if [ -n "$OPEN_PR" ]; then
+    CLEAN_PR=$(printf '%s' "$OPEN_PR" | tr -d '[:space:]')
+    if [ "$CLEAN_PR" = "[]" ]; then
+      echo "[should-deploy] No open PR for branch ${VERCEL_GIT_COMMIT_REF} — SKIPPING preview build."
+      exit 0
+    elif echo "$OPEN_PR" | grep -q '"draft"[[:space:]]*:[[:space:]]*true' && ! echo "$OPEN_PR" | grep -q '"draft"[[:space:]]*:[[:space:]]*false'; then
+      echo "[should-deploy] Open PR for branch ${VERCEL_GIT_COMMIT_REF} is a draft — SKIPPING preview build."
+      exit 0
+    fi
+  fi
+fi
+
 # 1. Pick a base SHA to diff against:
 #    - Prefer VERCEL_GIT_PREVIOUS_SHA (handles merge commits + multi-commit pushes correctly)
 #    - Fall back to HEAD^ only when Vercel did not supply a previous SHA.
