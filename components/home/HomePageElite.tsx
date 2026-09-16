@@ -711,7 +711,7 @@ function HubShowcase({
   const imageBlock = (
     <Link
       href={ctaHref}
-      aria-label={`${ctaLabel}: ${title}`}
+      aria-label={`Explore ${title}`}
       onClick={() => trackEvent('homepage_proof_room_cta_clicked', {
         room: id,
         destination: ctaHref,
