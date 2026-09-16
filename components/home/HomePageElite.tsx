@@ -1,3 +1,5 @@
+/// <reference types="next/image-types/global" />
+
 'use client'
 
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
