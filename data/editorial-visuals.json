@@ -1,0 +1,26 @@
+{
+  "content-atomizer": {
+    "src": "/images/editorial/content-atomizer.svg",
+    "width": 960,
+    "height": 1060,
+    "alt": "Content atomizer: receive an article, draft three formats, review the drafts, then publish approved versions.",
+    "caption": "A review step separates generated drafts from public posts. This is a workflow schematic, not an n8n screenshot.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://www.frankx.ai/blog/n8n-automation-ai-creators-9-workflows",
+    "rights": "original",
+    "createdOn": "2026-09-16",
+    "kind": "diagram"
+  },
+  "voice-production": {
+    "src": "/images/editorial/voice-production.svg",
+    "width": 960,
+    "height": 1060,
+    "alt": "Narration workflow: prepare a script and authorized voice, generate a short sample, review pronunciation and delivery, then export approved audio.",
+    "caption": "Review a short sample before generating the complete narration. The diagram describes a workflow; it makes no latency or quality benchmark claim.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://www.frankx.ai/blog/ultimate-elevenlabs-workflow-2026",
+    "rights": "original",
+    "createdOn": "2026-09-16",
+    "kind": "diagram"
+  }
+}

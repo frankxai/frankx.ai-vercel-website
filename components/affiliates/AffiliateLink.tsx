@@ -1,40 +1,36 @@
-﻿'use client'
+'use client'
 
 import React from 'react'
 import { trackAffiliateClick } from '@/lib/affiliates/tracking'
-import { buildAffiliateLink } from '@/lib/affiliates/link-builder'
+import { getAffiliateDestination } from '@/lib/affiliates/link-builder'
 
-interface AffiliateLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface AffiliateLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   affiliateId: string
   trackingId: string
   children: React.ReactNode
   'data-context'?: string
 }
 
-const AffiliateLink: React.FC<AffiliateLinkProps> = ({ affiliateId, trackingId, children, ...props }) => {
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-
-    trackAffiliateClick(affiliateId, trackingId, {
-      page: window.location.pathname,
-      context: props['data-context'],
-    })
-
-    const affiliateUrl = buildAffiliateLink(affiliateId, trackingId, {
-      utm_source: 'frankx.ai',
-      utm_medium: 'affiliate',
-      utm_campaign: trackingId,
-    })
-
-    props.onClick?.(event)
-
-    if (affiliateUrl) {
-      window.open(affiliateUrl, '_blank', 'noopener,noreferrer')
-    }
-  }
+const AffiliateLink: React.FC<AffiliateLinkProps> = ({ affiliateId, trackingId, children, onClick, rel, ...props }) => {
+  const destination = getAffiliateDestination(affiliateId)
+  if (!destination) return <span>{children}</span>
+  const relations = new Set((rel ?? '').split(/\s+/).filter(Boolean))
+  relations.add('noopener')
+  if (destination.sponsored) relations.add('sponsored')
 
   return (
-    <a {...props} onClick={handleClick}>
+    <a {...props} href={destination.href} rel={[...relations].join(' ')}
+      onClick={(event) => {
+        onClick?.(event)
+        if (!event.defaultPrevented && destination.sponsored) {
+          try {
+            trackAffiliateClick(affiliateId, trackingId, {
+              page: window.location.pathname,
+              context: props['data-context'],
+            })
+          } catch { /* Analytics must never prevent normal navigation. */ }
+        }
+      }}>
       {children}
     </a>
   )
