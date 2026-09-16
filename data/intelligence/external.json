@@ -1,7 +1,7 @@
 {
   "schema": "frankx/external-intelligence@1",
   "_description": "External model intelligence from policy-approved public sources. Every ingested figure carries source, licence and retrieval time. Link-only sources are normalised once at the top level and never ingested.",
-  "generated_at": "2026-08-31T06:11:59.768Z",
+  "generated_at": "2026-09-16T03:04:49.644Z",
   "sources": [
     {
       "id": "models-dev",
@@ -22,7 +22,7 @@
         }
       ],
       "attribution": "models.dev (SST)",
-      "retrieved_at": "2026-08-31T06:11:59.768Z",
+      "retrieved_at": "2026-09-16T03:04:49.644Z",
       "status": "ok"
     },
     {
@@ -85,7 +85,28 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1000000,
+      "benchmarks": []
+    },
+    {
+      "id": "claude-fable-5-1",
+      "name": "Claude Fable 5.1",
+      "org": "anthropic",
+      "in_registry": true,
+      "names": {
+        "models-dev": "Claude Fable 5.1"
+      },
+      "pricing": {
+        "in_usd_per_m": 10,
+        "out_usd_per_m": 50,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -106,7 +127,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -127,7 +148,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -148,7 +169,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -169,7 +190,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -190,7 +211,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -211,7 +232,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -232,7 +253,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -253,7 +274,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -296,7 +317,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -328,7 +349,28 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1048576,
+      "benchmarks": []
+    },
+    {
+      "id": "gemini-3-8-flash",
+      "name": "Gemini 3.8 Flash",
+      "org": "google",
+      "in_registry": true,
+      "names": {
+        "models-dev": "Gemini 3.8 Flash"
+      },
+      "pricing": {
+        "in_usd_per_m": 0.75,
+        "out_usd_per_m": 3.75,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -371,7 +413,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -392,11 +434,54 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
       "context_tokens": 1000000,
+      "benchmarks": []
+    },
+    {
+      "id": "gpt-6-astra",
+      "name": "GPT-6 Astra",
+      "org": "openai",
+      "in_registry": true,
+      "names": {
+        "models-dev": "GPT-6 Astra"
+      },
+      "pricing": {
+        "in_usd_per_m": 10,
+        "out_usd_per_m": 50,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1050000,
+      "benchmarks": []
+    },
+    {
+      "id": "gpt-image-2-5-flare",
+      "name": "GPT Image 2.5 Flare",
+      "org": "openai",
+      "in_registry": true,
+      "names": {},
+      "pricing": null,
+      "adoption": null,
+      "context_tokens": null,
+      "benchmarks": []
+    },
+    {
+      "id": "gpt-image-2-5-sunburst",
+      "name": "GPT Image 2.5 Sunburst",
+      "org": "openai",
+      "in_registry": true,
+      "names": {},
+      "pricing": null,
+      "adoption": null,
+      "context_tokens": null,
       "benchmarks": []
     },
     {
@@ -435,7 +520,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -456,7 +541,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -477,7 +562,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -542,7 +627,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -563,7 +648,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,
@@ -584,7 +669,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-08-31T06:11:59.768Z",
+        "retrieved_at": "2026-09-16T03:04:49.644Z",
         "modified": true
       },
       "adoption": null,

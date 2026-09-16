@@ -79,6 +79,11 @@ on:
       # to this list. Do not build a reporter. See contract-guard.yml for the
       # long form.
       - '*.md'
+      # Sixth trap: a pull request that only deletes a root ESLint config
+      # (eslint.config.mjs) matched no path above, so this required check was
+      # expected and never reported. Lint configuration belongs here on merit:
+      # it decides which rules the guarded surfaces are held to.
+      - 'eslint.config.*'
 
 concurrency:
   group: merge-gate-${{ github.ref }}
