@@ -1,10 +1,14 @@
+/// <reference types="next/image-types/global" />
+
 'use client'
 
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
+import architectureArtwork from '@/public/images/home/ai-architecture-atelier-v2.webp'
+import musicArtwork from '@/public/images/home/music-lab-studio-v2.webp'
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { ArrowRight, ChevronDown, Pause, Play, Sparkles } from 'lucide-react'
 
@@ -652,13 +656,12 @@ interface HubShowcaseProps {
   eyebrow: string
   title: string
   description: string
-  imageSrc: string
+  imageSrc: StaticImageData
   imageAlt: string
   links: {
     label: string
     detail: string
     href: string
-    marker: { left: string; top: string }
   }[]
   ctaLabel: string
   ctaHref: string
@@ -679,9 +682,7 @@ function HubShowcase({
   color,
   mediaSide,
 }: HubShowcaseProps) {
-  const [activeIndex, setActiveIndex] = useState(0)
   const headingId = `${id}-title`
-  const activeLabel = links[activeIndex]?.label ?? title
   const theme = color === 'emerald'
     ? {
         room: 'border-emerald-300/[0.15] bg-[#0a1110]/95',
@@ -689,11 +690,7 @@ function HubShowcase({
         cta: 'bg-emerald-300 text-[#03120d] hover:bg-emerald-200 focus-visible:ring-emerald-300/70',
         link: 'hover:border-emerald-300/25 hover:bg-emerald-300/[0.06] focus-visible:border-emerald-300/40 focus-visible:bg-emerald-300/[0.08]',
         index: 'text-emerald-300/[0.75]',
-        marker: 'border-emerald-200/[0.80] bg-emerald-300 text-[#03120d] shadow-[0_0_24px_rgba(16,185,129,0.34)]',
-        markerIdle: 'border-emerald-200/[0.35] bg-[#07120f]/80 text-emerald-100/[0.75]',
-        markerLine: 'bg-emerald-200/[0.70]',
         visualBorder: 'border-emerald-200/[0.15]',
-        visualLabel: 'border-emerald-200/20 bg-[#07120f]/75 text-emerald-100/[0.80]',
       }
     : {
         room: 'border-amber-300/[0.15] bg-[#120e08]/95',
@@ -701,11 +698,7 @@ function HubShowcase({
         cta: 'bg-amber-300 text-[#1a1002] hover:bg-amber-200 focus-visible:ring-amber-300/70',
         link: 'hover:border-amber-300/25 hover:bg-amber-300/[0.06] focus-visible:border-amber-300/40 focus-visible:bg-amber-300/[0.08]',
         index: 'text-amber-300/[0.75]',
-        marker: 'border-amber-100/[0.80] bg-amber-300 text-[#1a1002] shadow-[0_0_24px_rgba(245,158,11,0.30)]',
-        markerIdle: 'border-amber-100/[0.35] bg-[#160f06]/80 text-amber-100/[0.75]',
-        markerLine: 'bg-amber-200/[0.70]',
         visualBorder: 'border-amber-200/[0.15]',
-        visualLabel: 'border-amber-200/20 bg-[#160f06]/75 text-amber-100/[0.80]',
       }
 
   const textColumn = mediaSide === 'right'
@@ -718,7 +711,7 @@ function HubShowcase({
   const imageBlock = (
     <Link
       href={ctaHref}
-      aria-label={`${ctaLabel}: ${title}`}
+      aria-label={`Explore ${title}`}
       onClick={() => trackEvent('homepage_proof_room_cta_clicked', {
         room: id,
         destination: ctaHref,
@@ -730,51 +723,26 @@ function HubShowcase({
         src={imageSrc}
         alt={imageAlt}
         fill
+        placeholder="blur"
         className="object-cover transition-transform duration-700 ease-out motion-safe:group-hover/media:scale-[1.012] motion-reduce:transition-none"
-        sizes="(max-width: 1023px) calc(100vw - 48px), 760px"
+        sizes="(max-width: 639px) calc(100vw - 76px), (max-width: 1023px) calc(100vw - 108px), (max-width: 1279px) 60vw, 720px"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#050606]/80 via-transparent to-black/20" />
-
-      <div className="absolute inset-x-4 top-4 flex items-center justify-between gap-3 sm:inset-x-5 sm:top-5" aria-hidden="true">
-        <span className={`rounded-full border px-3 py-1.5 font-mono text-[10px] leading-none backdrop-blur-md sm:text-[11px] ${theme.visualLabel}`}>
-          Working artifact
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a0a0b]/90 to-transparent" />
+      <div aria-hidden="true" className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 text-white sm:inset-x-6 sm:bottom-6">
+        <span className="text-sm font-semibold sm:text-base">Explore {title}</span>
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 bg-[#0a0a0b]/50 transition-colors group-hover/media:bg-white/15 group-focus-visible/media:bg-white/15">
+          <ArrowRight className="h-4 w-4 transition-transform duration-200 motion-safe:group-hover/media:translate-x-0.5 motion-reduce:transition-none" />
         </span>
-        <span className="font-mono text-[10px] text-white/60 sm:text-[11px]">
-          Three starting points
-        </span>
-      </div>
-
-      <div className="absolute inset-0" aria-hidden="true">
-        {links.map((link, index) => {
-          const isActive = index === activeIndex
-          return (
-            <div
-              key={link.href}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-200 motion-reduce:transition-none ${isActive ? 'scale-100 opacity-100' : 'scale-90 opacity-60'}`}
-              style={{ left: link.marker.left, top: link.marker.top }}
-            >
-              <span className={`relative flex h-8 w-8 items-center justify-center rounded-full border font-mono text-[11px] font-semibold sm:h-9 sm:w-9 ${isActive ? theme.marker : theme.markerIdle}`}>
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <span className={`absolute left-1/2 top-full mt-2 h-8 w-px -translate-x-1/2 origin-top transition-transform duration-200 motion-reduce:transition-none ${theme.markerLine} ${isActive ? 'scale-y-100' : 'scale-y-0'}`} />
-            </div>
-          )
-        })}
-      </div>
-
-      <div className="absolute inset-x-4 bottom-4 flex min-h-12 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/55 px-4 py-2.5 backdrop-blur-md sm:inset-x-5 sm:bottom-5 sm:px-5" aria-hidden="true">
-        <span className="hidden font-mono text-[11px] text-white/50 sm:block">Current path</span>
-        <span className="min-w-0 truncate text-xs font-medium text-white/90 sm:text-right sm:text-sm">{activeLabel}</span>
       </div>
     </Link>
   )
 
   return (
-    <section id={id} aria-labelledby={headingId} className="border-t border-white/5 py-20 lg:py-28">
+    <section id={id} aria-labelledby={headingId} className="scroll-mt-24 border-t border-white/5 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <GlowCard color={color} className={`rounded-[2rem] ${theme.room}`}>
           <div className="grid gap-x-10 gap-y-7 p-5 sm:p-7 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8 lg:p-10 xl:gap-x-16 xl:p-12">
-            <header className={`order-1 self-end ${textColumn} lg:row-start-1`}>
+            <header className={`order-1 min-w-0 self-end ${textColumn} lg:row-start-1`}>
               <p className={`mb-3 text-xs font-medium tracking-[0.08em] ${theme.eyebrow}`}>
                 {eyebrow}
               </p>
@@ -783,12 +751,12 @@ function HubShowcase({
               </h2>
             </header>
 
-            <div className={`order-2 ${mediaColumn} lg:row-span-2 lg:row-start-1`}>
+            <div className={`order-2 min-w-0 ${mediaColumn} lg:row-span-2 lg:row-start-1`}>
               {imageBlock}
             </div>
 
-            <div className={`order-3 flex flex-col self-start ${textColumn} lg:row-start-2`}>
-              <p className="max-w-xl text-[15px] leading-7 text-white/[0.68] sm:text-base">
+            <div className={`order-3 flex min-w-0 flex-col self-start ${textColumn} lg:row-start-2`}>
+              <p className="max-w-xl text-base leading-7 text-white/75">
                 {description}
               </p>
 
@@ -799,34 +767,32 @@ function HubShowcase({
                   destination: ctaHref,
                   placement: 'primary',
                 })}
-                className={`group/cta mt-6 inline-flex min-h-12 w-fit items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none ${theme.cta}`}
+                className={`group/cta mt-6 inline-flex min-h-12 w-fit max-w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-center text-sm font-semibold transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none ${theme.cta}`}
               >
                 {ctaLabel}
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/cta:translate-x-0.5 motion-reduce:transition-none" />
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 motion-safe:group-hover/cta:translate-x-0.5 motion-reduce:transition-none" />
               </Link>
 
-              <nav aria-label={`${title} starting points`} className="mt-7" onPointerLeave={() => setActiveIndex(0)}>
-                <p className="mb-2 font-mono text-[10px] text-white/60 sm:text-[11px]">Start here</p>
+              <nav aria-label={`${title} starting points`} className="mt-7">
+                <p className="mb-2 text-xs font-medium text-white/65">Start here</p>
                 <ul className="space-y-2">
                   {links.map((link, index) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        onFocus={() => setActiveIndex(index)}
-                        onPointerEnter={() => setActiveIndex(index)}
                         onClick={() => trackEvent('homepage_proof_room_resource_clicked', {
                           room: id,
                           destination: link.href,
                           position: index + 1,
                         })}
-                        className={`group/link grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl border border-white/[0.07] px-3.5 py-3 transition-[background-color,border-color] duration-200 focus-visible:outline-none motion-reduce:transition-none ${theme.link}`}
+                        className={`group/link grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-white/[0.07] px-3.5 py-3 transition-[background-color,border-color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 motion-reduce:transition-none ${theme.link}`}
                       >
-                        <span className={`font-mono text-[10px] ${theme.index}`}>{String(index + 1).padStart(2, '0')}</span>
+                        <span className={`font-mono text-xs ${theme.index}`}>{String(index + 1).padStart(2, '0')}</span>
                         <span>
                           <span className="block text-sm font-medium text-white/[0.88]">{link.label}</span>
-                          <span className="mt-0.5 block text-xs leading-5 text-white/[0.48]">{link.detail}</span>
+                          <span className="mt-0.5 block text-sm leading-5 text-white/65">{link.detail}</span>
                         </span>
-                        <ArrowRight className="h-4 w-4 text-white/[0.38] transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:text-white/70 motion-reduce:transition-none" />
+                        <ArrowRight className="h-4 w-4 text-white/[0.38] transition-transform duration-200 motion-safe:group-hover/link:translate-x-0.5 group-hover/link:text-white/70 motion-reduce:transition-none" />
                       </Link>
                     </li>
                   ))}
@@ -1604,26 +1570,23 @@ export default function HomePageElite({
           eyebrow="Production AI systems"
           title="AI Architecture"
           description="Reference designs for agent workflows, MCP infrastructure, orchestration, and human oversight—documented with the constraints and deployment choices intact."
-          imageSrc="/images/home/proof-rooms/ai-architecture-workbench-v1.webp"
-          imageAlt="Four-layer graphite architecture model connected by one emerald signal path"
+          imageSrc={architectureArtwork}
+          imageAlt="Conceptual computing campus in graphite and glass, connected by emerald-lit bridges"
           links={[
             {
               label: 'Agentic architecture decision framework',
               detail: 'Choose the right maturity and operating model.',
               href: '/blog/production-agentic-ai-systems',
-              marker: { left: '65%', top: '24%' },
             },
             {
               label: 'Build your first MCP server',
               detail: 'Connect models to tools, data, and guarded actions.',
               href: '/blog/mcp-server-architecture-workshop',
-              marker: { left: '54%', top: '49%' },
             },
             {
               label: 'Seven pillars of production agents',
               detail: 'Review orchestration, memory, safety, and AgentOps.',
               href: '/blog/production-agent-patterns-7-pillars',
-              marker: { left: '48%', top: '72%' },
             },
           ]}
           ctaLabel="Open the AI Architecture field guide"
@@ -1638,26 +1601,23 @@ export default function HomePageElite({
           eyebrow="AI music production"
           title="Music Lab"
           description="A working archive of AI songs, Suno prompt systems, production notes, and playable instruments—built from daily studio practice."
-          imageSrc="/images/home/proof-rooms/music-lab-workbench-v1.webp"
-          imageAlt="Late-night music workbench with tactile controls and an amber waveform"
+          imageSrc={musicArtwork}
+          imageAlt="Conceptual music studio with a grand piano, analog synthesizer, and amber light wave"
           links={[
             {
               label: 'Suno prompt engineering guide',
               detail: 'Shape genre, tempo, instruments, vocals, and mood.',
               href: '/blog/suno-prompt-engineering-complete-guide',
-              marker: { left: '50%', top: '33%' },
             },
             {
               label: 'How music changes your state',
               detail: 'Use tempo, mode, and lyrics with more intention.',
               href: '/blog/science-of-state-change-music',
-              marker: { left: '68%', top: '41%' },
             },
             {
               label: 'Browse releases and tracks',
               detail: 'Listen to the public archive and current experiments.',
               href: '/music',
-              marker: { left: '49%', top: '69%' },
             },
           ]}
           ctaLabel="Open the Music Lab"
