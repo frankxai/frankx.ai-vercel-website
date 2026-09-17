@@ -4,6 +4,15 @@ import { useState, useId, FormEvent } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { trackEvent } from '@/lib/analytics'
+import {
+  MAX_PAIN_LENGTH,
+  PAIN_PROMPT,
+  PRICE_BANDS,
+  PRICE_PROMPT,
+  ROLE_PROMPT,
+  rolesFor,
+  type PriceBand,
+} from '@/lib/diagnostic/demand'
 import { cn } from '@/lib/utils'
 
 interface EmailSignupProps {
@@ -28,6 +37,18 @@ interface EmailSignupProps {
   redirectTo?: string
   showName?: boolean
   compact?: boolean
+  /**
+   * Product registry id this signup is attributed to. Posted with the signup so a
+   * per-product CTA never lands as an anonymous row on a shared list.
+   */
+  intent?: string
+  /** Human label for `intent`, used in the step-2 copy so the questions are clearly scoped. */
+  intentLabel?: string
+  /**
+   * Ask the three demand questions after the email is captured (AGENTS.md §5c). Step 2 is
+   * fully skippable and never gates the signup — the person is already on the list.
+   */
+  askDemand?: boolean
 }
 
 export function EmailSignup({
@@ -39,12 +60,16 @@ export function EmailSignup({
   redirectTo,
   showName = false,
   compact = false,
+  intent,
+  intentLabel,
+  askDemand = false,
 }: EmailSignupProps) {
   const router = useRouter()
   const hpId = useId()
   const emailId = useId()
   const nameId = useId()
   const statusId = useId()
+  const painId = useId()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   // Honeypot — a hidden field real users never see. Bots that auto-fill inputs
@@ -52,6 +77,10 @@ export function EmailSignup({
   const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [priceBand, setPriceBand] = useState<PriceBand | ''>('')
+  const [role, setRole] = useState('')
+  const [pain, setPain] = useState('')
+  const [demandStatus, setDemandStatus] = useState<'idle' | 'loading' | 'done' | 'skipped'>('idle')
   const normalizedPlaceholder = `${placeholder.replace(/[.…]+$/, '')}…`
 
   const handleSubmit = async (e: FormEvent) => {
@@ -77,6 +106,7 @@ export function EmailSignup({
           name: showName ? name : undefined,
           listType,
           source,
+          intent,
           website,
         }),
       })
@@ -110,6 +140,122 @@ export function EmailSignup({
       })
     }
   }
+
+  // Step 2. Sent to /api/demand rather than /api/subscribe because the subscribe route
+  // short-circuits on an existing contact and would drop the answers. A failure is
+  // deliberately silent: the signup already succeeded and nothing here is worth undoing it.
+  const submitDemand = async (e: FormEvent) => {
+    e.preventDefault()
+    if (!priceBand && !role && !pain.trim()) {
+      setDemandStatus('skipped')
+      return
+    }
+    setDemandStatus('loading')
+    try {
+      await fetch('/api/demand', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, intent, priceBand, role, pain: pain.trim() }),
+      })
+      trackEvent('demand_signal_captured', {
+        list_type: listType,
+        intent: intent || 'unspecified',
+        price_band: priceBand || 'skipped',
+      })
+    } catch {
+      /* Already on the list. The answers are a bonus, never a blocker. */
+    }
+    setDemandStatus('done')
+  }
+
+  const demandStep = (
+    <form onSubmit={submitDemand} className="mt-6 space-y-5 border-t border-white/10 pt-6">
+      <div>
+        <p className="text-sm font-medium text-slate-200">
+          Three optional questions{intentLabel ? ` about ${intentLabel}` : ''}
+        </p>
+        <p className="mt-1 text-xs text-slate-400">
+          Skip any of them. Your answers decide what gets built first and what it costs.
+        </p>
+      </div>
+
+      <fieldset>
+        <legend className="text-sm text-slate-300">{PRICE_PROMPT}</legend>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {PRICE_BANDS.map((band) => (
+            <button
+              key={band.value}
+              type="button"
+              aria-pressed={priceBand === band.value}
+              onClick={() => setPriceBand(priceBand === band.value ? '' : band.value)}
+              className={cn(
+                'min-h-11 rounded-full border px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400',
+                priceBand === band.value
+                  ? 'border-purple-400 bg-purple-500/20 text-white'
+                  : 'border-slate-700 text-slate-300 hover:border-slate-500',
+              )}
+            >
+              {band.label}
+            </button>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend className="text-sm text-slate-300">{ROLE_PROMPT}</legend>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {rolesFor(intent).map((option) => (
+            <button
+              key={option}
+              type="button"
+              aria-pressed={role === option}
+              onClick={() => setRole(role === option ? '' : option)}
+              className={cn(
+                'min-h-11 rounded-full border px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400',
+                role === option
+                  ? 'border-purple-400 bg-purple-500/20 text-white'
+                  : 'border-slate-700 text-slate-300 hover:border-slate-500',
+              )}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      </fieldset>
+
+      <div>
+        <label htmlFor={painId} className="block text-sm text-slate-300">
+          {PAIN_PROMPT}
+        </label>
+        <textarea
+          id={painId}
+          rows={2}
+          maxLength={MAX_PAIN_LENGTH}
+          value={pain}
+          onChange={(e) => setPain(e.target.value)}
+          className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3 text-white placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500"
+          placeholder="One line is enough…"
+        />
+      </div>
+
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <button
+          type="submit"
+          disabled={demandStatus === 'loading'}
+          className="min-h-11 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:from-blue-500 hover:to-purple-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 disabled:opacity-50"
+        >
+          {demandStatus === 'loading' ? 'Saving…' : 'Send my answers'}
+        </button>
+        <button
+          type="button"
+          onClick={() => setDemandStatus('skipped')}
+          className="min-h-11 rounded-xl px-6 py-3 text-sm font-medium text-slate-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400"
+        >
+          Skip
+        </button>
+      </div>
+    </form>
+  )
 
   const honeypotField = (
     <div aria-hidden="true" className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden">
@@ -276,6 +422,18 @@ export function EmailSignup({
           </div>
         )}
       </form>
+
+      {askDemand && status === 'success' && demandStatus === 'idle' && demandStep}
+      {askDemand && status === 'success' && demandStatus === 'done' && (
+        <p role="status" aria-live="polite" className="mt-6 text-sm text-emerald-400">
+          Recorded. That is what decides build order.
+        </p>
+      )}
+      {askDemand && status === 'success' && demandStatus === 'skipped' && (
+        <p role="status" aria-live="polite" className="mt-6 text-sm text-slate-400">
+          Skipped. You are on the list either way.
+        </p>
+      )}
 
       <p className="mt-4 text-xs text-slate-500 text-center">
         Occasional FrankX field notes. Unsubscribe anytime.{' '}

@@ -142,3 +142,34 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+<!-- STARLIGHT-EDITORIAL:START -->
+## Editorial contract
+
+Brand: **FrankX** (`frankx`)
+
+- Read `CREATOR.md` before changing public or customer-facing copy.
+- Apply the registered brand voice and the shared editorial gate.
+- Reject generated prestige language, rhetorical contrast formulas, invented claims, and abstract labels that hide simple facts.
+- Keep public labels in sentence case.
+- Run the changed-copy editorial audit before release.
+
+Pinned source: https://github.com/frankxai/starlight-design-intelligence/blob/50ae34c7ac06e6c083f277ca96c3bde8f0a39b43/brand-packs/frankx/COPY.md
+<!-- STARLIGHT-EDITORIAL:END -->
+
+
+<!-- PRODUCT-OUTCOME-CONTRACT:START -->
+## Product outcome acceptance
+
+Before substantial product work, name the intended user's job, current local product decision, owning issue, exact base revision, relevant skills, budget, acceptance and stop condition. Reuse an existing implementation candidate before creating a competing one.
+
+Use the local product, brand, canon, licensing and release rules above. Portfolio work also resolves reviewed `frankxai/agentic-ops` strategy, Registry and quality at one recorded commit through the authorized connection; do not copy private records into this repository or treat proposal branches as accepted policy. An inaccessible source is an explicit limitation, never permission to invent it.
+
+Review availability, function, customer usefulness, design/editorial quality and economics separately. Unsupported claims, lost work, broken authorization or missing required evidence cannot be offset by style scores. Apply only relevant gates and explain non-applicability.
+
+For production-intent work, bind checks and independent review to the exact candidate revision; bind the stable domain to the accepted deployment/source revision. Record recovery/export behavior, failures, all attempts and human intervention. A preview, merge, or READY deployment does not establish customer success.
+
+At handoff distinguish policy proposed, merged, loaded in this agent session and verified in execution. Include the owning issue, policy/source SHA, artifact, verifier, highest evidenced environment and next action. Dates and goals remain targets until measured.
+<!-- PRODUCT-OUTCOME-CONTRACT:END -->
+
+Current quality implementation: https://github.com/frankxai/frankx.ai-vercel-website/issues/706. Reconcile historical instructions against accepted current decisions before changing product scope.

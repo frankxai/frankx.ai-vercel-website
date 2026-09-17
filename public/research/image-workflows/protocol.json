@@ -1,0 +1,176 @@
+{
+  "schema": "frankx/image-workflow-protocol@1",
+  "id": "image-workflows-v1",
+  "updatedAt": "2026-09-10",
+  "status": "not_run",
+  "lastMeasured": null,
+  "measuredRuns": 0,
+  "guide": "/guides/reference-to-campaign",
+  "article": "/blog/chatgpt-images-2-5-creator-founder-workflows",
+  "arena": "/research/model-arena",
+  "receipts": "/research/model-arena/receipts.json",
+  "models": [
+    {
+      "registryId": "gpt-image-2-5-flare",
+      "apiId": "gpt-image-2.5-flare"
+    },
+    {
+      "registryId": "gpt-image-2-5-sunburst",
+      "apiId": "gpt-image-2.5-sunburst"
+    },
+    {
+      "registryId": null,
+      "apiId": null,
+      "role": "current_workflow_baseline",
+      "instruction": "Name and record the actual baseline before executing."
+    }
+  ],
+  "repetitionsPerTaskPerWorkflow": 3,
+  "attemptLimitPerTask": 3,
+  "plannedTaskRuns": 54,
+  "requestCountNote": "Multi-step tasks require several requests. 54 is a task-run plan, not a request count or completed observation count.",
+  "tasks": [
+    {
+      "id": "campaign-scene",
+      "promptTemplate": "Create a campaign image from the supplied product reference. Preserve [fixed identity details]. Use [direction]. Leave space for editable copy.",
+      "reference": "Shared, frozen approved source reference with recorded checksum",
+      "mandatoryChecks": [
+        "product identity",
+        "brief constraints"
+      ]
+    },
+    {
+      "id": "background-edit",
+      "promptTemplate": "Change only the background to [new background]. Preserve the product shape, label, camera angle, crop and lighting direction.",
+      "reference": "Shared, frozen approved campaign output with recorded checksum",
+      "mandatoryChecks": [
+        "unchanged product",
+        "only requested edit"
+      ]
+    },
+    {
+      "id": "exact-copy",
+      "promptTemplate": "Replace the headline with exactly: \"Build your next chapter\". Do not add punctuation. Preserve every other visible word and the composition.",
+      "reference": "Shared, frozen approved image with headline with recorded checksum",
+      "mandatoryChecks": [
+        "exact replacement text",
+        "other words unchanged"
+      ],
+      "targetText": "Build your next chapter"
+    },
+    {
+      "id": "revision-sequence",
+      "promptTemplate": "Apply each step separately, using the last approved output as the next reference.",
+      "reference": "Shared, frozen approved campaign output with recorded checksum",
+      "mandatoryChecks": [
+        "original identity retained",
+        "earlier edits retained"
+      ],
+      "steps": [
+        "Replace background with [background]",
+        "Change only [accent] to [color]",
+        "Create portrait composition preserving all approved changes"
+      ]
+    },
+    {
+      "id": "character-continuity",
+      "promptTemplate": "Place the referenced character in [new scene]. Preserve [specific facial, clothing and accessory details].",
+      "reference": "Shared, frozen approved character reference with recorded checksum",
+      "mandatoryChecks": [
+        "identity details retained"
+      ]
+    },
+    {
+      "id": "portrait-derivative",
+      "promptTemplate": "Create a portrait composition for [placement]. Preserve the subject and mandatory copy. Recompose rather than clipping required content.",
+      "reference": "Shared, frozen approved landscape output with recorded checksum",
+      "mandatoryChecks": [
+        "mandatory content visible",
+        "usable portrait composition"
+      ]
+    }
+  ],
+  "rubric": {
+    "scores": {
+      "0": "Requirement absent or incorrect",
+      "1": "Major repair required",
+      "2": "Visible correction required",
+      "3": "Usable with minor correction",
+      "4": "Passes without correction"
+    },
+    "criteria": [
+      "identity",
+      "instruction_adherence",
+      "text_accuracy",
+      "continuity",
+      "composition"
+    ],
+    "notApplicable": null,
+    "approvalRule": "All mandatory checks pass and a human reviewer explicitly approves. Do not average away a hard failure."
+  },
+  "requiredRunFields": [
+    "run_id",
+    "task_id",
+    "protocol_version",
+    "provider_model_id",
+    "reference_sha256",
+    "prompt",
+    "request_settings",
+    "attempt_index",
+    "output_sha256",
+    "elapsed_ms",
+    "usage",
+    "api_cost_usd",
+    "manual_correction_minutes",
+    "scores",
+    "mandatory_checks_passed",
+    "approved",
+    "reviewer",
+    "recorded_at"
+  ],
+  "agentInstructions": [
+    "This is a planned protocol, never a benchmark result.",
+    "Preserve null for unknown price, model identity, or measurement date.",
+    "Resolve brief placeholders and verify reference permissions before execution.",
+    "Retain failed attempts in total cost and acceptance denominators.",
+    "Use the actual model ID returned or requested by the provider; never infer it from visual style.",
+    "Do not publish private references, prompts or assets without permission.",
+    "Keep measurements in run receipts; do not replace lastMeasured with the protocol update date."
+  ],
+  "economics": {
+    "costPerApprovedAsset": "total API spend across all attempts / approved asset count; null if any cost unknown or approved count is zero",
+    "reportSeparately": [
+      "manual_correction_minutes",
+      "sample_count",
+      "failed_attempts",
+      "generation_latency_ms"
+    ]
+  },
+  "sources": [
+    "https://openai.com/index/introducing-chatgpt-images-2-5/",
+    "https://developers.openai.com/api/docs/pricing"
+  ],
+  "comparisonMode": "shared_fixtures",
+  "fixtureRule": "Freeze a common reference file and checksum for each task before execution. Every contestant receives the same fixture, prompt and request constraints. Do not feed a contestant-specific campaign output into isolated edit comparisons.",
+  "sequenceRule": "All contestants begin the revision-sequence task from the same fixture, then use their own preceding output for each subsequent step. Score the entire sequence as one task run.",
+  "endToEndRule": "Full campaign chains beginning with independently generated images are a separate workflow evaluation. Label them end_to_end and do not pool them with shared-fixture editing results.",
+  "localEvaluator": {
+    "script": "/research/image-workflows/evaluate.mjs",
+    "schema": "/research/image-workflows/attempts.schema.json",
+    "command": "node evaluate.mjs attempts.json",
+    "scope": "User-supplied task-attempt summaries only; no model calls, verification or arena publication. Derive these summary records from retained full run records.",
+    "requiredFields": [
+      "attempt_id",
+      "run_id",
+      "task_id",
+      "provider_model_id",
+      "fixture_set_id",
+      "comparison_mode",
+      "approved",
+      "mandatory_checks_passed",
+      "api_cost_usd",
+      "elapsed_ms",
+      "manual_correction_minutes"
+    ]
+  }
+}

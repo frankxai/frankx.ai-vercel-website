@@ -1,0 +1,362 @@
+{
+  "content_id": "frankx-gpt-6-astra-content-creators-2026-09",
+  "status": "DRAFT",
+  "canonical_url": "https://frankx.ai/blog/gpt-6-astra-for-content-creators",
+  "checked_at": "2026-09-07",
+  "brief": {
+    "brand": "FrankX",
+    "audience": "Independent creators and founders directing multi-format creative production",
+    "reader_job": "Decide which Astra-enabled creator workflows to commission and how to verify that the tools produced usable, editable work.",
+    "thesis": "Evaluate Astra at the creative handoff: an accepted, editable artifact that preserves the source idea and brand, with measured repair cost.",
+    "original_delta": "A cross-vendor capability/access/acceptance matrix, one original multi-format creator commission, and a project-level evaluation scorecard with a recovery test.",
+    "primary_intent": "GPT-6 Astra for content creators",
+    "secondary_questions": [
+      "What changes across ChatGPT, Work and Codex?",
+      "Can Astra use Adobe, Canva and HeyGen?",
+      "What content formats become practical?",
+      "How should creator tool calls be evaluated?"
+    ],
+    "cluster": "large-language-model-hub",
+    "commercial_relationship": "none; vendors are editorial references",
+    "affiliate_links": false,
+    "visual_tier": "FLAGSHIP",
+    "visual_owner": "Parent editor",
+    "strongest_objection": "A vendor demonstration and a documented integration do not establish the success rate of a creator's own multi-tool workflow.",
+    "publication_authority": "Parent editor handles repository, preview and publication evidence. This worker produces draft sources only.",
+    "freshness": "Recheck vendor capabilities and access rules at publication, on any plugin/model release, or after 30 days."
+  },
+  "sources": [
+    {
+      "source_id": "astra-release",
+      "title": "GPT-6 Astra: A new generation of intelligence",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "type": "official_release",
+      "published_at": "2026-09-03",
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "Computer use",
+        "A step change in professional work"
+      ],
+      "paraphrase": "OpenAI describes improvements in computer use, visual judgment and adherence to existing templates.",
+      "article_derived_word_budget": 60,
+      "rights": "Link and concise original paraphrase only; no copied media or quotations."
+    },
+    {
+      "source_id": "openai-games",
+      "title": "Building games with Astra",
+      "publisher": "OpenAI Developers",
+      "author": "Thomas Ricouard",
+      "url": "https://developers.openai.com/blog/how-to-build-games-with-astra",
+      "type": "official_demonstration",
+      "published_at": "2026-09-04",
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "Start with the experience",
+        "Let Astra propose the architecture",
+        "Give Astra a way to inspect and play"
+      ],
+      "paraphrase": "Ricouard describes making Void Explorer in Codex, using concept art as references, implementing a Three.js-based game, exposing testable state and browser journey tests, and reviewing gameplay himself.",
+      "article_derived_word_budget": 170,
+      "rights": "Link and concise original paraphrase only; no copied media or quotations."
+    },
+    {
+      "source_id": "openai-architecture",
+      "title": "Architectural visualization with Astra",
+      "publisher": "OpenAI Developers",
+      "author": "Thomas Ricouard",
+      "url": "https://developers.openai.com/blog/architectural-visualization-with-astra",
+      "type": "official_demonstration",
+      "published_at": "2026-09-04",
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "Start with the house and the atmosphere",
+        "Direct a Blender camera walkthrough",
+        "Walk through the house in Unreal Engine 5"
+      ],
+      "paraphrase": "Ricouard describes editable Blender scene construction through Python, still renders, camera tours and a transfer to Unreal Engine 5. Some material behavior needed approximation and appearance inspection.",
+      "article_derived_word_budget": 170,
+      "rights": "Link and concise original paraphrase only; no copied media or quotations."
+    },
+    {
+      "source_id": "adobe-chatgpt",
+      "title": "Adobe Integration for ChatGPT",
+      "publisher": "Adobe",
+      "url": "https://www.adobe.com/products/firefly/adobe-for-chatgpt.html",
+      "type": "official_product_documentation",
+      "published_at": null,
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "Refine videos for any platform",
+        "Frequently asked questions"
+      ],
+      "paraphrase": "The current Adobe plugin exposes supported creative and document capabilities across ChatGPT, Work and Codex on web and desktop. The page describes video cuts/resizing, image editing and document creation. Tool subsets, account requirements and eligible paid plan requirements apply. Signed-in users can continue supported saved work in Creative Cloud.",
+      "article_derived_word_budget": 190,
+      "rights": "Link and original paraphrase only; no copied logos or media.",
+      "reliability_notes": "This live page has broader capabilities than Adobe's December 2025 launch announcement, which was not used for current feature claims."
+    },
+    {
+      "source_id": "canva-mcp-actions",
+      "title": "Actions you can take in AI assistants connected to Canva MCP",
+      "publisher": "Canva",
+      "url": "https://www.canva.com/help/mcp-canva-usage/",
+      "type": "official_help_documentation",
+      "published_at": null,
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "Tools",
+        "Tool visibility notes"
+      ],
+      "paraphrase": "Canva documents design search, design generation, export, brand template search, dataset schema lookup and template autofill through MCP. The page notes tool visibility varies by client/mode.",
+      "article_derived_word_budget": 170,
+      "rights": "Link and original paraphrase only; no copied templates or media."
+    },
+    {
+      "source_id": "canva-mcp-access",
+      "title": "Connect AI assistants to Canva with the AI Connector",
+      "publisher": "Canva",
+      "url": "https://www.canva.com/help/mcp-agent-setup/",
+      "type": "official_help_documentation",
+      "published_at": null,
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "Check your plan eligibility",
+        "Connect through ChatGPT",
+        "Admin controls for teams"
+      ],
+      "paraphrase": "Canva lists Pro, Teams, Business and Nonprofit as eligible AI Connector plans and documents account and administrator access requirements.",
+      "article_derived_word_budget": 120,
+      "rights": "Link and original paraphrase only."
+    },
+    {
+      "source_id": "canva-chatgpt-generic",
+      "title": "Using ChatGPT to Create Designs and Search Content",
+      "publisher": "Canva",
+      "url": "https://www.canva.com/help/chatgpt-templates/",
+      "type": "official_help_documentation",
+      "published_at": null,
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "Limitations of Canva features in ChatGPT"
+      ],
+      "paraphrase": "This generic page says brand features and export must be done in Canva, differing from MCP-specific documentation. It also lists regional exclusions. Do not universalize these restrictions or imply all clients expose identical tools.",
+      "article_derived_word_budget": 50,
+      "rights": "Link and original paraphrase only.",
+      "reliability_notes": "Conflicts with MCP-specific capability descriptions; article directs readers to verify the actual connected surface."
+    },
+    {
+      "source_id": "heygen-chatgpt",
+      "title": "HeyGen ChatGPT App — AI Video from Any Prompt",
+      "publisher": "HeyGen",
+      "url": "https://www.heygen.com/chatgpt-app",
+      "type": "official_product_documentation",
+      "published_at": null,
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "How it works",
+        "Frequently Asked Questions"
+      ],
+      "paraphrase": "HeyGen documents conversation-driven video creation and revision using avatars, motion graphics, b-roll and narration. Generation needs a HeyGen account and uses its credits. Advanced editing, branding and collaboration remain in HeyGen's own platform.",
+      "article_derived_word_budget": 180,
+      "rights": "Link and original paraphrase only; no copied video or avatar media."
+    },
+    {
+      "source_id": "openai-sites",
+      "title": "Building a shareable site",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/training/walkthroughs/building-a-shareable-site",
+      "type": "official_training_documentation",
+      "published_at": null,
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "Turn an idea into a website",
+        "Choose who can visit"
+      ],
+      "paraphrase": "Sites can build and host web experiences from ChatGPT Work, with support for stored information and files. It is in public beta, and availability and sharing choices depend on account/workspace settings.",
+      "article_derived_word_budget": 150,
+      "rights": "Link and original paraphrase only."
+    },
+    {
+      "source_id": "openai-work",
+      "title": "Getting started with ChatGPT Work",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/training/walkthroughs/getting-started",
+      "type": "official_training_documentation",
+      "published_at": null,
+      "retrieved_at": "2026-09-07",
+      "actually_opened": true,
+      "relevant_sections": [
+        "Chat or Work?"
+      ],
+      "paraphrase": "Chat and Work can both use plugins. OpenAI recommends Chat for questions/quick edits and Work for tasks requiring several steps or app context and a reviewable finished result.",
+      "article_derived_word_budget": 90,
+      "rights": "Link and original paraphrase only."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c01",
+      "text": "OpenAI describes stronger computer use, visual judgment and template adherence in the Astra release.",
+      "type": "fact",
+      "source_ids": [
+        "astra-release"
+      ],
+      "support": "direct",
+      "as_of": "2026-09-07",
+      "freshness": "At publication and on model update",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "OpenAI's September 3 release describes stronger computer use, visual judgment, and template adherence."
+    },
+    {
+      "claim_id": "c02",
+      "text": "The main creator evaluation unit should be an accepted editable artifact and the labor/cost needed to obtain it.",
+      "type": "opinion",
+      "source_ids": [],
+      "support": "derived",
+      "as_of": "2026-09-07",
+      "freshness": "On new evaluation evidence",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "My recommendation: commission one complete creative project and inspect every deliverable. Keep the source files. Measure the time you spend correcting the result."
+    },
+    {
+      "claim_id": "c03",
+      "text": "Both Chat and Work can use plugins; Work is suited to multi-step production tasks.",
+      "type": "fact",
+      "source_ids": [
+        "openai-work"
+      ],
+      "support": "direct",
+      "as_of": "2026-09-07",
+      "freshness": "At publication and product update",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "Both Chat and Work can use plugins. OpenAI positions Chat for questions and quick edits, and Work for tasks involving several steps, app context, and a result to review."
+    },
+    {
+      "claim_id": "c04",
+      "text": "OpenAI's game demonstration combines concept references, implementation and browser testing under ongoing human gameplay review.",
+      "type": "fact",
+      "source_ids": [
+        "openai-games"
+      ],
+      "support": "direct",
+      "as_of": "2026-09-07",
+      "freshness": "At publication",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "In Thomas Ricouard's Void Explorer project, concept images became references for a playable game built in Codex. The implementation included browser tests and inspectable game state, while Ricouard continued playing and judging the experience."
+    },
+    {
+      "claim_id": "c05",
+      "text": "OpenAI's visualization demonstration develops editable Blender work into stills, camera sequences and an Unreal walkthrough, with translation/visual review constraints.",
+      "type": "fact",
+      "source_ids": [
+        "openai-architecture"
+      ],
+      "support": "direct",
+      "as_of": "2026-09-07",
+      "freshness": "At publication",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "His architectural visualization project began with an editable Blender scene and developed into stills, a camera tour, and an Unreal Engine walkthrough. Materials needed translation between rendering systems, and some behavior was approximated."
+    },
+    {
+      "claim_id": "c06",
+      "text": "Adobe documents creative tool subsets across ChatGPT, Work and Codex, with account/plan conditions and supported Creative Cloud handoff.",
+      "type": "fact",
+      "source_ids": [
+        "adobe-chatgpt"
+      ],
+      "support": "direct",
+      "as_of": "2026-09-07",
+      "freshness": "At publication and plugin update",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "Supported tools across ChatGPT, Work, and Codex. Guest access covers a subset; accounts and eligible paid plans unlock additional capabilities."
+    },
+    {
+      "claim_id": "c07",
+      "text": "Canva's MCP documentation lists template autofill/export and plan/permission gates; its generic ChatGPT page describes different limitations.",
+      "type": "fact",
+      "source_ids": [
+        "canva-mcp-actions",
+        "canva-mcp-access",
+        "canva-chatgpt-generic"
+      ],
+      "support": "direct",
+      "as_of": "2026-09-07",
+      "freshness": "At publication and connector update",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "MCP documentation lists template autofill and export. AI Connector access has plan and permission requirements."
+    },
+    {
+      "claim_id": "c08",
+      "text": "HeyGen documents ChatGPT video generation through a connected account and credits; advanced editing/branding remains in the main platform.",
+      "type": "fact",
+      "source_ids": [
+        "heygen-chatgpt"
+      ],
+      "support": "direct",
+      "as_of": "2026-09-07",
+      "freshness": "At publication and app update",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "Conversation-driven video generation uses a HeyGen account and credits. Advanced editing and branding use HeyGen's main platform."
+    },
+    {
+      "claim_id": "c09",
+      "text": "Sites is in public beta, with availability and sharing dependent on the account/workspace.",
+      "type": "fact",
+      "source_ids": [
+        "openai-sites"
+      ],
+      "support": "direct",
+      "as_of": "2026-09-07",
+      "freshness": "At publication and Sites release",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "ChatGPT Work can build and host a site. Sites is in public beta; availability and sharing depend on account and workspace settings."
+    },
+    {
+      "claim_id": "c10",
+      "text": "The project commission and scorecard are original proposed evaluation methods, with no claimed execution results.",
+      "type": "opinion",
+      "source_ids": [],
+      "support": "derived",
+      "as_of": "2026-09-07",
+      "freshness": "Replace only with recorded production evidence",
+      "reviewer": "Parent independent review pending",
+      "public_wording": "This is a documented capability review. The evaluation below is a proposed acceptance model; it contains no measured Astra success rates for Adobe, Canva, or HeyGen."
+    }
+  ],
+  "evidence_receipt": {
+    "measured_tool_results": "None; this is a documented capability review and original evaluation proposal.",
+    "first_party_customer_results": "None claimed.",
+    "media_reproduced": "None.",
+    "public_relationship_labels": "Editorial references only.",
+    "removed_claims": [
+      "Universal Canva feature/access assertions",
+      "Astra-specific Adobe/Canva/HeyGen success rates",
+      "Free unlimited external tool execution",
+      "Claims of measured FrankX creator outcomes"
+    ],
+    "unresolved": [
+      "Independent editorial and truth review by parent",
+      "Governed visuals and OG",
+      "Repository metadata adaptation, preview/render checks and publication evidence",
+      "Actual workflow benchmark runs"
+    ],
+    "checks_passed": [
+      "1171 body words excluding citation URL strings",
+      "Sources JSON parses",
+      "Ten primary-source inline links",
+      "No internal web citation markers",
+      "No invented hands-on result or numerical vendor success rate",
+      "No reproduced third-party media or direct quotations"
+    ],
+    "release_derived_words_note": "Release-derived prose is confined to the 35-word second paragraph; under the 60-word allocation. All other OpenAI facts cite separate developer demonstrations or training pages."
+  }
+}

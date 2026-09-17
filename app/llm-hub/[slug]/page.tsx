@@ -15,7 +15,6 @@ import { getEditorial } from '@/lib/llm-hub/editorial'
 import { comparisonsForModel } from '@/lib/llm-hub/comparisons'
 import { articleForModel } from '@/lib/llm-hub/articles'
 import { fetchLivePricing } from '@/lib/llm-hub/openrouter'
-import { siteConfig } from '@/lib/seo'
 import { ldJson } from '@/lib/seo/jsonld'
 import { CapabilityBadge } from '@/components/llm-hub/CapabilityBadge'
 
@@ -53,11 +52,11 @@ export async function generateMetadata({
       `${model.name.toLowerCase()} vs`,
       'best llm 2026',
     ],
-    alternates: { canonical: `${siteConfig.url}/llm-hub/${slug}` },
+    alternates: { canonical: `https://frankx.ai/llm-hub/${slug}` },
     openGraph: {
       title,
       description,
-      url: `${siteConfig.url}/llm-hub/${slug}`,
+      url: `https://frankx.ai/llm-hub/${slug}`,
       type: 'article',
     },
   }
@@ -117,9 +116,9 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
-      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: `${siteConfig.url}/llm-hub` },
-      { '@type': 'ListItem', position: 3, name: model.name, item: `${siteConfig.url}/llm-hub/${slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai/' },
+      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: 'https://frankx.ai/llm-hub' },
+      { '@type': 'ListItem', position: 3, name: model.name, item: `https://frankx.ai/llm-hub/${slug}` },
     ],
   }
 
@@ -173,21 +172,63 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
 
         {/* Spec grid */}
         <section className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <Spec label="Context" value={formatContext(model.context_window_beta || model.context_window)} />
-          <Spec label="Max output" value={formatContext(model.max_output_tokens)} />
-          <Spec
-            label="Input /1M"
-            value={inputPrice === null ? '—' : inputPrice === 0 ? 'Open' : `$${inputPrice.toFixed(2)}`}
-            live={Boolean(live)}
-          />
-          <Spec
-            label="Output /1M"
-            value={outputPrice === null ? '—' : outputPrice === 0 ? 'Open' : `$${outputPrice.toFixed(2)}`}
-            live={Boolean(live)}
-          />
+          {model.image_pricing ? (
+            <>
+              <Spec label="Context" value="n/a (image model)" />
+              <Spec label="Max output" value="n/a (image model)" />
+              <Spec
+                label="Text in /1M"
+                value={
+                  typeof model.image_pricing.text_input === 'number'
+                    ? `$${model.image_pricing.text_input.toFixed(2)}`
+                    : '—'
+                }
+              />
+              <Spec
+                label="Image out /1M"
+                value={
+                  typeof model.image_pricing.image_output === 'number'
+                    ? `$${model.image_pricing.image_output.toFixed(2)}`
+                    : '—'
+                }
+              />
+            </>
+          ) : (
+            <>
+              <Spec label="Context" value={formatContext(model.context_window_beta || model.context_window)} />
+              <Spec label="Max output" value={formatContext(model.max_output_tokens)} />
+              <Spec
+                label="Input /1M"
+                value={inputPrice === null ? '—' : inputPrice === 0 ? 'Open' : `$${inputPrice.toFixed(2)}`}
+                live={Boolean(live)}
+              />
+              <Spec
+                label="Output /1M"
+                value={outputPrice === null ? '—' : outputPrice === 0 ? 'Open' : `$${outputPrice.toFixed(2)}`}
+                live={Boolean(live)}
+              />
+            </>
+          )}
         </section>
 
-        {live ? (
+        {model.image_pricing ? (
+          <p className="-mt-6 mb-10 text-xs text-white/45">
+            Image rates from{' '}
+            {model.image_pricing.source ? (
+              <a
+                href={model.image_pricing.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                source
+              </a>
+            ) : (
+              'registry'
+            )}
+            {model.image_pricing.checked_at ? ` · checked ${model.image_pricing.checked_at}` : ''}. Chat token Specs do not apply.
+          </p>
+        ) : live ? (
           <p className="-mt-6 mb-10 inline-flex items-center gap-1.5 text-xs text-emerald-400/70">
             <Zap className="h-3 w-3" /> Live pricing via{' '}
             <a href="https://openrouter.ai/models" target="_blank" rel="noopener noreferrer" className="underline">

@@ -1,392 +1,63 @@
-import { Metadata } from 'next';
-import Image from 'next/image';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { bookReviews, getAllReviewCategories } from '@/data/book-reviews';
-import { booksRegistry } from '@/app/books/lib/books-registry';
+import { libraryBooks } from '@/lib/library-catalog';
+import { LibraryExplorer } from '@/components/library/LibraryExplorer';
+import { CollectionCards } from '@/components/library/CollectionCards';
 
-const SITE_URL = 'https://www.frankx.ai';
-const LIBRARY_URL = `${SITE_URL}/library`;
+const LIBRARY_URL = 'https://www.frankx.ai/library';
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+const value = (input: string | string[] | undefined) => typeof input === 'string' ? input : '';
 
-export const metadata: Metadata = {
-  title: 'Library — Book Intelligence',
-  description:
-    'Source-aware book intelligence from Frank Riemer: core arguments, useful models, tensions, and personal interpretation kept distinct.',
-  keywords: [
-    'book reviews',
-    'book summaries',
-    'reading list',
-    'best self-development books',
-    'book key insights',
-    'curated reading',
-    'Profit First review',
-    'Fabric of Reality review',
-  ],
-  alternates: { canonical: LIBRARY_URL },
-  openGraph: {
-    title: 'The Library | FrankX',
-    description: 'Source-aware book intelligence with authorship, interpretation, and review status kept distinct.',
-    type: 'website',
-    url: LIBRARY_URL,
-    siteName: 'FrankX',
-    images: [
-      {
-        url: '/images/brand/frankx-public-workspace-og-1200x630.png',
-        width: 1200,
-        height: 630,
-        alt: 'FrankX Library — book reviews and key insights',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'The Library | FrankX',
-    description: 'Source-aware book intelligence with authorship, interpretation, and review status kept distinct.',
-    images: ['/images/brand/frankx-public-workspace-og-1200x630.png'],
-  },
-};
+export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
+  const params = await searchParams;
+  const filtered = Boolean(params.q || params.category || params.sort);
+  const title = 'The Library — Books, Reading Guides & Curated Collections';
+  const description = 'Find books by title, author, tradition, or idea. Explore sacred texts, Michael Singer, philosophy, creativity, and business with reading guides and edition notes.';
+  return {
+    title,
+    description,
+    alternates: { canonical: LIBRARY_URL },
+    ...(filtered ? { robots: { index: false, follow: true } } : {}),
+    openGraph: { title, description, url: LIBRARY_URL, type: 'website', images: [{ url: `${LIBRARY_URL}/opengraph-image`, width: 1200, height: 630, alt: 'The FrankX Library — curated books and reading guides' }] },
+    twitter: { card: 'summary_large_image', title, description, images: [`${LIBRARY_URL}/opengraph-image`] },
+  };
+}
 
-function CollectionJsonLd() {
-  const data = {
+export default async function LibraryPage({ searchParams }: { searchParams: SearchParams }) {
+  const params = await searchParams;
+  const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-          { '@type': 'ListItem', position: 2, name: 'Library', item: LIBRARY_URL },
-        ],
-      },
-      {
-        '@type': 'CollectionPage',
-        name: 'The FrankX Library',
-        description:
-          'Source-aware book intelligence with the author’s ideas and Frank Riemer’s interpretation kept distinct.',
-        url: LIBRARY_URL,
-        isPartOf: { '@type': 'WebSite', name: 'FrankX', url: SITE_URL },
-      },
-      {
-        '@type': 'ItemList',
-        name: 'Book Reviews',
-        numberOfItems: bookReviews.length,
-        itemListElement: bookReviews.map((review, i) => ({
-          '@type': 'ListItem',
-          position: i + 1,
-          url: `${LIBRARY_URL}/${review.slug}`,
-          name: `${review.title} by ${review.author}`,
-        })),
-      },
+      { '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.frankx.ai' },
+        { '@type': 'ListItem', position: 2, name: 'Library', item: LIBRARY_URL },
+      ] },
+      { '@type': 'CollectionPage', '@id': LIBRARY_URL, name: 'The FrankX Library', url: LIBRARY_URL,
+        mainEntity: { '@type': 'ItemList', numberOfItems: libraryBooks.length, itemListElement: libraryBooks.map((book, index) => ({ '@type': 'ListItem', position: index + 1, name: `${book.title} — ${book.author}`, url: `${LIBRARY_URL}/${book.slug}` })) } },
     ],
   };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
-}
-
-const categoryColors: Record<string, string> = {
-  'Self-Development': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  Habits: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Psychology: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Productivity: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Focus: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Mindset: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Fitness: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Fiction: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Philosophy: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  Stoicism: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  Creativity: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Wealth: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  Classic: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Writing: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Career: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Spirituality: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Memoir: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Autobiography: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Discipline: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  Ikigai: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  Longevity: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
-  Meaning: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
-  Health: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
-  Anthropology: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  Neuroscience: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  'Inner Work': 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  IFS: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  Music: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  'Rockstar Energy': 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
-  Scenes: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  Scaling: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
-  'Business Strategy': 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  Leadership: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25',
-  Platforms: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
-};
-
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className="flex gap-0.5" role="img" aria-label={`${rating} out of 5 stars`}>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <svg
-          key={star}
-          aria-hidden="true"
-          className={`h-4 w-4 ${star <= rating ? 'text-emerald-400' : 'text-white/10'}`}
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-      ))}
-    </div>
-  );
-}
-
-export default function LibraryPage() {
-  const categories = getAllReviewCategories();
-  const sortedReviews = [...bookReviews].sort((a, b) =>
-    b.reviewDate.localeCompare(a.reviewDate)
-  );
-
   return (
     <main className="min-h-screen bg-[#0a0a0b]">
-      <CollectionJsonLd />
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 px-6">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
+      <header className="mx-auto max-w-6xl px-6 pb-10 pt-28 sm:pt-32">
+        <p className="mb-4 text-sm text-emerald-200">The reading room</p>
+        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">The Library</h1>
+        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">Find a book for the question you’re carrying. Follow a reading path through philosophy, spiritual traditions, creative work, and building a life of your own.</p>
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+          <span className="text-white/65">{libraryBooks.length} books · 6 curated collections</span>
+          <Link href="/library/quotes" className="text-emerald-200 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-emerald-300">Browse quotes</Link>
+          <Link href="/library/approach" className="text-white/75 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-emerald-300">How the Library is built</Link>
         </div>
-
-        <div className="relative max-w-5xl mx-auto text-center">
-          <p className="text-emerald-300/80 text-sm tracking-[0.2em] uppercase mb-4">
-            Book intelligence
-          </p>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            The{' '}
-            <span className="bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent">
-              Library
-            </span>
-          </h1>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
-            My agent workspace reconstructs each book&apos;s argument, models, and tensions. I
-            review the result and keep the author&apos;s ideas, my interpretation, and the action
-            I take from it visibly separate.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-2 mt-10">
-            {categories.slice(0, 8).map((cat) => (
-              <span
-                key={cat}
-                className={`px-3 py-1 text-xs font-medium rounded-full border ${
-                  categoryColors[cat] || 'bg-white/5 text-white/50 border-white/10'
-                }`}
-              >
-                {cat}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/library/quotes"
-              className="inline-flex items-center gap-2 text-sm text-cyan-300/80 hover:text-cyan-200 transition-colors border border-cyan-500/20 rounded-full px-4 py-2 bg-cyan-500/5 hover:bg-cyan-500/10"
-            >
-              Browse all quotes
-              <svg
-                className="w-3.5 h-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                aria-hidden
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </Link>
-            <Link
-              href="/library/approach"
-              className="inline-flex items-center gap-2 text-sm text-emerald-400/80 hover:text-emerald-300 transition-colors border border-emerald-500/20 rounded-full px-4 py-2 bg-emerald-500/5 hover:bg-emerald-500/10"
-            >
-              How this library is built
-              <svg
-                className="w-3.5 h-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                aria-hidden
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Collection — Rockstar Energy */}
-      <section className="max-w-6xl mx-auto px-6 pb-12">
-        <Link
-          href="/library/rockstar-energy"
-          className="group block rounded-2xl border border-emerald-500/[0.18] bg-gradient-to-br from-emerald-500/[0.06] via-cyan-500/[0.03] to-transparent p-6 sm:p-7 transition-colors hover:border-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-        >
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-            <div className="flex-1 min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.24em] text-emerald-300/80 mb-2">
-                Featured Collection
-              </p>
-              <h2 className="text-xl sm:text-2xl font-semibold text-white group-hover:text-emerald-200 transition-colors">
-                Rockstar Energy &amp; Mindset
-              </h2>
-              <p className="text-sm text-white/60 leading-relaxed mt-2 max-w-2xl">
-                Eight books, Eno&apos;s <span className="italic">scenius</span>, and a watch list —
-                a study path in taste, scenes, persona, and the artist&apos;s inner state. The
-                question running through all of it: what makes people feel reality is more alive
-                around them?
-              </p>
-            </div>
-            <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors group-hover:bg-emerald-500/20">
-              Enter the collection
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </span>
-          </div>
-        </Link>
-      </section>
-
-      {/* Reviews Grid */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {sortedReviews.map((review) => {
-            const relatedBook = review.relatedBook
-              ? booksRegistry.find((b) => b.slug === review.relatedBook)
-              : null;
-
-            const previewImage = review.hasCover
-              ? {
-                  src: review.coverImage,
-                  alt: `${review.title} by ${review.author} — book cover`,
-                }
-              : review.capture?.images?.[0];
-
-            return (
-              <Link
-                key={review.slug}
-                href={`/library/${review.slug}`}
-                className="group block"
-              >
-                <article className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]">
-                  {/* Header */}
-                  <div className="flex items-start gap-4 mb-4">
-                    {previewImage ? (
-                      <div className="w-16 h-24 rounded-lg border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
-                        <Image
-                          src={previewImage.src}
-                          alt={previewImage.alt}
-                          width={128}
-                          height={192}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-16 h-24 rounded-lg bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex-shrink-0 flex items-center justify-center">
-                        <span className="text-2xl font-serif text-white/20">
-                          {review.title.charAt(0)}
-                        </span>
-                      </div>
-                    )}
-                    <div className="flex-1 min-w-0">
-                      <h2 className="text-lg font-semibold text-white group-hover:text-emerald-300 transition-colors truncate">
-                        {review.title}
-                      </h2>
-                      <p className="text-sm text-white/40 mb-1">by {review.author}</p>
-                      <StarRating rating={review.rating} />
-                    </div>
-                    <span className="text-xs text-white/30">{review.readingTime}</span>
-                  </div>
-
-                  {/* Top Insight */}
-                  <p className="text-sm text-white/60 leading-relaxed mb-4 line-clamp-2">
-                    {review.keyInsights[0]}
-                  </p>
-
-                  {/* Provenance badge */}
-                  {review.capture && (
-                    <div className="mb-4 -mt-2">
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-200/80 border border-cyan-500/15">
-                        Source-backed
-                      </span>
-                    </div>
-                  )}
-
-                  {review.slug === 'handbook-to-higher-consciousness' && (
-                    <div className="mb-4 -mt-2">
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-emerald-500/10 text-emerald-200/80 border border-emerald-500/20">
-                        Complete system map
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Deep-dive badge */}
-                  {(review.chapters?.length || review.quotes?.length) && (
-                    <div className="flex flex-wrap gap-2 mb-4 -mt-2">
-                      {review.quotes && review.quotes.length > 0 && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-300/80 border border-cyan-500/15">
-                          {review.quotes.length} quotes
-                        </span>
-                      )}
-                      {review.chapters && review.chapters.length > 0 && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-300/80 border border-cyan-500/15">
-                          {review.chapters.length} chapters
-                        </span>
-                      )}
-                      {review.videos && review.videos.length > 0 && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-cyan-500/10 text-cyan-300/80 border border-cyan-500/15">
-                          {review.videos.length} videos
-                        </span>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Categories */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {review.categories.map((cat) => (
-                      <span
-                        key={cat}
-                        className={`px-2 py-0.5 text-[10px] font-medium rounded-full border ${
-                          categoryColors[cat] ||
-                          'bg-white/5 text-white/50 border-white/10'
-                        }`}
-                      >
-                        {cat}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Related Book */}
-                  {relatedBook && (
-                    <div className="pt-3 border-t border-white/[0.06]">
-                      <p className="text-[10px] uppercase tracking-wider text-white/30 mb-1">
-                        Related FrankX book
-                      </p>
-                      <p className="text-xs text-emerald-400/70">{relatedBook.title}</p>
-                    </div>
-                  )}
-                </article>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
+      </header>
+      <div className="mx-auto max-w-6xl px-6">
+        <LibraryExplorer books={libraryBooks} initial={{ q: value(params.q), category: value(params.category), sort: value(params.sort) || 'recent' }}>
+          <CollectionCards />
+          <Link href="/library/rockstar-energy" className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-emerald-300/20 px-5 py-5 focus-visible:ring-2 focus-visible:ring-emerald-300">
+            <span><span className="block text-xs text-emerald-200">Featured reading path</span><span className="mt-1 block text-lg font-semibold text-white">Rockstar Energy &amp; Mindset</span></span>
+            <span className="text-sm text-white/70">Taste, scenes, and the artist’s inner state →</span>
+          </Link>
+        </LibraryExplorer>
+      </div>
       {/* Research articles grounded in this collection */}
       <section className="max-w-4xl mx-auto px-6 pb-16">
         <div className="rounded-2xl border border-cyan-500/[0.16] bg-cyan-500/[0.03] p-8">

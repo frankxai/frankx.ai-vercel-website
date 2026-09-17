@@ -1,9 +1,109 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-08-19",
+  "_updated": "2026-09-13",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
   "models": {
+    "gpt-6-astra": {
+      "name": "GPT-6 Astra",
+      "id": "gpt-6-astra",
+      "organization": "openai",
+      "family": "gpt",
+      "released": "2026-09-04",
+      "status": "ga",
+      "context_window": 1050000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "capabilities": [
+        "reasoning",
+        "multimodal",
+        "coding",
+        "agentic-infra"
+      ],
+      "pricing": {
+        "scope": "Standard USD rates for prompts up to 272K input tokens. Above 272K, the full request uses 2x input/cache and 1.5x output rates. Cache writes, tools and other processing tiers are charged separately.",
+        "verified_at": "2026-09-13",
+        "input_per_1m": 10,
+        "output_per_1m": 50,
+        "cached_input_per_1m": 1
+      },
+      "benchmarks": {
+        "automationbench_percent": 41.4,
+        "terminal_bench_4_percent": 57.9,
+        "deepswe_v1_1_percent": 74.1,
+        "aa_intelligence_index_v4_1_1": 61.2,
+        "terminal_bench_science_0_1_percent": 64.6
+      },
+      "benchmark_provenance": "OpenAI launch comparison table, checked 13 September 2026; vendor-reported and not FrankX measurements. Terminal-Bench 4.0 is 57.9%; Terminal-Bench Science 0.1 is a separate evaluation at 64.6%. The same table reports Artificial Analysis Intelligence Index v4.1.1 at 61.2 for Astra, 65.7 for Fable 5.1 and 63.1 for Opus 5. Scores depend on evaluation version, effort and harness; no global winner is implied.",
+      "key_capabilities": [
+        "Text input/output and image input; audio and video are not native model outputs",
+        "API reasoning effort: low, medium, high, xhigh, max",
+        "Async tool calling; the application executes tools and manages pending jobs",
+        "ChatGPT, Work and Codex availability depends on client, plan, workspace and rollout",
+        "OpenAI API fast mode is priced at 2x the applicable rates; verify latency and total cost on the intended workload",
+        "OpenAI's own deployment-safety documentation rates Astra at the 'Critical' level of cyber capability; the publicly released model ships with classifiers that decline cyber-exploitation, bio/chem, violence and fraud requests"
+      ],
+      "frankx_notes": "A candidate for demanding research, coding and creator workflows. OpenAI reports Terminal-Bench 4.0 at 57.9% and the separate Terminal-Bench Science 0.1 at 64.6%; these metrics must not be conflated. Vendor benchmark tables do not establish a general capability winner. The dedicated local suite defines twelve synthetic decisions and has not run. Live Adobe, Canva and HeyGen execution and independent quality judging remain unmeasured. Model specifications, pricing and cited launch-table metrics checked 13 September 2026. The release date retains the existing paid-rollout date.",
+      "sources": [
+        "https://openai.com/index/gpt-6-astra/",
+        "https://developers.openai.com/api/docs/models/gpt-6-astra",
+        "https://developers.openai.com/api/docs/pricing",
+        "https://learn.chatgpt.com/docs/models",
+        "https://deploymentsafety.openai.com/gpt-6-astra"
+      ],
+      "evaluation": {
+        "status": "not_run",
+        "planned_cases": 12,
+        "measured_cases": 0,
+        "judge_model": null,
+        "production_ready": false,
+        "url": null,
+        "evidence_url": null
+      },
+      "last_verified": "2026-09-13",
+      "verification_scope": "API specifications, pricing and named launch-table benchmarks. Historical rollout date retained; local evaluation status remains not_run."
+    },
+    "claude-fable-5-1": {
+      "name": "Claude Fable 5.1",
+      "id": "claude-fable-5-1",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-09-01",
+      "status": "ga",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "pricing": {
+        "input_per_1m": 10,
+        "output_per_1m": 50,
+        "cached_input_per_1m": 0.25,
+        "verified_at": "2026-09-13",
+        "scope": "Standard Claude API rates in USD; cache writes, batch, fast mode, geography and partner-platform modifiers excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1M-token context and 128K maximum output",
+        "Adaptive thinking is always on; effort controls reasoning depth",
+        "Long-running agentic coding, research, and document workflows",
+        "Cache reads cost $0.25 per million tokens; input and output prices are unchanged from Fable 5"
+      ],
+      "acos_tier": "fable",
+      "frankx_notes": "Current Fable release, verified against Anthropic model documentation on 13 September 2026. Anthropic recommends Opus 5 for most workloads and Fable 5.1 for demanding reasoning or long-horizon work where Opus evaluation results fall short. No first-party FrankX evaluation is recorded for this version. Fable 5 arena receipts remain historical evidence for that earlier model.",
+      "sources": [
+        "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+        "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+        "https://platform.claude.com/docs/en/about-claude/pricing"
+      ],
+      "last_verified": "2026-09-13",
+      "verification_scope": "Release date, model ID, availability, context/output limits, modalities, pricing and vendor-stated positioning; no independent capability evaluation."
+    },
     "claude-fable-5": {
       "name": "Claude Fable 5",
       "id": "claude-fable-5",
@@ -19,12 +119,7 @@
         "vision",
         "code"
       ],
-      "pricing": {
-        "input_per_1m": 10.0,
-        "output_per_1m": 50.0,
-        "batch_input_per_1m": 5.0,
-        "batch_output_per_1m": 25.0
-      },
+      "pricing": {},
       "benchmarks": {
         "swe_bench_verified": 95.0,
         "swe_bench_pro": 80.0,
@@ -63,7 +158,9 @@
       ],
       "pricing": {
         "input_per_1m": 5.0,
-        "output_per_1m": 25.0
+        "output_per_1m": 25.0,
+        "cached_input_per_1m": 0.5,
+        "verified_at": "2026-09-13"
       },
       "benchmarks": {
         "swe_bench_verified": 96.0,
@@ -80,10 +177,15 @@
       "acos_tier": "opus",
       "frankx_notes": "Shipped 24 July 2026 at the unchanged Opus price of $5/$25, which makes it half the cost of Fable 5 while reporting higher coding numbers - the routing question between the two Anthropic flagships is now cost and task shape, not capability tiers. Benchmarks are vendor-reported. Note that published leaderboards disagree on ordering at the top of SWE-Bench Verified: DeepSeek V4 Pro 0813 reports 96.4% against this model's 96.0%, and different trackers rank them differently, so treat any '#1' claim as source-dependent.",
       "sources": [
+        "https://www.anthropic.com/news/claude-opus-5",
+        "https://platform.claude.com/docs/en/models/overview",
+        "https://platform.claude.com/docs/en/about-claude/pricing",
         "https://www.marktechpost.com/2026/07/24/meet-the-new-claude-opus-5-frontier-class-agentic-coding-and-computer-use-at-unchanged-opus-pricing/",
         "https://codersera.com/blog/claude-opus-5-benchmarks-explained-2026/",
         "https://www.morphllm.com/claude-benchmarks"
-      ]
+      ],
+      "last_verified": "2026-09-13",
+      "verification_scope": "Release date, model ID, current availability, context/output limits and standard API pricing. Existing historical benchmark claims have not been re-evaluated."
     },
     "claude-opus-4-8": {
       "name": "Claude Opus 4.8",
@@ -256,15 +358,17 @@
       "status": "ga",
       "architecture": "dense",
       "context_window": 1000000,
-      "max_output_tokens": 64000,
+      "max_output_tokens": 128000,
       "modalities": [
         "text",
         "vision",
         "code"
       ],
       "pricing": {
-        "input_per_1m": 3.0,
-        "output_per_1m": 15.0
+        "input_per_1m": 2,
+        "output_per_1m": 10,
+        "cached_input_per_1m": 0.2,
+        "verified_at": "2026-09-13"
       },
       "benchmarks": {
         "swe_bench_pro": 63.2,
@@ -277,15 +381,20 @@
         "Computer use - 81.2% OSWorld (vendor-reported)",
         "Extended reasoning, tool calling, prompt caching, structured outputs",
         "Default Claude model for Free and Pro on claude.ai; available in Claude Code, the API, Cursor, VS Code and GitHub Copilot",
-        "Introductory $2/$10 pricing through 2026-08-31"
+        "Standard $2/$10 pricing; the previously announced September price increase was cancelled"
       ],
       "acos_tier": "sonnet",
-      "frankx_notes": "Supersedes Sonnet 4.6 as the mid-tier default. Pricing here is the standard $3/$15 list rate, NOT the introductory $2/$10 that runs through 2026-08-31 - confirm which rate you are billed at before 1 September. Opus still leads hard agentic coding (69.2% vs 63.2% SWE-Bench Pro on Opus 4.8, and further on Opus 5), which Anthropic states in its own launch material as reported by multiple outlets. Benchmarks are vendor-reported. The Starlight Model Arena does hold a receipt for this model - round 5, 2026-07-01, published at /research/arena-receipts/2026-07-01-r5-sonnet5-arrives.json.",
+      "frankx_notes": "Supersedes Sonnet 4.6 as the mid-tier default. Pricing checked 7 September 2026: Anthropic retains $2/$10 standard pricing after cancelling the announced September increase. Opus still leads hard agentic coding (69.2% vs 63.2% SWE-Bench Pro on Opus 4.8, and further on Opus 5), which Anthropic states in its own launch material as reported by multiple outlets. Benchmarks are vendor-reported. The Starlight Model Arena does hold a receipt for this model - round 5, 2026-07-01, published at /research/arena-receipts/2026-07-01-r5-sonnet5-arrives.json.",
       "sources": [
+        "https://platform.claude.com/docs/en/models/sonnet-5/overview",
+        "https://platform.claude.com/docs/en/models/overview",
+        "https://platform.claude.com/docs/en/about-claude/pricing",
         "https://www.requesty.ai/models/anthropic/claude-sonnet-5",
         "https://codersera.com/blog/claude-sonnet-5-launch-guide-2026/",
         "https://www.siliconreport.com/anthropics-claude-sonnet-5-breaks-80-on-swe-bench-verified-widens-benchmarks-over-competit-220e6417"
-      ]
+      ],
+      "last_verified": "2026-09-13",
+      "verification_scope": "Model ID, current availability, context/output limits and standard API pricing. Historical benchmark claims and published arena receipts retained without re-evaluation."
     },
     "claude-sonnet-4-6": {
       "name": "Claude Sonnet 4.6",
@@ -314,7 +423,7 @@
         "Default model on claude.ai free and Pro tiers"
       ],
       "acos_tier": "sonnet",
-      "frankx_notes": "The mid-tier that started eating the flagship's lunch \u2014 matches much of Opus 4.6 at $3/$15. The right default for production coding and content; route to Opus 4.8 only when the task genuinely needs it.",
+      "frankx_notes": "The mid-tier that started eating the flagship's lunch — matches much of Opus 4.6 at $3/$15. The right default for production coding and content; route to Opus 4.8 only when the task genuinely needs it.",
       "sources": [
         "https://www.anthropic.com/news/claude-sonnet-4-6",
         "https://techcrunch.com/2026/02/17/anthropic-releases-sonnet-4-6/",
@@ -397,7 +506,7 @@
         "Agentic tool use (web search, Python sandbox, PDF/Excel/PPTX generation)",
         "Highest output throughput in its price tier (~181 tok/s)"
       ],
-      "frankx_notes": "Not a benchmark leader \u2014 sits ~8 points below Claude Opus 4.8 on the AA Intelligence Index. The play is intelligence-per-dollar: ~10x cheaper output than Opus-tier with the fastest throughput in its class. Context window shrank from 2M to 1M, and reasoning can no longer be turned off. SWE-bench Verified / ARC-AGI-2 scores specific to 4.3 were not independently published, so they are omitted rather than recycled from older Grok versions.",
+      "frankx_notes": "Not a benchmark leader — sits ~8 points below Claude Opus 4.8 on the AA Intelligence Index. The play is intelligence-per-dollar: ~10x cheaper output than Opus-tier with the fastest throughput in its class. Context window shrank from 2M to 1M, and reasoning can no longer be turned off. SWE-bench Verified / ARC-AGI-2 scores specific to 4.3 were not independently published, so they are omitted rather than recycled from older Grok versions.",
       "sources": [
         "https://artificialanalysis.ai/articles/xai-launches-grok-4-3-with-improved-agentic-performance-and-lower-pricing",
         "https://docs.x.ai/developers/models/grok-4.3",
@@ -463,7 +572,7 @@
         "~40% better output-token efficiency vs GPT-5.4 (Artificial Analysis)",
         "Drop-in API replacement for GPT-5.4 (same caching, tools, compaction)"
       ],
-      "frankx_notes": "Codename 'Spud'. A real step forward on agentic and long-context metrics, and it holds a narrow terminal-agent edge, but not a clean frontier sweep \u2014 Claude Opus 4.8 leads GDPval-AA (1890 vs 1769) and SWE-Bench Pro (69.2 vs 58.6). Price doubled to $5/$30; the token-efficiency offset only pays off on output-heavy workloads. SWE-Bench Verified and ARC-AGI-2 headline figures vary by source and are omitted pending corroboration.",
+      "frankx_notes": "Codename 'Spud'. A real step forward on agentic and long-context metrics, and it holds a narrow terminal-agent edge, but not a clean frontier sweep — Claude Opus 4.8 leads GDPval-AA (1890 vs 1769) and SWE-Bench Pro (69.2 vs 58.6). Price doubled to $5/$30; the token-efficiency offset only pays off on output-heavy workloads. SWE-Bench Verified and ARC-AGI-2 headline figures vary by source and are omitted pending corroboration.",
       "sources": [
         "https://openai.com/index/introducing-gpt-5-5/",
         "https://developers.openai.com/api/docs/models/gpt-5.5",
@@ -490,6 +599,46 @@
         "arc_agi_2": 54.2
       },
       "sources": []
+    },
+    "gemini-3-8-flash": {
+      "name": "Gemini 3.8 Flash",
+      "id": "gemini-3.8-flash",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-09-02",
+      "status": "ga",
+      "architecture": "undisclosed",
+      "context_window": 1048576,
+      "max_output_tokens": 65536,
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ],
+      "pricing": {
+        "input_per_1m": 0.75,
+        "output_per_1m": 3.75,
+        "cached_input_per_1m": 0.075,
+        "verified_at": "2026-09-13",
+        "scope": "Standard Gemini API introductory rates in USD through 2026-12-31. From 2027-01-01: input $1.50, output $7.50, cached input $0.15 per million tokens. Cache storage and tools charged separately."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text, image, audio, video and PDF input; text output",
+        "1,048,576 input-token limit and 65,536 output-token limit",
+        "Function calling, structured outputs, code execution and search grounding",
+        "Computer use is supported in preview; native audio and image generation are not supported",
+        "Thinking levels: low, medium, high; minimal is not supported"
+      ],
+      "frankx_notes": "Current stable Flash release verified against Google documentation on 13 September 2026. Google positions it for software engineering, autonomous agents and enterprise workflows. Introductory pricing expires on 31 December 2026. No first-party FrankX evaluation is recorded for this version; Gemini 3.7 results do not establish 3.8 performance.",
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+        "https://ai.google.dev/gemini-api/docs/pricing"
+      ],
+      "last_verified": "2026-09-13",
+      "verification_scope": "Release date, model ID, stable availability, input/output limits, modalities, API capabilities and pricing; no independent capability evaluation."
     },
     "gemini-3-7-flash": {
       "name": "Gemini 3.7 Flash",
@@ -560,7 +709,7 @@
         "MCP-native tool use (83.6% MCP Atlas)",
         "Full multimodal: text, vision, audio, video"
       ],
-      "frankx_notes": "The one Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding (Terminal-Bench 2.1 76.2%) at Flash pricing \u2014 the new default agent runtime. Gemini 3.5 Pro remains in limited preview as of June 2026.",
+      "frankx_notes": "The one Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding (Terminal-Bench 2.1 76.2%) at Flash pricing — the new default agent runtime. Gemini 3.5 Pro remains in limited preview as of June 2026.",
       "sources": [
         "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
         "https://deepmind.google/models/model-cards/gemini-3-5-flash/",
@@ -586,7 +735,7 @@
         "Frontier multimodal: text/image/audio/video/PDF",
         "Positioned as Google's strongest agentic + coding model (vendor-stated)"
       ],
-      "frankx_notes": "Not GA as of June 5, 2026 \u2014 limited Vertex preview only, no model card, no benchmarks, no pricing. Announced at I/O May 19, 2026; GA targeted for June. Model id gemini-3.5-pro. Its real differentiation will need to show on hard reasoning (ARC-AGI-2, SWE-bench Pro) and 2M context. Do not architect on it until GA.",
+      "frankx_notes": "Not GA as of June 5, 2026 — limited Vertex preview only, no model card, no benchmarks, no pricing. Announced at I/O May 19, 2026; GA targeted for June. Model id gemini-3.5-pro. Its real differentiation will need to show on hard reasoning (ARC-AGI-2, SWE-bench Pro) and 2M context. Do not architect on it until GA.",
       "sources": [
         "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
         "https://deepmind.google/models/gemini/"
@@ -652,12 +801,14 @@
         "Coding-driven UI/UX generation",
         "Intelligence-per-dollar leader among open weights"
       ],
-      "frankx_notes": "Best open-weights model on the neutral Artificial Analysis index (54), ahead of DeepSeek V4. NOT the absolute frontier \u2014 Opus 4.8 (61) and GPT-5.5 (59-60) clear it, and Opus leads SWE-Bench Verified by ~8 pts. The real story is value + openness: ~1/8 the price of Opus, permissive license, self-hostable. Coding/reasoning rows beyond the AA index are Moonshot's own evals \u2014 treat as vendor-claimed. Architecture unchanged from K2.5; gains are post-training (swarm scaling).",
+      "frankx_notes": "Best open-weights model on the neutral Artificial Analysis index (54), ahead of DeepSeek V4. NOT the absolute frontier — Opus 4.8 (61) and GPT-5.5 (59-60) clear it, and Opus leads SWE-Bench Verified by ~8 pts. The real story is value + openness: ~1/8 the price of Opus, permissive license, self-hostable. Coding/reasoning rows beyond the AA index are Moonshot's own evals — treat as vendor-claimed. Architecture unchanged from K2.5; gains are post-training (swarm scaling).",
       "sources": [
         "https://artificialanalysis.ai/models/kimi-k2-6",
         "https://huggingface.co/moonshotai/Kimi-K2.6",
         "https://www.deeplearning.ai/the-batch/kimi-k2-6-matches-open-qwen3-6-max-anddeepseek-v4-falls-just-behind-top-closed-models"
-      ]
+      ],
+      "open_weights": true,
+      "open_weights_verified_at": "2026-09-10"
     },
     "deepseek-v4-pro-0813": {
       "name": "DeepSeek V4 Pro 0813",
@@ -695,8 +846,11 @@
       "sources": [
         "https://openrouter.ai/deepseek/deepseek-v4-pro-0813",
         "https://artificialanalysis.ai/models/deepseek-v4-pro",
-        "https://www.techtimes.com/articles/324241/20260813/deepseek-v4-pro-0813-goes-ga-benchmark-claims-await-independent-proof.htm"
-      ]
+        "https://www.techtimes.com/articles/324241/20260813/deepseek-v4-pro-0813-goes-ga-benchmark-claims-await-independent-proof.htm",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813"
+      ],
+      "open_weights": true,
+      "open_weights_verified_at": "2026-09-10"
     },
     "deepseek-v4": {
       "name": "DeepSeek V4",
@@ -734,12 +888,14 @@
         "Dual variants: Pro for reasoning, Flash for high-throughput",
         "Self-hostable; NVFP4 quantization available"
       ],
-      "frankx_notes": "The open-weight price floor for frontier-adjacent intelligence, not the frontier itself. SWE-bench Verified (80.6%) and AA Index (52, #2 open-weights) are independently corroborated; NIST/CAISI puts it ~8 months behind GPT-5.5 with clear gaps on agentic SWE, security, and HLE (37.7%). MIT license + open weights is the structural advantage no closed model can match \u2014 cheap V4-Pro API or self-host Flash on your own GPUs. Most spec-sheet rows beyond SWE-bench and AA Index are vendor-claimed.",
+      "frankx_notes": "The open-weight price floor for frontier-adjacent intelligence, not the frontier itself. SWE-bench Verified (80.6%) and AA Index (52, #2 open-weights) are independently corroborated; NIST/CAISI puts it ~8 months behind GPT-5.5 with clear gaps on agentic SWE, security, and HLE (37.7%). MIT license + open weights is the structural advantage no closed model can match — cheap V4-Pro API or self-host Flash on your own GPUs. Most spec-sheet rows beyond SWE-bench and AA Index are vendor-claimed.",
       "sources": [
         "https://artificialanalysis.ai/models/deepseek-v4-pro",
         "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro",
         "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
-      ]
+      ],
+      "open_weights": true,
+      "open_weights_verified_at": "2026-09-10"
     },
     "qwen3-8-27b": {
       "name": "Qwen3.8-27B",
@@ -816,7 +972,7 @@
         "90% cached-input discount, suited to context-heavy agents",
         "Top-5 Artificial Analysis Intelligence Index at roughly half Western-frontier price"
       ],
-      "frankx_notes": "Closed-weight, API-only \u2014 breaks the open-weight Qwen association. Leads its peer group (Kimi, DeepSeek V4) on hard agentic-coding benchmarks but trails Opus 4.8 on aggregate. Strong value for high-volume verifiable agentic work; not the pick when silent errors are expensive. Verbose reasoner, so effective cost-per-task runs above the rate card. Architecture undisclosed; the 35-hour run and several rows (HMMT, MCP-Atlas, Apex) are vendor-claimed.",
+      "frankx_notes": "Closed-weight, API-only — breaks the open-weight Qwen association. Leads its peer group (Kimi, DeepSeek V4) on hard agentic-coding benchmarks but trails Opus 4.8 on aggregate. Strong value for high-volume verifiable agentic work; not the pick when silent errors are expensive. Verbose reasoner, so effective cost-per-task runs above the rate card. Architecture undisclosed; the 35-hour run and several rows (HMMT, MCP-Atlas, Apex) are vendor-claimed.",
       "sources": [
         "https://qwen.ai/blog?id=qwen3.7",
         "https://artificialanalysis.ai/models/qwen3-7-max",
@@ -891,12 +1047,12 @@
       "key_capabilities": [
         "Apache 2.0 license (replaces the custom Gemma Terms used through Gemma 3)",
         "31B dense flagship runs in ~18GB VRAM at Q4 on a single 24GB consumer GPU",
-        "26B A4B \u2014 Gemma's first MoE (~3.8B active, ~15.6GB int4) for agentic throughput",
+        "26B A4B — Gemma's first MoE (~3.8B active, ~15.6GB int4) for agentic throughput",
         "Encoder-free 12B multimodal (native audio) runs on a 16GB laptop",
         "E2B (~2GB) to E4B (~8GB) tiers for edge / on-device",
         "Up to 256K context; runs via Ollama / llama.cpp / LM Studio / vLLM / HF"
       ],
-      "frankx_notes": "Gemma 4 doesn't win on raw score \u2014 Qwen3.7-Max narrowly out-reasons it and DeepSeek V4 dominates the open frontier. Its edge is the whole package: top-tier quality that fits one consumer GPU, native multimodal, a clean Apache 2.0 license, and broad day-zero tooling. The 1452 LMArena Elo (human preference) is the trustworthy number; the academic jumps (AIME 89.2%, GPQA 84.3%) are largely Google's own evals \u2014 vendor-claimed until reproduced. Best for local-first / privacy-sensitive and cost-conscious agentic builds.",
+      "frankx_notes": "Gemma 4 doesn't win on raw score — Qwen3.7-Max narrowly out-reasons it and DeepSeek V4 dominates the open frontier. Its edge is the whole package: top-tier quality that fits one consumer GPU, native multimodal, a clean Apache 2.0 license, and broad day-zero tooling. The 1452 LMArena Elo (human preference) is the trustworthy number; the academic jumps (AIME 89.2%, GPQA 84.3%) are largely Google's own evals — vendor-claimed until reproduced. Best for local-first / privacy-sensitive and cost-conscious agentic builds.",
       "sources": [
         "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/",
         "https://ai.google.dev/gemma/docs/core/model_card_4",
@@ -930,11 +1086,11 @@
       "key_capabilities": [
         "Native text+image multimodal input via early fusion",
         "1M-token context (Maverick); Scout sibling offers 10M",
-        "Llama 4 Community License \u2014 free commercial use under 700M MAU",
+        "Llama 4 Community License — free commercial use under 700M MAU",
         "Self-host: FP8 weights need an 8x H100 80GB node (~600GB); Scout (109B/17B) self-hosts on one H100 at ~55GB Q4",
         "Run via vLLM / Ollama (Scout) / HF, or hosted APIs (~$0.15/$0.60 per 1M)"
       ],
-      "frankx_notes": "Still Meta's open flagship in June 2026 only because nothing newer shipped \u2014 Behemoth (~2T) was paused May 2026 with no public weights, and there's no Llama 4.5 or Llama 5. Weights are free and the license is permissive, but verified benchmarks now trail DeepSeek V4, Qwen3.7-Max, Kimi K2.6 and even the much smaller Gemma 4. Maverick is a data-center model, not a laptop one \u2014 Scout is the realistically self-hostable sibling. The widely-cited 1417 LMArena Elo was an experimental chat-tuned variant, not the public weights (which ranked ~32nd).",
+      "frankx_notes": "Still Meta's open flagship in June 2026 only because nothing newer shipped — Behemoth (~2T) was paused May 2026 with no public weights, and there's no Llama 4.5 or Llama 5. Weights are free and the license is permissive, but verified benchmarks now trail DeepSeek V4, Qwen3.7-Max, Kimi K2.6 and even the much smaller Gemma 4. Maverick is a data-center model, not a laptop one — Scout is the realistically self-hostable sibling. The widely-cited 1417 LMArena Elo was an experimental chat-tuned variant, not the public weights (which ranked ~32nd).",
       "sources": [
         "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
         "https://www.llama.com/models/llama-4/",
@@ -968,7 +1124,7 @@
         "aime_2025_reasoning_plus": 81.3
       },
       "key_capabilities": [
-        "MIT license \u2014 fully open weights, commercial use, fine-tune and redistribute",
+        "MIT license — fully open weights, commercial use, fine-tune and redistribute",
         "Runs on consumer hardware: 14B at Q4 needs ~8-10GB VRAM; 3.8B mini ~3-4GB",
         "STEM-dense: base 14B beats teacher GPT-4o on GPQA and MATH",
         "Phi-4-mini: 128K context, built-in function calling",
@@ -976,7 +1132,7 @@
         "Phi-4-reasoning-vision-15B (Mar 2026): adaptive think/no-think",
         "Runs on Ollama / LM Studio / llama.cpp / ONNX / Foundry Local / HF"
       ],
-      "frankx_notes": "The honest small-model pick. $0 per token, MIT license, runs on a gaming laptop \u2014 ideal for high-volume, privacy-sensitive, or offline work. STEM-dense specialist, not a generalist: short 16K base context and weaker general multimodal breadth than Gemma 4. Route hard, broad tasks to a frontier API; run well-scoped local work on Phi. No GA Phi-5 exists as of June 2026; reasoning/vision numbers are largely vendor-claimed.",
+      "frankx_notes": "The honest small-model pick. $0 per token, MIT license, runs on a gaming laptop — ideal for high-volume, privacy-sensitive, or offline work. STEM-dense specialist, not a generalist: short 16K base context and weaker general multimodal breadth than Gemma 4. Route hard, broad tasks to a frontier API; run well-scoped local work on Phi. No GA Phi-5 exists as of June 2026; reasoning/vision numbers are largely vendor-claimed.",
       "sources": [
         "https://arxiv.org/pdf/2412.08905",
         "https://huggingface.co/microsoft/phi-4",
@@ -1021,7 +1177,9 @@
         "https://mistral.ai/news/mistral-3/",
         "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
         "https://docs.vllm.ai/projects/recipes/en/latest/Mistral/Mistral-Large-3.html"
-      ]
+      ],
+      "open_weights": true,
+      "open_weights_verified_at": "2026-09-10"
     },
     "mai-thinking-1": {
       "name": "MAI-Thinking-1",
@@ -1140,13 +1298,95 @@
         "Text + image input, text output",
         "Unchanged $2/$6 list price under 200k prompt tokens"
       ],
-      "frankx_notes": "Same-scale post-training refresh of Grok 4.5. Official High AA Index 61 ties GPT-5.6 Sol. Largest published gains are agent/knowledge-work evals. Starlight Model Arena has no Grok 4.6 receipt as of 2026-08-14 \u2014 do not treat vendor or AA tables as SIS winners. Cached input rose to $0.50. Confirm the 200k price cliff.",
+      "frankx_notes": "Same-scale post-training refresh of Grok 4.5. Official High AA Index 61 ties GPT-5.6 Sol. Largest published gains are agent/knowledge-work evals. Starlight Model Arena has no Grok 4.6 receipt as of 2026-08-14 — do not treat vendor or AA tables as SIS winners. Cached input rose to $0.50. Confirm the 200k price cliff.",
       "sources": [
         "https://x.ai/news/grok-4-6",
         "https://docs.x.ai/developers/grok-4-6",
         "https://docs.x.ai/developers/release-notes",
         "https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis"
       ]
+    },
+    "gpt-image-2-5-flare": {
+      "id": "gpt-image-2.5-flare",
+      "name": "GPT Image 2.5 Flare",
+      "organization": "openai",
+      "family": "GPT Image",
+      "status": "available",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "capabilities": [
+        "image-gen"
+      ],
+      "key_capabilities": [
+        "Reference-based generation and selective editing (vendor-reported).",
+        "Multi-turn image consistency requires inspection on your own assets.",
+        "No FrankX image-workflow measurements recorded; evaluation protocol is planned.",
+        "USD per million tokens: text input $5, cached text $1.25; image input $8, cached image $2, image output $30. Total asset cost depends on usage and retries."
+      ],
+      "image_pricing": {
+        "currency": "USD",
+        "unit": "per_1m_tokens",
+        "text_input": 5,
+        "cached_text_input": 1.25,
+        "image_input": 8,
+        "cached_image_input": 2,
+        "image_output": 30,
+        "checked_at": "2026-09-10",
+        "source": "https://developers.openai.com/api/docs/pricing"
+      },
+      "workflow": {
+        "guide": "/guides/reference-to-campaign",
+        "protocol": "/research/image-workflows/protocol.json",
+        "status": "not_run"
+      },
+      "sources": [
+        "https://openai.com/index/introducing-chatgpt-images-2-5/",
+        "https://developers.openai.com/api/docs/pricing"
+      ],
+      "frankx_notes": "Evaluate complete asset workflows, including identity preservation, exact copy, correction time, retries and cost per approved asset. No ranking or production recommendation is established by this entry."
+    },
+    "gpt-image-2-5-sunburst": {
+      "id": "gpt-image-2.5-sunburst",
+      "name": "GPT Image 2.5 Sunburst",
+      "organization": "openai",
+      "family": "GPT Image",
+      "status": "available",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "capabilities": [
+        "image-gen"
+      ],
+      "key_capabilities": [
+        "Reference-based generation and selective editing (vendor-reported).",
+        "Multi-turn image consistency requires inspection on your own assets.",
+        "No FrankX image-workflow measurements recorded; evaluation protocol is planned.",
+        "USD per million tokens: text input $5, cached text $1.25; image input $8, cached image $2, image output $30. Total asset cost depends on usage and retries."
+      ],
+      "image_pricing": {
+        "currency": "USD",
+        "unit": "per_1m_tokens",
+        "text_input": 5,
+        "cached_text_input": 1.25,
+        "image_input": 8,
+        "cached_image_input": 2,
+        "image_output": 30,
+        "checked_at": "2026-09-10",
+        "source": "https://developers.openai.com/api/docs/pricing"
+      },
+      "workflow": {
+        "guide": "/guides/reference-to-campaign",
+        "protocol": "/research/image-workflows/protocol.json",
+        "status": "not_run"
+      },
+      "sources": [
+        "https://openai.com/index/introducing-chatgpt-images-2-5/",
+        "https://developers.openai.com/api/docs/pricing"
+      ],
+      "frankx_notes": "Evaluate complete asset workflows, including identity preservation, exact copy, correction time, retries and cost per approved asset. No ranking or production recommendation is established by this entry."
     }
   },
   "organizations": {
@@ -1154,6 +1394,7 @@
       "name": "Anthropic",
       "url": "https://anthropic.com",
       "models": [
+        "claude-fable-5-1",
         "claude-sonnet-5",
         "claude-opus-5",
         "claude-fable-5",
@@ -1163,27 +1404,34 @@
         "claude-sonnet-4-6",
         "claude-sonnet-4-5",
         "claude-haiku-4-5"
-      ]
+      ],
+      "flagship_model_id": "claude-fable-5-1"
     },
     "openai": {
       "name": "OpenAI",
       "url": "https://openai.com",
       "models": [
+        "gpt-6-astra",
         "gpt-5-5",
         "gpt-5-2-pro",
-        "gpt-oss"
-      ]
+        "gpt-oss",
+        "gpt-image-2-5-flare",
+        "gpt-image-2-5-sunburst"
+      ],
+      "flagship_model_id": "gpt-6-astra"
     },
     "google": {
       "name": "Google DeepMind",
       "url": "https://deepmind.google",
       "models": [
+        "gemini-3-8-flash",
         "gemini-3-7-flash",
         "gemini-3-5-pro",
         "gemini-3-5-flash",
         "gemini-3-pro",
         "gemma-4"
-      ]
+      ],
+      "flagship_model_id": "gemini-3-8-flash"
     },
     "xai": {
       "name": "xAI",
@@ -1245,9 +1493,11 @@
   },
   "acos_routing": {
     "note": "Maps registry models to ACOS routing tiers",
-    "opus": "claude-opus-4-8",
+    "opus": "claude-opus-5",
     "sonnet": "claude-sonnet-5",
-    "haiku": "claude-haiku-4-5"
+    "haiku": "claude-haiku-4-5",
+    "fable": "claude-fable-5-1"
   },
-  "last_updated": "2026-08-19"
+  "last_updated": "2026-09-13",
+  "_update_scope": "Added Claude Fable 5.1 and Gemini 3.8 Flash from official sources. Corrected Sonnet 5 output limit and Astra benchmark labels/values, refreshed selected API prices, and advanced Anthropic/Google current-model references. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
 }

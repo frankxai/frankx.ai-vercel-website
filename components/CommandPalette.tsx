@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
+import { useState, useEffect, useMemo, useRef, useCallback, useId } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -22,6 +22,7 @@ import type { LucideIcon } from 'lucide-react'
 
 import type { SiteSearchGroup, SiteSearchItem } from '@/lib/site-search'
 import { getCuratedSearchItems, searchSiteItems } from '@/lib/site-search'
+import { buildSearchPresentation } from '@/lib/site-search-presentation'
 
 type CommandPaletteProps = {
   open: boolean
@@ -56,6 +57,7 @@ export default function CommandPalette({ open, onOpenChange }: CommandPalettePro
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
   const previousPathname = useRef(pathname)
+  const listboxId = `${useId()}-search-results`
 
   const close = useCallback(() => {
     onOpenChange(false)
@@ -70,21 +72,49 @@ export default function CommandPalette({ open, onOpenChange }: CommandPalettePro
   }, [pathname, open, close])
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden'
-      requestAnimationFrame(() => inputRef.current?.focus())
-    } else {
-      document.body.style.overflow = ''
+    if (!open) return
+
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const focusFrame = requestAnimationFrame(() => inputRef.current?.focus())
+
+    const onModalKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        event.stopPropagation()
+        close()
+      } else if (event.key === 'Tab') {
+        // The combobox is the only tab stop; options use aria-activedescendant.
+        event.preventDefault()
+        inputRef.current?.focus()
+      }
     }
+
+    const keepFocusInside = (event: FocusEvent) => {
+      if (event.target !== inputRef.current) inputRef.current?.focus()
+    }
+
+    document.addEventListener('keydown', onModalKeyDown, true)
+    document.addEventListener('focusin', keepFocusInside)
     return () => {
-      document.body.style.overflow = ''
+      cancelAnimationFrame(focusFrame)
+      document.removeEventListener('keydown', onModalKeyDown, true)
+      document.removeEventListener('focusin', keepFocusInside)
+      document.body.style.overflow = previousOverflow
+      if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true })
     }
-  }, [open])
+  }, [open, close])
 
   const results = useMemo(() => {
     const trimmed = query.trim()
     return trimmed ? searchSiteItems(trimmed, MAX_RESULTS) : getCuratedSearchItems(MAX_RESULTS)
   }, [query])
+
+  const { sections, items: visibleItems } = useMemo(
+    () => buildSearchPresentation(results, query),
+    [results, query]
+  )
 
   useEffect(() => {
     setSelected(0)
@@ -105,17 +135,14 @@ export default function CommandPalette({ open, onOpenChange }: CommandPalettePro
   const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'ArrowDown') {
       event.preventDefault()
-      setSelected((current) => Math.min(current + 1, Math.max(results.length - 1, 0)))
+      setSelected((current) => Math.min(current + 1, Math.max(visibleItems.length - 1, 0)))
     } else if (event.key === 'ArrowUp') {
       event.preventDefault()
       setSelected((current) => Math.max(current - 1, 0))
     } else if (event.key === 'Enter') {
       event.preventDefault()
-      const item = results[selected]
+      const item = visibleItems[selected]
       if (item) activate(item)
-    } else if (event.key === 'Escape') {
-      event.preventDefault()
-      close()
     }
   }
 
@@ -124,16 +151,6 @@ export default function CommandPalette({ open, onOpenChange }: CommandPalettePro
     const element = listRef.current.querySelector<HTMLElement>(`[data-index="${selected}"]`)
     element?.scrollIntoView({ block: 'nearest' })
   }, [selected])
-
-  const grouped = useMemo(() => {
-    const map = new Map<string, { item: SiteSearchItem; index: number }[]>()
-    results.forEach((item, index) => {
-      const bucket = map.get(item.group) ?? []
-      bucket.push({ item, index })
-      map.set(item.group, bucket)
-    })
-    return Array.from(map.entries())
-  }, [results])
 
   return (
     <AnimatePresence>
@@ -162,6 +179,13 @@ export default function CommandPalette({ open, onOpenChange }: CommandPalettePro
               <Search className="h-4 w-4 shrink-0 text-slate-400" aria-hidden />
               <input
                 ref={inputRef}
+                role="combobox"
+                aria-label="Search FrankX"
+                aria-expanded={open}
+                aria-autocomplete="list"
+                aria-haspopup="listbox"
+                aria-controls={listboxId}
+                aria-activedescendant={visibleItems[selected] ? `${listboxId}-option-${selected}` : undefined}
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 onKeyDown={onInputKeyDown}
@@ -174,19 +198,20 @@ export default function CommandPalette({ open, onOpenChange }: CommandPalettePro
 
             <div
               ref={listRef}
+              id={listboxId}
               className="max-h-[58vh] overflow-y-auto py-2"
               role="listbox"
               aria-label="Search results"
             >
-              {results.length === 0 ? (
+              {visibleItems.length === 0 ? (
                 <div className="px-4 py-10 text-center text-sm text-slate-500">
                   No results for &quot;{query}&quot;.
                 </div>
               ) : (
-                grouped.map(([group, entries]) => (
-                  <div key={group} className="px-2 pb-2">
+                sections.map(({ label, entries }) => (
+                  <div key={label} role="group" aria-label={label} className="px-2 pb-2">
                     <div className="px-3 pb-1 pt-2 text-[11px] font-medium tracking-[0.01em] text-slate-400">
-                      {group}
+                      {label}
                     </div>
                     {entries.map(({ item, index }) => {
                       const Icon = iconForItem(item)
@@ -194,10 +219,13 @@ export default function CommandPalette({ open, onOpenChange }: CommandPalettePro
                       return (
                         <button
                           key={`${item.href}-${index}`}
+                          id={`${listboxId}-option-${index}`}
                           data-index={index}
                           type="button"
                           role="option"
+                          tabIndex={-1}
                           aria-selected={isSelected}
+                          onMouseDown={(event) => event.preventDefault()}
                           onMouseEnter={() => setSelected(index)}
                           onClick={() => activate(item)}
                           className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors ${

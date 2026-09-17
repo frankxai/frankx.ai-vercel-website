@@ -3,12 +3,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ExternalLink, Pause, Play } from 'lucide-react'
-import { useRef, useState } from 'react'
 
+import { useMusicRuntime } from '@/components/music/MusicRuntime'
 import { GlowCard } from '@/components/ui/glow-card'
 
 export type FeaturedTrackPlayerTrack = {
   title: string
+  sunoId: string
   sunoUrl: string
   audioUrl: string
   imageUrl: string
@@ -34,46 +35,32 @@ const formatTime = (seconds: number) => {
 }
 
 export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack }) {
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(() => parseDuration(track.duration))
-  const [playbackError, setPlaybackError] = useState(false)
+  const music = useMusicRuntime()
+  // Owned path only (e.g. /images/... or /audio/...). Empty or remote CDN = Suno-only.
+  const canPlayHere = track.audioUrl.startsWith('/')
+  const isThisTrack = Boolean(canPlayHere && music?.activeSunoId === track.sunoId)
+  const isPlaying = Boolean(
+    isThisTrack && (music?.playbackState === 'playing' || music?.playbackState === 'loading'),
+  )
+  const playbackError = Boolean(isThisTrack && music?.playbackState === 'error')
+  const duration = isThisTrack && music && music.duration > 0 ? music.duration : parseDuration(track.duration)
+  const currentTime = isThisTrack && music ? music.currentTime : 0
+  const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0
 
-  const togglePlayback = async () => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    if (audio.paused) {
-      setPlaybackError(false)
-
-      try {
-        await audio.play()
-      } catch {
-        setPlaybackError(true)
-        setIsPlaying(false)
-      }
+  const togglePlayback = () => {
+    if (!canPlayHere || !music) return
+    if (isThisTrack) {
+      music.toggle()
       return
     }
-
-    audio.pause()
+    music.selectSuno(track.sunoId, track.title, { streamUrl: track.audioUrl })
+    music.open()
   }
 
   const seek = (nextTime: number) => {
-    const audio = audioRef.current
-    if (!audio || !Number.isFinite(nextTime)) return
-
-    audio.currentTime = nextTime
-    setCurrentTime(nextTime)
+    if (!canPlayHere || !music || !isThisTrack || !Number.isFinite(nextTime)) return
+    music.seek(nextTime)
   }
-
-  const syncDuration = (nextDuration: number) => {
-    setDuration((currentDuration) =>
-      Number.isFinite(nextDuration) && nextDuration > 0 ? nextDuration : currentDuration,
-    )
-  }
-
-  const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0
 
   return (
     <GlowCard color="emerald" className="overflow-hidden p-0">
@@ -90,26 +77,6 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-void/20 via-void/45 to-void" />
-
-        {/* Original music; no spoken-word caption track applies. */}
-        <audio
-          ref={audioRef}
-          src={track.audioUrl}
-          preload="metadata"
-          onLoadedMetadata={(event) => syncDuration(event.currentTarget.duration)}
-          onDurationChange={(event) => syncDuration(event.currentTarget.duration)}
-          onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          onEnded={() => {
-            setIsPlaying(false)
-            setCurrentTime(0)
-          }}
-          onError={() => {
-            setPlaybackError(true)
-            setIsPlaying(false)
-          }}
-        />
 
         <div className="relative z-10 flex min-h-[300px] flex-col justify-between p-5 sm:min-h-[340px] sm:p-6 lg:min-h-[380px]">
           <div className="flex items-center justify-between gap-4">
@@ -129,52 +96,77 @@ export function FeaturedTrackPlayer({ track }: { track: FeaturedTrackPlayerTrack
 
           <div className="rounded-[1.75rem] border border-white/10 bg-void/85 p-4 sm:p-5">
             <div className="flex items-center gap-4">
-              <button
-                type="button"
-                onClick={togglePlayback}
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
-                aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
-              >
-                {isPlaying ? (
-                  <Pause className="h-5 w-5" aria-hidden="true" />
-                ) : (
-                  <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />
-                )}
-              </button>
+              {canPlayHere ? (
+                <button
+                  type="button"
+                  onClick={togglePlayback}
+                  disabled={!music}
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void disabled:opacity-50"
+                  aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
+                >
+                  {isPlaying ? (
+                    <Pause className="h-5 w-5" aria-hidden="true" />
+                  ) : (
+                    <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />
+                  )}
+                </button>
+              ) : (
+                <a
+                  href={track.sunoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-void transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+                  aria-label={`Listen to ${track.title} on Suno`}
+                >
+                  <ExternalLink className="h-5 w-5" aria-hidden="true" />
+                </a>
+              )}
 
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xl font-semibold tracking-[-0.02em] text-white">
                   {track.title}
                 </p>
                 <p className="mt-1 truncate text-xs text-white/55">{track.genre.join(' · ')}</p>
+                {!canPlayHere ? (
+                  <p className="mt-2 text-xs text-white/55">
+                    Listen on Suno — in-browser playback waits on an owned audio file.
+                  </p>
+                ) : null}
               </div>
             </div>
 
-            <div className="mt-5">
-              <div className="relative flex h-4 items-center">
-                <div className="absolute h-1 w-full rounded-full bg-white/15" />
-                <div
-                  className="absolute h-1 rounded-full bg-emerald-300"
-                  style={{ width: `${progress}%` }}
-                  aria-hidden="true"
-                />
-                <input
-                  type="range"
-                  min={0}
-                  max={duration || 0}
-                  step={0.1}
-                  value={Math.min(currentTime, duration || 0)}
-                  onChange={(event) => seek(Number(event.currentTarget.value))}
-                  disabled={!duration}
-                  aria-label={`Seek through ${track.title}`}
-                  className="relative z-10 h-4 w-full cursor-pointer appearance-none bg-transparent accent-emerald-300 disabled:cursor-not-allowed"
-                />
+            {canPlayHere ? (
+              <div className="mt-5">
+                <div className="relative flex h-4 items-center">
+                  <div className="absolute h-1 w-full rounded-full bg-white/15" />
+                  <div
+                    className="absolute h-1 rounded-full bg-emerald-300"
+                    style={{ width: `${progress}%` }}
+                    aria-hidden="true"
+                  />
+                  <input
+                    type="range"
+                    min={0}
+                    max={duration || 0}
+                    step={0.1}
+                    value={Math.min(currentTime, duration || 0)}
+                    onChange={(event) => seek(Number(event.currentTarget.value))}
+                    disabled={!isThisTrack || !duration}
+                    aria-label={`Seek through ${track.title}`}
+                    className="relative z-10 h-4 w-full cursor-pointer appearance-none bg-transparent accent-emerald-300 disabled:cursor-not-allowed"
+                  />
+                </div>
+                <div className="mt-1 flex items-center justify-between font-mono text-[10px] text-white/55">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{duration > 0 ? formatTime(duration) : track.duration}</span>
+                </div>
               </div>
-              <div className="mt-1 flex items-center justify-between font-mono text-[10px] text-white/55">
-                <span>{formatTime(currentTime)}</span>
-                <span>{duration > 0 ? formatTime(duration) : track.duration}</span>
+            ) : (
+              <div className="mt-5 flex items-center justify-between font-mono text-[10px] text-white/55">
+                <span>0:00</span>
+                <span>{track.duration}</span>
               </div>
-            </div>
+            )}
 
             {playbackError ? (
               <p role="status" aria-live="polite" className="mt-3 text-xs text-amber-200/80">

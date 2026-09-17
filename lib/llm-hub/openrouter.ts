@@ -36,17 +36,18 @@ export interface LivePricing {
   outputPer1m: number
   contextLength?: number
   source: 'openrouter'
-  fetchedAt: string
+  /** Upstream HTTP response date; null when not supplied. Never the current request time. */
+  fetchedAt: string | null
 }
 
 /** Map of registry model id -> live pricing (when available). */
 export type LivePricingMap = Record<string, LivePricing>
 
 function toPer1m(perToken?: string): number | null {
-  if (!perToken) return null
+  if (!perToken?.trim()) return null
   const n = Number(perToken)
   if (!Number.isFinite(n) || n < 0) return null
-  return Math.round(n * 1_000_000 * 100) / 100
+  return n * 1_000_000
 }
 
 /**
@@ -82,7 +83,10 @@ export async function fetchLivePricing(): Promise<LivePricingMap> {
     const json = (await res.json()) as { data?: OpenRouterModel[] }
     const models = json.data ?? []
     const map: LivePricingMap = {}
-    const fetchedAt = new Date().toISOString()
+    const responseDate = res.headers.get('date')
+    const fetchedAt = responseDate && Number.isFinite(Date.parse(responseDate))
+      ? new Date(responseDate).toISOString()
+      : null
 
     for (const m of models) {
       const registryId = slugToId[m.id]

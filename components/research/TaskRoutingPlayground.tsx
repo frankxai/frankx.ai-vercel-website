@@ -119,9 +119,10 @@ export function TaskRoutingPlayground() {
   const getCodeSnippet = () => {
     const model = recommendation.modelId
 
-    const typescript = `import { ACOS_Router } from '@acos/router';
+    const typescript = `// Illustrative pseudocode; no installable router package is specified.
+import { ACOS_Router } from '@acos/router';
 
-// Initialize ACOS Dynamic Router loaded from /llm-hub.json
+// Example router interface; implement and validate before use
 const router = new ACOS_Router({
   env: 'production',
   failover: true
@@ -141,9 +142,10 @@ const result = await router.execute({
 
 console.log(\`Routed to \${result.model} | Status: \${result.status}\`);`
 
-    const python = `from acos.router import AcosRouter
+    const python = `# Illustrative pseudocode; no installable router package is specified.
+from acos.router import AcosRouter
 
-# Initialize router using live telemetry weights
+# Example router interface for an application-owned implementation
 router = AcosRouter(
     registry_url="https://frankx.ai/llm-hub.json",
     cache_ttl=3600
@@ -195,7 +197,7 @@ print(f"Dynamically routed to: {response.model_name}")`
             <span>Interactive Simulator</span>
           </div>
           <h3 className="text-xl font-bold text-white mb-1">Pick Your Task Constraints</h3>
-          <p className="text-xs text-white/50">Select what your agent or pipeline demands. The simulator dynamically queries the proving ground receipts to calculate the optimal route.</p>
+          <p className="text-xs text-white/50">This historical example applies fixed editorial rules. It does not query receipts, execute models or validate a production route.</p>
         </div>
 
         <div className="space-y-3">
@@ -205,6 +207,7 @@ print(f"Dynamically routed to: {response.model_name}")`
               <button
                 key={option.id}
                 onClick={() => toggleId(option.id)}
+                aria-pressed={isSelected}
                 className={`w-full text-left p-4 rounded-xl border transition-all duration-200 ${
                   isSelected
                     ? 'bg-white/[0.04] border-white/20 shadow-md'
@@ -232,7 +235,7 @@ print(f"Dynamically routed to: {response.model_name}")`
       <div className="flex flex-col border border-white/10 bg-slate-950 rounded-2xl overflow-hidden shadow-inner">
         {/* Dynamic Recommendation banner */}
         <div className={`p-5 border-b border-white/5 transition-all ${recommendation.borderColor} ${recommendation.bg}`}>
-          <div className="text-xs text-white/40 font-mono uppercase tracking-wider mb-1">PROVING GROUND RESOLUTION</div>
+          <div className="text-xs text-white/40 font-mono uppercase tracking-wider mb-1">Illustrative route</div>
           <div className="flex items-baseline gap-2 mb-1">
             <span className={`text-xl font-bold ${recommendation.color}`}>{recommendation.model}</span>
             <span className="text-[10px] text-white/40 font-mono">({recommendation.tier})</span>
@@ -287,7 +290,7 @@ print(f"Dynamically routed to: {response.model_name}")`
 
         {/* Client Usage Info */}
         <div className="p-4 bg-slate-900/40 border-t border-white/5 flex items-center justify-between text-xs text-white/45">
-          <span>Target endpoints synced automatically hourly</span>
+          <span>Illustrative code; no model execution or live telemetry</span>
           <a 
             href="/llm-hub.json"
             className="inline-flex items-center gap-1 text-[#a855f7] hover:underline"

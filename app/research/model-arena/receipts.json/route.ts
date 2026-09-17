@@ -38,6 +38,13 @@ export async function GET() {
       'Index of first-party model-arena eval receipts published by frankx.ai. Every measurement claim on /research/model-arena traces to one of these files. Figures sourced from third parties live in the external snapshot and carry their own licence; do not merge the two into a ranking.',
     lastMeasured: lastMeasured(),
     receiptCount: receipts.length,
+    plannedEvaluations: [{
+      id: 'image-workflows-v1',
+      status: 'not_run',
+      protocol: '/research/image-workflows/protocol.json',
+      guide: '/guides/reference-to-campaign',
+      measuredRuns: 0,
+    }],
     receipts: receipts.map((r) => ({
       roundId: r.round_id,
       date: r.date,

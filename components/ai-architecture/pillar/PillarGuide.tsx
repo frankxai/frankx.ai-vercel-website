@@ -18,17 +18,17 @@ export const pillarFaqs = [
   {
     question: 'What is AI architecture?',
     answer:
-      'AI architecture is the arrangement of the parts that surround a model — how requests reach it, what context it is given, which tools it may call, who approves side effects, and how the whole run is measured. The model is one component. Architecture is the decision about everything else, and it is where almost all production failure lives.',
+      'AI architecture is the arrangement of the parts that surround a model: how requests reach it, what context it is given, which tools it may call, who approves side effects, and how the whole run is measured. The model is one component. Architecture assigns boundaries, ownership, and recovery behavior to the surrounding system.',
   },
   {
     question: 'Should I build a workflow or an agent?',
     answer:
-      'Build a fixed workflow when you can name every step before the request arrives. Build an agent loop when the steps are unknown but the task is one coherent piece of work. The test is not how capable the model is; it is whether you can enumerate the path in advance. If you can, the workflow will be cheaper, faster, and easier to debug.',
+      'Start with a fixed workflow when you can name the required steps before the request arrives. Consider an agent loop when the path is unknown but the task is one coherent piece of work. A fixed path makes execution easier to bound and test. Compare latency, total cost, and task outcomes on your workload before choosing.',
   },
   {
     question: 'When is a multi-agent system worth the coordination cost?',
     answer:
-      'When the work is read-heavy and each unit is genuinely independent — separate lookups, separate documents, separate sources — parallel sub-agents earn their complexity. When the work mutates shared state, they do not: two agents writing the same thing produce lost updates and contradictions no merge step can adjudicate. Parallelise reads, serialise writes.',
+      'Parallel agents can help when the work is read-heavy and each unit is independent, such as separate lookups or documents. Measure the quality and latency gain against coordination cost. Parallel writes to shared state require explicit isolation, conflict detection, and reconciliation; serialize them by default until that contract is tested.',
   },
   {
     question: 'What changed in the Model Context Protocol in 2026?',
@@ -38,7 +38,7 @@ export const pillarFaqs = [
   {
     question: 'What are the biggest security risks in an AI system?',
     answer:
-      'The OWASP GenAI LLM Top 10 2026, published 4 August 2026, ranks Prompt Injection first, Sensitive Information Disclosure second, and Excessive Agency third. Excessive Agency rising to third is the notable move for architects: it is a design fault, not a model fault, and it is fixed by scoping tool permissions rather than by prompting more carefully.',
+      'The OWASP GenAI LLM Top 10 2026, published in August 2026, ranks Prompt Injection first, Sensitive Information Disclosure second, and Excessive Agency third. Address excessive agency through scoped tool permissions, approval boundaries, and monitoring. Prompt instructions alone do not enforce those controls.',
   },
   {
     question: 'Why do retrieval systems fail even when search looks healthy?',
@@ -182,10 +182,10 @@ export function PillarGuide() {
         <ReferenceStackScene layers={referenceStack} />
 
         <p className="mt-10 max-w-3xl text-base leading-7 text-slate-400">
-          The trust boundary at the tool surface is the one most systems get wrong. Everything a
-          tool returns — a search result, a fetched page, a database row someone else wrote — is
-          input from outside your system. Treating it as instruction rather than data is the single
-          most common way an agent ends up doing something nobody asked for.
+          Tool results need an explicit trust boundary. A search result, a fetched page, or a
+          database row may contain instructions written by someone outside your system. Treat
+          retrieved content as data and enforce action permissions in application code. A fluent
+          proposal does not establish authority to act.
         </p>
       </Section>
 
@@ -226,13 +226,12 @@ export function PillarGuide() {
         </div>
 
         <p className="mt-8 max-w-3xl text-base leading-7 text-slate-400">
-          The multi-agent question is where practitioners most visibly disagree, and the
-          disagreement is usually reported as a contradiction when it is really a difference in
-          workload. The heuristic that reconciles the two camps:{' '}
+          Multi-agent designs should be compared on the workload they serve. Start with the heuristic:{' '}
           <strong className="font-semibold text-white">parallelise reads, serialise writes.</strong>{' '}
-          Independent gathering parallelises cleanly because nothing the sub-agents do can conflict.
-          Shared mutation does not, because two agents editing the same state produce lost updates
-          that no merge step can adjudicate after the fact. That is our position, not a citation.
+          Independent gathering can reduce latency, but still needs limits on cost, rate, and
+          inconsistent evidence. Concurrent writes require isolation, conflict detection, and
+          reconciliation. Serialize shared mutations until that contract is tested. This is a
+          design recommendation, not a claim that concurrent writes are impossible.
         </p>
       </Section>
 
@@ -295,10 +294,10 @@ export function PillarGuide() {
         heading="The risks are ranked, and the ranking moved."
       >
         <Answer>
-          The OWASP GenAI LLM Top 10 2026 was published on 4 August 2026. Prompt Injection remains
-          first. The move architects should read is Excessive Agency at third — a design fault, not
-          a model fault, and one that is fixed by scoping permissions rather than by prompting more
-          carefully.
+          The OWASP GenAI LLM Top 10 2026 was published in August 2026. Prompt Injection remains
+          first, with Excessive Agency at third. Address excessive agency through scoped tool
+          permissions, approval boundaries, and monitoring. Prompt instructions alone do not
+          enforce those controls.
         </Answer>
 
         <ol className="mt-8 grid gap-2 sm:grid-cols-2">

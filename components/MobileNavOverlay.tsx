@@ -44,6 +44,7 @@ import {
 } from 'lucide-react'
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { trackEvent } from '@/lib/analytics'
+import { resolveNavigationGroups } from '@/lib/navigation-groups'
 
 export interface MobileNavOverlayProps {
   isOpen: boolean
@@ -736,13 +737,11 @@ function SectionView({
       </h2>
 
       {section.groups ? (
-        section.groups.map((group) => (
+        resolveNavigationGroups(section.items, section.groups).map((group) => (
           <div key={group.label} className="mb-5">
             <h3 className="mb-2 text-[12px] font-semibold text-slate-400">{group.label}</h3>
             <div className="flex flex-col gap-2">
               {group.items
-                .map((name) => section.items.find((item) => item.name === name))
-                .filter((item): item is NavItem => Boolean(item))
                 .map((item) => (
                   <NavTile key={item.href} item={item} onClose={onClose} />
                 ))}

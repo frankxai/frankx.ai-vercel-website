@@ -12,9 +12,11 @@ export interface ModelEntry {
   organization: string
   family?: string
   released?: string
+  last_verified?: string
   status?: string
   architecture?: string
   parameters?: string
+  open_weights?: boolean
   context_window?: number
   context_window_beta?: number
   max_output_tokens?: number
@@ -30,6 +32,27 @@ export interface ModelEntry {
   acos_tier?: string
   frankx_notes?: string
   sources?: string[]
+  image_pricing?: {
+    currency: string
+    unit: string
+    text_input: number
+    cached_text_input: number
+    image_input: number
+    cached_image_input: number
+    image_output: number
+    checked_at: string
+    source: string
+  }
+  workflow?: { guide: string; protocol: string; status: string }
+  evaluation?: {
+    status: string
+    planned_cases: number
+    measured_cases: number
+    judge_model: string | null
+    production_ready: boolean
+    url: string | null
+    evidence_url: string | null
+  }
 }
 
 export interface OrganizationEntry {
@@ -90,7 +113,7 @@ function normaliseModel(key: string, raw: ModelEntry): ModelEntry {
 export function getModel(idOrKey: string | undefined): ModelEntry | undefined {
   if (!idOrKey) return undefined
   const models = rawModels()
-  if (models[idOrKey]) return normaliseModel(idOrKey, models[idOrKey])
+  if (Object.hasOwn(models, idOrKey)) return normaliseModel(idOrKey, models[idOrKey])
   // Fallback: match by the provider-facing versioned id.
   const found = Object.entries(models).find(([, m]) => m.id === idOrKey)
   return found ? normaliseModel(found[0], found[1]) : undefined
@@ -153,13 +176,14 @@ export function getCapabilityGroups(): Array<{
   const all = getProviders()
   return (Object.keys(CAPABILITIES) as Capability[]).map((capability) => ({
     capability,
-    providers: all.filter((p) => p.org.capability_focus?.includes(capability)),
+    providers: all.filter((p) => p.org.capability_focus?.includes(capability)
+      || p.models.some((model) => model.capabilities?.includes(capability))),
   }))
 }
 
 export function formatContext(tokens?: number): string {
   if (!tokens) return '—'
-  if (tokens >= 1_000_000) return `${(tokens / 1_000_000).toFixed(tokens % 1_000_000 === 0 ? 0 : 1)}M`
+  if (tokens >= 1_000_000) return `${Number((tokens / 1_000_000).toFixed(2))}M`
   if (tokens >= 1_000) return `${(tokens / 1_000).toFixed(0)}K`
   return `${tokens}`
 }

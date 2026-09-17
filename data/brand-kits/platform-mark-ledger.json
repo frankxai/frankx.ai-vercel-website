@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-08-30",
+  "policy": {
+    "generatedMarks": "forbidden",
+    "logoApplication": "deterministic-layer-only",
+    "relationshipDefault": "platform-compared",
+    "relationshipRule": "Use partner or sponsor only when a current commercial record proves that relationship.",
+    "comparisonDisclosure": "Marks identify platforms discussed editorially. They belong to their owners and do not imply sponsorship or endorsement.",
+    "nativeImageGenerationRole": "Original narrative scenes, characters, lighting, environments, and conceptual metaphors only."
+  },
+  "assets": [
+    {
+      "id": "openai-wordmark-white",
+      "brand": "OpenAI",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://openai.com/brand/",
+      "localPath": "/images/brands/openai.svg",
+      "sha256": "5904d6c2cd5059861690d12f1dbdad8a7d0ca2011a942d4beb4f83254e290d5a",
+      "status": "source-page-verified-existing-asset"
+    },
+    {
+      "id": "anthropic-wordmark-white",
+      "brand": "Anthropic",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://www.anthropic.com/company",
+      "localPath": "/images/brands/anthropic.svg",
+      "sha256": "c5832a7ed73b0bb359593e63507b8225aefea37491bd0ade351150e0a4f5a89e",
+      "status": "source-page-verified-existing-asset"
+    },
+    {
+      "id": "google-wordmark",
+      "brand": "Google",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://about.google/brand-resource-center/brand-elements/",
+      "localPath": "/images/brands/google.svg",
+      "sha256": "5d233fdbfa114596f0f5b098ce3a89ee5cf85e52ae22dea135e07d23dd9e6435",
+      "status": "source-page-verified-existing-asset"
+    },
+    {
+      "id": "xai-mark-white",
+      "brand": "xAI",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://x.ai/",
+      "localPath": "/images/logos/xai.svg",
+      "sha256": "d104ba8f236537d50d7c7acc7ebd2b55fab65c4e09609ed1de86643bb0416e",
+      "status": "source-page-verified-existing-asset"
+    },
+    {
+      "id": "meta-wordmark-white",
+      "brand": "Meta",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://about.meta.com/",
+      "localPath": "/images/brands/meta.svg",
+      "sha256": "800370c28f99da069bf9bb1112ab74c6451ed750976c8bbf73e1a418630561bc",
+      "status": "source-page-verified-existing-asset"
+    },
+    {
+      "id": "mistral-emblem",
+      "brand": "Mistral AI",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://mistral.ai/brand/",
+      "localPath": "/images/brands/official-2026/mistral-emblem.png",
+      "sha256": "9c3bacabb7dcf31b0857669a5fde508d96b5a2657a6a781d0ddf686137b75e12",
+      "status": "verified-official-download"
+    },
+    {
+      "id": "v0-dark-mark",
+      "brand": "v0",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://vercel.com/geist/brands",
+      "downloadUrl": "https://k2mkucxia43oc7fa.public.blob.vercel-storage.com/front/press/v0-assets.zip",
+      "localPath": "/images/brands/official-2026/v0-dark.svg",
+      "sha256": "6310a8929916f59b31ddc6bb0d0c8536a60a9dffedc98f265fa4f5ae70e4acd9",
+      "status": "verified-official-download"
+    },
+    {
+      "id": "lovable-full-white",
+      "brand": "Lovable",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://lovable.dev/brand",
+      "localPath": "/images/brands/official-2026/lovable-full-white.png",
+      "sha256": "1796e23f5b08a378ecef81b8148b6567dfe3c833a2b0defa3966e6f35821a47e",
+      "status": "verified-official-download"
+    },
+    {
+      "id": "replit-mark",
+      "brand": "Replit",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://replit.com/brand",
+      "status": "hold-official-page-challenge-loop"
+    },
+    {
+      "id": "bolt-mark",
+      "brand": "Bolt",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://stackblitz.com/",
+      "status": "hold-no-cleared-download"
+    },
+    {
+      "id": "base44-mark",
+      "brand": "Base44",
+      "relationship": "platform-compared",
+      "sourceUrl": "https://base44.com/",
+      "status": "hold-no-cleared-download"
+    }
+  ]
+}

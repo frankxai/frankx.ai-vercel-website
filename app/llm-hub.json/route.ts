@@ -10,5 +10,7 @@ export const dynamic = 'force-dynamic'
 export async function GET() {
   const live = await fetchLivePricing()
   const rows = buildModelRows(live)
-  return NextResponse.json(rows)
+  return NextResponse.json(rows, {
+    headers: { Link: '<https://www.frankx.ai/llm-hub/manifest.json>; rel="describedby"; type="application/json"' },
+  })
 }

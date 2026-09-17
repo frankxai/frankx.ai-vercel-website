@@ -1,0 +1,279 @@
+{
+  "schema_version": "1.1.0",
+  "content_id": "cnt_frankx_gpt6_astra_creators_202609",
+  "status": "DRAFT",
+  "authority": "PUBLISH",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "frankx-ai-vercel-website",
+    "notion_record": "not used for this repository-owned commission"
+  },
+  "brief": {
+    "working_title": "GPT-6 Astra for creators: build a studio that finishes",
+    "subject": "GPT-6 Astra in creator workflows",
+    "origin": "User-commissioned September 3 launch review against existing hub and evaluation infrastructure.",
+    "thesis": "Creative-tool capability earns value when usable editable work survives execution and revision.",
+    "reader": "creator practitioners",
+    "reader_baseline": "Already uses AI tools; needs a concrete adoption decision.",
+    "reader_delta": "Commission a complete creative project and evaluate tool execution, editable handoffs and recovery.",
+    "stakes": "Time, operating cost and trust in publishable or deployable outputs.",
+    "strongest_objection": "Vendor benchmarks do not establish performance on the reader's own workflow.",
+    "commercial_relationship": "none"
+  },
+  "content_graph": {
+    "cluster_id": "astra-in-practice-202609",
+    "canonical_url": "https://www.frankx.ai/blog/gpt-6-astra-for-content-creators",
+    "existing_related_urls": [
+      "/blog/ultimate-canva-ai-workflow-2026",
+      "/blog/gpt-6-astra-chatgpt-work-codex-founders",
+      "/blog/gpt-6-astra-ai-architecture-model-economics",
+      "/llm-hub/gpt-6-astra"
+    ],
+    "internal_links": [
+      "/blog/ultimate-canva-ai-workflow-2026",
+      "/blog/gpt-6-astra-chatgpt-work-codex-founders",
+      "/blog/gpt-6-astra-ai-architecture-model-economics",
+      "/llm-hub/gpt-6-astra"
+    ],
+    "entities": [
+      "GPT-6 Astra",
+      "ChatGPT Work",
+      "Codex",
+      "OpenAI"
+    ]
+  },
+  "search": {
+    "primary_intent": "Commission a complete creative project and evaluate tool execution, editable handoffs and recovery.",
+    "query_set": [
+      "GPT-6 Astra for creators: build a studio that finishes"
+    ],
+    "serp_snapshot": {
+      "captured_at": null,
+      "locale": "en",
+      "device": null,
+      "dominant_intent": "User commission; no competitive ranking claimed.",
+      "information_gap": "Evidence-aware workflow acceptance and model economics."
+    },
+    "answer_units": [
+      "The format of your work can expand",
+      "Choose the surface and verify the tools",
+      "Commission a project with a real handoff",
+      "Evaluate the complete tool sequence"
+    ],
+    "structured_data": [
+      "Article",
+      "BreadcrumbList"
+    ],
+    "indexation": "index",
+    "crawler_policy_checked": false
+  },
+  "sources": [
+    {
+      "source_id": "astra-release",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "title": "GPT-6 Astra: A new generation of intelligence",
+      "publisher": "OpenAI",
+      "source_type": "vendor_report",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "tool-source-0",
+      "url": "https://developers.openai.com/blog/architectural-visualization-with-astra",
+      "title": "architectural-visualization-with-astra",
+      "publisher": "developers.openai.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "tool-source-1",
+      "url": "https://developers.openai.com/blog/how-to-build-games-with-astra",
+      "title": "how-to-build-games-with-astra",
+      "publisher": "developers.openai.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "tool-source-3",
+      "url": "https://learn.chatgpt.com/training/walkthroughs/building-a-shareable-site",
+      "title": "building-a-shareable-site",
+      "publisher": "learn.chatgpt.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "tool-source-4",
+      "url": "https://learn.chatgpt.com/training/walkthroughs/getting-started",
+      "title": "getting-started",
+      "publisher": "learn.chatgpt.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "tool-source-7",
+      "url": "https://www.adobe.com/products/firefly/adobe-for-chatgpt.html",
+      "title": "adobe-for-chatgpt.html",
+      "publisher": "www.adobe.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "tool-source-8",
+      "url": "https://www.canva.com/help/chatgpt-templates/",
+      "title": "chatgpt-templates",
+      "publisher": "www.canva.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "tool-source-9",
+      "url": "https://www.canva.com/help/mcp-agent-setup/",
+      "title": "mcp-agent-setup",
+      "publisher": "www.canva.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "tool-source-10",
+      "url": "https://www.canva.com/help/mcp-canva-usage/",
+      "title": "mcp-canva-usage",
+      "publisher": "www.canva.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "tool-source-11",
+      "url": "https://www.heygen.com/chatgpt-app",
+      "title": "chatgpt-app",
+      "publisher": "www.heygen.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-09-07"
+    },
+    {
+      "source_id": "local-evidence",
+      "repository_path": "frankxai/llm-evals@fdb25d51f0bdf5914b5f41bf5d1197da7d6e121b",
+      "url": "https://github.com/frankxai/llm-evals",
+      "title": "Sanitized Astra evaluation plan",
+      "publisher": "FrankX / Starlight",
+      "source_type": "first_party",
+      "retrieved_at": "2026-09-07"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "workflow-thesis",
+      "text": "Creative-tool capability earns value when usable editable work survives execution and revision.",
+      "type": "opinion",
+      "support": "contextual",
+      "source_ids": []
+    },
+    {
+      "claim_id": "evidence-boundary",
+      "text": "No local Astra connector success rate or calibrated judge result is claimed.",
+      "type": "first_party",
+      "support": "direct",
+      "source_ids": [
+        "local-evidence"
+      ]
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/gpt-6-astra-for-content-creators.mdx",
+    "canonical_title": "GPT-6 Astra for creators: build a studio that finishes",
+    "description": "Evaluate GPT-6 Astra for creative production with Adobe, Canva and HeyGen, including tool access, editable handoffs and the cost of usable results.",
+    "author_id": "frank-riemer",
+    "published_at": null,
+    "modified_at": "2026-09-07"
+  },
+  "visual_plan": {
+    "tier": "EXPLAINER",
+    "reason": "Bounded capability review; exact acceptance diagram replaces decorative narrative scenes.",
+    "status": "IN_PRODUCTION",
+    "visual_packet_ref": "docs/research/gpt-6-astra/media-manifest.json",
+    "competitive_snapshot_at": null,
+    "character_mode": "NOT_APPLICABLE",
+    "character_exemption": "Exact workflow boundaries are the visual subject.",
+    "canonical_character_refs": [],
+    "required_roles": [
+      "orientation",
+      "architecture",
+      "og"
+    ]
+  },
+  "media": [
+    {
+      "asset_id": "frankx.astra.creator.orientation",
+      "version_id": "v1",
+      "path": "/research/astra/creator-v1.svg",
+      "sha256": "b0c5b12e949e6b3d65292386a735f346b54fccadea47621a75d6bda41dfbb7ba",
+      "width": 1200,
+      "height": 630,
+      "mime_type": "image/svg+xml",
+      "alt": "GPT-6 Astra for creators. Keep the creative source. Acceptance / Meaning, identity, editable source.",
+      "provenance": "Original deterministic SVG authored for this article; no source logos or product UI.",
+      "rights": "Original editorial diagram; no third-party media assets.",
+      "roles": [
+        "orientation",
+        "architecture"
+      ],
+      "approval_state": "pending_visual_review",
+      "rollback": "Remove the three new articles and named v1 files in a revert PR.",
+      "placement": "article.hero",
+      "media_type": "image/svg+xml"
+    },
+    {
+      "asset_id": "frankx.astra.creator.og",
+      "version_id": "v1",
+      "placement": "article.og",
+      "media_type": "image/png",
+      "rights": "Existing FrankX image endpoint with authored article title and series subtitle.",
+      "alt": "GPT-6 Astra for creators: build a studio that finishes",
+      "provenance": "Existing /api/og renderer; no new external media."
+    }
+  ],
+  "affiliates": [],
+  "distribution": [],
+  "reviews": [
+    {
+      "lane": "truth_rights",
+      "verdict": "pass",
+      "reason": "Primary sources checked; no private media or invented live measurements."
+    },
+    {
+      "lane": "commissioning_editor",
+      "verdict": "pass",
+      "reason": "Distinct reader job; creator specialist and root performed independent cross-review."
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "Source, build, static and runtime-link checks passed; desktop preview inspected. Mobile rendered evidence is unavailable in the current browser."
+    }
+  ],
+  "publication": {
+    "branch": "agent/codex/astra-field-notes",
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/655",
+    "preview_url": "https://frankx-ai-vercel-website-ppe9tv3y3-starlight-intelligence.vercel.app",
+    "live_url": null,
+    "verified_at": null,
+    "rollback": "Revert the release PR; restore previous Vercel deployment."
+  },
+  "measurement": {
+    "hypothesis": "Practical articles lead readers to inspect model evidence and define an acceptance task.",
+    "primary_metric": "Article-to-hub engagement; not measured in this release.",
+    "guardrails": [
+      "No unsupported measured claims",
+      "No duplicated canonical article"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "2026-10-07",
+    "freshness_triggers": [
+      "Model/pricing/connector documentation changes",
+      "New evaluation receipts"
+    ]
+  },
+  "blocked": [
+    "Mobile rendered verification and final release evidence pending."
+  ]
+}
