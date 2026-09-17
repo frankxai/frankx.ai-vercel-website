@@ -28,9 +28,11 @@ export interface LearnHubSectionProps {
   blurb?: string
   /** Visual density. Defaults to 'default'. */
   variant?: 'default' | 'compact'
+  /** Context-specific copy without changing the underlying lesson catalog. */
+  descriptionOverrides?: Record<string, string>
 }
 
-function PortalCard({ portal }: { portal: LearningPath }) {
+function PortalCard({ portal, description }: { portal: LearningPath; description?: string }) {
   const Icon = iconMap[portal.icon] ?? BookOpen
   const colors = colorMap[portal.color]
 
@@ -50,7 +52,7 @@ function PortalCard({ portal }: { portal: LearningPath }) {
       <h3 className="text-base font-semibold text-white mb-1 group-hover:text-white/90 line-clamp-2">
         {portal.title}
       </h3>
-      <p className="text-xs text-white/55 mb-3 line-clamp-2 leading-relaxed">{portal.description}</p>
+      <p className="text-xs text-white/55 mb-3 line-clamp-2 leading-relaxed">{description ?? portal.description}</p>
       <div className="flex items-center gap-3 text-[11px] text-white/40">
         <span className="inline-flex items-center gap-1">
           <Clock className="w-3 h-3" aria-hidden="true" />
@@ -72,6 +74,7 @@ export default function LearnHubSection({
   heading = 'Continue in the Learn Hub',
   blurb,
   variant = 'default',
+  descriptionOverrides,
 }: LearnHubSectionProps) {
   if (!relatedPortals || relatedPortals.length === 0) return null
 
@@ -109,7 +112,7 @@ export default function LearnHubSection({
       </div>
       <div className={gridClass}>
         {resolved.map((portal) => (
-          <PortalCard key={portal.id} portal={portal} />
+          <PortalCard key={portal.id} portal={portal} description={descriptionOverrides?.[portal.slug]} />
         ))}
       </div>
       <div className="mt-6 text-sm">

@@ -1,17 +1,17 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 993,
+    "total": 1015,
     "aliases": 58,
     "byType": {
       "core": 24,
-      "section": 431,
+      "section": 434,
       "community": 17,
-      "tool": 61,
+      "tool": 66,
       "static": 15,
-      "blog": 264,
-      "research": 16,
-      "guide": 26,
+      "blog": 270,
+      "research": 23,
+      "guide": 27,
       "library": 88,
       "newsletter": 1,
       "os": 11,
@@ -162,6 +162,7 @@
     {
       "href": "/agents/packs/music",
       "title": "Music Pack",
+      "description": "Preview the music production agent pack and join its launch waitlist.",
       "tags": [
         "agents",
         "pack",
@@ -1091,13 +1092,9 @@
       "tags": [
         "AI Agents",
         "Claude Code",
-        "ChatGPT Work",
         "Hermes Agent",
-        "Manus",
         "Devin",
-        "Cursor",
-        "Viktor",
-        "OpenClaw"
+        "Cursor"
       ],
       "type": "blog"
     },
@@ -1143,7 +1140,7 @@
     {
       "href": "/blog/ai-capability-abundant-architecture-still-the-work",
       "title": "AI Capability Is Abundant. Architecture Is Still the Work.",
-      "description": "Five recent stories from my work show where AI skills and architecture create real value: turning workshops, field notes, compute, content, and infrastructure ideas into systems that can survive change.",
+      "description": "Where AI skills and architecture create real value: turning workshops, field notes, compute, and infrastructure into durable systems that survive change.",
       "tags": [
         "ai-architecture",
         "ai-skills",
@@ -1591,7 +1588,7 @@
     {
       "href": "/blog/best-cheap-ai-music-generator-2026",
       "title": "Best Cheap AI Music Generator 2026: Free Tiers and Commercial Rights Compared",
-      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that de...",
+      "description": "A comparison of the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that de...",
       "tags": [
         "AI Music",
         "Suno",
@@ -1736,6 +1733,19 @@
         "claude code",
         "mcp",
         "productivity"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/chatgpt-images-2-5-creator-founder-workflows",
+      "title": "ChatGPT Images 2.5: what creators and founders should build",
+      "description": "Test complete image workflows, and turn approved references into campaigns, stories and reusable product assets.",
+      "tags": [
+        "image-generation",
+        "gpt-image-2-5",
+        "creative-workflows",
+        "founders",
+        "model-arena"
       ],
       "type": "blog"
     },
@@ -2043,6 +2053,19 @@
         "Cursor",
         "Windsurf",
         "AI Development"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/das-fundament-und-der-glaube",
+      "title": "Die Linie des Erbauers: Was mein Vater mit Händen baute, und was wir im Geist errichten müssen",
+      "description": "Die Reflexion eines Sohnes an Witali Riemer zu seinem 57. Geburtstag. Ein wolgadeutscher Handwerksmeister, das Gewicht chronischer Erschöpfung, die Anatomie einer Prognose und die innere Architektur wahrer Vitalität.",
+      "tags": [
+        "die-linie-des-erbauers",
+        "state-engineering",
+        "handwerk",
+        "vitalitaet",
+        "autonome-gesundheit"
       ],
       "type": "blog"
     },
@@ -2410,6 +2433,45 @@
       "type": "blog"
     },
     {
+      "href": "/blog/gpt-6-astra-ai-architecture-model-economics",
+      "title": "GPT-6 Astra: model economics and production architecture",
+      "description": "Evaluate GPT-6 Astra for organizational adoption with workload routing, independent grading, accepted-task economics and a controlled path into production.",
+      "tags": [
+        "gpt-6-astra",
+        "ai-architecture",
+        "llm-evaluation",
+        "model-routing",
+        "enterprise-ai"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-6-astra-chatgpt-work-codex-founders",
+      "title": "GPT-6 Astra for founders: ChatGPT, Work and Codex",
+      "description": "Turn GPT-6 Astra into a useful founder workflow across ChatGPT, Work and Codex, with clear briefs, source checks, web design tests and reviewable handoffs.",
+      "tags": [
+        "gpt-6-astra",
+        "chatgpt-work",
+        "codex",
+        "founder-systems",
+        "ai-strategy"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gpt-6-astra-for-content-creators",
+      "title": "GPT-6 Astra for creators: build a studio that finishes",
+      "description": "Evaluate GPT-6 Astra for creative production with Adobe, Canva and HeyGen, including tool access, editable handoffs and the cost of usable results.",
+      "tags": [
+        "gpt-6-astra",
+        "chatgpt-work",
+        "content-creation",
+        "ai-tools",
+        "creative-workflows"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/gpt-oss-analysis-2026",
       "title": "gpt-oss in 2026: OpenAI's Open-Weight Models, One Year On",
       "description": "OpenAI's gpt-oss-120b and gpt-oss-20b are Apache 2.0, free to download, and run on a single 80GB GPU or a 16GB laptop.",
@@ -2679,7 +2741,7 @@
     },
     {
       "href": "/blog/is-revolut-safe-netherlands-2026",
-      "title": "Is Revolut Safe in the Netherlands? Bank Licence, Dutch IBAN and €100k Protection",
+      "title": "Is Revolut Safe in the Netherlands? Bank Licence, IBAN & Protection",
       "description": "A regulator-first answer to whether Revolut is safe in the Netherlands: bank status, DNB register, Dutch IBAN, deposit insurance, and risks protection does not cover.",
       "tags": [
         "Revolut",
@@ -2982,7 +3044,7 @@
     },
     {
       "href": "/blog/music-as-consciousness-technology",
-      "title": "12,000 Songs Later: What AI Music Taught Me About Creative Systems",
+      "title": "What AI Music Taught Me About Creative Systems",
       "description": "An experiential field note on iteration, taste, emotional specificity, and what high-volume AI music practice can—and cannot—prove.",
       "tags": [
         "Music",
@@ -3670,8 +3732,8 @@
     },
     {
       "href": "/blog/suno-ai-12000-songs-production-lessons",
-      "title": "Suno AI After 12,000 Songs: What I Actually Learned",
-      "description": "Production lessons from creating 12K+ AI tracks — prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
+      "title": "Suno AI: What I Actually Learned",
+      "description": "Production lessons — prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
       "tags": [
         "creator-systems",
         "ai-systems",
@@ -3723,7 +3785,7 @@
     {
       "href": "/blog/suno-vs-udio-2026",
       "title": "Suno vs Udio 2026: Which AI Music Tool Is Safe to Release Commercially",
-      "description": "After 12,000+ AI songs, here's the honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
+      "description": "The honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
       "tags": [
         "Suno",
         "Udio",
@@ -3755,6 +3817,19 @@
         "ai-architecture",
         "ai-systems",
         "production"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/the-builder-and-the-belief",
+      "title": "The Builder's Line: What My Father Built With His Hands, What We Must Build in Our Minds",
+      "description": "A son's reflection on Witali Riemer on his 57th birthday. An immigrant craftsman who built homes from ruins, the weight of chronic depletion, the anatomy of a medical prognosis, and the inner architecture of vitality.",
+      "tags": [
+        "the-builders-line",
+        "state-engineering",
+        "craftsmanship",
+        "vitality",
+        "autonomic-health"
       ],
       "type": "blog"
     },
@@ -5282,6 +5357,15 @@
       "sitemap": false
     },
     {
+      "href": "/father-code",
+      "title": "Father Code",
+      "tags": [
+        "father",
+        "code"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/feed",
       "title": "Feed",
       "type": "section"
@@ -5874,6 +5958,18 @@
         "guide",
         "tutorial",
         "fact-checking"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/reference-to-campaign",
+      "title": "From reference to campaign: an AI image workflow",
+      "description": "Run a complete image commission with copyable prompts, six evaluation tasks, review criteria and an agent-readable protocol.",
+      "tags": [
+        "image-generation",
+        "campaigns",
+        "founders",
+        "model-arena"
       ],
       "type": "guide"
     },
@@ -7188,6 +7284,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/claude-fable-5-1",
+      "title": "Claude Fable 5.1 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/claude-haiku-4-5",
       "title": "Claude Haiku 4.5 — Model Hub",
       "tags": [
@@ -7467,6 +7572,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/gemini-3-8-flash",
+      "title": "Gemini 3.8 Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/gemini-3-pro",
       "title": "Gemini 3 Pro — Model Hub",
       "tags": [
@@ -7496,6 +7610,33 @@
     {
       "href": "/llm-hub/gpt-5-5",
       "title": "GPT-5.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-6-astra",
+      "title": "GPT-6 Astra — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-image-2-5-flare",
+      "title": "GPT Image 2.5 Flare — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-image-2-5-sunburst",
+      "title": "GPT Image 2.5 Sunburst — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -7708,11 +7849,13 @@
     {
       "href": "/music",
       "title": "Music",
+      "description": "Listen to FrankX tracks and browse playlists and releases.",
       "type": "section"
     },
     {
       "href": "/music-intelligence",
       "title": "Music Intelligence",
+      "description": "Explore music research, AI agents, tools, and free Suno templates.",
       "tags": [
         "music",
         "intelligence"
@@ -7722,7 +7865,7 @@
     {
       "href": "/music-lab",
       "title": "Music Lab",
-      "description": "AI music production",
+      "description": "Play music on browser instruments, with guided notes and rhythm games.",
       "type": "core"
     },
     {
@@ -7825,6 +7968,7 @@
     {
       "href": "/music-os",
       "title": "Music OS",
+      "description": "Review track readiness and release workflows in the Music OS cockpit.",
       "tags": [
         "music",
         "os"
@@ -9079,6 +9223,69 @@
       "type": "section"
     },
     {
+      "href": "/research/hubs/agentic-products",
+      "title": "Creative systems & products",
+      "tags": [
+        "agentic",
+        "products"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/agentic-systems",
+      "title": "Agents & autonomous systems",
+      "tags": [
+        "agentic",
+        "systems"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/ai-infrastructure",
+      "title": "Compute & infrastructure",
+      "tags": [
+        "ai",
+        "infrastructure"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/enterprise-governance",
+      "title": "Architecture & economics",
+      "tags": [
+        "enterprise",
+        "governance"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/frontier-ai",
+      "title": "Models & intelligence",
+      "tags": [
+        "frontier",
+        "ai"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/quantum-technology",
+      "title": "Quantum & emerging technology",
+      "tags": [
+        "quantum",
+        "technology"
+      ],
+      "type": "research"
+    },
+    {
+      "href": "/research/hubs/reality-architecture",
+      "title": "Human potential & biology",
+      "tags": [
+        "reality",
+        "architecture"
+      ],
+      "type": "research"
+    },
+    {
       "href": "/research/methodology",
       "title": "Research Methodology",
       "type": "research"
@@ -9584,6 +9791,16 @@
       "type": "section"
     },
     {
+      "href": "/the-builders-line",
+      "title": "The Builders Line",
+      "tags": [
+        "the",
+        "builders",
+        "line"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/the-future-is-for-everyone",
       "title": "The Future IS For Everyone",
       "tags": [
@@ -9806,6 +10023,14 @@
         "short"
       ],
       "type": "video"
+    },
+    {
+      "href": "/witali",
+      "title": "Witali",
+      "tags": [
+        "witali"
+      ],
+      "type": "section"
     },
     {
       "href": "/work",

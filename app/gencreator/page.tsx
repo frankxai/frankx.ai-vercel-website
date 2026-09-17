@@ -1,16 +1,22 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import Script from 'next/script'
+import { createMetadata, siteConfig } from '@/lib/seo'
+import { ldJson } from '@/lib/seo/jsonld'
 
-export const metadata: Metadata = {
+const pageMetadata = createMetadata({
   title: 'The GenCreator Framework — Principles, Handbook, Blueprints & Soul',
   description:
     'The complete operating system for generative creators. 12 principles, 8 handbook chapters, 12 actionable blueprints, 7 soul dimensions, and a manifesto.',
+  path: '/gencreator',
+})
+
+export const metadata: Metadata = {
+  ...pageMetadata,
   openGraph: {
+    ...pageMetadata.openGraph,
     title: 'The GenCreator Framework',
     description: 'Principles. Handbook. Blueprints. Soul. The complete creator operating system.',
-    url: 'https://frankx.ai/gencreator',
   },
 }
 import {
@@ -76,15 +82,15 @@ const structuredData = {
   '@type': 'CollectionPage',
   name: 'The GenCreator Framework',
   description: 'The complete framework for generative creators. 12 principles, 8 handbook chapters, 12 blueprints, 7 soul dimensions, and a manifesto.',
-  url: 'https://frankx.ai/gencreator',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
+  url: `${siteConfig.url}/gencreator`,
+  author: { '@type': 'Person', '@id': `${siteConfig.url}/#frank-riemer`, name: 'Frank Riemer', url: siteConfig.url },
   mainEntity: {
     '@type': 'ItemList',
     itemListElement: sections.map((s, i) => ({
       '@type': 'ListItem',
       position: i + 1,
       name: s.title,
-      url: `https://frankx.ai${s.href}`,
+      url: `${siteConfig.url}${s.href}`,
     })),
   },
 }
@@ -267,9 +273,7 @@ export default function GenCreatorHubPage() {
         </div>
       </section>
 
-      <Script id="gencreator-structured-data" type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </Script>
+      <script id="gencreator-structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(structuredData) }} />
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { ArrowLeft, ExternalLink, AlertTriangle, Award } from 'lucide-react'
 import JsonLd from '@/components/seo/JsonLd'
 import { getExternalIntelligence, getExternalModels, getSources, getLinkOnly, isSeed } from '@/lib/intelligence/loader'
@@ -28,6 +29,28 @@ import {
 export const dynamic = 'force-static'
 export const revalidate = false
 
+export const metadata: Metadata = {
+  title: 'Model Arena — Evaluation Receipts and Methodology',
+  description: 'Inspect published model evaluation receipts, task outcomes and limitations. First-party observations remain separate from external benchmark claims.',
+  alternates: {
+    canonical: 'https://www.frankx.ai/research/model-arena',
+    types: { 'application/json': 'https://www.frankx.ai/research/model-arena/receipts.json' },
+  },
+  openGraph: {
+    title: 'Model Arena — Evaluation Receipts and Methodology',
+    description: 'Published task evidence, source provenance and explicit limits on model recommendations.',
+    url: 'https://www.frankx.ai/research/model-arena',
+    type: 'website',
+    images: [{ url: '/images/brand/frankx-public-workspace-og-1200x630.png', width: 1200, height: 630, alt: 'FrankX Model Arena: evaluation receipts and methodology' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Model Arena — Evaluation Receipts and Methodology',
+    description: 'Published task evidence, source provenance and explicit limits on model recommendations.',
+    images: ['/images/brand/frankx-public-workspace-og-1200x630.png'],
+  },
+}
+
 export default function ModelArenaPage() {
   const snapshot = getExternalIntelligence()
   const receipts = getReceipts()
@@ -51,14 +74,14 @@ export default function ModelArenaPage() {
     name: 'FrankX Model Arena receipts',
     description:
       'First-party model eval receipts published by frankx.ai, plus a licence-tracked snapshot of third-party pricing. Every measurement claim on the page traces to a receipt file; third-party figures carry their own provenance and are never merged into a score.',
-    url: 'https://frankx.ai/research/model-arena',
-    creator: { '@type': 'Person', name: 'Frank', url: 'https://frankx.ai' },
+    url: 'https://www.frankx.ai/research/model-arena',
+    creator: { '@type': 'Person', name: 'Frank', url: 'https://www.frankx.ai' },
     ...(measured ? { dateModified: measured } : {}),
     distribution: [
       {
         '@type': 'DataDownload',
         encodingFormat: 'application/json',
-        contentUrl: 'https://frankx.ai/research/model-arena/receipts.json',
+        contentUrl: 'https://www.frankx.ai/research/model-arena/receipts.json',
       },
     ],
   }
@@ -81,12 +104,12 @@ export default function ModelArenaPage() {
           headline: 'Starlight Model Arena',
           description:
             'First-party model evals with public JSON receipts, alongside licence-tracked third-party pricing. Measured results and vendor claims are labelled separately and never merged.',
-          author: { '@type': 'Person', name: 'Frank', url: 'https://frankx.ai' },
+          author: { '@type': 'Person', name: 'Frank', url: 'https://www.frankx.ai' },
           datePublished: '2026-06-09',
           ...(measured ? { dateModified: measured } : {}),
           mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': 'https://frankx.ai/research/model-arena',
+            '@id': 'https://www.frankx.ai/research/model-arena',
           },
         }}
       />

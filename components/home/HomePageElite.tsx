@@ -1,10 +1,14 @@
+/// <reference types="next/image-types/global" />
+
 'use client'
 
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
+import architectureArtwork from '@/public/images/home/ai-architecture-atelier-v2.webp'
+import musicArtwork from '@/public/images/home/music-lab-studio-v2.webp'
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { ArrowRight, ChevronDown, Pause, Play, Sparkles } from 'lucide-react'
 
@@ -406,19 +410,19 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
   }, [isRotating, isHeadlinePaused])
 
   return (
-    <section className="relative flex min-h-[92svh] items-center overflow-hidden pb-16 pt-24 md:pb-20 md:pt-28">
+    <section className="relative flex items-start overflow-x-clip pb-16 pt-24 md:pb-20 md:pt-28">
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
+        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:gap-16">
           {/* Left Column — Text Content */}
-          <div className="order-1 space-y-8">
+          <div className="order-1 min-w-0 space-y-8">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
+              <div className="inline-flex max-w-full min-w-0 flex-wrap items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
+                <span className="min-w-0 text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
               </div>
 
               <h1
-                className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl"
+                className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-6xl"
                 aria-label="Build intelligence that compounds."
               >
                 <SplitFlipLine
@@ -475,23 +479,23 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-col gap-4 sm:flex-row">
+            {/* CTAs — full-width on 320px; labels wrap instead of overflowing the viewport */}
+            <div className="flex w-full min-w-0 max-w-full flex-col gap-3 sm:flex-row sm:gap-4">
               <Link
                 href="/ai-architecture"
                 onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-medium leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-0"
               >
-                Explore AI Architecture
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <span className="text-balance">Explore AI Architecture</span>
+                <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
               </Link>
 
               <Link
                 href="/ecosystem"
                 onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
+                className="flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-center text-base font-medium leading-snug text-white backdrop-blur-xl transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] sm:w-auto sm:px-8 sm:py-0"
               >
-                Map the Ecosystem
+                <span className="text-balance">Map the Ecosystem</span>
               </Link>
             </div>
 
@@ -502,7 +506,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
           </div>
 
           {/* Right Column — Featured Track */}
-          <div className="relative order-2">
+          <div className="relative order-2 min-w-0">
             <p className="mb-4 font-mono text-[11px] tracking-[0.08em] text-emerald-300/60 lg:hidden">
               Latest studio release · optional listening
             </p>
@@ -579,7 +583,7 @@ const products = [
   },
   {
     title: 'Music Lab',
-    description: 'An evolving music archive, Suno production workflows, and genre-focused frequency field guides.',
+    description: 'An evolving music archive with Suno production workflows and genre-focused frequency field guides.',
     href: '/music-lab',
     color: 'orange' as const,
   },
@@ -644,23 +648,29 @@ function ProductsTools() {
 }
 
 // ============================================================================
-// HUB SHOWCASE — Reusable alternating layout
+// HUB SHOWCASE — Proof-led homepage entry room
 // ============================================================================
 
 interface HubShowcaseProps {
+  id: string
   eyebrow: string
   title: string
   description: string
-  imageSrc: string
+  imageSrc: StaticImageData
   imageAlt: string
-  links: { label: string; href: string }[]
+  links: {
+    label: string
+    detail: string
+    href: string
+  }[]
   ctaLabel: string
   ctaHref: string
-  color: 'emerald' | 'cyan' | 'violet' | 'amber' | 'orange' | 'blue'
-  imageFirst?: boolean
+  color: 'emerald' | 'amber'
+  mediaSide: 'left' | 'right'
 }
 
 function HubShowcase({
+  id,
   eyebrow,
   title,
   description,
@@ -670,84 +680,127 @@ function HubShowcase({
   ctaLabel,
   ctaHref,
   color,
-  imageFirst = false,
+  mediaSide,
 }: HubShowcaseProps) {
+  const headingId = `${id}-title`
+  const theme = color === 'emerald'
+    ? {
+        room: 'border-emerald-300/[0.15] bg-[#0a1110]/95',
+        eyebrow: 'text-emerald-300/[0.80]',
+        cta: 'bg-emerald-300 text-[#03120d] hover:bg-emerald-200 focus-visible:ring-emerald-300/70',
+        link: 'hover:border-emerald-300/25 hover:bg-emerald-300/[0.06] focus-visible:border-emerald-300/40 focus-visible:bg-emerald-300/[0.08]',
+        index: 'text-emerald-300/[0.75]',
+        visualBorder: 'border-emerald-200/[0.15]',
+      }
+    : {
+        room: 'border-amber-300/[0.15] bg-[#120e08]/95',
+        eyebrow: 'text-amber-300/[0.80]',
+        cta: 'bg-amber-300 text-[#1a1002] hover:bg-amber-200 focus-visible:ring-amber-300/70',
+        link: 'hover:border-amber-300/25 hover:bg-amber-300/[0.06] focus-visible:border-amber-300/40 focus-visible:bg-amber-300/[0.08]',
+        index: 'text-amber-300/[0.75]',
+        visualBorder: 'border-amber-200/[0.15]',
+      }
+
+  const textColumn = mediaSide === 'right'
+    ? 'lg:col-span-4 lg:col-start-1'
+    : 'lg:col-span-4 lg:col-start-9'
+  const mediaColumn = mediaSide === 'right'
+    ? 'lg:col-span-8 lg:col-start-5'
+    : 'lg:col-span-8 lg:col-start-1'
+
   const imageBlock = (
-    <motion.div
-      initial={{ opacity: 0, x: imageFirst ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="relative aspect-[16/10] rounded-2xl overflow-hidden"
+    <Link
+      href={ctaHref}
+      aria-label={`Explore ${title}`}
+      onClick={() => trackEvent('homepage_proof_room_cta_clicked', {
+        room: id,
+        destination: ctaHref,
+        placement: 'visual',
+      })}
+      className={`group/media relative block aspect-[16/10] overflow-hidden rounded-[1.5rem] border ${theme.visualBorder} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/[0.55] focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]`}
     >
       <Image
         src={imageSrc}
         alt={imageAlt}
         fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, 60vw"
+        placeholder="blur"
+        className="object-cover transition-transform duration-700 ease-out motion-safe:group-hover/media:scale-[1.012] motion-reduce:transition-none"
+        sizes="(max-width: 639px) calc(100vw - 76px), (max-width: 1023px) calc(100vw - 108px), (max-width: 1279px) 60vw, 720px"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/60 to-transparent" />
-    </motion.div>
-  )
-
-  const textBlock = (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className="flex flex-col justify-center"
-    >
-      <p className="mb-3 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
-        {eyebrow}
-      </p>
-      <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-        {title}
-      </h2>
-      <p className="text-base text-white/50 leading-relaxed mb-6">
-        {description}
-      </p>
-
-      <div className="space-y-2 mb-6">
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors group/link"
-          >
-            <ArrowRight className="w-3.5 h-3.5 text-emerald-500/60 group-hover/link:translate-x-0.5 transition-transform" />
-            {link.label}
-          </Link>
-        ))}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a0a0b]/90 to-transparent" />
+      <div aria-hidden="true" className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 text-white sm:inset-x-6 sm:bottom-6">
+        <span className="text-sm font-semibold sm:text-base">Explore {title}</span>
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 bg-[#0a0a0b]/50 transition-colors group-hover/media:bg-white/15 group-focus-visible/media:bg-white/15">
+          <ArrowRight className="h-4 w-4 transition-transform duration-200 motion-safe:group-hover/media:translate-x-0.5 motion-reduce:transition-none" />
+        </span>
       </div>
-
-      <Link
-        href={ctaHref}
-        className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
-      >
-        {ctaLabel}
-        <ArrowRight className="w-4 h-4" />
-      </Link>
-    </motion.div>
+    </Link>
   )
 
   return (
-    <section className="py-24 lg:py-32 border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-          {imageFirst ? (
-            <>
-              <div className="lg:col-span-3">{imageBlock}</div>
-              <div className="lg:col-span-2">{textBlock}</div>
-            </>
-          ) : (
-            <>
-              <div className="lg:col-span-2">{textBlock}</div>
-              <div className="lg:col-span-3">{imageBlock}</div>
-            </>
-          )}
-        </div>
+    <section id={id} aria-labelledby={headingId} className="scroll-mt-24 border-t border-white/5 py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <GlowCard color={color} className={`rounded-[2rem] ${theme.room}`}>
+          <div className="grid gap-x-10 gap-y-7 p-5 sm:p-7 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8 lg:p-10 xl:gap-x-16 xl:p-12">
+            <header className={`order-1 min-w-0 self-end ${textColumn} lg:row-start-1`}>
+              <p className={`mb-3 text-xs font-medium tracking-[0.08em] ${theme.eyebrow}`}>
+                {eyebrow}
+              </p>
+              <h2 id={headingId} className="text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl lg:text-5xl">
+                {title}
+              </h2>
+            </header>
+
+            <div className={`order-2 min-w-0 ${mediaColumn} lg:row-span-2 lg:row-start-1`}>
+              {imageBlock}
+            </div>
+
+            <div className={`order-3 flex min-w-0 flex-col self-start ${textColumn} lg:row-start-2`}>
+              <p className="max-w-xl text-base leading-7 text-white/75">
+                {description}
+              </p>
+
+              <Link
+                href={ctaHref}
+                onClick={() => trackEvent('homepage_proof_room_cta_clicked', {
+                  room: id,
+                  destination: ctaHref,
+                  placement: 'primary',
+                })}
+                className={`group/cta mt-6 inline-flex min-h-12 w-fit max-w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-center text-sm font-semibold transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none ${theme.cta}`}
+              >
+                {ctaLabel}
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 motion-safe:group-hover/cta:translate-x-0.5 motion-reduce:transition-none" />
+              </Link>
+
+              <nav aria-label={`${title} starting points`} className="mt-7">
+                <p className="mb-2 text-xs font-medium text-white/65">Start here</p>
+                <ul className="space-y-2">
+                  {links.map((link, index) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={() => trackEvent('homepage_proof_room_resource_clicked', {
+                          room: id,
+                          destination: link.href,
+                          position: index + 1,
+                        })}
+                        className={`group/link grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-white/[0.07] px-3.5 py-3 transition-[background-color,border-color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 motion-reduce:transition-none ${theme.link}`}
+                      >
+                        <span className={`font-mono text-xs ${theme.index}`}>{String(index + 1).padStart(2, '0')}</span>
+                        <span>
+                          <span className="block text-sm font-medium text-white/[0.88]">{link.label}</span>
+                          <span className="mt-0.5 block text-sm leading-5 text-white/65">{link.detail}</span>
+                        </span>
+                        <ArrowRight className="h-4 w-4 text-white/[0.38] transition-transform duration-200 motion-safe:group-hover/link:translate-x-0.5 group-hover/link:text-white/70 motion-reduce:transition-none" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </GlowCard>
       </div>
     </section>
   )
@@ -1458,17 +1511,17 @@ function FinalCTA() {
               are ready for another.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex w-full min-w-0 max-w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-semibold leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4"
               >
                 Find My Starting Point
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/newsletter"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-colors"
+                className="flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-center text-base font-medium leading-snug text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] sm:w-auto sm:px-8 sm:py-4"
               >
                 Get the Newsletter
               </Link>
@@ -1513,37 +1566,64 @@ export default function HomePageElite({
 
         {/* 6. AI Architecture hub showcase */}
         <HubShowcase
-          eyebrow="Enterprise AI"
+          id="ai-architecture"
+          eyebrow="Production AI systems"
           title="AI Architecture"
-          description="Production-minded AI architecture, agentic workflows, and orchestration patterns documented with the decisions, constraints, and human controls still visible."
-          imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
-          imageAlt="Production Agentic AI Systems"
+          description="Reference designs for agent workflows, MCP infrastructure, orchestration, and human oversight—documented with the constraints and deployment choices intact."
+          imageSrc={architectureArtwork}
+          imageAlt="Conceptual computing campus in graphite and glass, connected by emerald-lit bridges"
           links={[
-            { label: 'Production Agentic AI Systems', href: '/blog/production-agentic-ai-systems' },
-            { label: 'MCP Server Architecture', href: '/blog/mcp-server-architecture-workshop' },
-            { label: 'Agent Patterns & Pillars', href: '/blog/production-agent-patterns-7-pillars' },
+            {
+              label: 'Agentic architecture decision framework',
+              detail: 'Choose the right maturity and operating model.',
+              href: '/blog/production-agentic-ai-systems',
+            },
+            {
+              label: 'Build your first MCP server',
+              detail: 'Connect models to tools, data, and guarded actions.',
+              href: '/blog/mcp-server-architecture-workshop',
+            },
+            {
+              label: 'Seven pillars of production agents',
+              detail: 'Review orchestration, memory, safety, and AgentOps.',
+              href: '/blog/production-agent-patterns-7-pillars',
+            },
           ]}
-          ctaLabel="Explore AI Architecture"
+          ctaLabel="Open the AI Architecture field guide"
           ctaHref="/ai-architecture"
-          color="blue"
-          imageFirst
+          color="emerald"
+          mediaSide="right"
         />
 
         {/* 7. Music Lab hub showcase */}
         <HubShowcase
-          eyebrow="Music Production"
+          id="music-lab"
+          eyebrow="AI music production"
           title="Music Lab"
-          description="An evolving Suno music archive with production notes, genre experiments, and prompt methods shared from the studio as they are learned."
-          imageSrc="/images/blog/suno-prompt-engineering-complete-guide-hero.png"
-          imageAlt="Suno Prompt Engineering Guide"
+          description="A working archive of AI songs, Suno prompt systems, production notes, and playable instruments—built from daily studio practice."
+          imageSrc={musicArtwork}
+          imageAlt="Conceptual music studio with a grand piano, analog synthesizer, and amber light wave"
           links={[
-            { label: 'Suno Prompt Engineering Guide', href: '/blog/suno-prompt-engineering-complete-guide' },
-            { label: 'Science of State Change', href: '/blog/science-of-state-change-music' },
-            { label: 'Browse All Tracks', href: '/music' },
+            {
+              label: 'Suno prompt engineering guide',
+              detail: 'Shape genre, tempo, instruments, vocals, and mood.',
+              href: '/blog/suno-prompt-engineering-complete-guide',
+            },
+            {
+              label: 'How music changes your state',
+              detail: 'Use tempo, mode, and lyrics with more intention.',
+              href: '/blog/science-of-state-change-music',
+            },
+            {
+              label: 'Browse releases and tracks',
+              detail: 'Listen to the public archive and current experiments.',
+              href: '/music',
+            },
           ]}
-          ctaLabel="Enter Music Lab"
+          ctaLabel="Open the Music Lab"
           ctaHref="/music-lab"
-          color="orange"
+          color="amber"
+          mediaSide="left"
         />
 
         {/* 8. Creative Worlds — Arcanea banner */}

@@ -125,11 +125,25 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'a.storyblok.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'pub-c6eda2cf920d4e4ea9c6a38fb9dfe0d3.r2.dev',
+      },
     ],
 
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+  },
+  async rewrites() {
+    return {
+      fallback: [
+        {
+          source: '/images/:path*',
+          destination: 'https://pub-c6eda2cf920d4e4ea9c6a38fb9dfe0d3.r2.dev/images/:path*',
+        },
+      ],
+    }
   },
   async redirects() {
     return [

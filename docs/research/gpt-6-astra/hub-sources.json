@@ -1,0 +1,102 @@
+[
+  {
+    "id": "astra-release",
+    "title": "GPT-6 Astra: A new generation of intelligence",
+    "publisher": "OpenAI",
+    "url": "https://openai.com/index/gpt-6-astra/",
+    "published": "2026-09-03",
+    "retrieved": "2026-09-07",
+    "kind": "vendor_report",
+    "scope": "Launch benchmark table and rollout. Vendor-reported results; not Starlight measurements."
+  },
+  {
+    "id": "astra-model",
+    "title": "GPT-6 Astra model reference",
+    "publisher": "OpenAI",
+    "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+    "published": null,
+    "retrieved": "2026-09-07",
+    "kind": "official_documentation",
+    "scope": "Model identifier, context and output limits, reasoning settings. No dated immutable snapshot listed when checked."
+  },
+  {
+    "id": "openai-pricing",
+    "title": "OpenAI API pricing",
+    "publisher": "OpenAI",
+    "url": "https://developers.openai.com/api/docs/pricing",
+    "published": null,
+    "retrieved": "2026-09-07",
+    "kind": "official_documentation",
+    "scope": "Standard short-context USD rates. Other tiers, cache writes, long context, regional processing and tool charges are separate."
+  },
+  {
+    "id": "claude-pricing",
+    "title": "Claude API pricing",
+    "publisher": "Anthropic",
+    "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "published": null,
+    "retrieved": "2026-09-07",
+    "kind": "official_documentation",
+    "scope": "Base input, output and cache-hit rates. Fable 5.1 cache hits are $0.25 per million tokens, or 2.5% of base input."
+  },
+  {
+    "id": "astra-guide",
+    "title": "Using GPT-6 Astra",
+    "publisher": "OpenAI",
+    "url": "https://developers.openai.com/api/docs/guides/latest-model",
+    "published": null,
+    "retrieved": "2026-09-07",
+    "kind": "official_documentation",
+    "scope": "Async tools, steering, reasoning updates and compatibility limitations."
+  },
+  {
+    "id": "work-guide",
+    "title": "Get started with ChatGPT Work",
+    "publisher": "OpenAI",
+    "url": "https://learn.chatgpt.com/docs/get-started-with-work",
+    "published": null,
+    "retrieved": "2026-09-07",
+    "kind": "official_documentation",
+    "scope": "Work outcomes, plugins and reviewable files."
+  },
+  {
+    "id": "model-selection",
+    "title": "Models in ChatGPT Work and Codex",
+    "publisher": "OpenAI",
+    "url": "https://learn.chatgpt.com/docs/models",
+    "published": null,
+    "retrieved": "2026-09-07",
+    "kind": "official_documentation",
+    "scope": "Astra, Sol, Terra and Luna workload guidance. Product surfaces and API are distinct."
+  },
+  {
+    "id": "eval-practice",
+    "title": "Evaluation best practices",
+    "publisher": "OpenAI",
+    "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+    "published": null,
+    "retrieved": "2026-09-07",
+    "kind": "official_documentation",
+    "scope": "Task-specific evaluations, human calibration, ongoing evaluation and failure analysis."
+  },
+  {
+    "id": "async-tools",
+    "title": "Async tool calling",
+    "publisher": "OpenAI",
+    "url": "https://developers.openai.com/api/docs/guides/async-tool-calling",
+    "published": null,
+    "retrieved": "2026-09-07",
+    "kind": "official_documentation",
+    "scope": "Applications execute tools and retain responsibility for pending work."
+  },
+  {
+    "id": "openai-deprecations",
+    "title": "OpenAI API deprecations",
+    "publisher": "OpenAI",
+    "url": "https://developers.openai.com/api/docs/deprecations",
+    "published": null,
+    "retrieved": "2026-09-07",
+    "kind": "official_documentation",
+    "scope": "Hosted Evals becomes read-only on 2026-10-31 and is scheduled to shut down on 2026-11-30. Local evaluation remains independent."
+  }
+]

@@ -4,6 +4,9 @@
  * Add new entries when publishing articles that relate to research domains.
  */
 export const blogDomainMap: Record<string, string[]> = {
+  'gpt-6-astra-chatgpt-work-codex-founders': ['agentic-product-development', 'coding-agents-full-stack', 'quality-adjusted-ai-economics'],
+  'gpt-6-astra-for-content-creators': ['autonomous-creative-studios-multimodal', 'creator-economy-ai-monetization', 'mcp-ecosystem-tool-calling'],
+  'gpt-6-astra-ai-architecture-model-economics': ['agentic-evals', 'enterprise-ai-coe-operating-models', 'quality-adjusted-ai-economics'],
   'build-fine-tune-or-buy-ai-model': ['ai-model-strategy', 'model-arena', 'agentic-evals', 'enterprise-ai', 'production-patterns'],
   'agentic-creator-os-complete-guide': ['multi-agent-systems', 'production-patterns'],
   'agentic-creator-os': ['multi-agent-systems', 'production-patterns', 'prompt-engineering'],

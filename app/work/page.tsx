@@ -2,10 +2,10 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
 import {
-  listEngagements,
   listLiveSubstrate,
   listLiveWhitelabelOrCreator,
   listPast,
+  listPublicEngagements,
 } from '@/content/work'
 import { EngagementCard } from '@/components/work/EngagementCard'
 
@@ -22,7 +22,7 @@ export default function WorkHubPage() {
   const liveSubstrate = listLiveSubstrate()
   const liveWhitelabelOrCreator = listLiveWhitelabelOrCreator()
   const past = listPast()
-  const all = listEngagements()
+  const all = listPublicEngagements()
 
   const isEmpty =
     liveSubstrate.length === 0 &&
@@ -247,23 +247,6 @@ function FeaturedSystemsSection() {
                 The premium example experience now lives on its own work
                 subpage, with the hub remaining the broader engagement index.
               </p>
-            </div>
-            <div className="grid grid-cols-3 gap-2 text-left md:min-w-[320px]">
-              {[
-                ['4 repos', 'template stack'],
-                ['9 roles', 'agent team'],
-                ['4 channels', 'listing flow'],
-              ].map(([value, label]) => (
-                <div
-                  key={value}
-                  className="rounded-xl border border-white/10 bg-black/20 p-3"
-                >
-                  <p className="text-sm font-semibold text-white">{value}</p>
-                  <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-zinc-500">
-                    {label}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </Link>

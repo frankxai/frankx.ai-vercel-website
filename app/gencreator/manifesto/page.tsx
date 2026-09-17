@@ -1,14 +1,20 @@
 import type { Metadata } from 'next'
-import Script from 'next/script'
+import { createMetadata, siteConfig } from '@/lib/seo'
+import { ldJson } from '@/lib/seo/jsonld'
 
-export const metadata: Metadata = {
+const pageMetadata = createMetadata({
   title: 'The GenCreator Manifesto — Human Taste. Machine Scale. Permanent Artifacts.',
   description:
     'A declaration of what it means to be a generative creator. We create with AI, not despite it. We ship daily. We compound relentlessly. This is the GenCreator way.',
+  path: '/gencreator/manifesto',
+})
+
+export const metadata: Metadata = {
+  ...pageMetadata,
   openGraph: {
+    ...pageMetadata.openGraph,
     title: 'The GenCreator Manifesto',
     description: 'Human taste. Machine scale. Permanent artifacts. This is the GenCreator way.',
-    url: 'https://frankx.ai/gencreator/manifesto',
   },
 }
 import { ArrowRight, Compass } from 'lucide-react'
@@ -22,8 +28,8 @@ const structuredData = {
   '@type': 'Article',
   headline: 'The GenCreator Manifesto',
   description: 'A declaration of what it means to be a generative creator. Human taste. Machine scale. Permanent artifacts.',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-  url: 'https://frankx.ai/gencreator/manifesto',
+  author: { '@type': 'Person', '@id': `${siteConfig.url}/#frank-riemer`, name: 'Frank Riemer', url: siteConfig.url },
+  url: `${siteConfig.url}/gencreator/manifesto`,
 }
 
 export default function ManifestoPage() {
@@ -86,9 +92,7 @@ export default function ManifestoPage() {
         </div>
       </section>
 
-      <Script id="manifesto-schema" type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </Script>
+      <script id="manifesto-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(structuredData) }} />
     </div>
   )
 }

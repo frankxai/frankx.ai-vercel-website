@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Script from 'next/script'
 import Image from 'next/image'
 import { ArrowRight, Download, FileText, Scroll } from 'lucide-react'
 
@@ -11,15 +10,6 @@ import PremiumButton from '@/components/ui/PremiumButton'
 import GenCreatorNav from '@/components/gencreator/GenCreatorNav'
 import { soulDimensions } from '@/lib/gencreator/gencreator-data'
 import type { GlowColor } from '@/components/ui/glow-card'
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  name: 'GenCreator Soul — Build Your soul.md',
-  description: 'The 7 dimensions of a complete GenCreator. Build your personal soul.md — the operating file that defines who you are as a creator.',
-  url: 'https://frankx.ai/gencreator/soul',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-}
 
 const soulMdTemplate = `# soul.md — Your GenCreator Operating File
 
@@ -272,10 +262,6 @@ export default function SoulPage() {
           </div>
         </div>
       </section>
-
-      <Script id="soul-schema" type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </Script>
     </div>
   )
 }

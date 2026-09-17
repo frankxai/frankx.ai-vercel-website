@@ -30,6 +30,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Keep the full comparison history without downloading every past
+          # version of large media assets. Checkout materializes current files.
+          filter: blob:none
           persist-credentials: false
 
       - uses: actions/setup-node@v4

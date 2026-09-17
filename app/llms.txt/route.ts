@@ -86,6 +86,12 @@ ${osLinks}
 ${libraryLinks}
 
 ## Model & Agent Intelligence (the decision layers)
+- [Images 2.5 creator and founder analysis](${SITE_URL}/blog/chatgpt-images-2-5-creator-founder-workflows): Release facts, model choice, product opportunities and evidence limits
+- [Reference-to-campaign guide](${SITE_URL}/guides/reference-to-campaign): Practical steps, reusable prompts, acceptance checks and product-specific handoffs
+- [Image workflow protocol JSON](${SITE_URL}/research/image-workflows/protocol.json): Versioned tasks, scoring rubric and agent instructions; planned evaluation, zero measured runs
+- [Image workflow routing JSON](${SITE_URL}/research/image-workflows/routes.json): User intent, existing destinations and proposed product capabilities, explicitly distinguished
+
+- [LLM Hub Manifest](${SITE_URL}/llm-hub/manifest.json): Versioned discovery document for models, candidate policies, historical editorial comparisons and public evaluation receipts; does not certify production routing.
 - [LLM Hub](${SITE_URL}/llm-hub): Every frontier model - context, pricing, benchmarks, verdicts, each entry sourced
 - [Cost Calculator](${SITE_URL}/llm-hub#cost-calculator): Interactive token volume and multi-tier routing simulator
 - [Model Arena](${SITE_URL}/research/model-arena): First-party measured model rounds with published run receipts
@@ -93,7 +99,7 @@ ${libraryLinks}
 - [Agent Hub](${SITE_URL}/agent-hub): Agent platforms and frameworks compared, every claim carrying an evidence grade
 - [Golden 7 AI Architectures](${SITE_URL}/ai-architectures): Production-grade blueprints for sovereign swarms, GraphRAG & MCP meshes
 - [Agent Catalog](${SITE_URL}/agents): The 99-agent Creator OS, packaged as installable artifacts
-- [LLM Hub JSON](${SITE_URL}/llm-hub.json): Machine-readable model registry for agents
+- [LLM Hub JSON](${SITE_URL}/llm-hub.json): Model rows with pricing source, scope, API ID and registry evaluation status
 
 ## Canva Founder System
 - [Canva for Founders](${SITE_URL}/canva): Independent, source-led operating system for governed visual production

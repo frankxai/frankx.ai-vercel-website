@@ -38,6 +38,8 @@ import {
 } from '@/lib/music'
 import { MusicCoverImage } from '@/components/music/MusicCoverImage'
 import { SunoTrackCTA } from '@/components/music/SunoTrackCTA'
+import { MusicLoadButton } from '@/components/music/MusicRuntime'
+import { SpotifyAlbumEmbed } from '@/components/music/SpotifyAlbumEmbed'
 
 // ============================================================================
 // DATA FROM LIB
@@ -349,16 +351,9 @@ function HeroSection() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-amber-500/10 blur-3xl opacity-50" />
               <div className="relative bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl p-4 overflow-hidden">
-                <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-3 px-2">Now Playing</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-3 px-2">Listen here</p>
                 {heroTrack?.sunoId && (
-                  <iframe
-                    src={`https://suno.com/embed/${heroTrack.sunoId}`}
-                    className="w-full aspect-square rounded-2xl"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write"
-                    loading="lazy"
-                    title={heroTrack.title}
-                  />
+                  <MusicLoadButton sunoId={heroTrack.sunoId} title={heroTrack.title} />
                 )}
               </div>
             </div>
@@ -849,8 +844,8 @@ function AlbumsSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Albums</h2>
-          <p className="text-lg text-white/50">Curated collections organized by genre and mood</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Collections &amp; releases</h2>
+          <p className="text-lg text-white/50">Explore collections by genre and mood. Streaming releases appear when available.</p>
         </motion.div>
 
         <div className="space-y-12">
@@ -899,6 +894,10 @@ function AlbumsSection() {
                   </div>
                 </div>
 
+                {album.status === 'draft' && <p className="mb-4 text-sm text-white/70">Collection in progress</p>}
+                {(album.status === 'released' || album.status === 'published') && album.spotifyUrl && (
+                  <div className="mb-6"><SpotifyAlbumEmbed url={album.spotifyUrl} title={album.title} /></div>
+                )}
                 {/* Track Grid */}
                 {previewTracks.length > 0 ? (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -924,14 +923,7 @@ function AlbumsSection() {
                           )}
                         </div>
                         {track.sunoId && (
-                          <iframe
-                            src={`https://suno.com/embed/${track.sunoId}`}
-                            className="w-full aspect-[16/9] rounded-lg"
-                            frameBorder="0"
-                            allow="autoplay; clipboard-write"
-                            loading="lazy"
-                            title={track.title}
-                          />
+                          <MusicLoadButton sunoId={track.sunoId} title={track.title} />
                         )}
                       </div>
                     ))}
