@@ -1,0 +1,46 @@
+{
+  "feature": "Credited article figures and verified affiliate destination handling",
+  "issue": "https://github.com/frankxai/frankx.ai-vercel-website/issues/714",
+  "baseRevision": "da13a0450bdff3249292f01b48cc8946b67d52a4",
+  "status": "DRAFT_NOT_LIVE",
+  "scope": [
+    "/blog/n8n-automation-ai-creators-9-workflows",
+    "/blog/ultimate-elevenlabs-workflow-2026",
+    "shared image and affiliate components"
+  ],
+  "checks": {
+    "lint": "passed; 7 pre-existing warnings outside changed files",
+    "typecheck": "passed",
+    "affiliateTests": "4 passed; included in both merge gate scripts",
+    "renderedLinks": "passed: active and ordinary links render real hrefs without JavaScript; partner URL unchanged; canonical markdown partner link receives sponsored rel",
+    "mdx": "both changed articles compile",
+    "editorial": "strict audit passed, 2577 files scanned, zero hits",
+    "productionBuild": "Compilation and build TypeScript passed. Initial attempts lacked optional sibling AIS source and public resources in the sparse checkout. Public text resources restored; final full build is being retried. See PR for final result.",
+    "figureInspection": "Original diagrams rendered and inspected at 390px width",
+    "browserLayout": "pending preview",
+    "independentReview": "pending"
+  },
+  "productionEligible": false,
+  "commercialState": "Existing programs.json catalog remains the affiliate authority. Active ourLink is preserved. Other known tools use their ordinary URLs; unknown tools do not render a dead link. No new partner enrollment or commission claims.",
+  "contentScope": "Visual/editorial infrastructure change. Existing article product specifications, prices and first-person claims are not re-verified by this change.",
+  "payloadSha256": {
+    "components/affiliates/AffiliateLink.tsx": "db79c3bfc69e7d5fb859d6e2fffa7dc02703282f57269cc8da838437410a7af5",
+    "components/blog/ArticleFigure.tsx": "6ea19a98c78e30b1ce4d31ce408314b2454d60d406b3474c4ffa1d12b6c9398b",
+    "components/blog/ArticleRecommendation.tsx": "735de14ce2e27ff59f9001e55a28ca8bc95cbe33c0512a77c05bba41d9ea4dde",
+    "components/blog/LiquidGlassImage.tsx": "4f206565b81974e30a70de44c40c08a5eefd5bf50b63342c879729f1e0728701",
+    "components/blog/MDXComponents.tsx": "120a9a34b2edc8ed2d555c1851449542bfb6cb58d8be41a690b71bdf40c2e279",
+    "content/blog/n8n-automation-ai-creators-9-workflows.mdx": "6bdd074686de06e20ebd3e5ea2f81a142d0ef7c673280a920d2e536f81396d7e",
+    "content/blog/ultimate-elevenlabs-workflow-2026.mdx": "58be1d39331159406f964ccc6b16b0d3d10788ba2113404c7b7648034d8a2f6c",
+    "data/editorial-visuals.json": "02aaac53337c06b687fb2495ad54357d19acbc6fe99a435998717107dbfdfdf2",
+    "docs/content/ARTICLE-VISUALS.md": "8d4b7c9347d6d243c19ddd85dc7344f0e368113fe9556c706e4283915267398c",
+    "lib/affiliates/link-builder.ts": "3dc06fa007b2bf4139d5d6b6f49bea983d5e158b7f74c60da3de5d9cbf794c66",
+    "lib/affiliates/resolve-destination.ts": "2c7b40832013adf18012e6cb3c39adb03bb2aa1411ea7f55b02345e3fed8b4b0",
+    "public/images/editorial/content-atomizer.svg": "0cebce21ea4f4e1bb4b3ada1ca8066830f0cd5614f2d59c7f8a148887b066179",
+    "public/images/editorial/voice-production.svg": "6060b50498028ee682ab9ae76df0957b10e1e838a50cc7363ba9ef9bd1851494",
+    "lib/affiliates/affiliate-manager.ts": "2d573574e601c85f5730b0fc0f7c2483366c7cf54120b9c70d5182b342bc5984",
+    "scripts/tests/affiliate-destination.test.mjs": "20dabb197439205e0d485b30ee4de339a17b412ff3e17607fd6167f493b3639a",
+    "package.json": "ca3f916cac28556caec76331097e05c12d731ec7f90f6d916a4b9d8cbc8c48c1"
+  },
+  "nextAction": "Complete exact-candidate CI, desktop/mobile layout checks and independent review before merge.",
+  "rollback": "Revert this isolated PR."
+}

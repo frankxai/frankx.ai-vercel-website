@@ -1,8 +1,11 @@
 import Image from 'next/image'
+import { ArticleFigure } from './ArticleFigure'
+import { ArticleRecommendation } from './ArticleRecommendation'
 import Link from 'next/link'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
+import { editorialLinkRel } from '@/lib/affiliates/link-builder'
 import Diagram from '@/components/blog/Diagram'
 import { FunnelCTA } from '@/components/funnel/FunnelCTA'
 import { LeadMagnetCard } from '@/components/blog/LeadMagnetCard'
@@ -205,9 +208,10 @@ export const mdxComponents: MDXComponents = {
   ),
 
   // ── Links ─────────────────────────────────────────────────────────────
-  a: ({ href, children, ...props }: ComponentPropsWithoutRef<'a'>) => (
+  a: ({ href, children, rel, ...props }: ComponentPropsWithoutRef<'a'>) => (
     <Link
       href={href || '#'}
+      rel={editorialLinkRel(href, rel)}
       className="text-emerald-400 underline decoration-emerald-400/30 underline-offset-[3px] transition-colors hover:text-emerald-300 hover:decoration-emerald-300/50"
       {...props}
     >
@@ -312,6 +316,8 @@ export const mdxComponents: MDXComponents = {
   Image: CustomImage,
   img: CustomImage,
   LiquidGlassImage,
+  ArticleFigure,
+  ArticleRecommendation,
   InfographicImage: LiquidGlassImage,
   Diagram,
   PlatformMarkGrid,
