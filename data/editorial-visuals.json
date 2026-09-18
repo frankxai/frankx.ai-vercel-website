@@ -4,7 +4,7 @@
     "width": 960,
     "height": 1060,
     "alt": "Content atomizer: receive an article, draft three formats, review the drafts, then publish approved versions.",
-    "caption": "A review step separates generated drafts from public posts. This is a workflow schematic, not an n8n screenshot.",
+    "caption": "A review step separates generated drafts from public posts. Original workflow schematic for structured multi-channel publishing.",
     "credit": "Original diagram by FrankX",
     "sourceUrl": "https://www.frankx.ai/blog/n8n-automation-ai-creators-9-workflows",
     "rights": "original",
