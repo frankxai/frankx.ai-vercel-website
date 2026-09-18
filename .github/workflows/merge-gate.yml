@@ -162,6 +162,7 @@ jobs:
           pnpm run test:social-identity
           pnpm run test:seo-title
           pnpm run test:music-release-registry
+          pnpm run test:affiliate-links
 
       - name: Content and claims integrity
         run: |
