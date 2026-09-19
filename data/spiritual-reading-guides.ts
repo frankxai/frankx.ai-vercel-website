@@ -1,8 +1,13 @@
 import type { BookReview } from '@/app/books/types';
 import entries from './library-reading-guides.json';
+import { libraryApplications } from './library-applications';
+
+type GuideEntry = (typeof entries)[number] & {
+  bestFor?: string[];
+};
 
 // Publication date records this editorial guide, never a personal reading claim.
-export const spiritualReadingGuides: BookReview[] = entries.map(entry => ({
+export const spiritualReadingGuides: BookReview[] = (entries as GuideEntry[]).map(entry => ({
   slug: entry.slug,
   title: entry.title,
   author: entry.author,
@@ -10,11 +15,18 @@ export const spiritualReadingGuides: BookReview[] = entries.map(entry => ({
   hasCover: false,
   rating: 0, // Unrated guides do not emit Review/Rating markup.
   reviewDate: '2026-09-07',
-  readingTime: '2 min',
+  readingTime: entry.summary.length > 180 ? '4 min' : '2 min',
   categories: entry.categories,
   tldr: entry.summary,
   keyInsights: entry.keyInsights,
-  bestFor: [`Readers exploring ${entry.tradition}`, 'Readers choosing a source or edition before a complete reading'],
+  bestFor:
+    Array.isArray(entry.bestFor) && entry.bestFor.length >= 2
+      ? entry.bestFor
+      : [
+          `Readers exploring ${entry.tradition}`,
+          'Readers choosing a source or edition before a complete reading',
+        ],
+  application: libraryApplications[entry.slug],
   guide: {
     ...entry,
     kind: entry.kind as NonNullable<BookReview['guide']>['kind'],
