@@ -14,6 +14,7 @@ import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
+import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
 import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
@@ -1271,6 +1272,9 @@ export default function HomePageElite({
 
         {/* 4c. Signature route atlas — one earned GSAP scene */}
         <MindPalaceAtlas />
+
+        {/* 4d. Interactive Signal Route Selector */}
+        <SignalRouteSelector />
 
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'framer-motion'
 import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
@@ -52,7 +52,7 @@ export function GlowButton({
   target,
   rel,
 }: GlowButtonProps) {
-  const shouldReduceMotion = useReducedMotion()
+  const shouldReduceMotion = useReducedMotion() !== false
   const rgb = glowColors[color] || glowColors.emerald
 
   const { cardRef: containerRef, glowRef, handlers } = useMouseGlow<HTMLDivElement>({
@@ -61,75 +61,82 @@ export function GlowButton({
     opacity: variant === 'primary' ? 0.12 : 0.2,
   })
   // Respect prefers-reduced-motion — omit handlers entirely when active
-  const pointerHandlers = shouldReduceMotion
+  const pointerHandlers = shouldReduceMotion || disabled
     ? {}
     : {
-        onPointerMove: handlers.onPointerMove,
+        onPointerMove: (event: React.PointerEvent<HTMLDivElement>) => {
+          if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            handlers.onPointerMove(event)
+          }
+        },
         onPointerLeave: handlers.onPointerLeave,
-        onTouchMove: handlers.onTouchMove,
-        onTouchEnd: handlers.onTouchEnd,
-      }
-
-  const motionProps = shouldReduceMotion
-    ? {}
-    : {
-        whileHover: disabled ? {} : { scale: 1.03, y: -1 },
-        whileTap: disabled ? {} : { scale: 0.97 },
-        transition: { type: 'spring' as const, stiffness: 400, damping: 17 },
       }
 
   const sharedClasses = cn(
-    'relative inline-flex items-center justify-center overflow-hidden transition-all duration-300',
+    'relative inline-flex items-center justify-center overflow-hidden transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out motion-reduce:transition-none',
     sizeClasses[size],
     variantBase[variant],
-    disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
+    disabled && 'opacity-50 cursor-not-allowed',
+    disabled && !href && 'pointer-events-none',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A]',
-    'active:scale-[0.98]',
+    !disabled && 'motion-safe:[@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-px motion-safe:active:scale-[0.98] focus-visible:!transform-none',
     className
   )
 
   const glowOverlay = (
     <div
       ref={glowRef}
-      className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300"
+      className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-200 motion-reduce:hidden"
       aria-hidden="true"
     />
   )
 
   if (href) {
     const isExternal = href.startsWith('http')
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (disabled) {
+        event.preventDefault()
+        return
+      }
+      onClick?.()
+    }
+    const handleAuxClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (disabled) event.preventDefault()
+    }
 
     return (
-      <motion.div ref={containerRef} {...motionProps} {...pointerHandlers} className="inline-block">
+      <div ref={containerRef} {...pointerHandlers} className="inline-block">
         {isExternal ? (
-          <a href={href} target={target || '_blank'} rel={rel || 'noopener noreferrer'} className={sharedClasses} onClick={onClick}>
+          <a href={disabled ? undefined : href} target={target || '_blank'} rel={rel || 'noopener noreferrer'} className={sharedClasses} aria-disabled={disabled || undefined} tabIndex={disabled ? -1 : undefined} onClick={handleClick} onAuxClick={handleAuxClick}>
             {glowOverlay}
             <span className="relative z-10 flex items-center gap-inherit">{children}</span>
           </a>
         ) : (
-          <Link href={href} className={sharedClasses} onClick={onClick}>
+          <Link href={disabled ? '#' : href} className={sharedClasses} aria-disabled={disabled || undefined} tabIndex={disabled ? -1 : undefined} onClick={handleClick} onAuxClick={handleAuxClick}>
             {glowOverlay}
             <span className="relative z-10 flex items-center gap-inherit">{children}</span>
           </Link>
         )}
-      </motion.div>
+      </div>
     )
   }
 
   return (
-    <motion.button
-       
+    <button
       ref={containerRef as any}
       type={type}
       onClick={onClick}
       disabled={disabled}
       className={sharedClasses}
-      onPointerMove={shouldReduceMotion ? undefined : (handlers.onPointerMove as unknown as React.PointerEventHandler<HTMLButtonElement>)}
-      onPointerLeave={shouldReduceMotion ? undefined : handlers.onPointerLeave}
-      {...motionProps}
+      onPointerMove={shouldReduceMotion || disabled ? undefined : (event) => {
+        if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          (handlers.onPointerMove as unknown as React.PointerEventHandler<HTMLButtonElement>)(event)
+        }
+      }}
+      onPointerLeave={shouldReduceMotion || disabled ? undefined : handlers.onPointerLeave}
     >
       {glowOverlay}
       <span className="relative z-10 flex items-center gap-inherit">{children}</span>
-    </motion.button>
+    </button>
   )
 }

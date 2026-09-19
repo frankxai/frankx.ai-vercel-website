@@ -50,8 +50,8 @@ on:
       # its redirects and headers are exactly what the link checks cover.
       - 'next.config.mjs'
       # Third trap: workflow-only PRs never report this required check.
-      # Cover the whole workflows tree so GitOps PRs remain mergeable.
-      - '.github/workflows/**'
+      # Cover the whole .github tree so GitOps PRs remain mergeable.
+      - '.github/**'
       # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
       # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
       - 'CLAUDE.md'
@@ -109,15 +109,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           run_install: false
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
@@ -152,6 +152,7 @@ jobs:
       # every pull request until they were added below.
       - name: Contract tests
         run: |
+          pnpm run test:glow-button
           pnpm run test:media-guard
           pnpm run test:homepage-release
           pnpm run test:collaboration-release

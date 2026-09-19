@@ -181,7 +181,7 @@ export function SignalRouteSelector() {
         </div>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
-          {signalRoutes.map((route, index) => {
+          {signalRoutes.map((route) => {
             const Icon = route.icon
             const accent = routeAccents[route.accent]
 
@@ -265,8 +265,8 @@ export function SignalRouteSelector() {
             <GitBranch className="h-4 w-4 text-emerald-300/70" aria-hidden="true" />
             <span>Routing contract: creator output, builder systems, team architecture.</span>
           </div>
-          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/30">
-            tracked as frankx_route_selected
+          <span className="text-[11px] text-white/40">
+            Open field notes · Inspectable architecture · Independent release
           </span>
         </div>
       </div>
