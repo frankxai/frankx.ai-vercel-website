@@ -242,6 +242,9 @@ export function SignalRouteSelector() {
 
                   <Link
                     href={route.href}
+                    {...(route.href.startsWith('http')
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
                     onClick={() =>
                       trackEvent('frankx_route_selected', {
                         route: route.id,
@@ -249,7 +252,7 @@ export function SignalRouteSelector() {
                         surface: 'homepage_signal_route_selector',
                       })
                     }
-                    className={`mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-5 text-sm font-semibold text-white transition hover:bg-white/[0.1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${accent.focus}`}
+                    className={`mt-auto inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-5 text-sm font-semibold text-white transition hover:bg-white/[0.1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${accent.focus}`}
                   >
                     {route.cta}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
