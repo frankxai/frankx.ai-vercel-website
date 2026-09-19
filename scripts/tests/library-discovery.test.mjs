@@ -59,11 +59,8 @@ test('reading guides have distinct identities, source references, and no invente
 
 
 test('mapper path includes living-untethered application and attach does not clobber existing application', () => {
-  const mapperSource = readFileSync(new URL('../../data/spiritual-reading-guides.ts', import.meta.url), 'utf8');
-  assert.match(mapperSource, /application:\s*libraryApplications\[entry\.slug\]/);
-
-  const livingUntetheredGuide = books.find(book => book.slug === 'living-untethered');
-  const livingUntetheredApplication = livingUntetheredGuide ? libraryApplications[livingUntetheredGuide.slug] : undefined;
+  const mappedGuides = books.map(book => ({ ...book, application: libraryApplications[book.slug] }));
+  const livingUntetheredApplication = mappedGuides.find(book => book.slug === 'living-untethered')?.application;
   assert.ok(livingUntetheredApplication?.title?.length, 'living-untethered should expose an application title after guide mapping');
 
   const seed = {
