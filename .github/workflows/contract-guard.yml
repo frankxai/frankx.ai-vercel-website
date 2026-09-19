@@ -84,6 +84,11 @@ on:
       # expected and never reported. Lint configuration belongs here on merit:
       # it decides which rules the guarded surfaces are held to.
       - 'eslint.config.*'
+      # Seventh trap: .agents, .claude, or skills-lock.json only PRs (#716)
+      # never report Contract Guard or Merge Gate, leaving PRs blocked.
+      - '.agents/**'
+      - '.claude/**'
+      - 'skills-lock.json'
 
 concurrency:
   group: contract-guard-${{ github.ref }}
@@ -97,7 +102,7 @@ jobs:
     name: Contract Guard
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
         with:
