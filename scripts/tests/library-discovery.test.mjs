@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { createLibrarySearch, filterLibrary, normalizeLibraryQuery } from '../../lib/library-search.ts';
-import { attachLibraryApplications, libraryApplications } from '../../data/library-applications.ts';
+import { attachLibraryApplications } from '../../data/library-applications.ts';
 
 const guides = JSON.parse(readFileSync(new URL('../../data/library-reading-guides.json', import.meta.url), 'utf8'));
 const books = guides.map(book => ({ ...book, description: book.summary, reviewDate: '2026-09-07', readingTime: '2 min' }));
@@ -59,7 +59,7 @@ test('reading guides have distinct identities, source references, and no invente
 
 
 test('mapper path includes living-untethered application and attach does not clobber existing application', () => {
-  const mappedGuides = books.map(book => ({ ...book, application: libraryApplications[book.slug] }));
+  const mappedGuides = attachLibraryApplications(books);
   const livingUntetheredApplication = mappedGuides.find(book => book.slug === 'living-untethered')?.application;
   assert.ok(livingUntetheredApplication?.title?.length, 'living-untethered should expose an application title after guide mapping');
 
