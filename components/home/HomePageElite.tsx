@@ -269,101 +269,6 @@ function AuthorityBar() {
 }
 
 // ============================================================================
-// PRODUCTS & TOOLS — Expanded 6-card grid
-// ============================================================================
-
-const products = [
-  {
-    title: 'Sovereign Business Kits',
-    description: 'Turn-key modular starter kits (Micro-SaaS, Marketplace, Creator Hub) designed for builders to launch globally on their own terms.',
-    href: '/templates',
-    color: 'emerald' as const,
-  },
-  {
-    title: 'Mental Models & Peak OS',
-    description: 'The 8 Sovereign Mental Models, cognitive operating systems, and high-performance protocols for operating in Godmode.',
-    href: '/mental-models',
-    color: 'cyan' as const,
-  },
-  {
-    title: 'Agentic Creator OS',
-    description: 'An open creator operating system for agent skills, commands, and repeatable workflows running on your own keys.',
-    href: '/acos',
-    color: 'violet' as const,
-  },
-  {
-    title: 'AI Architecture Hub',
-    description: 'Patterns for agent workflows, orchestration, governance, and production-minded system design. Built from Oracle to production.',
-    href: '/ai-architecture',
-    color: 'blue' as const,
-  },
-  {
-    title: 'Music Lab',
-    description: 'An evolving music archive with Suno production workflows and genre-focused frequency field guides.',
-    href: '/music-lab',
-    color: 'orange' as const,
-  },
-  {
-    title: 'Sovereign Creator Blueprint',
-    description: 'The complete 4-layer architecture connecting local-first agents, digital assets, and independent revenue streams.',
-    href: '/gencreator/blueprints',
-    color: 'magenta' as const,
-  },
-]
-
-function ProductsTools() {
-  return (
-    <section className="py-24 lg:py-32 border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16"
-        >
-          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
-            Products & Tools
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Ways to go further
-          </h2>
-          <p className="text-base text-white/60 max-w-2xl mx-auto">
-            Start with the open work. Choose a paid tool only when its scope fits the capability you
-            are ready to build next.
-          </p>
-        </motion.div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {products.map((product, i) => (
-            <motion.div
-              key={product.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-            >
-              <GlowCard href={product.href} color={product.color} className="p-5 sm:p-6 h-full hover:-translate-y-0.5">
-                <div className="h-0.5 w-full bg-gradient-to-r from-emerald-500/50 to-cyan-500/50 rounded-full mb-5" />
-                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                  {product.title}
-                </h3>
-                <p className="text-sm text-white/50 leading-relaxed">
-                  {product.description}
-                </p>
-                <div className="mt-4 flex items-center gap-1.5 text-xs text-white/60 group-hover:text-white/75 transition-colors">
-                  <span>Learn more</span>
-                  <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </GlowCard>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ============================================================================
 // HUB SHOWCASE — Proof-led homepage entry room
 // ============================================================================
 
@@ -1273,11 +1178,8 @@ export default function HomePageElite({
         {/* 4c. Signature route atlas — one earned GSAP scene */}
         <MindPalaceAtlas />
 
-        {/* 4d. Interactive Signal Route Selector */}
+        {/* 4d. Three audience routes, not a six-card kit wall */}
         <SignalRouteSelector />
-
-        {/* 5. Products & Tools — moved up, expanded to 6 cards */}
-        <ProductsTools />
 
         {/* 6. AI Architecture hub showcase */}
         <HubShowcase

@@ -82,7 +82,7 @@ test('the long-form homepage cannot silently lose its restored rooms and glow ca
 
   for (const section of [
     '<MindPalaceAtlas />',
-    '<ProductsTools />',
+    '<SignalRouteSelector />',
     '<CreativeWorlds />',
     '<DesignLab />',
     '<BooksShowcase books={books} />',
