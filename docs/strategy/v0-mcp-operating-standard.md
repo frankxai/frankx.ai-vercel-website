@@ -212,6 +212,60 @@ Request:
 5. Template-family generation for Foundry and commercial starters
 6. Hub-specific shells for creators, AI startups, and partner portals
 
+## Repo, site, subdomain, and template governance
+
+### Repository rules
+
+- v0 chats, demos, and exported files are not canonical repositories.
+- A Git repository becomes authoritative only when FrankX-owned code lands in a
+  maintained repo with readable history, route ownership, and release evidence.
+- Do not treat a v0 export as a product just because it can render or because a
+  demo URL exists.
+
+### Site and route rules
+
+- `frankx.ai` routes are the public narrative, trust, and conversion layer.
+  v0 may help shape the interface, but route truth stays in repo-owned code and
+  content.
+- `vusercontent.net` and similar preview hosts are preview infrastructure, not
+  product authority. They can support a study, never replace route evidence.
+- Public routes that expose studies should link to their maturity honestly and
+  point to the owned proving ground when one exists.
+
+### Subdomain and preview rules
+
+- A preview host or subdomain may be used for inspection, stakeholder review,
+  or internal comparison.
+- It becomes a public shipping claim only when it is tied to a maintained repo,
+  a named owner, and release evidence.
+- Temporary preview infrastructure should never become the only place a product
+  is explained. The permanent explanation belongs on an owned FrankX route.
+
+### Product and template rules
+
+- A study may inform a product, but it is not the product.
+- A starter or template needs a named repository, license posture, setup path,
+  and owned maintenance story before it is presented as reusable.
+- Only explicit open templates should receive clone, deploy, or install CTAs.
+- Commercial templates must still explain what is owned, what is configurable,
+  what is included, and what is still a future roadmap item.
+
+### The bigger FrankX posture
+
+**What we do:**
+
+- use v0 MCP to explore experience directions quickly;
+- keep strategy, claims, content, proof, and release control in owned repos;
+- graduate winning directions into products, starters, and operating systems
+  through evidence-backed gates.
+
+**What we do not do:**
+
+- present prompt-generated previews as product truth;
+- let third-party demo hosts stand in for owned route authority;
+- build a business that depends on copied UI, copied copy, or unowned code;
+- confuse a visual exploration tool with the product compiler itself.
+
 ## Explicit exclusions
 
 Do not use v0 MCP as the primary tool for:
