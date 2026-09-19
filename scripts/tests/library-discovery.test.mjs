@@ -7,6 +7,18 @@ const guides = JSON.parse(readFileSync(new URL('../../data/library-reading-guide
 const books = guides.map(book => ({ ...book, description: book.summary, reviewDate: '2026-09-07', readingTime: '2 min' }));
 const index = createLibrarySearch(books);
 const search = (query, category = '', slugs, sort = 'recent') => filterLibrary(books, query, category, slugs, sort, index);
+const upgradedGuideSlugs = [
+  'living-untethered',
+  'the-untethered-soul',
+  'the-surrender-experiment',
+  'wisdom-untethered',
+  'the-power-of-now',
+  'a-new-earth',
+  'when-things-fall-apart',
+  'the-miracle-of-mindfulness',
+  'be-here-now',
+  'autobiography-of-a-yogi',
+];
 
 test('search finds exact titles, common misspellings, author variants, and transliterations', () => {
   assert.equal(search('autobiography of a yogi')[0].slug, 'autobiography-of-a-yogi');
@@ -42,7 +54,10 @@ test('multiword searches require every word, including an author surname', () =>
 
 test('reading guides have distinct identities, source references, and no invented ratings or quotations', () => {
   const slugs = guides.map(book => book.slug);
+  const singerSlugs = guides.filter(book => book.author === 'Michael A. Singer').map(book => book.slug);
   assert.equal(new Set(slugs).size, slugs.length);
+  assert.equal(guides.length, 26);
+  assert.deepEqual(singerSlugs, ['the-untethered-soul', 'the-surrender-experiment', 'living-untethered', 'wisdom-untethered']);
   const legacy = readFileSync(new URL('../../data/book-reviews.ts', import.meta.url), 'utf8');
   for (const book of guides) {
     assert.match(book.slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
@@ -51,6 +66,10 @@ test('reading guides have distinct identities, source references, and no invente
     assert.equal(book.readingPath.length, 3);
     assert.ok(book.editionNote.length > 50);
     assert.ok(book.context.length > 50);
+    if (upgradedGuideSlugs.includes(book.slug)) {
+      assert.equal(book.keyInsights.length, 5, `${book.slug} should expose five key insights`);
+      assert.equal(book.bestFor?.length, 3, `${book.slug} should expose three best-for audiences`);
+    }
     for (const source of book.sources) assert.equal(new URL(source.url).protocol, 'https:');
     for (const slug of book.relatedSlugs) assert.ok(slugs.includes(slug) || legacy.includes(`slug: '${slug}'`), `${book.slug} links to ${slug}`);
   }
