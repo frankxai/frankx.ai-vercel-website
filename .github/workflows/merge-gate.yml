@@ -122,6 +122,42 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
+      # Keep this required check always-reporting, but avoid paying for the
+      # full install/test stack when the PR only touches docs, workflow policy,
+      # or agent metadata surfaces.
+      - name: Decide merge-gate scope
+        id: scope
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin "$BASE_REF":"refs/remotes/origin/$BASE_REF"
+          CHANGED=$(git diff --name-only "origin/$BASE_REF"...HEAD)
+          if [ -z "$CHANGED" ]; then
+            echo "full=true" >> "$GITHUB_OUTPUT"
+            echo "reason=unable to classify empty diff safely" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          FULL=false
+          while IFS= read -r file; do
+            case "$file" in
+              app/*|components/*|content/*|data/*|lib/*|public/*|scripts/*|types/*|next.config.mjs|package.json|pnpm-lock.yaml|pnpm-workspace.yaml|eslint.config.*)
+                FULL=true
+                break
+                ;;
+            esac
+          done <<EOF
+          $CHANGED
+          EOF
+
+          echo "full=$FULL" >> "$GITHUB_OUTPUT"
+          if [ "$FULL" = "true" ]; then
+            echo "reason=runtime-affecting paths changed" >> "$GITHUB_OUTPUT"
+          else
+            echo "reason=docs/workflow/agent metadata only" >> "$GITHUB_OUTPUT"
+          fi
+
       # Cheapest check in the job, and the one that protects the rest: a
       # merge:gate step this workflow forgets to run is enforced on Frank's
       # machine and nowhere else. Node builtins only, so it needs no install.
@@ -134,11 +170,13 @@ jobs:
       - name: Deploy and PR path coverage
         run: node scripts/check-deploy-path-coverage.mjs
 
-      - run: pnpm install --frozen-lockfile
+      - if: steps.scope.outputs.full == 'true'
+        run: pnpm install --frozen-lockfile
 
       # First, and cheap. A contract test that does not parse cannot protect
       # anything, and that failure is invisible to every check that follows.
       - name: Contract test syntax
+        if: steps.scope.outputs.full == 'true'
         run: pnpm run test:syntax
 
       # Keep this list in sync with the merge:gate script in package.json. The
@@ -151,6 +189,7 @@ jobs:
       # test:auction-bid to merge:gate only, which left main red on this job for
       # every pull request until they were added below.
       - name: Contract tests
+        if: steps.scope.outputs.full == 'true'
         run: |
           pnpm run test:glow-button
           pnpm run test:media-guard
@@ -171,6 +210,7 @@ jobs:
           pnpm run test:affiliate-links
 
       - name: Content and claims integrity
+        if: steps.scope.outputs.full == 'true'
         run: |
           pnpm run research:agentic-life:audit
           pnpm run content:check
@@ -189,6 +229,7 @@ jobs:
       # merge:gate:ci already excludes for that reason; this job matches the
       # repo's existing CI variant rather than re-litigating it.
       - name: Internal links
+        if: steps.scope.outputs.full == 'true'
         run: |
           pnpm run routes:build
           pnpm run links:check:static
@@ -199,6 +240,7 @@ jobs:
       # Deliberately placed after routes:build for the reason documented above —
       # against the committed index it would miss a page added by this very PR.
       - name: Intelligence surface consistency
+        if: steps.scope.outputs.full == 'true'
         run: pnpm run intelligence:check
 
       # The external snapshot ships committed, so CI re-checks that every figure
@@ -206,6 +248,7 @@ jobs:
       # normalise + join logic still holds against the committed fixtures. Both
       # are offline — no egress, no API key, no cost.
       - name: External intelligence provenance
+        if: steps.scope.outputs.full == 'true'
         run: |
           pnpm run intelligence:validate
           pnpm run test:intelligence-ingest
@@ -215,3 +258,7 @@ jobs:
         run: |
           pnpm run workflow:validate
           pnpm run workflow:test
+
+      - name: Skip full merge gate for docs/workflow-only PR
+        if: steps.scope.outputs.full != 'true'
+        run: echo "Skipping full merge gate (${{ steps.scope.outputs.reason }})."

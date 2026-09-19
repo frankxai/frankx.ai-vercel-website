@@ -1,7 +1,9 @@
 name: Branch Cleanup
 
 # Two triggers:
-#   - workflow_dispatch — manual run from Actions tab (paste branch list)
+#   - workflow_dispatch — manual run from Actions tab with mode:
+#       * listed: delete explicit branch input
+#       * merged: delete branches already merged into origin/main
 #   - push: when .github/cleanup-queue.txt changes on main, auto-delete
 #     every line in that file (one branch name per line, # for comments).
 #
@@ -18,14 +20,22 @@ name: Branch Cleanup
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: 'listed: use branches input, merged: auto-select branches merged into main'
+        required: false
+        default: 'listed'
+        type: choice
+        options:
+          - listed
+          - merged
       branches:
-        description: 'Space-separated branch names to delete'
-        required: true
+        description: 'Space-separated branch names to delete (required when mode=listed)'
+        required: false
         type: string
       dry_run:
         description: 'Dry run (print without deleting)'
         required: false
-        default: 'false'
+        default: 'true'
         type: string
   push:
     branches: [main]
@@ -48,12 +58,22 @@ jobs:
         id: list
         env:
           MANUAL_INPUT: ${{ inputs.branches }}
+          MODE: ${{ inputs.mode }}
           EVENT: ${{ github.event_name }}
         run: |
           set -e
           if [ "$EVENT" = "workflow_dispatch" ]; then
-            echo "Source: workflow_dispatch input"
-            BRANCHES="$MANUAL_INPUT"
+            if [ "${MODE:-listed}" = "merged" ]; then
+              echo "Source: merged remote branches into origin/main"
+              git fetch --prune origin
+              BRANCHES=$(git branch -r --merged origin/main \
+                | sed 's#^\s*origin/##' \
+                | grep -vE '^(HEAD|main|staging)$' \
+                | tr '\n' ' ')
+            else
+              echo "Source: workflow_dispatch input"
+              BRANCHES="$MANUAL_INPUT"
+            fi
           else
             echo "Source: .github/cleanup-queue.txt"
             if [ ! -f .github/cleanup-queue.txt ]; then
@@ -73,7 +93,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           BRANCHES: ${{ steps.list.outputs.branches }}
-          DRY_RUN: ${{ inputs.dry_run }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
         run: |
           set -e
           echo "Target repo: $REPO"
