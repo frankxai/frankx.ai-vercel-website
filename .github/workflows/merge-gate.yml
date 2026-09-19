@@ -50,8 +50,8 @@ on:
       # its redirects and headers are exactly what the link checks cover.
       - 'next.config.mjs'
       # Third trap: workflow-only PRs never report this required check.
-      # Cover the whole workflows tree so GitOps PRs remain mergeable.
-      - '.github/workflows/**'
+      # Cover the whole .github tree so GitOps PRs remain mergeable.
+      - '.github/**'
       # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
       # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
       - 'CLAUDE.md'
