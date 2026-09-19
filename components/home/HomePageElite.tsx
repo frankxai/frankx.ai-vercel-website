@@ -1037,7 +1037,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
             </Link>
             <Link
               href="/library/build"
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-4 py-1.5 text-xs font-medium text-emerald-200 hover:bg-emerald-400/10 hover:border-emerald-400/50 transition-colors"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-4 py-2.5 text-xs font-medium text-emerald-200 hover:border-emerald-400/50 hover:bg-emerald-400/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             >
               Build your own
               <ArrowRight className="w-3.5 h-3.5" />
@@ -1355,37 +1355,44 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
+              className="rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] overflow-hidden transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
             >
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-sm sm:text-base font-semibold text-white pr-4">
-                    {faq.question}
-                  </h3>
+              <h3 className="text-sm sm:text-base font-semibold text-white">
+                <button
+                  type="button"
+                  id={`faq-trigger-${i}`}
+                  aria-expanded={openIndex === i}
+                  aria-controls={`faq-answer-${i}`}
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="w-full text-left p-5 flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+                >
+                  <span className="pr-4">{faq.question}</span>
                   <ChevronDown
                     className={`w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-200 ${
                       openIndex === i ? 'rotate-180' : ''
                     }`}
+                    aria-hidden="true"
                   />
-                </div>
-                <AnimatePresence>
-                  {openIndex === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="mt-3 text-sm text-white/50 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </button>
+                </button>
+              </h3>
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div
+                    id={`faq-answer-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-trigger-${i}`}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="px-5 pb-5 text-sm text-white/50 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>
