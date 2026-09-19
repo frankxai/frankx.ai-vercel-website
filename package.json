@@ -239,7 +239,7 @@
     "resend": "^6.28.1",
     "stripe": "^22.6.2",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.3.3",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.186.0",
     "tldraw": "^4.4.0",
