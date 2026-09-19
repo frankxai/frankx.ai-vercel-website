@@ -27,7 +27,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'md', asChild = false, children, ...props }, ref) => {
     const classes = cn(
       // Design System Standard: Primary buttons use rounded-2xl (16px) per DESIGN_SYSTEM.md
-      'inline-flex items-center justify-center rounded-2xl font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
+      'inline-flex items-center justify-center rounded-2xl font-medium transition-colors duration-200 ease-out motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
       variantStyles[variant],
       sizeStyles[size],
       className
