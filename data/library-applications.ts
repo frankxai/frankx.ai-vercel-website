@@ -628,11 +628,11 @@ export const libraryApplications: Record<string, BookApplication> = {
   },
 };
 
-export function attachLibraryApplications<T extends BookReview>(reviews: T[]): T[] {
+export function attachLibraryApplications(reviews: BookReview[]): BookReview[] {
   return reviews.map((review) => {
     if (review.application) return review;
     const application = libraryApplications[review.slug];
-    return application ? ({ ...review, application } as T) : review;
+    return application ? { ...review, application } : review;
   });
 }
 
