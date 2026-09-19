@@ -18,11 +18,15 @@ test('shared buttons ban transition-all and keep reduced-motion plus focus locks
   assert.match(primitiveSource, /motion-reduce:transition-none/)
 })
 
-test('href wrapper is the production glow surface and swallows disabled clicks', () => {
+test('href wrapper only tracks pointer; glow classes live on the inner control', () => {
   assert.match(glowSource, /<div ref=\{containerRef\} \{\.\.\.pointerHandlers\} className="inline-block">/)
+  assert.match(glowSource, /<a href=\{disabled \? undefined : href\}[^>]*className=\{sharedClasses\}/)
+  assert.match(glowSource, /<Link href=\{disabled \? '#' : href\} className=\{sharedClasses\}/)
+  assert.match(glowSource, /\{glowOverlay\}/)
   assert.match(glowSource, /if \(disabled\) \{\s*event\.preventDefault\(\)/)
-  assert.match(glowSource, /aria-disabled=\{disabled \|\| undefined\}/)
-  assert.match(glowSource, /tabIndex=\{disabled \? -1 : undefined\}/)
+  assert.match(glowSource, /onAuxClick=\{handleAuxClick\}/)
+  assert.match(glowSource, /disabled && !href && 'pointer-events-none'/)
+  assert.equal(glowSource.includes("disabled && 'opacity-50 cursor-not-allowed pointer-events-none'"), false)
 })
 
 test('pointer glow arms only for fine mouse pointers and drops when reduced or disabled', () => {

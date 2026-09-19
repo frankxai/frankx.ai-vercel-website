@@ -52,7 +52,7 @@ export function GlowButton({
   target,
   rel,
 }: GlowButtonProps) {
-  const shouldReduceMotion = useReducedMotion()
+  const shouldReduceMotion = useReducedMotion() !== false
   const rgb = glowColors[color] || glowColors.emerald
 
   const { cardRef: containerRef, glowRef, handlers } = useMouseGlow<HTMLDivElement>({
@@ -76,7 +76,8 @@ export function GlowButton({
     'relative inline-flex items-center justify-center overflow-hidden transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out motion-reduce:transition-none',
     sizeClasses[size],
     variantBase[variant],
-    disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
+    disabled && 'opacity-50 cursor-not-allowed',
+    disabled && !href && 'pointer-events-none',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A]',
     !disabled && 'motion-safe:[@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-px motion-safe:active:scale-[0.98] focus-visible:!transform-none',
     className
@@ -99,16 +100,19 @@ export function GlowButton({
       }
       onClick?.()
     }
+    const handleAuxClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (disabled) event.preventDefault()
+    }
 
     return (
       <div ref={containerRef} {...pointerHandlers} className="inline-block">
         {isExternal ? (
-          <a href={href} target={target || '_blank'} rel={rel || 'noopener noreferrer'} className={sharedClasses} aria-disabled={disabled || undefined} tabIndex={disabled ? -1 : undefined} onClick={handleClick}>
+          <a href={disabled ? undefined : href} target={target || '_blank'} rel={rel || 'noopener noreferrer'} className={sharedClasses} aria-disabled={disabled || undefined} tabIndex={disabled ? -1 : undefined} onClick={handleClick} onAuxClick={handleAuxClick}>
             {glowOverlay}
             <span className="relative z-10 flex items-center gap-inherit">{children}</span>
           </a>
         ) : (
-          <Link href={href} className={sharedClasses} aria-disabled={disabled || undefined} tabIndex={disabled ? -1 : undefined} onClick={handleClick}>
+          <Link href={disabled ? '#' : href} className={sharedClasses} aria-disabled={disabled || undefined} tabIndex={disabled ? -1 : undefined} onClick={handleClick} onAuxClick={handleAuxClick}>
             {glowOverlay}
             <span className="relative z-10 flex items-center gap-inherit">{children}</span>
           </Link>
