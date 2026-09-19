@@ -271,7 +271,7 @@
     "puppeteer": "^24.35.0",
     "styled-jsx": "^5.1.7",
     "svgo": "^4.0.2",
-    "typescript": "^5.7.2"
+    "typescript": "^6.0.3"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
