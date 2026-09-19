@@ -33,6 +33,18 @@ export default function ManifestationPage() {
           isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
         }}
       />
+      <JsonLd
+        type="Article"
+        data={{
+          headline: 'Manifestation, Honestly — The Reality Architect Hub',
+          description:
+            'Keep the real mechanisms of manifestation, drop the cosmology: imagination, felt state, and focused attention, set with self-made music and rendered with AI into shipped reality.',
+          author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai/about' },
+          publisher: { '@type': 'Organization', name: 'FrankX.AI', url: 'https://frankx.ai' },
+          mainEntityOfPage: 'https://frankx.ai/manifestation',
+          about: 'Manifestation, the Law of Attraction, and AI-assisted creative systems',
+        }}
+      />
       <FAQPageJsonLd faqs={hubFaqs} />
       <ManifestationClient />
     </>
