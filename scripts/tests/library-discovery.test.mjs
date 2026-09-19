@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { createLibrarySearch, filterLibrary, normalizeLibraryQuery } from '../../lib/library-search.ts';
+import { attachLibraryApplications } from '../../data/library-applications.ts';
 
 const guides = JSON.parse(readFileSync(new URL('../../data/library-reading-guides.json', import.meta.url), 'utf8'));
 const books = guides.map(book => ({ ...book, description: book.summary, reviewDate: '2026-09-07', readingTime: '2 min' }));
@@ -54,4 +55,23 @@ test('reading guides have distinct identities, source references, and no invente
     for (const source of book.sources) assert.equal(new URL(source.url).protocol, 'https:');
     for (const slug of book.relatedSlugs) assert.ok(slugs.includes(slug) || legacy.includes(`slug: '${slug}'`), `${book.slug} links to ${slug}`);
   }
+});
+
+
+test('mapper path includes living-untethered application and attach does not clobber existing application', () => {
+  const mappedGuides = attachLibraryApplications(books);
+  const livingUntetheredApplication = mappedGuides.find(book => book.slug === 'living-untethered')?.application;
+  assert.ok(livingUntetheredApplication?.title?.length, 'living-untethered should expose an application title after guide mapping');
+
+  const seed = {
+    slug: 'atomic-habits',
+    application: {
+      title: 'Custom application title',
+      body: 'Keep this authored application.',
+    },
+  };
+
+  const [result] = attachLibraryApplications([seed]);
+  assert.equal(result.application.title, seed.application.title);
+  assert.equal(result.application.body, seed.application.body);
 });
