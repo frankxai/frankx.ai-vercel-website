@@ -53,57 +53,20 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
   assert.doesNotMatch(homepage, /Music first\./)
   assert.doesNotMatch(homepage, /begin with music/)
-  assert.match(homepage, /Explore your highest-leverage AI move\./)
-  // [contract-change] Frank restored the Jan-2026 dual rotation: both H1 lines
-  // change, not just the verb. The prior "exactly one moving element" rule is
-  // deliberately lifted. The lists are meant to grow weekly, so this guards the
-  // structure that keeps growth safe rather than the copy itself.
-  assert.match(homepage, /function SplitFlipLine\(/)
-  assert.doesNotMatch(homepage, /function RotatingHeroOutcome\(/)
-  assert.match(homepage, /const heroVerbs = \['Build', 'Design', 'Architect'\]/)
-  assert.match(homepage, /const heroTails = \[/)
-  assert.match(homepage, /font-serif italic/)
-  // Each line indexes its own list off the shared counter, which is what makes
-  // the cross-product work as the lists grow at different rates.
-  assert.match(homepage, /text=\{heroVerbs\[phraseIndex % heroVerbs\.length\]\}/)
-  assert.match(homepage, /text=\{heroTails\[phraseIndex % heroTails\.length\]\}/)
-  // One index, one interval — a second timer is what desynced the old hero.
-  assert.doesNotMatch(homepage, /setPhraseIndex[\s\S]{0,600}?window\.setInterval[\s\S]{0,600}?window\.setInterval/)
-  // Coprime lengths, or the pairing repeats long before the cross-product is
-  // exhausted (4 verbs x 8 tails yields 8 headlines, not 32). This is the rule
-  // most likely to be broken by someone adding a word in a hurry.
-  {
-    const verbCount = homepage.match(/const heroVerbs = \[([^\]]*)\]/)[1].split(',').length
-    const tailCount = homepage.match(/const heroTails = \[([\s\S]*?)\n\]/)[1].trim().split('\n').length
-    const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b))
-    const reachable = (verbCount * tailCount) / gcd(verbCount, tailCount)
-    assert.strictEqual(
-      gcd(verbCount, tailCount),
-      1,
-      `heroVerbs (${verbCount}) and heroTails (${tailCount}) must be coprime: ` +
-        `only ${reachable} of ${verbCount * tailCount} pairings are reachable. Add or drop one word.`,
-    )
-  }
-  // Index 0 of each list is the anchor headline, matched by the H1's aria-label,
-  // so SSR, no-JS, and reduced-motion all render it without hydration.
-  assert.match(homepage, /const heroTails = \[\n\s*'intelligence that compounds\.',/)
-  assert.match(homepage, /aria-label="Build intelligence that compounds\."/)
-  // The verb owns line one so a width change never reflows the sentence, and the
-  // clip box is extended so the Playfair descender on every verb is not cut.
-  // SplitText's own `mask` option is NOT used: its per-char box is the tight
-  // 1.02 line box and would reintroduce that clipping.
-  assert.match(homepage, /-mb-\[0\.15em\] overflow-hidden pb-\[0\.15em\]/)
-  assert.doesNotMatch(homepage, /mask: '(chars|words|lines)'/)
-  // Splits are reverted, so rotations cannot accumulate spans in the H1.
-  assert.match(homepage, /activeSplit\?\.revert\(\)/)
-  // The pause control sits outside the H1 and always reserves its space, so
-  // hydration cannot shift the headline.
-  assert.doesNotMatch(homepage, /<button[^>]*>[\s\S]{0,400}?<\/h1>/)
-  assert.match(homepage, /isRotating \? 'visible' : 'invisible'/)
-  assert.match(homepage, /useSyncExternalStore/)
-  assert.match(homepage, /const isRotating = hasHydrated && !shouldReduceMotion/)
-  assert.match(homepage, /Pause changing headline/)
-  assert.match(homepage, /Play changing headline/)
+  // [contract-change] First contact is one claim, one instrument, one action.
+  // The 21-headline rotator and logo-wall were substituting motion and brands
+  // for a product. Music stays as living proof in the right column.
+  assert.match(homepage, /const heroHeadline = 'Build systems you can inspect and own\.'/)
+  assert.match(homepage, /aria-label=\{heroHeadline\}/)
+  assert.match(homepage, /A working studio for architecture, music, and creator tools/)
+  assert.match(homepage, /href="https:\/\/gencreator\.ai"/)
+  assert.match(homepage, /Open GenCreator/)
+  assert.match(homepage, /Inspect the blueprints/)
+  assert.doesNotMatch(homepage, /function SplitFlipLine\(/)
+  assert.doesNotMatch(homepage, /const heroVerbs =/)
+  assert.doesNotMatch(homepage, /Pause changing headline/)
+  assert.doesNotMatch(homepage, /<TrustedByBlock \/>/)
+  assert.doesNotMatch(homepage, /FrankOmegaAvatar/)
   assert.match(homepage, /Latest studio release · optional listening/)
   assert.match(homepage, /<MindPalaceAtlas \/>/)
   assert.doesNotMatch(homepage, /autoplay=(?:1|true)/i)
@@ -118,7 +81,6 @@ test('the long-form homepage cannot silently lose its restored rooms and glow ca
   const player = await readRepoFile('components/home/FeaturedTrackPlayer.tsx')
 
   for (const section of [
-    '<TrustedByBlock />',
     '<MindPalaceAtlas />',
     '<ProductsTools />',
     '<CreativeWorlds />',

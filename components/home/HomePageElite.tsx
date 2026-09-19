@@ -3,20 +3,16 @@
 'use client'
 
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
-import { gsap } from 'gsap'
-import { SplitText } from 'gsap/SplitText'
 import Link from 'next/link'
 import Image, { type StaticImageData } from 'next/image'
 import architectureArtwork from '@/public/images/home/ai-architecture-atelier-v2.webp'
 import musicArtwork from '@/public/images/home/music-lab-studio-v2.webp'
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
-import { ArrowRight, ChevronDown, Pause, Play, Sparkles } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
-import { FrankOmegaAvatar } from '@/components/FrankOmega'
-import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
 import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
@@ -163,339 +159,58 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // HERO
 // ============================================================================
 
-// Both H1 lines rotate off one index, so there is one clock and one timer. The
-// Jan-2026 hero ran two desynced timers and crossed every verb with every tail;
-// that was only a problem because its tails were not all valid objects of its
-// verbs ("Create your golden age"). Here the constraint is explicit instead:
-//
-//   EVERY tail must read correctly after EVERY verb.
-//
-// Hold that and the cross-product is a feature — 3 x 7 gives 21 headlines from
-// ten lines of copy. Add to either list weekly; the only rule beyond the one
-// above is to keep the two lengths COPRIME, or the pairing repeats early
-// (4 verbs x 8 tails yields 8 combinations, not 32).
-//
-// Index 0 of each is the anchor headline: what SSR, no-JS, and reduced-motion
-// render, so it never depends on hydration. Keep the aria-label on the H1 in
-// sync with it.
-//
-// The verb owns line one alone so a width change (Build vs Architect differ by
-// ~120px at 7xl) only moves that line's ragged right edge; "your" rides on line
-// two with the noun it belongs to.
-const heroVerbs = ['Build', 'Design', 'Architect']
-const heroTails = [
-  'intelligence that compounds.',
-  'your AI Center of Excellence.',
-  'your AI Operating System.',
-  'your Agentic Creator OS.',
-  'your GenCreator OS.',
-  'your Music Production OS.',
-  'your Second Brain.',
-]
-
-const heroOutcome = 'Explore your highest-leverage AI move.'
-
-// Serif italic on a two-stop emerald→cyan wash is the premium tell.
-const heroVerbClassName =
-  'bg-gradient-to-r from-emerald-200 to-cyan-200 bg-clip-text font-serif italic font-normal tracking-[-0.02em] text-transparent'
-
-// pb/-mb extends the clip box below the 1.02 line box without shifting layout —
-// every verb ends in "g" and the Playfair descender would otherwise be cut. This
-// wrapper is the mask, not SplitText's own `mask` option, whose per-char box is
-// exactly the tight line box and would reintroduce that clipping.
-const heroLineMaskClassName =
-  'relative inline-block -mb-[0.15em] overflow-hidden pb-[0.15em] align-bottom'
-
-const subscribeToHydration = () => () => undefined
-
-let splitTextRegistered = false
-
-// Phrases of similar character count can still wrap to different line counts —
-// "your AI Operating System." takes three lines in a 588px column where the
-// longer "your AI Center of Excellence." takes two, because its words are
-// longer. Left alone, that pushes everything below the H1 down 72px mid-
-// rotation. So reserve the tallest candidate's height up front.
-//
-// Measured rather than hard-coded, because which phrase is tallest depends on
-// the column width and the loaded font, and because the lists are meant to grow
-// weekly — a hard-coded min-height would silently go stale on the first
-// addition. Candidates are measured in a detached probe instead of being
-// rendered invisibly in the H1, which would put all seven tails into the
-// heading's text content for crawlers.
-function useReservedLineHeight(
-  ref: React.RefObject<HTMLSpanElement | null>,
-  candidates: readonly string[] | undefined,
-) {
-  const [reservedHeight, setReservedHeight] = useState<number>()
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el || !candidates?.length) return
-
-    // The heading is the wrapping context: the mask span is inline-block, so it
-    // shrinks to fit but still breaks at the heading's width.
-    const heading = el.closest('h1')
-    if (!heading) return
-
-    const probe = document.createElement('span')
-    probe.className = el.className
-    probe.setAttribute('aria-hidden', 'true')
-
-    const measure = () => {
-      probe.style.cssText = `position:absolute;visibility:hidden;pointer-events:none;width:${heading.clientWidth}px`
-      heading.appendChild(probe)
-      let tallest = 0
-      for (const candidate of candidates) {
-        probe.textContent = candidate
-        tallest = Math.max(tallest, probe.getBoundingClientRect().height)
-      }
-      probe.remove()
-      // minHeight lands on the padded mask wrapper under border-box, while the
-      // probe is styled like the inner span — without this the reservation is
-      // short by exactly the descender padding.
-      const wrapper = el.parentElement
-      const padding = wrapper
-        ? parseFloat(getComputedStyle(wrapper).paddingTop) +
-          parseFloat(getComputedStyle(wrapper).paddingBottom)
-        : 0
-      setReservedHeight(tallest ? tallest + padding : undefined)
-    }
-
-    measure()
-    // Fonts change the wrap points, and Playfair is not there on first paint.
-    void document.fonts?.ready.then(measure)
-
-    // Only width can change the wrap points. Gating on it also stops the
-    // observer from re-triggering on the height change this hook itself causes.
-    let lastWidth = heading.clientWidth
-    const remeasureIfResized = () => {
-      if (heading.clientWidth === lastWidth) return
-      lastWidth = heading.clientWidth
-      measure()
-    }
-
-    // Both instruments on purpose. The observer catches column changes no
-    // resize event fires for; the window listener still runs when observer
-    // delivery is starved, since callbacks are tied to the rendering lifecycle
-    // and a backgrounded tab stops driving it.
-    const observer = new ResizeObserver(remeasureIfResized)
-    observer.observe(heading)
-    window.addEventListener('resize', remeasureIfResized)
-
-    return () => {
-      observer.disconnect()
-      window.removeEventListener('resize', remeasureIfResized)
-      probe.remove()
-    }
-  }, [ref, candidates])
-
-  return reservedHeight
-}
-
-// SplitText replaces the whole-word crossfade with a per-character wipe: the old
-// line leaves upward on a stagger while the new one arrives from below, so the
-// eye reads a rolling shutter instead of two words dissolving into each other.
-function SplitFlipLine({
-  text,
-  className,
-  animate,
-  delay = 0,
-  reserveFor,
-}: {
-  text: string
-  className: string
-  animate: boolean
-  delay?: number
-  reserveFor?: readonly string[]
-}) {
-  const ref = useRef<HTMLSpanElement>(null)
-  // React renders the first phrase and never touches this node again — every
-  // later swap is imperative, so SplitText's spans are never fighting a rerender.
-  const [initialText] = useState(text)
-  const renderedText = useRef(text)
-  const reservedHeight = useReservedLineHeight(ref, reserveFor)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el || renderedText.current === text) return
-
-    if (!animate) {
-      el.textContent = text
-      renderedText.current = text
-      return
-    }
-
-    if (!splitTextRegistered) {
-      gsap.registerPlugin(SplitText)
-      splitTextRegistered = true
-    }
-
-    renderedText.current = text
-    // tag: 'span' because SplitText defaults to <div>, and a div inside the H1's
-    // inline span is invalid nesting. GSAP sets display:inline-block either way,
-    // so the yPercent transform still renders.
-    let activeSplit: SplitText | null = SplitText.create(el, { type: 'words,chars', aria: 'none', tag: 'span' })
-
-    const tween = gsap.to(activeSplit.chars, {
-      yPercent: -115,
-      opacity: 0,
-      duration: 0.34,
-      delay,
-      ease: 'power3.in',
-      stagger: 0.014,
-      onComplete: () => {
-        activeSplit?.revert()
-        el.textContent = text
-        activeSplit = SplitText.create(el, { type: 'words,chars', aria: 'none', tag: 'span' })
-        gsap.from(activeSplit.chars, {
-          yPercent: 115,
-          opacity: 0,
-          duration: 0.52,
-          ease: 'power3.out',
-          stagger: 0.018,
-          onComplete: () => {
-            // Reverting leaves plain text behind, so nothing accumulates across
-            // rotations and copy/select still yields the sentence.
-            activeSplit?.revert()
-            activeSplit = null
-          },
-        })
-      },
-    })
-
-    return () => {
-      tween.kill()
-      activeSplit?.revert()
-      activeSplit = null
-      el.textContent = text
-    }
-  }, [text, animate, delay])
-
-  return (
-    <span
-      className={heroLineMaskClassName}
-      style={reservedHeight ? { minHeight: reservedHeight } : undefined}
-      aria-hidden="true"
-    >
-      <span ref={ref} className={`inline-block ${className}`}>
-        {initialText}
-      </span>
-    </span>
-  )
-}
+const heroHeadline = 'Build systems you can inspect and own.'
+const heroOutcome =
+  'A working studio for architecture, music, and creator tools — on your own keys.'
 
 function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
-  const [isHeadlinePaused, setIsHeadlinePaused] = useState(false)
-  const [phraseIndex, setPhraseIndex] = useState(0)
-  const shouldReduceMotion = useReducedMotion()
-  const hasHydrated = useSyncExternalStore(
-    subscribeToHydration,
-    () => true,
-    () => false,
-  )
-  const isRotating = hasHydrated && !shouldReduceMotion
-
-  // 4.4s, not the old 3.2s: the per-character wipe plus the tail's 0.12s offset
-  // runs ~1.3s, and a phrase needs to sit still long enough to actually be read.
-  // The index wraps at the product of the two lengths so it stays a small int
-  // and returns to the anchor headline after a full pass through every pairing.
-  useEffect(() => {
-    if (!isRotating || isHeadlinePaused) return
-
-    const interval = window.setInterval(() => {
-      setPhraseIndex((index) => (index + 1) % (heroVerbs.length * heroTails.length))
-    }, 4400)
-
-    return () => window.clearInterval(interval)
-  }, [isRotating, isHeadlinePaused])
-
   return (
     <section className="relative flex items-start overflow-x-clip pb-16 pt-24 md:pb-20 md:pt-28">
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:gap-16">
-          {/* Left Column — Text Content */}
           <div className="order-1 min-w-0 space-y-8">
             <div className="space-y-6">
-              <div className="inline-flex max-w-full min-w-0 flex-wrap items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
-                <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="min-w-0 text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
-              </div>
+              <p className="font-mono text-[11px] tracking-[0.18em] text-emerald-300/70 uppercase">
+                Frank Riemer · public studio
+              </p>
 
               <h1
                 className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-6xl"
-                aria-label="Build intelligence that compounds."
+                aria-label={heroHeadline}
               >
-                <SplitFlipLine
-                  text={heroVerbs[phraseIndex % heroVerbs.length]}
-                  className={heroVerbClassName}
-                  animate={isRotating}
-                />
+                <span className="bg-gradient-to-r from-emerald-200 to-cyan-200 bg-clip-text font-serif italic font-normal tracking-[-0.02em] text-transparent">
+                  Build
+                </span>
                 <br />
-                <SplitFlipLine
-                  text={heroTails[phraseIndex % heroTails.length]}
-                  className="text-white"
-                  animate={isRotating}
-                  delay={0.12}
-                  reserveFor={heroTails}
-                />
+                <span>systems you can inspect and own.</span>
               </h1>
 
-              <div className="mt-5 flex max-w-2xl items-center gap-3">
-                <p className="text-xl font-medium leading-[1.25] tracking-[-0.02em] text-white/75 sm:text-2xl">
-                  {heroOutcome}
-                </p>
-                {/* Always rendered so hydration never shifts the headline; only
-                    interactive while the verb is actually rotating (WCAG 2.2.2). */}
-                <button
-                  type="button"
-                  onClick={() => setIsHeadlinePaused((paused) => !paused)}
-                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/50 transition-colors hover:border-emerald-200/30 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70 ${
-                    isRotating ? 'visible' : 'invisible'
-                  }`}
-                  aria-label={isHeadlinePaused ? 'Play changing headline' : 'Pause changing headline'}
-                  aria-pressed={isHeadlinePaused}
-                  aria-hidden={isRotating ? undefined : true}
-                  tabIndex={isRotating ? undefined : -1}
-                >
-                  {isHeadlinePaused ? (
-                    <Play className="h-4 w-4" aria-hidden="true" />
-                  ) : (
-                    <Pause className="h-4 w-4" aria-hidden="true" />
-                  )}
-                </button>
-              </div>
-
-              <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
-                Most AI advice is noise. Here are the working blueprints: personal Centers of
-                Excellence, agentic operating systems, and twelve thousand tracks of studio craft—built
-                with your own keys on your own terms.
+              <p className="mt-5 max-w-2xl text-xl font-medium leading-[1.25] tracking-[-0.02em] text-white/75 sm:text-2xl">
+                {heroOutcome}
               </p>
 
-              <div className="flex items-center gap-3">
-                <FrankOmegaAvatar size="xs" />
-                <p className="max-w-lg font-serif text-lg italic leading-7 text-white/70">
-                  &ldquo;I build to understand. I document so the people I love can build after me.&rdquo;
-                </p>
-              </div>
+              <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
+                One claim. One working instrument. One next action. Music stays as living proof,
+                not the door.
+              </p>
             </div>
 
-            {/* CTAs — full-width on 320px; labels wrap instead of overflowing the viewport */}
             <div className="flex w-full min-w-0 max-w-full flex-col gap-3 sm:flex-row sm:gap-4">
               <Link
-                href="/ai-architecture"
-                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
+                href="https://gencreator.ai"
+                onClick={() => trackEvent('hero_cta_click', { type: 'gencreator' })}
                 className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-medium leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-0"
               >
-                <span className="text-balance">Inspect the Blueprints</span>
+                <span className="text-balance">Open GenCreator</span>
                 <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
               </Link>
 
               <Link
-                href="/ecosystem"
-                onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
+                href="/ai-architecture"
+                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
                 className="flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-center text-base font-medium leading-snug text-white backdrop-blur-xl transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] sm:w-auto sm:px-8 sm:py-0"
               >
-                <span className="text-balance">Map the Ecosystem</span>
+                <span className="text-balance">Inspect the blueprints</span>
               </Link>
             </div>
 
@@ -1553,9 +1268,6 @@ export default function HomePageElite({
 
         {/* 4. Authority bar */}
         <AuthorityBar />
-
-        {/* 4b. AI Stack — tool logos with guide links */}
-        <TrustedByBlock />
 
         {/* 4c. Signature route atlas — one earned GSAP scene */}
         <MindPalaceAtlas />
