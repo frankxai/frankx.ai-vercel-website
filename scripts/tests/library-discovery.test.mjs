@@ -2,8 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { createLibrarySearch, filterLibrary, normalizeLibraryQuery } from '../../lib/library-search.ts';
-import { attachLibraryApplications } from '../../data/library-applications.ts';
-import { spiritualReadingGuides } from '../../data/spiritual-reading-guides.ts';
+import { attachLibraryApplications, libraryApplications } from '../../data/library-applications.ts';
 
 const guides = JSON.parse(readFileSync(new URL('../../data/library-reading-guides.json', import.meta.url), 'utf8'));
 const books = guides.map(book => ({ ...book, description: book.summary, reviewDate: '2026-09-07', readingTime: '2 min' }));
@@ -60,8 +59,12 @@ test('reading guides have distinct identities, source references, and no invente
 
 
 test('mapper path includes living-untethered application and attach does not clobber existing application', () => {
-  const livingUntethered = spiritualReadingGuides.find(book => book.slug === 'living-untethered');
-  assert.ok(livingUntethered?.application?.title?.length, 'living-untethered should expose an application title after guide mapping');
+  const mapperSource = readFileSync(new URL('../../data/spiritual-reading-guides.ts', import.meta.url), 'utf8');
+  assert.match(mapperSource, /application:\s*libraryApplications\[entry\.slug\]/);
+
+  const livingUntetheredGuide = books.find(book => book.slug === 'living-untethered');
+  const livingUntetheredApplication = livingUntetheredGuide ? libraryApplications[livingUntetheredGuide.slug] : undefined;
+  assert.ok(livingUntetheredApplication?.title?.length, 'living-untethered should expose an application title after guide mapping');
 
   const seed = {
     slug: 'atomic-habits',
