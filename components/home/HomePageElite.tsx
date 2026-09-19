@@ -465,10 +465,10 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 </button>
               </div>
 
-              <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
-                FrankX is the working studio for founders, creators, and AI leaders building an AI
-                operating system, a Center of Excellence, or agentic products. Explore the
-                architecture, inspect the systems, and start from what already works.
+              <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
+                Most AI advice is noise. Here are the working blueprints: personal Centers of
+                Excellence, agentic operating systems, and twelve thousand tracks of studio craft—built
+                with your own keys on your own terms.
               </p>
 
               <div className="flex items-center gap-3">
@@ -486,7 +486,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
                 className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-medium leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-0"
               >
-                <span className="text-balance">Explore AI Architecture</span>
+                <span className="text-balance">Inspect the Blueprints</span>
                 <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
               </Link>
 
@@ -1501,14 +1501,13 @@ function FinalCTA() {
 
           <div className="relative text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-              Take what helps. Build what matters.
+              Take what serves. Build what endures.
             </h2>
-            <p className="font-serif italic text-lg text-white/60 mb-2">
-              You do not have to become someone else to begin.
+            <p className="font-serif italic text-lg text-white/70 mb-2">
+              Sovereignty is not purchased; it is architected.
             </p>
             <p className="text-base text-white/60 mb-8 md:mb-12 max-w-md mx-auto">
-              Choose one honest next step. The music, maps, and tools will still be here when you
-              are ready for another.
+              Pick one constraint. Inspect one pattern. Deploy one system. The studio, the archive, and the code remain here whenever you are ready to compound.
             </p>
 
             <div className="flex w-full min-w-0 max-w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
@@ -1516,7 +1515,7 @@ function FinalCTA() {
                 href="/start"
                 className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-semibold leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4"
               >
-                Find My Starting Point
+                Find Your True Constraint
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
