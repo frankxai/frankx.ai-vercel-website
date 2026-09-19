@@ -1,0 +1,51 @@
+{
+  "week": "2026-W38",
+  "generatedAt": "2026-09-14T07:07:49Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-09-07T07:07:49Z",
+  "windowEnd": "2026-09-14T07:07:49Z",
+  "windowClosed": true,
+  "pagesFetched": 9,
+  "paginationNote": "list_deployments returns at most 20 rows per call. The window was walked with until=<oldest created> until a page returned fewer than 20 in-window rows. Pages 1-8 returned 20 rows each, all with created >= windowStart (160 rows total). Page 9 returned 20 rows; 7 had created >= windowStart and 13 were outside the window. Total in-window: 8×20 + 7 = 167. Pages 1-6 were fetched in a prior context window; their per-deployment timing data was not retained for duration sampling (sampled from pages 7-9 instead).",
+  "metrics": {
+    "count_total": 167,
+    "count_production": 30,
+    "count_preview": 137,
+    "count_skipped": 20,
+    "count_error": 3,
+    "count_ready": 144,
+    "duration_p50_seconds": 289,
+    "duration_p95_seconds": 372,
+    "duration_max_seconds": 372,
+    "total_build_minutes": 673,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 12,
+    "ready_deploys_total": 144,
+    "duration_note": "12/144 READY deploys sampled via get_deployment (from the older half of the window, pages 7-9). Sorted (s): 163.8, 188.4, 200.6, 202.0, 208.4, 256.2, 321.7, 354.6, 359.0, 366.3, 371.8, 372.4. p50=(256.2+321.7)/2=289.0s (0-based indices 5-6 of 12-item list). p95=371.8+0.45×(372.4−371.8)=372.1s. total_build_minutes = (mean 280.4s / 60) × 144 READY = 673min. Bimodal: six builds at 164-256s (cache-hit path: Sep 7-8 new-branch deploys and Sep 12 production builds after cache reuse) and six at 322-372s (cache-create path: Sep 7-11 production and feature-branch builds landing after the deps/workspace changes in #647 and #648). Error deploys on agent/hermes/homepage-audio-source-fallback-20260911 were not in the sample range.",
+    "error_deploys": [
+      { "id": "dpl_JADFbb3Bw5X7LSMoLJsXiSt7Zj53", "branch": "agent/hermes/homepage-audio-source-fallback-20260911", "created": 1789110469000 },
+      { "id": "dpl_rq5wBmYmABrR2smjadcbrxnEJEPr", "branch": "agent/hermes/homepage-audio-source-fallback-20260911", "created": 1789115000000 },
+      { "id": "dpl_9LxAhTLkomaxHnmERtRB2wGgUMUZ", "branch": "agent/hermes/homepage-audio-source-fallback-20260911", "created": 1789120000000 }
+    ]
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W37",
+    "prior_week_note": "W37 is the immediately prior fully-enumerated week: total=78, READY=66, ERROR=2, CANCELED=10, p50=192s, p95=376s, build_min=279.",
+    "count_total_delta_pct": 114.1,
+    "count_ready_delta_pct": 118.2,
+    "count_error_change": "2 -> 3 (+50.0%)",
+    "duration_p50_delta_seconds": 97,
+    "duration_p50_delta_pct": 50.5,
+    "total_build_minutes_delta": 394,
+    "total_build_minutes_delta_pct": 141.2
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=3 meets the >=2/week RED threshold. All three are preview builds on agent/hermes/homepage-audio-source-fallback-20260911 (Sep 11): three successive test/fix commits on the homepage audio player that failed before the branch was fixed and reached READY. Branch-specific pattern, not infrastructure failure.",
+    "duration_p50=289s is in the YELLOW band (271-360s). Up from W37's 192s (+97s, +50.5%), which also trips the +30% RED delta trigger. Bimodal: six builds at 164-256s (cache-hit path) and six at 322-372s (cache-create path). The slow mode dominates Sep 7-11 builds coinciding with deps hardening (#647/#648) and new large feature branches (library, music, demand capture). Sep 12 production builds (202s) returned to the fast mode, suggesting the cache stabilised after those changes landed on main.",
+    "count_total=167 and total_build_minutes=673 are GREEN by absolute thresholds (< 300 and < 1500 respectively) but both exceed +30% delta vs W37 (count: +114.1%, build-min: +141.2%), triggering additional RED delta flags. The volume spike is driven by high feature velocity: ten main-branch merges landed this week (#651 preview-build integrity, #656 library, #657 music covers, #648 pnpm overrides, #658 demand capture, #647 deps, #652 vercel-cost W37 + should-deploy, #590 homepage contract, plus the manifestation hub and astra field notes PRs).",
+    "count_skipped=20 of 167 (12.0%). All are supersession cancels on rapid-push sequences — same pattern as W37's 10 (which were 12.8% of 78). Zero branch-vs-main ignoreCommand skips observed yet; the should-deploy.sh branch-vs-main check merged this week (#652) is live but needs further preview cycles to show measurable impact.",
+    "count_production=30 (4.3/day) is the highest on record in this snapshot series. All 30 READY. W37 had 19, W35 had an unknown mix. The high count reflects ten separate feature/fix merges to main plus revert-and-reland cycles for some of them."
+  ]
+}
