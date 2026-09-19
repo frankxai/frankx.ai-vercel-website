@@ -1,6 +1,6 @@
 import type { BookReview } from '@/app/books/types';
 import { handbookToHigherConsciousnessReview } from '@/data/handbook-to-higher-consciousness';
-import { attachLibraryApplications } from './library-applications.ts';
+import { attachLibraryApplications } from './library-applications';
 import { spiritualReadingGuides, taoReadingGuide } from './spiritual-reading-guides';
 
 export const bookReviews: BookReview[] = attachLibraryApplications([

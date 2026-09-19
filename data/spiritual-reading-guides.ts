@@ -1,6 +1,6 @@
 import type { BookReview } from '@/app/books/types';
 import entries from './library-reading-guides.json';
-import { libraryApplications } from './library-applications.ts';
+import { libraryApplications } from './library-applications';
 
 type GuideEntry = (typeof entries)[number] & {
   bestFor?: string[];

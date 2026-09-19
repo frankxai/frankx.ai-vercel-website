@@ -1,5 +1,5 @@
 import type { BookReview } from '@/app/books/types';
-import { attachLibraryApplications } from './library-applications.ts';
+import { attachLibraryApplications } from './library-applications';
 import { bookReviews as legacyBookReviews } from './book-reviews';
 
 const blitzscalingReview: BookReview = {
