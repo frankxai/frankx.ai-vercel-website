@@ -78,6 +78,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: siteConfig.keywords,
   authors: [{ name: 'Frank' }],
+  manifest: '/manifest.webmanifest',
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
