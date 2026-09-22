@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
+import programs from '@/data/affiliate/programs.json'
 import { getOutboundLink } from '@/data/outbound-links'
+import { resolveGoDestination } from '@/lib/tools/go-destination'
+import { recordsFromPrograms } from '@/lib/tools/record'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -45,21 +48,30 @@ export async function GET(
 ) {
   const { slug } = await params
   const link = getOutboundLink(slug)
+  const decision = resolveGoDestination({
+    slug,
+    records: recordsFromPrograms(programs.programs),
+    outboundDestination: link?.destination,
+  })
 
-  if (!link) {
+  if (decision.action === 'missing') {
     return NextResponse.redirect(new URL('/404', request.url), 302)
+  }
+
+  if (decision.action === 'stack') {
+    return NextResponse.redirect(new URL(`/stack/${decision.id}`, request.url), 302)
   }
 
   if (!hasPrivacyOptOut(request)) {
     logClick({
       slug,
-      destination: link.destination,
-      category: link.category,
+      destination: decision.href,
+      category: link?.category ?? 'tool',
       referrer: sanitizeReferrer(request.headers.get('referer')),
       device: getDeviceClass(request.headers.get('user-agent')),
       timestamp: new Date().toISOString(),
     })
   }
 
-  return NextResponse.redirect(link.destination, 302)
+  return NextResponse.redirect(decision.href, 302)
 }
