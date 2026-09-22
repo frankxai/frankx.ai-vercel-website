@@ -40,7 +40,8 @@
           "notes": "Wrong answer (814 = 2*11*37 has 8 divisors). Fastest response of the round — speed may have cost accuracy."
         }
       },
-      "winner": "fable"
+      "winner": "fable",
+      "prompt": "reasoning + output discipline (no tools allowed)"
     },
     {
       "id": "coding-recursive-descent-evaluator",
@@ -64,7 +65,8 @@
           "notes": "Recursive descent, first try, faster. Added an explanatory preamble above the required two-line output — contract violation."
         }
       },
-      "winner": "tie (correctness); fable on output contract"
+      "winner": "tie (correctness); fable on output contract",
+      "prompt": "coding (real parser required — eval/exec/compile/ast banned; self-verifying asserts incl. stacked unary minus; max 3 attempts)"
     },
     {
       "id": "agentic-repo-grounding-frankx",
@@ -88,7 +90,8 @@
           "notes": "All facts correct, 3x faster, fewer tool calls. Added a preamble above the four lines — 'EXACTLY four lines' violated."
         }
       },
-      "winner": "tie (4/4 both; neither fully format-compliant — fable missed prefixes, opus added preamble)"
+      "winner": "tie (4/4 both; neither fully format-compliant — fable missed prefixes, opus added preamble)",
+      "prompt": "agentic tool use + repo-grounded accuracy (NEW axis this round)"
     },
     {
       "id": "voice-constraint-stack",
@@ -111,7 +114,8 @@
           "notes": "Closed the Round 1 compliance gap completely. Blind judge preferred fable's causal tightness this time."
         }
       },
-      "winner": "fable (judge 9 vs 8, both constraint-compliant)"
+      "winner": "fable (judge 9 vs 8, both constraint-compliant)",
+      "prompt": "brand-voice writing (90-110 words, required phrase, 8 banned words, final sentence <=6 words)"
     }
   ],
   "summary": {

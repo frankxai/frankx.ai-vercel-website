@@ -54,7 +54,8 @@
           "notes": "Table semantics with sr-only caption, scoped headers, aria-hidden decorative dot, unified VERDICT_META record. Judge: 'textbook accessible comparison-card craft'. Preamble leak again."
         }
       },
-      "winner": "opus (judge 8 vs 6; both mechanically compliant)"
+      "winner": "opus (judge 8 vs 6; both mechanically compliant)",
+      "prompt": "real-world frontend work (read design.md + taste.md, build ModelComparisonCard.tsx, tsc-clean, design-token + a11y compliance)"
     },
     {
       "id": "acos-skill-authoring",
@@ -82,7 +83,8 @@
           "notes": "'Press release' framing + judged-share<=half constraint fable lacked; omitted append-only history + promotion threshold. Faster, half the tool calls. Preamble leak."
         }
       },
-      "winner": "fable (judge 9 vs 8; both mechanically compliant)"
+      "winner": "fable (judge 9 vs 8; both mechanically compliant)",
+      "prompt": "agentic-system authoring (SKILL.md per ACOS conventions: frontmatter triggers, <800 words, voice constraints, no slop, no mythology leak)"
     }
   ],
   "summary": {

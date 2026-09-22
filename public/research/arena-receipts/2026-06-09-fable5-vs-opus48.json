@@ -42,7 +42,8 @@
           "notes": "Correct, but leaked stream-of-consciousness ('wait —') into final output, violating 'output ONLY' instruction."
         }
       },
-      "winner": "fable"
+      "winner": "fable",
+      "prompt": "reasoning + instruction compliance"
     },
     {
       "id": "coding-next-same-popcount",
@@ -64,7 +65,8 @@
           "notes": "Gosper's hack, first try."
         }
       },
-      "winner": "tie"
+      "winner": "tie",
+      "prompt": "coding (self-verifying asserts, max 3 attempts)"
     },
     {
       "id": "repo-grounding-claude-md",
@@ -84,7 +86,8 @@
           "notes": "All correct, slightly terser."
         }
       },
-      "winner": "tie"
+      "winner": "tie",
+      "prompt": "repo-grounded factual accuracy"
     },
     {
       "id": "voice-arena-intro",
@@ -107,7 +110,8 @@
           "notes": "Judge preferred prose style; exceeded 130-word hard limit by 18 words."
         }
       },
-      "winner": "split — judge: opus on style; harness: fable on constraint compliance"
+      "winner": "split — judge: opus on style; harness: fable on constraint compliance",
+      "prompt": "brand-voice writing (100-130 words, voice spec)"
     }
   ],
   "summary": {

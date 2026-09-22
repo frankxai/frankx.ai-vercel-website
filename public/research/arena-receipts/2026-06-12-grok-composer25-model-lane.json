@@ -26,7 +26,8 @@
           "toolUses": 4
         }
       },
-      "winner": "grok (sole contestant; mechanical pass on first attempt)"
+      "winner": "grok (sole contestant; mechanical pass on first attempt)",
+      "prompt": "sustained agentic coding / instruction following (read schema, emit valid receipt stub, roundtrip + field asserts, cleanup)"
     },
     {
       "id": "routing-guideline-derive",
@@ -42,7 +43,8 @@
           "toolUses": 5
         }
       },
-      "winner": "grok (sole; first-attempt discipline pass)"
+      "winner": "grok (sole; first-attempt discipline pass)",
+      "prompt": "multi-step repo-grounded synthesis + output discipline (read arena README + doctrine excerpts, derive precise  guideline block for new taskClass, phrase/slop/length asserts)"
     }
   ],
   "visualComposerTest": {

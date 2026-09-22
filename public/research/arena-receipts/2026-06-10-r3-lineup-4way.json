@@ -32,7 +32,8 @@
           "attempts": 1
         }
       },
-      "winner": "tie (4-way) — saturated; all four used expand-around-center with strict-greater tie-keeping"
+      "winner": "tie (4-way) — saturated; all four used expand-around-center with strict-greater tie-keeping",
+      "prompt": "coding — leftmost-longest edge case, self-verifying asserts"
     },
     {
       "id": "constraint-stack-json",
@@ -65,7 +66,8 @@
           ]
         }
       },
-      "winner": "fable (only pass)"
+      "winner": "fable (only pass)",
+      "prompt": "7 simultaneous hard output constraints, script-verified"
     },
     {
       "id": "hallucination-resistance",
@@ -91,7 +93,8 @@
           "note": "correct but verbose — multi-sentence despite 'output only your answer'"
         }
       },
-      "winner": "tie (4-way) — none fabricated; capability saturated"
+      "winner": "tie (4-way) — none fabricated; capability saturated",
+      "prompt": "grounding — the honest answer is 'not stated' (0.20 is real but NOT in the given passage)"
     },
     {
       "id": "format-discipline",
@@ -117,7 +120,8 @@
           "note": "format-compliant; semantics off (described harness lane)"
         }
       },
-      "winner": "fable / sonnet / haiku on format; opus overshot"
+      "winner": "fable / sonnet / haiku on format; opus overshot",
+      "prompt": "exactly 5 words, lowercase, no punctuation — script-verified"
     }
   ],
   "summary": {

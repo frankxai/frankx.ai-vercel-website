@@ -114,7 +114,8 @@
           "wallMs": 22614
         }
       },
-      "winner": "tie (4-way) — saturated"
+      "winner": "tie (4-way) — saturated",
+      "prompt": "sequential rule application, two interacting quantities, branch-flipping trap"
     },
     {
       "id": "d2-attractor-random-reveal",
@@ -178,7 +179,8 @@
           "wallMs": 2080
         }
       },
-      "winner": "fable / opus / sonnet"
+      "winner": "fable / opus / sonnet",
+      "prompt": "conditional probability where the memorized answer is the wrong answer"
     },
     {
       "id": "d3-longctx-reconcile",
@@ -251,7 +253,8 @@
           "wallMs": 10511
         }
       },
-      "winner": "tie (4-way) — saturated"
+      "winner": "tie (4-way) — saturated",
+      "prompt": "two-needle reconciliation with a live decoy and ~300 near-miss distractors"
     },
     {
       "id": "d4-multifile-idempotency-bug",
@@ -325,7 +328,8 @@
           "wallMs": 63196
         }
       },
-      "winner": "opus / sonnet / haiku"
+      "winner": "opus / sonnet / haiku",
+      "prompt": "cross-module defect — no single file is wrong in isolation"
     },
     {
       "id": "d5-architecture-slo-tradeoff",
@@ -398,7 +402,8 @@
           "wallMs": 13795
         }
       },
-      "winner": "tie (4-way) — saturated"
+      "winner": "tie (4-way) — saturated",
+      "prompt": "multi-constraint feasibility — latency budget, cost budget, durability floor"
     },
     {
       "id": "d6-constraint-backtrack-assignment",
@@ -471,7 +476,8 @@
           "wallMs": 40141
         }
       },
-      "winner": "tie (4-way) — saturated"
+      "winner": "tie (4-way) — saturated",
+      "prompt": "5x3 assignment, 10 constraints, unique solution, no single constraint pins a cell"
     }
   ],
   "summary": {
