@@ -4,8 +4,8 @@
   "harness": "claude-code-agent-tool",
   "skill": "model-arena",
   "contestants": [
-    "claude-fable-5 (c1)",
-    "claude-opus-4-8 (c2)"
+    "claude-fable-5",
+    "claude-opus-4-8"
   ],
   "judges": {
     "t1": {

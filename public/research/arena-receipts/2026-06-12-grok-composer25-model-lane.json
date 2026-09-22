@@ -5,7 +5,7 @@
   "feedsScorecard": "tools/proving-ground/scorecards/ (model contribution to next full /starlight-eval)",
   "harness": "grok-4.3-tui-subagent-gstack-image",
   "contestants": [
-    "grok-4.3 (TUI + native subagents + gstack + image_gen/Imagine; Composer 2.5 integration pattern via Grok Build for agentic coding tasks)"
+    "grok-4.3"
   ],
   "judges": {
     "mechanical": "node + grep + fs asserts (self-verifying, zero LLM judge)",
