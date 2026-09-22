@@ -1,7 +1,7 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-09-13",
+  "_updated": "2026-09-22",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
   "models": {
     "gpt-6-astra": {
@@ -1387,6 +1387,53 @@
         "https://developers.openai.com/api/docs/pricing"
       ],
       "frankx_notes": "Evaluate complete asset workflows, including identity preservation, exact copy, correction time, retries and cost per approved asset. No ranking or production recommendation is established by this entry."
+    },
+    "claude-haiku-4-5-20251001": {
+      "name": "Claude Haiku 4.5",
+      "id": "claude-haiku-4-5-20251001",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2025-10-01",
+      "status": "available",
+      "architecture": "dense",
+      "context_window": 200000,
+      "max_output_tokens": 16000,
+      "modalities": [
+        "text",
+        "vision",
+        "code"
+      ],
+      "pricing": {
+        "input_per_1m": 0.8,
+        "output_per_1m": 4.0
+      },
+      "acos_tier": "haiku",
+      "sources": []
+    },
+    "grok-4.3": {
+      "name": "Grok 4.3",
+      "id": "grok-4.3",
+      "organization": "xai",
+      "family": "grok",
+      "released": "2026-04-30",
+      "status": "previous",
+      "architecture": "dense",
+      "context_window": 1000000,
+      "modalities": [
+        "text",
+        "vision",
+        "video"
+      ],
+      "pricing": {
+        "input_per_1m": 1.25,
+        "output_per_1m": 2.5,
+        "cached_input_per_1m": 0.2
+      },
+      "sources": [
+        "https://artificialanalysis.ai/articles/xai-launches-grok-4-3-with-improved-agentic-performance-and-lower-pricing",
+        "https://docs.x.ai/developers/models/grok-4.3",
+        "https://venturebeat.com/technology/xai-launches-grok-4-3-at-an-aggressively-low-price-and-a-new-fast-powerful-voice-cloning-suite"
+      ]
     }
   },
   "organizations": {
@@ -1498,6 +1545,6 @@
     "haiku": "claude-haiku-4-5",
     "fable": "claude-fable-5-1"
   },
-  "last_updated": "2026-09-13",
+  "last_updated": "2026-09-22",
   "_update_scope": "Added Claude Fable 5.1 and Gemini 3.8 Flash from official sources. Corrected Sonnet 5 output limit and Astra benchmark labels/values, refreshed selected API prices, and advanced Anthropic/Google current-model references. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
 }
