@@ -1,0 +1,23 @@
+/* QA overlay clearance (prod FAIL lane): music dock + fixed header underlap.
+   Prefer page-local Tailwind when shipping fuller diffs; this keeps the
+   clearance shippable when Contents writes must stay small via MCP. */
+
+/* Home ~375px: emerald hero CTA clears fixed MusicRuntime dock */
+@media (max-width: 767px) {
+  section:has(a[href='/ai-architecture'].bg-emerald-500) {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)) !important;
+    padding-top: 4rem !important; /* pt-16 */
+  }
+}
+
+/* /research/model-arena: Research Hub back link clears fixed site header */
+main:has(a[href='/research/model-arena/receipts.json']) > div.relative.z-10 {
+  padding-top: 7rem !important; /* pt-28 */
+  padding-bottom: 3rem !important;
+}
+
+@media (min-width: 768px) {
+  main:has(a[href='/research/model-arena/receipts.json']) > div.relative.z-10 {
+    padding-top: 9rem !important; /* md:pt-36 */
+  }
+}
