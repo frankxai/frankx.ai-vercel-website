@@ -185,7 +185,8 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   }, [active, state])
 
   // Publish measured dock clearance (chrome height + bottom offset + safe-area).
-  // Home collapsed chip clears the full-width first-fold CTA by construction (bottom-right only).
+  // Home collapsed: bottom-right chip; full-width emerald CTA must stop short via
+  // --music-chip-reserve (qa-overlay-clearance.css) — chip alone cannot clear w-full.
   // Expanded / non-home docks drive --music-dock-height for the end spacer (no rem guesswork).
   useLayoutEffect(() => {
     const el = dockRef.current
@@ -194,6 +195,12 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
       const rect = el.getBoundingClientRect()
       const clearance = Math.max(0, Math.ceil(window.innerHeight - rect.top))
       document.documentElement.style.setProperty('--music-dock-height', `${clearance}px`)
+      // Chip footprint: width + right inset + gap (home collapsed only).
+      if (homeCollapsedChip) {
+        document.documentElement.style.setProperty('--music-chip-reserve', '4.75rem')
+      } else {
+        document.documentElement.style.removeProperty('--music-chip-reserve')
+      }
     }
     publish()
     const ro = new ResizeObserver(publish)
@@ -203,6 +210,7 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
       ro.disconnect()
       window.removeEventListener('resize', publish)
       document.documentElement.style.removeProperty('--music-dock-height')
+      document.documentElement.style.removeProperty('--music-chip-reserve')
     }
   }, [expanded, isHome, homeCollapsedChip, active, state])
 
@@ -232,7 +240,7 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
         onKeyDown={event => { if (event.key === 'Escape' && expanded) { event.preventDefault(); event.stopPropagation(); minimize() } }}
         className={
           homeCollapsedChip
-            ? 'fixed bottom-3 right-3 z-50 flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white'
+            ? 'fixed bottom-3 right-3 z-50 flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white'
             : 'fixed inset-x-3 bottom-3 z-50 mx-auto max-w-xl overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white sm:inset-x-auto sm:right-5 sm:w-[min(34rem,calc(100vw-2.5rem))]'
         }
         style={{ marginBottom: 'env(safe-area-inset-bottom)' }}
@@ -245,9 +253,9 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
             aria-controls={panelId}
             aria-expanded={expanded}
             aria-label={active?.title || 'Music by FrankX'}
-            className="flex h-14 w-14 flex-col items-center justify-center rounded-2xl px-1 text-center focus-visible:outline focus-visible:outline-emerald-300"
+            className="flex h-12 w-12 flex-col items-center justify-center rounded-2xl text-center focus-visible:outline focus-visible:outline-emerald-300"
           >
-            <span className="block max-w-full truncate text-[10px] font-medium leading-tight">{active?.title || 'Music by FrankX'}</span>
+            <span className="text-lg leading-none" aria-hidden="true">♪</span>
             <span className="sr-only" aria-live="polite">{active ? subtitle : 'Choose a soundtrack'}</span>
           </button>
         ) : (

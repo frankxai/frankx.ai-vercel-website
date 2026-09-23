@@ -1,1 +1,29 @@
-test
+/* QA overlay clearance (prod FAIL lane): music dock + fixed header underlap.
+   Prefer page-local Tailwind when shipping fuller diffs; this keeps the
+   clearance shippable when Contents writes must stay small via MCP. */
+
+/* Home ~375 first-fold CTA clearance:
+   Collapsed Music chip is bottom-right (h-12 w-12 + right-3). A full-width
+   emerald CTA still overlaps that corner when both share the viewport bottom
+   (land FAIL after #745). CTA must stop short of the chip — see
+   --music-chip-reserve from MusicRuntime. Expanded / non-home docks publish
+   --music-dock-height via ResizeObserver for the end spacer. */
+
+@media (max-width: 639px) {
+  /* Hero primary CTA: leave gutter for the Music corner chip. */
+  .order-1.min-w-0 a[href="/ai-architecture"] {
+    max-width: calc(100% - var(--music-chip-reserve, 4.75rem));
+  }
+}
+
+/* /research/model-arena: Research Hub back link clears fixed site header */
+main:has(a[href='/research/model-arena/receipts.json']) > div.relative.z-10 {
+  padding-top: 7rem !important; /* pt-28 */
+  padding-bottom: 3rem !important;
+}
+
+@media (min-width: 768px) {
+  main:has(a[href='/research/model-arena/receipts.json']) > div.relative.z-10 {
+    padding-top: 9rem !important; /* md:pt-36 */
+  }
+}
