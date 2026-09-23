@@ -180,3 +180,62 @@ export function sponsorDecision(record: ToolRecord, now = new Date()): SponsorDe
 
   return { sponsored: true, rel: 'sponsored noopener', href, reason: 'live' }
 }
+
+export type AssetPermission = 'permitted' | 'unknown' | 'forbidden'
+
+export type AssetProvenance =
+  | {
+      kind: 'brand-kit'
+      permission: AssetPermission
+      sourceUrl?: string
+      recordedOn?: string
+      localPath?: string
+    }
+  | {
+      kind: 'screenshot'
+      party: 'first-party' | 'generated'
+      sourceUrl?: string
+      recordedOn?: string
+      localPath?: string
+    }
+  | { kind: 'remote'; sourceUrl?: string; localPath?: string }
+  | { kind: 'generated'; localPath?: string; sourceUrl?: string }
+  | { kind: 'unknown' }
+
+export type AssetDecision =
+  | { show: true; src: string; reason: 'brand-kit' | 'screenshot' }
+  | { show: false; reason: string }
+
+export function assetDecision(asset: AssetProvenance | undefined): AssetDecision {
+  if (!asset || asset.kind === 'unknown') return { show: false, reason: 'unknown' }
+  if (asset.kind === 'remote') return { show: false, reason: 'remote-only' }
+  if (asset.kind === 'generated') return { show: false, reason: 'generated' }
+
+  const source = 'sourceUrl' in asset ? asset.sourceUrl : undefined
+  if (bannedHost(source) || bannedHost(asset.localPath)) return { show: false, reason: 'generation-banned' }
+
+  if (asset.kind === 'brand-kit' && asset.permission !== 'permitted') {
+    return { show: false, reason: 'permission' }
+  }
+  if (asset.kind === 'screenshot' && asset.party !== 'first-party') {
+    return { show: false, reason: 'generated' }
+  }
+  if (!httpsHref(source) || !asset.recordedOn || Number.isNaN(Date.parse(asset.recordedOn))) {
+    return { show: false, reason: 'unrecorded' }
+  }
+  if (!siteImage(asset.localPath)) return { show: false, reason: 'not-local' }
+  return { show: true, src: asset.localPath, reason: asset.kind === 'brand-kit' ? 'brand-kit' : 'screenshot' }
+}
+
+function bannedHost(value?: string) {
+  if (!value) return false
+  const host = (() => {
+    try { return new URL(value).hostname.toLowerCase() } catch { return value.toLowerCase() }
+  })()
+  return host === 'higgsfield.ai' || host.endsWith('.higgsfield.ai') || host.includes('higgsfield')
+}
+
+function siteImage(path?: string): path is string {
+  if (!path || !path.startsWith('/') || path.startsWith('//') || path.includes('://') || path.includes('..')) return false
+  return /\.(png|jpe?g|webp|gif|svg|avif)$/i.test(path)
+}
