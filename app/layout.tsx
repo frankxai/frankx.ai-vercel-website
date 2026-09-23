@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import './qa-overlay-clearance.css'
 import Script from 'next/script'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
