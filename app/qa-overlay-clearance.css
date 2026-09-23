@@ -2,11 +2,18 @@
    Prefer page-local Tailwind when shipping fuller diffs; this keeps the
    clearance shippable when Contents writes must stay small via MCP. */
 
-/* Home ~375px: emerald hero CTA clears fixed MusicRuntime dock */
+/* Home ~375px: emerald hero CTA clears fixed MusicRuntime dock.
+   Tip fb14d30 still overlapped ~11px at 5.5rem — dock is bottom-3 + min-h-14
+   bar; keep a clear gap above the fixed aside. */
 @media (max-width: 767px) {
   section:has(a[href='/ai-architecture'].bg-emerald-500) {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)) !important;
+    padding-bottom: calc(7.5rem + env(safe-area-inset-bottom, 0px)) !important;
     padding-top: 4rem !important; /* pt-16 */
+  }
+
+  /* Extra belt: keep the emerald CTA itself clear of the dock */
+  a[href='/ai-architecture'].bg-emerald-500 {
+    margin-bottom: 0.75rem;
   }
 }
 
