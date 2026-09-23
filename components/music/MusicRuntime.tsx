@@ -54,7 +54,7 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const suggestion = routeMusicSuggestion(pathname)
   const isHome = pathname === '/'
   const homeCollapsedChip = isHome && !expanded
-  const dockRef = useRef<HTMLAsideElement>(null)
+  const dockRef = useRef<HTMLElement>(null)
   const playable = catalog.filter(track => safeMediaUrl(track.streamUrl))
   const results = searched ? suggestTracks(catalog, request) : browseAll ? playable : playable.slice(0, 6)
 
