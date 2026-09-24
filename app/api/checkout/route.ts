@@ -39,6 +39,12 @@ export async function POST(request: NextRequest) {
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 })
     }
+    if (!product.priceId) {
+      return NextResponse.json(
+        { error: 'Checkout is not available for this product yet.' },
+        { status: 503 }
+      )
+    }
 
     // Create Stripe Checkout Session via API
     const params = new URLSearchParams()
@@ -47,7 +53,6 @@ export async function POST(request: NextRequest) {
     params.append('cancel_url', `${request.nextUrl.origin}/checkout/cancel`)
     params.append('line_items[0][price]', product.priceId)
     params.append('line_items[0][quantity]', '1')
-    params.append('metadata[productSlug]', productId)
     if (email) {
       params.append('customer_email', email)
     }
