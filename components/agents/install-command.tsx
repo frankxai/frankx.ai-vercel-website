@@ -12,7 +12,7 @@ const HARNESSES = [
 ] as const
 
 const SHELLS = [
-  { id: 'bash', label: 'Bash / Git Bash' },
+  { id: 'bash', label: 'Bash (Git Bash on Windows)' },
   { id: 'powershell', label: 'PowerShell + Git Bash' },
 ] as const
 
@@ -90,7 +90,7 @@ export function InstallCommand({ id = 'install' }: { id?: string }) {
         <p className="text-xs leading-relaxed text-slate-400">
           Run from your project root with Git and Bash installed (Git for Windows for PowerShell). This leaves an{' '}
           <span className="font-mono text-slate-300">agentic-creator-os/</span> source folder here.{' '}
-          {INSTALL_EFFECT[harness]} This is the public ACOS source installer, not a standalone Foundation pack.
+          {INSTALL_EFFECT[harness]} This sets up the public ACOS source. The standalone Foundation bundle is still being packaged.
         </p>
         <button
           type="button"

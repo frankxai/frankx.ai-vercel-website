@@ -119,7 +119,7 @@ export default function AgentsPage() {
             This isn&rsquo;t a SaaS. There&rsquo;s no &ldquo;Orchestrator&rdquo; routing your requests to a hosted runtime.
             This catalog maps the roles behind Frank&rsquo;s creator workflows. The public ACOS repository has a source
             installer for Claude Code and project context generators for other runtimes. Standalone pillar packs are
-            still being packaged; the command below installs the source system, not an individual pack.
+            still being packaged. The command below sets up the public ACOS source system.
           </p>
 
           <div className="mt-10">
@@ -162,7 +162,7 @@ export default function AgentsPage() {
             {[
               {
                 title: 'Agent definitions',
-                detail: 'Claude Code setup copies agent definitions to your Claude profile. Other runtime options generate project-level context or scaffolds, not the same agent installation.',
+                detail: 'Claude Code setup copies agent definitions to your Claude profile. Other runtime options generate project-level context or scaffolds with different capabilities.',
               },
               {
                 title: 'Skills + commands',

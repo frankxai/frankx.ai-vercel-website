@@ -259,7 +259,7 @@ function premiumPacksConfirmation(name: string) {
       'No purchase is required to stay on this list.',
       '',
       'The public ACOS source installer is available now. It installs a broader',
-      'system, not an individual pillar pack:',
+      'system. Standalone pillar bundles are still being packaged:',
       `${siteConfig.url}/agents`,
       '',
       '— Frank',

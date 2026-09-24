@@ -276,7 +276,7 @@ export default async function PackPage({ params }: PageProps) {
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {[
               { label: 'Catalog roles', count: p.specialists.length, suffix: 'mapped in this pillar' },
-              { label: 'Marked shipped', count: shipped, suffix: 'in the catalog, not this bundle' },
+              { label: 'Marked shipped', count: shipped, suffix: 'in the catalog; bundle pending' },
               { label: 'Standalone bundle', count: 'Pending', suffix: 'no pack-specific installer yet' },
             ].map((item) => (
               <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
