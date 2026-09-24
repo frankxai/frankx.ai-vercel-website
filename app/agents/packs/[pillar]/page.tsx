@@ -6,7 +6,6 @@ import { PILLARS } from '@/data/acos/agents'
 import { catalogL99 } from '@/lib/acos/l99-score'
 import { EmailSignup } from '@/components/email-signup'
 import { ArrowLeft, CheckCircle2, Hammer, CircleDashed, Github, Sparkles } from 'lucide-react'
-import { InstallCommand } from '@/components/agents/install-command'
 
 interface PageProps {
   params: Promise<{ pillar: string }>
@@ -42,7 +41,8 @@ const ACCENT_RINGS: Record<string, string> = {
 
 // Pricing is intentionally withheld while premium packs are pre-launch — paid
 // packs collect a waitlist (#waitlist) instead of showing a euro amount or a
-// dead "Buy" path. The free Foundation pack keeps its install flow.
+// dead "Buy" path. The free Foundation pack is also pre-launch as a
+// standalone bundle; the public ACOS source installer is a separate offering.
 const PACK_PRICING: Record<string, { tier: 'free' | 'premium'; cta: string; note?: string }> = {
   content: { tier: 'premium', cta: '#waitlist' },
   music: { tier: 'premium', cta: '#waitlist' },
@@ -54,7 +54,7 @@ const PACK_PRICING: Record<string, { tier: 'free' | 'premium'; cta: string; note
   business: { tier: 'premium', cta: '#waitlist', note: 'Substrate-only — financial data stays on your machine, never published' },
   personal: { tier: 'premium', cta: '#waitlist' },
   community: { tier: 'premium', cta: '#waitlist' },
-  meta: { tier: 'free', cta: '/agents/packs/meta', note: 'Required by every other pack — start here' },
+  meta: { tier: 'free', cta: '#waitlist', note: 'Standalone Foundation bundle is not published yet' },
 }
 
 export async function generateStaticParams() {
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!p) return { title: 'Pack not found' }
   return {
     title: `${p.title} Pack · 9 agents for ${p.tagline.toLowerCase()} | FrankX`,
-    description: `Install the ${p.title} pack into your Claude Code, Cursor, or Antigravity CLI. ${p.tagline}`,
+    description: `Explore the planned ${p.title} pack and join the waitlist for standalone access. ${p.tagline}`,
     alternates: { canonical: `https://frankx.ai/agents/packs/${p.id}` },
     openGraph: {
       title: `${p.title} Pack · FrankX ACOS`,
@@ -132,7 +132,7 @@ export default async function PackPage({ params }: PageProps) {
           // the Offer stays valid (priceCurrency without price is a schema.org error)
           // while the offer is waitlist-only.
           ...(pricing.tier === 'free' ? { price: '0', priceCurrency: 'EUR' } : {}),
-          availability: pricing.tier === 'free' ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+          availability: 'https://schema.org/PreOrder',
         },
       },
       {
@@ -201,42 +201,25 @@ export default async function PackPage({ params }: PageProps) {
               <div className="mt-1 text-3xl font-bold text-white">
                 {pricing.tier === 'free' ? 'Free' : 'Premium'}
               </div>
-              {pricing.tier === 'premium' && (
-                <div className="mt-2 text-xs text-slate-400">Pre-launch — join the waitlist for first install access.</div>
-              )}
+              <div className="mt-2 text-xs text-slate-400">Pre-launch — join the waitlist for standalone access.</div>
               {pricing.note && <div className="mt-2 text-xs text-slate-400">{pricing.note}</div>}
-              {pricing.tier === 'free' ? (
-                <a
-                  href="#install"
-                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-emerald-950 transition-transform duration-150 ease-out hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.97] motion-reduce:active:scale-100"
-                >
-                  Copy the install command
-                </a>
-              ) : (
-                <Link
-                  href={pricing.cta}
-                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold text-slate-900 transition-colors duration-150 ease-out hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-                >
-                  Join the waitlist
-                </Link>
-              )}
+              <Link
+                href={pricing.cta}
+                className="mt-4 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-slate-900 transition-colors duration-150 ease-out hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              >
+                {pricing.tier === 'free' ? 'Get FrankX updates' : 'Join the waitlist'}
+              </Link>
             </div>
           </div>
 
           {/* Install snippet */}
-          {pricing.tier === 'premium' ? (
-            <div className="mt-10 rounded-xl border border-amber-400/20 bg-amber-500/[0.06] px-4 py-3 text-sm text-amber-100">
-              This pack is not installable yet.
-              <Link href="#waitlist" className="ml-1 font-semibold underline underline-offset-2 hover:text-white">
-                Join the waitlist
-              </Link>{' '}
-              and the install command arrives with access.
-            </div>
-          ) : (
-            <div className="mt-10">
-              <InstallCommand />
-            </div>
-          )}
+          <div className="mt-10 rounded-xl border border-amber-400/20 bg-amber-500/[0.06] px-4 py-3 text-sm text-amber-100">
+            This standalone pack is not installable yet. The{' '}
+            <Link href="/agents#install" className="font-semibold underline underline-offset-2 hover:text-white">
+              public ACOS source installer
+            </Link>{' '}
+            is available now, but it installs a broader system rather than this nine-role bundle.
+          </div>
         </div>
       </section>
 
@@ -286,15 +269,15 @@ export default async function PackPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* What's included */}
+      {/* Catalog status, distinct from standalone package availability */}
       <section className="border-t border-white/5 bg-[#06060a] py-12">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-2xl font-bold text-white">What you install</h2>
+          <h2 className="text-2xl font-bold text-white">Catalog and package status</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {[
-              { label: 'Agent definitions', count: p.specialists.filter((s) => s.kind === 'agent').length, suffix: 'agents' },
-              { label: 'Skills + commands', count: p.specialists.filter((s) => s.kind === 'skill' || s.kind === 'command').length, suffix: 'substrate items' },
-              { label: 'Smoke fixtures', count: p.specialists.filter((s) => s.status === 'shipped').length, suffix: 'tests included' },
+              { label: 'Catalog roles', count: p.specialists.length, suffix: 'mapped in this pillar' },
+              { label: 'Marked shipped', count: shipped, suffix: 'in the catalog, not this bundle' },
+              { label: 'Standalone bundle', count: 'Pending', suffix: 'no pack-specific installer yet' },
             ].map((item) => (
               <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
                 <div className="text-3xl font-bold text-white">{item.count}</div>
@@ -311,14 +294,14 @@ export default async function PackPage({ params }: PageProps) {
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-2xl font-bold text-white">Compatible runtimes</h2>
           <p className="mt-2 text-sm text-slate-400">
-            Plain text artifacts. Drop the files in, your CLI does the rest.
+            Runtime delivery differs by harness. The standalone pack format and install steps are not published yet.
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { name: 'Claude Code', detail: '.claude/agents/ + .claude/skills/' },
-              { name: 'Antigravity (agy)', detail: '~/.gemini/config/plugins/' },
-              { name: 'Cursor', detail: '.cursor/agents/ (compatible format)' },
-              { name: 'Claude Agent SDK', detail: 'Direct import — same frontmatter' },
+              { name: 'Claude Code', detail: 'Public source copies to ~/.claude/' },
+              { name: 'Antigravity (agy)', detail: 'Public source generates project scaffolding' },
+              { name: 'Cursor', detail: 'Public source generates .cursorrules' },
+              { name: 'Grok', detail: 'Public source generates GROK.md + .grok/' },
             ].map((r) => (
               <div key={r.name} className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
                 <div className="text-sm font-semibold text-white">{r.name}</div>
@@ -333,50 +316,34 @@ export default async function PackPage({ params }: PageProps) {
       <section id="waitlist" className="scroll-mt-24 border-t border-white/5 py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            {pricing.tier === 'free' ? 'Install in 60 seconds' : `Join the ${p.title} waitlist`}
+            {pricing.tier === 'free' ? 'Follow the Foundation build' : `Join the ${p.title} waitlist`}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-slate-400">
             {pricing.tier === 'free'
-              ? 'No card, no waitlist. The Foundation pack is free because every other pack composes it.'
-              : `The ${p.title} pack is in active development — ${shipped} of 9 specialists already shipped. Join the waitlist and you'll be first to install it the day it lands, with the build notes along the way.`}
+              ? 'The Foundation bundle is planned to be free. Subscribe to FrankX updates while it is being packaged; the public ACOS source is available today.'
+              : `The ${p.title} pack is in active development — ${shipped} of 9 specialists are cataloged as shipped. Join the waitlist for release updates.`}
           </p>
 
-          {pricing.tier === 'free' ? (
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <a
-                href="#install"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition-transform duration-150 ease-out hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.97] motion-reduce:active:scale-100"
-              >
-                Copy the install command
-              </a>
-              <a
-                href="https://github.com/frankxai/agentic-creator-os"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="h-4 w-4" /> View on GitHub
-              </a>
-            </div>
-          ) : (
-            <div className="mt-8 flex flex-col items-center gap-5">
-              <EmailSignup
-                listType="premium-packs"
-                showName
-                placeholder="you@example.com"
-                buttonText={`Join the ${p.title} waitlist`}
-                className="mx-auto"
-              />
-              <a
-                href="https://github.com/frankxai/agentic-creator-os"
-                className="inline-flex items-center gap-2 rounded text-sm font-semibold text-slate-400 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="h-4 w-4" /> Preview the spec on GitHub
-              </a>
-            </div>
-          )}
+          <div className="mt-8 flex flex-col items-center gap-5">
+            <EmailSignup
+              listType={pricing.tier === 'free' ? 'newsletter' : 'premium-packs'}
+              source={`acos-${p.id}-pack`}
+              intent={`acos-${p.id}`}
+              intentLabel={`${p.title} pack`}
+              showName
+              placeholder="you@example.com"
+              buttonText={pricing.tier === 'free' ? 'Get FrankX updates' : `Join the ${p.title} waitlist`}
+              className="mx-auto"
+            />
+            <a
+              href="https://github.com/frankxai/agentic-creator-os"
+              className="inline-flex items-center gap-2 rounded text-sm font-semibold text-slate-400 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="h-4 w-4" /> View the public source on GitHub
+            </a>
+          </div>
         </div>
       </section>
     </div>

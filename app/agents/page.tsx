@@ -8,12 +8,12 @@ import { ArrowRight, Github, Sparkles, CheckCircle2, Hammer, CircleDashed } from
 import { InstallCommand } from '@/components/agents/install-command'
 
 export const metadata: Metadata = {
-  title: '99 Agents · Install the FrankX OS into your Claude Code | FrankX',
-  description: 'The same 99-agent operating system Frank runs to ship music, books, products, and content — packaged so you can install it into your Claude Code, Cursor, or Antigravity CLI in 60 seconds.',
+  title: '99 Agents · Explore the catalog and ACOS source | FrankX',
+  description: 'Explore the 99-role ACOS catalog and set up the public source installer. Standalone pillar packs are not available yet.',
   alternates: { canonical: 'https://frankx.ai/agents' },
   openGraph: {
-    title: '99 Agents · The complete Creator OS, installable',
-    description: '11 pillars × 9 specialists, packaged as installable artifacts for Claude Code / Cursor / Antigravity.',
+    title: '99 Agents · ACOS catalog and public source',
+    description: '11 pillars × 9 specialist roles. Public ACOS source is available; standalone packs are pre-launch.',
     url: 'https://frankx.ai/agents',
     siteName: 'FrankX',
     type: 'website',
@@ -75,8 +75,8 @@ export default function AgentsPage() {
       {
         '@type': 'CollectionPage',
         '@id': 'https://frankx.ai/agents#page',
-        name: '99 Agents · Install the FrankX OS',
-        description: 'The 99-agent ACOS catalog packaged as installable artifacts for Claude Code, Cursor, and Antigravity.',
+        name: '99 Agents · ACOS catalog and public source',
+        description: 'The 99-role ACOS catalog and the public source installer. Standalone packs are pre-launch.',
         url: 'https://frankx.ai/agents',
         isPartOf: { '@type': 'WebSite', name: 'FrankX', url: 'https://frankx.ai' },
         hasPart: PILLARS.map((p) => ({
@@ -110,16 +110,16 @@ export default function AgentsPage() {
           </div>
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
             <span className="bg-gradient-to-r from-white via-emerald-100 to-cyan-100 bg-clip-text text-transparent">
-              99 agents I run on my machine.
+              99 roles in the ACOS catalog.
             </span>
             <br />
-            <span className="text-white/70">Install any pack into yours in 60 seconds.</span>
+            <span className="text-white/70">Set up the public source on yours.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300 sm:text-xl">
             This isn&rsquo;t a SaaS. There&rsquo;s no &ldquo;Orchestrator&rdquo; routing your requests to a hosted runtime.
-            It&rsquo;s the same <strong>99-agent operating system</strong> Frank runs to ship music, books, products,
-            and frankx.ai &mdash; packaged so you can install it into <strong>your</strong> Claude Code, Cursor, or
-            Antigravity CLI and run it on your own machine, with your own keys, against your own work.
+            This catalog maps the roles behind Frank&rsquo;s creator workflows. The public ACOS repository has a source
+            installer for Claude Code and project context generators for other runtimes. Standalone pillar packs are
+            still being packaged; the command below installs the source system, not an individual pack.
           </p>
 
           <div className="mt-10">
@@ -154,23 +154,23 @@ export default function AgentsPage() {
       {/* What you actually get */}
       <section className="border-t border-white/5 bg-[#06060a] py-20">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="mb-3 text-center text-3xl font-bold text-white sm:text-4xl">What&rsquo;s inside a pack</h2>
+          <h2 className="mb-3 text-center text-3xl font-bold text-white sm:text-4xl">What&rsquo;s in the public source</h2>
           <p className="mx-auto mb-12 max-w-2xl text-center text-slate-400">
-            Every pack is plain text artifacts your CLI already knows how to use. No vendor lock, no managed runtime.
+            The installer has different effects by runtime. Review the generated command and the source before running it.
           </p>
           <div className="grid gap-6 md:grid-cols-3">
             {[
               {
                 title: 'Agent definitions',
-                detail: 'Drop-in .md files for .claude/agents/, .gemini/config/plugins/, or any Claude Agent SDK runtime. Frontmatter-typed, model-tier tagged, trigger-documented.',
+                detail: 'Claude Code setup copies agent definitions to your Claude profile. Other runtime options generate project-level context or scaffolds, not the same agent installation.',
               },
               {
                 title: 'Skills + commands',
-                detail: 'SKILL.md substrate and /command files that the agents compose. Same format as Claude Code skills — also auto-discovered by Antigravity.',
+                detail: 'Claude Code setup copies the available skills and commands. Existing files with matching names can be overwritten; back up your profile first.',
               },
               {
                 title: 'Smoke fixtures + brand-gate',
-                detail: 'tests/fixtures/<agent>/smoke.mjs for every shipped agent, plus the integrity-guard voice rules so output stays on-brand.',
+                detail: 'The source repository includes tests and brand rules, but the installer does not make every catalog role dispatchable in every runtime.',
               },
             ].map((f) => (
               <div key={f.title} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
@@ -191,8 +191,8 @@ export default function AgentsPage() {
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-white sm:text-4xl">The 11 packs</h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-400">
-              One per pillar. Each ships 9 specialists. The Foundation pack is free today; premium pillar packs are
-              pre-launch — join a pack&rsquo;s waitlist to get first install access.
+              One planned pack per pillar, with nine roles in each catalog group. Standalone packs, including the free
+              Foundation pack, are pre-launch; the public ACOS source installer above is available now.
             </p>
           </div>
 
@@ -251,7 +251,7 @@ export default function AgentsPage() {
                   </div>
 
                   <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition group-hover:gap-3">
-                    {tier === 'free' ? 'Install free pack' : 'See pack & join waitlist'}
+                    {tier === 'free' ? 'See free pack plan' : 'See pack & join waitlist'}
                     <ArrowRight className="h-4 w-4" />
                   </div>
                 </Link>
@@ -269,11 +269,11 @@ export default function AgentsPage() {
             <div className="rounded-2xl border border-emerald-400/20 bg-emerald-500/[0.04] p-6">
               <div className="text-xs font-semibold uppercase tracking-widest text-emerald-300">What it is</div>
               <ul className="mt-3 space-y-2 text-sm text-slate-300">
-                <li>&middot; Installable artifacts you run on your own machine</li>
-                <li>&middot; Compatible with Claude Code, Cursor, Antigravity (and any Claude Agent SDK runtime)</li>
-                <li>&middot; The real catalog Frank uses daily — not marketing personas</li>
-                <li>&middot; Open-source spec, free Foundation pack, premium pillar packs (waitlist open)</li>
-                <li>&middot; Updated on every commit to <code className="font-mono text-emerald-200">frankxai/FrankX</code></li>
+                <li>&middot; Public ACOS source you can inspect and run locally</li>
+                <li>&middot; Claude Code skill and agent copy; project context options for other runtimes</li>
+                <li>&middot; A catalog that distinguishes shipped roles from work in progress</li>
+                <li>&middot; Free Foundation and premium pillar pack plans, all pre-launch</li>
+                <li>&middot; Source updates live in <code className="font-mono text-emerald-200">frankxai/agentic-creator-os</code></li>
               </ul>
             </div>
             <div className="rounded-2xl border border-rose-400/20 bg-rose-500/[0.04] p-6">
@@ -283,7 +283,7 @@ export default function AgentsPage() {
                 <li>&middot; Not an &ldquo;Orchestrator&rdquo; that runs your work for you</li>
                 <li>&middot; Not free credits — you pay your own AI provider</li>
                 <li>&middot; Not vendor-locked — clone the spec, fork freely</li>
-                <li>&middot; Not enterprise CoE consulting — installable creator tooling, not managed advisory work</li>
+                <li>&middot; Not enterprise CoE consulting — creator tooling and a public source installer, not managed advisory work</li>
               </ul>
             </div>
           </div>
@@ -293,24 +293,24 @@ export default function AgentsPage() {
       {/* CTA */}
       <section className="border-t border-white/5 py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Start with the free Foundation pack</h2>
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">Explore the Foundation plan</h2>
           <p className="mx-auto mt-3 max-w-xl text-slate-400">
-            9 infrastructure agents (router, memory guardian, safety guard, verification loop, EOD capture, handover, sync,
-            ACOS score, agentic-jujutsu). No card. Works out of the box if you already have Claude Code or Antigravity installed.
+            Nine infrastructure roles are mapped in the catalog. The standalone pack is not published yet; the public
+            ACOS source installer above is the available setup path, and installs more than this one group.
           </p>
           <div className="mt-8 flex justify-center">
-            <a
-              href="#install"
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition-transform duration-150 ease-out hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#02030b] active:scale-[0.97] motion-reduce:active:scale-100"
+            <Link
+              href="/agents/packs/meta"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition-transform duration-150 ease-out hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#02030b] active:scale-[0.97] motion-reduce:active:scale-100"
             >
-              Copy the install command
-            </a>
+              See the Foundation plan
+            </Link>
           </div>
 
           <div className="mx-auto mt-14 max-w-md rounded-2xl border border-white/10 bg-white/[0.02] p-6">
             <h3 className="text-lg font-semibold text-white">Want the premium pillar packs?</h3>
             <p className="mt-2 text-sm text-white/70">
-              Join the waitlist and you&rsquo;ll be first to install them the day they ship.
+              Join the waitlist for a release update and build notes when a pack is ready.
             </p>
             <EmailSignup
               listType="premium-packs"
