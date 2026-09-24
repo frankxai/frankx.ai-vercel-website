@@ -1,21 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { after, NextRequest, NextResponse } from 'next/server'
+import programs from '@/data/affiliate/programs.json'
 import { getOutboundLink } from '@/data/outbound-links'
+import { resolveGoDestination } from '@/lib/tools/go-destination'
+import { recordHop, type HopDevice } from '@/lib/tools/hop-log'
+import { recordsFromPrograms } from '@/lib/tools/record'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
-
-function logClick(entry: Record<string, unknown>) {
-  try {
-    const logDir = path.join(process.cwd(), '.logs')
-    if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true })
-    const file = path.join(logDir, 'outbound-clicks.jsonl')
-    fs.appendFileSync(file, JSON.stringify(entry) + '\n')
-  } catch {
-    /* logging must never block the redirect */
-  }
-}
 
 function hasPrivacyOptOut(request: NextRequest) {
   return (
@@ -34,7 +25,7 @@ function sanitizeReferrer(value: string | null) {
   }
 }
 
-function getDeviceClass(userAgent: string | null) {
+function getDeviceClass(userAgent: string | null): HopDevice {
   if (!userAgent) return 'unknown'
   return /mobile|android|iphone|ipad/i.test(userAgent) ? 'mobile' : 'desktop'
 }
@@ -45,21 +36,31 @@ export async function GET(
 ) {
   const { slug } = await params
   const link = getOutboundLink(slug)
+  const decision = resolveGoDestination({
+    slug,
+    records: recordsFromPrograms(programs.programs),
+    outboundDestination: link?.destination,
+  })
 
-  if (!link) {
+  if (decision.action === 'missing') {
     return NextResponse.redirect(new URL('/404', request.url), 302)
   }
 
-  if (!hasPrivacyOptOut(request)) {
-    logClick({
-      slug,
-      destination: link.destination,
-      category: link.category,
-      referrer: sanitizeReferrer(request.headers.get('referer')),
-      device: getDeviceClass(request.headers.get('user-agent')),
-      timestamp: new Date().toISOString(),
-    })
+  if (decision.action === 'stack') {
+    return NextResponse.redirect(new URL(`/stack/${decision.id}`, request.url), 302)
   }
 
-  return NextResponse.redirect(link.destination, 302)
+  if (!hasPrivacyOptOut(request)) {
+    const event = {
+      slug,
+      destination: decision.href,
+      device: getDeviceClass(request.headers.get('user-agent')),
+      sponsored: decision.action === 'hop',
+      at: new Date().toISOString(),
+      referrer: sanitizeReferrer(request.headers.get('referer')),
+    }
+    after(() => recordHop(event))
+  }
+
+  return NextResponse.redirect(decision.href, 302)
 }
