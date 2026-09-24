@@ -5,7 +5,8 @@ import type { Metadata } from 'next'
 import { PILLARS } from '@/data/acos/agents'
 import { catalogL99 } from '@/lib/acos/l99-score'
 import { EmailSignup } from '@/components/email-signup'
-import { ArrowLeft, Terminal, Download, CheckCircle2, Hammer, CircleDashed, Github, Sparkles } from 'lucide-react'
+import { ArrowLeft, CheckCircle2, Hammer, CircleDashed, Github, Sparkles } from 'lucide-react'
+import { AcosInstallCard } from '@/components/agents/AcosInstallCard'
 
 interface PageProps {
   params: Promise<{ pillar: string }>
@@ -205,41 +206,29 @@ export default async function PackPage({ params }: PageProps) {
               )}
               {pricing.note && <div className="mt-2 text-xs text-slate-400">{pricing.note}</div>}
               <Link
-                href={pricing.cta}
-                className={`mt-4 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
+                href={pricing.tier === 'free' ? '#install' : pricing.cta}
+                className={`mt-4 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
                   pricing.tier === 'free'
                     ? 'bg-emerald-500 text-emerald-950 hover:bg-emerald-400'
                     : 'bg-white text-slate-900 hover:bg-slate-100'
                 }`}
               >
-                {pricing.tier === 'free' ? <><Download className="h-4 w-4" /> Install free</> : 'Join the waitlist'}
+                {pricing.tier === 'free' ? 'Copy the install command' : 'Join the waitlist'}
               </Link>
             </div>
           </div>
 
-          {/* Install snippet */}
-          {pricing.tier === 'premium' && (
+          {pricing.tier === 'free' ? (
+            <div className="mt-10">
+              <AcosInstallCard />
+            </div>
+          ) : (
             <div className="mt-10 rounded-xl border border-amber-400/20 bg-amber-500/[0.06] px-4 py-3 text-xs text-amber-100">
-              This pack is in active development. The command below is how you&rsquo;ll install it —
-              <Link href="#waitlist" className="ml-1 font-semibold underline underline-offset-2 hover:text-white">join the waitlist</Link> to get access the day it ships.
+              This pack is still in progress.
+              <Link href="#waitlist" className="ml-1 font-semibold underline underline-offset-2 hover:text-white">Join the waitlist</Link>
+              {' '}and you will get the install command the day it ships.
             </div>
           )}
-          <div className={`${pricing.tier === 'premium' ? 'mt-4' : 'mt-10'} rounded-2xl border border-white/10 bg-black/40 shadow-2xl`}>
-            <div className="flex items-center gap-2 border-b border-white/5 px-4 py-2 text-xs text-slate-400">
-              <Terminal className="h-3.5 w-3.5" />
-              <span className="font-mono">~/your-project</span>
-            </div>
-            <pre className="overflow-x-auto px-4 py-4 font-mono text-sm text-emerald-200">
-{`# Install the ${p.title} pack into .claude/agents/ + .claude/skills/
-npx @frankx/acos install ${p.id}
-
-# Or via the manual fallback (git + cp)
-git clone https://github.com/frankxai/agentic-creator-os.git tmp-acos
-cp -r tmp-acos/packs/${p.id}/agents/*  .claude/agents/
-cp -r tmp-acos/packs/${p.id}/skills/*  .claude/skills/
-rm -rf tmp-acos`}
-            </pre>
-          </div>
         </div>
       </section>
 
@@ -346,12 +335,12 @@ rm -rf tmp-acos`}
 
           {pricing.tier === 'free' ? (
             <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Link
-                href="/agents/packs/meta"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              <a
+                href="#install"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
-                <Download className="h-4 w-4" /> Get the Foundation pack
-              </Link>
+                Copy the install command
+              </a>
               <a
                 href="https://github.com/frankxai/agentic-creator-os"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"

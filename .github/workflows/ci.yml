@@ -70,6 +70,9 @@ jobs:
       - name: Changelog contract
         run: pnpm run test:changelog-release
 
+      - name: ACOS install command
+        run: pnpm run test:acos-install
+
       - name: Lint
         run: pnpm run lint
 

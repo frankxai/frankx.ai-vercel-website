@@ -4,7 +4,8 @@ import type { Metadata } from 'next'
 import { PILLARS, pillarCounts } from '@/data/acos/agents'
 import { catalogL99 } from '@/lib/acos/l99-score'
 import { EmailSignup } from '@/components/email-signup'
-import { ArrowRight, Download, Github, Terminal, Sparkles, CheckCircle2, Hammer, CircleDashed } from 'lucide-react'
+import { ArrowRight, Github, Sparkles, CheckCircle2, Hammer, CircleDashed } from 'lucide-react'
+import { AcosInstallCard } from '@/components/agents/AcosInstallCard'
 
 export const metadata: Metadata = {
   title: '99 Agents · Install the FrankX OS into your Claude Code | FrankX',
@@ -112,7 +113,7 @@ export default function AgentsPage() {
               99 agents I run on my machine.
             </span>
             <br />
-            <span className="text-white/70">Install any pack into yours in 60 seconds.</span>
+            <span className="text-white/70">Copy one command. It installs into your Claude Code.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300 sm:text-xl">
             This isn&rsquo;t a SaaS. There&rsquo;s no &ldquo;Orchestrator&rdquo; routing your requests to a hosted runtime.
@@ -121,30 +122,16 @@ export default function AgentsPage() {
             Antigravity CLI and run it on your own machine, with your own keys, against your own work.
           </p>
 
-          {/* Honest install snippet */}
-          <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-white/10 bg-black/40 p-1 text-left shadow-2xl">
-            <div className="flex items-center gap-2 border-b border-white/5 px-4 py-2 text-xs text-slate-400">
-              <Terminal className="h-3.5 w-3.5" />
-              <span className="font-mono">~/your-project</span>
-            </div>
-            <pre className="overflow-x-auto px-4 py-4 font-mono text-sm text-emerald-200">
-{`# Install the free Foundation pack (9 infrastructure agents)
-npx @frankx/acos install meta
-
-# Premium pillar packs are pre-launch — join the waitlist for first access
-# content · music · visuals · books · workshops · research · products · business · personal · community
-
-# List everything available
-npx @frankx/acos list`}
-            </pre>
+          <div className="mx-auto mt-10 max-w-2xl">
+            <AcosInstallCard />
           </div>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
               href="/agents/packs/meta"
-              className="inline-flex items-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-5 py-3 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-500/20"
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-5 py-3 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             >
-              <Download className="h-4 w-4" /> Install the free Foundation pack
+              See the Foundation pack
             </Link>
             <Link
               href="/acos/agents"
@@ -308,16 +295,16 @@ npx @frankx/acos list`}
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">Start with the free Foundation pack</h2>
           <p className="mx-auto mt-3 max-w-xl text-slate-400">
-            9 infrastructure agents (router, memory guardian, safety guard, verification loop, EOD capture, handover, sync,
-            ACOS score, agentic-jujutsu). No card. Works out of the box if you already have Claude Code or Antigravity installed.
+            The Foundation pack is the router, memory guardian, safety guard, and the checks around them.
+            The command copies the published repository into ~/.claude. No card.
           </p>
           <div className="mt-8 flex justify-center">
-            <Link
-              href="/agents/packs/meta"
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400"
+            <a
+              href="#install"
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#02030b]"
             >
-              <Download className="h-4 w-4" /> Get the Foundation pack
-            </Link>
+              Copy the install command
+            </a>
           </div>
 
           <div className="mx-auto mt-14 max-w-md rounded-2xl border border-white/10 bg-white/[0.02] p-6">

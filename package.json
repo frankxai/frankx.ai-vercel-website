@@ -34,6 +34,7 @@
     "test:auction-bid": "node --test scripts/tests/auction-bid-route-contract.test.mjs",
     "test:agentic-life-research": "node --test scripts/tests/agentic-life-research-contract.test.mjs",
     "test:alba-gut": "node --test scripts/tests/alba-gut-intelligence-contract.test.mjs",
+    "test:acos-install": "node --test scripts/tests/acos-install-command.test.mjs",
     "test:community-platform-guide": "node --test scripts/tests/community-platform-guide-contract.test.mjs",
     "test:learning-routes": "node --experimental-strip-types --test scripts/tests/learning-routes-contract.test.mjs",
     "test:blog-discoverability": "node --experimental-strip-types --test scripts/tests/blog-discoverability-contract.test.mjs scripts/tests/blog-faq-schema-contract.test.mjs scripts/tests/blog-recommendation-payload-contract.test.mjs",
