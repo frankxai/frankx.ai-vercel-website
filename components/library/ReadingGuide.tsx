@@ -13,7 +13,7 @@ export function ReadingGuide({ guide, slug }: { guide: NonNullable<BookReview['g
       <p className="mt-4 text-base leading-relaxed text-white/75">{guide.context}</p>
       <p className="mt-4 text-xs text-white/65">{guide.claimBasis === 'Symbolic' ? 'Reading lens: symbolic and religious interpretation; historical details are identified through the sources below.' : guide.claimBasis === 'Established' ? 'Reading lens: historical and textual study. The author’s interpretations remain attributed.' : 'Reading lens: experiential teaching and interpretation; personal testimony is attributed to its author.'}</p>
       {overview && <div className="mt-10 border-t border-white/10 pt-9">
-        <h3 className="font-serif text-2xl leading-tight text-white sm:text-3xl">What this text is doing</h3>
+        <h3 className="font-serif text-2xl leading-tight text-white sm:text-3xl">What this {guide.kind === 'Primary text' ? 'text' : 'book'} is doing</h3>
         <p className="mt-4 text-base leading-8 text-white/80">{overview.argument}</p>
         <div className="mt-8 space-y-7">{overview.movements.map((movement, index) => <div key={movement.title} className="grid gap-2 border-l border-emerald-300/25 pl-5 sm:grid-cols-[2rem_1fr] sm:border-0 sm:pl-0">
           <span className="hidden font-mono text-xs text-emerald-300/80 sm:block">0{index + 1}</span>

@@ -13,7 +13,7 @@ export function FeaturedShelf({ title, description, books, label = 'Selected rea
   return <section aria-label={title} className="pt-10">
     <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
       <div><p className="text-xs uppercase tracking-[0.18em] text-emerald-200/80">{label}</p><h2 className="mt-2 font-serif text-2xl text-white sm:text-3xl">{title}</h2><p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/65">{description}</p></div>
-      <span className="hidden text-xs text-white/45 sm:block">Scroll to explore →</span>
+      {books.length > 4 && <span className="hidden text-xs text-white/45 sm:block">Scroll to explore →</span>}
     </div>
     <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-5 sm:gap-6" role="list">
       {books.map((book, index) => <div key={book.slug} role="listitem" className="w-[44vw] max-w-[175px] min-w-[145px] shrink-0 snap-start sm:w-44">

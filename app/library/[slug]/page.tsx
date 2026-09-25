@@ -265,7 +265,7 @@ export default async function ReviewPage({
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
               {review.title}
             </h1>
-            <p className="text-lg text-white/75 mb-3">by {review.author}</p>
+            <p className="text-lg text-white/75 mb-3">{review.guide?.kind === 'Primary text' ? review.author : `by ${review.author}`}</p>
             {review.guide ? <p className="text-sm text-emerald-200">{review.guide.kind} · Reading guide</p> : <StarRating rating={review.rating} />}
             <div className="flex flex-wrap gap-2 mt-4">
               {review.categories.map((cat) => (
