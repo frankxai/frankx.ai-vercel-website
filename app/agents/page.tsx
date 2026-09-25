@@ -8,12 +8,12 @@ import { ArrowRight, Github, Sparkles, CheckCircle2, Hammer, CircleDashed } from
 import { InstallCommand } from '@/components/agents/install-command'
 
 export const metadata: Metadata = {
-  title: '99 Agents · Explore the catalog and ACOS source | FrankX',
-  description: 'Explore the 99-role ACOS catalog and set up the public source installer. Standalone pillar packs are not available yet.',
+  title: 'Agents · Explore the catalog and ACOS source | FrankX',
+  description: 'Explore the ACOS catalog and set up the public source installer. Standalone pillar packs are not available yet.',
   alternates: { canonical: 'https://frankx.ai/agents' },
   openGraph: {
-    title: '99 Agents · ACOS catalog and public source',
-    description: '11 pillars × 9 specialist roles. Public ACOS source is available; standalone packs are pre-launch.',
+    title: 'Agents · ACOS catalog and public source',
+    description: 'Public ACOS source is available; standalone packs are pre-launch.',
     url: 'https://frankx.ai/agents',
     siteName: 'FrankX',
     type: 'website',
@@ -75,8 +75,8 @@ export default function AgentsPage() {
       {
         '@type': 'CollectionPage',
         '@id': 'https://frankx.ai/agents#page',
-        name: '99 Agents · ACOS catalog and public source',
-        description: 'The 99-role ACOS catalog and the public source installer. Standalone packs are pre-launch.',
+        name: 'Agents · ACOS catalog and public source',
+        description: 'The ACOS catalog and the public source installer. Standalone packs are pre-launch.',
         url: 'https://frankx.ai/agents',
         isPartOf: { '@type': 'WebSite', name: 'FrankX', url: 'https://frankx.ai' },
         hasPart: PILLARS.map((p) => ({
@@ -110,7 +110,7 @@ export default function AgentsPage() {
           </div>
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
             <span className="bg-gradient-to-r from-white via-emerald-100 to-cyan-100 bg-clip-text text-transparent">
-              99 roles in the ACOS catalog.
+              {counts.total} roles in the ACOS catalog.
             </span>
             <br />
             <span className="text-white/70">Set up the public source on yours.</span>
@@ -191,8 +191,8 @@ export default function AgentsPage() {
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-white sm:text-4xl">The 11 packs</h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-400">
-              One planned pack per pillar, with nine roles in each catalog group. Standalone packs, including the free
-              Foundation pack, are pre-launch; the public ACOS source installer above is available now.
+              One planned pack per pillar. Standalone packs, including the free Foundation pack, are pre-launch; the
+              public ACOS source installer above is available now.
             </p>
           </div>
 
@@ -295,8 +295,9 @@ export default function AgentsPage() {
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">Explore the Foundation plan</h2>
           <p className="mx-auto mt-3 max-w-xl text-slate-400">
-            Nine infrastructure roles are mapped in the catalog. The standalone pack is not published yet; the public
-            ACOS source installer above is the available setup path, and installs more than this one group.
+            {PILLARS.find((x) => x.id === 'meta')?.specialists.length ?? 0} infrastructure roles are mapped in the
+            catalog. The standalone pack is not published yet; the public ACOS source installer above is the available
+            setup path, and installs more than this one group.
           </p>
           <div className="mt-8 flex justify-center">
             <Link
