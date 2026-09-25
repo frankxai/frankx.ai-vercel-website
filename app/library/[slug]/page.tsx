@@ -29,7 +29,8 @@ function truncate(text: string, limit = 158) {
 
 function reviewDescription(review: BookReview) {
   const lead = review.tldr ?? review.keyInsights[0];
-  return truncate(`${review.title} by ${review.author}: ${lead}`);
+  const credit = review.guide?.kind === 'Primary text' ? `${review.title} — ${review.author}` : `${review.title} by ${review.author}`;
+  return truncate(`${credit}: ${lead}`);
 }
 
 export async function generateMetadata({
@@ -113,7 +114,7 @@ function JsonLd({ review }: { review: BookReview }) {
     },
     {
       '@type': 'Article',
-      headline: `${review.title} by ${review.author} — Book Review & Key Insights`,
+      headline: review.guide?.kind === 'Primary text' ? `${review.title} — Reading Guide` : `${review.title} by ${review.author} — Book Review & Key Insights`,
       description,
       url,
       ...(imageUrl ? { image: imageUrl } : {}),
