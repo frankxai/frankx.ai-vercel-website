@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { libraryBooks } from '@/lib/library-catalog';
 import { LibraryExplorer } from '@/components/library/LibraryExplorer';
 import { CollectionCards } from '@/components/library/CollectionCards';
+import { FeaturedShelf } from '@/components/library/FeaturedShelf';
 
 const LIBRARY_URL = 'https://www.frankx.ai/library';
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -51,6 +52,7 @@ export default async function LibraryPage({ searchParams }: { searchParams: Sear
       </header>
       <div className="mx-auto max-w-6xl px-6">
         <LibraryExplorer books={libraryBooks} initial={{ q: value(params.q), category: value(params.category), sort: value(params.sort) || 'recent' }}>
+          <FeaturedShelf title="A first shelf" description="Six different ways in. The numbers mark an editorial reading sequence, not sales, popularity, or a verdict on the books." books={['meditations', 'the-war-of-art', 'atomic-habits', 'deep-work', 'profit-first', 'bhagavad-gita'].map(slug => libraryBooks.find(book => book.slug === slug)).filter((book): book is (typeof libraryBooks)[number] => Boolean(book))} />
           <CollectionCards />
           <Link href="/library/rockstar-energy" className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-emerald-300/20 px-5 py-5 focus-visible:ring-2 focus-visible:ring-emerald-300">
             <span><span className="block text-xs text-emerald-200">Featured reading path</span><span className="mt-1 block text-lg font-semibold text-white">Rockstar Energy &amp; Mindset</span></span>

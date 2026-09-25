@@ -1,14 +1,26 @@
 import Link from 'next/link';
 import type { BookReview } from '@/app/books/types';
 import { getReviewBySlug } from '@/data/book-reviews';
+import { sacredEditorial } from '@/data/sacred-editorial';
+import { contemporaryEditorial } from '@/data/contemporary-editorial';
 
-export function ReadingGuide({ guide }: { guide: NonNullable<BookReview['guide']> }) {
+export function ReadingGuide({ guide, slug }: { guide: NonNullable<BookReview['guide']>; slug: string }) {
+  const overview = sacredEditorial[slug] ?? contemporaryEditorial[slug];
   return <section aria-labelledby="reading-guide-heading" className="mx-auto max-w-3xl px-6 pb-12">
     <div className="border-t border-white/15 pt-8">
       <p className="text-sm text-emerald-200">{guide.tradition} · {guide.kind}</p>
-      <h2 id="reading-guide-heading" className="mt-3 text-2xl font-semibold text-white">Before you begin</h2>
+      <h2 id="reading-guide-heading" className="mt-3 text-2xl font-semibold text-white">The reading guide</h2>
       <p className="mt-4 text-base leading-relaxed text-white/75">{guide.context}</p>
       <p className="mt-4 text-xs text-white/65">{guide.claimBasis === 'Symbolic' ? 'Reading lens: symbolic and religious interpretation; historical details are identified through the sources below.' : guide.claimBasis === 'Established' ? 'Reading lens: historical and textual study. The author’s interpretations remain attributed.' : 'Reading lens: experiential teaching and interpretation; personal testimony is attributed to its author.'}</p>
+      {overview && <div className="mt-10 border-t border-white/10 pt-9">
+        <h3 className="font-serif text-2xl leading-tight text-white sm:text-3xl">What this text is doing</h3>
+        <p className="mt-4 text-base leading-8 text-white/80">{overview.argument}</p>
+        <div className="mt-8 space-y-7">{overview.movements.map((movement, index) => <div key={movement.title} className="grid gap-2 border-l border-emerald-300/25 pl-5 sm:grid-cols-[2rem_1fr] sm:border-0 sm:pl-0">
+          <span className="hidden font-mono text-xs text-emerald-300/80 sm:block">0{index + 1}</span>
+          <div><h4 className="font-medium text-white">{movement.title}</h4><p className="mt-2 text-sm leading-7 text-white/70">{movement.body}</p></div>
+        </div>)}</div>
+        <p className="mt-8 border-t border-white/10 pt-5 text-sm leading-relaxed text-emerald-100"><span className="font-semibold">Keep in mind:</span> {overview.readingQuestion}</p>
+      </div>}
       <h3 className="mt-8 text-lg font-semibold text-white">Choose an edition</h3>
       <p className="mt-3 text-base leading-relaxed text-white/75">{guide.editionNote}</p>
       <h3 className="mt-8 text-lg font-semibold text-white">A path through the book</h3>

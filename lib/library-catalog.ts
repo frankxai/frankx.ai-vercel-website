@@ -9,8 +9,9 @@ export const libraryBooks: LibraryBook[] = bookReviews.map(book => ({
   categories: book.categories,
   aliases: book.guide?.aliases || [],
   description: book.tldr || book.keyInsights[0] || '',
-  cover: book.hasCover ? book.coverImage : book.capture?.images?.[0]?.src,
-  coverAlt: book.hasCover ? `${book.title} by ${book.author} — book cover` : book.capture?.images?.[0]?.alt,
+  // A photograph of a reading capture is evidence, never the book's cover.
+  cover: book.hasCover ? book.coverImage : undefined,
+  coverAlt: book.hasCover ? `${book.title} by ${book.author} — pictured edition` : undefined,
   reviewDate: book.reviewDate,
   readingTime: book.readingTime,
   kind: book.guide ? book.guide.kind : book.capture ? 'Reading field note' : 'Book review',

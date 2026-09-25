@@ -7,6 +7,10 @@ import { booksRegistry } from '@/app/books/lib/books-registry';
 import type { BookReview } from '@/app/books/types';
 import { BookCover } from '@/components/library/BookCover';
 import { ReadingGuide } from '@/components/library/ReadingGuide';
+import { sacredEditorial } from '@/data/sacred-editorial';
+import { contemporaryEditorial } from '@/data/contemporary-editorial';
+
+const guideRevised = (slug: string) => Boolean(sacredEditorial[slug] || contemporaryEditorial[slug]);
 
 const SITE_URL = 'https://www.frankx.ai';
 
@@ -63,6 +67,7 @@ export async function generateMetadata({
       siteName: 'FrankX Library',
       authors: [review.guide ? 'FrankX Library' : 'Frank Riemer'],
       publishedTime: review.reviewDate,
+      modifiedTime: guideRevised(review.slug) ? '2026-09-25' : review.reviewDate,
       ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630, alt: `${review.title} — FrankX reading guide` }] } : {}),
     },
     twitter: {
@@ -95,9 +100,7 @@ function JsonLd({ review }: { review: BookReview }) {
   const url = `${SITE_URL}/library/${review.slug}`;
   const description = reviewDescription(review);
   const reviewBody = review.tldr ?? review.keyInsights.join(' — ');
-  const imageUrl = review.hasCover
-    ? absoluteUrl(review.coverImage)
-    : absoluteUrl(review.capture?.images?.[0]?.src);
+  const imageUrl = review.hasCover ? absoluteUrl(review.coverImage) : undefined;
 
   const graph: Array<Record<string, unknown>> = [
     {
@@ -121,7 +124,7 @@ function JsonLd({ review }: { review: BookReview }) {
         url: SITE_URL,
       },
       datePublished: review.reviewDate,
-      dateModified: review.reviewDate,
+      dateModified: guideRevised(review.slug) ? '2026-09-25' : review.reviewDate,
       articleSection: review.categories,
       keywords: [...review.categories, review.author, 'book review'].join(', '),
       mainEntityOfPage: { '@type': 'WebPage', '@id': url },
@@ -257,7 +260,7 @@ export default async function ReviewPage({
       {/* Review Header */}
       <header className="max-w-3xl mx-auto px-6 pb-12">
         <div className="flex items-start gap-6">
-          <BookCover title={review.title} author={review.author} src={review.hasCover ? review.coverImage : review.capture?.images?.[0]?.src} imageAlt={review.hasCover ? undefined : review.capture?.images?.[0]?.alt} priority className="w-20 sm:w-28" />
+          <BookCover title={review.title} author={review.author} src={review.hasCover ? review.coverImage : undefined} priority className="w-20 sm:w-28" />
           <div>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
               {review.title}
@@ -343,36 +346,13 @@ export default async function ReviewPage({
         </section>
       )}
 
-      {review.guide && <ReadingGuide guide={review.guide} />}
-
-      {/* Above-fold conversion bar — added 2026-05-20 per /hub-audit library P1.1 */}
-      <section className="max-w-3xl mx-auto px-6 pb-12" aria-label="Newsletter call-to-action">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl border border-emerald-500/15 bg-emerald-500/[0.04] px-6 py-5">
-          <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-emerald-400/70 mb-2">
-              The FrankX Newsletter
-            </p>
-            <p className="text-white/80 text-[14px] leading-relaxed">
-              One book breakdown like this. One spotlight from the operating loop. Every Friday.
-            </p>
-          </div>
-          <Link
-            href="/newsletter"
-            className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors whitespace-nowrap"
-          >
-            Subscribe free
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </Link>
-        </div>
-      </section>
+      {review.guide && <ReadingGuide guide={review.guide} slug={review.slug} />}
 
       {/* Table of Contents */}
       <nav className="max-w-3xl mx-auto px-6 pb-12" aria-label="Contents">
         <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
           <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-            In this deep-dive
+            In this guide
           </p>
           <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[14px] text-white/60">
             <li>
@@ -459,10 +439,7 @@ export default async function ReviewPage({
             <span className="w-8 h-px bg-rose-400/60" />
             Quotes Worth Remembering
           </h2>
-          <p className="text-sm text-white/40 mb-6">
-            {review.quotes.length} curated passages from {review.title}. Chapter references
-            map back to the book so you can re-read them in context.
-          </p>
+          <p className="text-sm text-white/50 mb-6">{review.quotes.length} recorded excerpts. Check the named edition and location before sharing the wording.</p>
           <div className="space-y-4">
             {review.quotes.map((quote, i) => (
               <figure
@@ -843,6 +820,29 @@ export default async function ReviewPage({
           </a>
         </section>
       )}
+
+      {/* Optional newsletter after the reading and purchase links */}
+      <section className="max-w-3xl mx-auto px-6 pb-12" aria-label="Newsletter call-to-action">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl border border-emerald-500/15 bg-emerald-500/[0.04] px-6 py-5">
+          <div className="min-w-0">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-emerald-400/70 mb-2">
+              The FrankX Newsletter
+            </p>
+            <p className="text-white/80 text-[14px] leading-relaxed">
+              One book breakdown like this. One spotlight from the operating loop. Every Friday.
+            </p>
+          </div>
+          <Link
+            href="/newsletter"
+            className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors whitespace-nowrap"
+          >
+            Subscribe free
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
+        </div>
+      </section>
 
       {/* More from Library */}
       <section className="max-w-3xl mx-auto px-6 pb-32">
