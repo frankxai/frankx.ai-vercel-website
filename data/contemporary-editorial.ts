@@ -3,7 +3,7 @@ import type { SacredOverview as EditorialOverview } from './sacred-editorial';
 /** Original guide notes. Accounts of extraordinary experiences remain attributed to their authors. */
 export const contemporaryEditorial: Record<string, EditorialOverview> = {
   'tantra-illuminated': {
-    argument: 'Christopher Wallis writes a historical and philosophical introduction to several Tantric traditions. His work gives a reader vocabulary and lineage context before approaching practices that circulate online under the single word “tantra.” It is a contemporary scholar-practitioner’s account, not a stand-in for every Tantric community.',
+    argument: 'Christopher Wallis writes a historical and philosophical introduction to several Tantric traditions. His work gives a reader vocabulary and lineage context before approaching practices that circulate online under the single word “tantra.” Read it as one contemporary scholar-practitioner’s account, situated among many Tantric communities.',
     movements: [
       { title: 'Recover the setting', body: 'Follow the book’s account of how particular traditions developed. The history makes a broad modern label less useful as an explanation.' },
       { title: 'Learn the terms', body: 'Keep Wallis’s definitions beside the practices he discusses. A familiar English word may carry a different philosophical meaning here.' },
@@ -12,9 +12,9 @@ export const contemporaryEditorial: Record<string, EditorialOverview> = {
     readingQuestion: 'Which tradition and source underlie this particular account of practice?',
   },
   'autobiography-of-a-yogi': {
-    argument: 'Paramahansa Yogananda tells a life through encounters with teachers, devotion, unusual experiences, and the work of bringing his presentation of yoga to a Western readership. The memoir is a major historical voice in that transmission. Its first-person accounts ask to be understood as his testimony, not quietly converted into independently verified events.',
+    argument: 'Paramahansa Yogananda tells a life through encounters with teachers, devotion, unusual experiences, and the work of bringing his presentation of yoga to a Western readership. The memoir is a major historical voice in that transmission. His extraordinary experiences are first-person testimony; their historical verification would require separate evidence.',
     movements: [
-      { title: 'The search', body: 'Early encounters show how Yogananda frames longing for a teacher and a form of life. Follow the sequence of meetings, not only the most striking episodes.' },
+      { title: 'The search', body: 'Early encounters show how Yogananda frames longing for a teacher and a form of life. The sequence of meetings gives the striking episodes their narrative setting.' },
       { title: 'Teacher and lineage', body: 'The relationship with Sri Yukteswar gives structure to the narrative and to its presentation of discipline and authority.' },
       { title: 'A public mission', body: 'Later chapters locate his teaching in institutions and travel. Ask how a memoir’s audience shapes which parts of a tradition are explained.' },
     ],
@@ -42,7 +42,7 @@ export const contemporaryEditorial: Record<string, EditorialOverview> = {
     argument: 'Living Untethered develops Singer’s earlier account of awareness and habitual reaction. He returns to the idea that an event and the resistance it triggers can be noticed separately. The book is most useful read as a sustained elaboration of his model rather than a replacement for action on real-world problems.',
     movements: [
       { title: 'A standpoint of awareness', body: 'Start with the perspective Singer invites a reader to take toward passing thoughts and feelings.' },
-      { title: 'Stored reactions', body: 'Follow his description of how experiences recur as discomfort. Treat the account as his framework, not as settled neuroscience.' },
+      { title: 'Stored reactions', body: 'Follow his description of how experiences recur as discomfort. This is Singer’s explanatory framework; physiological claims need their own evidence.' },
       { title: 'A small encounter', body: 'Try the distinction in a low-stakes irritation; then decide whether the situation still calls for a conversation or practical repair.' },
     ],
     readingQuestion: 'What becomes clearer when I pause before reacting, and what still needs to be done?',
@@ -60,7 +60,7 @@ export const contemporaryEditorial: Record<string, EditorialOverview> = {
     argument: 'Eckhart Tolle writes about the tendency to confuse a story about the past or future with what is happening in the present. The book’s dialogue-like teaching distinguishes attention from identification with thought and asks a reader to test that distinction in lived experience.',
     movements: [
       { title: 'The temporal habit', body: 'Watch how Tolle describes the mind rehearsing a past or anticipating a future. Notice the move without treating planning itself as a mistake.' },
-      { title: 'The observing position', body: 'His language of presence asks what is available when thought is noticed. Read this as a contemplative proposition, not a medical treatment claim.' },
+      { title: 'The observing position', body: 'His language of presence asks what is available when thought is noticed. Its claims belong to his contemplative teaching.' },
       { title: 'Practice in ordinary life', body: 'Compare Tolle’s instructions with a Buddhist author such as Thich Nhat Hanh; the vocabulary and lineage are different.' },
     ],
     readingQuestion: 'Does attention here clarify what to do next, or is it becoming another way to avoid a decision?',
@@ -75,7 +75,7 @@ export const contemporaryEditorial: Record<string, EditorialOverview> = {
     readingQuestion: 'Which pattern is recognizable in a particular interaction, and what evidence would change my view?',
   },
   'be-here-now': {
-    argument: 'Ram Dass combines a story of personal transformation, illustrated teaching pages, and material on practice. The physical and visual form is part of the book’s meaning: it invites a different pace of attention from a linear argument. Its encounters with Indian teachers and devotional traditions should remain named, not erased into generic mindfulness.',
+    argument: 'Ram Dass combines a story of personal transformation, illustrated teaching pages, and material on practice. The physical and visual form is part of the book’s meaning: it invites a different pace of attention from a linear argument. The Indian teachers and devotional traditions in his story deserve to remain visible by name.',
     movements: [
       { title: 'The change in the storyteller', body: 'The opening memoir provides context for why Richard Alpert became Ram Dass. Read his account as testimony.' },
       { title: 'The illustrated core', body: 'Let the typography and sequencing shape the reading; a plain extracted sentence cannot reproduce the page.' },

@@ -34,10 +34,10 @@ export const sacredEditorial: Record<string, SacredOverview> = {
     readingQuestion: 'What does a translation make legible, and what does recitation convey that the page cannot?',
   },
   'bhagavad-gita': {
-    argument: 'On the threshold of battle, Arjuna cannot reconcile his obligation with the human cost of acting. Krishna’s response develops several paths—disciplined action, knowledge, and devotion—within the Mahabharata’s dramatic setting. The book is a dialogue under pressure, not a generic instruction to pursue ambition.',
+    argument: 'On the threshold of battle, Arjuna cannot reconcile his obligation with the human cost of acting. Krishna’s response develops several paths—disciplined action, knowledge, and devotion—within the Mahabharata’s dramatic setting. Every teaching answers a crisis about duty, kinship, and violence.',
     movements: [
       { title: 'Crisis before teaching', body: 'Chapter 1 gives Arjuna’s refusal moral weight. His questions about kinship, violence, and duty are the conditions under which the later teaching becomes intelligible.' },
-      { title: 'Action and attachment', body: 'Chapters 2 and 3 distinguish acting from clinging to outcomes. Read the distinction within the text’s account of dharma, not as a promise of productivity.' },
+      { title: 'Action and attachment', body: 'Chapters 2 and 3 distinguish acting from clinging to outcomes. Dharma and the moral pressure of the battlefield give that distinction its setting.' },
       { title: 'Vision and devotion', body: 'Later chapters move through forms of knowing and devotion; the cosmic vision in chapter 11 radically changes the scale of the conversation.' },
     ],
     readingQuestion: 'Which problem does Krishna answer at this point, and how does a chosen translator handle dharma?',
@@ -55,7 +55,7 @@ export const sacredEditorial: Record<string, SacredOverview> = {
     argument: 'The Dhammapada gathers short verses attributed to the Buddha within the Pali canon. Its chapters return to conduct, attention, anger, suffering, and the discipline of a path. A verse can be striking in isolation; its neighbours and translation choices are essential to reading it responsibly.',
     movements: [
       { title: 'Paired openings', body: 'The opening chapter sets contrasting patterns of mind and action beside one another. Read the pairs together instead of posting half a contrast as a standalone maxim.' },
-      { title: 'Training attention', body: 'Chapters on the mind and heedfulness treat attention as something practiced in conduct, not merely a private feeling of calm.' },
+      { title: 'Training attention', body: 'Chapters on the mind and heedfulness tie attention to conduct and the sustained practice of a path.' },
       { title: 'The path in context', body: 'Later verses address the practitioner and the liberated person. Read them alongside Buddhist accounts of suffering and the path rather than importing a modern self-help definition of success.' },
     ],
     readingQuestion: 'What ethical action is this verse attached to in its chapter?',
@@ -64,7 +64,7 @@ export const sacredEditorial: Record<string, SacredOverview> = {
     argument: 'This compact Mahayana scripture turns on the relation between form and emptiness. It does not announce that things are worthless or unreal. In the Perfection of Wisdom setting, emptiness unsettles the idea that phenomena possess an isolated, fixed essence.',
     movements: [
       { title: 'A teaching scene', body: 'Avalokiteshvara speaks to Shariputra. The dialogue and its ritual setting matter before any one memorable phrase is lifted out.' },
-      { title: 'The repeated negations', body: 'The text moves through senses, aggregates, and teachings in a deliberately disruptive sequence. Read this as a challenge to reification, not a denial that pain or care exists.' },
+      { title: 'The repeated negations', body: 'The text moves through senses, aggregates, and teachings in a deliberately disruptive sequence. It challenges the tendency to treat any of these as a fixed, independent thing.' },
       { title: 'Translation and practice', body: 'Compare a named translation with its commentary and, where possible, recitation. A few English words cannot settle a long philosophical debate.' },
     ],
     readingQuestion: 'Which assumption about a separate, permanent thing is the passage examining?',
@@ -82,7 +82,7 @@ export const sacredEditorial: Record<string, SacredOverview> = {
     argument: 'The Yoga Sutras are a terse classical text on mind, practice, and liberation, traditionally attributed to Patanjali. Their brevity makes commentary unusually consequential. A modern focus on posture alone leaves much of the text—ethics, concentration, discernment, and release—outside the frame.',
     movements: [
       { title: 'Define the project', body: 'The opening sutras name yoga and the movements of mind. Read the surrounding commentary before deciding what a short Sanskrit term means in English.' },
-      { title: 'Practice and obstacles', body: 'The first two books develop sustained practice, hindrances, and the eight limbs. Ethics and attention are part of the structure, not optional accessories.' },
+      { title: 'Practice and obstacles', body: 'The first two books develop sustained practice, hindrances, and the eight limbs. Ethics and attention form part of the structure.' },
       { title: 'Powers and liberation', body: 'The later books address extraordinary capacities and the goal of freedom. Their claims belong to the historical text; they should not be presented as demonstrated health outcomes.' },
     ],
     readingQuestion: 'Where does this sutra sit in the larger argument, and whose commentary am I using?',
