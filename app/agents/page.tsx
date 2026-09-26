@@ -1,19 +1,18 @@
 import Link from 'next/link'
 import Script from 'next/script'
 import type { Metadata } from 'next'
-import { PILLARS, pillarCounts } from '@/data/acos/agents'
-import { catalogL99 } from '@/lib/acos/l99-score'
+import { PILLARS } from '@/data/acos/agents'
 import { EmailSignup } from '@/components/email-signup'
-import { ArrowRight, Github, Sparkles, CheckCircle2, Hammer, CircleDashed } from 'lucide-react'
+import { ArrowRight, Github, CheckCircle2 } from 'lucide-react'
 import { InstallCommand } from '@/components/agents/install-command'
 
 export const metadata: Metadata = {
-  title: '99 Agents · Explore the catalog and ACOS source | FrankX',
-  description: 'Explore the 99-role ACOS catalog and set up the public source installer. Standalone pillar packs are not available yet.',
+  title: 'Agents · Explore the catalog and ACOS source | FrankX',
+  description: 'Explore the ACOS catalog and set up the public source installer. Standalone pillar packs are not available yet.',
   alternates: { canonical: 'https://frankx.ai/agents' },
   openGraph: {
-    title: '99 Agents · ACOS catalog and public source',
-    description: '11 pillars × 9 specialist roles. Public ACOS source is available; standalone packs are pre-launch.',
+    title: 'Agents · ACOS catalog and public source',
+    description: 'Public ACOS source is available; standalone packs are pre-launch.',
     url: 'https://frankx.ai/agents',
     siteName: 'FrankX',
     type: 'website',
@@ -66,17 +65,14 @@ const PACK_TIERS: Record<string, 'free' | 'premium'> = {
 }
 
 export default function AgentsPage() {
-  const counts = pillarCounts()
-  const l99 = catalogL99()
-
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'CollectionPage',
         '@id': 'https://frankx.ai/agents#page',
-        name: '99 Agents · ACOS catalog and public source',
-        description: 'The 99-role ACOS catalog and the public source installer. Standalone packs are pre-launch.',
+        name: 'Agents · ACOS catalog and public source',
+        description: 'The ACOS catalog and the public source installer. Standalone packs are pre-launch.',
         url: 'https://frankx.ai/agents',
         isPartOf: { '@type': 'WebSite', name: 'FrankX', url: 'https://frankx.ai' },
         hasPart: PILLARS.map((p) => ({
@@ -106,14 +102,12 @@ export default function AgentsPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(161,72,221,0.18),transparent_55%)]" />
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-emerald-200">
-            ACOS · Catalog L{l99.level} · {counts.shipped}/{counts.total} shipped
+            ACOS · Public source
           </div>
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
             <span className="bg-gradient-to-r from-white via-emerald-100 to-cyan-100 bg-clip-text text-transparent">
-              99 roles in the ACOS catalog.
+              Explore the ACOS catalog.
             </span>
-            <br />
-            <span className="text-white/70">Set up the public source on yours.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300 sm:text-xl">
             This isn&rsquo;t a SaaS. There&rsquo;s no &ldquo;Orchestrator&rdquo; routing your requests to a hosted runtime.
@@ -191,18 +185,14 @@ export default function AgentsPage() {
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-white sm:text-4xl">The 11 packs</h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-400">
-              One planned pack per pillar, with nine roles in each catalog group. Standalone packs, including the free
-              Foundation pack, are pre-launch; the public ACOS source installer above is available now.
+              One planned pack per pillar. Standalone packs, including the free Foundation pack, are pre-launch; the
+              public ACOS source installer above is available now.
             </p>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {PILLARS.map((p) => {
               const tier = PACK_TIERS[p.id]
-              const shipped = p.specialists.filter((s) => s.status === 'shipped').length
-              const inProgress = p.specialists.filter((s) => s.status === 'in-progress').length
-              const gap = p.specialists.filter((s) => s.status === 'gap').length
-              const pillarLevel = l99.pillars.find((pl) => pl.id === p.id)?.level ?? 0
               return (
                 <Link
                   key={p.id}
@@ -228,28 +218,6 @@ export default function AgentsPage() {
                   </div>
                   <p className="mt-3 text-sm text-slate-400">{p.tagline}</p>
 
-                  {/* Status mix */}
-                  <div className="mt-4 flex flex-wrap gap-2 text-[11px]">
-                    {shipped > 0 && (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2 py-0.5 font-semibold text-emerald-300">
-                        <CheckCircle2 className="h-3 w-3" /> {shipped} shipped
-                      </span>
-                    )}
-                    {inProgress > 0 && (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/30 bg-amber-500/10 px-2 py-0.5 font-semibold text-amber-300">
-                        <Hammer className="h-3 w-3" /> {inProgress} in-prog
-                      </span>
-                    )}
-                    {gap > 0 && (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-slate-400/20 bg-slate-500/10 px-2 py-0.5 font-semibold text-slate-300">
-                        <CircleDashed className="h-3 w-3" /> {gap} gap
-                      </span>
-                    )}
-                    <span className="ml-auto inline-flex items-center gap-1 rounded-full border border-purple-400/30 bg-purple-500/10 px-2 py-0.5 font-semibold text-purple-200">
-                      <Sparkles className="h-3 w-3" /> L{pillarLevel}
-                    </span>
-                  </div>
-
                   <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition group-hover:gap-3">
                     {tier === 'free' ? 'See free pack plan' : 'See pack & join waitlist'}
                     <ArrowRight className="h-4 w-4" />
@@ -271,7 +239,7 @@ export default function AgentsPage() {
               <ul className="mt-3 space-y-2 text-sm text-slate-300">
                 <li>&middot; Public ACOS source you can inspect and run locally</li>
                 <li>&middot; Claude Code skill and agent copy; project context options for other runtimes</li>
-                <li>&middot; A catalog that distinguishes shipped roles from work in progress</li>
+                <li>&middot; A mapped catalog of creator workflow roles</li>
                 <li>&middot; Free Foundation and premium pillar pack plans, all pre-launch</li>
                 <li>&middot; Source updates live in <code className="font-mono text-emerald-200">frankxai/agentic-creator-os</code></li>
               </ul>
@@ -295,7 +263,7 @@ export default function AgentsPage() {
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">Explore the Foundation plan</h2>
           <p className="mx-auto mt-3 max-w-xl text-slate-400">
-            Nine infrastructure roles are mapped in the catalog. The standalone pack is not published yet; the public
+            The Foundation plan covers the infrastructure pillar. The standalone pack is not published yet; the public
             ACOS source installer above is the available setup path, and installs more than this one group.
           </p>
           <div className="mt-8 flex justify-center">
