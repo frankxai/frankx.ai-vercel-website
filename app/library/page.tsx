@@ -6,26 +6,18 @@ import { CollectionCards } from '@/components/library/CollectionCards';
 import { FeaturedShelf } from '@/components/library/FeaturedShelf';
 
 const LIBRARY_URL = 'https://www.frankx.ai/library';
-type SearchParams = Promise<Record<string, string | string[] | undefined>>;
-const value = (input: string | string[] | undefined) => typeof input === 'string' ? input : '';
+const title = 'The Library — Books, Reading Guides & Curated Collections';
+const description = 'Find books by title, author, tradition, or idea. Explore sacred texts, Michael Singer, philosophy, creativity, and business with reading guides and edition notes.';
 
-export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
-  const params = await searchParams;
-  const filtered = Boolean(params.q || params.category || params.sort);
-  const title = 'The Library — Books, Reading Guides & Curated Collections';
-  const description = 'Find books by title, author, tradition, or idea. Explore sacred texts, Michael Singer, philosophy, creativity, and business with reading guides and edition notes.';
-  return {
-    title,
-    description,
-    alternates: { canonical: LIBRARY_URL },
-    ...(filtered ? { robots: { index: false, follow: true } } : {}),
-    openGraph: { title, description, url: LIBRARY_URL, type: 'website', images: [{ url: `${LIBRARY_URL}/opengraph-image`, width: 1200, height: 630, alt: 'The FrankX Library — curated books and reading guides' }] },
-    twitter: { card: 'summary_large_image', title, description, images: [`${LIBRARY_URL}/opengraph-image`] },
-  };
-}
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical: LIBRARY_URL },
+  openGraph: { title, description, url: LIBRARY_URL, type: 'website', images: [{ url: `${LIBRARY_URL}/opengraph-image`, width: 1200, height: 630, alt: 'The FrankX Library — curated books and reading guides' }] },
+  twitter: { card: 'summary_large_image', title, description, images: [`${LIBRARY_URL}/opengraph-image`] },
+};
 
-export default async function LibraryPage({ searchParams }: { searchParams: SearchParams }) {
-  const params = await searchParams;
+export default function LibraryPage() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -51,7 +43,7 @@ export default async function LibraryPage({ searchParams }: { searchParams: Sear
         </div>
       </header>
       <div className="mx-auto max-w-6xl px-6">
-        <LibraryExplorer books={libraryBooks} initial={{ q: value(params.q), category: value(params.category), sort: value(params.sort) || 'recent' }}>
+        <LibraryExplorer books={libraryBooks}>
           <FeaturedShelf title="A first shelf" description="Six different ways in. The numbers show my suggested reading order across these topics." books={['meditations', 'the-war-of-art', 'atomic-habits', 'deep-work', 'profit-first', 'bhagavad-gita'].map(slug => libraryBooks.find(book => book.slug === slug)).filter((book): book is (typeof libraryBooks)[number] => Boolean(book))} />
           <CollectionCards />
           <Link href="/library/rockstar-energy" className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-emerald-300/20 px-5 py-5 focus-visible:ring-2 focus-visible:ring-emerald-300">
