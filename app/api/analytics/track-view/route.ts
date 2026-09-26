@@ -1,31 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { TRACKED_GUIDES, trackPDFView } from '@/lib/pdf-analytics'
 import { analyticsRatelimit, getClientIdentifier } from '@/lib/ratelimit'
-
-// Distinguishes a missing or malformed Redis URL from an unreachable host without
-// echoing the message, which can contain the host name.
-function failureKind(error: unknown): string {
-  if (!(error instanceof Error)) return 'other'
-  const code = (error.cause as { code?: unknown } | undefined)?.code
-  if (typeof code === 'string' && /^[A-Z_]{3,20}$/.test(code)) return `network:${code}`
-  if (/fetch failed/i.test(error.message)) return 'network'
-  if (/url/i.test(error.message)) return 'config'
-  return 'other'
-}
-
-// The message with anything URL-, host- or token-shaped removed.
-function redactedDetail(error: unknown): string {
-  if (!(error instanceof Error)) return ''
-  return error.message
-    .replace(/https?:\/\/\S+/gi, '<url>')
-    .replace(/[\w.-]+\.upstash\.io/gi, '<host>')
-    .replace(/[A-Za-z0-9_\-+/=]{20,}/g, '<redacted>')
-    .slice(0, 120)
-}
+import { describeStoreFailure } from '@/lib/store-failure'
 
 export async function POST(request: NextRequest) {
-  // Reported on failure so an outage is diagnosable from the response alone:
-  // runtime console output is not visible through the log tooling in use.
   let stage = 'request'
   try {
     const data = await request.json()
@@ -68,13 +46,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Track view error:', error)
     return NextResponse.json(
-      {
-        error: 'Failed to track view',
-        stage,
-        cause: error instanceof Error ? error.name : 'unknown',
-        kind: failureKind(error),
-        detail: redactedDetail(error),
-      },
+      { error: 'Failed to track view', ...describeStoreFailure(error, stage) },
       { status: 500 }
     )
   }

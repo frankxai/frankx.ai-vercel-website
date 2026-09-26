@@ -1,10 +1,9 @@
 import { Ratelimit } from '@upstash/ratelimit'
-import { createClient } from '@vercel/kv'
 
 import { createLocalLimiter } from './local-ratelimit'
-import { redisRestConfig } from './redis-env'
+import { createRedisClient } from './redis-client'
 
-const kv = createClient(redisRestConfig())
+const kv = createRedisClient()
 
 // Falls back to a per-instance window when Redis is unreachable, so an outage of
 // the shared store weakens protection instead of refusing every request.
