@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { register } from 'node:module'
 import test from 'node:test'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js'
@@ -64,6 +64,48 @@ test('search returns structured hits with absolute URLs, and get_article reads o
   assert.equal(article.slug, slug)
   assert.equal(article.url, `https://frankx.ai/blog/${slug}`)
   assert.match(article.markdown, /^# /)
+}))
+
+test('long articles are cut at maxChars on a paragraph boundary and say so', () => withClient(async (client) => {
+  const blog = new URL('../../content/blog/', import.meta.url)
+  const longest = readdirSync(blog)
+    .filter((file) => /^[a-z0-9][a-z0-9-]*\.mdx?$/.test(file))
+    .sort((a, b) => statSync(new URL(b, blog)).size - statSync(new URL(a, blog)).size)
+    .map((file) => file.replace(/\.mdx?$/, ''))
+  let article
+  for (const slug of longest) {
+    const result = await client.callTool({ name: 'frankx_get_article', arguments: { slug } })
+    if (!result.isError) { article = structured(result); break }
+  }
+  assert.ok(article.totalChars > 40000, `longest readable article is only ${article.totalChars} chars`)
+  assert.equal(article.truncated, true)
+  assert.ok(article.markdown.length <= 40000)
+  assert.ok(article.markdown.length > 30000, 'cut lands near the limit, not far before it')
+
+  const cut = structured(await client.callTool({ name: 'frankx_get_article', arguments: { slug: article.slug, maxChars: 1000 } }))
+  assert.equal(cut.truncated, true)
+  assert.equal(cut.totalChars, article.totalChars)
+  assert.ok(cut.markdown.length <= 1000)
+
+  const full = structured(await client.callTool({ name: 'frankx_get_article', arguments: { slug: article.slug, maxChars: 100000 } }))
+  assert.equal(full.truncated, full.totalChars > 100000)
+  assert.ok(full.markdown.length <= 100000)
+  assert.ok(full.markdown.startsWith(article.markdown))
+  assert.match(full.markdown.slice(article.markdown.length), /^[ \t]*\n[ \t]*\n/, 'default cut falls on a paragraph break')
+
+  const short = structured(await client.callTool({ name: 'frankx_get_article', arguments: { slug: longest.at(-1) } }))
+  assert.equal(short.truncated, false)
+  assert.equal(short.markdown.length, short.totalChars)
+}))
+
+test('maxChars is bounded to 1000-100000', () => withClient(async (client) => {
+  const { results } = structured(await client.callTool({ name: 'frankx_search_site', arguments: { query: 'agentic', limit: 25 } }))
+  const slug = results.find((item) => item.url.includes('/blog/')).url.split('/blog/')[1]
+  structured(await client.callTool({ name: 'frankx_get_article', arguments: { slug, maxChars: 1000 } }))
+  for (const maxChars of [999, 100001]) {
+    const result = await client.callTool({ name: 'frankx_get_article', arguments: { slug, maxChars } })
+    assert.equal(result.isError, true, `maxChars ${maxChars} accepted`)
+  }
 }))
 
 test('unknown slugs and path tricks are refused with a hint', () => withClient(async (client) => {

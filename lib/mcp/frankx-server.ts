@@ -13,6 +13,14 @@ function structuredResult<T extends Record<string, unknown>>(value: T) {
   return { structuredContent: value, content: [{ type: 'text' as const, text: JSON.stringify(value) }] }
 }
 
+/** Cut at the last paragraph break before maxChars, unless that would drop more than a quarter of the budget. */
+function truncateMarkdown(markdown: string, maxChars: number) {
+  if (markdown.length <= maxChars) return { markdown, truncated: false }
+  const head = markdown.slice(0, maxChars)
+  const paragraphEnd = head.lastIndexOf('\n\n')
+  return { markdown: (paragraphEnd >= maxChars * 0.75 ? head.slice(0, paragraphEnd) : head).trimEnd(), truncated: true }
+}
+
 function errorResult(message: string) {
   return { content: [{ type: 'text' as const, text: message }], isError: true }
 }
@@ -65,24 +73,37 @@ export function createFrankxMcpServer(): McpServer {
     {
       title: 'Read a frankx.ai article',
       description:
-        'Return one frankx.ai blog article as markdown with its title, author, date and full body. Use it after ' +
+        'Return one frankx.ai blog article as markdown with its title, author, date and body. Use it after ' +
         'frankx_search_site, passing the slug from a https://frankx.ai/blog/<slug> URL. Most articles are 5-20 KB of ' +
-        'markdown; the longest guides exceed 100 KB, so read one article at a time. Unknown slugs return an error.',
+        'markdown and come back whole. Longer ones are cut at maxChars (default 40000) on a paragraph break, with ' +
+        'truncated set to true and totalChars giving the full length; to read more, call again with a higher maxChars ' +
+        '(up to 100000). Unknown slugs return an error.',
       inputSchema: {
         slug: z.string().regex(/^[a-z0-9][a-z0-9-]{0,200}$/).describe('Article slug, e.g. "agentic-ai-roadmap-2026"'),
+        maxChars: z.number().int().min(1000).max(100000).default(40000)
+          .describe('Maximum characters of markdown to return (1000-100000, default 40000); raise it when truncated is true'),
       },
       outputSchema: {
         slug: z.string(),
         title: z.string(),
         url: z.string().describe('Canonical article URL, to cite as the source'),
-        markdown: z.string().describe('The article as markdown, starting with its # title'),
+        markdown: z.string().describe('The article as markdown, starting with its # title; cut at maxChars when truncated'),
+        truncated: z.boolean().describe('True when markdown was cut at maxChars; call again with a higher maxChars for more'),
+        totalChars: z.number().int().describe('Length of the full article markdown in characters'),
       },
       annotations: READ_ONLY,
     },
-    async ({ slug }) => {
+    async ({ slug, maxChars }) => {
       const post = getBlogPost(slug)
       if (!post) return errorResult(`No article with slug "${slug}". Use frankx_search_site to find the right slug.`)
-      return structuredResult({ slug, title: post.title, url: `${SITE}/blog/${slug}`, markdown: blogPostToMarkdown(post) })
+      const full = blogPostToMarkdown(post)
+      return structuredResult({
+        slug,
+        title: post.title,
+        url: `${SITE}/blog/${slug}`,
+        ...truncateMarkdown(full, maxChars),
+        totalChars: full.length,
+      })
     },
   )
 
