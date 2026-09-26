@@ -13,6 +13,16 @@ function failureKind(error: unknown): string {
   return 'other'
 }
 
+// The message with anything URL-, host- or token-shaped removed.
+function redactedDetail(error: unknown): string {
+  if (!(error instanceof Error)) return ''
+  return error.message
+    .replace(/https?:\/\/\S+/gi, '<url>')
+    .replace(/[\w.-]+\.upstash\.io/gi, '<host>')
+    .replace(/[A-Za-z0-9_\-+/=]{20,}/g, '<redacted>')
+    .slice(0, 120)
+}
+
 export async function POST(request: NextRequest) {
   // Reported on failure so an outage is diagnosable from the response alone:
   // runtime console output is not visible through the log tooling in use.
@@ -63,6 +73,7 @@ export async function POST(request: NextRequest) {
         stage,
         cause: error instanceof Error ? error.name : 'unknown',
         kind: failureKind(error),
+        detail: redactedDetail(error),
       },
       { status: 500 }
     )
