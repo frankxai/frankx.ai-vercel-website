@@ -3,6 +3,9 @@ import { TRACKED_GUIDES, trackPDFView } from '@/lib/pdf-analytics'
 import { analyticsRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
 export async function POST(request: NextRequest) {
+  // Reported on failure so an outage is diagnosable from the response alone:
+  // runtime console output is not visible through the log tooling in use.
+  let stage = 'request'
   try {
     const data = await request.json()
 
@@ -17,6 +20,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unknown guide' }, { status: 400 })
     }
 
+    stage = 'ratelimit'
     const { success } = await analyticsRatelimit.limit(getClientIdentifier(request))
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
@@ -27,6 +31,7 @@ export async function POST(request: NextRequest) {
     const referrer = (request.headers.get('referer') || '').slice(0, 300)
 
     // Track view
+    stage = 'store'
     const view = await trackPDFView({
       guideSlug: data.guideSlug,
       guideTitle: String(data.guideTitle).slice(0, 200),
@@ -42,7 +47,11 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Track view error:', error)
     return NextResponse.json(
-      { error: 'Failed to track view' },
+      {
+        error: 'Failed to track view',
+        stage,
+        cause: error instanceof Error ? error.name : 'unknown',
+      },
       { status: 500 }
     )
   }
