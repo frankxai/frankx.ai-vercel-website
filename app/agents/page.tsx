@@ -108,8 +108,6 @@ export default function AgentsPage() {
             <span className="bg-gradient-to-r from-white via-emerald-100 to-cyan-100 bg-clip-text text-transparent">
               Explore the ACOS catalog.
             </span>
-            <br />
-            <span className="text-white/70">Set up the public source on yours.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300 sm:text-xl">
             This isn&rsquo;t a SaaS. There&rsquo;s no &ldquo;Orchestrator&rdquo; routing your requests to a hosted runtime.
