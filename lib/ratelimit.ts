@@ -1,5 +1,9 @@
 import { Ratelimit } from '@upstash/ratelimit'
-import { kv } from '@vercel/kv'
+import { createClient } from '@vercel/kv'
+
+import { redisRestConfig } from './redis-env'
+
+const kv = createClient(redisRestConfig())
 
 /**
  * Rate Limiting Configuration
