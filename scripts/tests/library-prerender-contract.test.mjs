@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
+// New contract: no prior test on main. Title carries [contract-change] so the
+// guard can land the test with the surface it names.
+
 const read = (rel) => readFileSync(new URL(`../../${rel}`, import.meta.url), 'utf8');
 
 test('library index and collection pages stay static: no searchParams on the server', () => {
