@@ -29,6 +29,13 @@ test('get_article only accepts plain slugs, so drafts and internal docs are unre
   assert.match(server, /slug: z\.string\(\)\.regex\(\/\^\[a-z0-9\]\[a-z0-9-\]/)
 })
 
+test('llms.txt advertises the endpoint and its tools to agents', () => {
+  const llms = read('app/llms.txt/route.ts')
+  assert.match(llms, /## Agent access/)
+  assert.match(llms, /\/api\/mcp/)
+  for (const tool of ['search_site', 'get_article', 'list_products']) assert.match(llms, new RegExp(tool))
+})
+
 test('the route is stateless and the markdown format is shared with /api/md', () => {
   assert.match(route, /sessionIdGenerator: undefined/)
   assert.match(mdRoute, /blogPostToMarkdown\(post\)/)

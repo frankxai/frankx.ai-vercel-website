@@ -140,6 +140,10 @@ ${blogLinks}
 - [Journal](${SITE_URL}/journal): Short dated notes written as the work happens — the unedited counterpart to the long-form articles above
 ${journalLinks}
 
+## Agent access
+- [MCP endpoint](${SITE_URL}/api/mcp): Read-only Model Context Protocol server (Streamable HTTP, no key). Tools: search_site, get_article, list_products. Claude Code: \`claude mcp add --transport http frankx ${SITE_URL}/api/mcp\`
+- [Markdown export](${SITE_URL}/api/md?path=/blog/agentic-ai-roadmap-2025): Any article as plain markdown; replace the path with /blog/<slug>
+
 ## Optional
 - [llms-full.txt](${SITE_URL}/llms-full.txt): Comprehensive site map with per-page tldrs (longer; ~50KB)
 - [sitemap.xml](${SITE_URL}/sitemap.xml): Full URL inventory
