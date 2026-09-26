@@ -110,7 +110,7 @@ export function ReviewTail({
               );
 
               const className =
-                'group block h-full p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-400/20 hover:bg-cyan-500/[0.03] transition-all';
+                'group block h-full p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-400/20 hover:bg-cyan-500/[0.03] transition-colors';
 
               return item.url ? (
                 <a
@@ -151,7 +151,7 @@ export function ReviewTail({
                 href={v.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-4 p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-red-400/20 hover:bg-red-500/[0.03] transition-all"
+                className="group flex items-start gap-4 p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-red-400/20 hover:bg-red-500/[0.03] transition-colors"
               >
                 <span className="flex-shrink-0 mt-1 w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
                   <svg
@@ -213,7 +213,7 @@ export function ReviewTail({
           </h2>
           <Link
             href={`/books/${relatedBook.slug}`}
-            className="group block p-6 rounded-2xl border border-violet-500/10 bg-violet-500/[0.03] hover:border-violet-500/20 transition-all"
+            className="group block p-6 rounded-2xl border border-violet-500/10 bg-violet-500/[0.03] hover:border-violet-500/20 transition-colors"
           >
             <p className="text-[10px] uppercase tracking-wider text-violet-400/50 mb-2">
               Our Book
@@ -252,7 +252,7 @@ export function ReviewTail({
             href={review.amazonUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white/60 text-sm hover:bg-white/10 hover:text-white/80 transition-all"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white/60 text-sm hover:bg-white/10 hover:text-white/80 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -296,7 +296,7 @@ export function ReviewTail({
             <Link
               key={r.slug}
               href={`/library/${r.slug}`}
-              className="group p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] transition-all"
+              className="group p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] transition-colors"
             >
               <h3 className="text-sm font-semibold text-white group-hover:text-amber-300 transition-colors mb-1 truncate">
                 {r.title}
