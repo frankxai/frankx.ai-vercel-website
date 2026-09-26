@@ -1,0 +1,69 @@
+{
+  "week": "2026-W39",
+  "generatedAt": "2026-09-21T07:19:47Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-09-14T00:00:00Z",
+  "windowEnd": "2026-09-21T00:00:00Z",
+  "metrics": {
+    "count_total": 129,
+    "count_production": 24,
+    "count_preview": 105,
+    "count_skipped": 46,
+    "count_error": 2,
+    "count_ready": 78,
+    "duration_p50_seconds": 194,
+    "duration_p95_seconds": 281,
+    "duration_max_seconds": 346,
+    "total_build_minutes": 264,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 10,
+    "ready_deploys_total_estimate": 78,
+    "duration_note": "10 READY deploys sampled via get_deployment. Sorted durations (s): 156.3, 166.2, 186.9, 187.5, 193.2, 195.5, 197.1, 199.0, 202.6, 345.8. p50=194s (avg 5th+6th). p95=281s (linear interpolation). total_build_minutes = (mean 203.0s / 60) x 78 estimated READY = 264min. One slow outlier at 345.8s is dpl_CXpyVWriLUbCxwMQvGBUJZ5hHwpR (Sep 14 production, admin analytics shard — first cold push of a large new page). All remaining builds fall in the 156-203s band consistent with W37 turbopack/cache baseline.",
+    "count_skipped_note": "46 confirmed CANCELED across two pagination pages (35 page-1 + 11 page-2). Four additional entries on page 1 had state truncated by the API; they are excluded from the CANCELED count but included in count_total.",
+    "pagination_pages": 2,
+    "pagination_note": "list_deployments required two pages: 100 newest entries then 29 entries from the remaining earlier part of the window (Sep 14T00:00-21:06Z). All 129 entries fall within the 7-day window.",
+    "error_deploys": [
+      {
+        "id": "dpl_7xL8zMd4aqV73ZmrGcUDHXTwL3a5",
+        "created_iso": "2026-09-18T08:49:05Z",
+        "target": null,
+        "note": "Preview build (target=null). Production unaffected."
+      },
+      {
+        "id": "dpl_4Wm4cGGGv8VXMhh7QJj27CWGm85f",
+        "created_iso": "2026-09-18T17:56:12Z",
+        "target": null,
+        "note": "Preview build (target=null). Production unaffected."
+      }
+    ]
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W38",
+    "prior_week_found": false,
+    "note": "No 2026-W38 snapshot found in data/observability/vercel-cost/. Most recent prior snapshot is 2026-W37. Per spec, deltas are set to 'baseline' when the direct prior ISO week is missing.",
+    "count_total_delta": "baseline",
+    "count_production_delta": "baseline",
+    "count_skipped_delta": "baseline",
+    "count_error_delta": "baseline",
+    "duration_p50_delta_seconds": "baseline",
+    "total_build_minutes_delta": "baseline",
+    "w37_reference": {
+      "week": "2026-W37",
+      "count_total": 78,
+      "count_production": 19,
+      "count_error": 2,
+      "duration_p50_seconds": 192,
+      "total_build_minutes": 279,
+      "verdict": "RED"
+    }
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=2 meets the >=2/week RED threshold. Both errors are preview builds (target=null) on Sep 18, not affecting production. Same error count as W37.",
+    "Deploy volume elevated: count_total=129. Prior reference W37=78 (+65% if compared directly, though W38 is missing so no signed delta). The Sep 18 burst accounts for ~75 of 129 deploys — heavy agent branch activity with concurrent pushes firing multiple preview builds.",
+    "count_skipped=46 CANCELED (36% of total). Significantly higher than W37's 10 (13%). Consistent with multiple agent branches landing in rapid succession and superseding each other.",
+    "Prior week W38 snapshot is missing — deltas set to baseline. Most recent reference is W37 (2026-09-01 through 2026-09-07).",
+    "Build durations GREEN: p50=194s (vs W37 p50=192s, +2s), p95=281s (vs W37 p95=376s, -95s), max=346s. Cache efficiency maintained. The W37 bimodal pattern (fast 177-195s vs slow 348-381s) appears to have mostly resolved — only one outlier at 345.8s this week."
+  ]
+}
