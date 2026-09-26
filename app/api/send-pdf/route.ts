@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { storeLead } from '@/lib/kv'
+import { createPDFLead } from '@/lib/pdf-analytics'
+import { describeStoreFailure } from '@/lib/store-failure'
 import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 import { validateLeadData } from '@/lib/validation'
 import { socialLinks } from '@/lib/social-links'
@@ -68,16 +69,29 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Store lead in Vercel KV
-    await storeLead({
-      email: leadData.email,
-      name: leadData.name,
-      company: leadData.company,
-      role: leadData.role,
-      primaryInterest: leadData.primaryInterest,
-      referralSource: leadData.referralSource,
-      guideId: guideSlug
-    })
+    // Stored where the leads dashboard reads. A store outage must not cost the
+    // visitor the guide they asked for, so it is reported in the response instead
+    // of aborting the email.
+    let leadStore: { stored: true } | ({ stored: false } & ReturnType<typeof describeStoreFailure>)
+    try {
+      await createPDFLead({
+        email: leadData.email,
+        name: leadData.name,
+        company: leadData.company,
+        role: leadData.role,
+        primaryInterest: leadData.primaryInterest,
+        referralSource: leadData.referralSource,
+        guideSlug: String(guideSlug).slice(0, 100),
+        guideTitle: String(pdfTitle).slice(0, 200),
+        sessionId: String(sessionId).slice(0, 100),
+        userAgent: (request.headers.get('user-agent') || 'unknown').slice(0, 300),
+        referrer: (request.headers.get('referer') || '').slice(0, 300)
+      })
+      leadStore = { stored: true }
+    } catch (error) {
+      console.error('PDF lead not stored:', error)
+      leadStore = { stored: false, ...describeStoreFailure(error, 'store') }
+    }
 
     // Send email with Resend
     const { data, error } = await resend.emails.send({
@@ -193,7 +207,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    return NextResponse.json({ success: true, emailId: data?.id })
+    return NextResponse.json({ success: true, emailId: data?.id, leadStore })
   } catch (error) {
     console.error('API error:', error)
     return NextResponse.json(

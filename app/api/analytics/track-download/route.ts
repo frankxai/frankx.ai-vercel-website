@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { TRACKED_GUIDES, trackPDFDownload } from '@/lib/pdf-analytics'
 import { analyticsRatelimit, getClientIdentifier } from '@/lib/ratelimit'
+import { describeStoreFailure } from '@/lib/store-failure'
 
 const DOWNLOAD_METHODS = ['direct', 'email', 'combo']
 
 export async function POST(request: NextRequest) {
+  let stage = 'request'
   try {
     const data = await request.json()
 
@@ -19,6 +21,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unknown guide' }, { status: 400 })
     }
 
+    stage = 'ratelimit'
     const { success } = await analyticsRatelimit.limit(getClientIdentifier(request))
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
@@ -27,7 +30,7 @@ export async function POST(request: NextRequest) {
     // Get metadata
     const userAgent = (request.headers.get('user-agent') || 'unknown').slice(0, 300)
 
-    // Track download
+    stage = 'store'
     const download = await trackPDFDownload({
       guideSlug: data.guideSlug,
       guideTitle: String(data.guideTitle).slice(0, 200),
@@ -40,7 +43,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Track download error:', error)
     return NextResponse.json(
-      { error: 'Failed to track download' },
+      { error: 'Failed to track download', ...describeStoreFailure(error, stage) },
       { status: 500 }
     )
   }
