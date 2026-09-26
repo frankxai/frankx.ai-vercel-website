@@ -9,8 +9,8 @@ import { createLibrarySearch, filterLibrary, type LibraryBook } from '@/lib/libr
 type Filters = { q: string; category: string; sort: string };
 const emptyFilters: Filters = { q: '', category: '', sort: 'recent' };
 
-export function LibraryExplorer({ books, children, initial = emptyFilters }: { books: LibraryBook[]; children?: ReactNode; initial?: Filters }) {
-  const [filters, setFilters] = useState(initial);
+export function LibraryExplorer({ books, children }: { books: LibraryBook[]; children?: ReactNode }) {
+  const [filters, setFilters] = useState(emptyFilters);
   const categories = useMemo(() => [...new Set(books.flatMap(book => book.categories))].sort(), [books]);
   const index = useMemo(() => createLibrarySearch(books), [books]);
   const results = useMemo(() => filterLibrary(books, filters.q, filters.category, undefined, filters.sort, index), [books, filters, index]);
@@ -20,6 +20,7 @@ export function LibraryExplorer({ books, children, initial = emptyFilters }: { b
       const params = new URLSearchParams(window.location.search);
       setFilters({ q: params.get('q') || '', category: params.get('category') || '', sort: params.get('sort') || 'recent' });
     }
+    syncFromUrl();
     window.addEventListener('popstate', syncFromUrl);
     return () => window.removeEventListener('popstate', syncFromUrl);
   }, []);
