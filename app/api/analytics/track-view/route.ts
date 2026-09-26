@@ -2,6 +2,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import { TRACKED_GUIDES, trackPDFView } from '@/lib/pdf-analytics'
 import { analyticsRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
+// Distinguishes a missing or malformed Redis URL from an unreachable host without
+// echoing the message, which can contain the host name.
+function failureKind(error: unknown): string {
+  if (!(error instanceof Error)) return 'other'
+  const code = (error.cause as { code?: unknown } | undefined)?.code
+  if (typeof code === 'string' && /^[A-Z_]{3,20}$/.test(code)) return `network:${code}`
+  if (/fetch failed/i.test(error.message)) return 'network'
+  if (/url/i.test(error.message)) return 'config'
+  return 'other'
+}
+
 export async function POST(request: NextRequest) {
   // Reported on failure so an outage is diagnosable from the response alone:
   // runtime console output is not visible through the log tooling in use.
@@ -51,6 +62,7 @@ export async function POST(request: NextRequest) {
         error: 'Failed to track view',
         stage,
         cause: error instanceof Error ? error.name : 'unknown',
+        kind: failureKind(error),
       },
       { status: 500 }
     )
