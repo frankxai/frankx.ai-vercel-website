@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { libraryCollections, belongsToCollection } from '@/data/library-collections';
 import { libraryBooks } from '@/lib/library-catalog';
 import { LibraryExplorer } from '@/components/library/LibraryExplorer';
+import { FeaturedShelf } from '@/components/library/FeaturedShelf';
 
 type Props = { params: Promise<{ collection: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> };
 
@@ -52,13 +53,9 @@ export default async function CollectionPage({ params, searchParams }: Props) {
       <p className="mb-3 mt-6 text-sm text-white/65">A FrankX reading collection · {books.length} books</p>
       <h1 className="max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl">{collection.title}</h1>
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/75">{collection.introduction}</p>
-      <nav aria-label="Suggested starting books" className="mt-6 flex flex-wrap gap-3">
-        {collection.featured.map(slug => {
-          const book = libraryBooks.find(book => book.slug === slug);
-          return book ? <Link key={slug} href={`/library/${slug}`} className="inline-flex min-h-11 items-center rounded-full border border-emerald-300/25 px-4 text-sm text-emerald-100 hover:bg-emerald-300/10 focus-visible:ring-2 focus-visible:ring-emerald-300">{book.title} →</Link> : null;
-        })}
-      </nav>
     </header>
-    <div className="mx-auto max-w-6xl px-6"><LibraryExplorer books={books} initial={{ q: value(filters.q), category: value(filters.category), sort: value(filters.sort) || 'recent' }} /></div>
+    <div className="mx-auto max-w-6xl px-6"><LibraryExplorer books={books} initial={{ q: value(filters.q), category: value(filters.category), sort: value(filters.sort) || 'recent' }}>
+      <FeaturedShelf title="Begin with these three" description="A suggested sequence through this collection. Each page names its sources, edition choices, and place to begin." books={collection.featured.map(featuredSlug => books.find(book => book.slug === featuredSlug)).filter((book): book is (typeof books)[number] => Boolean(book))} />
+    </LibraryExplorer></div>
   </main>;
 }
