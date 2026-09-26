@@ -12,45 +12,52 @@ async function withClient(fn) {
   const client = new Client({ name: 'frankx-mcp-e2e', version: '0.0.0' })
   await client.connect(new StreamableHTTPClientTransport(url))
   try {
+    await client.listTools()
     return await fn(client)
   } finally {
     await client.close()
   }
 }
-const json = (result) => JSON.parse(result.content[0].text)
+
+function structured(result) {
+  assert.notEqual(result.isError, true, result.content?.[0]?.text)
+  assert.deepEqual(JSON.parse(result.content[0].text), result.structuredContent)
+  return result.structuredContent
+}
 
 test('lists three contract-clean tools', () => withClient(async (client) => {
   const { tools } = await client.listTools()
-  assert.deepEqual(tools.map((tool) => tool.name).sort(), ['get_article', 'list_products', 'search_site'])
+  assert.deepEqual(tools.map((tool) => tool.name).sort(), ['frankx_get_article', 'frankx_list_products', 'frankx_search_site'])
   for (const tool of tools) {
-    assert.match(tool.name, /^[a-z][a-z0-9_]{0,63}$/)
-    assert.ok(tool.description.length >= 20)
+    assert.match(tool.name, /^frankx_[a-z0-9_]{1,56}$/)
+    assert.ok(tool.description.length >= 80)
     assert.equal(tool.inputSchema.type, 'object')
+    assert.equal(tool.outputSchema?.type, 'object')
   }
 }))
 
-test('search finds articles with absolute URLs, and get_article reads one', () => withClient(async (client) => {
-  const hits = json(await client.callTool({ name: 'search_site', arguments: { query: 'agentic', limit: 10 } }))
-  assert.ok(hits.length > 0)
-  assert.ok(hits.every((hit) => /^https:\/\//.test(hit.url)))
-  const article = hits.find((hit) => /^https:\/\/frankx\.ai\/blog\/[a-z0-9-]+$/.test(hit.url))
-  assert.ok(article, 'at least one blog hit for "agentic"')
-  const slug = article.url.split('/blog/')[1]
-  const result = await client.callTool({ name: 'get_article', arguments: { slug } })
-  assert.notEqual(result.isError, true)
-  assert.match(result.content[0].text, /^# /)
-  assert.match(result.content[0].text, new RegExp(`Source: https://frankx\\.ai/blog/${slug}`))
+test('search finds articles with absolute URLs, and frankx_get_article reads one', () => withClient(async (client) => {
+  const { results } = structured(await client.callTool({ name: 'frankx_search_site', arguments: { query: 'agentic', limit: 10 } }))
+  assert.ok(results.length > 0)
+  assert.ok(results.every((hit) => /^https:\/\//.test(hit.url)))
+  const hit = results.find((item) => /^https:\/\/frankx\.ai\/blog\/[a-z0-9-]+$/.test(item.url))
+  assert.ok(hit, 'at least one blog hit for "agentic"')
+  const slug = hit.url.split('/blog/')[1]
+  const article = structured(await client.callTool({ name: 'frankx_get_article', arguments: { slug } }))
+  assert.match(article.markdown, /^# /)
+  assert.equal(article.url, `https://frankx.ai/blog/${slug}`)
 }))
 
 test('unknown slugs and path tricks are refused', () => withClient(async (client) => {
-  const missing = await client.callTool({ name: 'get_article', arguments: { slug: 'no-such-article-xyz' } })
+  const missing = await client.callTool({ name: 'frankx_get_article', arguments: { slug: 'no-such-article-xyz' } })
   assert.equal(missing.isError, true)
-  const traversal = await client.callTool({ name: 'get_article', arguments: { slug: '../CLAUDE' } })
+  const traversal = await client.callTool({ name: 'frankx_get_article', arguments: { slug: '../CLAUDE' } })
   assert.equal(traversal.isError, true)
 }))
 
 test('products carry name, headline and URL only', () => withClient(async (client) => {
-  const products = json(await client.callTool({ name: 'list_products', arguments: {} }))
+  const { products, total } = structured(await client.callTool({ name: 'frankx_list_products', arguments: {} }))
   assert.ok(products.length > 0)
+  assert.ok(total >= products.length)
   for (const product of products) assert.deepEqual(Object.keys(product).sort(), ['headline', 'name', 'url'])
 }))

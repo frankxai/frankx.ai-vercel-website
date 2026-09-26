@@ -177,7 +177,7 @@
     "analytics:opportunities": "node scripts/observability/analytics-cli.mjs --opportunities",
     "analytics:inspect": "node scripts/observability/analytics-cli.mjs --inspect",
     "test:affiliate-links": "node --experimental-strip-types --test scripts/tests/affiliate-destination.test.mjs scripts/tests/tool-record-contract.test.mjs scripts/tests/tool-embed-contract.test.mjs",
-    "test:mcp": "node --test scripts/tests/mcp-endpoint-contract.test.mjs",
+    "test:mcp": "node --experimental-strip-types --test scripts/tests/mcp-endpoint-contract.test.mjs",
     "test:mcp:e2e": "node --test scripts/tests/mcp-endpoint.e2e.mjs"
   },
   "dependencies": {

@@ -141,7 +141,7 @@ ${blogLinks}
 ${journalLinks}
 
 ## Agent access
-- [MCP endpoint](${SITE_URL}/api/mcp): Read-only Model Context Protocol server (Streamable HTTP, no key). Tools: search_site, get_article, list_products. Claude Code: \`claude mcp add --transport http frankx ${SITE_URL}/api/mcp\`
+- [MCP endpoint](${SITE_URL}/api/mcp): Read-only Model Context Protocol server (Streamable HTTP, no key). Tools: frankx_search_site, frankx_get_article, frankx_list_products. Claude Code: \`claude mcp add --transport http frankx ${SITE_URL}/api/mcp\`
 - [Markdown export](${SITE_URL}/api/md?path=/blog/agentic-ai-roadmap-2025): Any article as plain markdown; replace the path with /blog/<slug>
 
 ## Optional
