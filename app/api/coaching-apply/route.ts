@@ -145,10 +145,17 @@ export async function POST(request: NextRequest) {
       }),
     })
 
+    // The contact holds only name and email; focus and situation live only in
+    // this notification, so a failed send means the application was lost.
     if (!emailResponse.ok) {
-      const errorData = await emailResponse.json()
+      const errorData = await emailResponse.json().catch(() => null)
       console.error('Resend email error:', errorData)
-      // Still return success to the user — the contact was created
+      return NextResponse.json(
+        {
+          error: `We couldn't submit your application just now. Please try again, or email ${NOTIFY_EMAIL} directly.`,
+        },
+        { status: 502 }
+      )
     }
 
     // 3. Send confirmation email to the applicant
