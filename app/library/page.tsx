@@ -100,7 +100,7 @@ export default async function LibraryPage({ searchParams }: { searchParams: Sear
               </p>
               <p className="text-sm font-semibold text-white">Ikigai &amp; Branding workshop</p>
               <p className="text-xs text-white/55 mt-1 leading-relaxed">
-                10 chapters, 13 prompts. Free. 75-minute self-guided walk.
+                7 modules, 10 prompts. Free. 90-minute self-guided walk.
               </p>
             </Link>
             <Link
