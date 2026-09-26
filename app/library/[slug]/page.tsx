@@ -1,213 +1,14 @@
-import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { bookReviews, getReviewBySlug } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
-import type { BookReview } from '@/app/books/types';
 import { BookCover } from '@/components/library/BookCover';
 import { ReadingGuide } from '@/components/library/ReadingGuide';
+import { generateMetadata, StarRating } from './review-meta';
+import { ReviewTail } from './review-tail';
 
-const SITE_URL = 'https://www.frankx.ai';
-
-function absoluteUrl(src?: string) {
-  if (!src) return undefined;
-  if (/^https?:\/\//.test(src)) return src;
-  return `${SITE_URL}${src.startsWith('/') ? '' : '/'}${src}`;
-}
-
-// Review pages are resolved on demand. Avoid enumerating the whole library on every deploy.
-
-function truncate(text: string, limit = 158) {
-  if (text.length <= limit) return text;
-  return text.slice(0, limit - 1).trimEnd() + '…';
-}
-
-function reviewDescription(review: BookReview) {
-  const lead = review.tldr ?? review.keyInsights[0];
-  return truncate(`${review.title} by ${review.author}: ${lead}`);
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const review = getReviewBySlug(slug);
-  if (!review) return {};
-
-  const description = reviewDescription(review);
-  const canonical = `${SITE_URL}/library/${review.slug}`;
-  const ogImage = `${canonical}/opengraph-image`;
-  const articleKind = review.guide ? 'Reading Guide & Editions' : 'Book Review & Key Insights';
-
-  return {
-    title: `${review.title} — ${articleKind}`,
-    description,
-    keywords: [
-      ...review.categories,
-      review.author,
-      `${review.title} summary`,
-      `${review.title} key insights`,
-      'book review',
-      'book summary',
-    ],
-    authors: [{ name: review.guide ? 'FrankX Library' : 'Frank Riemer' }],
-    alternates: { canonical },
-    openGraph: {
-      title: `${review.title} — ${articleKind}`,
-      description,
-      type: 'article',
-      url: canonical,
-      siteName: 'FrankX Library',
-      authors: [review.guide ? 'FrankX Library' : 'Frank Riemer'],
-      publishedTime: review.reviewDate,
-      ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630, alt: `${review.title} — FrankX reading guide` }] } : {}),
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${review.title} — ${review.author}`,
-      description,
-      ...(ogImage ? { images: [ogImage] } : {}),
-    },
-  };
-}
-
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className="flex gap-1" role="img" aria-label={`${rating} out of 5 stars`}>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <svg
-          key={star}
-          className={`h-5 w-5 ${star <= rating ? 'text-amber-400' : 'text-white/10'}`}
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-      ))}
-    </div>
-  );
-}
-
-function JsonLd({ review }: { review: BookReview }) {
-  const url = `${SITE_URL}/library/${review.slug}`;
-  const description = reviewDescription(review);
-  const reviewBody = review.tldr ?? review.keyInsights.join(' — ');
-  const imageUrl = review.hasCover
-    ? absoluteUrl(review.coverImage)
-    : absoluteUrl(review.capture?.images?.[0]?.src);
-
-  const graph: Array<Record<string, unknown>> = [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Library', item: `${SITE_URL}/library` },
-        { '@type': 'ListItem', position: 3, name: review.title, item: url },
-      ],
-    },
-    {
-      '@type': 'Article',
-      headline: `${review.title} by ${review.author} — Book Review & Key Insights`,
-      description,
-      url,
-      ...(imageUrl ? { image: imageUrl } : {}),
-      author: { '@type': 'Person', name: 'Frank', url: SITE_URL },
-      publisher: {
-        '@type': 'Organization',
-        name: 'FrankX',
-        url: SITE_URL,
-      },
-      datePublished: review.reviewDate,
-      dateModified: review.reviewDate,
-      articleSection: review.categories,
-      keywords: [...review.categories, review.author, 'book review'].join(', '),
-      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-    },
-    {
-      '@type': 'Review',
-      url,
-      itemReviewed: {
-        '@type': 'Book',
-        name: review.title,
-        author: { '@type': 'Person', name: review.author },
-        ...(imageUrl ? { image: imageUrl } : {}),
-        ...(review.publicationYear ? { datePublished: String(review.publicationYear) } : {}),
-        ...(review.amazonUrl ? { sameAs: review.amazonUrl } : {}),
-      },
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: review.rating,
-        bestRating: 5,
-        worstRating: 1,
-      },
-      reviewBody,
-      author: { '@type': 'Person', name: 'Frank' },
-      datePublished: review.reviewDate,
-      publisher: { '@type': 'Organization', name: 'FrankX', url: SITE_URL },
-    },
-  ];
-
-  if (review.guide) {
-    // An editorial guide is not a personal review and carries no star rating.
-    const reviewIndex = graph.findIndex(item => item['@type'] === 'Review');
-    if (reviewIndex !== -1) graph.splice(reviewIndex, 1);
-    const book = {
-      '@type': 'Book', '@id': `${url}#book`, name: review.title,
-      ...(review.guide.kind !== 'Primary text' ? { author: { '@type': 'Person', name: review.author } } : {}),
-      subjectOf: { '@type': 'Article', '@id': url },
-    };
-    graph.push(book);
-    const article = graph.find(item => item['@type'] === 'Article');
-    if (article) {
-      article.headline = `${review.title} — Reading Guide & Editions`;
-      article.author = { '@type': 'Organization', name: 'FrankX Library', url: `${SITE_URL}/library` };
-      article.about = { '@id': `${url}#book` };
-      article.citation = review.guide.sources.map(source => ({ '@type': 'CreativeWork', name: source.title, url: source.url }));
-      article.image = `${url}/opengraph-image`;
-    }
-  }
-
-  if (review.faq && review.faq.length > 0) {
-    graph.push({
-      '@type': 'FAQPage',
-      mainEntity: review.faq.map((pair) => ({
-        '@type': 'Question',
-        name: pair.q,
-        acceptedAnswer: { '@type': 'Answer', text: pair.a },
-      })),
-    });
-  }
-
-  if (review.quotes && review.quotes.length > 0) {
-    review.quotes.forEach((quote) => {
-      graph.push({
-        '@type': 'Quotation',
-        text: quote.text,
-        spokenByCharacter: { '@type': 'Person', name: review.author },
-        isPartOf: {
-          '@type': 'Book',
-          name: review.title,
-          author: { '@type': 'Person', name: review.author },
-        },
-      });
-    });
-  }
-
-  const data = {
-    '@context': 'https://schema.org',
-    '@graph': graph,
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
-    />
-  );
-}
+export { generateMetadata };
 
 export default async function ReviewPage({
   params,
@@ -257,12 +58,12 @@ export default async function ReviewPage({
       {/* Review Header */}
       <header className="max-w-3xl mx-auto px-6 pb-12">
         <div className="flex items-start gap-6">
-          <BookCover title={review.title} author={review.author} src={review.hasCover ? review.coverImage : review.capture?.images?.[0]?.src} imageAlt={review.hasCover ? undefined : review.capture?.images?.[0]?.alt} priority className="w-20 sm:w-28" />
+          <BookCover title={review.title} author={review.author} src={review.hasCover ? review.coverImage : undefined} hasGuide={Boolean(review.guide)} priority className="w-20 sm:w-28" />
           <div>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
               {review.title}
             </h1>
-            <p className="text-lg text-white/75 mb-3">by {review.author}</p>
+            <p className="text-lg text-white/75 mb-3">{review.guide?.kind === 'Primary text' ? review.author : `by ${review.author}`}</p>
             {review.guide ? <p className="text-sm text-emerald-200">{review.guide.kind} · Reading guide</p> : <StarRating rating={review.rating} />}
             <div className="flex flex-wrap gap-2 mt-4">
               {review.categories.map((cat) => (
@@ -343,36 +144,13 @@ export default async function ReviewPage({
         </section>
       )}
 
-      {review.guide && <ReadingGuide guide={review.guide} />}
-
-      {/* Above-fold conversion bar — added 2026-05-20 per /hub-audit library P1.1 */}
-      <section className="max-w-3xl mx-auto px-6 pb-12" aria-label="Newsletter call-to-action">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl border border-emerald-500/15 bg-emerald-500/[0.04] px-6 py-5">
-          <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-emerald-400/70 mb-2">
-              The FrankX Newsletter
-            </p>
-            <p className="text-white/80 text-[14px] leading-relaxed">
-              One book breakdown like this. One spotlight from the operating loop. Every Friday.
-            </p>
-          </div>
-          <Link
-            href="/newsletter"
-            className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 px-4 py-2 text-sm font-medium text-emerald-200 transition-colors whitespace-nowrap"
-          >
-            Subscribe free
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </Link>
-        </div>
-      </section>
+      {review.guide && <ReadingGuide guide={review.guide} slug={review.slug} />}
 
       {/* Table of Contents */}
       <nav className="max-w-3xl mx-auto px-6 pb-12" aria-label="Contents">
         <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
           <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
-            In this deep-dive
+            In this guide
           </p>
           <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[14px] text-white/60">
             <li>
@@ -459,10 +237,7 @@ export default async function ReviewPage({
             <span className="w-8 h-px bg-rose-400/60" />
             Quotes Worth Remembering
           </h2>
-          <p className="text-sm text-white/40 mb-6">
-            {review.quotes.length} curated passages from {review.title}. Chapter references
-            map back to the book so you can re-read them in context.
-          </p>
+          <p className="text-sm text-white/50 mb-6">{review.quotes.length} recorded excerpts. Check the named edition and location before sharing the wording.</p>
           <div className="space-y-4">
             {review.quotes.map((quote, i) => (
               <figure
@@ -507,7 +282,7 @@ export default async function ReviewPage({
           </h2>
           <p className="text-sm text-white/40 mb-6">
             Each chapter distilled to a key idea + 2–4 sentence summary — so you can navigate
-            the book&apos;s argument without re-reading it, and re-read it with fresh compass
+            the book's argument without re-reading it, and re-read it with fresh compass
             if you want.
           </p>
           <div className="space-y-3">
@@ -602,271 +377,7 @@ export default async function ReviewPage({
         </section>
       )}
 
-      {/* Best For */}
-      <section id="audience" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
-        <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-          <span className="w-8 h-px bg-emerald-500/50" />
-          Best For
-        </h2>
-        <div className="flex flex-wrap gap-3">
-          {review.bestFor.map((tag) => (
-            <span
-              key={tag}
-              className="px-4 py-2 text-sm rounded-xl bg-emerald-500/5 border border-emerald-500/15 text-emerald-400/80"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* Frequently Asked Questions */}
-      {review.faq && review.faq.length > 0 && (
-        <section id="faq" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
-          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-blue-500/50" />
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-3">
-            {review.faq.map((pair, i) => (
-              <details
-                key={i}
-                className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 open:border-blue-500/20 open:bg-blue-500/[0.03] transition-colors"
-              >
-                <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
-                  <h3 className="text-[15px] font-medium text-white/90 group-open:text-blue-300 transition-colors">
-                    {pair.q}
-                  </h3>
-                  <span className="flex-shrink-0 text-white/30 group-open:rotate-45 transition-transform text-lg leading-none mt-0.5">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 text-white/65 leading-relaxed text-[14px]">{pair.a}</p>
-              </details>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Continue Reading */}
-      {review.continueReading && review.continueReading.length > 0 && (
-        <section id="continue-reading" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
-          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-cyan-400/60" />
-            Continue Reading
-          </h2>
-          <p className="text-sm text-white/40 mb-6">
-            If {review.title} opened a door, these books walk you through it. Curated for
-            reason, not algorithm — each entry explains why it pairs with this book.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {review.continueReading.map((item, i) => {
-              const cardInner = (
-                <>
-                  <h3 className="text-[15px] font-semibold text-white group-hover:text-cyan-200 transition-colors leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-[13px] text-white/45 mt-1">by {item.author}</p>
-                  <p className="text-[13.5px] text-white/60 leading-relaxed mt-3">
-                    {item.reason}
-                  </p>
-                  {item.url && (
-                    <span className="inline-flex items-center gap-1 mt-4 text-[12px] text-cyan-400/60 group-hover:text-cyan-300 transition-colors">
-                      Get the book
-                      <svg
-                        className="w-3 h-3"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                        />
-                      </svg>
-                    </span>
-                  )}
-                </>
-              );
-
-              const className =
-                'group block h-full p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-400/20 hover:bg-cyan-500/[0.03] transition-all';
-
-              return item.url ? (
-                <a
-                  key={i}
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={className}
-                >
-                  {cardInner}
-                </a>
-              ) : (
-                <div key={i} className={className}>
-                  {cardInner}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
-      {/* Videos — Go Deeper */}
-      {review.videos && review.videos.length > 0 && (
-        <section id="videos" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
-          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-red-400/60" />
-            Go Deeper — Videos
-          </h2>
-          <p className="text-sm text-white/40 mb-6">
-            The book is the foundation. These talks and interviews are where the ideas
-            sharpen, get challenged, and connect to adjacent work. Best watched after
-            reading, not instead of.
-          </p>
-          <div className="space-y-3">
-            {review.videos.map((v, i) => (
-              <a
-                key={i}
-                href={v.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-start gap-4 p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-red-400/20 hover:bg-red-500/[0.03] transition-all"
-              >
-                <span className="flex-shrink-0 mt-1 w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-[15px] font-semibold text-white group-hover:text-red-200 transition-colors leading-snug">
-                    {v.title}
-                  </h3>
-                  <p className="text-[13px] text-white/45 mt-0.5">{v.creator}</p>
-                  <p className="text-[13.5px] text-white/60 leading-relaxed mt-2">
-                    {v.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {v.kind && (
-                      <span className="px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-red-500/10 text-red-400/80 border border-red-500/15">
-                        {v.kind}
-                      </span>
-                    )}
-                    {v.duration && (
-                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-white/40 border border-white/10">
-                        {v.duration}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <svg
-                  className="flex-shrink-0 w-4 h-4 text-white/20 group-hover:text-red-400/60 transition-colors mt-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                  />
-                </svg>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Related Our Book */}
-      {relatedBook && (
-        <section id="our-book" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
-          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-violet-500/50" />
-            If You Liked This, Read Ours
-          </h2>
-          <Link
-            href={`/books/${relatedBook.slug}`}
-            className="group block p-6 rounded-2xl border border-violet-500/10 bg-violet-500/[0.03] hover:border-violet-500/20 transition-all"
-          >
-            <p className="text-[10px] uppercase tracking-wider text-violet-400/50 mb-2">
-              Our Book
-            </p>
-            <h3 className="text-xl font-semibold text-white group-hover:text-violet-300 transition-colors mb-1">
-              {relatedBook.title}
-            </h3>
-            <p className="text-sm text-white/40 mb-3">{relatedBook.subtitle}</p>
-            <p className="text-sm text-white/50 leading-relaxed line-clamp-2">
-              {relatedBook.description}
-            </p>
-            <span className="inline-flex items-center gap-1 mt-4 text-xs text-violet-400/60 group-hover:text-violet-300 transition-colors">
-              Read free
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </span>
-          </Link>
-        </section>
-      )}
-
-      {/* Amazon Link */}
-      {review.amazonUrl && (
-        <section className="max-w-3xl mx-auto px-6 pb-16">
-          <a
-            href={review.amazonUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white/60 text-sm hover:bg-white/10 hover:text-white/80 transition-all"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-            </svg>
-            Get this book on Amazon
-          </a>
-        </section>
-      )}
-
-      {/* More from Library */}
-      <section className="max-w-3xl mx-auto px-6 pb-32">
-        <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-          <span className="w-8 h-px bg-white/20" />
-          More from the Library
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {otherReviews.map((r) => (
-            <Link
-              key={r.slug}
-              href={`/library/${r.slug}`}
-              className="group p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] transition-all"
-            >
-              <h3 className="text-sm font-semibold text-white group-hover:text-amber-300 transition-colors mb-1 truncate">
-                {r.title}
-              </h3>
-              <p className="text-xs text-white/40">{r.author}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <JsonLd review={review} />
+      <ReviewTail review={review} relatedBook={relatedBook} otherReviews={otherReviews} />
     </div>
   );
 }
