@@ -42,6 +42,7 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   investor: { topics: [TOPICS.newsletter] },
   'courses-waitlist': { topics: [TOPICS.newsletter] },
   'ikigai-branding': { topics: [TOPICS.newsletter] },
+  manifestation: { topics: [TOPICS.newsletter] },
   'premium-packs': { topics: [TOPICS.newsletter, TOPICS['product-updates']] },
   'mvu-tallinn-2026': { topics: [TOPICS.newsletter] },
   // No topics on purpose. The lab RSVP form states "Nothing else, ever", so
