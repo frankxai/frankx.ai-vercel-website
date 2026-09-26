@@ -18,10 +18,10 @@ export function FeaturedShelf({ title, description, books, label = 'Selected rea
       {books.map((book, index) => <div key={book.slug} role="listitem" className="w-[44vw] max-w-[175px] min-w-[145px] shrink-0 snap-start sm:w-44">
         <Link href={`/library/${book.slug}`} prefetch={false} className="group block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]">
           <div className="relative">
-            <BookCover title={book.title} author={book.author} src={book.cover} imageAlt={book.coverAlt} className="w-full transition-transform duration-200 group-hover:-translate-y-1 motion-reduce:transition-none" />
+            <BookCover title={book.title} author={book.author} src={book.cover} imageAlt={book.coverAlt} hasGuide={book.hasGuide} className="w-full transition-transform duration-200 group-hover:-translate-y-1 motion-reduce:transition-none" />
             <span className="absolute -bottom-2 -left-2 rounded-sm border border-white/20 bg-[#0a0a0b] px-2 py-1 font-mono text-xs text-white/85" aria-label={`Position ${index + 1} in editorial reading order`}>{String(index + 1).padStart(2, '0')}</span>
           </div>
-          <div className="mt-5"><h3 className="line-clamp-2 text-sm font-medium leading-snug text-white group-hover:text-emerald-200">{book.title}</h3><p className="mt-1 line-clamp-1 text-xs text-white/60">{book.author}</p><span className="mt-2 inline-flex items-center gap-1 text-xs text-emerald-200/80">Read guide <ArrowUpRight className="h-3 w-3" aria-hidden="true" /></span></div>
+          <div className="mt-5"><h3 className="line-clamp-2 text-sm font-medium leading-snug text-white group-hover:text-emerald-200">{book.title}</h3><p className="mt-1 line-clamp-1 text-xs text-white/60">{book.author}</p><span className="mt-2 inline-flex items-center gap-1 text-xs text-emerald-200/80">{book.hasGuide ? 'Read guide' : 'Read review'} <ArrowUpRight className="h-3 w-3" aria-hidden="true" /></span></div>
         </Link>
       </div>)}
     </div>

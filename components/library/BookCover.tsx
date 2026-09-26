@@ -4,13 +4,14 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 /** Edition-neutral bookplate. The title is a work; a publisher cover belongs to a particular edition. */
-export function BookCover({ title, author, src, imageAlt, className = '', priority = false }: {
+export function BookCover({ title, author, src, imageAlt, className = '', priority = false, hasGuide = false }: {
   title: string;
   author: string;
   src?: string;
   imageAlt?: string;
   className?: string;
   priority?: boolean;
+  hasGuide?: boolean;
 }) {
   const [failedSource, setFailedSource] = useState<string>();
   const palettes = [
@@ -22,8 +23,8 @@ export function BookCover({ title, author, src, imageAlt, className = '', priori
   const creditedWork = author.startsWith('Traditionally attributed') ? `${title} — ${author}` : `${title} by ${author}`;
   return (
     <div style={{ containerType: 'inline-size', backgroundColor: palette[0] }} className={`relative aspect-[2/3] shrink-0 overflow-hidden rounded-sm border border-white/15 ${className}`}>
-      <div className="absolute inset-0 flex flex-col justify-between border-l-[0.7cqw] border-white/15 p-[10%] pl-[13%] text-left" role="img" aria-hidden={showingImage} aria-label={`${creditedWork} — edition-neutral reading guide`}>
-        <span style={{ color: palette[1] }} className="border-b border-current/20 pb-[8%] text-[6cqw] uppercase leading-tight tracking-[0.16em]">Reading guide</span>
+      <div className="absolute inset-0 flex flex-col justify-between border-l-[0.7cqw] border-white/15 p-[10%] pl-[13%] text-left" role="img" aria-hidden={showingImage} aria-label={hasGuide ? `${creditedWork} — edition-neutral reading guide` : `${creditedWork} — edition-neutral bookplate`}>
+        <span style={{ color: palette[1] }} className="border-b border-current/20 pb-[8%] text-[6cqw] uppercase leading-tight tracking-[0.16em]">{hasGuide ? 'Reading guide' : 'Book review'}</span>
         <span style={{ color: palette[1], fontSize: title.length > 52 ? '8cqw' : title.length > 28 ? '9.5cqw' : '12cqw' }} className="font-serif leading-[1.1] [overflow-wrap:anywhere]">{title}</span>
         <span style={{ color: palette[1] }} className="border-t border-current/20 pt-[7%] text-[5.7cqw] leading-tight opacity-80">{author}<span className="mt-[8%] block uppercase tracking-[0.12em] opacity-70">Edition independent</span></span>
       </div>

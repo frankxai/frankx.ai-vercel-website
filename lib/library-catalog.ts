@@ -15,4 +15,5 @@ export const libraryBooks: LibraryBook[] = bookReviews.map(book => ({
   reviewDate: book.reviewDate,
   readingTime: book.readingTime,
   kind: book.guide ? book.guide.kind : book.capture ? 'Reading field note' : 'Book review',
+  hasGuide: Boolean(book.guide),
 }));
