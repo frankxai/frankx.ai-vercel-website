@@ -13,12 +13,21 @@ function structuredResult<T extends Record<string, unknown>>(value: T) {
   return { structuredContent: value, content: [{ type: 'text' as const, text: JSON.stringify(value) }] }
 }
 
-/** Cut at the last paragraph break before maxChars, unless that would drop more than a quarter of the budget. */
-function truncateMarkdown(markdown: string, maxChars: number) {
-  if (markdown.length <= maxChars) return { markdown, truncated: false }
-  const head = markdown.slice(0, maxChars)
-  const paragraphEnd = head.lastIndexOf('\n\n')
-  return { markdown: (paragraphEnd >= maxChars * 0.75 ? head.slice(0, paragraphEnd) : head).trimEnd(), truncated: true }
+/**
+ * One page of `markdown` starting at `offset`, at most `maxChars` long. It ends on the last paragraph break in the
+ * window unless that would drop more than a quarter of the budget, and never splits a surrogate pair. Pages are
+ * contiguous, so concatenating every page from offset 0 via nextOffset rebuilds the article exactly.
+ */
+export function pageMarkdown(markdown: string, offset: number, maxChars: number) {
+  const start = Math.min(offset, markdown.length)
+  if (markdown.length - start <= maxChars) {
+    return { markdown: markdown.slice(start), offset: start, nextOffset: null, truncated: false }
+  }
+  let end = start + maxChars
+  const paragraphEnd = markdown.lastIndexOf('\n\n', end - 2)
+  if (paragraphEnd - start >= maxChars * 0.75) end = paragraphEnd
+  else if (/[\uD800-\uDBFF]/.test(markdown[end - 1])) end -= 1
+  return { markdown: markdown.slice(start, end), offset: start, nextOffset: end, truncated: true }
 }
 
 function errorResult(message: string) {
@@ -75,25 +84,30 @@ export function createFrankxMcpServer(): McpServer {
       description:
         'Return one frankx.ai blog article as markdown with its title, author, date and body. Use it after ' +
         'frankx_search_site, passing the slug from a https://frankx.ai/blog/<slug> URL. Most articles are 5-20 KB of ' +
-        'markdown and come back whole. Longer ones are cut at maxChars (default 40000) on a paragraph break, with ' +
-        'truncated set to true and totalChars giving the full length; to read more, call again with a higher maxChars ' +
-        '(up to 100000). Unknown slugs return an error.',
+        'markdown and come back whole. Longer ones come back one page of at most maxChars (default 40000) at a time, ' +
+        'and each page prefers to end on a paragraph break; truncated is true and nextOffset is set while more follows. Call again with ' +
+        'offset=nextOffset until nextOffset is null to read to the end. totalChars gives the full length. ' +
+        'Unknown slugs return an error; an offset past the end returns an empty page.',
       inputSchema: {
         slug: z.string().regex(/^[a-z0-9][a-z0-9-]{0,200}$/).describe('Article slug, e.g. "agentic-ai-roadmap-2026"'),
         maxChars: z.number().int().min(1000).max(100000).default(40000)
-          .describe('Maximum characters of markdown to return (1000-100000, default 40000); raise it when truncated is true'),
+          .describe('Maximum characters of markdown per page (1000-100000, default 40000)'),
+        offset: z.number().int().min(0).max(10_000_000).default(0)
+          .describe('Character offset to start the page at (default 0); pass the previous nextOffset to continue'),
       },
       outputSchema: {
         slug: z.string(),
         title: z.string(),
         url: z.string().describe('Canonical article URL, to cite as the source'),
-        markdown: z.string().describe('The article as markdown, starting with its # title; cut at maxChars when truncated'),
-        truncated: z.boolean().describe('True when markdown was cut at maxChars; call again with a higher maxChars for more'),
+        markdown: z.string().describe('This page of the article markdown; the first page starts with its # title'),
+        offset: z.number().int().describe('Character offset this page starts at'),
+        nextOffset: z.number().int().nullable().describe('Offset of the next page, or null when this page reaches the end'),
+        truncated: z.boolean().describe('True when more of the article follows this page'),
         totalChars: z.number().int().describe('Length of the full article markdown in characters'),
       },
       annotations: READ_ONLY,
     },
-    async ({ slug, maxChars }) => {
+    async ({ slug, maxChars, offset }) => {
       const post = getBlogPost(slug)
       if (!post) return errorResult(`No article with slug "${slug}". Use frankx_search_site to find the right slug.`)
       const full = blogPostToMarkdown(post)
@@ -101,7 +115,7 @@ export function createFrankxMcpServer(): McpServer {
         slug,
         title: post.title,
         url: `${SITE}/blog/${slug}`,
-        ...truncateMarkdown(full, maxChars),
+        ...pageMarkdown(full, offset, maxChars),
         totalChars: full.length,
       })
     },
