@@ -36,7 +36,7 @@ test('lists three contract-clean tools', () => withClient(async (client) => {
   }
 }))
 
-test('search finds articles with absolute URLs, and get_article reads one', () => withClient(async (client) => {
+test('search finds articles with absolute URLs, and frankx_get_article reads one', () => withClient(async (client) => {
   const { results } = structured(await client.callTool({ name: 'frankx_search_site', arguments: { query: 'agentic', limit: 10 } }))
   assert.ok(results.length > 0)
   assert.ok(results.every((hit) => /^https:\/\//.test(hit.url)))

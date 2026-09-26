@@ -7,7 +7,7 @@ import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js'
 import { scoreTools } from './vendor/mcp-doctor-score.ts'
 
 register('./support/app-module-hooks.mjs', import.meta.url)
-const { createFrankxMcpServer } = await import('../../lib/mcp/frankx-server.ts')
+const { createFrankxMcpServer, pageMarkdown } = await import('../../lib/mcp/frankx-server.ts')
 
 const read = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8')
 const server = read('lib/mcp/frankx-server.ts')
@@ -53,7 +53,7 @@ test('the tool surface scores 100% on the mcp-doctor quality bar', () => withCli
   assert.equal(report.percent, 100, misses.join('; '))
 }))
 
-test('search returns structured hits with absolute URLs, and get_article reads one', () => withClient(async (client) => {
+test('search returns structured hits with absolute URLs, and frankx_get_article reads one', () => withClient(async (client) => {
   const search = structured(await client.callTool({ name: 'frankx_search_site', arguments: { query: 'agentic', limit: 10 } }))
   assert.ok(search.results.length > 0 && search.results.length <= 10)
   assert.ok(search.results.every((hit) => /^https:\/\//.test(hit.url)))
@@ -97,6 +97,55 @@ test('long articles are cut at maxChars on a paragraph boundary and say so', () 
   assert.equal(short.truncated, false)
   assert.equal(short.markdown.length, short.totalChars)
 }))
+
+test('an article over 100k chars can be paged to the end via nextOffset, and the pages rebuild it exactly', () => withClient(async (client) => {
+  const slug = 'agentic-seo-publishing-masterplan'
+  const pages = []
+  let offset = 0
+  for (let call = 0; offset !== null; call++) {
+    assert.ok(call < 10, 'paging terminates')
+    const page = structured(await client.callTool({ name: 'frankx_get_article', arguments: { slug, maxChars: 100000, offset } }))
+    assert.equal(page.offset, offset)
+    assert.equal(page.truncated, page.nextOffset !== null)
+    pages.push(page)
+    offset = page.nextOffset
+  }
+  const { totalChars } = pages[0]
+  assert.ok(totalChars > 100000, `${slug} is ${totalChars} chars, no longer a paging case`)
+  assert.ok(pages.length >= 2)
+  const rebuilt = pages.map((page) => page.markdown).join('')
+  assert.equal(rebuilt.length, totalChars)
+  assert.match(rebuilt, /^# /)
+
+  const small = []
+  for (let next = 0; next !== null;) {
+    const page = structured(await client.callTool({ name: 'frankx_get_article', arguments: { slug, maxChars: 40000, offset: next } }))
+    small.push(page.markdown)
+    next = page.nextOffset
+  }
+  assert.equal(small.join(''), rebuilt)
+
+  const past = structured(await client.callTool({ name: 'frankx_get_article', arguments: { slug, offset: totalChars + 5 } }))
+  assert.equal(past.markdown, '')
+  assert.equal(past.nextOffset, null)
+  assert.equal(past.truncated, false)
+}))
+
+test('a hard cut never splits a surrogate pair', () => {
+  const text = `${'a'.repeat(999)}😀${'b'.repeat(2000)}`
+  const first = pageMarkdown(text, 0, 1000)
+  assert.equal(first.markdown, 'a'.repeat(999))
+  assert.equal(first.nextOffset, 999)
+  const second = pageMarkdown(text, first.nextOffset, 1000)
+  assert.ok(second.markdown.startsWith('😀'))
+  let rebuilt = ''
+  for (let next = 0; next !== null;) {
+    const page = pageMarkdown(text, next, 1000)
+    rebuilt += page.markdown
+    next = page.nextOffset
+  }
+  assert.equal(rebuilt, text)
+})
 
 test('maxChars is bounded to 1000-100000', () => withClient(async (client) => {
   const { results } = structured(await client.callTool({ name: 'frankx_search_site', arguments: { query: 'agentic', limit: 25 } }))
