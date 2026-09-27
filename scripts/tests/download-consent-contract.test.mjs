@@ -85,12 +85,12 @@ test('every free book PDF downloads without email or audience enrollment', async
   const { GET, POST } = loadDownloadRoute(() => assert.fail('download must not call Resend'))
   const guide = await GET(new Request('https://frankx.ai/api/download?product=vibe-os'))
   assert.equal(guide.status, 307)
-  assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf$/)
+  assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf\?download=1$/)
 
   for (const slug of ['soulbook', 'love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
     const response = await GET(new Request(`https://frankx.ai/api/download?product=${slug}`))
     assert.equal(response.status, 307, slug)
-    assert.match(response.headers.get('location'), /\.pdf$/, slug)
+    assert.match(response.headers.get('location'), /\.pdf\?download=1$/, slug)
   }
 
   // Keep the legacy POST contract while existing callers migrate to direct links.
