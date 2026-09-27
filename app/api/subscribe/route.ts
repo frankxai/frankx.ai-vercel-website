@@ -8,6 +8,7 @@ import { mvuRsvpConfirmation, mvuRsvpAlert } from '@/lib/email-templates-mvu'
 import { sanitizeIntent } from '@/lib/diagnostic/waitlist-intents'
 import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 import { siteConfig } from '@/lib/seo'
+import products from '@/data/products.json'
 
 export const runtime = 'nodejs'
 
@@ -58,6 +59,10 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MAX_EMAIL_LEN = 320
 const MAX_NAME_LEN = 100
 const MAX_SOURCE_LEN = 120
+const PRODUCT_INTEREST_CONSENT_VERSION = 'frankx-product-interest.v1'
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+// The index card predates the product JSON id; both current interest surfaces use this set.
+const PRODUCT_INTEREST_IDS = new Set([...products.map((product) => product.id), 'suno-prompts-bundle'])
 const GROWTH_CAPTURE_URL =
   process.env.GROWTH_CAPTURE_URL ??
   'https://gfrfcqyprekhazzugdkr.supabase.co/functions/v1/growth-capture'
@@ -69,7 +74,17 @@ interface GrowthCaptureInput {
   source: string
   intention: string
   intent: string
+  clientRequestId?: string
   raw: Record<string, unknown>
+}
+
+function interestCaptureRequestId(clientRequestId: string, payload: object) {
+  // The browser keeps its operation id across a retry. Binding it to the normalized
+  // payload prevents a changed submission from replaying another capture's receipt.
+  const digest = createHash('sha256')
+    .update(JSON.stringify([clientRequestId, payload]))
+    .digest('hex')
+  return `${digest.slice(0, 8)}-${digest.slice(8, 12)}-4${digest.slice(13, 16)}-a${digest.slice(17, 20)}-${digest.slice(20, 32)}`
 }
 
 function optionalText(value: unknown) {
@@ -96,38 +111,47 @@ async function captureGrowthLead(request: NextRequest, input: GrowthCaptureInput
   if (clientIp) headers['x-growth-client-ip'] = clientIp
 
   try {
+    const captureBody = {
+      email: input.email,
+      name: input.name || undefined,
+      program:
+        input.listType === 'product-interest'
+          ? 'frankx-product-interest'
+          : 'frankx-' + input.listType,
+      consent_version: input.listType === 'product-interest' ? PRODUCT_INTEREST_CONSENT_VERSION : undefined,
+      source: input.source || input.listType,
+      intention: input.intention || undefined,
+      referrer: request.headers.get('referer') ?? undefined,
+      page_path: pagePathFromReferer(request),
+      utm_source: optionalText(input.raw.utm_source),
+      utm_medium: optionalText(input.raw.utm_medium),
+      utm_campaign: optionalText(input.raw.utm_campaign),
+      utm_content: optionalText(input.raw.utm_content),
+      utm_term: optionalText(input.raw.utm_term),
+      metadata: {
+        list_type: input.listType,
+        ...(input.intent ? { intent: input.intent } : {}),
+      },
+    }
+    const requestId = input.clientRequestId
+      ? interestCaptureRequestId(input.clientRequestId, captureBody)
+      : undefined
     const response = await fetch(GROWTH_CAPTURE_URL, {
       method: 'POST',
       headers,
       cache: 'no-store',
       signal: AbortSignal.timeout(5_000),
-      body: JSON.stringify({
-        email: input.email,
-        name: input.name || undefined,
-        program:
-          input.listType === 'product-interest'
-            ? 'frankx-product-interest'
-            : 'frankx-' + input.listType,
-        source: input.source || input.listType,
-        intention: input.intention || undefined,
-        referrer: request.headers.get('referer') ?? undefined,
-        page_path: pagePathFromReferer(request),
-        utm_source: optionalText(input.raw.utm_source),
-        utm_medium: optionalText(input.raw.utm_medium),
-        utm_campaign: optionalText(input.raw.utm_campaign),
-        utm_content: optionalText(input.raw.utm_content),
-        utm_term: optionalText(input.raw.utm_term),
-        metadata: {
-          list_type: input.listType,
-          ...(input.intent ? { intent: input.intent } : {}),
-        },
-      }),
+      body: JSON.stringify({ ...captureBody, request_id: requestId }),
     })
     const result = (await response.json().catch(() => null)) as
-      | { accepted?: boolean }
+      | { accepted?: boolean; requestId?: string }
       | null
 
-    if (!response.ok || result?.accepted !== true) {
+    if (
+      !response.ok ||
+      result?.accepted !== true ||
+      (input.listType === 'product-interest' && result.requestId !== requestId)
+    ) {
       console.error('Growth Core capture rejected:', response.status)
       return { ok: false, status: response.status === 429 ? 429 : 503 }
     }
@@ -431,6 +455,9 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       )
     }
+    if (listType === 'product-interest' && (!PRODUCT_INTEREST_IDS.has(intent) || !UUID_RE.test(String(raw.requestId ?? '')))) {
+      return NextResponse.json({ error: 'Select a valid product and retry your interest request.' }, { status: 400 })
+    }
 
     if (hasExplicitTopics && !explicitTopics) {
       return NextResponse.json({ error: 'Invalid topic preferences.' }, { status: 400 })
@@ -516,6 +543,7 @@ export async function POST(request: NextRequest) {
       source,
       intention,
       intent,
+      clientRequestId: listType === 'product-interest' ? String(raw.requestId) : undefined,
       raw,
     })
     if (!growthCapture.ok) {

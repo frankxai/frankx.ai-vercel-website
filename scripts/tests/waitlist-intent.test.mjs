@@ -34,7 +34,7 @@ function findElement(node, predicate) {
   }
 }
 
-async function submitWaitlist(intent, signupOverrides = {}) {
+async function submitWaitlist(intent, signupOverrides = {}, responseSequence = []) {
   const state = []
   let hookIndex = 0
   const requests = []
@@ -54,7 +54,7 @@ async function submitWaitlist(intent, signupOverrides = {}) {
     '@/lib/diagnostic/demand': loadModule('lib/diagnostic/demand.ts'),
   }, async (url, options) => {
     requests.push({ url, method: options.method, body: JSON.parse(options.body) })
-    return { ok: true, json: async () => ({ success: true }) }
+    return responseSequence.shift() ?? { ok: true, json: async () => ({ success: true }) }
   })
   const { default: WaitlistPage } = loadModule('app/waitlist/page.tsx', {
     '@/components/email-signup': { EmailSignup },
@@ -76,7 +76,21 @@ async function submitWaitlist(intent, signupOverrides = {}) {
   assert.equal(requests.length, 1)
   assert.equal(requests[0].url, '/api/subscribe')
   assert.equal(requests[0].method, 'POST')
-  return { props: signupProps, body: requests[0].body, rendered: renderSignup() }
+  return {
+    props: signupProps,
+    body: requests[0].body,
+    rendered: renderSignup(),
+    requests,
+    retry: async (newEmail) => {
+      if (newEmail) {
+        const input = findElement(renderSignup(), (element) => element.type === 'input' && element.props.type === 'email')
+        input.props.onChange({ target: { value: newEmail } })
+      }
+      const retryForm = findElement(renderSignup(), (element) => element.type === 'form')
+      await retryForm.props.onSubmit({ preventDefault() {} })
+      return requests.at(-1).body
+    },
+  }
 }
 
 async function submitDemand(response) {
@@ -148,6 +162,7 @@ function loadSubscribeRoute(fetch, { configureResend = true } = {}) {
         mvuRsvpAlert: () => ({}),
       },
       '@/lib/diagnostic/waitlist-intents': loadModule('lib/diagnostic/waitlist-intents.ts'),
+      '@/data/products.json': { __esModule: true, default: JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8')) },
       '@/lib/ratelimit': {
         emailRatelimit: { limit: async () => ({ success: true }) },
         getClientIdentifier: () => 'test-client',
@@ -171,8 +186,9 @@ function subscribeRequest(body) {
 test('product interest uses its dedicated Growth Core program and never calls Resend', async () => {
   const requests = []
   const { POST } = loadSubscribeRoute(async (url, options) => {
-    requests.push({ url: String(url), body: JSON.parse(options.body) })
-    return Response.json({ accepted: true, requestId: 'growth-request-id' })
+    const body = JSON.parse(options.body)
+    requests.push({ url: String(url), body })
+    return Response.json({ accepted: true, requestId: body.request_id })
   })
 
   const response = await POST(subscribeRequest({
@@ -180,6 +196,7 @@ test('product interest uses its dedicated Growth Core program and never calls Re
     listType: 'product-interest',
     intent: 'vibe-os',
     source: '/waitlist',
+    requestId: 'f02797de-c0dd-4ce0-8dd0-1eaa27bfe68d',
   }))
   const result = await response.json()
 
@@ -188,6 +205,8 @@ test('product interest uses its dedicated Growth Core program and never calls Re
   assert.equal(result.welcomeSent, false)
   assert.equal(result.message, 'Your product interest was recorded.')
   assert.equal(requests[0].body.program, 'frankx-product-interest')
+  assert.match(requests[0].body.request_id, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-a[0-9a-f]{3}-[0-9a-f]{12}$/)
+  assert.equal(requests[0].body.consent_version, 'frankx-product-interest.v1')
   assert.deepEqual(requests[0].body.metadata, {
     list_type: 'product-interest',
     intent: 'vibe-os',
@@ -196,19 +215,20 @@ test('product interest uses its dedicated Growth Core program and never calls Re
   assert.doesNotMatch(requests[0].url, /api\.resend\.com/)
 })
 
-test('a product-interest retry reports failure until Growth Core accepts', async () => {
+test('a product-interest retry reuses its request id after a lost response', async () => {
   const requests = []
   const { POST } = loadSubscribeRoute(async (url, options) => {
-    requests.push({ url: String(url), body: JSON.parse(options.body) })
-    return requests.length === 1
-      ? Response.json({ accepted: false }, { status: 503 })
-      : Response.json({ accepted: true })
+    const body = JSON.parse(options.body)
+    requests.push({ url: String(url), body })
+    if (requests.length === 1) throw new Error('response lost after remote capture')
+    return Response.json({ accepted: true, requestId: body.request_id })
   })
 
   const request = subscribeRequest({
     email: 'retry@example.invalid',
     listType: 'product-interest',
     intent: 'vibe-os',
+    requestId: 'c028b35c-33c7-4372-8fef-2cb3ccf3f7df',
   })
   const failedResponse = await POST(request)
   const failedResult = await failedResponse.json()
@@ -221,6 +241,83 @@ test('a product-interest retry reports failure until Growth Core accepts', async
   assert.equal(retriedResult.message, 'Your product interest was recorded.')
   assert.equal(requests.length, 2)
   assert.ok(requests.every((entry) => entry.body.program === 'frankx-product-interest'))
+  assert.equal(requests[0].body.request_id, requests[1].body.request_id)
+})
+
+test('product-interest success requires the exact durable receipt', async () => {
+  for (const receipt of [undefined, 'c028b35c-33c7-4372-8fef-2cb3ccf3f7df']) {
+    const requests = []
+    const { POST } = loadSubscribeRoute(async (url, options) => {
+      requests.push({ url: String(url), body: JSON.parse(options.body) })
+      return Response.json({ accepted: true, requestId: receipt })
+    })
+    const response = await POST(subscribeRequest({
+      email: 'receipt@example.invalid',
+      listType: 'product-interest',
+      intent: 'vibe-os',
+      requestId: '177cbce5-0f06-489e-a7f0-32e045f24855',
+    }))
+    assert.equal(response.status, 503)
+    assert.equal((await response.json()).error, 'Product interest could not be recorded. Please try again.')
+    assert.equal(requests.length, 1, 'receipt failures must not proceed to Resend')
+  }
+})
+
+test('a reused browser operation id cannot replay a changed submission', async () => {
+  const requests = []
+  const { POST } = loadSubscribeRoute(async (url, options) => {
+    const body = JSON.parse(options.body)
+    requests.push(body)
+    return Response.json({ accepted: true, requestId: body.request_id })
+  })
+  for (const payload of [
+    { email: 'first@example.invalid' },
+    { email: 'second@example.invalid' },
+    { email: 'first@example.invalid', utm_campaign: 'revised-source' },
+  ]) {
+    const response = await POST(subscribeRequest({
+      ...payload,
+      listType: 'product-interest',
+      intent: 'vibe-os',
+      requestId: '757c196b-a069-45c2-aa27-1ed90dd35b95',
+    }))
+    assert.equal(response.status, 200)
+  }
+  assert.notEqual(requests[0].request_id, requests[1].request_id)
+  assert.notEqual(requests[0].request_id, requests[2].request_id)
+})
+
+test('product interest requires a recognized product and valid operation id before capture', async () => {
+  let captures = 0
+  const { POST } = loadSubscribeRoute(async () => { captures++; return Response.json({ accepted: true }) })
+  for (const [intent, requestId] of [
+    ['', '757c196b-a069-45c2-aa27-1ed90dd35b95'],
+    ['invented-product', '757c196b-a069-45c2-aa27-1ed90dd35b95'],
+    ['vibe-os', 'invalid'],
+  ]) {
+    const response = await POST(subscribeRequest({
+      email: 'invalid@example.invalid', listType: 'product-interest', intent, requestId,
+    }))
+    assert.equal(response.status, 400)
+  }
+  assert.equal(captures, 0)
+})
+
+test('the product-index Suno card retains its interest attribution', async () => {
+  const requests = []
+  const { POST } = loadSubscribeRoute(async (url, options) => {
+    const body = JSON.parse(options.body)
+    requests.push(body)
+    return Response.json({ accepted: true, requestId: body.request_id })
+  })
+  const response = await POST(subscribeRequest({
+    email: 'suno@example.invalid',
+    listType: 'product-interest',
+    intent: 'suno-prompts-bundle',
+    requestId: '0f79babb-e432-44b6-b81e-0698fe70c5e3',
+  }))
+  assert.equal(response.status, 200)
+  assert.equal(requests[0].metadata.intent, 'suno-prompts-bundle')
 })
 
 test('product interest works without a Resend API key', async () => {
@@ -229,8 +326,9 @@ test('product interest works without a Resend API key', async () => {
   delete process.env.RESEND_API_KEY
   const { POST } = loadSubscribeRoute(
     async (url, options) => {
-      requests.push({ url: String(url), body: JSON.parse(options.body) })
-      return Response.json({ accepted: true })
+      const body = JSON.parse(options.body)
+      requests.push({ url: String(url), body })
+      return Response.json({ accepted: true, requestId: body.request_id })
     },
     { configureResend: false },
   )
@@ -240,6 +338,7 @@ test('product interest works without a Resend API key', async () => {
       email: 'growth-only@example.invalid',
       listType: 'product-interest',
       intent: 'vibe-os',
+      requestId: 'd8dc21e0-c0a9-4fd2-90fc-35d68f34fe8e',
     }))
     const result = await response.json()
 
@@ -331,9 +430,21 @@ test('an explicit product surface uses the interest-only client state', async ()
   })
   assert.equal(body.intent, 'vibe-os')
   assert.equal(body.listType, 'product-interest')
+  assert.match(body.requestId, /^[0-9a-f-]{36}$/)
   const status = findElement(rendered, (element) => element.props?.role === 'status')
   assert.match(String(status?.props.children), /Your product interest was recorded\./)
   assert.doesNotMatch(String(status?.props.children), /You are subscribed\./)
+})
+
+test('interest form reuses its operation id after failure and changes it for a changed email', async () => {
+  const first = await submitWaitlist(undefined, { listType: 'product-interest', intent: 'vibe-os' }, [
+    { ok: false, json: async () => ({ error: 'Capture unavailable' }) },
+    { ok: true, json: async () => ({ success: true }) },
+  ])
+  const retried = await first.retry()
+  assert.equal(retried.requestId, first.body.requestId)
+  const changed = await first.retry('different@example.invalid')
+  assert.notEqual(changed.requestId, first.body.requestId)
 })
 
 test('missing, repeated, or unsafe intents cannot become product attribution', async () => {

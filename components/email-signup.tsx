@@ -85,6 +85,7 @@ export function EmailSignup({
     'idle' | 'loading' | 'done' | 'error' | 'skipped'
   >('idle')
   const [demandError, setDemandError] = useState('')
+  const [interestRequest, setInterestRequest] = useState<{ fingerprint: string; id: string } | null>(null)
   const normalizedPlaceholder = `${placeholder.replace(/[.…]+$/, '')}…`
   const interestOnly = listType === 'product-interest'
 
@@ -101,6 +102,20 @@ export function EmailSignup({
     setErrorMessage('')
 
     try {
+      const fingerprint = JSON.stringify({
+        email: email.trim().toLowerCase(),
+        name: showName ? name.trim() : '',
+        source: source ?? '',
+        intent: intent ?? '',
+      })
+      const requestId = interestOnly
+        ? interestRequest?.fingerprint === fingerprint
+          ? interestRequest.id
+          : crypto.randomUUID()
+        : undefined
+      if (interestOnly && requestId && interestRequest?.id !== requestId) {
+        setInterestRequest({ fingerprint, id: requestId })
+      }
       const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
@@ -112,6 +127,7 @@ export function EmailSignup({
           listType,
           source,
           intent,
+          requestId,
           website,
         }),
       })
