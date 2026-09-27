@@ -267,25 +267,6 @@ export function MusicLabShell() {
           </section>
         ))}
 
-        <section className="mt-20 grid gap-8 rounded-[1.75rem] border border-stone-300/15 bg-[#171512] p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:p-10" aria-labelledby="composition-heading">
-          <div>
-            <p className="text-sm font-medium text-[#d9855f]">Compose with AI</p>
-            <h2 id="composition-heading" className="mt-2 text-2xl font-semibold tracking-tight text-stone-100 sm:text-3xl">
-              Carry the phrase into a full track.
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-stone-400 sm:text-base">
-              When the musical idea is clear, move into the Vibe OS workflow for prompts, structure, iteration, and release planning.
-            </p>
-          </div>
-          <Link
-            href="/products/vibe-os"
-            className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-stone-300/20 px-6 py-3 text-sm font-semibold text-stone-200 transition-colors duration-200 hover:border-[#d9855f]/70 hover:text-[#e49773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d9855f] focus-visible:ring-offset-4 focus-visible:ring-offset-[#171512]"
-          >
-            Explore Vibe OS
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
-        </section>
-
         <aside className="mt-8 border-l border-[#d9855f]/50 pl-5 text-sm leading-6 text-stone-500">
           The violin synthesizes sound in your browser and records only performance events for replay. It does not use your microphone or upload a recording. Piano samples load from the approved Salamander sample host.
         </aside>

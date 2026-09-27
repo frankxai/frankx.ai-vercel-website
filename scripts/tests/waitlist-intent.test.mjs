@@ -14,12 +14,12 @@ function loadModule(path, imports = {}, fetch = () => assert.fail('unexpected ne
   const { outputText } = ts.transpileModule(source, {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
   })
-  const module = { exports: {} }
+  const loadedModule = { exports: {} }
   const localRequire = (id) => Object.hasOwn(imports, id) ? imports[id] : require(id)
   new Function('require', 'module', 'exports', 'fetch', outputText)(
-    localRequire, module, module.exports, fetch,
+    localRequire, loadedModule, loadedModule.exports, fetch,
   )
-  return module.exports
+  return loadedModule.exports
 }
 
 function findElement(node, predicate) {
@@ -34,7 +34,7 @@ function findElement(node, predicate) {
   }
 }
 
-async function submitWaitlist(intent) {
+async function submitWaitlist(intent, signupOverrides = {}) {
   const state = []
   let hookIndex = 0
   const requests = []
@@ -64,9 +64,10 @@ async function submitWaitlist(intent) {
   const page = await WaitlistPage({ searchParams: Promise.resolve({ intent }) })
   const signup = findElement(page, (element) => element.type === EmailSignup)
   assert.ok(signup, 'the route must render the existing signup form')
+  const signupProps = { ...signup.props, ...signupOverrides }
   const renderSignup = () => {
     hookIndex = 0
-    return EmailSignup(signup.props)
+    return EmailSignup(signupProps)
   }
   const email = findElement(renderSignup(), (element) => element.type === 'input' && element.props.type === 'email')
   email.props.onChange({ target: { value: 'unit-test@example.invalid' } })
@@ -75,8 +76,234 @@ async function submitWaitlist(intent) {
   assert.equal(requests.length, 1)
   assert.equal(requests[0].url, '/api/subscribe')
   assert.equal(requests[0].method, 'POST')
-  return { props: signup.props, body: requests[0].body }
+  return { props: signupProps, body: requests[0].body, rendered: renderSignup() }
 }
+
+async function submitDemand(response) {
+  const state = []
+  let hookIndex = 0
+  const requests = []
+  const { EmailSignup } = loadModule('components/email-signup.tsx', {
+    react: {
+      useId: () => 'test-id',
+      useState: (initial) => {
+        const index = hookIndex++
+        if (!(index in state)) state[index] = initial
+        return [state[index], (value) => { state[index] = value }]
+      },
+    },
+    'next/link': { default: 'a' },
+    'next/navigation': { useRouter: () => ({}) },
+    '@/lib/analytics': { trackEvent() {} },
+    '@/lib/utils': { cn: (...values) => values.filter(Boolean).join(' ') },
+    '@/lib/diagnostic/demand': loadModule('lib/diagnostic/demand.ts'),
+  }, async (url, options) => {
+    requests.push({ url, body: JSON.parse(options.body) })
+    return Array.isArray(response) ? response.shift() : response
+  })
+  const props = { askDemand: true, intent: 'bv-kit', listType: 'premium-packs' }
+  const render = () => {
+    hookIndex = 0
+    return EmailSignup(props)
+  }
+
+  // Seed the hook state as a completed signup with one optional answer.
+  render()
+  state[3] = 'success'
+  state[5] = '25-99'
+  const demandForm = findElement(
+    render(),
+    (element) => element.type === 'form' && element.props?.className?.includes('mt-6'),
+  )
+  await demandForm.props.onSubmit({ preventDefault() {} })
+  return {
+    requests,
+    rendered: render(),
+    retry: async () => {
+      const retryForm = findElement(
+        render(),
+        (element) => element.type === 'form' && element.props?.className?.includes('mt-6'),
+      )
+      await retryForm.props.onSubmit({ preventDefault() {} })
+      return render()
+    },
+  }
+}
+
+function loadSubscribeRoute(fetch, { configureResend = true } = {}) {
+  const previousKey = process.env.RESEND_API_KEY
+  if (configureResend) process.env.RESEND_API_KEY = 'test-key'
+  else delete process.env.RESEND_API_KEY
+  try {
+    return loadModule('app/api/subscribe/route.ts', {
+      'next/server': {
+        NextResponse: { json: (body, init) => Response.json(body, init) },
+      },
+      '@/lib/email-templates': { musicPromptsEmail: () => ({}) },
+      '@/lib/email-templates-welcome': { welcomeEmail1: () => ({}) },
+      '@/lib/email-templates-ikigai': { ikigaiBrandingEmail: () => ({}) },
+      '@/lib/email-templates-inner-circle': { innerCircleWaitlistEmail: () => ({}) },
+      '@/lib/email-templates-mvu': {
+        mvuRsvpConfirmation: () => ({}),
+        mvuRsvpAlert: () => ({}),
+      },
+      '@/lib/diagnostic/waitlist-intents': loadModule('lib/diagnostic/waitlist-intents.ts'),
+      '@/lib/ratelimit': {
+        emailRatelimit: { limit: async () => ({ success: true }) },
+        getClientIdentifier: () => 'test-client',
+      },
+      '@/lib/seo': { siteConfig: { url: 'https://www.frankx.ai' } },
+    }, fetch)
+  } finally {
+    if (previousKey === undefined) delete process.env.RESEND_API_KEY
+    else process.env.RESEND_API_KEY = previousKey
+  }
+}
+
+function subscribeRequest(body) {
+  return {
+    json: async () => body,
+    headers: new Headers({ referer: 'https://www.frankx.ai/waitlist?intent=vibe-os' }),
+    url: 'https://www.frankx.ai/api/subscribe',
+  }
+}
+
+test('product interest uses its dedicated Growth Core program and never calls Resend', async () => {
+  const requests = []
+  const { POST } = loadSubscribeRoute(async (url, options) => {
+    requests.push({ url: String(url), body: JSON.parse(options.body) })
+    return Response.json({ accepted: true, requestId: 'growth-request-id' })
+  })
+
+  const response = await POST(subscribeRequest({
+    email: 'existing@example.invalid',
+    listType: 'product-interest',
+    intent: 'vibe-os',
+    source: '/waitlist',
+  }))
+  const result = await response.json()
+
+  assert.equal(response.status, 200)
+  assert.equal('duplicate' in result, false)
+  assert.equal(result.welcomeSent, false)
+  assert.equal(result.message, 'Your product interest was recorded.')
+  assert.equal(requests[0].body.program, 'frankx-product-interest')
+  assert.deepEqual(requests[0].body.metadata, {
+    list_type: 'product-interest',
+    intent: 'vibe-os',
+  })
+  assert.equal(requests.length, 1, 'product interest must stop after Growth Core accepts')
+  assert.doesNotMatch(requests[0].url, /api\.resend\.com/)
+})
+
+test('a product-interest retry reports failure until Growth Core accepts', async () => {
+  const requests = []
+  const { POST } = loadSubscribeRoute(async (url, options) => {
+    requests.push({ url: String(url), body: JSON.parse(options.body) })
+    return requests.length === 1
+      ? Response.json({ accepted: false }, { status: 503 })
+      : Response.json({ accepted: true })
+  })
+
+  const request = subscribeRequest({
+    email: 'retry@example.invalid',
+    listType: 'product-interest',
+    intent: 'vibe-os',
+  })
+  const failedResponse = await POST(request)
+  const failedResult = await failedResponse.json()
+  const retriedResponse = await POST(request)
+  const retriedResult = await retriedResponse.json()
+
+  assert.equal(failedResponse.status, 503)
+  assert.equal(failedResult.error, 'Product interest could not be recorded. Please try again.')
+  assert.equal(retriedResponse.status, 200)
+  assert.equal(retriedResult.message, 'Your product interest was recorded.')
+  assert.equal(requests.length, 2)
+  assert.ok(requests.every((entry) => entry.body.program === 'frankx-product-interest'))
+})
+
+test('product interest works without a Resend API key', async () => {
+  const requests = []
+  const previousKey = process.env.RESEND_API_KEY
+  delete process.env.RESEND_API_KEY
+  const { POST } = loadSubscribeRoute(
+    async (url, options) => {
+      requests.push({ url: String(url), body: JSON.parse(options.body) })
+      return Response.json({ accepted: true })
+    },
+    { configureResend: false },
+  )
+
+  try {
+    const response = await POST(subscribeRequest({
+      email: 'growth-only@example.invalid',
+      listType: 'product-interest',
+      intent: 'vibe-os',
+    }))
+    const result = await response.json()
+
+    assert.equal(response.status, 200)
+    assert.equal(result.message, 'Your product interest was recorded.')
+    assert.equal(requests.length, 1)
+  } finally {
+    if (previousKey === undefined) delete process.env.RESEND_API_KEY
+    else process.env.RESEND_API_KEY = previousKey
+  }
+})
+
+test('courses waitlist preserves newsletter topic and welcome delivery behavior', async () => {
+  const requests = []
+  const { POST } = loadSubscribeRoute(async (url, options) => {
+    requests.push({ url: String(url), body: JSON.parse(options.body) })
+    if (requests.length === 1) return Response.json({ accepted: true })
+    if (requests.length === 2) return Response.json({ id: 'contact-id' })
+    return Response.json({ success: true })
+  })
+
+  const response = await POST(subscribeRequest({
+    email: 'course@example.invalid',
+    listType: 'courses-waitlist',
+    intent: 'course-creator-business-systems',
+  }))
+  const result = await response.json()
+
+  assert.equal(response.status, 200)
+  assert.equal(result.message, 'Successfully subscribed!')
+  assert.equal(result.welcomeSent, true)
+  assert.equal(requests[0].body.program, 'frankx-courses-waitlist')
+  assert.ok(requests[2].body.topics.some((topic) => topic.subscription === 'opt_in'))
+  assert.equal(requests[3].url, 'https://api.resend.com/emails')
+})
+
+test('optional demand answers report success only after a successful response', async () => {
+  const accepted = await submitDemand({ ok: true, json: async () => ({ success: true }) })
+  assert.equal(accepted.requests[0].url, '/api/demand')
+  assert.ok(findElement(accepted.rendered, (element) =>
+    element.props?.children === 'Recorded. That is what decides build order.'))
+
+  const rejected = await submitDemand([
+    { ok: false, json: async () => ({ error: 'Could not save your answers.' }) },
+    { ok: true, json: async () => ({ success: true }) },
+  ])
+  assert.equal(
+    findElement(rejected.rendered, (element) => element.props?.role === 'alert')?.props.children,
+    'Could not save your answers.',
+  )
+  assert.equal(findElement(rejected.rendered, (element) =>
+    element.props?.children === 'Recorded. That is what decides build order.'), undefined)
+  assert.equal(
+    findElement(rejected.rendered, (element) => element.props?.['aria-pressed'] === true)
+      ?.props.children,
+    '25 to 99',
+    'a rejected response must preserve the selected answer',
+  )
+
+  const retried = await rejected.retry()
+  assert.deepEqual(rejected.requests[1].body, rejected.requests[0].body)
+  assert.ok(findElement(retried, (element) =>
+    element.props?.children === 'Recorded. That is what decides build order.'))
+})
 
 for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'Prompt Vault']]) {
   test(`${intent} reaches the signup request with its product identity and launch list`, async () => {
@@ -88,12 +315,25 @@ for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'P
   })
 }
 
-test('legacy waitlist entry points preserve their current list routing', async () => {
-  for (const intent of ['course-creator-business-systems', 'creative-ai-toolkit']) {
-    const { body } = await submitWaitlist(intent)
-    assert.equal(body.intent, intent)
+test('legacy and unregistered waitlist intents preserve the existing delivery routing', async () => {
+  for (const intent of ['course-creator-business-systems', 'creative-ai-toolkit', 'vibe-os']) {
+    const { body, rendered } = await submitWaitlist(intent)
     assert.equal(body.listType, 'courses-waitlist')
+    const status = findElement(rendered, (element) => element.props?.role === 'status')
+    assert.match(String(status?.props.children), /You are subscribed\./)
   }
+})
+
+test('an explicit product surface uses the interest-only client state', async () => {
+  const { body, rendered } = await submitWaitlist(undefined, {
+    listType: 'product-interest',
+    intent: 'vibe-os',
+  })
+  assert.equal(body.intent, 'vibe-os')
+  assert.equal(body.listType, 'product-interest')
+  const status = findElement(rendered, (element) => element.props?.role === 'status')
+  assert.match(String(status?.props.children), /Your product interest was recorded\./)
+  assert.doesNotMatch(String(status?.props.children), /You are subscribed\./)
 })
 
 test('missing, repeated, or unsafe intents cannot become product attribution', async () => {
