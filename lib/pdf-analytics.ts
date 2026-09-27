@@ -56,23 +56,6 @@ export async function trackPDFDownload(data: Omit<PDFDownload, 'id' | 'timestamp
   return append(DOWNLOADS, { id: generateId(), timestamp: new Date().toISOString(), ...data })
 }
 
-// Count a successful direct-download redirect once per guide and browser session.
-export async function trackDirectDownloadOnce(
-  data: Omit<PDFDownload, 'id' | 'timestamp'>
-): Promise<boolean> {
-  const key = `pdf-analytics:direct-download:${data.guideSlug}:${data.sessionId}`
-  const claimed = await kv.set(key, '1', { nx: true, ex: 86_400 })
-  if (claimed !== 'OK') return false
-
-  try {
-    await trackPDFDownload(data)
-    return true
-  } catch (error) {
-    await kv.del(key)
-    throw error
-  }
-}
-
 // Create PDF lead
 export async function createPDFLead(data: Omit<PDFLead, 'id' | 'timestamp'>): Promise<PDFLead> {
   return append(LEADS, { id: generateId(), timestamp: new Date().toISOString(), ...data })
@@ -144,8 +127,14 @@ export async function getAnalyticsSummary(days: number = 30): Promise<AnalyticsS
   })
 
   recentDownloads.forEach(d => {
-    const stats = guideStats.get(d.guideSlug)
-    if (stats) stats.downloads++
+    const stats = guideStats.get(d.guideSlug) || {
+      title: d.guideTitle,
+      views: 0,
+      downloads: 0,
+      leads: 0
+    }
+    stats.downloads++
+    guideStats.set(d.guideSlug, stats)
   })
 
   recentLeads.forEach(l => {

@@ -2,8 +2,8 @@ import { after, type NextRequest, NextResponse } from 'next/server'
 import registry from '@/data/products.json'
 import type { ProductRecord } from '@/types/products'
 import { isPublicDownloadProduct } from '@/lib/download-access'
-import { TRACKED_GUIDES, trackDirectDownloadOnce } from '@/lib/pdf-analytics'
-import { analyticsRatelimit, getClientIdentifier } from '@/lib/ratelimit'
+import { TRACKED_GUIDES, trackPDFDownload } from '@/lib/pdf-analytics'
+import { analyticsRatelimit } from '@/lib/ratelimit'
 
 const products = registry as ProductRecord[]
 
@@ -82,20 +82,19 @@ export async function GET(request: NextRequest) {
   // Construct the public blob URL
   const blobUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
 
-  // A redirect is the observable download outcome here. Analytics runs after
-  // the response and cannot make access depend on Redis availability.
-  const sessionId = searchParams.get('sid')
-  if (sessionId && /^session_\d{13}_[a-z0-9]{6,16}$/.test(sessionId) && TRACKED_GUIDES.has(product.slug)) {
+  // Count the issued redirect once, without identifying the reader. Analytics
+  // runs after the response and cannot make access depend on Redis availability.
+  if (TRACKED_GUIDES.has(product.slug) && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
     after(async () => {
       try {
-        const { success } = await analyticsRatelimit.limit(getClientIdentifier(request))
+        const { success } = await analyticsRatelimit.limit('public-book-download')
         if (!success) return
-        await trackDirectDownloadOnce({
+        await trackPDFDownload({
           guideSlug: product.slug,
           guideTitle: product.name,
-          sessionId,
+          sessionId: 'anonymous',
           downloadMethod: 'direct',
-          userAgent: (request.headers.get('user-agent') || 'unknown').slice(0, 300),
+          userAgent: 'omitted',
         })
       } catch (error) {
         console.error('Book download analytics failed:', error)

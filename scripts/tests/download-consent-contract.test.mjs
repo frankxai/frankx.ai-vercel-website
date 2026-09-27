@@ -37,11 +37,10 @@ function loadDownloadRoute(fetch, path = 'app/api/download/route.ts', analytics 
     '@/lib/download-access': loadModule('lib/download-access.ts', {}, fetch),
     '@/lib/pdf-analytics': {
       TRACKED_GUIDES: new Set(['soulbook', 'vibe-os', 'love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']),
-      trackDirectDownloadOnce: analytics.track ?? (async () => true),
+      trackPDFDownload: analytics.track ?? (async () => true),
     },
     '@/lib/ratelimit': {
       analyticsRatelimit: { limit: async () => ({ success: true }) },
-      getClientIdentifier: () => 'test-client',
     },
   }
   return loadModule(path, imports, fetch)
@@ -65,7 +64,7 @@ test('an absent offer never makes an unknown product downloadable', () => {
 test('book download cards only advertise catalogued public PDFs', () => {
   const { hasBookPdf } = loadModule(
     'app/books/components/BookDownloadGate.tsx',
-    { 'react/jsx-runtime': {}, './BookDownloadLink': { __esModule: true, default: () => null } },
+    { 'react/jsx-runtime': {} },
     () => {},
   )
   const products = JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8'))
@@ -80,7 +79,7 @@ test('book download cards only advertise catalogued public PDFs', () => {
   }
 })
 
-test('a verified book redirect schedules best-effort analytics without gating access', async () => {
+test('a verified book redirect schedules anonymous best-effort analytics without gating access', async () => {
   const scheduled = []
   const events = []
   const { GET } = loadDownloadRoute(
@@ -88,43 +87,48 @@ test('a verified book redirect schedules best-effort analytics without gating ac
     'app/api/download/route.ts',
     { scheduled, track: async (event) => { events.push(event) } },
   )
-  const response = await GET(new Request('https://frankx.ai/api/download?product=love-and-poetry&sid=session_1234567890123_abcdefghi'))
+  const response = await GET(new Request('https://frankx.ai/api/download?product=love-and-poetry'))
   assert.equal(response.status, 307)
   assert.match(response.headers.get('location'), /love-and-poetry\.pdf\?download=1$/)
   assert.equal(scheduled.length, 1)
   await scheduled[0]()
   assert.deepEqual(events.map((event) => event.guideSlug), ['love-and-poetry'])
+  assert.equal(events[0].sessionId, 'anonymous')
+  assert.equal(events[0].userAgent, 'omitted')
 
-  const withoutSession = await GET(new Request('https://frankx.ai/api/download?product=love-and-poetry'))
-  assert.equal(withoutSession.status, 307)
+  const privacySignal = await GET(new Request('https://frankx.ai/api/download?product=love-and-poetry', { headers: { DNT: '1' } }))
+  assert.equal(privacySignal.status, 307)
+  const globalPrivacyControl = await GET(new Request('https://frankx.ai/api/download?product=love-and-poetry', { headers: { 'Sec-GPC': '1' } }))
+  assert.equal(globalPrivacyControl.status, 307)
   assert.equal(scheduled.length, 1)
 })
 
-test('direct download analytics deduplicates by guide and browser session', async () => {
-  const keys = new Set()
-  const events = []
-  const kv = {
-    set: async (key) => keys.has(key) ? null : (keys.add(key), 'OK'),
-    rpush: async (_key, event) => { events.push(event) },
-    ltrim: async () => {},
-    del: async (key) => { keys.delete(key) },
+test('PDF analytics allows the registered free book slugs', () => {
+  const { TRACKED_GUIDES } = loadModule('lib/pdf-analytics.ts', {
+    '@vercel/kv': { createClient: () => ({}) },
+    './redis-env': { redisRestConfig: () => ({}) },
+  }, () => {})
+  for (const slug of ['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
+    assert.equal(TRACKED_GUIDES.has(slug), true, slug)
   }
-  const { trackDirectDownloadOnce } = loadModule('lib/pdf-analytics.ts', {
+})
+
+test('a book with downloads but no reader-view events appears in the PDF summary', async () => {
+  const now = new Date().toISOString()
+  const kv = {
+    lrange: async (key) => key === 'pdf-analytics:downloads'
+      ? [{ guideSlug: 'love-and-poetry', guideTitle: 'Love & Poetry', timestamp: now, downloadMethod: 'direct', sessionId: 'anonymous', userAgent: 'omitted' }]
+      : [],
+  }
+  const { getAnalyticsSummary } = loadModule('lib/pdf-analytics.ts', {
     '@vercel/kv': { createClient: () => kv },
     './redis-env': { redisRestConfig: () => ({}) },
   }, () => {})
-  const download = {
-    guideSlug: 'love-and-poetry',
-    guideTitle: 'Love & Poetry',
-    sessionId: 'session_1234567890123_abcdefghi',
-    downloadMethod: 'direct',
-    userAgent: 'test',
-  }
-  assert.equal(await trackDirectDownloadOnce(download), true)
-  assert.equal(await trackDirectDownloadOnce(download), false)
-  assert.equal(events.length, 1)
-  assert.equal(await trackDirectDownloadOnce({ ...download, guideSlug: 'imagination' }), true)
-  assert.equal(events.length, 2)
+  const summary = await getAnalyticsSummary(30)
+  assert.deepEqual(summary.topGuides.find((guide) => guide.slug === 'love-and-poetry'), {
+    slug: 'love-and-poetry', title: 'Love & Poetry', views: 0,
+    downloads: 1, leads: 0, conversionRate: 0,
+  })
 })
 
 test('priced products are not exposed by either public download method', async () => {
