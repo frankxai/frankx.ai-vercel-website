@@ -223,8 +223,9 @@ test('generic file redirects only resolve registered public downloads', async ()
   assert.equal(arbitrary.status, 404)
   assert.equal(gated.status, 404)
   assert.equal(soulbook.status, 307)
+  assert.match(soulbook.headers.get('location'), /soulbook-7-pillars-framework\.pdf\?download=1$/)
   assert.equal(guide.status, 307)
-  assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf$/)
+  assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf\?download=1$/)
 })
 
 test('every free book remains direct without audience enrollment when Resend is configured', async () => {
