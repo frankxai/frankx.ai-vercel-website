@@ -92,8 +92,6 @@ const sections: NavSection[] = [
     items: [
       { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks',
       },
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method',
-      },
       { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools',
       },
       { name: 'Music School', href: '/music/learn', icon: GraduationCap, description: 'Theory through production',

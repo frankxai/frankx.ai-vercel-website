@@ -1,15 +1,12 @@
 import Script from 'next/script'
 
 import products from '@/data/products.json'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
 
 // Premium Vibe OS Components
 import VibeOSHero from './components/VibeOSHero'
-import VibeOSFeatures from './components/VibeOSFeatures'
-import VibeOSSocialProof from './components/VibeOSSocialProof'
 import VibeOSModules from './components/VibeOSModules'
-import VibeOSBonuses from './components/VibeOSBonuses'
 import VibeOSFAQ from './components/VibeOSFAQ'
 import VibeOSFinalCTA from './components/VibeOSFinalCTA'
 
@@ -20,8 +17,8 @@ if (!product) {
 }
 
 export const metadata = createMetadata({
-  title: `${product.name} - Free Creative State Management | FrankX.ai`,
-  description: product.promise,
+  title: `${product.name} concept | FrankX`,
+  description: 'Preview the unreleased Vibe OS workspace concept and try a manual experiment.',
   path: `/products/${product.slug}`,
   keywords: [
     'vibe os',
@@ -38,26 +35,14 @@ export const metadata = createMetadata({
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
+  '@type': 'WebPage',
   name: product.name,
-  description: product.promise,
+  description: 'A preview of the unreleased Vibe OS workspace concept.',
+  url: `${siteConfig.url}/products/vibe-os`,
   image: 'https://frankx.ai/images/products/vibe-os-hero.jpg',
-  applicationCategory: 'ProductivityApplication',
-  operatingSystem: 'Web',
   brand: {
     '@type': 'Brand',
     name: 'FrankX.ai'
-  },
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: product.offer.currency,
-    availability: 'https://schema.org/InStock'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    reviewCount: '23'
   }
 }
 
@@ -77,19 +62,9 @@ export default function VibeOSPage() {
       <div className="relative z-10">
         <VibeOSHero productId={productId} product={product} />
 
-        <VibeOSFeatures transformation={product.transformation} />
-
-        <VibeOSSocialProof stats={product.socialProof.stats} />
-
         <VibeOSModules
-          productId={productId}
           modules={product.modules}
-          offer={product.offer}
         />
-
-        {product.bonuses && product.bonuses.length > 0 && (
-          <VibeOSBonuses bonuses={product.bonuses} />
-        )}
 
         {/* Use Cases Section */}
         <section className="relative py-24">
@@ -97,13 +72,13 @@ export default function VibeOSPage() {
           <div className="relative mx-auto max-w-6xl px-6">
             <div className="mb-12 text-center">
               <span className="glow-badge glow-badge-cyan mb-4 inline-flex">
-                Built for Creators
+                Ways to test the idea
               </span>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                How Creators Use Vibe OS
+                Three places to start observing
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-white/60">
-                Real workflows from creators who manage their energy and ship consistently.
+                These are suggested experiments, not reported customer results.
               </p>
             </div>
 
@@ -116,7 +91,7 @@ export default function VibeOSPage() {
                 </div>
                 <h3 className="mb-2 font-semibold text-white">Writers</h3>
                 <p className="text-sm leading-relaxed text-white/60">
-                  Track peak writing hours, manage context switching between projects, and build sustainable daily writing habits.
+                  Note when focused writing feels easiest and compare that observation with your project schedule.
                 </p>
               </div>
 
@@ -128,7 +103,7 @@ export default function VibeOSPage() {
                 </div>
                 <h3 className="mb-2 font-semibold text-white">Musicians</h3>
                 <p className="text-sm leading-relaxed text-white/60">
-                  Schedule production sessions during high-energy windows and creative work during flow states.
+                  Record the conditions around music sessions and look for patterns worth testing later.
                 </p>
               </div>
 
@@ -140,16 +115,29 @@ export default function VibeOSPage() {
                 </div>
                 <h3 className="mb-2 font-semibold text-white">Designers</h3>
                 <p className="text-sm leading-relaxed text-white/60">
-                  Optimize creative sessions, manage client work energy, and prevent burnout with structured tracking.
+                  Separate observations about focus from project notes when planning studio and client work.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <VibeOSFAQ faq={product.faq} />
+        <VibeOSFAQ faq={[
+          {
+            question: 'What is available now?',
+            answer: 'The concept notes and manual experiment are available on this site. The web app and workspace template are not publicly available.',
+          },
+          {
+            question: 'Can I try the idea without the app?',
+            answer: 'Yes. The concept notes explain a manual experiment you can run in a private note or spreadsheet. It is not a Vibe OS app or template.',
+          },
+          {
+            question: 'Is there a launch date or paid offer?',
+            answer: 'No launch date, checkout, or paid Vibe OS offer is published on this page.',
+          },
+        ]} />
 
-        <VibeOSFinalCTA productId={productId} offer={product.offer} />
+        <VibeOSFinalCTA productId={productId} />
       </div>
 
       <Script id="product-structured-data" type="application/ld+json">

@@ -2,13 +2,12 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Sparkles, Mail, Play, Waves } from 'lucide-react'
+import { BookOpen, Waves } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import type { ProductRecord } from '@/types/products'
 
-// Coming Soon mode - controls pricing visibility
-const COMING_SOON_MODE = false
+const CONCEPT_NOTES_HREF = '/products/vibe-os/docs'
 
 interface VibeOSHeroProps {
   productId: string
@@ -16,13 +15,13 @@ interface VibeOSHeroProps {
 }
 
 export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
-  const handleCTAClick = (target: 'primary' | 'secondary') => {
+  const handleCTAClick = () => {
     trackEvent('product_cta_click', {
       productId,
       location: 'hero',
-      target,
-      href: target === 'primary' ? '/newsletter' : product.offer.ctaSecondaryHref,
-      label: target === 'primary' ? 'join-waitlist' : product.offer.ctaSecondaryTracking
+      target: 'concept-notes',
+      href: CONCEPT_NOTES_HREF,
+      label: 'read-vibe-os-concept-notes'
     })
   }
 
@@ -71,17 +70,10 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {COMING_SOON_MODE ? (
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-amber-200 backdrop-blur-sm">
-              <Sparkles className="h-4 w-4" />
-              Coming Soon
-            </div>
-          ) : (
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-cyan-200 backdrop-blur-sm">
-              <Waves className="h-4 w-4" />
-              {product.badge}
-            </div>
-          )}
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-cyan-200 backdrop-blur-sm">
+            <Waves className="h-4 w-4" />
+            Concept preview · app in development
+          </div>
         </motion.div>
 
         {/* Main Headline */}
@@ -123,87 +115,31 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
           </p>
         </motion.div>
 
-        {/* Key Benefits */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/70"
-        >
-          <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span>50+ Genre Prompts</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-            <span>Emotion Mapping</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-            <span>Release Playbooks</span>
-          </div>
-        </motion.div>
-
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-12 flex flex-wrap justify-center gap-4"
+          className="mt-10 flex flex-wrap justify-center gap-4"
         >
-          {COMING_SOON_MODE ? (
-            <Link
-              href="/newsletter"
-              onClick={() => handleCTAClick('primary')}
-              className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
-            >
-              <Mail className="h-5 w-5" />
-              Join Waitlist
-            </Link>
-          ) : (
-            <Link
-              href={product.offer.ctaPrimaryHref}
-              onClick={() => handleCTAClick('primary')}
-              className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
-            >
-              {product.offer.ctaPrimary}
-            </Link>
-          )}
-
-          <button
-            onClick={() => handleCTAClick('secondary')}
-            className="group inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-sm font-medium text-white/80 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+          <Link
+            href={CONCEPT_NOTES_HREF}
+            onClick={handleCTAClick}
+            className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
           >
-            <Play className="h-4 w-4" />
-            Watch Overview
-          </button>
+            <BookOpen className="h-5 w-5" />
+            Read the concept notes
+          </Link>
         </motion.div>
 
-        {/* Trust Indicator */}
+        {/* Availability note */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-8 text-xs text-white/40"
+          className="mt-16 max-w-2xl text-sm leading-relaxed text-white/50"
         >
-          <div className="flex items-center gap-2">
-            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>500+ Sessions by Frank</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>30-Day Guarantee</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>Lifetime Updates</span>
-          </div>
+          The concept notes include a manual experiment you can run with your own private note or spreadsheet. The web app and workspace template are not available.
         </motion.div>
       </div>
 

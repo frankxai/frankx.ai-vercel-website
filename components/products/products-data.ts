@@ -6,16 +6,16 @@ export type ProductListItem = {
   name: string
   tagline: string
   href: string
-  status: 'active' | 'early-access'
+  status: 'concept' | 'early-access'
 }
 
 export const productsListItemData: ProductListItem[] = [
   {
     id: 'vibe-os',
-    name: 'Vibe OS',
-    tagline: 'Suno Music Mastery',
+    name: 'Vibe OS creative-state workspace',
+    tagline: 'Concept notes',
     href: '/products/vibe-os',
-    status: 'active',
+    status: 'concept',
   },
   {
     id: 'creators-soulbook',
@@ -68,14 +68,14 @@ export const productsFaq = [
   },
   {
     q: 'Do I need technical experience?',
-    a: "Vibe OS and The Creator's Soulbook are designed for beginners. Creative AI Toolkit and Generative Creator OS are for intermediate users who want to go deeper.",
+    a: "The Vibe OS creative-state workspace is an unreleased concept. The Creator's Soulbook is designed for beginners; Creative AI Toolkit and Generative Creator OS are for intermediate users who want to go deeper.",
   },
   {
     q: 'Which products are available now?',
-    a: "Vibe OS has a public guide you can inspect now. The Creator's Soulbook, Suno Prompt Bundles, and other listed products remain previews or early-access routes until delivery is verified.",
+    a: "The Vibe OS creative-state workspace is an unreleased concept. The Creator's Soulbook, Suno Prompt Bundles, and other listed products remain previews or early-access routes until delivery is verified.",
   },
   {
     q: 'What do I get by joining Early Access?',
-    a: 'Early Access members get priority launch notification, exclusive early-bird pricing, behind-the-scenes development updates, and direct input on product refinement.',
+    a: 'The form records your email address and the product you selected.',
   },
 ]
