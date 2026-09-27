@@ -6,34 +6,30 @@ import { libraryBooks } from '@/lib/library-catalog';
 import { LibraryExplorer } from '@/components/library/LibraryExplorer';
 import { FeaturedShelf } from '@/components/library/FeaturedShelf';
 
-type Props = { params: Promise<{ collection: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> };
+type Props = { params: Promise<{ collection: string }> };
 
 export function generateStaticParams() {
   return libraryCollections.map(collection => ({ collection: collection.slug }));
 }
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { collection: slug } = await params;
   const collection = libraryCollections.find(item => item.slug === slug);
   if (!collection) notFound();
-  const filters = await searchParams;
   const url = `https://www.frankx.ai/library/collections/${slug}`;
   return {
     title: collection.title, description: collection.description,
     alternates: { canonical: url },
-    ...(filters.q || filters.category || filters.sort ? { robots: { index: false, follow: true } } : {}),
     openGraph: { title: collection.title, description: collection.description, url, type: 'website', images: [{ url: `${url}/opengraph-image`, width: 1200, height: 630, alt: collection.title }] },
     twitter: { card: 'summary_large_image', title: collection.title, description: collection.description, images: [`${url}/opengraph-image`] },
   };
 }
 
-export default async function CollectionPage({ params, searchParams }: Props) {
+export default async function CollectionPage({ params }: Props) {
   const { collection: slug } = await params;
   const collection = libraryCollections.find(item => item.slug === slug);
   if (!collection) notFound();
   const books = libraryBooks.filter(book => belongsToCollection(book, collection));
-  const filters = await searchParams;
-  const value = (input: string | string[] | undefined) => typeof input === 'string' ? input : '';
   const url = `https://www.frankx.ai/library/collections/${slug}`;
   const jsonLd = {
     '@context': 'https://schema.org', '@graph': [
@@ -54,7 +50,7 @@ export default async function CollectionPage({ params, searchParams }: Props) {
       <h1 className="max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl">{collection.title}</h1>
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/75">{collection.introduction}</p>
     </header>
-    <div className="mx-auto max-w-6xl px-6"><LibraryExplorer books={books} initial={{ q: value(filters.q), category: value(filters.category), sort: value(filters.sort) || 'recent' }}>
+    <div className="mx-auto max-w-6xl px-6"><LibraryExplorer books={books}>
       <FeaturedShelf title="Begin with these three" description="A suggested sequence through this collection. Each page names its sources, edition choices, and place to begin." books={collection.featured.map(featuredSlug => books.find(book => book.slug === featuredSlug)).filter((book): book is (typeof books)[number] => Boolean(book))} />
     </LibraryExplorer></div>
   </main>;
