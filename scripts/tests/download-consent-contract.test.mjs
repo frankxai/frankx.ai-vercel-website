@@ -49,8 +49,10 @@ function postRequest(productSlug, email = 'reader@example.invalid') {
 test('an absent offer never makes an unknown product downloadable', () => {
   const { isPublicDownloadProduct } = loadModule('lib/download-access.ts', {}, () => {})
   assert.equal(isPublicDownloadProduct({ id: 'unreviewed-product' }), false)
-  assert.equal(isPublicDownloadProduct({ id: 'vibe-os' }), true)
+  assert.equal(isPublicDownloadProduct({ id: 'vibe-os' }), false)
+  assert.equal(isPublicDownloadProduct({ id: 'vibe-os', offer: { primaryPrice: 0 } }), true)
   assert.equal(isPublicDownloadProduct({ id: 'golden-age-book' }), true)
+  assert.equal(isPublicDownloadProduct({ id: 'golden-age-book', offer: { primaryPrice: 27 } }), false)
 })
 
 test('priced products are not exposed by either public download method', async () => {
@@ -82,15 +84,27 @@ test('generic file redirects only resolve registered public downloads', async ()
 })
 
 test('existing free guide and gated book delivery remain available without audience enrollment', async () => {
-  const { GET, POST } = loadDownloadRoute(() => assert.fail('download must not call Resend'))
-  const guide = await GET(new Request('https://frankx.ai/api/download?product=vibe-os'))
-  assert.equal(guide.status, 307)
-  assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf$/)
+  const previousKey = process.env.RESEND_API_KEY
+  process.env.RESEND_API_KEY = 'test-resend-key-present'
+  const networkCalls = []
+  try {
+    const { GET, POST } = loadDownloadRoute((...args) => {
+      networkCalls.push(args)
+      return Promise.resolve(Response.json({ id: 'test-only' }))
+    })
+    const guide = await GET(new Request('https://frankx.ai/api/download?product=vibe-os'))
+    assert.equal(guide.status, 307)
+    assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf$/)
 
-  const book = await POST(postRequest('love-and-poetry'))
-  assert.equal(book.status, 200)
-  const result = await book.json()
-  assert.equal(result.success, true)
-  assert.equal(result.message, 'Your download is ready.')
-  assert.doesNotMatch(JSON.stringify(result), /reader@example\.invalid/)
+    const book = await POST(postRequest('love-and-poetry'))
+    assert.equal(book.status, 200)
+    const result = await book.json()
+    assert.equal(result.success, true)
+    assert.equal(result.message, 'Your download is ready.')
+    assert.doesNotMatch(JSON.stringify(result), /reader@example\.invalid/)
+    assert.deepEqual(networkCalls, [], 'download must not contact an email audience when Resend is configured')
+  } finally {
+    if (previousKey === undefined) delete process.env.RESEND_API_KEY
+    else process.env.RESEND_API_KEY = previousKey
+  }
 })
