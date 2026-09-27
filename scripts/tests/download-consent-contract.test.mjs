@@ -72,21 +72,28 @@ test('generic file redirects only resolve registered public downloads', async ()
   )
   const paid = await GET(new Request('https://frankx.ai/api/download/file?key=suno-prompt-library-guide.pdf'))
   const arbitrary = await GET(new Request('https://frankx.ai/api/download/file?key=other-file.pdf'))
-  const gated = await GET(new Request('https://frankx.ai/api/download/file?key=products/soulbook/soulbook-7-pillars-framework.pdf'))
+  const soulbook = await GET(new Request('https://frankx.ai/api/download/file?key=products/soulbook/soulbook-7-pillars-framework.pdf'))
   const guide = await GET(new Request('https://frankx.ai/api/download/file?key=products/vibe-os/Vibe-OS-Guide.pdf'))
   assert.equal(paid.status, 404)
   assert.equal(arbitrary.status, 404)
-  assert.equal(gated.status, 404)
+  assert.equal(soulbook.status, 307)
   assert.equal(guide.status, 307)
   assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf$/)
 })
 
-test('existing free guide and gated book delivery remain available without audience enrollment', async () => {
+test('every free book PDF downloads without email or audience enrollment', async () => {
   const { GET, POST } = loadDownloadRoute(() => assert.fail('download must not call Resend'))
   const guide = await GET(new Request('https://frankx.ai/api/download?product=vibe-os'))
   assert.equal(guide.status, 307)
   assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf$/)
 
+  for (const slug of ['soulbook', 'love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
+    const response = await GET(new Request(`https://frankx.ai/api/download?product=${slug}`))
+    assert.equal(response.status, 307, slug)
+    assert.match(response.headers.get('location'), /\.pdf$/, slug)
+  }
+
+  // Keep the legacy POST contract while existing callers migrate to direct links.
   const book = await POST(postRequest('love-and-poetry'))
   assert.equal(book.status, 200)
   const result = await book.json()
