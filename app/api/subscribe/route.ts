@@ -40,7 +40,9 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'music-lab': { topics: [TOPICS['music-suno'], TOPICS.newsletter] },
   arcanea: { topics: [TOPICS.newsletter] },
   investor: { topics: [TOPICS.newsletter] },
-  'courses-waitlist': { topics: [TOPICS.newsletter] },
+  // Product/course interest is not consent to the general newsletter. The
+  // durable Growth Core event carries its intent; no Resend topic is inferred.
+  'courses-waitlist': { topics: [] },
   'ikigai-branding': { topics: [TOPICS.newsletter] },
   'premium-packs': { topics: [TOPICS.newsletter, TOPICS['product-updates']] },
   'mvu-tallinn-2026': { topics: [TOPICS.newsletter] },
@@ -66,6 +68,7 @@ interface GrowthCaptureInput {
   listType: string
   source: string
   intention: string
+  intent: string
   raw: Record<string, unknown>
 }
 
@@ -111,7 +114,10 @@ async function captureGrowthLead(request: NextRequest, input: GrowthCaptureInput
         utm_campaign: optionalText(input.raw.utm_campaign),
         utm_content: optionalText(input.raw.utm_content),
         utm_term: optionalText(input.raw.utm_term),
-        metadata: { list_type: input.listType },
+        metadata: {
+          list_type: input.listType,
+          ...(input.intent ? { intent: input.intent } : {}),
+        },
       }),
     })
     const result = (await response.json().catch(() => null)) as
@@ -500,6 +506,7 @@ export async function POST(request: NextRequest) {
       listType,
       source,
       intention,
+      intent,
       raw,
     })
     if (!growthCapture.ok) {
@@ -585,11 +592,15 @@ export async function POST(request: NextRequest) {
     }
 
     let welcomeSent = false
-    try {
-      await sendWelcomeEmail(email, name, listType, intention)
-      welcomeSent = true
-    } catch (error) {
-      console.error('Welcome email error:', error)
+    // A product/course waitlist is intentionally topic-less. Recording
+    // interest must not trigger the general newsletter welcome sequence.
+    if (listType !== 'courses-waitlist') {
+      try {
+        await sendWelcomeEmail(email, name, listType, intention)
+        welcomeSent = true
+      } catch (error) {
+        console.error('Welcome email error:', error)
+      }
     }
 
     if (listType === 'music-lab' && !welcomeSent) {

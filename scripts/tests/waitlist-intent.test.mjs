@@ -78,6 +78,64 @@ async function submitWaitlist(intent) {
   return { props: signup.props, body: requests[0].body }
 }
 
+async function submitDemand(response) {
+  const state = []
+  let hookIndex = 0
+  const requests = []
+  const { EmailSignup } = loadModule('components/email-signup.tsx', {
+    react: {
+      useId: () => 'test-id',
+      useState: (initial) => {
+        const index = hookIndex++
+        if (!(index in state)) state[index] = initial
+        return [state[index], (value) => { state[index] = value }]
+      },
+    },
+    'next/link': { default: 'a' },
+    'next/navigation': { useRouter: () => ({}) },
+    '@/lib/analytics': { trackEvent() {} },
+    '@/lib/utils': { cn: (...values) => values.filter(Boolean).join(' ') },
+    '@/lib/diagnostic/demand': loadModule('lib/diagnostic/demand.ts'),
+  }, async (url, options) => {
+    requests.push({ url, body: JSON.parse(options.body) })
+    return response
+  })
+  const props = { askDemand: true, intent: 'bv-kit', listType: 'premium-packs' }
+  const render = () => {
+    hookIndex = 0
+    return EmailSignup(props)
+  }
+
+  // Seed the hook state as a completed signup with one optional answer.
+  render()
+  state[3] = 'success'
+  state[5] = '$50–$99'
+  const demandForm = findElement(
+    render(),
+    (element) => element.type === 'form' && element.props?.className?.includes('mt-6'),
+  )
+  await demandForm.props.onSubmit({ preventDefault() {} })
+  return { requests, rendered: render() }
+}
+
+test('optional demand answers report success only after a successful response', async () => {
+  const accepted = await submitDemand({ ok: true, json: async () => ({ success: true }) })
+  assert.equal(accepted.requests[0].url, '/api/demand')
+  assert.ok(findElement(accepted.rendered, (element) =>
+    element.props?.children === 'Recorded. That is what decides build order.'))
+
+  const rejected = await submitDemand({
+    ok: false,
+    json: async () => ({ error: 'Could not save your answers.' }),
+  })
+  assert.equal(
+    findElement(rejected.rendered, (element) => element.props?.role === 'alert')?.props.children,
+    'Could not save your answers.',
+  )
+  assert.equal(findElement(rejected.rendered, (element) =>
+    element.props?.children === 'Recorded. That is what decides build order.'), undefined)
+})
+
 for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'Prompt Vault']]) {
   test(`${intent} reaches the signup request with its product identity and launch list`, async () => {
     const { props, body } = await submitWaitlist(`  ${intent}  `)
