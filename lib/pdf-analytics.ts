@@ -66,13 +66,10 @@ export async function trackDirectDownloadOnce(
   const claimed = await kv.set(key, '1', { nx: true, ex: 3_600 })
   if (claimed !== 'OK') return false
 
-  try {
-    await trackPDFDownload({ ...data, sessionId: 'anonymous', userAgent: 'omitted' })
-    return true
-  } catch (error) {
-    await kv.del(key)
-    throw error
-  }
+  // Keep the claim if a later write fails: RPUSH may have succeeded before
+  // LTRIM failed, so releasing it could duplicate the event on retry.
+  await trackPDFDownload({ ...data, sessionId: 'anonymous', userAgent: 'omitted' })
+  return true
 }
 
 // Create PDF lead

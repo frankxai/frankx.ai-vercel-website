@@ -59,7 +59,8 @@ export default function PrivacyPage() {
               We also count free resource download redirects. These records contain the resource and time,
               without an email address or browser identifier. A random link-attempt token prevents duplicate
               counts, expires after one hour, and is not saved in the download record. We skip these counts
-              when your browser sends Do Not Track or Global Privacy Control.
+              when your browser sends Do Not Track or Global Privacy Control. Short-lived rate limits use your
+              network address to protect this route from abuse; it is not saved in the download record.
             </p>
           </section>
 

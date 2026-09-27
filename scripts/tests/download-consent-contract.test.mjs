@@ -41,6 +41,7 @@ function loadDownloadRoute(fetch, path = 'app/api/download/route.ts', analytics 
     },
     '@/lib/ratelimit': {
       analyticsRatelimit: { limit: async () => ({ success: true }) },
+      getClientIdentifier: () => 'test-client',
     },
   }
   return loadModule(path, imports, fetch)
@@ -148,11 +149,12 @@ test('PDF analytics allows the registered free book slugs', () => {
 test('direct redirect events deduplicate each short-lived link attempt', async () => {
   const keys = new Set()
   const events = []
+  let failTrim = false
   const kv = {
     set: async (key) => keys.has(key) ? null : (keys.add(key), 'OK'),
     rpush: async (_key, event) => { events.push(event) },
-    ltrim: async () => {},
-    del: async (key) => { keys.delete(key) },
+    ltrim: async () => { if (failTrim) { failTrim = false; throw new Error('trim failed after append') } },
+    del: async () => assert.fail('an uncertain append must keep its claim'),
   }
   const { trackDirectDownloadOnce } = loadModule('lib/pdf-analytics.ts', {
     '@vercel/kv': { createClient: () => kv },
@@ -167,6 +169,12 @@ test('direct redirect events deduplicate each short-lived link attempt', async (
   assert.equal(events[0].userAgent, 'omitted')
   assert.equal(await trackDirectDownloadOnce(download, '123e4567-e89b-42d3-a456-426614174001'), true)
   assert.equal(events.length, 2)
+
+  failTrim = true
+  const uncertainAttempt = '123e4567-e89b-42d3-a456-426614174002'
+  await assert.rejects(trackDirectDownloadOnce(download, uncertainAttempt), /trim failed/)
+  assert.equal(await trackDirectDownloadOnce(download, uncertainAttempt), false)
+  assert.equal(events.length, 3)
 })
 
 test('a book with downloads but no reader-view events appears in the PDF summary', async () => {
