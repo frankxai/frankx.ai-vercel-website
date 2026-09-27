@@ -66,6 +66,7 @@ const prohibitedSuffixes = [
 
 const controlledMediaRoot = /(?:^|\/)(?:public|generated_audio|generated_imgs)(?:\/|$)|(?:^|\/)content\/music\/source(?:\/|$)/i
 const controlledMediaPath = /(?:^|\/)(?:audios?|downloads?|fonts?|images?|media|videos?)(?:\/|$)/i
+const downloadRouteSource = /^app\/api\/downloads?(?:\/[^/]+)*\/route\.[jt]s$/i
 const protectedPolicyFiles = new Set([
   ".github/media-guard-policy.json",
   ".github/workflows/media-guard-trusted.yml",
@@ -215,6 +216,9 @@ function prohibitedSuffix(file) {
 }
 
 function isControlledMediaFile(file) {
+  // A Next.js route handler under /api/download is source code, while assets
+  // placed beside it remain subject to the media policy.
+  if (downloadRouteSource.test(file)) return false
   return controlledMediaRoot.test(file) || controlledMediaPath.test(file)
 }
 
