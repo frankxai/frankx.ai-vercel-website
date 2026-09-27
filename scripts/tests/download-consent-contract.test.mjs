@@ -40,7 +40,7 @@ function loadDownloadRoute(fetch, path = 'app/api/download/route.ts', analytics 
       trackDirectDownloadOnce: analytics.track ?? (async () => true),
     },
     '@/lib/ratelimit': {
-      analyticsRatelimit: { limit: async () => ({ success: true }) },
+      bookDownloadRatelimit: { limit: async () => ({ success: true }) },
       getClientIdentifier: () => 'test-client',
     },
   }
@@ -147,6 +147,24 @@ test('PDF analytics allows the registered free book slugs', () => {
     assert.equal(TRACKED_GUIDES.has(slug), true, slug)
     assert.equal(DIRECT_BOOK_GUIDES.has(slug), true, slug)
   }
+})
+
+test('book download limiter disables retained Upstash analytics', async () => {
+  const configs = []
+  class FakeRatelimit {
+    static slidingWindow(limit, window) { return { limit, window } }
+    constructor(config) { configs.push(config) }
+  }
+  loadModule('lib/ratelimit.ts', {
+    '@upstash/ratelimit': { Ratelimit: FakeRatelimit },
+    '@vercel/kv': { createClient: () => ({}) },
+    './local-ratelimit': { createLocalLimiter: () => () => true },
+    './redis-env': { redisRestConfig: () => ({}) },
+  }, () => {})
+  const bookLimiter = configs.find(config => config.prefix === 'ratelimit:book-download')
+  assert.ok(bookLimiter)
+  assert.equal(bookLimiter.analytics, false)
+  assert.deepEqual(bookLimiter.limiter, { limit: 100, window: '1 m' })
 })
 
 test('legacy analytics POST rejects direct book events but keeps legacy guides', async () => {

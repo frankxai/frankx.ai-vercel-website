@@ -3,7 +3,7 @@ import registry from '@/data/products.json'
 import type { ProductRecord } from '@/types/products'
 import { isPublicDownloadProduct } from '@/lib/download-access'
 import { TRACKED_GUIDES, trackDirectDownloadOnce } from '@/lib/pdf-analytics'
-import { analyticsRatelimit, getClientIdentifier } from '@/lib/ratelimit'
+import { bookDownloadRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
 const products = registry as ProductRecord[]
 
@@ -88,7 +88,7 @@ export async function GET(request: NextRequest) {
   if (request.method === 'GET' && process.env.VERCEL_ENV === 'production' && attemptId && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(attemptId) && TRACKED_GUIDES.has(product.slug) && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
     after(async () => {
       try {
-        const { success } = await analyticsRatelimit.limit(getClientIdentifier(request))
+        const { success } = await bookDownloadRatelimit.limit(getClientIdentifier(request))
         if (!success) return
         await trackDirectDownloadOnce({
           guideSlug: product.slug,

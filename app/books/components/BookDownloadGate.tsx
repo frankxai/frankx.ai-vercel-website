@@ -30,12 +30,12 @@ export default function BookDownloadGate({
   if (!hasBookPdf(bookSlug)) return null
 
   const colorMap: Record<string, { border: string; bg: string; text: string; button: string; glow: string }> = {
-    rose:    { border: 'border-rose-500/20', bg: 'from-rose-500/5', text: 'text-rose-400', button: 'from-rose-600 to-rose-500', glow: 'bg-rose-500/10' },
-    red:     { border: 'border-red-500/20', bg: 'from-red-500/5', text: 'text-red-400', button: 'from-red-600 to-red-500', glow: 'bg-red-500/10' },
-    emerald: { border: 'border-emerald-500/20', bg: 'from-emerald-500/5', text: 'text-emerald-400', button: 'from-emerald-600 to-emerald-500', glow: 'bg-emerald-500/10' },
-    violet:  { border: 'border-violet-500/20', bg: 'from-violet-500/5', text: 'text-violet-400', button: 'from-violet-600 to-violet-500', glow: 'bg-violet-500/10' },
-    amber:   { border: 'border-amber-500/20', bg: 'from-amber-500/5', text: 'text-amber-400', button: 'from-amber-600 to-amber-500', glow: 'bg-amber-500/10' },
-    gold:    { border: 'border-yellow-500/20', bg: 'from-yellow-500/5', text: 'text-yellow-400', button: 'from-yellow-600 to-yellow-500', glow: 'bg-yellow-500/10' },
+    rose:    { border: 'border-rose-500/20', bg: 'from-rose-500/5', text: 'text-rose-400', button: 'from-rose-700 to-rose-800', glow: 'bg-rose-500/10' },
+    red:     { border: 'border-red-500/20', bg: 'from-red-500/5', text: 'text-red-400', button: 'from-red-700 to-red-800', glow: 'bg-red-500/10' },
+    emerald: { border: 'border-emerald-500/20', bg: 'from-emerald-500/5', text: 'text-emerald-400', button: 'from-emerald-700 to-emerald-800', glow: 'bg-emerald-500/10' },
+    violet:  { border: 'border-violet-500/20', bg: 'from-violet-500/5', text: 'text-violet-400', button: 'from-violet-700 to-violet-800', glow: 'bg-violet-500/10' },
+    amber:   { border: 'border-amber-500/20', bg: 'from-amber-500/5', text: 'text-amber-400', button: 'from-amber-700 to-amber-800', glow: 'bg-amber-500/10' },
+    gold:    { border: 'border-yellow-500/20', bg: 'from-yellow-500/5', text: 'text-yellow-400', button: 'from-yellow-700 to-yellow-800', glow: 'bg-yellow-500/10' },
   }
 
   const colors = colorMap[themeColor] || colorMap.emerald
