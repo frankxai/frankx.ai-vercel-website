@@ -1,7 +1,9 @@
-import { type NextRequest, NextResponse } from 'next/server'
+import { after, type NextRequest, NextResponse } from 'next/server'
 import registry from '@/data/products.json'
 import type { ProductRecord } from '@/types/products'
 import { isPublicDownloadProduct } from '@/lib/download-access'
+import { TRACKED_GUIDES, trackDirectDownloadOnce } from '@/lib/pdf-analytics'
+import { analyticsRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
 const products = registry as ProductRecord[]
 
@@ -79,6 +81,27 @@ export async function GET(request: NextRequest) {
 
   // Construct the public blob URL
   const blobUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
+
+  // A redirect is the observable download outcome here. Analytics runs after
+  // the response and cannot make access depend on Redis availability.
+  const sessionId = searchParams.get('sid')
+  if (sessionId && /^session_\d{13}_[a-z0-9]{6,16}$/.test(sessionId) && TRACKED_GUIDES.has(product.slug)) {
+    after(async () => {
+      try {
+        const { success } = await analyticsRatelimit.limit(getClientIdentifier(request))
+        if (!success) return
+        await trackDirectDownloadOnce({
+          guideSlug: product.slug,
+          guideTitle: product.name,
+          sessionId,
+          downloadMethod: 'direct',
+          userAgent: (request.headers.get('user-agent') || 'unknown').slice(0, 300),
+        })
+      } catch (error) {
+        console.error('Book download analytics failed:', error)
+      }
+    })
+  }
 
   // Redirect to the public blob URL for download
   return NextResponse.redirect(blobUrl)

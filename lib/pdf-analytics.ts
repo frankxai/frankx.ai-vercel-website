@@ -21,7 +21,11 @@ const EMAILS = 'pdf-analytics:emails'
 const MAX_ENTRIES = 50_000
 
 // Only these guides are tracked; anything else is rejected before it is stored.
-export const TRACKED_GUIDES = new Set(['soulbook', 'vibe-os'])
+export const TRACKED_GUIDES = new Set([
+  'soulbook', 'vibe-os',
+  'love-and-poetry', 'spartan-mindset', 'self-development',
+  'imagination', 'manifestation', 'golden-age',
+])
 
 function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
@@ -50,6 +54,23 @@ export async function trackPDFView(data: Omit<PDFView, 'id' | 'timestamp'>): Pro
 // Track PDF download
 export async function trackPDFDownload(data: Omit<PDFDownload, 'id' | 'timestamp'>): Promise<PDFDownload> {
   return append(DOWNLOADS, { id: generateId(), timestamp: new Date().toISOString(), ...data })
+}
+
+// Count a successful direct-download redirect once per guide and browser session.
+export async function trackDirectDownloadOnce(
+  data: Omit<PDFDownload, 'id' | 'timestamp'>
+): Promise<boolean> {
+  const key = `pdf-analytics:direct-download:${data.guideSlug}:${data.sessionId}`
+  const claimed = await kv.set(key, '1', { nx: true, ex: 86_400 })
+  if (claimed !== 'OK') return false
+
+  try {
+    await trackPDFDownload(data)
+    return true
+  } catch (error) {
+    await kv.del(key)
+    throw error
+  }
 }
 
 // Create PDF lead

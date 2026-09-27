@@ -1,3 +1,5 @@
+import BookDownloadLink from './BookDownloadLink'
+
 interface BookDownloadGateProps {
   bookSlug: string
   bookTitle: string
@@ -53,15 +55,7 @@ export default function BookDownloadGate({
         Get the full book as a PDF. Free, with no email required.
       </p>
 
-      <a
-        href={`/api/download?product=${encodeURIComponent(bookSlug)}`}
-        className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r ${colors.button} text-white font-medium hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-opacity text-sm`}
-      >
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-        </svg>
-        Download {bookTitle} PDF
-      </a>
+      <BookDownloadLink bookSlug={bookSlug} bookTitle={bookTitle} buttonColor={colors.button} />
 
       <p className="mt-5 text-xs text-white/50">
         Signal Loop sends notes on AI architecture and creative systems most weeks.{' '}
