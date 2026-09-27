@@ -80,7 +80,10 @@ export function EmailSignup({
   const [priceBand, setPriceBand] = useState<PriceBand | ''>('')
   const [role, setRole] = useState('')
   const [pain, setPain] = useState('')
-  const [demandStatus, setDemandStatus] = useState<'idle' | 'loading' | 'done' | 'skipped'>('idle')
+  const [demandStatus, setDemandStatus] = useState<
+    'idle' | 'loading' | 'done' | 'error' | 'skipped'
+  >('idle')
+  const [demandError, setDemandError] = useState('')
   const normalizedPlaceholder = `${placeholder.replace(/[.…]+$/, '')}…`
 
   const handleSubmit = async (e: FormEvent) => {
@@ -142,8 +145,8 @@ export function EmailSignup({
   }
 
   // Step 2. Sent to /api/demand rather than /api/subscribe because the subscribe route
-  // short-circuits on an existing contact and would drop the answers. A failure is
-  // deliberately silent: the signup already succeeded and nothing here is worth undoing it.
+  // short-circuits on an existing contact and would drop the answers. A failure does not
+  // undo step 1, but it remains visible and retryable so rejected answers are never claimed.
   const submitDemand = async (e: FormEvent) => {
     e.preventDefault()
     if (!priceBand && !role && !pain.trim()) {
@@ -151,21 +154,31 @@ export function EmailSignup({
       return
     }
     setDemandStatus('loading')
+    setDemandError('')
     try {
-      await fetch('/api/demand', {
+      const response = await fetch('/api/demand', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, intent, priceBand, role, pain: pain.trim() }),
       })
+      const result = (await response.json().catch(() => null)) as { error?: string } | null
+      if (!response.ok) {
+        throw new Error(result?.error || 'Your answers could not be saved. Please try again.')
+      }
       trackEvent('demand_signal_captured', {
         list_type: listType,
         intent: intent || 'unspecified',
         price_band: priceBand || 'skipped',
       })
-    } catch {
-      /* Already on the list. The answers are a bonus, never a blocker. */
+      setDemandStatus('done')
+    } catch (error) {
+      setDemandError(
+        error instanceof Error
+          ? error.message
+          : 'Your answers could not be saved. Please try again.',
+      )
+      setDemandStatus('error')
     }
-    setDemandStatus('done')
   }
 
   const demandStep = (
@@ -254,6 +267,11 @@ export function EmailSignup({
           Skip
         </button>
       </div>
+      {demandStatus === 'error' && (
+        <p role="alert" aria-live="assertive" className="text-sm text-red-400">
+          {demandError}
+        </p>
+      )}
     </form>
   )
 
@@ -307,7 +325,9 @@ export function EmailSignup({
           </button>
         </div>
         <p className="mt-2 text-xs leading-5 text-slate-400">
-          Occasional FrankX field notes. Unsubscribe anytime.{' '}
+          {listType === 'courses-waitlist'
+            ? 'This records interest in the item you selected. It does not subscribe you to FrankX field notes. '
+            : 'Occasional FrankX field notes. Unsubscribe anytime. '}
           <Link
             href="/privacy"
             className="underline decoration-slate-600 underline-offset-2 hover:text-white"
@@ -423,7 +443,10 @@ export function EmailSignup({
         )}
       </form>
 
-      {askDemand && status === 'success' && demandStatus === 'idle' && demandStep}
+      {askDemand &&
+        status === 'success' &&
+        (demandStatus === 'idle' || demandStatus === 'error') &&
+        demandStep}
       {askDemand && status === 'success' && demandStatus === 'done' && (
         <p role="status" aria-live="polite" className="mt-6 text-sm text-emerald-400">
           Recorded. That is what decides build order.
@@ -436,7 +459,9 @@ export function EmailSignup({
       )}
 
       <p className="mt-4 text-xs text-slate-500 text-center">
-        Occasional FrankX field notes. Unsubscribe anytime.{' '}
+        {listType === 'courses-waitlist'
+          ? 'This records interest in the item you selected. It does not subscribe you to FrankX field notes. '
+          : 'Occasional FrankX field notes. Unsubscribe anytime. '}
         <Link
           href="/privacy"
           className="underline decoration-slate-600 underline-offset-2 hover:text-slate-300"
