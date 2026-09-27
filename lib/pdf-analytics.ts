@@ -25,9 +25,8 @@ export const DIRECT_BOOK_GUIDES = new Set([
   'love-and-poetry', 'spartan-mindset', 'self-development',
   'imagination', 'manifestation', 'golden-age',
 ])
-export const TRACKED_GUIDES = new Set([
-  'soulbook', 'vibe-os', ...DIRECT_BOOK_GUIDES,
-])
+export const TRACKED_GUIDES = new Set(['soulbook', 'vibe-os'])
+DIRECT_BOOK_GUIDES.forEach(slug => TRACKED_GUIDES.add(slug))
 
 function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
