@@ -8,7 +8,7 @@ const repoFile = (path) => new URL(`../../${path}`, import.meta.url)
 function loadModule(path, imports, fetch) {
   const source = readFileSync(repoFile(path), 'utf8')
   const { outputText } = ts.transpileModule(source, {
-    compilerOptions: { module: ts.ModuleKind.CommonJS },
+    compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
   })
   const module = { exports: {} }
   new Function('require', 'module', 'exports', 'fetch', outputText)(
@@ -51,6 +51,24 @@ test('an absent offer never makes an unknown product downloadable', () => {
   assert.equal(isPublicDownloadProduct({ id: 'unreviewed-product' }), false)
   assert.equal(isPublicDownloadProduct({ id: 'vibe-os' }), true)
   assert.equal(isPublicDownloadProduct({ id: 'golden-age-book' }), true)
+})
+
+test('book download cards only advertise catalogued public PDFs', () => {
+  const { hasBookPdf } = loadModule(
+    'app/books/components/BookDownloadGate.tsx',
+    { 'react/jsx-runtime': {} },
+    () => {},
+  )
+  const products = JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8'))
+  for (const slug of ['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
+    assert.equal(hasBookPdf(slug), true, slug)
+    const product = products.find((item) => item.slug === slug)
+    assert.equal(product?.delivery?.requiresEmail, false, slug)
+    assert.match(product?.delivery?.files?.[0]?.blobKey ?? '', /\.pdf$/, slug)
+  }
+  for (const slug of ['the-wordless-laws', 'fable', 'unlisted-book']) {
+    assert.equal(hasBookPdf(slug), false, slug)
+  }
 })
 
 test('priced products are not exposed by either public download method', async () => {

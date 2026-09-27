@@ -5,12 +5,28 @@ interface BookDownloadGateProps {
   className?: string
 }
 
+// Only these book routes have verified, registered public PDFs.
+const downloadableBookSlugs = new Set([
+  'love-and-poetry',
+  'spartan-mindset',
+  'self-development',
+  'imagination',
+  'manifestation',
+  'golden-age',
+])
+
+export function hasBookPdf(bookSlug: string): boolean {
+  return downloadableBookSlugs.has(bookSlug)
+}
+
 export default function BookDownloadGate({
   bookSlug,
   bookTitle,
   themeColor = 'emerald',
   className = '',
 }: BookDownloadGateProps) {
+  if (!hasBookPdf(bookSlug)) return null
+
   const colorMap: Record<string, { border: string; bg: string; text: string; button: string; glow: string }> = {
     rose:    { border: 'border-rose-500/20', bg: 'from-rose-500/5', text: 'text-rose-400', button: 'from-rose-600 to-rose-500', glow: 'bg-rose-500/10' },
     red:     { border: 'border-red-500/20', bg: 'from-red-500/5', text: 'text-red-400', button: 'from-red-600 to-red-500', glow: 'bg-red-500/10' },
