@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight,
   Sparkles,
-  Music,
   BookOpen,
   Building2,
   Cpu,
@@ -74,20 +73,21 @@ function ProductsBackground() {
 const products = [
   {
     id: 'vibe-os',
-    icon: Music,
-    name: 'Vibe OS',
-    tagline: 'Suno Music Mastery',
+    icon: Sparkles,
+    name: 'Vibe OS creative-state workspace',
+    tagline: 'Concept notes',
     description:
-      'Prompt packs, emotion mapping, and production checklists for Suno creators.',
-    status: 'active',
+      'An unreleased workspace concept for observing creative state, energy, and focus.',
+    status: 'concept',
+    statusLabel: 'Concept',
+    ctaLabel: 'View concept',
     href: '/products/vibe-os',
-    color: 'emerald',
+    color: 'cyan',
     highlights: [
-      '50+ genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
-      'Emotion-to-sound mapping system',
-      'Production enhancement and mastering guide',
+      'Read the current concept and its limits',
+      'Try the manual note or spreadsheet experiment',
+      'No app, template, or download is available',
     ],
-    featured: true,
   },
   {
     id: 'creators-soulbook',
@@ -280,23 +280,15 @@ function EarlyAccessModal({
         {/* CTA */}
         <div className="space-y-4">
           <p className="text-sm text-slate-400">
-            This product is in development. Join the early access list to get:
+            Enter your email to record interest in this product.
           </p>
-          <ul className="space-y-2">
-            {['Priority launch access', 'Exclusive early pricing', 'Behind-the-scenes updates'].map(
-              (item) => (
-                <li key={item} className="flex items-center gap-2 text-sm text-slate-300">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
-                  {item}
-                </li>
-              )
-            )}
-          </ul>
 
           <EmailSignup
             compact
-            buttonText="Join Early Access"
-            listType="courses-waitlist"
+            buttonText="Record interest"
+            listType="product-interest"
+            intent={product.id}
+            intentLabel={product.name}
           />
         </div>
       </motion.div>
@@ -372,7 +364,7 @@ export default function ProductsShell() {
               {products.map((product, index) => {
                 const Icon = product.icon
                 const colors = colorMap[product.color as keyof typeof colorMap]
-                const isActive = product.status === 'active'
+                const isConcept = product.status === 'concept'
 
                 return (
                   <motion.div
@@ -380,18 +372,8 @@ export default function ProductsShell() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                    className={product.featured ? 'md:col-span-2 lg:col-span-1' : ''}
                   >
-                    <GlowCard color={product.color as GlowColor} className={`p-8 h-full flex flex-col ${isActive ? 'cursor-pointer hover:-translate-y-1' : ''}`}>
-                        {/* Featured badge */}
-                        {product.featured && (
-                          <div className="absolute right-6 top-6">
-                            <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-medium text-emerald-400">
-                              Available Now
-                            </span>
-                          </div>
-                        )}
-
+                    <GlowCard color={product.color as GlowColor} className={`p-8 h-full flex flex-col ${isConcept ? 'cursor-pointer hover:-translate-y-1' : ''}`}>
                         {/* Icon */}
                         <div className="mb-6">
                           <div
@@ -428,19 +410,19 @@ export default function ProductsShell() {
                         {/* Status and CTA */}
                         <div className="flex items-center justify-between border-t border-white/5 pt-6">
                           <div className="flex items-center gap-2">
-                            {isActive ? (
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium">
-                                <CheckCircle2 className="w-3.5 h-3.5" />
-                                Available
+                            {isConcept ? (
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-sm font-medium">
+                                <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                                {'statusLabel' in product ? product.statusLabel : 'Concept'}
                               </span>
                             ) : (
                               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
-                                <Sparkles className="w-3.5 h-3.5" />
-                                Early Access
+                                <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                                Early access
                               </span>
                             )}
                           </div>
-                          {isActive ? (
+                          {isConcept ? (
                             <Link
                               href={product.href}
                               onClick={() =>
@@ -448,7 +430,7 @@ export default function ProductsShell() {
                               }
                               className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
                             >
-                              <span className="text-sm font-medium">Explore</span>
+                              <span className="text-sm font-medium">{'ctaLabel' in product ? product.ctaLabel : 'Explore'}</span>
                               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </Link>
                           ) : (
@@ -610,15 +592,15 @@ export default function ProductsShell() {
 
               <div className="relative flex flex-col items-center gap-8 text-center">
                 <div className="max-w-2xl">
-                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium mb-6">
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 text-cyan-300 text-sm font-medium mb-6">
                     <CheckCircle2 className="w-4 h-4" />
-                    Ready to Create
+                    Concept notes
                   </span>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
-                    Start building with our systems today
+                    Review the workspace concept
                   </h2>
                   <p className="text-[17px] text-slate-300/90 leading-relaxed">
-                    Inspect the public Vibe OS guide now. Other listed products remain previews or
+                    Review the Vibe OS workspace concept. Other listed products remain previews or
                     early-access routes until their delivery path is verified.
                   </p>
                 </div>
@@ -628,9 +610,9 @@ export default function ProductsShell() {
                     onClick={() =>
                       trackEvent('cta_click', { location: 'products-page', target: 'vibe-os' })
                     }
-                    className="group flex-1 flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-medium text-white shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                    className="group flex-1 flex items-center justify-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-6 py-3 font-medium text-cyan-100 transition-[color,background-color,border-color,transform] hover:-translate-y-0.5 hover:border-cyan-400/50 hover:bg-cyan-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                   >
-                    Explore Vibe OS
+                    View the concept
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                   <Link

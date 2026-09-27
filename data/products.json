@@ -189,113 +189,51 @@
   {
     "id": "vibe-os",
     "slug": "vibe-os",
-    "name": "Vibe OS: Creative State Management",
-    "category": "Creator Tools",
-    "badge": "FREE TOOL",
-    "headline": "Manage Your Creative Energy and Focus Like a Pro",
-    "subheadline": "Track your creative states, optimize your energy cycles, and build sustainable workflows. A practical system for creators who ship consistently.",
-    "promise": "Stop fighting your energy. Start working with your natural creative rhythms.",
-    "summary": "A builder-focused state management system with mood tracking, energy optimization, and workflow templates for consistent creative output.",
+    "name": "Vibe OS creative-state workspace",
+    "category": "Creator tools",
+    "badge": "Concept",
+    "headline": "A concept for observing creative state, energy, and focus",
+    "subheadline": "The workspace is not released. Its page contains concept notes and a manual experiment you can run in your own notes or spreadsheet.",
+    "promise": "Explore the model without an app, template, download, or availability claim.",
+    "summary": "An unreleased creative-state workspace concept with manual notes for observing state, energy, and focus.",
     "transformation": [
-      "Identify your peak creative hours and schedule deep work during your natural energy peaks",
-      "Track creative state patterns to understand what conditions produce your best work",
-      "Build sustainable workflows that match your energy cycles instead of fighting them",
-      "Reduce burnout and increase output with data-driven creative state management"
+      "Read the current creative-state model and its stated limits",
+      "Try the documented manual experiment in your own notes or spreadsheet",
+      "Record observations without relying on an unavailable app or template"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "Free",
-          "label": "Always Free"
-        },
-        {
-          "number": "Beta",
-          "label": "Active Development"
-        }
-      ],
+      "stats": [],
       "quotes": []
-    },
-    "offer": {
-      "primaryPrice": 0,
-      "primaryPriceDisplay": "Free",
-      "currency": "USD",
-      "ctaPrimary": "Start Using Vibe OS",
-      "ctaPrimaryHref": "/products/vibe-os/app",
-      "ctaPrimaryTracking": "vibe-os-free-access",
-      "ctaSecondary": "View Documentation",
-      "ctaSecondaryHref": "/products/vibe-os/docs",
-      "ctaSecondaryTracking": "vibe-os-docs",
-      "guarantee": {
-        "label": "Open Source & Free Forever",
-        "description": "Vibe OS is free to use with no strings attached. Track your creative states and optimize your workflow without paying a penny."
-      }
     },
     "modules": [
       {
-        "title": "Energy State Tracker",
-        "description": "Log your creative energy levels throughout the day to identify patterns and optimize your schedule."
+        "title": "State check-in concept",
+        "description": "A proposed way to record creative state and context; no tracker is available."
       },
       {
-        "title": "Focus Mode Templates",
-        "description": "Pre-built workflows for deep work, brainstorming, editing, and admin tasks matched to different energy states."
+        "title": "Focus-mode concept",
+        "description": "Notes for considering a work mode alongside current energy; no pre-built workflows are available."
       },
       {
-        "title": "Creative Cycle Dashboard",
-        "description": "Visualize your productivity patterns, peak hours, and energy cycles to make data-driven workflow decisions."
+        "title": "Pattern-review concept",
+        "description": "A proposed review of manually recorded observations; no dashboard is available."
       },
       {
-        "title": "State Management Playbooks",
-        "description": "Practical guides for transitioning between creative states, managing context switching, and maintaining flow."
-      }
-    ],
-    "bonuses": [
-      {
-        "title": "Weekly Review Templates",
-        "value": "Free",
-        "description": "Structured reflection prompts to analyze your creative patterns and optimize future weeks."
-      },
-      {
-        "title": "Energy Optimization Guide",
-        "value": "Free",
-        "description": "Science-backed strategies for managing energy, focus, and creative momentum."
-      },
-      {
-        "title": "Notion Dashboard Template",
-        "value": "Free",
-        "description": "Ready-to-use Notion workspace for tracking states, projects, and productivity metrics."
+        "title": "Transition-notes concept",
+        "description": "Ideas for documenting transitions between kinds of creative work; no playbook is available."
       }
     ],
     "faq": [
       {
-        "question": "Is Vibe OS really free?",
-        "answer": "Yes. Vibe OS is completely free with no hidden costs, trials, or premium tiers. It's built for creators who want practical tools without the paywall."
+        "question": "Is the creative-state workspace available?",
+        "answer": "This record describes an unreleased workspace concept. The concept page includes a manual experiment for your own notes or spreadsheet."
       },
       {
-        "question": "How is this different from other productivity tools?",
-        "answer": "Vibe OS focuses specifically on creative work patterns and energy management. It's designed for creators, not corporate knowledge workers."
-      },
-      {
-        "question": "Do I need technical skills to use it?",
-        "answer": "No. Vibe OS is built for creators, not engineers. If you can use Notion or a spreadsheet, you can use Vibe OS."
-      },
-      {
-        "question": "Will there be a paid version?",
-        "answer": "Maybe someday, but the core Vibe OS will always be free. Any future premium features would be add-ons, not requirements."
+        "question": "Can I try the idea now?",
+        "answer": "The concept page describes a manual experiment you can run in your own note or spreadsheet."
       }
     ],
-    "analyticsId": "vibe-os",
-    "delivery": {
-      "methods": ["download"],
-      "requiresEmail": false,
-      "files": [
-        {
-          "name": "Vibe OS Guide",
-          "format": "pdf",
-          "blobKey": "products/vibe-os/Vibe-OS-Guide.pdf",
-          "description": "Complete guide to creative state management"
-        }
-      ]
-    }
+    "analyticsId": "vibe-os"
   },
   {
     "id": "creation-chronicles",
