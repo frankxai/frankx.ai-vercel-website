@@ -324,17 +324,20 @@ export default function WorkshopClient({ workshop }: { workshop: Workshop }) {
             <div className="p-6 sm:p-8 text-center">
               <Mail className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
               <h3 className="text-xl font-semibold text-white mb-2">
-                Get the Resource Pack
+                Register workshop interest
               </h3>
               <p className="text-sm text-zinc-400 mb-5 max-w-md mx-auto">
-                Receive the complete slide deck, handouts, and facilitator guide
-                for this workshop.
+                Submitting records your interest in {workshop.title} and subscribes you to
+                occasional FrankX field notes. The immediate email is the standard newsletter
+                welcome, not a workshop resource pack or workshop-specific follow-up.
               </p>
               <div className="max-w-sm mx-auto">
                 <EmailSignup
                   listType="courses-waitlist"
+                  source={`/workshops/${workshop.slug}`}
+                  intent={`workshop-${workshop.slug}`}
                   placeholder="Your email"
-                  buttonText="Send Resource Pack"
+                  buttonText="Record my interest"
                   compact
                 />
               </div>
