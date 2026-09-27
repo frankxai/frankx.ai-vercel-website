@@ -378,10 +378,10 @@ export default function MusicIntelligencePage() {
             </Link>
             , and{' '}
             <Link
-              href="/products/vibe-os"
+              href="/downloads/preview/vibe-os"
               className="text-white/60 transition-colors hover:text-white"
             >
-              the Vibe OS product
+              the Vibe OS Music Guide
             </Link>
             .
           </p>

@@ -87,9 +87,9 @@ function ResourcesBackground() {
 
 const productItems = [
   {
-    name: 'Vibe OS',
-    description: 'AI music creation system with prompts, workflows, and production tips.',
-    href: '/products/vibe-os',
+    name: 'Vibe OS Music Guide',
+    description: 'An existing guide to AI music prompts and creative sessions.',
+    href: '/downloads/preview/vibe-os',
     icon: Music,
   },
   {

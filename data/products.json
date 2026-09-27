@@ -237,7 +237,19 @@
         "answer": "Yes. The music guide remains available from Downloads. It is separate from this unreleased creative-state workspace."
       }
     ],
-    "analyticsId": "vibe-os"
+    "analyticsId": "vibe-os",
+    "delivery": {
+      "methods": ["download"],
+      "requiresEmail": false,
+      "files": [
+        {
+          "name": "Vibe OS Guide",
+          "format": "pdf",
+          "blobKey": "products/vibe-os/Vibe-OS-Guide.pdf",
+          "description": "Existing guide PDF; separate from the unreleased workspace"
+        }
+      ]
+    }
   },
   {
     "id": "creation-chronicles",

@@ -284,18 +284,17 @@ export default function MusicTemplatesPage() {
               Go Further
             </p>
             <h2 className="mb-3 text-2xl font-bold tracking-tight text-white">
-              Want the full Suno Music Mastery toolkit?
+              Want another music resource?
             </h2>
             <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/60">
-              Vibe OS is the paid companion to these templates: prompt packs across genres, emotion
-              mapping, and production checklists — the complete system behind the nine states on
-              this page.
+              The Vibe OS Music Guide is a separate resource you can preview alongside these
+              templates. It is not the unreleased creative-state workspace.
             </p>
             <Link
-              href="/products/vibe-os"
+              href="/downloads/preview/vibe-os"
               className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-emerald-400"
             >
-              Explore Vibe OS
+              Preview the music guide
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>

@@ -589,14 +589,14 @@ export default function CreateMusicPage() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <Link href="/products/vibe-os" className="group block rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-violet-500/30 hover:bg-white/[0.05]">
+          <Link href="/downloads/preview/vibe-os" className="group block rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-violet-500/30 hover:bg-white/[0.05]">
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet-500/20">
                 <Sparkles className="h-6 w-6 text-violet-400" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-violet-400">Vibe OS — The AI Music Creation System</h3>
-                <p className="mt-1 text-sm text-white/50">The complete framework for creating AI music at scale. Prompts, workflows, genre templates, and production pipelines.</p>
+                <h3 className="text-lg font-bold text-white group-hover:text-violet-400">Vibe OS Music Guide</h3>
+                <p className="mt-1 text-sm text-white/50">Preview the existing guide to AI music prompts and creative sessions.</p>
               </div>
               <ArrowRight className="hidden h-5 w-5 shrink-0 text-white/30 group-hover:text-violet-400 sm:block" />
             </div>

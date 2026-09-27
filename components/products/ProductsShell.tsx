@@ -432,7 +432,7 @@ export default function ProductsShell() {
                             </Link>
                           ) : (
                             <div className="flex flex-wrap items-center justify-end gap-4">
-                              {!product.href.startsWith('/newsletter') && (
+                              {product.id === 'creators-soulbook' && (
                                 <Link
                                   href={product.href}
                                   onClick={() => trackEvent('product_card_click', { productId: product.id })}

@@ -485,10 +485,10 @@ export default function MusicProducerPage() {
                   <ChevronRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="/products/vibe-os"
+                  href="/downloads/preview/vibe-os"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-600 px-8 py-3 font-medium text-white transition-colors hover:border-slate-400 hover:bg-slate-400/5"
                 >
-                  Explore Vibe OS
+                  Preview the Vibe OS Music Guide
                 </Link>
               </div>
             </motion.div>

@@ -203,7 +203,7 @@ export default function ManifestationClient() {
               href="/products/vibe-os"
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors"
             >
-              Explore Vibe OS <ArrowRight className="w-4 h-4" />
+              Explore the Vibe OS concept <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/music-lab"
