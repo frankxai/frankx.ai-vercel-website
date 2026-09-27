@@ -63,10 +63,10 @@ const hubs = [
     status: 'canonical',
   },
   {
-    command: 'Run Vibe OS',
-    route: '/products/vibe-os',
-    role: 'Creative state management product and app entry',
-    surface: 'nav: Music, products',
+    command: 'Preview Vibe OS Music Guide',
+    route: '/downloads/preview/vibe-os',
+    role: 'Existing AI music guide preview',
+    surface: 'nav: Music, footer',
     status: 'canonical',
   },
   {
@@ -168,7 +168,7 @@ function render() {
   lines.push('  Start --> Newsletter["Newsletter /newsletter"]')
   lines.push('  Start --> Products["Products /products"]')
   lines.push('  Start --> Work["Work with Frank /work-with-me"]')
-  lines.push('  Music --> Vibe["Vibe OS /products/vibe-os"]')
+  lines.push('  Music --> Vibe["Vibe OS Music Guide /downloads/preview/vibe-os"]')
   lines.push('  Music --> School["Music School /music/learn"]')
   lines.push('  Learn --> Guides["Guides /guides"]')
   lines.push('  Learn --> Books["Books /books"]')

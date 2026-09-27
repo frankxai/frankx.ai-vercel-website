@@ -144,7 +144,7 @@ async function submitDemand(response) {
   }
 }
 
-function loadSubscribeRoute(fetch, { configureResend = true } = {}) {
+function loadSubscribeRoute(fetch, { configureResend = true, rateLimitCalls } = {}) {
   const previousKey = process.env.RESEND_API_KEY
   if (configureResend) process.env.RESEND_API_KEY = 'test-key'
   else delete process.env.RESEND_API_KEY
@@ -164,7 +164,14 @@ function loadSubscribeRoute(fetch, { configureResend = true } = {}) {
       '@/lib/diagnostic/waitlist-intents': loadModule('lib/diagnostic/waitlist-intents.ts'),
       '@/data/products.json': { __esModule: true, default: JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8')) },
       '@/lib/ratelimit': {
-        emailRatelimit: { limit: async () => ({ success: true }) },
+        emailRatelimit: { limit: async (key) => {
+          rateLimitCalls?.push({ lane: 'email', key })
+          return { success: true }
+        } },
+        productInterestRatelimit: { limit: async (key) => {
+          rateLimitCalls?.push({ lane: 'interest', key })
+          return { success: true }
+        } },
         getClientIdentifier: () => 'test-client',
       },
       '@/lib/seo': { siteConfig: { url: 'https://www.frankx.ai' } },
@@ -213,6 +220,34 @@ test('product interest uses its dedicated Growth Core program and never calls Re
   })
   assert.equal(requests.length, 1, 'product interest must stop after Growth Core accepts')
   assert.doesNotMatch(requests[0].url, /api\.resend\.com/)
+})
+
+test('product interest and newsletter use separate rate-limit quotas', async () => {
+  const rateLimitCalls = []
+  const { POST } = loadSubscribeRoute(async (url, options) => {
+    if (String(url).includes('growth-capture')) {
+      const body = JSON.parse(options.body)
+      return Response.json({ accepted: true, requestId: body.request_id })
+    }
+    return Response.json({ id: 'test-contact' })
+  }, { rateLimitCalls })
+
+  await POST(subscribeRequest({
+    email: 'same-person@example.invalid',
+    listType: 'product-interest',
+    intent: 'vibe-os',
+    requestId: 'f02797de-c0dd-4ce0-8dd0-1eaa27bfe68d',
+  }))
+  await POST(subscribeRequest({
+    email: 'same-person@example.invalid',
+    listType: 'newsletter',
+  }))
+
+  assert.deepEqual(rateLimitCalls.map(({ lane }) => lane), [
+    'interest', 'interest', 'email', 'email',
+  ])
+  assert.equal(rateLimitCalls[0].key, rateLimitCalls[2].key)
+  assert.equal(rateLimitCalls[1].key, rateLimitCalls[3].key)
 })
 
 test('a product-interest retry reuses its request id after a lost response', async () => {

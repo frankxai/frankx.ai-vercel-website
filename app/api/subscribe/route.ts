@@ -6,7 +6,7 @@ import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 import { innerCircleWaitlistEmail } from '@/lib/email-templates-inner-circle'
 import { mvuRsvpConfirmation, mvuRsvpAlert } from '@/lib/email-templates-mvu'
 import { sanitizeIntent } from '@/lib/diagnostic/waitlist-intents'
-import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
+import { emailRatelimit, getClientIdentifier, productInterestRatelimit } from '@/lib/ratelimit'
 import { siteConfig } from '@/lib/seo'
 import products from '@/data/products.json'
 
@@ -236,12 +236,13 @@ function topicsFromPreferenceToken(email: string, token: string): TopicKey[] | n
   }
 }
 
-async function subscriptionRateLimit(request: NextRequest, email: string) {
+async function subscriptionRateLimit(request: NextRequest, email: string, listType: string) {
   const emailDigest = createHash('sha256').update(email).digest('hex')
+  const limiter = listType === 'product-interest' ? productInterestRatelimit : emailRatelimit
   try {
     const [ipResult, emailResult] = await Promise.all([
-      emailRatelimit.limit(`subscribe:ip:${getClientIdentifier(request)}`),
-      emailRatelimit.limit(`subscribe:email:${emailDigest}`),
+      limiter.limit(`subscribe:ip:${getClientIdentifier(request)}`),
+      limiter.limit(`subscribe:email:${emailDigest}`),
     ])
     return ipResult.success && emailResult.success ? 'allowed' : 'limited'
   } catch (error) {
@@ -466,7 +467,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid preference token.' }, { status: 400 })
     }
 
-    const rateLimit = await subscriptionRateLimit(request, email)
+    const rateLimit = await subscriptionRateLimit(request, email, listType)
     if (rateLimit === 'unavailable') {
       return NextResponse.json(
         { error: 'Subscription protection is temporarily unavailable. Please try again.' },

@@ -30,6 +30,7 @@ function resilient(remote: Ratelimit, max: number, windowMs: number) {
  *
  * Limits:
  * - Email sending: 5 requests per 10 minutes per IP
+ * - Product interest: 12 requests per 10 minutes per IP (separate from email)
  * - Analytics tracking: 100 requests per minute per IP
  * - Lead creation: 10 requests per hour per IP
  */
@@ -41,6 +42,15 @@ export const emailRatelimit = resilient(new Ratelimit({
   analytics: true,
   prefix: 'ratelimit:email'
 }), 5, 10 * 60_000)
+
+// Six product cards can each record interest and retry once without consuming
+// the separate newsletter quota. Both the IP and email are checked by the route.
+export const productInterestRatelimit = resilient(new Ratelimit({
+  redis: kv,
+  limiter: Ratelimit.slidingWindow(12, '10 m'),
+  analytics: true,
+  prefix: 'ratelimit:product-interest'
+}), 12, 10 * 60_000)
 
 // QR rendering rate limit - keeps uncached raster requests bounded
 export const qrRatelimit = resilient(new Ratelimit({
