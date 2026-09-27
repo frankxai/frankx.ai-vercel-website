@@ -15,6 +15,15 @@ updates:
     groups:
       minor-and-patch:
         update-types: ["minor", "patch"]
+      # Majors arrive as one reviewable PR instead of N PRs that each fail to
+      # rebase against a moving main and re-run CI on every attempt.
+      major:
+        update-types: ["major"]
+    ignore:
+      # Tailwind 3 -> 4 is a config and CSS migration, not a bump. Track it as a
+      # planned migration; do not let Dependabot open a PR that cannot build.
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "chore(deps)"
     labels: ["dependencies"]
