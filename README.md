@@ -1,228 +1,102 @@
 # FrankX.ai
 
-**Elite Creator & AI Architect Platform**
+This repository contains the public source for [frankx.ai](https://frankx.ai),
+Frank Riemer's website for AI architecture, creative work, books, music, research,
+and digital products. The site uses the Next.js App Router, React, TypeScript, and
+Tailwind CSS.
 
-![Next.js 16](https://img.shields.io/badge/Next.js-16.1-43BFE3?style=for-the-badge&logo=nextdotjs&logoColor=white&labelColor=0F172A)
-![TypeScript](https://img.shields.io/badge/TypeScript-Strict-43BFE3?style=for-the-badge&logo=typescript&logoColor=white&labelColor=0F172A)
-![ACOS](https://img.shields.io/badge/ACOS-v7.0-AB47C7?style=for-the-badge&labelColor=0F172A)
-![Agents](https://img.shields.io/badge/Agents-40+-F59E0B?style=for-the-badge&labelColor=0F172A)
-![Skills](https://img.shields.io/badge/Skills-630+-10B981?style=for-the-badge&labelColor=0F172A)
+The repository is public so people can inspect the source and report problems.
+Public access does not make the site, its code, or its content open source. The
+root [LICENSE](LICENSE) reserves rights unless an explicit separate license
+applies to a file or package directory.
 
-![FrankX Platform](public/images/readme-hero.png)
+![FrankX website](public/images/readme-hero.png)
 
-Modern creator platform with AI-powered content generation, multi-agent orchestration, and enterprise-grade architecture patterns. Powers [frankx.ai](https://frankx.ai).
+## Visit the site
 
----
+These top-level routes are present in the current source:
 
-## Live Site
+| Area            | Link                                                           |
+| --------------- | -------------------------------------------------------------- |
+| Home            | [frankx.ai](https://frankx.ai)                                 |
+| Research        | [frankx.ai/research](https://frankx.ai/research)               |
+| AI architecture | [frankx.ai/ai-architecture](https://frankx.ai/ai-architecture) |
+| Cloud AI        | [frankx.ai/cloud](https://frankx.ai/cloud)                     |
+| Products        | [frankx.ai/products](https://frankx.ai/products)               |
+| Blog            | [frankx.ai/blog](https://frankx.ai/blog)                       |
+| Books           | [frankx.ai/books](https://frankx.ai/books)                     |
+| Music lab       | [frankx.ai/music-lab](https://frankx.ai/music-lab)             |
+| Resources       | [frankx.ai/resources](https://frankx.ai/resources)             |
+| About           | [frankx.ai/about](https://frankx.ai/about)                     |
 
-| Hub          | URL                                             | Description                |
-| ------------ | ----------------------------------------------- | -------------------------- |
-| Homepage     | [frankx.ai](https://frankx.ai)                  | Elite creator value prop   |
-| Research     | [/research](https://frankx.ai/research)         | AI research for builders   |
-| Cloud AI     | [/cloud](https://frankx.ai/cloud)               | AI CoE and workload systems |
-| Products     | [/products](https://frankx.ai/products)         | Digital products & tools   |
-| Blog         | [/blog](https://frankx.ai/blog)                 | AI tutorials & insights    |
-| Books        | [/books](https://frankx.ai/books)               | Books and living systems   |
-| AI Architect | [/ai-architect](https://frankx.ai/ai-architect) | Enterprise AI patterns     |
-| Music Lab    | [/music-lab](https://frankx.ai/music-lab)       | Suno AI & music production |
-| Resources    | [/resources](https://frankx.ai/resources)       | Free downloads & templates |
-| Links        | [/links](https://frankx.ai/links)               | Social links hub           |
+## Repository map
 
-## Tech Stack
+- `app/` contains pages, layouts, and route handlers.
+- `components/` contains shared React components.
+- `content/` contains editorial content used by the site.
+- `data/` contains structured content registries.
+- `lib/` contains application utilities and integrations.
+- `public/` contains static assets.
+- `docs/` contains architecture, content, and operating documentation.
 
-| Layer     | Technology                                   |
-| --------- | -------------------------------------------- |
-| Framework | **Next.js 16.1** with App Router & Turbopack |
-| Language  | TypeScript (strict mode)                     |
-| Styling   | Tailwind CSS v4 + custom design tokens       |
-| Content   | MDX with custom components                   |
-| Hosting   | Vercel (Edge Functions, ISR)                 |
-| Email     | Resend + React Email templates               |
-| Analytics | Vercel Analytics + Plausible                 |
-| AI        | Claude Code + ACOS skill system              |
+For more detail, see [the content system](docs/content-system.md) and
+[the site map](docs/site-map.md).
 
-## AI-Powered Development
+## Local development
 
-This site is built and maintained with **Agentic Creator OS (ACOS)** - a multi-agent system for content creation and site development.
-
-### Key Commands
-
-```bash
-# Content generation
-/infogenius          # Research-grounded visual generation
-/superintelligence   # Deep analysis for complex decisions
-/article-creator     # Blog post generation pipeline
-/suno-prompt         # Music prompt engineering
-
-# Development
-/code-review         # Automated code review
-/verify-deploy       # Deployment verification
-/planning-with-files # Structured task planning
-```
-
-### Skill System
-
-40+ specialized skills organized into pillars:
-
-- **Creative**: Content, music, visuals
-- **Technical**: Architecture, development, DevOps
-- **Business**: Strategy, products, marketing
-- **Personal**: Productivity, learning
-- **System**: Orchestration, planning, memory
-
-## Architecture
-
-```
-app/                    # Next.js App Router pages
-├── products/           # Product landing pages
-├── blog/               # Blog with MDX content
-├── ai-architect/       # Enterprise AI hub
-├── music-lab/          # Music production hub
-├── resources/          # Downloads & templates
-└── api/                # API routes
-
-components/             # React components
-├── ui/                 # Design system primitives
-├── sections/           # Page sections
-├── home/               # Homepage variants
-└── blog/               # Blog components
-
-content/                # MDX content
-├── blog/               # 50+ articles
-└── guides/             # Resource guides
-
-lib/                    # Utilities
-├── blog.ts             # Blog utilities
-├── prompts.ts          # Prompt library (400+)
-└── team-members.ts     # AI team definitions
-
-public/                 # Static assets
-├── images/             # Optimized images
-└── reading/            # Generated reading site
-```
-
-## Platform Content Architecture
-
-The authority platform is driven by typed static registries under `data/platform/`:
-
-| File | Owns |
-| ---- | ---- |
-| `types.ts` | Shared content, product, book, cloud, and flow types |
-| `research.ts` | Research areas, seeded research index, research OS flow |
-| `cloud.ts` | `/cloud` hub, AI CoE flow, and Cloud AI subpage content |
-| `products.ts` | Authority offer ladder and platform product catalog |
-| `books.ts` | Living book/IP projects and book creation engine |
-| `blog.ts` | Editorial lanes and seeded essay backlog |
-| `navigation.ts` | Platform nav/footer intent |
-
-Shared UI primitives live in `components/platform/platform-ui.tsx`.
-
-Route ownership:
-
-- `/research` combines the existing research-domain registry with the new platform research layer.
-- `/cloud` and `/cloud/[slug]` are driven by `data/platform/cloud.ts`.
-- `/blog` renders existing MDX posts and the seeded platform essay backlog.
-- `/products` preserves launch-readiness logic and adds the platform offer ladder.
-- `/books` preserves published book routes and adds living book projects.
-
-Docs:
-
-- `docs/content-system.md`
-- `docs/site-map.md`
-- `docs/sis-swarm-execution.md`
-
-## Development
+This project uses pnpm. The package manager and available scripts are defined in
+[`package.json`](package.json), and `pnpm-lock.yaml` is the lockfile.
 
 ```bash
-# Install
-npm install
-
-# Dev server (localhost:3000)
-npm run dev
-
-# Quality checks
-npm run lint && npm run type-check
-
-# Production build
-npm run build
-
-# Preview production
-npm run start
+pnpm install
+pnpm dev
 ```
 
-## Deployment
+The development server is available at `http://localhost:3000` by default.
 
-Two-repo architecture for security:
-
-```
-FrankX (Private)                    Production (Public)
-├── .claude/         ─── private
-├── research/        ─── private
-├── app/             ───────────►   ├── app/
-├── components/      ───────────►   ├── components/
-├── content/         ───────────►   ├── content/
-└── public/          ───────────►   └── public/
-```
-
-**Deploy workflow (recommended):**
+Run the focused code checks with:
 
 ```bash
-# 1. Develop in FrankX repo
-# 2. Run local quality guards
-npm run ci:check
-
-# 3. Sync runtime files to production worktree and push
-./scripts/sync-to-production.sh "feat: production sync"
+pnpm run type-check
+pnpm run lint
 ```
 
-Manual fallback:
+Run a production build with:
 
 ```bash
-# Preview drift
-bash scripts/pre-deploy-sync-check.sh --diff
-
-# Sync drifted runtime files
-bash scripts/pre-deploy-sync-check.sh --sync
-
-# Commit + push production repo
-cd .worktrees/vercel-ui-ux
-git add -A && git commit -m "sync: update from dev repo" && git push
+pnpm run build
 ```
 
-## Products
+## Contributing
 
-| Product             | Price | Description                  |
-| ------------------- | ----- | ---------------------------- |
-| Vibe OS             | $37   | Life design system in Notion |
-| Creative AI Toolkit | $47   | Prompt templates & workflows |
-| Suno Prompt Library | $27   | 400+ music prompts           |
-| ACOS                | $297+ | Multi-agent creator system   |
-| Creation Chronicles | $497+ | Premium content course       |
+Public issue-based bug reports and documentation feedback are welcome. Code or
+content contributions require agreed terms with the maintainers before
+submission. Read [AGENTS.md](AGENTS.md) before making changes; it documents the
+repository's current checks and branch process.
 
-## Performance Targets
+Do not report security vulnerabilities in a public issue. Follow the private
+reporting instructions in [SECURITY.md](SECURITY.md).
 
-| Metric     | Target |
-| ---------- | ------ |
-| Lighthouse | >90    |
-| LCP        | <2.5s  |
-| FID        | <100ms |
-| CLS        | <0.1   |
+## Licensing
 
-## Brand
+The root [LICENSE](LICENSE) reserves rights unless an explicit separate license
+applies to a file or package directory. It does not grant a general right to
+copy, modify, or redistribute this repository.
 
-**Frank = Elite Creator + AI Architect**
+Some self-contained packages have separate license files. Their licenses apply
+only within their respective package directories:
 
-- 12,000+ AI songs created
-- AI Architect & Creator
-- Enterprise-grade systems
-- Humble excellence in execution
+- [`benchmarks/context-rot`](benchmarks/context-rot/LICENSE)
+- [`benchmarks/retrieval-miss`](benchmarks/retrieval-miss/LICENSE)
+- [`benchmarks/runaway-loop`](benchmarks/runaway-loop/LICENSE)
+- [`templates/agent-payments-guard`](templates/agent-payments-guard/LICENSE)
+- [`templates/context-kit`](templates/context-kit/LICENSE)
+- [`templates/mcp-server-kit`](templates/mcp-server-kit/LICENSE)
+- [`templates/multi-agent`](templates/multi-agent/LICENSE)
+- [`templates/rag-starter`](templates/rag-starter/LICENSE)
+- [`templates/swarm-governance-starter`](templates/swarm-governance-starter/LICENSE)
 
----
-
-Built with Next.js 16, TypeScript, and Claude Code.
-
-Copyright FrankX. All rights reserved.
+Third-party dependencies and vendored tools remain subject to their own licenses.
 
 <!-- kernel:start v393ecb58 -->
 ## Built on the Omotenashi Kernel
@@ -232,3 +106,6 @@ Copyright FrankX. All rights reserved.
 Every agent turn ends with a made thing, never a status report.
 Free and MIT — [read the kernel](https://github.com/frankxai/omotenashi-kernel).
 <!-- kernel:end -->
+
+The MIT notice above covers the Omotenashi Kernel only and does not relicense
+this repository.

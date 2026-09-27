@@ -1,5 +1,14 @@
 # FrankX — Security
 
+## Report a vulnerability
+
+Use GitHub's [private vulnerability reporting form](https://github.com/frankxai/frankx.ai-vercel-website/security/advisories/new) to report a suspected security issue. A GitHub account is required to submit the report.
+
+Private reports may cover this source repository or the deployed website.
+
+Do not open a public issue with exploit details, credentials, secrets, personal
+data, or other information that could put people or systems at risk.
+
 <!-- STARLIGHT-REPO-CONTRACT:START -->
 ## Starlight repository contract
 
