@@ -296,6 +296,7 @@ test("allows download route source while still rejecting adjacent unclassified m
   const { root, base } = await repository(t)
   await write(root, "app/api/download/route.ts", "export function GET() {}\n")
   await write(root, "app/api/download/file/route.ts", "export function GET() {}\n")
+  await write(root, "app/api/download/route.js", "export function GET() {}\n")
   commit(root)
 
   const sourceResult = run(root, base)
@@ -306,6 +307,16 @@ test("allows download route source while still rejecting adjacent unclassified m
   const mediaResult = run(root, base)
   assert.equal(mediaResult.status, 1)
   assert.match(mediaResult.stderr, /\.jxl is not a classified web-media format/u)
+})
+
+test("keeps JavaScript download handlers within the controlled sidecar limit", async (t) => {
+  const { root, base } = await repository(t)
+  await write(root, "app/api/download/route.js", Buffer.alloc(512 * 1024 + 1))
+  commit(root)
+
+  const result = run(root, base)
+  assert.equal(result.status, 1)
+  assert.match(result.stderr, /\.js sidecar exceeds the 0\.50 MiB Git limit/u)
 })
 
 test("rejects dangling symlinks in controlled media paths", posixOnly, async (t) => {
