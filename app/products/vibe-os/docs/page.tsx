@@ -134,19 +134,19 @@ export default function VibeOSDocsPage() {
           <h2 className="mb-4 text-xl font-semibold text-white">Product status</h2>
           <div className="space-y-4">
             <Link
-              href="/products/vibe-os#interest"
-              className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
+              href="/products/Vibe-OS-Guide.pdf"
+              className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-[background-color,border-color] hover:border-white/20 hover:bg-white/10"
             >
               <ArrowRight className="h-5 w-5 text-cyan-400" />
               <div>
-                <div className="font-semibold text-white">Register interest</div>
-                <div className="text-sm text-white/60">Join the product-specific interest list</div>
+                <div className="font-semibold text-white">Read the free guide</div>
+                <div className="text-sm text-white/60">Open the available Vibe OS PDF</div>
               </div>
             </Link>
 
             <Link
               href="/products/vibe-os/app"
-              className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
+              className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-[background-color,border-color] hover:border-white/20 hover:bg-white/10"
             >
               <Zap className="h-5 w-5 text-emerald-400" />
               <div>

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, Calendar, Zap, TrendingUp, Settings } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, Calendar, Zap, TrendingUp, Settings } from 'lucide-react'
 
 export const metadata = {
   title: 'Vibe OS App - Creative State Management | FrankX.ai',
@@ -97,14 +97,15 @@ export default function VibeOSAppPage() {
             Interested in the direction?
           </h2>
           <p className="mb-6 text-white/70">
-            Return to the product page to register Vibe OS-specific interest. This does not create an app account or promise access.
+            Read the available PDF guide to test the method manually. This does not create an app account or promise access to the unreleased app.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/products/vibe-os#interest"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              href="/products/Vibe-OS-Guide.pdf"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 font-semibold text-white transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Register interest
+              Read the free guide
+              <BookOpen className="h-4 w-4" />
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

@@ -1,0 +1,52 @@
+name: Bug report
+description: Report a reproducible problem with the public website or repository.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Do not include vulnerability details, credentials, secrets, personal data, or private logs. [Report suspected vulnerabilities privately](https://github.com/frankxai/frankx.ai-vercel-website/security/advisories/new).
+
+        This form is for bug reports. Code and content contributions require agreed terms with the maintainers before submission.
+  - type: input
+    id: location
+    attributes:
+      label: Affected URL or source area
+      description: Link to the public page or name the relevant repository path.
+      placeholder: https://frankx.ai/example or path/to/file
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: What happened?
+      description: Describe the problem and its effect.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How can we reproduce it?
+      description: List the shortest set of steps that reliably shows the problem.
+      placeholder: |
+        1. Open …
+        2. Select …
+        3. See …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: Describe the result you expected instead.
+  - type: input
+    id: environment
+    attributes:
+      label: Device and browser
+      description: If relevant, provide the device, operating system, and browser versions.
+      placeholder: Firefox 142 on Windows 11
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted evidence
+      description: Add screenshots, console output, or links if they help. Remove secrets, personal data, and private logs first.

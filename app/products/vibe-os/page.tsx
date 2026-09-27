@@ -1,12 +1,11 @@
 import Script from 'next/script'
 
 import products from '@/data/products.json'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
 
 // Premium Vibe OS Components
 import VibeOSHero from './components/VibeOSHero'
-import VibeOSSocialProof from './components/VibeOSSocialProof'
 import VibeOSModules from './components/VibeOSModules'
 import VibeOSFAQ from './components/VibeOSFAQ'
 import VibeOSFinalCTA from './components/VibeOSFinalCTA'
@@ -18,8 +17,8 @@ if (!product) {
 }
 
 export const metadata = createMetadata({
-  title: 'Vibe OS - Creative state workspace in development | FrankX',
-  description: 'See the proposed Vibe OS scope and register product-specific interest. The app and template are not released.',
+  title: `${product.name} guide | FrankX`,
+  description: 'Read the free Vibe OS guide and preview the unreleased app concept.',
   path: `/products/${product.slug}`,
   keywords: [
     'vibe os',
@@ -30,7 +29,7 @@ export const metadata = createMetadata({
     'focus management',
     'creative energy',
     'workflow optimization',
-    'creative workflow research'
+    'free productivity tool'
   ]
 })
 
@@ -38,8 +37,13 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: product.name,
-  description: 'A preview of the proposed Vibe OS creative state workspace. The product is in development.',
-  url: 'https://frankx.ai/products/vibe-os',
+  description: 'The Vibe OS guide and a preview of the unreleased app concept.',
+  url: `${siteConfig.url}/products/vibe-os`,
+  image: 'https://frankx.ai/images/products/vibe-os-hero.jpg',
+  brand: {
+    '@type': 'Brand',
+    name: 'FrankX.ai'
+  }
 }
 
 export default function VibeOSPage() {
@@ -56,9 +60,7 @@ export default function VibeOSPage() {
 
       {/* Main Content */}
       <div className="relative z-10">
-        <VibeOSHero productId={productId} />
-
-        <VibeOSSocialProof />
+        <VibeOSHero productId={productId} product={product} />
 
         <VibeOSModules
           modules={product.modules}
@@ -70,13 +72,13 @@ export default function VibeOSPage() {
           <div className="relative mx-auto max-w-6xl px-6">
             <div className="mb-12 text-center">
               <span className="glow-badge glow-badge-cyan mb-4 inline-flex">
-                Possible uses
+                Ways to test the guide
               </span>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                Jobs the concept is meant to support
+                Three places to start observing
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-white/60">
-                These examples describe the design intent. They are not customer results.
+                These are suggested experiments, not reported customer results.
               </p>
             </div>
 
@@ -89,7 +91,7 @@ export default function VibeOSPage() {
                 </div>
                 <h3 className="mb-2 font-semibold text-white">Writers</h3>
                 <p className="text-sm leading-relaxed text-white/60">
-                  Record when focused writing feels easiest and compare that observation with your project schedule.
+                  Note when focused writing feels easiest and compare that observation with your project schedule.
                 </p>
               </div>
 
@@ -101,7 +103,7 @@ export default function VibeOSPage() {
                 </div>
                 <h3 className="mb-2 font-semibold text-white">Musicians</h3>
                 <p className="text-sm leading-relaxed text-white/60">
-                  Note the conditions around music sessions and look for patterns worth testing in later sessions.
+                  Record the conditions around music sessions and look for patterns worth testing later.
                 </p>
               </div>
 
@@ -122,20 +124,20 @@ export default function VibeOSPage() {
 
         <VibeOSFAQ faq={[
           {
-            question: 'Can I use Vibe OS today?',
-            answer: 'No. The web app and Notion template are not publicly available. This page currently collects product-specific interest only.',
+            question: 'What is available now?',
+            answer: 'The Vibe OS PDF guide is available without signup. The web app and Notion template are not publicly available.',
           },
           {
-            question: 'What happens when I register interest?',
-            answer: 'Your email is added to the existing FrankX waitlist with Vibe OS attribution. You can optionally answer three product questions. Registration does not create an app account or reserve a paid product.',
+            question: 'Is the guide the web app?',
+            answer: 'No. The guide explains a creative-state method you can test manually. The app sections on this page describe an unreleased concept.',
           },
           {
-            question: 'Is there a launch date or price?',
-            answer: 'No launch date or price has been set. Any future availability, scope, and pricing will be communicated as a new decision.',
+            question: 'Is there a launch date or paid offer?',
+            answer: 'No launch date, checkout, or paid Vibe OS offer is published on this page.',
           },
         ]} />
 
-        <VibeOSFinalCTA />
+        <VibeOSFinalCTA productId={productId} />
       </div>
 
       <Script id="product-structured-data" type="application/ld+json">

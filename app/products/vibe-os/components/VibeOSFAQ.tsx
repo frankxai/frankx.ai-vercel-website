@@ -39,7 +39,7 @@ export default function VibeOSFAQ({ faq }: VibeOSFAQProps) {
             FAQ
           </div>
           <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-            Frequently asked questions
+            Frequently Asked Questions
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-white/60">
             Everything you need to know about Vibe OS

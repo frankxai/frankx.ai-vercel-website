@@ -1,40 +1,63 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { CalendarClock, ChartNoAxesCombined, ListChecks, SlidersHorizontal } from 'lucide-react'
+import { ArrowRight, BookOpen, Library, Workflow, Heart, Sliders } from 'lucide-react'
 import type { ProductModule } from '@/types/products'
 
-const moduleIcons = [CalendarClock, ListChecks, ChartNoAxesCombined, SlidersHorizontal]
+const GUIDE_HREF = '/products/Vibe-OS-Guide.pdf'
+const moduleIcons = [Library, Workflow, Heart, Sliders]
 
 export default function VibeOSModules({ modules }: { modules: ProductModule[] }) {
   return (
     <section className="relative py-24">
       <div className="absolute inset-0 bg-gradient-to-b from-void via-space to-void" />
-      <div className="relative mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-cyan-300/70">Proposed scope</p>
-          <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">What the first release may include</h2>
-          <p className="mt-4 leading-relaxed text-white/60">
-            These are product directions under consideration, not modules you can access today. Interest responses will help narrow the scope.
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_30%_at_50%_0%,rgba(139,92,246,0.08),transparent_50%)]" />
+      <div className="relative mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <div>
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-cyan-300/70">Proposed app scope</p>
+          <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
+            What a future app could support
+          </h2>
+          <p className="mt-4 max-w-2xl leading-relaxed text-white/60">
+            These are design directions, not available modules. The current guide explains the underlying method you can test manually.
           </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {modules.map((module, index) => {
+              const Icon = moduleIcons[index % moduleIcons.length]
+              return (
+                <motion.article
+                  key={module.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="spotlight-card p-6"
+                >
+                  <Icon className="h-5 w-5 text-cyan-300" />
+                  <h3 className="mt-4 font-semibold text-white">{module.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/60">{module.description}</p>
+                </motion.article>
+              )
+            })}
+          </div>
         </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {modules.map((module, index) => {
-            const Icon = moduleIcons[index % moduleIcons.length]
-            return (
-              <motion.article
-                key={module.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="spotlight-card p-7"
-              >
-                <Icon className="h-5 w-5 text-cyan-300" />
-                <h3 className="mt-5 text-lg font-semibold text-white">{module.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">{module.description}</p>
-              </motion.article>
-            )
-          })}
+
+        <div className="flex items-center">
+          <div className="w-full rounded-[2rem] border border-cyan-400/20 bg-cyan-500/[0.06] p-8">
+            <BookOpen className="h-7 w-7 text-cyan-300" />
+            <p className="mt-6 text-xs font-medium uppercase tracking-[0.2em] text-cyan-200/70">Available now</p>
+            <h3 className="mt-3 text-2xl font-bold text-white">The Vibe OS PDF guide</h3>
+            <p className="mt-4 leading-relaxed text-white/65">
+              Read the method without creating an account or joining a list. This guide is separate from the unreleased app and Notion template.
+            </p>
+            <Link
+              href={GUIDE_HREF}
+              className="group mt-8 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-400/10 px-6 py-3 font-semibold text-cyan-100 transition-[color,background-color,border-color] hover:border-cyan-200/50 hover:bg-cyan-400/15 hover:text-white"
+            >
+              Open the guide
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
