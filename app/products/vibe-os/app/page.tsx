@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { ArrowLeft, Calendar, Zap, TrendingUp, Settings } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, Calendar, Zap, TrendingUp, Settings } from 'lucide-react'
 
 export const metadata = {
   title: 'Vibe OS App - Creative State Management | FrankX.ai',
-  description: 'Track your creative energy, optimize your workflow, and ship consistently.',
+  description: 'Development status and proposed scope for the unreleased Vibe OS app.',
 }
 
 export default function VibeOSAppPage() {
@@ -22,7 +22,7 @@ export default function VibeOSAppPage() {
             className="inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Product Page
+            Back to product page
           </Link>
         </div>
       </div>
@@ -33,29 +33,29 @@ export default function VibeOSAppPage() {
         <div className="mb-12 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-4 py-2 text-sm font-medium text-amber-400">
             <Zap className="h-4 w-4" />
-            In Development
+            In development
           </div>
           <h1 className="font-display text-3xl font-bold text-white sm:text-4xl">
-            Vibe OS App Coming Soon
+            The Vibe OS app is not available yet
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-white/60">
-            We're building the web app. In the meantime, download the Notion template to start tracking your creative states today.
+            This is a development preview. There is no public app or verified template to download today.
           </p>
         </div>
 
         {/* Features Preview */}
         <div className="mb-12">
           <h2 className="mb-6 text-xl font-semibold text-white">
-            What's Coming in the App
+            Proposed app scope
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="rounded-xl border border-white/10 bg-white/5 p-6">
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400">
                 <Calendar className="h-5 w-5" />
               </div>
-              <h3 className="mb-2 font-semibold text-white">Energy Tracking</h3>
+              <h3 className="mb-2 font-semibold text-white">Energy tracking</h3>
               <p className="text-sm text-white/60">
-                Log your creative energy levels throughout the day with one-click logging and automated pattern detection.
+                A simple check-in for recording energy and the work in progress.
               </p>
             </div>
 
@@ -63,9 +63,9 @@ export default function VibeOSAppPage() {
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
                 <TrendingUp className="h-5 w-5" />
               </div>
-              <h3 className="mb-2 font-semibold text-white">Analytics Dashboard</h3>
+              <h3 className="mb-2 font-semibold text-white">Analytics dashboard</h3>
               <p className="text-sm text-white/60">
-                Visualize your productivity patterns, peak hours, and creative cycles with interactive charts.
+                Review recorded check-ins and look for patterns worth testing.
               </p>
             </div>
 
@@ -73,9 +73,9 @@ export default function VibeOSAppPage() {
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10 text-violet-400">
                 <Zap className="h-5 w-5" />
               </div>
-              <h3 className="mb-2 font-semibold text-white">Smart Scheduling</h3>
+              <h3 className="mb-2 font-semibold text-white">Smart scheduling</h3>
               <p className="text-sm text-white/60">
-                Get AI-powered suggestions for when to schedule different types of creative work based on your patterns.
+                Explore scheduling suggestions based on the observations you choose to record.
               </p>
             </div>
 
@@ -83,34 +83,30 @@ export default function VibeOSAppPage() {
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
                 <Settings className="h-5 w-5" />
               </div>
-              <h3 className="mb-2 font-semibold text-white">Workflow Templates</h3>
+              <h3 className="mb-2 font-semibold text-white">Workflow templates</h3>
               <p className="text-sm text-white/60">
-                Pre-built workflows for different creative tasks matched to your energy states and focus modes.
+                Draft workflows for different creative tasks and focus conditions.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Download Section */}
+        {/* Interest Section */}
         <div className="rounded-2xl border border-cyan-500/20 bg-gradient-to-b from-cyan-500/10 to-cyan-500/5 p-8">
           <h2 className="mb-4 text-xl font-semibold text-white">
-            Start Now with the Notion Template
+            Interested in the direction?
           </h2>
           <p className="mb-6 text-white/70">
-            Get the Vibe OS Notion dashboard and start tracking your creative states while we build the web app. It's free and ready to use today.
+            Read the concept notes to test the idea manually. This does not create an app account or promise access to the unreleased app.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/products/vibe-os#download"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              href="/products/vibe-os/docs"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 font-semibold text-white transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Download Notion Template
-            </Link>
-            <Link
-              href="/newsletter"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10"
-            >
-              Get Launch Updates
+              Read the concept notes
+              <BookOpen className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
