@@ -26,6 +26,7 @@ export async function GET(request: NextRequest) {
 
   const publicFile = products.some(product =>
     isPublicDownloadProduct(product) &&
+    product.delivery?.requiresEmail === false &&
     product.delivery?.files?.some(file => file.blobKey === blobKey)
   )
   if (!publicFile) {
