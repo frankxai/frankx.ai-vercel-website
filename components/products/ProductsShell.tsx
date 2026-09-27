@@ -83,7 +83,7 @@ const products = [
     highlights: [
       'Read the current concept and its limits',
       'Try the manual note or spreadsheet experiment',
-      'No app, template, or download is available',
+      'No creative-state app or workspace template is available',
     ],
   },
   {
@@ -349,7 +349,7 @@ export default function ProductsShell() {
               className="max-w-2xl text-[17px] sm:text-xl leading-relaxed text-slate-300/90"
             >
               Concept notes and early product outlines for creative work, music, and AI systems.
-              Each card links to its current page.
+              Some cards also link to related pages you can inspect now.
             </motion.p>
           </div>
         </section>
@@ -431,16 +431,27 @@ export default function ProductsShell() {
                               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </Link>
                           ) : (
-                            <button
-                              onClick={() => {
-                                setOpenModal(product.id)
-                                trackEvent('early_access_click', { productId: product.id })
-                              }}
-                              className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
-                            >
-                              <span className="text-sm font-medium">Join</span>
-                              <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </button>
+                            <div className="flex flex-wrap items-center justify-end gap-4">
+                              {!product.href.startsWith('/newsletter') && (
+                                <Link
+                                  href={product.href}
+                                  onClick={() => trackEvent('product_card_click', { productId: product.id })}
+                                  className="text-sm font-medium text-slate-300 underline underline-offset-4 transition-colors hover:text-white"
+                                >
+                                  Explore related page
+                                </Link>
+                              )}
+                              <button
+                                onClick={() => {
+                                  setOpenModal(product.id)
+                                  trackEvent('early_access_click', { productId: product.id })
+                                }}
+                                className="flex items-center gap-2 text-slate-300 transition-colors hover:text-white"
+                              >
+                                <span className="text-sm font-medium">Record interest</span>
+                                <Send className="h-4 w-4" aria-hidden="true" />
+                              </button>
+                            </div>
                           )}
                         </div>
                     </GlowCard>

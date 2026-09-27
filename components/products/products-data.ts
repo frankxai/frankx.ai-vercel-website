@@ -72,7 +72,7 @@ export const productsFaq = [
   },
   {
     q: 'Which products are available now?',
-    a: "The Vibe OS workspace is a concept. The other cards are early product outlines; open a card to see its current page.",
+    a: "The Vibe OS workspace is a concept. The other cards are early product outlines; some cards also link to related pages you can inspect now.",
   },
   {
     q: 'What do I get by joining Early Access?',

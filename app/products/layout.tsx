@@ -1,8 +1,8 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Products | AI-Powered Tools for Creators & Architects',
-  description: 'Explore the FrankX product suite: Agentic Creator OS, Creative AI Toolkit, Suno Prompt Library, and more. Built for creators who ship.',
+  title: 'Product studio | Concepts and early outlines | FrankX',
+  description: 'Explore FrankX product concepts and early outlines for creative work, music, and AI. Each entry states what you can inspect today.',
   path: '/products',
 })
 

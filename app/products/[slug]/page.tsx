@@ -7,7 +7,7 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import BuyButton from './BuyButton'
-import type { ProductRecord } from '@/types/products'
+import type { ProductCatalogRecord, ProductRecord } from '@/types/products'
 
 // Some registry entries (e.g. golden-age) predate the full ProductRecord shape:
 // they carry title/description/cta/price instead of name/headline/offer.
@@ -19,8 +19,8 @@ type LegacyFields = {
   cta?: { label: string; href: string }
 }
 
-function normalize(product: ProductRecord) {
-  const legacy = product as ProductRecord & LegacyFields
+function normalize(product: ProductCatalogRecord) {
+  const legacy = product as ProductCatalogRecord & LegacyFields
   return {
     name: product.name ?? legacy.title ?? product.slug,
     headline: product.headline ?? legacy.description ?? '',

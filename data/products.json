@@ -194,8 +194,8 @@
     "badge": "Concept",
     "headline": "A concept for observing creative state, energy, and focus",
     "subheadline": "The workspace is not released. Its page contains concept notes and a manual experiment you can run in your own notes or spreadsheet.",
-    "promise": "Explore the model without an app, template, download, or availability claim.",
-    "summary": "An unreleased creative-state workspace concept with manual notes for observing state, energy, and focus.",
+    "promise": "Explore the creative-state model without an app or workspace template. A separate Vibe OS Music Guide is available in Downloads.",
+    "summary": "An unreleased creative-state workspace concept with a manual experiment. The existing Vibe OS Music Guide is a separate download.",
     "transformation": [
       "Read the current creative-state model and its stated limits",
       "Try the documented manual experiment in your own notes or spreadsheet",
@@ -231,6 +231,10 @@
       {
         "question": "Can I try the idea now?",
         "answer": "The concept page describes a manual experiment you can run in your own note or spreadsheet."
+      },
+      {
+        "question": "Is the Vibe OS Music Guide still available?",
+        "answer": "Yes. The music guide remains available from Downloads. It is separate from this unreleased creative-state workspace."
       }
     ],
     "analyticsId": "vibe-os"

@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import Link from 'next/link'
 
 import products from '@/data/products.json'
 import { createMetadata, siteConfig } from '@/lib/seo'
@@ -29,7 +30,7 @@ export const metadata = createMetadata({
     'focus management',
     'creative energy',
     'workflow optimization',
-    'free productivity tool'
+    'creative-state concept'
   ]
 })
 
@@ -136,6 +137,14 @@ export default function VibeOSPage() {
             answer: 'No launch date, checkout, or paid Vibe OS offer is published on this page.',
           },
         ]} />
+
+        <p className="mx-auto max-w-2xl px-6 pb-8 text-center text-sm leading-6 text-white/60">
+          Looking for the separate music resource? The{' '}
+          <Link href="/downloads/preview/vibe-os" className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200">
+            Vibe OS Music Guide
+          </Link>{' '}
+          remains available. It is not the creative-state workspace.
+        </p>
 
         <VibeOSFinalCTA productId={productId} />
       </div>

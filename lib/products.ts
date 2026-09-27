@@ -1,7 +1,7 @@
 import registry from '@/data/products.json'
-import type { ProductRecord } from '@/types/products'
+import type { ProductCatalogRecord, ProductRecord } from '@/types/products'
 
-export const products = registry as ProductRecord[]
+export const products = registry as ProductCatalogRecord[]
 
 export type ProductCard = {
   id: string
@@ -11,7 +11,7 @@ export type ProductCard = {
   badge?: string
   category?: string
   href: string
-  price: number
+  price?: number
   priceDisplay?: string
   originalPrice?: number
   highlights: string[]
@@ -63,9 +63,9 @@ export function getProductCards(): ProductCard[] {
       badge: product.badge,
       category: product.category,
       href: `/products/${product.slug}`,
-      price: product.offer.primaryPrice,
-      priceDisplay: product.offer.primaryPriceDisplay,
-      originalPrice: product.offer.originalPrice,
+      price: product.offer?.primaryPrice,
+      priceDisplay: product.offer?.primaryPriceDisplay,
+      originalPrice: product.offer?.originalPrice,
       highlights: product.transformation.slice(0, 3),
       testimonial: firstQuote
         ? {
