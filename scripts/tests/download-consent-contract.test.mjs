@@ -139,13 +139,44 @@ test('only production book redirects with valid attempts schedule anonymous anal
 })
 
 test('PDF analytics allows the registered free book slugs', () => {
-  const { TRACKED_GUIDES } = loadModule('lib/pdf-analytics.ts', {
+  const { DIRECT_BOOK_GUIDES, TRACKED_GUIDES } = loadModule('lib/pdf-analytics.ts', {
     '@vercel/kv': { createClient: () => ({}) },
     './redis-env': { redisRestConfig: () => ({}) },
   }, () => {})
   for (const slug of ['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
     assert.equal(TRACKED_GUIDES.has(slug), true, slug)
+    assert.equal(DIRECT_BOOK_GUIDES.has(slug), true, slug)
   }
+})
+
+test('legacy analytics POST rejects direct book events but keeps legacy guides', async () => {
+  let rateLimits = 0
+  let writes = 0
+  const { POST } = loadModule('app/api/analytics/track-download/route.ts', {
+    'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
+    '@/lib/pdf-analytics': {
+      DIRECT_BOOK_GUIDES: new Set(['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']),
+      TRACKED_GUIDES: new Set(['soulbook', 'vibe-os', 'love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']),
+      trackPDFDownload: async () => { writes++; return { id: 'legacy-event' } },
+    },
+    '@/lib/ratelimit': {
+      analyticsRatelimit: { limit: async () => { rateLimits++; return { success: true } } },
+      getClientIdentifier: () => 'test-client',
+    },
+  }, () => assert.fail('unexpected network request'))
+  const request = (guideSlug) => new Request('https://frankx.ai/api/analytics/track-download', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ guideSlug, guideTitle: guideSlug, sessionId: 'claimed-session' }),
+  })
+  for (const slug of ['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
+    assert.equal((await POST(request(slug))).status, 400, slug)
+  }
+  assert.equal(rateLimits, 0)
+  assert.equal(writes, 0)
+  assert.equal((await POST(request('soulbook'))).status, 200)
+  assert.equal(rateLimits, 1)
+  assert.equal(writes, 1)
 })
 
 test('direct redirect events deduplicate each short-lived link attempt', async () => {

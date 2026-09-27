@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { TRACKED_GUIDES, trackPDFDownload } from '@/lib/pdf-analytics'
+import { DIRECT_BOOK_GUIDES, TRACKED_GUIDES, trackPDFDownload } from '@/lib/pdf-analytics'
 import { analyticsRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
 const DOWNLOAD_METHODS = ['direct', 'email', 'combo']
@@ -17,6 +17,11 @@ export async function POST(request: NextRequest) {
     }
     if (!TRACKED_GUIDES.has(data.guideSlug)) {
       return NextResponse.json({ error: 'Unknown guide' }, { status: 400 })
+    }
+    // Direct book starts are counted at the authorized download redirect.
+    // A public client POST must not add an unverified second book event.
+    if (DIRECT_BOOK_GUIDES.has(data.guideSlug)) {
+      return NextResponse.json({ error: 'Use the book download link' }, { status: 400 })
     }
 
     const { success } = await analyticsRatelimit.limit(getClientIdentifier(request))

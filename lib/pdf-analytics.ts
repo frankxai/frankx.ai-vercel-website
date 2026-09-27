@@ -21,10 +21,12 @@ const EMAILS = 'pdf-analytics:emails'
 const MAX_ENTRIES = 50_000
 
 // Only these guides are tracked; anything else is rejected before it is stored.
-export const TRACKED_GUIDES = new Set([
-  'soulbook', 'vibe-os',
+export const DIRECT_BOOK_GUIDES = new Set([
   'love-and-poetry', 'spartan-mindset', 'self-development',
   'imagination', 'manifestation', 'golden-age',
+])
+export const TRACKED_GUIDES = new Set([
+  'soulbook', 'vibe-os', ...DIRECT_BOOK_GUIDES,
 ])
 
 function generateId(): string {
