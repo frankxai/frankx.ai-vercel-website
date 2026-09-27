@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { BentoGrid, BentoCard } from '@/components/ui/magic-ui/bento-grid'
+import ShimmerButton from '@/components/ui/magic-ui/shimmer-button'
 import { SplitTextReveal } from '@/components/ui/SplitTextReveal'
 import { TiltCard } from '@/components/ui/TiltCard'
 import { Music, Zap, Users, Trophy, Star, Heart } from 'lucide-react'
