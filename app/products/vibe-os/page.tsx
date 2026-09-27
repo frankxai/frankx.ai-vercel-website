@@ -6,10 +6,8 @@ import type { ProductRecord } from '@/types/products'
 
 // Premium Vibe OS Components
 import VibeOSHero from './components/VibeOSHero'
-import VibeOSFeatures from './components/VibeOSFeatures'
 import VibeOSSocialProof from './components/VibeOSSocialProof'
 import VibeOSModules from './components/VibeOSModules'
-import VibeOSBonuses from './components/VibeOSBonuses'
 import VibeOSFAQ from './components/VibeOSFAQ'
 import VibeOSFinalCTA from './components/VibeOSFinalCTA'
 
@@ -20,8 +18,8 @@ if (!product) {
 }
 
 export const metadata = createMetadata({
-  title: `${product.name} - Free Creative State Management | FrankX.ai`,
-  description: product.promise,
+  title: 'Vibe OS - Creative state workspace in development | FrankX',
+  description: 'See the proposed Vibe OS scope and register product-specific interest. The app and template are not released.',
   path: `/products/${product.slug}`,
   keywords: [
     'vibe os',
@@ -32,33 +30,16 @@ export const metadata = createMetadata({
     'focus management',
     'creative energy',
     'workflow optimization',
-    'free productivity tool'
+    'creative workflow research'
   ]
 })
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
+  '@type': 'WebPage',
   name: product.name,
-  description: product.promise,
-  image: 'https://frankx.ai/images/products/vibe-os-hero.jpg',
-  applicationCategory: 'ProductivityApplication',
-  operatingSystem: 'Web',
-  brand: {
-    '@type': 'Brand',
-    name: 'FrankX.ai'
-  },
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: product.offer.currency,
-    availability: 'https://schema.org/InStock'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    reviewCount: '23'
-  }
+  description: 'A preview of the proposed Vibe OS creative state workspace. The product is in development.',
+  url: 'https://frankx.ai/products/vibe-os',
 }
 
 export default function VibeOSPage() {
@@ -75,21 +56,13 @@ export default function VibeOSPage() {
 
       {/* Main Content */}
       <div className="relative z-10">
-        <VibeOSHero productId={productId} product={product} />
+        <VibeOSHero productId={productId} />
 
-        <VibeOSFeatures transformation={product.transformation} />
-
-        <VibeOSSocialProof stats={product.socialProof.stats} />
+        <VibeOSSocialProof />
 
         <VibeOSModules
-          productId={productId}
           modules={product.modules}
-          offer={product.offer}
         />
-
-        {product.bonuses && product.bonuses.length > 0 && (
-          <VibeOSBonuses bonuses={product.bonuses} />
-        )}
 
         {/* Use Cases Section */}
         <section className="relative py-24">
@@ -97,13 +70,13 @@ export default function VibeOSPage() {
           <div className="relative mx-auto max-w-6xl px-6">
             <div className="mb-12 text-center">
               <span className="glow-badge glow-badge-cyan mb-4 inline-flex">
-                Built for Creators
+                Possible uses
               </span>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                How Creators Use Vibe OS
+                Jobs the concept is meant to support
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-white/60">
-                Real workflows from creators who manage their energy and ship consistently.
+                These examples describe the design intent. They are not customer results.
               </p>
             </div>
 
@@ -116,7 +89,7 @@ export default function VibeOSPage() {
                 </div>
                 <h3 className="mb-2 font-semibold text-white">Writers</h3>
                 <p className="text-sm leading-relaxed text-white/60">
-                  Track peak writing hours, manage context switching between projects, and build sustainable daily writing habits.
+                  Record when focused writing feels easiest and compare that observation with your project schedule.
                 </p>
               </div>
 
@@ -128,7 +101,7 @@ export default function VibeOSPage() {
                 </div>
                 <h3 className="mb-2 font-semibold text-white">Musicians</h3>
                 <p className="text-sm leading-relaxed text-white/60">
-                  Schedule production sessions during high-energy windows and creative work during flow states.
+                  Note the conditions around music sessions and look for patterns worth testing in later sessions.
                 </p>
               </div>
 
@@ -140,16 +113,29 @@ export default function VibeOSPage() {
                 </div>
                 <h3 className="mb-2 font-semibold text-white">Designers</h3>
                 <p className="text-sm leading-relaxed text-white/60">
-                  Optimize creative sessions, manage client work energy, and prevent burnout with structured tracking.
+                  Separate observations about focus from project notes when planning studio and client work.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <VibeOSFAQ faq={product.faq} />
+        <VibeOSFAQ faq={[
+          {
+            question: 'Can I use Vibe OS today?',
+            answer: 'No. The web app and Notion template are not publicly available. This page currently collects product-specific interest only.',
+          },
+          {
+            question: 'What happens when I register interest?',
+            answer: 'Your email is added to the existing FrankX waitlist with Vibe OS attribution. You can optionally answer three product questions. Registration does not create an app account or reserve a paid product.',
+          },
+          {
+            question: 'Is there a launch date or price?',
+            answer: 'No launch date or price has been set. Any future availability, scope, and pricing will be communicated as a new decision.',
+          },
+        ]} />
 
-        <VibeOSFinalCTA productId={productId} offer={product.offer} />
+        <VibeOSFinalCTA />
       </div>
 
       <Script id="product-structured-data" type="application/ld+json">

@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { ArrowLeft, Book, Download, Zap } from 'lucide-react'
+import { ArrowLeft, Book, ArrowRight, Zap } from 'lucide-react'
 
 export const metadata = {
   title: 'Vibe OS Documentation | FrankX.ai',
-  description: 'Learn how to use Vibe OS for creative state management and energy tracking.',
+  description: 'Preview the proposed Vibe OS method while the app and template remain in development.',
 }
 
 export default function VibeOSDocsPage() {
@@ -33,28 +33,29 @@ export default function VibeOSDocsPage() {
         <div className="mb-12">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300">
             <Book className="h-4 w-4" />
-            Documentation
+            Concept notes
           </div>
           <h1 className="font-display mb-4 text-4xl font-bold text-white sm:text-5xl">
-            Vibe OS Documentation
+            Vibe OS is still in development
           </h1>
           <p className="text-lg text-white/70">
-            Everything you need to start managing your creative energy and optimizing your workflow.
+            These notes explain the proposed method. They are not instructions for an available app or template.
           </p>
         </div>
 
         {/* Quick Start */}
         <div className="mb-12 rounded-2xl border border-white/10 bg-white/5 p-8">
-          <h2 className="mb-4 text-2xl font-bold text-white">Quick Start</h2>
+          <h2 className="mb-4 text-2xl font-bold text-white">A manual experiment</h2>
+          <p className="mb-6 text-white/60">You can test the underlying idea with a private note or spreadsheet. This is not a Vibe OS deliverable.</p>
           <ol className="space-y-4">
             <li className="flex gap-4">
               <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-cyan-500/20 text-sm font-bold text-cyan-300">
                 1
               </div>
               <div>
-                <h3 className="font-semibold text-white">Download the Notion Template</h3>
+                <h3 className="font-semibold text-white">Choose your own private log</h3>
                 <p className="mt-1 text-sm text-white/60">
-                  Get the Vibe OS dashboard template and duplicate it to your Notion workspace.
+                  Use a note or spreadsheet you already control. No official Vibe OS template is available.
                 </p>
               </div>
             </li>
@@ -63,7 +64,7 @@ export default function VibeOSDocsPage() {
                 2
               </div>
               <div>
-                <h3 className="font-semibold text-white">Log Your First Energy Check-In</h3>
+                <h3 className="font-semibold text-white">Log your first energy check-in</h3>
                 <p className="mt-1 text-sm text-white/60">
                   Record your current energy level (1-5) and what you're working on. Do this 3-4 times throughout your day.
                 </p>
@@ -74,7 +75,7 @@ export default function VibeOSDocsPage() {
                 3
               </div>
               <div>
-                <h3 className="font-semibold text-white">Review Your Patterns After 1 Week</h3>
+                <h3 className="font-semibold text-white">Review your patterns after one week</h3>
                 <p className="mt-1 text-sm text-white/60">
                   Look for patterns in your energy levels and identify your peak creative hours.
                 </p>
@@ -85,9 +86,9 @@ export default function VibeOSDocsPage() {
                 4
               </div>
               <div>
-                <h3 className="font-semibold text-white">Optimize Your Schedule</h3>
+                <h3 className="font-semibold text-white">Test one schedule change</h3>
                 <p className="mt-1 text-sm text-white/60">
-                  Schedule deep creative work during your peak hours and admin tasks during lower-energy windows.
+                  Treat any pattern as a hypothesis, then test one small scheduling change.
                 </p>
               </div>
             </li>
@@ -96,33 +97,33 @@ export default function VibeOSDocsPage() {
 
         {/* Core Concepts */}
         <div className="mb-12">
-          <h2 className="mb-6 text-2xl font-bold text-white">Core Concepts</h2>
+          <h2 className="mb-6 text-2xl font-bold text-white">Core concepts</h2>
           <div className="space-y-6">
             <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-              <h3 className="mb-2 text-lg font-semibold text-white">Creative States</h3>
+              <h3 className="mb-2 text-lg font-semibold text-white">Creative states</h3>
               <p className="text-white/70">
                 Your creative state is the combination of your energy level, focus quality, and mental mode. Vibe OS helps you track these states to understand when you do your best work.
               </p>
             </div>
 
             <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-              <h3 className="mb-2 text-lg font-semibold text-white">Energy Tracking</h3>
+              <h3 className="mb-2 text-lg font-semibold text-white">Energy tracking</h3>
               <p className="text-white/70">
                 Log your energy levels on a 1-5 scale throughout the day. Over time, patterns emerge showing your natural energy cycles and peak productivity windows.
               </p>
             </div>
 
             <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-              <h3 className="mb-2 text-lg font-semibold text-white">Workflow Optimization</h3>
+              <h3 className="mb-2 text-lg font-semibold text-white">Workflow planning</h3>
               <p className="text-white/70">
                 Match your tasks to your energy states. Schedule creative work during high-energy peaks, meetings during moderate energy, and admin work during low-energy periods.
               </p>
             </div>
 
             <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-              <h3 className="mb-2 text-lg font-semibold text-white">Pattern Recognition</h3>
+              <h3 className="mb-2 text-lg font-semibold text-white">Pattern review</h3>
               <p className="text-white/70">
-                After 1-2 weeks of tracking, review your data to identify patterns. Most creators find they have 2-4 hours of peak creative energy per day.
+                Review your own observations for recurring conditions. Do not assume a pattern until your notes support it.
               </p>
             </div>
           </div>
@@ -130,16 +131,16 @@ export default function VibeOSDocsPage() {
 
         {/* Resources */}
         <div className="rounded-2xl border border-cyan-500/20 bg-gradient-to-b from-cyan-500/10 to-cyan-500/5 p-8">
-          <h2 className="mb-4 text-xl font-semibold text-white">Resources</h2>
+          <h2 className="mb-4 text-xl font-semibold text-white">Product status</h2>
           <div className="space-y-4">
             <Link
-              href="/products/vibe-os#download"
+              href="/products/vibe-os#interest"
               className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
             >
-              <Download className="h-5 w-5 text-cyan-400" />
+              <ArrowRight className="h-5 w-5 text-cyan-400" />
               <div>
-                <div className="font-semibold text-white">Notion Template</div>
-                <div className="text-sm text-white/60">Download the complete Vibe OS dashboard</div>
+                <div className="font-semibold text-white">Register interest</div>
+                <div className="text-sm text-white/60">Join the product-specific interest list</div>
               </div>
             </Link>
 
@@ -149,7 +150,7 @@ export default function VibeOSDocsPage() {
             >
               <Zap className="h-5 w-5 text-emerald-400" />
               <div>
-                <div className="font-semibold text-white">Web App (Coming Soon)</div>
+                <div className="font-semibold text-white">Web app (in development)</div>
                 <div className="text-sm text-white/60">See what's coming in the web version</div>
               </div>
             </Link>
