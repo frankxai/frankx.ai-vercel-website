@@ -5,10 +5,10 @@ Frank Riemer's website for AI architecture, creative work, books, music, researc
 and digital products. The site uses the Next.js App Router, React, TypeScript, and
 Tailwind CSS.
 
-The repository is public so people can inspect the source and contribute fixes.
+The repository is public so people can inspect the source and report problems.
 Public access does not make the site, its code, or its content open source. The
-root [LICENSE](LICENSE) reserves rights unless a file or package has its own
-explicit license.
+root [LICENSE](LICENSE) reserves rights unless an explicit separate license
+applies to a file or package directory.
 
 ![FrankX website](public/images/readme-hero.png)
 
@@ -69,18 +69,19 @@ pnpm run build
 
 ## Contributing
 
-Bug reports and focused documentation or code fixes are welcome through GitHub
-issues and pull requests. Read [AGENTS.md](AGENTS.md) before making changes; it
-documents the repository's current checks and branch process.
+Public issue-based bug reports and documentation feedback are welcome. Code or
+content contributions require agreed terms with the maintainers before
+submission. Read [AGENTS.md](AGENTS.md) before making changes; it documents the
+repository's current checks and branch process.
 
 Do not report security vulnerabilities in a public issue. Follow the private
 reporting instructions in [SECURITY.md](SECURITY.md).
 
 ## Licensing
 
-The root [FrankX site and content license](LICENSE) applies unless a file, folder,
-or package states otherwise. It does not grant a general right to copy, modify,
-or redistribute this repository.
+The root [LICENSE](LICENSE) reserves rights unless an explicit separate license
+applies to a file or package directory. It does not grant a general right to
+copy, modify, or redistribute this repository.
 
 Some self-contained packages have separate license files. Their licenses apply
 only within their respective package directories:
@@ -105,3 +106,6 @@ Third-party dependencies and vendored tools remain subject to their own licenses
 Every agent turn ends with a made thing, never a status report.
 Free and MIT — [read the kernel](https://github.com/frankxai/omotenashi-kernel).
 <!-- kernel:end -->
+
+The MIT notice above covers the Omotenashi Kernel only and does not relicense
+this repository.
