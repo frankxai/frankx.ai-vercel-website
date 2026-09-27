@@ -56,6 +56,25 @@ export async function trackPDFDownload(data: Omit<PDFDownload, 'id' | 'timestamp
   return append(DOWNLOADS, { id: generateId(), timestamp: new Date().toISOString(), ...data })
 }
 
+// An attempt ID belongs to one rendered link, not to a browser or person. It
+// expires after an hour; the stored download event has no visitor identifier.
+export async function trackDirectDownloadOnce(
+  data: Pick<PDFDownload, 'guideSlug' | 'guideTitle' | 'downloadMethod'>,
+  attemptId: string
+): Promise<boolean> {
+  const key = `pdf-analytics:download-attempt:${data.guideSlug}:${attemptId}`
+  const claimed = await kv.set(key, '1', { nx: true, ex: 3_600 })
+  if (claimed !== 'OK') return false
+
+  try {
+    await trackPDFDownload({ ...data, sessionId: 'anonymous', userAgent: 'omitted' })
+    return true
+  } catch (error) {
+    await kv.del(key)
+    throw error
+  }
+}
+
 // Create PDF lead
 export async function createPDFLead(data: Omit<PDFLead, 'id' | 'timestamp'>): Promise<PDFLead> {
   return append(LEADS, { id: generateId(), timestamp: new Date().toISOString(), ...data })

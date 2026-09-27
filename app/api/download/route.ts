@@ -2,7 +2,7 @@ import { after, type NextRequest, NextResponse } from 'next/server'
 import registry from '@/data/products.json'
 import type { ProductRecord } from '@/types/products'
 import { isPublicDownloadProduct } from '@/lib/download-access'
-import { TRACKED_GUIDES, trackPDFDownload } from '@/lib/pdf-analytics'
+import { TRACKED_GUIDES, trackDirectDownloadOnce } from '@/lib/pdf-analytics'
 import { analyticsRatelimit } from '@/lib/ratelimit'
 
 const products = registry as ProductRecord[]
@@ -82,20 +82,19 @@ export async function GET(request: NextRequest) {
   // Construct the public blob URL
   const blobUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
 
-  // Count the issued redirect once, without identifying the reader. Analytics
-  // runs after the response and cannot make access depend on Redis availability.
-  if (request.method === 'GET' && TRACKED_GUIDES.has(product.slug) && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
+  // Count a production redirect once per rendered link. The attempt token is
+  // short-lived and never enters the stored event or the public Blob URL.
+  const attemptId = searchParams.get('attempt')
+  if (request.method === 'GET' && process.env.VERCEL_ENV === 'production' && attemptId && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(attemptId) && TRACKED_GUIDES.has(product.slug) && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
     after(async () => {
       try {
         const { success } = await analyticsRatelimit.limit('public-book-download')
         if (!success) return
-        await trackPDFDownload({
+        await trackDirectDownloadOnce({
           guideSlug: product.slug,
-          guideTitle: product.name,
-          sessionId: 'anonymous',
+          guideTitle: product.name || (product as ProductRecord & { title?: string }).title || product.slug,
           downloadMethod: 'direct',
-          userAgent: 'omitted',
-        })
+        }, attemptId)
       } catch (error) {
         console.error('Book download analytics failed:', error)
       }

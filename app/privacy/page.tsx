@@ -57,8 +57,9 @@ export default function PrivacyPage() {
             </p>
             <p className="mt-4 text-white/70 leading-relaxed">
               We also count free resource download redirects. These records contain the resource and time,
-              without an email address or browser identifier. We skip these counts when your browser sends
-              Do Not Track or Global Privacy Control.
+              without an email address or browser identifier. A random link-attempt token prevents duplicate
+              counts, expires after one hour, and is not saved in the download record. We skip these counts
+              when your browser sends Do Not Track or Global Privacy Control.
             </p>
           </section>
 
