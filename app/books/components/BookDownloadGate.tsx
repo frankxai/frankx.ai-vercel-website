@@ -48,7 +48,7 @@ export default function BookDownloadGate({
       </a>
 
       <p className="mt-5 text-xs text-white/50">
-        Want notes on AI architecture and creative systems?{' '}
+        Signal Loop sends notes on AI architecture and creative systems most weeks.{' '}
         <a href="/newsletter" className="underline underline-offset-2 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">
           Explore the newsletter
         </a>
