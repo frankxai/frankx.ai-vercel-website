@@ -41,6 +41,9 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   arcanea: { topics: [TOPICS.newsletter] },
   investor: { topics: [TOPICS.newsletter] },
   'courses-waitlist': { topics: [TOPICS.newsletter] },
+  // Product interest records demand without inferring consent to an email topic.
+  // It reuses the provisioned courses-waitlist Growth Core program below.
+  'product-interest': { topics: [] },
   'ikigai-branding': { topics: [TOPICS.newsletter] },
   'premium-packs': { topics: [TOPICS.newsletter, TOPICS['product-updates']] },
   'mvu-tallinn-2026': { topics: [TOPICS.newsletter] },
@@ -66,6 +69,7 @@ interface GrowthCaptureInput {
   listType: string
   source: string
   intention: string
+  intent: string
   raw: Record<string, unknown>
 }
 
@@ -101,7 +105,10 @@ async function captureGrowthLead(request: NextRequest, input: GrowthCaptureInput
       body: JSON.stringify({
         email: input.email,
         name: input.name || undefined,
-        program: 'frankx-' + input.listType,
+        program:
+          input.listType === 'product-interest'
+            ? 'frankx-courses-waitlist'
+            : 'frankx-' + input.listType,
         source: input.source || input.listType,
         intention: input.intention || undefined,
         referrer: request.headers.get('referer') ?? undefined,
@@ -111,7 +118,10 @@ async function captureGrowthLead(request: NextRequest, input: GrowthCaptureInput
         utm_campaign: optionalText(input.raw.utm_campaign),
         utm_content: optionalText(input.raw.utm_content),
         utm_term: optionalText(input.raw.utm_term),
-        metadata: { list_type: input.listType },
+        metadata: {
+          list_type: input.listType,
+          ...(input.intent ? { intent: input.intent } : {}),
+        },
       }),
     })
     const result = (await response.json().catch(() => null)) as
@@ -394,7 +404,13 @@ export async function POST(request: NextRequest) {
     // bot believes it succeeded while we create nothing.
     const honeypot = raw.website ?? raw.company
     if (typeof honeypot === 'string' && honeypot.trim().length > 0) {
-      return NextResponse.json({ success: true, message: 'Successfully subscribed!' })
+      return NextResponse.json({
+        success: true,
+        message:
+          resolveListType(raw.listType) === 'product-interest'
+            ? 'Your interest was recorded.'
+            : 'Successfully subscribed!',
+      })
     }
 
     const email = String(raw.email ?? '').trim().toLowerCase()
@@ -500,6 +516,7 @@ export async function POST(request: NextRequest) {
       listType,
       source,
       intention,
+      intent,
       raw,
     })
     if (!growthCapture.ok) {
@@ -552,7 +569,10 @@ export async function POST(request: NextRequest) {
         duplicate: true,
         updated: false,
         welcomeSent: false,
-        message: 'This email is already on file. No duplicate email was sent.',
+        message:
+          listType === 'product-interest'
+            ? 'Your interest was recorded.'
+            : 'This email is already on file. No duplicate email was sent.',
       })
     }
 
@@ -585,11 +605,15 @@ export async function POST(request: NextRequest) {
     }
 
     let welcomeSent = false
-    try {
-      await sendWelcomeEmail(email, name, listType, intention)
-      welcomeSent = true
-    } catch (error) {
-      console.error('Welcome email error:', error)
+    // Product interest is intentionally topic-less. Recording
+    // interest must not trigger the general newsletter welcome sequence.
+    if (listType !== 'product-interest') {
+      try {
+        await sendWelcomeEmail(email, name, listType, intention)
+        welcomeSent = true
+      } catch (error) {
+        console.error('Welcome email error:', error)
+      }
     }
 
     if (listType === 'music-lab' && !welcomeSent) {
@@ -607,7 +631,9 @@ export async function POST(request: NextRequest) {
       message:
         listType === 'music-lab'
           ? 'Check your email for your free prompts!'
-          : 'Successfully subscribed!',
+          : listType === 'product-interest'
+            ? 'Your interest was recorded.'
+            : 'Successfully subscribed!',
       subscriber: data.id,
       updated: false,
       welcomeSent,
