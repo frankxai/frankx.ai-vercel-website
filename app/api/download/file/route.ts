@@ -1,13 +1,17 @@
 import { type NextRequest, NextResponse } from 'next/server'
+import registry from '@/data/products.json'
+import type { ProductRecord } from '@/types/products'
+import { isPublicDownloadProduct } from '@/lib/download-access'
 
 /**
  * Direct File Download Handler
  *
- * Simple redirect to your public Vercel Blob storage.
+ * Redirect for files listed as public downloads in the product registry.
  * GET /api/download/file?key={blobKey}
  */
 
 const BLOB_BASE_URL = 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com'
+const products = registry as ProductRecord[]
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
@@ -17,6 +21,17 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       { error: 'File key is required' },
       { status: 400 }
+    )
+  }
+
+  const publicFile = products.some(product =>
+    isPublicDownloadProduct(product) &&
+    product.delivery?.files?.some(file => file.blobKey === blobKey)
+  )
+  if (!publicFile) {
+    return NextResponse.json(
+      { error: 'File not found' },
+      { status: 404 }
     )
   }
 
