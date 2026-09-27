@@ -100,6 +100,8 @@ test('a verified book redirect schedules anonymous best-effort analytics without
   assert.equal(privacySignal.status, 307)
   const globalPrivacyControl = await GET(new Request('https://frankx.ai/api/download?product=love-and-poetry', { headers: { 'Sec-GPC': '1' } }))
   assert.equal(globalPrivacyControl.status, 307)
+  const metadataProbe = await GET(new Request('https://frankx.ai/api/download?product=love-and-poetry', { method: 'HEAD' }))
+  assert.equal(metadataProbe.status, 307)
   assert.equal(scheduled.length, 1)
 })
 

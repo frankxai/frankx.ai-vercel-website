@@ -84,7 +84,7 @@ export async function GET(request: NextRequest) {
 
   // Count the issued redirect once, without identifying the reader. Analytics
   // runs after the response and cannot make access depend on Redis availability.
-  if (TRACKED_GUIDES.has(product.slug) && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
+  if (request.method === 'GET' && TRACKED_GUIDES.has(product.slug) && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
     after(async () => {
       try {
         const { success } = await analyticsRatelimit.limit('public-book-download')
