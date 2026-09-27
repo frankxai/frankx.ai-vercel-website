@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { BentoGrid, BentoCard } from '@/components/ui/magic-ui/bento-grid'
-import Marquee from '@/components/ui/magic-ui/marquee'
 import ShimmerButton from '@/components/ui/magic-ui/shimmer-button'
 import { SplitTextReveal } from '@/components/ui/SplitTextReveal'
 import { TiltCard } from '@/components/ui/TiltCard'
@@ -24,11 +23,11 @@ const features = [
     ),
   },
   {
-    name: 'Vibe OS',
-    description: 'Transform your creative state with AI-generated soundscapes.',
+    name: 'Music lab',
+    description: 'Play browser instruments and follow guided notes.',
     Icon: Zap,
-    href: '/products/vibe-os',
-    cta: 'Experience It',
+    href: '/music-lab',
+    cta: 'Explore music lab',
     className: 'col-span-3 lg:col-span-1',
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/25 via-sky-500/15 to-violet-500/25 blur-3xl" />
@@ -55,45 +54,6 @@ const features = [
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-amber-500/30 via-orange-500/20 to-red-500/30 blur-3xl" />
     ),
-  },
-]
-
-const testimonials = [
-  {
-    name: 'Sarah Chen',
-    role: 'Music Producer',
-    quote: "Vibe OS transformed how I approach creative sessions. I'm producing tracks with more consistency.",
-    avatar: '🎵',
-  },
-  {
-    name: 'Marcus Rodriguez',
-    role: 'Content Creator',
-    quote: 'The AI Music Academy gave me skills I never thought possible. My audience loves it.',
-    avatar: '🎸',
-  },
-  {
-    name: 'Emma Thompson',
-    role: 'YouTuber',
-    quote: "FrankX's approach to AI is refreshing - powerful tools that enhance rather than replace creativity.",
-    avatar: '🎬',
-  },
-  {
-    name: 'David Kim',
-    role: 'Podcast Host',
-    quote: "The Creator Realm community is incredible. Best investment I've made in my creative journey.",
-    avatar: '🎙️',
-  },
-  {
-    name: 'Lisa Anderson',
-    role: 'Musician',
-    quote: "I was skeptical about AI music, but Frank's system opened up entirely new creative possibilities.",
-    avatar: '🎹',
-  },
-  {
-    name: 'James Wilson',
-    role: 'Producer',
-    quote: 'The quality of AI-generated tracks from these workflows is genuinely impressive.',
-    avatar: '🎧',
   },
 ]
 
@@ -183,37 +143,6 @@ export default function ShowcasePage() {
               </TiltCard>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Marquee Section */}
-      <section className="relative px-6 py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              What Creators Say
-            </h2>
-            <p className="text-xl text-slate-400">
-              Infinite scroll testimonials with smooth animations
-            </p>
-          </div>
-          <Marquee className="[--duration:40s]" pauseOnHover>
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="relative w-80 flex-shrink-0 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 p-6 backdrop-blur-xl"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="text-4xl">{testimonial.avatar}</div>
-                  <div>
-                    <div className="font-semibold text-white">{testimonial.name}</div>
-                    <div className="text-sm text-slate-400">{testimonial.role}</div>
-                  </div>
-                </div>
-                <p className="text-slate-300 italic">"{testimonial.quote}"</p>
-              </div>
-            ))}
-          </Marquee>
         </div>
       </section>
 

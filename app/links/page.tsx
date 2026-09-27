@@ -61,13 +61,13 @@ export default function LinksPage() {
   ]
 
   const heroProduct = {
-    eyebrow: 'FEATURED',
-    title: 'Vibe OS',
-    description: 'AI-powered music creation system. Turn emotions into Suno sessions.',
-    href: '/products/vibe-os',
+    eyebrow: 'MUSIC',
+    title: 'Music showcase',
+    description: "Listen to tracks and browse playlists from Frank's Suno catalog.",
+    href: '/music',
     icon: Music,
     gradient: 'from-music-vibrant via-music-orange to-gold-accent',
-    badge: 'Most Popular'
+    badge: 'Listen'
   }
 
   const primaryLinks: Array<{title: string; description: string; href: string; icon: React.ComponentType<{className?: string}>; eyebrow: string; gradient: string; external?: boolean}> = [
@@ -97,8 +97,8 @@ export default function LinksPage() {
       icon: BookOpen
     },
     {
-      title: 'Music Lab',
-      subtitle: 'Suno sessions & prompts',
+      title: 'Music lab',
+      subtitle: 'Browser instruments and guided notes',
       href: '/music-lab',
       icon: Music
     },
@@ -194,7 +194,7 @@ export default function LinksPage() {
           <p className="text-slate-300 text-sm mb-4 leading-relaxed">
             Musician-technologist building AI systems that amplify human creativity.
             <br />
-            Creator of Vibe OS • Agentic Creator OS • Consciousness Tech
+            Music creator • AI Architect • Builder
           </p>
 
           {/* Stats badges */}
@@ -214,7 +214,7 @@ export default function LinksPage() {
           </div>
         </motion.div>
 
-        {/* Hero Product Card (Vibe OS) */}
+        {/* Featured music card */}
         <motion.div variants={itemVariants} className="mb-6">
           <Link
             href={heroProduct.href}
@@ -247,7 +247,7 @@ export default function LinksPage() {
                 </p>
 
                 <div className="flex items-center text-tech-cyan font-semibold text-sm group-hover:translate-x-1 transition-transform">
-                  Explore Vibe OS
+                  Browse the music showcase
                   <ArrowRight className="w-4 h-4 ml-1" />
                 </div>
               </div>

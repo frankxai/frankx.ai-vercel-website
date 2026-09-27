@@ -87,12 +87,6 @@ function ResourcesBackground() {
 
 const productItems = [
   {
-    name: 'Vibe OS',
-    description: 'AI music creation system with prompts, workflows, and production tips.',
-    href: '/products/vibe-os',
-    icon: Music,
-  },
-  {
     name: 'Creative AI Toolkit',
     description: 'Prompts, templates, and rituals for creators shipping consistently.',
     href: '/products/creative-ai-toolkit',
@@ -186,8 +180,8 @@ const intelligenceItems = [
     icon: BookOpen,
   },
   {
-    name: 'Vibe OS Sessions',
-    description: 'AI music experiments and studio notes.',
+    name: 'Music sessions',
+    description: "Listen to tracks and browse playlists from Frank's Suno catalog.",
     href: '/music',
     icon: Music,
   },
@@ -308,8 +302,8 @@ const learningItems = [
     icon: BookOpen,
   },
   {
-    name: 'Music Lab',
-    description: 'Learn to create AI music with Suno.',
+    name: 'Music lab',
+    description: 'Play browser instruments and follow guided notes.',
     href: '/music-lab',
     icon: Music,
   },
