@@ -26,11 +26,11 @@ const intentLabelMap: Record<string, string> = {
 
 export default async function WaitlistPage({ searchParams }: WaitlistPageProps) {
   const intent = sanitizeIntent((await searchParams)?.intent)
-  // Keep the existing list routing for other waitlist entry points.
-  const productLaunch = intent === 'bv-kit' || intent === 'prompt-vault'
-    ? WAITLIST_INTENTS[intent]
-    : undefined
-  const selectedIntentLabel = productLaunch?.label ?? intentLabelMap[intent]
+  const registeredIntent = WAITLIST_INTENTS[intent]
+  const selectedIntentLabel = registeredIntent?.label ?? intentLabelMap[intent]
+  // Registered course/product lists retain their established delivery semantics.
+  // An otherwise valid product id records interest without inferring email consent.
+  const listType = registeredIntent?.listType ?? (intent ? 'product-interest' : 'courses-waitlist')
 
   return (
     <main className="min-h-screen bg-[#030712] text-white">
@@ -51,7 +51,7 @@ export default async function WaitlistPage({ searchParams }: WaitlistPageProps) 
 
         <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8">
           <EmailSignup
-            listType={productLaunch?.listType ?? 'courses-waitlist'}
+            listType={listType}
             intent={intent || undefined}
             intentLabel={selectedIntentLabel}
             source="/waitlist"
