@@ -38,10 +38,9 @@ const NAV_COLUMNS = [
   {
     label: 'Music',
     links: [
-      { label: 'Music Showcase', href: '/music' },
-      { label: 'Music Lab', href: '/music-lab' },
-      { label: 'Vibe OS', href: '/products/vibe-os' },
-      { label: 'Suno Profile', href: socialLinks.suno, external: true },
+      { label: 'Music showcase', href: '/music' },
+      { label: 'Music lab', href: '/music-lab' },
+      { label: 'Suno profile', href: socialLinks.suno, external: true },
     ],
   },
   {

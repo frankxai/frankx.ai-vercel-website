@@ -114,7 +114,7 @@ function LinkCard({ link, accent }: { link: LinktreeLink; accent: GlowColor }) {
               {link.title}
             </h3>
             {link.badge && (
-              <span className="shrink-0 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 uppercase tracking-wider">
+              <span className="shrink-0 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 tracking-wide">
                 {link.badge}
               </span>
             )}
@@ -229,7 +229,7 @@ export default function AudienceLinktreePage() {
         {/* ─── Filtered sections ─── */}
         {filteredSections.map((section) => (
           <motion.div key={section.id} variants={fadeUp} className="mb-6">
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/20 pl-1">
+            <p className="mb-3 pl-1 text-[10px] font-semibold tracking-wide text-white/20">
               {section.label}
             </p>
             <div className="space-y-2">
@@ -299,7 +299,7 @@ function HeroCardInner({ hero }: { hero: LinktreeLink }) {
 
       <div className="relative p-6">
         {hero.badge && (
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/60 mb-4">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] font-semibold tracking-wide text-white/60 mb-4">
             {hero.badge}
           </span>
         )}

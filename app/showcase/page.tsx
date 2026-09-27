@@ -1,99 +1,56 @@
 import { Metadata } from 'next'
-import { BentoGrid, BentoCard } from '@/components/ui/magic-ui/bento-grid'
-import Marquee from '@/components/ui/magic-ui/marquee'
-import ShimmerButton from '@/components/ui/magic-ui/shimmer-button'
-import { SplitTextReveal } from '@/components/ui/SplitTextReveal'
-import { TiltCard } from '@/components/ui/TiltCard'
-import { Music, Zap, Users, Trophy, Star, Heart } from 'lucide-react'
+import Link from 'next/link'
+import { BookOpen, Music, Package, Zap } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Showcase - FrankX.AI',
-  description: 'Experience the future of creator tools with our state-of-the-art UI components and animations.',
+  title: 'Interface index | FrankX',
+  description: 'A visual index of selected FrankX learning, music, and resource destinations.',
 }
 
 const features = [
   {
-    name: 'AI Music Production',
-    description: '500+ Suno sessions tested and refined for professional-quality AI music generation.',
+    name: 'Music learning',
+    description: 'Study theory, instruments, production, orchestration, and sound evidence.',
     Icon: Music,
     href: '/music/learn',
-    cta: 'Start Creating',
+    cta: 'Browse music lessons',
     className: 'col-span-3 lg:col-span-2',
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-violet-500/25 via-pink-500/15 to-cyan-500/25 blur-3xl" />
     ),
   },
   {
-    name: 'Vibe OS',
-    description: 'Transform your creative state with AI-generated soundscapes.',
+    name: 'Music lab',
+    description: 'Play browser instruments and follow guided notes.',
     Icon: Zap,
-    href: '/products/vibe-os',
-    cta: 'Experience It',
+    href: '/music-lab',
+    cta: 'Explore music lab',
     className: 'col-span-3 lg:col-span-1',
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/25 via-sky-500/15 to-violet-500/25 blur-3xl" />
     ),
   },
   {
-    name: 'Creator Community',
-    description: 'Join 500+ creators amplifying their output with AI.',
-    Icon: Users,
-    href: '/realm',
-    cta: 'Join Now',
+    name: 'Prompt library',
+    description: 'Search attributed prompt patterns from the public corpus.',
+    Icon: BookOpen,
+    href: '/prompt-library',
+    cta: 'Browse prompt patterns',
     className: 'col-span-3 lg:col-span-1',
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/30 via-teal-500/20 to-cyan-500/30 blur-3xl" />
     ),
   },
   {
-    name: 'Proven Results',
-    description: 'Ship faster without losing your creative soul.',
-    Icon: Trophy,
+    name: 'Product catalog',
+    description: 'Review current product pages and their listed availability.',
+    Icon: Package,
     href: '/products',
-    cta: 'See Products',
+    cta: 'Browse product pages',
     className: 'col-span-3 lg:col-span-2',
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-amber-500/30 via-orange-500/20 to-red-500/30 blur-3xl" />
     ),
-  },
-]
-
-const testimonials = [
-  {
-    name: 'Sarah Chen',
-    role: 'Music Producer',
-    quote: "Vibe OS transformed how I approach creative sessions. I'm producing tracks with more consistency.",
-    avatar: '🎵',
-  },
-  {
-    name: 'Marcus Rodriguez',
-    role: 'Content Creator',
-    quote: 'The AI Music Academy gave me skills I never thought possible. My audience loves it.',
-    avatar: '🎸',
-  },
-  {
-    name: 'Emma Thompson',
-    role: 'YouTuber',
-    quote: "FrankX's approach to AI is refreshing - powerful tools that enhance rather than replace creativity.",
-    avatar: '🎬',
-  },
-  {
-    name: 'David Kim',
-    role: 'Podcast Host',
-    quote: "The Creator Realm community is incredible. Best investment I've made in my creative journey.",
-    avatar: '🎙️',
-  },
-  {
-    name: 'Lisa Anderson',
-    role: 'Musician',
-    quote: "I was skeptical about AI music, but Frank's system opened up entirely new creative possibilities.",
-    avatar: '🎹',
-  },
-  {
-    name: 'James Wilson',
-    role: 'Producer',
-    quote: 'The quality of AI-generated tracks from these workflows is genuinely impressive.',
-    avatar: '🎧',
   },
 ]
 
@@ -106,34 +63,27 @@ export default function ShowcasePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-violet-500/10 blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto text-center">
-          <SplitTextReveal
-            text="State of the Art"
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent"
-            delay={0.2}
-          />
-          <SplitTextReveal
-            text="Creator Experience"
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-cyan-400 via-sky-400 to-violet-400 bg-clip-text text-transparent"
-            delay={0.6}
-          />
+          <h1 className="mb-8 text-5xl font-bold md:text-6xl lg:text-7xl">
+            <span className="bg-gradient-to-r from-white via-cyan-200 to-violet-300 bg-clip-text text-transparent">
+              Explore the FrankX studio
+            </span>
+          </h1>
           <p className="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto">
-            Cinematic animations, premium components, and WCAG 2.2 AAA accessibility - all built with Magic UI
+            Explore selected music, learning, prompt, and product destinations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <ShimmerButton
-              shimmerColor="#ffffff"
-              background="rgba(99, 102, 241, 0.9)"
-              className="text-lg px-8 py-4"
+            <Link
+              href="/products"
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-indigo-500 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
             >
-              Explore Products
-            </ShimmerButton>
-            <ShimmerButton
-              shimmerColor="#ffffff"
-              background="rgba(0, 0, 0, 0.9)"
-              className="text-lg px-8 py-4 border border-white/20"
+              Browse products
+            </Link>
+            <Link
+              href="/resources"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/20 bg-black/80 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
             >
-              Join Community
-            </ShimmerButton>
+              Browse resources
+            </Link>
           </div>
         </div>
       </section>
@@ -143,77 +93,34 @@ export default function ShowcasePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              Premium Features
+              Linked destinations
             </h2>
             <p className="text-xl text-slate-400">
-              Every component designed for maximum impact and accessibility
+              Each card opens a page you can inspect now.
             </p>
           </div>
-          <BentoGrid>
-            {features.map((feature) => (
-              <BentoCard key={feature.name} {...feature} />
-            ))}
-          </BentoGrid>
-        </div>
-      </section>
-
-      {/* Tilt Cards Section */}
-      <section className="relative px-6 py-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              Interactive 3D Cards
-            </h2>
-            <p className="text-xl text-slate-400">
-              Move your mouse to experience the depth effect
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[Star, Heart, Zap].map((Icon, index) => (
-              <TiltCard key={index} className="h-full">
-                <div className="relative h-64 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 p-8 backdrop-blur-xl">
-                  <Icon className="w-16 h-16 mb-4 text-purple-400" />
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    Feature {index + 1}
-                  </h3>
-                  <p className="text-slate-300">
-                    Experience smooth 3D transforms that follow your cursor with spring physics
-                  </p>
-                </div>
-              </TiltCard>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Marquee Section */}
-      <section className="relative px-6 py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              What Creators Say
-            </h2>
-            <p className="text-xl text-slate-400">
-              Infinite scroll testimonials with smooth animations
-            </p>
-          </div>
-          <Marquee className="[--duration:40s]" pauseOnHover>
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="relative w-80 flex-shrink-0 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 p-6 backdrop-blur-xl"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="text-4xl">{testimonial.avatar}</div>
-                  <div>
-                    <div className="font-semibold text-white">{testimonial.name}</div>
-                    <div className="text-sm text-slate-400">{testimonial.role}</div>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {features.map((feature) => {
+              const Icon = feature.Icon
+              return (
+                <Link
+                  key={feature.name}
+                  href={feature.href}
+                  className={`${feature.className} group relative min-h-64 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950`}
+                >
+                  {feature.background}
+                  <div className="relative flex h-full flex-col items-start">
+                    <Icon className="h-10 w-10 text-white" aria-hidden="true" />
+                    <h3 className="mt-8 text-2xl font-semibold text-white">{feature.name}</h3>
+                    <p className="mt-3 max-w-lg text-slate-300">{feature.description}</p>
+                    <span className="mt-auto pt-8 text-sm font-semibold text-cyan-300 group-hover:text-cyan-200">
+                      {feature.cta}
+                    </span>
                   </div>
-                </div>
-                <p className="text-slate-300 italic">"{testimonial.quote}"</p>
-              </div>
-            ))}
-          </Marquee>
+                </Link>
+              )
+            })}
+          </div>
         </div>
       </section>
 
@@ -221,18 +128,17 @@ export default function ShowcasePage() {
       <section className="relative px-6 py-20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-sky-400 to-violet-400 bg-clip-text text-transparent">
-            Ready to Experience the Future?
+            Find a useful starting point
           </h2>
           <p className="text-xl text-slate-300 mb-8">
-            Join the AI-powered creative revolution
+            Browse guides, tools, and learning paths from the resource index.
           </p>
-          <ShimmerButton
-            shimmerColor="#ffffff"
-            background="rgba(99, 102, 241, 0.95)"
-            className="text-xl px-12 py-6"
+          <Link
+            href="/resources"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-indigo-500 px-12 py-5 text-xl font-semibold text-white transition-colors hover:bg-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
           >
-            Get Started Now
-          </ShimmerButton>
+            Browse resources
+          </Link>
         </div>
       </section>
     </main>

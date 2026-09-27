@@ -47,19 +47,19 @@ export const audienceMeta: Record<
   { title: string; subtitle: string; emoji: string; gradient: string }
 > = {
   students: {
-    title: 'Students & Learners',
-    subtitle: 'Free resources, tutorials, and starter kits to accelerate your AI journey.',
+    title: 'Students & learners',
+    subtitle: 'Tutorials, learning paths, and starter resources for building with AI.',
     emoji: '',
     gradient: 'from-emerald-500 to-teal-500',
   },
   creators: {
-    title: 'Creators & Artists',
-    subtitle: 'Music production, content systems, and creative AI tools that ship.',
+    title: 'Creators & artists',
+    subtitle: 'Music, content systems, and creative AI tools to explore.',
     emoji: '',
     gradient: 'from-violet-500 to-purple-500',
   },
   devs: {
-    title: 'Developers & Architects',
+    title: 'Developers & architects',
     subtitle: 'Open-source agents, enterprise patterns, and agentic system design.',
     emoji: '',
     gradient: 'from-cyan-500 to-blue-500',
@@ -71,42 +71,42 @@ export const audienceMeta: Record<
 export const heroLinks: Record<Audience | 'default', LinktreeLink> = {
   default: {
     title: 'Agentic Creator OS',
-    subtitle: '75+ skills. 38 agents. One entry point. Open source.',
+    subtitle: 'Open-source agent orchestration, skills, and installation notes.',
     href: '/acos',
     icon: Terminal,
     image: '/images/acos/acos-architecture.png',
     gradient: 'from-purple-600 via-violet-600 to-indigo-600',
-    badge: 'Open Source',
+    badge: 'Open source',
     audiences: ['creators', 'devs', 'students'],
   },
   students: {
-    title: 'Free AI Toolkit',
-    subtitle: 'Prompts, workflows, and templates to start building with AI today.',
+    title: 'Creative AI Toolkit',
+    subtitle: 'Browse prompts, workflow automations, playbooks, and implementation roadmaps.',
     href: '/products/creative-ai-toolkit',
     icon: GraduationCap,
     image: '/images/acos/acos-smart-router.png',
     gradient: 'from-emerald-600 via-teal-600 to-cyan-600',
-    badge: 'Free',
+    badge: 'Toolkit',
     audiences: ['students'],
   },
   creators: {
     title: 'Music Lab',
-    subtitle: '65+ AI tracks. Suno prompts. Production techniques that work.',
+    subtitle: 'Play browser instruments and follow guided notes.',
     href: '/music-lab',
     icon: Music,
     image: '/images/acos/creation-pipeline.png',
     gradient: 'from-violet-600 via-fuchsia-600 to-pink-600',
-    badge: '65+ Tracks',
+    badge: 'Interactive tools',
     audiences: ['creators'],
   },
   devs: {
     title: 'Agentic Creator OS',
-    subtitle: 'Clone it. Type /acos. 75+ skills auto-activate. MIT licensed.',
+    subtitle: 'Browse the public repository and its installation notes.',
     href: 'https://github.com/frankxai/agentic-creator-os',
     icon: Github,
     image: '/images/acos/acos-architecture.png',
     gradient: 'from-cyan-600 via-blue-600 to-indigo-600',
-    badge: 'MIT License',
+    badge: 'GitHub',
     external: true,
     audiences: ['devs'],
   },
@@ -117,32 +117,32 @@ export const heroLinks: Record<Audience | 'default', LinktreeLink> = {
 export const sections: LinktreeSection[] = [
   {
     id: 'products',
-    label: 'Products & Tools',
+    label: 'Products & tools',
     color: 'purple',
     links: [
       {
         title: 'Agentic Creator OS',
-        subtitle: '75+ skills, 38 agents, 35+ commands for Claude Code',
+        subtitle: 'Agent orchestration, skills, and installation notes for Claude Code',
         href: '/acos',
         icon: Terminal,
         image: '/images/acos/acos-architecture.png',
         gradient: 'from-purple-500/20 to-violet-500/20',
-        badge: 'Open Source',
+        badge: 'Open source',
         audiences: ['creators', 'devs', 'students'],
       },
       {
         title: 'Music Lab',
-        subtitle: '65+ AI-generated tracks across pop, electronic, orchestral',
+        subtitle: 'Browser instruments, guided notes, and rhythm tools',
         href: '/music-lab',
         icon: Music,
         image: '/images/acos/creation-pipeline.png',
         gradient: 'from-fuchsia-500/20 to-pink-500/20',
-        badge: '65+ Tracks',
+        badge: 'Interactive tools',
         audiences: ['creators', 'students'],
       },
       {
         title: 'Prompt Library',
-        subtitle: '50+ proven templates for Suno, Claude, and creative AI',
+        subtitle: 'Search attributed patterns from the public prompt corpus',
         href: '/prompt-library',
         icon: Zap,
         gradient: 'from-amber-500/20 to-orange-500/20',
@@ -150,7 +150,7 @@ export const sections: LinktreeSection[] = [
       },
       {
         title: 'GenCreator Framework',
-        subtitle: 'The complete creator business system — strategy to execution',
+        subtitle: 'A creator business framework from strategy through execution',
         href: '/gencreator',
         icon: Layers,
         image: '/images/acos/frankx-superintelligent-system.png',
@@ -161,24 +161,23 @@ export const sections: LinktreeSection[] = [
   },
   {
     id: 'learn',
-    label: 'Learn & Explore',
+    label: 'Learn & explore',
     color: 'cyan',
     links: [
       {
         title: 'Blog',
-        subtitle: 'Technical deep-dives, AI architecture, creator workflows',
+        subtitle: 'Technical articles on AI architecture and creator workflows',
         href: '/blog',
         icon: BookOpen,
         gradient: 'from-cyan-500/20 to-blue-500/20',
         audiences: ['students', 'creators', 'devs'],
       },
       {
-        title: 'AI Toolkit (Free)',
+        title: 'Creative AI Toolkit',
         subtitle: 'Starter prompts, workflows, and launch templates',
         href: '/products/creative-ai-toolkit',
         icon: Sparkles,
         gradient: 'from-emerald-500/20 to-green-500/20',
-        badge: 'Free',
         audiences: ['students', 'creators'],
       },
       {
@@ -191,7 +190,7 @@ export const sections: LinktreeSection[] = [
       },
       {
         title: 'Creator Story',
-        subtitle: 'How one person built an AI-powered creative empire',
+        subtitle: "Frank's background across AI architecture, music, and creative systems",
         href: '/frankx',
         icon: Palette,
         gradient: 'from-rose-500/20 to-pink-500/20',
@@ -206,7 +205,7 @@ export const sections: LinktreeSection[] = [
     links: [
       {
         title: 'Newsletter',
-        subtitle: 'Weekly AI insights, creator tools, behind the scenes',
+        subtitle: 'Field notes on AI architecture, creator tools, and studio work',
         href: '/newsletter',
         icon: Mail,
         gradient: 'from-violet-500/20 to-purple-500/20',
@@ -223,7 +222,7 @@ export const sections: LinktreeSection[] = [
       },
       {
         title: 'Suno Profile',
-        subtitle: '65+ published AI tracks — listen, remix, collaborate',
+        subtitle: "Listen to Frank's public Suno catalog",
         href: 'https://suno.com/@frankx',
         icon: Music,
         gradient: 'from-orange-500/20 to-amber-500/20',
@@ -243,7 +242,7 @@ export const sections: LinktreeSection[] = [
   },
   {
     id: 'fitness',
-    label: 'Health & Performance',
+    label: 'Health & performance',
     color: 'amber',
     links: [
       {

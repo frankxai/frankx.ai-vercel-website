@@ -65,15 +65,6 @@ const freeTemplates = [
     gradient: 'from-blue-500/20 to-blue-500/5',
   },
   {
-    title: 'Vibe OS Guide',
-    description: 'Read-through guide for prompt systems and creator workflows.',
-    href: '/pdf-templates/vibe-os-guide.html',
-    icon: Sparkles,
-    meta: 'Free Guide',
-    color: 'text-emerald-400',
-    gradient: 'from-emerald-500/20 to-emerald-500/5',
-  },
-  {
     title: '5 Suno Prompts',
     description: 'Fast-start prompt pack for music creation sessions.',
     href: '/pdf-templates/5-suno-prompts.html',
@@ -133,16 +124,6 @@ const premiumTemplates = [
     meta: 'Architecture Kit · $49',
     color: 'text-blue-300',
     gradient: 'from-blue-500/20 to-blue-500/5',
-    deployUrl: null,
-  },
-  {
-    title: 'Vibe OS & Suno Prompt Architecture',
-    description: '12,000-track battle-tested prompt systems, 5-layer architecture, and frequency science production packs.',
-    href: '/products/vibe-os',
-    icon: Music,
-    meta: 'Music Creation · $37',
-    color: 'text-rose-300',
-    gradient: 'from-rose-500/20 to-rose-500/5',
     deployUrl: null,
   },
 ]
