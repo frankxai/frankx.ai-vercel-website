@@ -3,7 +3,7 @@ import PDFAnalyticsDashboard from './PDFAnalyticsDashboard'
 
 export const metadata: Metadata = {
   title: 'PDF Analytics Dashboard | FrankX.AI',
-  description: 'Track PDF guide views, downloads, and engagement metrics',
+  description: 'Track PDF guide views, download events, and engagement metrics',
   robots: 'noindex, nofollow' // Keep dashboard private
 }
 
@@ -14,7 +14,7 @@ export default function PDFAnalyticsPage() {
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">PDF Analytics</h1>
           <p className="text-gray-400">
-            Track guide performance, downloads, and user engagement
+            Track guide performance, download events, and reader engagement
           </p>
         </div>
 
