@@ -69,10 +69,11 @@ pnpm run build
 
 ## Contributing
 
-Public issue-based bug reports and documentation feedback are welcome. Code or
-content contributions require agreed terms with the maintainers before
-submission. Read [AGENTS.md](AGENTS.md) before making changes; it documents the
-repository's current checks and branch process.
+Public [bug reports](https://github.com/frankxai/frankx.ai-vercel-website/issues/new?template=bug.yml)
+and [documentation feedback](https://github.com/frankxai/frankx.ai-vercel-website/issues/new?template=documentation.yml)
+are welcome. Code or content contributions require agreed terms with the
+maintainers before submission. Read [AGENTS.md](AGENTS.md) before making changes;
+it documents the repository's current checks and branch process.
 
 Do not report security vulnerabilities in a public issue. Follow the private
 reporting instructions in [SECURITY.md](SECURITY.md).
