@@ -38,7 +38,7 @@ export function SacredShelfMap({ books, traditions }: { books: LibraryBook[]; tr
     <section aria-labelledby="shelf-map">
       <p className="text-xs uppercase tracking-[0.18em] text-emerald-200/80">Map of the shelf</p>
       <h2 id="shelf-map" className="mt-2 font-display text-2xl text-white sm:text-3xl">Where each text comes from</h2>
-      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/65">Grouped by the region where each tradition took shape, not by rank or date. Each line gives one passage from a named public-domain translation.</p>
+      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/65">Grouped by the region where each tradition took shape, not by rank or date. Where a public-domain translation exists, one passage from it is shown; each guide names the translator and links the page.</p>
       <div className="mt-8 space-y-10">
         {regions.map(region => {
           const rows = books.filter(book => region.traditions.includes(traditions[book.slug] ?? ''));
@@ -48,12 +48,12 @@ export function SacredShelfMap({ books, traditions }: { books: LibraryBook[]; tr
             <ul className="divide-y divide-white/[0.06]">
               {rows.map(book => {
                 const depth = sacredDepth[book.slug];
-                const quote = depth?.quotes[0];
+                const quote = depth?.translation.rightsBasis === 'public-domain' ? depth.quotes[0] : undefined;
                 return <li key={book.slug}>
                   <Link href={`/library/${book.slug}`} prefetch={false} className="group grid gap-2 py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 sm:grid-cols-[14rem_1fr] sm:gap-8">
                     <div>
                       <p className="font-medium text-white group-hover:text-emerald-200">{book.title}</p>
-                      <p className="mt-1 text-xs text-white/55">{traditions[book.slug]}{depth ? ` · ${depth.facts.firstRead}` : ''}</p>
+                      <p className="mt-1 text-xs text-white/55">{traditions[book.slug]}{depth ? ` · ${depth.facts.firstRead.split(';')[0]}` : ''}</p>
                     </div>
                     <div className="min-w-0">
                       {depth && <p className="text-sm text-white/60">{depth.facts.form}</p>}
