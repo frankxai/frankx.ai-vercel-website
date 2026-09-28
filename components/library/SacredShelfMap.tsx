@@ -38,7 +38,7 @@ export function SacredShelfMap({ books, traditions }: { books: LibraryBook[]; tr
     <section aria-labelledby="shelf-map">
       <p className="text-xs uppercase tracking-[0.18em] text-emerald-200/80">Map of the shelf</p>
       <h2 id="shelf-map" className="mt-2 font-display text-2xl text-white sm:text-3xl">Where each text comes from</h2>
-      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/65">Grouped by the region where each tradition took shape, not by rank or date. Where a public-domain translation exists, one passage from it is shown; each guide names the translator and links the page.</p>
+      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/65">Grouped by the region where each tradition took shape; the order implies no ranking. Where a public-domain translation exists, one passage from it is shown; each guide names the translator and links the page.</p>
       <div className="mt-8 space-y-10">
         {regions.map(region => {
           const rows = books.filter(book => region.traditions.includes(traditions[book.slug] ?? ''));

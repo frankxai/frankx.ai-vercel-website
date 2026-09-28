@@ -289,7 +289,7 @@ export default async function ReviewPage({
           </h2>
           <p className="text-sm text-white/40 mb-6">
             {depth
-              ? 'A map of the text’s own divisions, each with the idea to carry and a short summary. Use it to find your place before and after reading, not in place of reading.'
+              ? 'A map of the text’s own divisions, each with the idea to carry and a short summary. Use it to find your place before and after reading the text itself.'
               : 'Each chapter distilled to a key idea + 2–4 sentence summary — so you can navigate the book\'s argument without re-reading it, and re-read it with fresh compass if you want.'}
           </p>
           <div className="space-y-3">

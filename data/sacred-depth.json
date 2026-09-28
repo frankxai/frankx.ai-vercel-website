@@ -133,10 +133,10 @@
     },
     "quotes": [
       {
-        "text": "HEAR, O ISRAEL: THE LORD OUR GOD, THE LORD IS ONE. And thou shalt love the LORD thy God with all thy heart, and with all thy soul, and with all thy might. And these words, which I command thee this day, shall be upon thy heart; and thou shalt teach them diligently unto thy children, and shalt talk of them when thou sittest in thy house, and when thou walkest by the way, and when thou liest down, and when thou risest up.",
-        "locator": "Deuteronomy 6:4–7 (the Shema)",
+        "text": "And thou shalt love the LORD thy God with all thy heart, and with all thy soul, and with all thy might. And these words, which I command thee this day, shall be upon thy heart; and thou shalt teach them diligently unto thy children, and shalt talk of them when thou sittest in thy house, and when thou walkest by the way, and when thou liest down, and when thou risest up.",
+        "locator": "Deuteronomy 6:5–7 (the Shema, continued)",
         "sourceUrl": "https://archive.sacred-texts.com/bib/jps/deu006.htm",
-        "why": "The Shema is recited in Jewish prayer each morning and evening, and the passage itself prescribes that repetition, at home, on the road, lying down, and rising up."
+        "why": "These verses follow the Shema’s first line, which is recited in Jewish prayer each morning and evening; the passage itself prescribes that repetition, at home, on the road, lying down, and rising up."
       },
       {
         "text": "Thou shalt not take vengeance, nor bear any grudge against the children of thy people, but thou shalt love thy neighbour as thyself: I am the LORD.",
@@ -636,7 +636,7 @@
         "text": "For hatred does not cease by hatred at any time: hatred ceases by love, this is an old rule.",
         "locator": "Chapter I (The Twin-Verses), verse 5",
         "sourceUrl": "https://sacred-texts.com/bud/sbe10/sbe1003.htm",
-        "why": "It follows two verses about rehearsing grievances, so the claim concerns what a person keeps repeating in the mind, not a slogan about feelings."
+        "why": "It follows two verses about rehearsing grievances, so the claim is about what a person keeps repeating in the mind."
       },
       {
         "text": "It is good to tame the mind, which is difficult to hold in and flighty, rushing wherever it listeth; a tamed mind brings happiness.",
@@ -802,7 +802,7 @@
         "number": 4,
         "title": "The negation series",
         "keyIdea": "The categories of Buddhist analysis are listed and each is denied a fixed status.",
-        "summary": "The sutra runs through the six senses, their objects and consciousnesses, the twelve links of dependent origination, and the four noble truths, negating each. The list presupposes Abhidharma categories that a first-time reader may not know. The negations target reification of the teaching, not the teaching's usefulness."
+        "summary": "The sutra runs through the six senses, their objects and consciousnesses, the twelve links of dependent origination, and the four noble truths, negating each. The list presupposes Abhidharma categories that a first-time reader may not know. The negations are aimed at treating the teachings as fixed things; the sutra itself goes on to use them."
       },
       {
         "number": 5,
@@ -936,7 +936,7 @@
     "faq": [
       {
         "q": "Which English translation of the Guru Granth Sahib should I read?",
-        "a": "Many readers use Sant Singh Khalsa's complete translation, which is widely available online alongside the Gurmukhi, or Gurbachan Singh Talib's four-volume translation published by Punjabi University. Macauliffe's 1909 renderings are public domain and historically important but cover only selections and reflect a colonial-era English idiom. Sikh commentators generally advise reading with the Gurmukhi text beside the English and treating any translation as an aid, not a replacement."
+        "a": "Many readers use Sant Singh Khalsa's complete translation, which is widely available online alongside the Gurmukhi, or Gurbachan Singh Talib's four-volume translation published by Punjabi University. Macauliffe's 1909 renderings are public domain and historically important but cover only selections and reflect a colonial-era English idiom. Sikh commentators generally advise reading with the Gurmukhi text beside the English and treating any translation as an aid to reading the original."
       },
       {
         "q": "Where should a beginner start?",
