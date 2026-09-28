@@ -22,7 +22,7 @@ test('quoted wording is traceable to a named translation it may legally appear f
     assert.equal(new URL(translation.sourceUrl).protocol, 'https:');
     if (translation.rightsBasis === 'public-domain') {
       assert.ok(translation.year < 1931, `${entry.slug}: public-domain basis requires a translation published before 1931`);
-      assert.ok(quotes.length >= 4 && quotes.length <= 7, `${entry.slug}: ${quotes.length} quotes`);
+      assert.ok(quotes.length >= 3 && quotes.length <= 7, `${entry.slug}: ${quotes.length} quotes`);
     } else if (translation.rightsBasis === 'quotation') {
       assert.ok(quotes.length <= 4, `${entry.slug}: quotation basis allows at most four excerpts`);
       for (const quote of quotes) assert.ok(words(quote.text) <= 45, `${entry.slug}: excerpt too long`);

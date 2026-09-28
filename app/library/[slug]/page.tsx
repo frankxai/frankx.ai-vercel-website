@@ -251,7 +251,7 @@ export default async function ReviewPage({
                 >
                   &ldquo;
                 </span>
-                <blockquote className="text-white/80 leading-relaxed text-[15.5px] font-light italic">
+                <blockquote className={`text-white/80 leading-relaxed text-[15.5px] font-light italic${quote.source ? ' whitespace-pre-line' : ''}`}>
                   {quote.text}
                 </blockquote>
                 {(quote.chapter || quote.context || quote.source) && (
