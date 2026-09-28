@@ -12,8 +12,8 @@
       "license_evidence": [
         {
           "role": "dataset-scope",
-          "url": "https://raw.githubusercontent.com/anomalyco/models.dev/dev/README.md",
-          "sha256": "2767d37ee90f6d71a876ef33347c04776cf16591f0051ac27f7369f8accd09cf"
+          "url": "https://raw.githubusercontent.com/anomalyco/models.dev/d669006b56fd0e1aaee622da47f35bfb8af2977a/README.md",
+          "sha256": "c9e6f88fa174bec34c3080b2036ea043d42822a88eb75e9d9d5832dcedac71ef"
         },
         {
           "role": "licence-grant",
