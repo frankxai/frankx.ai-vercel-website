@@ -9,6 +9,8 @@ generated from page-level metadata. They cannot support public scientific status
 ## Current release behavior
 
 - Seven hubs and the existing domain URLs remain navigable.
+- The research RSS channel has no items while every brief is held for review;
+  reviewed publications will be added only with their approved dossier.
 - The domain routes display a review state and are `noindex` until a reviewed dossier
   replaces the holding page. They are omitted from the XML sitemap.
 - Generated citation leads are retained in `lib/research/sources.ts` but are excluded
