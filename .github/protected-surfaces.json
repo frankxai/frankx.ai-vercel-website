@@ -1,5 +1,6 @@
 {
   "$comment": "Surfaces that already work and must be evolved, not replaced. Enforced by scripts/governance/surface-guard.mjs. A change needs a Surface change brief that says how every job survives; `rearchitect` changes and `locked` surfaces also need Frank's surface-approved label. Add a surface when a page proves its value; remove one only with Frank's word. Jobs are matched as words in the brief's Keeps line, so keep them distinct.",
+  "approvers": ["frankxai"],
   "surfaces": [
     {
       "id": "homepage",
@@ -12,9 +13,12 @@
     {
       "id": "offer-pages",
       "policy": "evolve",
-      "paths": ["app/founder-stack/**", "app/foundry/**", "app/founders-circle/**", "app/work-with-me/**"],
+      "paths": [
+        "app/founder-stack/**", "app/foundry/**", "app/founders-circle/**", "app/work-with-me/**",
+        "components/foundry/**", "components/founders-circle/**", "components/founder-stack/**", "app/api/studio-inquiry/**"
+      ],
       "jobs": ["offer clarity", "proof", "price truth", "next step"],
-      "why": "Where a founder decides to buy or talk. Every claim and price here is reviewed; a rewrite that changes the offer is a business decision, not a refactor."
+      "why": "Where a founder decides to buy or talk, including the application forms and the studio inquiry endpoint they post to. Every claim and price here is reviewed; a rewrite that changes the offer is a business decision, not a refactor."
     },
     {
       "id": "about",

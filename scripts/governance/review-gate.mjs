@@ -21,7 +21,7 @@ const DECLINE = /^\s*declined\s*:\s*\S.{30,}/is
 
 const isBot = (c) => REVIEWER_BOTS.test(c.author ?? '')
 const authorized = (c, author) => !isBot(c) && (c.author === author || MEMBERS.has(c.association))
-const titleOf = (body) => body.replace(/!\[[^\]]*\]\([^)]*\)|<[^>]+>|\*+/g, '').trim().split('\n')[0].slice(0, 90)
+const titleOf = (body) => body.replace(/!\[[^\]]*\](\([^)]*\))?|<[^>]+>|\*+/g, '').trim().split('\n')[0].slice(0, 90)
 
 /** A fix names a commit of this PR that was made after the finding; any other hex string proves nothing. */
 function fixes(reply, found, commits) {
@@ -45,11 +45,25 @@ function decide(found, answers, commits, label) {
   return answers.length ? null : `${label} (${found.author}): "${titleOf(found.body)}" is unanswered. Fix it, or reply with why not.`
 }
 
+const normalize = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+
+/** A top-level answer must point at its finding (link, or the finding's title), so one reply cannot clear them all. */
+function references(reply, found) {
+  const anchor = /#(?:issuecomment|discussion_r|pullrequestreview)-?\d+/.exec(found.url ?? '')?.[0]
+  if (anchor && reply.body.includes(anchor.slice(1))) return true
+  const title = normalize(titleOf(found.body)).slice(0, 40)
+  return title.length >= 12 && normalize(reply.body).includes(title)
+}
+
 export function evaluateFindings({ threads, topLevel, commits, author }) {
   const errors = []
   for (const [index, thread] of threads.entries()) {
     const [first, ...replies] = thread.comments
     if (!first || !isBot(first)) continue
+    if (thread.truncated) {
+      errors.push(`thread ${index + 1} (${first.author}): "${titleOf(first.body)}" has more comments than one read returns; too long to verify, so it fails closed. Summarise the outcome in a new reply after resolving.`)
+      continue
+    }
     const answers = replies.filter((r) => authorized(r, author))
     if (thread.isResolved && severity(first.body) > 1) continue
     const error = decide(first, answers, commits, `thread ${index + 1}`)
@@ -58,7 +72,7 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
   const ordered = [...topLevel].sort((a, b) => a.createdAt.localeCompare(b.createdAt))
   for (const [index, item] of ordered.entries()) {
     if (!isBot(item) || !BADGE.test(item.body)) continue
-    const answers = ordered.slice(index + 1).filter((r) => authorized(r, author))
+    const answers = ordered.slice(index + 1).filter((r) => authorized(r, author) && references(r, item))
     const error = decide(item, answers, commits, 'review comment')
     if (error) errors.push(error)
   }
@@ -76,7 +90,7 @@ async function graphql(query, variables) {
   return json.data.repository.pullRequest
 }
 
-const comment = (c) => ({ author: c.author?.login ?? '', association: c.authorAssociation, body: c.body ?? '', createdAt: c.createdAt })
+const comment = (c) => ({ author: c.author?.login ?? '', association: c.authorAssociation, body: c.body ?? '', createdAt: c.createdAt, url: c.url })
 
 /** Walks every page; a truncated read could report "all answered" while later findings sit unread. */
 async function paged(field, selection, variables) {
@@ -94,15 +108,15 @@ async function paged(field, selection, variables) {
 async function fetchAll() {
   const [owner, name] = String(process.env.GITHUB_REPOSITORY).split('/')
   const variables = { owner, name, number: Number(process.env.PR_NUMBER) }
-  const who = 'author{login} authorAssociation body createdAt'
+  const who = 'author{login} authorAssociation body createdAt url'
   const [threads, reviews, comments, commits] = await Promise.all([
-    paged('reviewThreads', `isResolved comments(first:100){nodes{${who}}}`, variables),
+    paged('reviewThreads', `isResolved comments(first:100){totalCount nodes{${who}}}`, variables),
     paged('reviews', who, variables),
     paged('comments', who, variables),
     paged('commits', 'commit{oid committedDate}', variables),
   ])
   return {
-    threads: threads.map((t) => ({ isResolved: t.isResolved, comments: t.comments.nodes.map(comment) })),
+    threads: threads.map((t) => ({ isResolved: t.isResolved, truncated: t.comments.totalCount > t.comments.nodes.length, comments: t.comments.nodes.map(comment) })),
     topLevel: [...reviews, ...comments].map(comment),
     commits: commits.map((c) => c.commit),
   }

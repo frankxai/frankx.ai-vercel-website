@@ -20,7 +20,7 @@ const brief = (over = {}) => {
   }
   return ['### Surface change brief', ...Object.entries(b).map(([k, v]) => `${k}: ${v}`)].join('\n')
 }
-const run = (over) => evaluateSurfaces({ registry, baseRegistry: registry, changed: ['app/page.tsx'], body: brief(), labels: [], eventAction: 'opened', ...over })
+const run = (over) => evaluateSurfaces({ registry, baseRegistry: registry, changed: ['app/page.tsx'], body: brief(), labels: [], eventAction: 'opened', approvedBy: 'frankxai', ...over })
 
 test('glob matching covers exact paths, * and **', () => {
   assert.ok(matches('app/page.tsx', 'app/page.tsx'))
@@ -58,6 +58,13 @@ test("rearchitect and locked surfaces need Frank's surface-approved label", () =
   assert.deepEqual(run({ body: brief({ Kind: 'rearchitect' }), labels: ['surface-approved'], eventAction: 'labeled' }).errors, [])
   const locked = run({ changed: ['tailwind.config.js'], body: brief({ Surface: 'brand-tokens', Keeps: 'visual identity: same palette and fonts' }) })
   assert.match(locked.errors.join('\n'), /locked/)
+})
+
+test("only an approver's label counts: a bot or collaborator applying surface-approved is not Frank", () => {
+  const withActor = (approvedBy) => run({ body: brief({ Kind: 'rearchitect' }), labels: ['surface-approved'], eventAction: 'labeled', approvedBy })
+  assert.deepEqual(withActor('frankxai').errors, [])
+  assert.match(withActor('some-bot[bot]').errors.join('\n'), /frankxai/)
+  assert.match(withActor(undefined).errors.join('\n'), /frankxai/, 'unknown actor fails closed')
 })
 
 test('an approval does not survive new commits: synchronize marks it stale', () => {
@@ -121,11 +128,27 @@ test('review gate: only the PR author or repo members can answer', () => {
   assert.match(gate([{ isResolved: false, comments: [finding('![P1 Badge] x'), outsider] }]).join('\n'), /P1/)
 })
 
-test('review gate: severity-marked findings in review bodies or PR comments need a later answer too', () => {
-  const top = [finding('![P1 Badge] Rate limit missing on /api/demand')]
+test('review gate: severity-marked findings in review bodies or PR comments need their own later answer', () => {
+  const top = [finding('![P1 Badge] Rate limit missing on /api/demand', { url: 'https://github.com/o/r/pull/1#issuecomment-11' })]
   assert.match(gate([], top).join('\n'), /P1/)
-  assert.deepEqual(gate([], [...top, reply('Fixed in a1b2c3d: /api/demand now uses the shared limiter.')]), [])
+  assert.deepEqual(gate([], [...top, reply('Re "Rate limit missing on /api/demand": fixed in a1b2c3d with the shared limiter.')]), [], 'quoting the title answers it')
+  assert.deepEqual(gate([], [...top, reply('Fixed in a1b2c3d (https://github.com/o/r/pull/1#issuecomment-11).')]), [], 'linking the finding answers it')
   assert.deepEqual(gate([], [finding('Here are some automated review suggestions for this pull request.')]), [], 'boilerplate without a finding is ignored')
+})
+
+test('review gate: one generic reply does not answer several top-level findings', () => {
+  const top = [
+    finding('![P2 Badge] Cache the sitemap', { url: 'u#issuecomment-1' }),
+    finding('![P2 Badge] Escape the RSS titles', { url: 'u#issuecomment-2', createdAt: '2026-09-28T10:05:00Z' }),
+  ]
+  const errors = gate([], [...top, reply('All addressed, thanks!')])
+  assert.equal(errors.length, 2)
+  assert.deepEqual(gate([], [...top, reply('Cache the sitemap: done in a1b2c3d.'), reply('Escape the RSS titles: declined, titles are already escaped by the feed library.')]), [])
+})
+
+test('review gate: a thread too long to read completely fails closed', () => {
+  const long = { isResolved: false, truncated: true, comments: [finding('![P2 Badge] x'), reply('Fixed in a1b2c3d.')] }
+  assert.match(gate([long]).join('\n'), /too long/)
 })
 
 test('review gate: human threads are left to humans', () => {
@@ -146,4 +169,7 @@ test('the registry protects the homepage like the contract guard, and capture in
   assert.equal(home.jobs.length, 7)
   const capture = real.surfaces.find((s) => s.id === 'capture')
   for (const api of ['app/api/subscribe/**', 'app/api/demand/**']) assert.ok(capture.paths.includes(api), api)
+  const offers = real.surfaces.find((s) => s.id === 'offer-pages')
+  for (const p of ['components/foundry/**', 'components/founders-circle/**', 'components/founder-stack/**', 'app/api/studio-inquiry/**']) assert.ok(offers.paths.includes(p), p)
+  assert.deepEqual(real.approvers, ['frankxai'])
 })

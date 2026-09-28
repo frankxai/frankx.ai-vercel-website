@@ -1,11 +1,15 @@
 name: Surface Guard
 
 # Protected surfaces (.github/protected-surfaces.json, read from the base branch) are evolved, not replaced: a pull
-# request that touches one must carry a Surface change brief. No paths filter on purpose: a required check with one
-# never reports on pull requests outside it and blocks them (the trap merge-gate.yml documents).
+# request that touches one must carry a Surface change brief.
+#
+# pull_request_target on purpose: the guard, its self-test and this workflow run from the BASE branch, so a pull
+# request cannot rewrite the gate that judges it. The PR head is fetched as a git ref and only diffed and read with
+# `git show`; no PR code is checked out into the workspace or executed.
+# No paths filter: a required check with one never reports on PRs outside it and blocks them (see merge-gate.yml).
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened, edited, labeled, unlabeled, ready_for_review]
     branches: [main, staging]
 
@@ -18,27 +22,32 @@ jobs:
     timeout-minutes: 3
     permissions:
       contents: read
+      issues: read
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Fetch the PR head as data
+        run: git fetch --no-tags origin "refs/pull/${{ github.event.pull_request.number }}/head:refs/remotes/pr/head"
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Gate self-test
+      - name: Gate self-test (base revision)
         run: node --test scripts/tests/governance-gates.test.mjs
       - name: Check protected surfaces
-        id: guard
         env:
+          PR_HEAD: refs/remotes/pr/head
           PR_BODY: ${{ github.event.pull_request.body }}
           PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
           EVENT_ACTION: ${{ github.event.action }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: node scripts/governance/surface-guard.mjs
-      # An approval covers the head Frank saw. New commits withdraw it so he re-applies it for the new head.
-      - name: Withdraw a stale surface approval
-        if: always() && steps.guard.outputs.stale_approval == 'true'
+      # An approval covers the head Frank saw. Any new commit withdraws it, whatever the brief says now.
+      - name: Withdraw surface approval on new commits
+        if: always() && github.event.action == 'synchronize' && contains(github.event.pull_request.labels.*.name, 'surface-approved')
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh pr edit ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --remove-label surface-approved

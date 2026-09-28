@@ -12,7 +12,6 @@
  *   node scripts/governance/surface-guard.mjs   (reads PR_BODY, PR_LABELS, EVENT_ACTION, GITHUB_BASE_REF)
  */
 import { execFileSync } from 'node:child_process'
-import { appendFileSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -68,13 +67,17 @@ function unkeptJobs(keeps, jobs) {
  * `baseRegistry` is the registry on the base branch; null only when this PR introduces the gates. Reading it from
  * the base means a PR cannot unprotect a surface in the same change that edits it.
  */
-export function evaluateSurfaces({ registry, baseRegistry, changed, body, labels, eventAction }) {
+export function evaluateSurfaces({ registry, baseRegistry, changed, body, labels, eventAction, approvedBy }) {
   const errors = []
   const briefs = parseBriefs(body)
+  const trusted = baseRegistry ?? registry
   const surfaces = baseRegistry ? [...baseRegistry.surfaces, GOVERNANCE] : registry.surfaces
+  const approvers = trusted.approvers ?? ['frankxai']
   // A label given before the latest push approved an earlier head; Frank re-applies it after reviewing this one.
   const staleApproval = eventAction === 'synchronize'
-  const approved = labels.includes(APPROVAL_LABEL) && !staleApproval
+  // Anyone with triage rights can add a label; only an approver's label is an approval.
+  const approverLabel = approvers.includes(approvedBy)
+  const approved = labels.includes(APPROVAL_LABEL) && !staleApproval && approverLabel
   let needsApproval = false
   const touched = surfaces
     .map((surface) => ({ surface, files: changed.filter((file) => surface.paths.some((p) => matches(file, p))) }))
@@ -97,29 +100,47 @@ export function evaluateSurfaces({ registry, baseRegistry, changed, body, labels
     needsApproval = true
     if (approved) continue
     const reason = surface.policy === 'locked' ? `${surface.id} is locked: any change` : `${surface.id}: a rearchitect change`
-    errors.push(staleApproval && labels.includes(APPROVAL_LABEL)
-      ? `${surface.id}: ${APPROVAL_LABEL} was given for an earlier head; new commits need Frank to review and re-apply it.`
-      : `${reason} needs Frank's ${APPROVAL_LABEL} label.`)
+    if (staleApproval && labels.includes(APPROVAL_LABEL)) errors.push(`${surface.id}: ${APPROVAL_LABEL} was given for an earlier head; new commits need Frank to review and re-apply it.`)
+    else if (labels.includes(APPROVAL_LABEL)) errors.push(`${surface.id}: ${APPROVAL_LABEL} was applied by ${approvedBy ?? 'an unknown actor'}; only ${approvers.join(', ')} can approve.`)
+    else errors.push(`${reason} needs ${approvers.join(', ')}'s ${APPROVAL_LABEL} label.`)
   }
   return { touched: touched.map(({ surface, files }) => ({ id: surface.id, files })), errors, needsApproval, staleApproval: staleApproval && labels.includes(APPROVAL_LABEL) }
 }
 
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
 
+/** Who added the current surface-approved label: the last `labeled` event for it. */
+async function labelActor() {
+  if (!process.env.GITHUB_TOKEN) return undefined
+  const events = []
+  for (let page = 1; page <= 10; page++) {
+    const response = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/issues/${process.env.PR_NUMBER}/events?per_page=100&page=${page}`, {
+      headers: { authorization: `bearer ${process.env.GITHUB_TOKEN}`, accept: 'application/vnd.github+json' },
+    })
+    const batch = await response.json()
+    if (!Array.isArray(batch)) break
+    events.push(...batch)
+    if (batch.length < 100) break
+  }
+  return events.filter((e) => e.event === 'labeled' && e.label?.name === APPROVAL_LABEL).at(-1)?.actor?.login
+}
+
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const base = `origin/${process.env.GITHUB_BASE_REF || 'main'}`
-  const mergeBase = git('merge-base', base, 'HEAD').trim()
-  const changed = git('diff', '--name-only', mergeBase, 'HEAD').split('\n').filter(Boolean)
+  // Runs from the base branch (pull_request_target): PR_HEAD is fetched as data and never executed.
+  const head = process.env.PR_HEAD || 'HEAD'
+  const mergeBase = git('merge-base', `origin/${process.env.GITHUB_BASE_REF || 'main'}`, head).trim()
+  // --no-renames: a file moved out of a protected path shows as a deletion there.
+  const changed = git('diff', '--no-renames', '--name-only', mergeBase, head).split('\n').filter(Boolean)
   let baseRegistry = null
   try {
     baseRegistry = JSON.parse(git('show', `${mergeBase}:${REGISTRY_PATH}`))
   } catch {
     // The base has no registry yet: this PR introduces the gates.
   }
-  const registry = JSON.parse(readFileSync(REGISTRY_PATH, 'utf8'))
+  const registry = JSON.parse(git('show', `${head}:${REGISTRY_PATH}`))
   const labels = String(process.env.PR_LABELS ?? '').split(',').map((l) => l.trim()).filter(Boolean)
-  const result = evaluateSurfaces({ registry, baseRegistry, changed, body: process.env.PR_BODY, labels, eventAction: process.env.EVENT_ACTION })
-  if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `stale_approval=${result.needsApproval && result.staleApproval}\n`)
+  const approvedBy = labels.includes(APPROVAL_LABEL) ? await labelActor() : undefined
+  const result = evaluateSurfaces({ registry, baseRegistry, changed, body: process.env.PR_BODY, labels, eventAction: process.env.EVENT_ACTION, approvedBy })
   if (!result.touched.length) console.log('[surface-guard] No protected surface touched.')
   for (const t of result.touched) console.log(`[surface-guard] touches ${t.id}: ${t.files.join(', ')}`)
   for (const error of result.errors) console.error(`[surface-guard] ${error}`)

@@ -1,7 +1,9 @@
 name: Review Gate
 
-# Merges are autonomous, so AI review findings are the quality gate: every finding must be answered (fixed, or
-# declined with a reason; P0/P1 need a fix commit or "Declined: <why>") before merge. Re-runs when threads change.
+# Merges are autonomous, so AI review findings are the quality gate: every finding must be answered by the author or
+# a repo member (fixed with a commit of this PR, or declined with a reason; P0/P1 need one of those two) before
+# merge. Re-runs when reviews, review comments or PR conversation comments change. Resolving a thread without a
+# reply has no Actions trigger; re-run the check (`gh run rerun`) or reply on the thread.
 
 on:
   pull_request:
@@ -11,17 +13,20 @@ on:
     types: [submitted, edited, dismissed]
   pull_request_review_comment:
     types: [created, edited, deleted]
+  issue_comment:
+    types: [created, edited, deleted]
 
 permissions:
   contents: read
   pull-requests: read
 
 concurrency:
-  group: review-gate-${{ github.event.pull_request.number }}
+  group: review-gate-${{ github.event.pull_request.number || github.event.issue.number }}
   cancel-in-progress: true
 
 jobs:
   review-gate:
+    if: github.event_name != 'issue_comment' || github.event.issue.pull_request
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -35,6 +40,6 @@ jobs:
       - name: Every AI review finding answered
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login || github.event.issue.user.login }}
         run: node scripts/governance/review-gate.mjs
