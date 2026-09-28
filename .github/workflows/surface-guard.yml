@@ -1,8 +1,8 @@
 name: Surface Guard
 
-# Protected surfaces (.github/protected-surfaces.json) are evolved, not replaced: a pull request that touches one
-# must carry a Surface change brief. No paths filter on purpose: a required check with one never reports on pull
-# requests outside it and blocks them (the trap merge-gate.yml documents).
+# Protected surfaces (.github/protected-surfaces.json, read from the base branch) are evolved, not replaced: a pull
+# request that touches one must carry a Surface change brief. No paths filter on purpose: a required check with one
+# never reports on pull requests outside it and blocks them (the trap merge-gate.yml documents).
 
 on:
   pull_request:
@@ -16,6 +16,9 @@ jobs:
   surface-guard:
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,7 +30,15 @@ jobs:
       - name: Gate self-test
         run: node --test scripts/tests/governance-gates.test.mjs
       - name: Check protected surfaces
+        id: guard
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
           PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+          EVENT_ACTION: ${{ github.event.action }}
         run: node scripts/governance/surface-guard.mjs
+      # An approval covers the head Frank saw. New commits withdraw it so he re-applies it for the new head.
+      - name: Withdraw a stale surface approval
+        if: always() && steps.guard.outputs.stale_approval == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr edit ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --remove-label surface-approved

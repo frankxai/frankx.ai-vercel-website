@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import { evaluateSurfaces, matches, parseBriefs } from '../governance/surface-guard.mjs'
-import { evaluateThreads } from '../governance/review-gate.mjs'
+import { evaluateFindings } from '../governance/review-gate.mjs'
 
 const registry = {
   surfaces: [
@@ -15,11 +15,12 @@ const registry = {
 const brief = (over = {}) => {
   const b = {
     Surface: 'homepage', Kind: 'evolve', Intent: 'Frank, 2026-09-28: "make the hero load faster"',
-    Keeps: 'identity: unchanged hero copy; conversion: same two CTAs', Changes: 'Hero image moved to next/image with priority',
+    Keeps: 'identity: unchanged hero copy and portrait; conversion: same two CTAs in the same order', Changes: 'Hero image moved to next/image with priority',
     Evidence: 'https://preview.example/ before/after LCP 3.1s -> 1.9s', ...over,
   }
   return ['### Surface change brief', ...Object.entries(b).map(([k, v]) => `${k}: ${v}`)].join('\n')
 }
+const run = (over) => evaluateSurfaces({ registry, baseRegistry: registry, changed: ['app/page.tsx'], body: brief(), labels: [], eventAction: 'opened', ...over })
 
 test('glob matching covers exact paths, * and **', () => {
   assert.ok(matches('app/page.tsx', 'app/page.tsx'))
@@ -31,65 +32,104 @@ test('glob matching covers exact paths, * and **', () => {
 })
 
 test('untouched surfaces pass with no brief', () => {
-  assert.deepEqual(evaluateSurfaces({ registry, changed: ['lib/x.ts'], body: '', labels: [] }).errors, [])
+  assert.deepEqual(run({ changed: ['lib/x.ts'], body: '' }).errors, [])
 })
 
 test('touching a protected surface without a brief fails and names the surface and its jobs', () => {
-  const { errors } = evaluateSurfaces({ registry, changed: ['components/home/Hero.tsx'], body: 'just a refactor', labels: [] })
+  const { errors } = run({ changed: ['components/home/Hero.tsx'], body: 'just a refactor' })
   assert.match(errors.join('\n'), /homepage/)
   assert.match(errors.join('\n'), /identity, conversion/)
 })
 
 test('a complete evolve brief passes', () => {
-  assert.deepEqual(evaluateSurfaces({ registry, changed: ['app/page.tsx'], body: brief(), labels: [] }).errors, [])
+  assert.deepEqual(run().errors, [])
 })
 
-test('a brief must address every job, fill every field, and not leave template placeholders', () => {
-  const missingJob = evaluateSurfaces({ registry, changed: ['app/page.tsx'], body: brief({ Keeps: 'identity: same' }), labels: [] })
-  assert.match(missingJob.errors.join('\n'), /conversion/)
-  const placeholder = evaluateSurfaces({ registry, changed: ['app/page.tsx'], body: brief({ Evidence: '<preview URL>' }), labels: [] })
-  assert.match(placeholder.errors.join('\n'), /Evidence/)
-  const badKind = evaluateSurfaces({ registry, changed: ['app/page.tsx'], body: brief({ Kind: 'redesign' }), labels: [] })
-  assert.match(badKind.errors.join('\n'), /Kind/)
+test('a brief must explain every job, fill every field, and not leave placeholders', () => {
+  assert.match(run({ body: brief({ Keeps: 'identity: unchanged hero copy' }) }).errors.join('\n'), /conversion/)
+  assert.match(run({ body: brief({ Keeps: 'identity, conversion' }) }).errors.join('\n'), /identity/, 'job names alone are not an explanation')
+  assert.match(run({ body: brief({ Keeps: 'identity: hero copy removed; conversion: same two CTAs' }) }).errors.join('\n'), /identity/, 'a job described as removed is not kept')
+  assert.match(run({ body: brief({ Evidence: '<preview URL>' }) }).errors.join('\n'), /Evidence/)
+  assert.match(run({ body: brief({ Kind: 'redesign' }) }).errors.join('\n'), /Kind/)
 })
 
-test('rearchitect and locked surfaces need Frank\'s surface-approved label', () => {
-  const re = evaluateSurfaces({ registry, changed: ['app/page.tsx'], body: brief({ Kind: 'rearchitect' }), labels: [] })
-  assert.match(re.errors.join('\n'), /surface-approved/)
-  assert.deepEqual(evaluateSurfaces({ registry, changed: ['app/page.tsx'], body: brief({ Kind: 'rearchitect' }), labels: ['surface-approved'] }).errors, [])
-  const locked = evaluateSurfaces({ registry, changed: ['tailwind.config.js'], body: brief({ Surface: 'brand-tokens', Keeps: 'visual identity: same palette' }), labels: [] })
+test("rearchitect and locked surfaces need Frank's surface-approved label", () => {
+  assert.match(run({ body: brief({ Kind: 'rearchitect' }) }).errors.join('\n'), /surface-approved/)
+  assert.deepEqual(run({ body: brief({ Kind: 'rearchitect' }), labels: ['surface-approved'], eventAction: 'labeled' }).errors, [])
+  const locked = run({ changed: ['tailwind.config.js'], body: brief({ Surface: 'brand-tokens', Keeps: 'visual identity: same palette and fonts' }) })
   assert.match(locked.errors.join('\n'), /locked/)
 })
 
+test('an approval does not survive new commits: synchronize marks it stale', () => {
+  const result = run({ body: brief({ Kind: 'rearchitect' }), labels: ['surface-approved'], eventAction: 'synchronize' })
+  assert.equal(result.staleApproval, true)
+  assert.match(result.errors.join('\n'), /earlier head/)
+})
+
+test('the registry is read from the base branch, so a PR cannot unprotect what it changes', () => {
+  const weakened = { surfaces: [] }
+  assert.match(evaluateSurfaces({ registry: weakened, baseRegistry: registry, changed: ['app/page.tsx'], body: '', labels: [], eventAction: 'opened' }).errors.join('\n'), /homepage/)
+})
+
+test('changing the gates themselves is a locked governance surface once they exist on the base', () => {
+  const touched = run({ changed: ['scripts/governance/surface-guard.mjs'], body: '' })
+  assert.match(touched.errors.join('\n'), /governance/)
+  const bootstrap = evaluateSurfaces({ registry, baseRegistry: null, changed: ['scripts/governance/surface-guard.mjs'], body: '', labels: [], eventAction: 'opened' })
+  assert.deepEqual(bootstrap.errors, [], 'the PR that introduces the gates is not blocked by them')
+})
+
 test('a brief left inside the template comment does not count', () => {
-  const { errors } = evaluateSurfaces({ registry, changed: ['app/page.tsx'], body: `<!--\n${brief()}\n-->`, labels: [] })
-  assert.match(errors.join('\n'), /Add a Surface change brief/)
+  assert.match(run({ body: `<!--\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/)
 })
 
 test('parseBriefs reads several surfaces from one body', () => {
-  const body = `${brief()}\n\n${brief({ Surface: 'brand-tokens' })}`
-  assert.deepEqual(parseBriefs(body).map((b) => b.Surface), ['homepage', 'brand-tokens'])
+  assert.deepEqual(parseBriefs(`${brief()}\n\n${brief({ Surface: 'brand-tokens' })}`).map((b) => b.Surface), ['homepage', 'brand-tokens'])
 })
 
 const bot = 'chatgpt-codex-connector'
-const thread = (over = {}) => ({ isResolved: false, comments: [{ author: bot, body: '![P2 Badge] Accept calls without arguments' }], ...over })
+const finding = (body, extra = {}) => ({ author: bot, association: 'NONE', body, createdAt: '2026-09-28T10:00:00Z', ...extra })
+const reply = (body, extra = {}) => ({ author: 'frankxai', association: 'OWNER', body, createdAt: '2026-09-28T11:00:00Z', ...extra })
+const commits = [{ oid: 'a1b2c3d4e5f6a7b8c9d0a1b2c3d4e5f6a7b8c9d0', committedDate: '2026-09-28T10:30:00Z' }]
+const gate = (threads, topLevel = []) => evaluateFindings({ threads, topLevel, commits, author: 'frankxai' })
 
-test('review gate: unanswered AI findings block; answered ones pass', () => {
-  assert.match(evaluateThreads([thread()], { author: 'frankxai' }).join('\n'), /unanswered/)
-  const answered = thread({ comments: [...thread().comments, { author: 'frankxai', body: 'Fixed in 5b0f500 with a regression test.' }] })
-  assert.deepEqual(evaluateThreads([answered], { author: 'frankxai' }), [])
-  assert.deepEqual(evaluateThreads([thread({ isResolved: true })], { author: 'frankxai' }), [])
+test('review gate: unanswered AI findings block; answered or resolved ones pass', () => {
+  assert.match(gate([{ isResolved: false, comments: [finding('![P2 Badge] Accept calls without arguments')] }]).join('\n'), /unanswered/)
+  assert.deepEqual(gate([{ isResolved: false, comments: [finding('![P2 Badge] x'), reply('Fixed in a1b2c3d.')] }]), [])
+  assert.deepEqual(gate([{ isResolved: true, comments: [finding('![P2 Badge] x')] }]), [])
 })
 
-test('review gate: P0/P1 findings need a fix commit or a reasoned decline, not just any reply', () => {
-  const p1 = (reply) => thread({ comments: [{ author: bot, body: '![P1 Badge] SQL injection in search' }, { author: 'frankxai', body: reply }] })
-  assert.match(evaluateThreads([p1('ok')], { author: 'frankxai' }).join('\n'), /P1/)
-  assert.deepEqual(evaluateThreads([p1('Fixed in a1b2c3d, test added.')], { author: 'frankxai' }), [])
-  assert.deepEqual(evaluateThreads([p1('Declined: the query is a fixed allowlist lookup, never interpolated; see lib/search.ts:40.')], { author: 'frankxai' }), [])
+test('review gate: a P0/P1 fix reference must be a real PR commit made after the finding', () => {
+  const p1 = (text) => [{ isResolved: false, comments: [finding('![P1 Badge] SQL injection in search'), reply(text)] }]
+  assert.match(gate(p1('ok')).join('\n'), /P1/)
+  assert.match(gate(p1('I disagree that deadbee applies here')).join('\n'), /P1/, 'hex that is not a PR commit')
+  assert.deepEqual(gate(p1('Fixed in a1b2c3d, test added.')), [])
+  const early = [{ isResolved: false, comments: [finding('![P1 Badge] x', { createdAt: '2026-09-28T12:00:00Z' }), reply('Fixed in a1b2c3d', { createdAt: '2026-09-28T12:30:00Z' })] }]
+  assert.match(gate(early).join('\n'), /P1/, 'a commit older than the finding cannot fix it')
+  assert.deepEqual(gate(p1('Declined: the query is a fixed allowlist lookup, never interpolated; see lib/search.ts:40.')), [])
+})
+
+test('review gate: severity comes from the badge, not from words in the finding', () => {
+  const p2MentioningP1 = finding('![P2 Badge] Paginate threads. For a P0/P1 thread the check is stricter.')
+  assert.match(gate([{ isResolved: false, comments: [p2MentioningP1] }]).join('\n'), /unanswered/, 'treated as P2')
+  const p1MentioningP0 = finding('![P1 Badge] Validate fix references. For a P0/P1 thread any hex passes.')
+  assert.match(gate([{ isResolved: false, comments: [p1MentioningP0] }]).join('\n'), /, P1\)/)
+})
+
+test('review gate: only the PR author or repo members can answer', () => {
+  const outsider = { author: 'drive-by', association: 'NONE', body: 'Declined: this is fine because I say so and nobody checks.', createdAt: '2026-09-28T11:00:00Z' }
+  assert.match(gate([{ isResolved: false, comments: [finding('![P2 Badge] x'), outsider] }]).join('\n'), /unanswered/)
+  assert.match(gate([{ isResolved: false, comments: [finding('![P1 Badge] x'), outsider] }]).join('\n'), /P1/)
+})
+
+test('review gate: severity-marked findings in review bodies or PR comments need a later answer too', () => {
+  const top = [finding('![P1 Badge] Rate limit missing on /api/demand')]
+  assert.match(gate([], top).join('\n'), /P1/)
+  assert.deepEqual(gate([], [...top, reply('Fixed in a1b2c3d: /api/demand now uses the shared limiter.')]), [])
+  assert.deepEqual(gate([], [finding('Here are some automated review suggestions for this pull request.')]), [], 'boilerplate without a finding is ignored')
 })
 
 test('review gate: human threads are left to humans', () => {
-  assert.deepEqual(evaluateThreads([{ isResolved: false, comments: [{ author: 'someone', body: 'nit' }] }], { author: 'frankxai' }), [])
+  assert.deepEqual(gate([{ isResolved: false, comments: [{ author: 'someone', association: 'NONE', body: 'nit', createdAt: '2026-09-28T10:00:00Z' }] }]), [])
 })
 
 test('every protected path matches a tracked file, so a rename cannot silently drop protection', () => {
@@ -99,9 +139,11 @@ test('every protected path matches a tracked file, so a rename cannot silently d
   assert.deepEqual(dead, [])
 })
 
-test('the registry protects the homepage exactly as the existing contract guard does', () => {
+test('the registry protects the homepage like the contract guard, and capture includes its APIs', () => {
   const real = JSON.parse(readFileSync(new URL('../../.github/protected-surfaces.json', import.meta.url), 'utf8'))
   const home = real.surfaces.find((s) => s.id === 'homepage')
   assert.deepEqual(home.paths.slice(0, 2), ['app/page.tsx', 'components/home/**'])
   assert.equal(home.jobs.length, 7)
+  const capture = real.surfaces.find((s) => s.id === 'capture')
+  for (const api of ['app/api/subscribe/**', 'app/api/demand/**']) assert.ok(capture.paths.includes(api), api)
 })
