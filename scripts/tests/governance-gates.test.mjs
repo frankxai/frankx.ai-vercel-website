@@ -67,6 +67,16 @@ test("only an approver's label counts: a bot or collaborator applying surface-ap
   assert.match(withActor(undefined).errors.join('\n'), /frankxai/, 'unknown actor fails closed')
 })
 
+test('an approval older than the head commit is stale on any event, not only synchronize', () => {
+  const base = { body: brief({ Kind: 'rearchitect' }), labels: ['surface-approved'], eventAction: 'edited' }
+  assert.match(run({ ...base, approvedAt: '2026-09-28T10:00:00Z', headCommittedAt: '2026-09-28T11:00:00Z' }).errors.join('\n'), /earlier head/)
+  assert.deepEqual(run({ ...base, approvedAt: '2026-09-28T12:00:00Z', headCommittedAt: '2026-09-28T11:00:00Z' }).errors, [])
+})
+
+test('the gate test file is part of the locked governance surface', () => {
+  assert.match(run({ changed: ['scripts/tests/governance-gates.test.mjs'], body: '' }).errors.join('\n'), /governance/)
+})
+
 test('an approval does not survive new commits: synchronize marks it stale', () => {
   const result = run({ body: brief({ Kind: 'rearchitect' }), labels: ['surface-approved'], eventAction: 'synchronize' })
   assert.equal(result.staleApproval, true)
@@ -146,6 +156,20 @@ test('review gate: one generic reply does not answer several top-level findings'
   assert.deepEqual(gate([], [...top, reply('Cache the sitemap: done in a1b2c3d.'), reply('Escape the RSS titles: declined, titles are already escaped by the feed library.')]), [])
 })
 
+test('review gate: each badged section of one review body is its own finding', () => {
+  const body = '![P2 Badge] Cache the sitemap\nsome detail\n\n![P1 Badge] Escape user input in search\nmore detail'
+  const top = [finding(body, { url: 'u#pullrequestreview-9' })]
+  const errors = gate([], [...top, reply('Cache the sitemap: done in a1b2c3d.')])
+  assert.equal(errors.length, 1)
+  assert.match(errors[0], /P1.*Escape user input/)
+  assert.deepEqual(gate([], [...top, reply('Cache the sitemap: done in a1b2c3d.'), reply('Escape user input in search: fixed in a1b2c3d.')]), [])
+})
+
+test('review gate: only named AI reviewers are gated, not every bot', () => {
+  const dependabot = { author: 'dependabot[bot]', association: 'NONE', body: '![P1 Badge] Bumps x from 1 to 2', createdAt: '2026-09-28T10:00:00Z' }
+  assert.deepEqual(gate([{ isResolved: false, comments: [dependabot] }], [dependabot]), [])
+})
+
 test('review gate: a thread too long to read completely fails closed', () => {
   const long = { isResolved: false, truncated: true, comments: [finding('![P2 Badge] x'), reply('Fixed in a1b2c3d.')] }
   assert.match(gate([long]).join('\n'), /too long/)
@@ -170,6 +194,7 @@ test('the registry protects the homepage like the contract guard, and capture in
   const capture = real.surfaces.find((s) => s.id === 'capture')
   for (const api of ['app/api/subscribe/**', 'app/api/demand/**']) assert.ok(capture.paths.includes(api), api)
   const offers = real.surfaces.find((s) => s.id === 'offer-pages')
-  for (const p of ['components/foundry/**', 'components/founders-circle/**', 'components/founder-stack/**', 'app/api/studio-inquiry/**']) assert.ok(offers.paths.includes(p), p)
+  for (const p of ['components/foundry/**', 'components/founders-circle/**', 'components/founder-stack/**', 'app/api/studio-inquiry/**', 'app/api/foundry/apply/**', 'app/api/founders-circle/apply/**']) assert.ok(offers.paths.includes(p), p)
+  assert.ok(capture.paths.includes('components/newsletter/**'))
   assert.deepEqual(real.approvers, ['frankxai'])
 })

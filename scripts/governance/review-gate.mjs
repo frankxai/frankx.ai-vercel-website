@@ -13,7 +13,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const REVIEWER_BOTS = /(\[bot\]$|^chatgpt-codex-connector$|^copilot|^claude$|^coderabbit)/i
+// Named AI reviewers only: dependabot, vercel and other bots post status, not findings.
+const REVIEWER_BOTS = /^(chatgpt-codex-connector|copilot|claude|coderabbit)/i
 const MEMBERS = new Set(['OWNER', 'MEMBER', 'COLLABORATOR'])
 const BADGE = /\bP[0-3]\s*Badge\b|!\[P[0-3]/i
 const SEVERE = /\bP[01]\b|\b(critical|high severity)\b/i
@@ -55,6 +56,16 @@ function references(reply, found) {
   return title.length >= 12 && normalize(reply.body).includes(title)
 }
 
+/**
+ * One review body can hold several badged findings; each is its own finding with its own severity. With more than
+ * one, a link to the shared review cannot say which was answered, so each needs its title quoted.
+ */
+function sections(item) {
+  const starts = [...item.body.matchAll(/!\[P[0-3]\s*Badge\]/gi)].map((m) => m.index)
+  if (starts.length <= 1) return [item]
+  return starts.map((start, i) => ({ ...item, url: undefined, body: item.body.slice(start, starts[i + 1]) }))
+}
+
 export function evaluateFindings({ threads, topLevel, commits, author }) {
   const errors = []
   for (const [index, thread] of threads.entries()) {
@@ -72,9 +83,11 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
   const ordered = [...topLevel].sort((a, b) => a.createdAt.localeCompare(b.createdAt))
   for (const [index, item] of ordered.entries()) {
     if (!isBot(item) || !BADGE.test(item.body)) continue
-    const answers = ordered.slice(index + 1).filter((r) => authorized(r, author) && references(r, item))
-    const error = decide(item, answers, commits, 'review comment')
-    if (error) errors.push(error)
+    for (const section of sections(item)) {
+      const answers = ordered.slice(index + 1).filter((r) => authorized(r, author) && references(r, section))
+      const error = decide(section, answers, commits, 'review comment')
+      if (error) errors.push(error)
+    }
   }
   return errors
 }

@@ -25,7 +25,7 @@ const NEGATED = /\b(removed|dropped|deleted|gone|lost|cut|replaced by nothing)\b
 const GOVERNANCE = {
   id: 'governance',
   policy: 'locked',
-  paths: [REGISTRY_PATH, 'scripts/governance/**', '.github/workflows/surface-guard.yml', '.github/workflows/review-gate.yml'],
+  paths: [REGISTRY_PATH, 'scripts/governance/**', 'scripts/tests/governance-gates.test.mjs', '.github/workflows/surface-guard.yml', '.github/workflows/review-gate.yml'],
   jobs: ['gate integrity'],
 }
 
@@ -67,14 +67,15 @@ function unkeptJobs(keeps, jobs) {
  * `baseRegistry` is the registry on the base branch; null only when this PR introduces the gates. Reading it from
  * the base means a PR cannot unprotect a surface in the same change that edits it.
  */
-export function evaluateSurfaces({ registry, baseRegistry, changed, body, labels, eventAction, approvedBy }) {
+export function evaluateSurfaces({ registry, baseRegistry, changed, body, labels, eventAction, approvedBy, approvedAt, headCommittedAt }) {
   const errors = []
   const briefs = parseBriefs(body)
   const trusted = baseRegistry ?? registry
   const surfaces = baseRegistry ? [...baseRegistry.surfaces, GOVERNANCE] : registry.surfaces
   const approvers = trusted.approvers ?? ['frankxai']
   // A label given before the latest push approved an earlier head; Frank re-applies it after reviewing this one.
-  const staleApproval = eventAction === 'synchronize'
+  // Also by time, so a missed label removal cannot leave an old approval valid on a later event.
+  const staleApproval = eventAction === 'synchronize' || Boolean(approvedAt && headCommittedAt && approvedAt < headCommittedAt)
   // Anyone with triage rights can add a label; only an approver's label is an approval.
   const approverLabel = approvers.includes(approvedBy)
   const approved = labels.includes(APPROVAL_LABEL) && !staleApproval && approverLabel
@@ -111,7 +112,7 @@ const git = (...args) => execFileSync('git', args, { encoding: 'utf8', stdio: ['
 
 /** Who added the current surface-approved label: the last `labeled` event for it. */
 async function labelActor() {
-  if (!process.env.GITHUB_TOKEN) return undefined
+  if (!process.env.GITHUB_TOKEN) return {}
   const events = []
   for (let page = 1; page <= 10; page++) {
     const response = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/issues/${process.env.PR_NUMBER}/events?per_page=100&page=${page}`, {
@@ -122,7 +123,8 @@ async function labelActor() {
     events.push(...batch)
     if (batch.length < 100) break
   }
-  return events.filter((e) => e.event === 'labeled' && e.label?.name === APPROVAL_LABEL).at(-1)?.actor?.login
+  const last = events.filter((e) => e.event === 'labeled' && e.label?.name === APPROVAL_LABEL).at(-1)
+  return { approvedBy: last?.actor?.login, approvedAt: last?.created_at }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
@@ -139,8 +141,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   }
   const registry = JSON.parse(git('show', `${head}:${REGISTRY_PATH}`))
   const labels = String(process.env.PR_LABELS ?? '').split(',').map((l) => l.trim()).filter(Boolean)
-  const approvedBy = labels.includes(APPROVAL_LABEL) ? await labelActor() : undefined
-  const result = evaluateSurfaces({ registry, baseRegistry, changed, body: process.env.PR_BODY, labels, eventAction: process.env.EVENT_ACTION, approvedBy })
+  const { approvedBy, approvedAt } = labels.includes(APPROVAL_LABEL) ? await labelActor() : {}
+  const headCommittedAt = new Date(Number(git('log', '-1', '--format=%ct', head).trim()) * 1000).toISOString()
+  const result = evaluateSurfaces({ registry, baseRegistry, changed, body: process.env.PR_BODY, labels, eventAction: process.env.EVENT_ACTION, approvedBy, approvedAt, headCommittedAt })
   if (!result.touched.length) console.log('[surface-guard] No protected surface touched.')
   for (const t of result.touched) console.log(`[surface-guard] touches ${t.id}: ${t.files.join(', ')}`)
   for (const error of result.errors) console.error(`[surface-guard] ${error}`)

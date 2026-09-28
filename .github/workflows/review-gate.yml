@@ -7,7 +7,8 @@ name: Review Gate
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+    # 'edited' covers a retarget (e.g. staging -> main): check runs are SHA-scoped, so the base change must re-run.
+    types: [opened, synchronize, reopened, edited, ready_for_review]
     branches: [main, staging]
   pull_request_review:
     types: [submitted, edited, dismissed]
