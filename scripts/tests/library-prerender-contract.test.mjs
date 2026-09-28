@@ -14,7 +14,7 @@ test('library index and collection pages stay static: no searchParams on the ser
   assert.doesNotMatch(index, /searchParams/);
   assert.doesNotMatch(collection, /searchParams/);
   assert.match(index, /export const metadata/);
-  assert.match(index, /<h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">The Library<\/h1>/);
+  assert.match(index, /<h1 className="max-w-\[12ch\] font-serif text-5xl font-medium tracking-tight text-white sm:text-7xl">The Library<\/h1>/);
   assert.match(collection, /generateStaticParams/);
   assert.match(explorer, /syncFromUrl\(\)/);
   assert.doesNotMatch(explorer, /initial\?:/);
