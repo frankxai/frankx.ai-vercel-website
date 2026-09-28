@@ -19,7 +19,9 @@ function structuredResult<T extends Record<string, unknown>>(value: T) {
  * contiguous, so concatenating every page from offset 0 via nextOffset rebuilds the article exactly.
  */
 export function pageMarkdown(markdown: string, offset: number, maxChars: number) {
-  const start = Math.min(offset, markdown.length)
+  let start = Math.min(offset, markdown.length)
+  // A caller-supplied offset can land on the low half of an emoji; start at the whole character instead.
+  if (start > 0 && /[\uDC00-\uDFFF]/.test(markdown[start]) && /[\uD800-\uDBFF]/.test(markdown[start - 1])) start -= 1
   if (markdown.length - start <= maxChars) {
     return { markdown: markdown.slice(start), offset: start, nextOffset: null, truncated: false }
   }

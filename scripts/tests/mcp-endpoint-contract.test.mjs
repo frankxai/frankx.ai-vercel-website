@@ -4,9 +4,9 @@ import { register } from 'node:module'
 import test from 'node:test'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js'
-import { scoreTools } from './vendor/mcp-doctor-score.ts'
-
 register('./support/app-module-hooks.mjs', import.meta.url)
+// Dynamic so both TypeScript imports go through the hooks registered above.
+const { scoreTools } = await import('./vendor/mcp-doctor-score.ts')
 const { createFrankxMcpServer, pageMarkdown } = await import('../../lib/mcp/frankx-server.ts')
 
 const read = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8')
@@ -145,6 +145,32 @@ test('a hard cut never splits a surrogate pair', () => {
     next = page.nextOffset
   }
   assert.equal(rebuilt, text)
+})
+
+test('an arbitrary offset inside a surrogate pair snaps back to the start of the character', () => {
+  const text = 'ab\u{1F680}cd'
+  const inside = pageMarkdown(text, 3, 1000)
+  assert.equal(inside.offset, 2)
+  assert.equal(inside.markdown, '\u{1F680}cd')
+  assert.equal(pageMarkdown(text, 2, 1000).offset, 2, 'an offset at the start of the pair is kept')
+})
+
+test('the HTTP route accepts tools/call without an arguments field (optional in the spec)', async () => {
+  const { POST } = await import('../../app/api/mcp/route.ts')
+  const response = await POST(new Request('https://www.frankx.ai/api/mcp', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream' },
+    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'frankx_list_products' } }),
+  }))
+  const body = await response.json()
+  assert.equal(body.error, undefined, JSON.stringify(body.error))
+  assert.notEqual(body.result.isError, true, body.result.content?.[0]?.text)
+  assert.ok(body.result.structuredContent.products.length > 0)
+})
+
+test('test:mcp runs without Node-22-only flags (the repo pins Node 20)', () => {
+  const pkg = JSON.parse(read('package.json'))
+  assert.doesNotMatch(pkg.scripts['test:mcp'], /--experimental-strip-types/)
 })
 
 test('maxChars is bounded to 1000-100000', () => withClient(async (client) => {

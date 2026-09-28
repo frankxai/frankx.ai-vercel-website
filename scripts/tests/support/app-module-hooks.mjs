@@ -29,6 +29,15 @@ export async function resolve(specifier, context, nextResolve) {
 }
 
 export async function load(url, context, nextLoad) {
+  // Transpile app TypeScript here rather than relying on --experimental-strip-types, which Node 20 (.nvmrc) lacks.
+  if (url.startsWith(root.href) && /\.tsx?$/.test(url) && !url.includes('/node_modules/')) {
+    const { default: ts } = await import('typescript')
+    const { outputText } = ts.transpileModule(readFileSync(fileURLToPath(url), 'utf8'), {
+      fileName: fileURLToPath(url),
+      compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX },
+    })
+    return { format: 'module', source: outputText, shortCircuit: true }
+  }
   if (url.startsWith(root.href) && url.endsWith('.json') && !url.includes('/node_modules/')) {
     return { format: 'module', source: `export default ${readFileSync(fileURLToPath(url), 'utf8')}`, shortCircuit: true }
   }
