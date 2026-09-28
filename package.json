@@ -12,7 +12,7 @@
     "changelog:validate": "node scripts/validate-changelog.mjs",
     "test:changelog-release": "node scripts/validate-changelog.mjs && node --test scripts/tests/changelog-release-contract.test.mjs",
     "test:delivery": "node --experimental-strip-types scripts/test-delivery.mjs",
-    "test:library": "node --experimental-strip-types --test scripts/tests/library-discovery.test.mjs scripts/tests/library-prerender-contract.test.mjs",
+    "test:library": "node --experimental-strip-types --test scripts/tests/library-discovery.test.mjs scripts/tests/library-prerender-contract.test.mjs scripts/tests/sacred-depth-contract.test.mjs",
     "test:site-search": "node --experimental-strip-types --test scripts/tests/site-search-relevance.test.mjs",
     "test:navigation-completeness": "node --experimental-strip-types --test scripts/tests/navigation-completeness.test.mjs",
     "test:redis-env": "node --experimental-strip-types --test scripts/tests/redis-env.test.mjs scripts/tests/local-ratelimit.test.mjs",

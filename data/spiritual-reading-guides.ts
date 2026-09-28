@@ -2,9 +2,12 @@ import type { BookReview } from '@/app/books/types';
 import entries from './library-reading-guides.json';
 import { sacredEditorial } from './sacred-editorial';
 import { contemporaryEditorial } from './contemporary-editorial';
+import { sacredDepth } from './sacred-depth';
 
 // Publication date records this editorial guide, never a personal reading claim.
-export const spiritualReadingGuides: BookReview[] = entries.map(entry => ({
+export const spiritualReadingGuides: BookReview[] = entries.map(entry => {
+  const depth = sacredDepth[entry.slug];
+  return {
   slug: entry.slug,
   title: entry.title,
   author: entry.author,
@@ -12,17 +15,26 @@ export const spiritualReadingGuides: BookReview[] = entries.map(entry => ({
   hasCover: false,
   rating: 0, // Unrated guides do not emit Review/Rating markup.
   reviewDate: '2026-09-07',
-  readingTime: sacredEditorial[entry.slug] || contemporaryEditorial[entry.slug] ? '4 min' : '2 min',
+  readingTime: depth ? '10 min' : sacredEditorial[entry.slug] || contemporaryEditorial[entry.slug] ? '4 min' : '2 min',
   categories: entry.categories,
   tldr: entry.summary,
   keyInsights: entry.keyInsights,
+  quotes: depth?.quotes.map(quote => ({
+    text: quote.text,
+    chapter: quote.locator,
+    context: quote.why,
+    source: { label: `${depth.translation.translator}, ${depth.translation.year}`, url: quote.sourceUrl },
+  })),
+  chapters: depth?.sections,
+  faq: depth?.faq,
   bestFor: [`Readers exploring ${entry.tradition}`, 'Readers choosing a source or edition before a complete reading'],
   guide: {
     ...entry,
     kind: entry.kind as NonNullable<BookReview['guide']>['kind'],
     claimBasis: entry.kind === 'Primary text' ? 'Symbolic' : entry.kind === 'Modern commentary' ? 'Established' : 'Experiential',
   },
-}));
+  };
+});
 
 export const taoReadingGuide: NonNullable<BookReview['guide']> = {
   tradition: 'Daoism',
