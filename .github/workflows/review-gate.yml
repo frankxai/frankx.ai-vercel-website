@@ -1,0 +1,39 @@
+name: Review Gate
+
+# Merges are autonomous, so AI review findings are the quality gate: every finding must be answered (fixed, or
+# declined with a reason; P0/P1 need a fix commit or "Declined: <why>") before merge. Re-runs when threads change.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [main, staging]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  pull_request_review_comment:
+    types: [created, edited, deleted]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: review-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/governance
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Every AI review finding answered
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: node scripts/governance/review-gate.mjs

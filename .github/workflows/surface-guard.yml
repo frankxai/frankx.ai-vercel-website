@@ -1,0 +1,32 @@
+name: Surface Guard
+
+# Protected surfaces (.github/protected-surfaces.json) are evolved, not replaced: a pull request that touches one
+# must carry a Surface change brief. No paths filter on purpose: a required check with one never reports on pull
+# requests outside it and blocks them (the trap merge-gate.yml documents).
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, labeled, unlabeled, ready_for_review]
+    branches: [main, staging]
+
+permissions:
+  contents: read
+
+jobs:
+  surface-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Gate self-test
+        run: node --test scripts/tests/governance-gates.test.mjs
+      - name: Check protected surfaces
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: node scripts/governance/surface-guard.mjs

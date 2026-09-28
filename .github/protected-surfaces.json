@@ -1,0 +1,41 @@
+{
+  "$comment": "Surfaces that already work and must be evolved, not replaced. Enforced by scripts/governance/surface-guard.mjs. A change needs a Surface change brief that says how every job survives; `rearchitect` changes and `locked` surfaces also need Frank's surface-approved label. Add a surface when a page proves its value; remove one only with Frank's word. Jobs are matched as words in the brief's Keeps line, so keep them distinct.",
+  "surfaces": [
+    {
+      "id": "homepage",
+      "policy": "evolve",
+      "paths": ["app/page.tsx", "components/home/**", "data/homepage-*", "public/images/home/**"],
+      "jobs": ["identity", "orientation", "portfolio proof", "founder relevance", "human proof", "trust", "conversion"],
+      "why": "The compressed expression of FrankX. Replaced by a valid, fully tested narrower page on 2026-08-27 and restored 2026-08-28; #409 stripped it and rewrote its contract, #415 restored both.",
+      "contract": "docs/strategy/HOMEPAGE-PRESERVATION-CONTRACT.md"
+    },
+    {
+      "id": "offer-pages",
+      "policy": "evolve",
+      "paths": ["app/founder-stack/**", "app/foundry/**", "app/founders-circle/**", "app/work-with-me/**"],
+      "jobs": ["offer clarity", "proof", "price truth", "next step"],
+      "why": "Where a founder decides to buy or talk. Every claim and price here is reviewed; a rewrite that changes the offer is a business decision, not a refactor."
+    },
+    {
+      "id": "about",
+      "policy": "evolve",
+      "paths": ["app/about/**"],
+      "jobs": ["identity", "credibility", "human proof"],
+      "why": "Who Frank is. Tone and facts are personal; agents improve it, they do not reinvent the person."
+    },
+    {
+      "id": "capture",
+      "policy": "evolve",
+      "paths": ["app/newsletter/**", "app/waitlist/**", "components/email-signup*"],
+      "jobs": ["value promise", "capture works", "privacy"],
+      "why": "Demand capture across the site (waitlist-first doctrine). A broken or misleading form loses people silently."
+    },
+    {
+      "id": "brand-system",
+      "policy": "evolve",
+      "paths": ["tailwind.config.js", "app/globals.css", "lib/design-system.ts"],
+      "jobs": ["visual identity", "typography", "accessibility"],
+      "why": "The estate's typography reference (Inter, Poppins, Playfair Display, Source Serif 4). A token change repaints every page at once."
+    }
+  ]
+}
