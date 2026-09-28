@@ -2,8 +2,7 @@ name: Review Gate
 
 # Merges are autonomous, so AI review findings are the quality gate: every finding must be answered by the author or
 # a repo member (fixed with a commit of this PR, or declined with a reason; P0/P1 need one of those two) before
-# merge. Re-runs when reviews, review comments or PR conversation comments change. Resolving a thread without a
-# reply has no Actions trigger; re-run the check (`gh run rerun`) or reply on the thread.
+# merge. Resolving a thread without a reply has no Actions trigger; reply on the thread or re-run the check.
 
 on:
   pull_request:
@@ -21,13 +20,12 @@ permissions:
   contents: read
   pull-requests: read
 
-concurrency:
-  group: review-gate-${{ github.event.pull_request.number || github.event.issue.number }}
-  cancel-in-progress: true
-
 jobs:
   review-gate:
-    if: github.event_name != 'issue_comment' || github.event.issue.pull_request
+    if: github.event_name != 'issue_comment'
+    concurrency:
+      group: review-gate-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -41,6 +39,27 @@ jobs:
       - name: Every AI review finding answered
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
-          PR_AUTHOR: ${{ github.event.pull_request.user.login || github.event.issue.user.login }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
         run: node scripts/governance/review-gate.mjs
+
+  # A PR conversation comment runs on the default branch, whose result would not attach to the PR head. Instead,
+  # re-run the head's own Review Gate check so the required status reflects the new comment.
+  rerun-on-comment:
+    if: github.event_name == 'issue_comment' && github.event.issue.pull_request
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      actions: write
+      pull-requests: read
+    steps:
+      - name: Re-run Review Gate for the PR head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.issue.number }}
+        run: |
+          head=$(gh pr view "$PR" --repo "$REPO" --json headRefOid --jq .headRefOid)
+          run=$(gh run list --repo "$REPO" --workflow review-gate.yml --commit "$head" --event pull_request --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          if [ -z "$run" ]; then echo "No Review Gate run for $head yet; the next PR event will create one."; exit 0; fi
+          gh run rerun "$run" --repo "$REPO" || echo "Run $run is still in progress; it will read the new comment."

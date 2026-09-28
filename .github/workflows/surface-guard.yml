@@ -1,15 +1,20 @@
 name: Surface Guard
 
-# Protected surfaces (.github/protected-surfaces.json, read from the base branch) are evolved, not replaced: a pull
-# request that touches one must carry a Surface change brief.
+# Protected surfaces (.github/protected-surfaces.json) are evolved, not replaced: a pull request that touches one
+# must carry a Surface change brief.
 #
-# pull_request_target on purpose: the guard, its self-test and this workflow run from the BASE branch, so a pull
-# request cannot rewrite the gate that judges it. The PR head is fetched as a git ref and only diffed and read with
-# `git show`; no PR code is checked out into the workspace or executed.
+# Two requirements pull in opposite directions, and this layout serves both:
+# - the check must attach to the PR head SHA, or branch protection cannot require it (pull_request_target runs
+#   attach to the base commit), so this is a `pull_request` workflow;
+# - the code that judges the PR must not come from the PR, so the guard, its self-test and the registry are
+#   extracted from the BASE branch with `git show` and run from a temp directory. The PR head is only diffed.
+# Residual risk, stated plainly: a PR could edit this workflow file itself. That file is part of the locked
+# governance surface and shows in every diff and review; closing it fully needs a separate GitHub identity for
+# agents (see AGENTS.md section 5e in starlight-estate).
 # No paths filter: a required check with one never reports on PRs outside it and blocks them (see merge-gate.yml).
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened, edited, labeled, unlabeled, ready_for_review]
     branches: [main, staging]
 
@@ -27,24 +32,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           persist-credentials: false
-      - name: Fetch the PR head as data
-        run: git fetch --no-tags origin "refs/pull/${{ github.event.pull_request.number }}/head:refs/remotes/pr/head"
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Gate self-test (base revision)
-        run: node --test scripts/tests/governance-gates.test.mjs
-      - name: Check protected surfaces
+      - name: Extract the trusted gate from the base branch
         env:
-          PR_HEAD: refs/remotes/pr/head
+          BASE: origin/${{ github.base_ref }}
+          GATE: ${{ runner.temp }}/gate
+        run: |
+          git fetch --no-tags origin "${{ github.base_ref }}"
+          mkdir -p "$GATE/scripts/governance" "$GATE/scripts/tests" "$GATE/.github"
+          for f in scripts/governance/surface-guard.mjs scripts/governance/review-gate.mjs scripts/tests/governance-gates.test.mjs .github/protected-surfaces.json; do
+            if git cat-file -e "$BASE:$f" 2>/dev/null; then git show "$BASE:$f" > "$GATE/$f"; else cp "$f" "$GATE/$f"; echo "bootstrap: $f not on base yet, using the PR copy"; fi
+          done
+      - name: Gate self-test (base revision)
+        run: node --test "${{ runner.temp }}/gate/scripts/tests/governance-gates.test.mjs"
+      - name: Check protected surfaces (base revision)
+        env:
           PR_BODY: ${{ github.event.pull_request.body }}
           PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           EVENT_ACTION: ${{ github.event.action }}
           GITHUB_TOKEN: ${{ github.token }}
-        run: node scripts/governance/surface-guard.mjs
+        run: node "${{ runner.temp }}/gate/scripts/governance/surface-guard.mjs"
       # An approval covers the head Frank saw. Any new commit withdraws it, whatever the brief says now.
       - name: Withdraw surface approval on new commits
         if: always() && github.event.action == 'synchronize' && contains(github.event.pull_request.labels.*.name, 'surface-approved')

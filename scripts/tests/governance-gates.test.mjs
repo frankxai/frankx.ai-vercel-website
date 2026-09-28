@@ -170,6 +170,25 @@ test('review gate: only named AI reviewers are gated, not every bot', () => {
   assert.deepEqual(gate([{ isResolved: false, comments: [dependabot] }], [dependabot]), [])
 })
 
+test('review gate: an edited finding needs an answer newer than the edit', () => {
+  const edited = finding('![P1 Badge] New problem after edit', { editedAt: '2026-09-28T12:00:00Z' })
+  assert.match(gate([{ isResolved: false, comments: [edited, reply('Fixed in a1b2c3d.')] }]).join('\n'), /P1/, 'commit and reply predate the edit')
+  const later = reply('Fixed in b2c3d4e.', { createdAt: '2026-09-28T13:00:00Z' })
+  const commits2 = [...commits, { oid: 'b2c3d4e5f6a7b8c9d0a1b2c3d4e5f6a7b8c9d0a1', committedDate: '2026-09-28T12:30:00Z' }]
+  assert.deepEqual(evaluateFindings({ threads: [{ isResolved: false, comments: [edited, later] }], topLevel: [], commits: commits2, author: 'frankxai' }), [])
+})
+
+test('review gate: a short finding title can be answered by quoting it exactly', () => {
+  const body = '![P2 Badge] Fix XSS\nd\n\n![P2 Badge] Cache the sitemap\nd'
+  const top = [finding(body)]
+  assert.deepEqual(gate([], [...top, reply('Fix XSS: done in a1b2c3d.'), reply('Cache the sitemap: done in a1b2c3d.')]), [])
+})
+
+test('review gate: findings of a dismissed AI review no longer block', () => {
+  const dismissed = { isResolved: false, dismissed: true, comments: [finding('![P1 Badge] Obsolete finding')] }
+  assert.deepEqual(gate([dismissed], [finding('![P1 Badge] Obsolete body finding', { dismissed: true })]), [])
+})
+
 test('review gate: a thread too long to read completely fails closed', () => {
   const long = { isResolved: false, truncated: true, comments: [finding('![P2 Badge] x'), reply('Fixed in a1b2c3d.')] }
   assert.match(gate([long]).join('\n'), /too long/)

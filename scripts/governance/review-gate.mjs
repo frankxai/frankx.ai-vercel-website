@@ -25,9 +25,12 @@ const authorized = (c, author) => !isBot(c) && (c.author === author || MEMBERS.h
 const titleOf = (body) => body.replace(/!\[[^\]]*\](\([^)]*\))?|<[^>]+>|\*+/g, '').trim().split('\n')[0].slice(0, 90)
 
 /** A fix names a commit of this PR that was made after the finding; any other hex string proves nothing. */
+/** When a finding was last stated: an edit replaces it, so earlier answers and commits no longer count. */
+const statedAt = (found) => (found.editedAt && found.editedAt > found.createdAt ? found.editedAt : found.createdAt)
+
 function fixes(reply, found, commits) {
   const refs = reply.body.match(/\b[0-9a-f]{7,40}\b/g) ?? []
-  return refs.some((ref) => commits.some((c) => c.oid.startsWith(ref) && c.committedDate >= found.createdAt))
+  return refs.some((ref) => commits.some((c) => c.oid.startsWith(ref) && c.committedDate >= statedAt(found)))
 }
 
 /** The badge decides ("![P1 Badge]"); findings often mention other levels in their text ("for a P0/P1 thread…"). */
@@ -53,7 +56,8 @@ function references(reply, found) {
   const anchor = /#(?:issuecomment|discussion_r|pullrequestreview)-?\d+/.exec(found.url ?? '')?.[0]
   if (anchor && reply.body.includes(anchor.slice(1))) return true
   const title = normalize(titleOf(found.body)).slice(0, 40)
-  return title.length >= 12 && normalize(reply.body).includes(title)
+  // Quoting the title exactly identifies the finding; very short titles (under 6 characters) would match anything.
+  return title.length >= 6 && normalize(reply.body).includes(title)
 }
 
 /**
@@ -70,21 +74,21 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
   const errors = []
   for (const [index, thread] of threads.entries()) {
     const [first, ...replies] = thread.comments
-    if (!first || !isBot(first)) continue
+    if (!first || !isBot(first) || thread.dismissed) continue
     if (thread.truncated) {
       errors.push(`thread ${index + 1} (${first.author}): "${titleOf(first.body)}" has more comments than one read returns; too long to verify, so it fails closed. Summarise the outcome in a new reply after resolving.`)
       continue
     }
-    const answers = replies.filter((r) => authorized(r, author))
+    const answers = replies.filter((r) => authorized(r, author) && r.createdAt >= statedAt(first))
     if (thread.isResolved && severity(first.body) > 1) continue
     const error = decide(first, answers, commits, `thread ${index + 1}`)
     if (error) errors.push(error)
   }
   const ordered = [...topLevel].sort((a, b) => a.createdAt.localeCompare(b.createdAt))
   for (const [index, item] of ordered.entries()) {
-    if (!isBot(item) || !BADGE.test(item.body)) continue
+    if (!isBot(item) || item.dismissed || !BADGE.test(item.body)) continue
     for (const section of sections(item)) {
-      const answers = ordered.slice(index + 1).filter((r) => authorized(r, author) && references(r, section))
+      const answers = ordered.filter((r) => r !== item && r.createdAt >= statedAt(section) && authorized(r, author) && references(r, section))
       const error = decide(section, answers, commits, 'review comment')
       if (error) errors.push(error)
     }
@@ -103,7 +107,10 @@ async function graphql(query, variables) {
   return json.data.repository.pullRequest
 }
 
-const comment = (c) => ({ author: c.author?.login ?? '', association: c.authorAssociation, body: c.body ?? '', createdAt: c.createdAt, url: c.url })
+const comment = (c) => ({
+  author: c.author?.login ?? '', association: c.authorAssociation, body: c.body ?? '', createdAt: c.createdAt,
+  editedAt: c.lastEditedAt ?? undefined, url: c.url, dismissed: c.state === 'DISMISSED' || c.pullRequestReview?.state === 'DISMISSED',
+})
 
 /** Walks every page; a truncated read could report "all answered" while later findings sit unread. */
 async function paged(field, selection, variables) {
@@ -121,15 +128,18 @@ async function paged(field, selection, variables) {
 async function fetchAll() {
   const [owner, name] = String(process.env.GITHUB_REPOSITORY).split('/')
   const variables = { owner, name, number: Number(process.env.PR_NUMBER) }
-  const who = 'author{login} authorAssociation body createdAt url'
+  const who = 'author{login} authorAssociation body createdAt lastEditedAt url'
   const [threads, reviews, comments, commits] = await Promise.all([
-    paged('reviewThreads', `isResolved comments(first:100){totalCount nodes{${who}}}`, variables),
-    paged('reviews', who, variables),
+    paged('reviewThreads', `isResolved comments(first:100){totalCount nodes{${who} pullRequestReview{state}}}`, variables),
+    paged('reviews', `${who} state`, variables),
     paged('comments', who, variables),
     paged('commits', 'commit{oid committedDate}', variables),
   ])
   return {
-    threads: threads.map((t) => ({ isResolved: t.isResolved, truncated: t.comments.totalCount > t.comments.nodes.length, comments: t.comments.nodes.map(comment) })),
+    threads: threads.map((t) => {
+      const comments = t.comments.nodes.map(comment)
+      return { isResolved: t.isResolved, dismissed: comments[0]?.dismissed ?? false, truncated: t.comments.totalCount > t.comments.nodes.length, comments }
+    }),
     topLevel: [...reviews, ...comments].map(comment),
     commits: commits.map((c) => c.commit),
   }
