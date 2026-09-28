@@ -17,6 +17,7 @@ export type SacredDepth = {
     sourceUrl: string;
     rightsBasis: 'public-domain' | 'quotation' | 'locator-only';
     rightsNote: string;
+    notice?: string; // attribution a rights holder requires beside each excerpt
   };
   quotes: Array<{ text: string; locator: string; sourceUrl: string; why: string }>;
   sections: Array<{ number: number; title: string; keyIdea: string; summary: string }>;

@@ -23,7 +23,7 @@ export const spiritualReadingGuides: BookReview[] = entries.map(entry => {
     text: quote.text,
     chapter: quote.locator,
     context: quote.why,
-    source: { label: `${depth.translation.translator}, ${depth.translation.year}`, url: quote.sourceUrl },
+    source: { label: [`${depth.translation.translator}, ${depth.translation.year}`, depth.translation.notice].filter(Boolean).join(' · '), url: quote.sourceUrl },
   })),
   chapters: depth?.sections,
   faq: depth?.faq,
