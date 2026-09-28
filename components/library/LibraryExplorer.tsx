@@ -74,7 +74,7 @@ export function LibraryExplorer({ books, children }: { books: LibraryBook[]; chi
                 <BookCover title={book.title} author={book.author} src={book.cover} imageAlt={book.coverAlt} hasGuide={book.hasGuide} className="w-full max-w-[220px] shadow-[0_18px_30px_-24px_rgba(0,0,0,0.9)] transition-transform duration-200 group-hover:-translate-y-1 motion-reduce:transition-none motion-reduce:shadow-none" />
                 <div className="mt-4 max-w-[220px]">
                   <p className="mb-1 text-[11px] leading-snug text-emerald-200/85">{book.kind}</p>
-                  <h3 className="font-serif text-base leading-snug text-white group-hover:text-emerald-200">{book.title}</h3>
+                  <h3 className="text-base font-medium leading-snug text-white group-hover:text-emerald-200">{book.title}</h3>
                   <p className="mt-1 line-clamp-2 text-xs leading-snug text-white/65">{book.author}</p>
                   <span className="mt-2 inline-flex items-center gap-1 text-xs text-white/60">{book.readingTime}{book.hasGuide ? ' guide' : ''}<ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></span>
                 </div>

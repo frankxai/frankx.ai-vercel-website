@@ -33,7 +33,7 @@ export default function LibraryPage() {
     <main className="min-h-screen bg-[#0a0a0b]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
       <header className="mx-auto max-w-6xl px-6 pb-8 pt-28 sm:pt-32">
-        <h1 className="max-w-[12ch] font-serif text-5xl font-medium tracking-tight text-white sm:text-7xl">The Library</h1>
+        <h1 className="max-w-[12ch] font-display text-5xl font-medium tracking-tight text-white sm:text-7xl">The Library</h1>
         <p className="mt-6 max-w-[42rem] text-lg leading-relaxed text-white/75">Find a book for the question you’re carrying. Follow a reading path through philosophy, spiritual traditions, creative work, and building a life of your own.</p>
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
           <span className="text-white/65">{libraryBooks.length} books · 6 curated collections</span>

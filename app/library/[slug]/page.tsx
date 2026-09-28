@@ -57,13 +57,13 @@ export default async function ReviewPage({
 
       {/* Review Header */}
       <header className="max-w-3xl mx-auto px-6 pb-12">
-        <div className="flex items-start gap-6 sm:gap-8">
+        <div className="flex flex-col items-start gap-5 sm:flex-row sm:gap-8">
           <figure className="shrink-0">
-            <BookCover title={review.title} author={review.author} src={review.hasCover ? review.coverImage : undefined} hasGuide={Boolean(review.guide)} priority className="w-28 shadow-[0_18px_30px_-24px_rgba(0,0,0,0.9)] sm:w-40" />
-            {review.hasCover ? <figcaption className="mt-2 max-w-[7rem] text-[11px] leading-snug text-white/55 sm:max-w-[10rem]">Pictured edition</figcaption> : null}
+            <BookCover title={review.title} author={review.author} src={review.hasCover ? review.coverImage : undefined} hasGuide={Boolean(review.guide)} priority className="w-24 shadow-[0_18px_30px_-24px_rgba(0,0,0,0.9)] sm:w-40" />
+            {review.hasCover ? <figcaption className="mt-2 max-w-[6rem] text-[11px] leading-snug text-white/55 sm:max-w-[10rem]">Pictured edition</figcaption> : null}
           </figure>
-          <div>
-            <h1 className="mb-2 font-serif text-4xl font-medium tracking-tight text-white md:text-5xl">
+          <div className="min-w-0">
+            <h1 className="mb-2 break-words font-display text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl">
               {review.title}
             </h1>
             <p className="text-lg text-white/75 mb-3">{review.guide?.kind === 'Primary text' ? review.author : `by ${review.author}`}</p>
@@ -138,8 +138,8 @@ export default async function ReviewPage({
       {/* The Short Answer (TL;DR) */}
       {review.tldr && (
         <section className="mx-auto max-w-3xl px-6 pb-14">
-          <h2 className="font-serif text-2xl text-white">The short answer</h2>
-          <p className="mt-4 max-w-[65ch] font-serif-editorial text-lg leading-relaxed text-white/80">{review.tldr}</p>
+          <h2 className="font-display text-2xl text-white">The short answer</h2>
+          <p className="mt-4 max-w-[65ch] text-lg leading-relaxed text-white/80">{review.tldr}</p>
         </section>
       )}
 
@@ -147,7 +147,7 @@ export default async function ReviewPage({
 
       {/* Table of Contents */}
       <nav className="mx-auto max-w-3xl px-6 pb-14" aria-label="Contents">
-        <h2 className="font-serif text-2xl text-white">In this guide</h2>
+        <h2 className="font-display text-2xl text-white">In this guide</h2>
         <ol className="mt-5 grid max-w-[65ch] grid-cols-1 gap-x-8 gap-y-2 text-[15px] text-white/70 sm:grid-cols-2">
             <li>
               <a href="#insights" className="hover:text-amber-300 transition-colors">
