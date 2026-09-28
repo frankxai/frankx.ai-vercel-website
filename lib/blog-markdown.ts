@@ -1,6 +1,6 @@
 import type { BlogPost } from './blog'
 
-/** The markdown form of a post served to agents by /api/md and the MCP get_article tool. */
+/** The markdown form of a post served to agents by /api/md and the MCP frankx_get_article tool. */
 export function blogPostToMarkdown(post: BlogPost): string {
   return [
     `# ${post.title}`,
