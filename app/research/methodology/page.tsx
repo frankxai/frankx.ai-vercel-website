@@ -142,7 +142,7 @@ const methodologyLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
   headline: 'Research Methodology — FrankX Research Hub',
-  description: `The working review method across ${researchDomains.length} domains and ${totalSources} registered source URLs.`,
+  description: `The publication method for ${researchDomains.length} topic maps under source review.`,
   author: {
     '@type': 'Person',
     name: 'Frank Riemer',
@@ -212,9 +212,8 @@ export default function MethodologyPage() {
             <p className="text-lg text-white/60 leading-relaxed max-w-3xl mb-8">
               This is the standard I want every research page to meet: a directed question,
               inspectable sources, separate specialist passes, explicit limitations, and a human
-              publication decision. The registry currently spans {researchDomains.length} domains
-              and {totalSources} unique source URLs; some older domains are still awaiting a
-              complete source registry.
+              publication decision. The existing {researchDomains.length} topic maps are being
+              checked against individual sources. Generated search links are not counted as citations.
             </p>
 
             {/* Quick stats */}

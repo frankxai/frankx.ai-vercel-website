@@ -172,7 +172,7 @@ export default function SourceBrowserPage() {
                   Source Browser
                 </h1>
                 <p className="text-white/65 mt-1">
-                  Source references currently registered across the research hub
+                  Reviewed source records will appear here as briefs pass publication review.
                 </p>
               </div>
             </div>
@@ -335,7 +335,9 @@ export default function SourceBrowserPage() {
             <div className="text-center py-16">
               <Search className="w-8 h-8 text-white/55 mx-auto mb-4" />
               <p className="text-white/65 text-sm">
-                No sources match your filters.
+                {uniqueSources.length === 0
+                  ? 'Source review is in progress. No citations are published from the generated index.'
+                  : 'No sources match your filters.'}
               </p>
               <button
                 type="button"

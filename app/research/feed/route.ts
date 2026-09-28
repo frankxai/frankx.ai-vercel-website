@@ -1,5 +1,4 @@
 import { researchDomains } from '@/lib/research/domains'
-import { domainSources } from '@/lib/research/sources'
 
 export const dynamic = 'force-static'
 
@@ -15,28 +14,19 @@ function escapeXml(str: string): string {
 }
 
 export async function GET() {
-  const uniqueSourceCount = new Set(
-    Object.values(domainSources).flat().map(s => s.url)
-  ).size
-
   // Sort domains by lastUpdated (most recent first)
   const sorted = [...researchDomains].sort(
     (a, b) => new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()
   )
 
   const items = sorted.map(domain => {
-    const sources = domainSources[domain.slug] || []
-    const pubDate = new Date(domain.lastUpdated).toUTCString()
-
     return `    <item>
       <title>${escapeXml(domain.title)}</title>
       <link>${BASE_URL}/research/${domain.slug}</link>
       <guid isPermaLink="true">${BASE_URL}/research/${domain.slug}</guid>
-      <pubDate>${pubDate}</pubDate>
-      <description>${escapeXml(domain.tldr)}</description>
+      <description>Source review in progress. This topic map is not a reviewed research brief.</description>
       ${domain.category ? `<category>${escapeXml(domain.category)}</category>` : ''}
       <source url="${BASE_URL}/research">${escapeXml('FrankX Research Hub')}</source>
-      ${sources.length > 0 ? `<comments>${sources.length} verified sources</comments>` : ''}
     </item>`
   }).join('\n')
 
@@ -49,7 +39,7 @@ export async function GET() {
   <channel>
     <title>FrankX Research Intelligence Hub</title>
     <link>${BASE_URL}/research</link>
-    <description>Validated AI research across ${researchDomains.length} domains with ${uniqueSourceCount}+ verified sources. Enterprise AI, multi-agent systems, production patterns, and emerging technology.</description>
+    <description>Research topic maps across ${researchDomains.length} domains. Individual briefs are under source review before publication.</description>
     <language>en-us</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${BASE_URL}/research/feed" rel="self" type="application/rss+xml"/>

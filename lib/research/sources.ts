@@ -42,7 +42,9 @@ export const sourceTypeLabels: Record<SourceType, string> = {
  * Domain-keyed source registry.
  * Each domain slug maps to an array of validated sources.
  */
-export const domainSources: Record<string, ResearchSource[]> = {
+// Archive of generated discovery leads. Search pages and self-links in this
+// snapshot do not establish that a publication supports a claim.
+const generatedDomainSourceLeads: Record<string, ResearchSource[]> = {
   "frontier-reasoning-models": [
     {
       "name": "OpenAI o1 Technical Report",
@@ -4501,6 +4503,12 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'Ragas', title: 'Ragas Documentation', url: 'https://docs.ragas.io/', type: 'official' },
   ],
 }
+
+// Public citations fail closed. Promote a record only after source-specific
+// locators, rights, claim support, and independent review are recorded.
+export const domainSources: Record<string, ResearchSource[]> = Object.fromEntries(
+  Object.keys(generatedDomainSourceLeads).map((slug) => [slug, []]),
+)
 
 export function getSourcesForDomain(slug: string): ResearchSource[] {
   return domainSources[slug] || []

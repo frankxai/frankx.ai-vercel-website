@@ -99,7 +99,8 @@ function HeroSection() {
 
           <p className="text-lg md:text-xl text-white/70 mb-8 leading-relaxed max-w-3xl">
             Explore the ideas shaping intelligent systems, creative work and human potential.
-            Seven focused hubs connect the research, the sources and the decisions you can make with them.
+            Seven topic hubs map the questions. Individual briefs are under source review;
+            reviewed evidence will return to each page as it is checked.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -129,8 +130,8 @@ function HeroSection() {
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { label: 'Research domains', value: String(researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length), icon: Layers },
-            { label: 'Domains with sources', value: String(sourcedDomainCount), icon: ShieldCheck },
-            { label: 'Source references', value: `${totalSources}+`, icon: Search },
+            { label: 'Reviewed domains', value: String(sourcedDomainCount), icon: ShieldCheck },
+            { label: 'Published sources', value: String(totalSources), icon: Search },
             { label: 'Research hubs', value: '7', icon: Compass },
           ].map((stat, i) => (
             <div key={i} className="border-l border-white/15 py-1 pl-4">
@@ -184,8 +185,7 @@ function DomainsGrid() {
             All research domains
           </h2>
           <p className="text-white/60 max-w-2xl">
-            {researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length} research areas organized by topic. Specialist agents map the
-            evidence and contradictions; I review what the page can responsibly conclude.
+            {researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length} topic maps organized by question. Briefs return when their sources and claims pass review.
           </p>
         </div>
 

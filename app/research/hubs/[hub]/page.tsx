@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, BookOpen } from "lucide-react";
 import { researchHubs, domainsForHub } from "@/lib/research/hubs";
-import { domainSources } from "@/lib/research/sources";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import ResearchModelWatch from "../../research-model-watch";
 
@@ -33,9 +32,6 @@ export default async function ResearchTopicHub({ params }: Props) {
   const entry = researchHubs.find((h) => h.slug === hub);
   if (!entry) notFound();
   const domains = domainsForHub(entry.category);
-  const sources = new Set(
-    domains.flatMap((d) => (domainSources[d.slug] ?? []).map((s) => s.url)),
-  ).size;
   return (
     <main className="min-h-screen bg-[#0a0a0b] pb-20 pt-28 text-white md:pt-36">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -56,8 +52,8 @@ export default async function ResearchTopicHub({ params }: Props) {
           {entry.description}
         </p>
         <p className="mt-8 border-b border-white/10 pb-10 font-mono text-xs text-white/60">
-          {domains.length} research briefs <span aria-hidden="true"> / </span>{" "}
-          {sources} distinct sources
+          {domains.length} topic maps <span aria-hidden="true"> / </span>{" "}
+          Source review in progress
         </p>
         {hub === "frontier-ai" && (
           <nav
@@ -105,8 +101,7 @@ export default async function ResearchTopicHub({ params }: Props) {
                   </p>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-white/60 md:flex-col md:items-end">
-                  <span>{domainSources[d.slug]?.length ?? 0} sources</span>
-                  <span>Updated {d.lastUpdated}</span>
+                  <span>Evidence review pending</span>
                   <ArrowUpRight
                     className="h-4 w-4 text-emerald-300"
                     aria-hidden="true"

@@ -1,5 +1,4 @@
 import { researchDomains, type DomainCategory } from "./domains";
-import { domainSources } from "./sources";
 
 export const researchHubs: {
   slug: string;
@@ -101,8 +100,7 @@ export function domainsForHub(category: DomainCategory) {
       researchCategory(d.category) === category &&
       !d.slug.startsWith("REMOVED-") &&
       !d.title.startsWith("[REMOVED]") &&
-      d.sourceCount > 0 &&
-      (domainSources[d.slug]?.length ?? 0) > 0,
+      d.sourceCount > 0,
   );
 }
 
