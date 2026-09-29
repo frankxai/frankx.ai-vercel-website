@@ -42,8 +42,11 @@ export function parseBriefs(body) {
   const briefs = []
   // Only visible text counts: the PR template carries an example brief inside an HTML comment, and an unclosed
   // "<!--" hides the rest of the body on GitHub. Inside code spans and fences the marker renders as text instead.
+  // A fence only opens at the start of a line; backticks mid-line ("prose ``` <!--") are not a fence.
+  const neutralise = (code) => code.replaceAll('<!--', '<! --')
   const visible = String(body ?? '')
-    .replace(/```[\s\S]*?(?:```|$)|`[^`\n]*`/g, (code) => code.replaceAll('<!--', '<! --'))
+    .replace(/^ {0,3}(`{3,}|~{3,})[^\n]*\n[\s\S]*?(?:^ {0,3}\1[ \t]*$|$(?![\s\S]))/gm, neutralise)
+    .replace(/`[^`\n]+`/g, neutralise)
     .replace(/<!--[\s\S]*?(?:-->|$)/g, '')
   for (const line of visible.split(/\r?\n/)) {
     const match = /^\s*[-*]?\s*\**(Surface|Kind|Intent|Keeps|Changes|Evidence)\**\s*:\s*(.*)$/i.exec(line)

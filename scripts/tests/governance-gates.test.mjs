@@ -99,6 +99,7 @@ test('a brief left inside the template comment does not count', () => {
   assert.match(run({ body: `<!--\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/)
   assert.match(run({ body: `Notes <!-- never closed\n${brief()}` }).errors.join('\n'), /Add a Surface change brief/, 'GitHub hides everything after an unclosed comment')
   assert.deepEqual(run({ body: 'Strips `<!--` markers.\n\n```html\n<!-- example\n```\n\n' + brief() }).errors, [], 'a marker inside code renders as text')
+  assert.match(run({ body: `prose \`\`\` <!--\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/, 'mid-line backticks are not a fence')
 })
 
 test('parseBriefs reads several surfaces from one body', () => {
@@ -250,6 +251,18 @@ test('review gate: a quoted title must tell the finding apart from siblings that
   assert.equal(gate([twins]).length, 2, 'identical titles can only be answered by link')
   twins.comments.push(reply('discussion_r11 and discussion_r12: fixed in a1b2c3d.'))
   assert.deepEqual(gate([twins]), [])
+})
+
+test('review gate: separate top-level findings with the same opening words need their own answers', () => {
+  const shared = 'Validate the pull request fix references before accepting'
+  const topLevel = [
+    finding(`![P1 Badge] ${shared} them for P0 findings`),
+    finding(`![P1 Badge] ${shared} them for P1 findings`, { createdAt: '2026-09-28T10:10:00Z' }),
+    reply(`${shared}: fixed in a1b2c3d.`),
+  ]
+  assert.equal(gate([], topLevel).length, 2, 'one quote of the shared opening answers neither')
+  topLevel.push(reply(`${shared} them for P0 findings: fixed in a1b2c3d.`))
+  assert.equal(gate([], topLevel).length, 1)
 })
 
 test('review gate: a later finding does not undo an answer given while it did not exist', () => {

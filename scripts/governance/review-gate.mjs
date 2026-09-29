@@ -103,14 +103,14 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
     }
   }
   const ordered = [...topLevel].sort((a, b) => a.createdAt.localeCompare(b.createdAt))
-  for (const item of ordered) {
-    if (!isReviewer(item) || item.dismissed || !BADGE.test(item.body)) continue
-    const parts = sections(item)
-    for (const section of parts) {
-      const answers = ordered.filter((r) => r !== item && r.createdAt >= statedAt(section) && authorized(r, author) && references(r, section, parts))
-      const error = decide(section, answers, commits, 'review comment')
-      if (error) errors.push(error)
-    }
+  // Every top-level finding is a sibling of every other, whichever comment carries it: two AI comments that open
+  // with the same words must not be cleared by one quote of that shared opening.
+  const findings = ordered.filter((item) => isReviewer(item) && !item.dismissed && BADGE.test(item.body)).flatMap((item) => sections(item).map((section) => ({ item, section })))
+  const all = findings.map((f) => f.section)
+  for (const { item, section } of findings) {
+    const answers = ordered.filter((r) => r !== item && r.createdAt >= statedAt(section) && authorized(r, author) && references(r, section, all))
+    const error = decide(section, answers, commits, 'review comment')
+    if (error) errors.push(error)
   }
   return errors
 }
