@@ -15,8 +15,10 @@ generated from page-level metadata. They cannot support public scientific status
   replaces the holding page. They are omitted from the XML sitemap.
 - The separately published Agentic Life Observatory stays in the sitemap; the
   noindexed source browser is omitted until it has reviewed sources.
-- Generated citation leads are retained in `lib/research/sources.ts` but are excluded
-  from `domainSources`, the public source projection and JSON-LD.
+- Generated citation leads are retained in `lib/research/source-leads.archive.ts`
+  for server-only editorial triage. `lib/research/sources.ts` contains only the
+  empty approved projection; client bundles, public source lists and JSON-LD do
+  not import the archive.
 - The old generator exits before writing. Do not remove that hold to restore output.
 - `data/research/approved-claims.json` is an empty publication ledger. The prebuild
   gate checks any candidate for individual source URLs and versions, exact locators,
