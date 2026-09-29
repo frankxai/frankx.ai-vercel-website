@@ -216,8 +216,7 @@ function prohibitedSuffix(file) {
 }
 
 function isControlledMediaFile(file) {
-  // Exact lowercase Next.js route.ts under app/api/download(s) is source (case-sensitive).
-  // route.js / route.TS / route.JS stay controlled: 512 KiB sidecar + governed budget apply.
+  // Exact lowercase route.ts only; route.js + case variants stay controlled.
   if (downloadRouteSource.test(file)) return false
   return controlledMediaRoot.test(file) || controlledMediaPath.test(file)
 }
