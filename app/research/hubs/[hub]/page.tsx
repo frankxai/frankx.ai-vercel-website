@@ -53,7 +53,7 @@ export default async function ResearchTopicHub({ params }: Props) {
         </p>
         <p className="mt-8 border-b border-white/10 pb-10 font-mono text-xs text-white/60">
           {domains.length} topic maps <span aria-hidden="true"> / </span>{" "}
-          Source review in progress
+          Generated briefs under source review
         </p>
         {hub === "frontier-ai" && (
           <nav
@@ -101,7 +101,7 @@ export default async function ResearchTopicHub({ params }: Props) {
                   </p>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-white/60 md:flex-col md:items-end">
-                  <span>Evidence review pending</span>
+                  <span>{d.slug === "agentic-life-observatory" ? "Published dataset" : "Evidence review pending"}</span>
                   <ArrowUpRight
                     className="h-4 w-4 text-emerald-300"
                     aria-hidden="true"

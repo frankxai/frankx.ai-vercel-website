@@ -3,6 +3,7 @@
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { validateApprovedClaims } from './check-research-publication.mjs'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const args = new Set(process.argv.slice(2))
@@ -30,6 +31,7 @@ const component = readFileSync(componentPath, 'utf8').replace(/\r\n/g, '\n')
 const failures = []
 const warnings = []
 const checks = []
+const publicationErrors = validateApprovedClaims(approvedClaims)
 
 function check(condition, id, detail) {
   checks.push({ id, status: condition ? 'pass' : 'fail', detail })
@@ -106,9 +108,9 @@ for (const slug of lifeSlugs) {
 
 // The source file contains archived discovery leads. They cannot be counted
 // as reviewed evidence; the publication ledger is the only claim projection.
-check(approvedClaims.schemaVersion === 1 && Array.isArray(approvedClaims.claims),
-  'approved-claims:schema', 'versioned reviewed-claim ledger exists')
-const reviewedClaims = Array.isArray(approvedClaims.claims) ? approvedClaims.claims : []
+check(publicationErrors.length === 0, 'approved-claims:validation',
+  publicationErrors.length ? publicationErrors.join('; ') : 'versioned reviewed-claim ledger is valid')
+const reviewedClaims = publicationErrors.length === 0 ? approvedClaims.claims : []
 const approvedClaimsByDomain = Object.fromEntries(lifeSlugs.map((slug) => [
   slug, reviewedClaims.filter((claim) => claim.domain === slug).length,
 ]))

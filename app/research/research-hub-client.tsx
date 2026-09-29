@@ -295,7 +295,9 @@ function DomainsGrid() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
-                          {sourceCountFor(domain.slug) > 0
+                          {domain.slug === 'agentic-life-observatory'
+                            ? 'Published dataset'
+                            : sourceCountFor(domain.slug) > 0
                             ? `${sourceCountFor(domain.slug)} sources`
                             : 'Sources pending'}
                         </span>
@@ -311,7 +313,9 @@ function DomainsGrid() {
                     </p>
 
                     <p className="text-xs leading-5 text-white/50">
-                      {sourceCountFor(domain.slug) > 0
+                      {domain.slug === 'agentic-life-observatory'
+                        ? 'Registry and methods available'
+                        : sourceCountFor(domain.slug) > 0
                         ? `Evidence grade ${domain.evidenceGrade ?? 'pending'}`
                         : 'Evidence review pending'}
                       {' · '}Updated {domain.lastUpdated}

@@ -19,8 +19,11 @@ generated from page-level metadata. They cannot support public scientific status
   from `domainSources`, the public source projection and JSON-LD.
 - The old generator exits before writing. Do not remove that hold to restore output.
 - `data/research/approved-claims.json` is an empty publication ledger. The prebuild
-  gate checks any candidate for individual source URLs, exact locators, status,
-  human review, distinct drafter/reviewer, date, and a full commit SHA receipt.
+  gate checks any candidate for individual source URLs and versions, exact locators,
+  status, a complete evidence dossier, distinct drafter/reviewer, and a structured
+  review receipt. Nonempty ledgers fail until an external service verifies the
+  reviewer's identity, decision and exact reviewed commit. A shaped SHA alone
+  is never an attestation.
 - The agentic-life audit reports approved claim counts by domain. Its archived
   discovery leads are not counted as publication evidence.
 - Passing this gate **does not automatically publish** a claim. A separate reviewed

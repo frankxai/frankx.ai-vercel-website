@@ -21,7 +21,10 @@ function isDirectSourceUrl(value) {
   return true
 }
 
-export function validateApprovedClaims(input) {
+// External attestation verification is deliberately absent from the build.
+// A nonempty ledger cannot pass until a separate release service verifies
+// review identity, PR decision and the exact reviewed revision.
+export function validateApprovedClaims(input, options = {}) {
   const errors = []
   if (input?.schemaVersion !== 1 || !Array.isArray(input.claims)) {
     return ['Expected schemaVersion 1 and a claims array']
@@ -39,6 +42,12 @@ export function validateApprovedClaims(input) {
     ids.add(item.id)
     if (typeof item.text !== 'string' || item.text.trim().length < 20) errors.push(`${p}: claim text is required`)
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.domain ?? '')) errors.push(`${p}: domain slug is required`)
+    for (const field of ['question', 'scope', 'method', 'inclusionCriteria', 'exclusionCriteria',
+      'limitations', 'contraryEvidence', 'correctionCheck', 'rightsDecision']) {
+      if (typeof item.dossier?.[field] !== 'string' || item.dossier[field].trim().length < 20) {
+        errors.push(`${p}: dossier ${field} required`)
+      }
+    }
     if (!['supported-synthesis', 'vendor-claim', 'preprint-finding', 'independently-replicated'].includes(item.status)) {
       errors.push(`${p}: unsupported publication status`)
     }
@@ -56,6 +65,7 @@ export function validateApprovedClaims(input) {
         }
         if (typeof source.title !== 'string' || source.title.trim().length < 5) errors.push(`${q}: source title required`)
         if (typeof source.locator !== 'string' || source.locator.trim().length < 4) errors.push(`${q}: exact section, page, table or run locator required`)
+        if (typeof source.version !== 'string' || source.version.trim().length < 4) errors.push(`${q}: source version required`)
         if (!['journal', 'preprint', 'official-report', 'benchmark', 'documentation'].includes(source.type)) {
           errors.push(`${q}: explicit source type required`)
         }
@@ -84,7 +94,7 @@ export function validateApprovedClaims(input) {
       }
     }
     if (typeof item.reviewedBy !== 'string' || item.reviewedBy.trim().length < 3 ||
-        /^(ai|agent|bot|llm|gpt|claude|codex)$/i.test(item.reviewedBy.trim())) {
+        /\b(ai|agent|bot|llm|gpt|claude|codex)(?:[-\d]|\b)/i.test(item.reviewedBy.trim())) {
       errors.push(`${p}: named human reviewer required`)
     }
     if (typeof item.draftedBy !== 'string' || item.draftedBy.trim().length < 3 ||
@@ -93,11 +103,23 @@ export function validateApprovedClaims(input) {
     }
     if (!/^\d{4}-\d{2}-\d{2}$/.test(item.reviewedAt ?? '') ||
         Number.isNaN(Date.parse(item.reviewedAt)) ||
-        new Date(item.reviewedAt).toISOString().slice(0, 10) !== item.reviewedAt) {
+        new Date(item.reviewedAt).toISOString().slice(0, 10) !== item.reviewedAt ||
+        item.reviewedAt > new Date().toISOString().slice(0, 10)) {
       errors.push(`${p}: valid review date required`)
     }
-    if (typeof item.reviewReceipt !== 'string' || !/[0-9a-f]{40}/.test(item.reviewReceipt)) {
-      errors.push(`${p}: review receipt must bind a full commit SHA`)
+    const receipt = item.reviewReceipt
+    if (!receipt || typeof receipt !== 'object' ||
+        receipt.repository !== 'frankxai/frankx.ai-vercel-website' ||
+        !/^[0-9a-f]{40}$/.test(receipt.headSha ?? '') ||
+        !Number.isSafeInteger(receipt.prNumber) || receipt.prNumber < 1 ||
+        !Number.isSafeInteger(receipt.reviewId) || receipt.reviewId < 1 ||
+        typeof receipt.reviewerLogin !== 'string' || !receipt.reviewerLogin.trim() ||
+        typeof receipt.reviewedAt !== 'string' || receipt.reviewedAt !== item.reviewedAt) {
+      errors.push(`${p}: structured review receipt with exact head and reviewer required`)
+    }
+    if (typeof options.verifyReviewReceipt !== 'function' ||
+        !options.verifyReviewReceipt(receipt, item)) {
+      errors.push(`${p}: external review attestation not verified; publication held`)
     }
   }
   return errors
