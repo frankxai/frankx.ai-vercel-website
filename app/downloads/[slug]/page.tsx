@@ -236,7 +236,7 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
                   </form>
 
                   <div className="mt-4 text-center text-[11px] text-neutral-500">
-                    Instant on-screen PDF \u0026 Notion access · No waiting required
+                    Instant on-screen PDF & Notion access · No waiting required
                   </div>
                 </div>
               ) : (
