@@ -8,7 +8,7 @@ const repoFile = (path) => new URL(`../../${path}`, import.meta.url)
 function loadModule(path, imports, fetch) {
   const source = readFileSync(repoFile(path), 'utf8')
   const { outputText } = ts.transpileModule(source, {
-    compilerOptions: { module: ts.ModuleKind.CommonJS },
+    compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
   })
   const module = { exports: {} }
   new Function('require', 'module', 'exports', 'fetch', outputText)(
@@ -23,10 +23,11 @@ function loadModule(path, imports, fetch) {
   return module.exports
 }
 
-function loadDownloadRoute(fetch, path = 'app/api/download/route.ts') {
+function loadDownloadRoute(fetch, path = 'app/api/download/route.ts', analytics = {}) {
   const registry = JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8'))
   const imports = {
     'next/server': {
+      after: (callback) => analytics.scheduled?.push(callback),
       NextResponse: {
         json: (body, init) => Response.json(body, init),
         redirect: (url) => Response.redirect(url, 307),
@@ -34,6 +35,14 @@ function loadDownloadRoute(fetch, path = 'app/api/download/route.ts') {
     },
     '@/data/products.json': { __esModule: true, default: registry },
     '@/lib/download-access': loadModule('lib/download-access.ts', {}, fetch),
+    '@/lib/pdf-analytics': {
+      TRACKED_GUIDES: new Set(['soulbook', 'vibe-os', 'love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']),
+      trackDirectDownloadOnce: analytics.track ?? (async () => true),
+    },
+    '@/lib/ratelimit': {
+      bookDownloadRatelimit: { limit: async () => ({ success: true }) },
+      getClientIdentifier: () => 'test-client',
+    },
   }
   return loadModule(path, imports, fetch)
 }
@@ -55,6 +64,188 @@ test('an absent offer never makes an unknown product downloadable', () => {
   assert.equal(isPublicDownloadProduct({ id: 'golden-age-book', offer: { primaryPrice: 27 } }), false)
 })
 
+test('book download cards only advertise catalogued public PDFs', () => {
+  const { hasBookPdf } = loadModule(
+    'app/books/components/BookDownloadGate.tsx',
+    { 'react/jsx-runtime': {}, './BookDownloadLink': { __esModule: true, default: () => null } },
+    () => {},
+  )
+  const products = JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8'))
+  for (const slug of ['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
+    assert.equal(hasBookPdf(slug), true, slug)
+    const product = products.find((item) => item.slug === slug)
+    assert.equal(product?.delivery?.requiresEmail, false, slug)
+    assert.match(product?.delivery?.files?.[0]?.blobKey ?? '', /\.pdf$/, slug)
+  }
+  for (const slug of ['the-wordless-laws', 'fable', 'unlisted-book']) {
+    assert.equal(hasBookPdf(slug), false, slug)
+  }
+})
+
+test('the book link reuses one attempt token without requiring browser storage', () => {
+  const jsx = (type, props) => ({ type, props })
+  const { default: BookDownloadLink } = loadModule(
+    'app/books/components/BookDownloadLink.tsx',
+    { 'react/jsx-runtime': { jsx, jsxs: jsx } },
+    () => {},
+  )
+  const anchor = BookDownloadLink({ bookSlug: 'love-and-poetry', bookTitle: 'Love & Poetry', buttonColor: 'from-rose-600 to-rose-500' })
+  const link = { href: 'https://frankx.ai/api/download?product=love-and-poetry', dataset: {} }
+  anchor.props.onClick({ currentTarget: link })
+  const firstAttempt = new URL(link.href).searchParams.get('attempt')
+  assert.match(firstAttempt, /^[0-9a-f-]{36}$/)
+  anchor.props.onClick({ currentTarget: link })
+  assert.equal(new URL(link.href).searchParams.get('attempt'), firstAttempt)
+})
+
+test('only production book redirects with valid attempts schedule anonymous analytics', async () => {
+  const scheduled = []
+  const events = []
+  const { GET } = loadDownloadRoute(
+    () => assert.fail('unexpected network request'),
+    'app/api/download/route.ts',
+    { scheduled, track: async (event, attemptId) => { events.push({ event, attemptId }) } },
+  )
+  const attempt = '123e4567-e89b-42d3-a456-426614174000'
+  const url = `https://frankx.ai/api/download?product=love-and-poetry&attempt=${attempt}`
+  const previousEnv = process.env.VERCEL_ENV
+  try {
+    process.env.VERCEL_ENV = 'preview'
+    assert.equal((await GET(new Request(url))).status, 307)
+    assert.equal(scheduled.length, 0)
+
+    process.env.VERCEL_ENV = 'production'
+    const response = await GET(new Request(url))
+    assert.equal(response.status, 307)
+    assert.match(response.headers.get('location'), /love-and-poetry\.pdf\?download=1$/)
+    assert.equal(scheduled.length, 1)
+    await scheduled[0]()
+    assert.deepEqual(events, [{ event: { guideSlug: 'love-and-poetry', guideTitle: 'Love & Poetry', downloadMethod: 'direct' }, attemptId: attempt }])
+
+    assert.equal((await GET(new Request(url, { headers: { DNT: '1' } }))).status, 307)
+    assert.equal((await GET(new Request(url, { headers: { 'Sec-GPC': '1' } }))).status, 307)
+    assert.equal((await GET(new Request(url, { method: 'HEAD' }))).status, 307)
+    assert.equal((await GET(new Request('https://frankx.ai/api/download?product=love-and-poetry'))).status, 307)
+    assert.equal(scheduled.length, 1)
+
+    const goldenAge = await GET(new Request(`https://frankx.ai/api/download?product=golden-age&attempt=${attempt}`))
+    assert.equal(goldenAge.status, 307)
+    await scheduled[1]()
+    assert.equal(events[1].event.guideTitle, 'The Golden Age of Creators')
+  } finally {
+    if (previousEnv === undefined) delete process.env.VERCEL_ENV
+    else process.env.VERCEL_ENV = previousEnv
+  }
+})
+
+test('PDF analytics allows the registered free book slugs', () => {
+  const { DIRECT_BOOK_GUIDES, TRACKED_GUIDES } = loadModule('lib/pdf-analytics.ts', {
+    '@vercel/kv': { createClient: () => ({}) },
+    './redis-env': { redisRestConfig: () => ({}) },
+  }, () => {})
+  for (const slug of ['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
+    assert.equal(TRACKED_GUIDES.has(slug), true, slug)
+    assert.equal(DIRECT_BOOK_GUIDES.has(slug), true, slug)
+  }
+})
+
+test('book download limiter disables retained Upstash analytics', async () => {
+  const configs = []
+  class FakeRatelimit {
+    static slidingWindow(limit, window) { return { limit, window } }
+    constructor(config) { configs.push(config) }
+  }
+  loadModule('lib/ratelimit.ts', {
+    '@upstash/ratelimit': { Ratelimit: FakeRatelimit },
+    '@vercel/kv': { createClient: () => ({}) },
+    './local-ratelimit': { createLocalLimiter: () => () => true },
+    './redis-env': { redisRestConfig: () => ({}) },
+  }, () => {})
+  const bookLimiter = configs.find(config => config.prefix === 'ratelimit:book-download')
+  assert.ok(bookLimiter)
+  assert.equal(bookLimiter.analytics, false)
+  assert.deepEqual(bookLimiter.limiter, { limit: 100, window: '1 m' })
+})
+
+test('legacy analytics POST rejects direct book events but keeps legacy guides', async () => {
+  let rateLimits = 0
+  let writes = 0
+  const { POST } = loadModule('app/api/analytics/track-download/route.ts', {
+    'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
+    '@/lib/pdf-analytics': {
+      DIRECT_BOOK_GUIDES: new Set(['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']),
+      TRACKED_GUIDES: new Set(['soulbook', 'vibe-os', 'love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']),
+      trackPDFDownload: async () => { writes++; return { id: 'legacy-event' } },
+    },
+    '@/lib/ratelimit': {
+      analyticsRatelimit: { limit: async () => { rateLimits++; return { success: true } } },
+      getClientIdentifier: () => 'test-client',
+    },
+  }, () => assert.fail('unexpected network request'))
+  const request = (guideSlug) => new Request('https://frankx.ai/api/analytics/track-download', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ guideSlug, guideTitle: guideSlug, sessionId: 'claimed-session' }),
+  })
+  for (const slug of ['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
+    assert.equal((await POST(request(slug))).status, 400, slug)
+  }
+  assert.equal(rateLimits, 0)
+  assert.equal(writes, 0)
+  assert.equal((await POST(request('soulbook'))).status, 200)
+  assert.equal(rateLimits, 1)
+  assert.equal(writes, 1)
+})
+
+test('direct redirect events deduplicate each short-lived link attempt', async () => {
+  const keys = new Set()
+  const events = []
+  let failTrim = false
+  const kv = {
+    set: async (key) => keys.has(key) ? null : (keys.add(key), 'OK'),
+    rpush: async (_key, event) => { events.push(event) },
+    ltrim: async () => { if (failTrim) { failTrim = false; throw new Error('trim failed after append') } },
+    del: async () => assert.fail('an uncertain append must keep its claim'),
+  }
+  const { trackDirectDownloadOnce } = loadModule('lib/pdf-analytics.ts', {
+    '@vercel/kv': { createClient: () => kv },
+    './redis-env': { redisRestConfig: () => ({}) },
+  }, () => {})
+  const download = { guideSlug: 'love-and-poetry', guideTitle: 'Love & Poetry', downloadMethod: 'direct' }
+  const attempt = '123e4567-e89b-42d3-a456-426614174000'
+  assert.equal(await trackDirectDownloadOnce(download, attempt), true)
+  assert.equal(await trackDirectDownloadOnce(download, attempt), false)
+  assert.equal(events.length, 1)
+  assert.equal(events[0].sessionId, 'anonymous')
+  assert.equal(events[0].userAgent, 'omitted')
+  assert.equal(await trackDirectDownloadOnce(download, '123e4567-e89b-42d3-a456-426614174001'), true)
+  assert.equal(events.length, 2)
+
+  failTrim = true
+  const uncertainAttempt = '123e4567-e89b-42d3-a456-426614174002'
+  await assert.rejects(trackDirectDownloadOnce(download, uncertainAttempt), /trim failed/)
+  assert.equal(await trackDirectDownloadOnce(download, uncertainAttempt), false)
+  assert.equal(events.length, 3)
+})
+
+test('a book with downloads but no reader-view events appears in the PDF summary', async () => {
+  const now = new Date().toISOString()
+  const kv = {
+    lrange: async (key) => key === 'pdf-analytics:downloads'
+      ? [{ guideSlug: 'love-and-poetry', guideTitle: 'Love & Poetry', timestamp: now, downloadMethod: 'direct', sessionId: 'anonymous', userAgent: 'omitted' }]
+      : [],
+  }
+  const { getAnalyticsSummary } = loadModule('lib/pdf-analytics.ts', {
+    '@vercel/kv': { createClient: () => kv },
+    './redis-env': { redisRestConfig: () => ({}) },
+  }, () => {})
+  const summary = await getAnalyticsSummary(30)
+  assert.deepEqual(summary.topGuides.find((guide) => guide.slug === 'love-and-poetry'), {
+    slug: 'love-and-poetry', title: 'Love & Poetry', views: 0,
+    downloads: 1, leads: 0, conversionRate: 0,
+  })
+})
+
 test('priced products are not exposed by either public download method', async () => {
   const { GET, POST } = loadDownloadRoute(() => assert.fail('unexpected network request'))
   for (const product of ['suno-prompt-library', 'aurora-ui-kit', 'command-center-template']) {
@@ -74,16 +265,19 @@ test('generic file redirects only resolve registered public downloads', async ()
   )
   const paid = await GET(new Request('https://frankx.ai/api/download/file?key=suno-prompt-library-guide.pdf'))
   const arbitrary = await GET(new Request('https://frankx.ai/api/download/file?key=other-file.pdf'))
-  const gated = await GET(new Request('https://frankx.ai/api/download/file?key=products/soulbook/soulbook-7-pillars-framework.pdf'))
+  const gated = await GET(new Request('https://frankx.ai/api/download/file?key=products/5-suno-prompts/5-suno-prompts.pdf'))
+  const soulbook = await GET(new Request('https://frankx.ai/api/download/file?key=products/soulbook/soulbook-7-pillars-framework.pdf'))
   const guide = await GET(new Request('https://frankx.ai/api/download/file?key=products/vibe-os/Vibe-OS-Guide.pdf'))
   assert.equal(paid.status, 404)
   assert.equal(arbitrary.status, 404)
   assert.equal(gated.status, 404)
+  assert.equal(soulbook.status, 307)
+  assert.match(soulbook.headers.get('location'), /soulbook-7-pillars-framework\.pdf\?download=1$/)
   assert.equal(guide.status, 307)
-  assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf$/)
+  assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf\?download=1$/)
 })
 
-test('existing free guide and gated book delivery remain available without audience enrollment', async () => {
+test('every free book remains direct without audience enrollment when Resend is configured', async () => {
   const previousKey = process.env.RESEND_API_KEY
   process.env.RESEND_API_KEY = 'test-resend-key-present'
   const networkCalls = []
@@ -94,8 +288,15 @@ test('existing free guide and gated book delivery remain available without audie
     })
     const guide = await GET(new Request('https://frankx.ai/api/download?product=vibe-os'))
     assert.equal(guide.status, 307)
-    assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf$/)
+    assert.match(guide.headers.get('location'), /Vibe-OS-Guide\.pdf\?download=1$/)
 
+    for (const slug of ['soulbook', 'love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
+      const response = await GET(new Request(`https://frankx.ai/api/download?product=${slug}`))
+      assert.equal(response.status, 307, slug)
+      assert.match(response.headers.get('location'), /\.pdf\?download=1$/, slug)
+    }
+
+    // Keep the legacy POST contract while existing callers migrate to direct links.
     const book = await POST(postRequest('love-and-poetry'))
     assert.equal(book.status, 200)
     const result = await book.json()

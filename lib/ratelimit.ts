@@ -58,6 +58,15 @@ export const analyticsRatelimit = resilient(new Ratelimit({
   prefix: 'ratelimit:analytics'
 }), 100, 60_000)
 
+// Book download counting is optional. Keep network identifiers out of the
+// long-lived Upstash analytics dashboard, and skip counting if Redis fails.
+export const bookDownloadRatelimit = new Ratelimit({
+  redis: kv,
+  limiter: Ratelimit.slidingWindow(100, '1 m'),
+  analytics: false,
+  prefix: 'ratelimit:book-download'
+})
+
 // Lead creation rate limit - Moderate to prevent abuse
 export const leadRatelimit = resilient(new Ratelimit({
   redis: kv,
