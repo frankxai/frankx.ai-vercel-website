@@ -38,7 +38,10 @@ const totalSources = new Set(
 const sourcedDomainCount = researchDomains.filter(
   (domain) => (domainSources[domain.slug]?.length ?? 0) > 0,
 ).length
-const pendingDomainCount = researchDomains.length - sourcedDomainCount
+const publishedDatasetCount = researchDomains.filter(
+  (domain) => domain.slug === 'agentic-life-observatory',
+).length
+const pendingDomainCount = researchDomains.length - sourcedDomainCount - publishedDatasetCount
 const sourceCountFor = (slug: string) => domainSources[slug]?.length ?? 0
 
 const phases = [
@@ -154,7 +157,7 @@ const methodologyLd = JSON.stringify({
     name: 'FrankX',
     url: 'https://www.frankx.ai',
   },
-  dateModified: '2026-07-30',
+  dateModified: '2026-09-29',
   mainEntityOfPage: 'https://www.frankx.ai/research/methodology',
   breadcrumb: {
     '@type': 'BreadcrumbList',
@@ -220,7 +223,7 @@ export default function MethodologyPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
                 { label: 'Active Domains', value: String(researchDomains.length) },
-                { label: 'Domains With Sources', value: String(sourcedDomainCount) },
+                { label: 'Published Datasets', value: String(publishedDatasetCount) },
                 { label: 'Registered Sources', value: String(totalSources) },
                 { label: 'Pending Registries', value: String(pendingDomainCount) },
               ].map((stat) => (
@@ -372,7 +375,8 @@ export default function MethodologyPage() {
             </h2>
             <p className="text-white/50 mb-8">
               {researchDomains.length} research domains at different stages of review. Counts below
-              come from the source registry itself; an empty registry is labeled as pending.
+              come from the approved source registry. The separately published Observatory dataset
+              is identified on its own; held claim registries are labeled as pending.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-3">
@@ -388,7 +392,9 @@ export default function MethodologyPage() {
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0">
                     <span className="text-xs text-white/65">
-                      {sourceCountFor(domain.slug) > 0
+                      {domain.slug === 'agentic-life-observatory'
+                        ? 'Published dataset'
+                        : sourceCountFor(domain.slug) > 0
                         ? `${sourceCountFor(domain.slug)} sources`
                         : 'Registry pending'}
                     </span>

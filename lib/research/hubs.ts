@@ -107,11 +107,11 @@ export function domainsForHub(category: DomainCategory) {
 export const researchHubFaqs = [
   {
     q: "Where should I start?",
-    a: "Choose a research hub by the question you are working on. Each hub collects related briefs and their sources. Models and benchmarks sit inside Models & intelligence.",
+    a: "Choose a research hub by the question you are working on. Each hub maps related topics; older briefs remain under source review. Models and benchmarks sit inside Models & intelligence.",
   },
   {
     q: "How current is the model coverage?",
-    a: "The model selection reads from the shared FrankX catalog. Source review dates are shown separately from research brief dates; a catalog update does not mean every brief or benchmark was re-run.",
+    a: "The model selection reads from the shared FrankX catalog. Research brief sources are under review; a catalog update does not mean every brief or benchmark was re-run.",
   },
   {
     q: "Are these FrankX benchmark results?",

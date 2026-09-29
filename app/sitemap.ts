@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { researchHubs } from '@/lib/research/hubs'
+import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
 import { getAllModels, registryLastUpdated } from '@/lib/llm-hub/registry'
@@ -827,6 +828,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const noindexRoutes = new Set([
     '/founders-circle/apply',
     '/inner-circle/vault-preview',
+    '/research/sources',
+    ...researchDomains
+      .filter((domain) => domain.slug !== 'agentic-life-observatory')
+      .map((domain) => `/research/${domain.slug}`),
   ])
   const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
     core: { priority: 0.8, changeFrequency: 'weekly' },
