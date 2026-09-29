@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Research Hubs: AI, Creative Systems & Human Potential',
     description:
-      'Seven research hubs and a hundred topic maps. Research briefs are under source review.',
+      `Seven research hubs and ${domainCount} topic maps. Research briefs are under source review.`,
     type: 'website',
     url: 'https://www.frankx.ai/research',
     images: [
