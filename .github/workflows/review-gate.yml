@@ -51,6 +51,14 @@ jobs:
         run: |
           echo "number=$PR" >> "$GITHUB_OUTPUT"
           gh pr view "$PR" --repo "${{ github.repository }}" --json headRefOid,author --jq '"sha=\(.headRefOid)\nauthor=\(.author.login)"' >> "$GITHUB_OUTPUT"
+      # Pending first: while this run reads the PR, an earlier success must not stand for findings it has not seen.
+      - name: Mark Review Gate pending
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${{ github.repository }}/statuses/${{ steps.pr.outputs.sha }}" \
+            -f state=pending -f context="Review Gate" -f description="Evaluating AI review findings" \
+            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
       - name: Every AI review finding answered
         id: gate
         continue-on-error: true

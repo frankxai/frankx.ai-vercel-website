@@ -74,16 +74,17 @@ function sections(item) {
 export function evaluateFindings({ threads, topLevel, commits, author }) {
   const errors = []
   for (const [index, thread] of threads.entries()) {
-    if (thread.dismissed) continue
-    // Every AI comment in a thread is a finding, not only the first: a reviewer can add a new one as a reply.
-    const found = thread.comments.filter(isReviewer)
+    // Every AI comment in a thread is a finding, not only the first; each carries its own review's dismissal.
+    const found = thread.comments.filter((c) => isReviewer(c) && !c.dismissed)
     if (!found.length) continue
     if (thread.truncated) {
       errors.push(`thread ${index + 1} (${found[0].author}): "${titleOf(found[0].body)}" has more comments than one read returns; too long to verify, so it fails closed. Summarise the outcome in a new reply after resolving.`)
       continue
     }
+    // With several findings in one thread, an answer must name the one it answers (title or link).
+    const several = found.length > 1
     for (const item of found) {
-      const answers = thread.comments.filter((r) => authorized(r, author) && r.createdAt >= statedAt(item))
+      const answers = thread.comments.filter((r) => authorized(r, author) && r.createdAt >= statedAt(item) && (!several || references(r, item)))
       // A resolution predates any later edit of the finding, so an edited finding needs a fresh answer.
       if (thread.isResolved && severity(item.body) > 1 && !item.editedAt) continue
       const error = decide(item, answers, commits, `thread ${index + 1}`)
@@ -144,7 +145,7 @@ async function fetchAll() {
   return {
     threads: threads.map((t) => {
       const comments = t.comments.nodes.map(comment)
-      return { isResolved: t.isResolved, dismissed: comments[0]?.dismissed ?? false, truncated: t.comments.totalCount > t.comments.nodes.length, comments }
+      return { isResolved: t.isResolved, truncated: t.comments.totalCount > t.comments.nodes.length, comments }
     }),
     topLevel: [...reviews, ...comments].map(comment),
     commits: commits.map((c) => c.commit),

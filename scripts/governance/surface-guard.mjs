@@ -140,7 +140,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   } catch {
     // The base has no registry yet: this PR introduces the gates.
   }
-  const registry = JSON.parse(git('show', `${head}:${REGISTRY_PATH}`))
+  // The head's registry matters only while the base has none (the PR introducing the gates); a PR branched before
+  // the registry existed must still be judged, not crash on a missing file.
+  const registry = baseRegistry ?? JSON.parse(git('show', `${head}:${REGISTRY_PATH}`))
   const labels = String(process.env.PR_LABELS ?? '').split(',').map((l) => l.trim()).filter(Boolean)
   const { approvedBy, approvedAt } = labels.includes(APPROVAL_LABEL) ? await labelActor() : {}
   const headCommittedAt = new Date(Number(git('log', '-1', '--format=%ct', head).trim()) * 1000).toISOString()

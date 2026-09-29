@@ -5,7 +5,7 @@
     {
       "id": "homepage",
       "policy": "evolve",
-      "paths": ["app/page.tsx", "components/home/**", "data/homepage-*", "public/images/home/**"],
+      "paths": ["app/page.tsx", "components/home/**", "data/homepage-*", "public/images/home/**", "components/social-proof/TrustedByBlock.tsx", "data/brand-logos.ts"],
       "jobs": ["identity", "orientation", "portfolio proof", "founder relevance", "human proof", "trust", "conversion"],
       "why": "The compressed expression of FrankX. Replaced by a valid, fully tested narrower page on 2026-08-27 and restored 2026-08-28; #409 stripped it and rewrote its contract, #415 restored both.",
       "contract": "docs/strategy/HOMEPAGE-PRESERVATION-CONTRACT.md"

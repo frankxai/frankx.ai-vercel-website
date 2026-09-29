@@ -185,7 +185,7 @@ test('review gate: a short finding title can be answered by quoting it exactly',
 })
 
 test('review gate: findings of a dismissed AI review no longer block', () => {
-  const dismissed = { isResolved: false, dismissed: true, comments: [finding('![P1 Badge] Obsolete finding')] }
+  const dismissed = { isResolved: false, comments: [finding('![P1 Badge] Obsolete finding', { dismissed: true })] }
   assert.deepEqual(gate([dismissed], [finding('![P1 Badge] Obsolete body finding', { dismissed: true })]), [])
 })
 
@@ -206,6 +206,27 @@ test('review gate: an AI finding posted as a reply inside a thread is evaluated'
   ] }
   assert.match(gate([thread]).join('\n'), /P1.*Unbounded loop/)
   thread.comments.push(reply('Fixed in a1b2c3d.'))
+  assert.deepEqual(gate([thread]), [])
+})
+
+test('review gate: dismissal applies per finding, not per thread', () => {
+  const thread = { isResolved: false, comments: [
+    finding('![P2 Badge] From a dismissed review', { dismissed: true }),
+    finding('![P1 Badge] From an active review', { createdAt: '2026-09-28T10:30:00Z' }),
+  ] }
+  const errors = gate([thread])
+  assert.equal(errors.length, 1)
+  assert.match(errors[0], /active review/)
+})
+
+test('review gate: with several findings in one thread, each answer must name its finding', () => {
+  const thread = { isResolved: false, comments: [
+    finding('![P1 Badge] Unbounded loop in parser'),
+    finding('![P1 Badge] Missing auth check on export', { createdAt: '2026-09-28T10:10:00Z' }),
+    reply('Fixed in a1b2c3d.'),
+  ] }
+  assert.equal(gate([thread]).length, 2, 'a generic reply names neither')
+  thread.comments.push(reply('Unbounded loop in parser: fixed in a1b2c3d.'), reply('Missing auth check on export: fixed in a1b2c3d.'))
   assert.deepEqual(gate([thread]), [])
 })
 
