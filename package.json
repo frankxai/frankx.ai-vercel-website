@@ -10,6 +10,7 @@
     "lint": "eslint --config eslint.config.js \"app/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"lib/**/*.{ts,tsx}\" --ignore-pattern \"app/design-lab/**\" --ignore-pattern \"components/v0-variants/**\"",
     "type-check": "tsc --noEmit",
     "changelog:validate": "node scripts/validate-changelog.mjs",
+    "test:governance": "node --test scripts/tests/governance-gates.test.mjs",
     "test:changelog-release": "node scripts/validate-changelog.mjs && node --test scripts/tests/changelog-release-contract.test.mjs",
     "test:delivery": "node --experimental-strip-types scripts/test-delivery.mjs",
     "test:library": "node --experimental-strip-types --test scripts/tests/library-discovery.test.mjs scripts/tests/library-prerender-contract.test.mjs",
