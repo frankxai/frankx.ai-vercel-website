@@ -2,6 +2,9 @@
 
 Date: 2026-08-28
 
+See also: `docs/strategy/v0-mcp-operating-standard.md` for the current route
+matrix, prompt contract, checklist, and promotion policy.
+
 ## Decision
 
 Build the **FrankX Product Foundry**, not a v0 clone.

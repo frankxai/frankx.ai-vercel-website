@@ -1,5 +1,7 @@
 import type { BookReview } from '@/app/books/types';
 import entries from './library-reading-guides.json';
+import { sacredEditorial } from './sacred-editorial';
+import { contemporaryEditorial } from './contemporary-editorial';
 
 // Publication date records this editorial guide, never a personal reading claim.
 export const spiritualReadingGuides: BookReview[] = entries.map(entry => ({
@@ -10,7 +12,7 @@ export const spiritualReadingGuides: BookReview[] = entries.map(entry => ({
   hasCover: false,
   rating: 0, // Unrated guides do not emit Review/Rating markup.
   reviewDate: '2026-09-07',
-  readingTime: '2 min',
+  readingTime: sacredEditorial[entry.slug] || contemporaryEditorial[entry.slug] ? '4 min' : '2 min',
   categories: entry.categories,
   tldr: entry.summary,
   keyInsights: entry.keyInsights,

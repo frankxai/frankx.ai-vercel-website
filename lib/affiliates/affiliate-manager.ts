@@ -1,4 +1,6 @@
 import { Affiliate, AffiliateCategory, AffiliateLink } from '@/types/affiliates'
+import programs from '@/data/affiliate/programs.json'
+import { resolveProgramDestination } from './resolve-destination'
 
 // ── Deploy Platforms (Oracle-Safe, Revenue-Generating) ──────────────────────
 
@@ -258,18 +260,16 @@ export const getOracleCompatible = (): Affiliate[] => {
 
 export const getAffiliateLink = (
   affiliateId: string,
-  trackingId?: string
+  _trackingId?: string
 ): AffiliateLink | undefined => {
   const affiliate = getAffiliate(affiliateId)
   if (!affiliate) return undefined
 
-  const url = new URL(affiliate.url)
-  if (trackingId) {
-    url.searchParams.set('ref', trackingId)
-  }
+  const destination = resolveProgramDestination(affiliateId, programs.programs, affiliate)
+  if (!destination) return undefined
 
   return {
     ...affiliate,
-    trackingUrl: url.toString(),
+    trackingUrl: destination.href,
   }
 }
