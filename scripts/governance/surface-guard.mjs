@@ -40,8 +40,9 @@ export function matches(file, pattern) {
 /** Every "Surface: <id>" starts a brief; its Key: value lines follow until the next one. */
 export function parseBriefs(body) {
   const briefs = []
-  // Only visible text counts: the PR template carries an example brief inside an HTML comment.
-  for (const line of String(body ?? '').replace(/<!--[\s\S]*?-->/g, '').split(/\r?\n/)) {
+  // Only visible text counts: the PR template carries an example brief inside an HTML comment, and an unclosed
+  // "<!--" hides the rest of the body on GitHub.
+  for (const line of String(body ?? '').replace(/<!--[\s\S]*?(?:-->|$)/g, '').split(/\r?\n/)) {
     const match = /^\s*[-*]?\s*\**(Surface|Kind|Intent|Keeps|Changes|Evidence)\**\s*:\s*(.*)$/i.exec(line)
     if (!match) continue
     const key = FIELDS.find((field) => field.toLowerCase() === match[1].toLowerCase())

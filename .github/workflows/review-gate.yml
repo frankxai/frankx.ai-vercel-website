@@ -43,14 +43,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      # The live head wins (a push may have landed since the event); the payload head is the fallback, so a failed
+      # lookup cannot skip the pending step. Only issue_comment carries no head, and there the lookup is retried.
       - name: Resolve the PR head
         id: pr
         env:
           GH_TOKEN: ${{ github.token }}
           PR: ${{ github.event.pull_request.number || github.event.issue.number }}
+          PAYLOAD_SHA: ${{ github.event.pull_request.head.sha }}
+          AUTHOR: ${{ github.event.pull_request.user.login || github.event.issue.user.login }}
         run: |
-          echo "number=$PR" >> "$GITHUB_OUTPUT"
-          gh pr view "$PR" --repo "${{ github.repository }}" --json headRefOid,author --jq '"sha=\(.headRefOid)\nauthor=\(.author.login)"' >> "$GITHUB_OUTPUT"
+          sha=""
+          for attempt in 1 2 3; do
+            sha=$(gh pr view "$PR" --repo "${{ github.repository }}" --json headRefOid --jq .headRefOid) && break
+            sleep $((attempt * 5))
+          done
+          sha=${sha:-$PAYLOAD_SHA}
+          test -n "$sha" || { echo "::error::Could not resolve the head of #$PR; no status can be set."; exit 1; }
+          { echo "number=$PR"; echo "sha=$sha"; echo "author=$AUTHOR"; } >> "$GITHUB_OUTPUT"
       # Pending first: while this run reads the PR, an earlier success must not stand for findings it has not seen.
       - name: Mark Review Gate pending
         env:

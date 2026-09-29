@@ -52,11 +52,21 @@ function decide(found, answers, commits, label) {
 
 const normalize = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 
-/** A top-level answer must point at its finding (link, or the finding's title), so one reply cannot clear them all. */
-function references(reply, found) {
+/**
+ * A top-level answer must point at its finding (link, or the finding's title), so one reply cannot clear them all.
+ * The quoted title must be long enough to tell the finding from its siblings; identical titles need the link.
+ */
+function references(reply, found, siblings = []) {
   const anchor = /#(?:issuecomment|discussion_r|pullrequestreview)-?\d+/.exec(found.url ?? '')?.[0]
   if (anchor && reply.body.includes(anchor.slice(1))) return true
-  const title = normalize(titleOf(found.body)).slice(0, 40)
+  const full = normalize(titleOf(found.body))
+  const others = siblings.filter((s) => s !== found).map((s) => normalize(titleOf(s.body)))
+  let length = 40
+  while (others.some((o) => o.startsWith(full.slice(0, length)))) {
+    if (length >= full.length) return false
+    length += 10
+  }
+  const title = full.slice(0, length)
   // Quoting the title exactly identifies the finding; very short titles (under 6 characters) would match anything.
   return title.length >= 6 && normalize(reply.body).includes(title)
 }
@@ -84,7 +94,7 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
     // With several findings in one thread, an answer must name the one it answers (title or link).
     const several = found.length > 1
     for (const item of found) {
-      const answers = thread.comments.filter((r) => authorized(r, author) && r.createdAt >= statedAt(item) && (!several || references(r, item)))
+      const answers = thread.comments.filter((r) => authorized(r, author) && r.createdAt >= statedAt(item) && (!several || references(r, item, found)))
       // A resolution predates any later edit of the finding, so an edited finding needs a fresh answer.
       if (thread.isResolved && severity(item.body) > 1 && !item.editedAt) continue
       const error = decide(item, answers, commits, `thread ${index + 1}`)
@@ -94,8 +104,9 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
   const ordered = [...topLevel].sort((a, b) => a.createdAt.localeCompare(b.createdAt))
   for (const item of ordered) {
     if (!isReviewer(item) || item.dismissed || !BADGE.test(item.body)) continue
-    for (const section of sections(item)) {
-      const answers = ordered.filter((r) => r !== item && r.createdAt >= statedAt(section) && authorized(r, author) && references(r, section))
+    const parts = sections(item)
+    for (const section of parts) {
+      const answers = ordered.filter((r) => r !== item && r.createdAt >= statedAt(section) && authorized(r, author) && references(r, section, parts))
       const error = decide(section, answers, commits, 'review comment')
       if (error) errors.push(error)
     }

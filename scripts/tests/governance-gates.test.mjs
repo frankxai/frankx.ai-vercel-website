@@ -97,6 +97,7 @@ test('changing the gates themselves is a locked governance surface once they exi
 
 test('a brief left inside the template comment does not count', () => {
   assert.match(run({ body: `<!--\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/)
+  assert.match(run({ body: `Notes <!-- never closed\n${brief()}` }).errors.join('\n'), /Add a Surface change brief/, 'GitHub hides everything after an unclosed comment')
 })
 
 test('parseBriefs reads several surfaces from one body', () => {
@@ -228,6 +229,26 @@ test('review gate: with several findings in one thread, each answer must name it
   assert.equal(gate([thread]).length, 2, 'a generic reply names neither')
   thread.comments.push(reply('Unbounded loop in parser: fixed in a1b2c3d.'), reply('Missing auth check on export: fixed in a1b2c3d.'))
   assert.deepEqual(gate([thread]), [])
+})
+
+test('review gate: a quoted title must tell the finding apart from siblings that share its opening words', () => {
+  const shared = 'Validate the pull request fix references before accepting'
+  const thread = { isResolved: false, comments: [
+    finding(`![P1 Badge] ${shared} them for P0 findings`),
+    finding(`![P1 Badge] ${shared} them for P1 findings`, { createdAt: '2026-09-28T10:10:00Z' }),
+    reply(`${shared}: fixed in a1b2c3d.`),
+  ] }
+  assert.equal(gate([thread]).length, 2, 'the shared prefix names neither finding')
+  thread.comments.push(reply(`${shared} them for P0 findings: fixed in a1b2c3d.`))
+  assert.equal(gate([thread]).length, 1, 'a full quote answers only its own finding')
+  const twins = { isResolved: false, comments: [
+    finding('![P1 Badge] Same title twice', { url: 'https://x/pull/1#discussion_r11' }),
+    finding('![P1 Badge] Same title twice', { url: 'https://x/pull/1#discussion_r12', createdAt: '2026-09-28T10:10:00Z' }),
+    reply('Same title twice: fixed in a1b2c3d.'),
+  ] }
+  assert.equal(gate([twins]).length, 2, 'identical titles can only be answered by link')
+  twins.comments.push(reply('discussion_r11 and discussion_r12: fixed in a1b2c3d.'))
+  assert.deepEqual(gate([twins]), [])
 })
 
 test('review gate: resolving does not cover a finding edited afterwards', () => {
