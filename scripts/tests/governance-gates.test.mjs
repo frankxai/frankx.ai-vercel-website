@@ -104,7 +104,7 @@ test('parseBriefs reads several surfaces from one body', () => {
 })
 
 const bot = 'chatgpt-codex-connector'
-const finding = (body, extra = {}) => ({ author: bot, association: 'NONE', body, createdAt: '2026-09-28T10:00:00Z', ...extra })
+const finding = (body, extra = {}) => ({ author: bot, isBot: true, association: 'NONE', body, createdAt: '2026-09-28T10:00:00Z', ...extra })
 const reply = (body, extra = {}) => ({ author: 'frankxai', association: 'OWNER', body, createdAt: '2026-09-28T11:00:00Z', ...extra })
 const commits = [{ oid: 'a1b2c3d4e5f6a7b8c9d0a1b2c3d4e5f6a7b8c9d0', committedDate: '2026-09-28T10:30:00Z' }]
 const gate = (threads, topLevel = []) => evaluateFindings({ threads, topLevel, commits, author: 'frankxai' })
@@ -166,7 +166,7 @@ test('review gate: each badged section of one review body is its own finding', (
 })
 
 test('review gate: only named AI reviewers are gated, not every bot', () => {
-  const dependabot = { author: 'dependabot[bot]', association: 'NONE', body: '![P1 Badge] Bumps x from 1 to 2', createdAt: '2026-09-28T10:00:00Z' }
+  const dependabot = { author: 'dependabot', isBot: true, association: 'NONE', body: '![P1 Badge] Bumps x from 1 to 2', createdAt: '2026-09-28T10:00:00Z' }
   assert.deepEqual(gate([{ isResolved: false, comments: [dependabot] }], [dependabot]), [])
 })
 
@@ -192,6 +192,26 @@ test('review gate: findings of a dismissed AI review no longer block', () => {
 test('review gate: a thread too long to read completely fails closed', () => {
   const long = { isResolved: false, truncated: true, comments: [finding('![P2 Badge] x'), reply('Fixed in a1b2c3d.')] }
   assert.match(gate([long]).join('\n'), /too long/)
+})
+
+test('review gate: a human account named like a reviewer is not a reviewer', () => {
+  const impostor = { author: 'claude-fan', isBot: false, association: 'NONE', body: '![P1 Badge] Fake finding', createdAt: '2026-09-28T10:00:00Z' }
+  assert.deepEqual(gate([{ isResolved: false, comments: [impostor] }], [impostor]), [])
+})
+
+test('review gate: an AI finding posted as a reply inside a thread is evaluated', () => {
+  const thread = { isResolved: false, comments: [
+    { author: 'someone', isBot: false, association: 'NONE', body: 'question about this line', createdAt: '2026-09-28T09:00:00Z' },
+    finding('![P1 Badge] Unbounded loop here', { createdAt: '2026-09-28T10:00:00Z' }),
+  ] }
+  assert.match(gate([thread]).join('\n'), /P1.*Unbounded loop/)
+  thread.comments.push(reply('Fixed in a1b2c3d.'))
+  assert.deepEqual(gate([thread]), [])
+})
+
+test('review gate: resolving does not cover a finding edited afterwards', () => {
+  const edited = { isResolved: true, comments: [finding('![P2 Badge] Changed after resolution', { editedAt: '2026-09-28T12:00:00Z' })] }
+  assert.match(gate([edited]).join('\n'), /unanswered/)
 })
 
 test('review gate: human threads are left to humans', () => {

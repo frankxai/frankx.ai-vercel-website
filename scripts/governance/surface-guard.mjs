@@ -135,7 +135,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const changed = git('diff', '--no-renames', '--name-only', mergeBase, head).split('\n').filter(Boolean)
   let baseRegistry = null
   try {
-    baseRegistry = JSON.parse(git('show', `${mergeBase}:${REGISTRY_PATH}`))
+    // Policy from the base tip, not the merge base: a surface protected after the PR branched still applies.
+    baseRegistry = JSON.parse(git('show', `origin/${process.env.GITHUB_BASE_REF || 'main'}:${REGISTRY_PATH}`))
   } catch {
     // The base has no registry yet: this PR introduces the gates.
   }

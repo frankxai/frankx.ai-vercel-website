@@ -13,21 +13,22 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-// Named AI reviewers only: dependabot, vercel and other bots post status, not findings.
-const REVIEWER_BOTS = /^(chatgpt-codex-connector|copilot|claude|coderabbit)/i
+// Named AI reviewers only, matched exactly and only when GitHub says the account is a Bot: dependabot and vercel
+// post status, not findings, and a human account named "claude-fan" is not a reviewer.
+const REVIEWERS = new Set(['chatgpt-codex-connector', 'copilot-pull-request-reviewer', 'copilot', 'claude', 'coderabbitai'])
 const MEMBERS = new Set(['OWNER', 'MEMBER', 'COLLABORATOR'])
 const BADGE = /\bP[0-3]\s*Badge\b|!\[P[0-3]/i
 const SEVERE = /\bP[01]\b|\b(critical|high severity)\b/i
 const DECLINE = /^\s*declined\s*:\s*\S.{30,}/is
 
-const isBot = (c) => REVIEWER_BOTS.test(c.author ?? '')
-const authorized = (c, author) => !isBot(c) && (c.author === author || MEMBERS.has(c.association))
+const isReviewer = (c) => c.isBot === true && REVIEWERS.has(String(c.author ?? '').replace(/\[bot\]$/, '').toLowerCase())
+const authorized = (c, author) => !c.isBot && (c.author === author || MEMBERS.has(c.association))
 const titleOf = (body) => body.replace(/!\[[^\]]*\](\([^)]*\))?|<[^>]+>|\*+/g, '').trim().split('\n')[0].slice(0, 90)
 
-/** A fix names a commit of this PR that was made after the finding; any other hex string proves nothing. */
 /** When a finding was last stated: an edit replaces it, so earlier answers and commits no longer count. */
 const statedAt = (found) => (found.editedAt && found.editedAt > found.createdAt ? found.editedAt : found.createdAt)
 
+/** A fix names a commit of this PR made after the finding was last stated; any other hex string proves nothing. */
 function fixes(reply, found, commits) {
   const refs = reply.body.match(/\b[0-9a-f]{7,40}\b/g) ?? []
   return refs.some((ref) => commits.some((c) => c.oid.startsWith(ref) && c.committedDate >= statedAt(found)))
@@ -73,20 +74,25 @@ function sections(item) {
 export function evaluateFindings({ threads, topLevel, commits, author }) {
   const errors = []
   for (const [index, thread] of threads.entries()) {
-    const [first, ...replies] = thread.comments
-    if (!first || !isBot(first) || thread.dismissed) continue
+    if (thread.dismissed) continue
+    // Every AI comment in a thread is a finding, not only the first: a reviewer can add a new one as a reply.
+    const found = thread.comments.filter(isReviewer)
+    if (!found.length) continue
     if (thread.truncated) {
-      errors.push(`thread ${index + 1} (${first.author}): "${titleOf(first.body)}" has more comments than one read returns; too long to verify, so it fails closed. Summarise the outcome in a new reply after resolving.`)
+      errors.push(`thread ${index + 1} (${found[0].author}): "${titleOf(found[0].body)}" has more comments than one read returns; too long to verify, so it fails closed. Summarise the outcome in a new reply after resolving.`)
       continue
     }
-    const answers = replies.filter((r) => authorized(r, author) && r.createdAt >= statedAt(first))
-    if (thread.isResolved && severity(first.body) > 1) continue
-    const error = decide(first, answers, commits, `thread ${index + 1}`)
-    if (error) errors.push(error)
+    for (const item of found) {
+      const answers = thread.comments.filter((r) => authorized(r, author) && r.createdAt >= statedAt(item))
+      // A resolution predates any later edit of the finding, so an edited finding needs a fresh answer.
+      if (thread.isResolved && severity(item.body) > 1 && !item.editedAt) continue
+      const error = decide(item, answers, commits, `thread ${index + 1}`)
+      if (error) errors.push(error)
+    }
   }
   const ordered = [...topLevel].sort((a, b) => a.createdAt.localeCompare(b.createdAt))
-  for (const [index, item] of ordered.entries()) {
-    if (!isBot(item) || item.dismissed || !BADGE.test(item.body)) continue
+  for (const item of ordered) {
+    if (!isReviewer(item) || item.dismissed || !BADGE.test(item.body)) continue
     for (const section of sections(item)) {
       const answers = ordered.filter((r) => r !== item && r.createdAt >= statedAt(section) && authorized(r, author) && references(r, section))
       const error = decide(section, answers, commits, 'review comment')
@@ -108,7 +114,7 @@ async function graphql(query, variables) {
 }
 
 const comment = (c) => ({
-  author: c.author?.login ?? '', association: c.authorAssociation, body: c.body ?? '', createdAt: c.createdAt,
+  author: c.author?.login ?? '', isBot: c.author?.__typename === 'Bot', association: c.authorAssociation, body: c.body ?? '', createdAt: c.createdAt,
   editedAt: c.lastEditedAt ?? undefined, url: c.url, dismissed: c.state === 'DISMISSED' || c.pullRequestReview?.state === 'DISMISSED',
 })
 
@@ -128,7 +134,7 @@ async function paged(field, selection, variables) {
 async function fetchAll() {
   const [owner, name] = String(process.env.GITHUB_REPOSITORY).split('/')
   const variables = { owner, name, number: Number(process.env.PR_NUMBER) }
-  const who = 'author{login} authorAssociation body createdAt lastEditedAt url'
+  const who = 'author{__typename login} authorAssociation body createdAt lastEditedAt url'
   const [threads, reviews, comments, commits] = await Promise.all([
     paged('reviewThreads', `isResolved comments(first:100){totalCount nodes{${who} pullRequestReview{state}}}`, variables),
     paged('reviews', `${who} state`, variables),
@@ -148,7 +154,7 @@ async function fetchAll() {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const data = await fetchAll()
   const errors = evaluateFindings({ ...data, author: process.env.PR_AUTHOR })
-  const reviewed = data.threads.filter((t) => isBot(t.comments[0] ?? {})).length
+  const reviewed = data.threads.filter((t) => t.comments.some(isReviewer)).length
   for (const error of errors) console.error(`[review-gate] ${error}`)
   // exitCode, not exit(): exiting while fetch's socket closes aborts Node on Windows (libuv assertion, code 127).
   if (errors.length) process.exitCode = 1
