@@ -292,6 +292,32 @@ test("rejects unclassified files in plural controlled media paths", async (t) =>
   assert.match(result.stderr, /\.jxl is not a classified web-media format/u)
 })
 
+test("allows app/downloads UI source while still rejecting adjacent unclassified media", async (t) => {
+  const { root, base } = await repository(t)
+  await write(root, "app/downloads/[slug]/page.tsx", "export default function Page() { return null }\n")
+  await write(root, "app/downloads/layout.tsx", "export default function Layout({ children }) { return children }\n")
+  commit(root)
+
+  const sourceResult = run(root, base)
+  assert.equal(sourceResult.status, 0, sourceResult.stderr)
+
+  await write(root, "app/downloads/asset.jxl", "unclassified media")
+  commit(root)
+  const mediaResult = run(root, base)
+  assert.equal(mediaResult.status, 1)
+  assert.match(mediaResult.stderr, /\.jxl is not a classified web-media format/u)
+})
+
+test("case-variant downloads page filenames stay controlled", async (t) => {
+  const { root, base } = await repository(t)
+  await write(root, "app/downloads/page.TSX", "export default function Page() { return null }\n")
+  commit(root)
+
+  const result = run(root, base)
+  assert.equal(result.status, 1)
+  assert.match(result.stderr, /\.tsx is not a classified web-media format/u)
+})
+
 test("rejects dangling symlinks in controlled media paths", posixOnly, async (t) => {
   const { root, base } = await repository(t)
   await mkdir(join(root, "public/images"), { recursive: true })
