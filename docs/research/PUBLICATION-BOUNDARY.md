@@ -19,6 +19,10 @@ generated from page-level metadata. They cannot support public scientific status
   for server-only editorial triage. `lib/research/sources.ts` contains only the
   empty approved projection; client bundles, public source lists and JSON-LD do
   not import the archive.
+- The research hub and source browser import `lib/research/topic-maps.public.ts`,
+  a slug/title/category/visual navigation projection. Generated highlights,
+  statistics and claim text from the legacy domain registry stay out of those
+  client bundles. The postbuild artifact test checks representative held text.
 - The old generator exits before writing. Do not remove that hold to restore output.
 - `data/research/approved-claims.json` is an empty publication ledger. The prebuild
   gate checks any candidate for individual source URLs and versions, exact locators,

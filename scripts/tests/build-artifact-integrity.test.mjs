@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
+import { readFile, readdir } from 'node:fs/promises'
 import test from 'node:test'
 import { listPublicEngagements } from '../../content/work/index.ts'
+import { researchDomains } from '../../lib/research/domains.ts'
+import { publicTopicMaps } from '../../lib/research/topic-maps.public.ts'
 
 const readBuildJson = async (path) =>
   JSON.parse(await readFile(new URL(`../../.next/${path}`, import.meta.url), 'utf8'))
@@ -52,4 +54,26 @@ test('work routes emit every public engagement and no non-public engagement', as
     expectedPublicRoutes,
     'the built route set must exactly match the public work registry',
   )
+})
+
+test('research client chunks contain only the narrow topic projection', async () => {
+  const expected = researchDomains
+    .filter((domain) => !domain.slug.startsWith('REMOVED-') && !domain.title.startsWith('[REMOVED]'))
+    .map((domain) => domain.slug)
+  assert.deepEqual(publicTopicMaps.map((domain) => domain.slug), expected)
+  for (const topic of publicTopicMaps) {
+    assert.deepEqual(Object.keys(topic).sort(), ['category', 'color', 'icon', 'slug', 'title'])
+  }
+
+  const chunksDir = new URL('../../.next/static/chunks/', import.meta.url)
+  const files = (await readdir(chunksDir)).filter((file) => file.endsWith('.js'))
+  const chunks = await Promise.all(files.map((file) => readFile(new URL(file, chunksDir), 'utf8')))
+  for (const heldText of [
+    'OpenAI o1 Technical Report',
+    'AIME 2024 pass@1',
+    'scholar.google.com/scholar?q=Frontier',
+  ]) {
+    assert.equal(chunks.some((chunk) => chunk.includes(heldText)), false,
+      `held research text reached a client chunk: ${heldText}`)
+  }
 })

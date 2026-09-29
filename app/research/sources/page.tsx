@@ -10,7 +10,7 @@ import {
   Search,
   ShieldCheck,
 } from 'lucide-react'
-import { researchDomains } from '@/lib/research/domains'
+import { publicTopicMaps } from '@/lib/research/topic-maps.public'
 import {
   domainSources,
   sourceTypeLabels,
@@ -31,7 +31,7 @@ interface SourceWithDomains extends ResearchSource {
 // are deduplicated so domain filters remain accurate.
 const sourceMap = new Map<string, SourceWithDomains>()
 Object.entries(domainSources).forEach(([slug, sources]) => {
-  const domain = researchDomains.find((item) => item.slug === slug)
+  const domain = publicTopicMaps.find((item) => item.slug === slug)
   const domainRef = { slug, title: domain?.title || slug }
 
   sources.forEach((source) => {
@@ -51,7 +51,7 @@ Object.entries(domainSources).forEach(([slug, sources]) => {
 })
 
 const uniqueSources = Array.from(sourceMap.values())
-const domainsWithSources = researchDomains.filter(
+const domainsWithSources = publicTopicMaps.filter(
   (domain) => (domainSources[domain.slug]?.length ?? 0) > 0
 )
 
