@@ -1,6 +1,5 @@
 // PDF Analytics & Lead Tracking System
-import { promises as fs } from 'fs'
-import path from 'path'
+import { createClient } from '@vercel/kv'
 import type {
   PDFView,
   PDFDownload,
@@ -9,93 +8,58 @@ import type {
   AnalyticsSummary,
   WeeklyStats
 } from './types/pdf-analytics'
+import { redisRestConfig } from './redis-env'
 
-const DATA_DIR = path.join(process.cwd(), 'data')
-const VIEWS_FILE = path.join(DATA_DIR, 'pdf-views.json')
-const DOWNLOADS_FILE = path.join(DATA_DIR, 'pdf-downloads.json')
-const LEADS_FILE = path.join(DATA_DIR, 'pdf-leads.json')
-const EMAILS_FILE = path.join(DATA_DIR, 'pdf-emails.json')
+// Vercel's filesystem is read-only, so the JSON files this module used to write
+// were never persisted and every view, download and lead was lost. Each
+// collection is now an append-only Redis list, capped to its newest entries.
+const kv = createClient(redisRestConfig())
+const VIEWS = 'pdf-analytics:views'
+const DOWNLOADS = 'pdf-analytics:downloads'
+const LEADS = 'pdf-analytics:leads'
+const EMAILS = 'pdf-analytics:emails'
+const MAX_ENTRIES = 50_000
 
-// Ensure data directory exists
-async function ensureDataDir() {
-  try {
-    await fs.access(DATA_DIR)
-  } catch {
-    await fs.mkdir(DATA_DIR, { recursive: true })
-  }
-}
+// Only these guides are tracked; anything else is rejected before it is stored.
+export const TRACKED_GUIDES = new Set(['soulbook', 'vibe-os'])
 
-// Generate unique ID
 function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
 }
 
-// Read JSON file with fallback
-async function readJsonFile<T>(filePath: string): Promise<T[]> {
+async function readAll<T>(key: string): Promise<T[]> {
   try {
-    const content = await fs.readFile(filePath, 'utf-8')
-    return JSON.parse(content)
-  } catch {
+    return (await kv.lrange<T>(key, 0, -1)) ?? []
+  } catch (error) {
+    console.error(`PDF analytics read failed for ${key}:`, error)
     return []
   }
 }
 
-// Write JSON file
-async function writeJsonFile<T>(filePath: string, data: T[]): Promise<void> {
-  await ensureDataDir()
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8')
+async function append<T>(key: string, item: T): Promise<T> {
+  await kv.rpush(key, item)
+  await kv.ltrim(key, -MAX_ENTRIES, -1)
+  return item
 }
 
 // Track PDF view
 export async function trackPDFView(data: Omit<PDFView, 'id' | 'timestamp'>): Promise<PDFView> {
-  const views = await readJsonFile<PDFView>(VIEWS_FILE)
-  const view: PDFView = {
-    id: generateId(),
-    timestamp: new Date().toISOString(),
-    ...data
-  }
-  views.push(view)
-  await writeJsonFile(VIEWS_FILE, views)
-  return view
+  return append(VIEWS, { id: generateId(), timestamp: new Date().toISOString(), ...data })
 }
 
 // Track PDF download
 export async function trackPDFDownload(data: Omit<PDFDownload, 'id' | 'timestamp'>): Promise<PDFDownload> {
-  const downloads = await readJsonFile<PDFDownload>(DOWNLOADS_FILE)
-  const download: PDFDownload = {
-    id: generateId(),
-    timestamp: new Date().toISOString(),
-    ...data
-  }
-  downloads.push(download)
-  await writeJsonFile(DOWNLOADS_FILE, downloads)
-  return download
+  return append(DOWNLOADS, { id: generateId(), timestamp: new Date().toISOString(), ...data })
 }
 
 // Create PDF lead
 export async function createPDFLead(data: Omit<PDFLead, 'id' | 'timestamp'>): Promise<PDFLead> {
-  const leads = await readJsonFile<PDFLead>(LEADS_FILE)
-  const lead: PDFLead = {
-    id: generateId(),
-    timestamp: new Date().toISOString(),
-    ...data
-  }
-  leads.push(lead)
-  await writeJsonFile(LEADS_FILE, leads)
-  return lead
+  return append(LEADS, { id: generateId(), timestamp: new Date().toISOString(), ...data })
 }
 
 // Track email request
 export async function trackEmailRequest(data: Omit<PDFEmailRequest, 'id' | 'timestamp'>): Promise<PDFEmailRequest> {
-  const emails = await readJsonFile<PDFEmailRequest>(EMAILS_FILE)
-  const email: PDFEmailRequest = {
-    id: generateId(),
-    timestamp: new Date().toISOString(),
-    ...data
-  }
-  emails.push(email)
-  await writeJsonFile(EMAILS_FILE, emails)
-  return email
+  return append(EMAILS, { id: generateId(), timestamp: new Date().toISOString(), ...data })
 }
 
 // Update email request status
@@ -105,22 +69,22 @@ export async function updateEmailStatus(
   emailId?: string,
   error?: string
 ): Promise<void> {
-  const emails = await readJsonFile<PDFEmailRequest>(EMAILS_FILE)
+  const emails = await readAll<PDFEmailRequest>(EMAILS)
   const emailIndex = emails.findIndex(e => e.id === id)
   if (emailIndex !== -1) {
-    emails[emailIndex].status = status
-    if (emailId) emails[emailIndex].emailId = emailId
-    if (error) emails[emailIndex].error = error
-    await writeJsonFile(EMAILS_FILE, emails)
+    const updated = { ...emails[emailIndex], status }
+    if (emailId) updated.emailId = emailId
+    if (error) updated.error = error
+    await kv.lset(EMAILS, emailIndex, updated)
   }
 }
 
 // Get analytics summary
 export async function getAnalyticsSummary(days: number = 30): Promise<AnalyticsSummary> {
-  const views = await readJsonFile<PDFView>(VIEWS_FILE)
-  const downloads = await readJsonFile<PDFDownload>(DOWNLOADS_FILE)
-  const leads = await readJsonFile<PDFLead>(LEADS_FILE)
-  const emails = await readJsonFile<PDFEmailRequest>(EMAILS_FILE)
+  const views = await readAll<PDFView>(VIEWS)
+  const downloads = await readAll<PDFDownload>(DOWNLOADS)
+  const leads = await readAll<PDFLead>(LEADS)
+  const emails = await readAll<PDFEmailRequest>(EMAILS)
 
   const cutoffDate = new Date()
   cutoffDate.setDate(cutoffDate.getDate() - days)
@@ -233,9 +197,9 @@ export async function getAnalyticsSummary(days: number = 30): Promise<AnalyticsS
 
 // Get weekly stats for charting
 export async function getWeeklyStats(weeks: number = 12): Promise<WeeklyStats[]> {
-  const views = await readJsonFile<PDFView>(VIEWS_FILE)
-  const downloads = await readJsonFile<PDFDownload>(DOWNLOADS_FILE)
-  const leads = await readJsonFile<PDFLead>(LEADS_FILE)
+  const views = await readAll<PDFView>(VIEWS)
+  const downloads = await readAll<PDFDownload>(DOWNLOADS)
+  const leads = await readAll<PDFLead>(LEADS)
 
   const weekStats: Map<string, WeeklyStats> = new Map()
 
@@ -285,18 +249,18 @@ export async function getWeeklyStats(weeks: number = 12): Promise<WeeklyStats[]>
 
 // Get all leads
 export async function getAllLeads(): Promise<PDFLead[]> {
-  return readJsonFile<PDFLead>(LEADS_FILE)
+  return readAll<PDFLead>(LEADS)
 }
 
 // Get leads by guide
 export async function getLeadsByGuide(guideSlug: string): Promise<PDFLead[]> {
-  const leads = await readJsonFile<PDFLead>(LEADS_FILE)
+  const leads = await readAll<PDFLead>(LEADS)
   return leads.filter(l => l.guideSlug === guideSlug)
 }
 
 // Get download count for a guide (last 7 days)
 export async function getRecentDownloadCount(guideSlug: string): Promise<number> {
-  const downloads = await readJsonFile<PDFDownload>(DOWNLOADS_FILE)
+  const downloads = await readAll<PDFDownload>(DOWNLOADS)
   const cutoffDate = new Date()
   cutoffDate.setDate(cutoffDate.getDate() - 7)
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useCallback, useContext, useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { bindMusicMediaSession, updateMusicMediaSessionState } from '@/lib/music-media-session'
 import { SUNO_ID, routeMusicSuggestion, safeMediaUrl, suggestTracks, type PlaybackTrack } from '@/lib/music-playback'
@@ -50,7 +50,11 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const attemptRef = useRef(0)
   const requestId = useId()
   const panelId = useId()
-  const suggestion = routeMusicSuggestion(usePathname())
+  const pathname = usePathname()
+  const suggestion = routeMusicSuggestion(pathname)
+  const isHome = pathname === '/'
+  const homeCollapsedChip = isHome && !expanded
+  const dockRef = useRef<HTMLElement>(null)
   const playable = catalog.filter(track => safeMediaUrl(track.streamUrl))
   const results = searched ? suggestTracks(catalog, request) : browseAll ? playable : playable.slice(0, 6)
 
@@ -180,6 +184,36 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
     updateMusicMediaSessionState(!active ? 'none' : state === 'playing' ? 'playing' : 'paused')
   }, [active, state])
 
+  // Publish measured dock clearance (chrome height + bottom offset + safe-area).
+  // Home collapsed: bottom-right chip; full-width emerald CTA must stop short via
+  // --music-chip-reserve (qa-overlay-clearance.css) — chip alone cannot clear w-full.
+  // Expanded / non-home docks drive --music-dock-height for the end spacer (no rem guesswork).
+  useLayoutEffect(() => {
+    const el = dockRef.current
+    if (!el || typeof window === 'undefined') return
+    const publish = () => {
+      const rect = el.getBoundingClientRect()
+      const clearance = Math.max(0, Math.ceil(window.innerHeight - rect.top))
+      document.documentElement.style.setProperty('--music-dock-height', `${clearance}px`)
+      // Chip footprint: width + right inset + gap (home collapsed only).
+      if (homeCollapsedChip) {
+        document.documentElement.style.setProperty('--music-chip-reserve', '4.75rem')
+      } else {
+        document.documentElement.style.removeProperty('--music-chip-reserve')
+      }
+    }
+    publish()
+    const ro = new ResizeObserver(publish)
+    ro.observe(el)
+    window.addEventListener('resize', publish)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', publish)
+      document.documentElement.style.removeProperty('--music-dock-height')
+      document.documentElement.style.removeProperty('--music-chip-reserve')
+    }
+  }, [expanded, isHome, homeCollapsedChip, active, state])
+
   const subtitle = state === 'error' ? 'Playback unavailable' : state === 'loading' ? 'Loading audio…' : state === 'playing' ? 'Playing' : 'Paused'
   return (
     <MusicContext.Provider value={{
@@ -195,8 +229,36 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
       stop,
     }}>
       {children}
-      <div aria-hidden="true" className="h-24" />
-      <aside aria-label="Music player" onKeyDown={event => { if (event.key === 'Escape' && expanded) { event.preventDefault(); event.stopPropagation(); minimize() } }} className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-xl overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white sm:inset-x-auto sm:right-5 sm:w-[min(34rem,calc(100vw-2.5rem))]" style={{ marginBottom: 'env(safe-area-inset-bottom)' }}>
+      <div
+        aria-hidden="true"
+        className={homeCollapsedChip ? 'h-20' : undefined}
+        style={homeCollapsedChip ? undefined : { height: 'var(--music-dock-height, calc(6rem + env(safe-area-inset-bottom, 0px)))' }}
+      />
+      <aside
+        ref={dockRef}
+        aria-label="Music player"
+        onKeyDown={event => { if (event.key === 'Escape' && expanded) { event.preventDefault(); event.stopPropagation(); minimize() } }}
+        className={
+          homeCollapsedChip
+            ? 'fixed bottom-3 right-3 z-50 flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white'
+            : 'fixed inset-x-3 bottom-3 z-50 mx-auto max-w-xl overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white sm:inset-x-auto sm:right-5 sm:w-[min(34rem,calc(100vw-2.5rem))]'
+        }
+        style={{ marginBottom: 'env(safe-area-inset-bottom)' }}
+      >
+        {homeCollapsedChip ? (
+          <button
+            ref={disclosureRef}
+            type="button"
+            onClick={() => setExpanded(true)}
+            aria-controls={panelId}
+            aria-expanded={expanded}
+            aria-label={active?.title || 'Music by FrankX'}
+            className="flex h-12 w-12 flex-col items-center justify-center rounded-2xl text-center focus-visible:outline focus-visible:outline-emerald-300"
+          >
+            <span className="text-lg leading-none" aria-hidden="true">♪</span>
+            <span className="sr-only" aria-live="polite">{active ? subtitle : 'Choose a soundtrack'}</span>
+          </button>
+        ) : (
         <div className="flex min-h-14 items-center gap-1 px-3 py-2">
           <button ref={disclosureRef} type="button" onClick={() => setExpanded(value => !value)} aria-controls={panelId} aria-expanded={expanded} className="min-h-11 min-w-0 flex-1 rounded-lg px-2 text-left focus-visible:outline focus-visible:outline-emerald-300">
             <span className="block truncate text-sm font-medium">{active?.title || 'Music by FrankX'}</span>
@@ -206,6 +268,7 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
           {active && <button type="button" onClick={stop} className="min-h-11 rounded-lg px-2 text-sm text-white/80" aria-label="Stop music">Stop</button>}
           {expanded && <button type="button" onClick={minimize} aria-label="Minimize player" className="min-h-11 min-w-11 rounded-lg text-xl text-white/80">−</button>}
         </div>
+        )}
         <div id={panelId} hidden={!expanded} className="max-h-[55dvh] overflow-y-auto overscroll-contain border-t border-white/10 p-4">
           {/* Always mounted; no src exists before a verified track is selected. */}
           <audio ref={audioRef} controls preload="none" hidden={!active} className="mb-3 w-full"

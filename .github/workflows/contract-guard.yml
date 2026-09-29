@@ -42,9 +42,9 @@ on:
       - 'pnpm-workspace.yaml'
       # Third trap: a workflow-only PR (design-contract concurrency, CI budget
       # tweaks) never reports this required check, so GitHub stays BLOCKED.
-      # Cover the whole workflows tree so GitOps PRs remain mergeable without
+      # Cover the whole .github tree so GitOps PRs remain mergeable without
       # an admin override.
-      - '.github/workflows/**'
+      - '.github/**'
       # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
       # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
       - 'CLAUDE.md'
@@ -84,6 +84,11 @@ on:
       # expected and never reported. Lint configuration belongs here on merit:
       # it decides which rules the guarded surfaces are held to.
       - 'eslint.config.*'
+      # Seventh trap: .agents, .claude, or skills-lock.json only PRs (#716)
+      # never report Contract Guard or Merge Gate, leaving PRs blocked.
+      - '.agents/**'
+      - '.claude/**'
+      - 'skills-lock.json'
 
 concurrency:
   group: contract-guard-${{ github.ref }}
@@ -97,15 +102,15 @@ jobs:
     name: Contract Guard
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           # merge-base against the base branch needs real history.
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
           # setup-node defaults package-manager-cache to true, sees

@@ -18,6 +18,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
+import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
 import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
@@ -465,10 +466,10 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 </button>
               </div>
 
-              <p className="max-w-2xl text-lg leading-8 text-white/50 md:text-xl">
-                FrankX is the working studio for founders, creators, and AI leaders building an AI
-                operating system, a Center of Excellence, or agentic products. Explore the
-                architecture, inspect the systems, and start from what already works.
+              <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
+                Most AI advice is noise. Here are the working blueprints: personal Centers of
+                Excellence, agentic operating systems, and twelve thousand tracks of studio craft—built
+                with your own keys on your own terms.
               </p>
 
               <div className="flex items-center gap-3">
@@ -486,7 +487,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
                 className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-medium leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-0"
               >
-                <span className="text-balance">Explore AI Architecture</span>
+                <span className="text-balance">Inspect the Blueprints</span>
                 <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
               </Link>
 
@@ -1036,7 +1037,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
             </Link>
             <Link
               href="/library/build"
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-4 py-1.5 text-xs font-medium text-emerald-200 hover:bg-emerald-400/10 hover:border-emerald-400/50 transition-colors"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-4 py-2.5 text-xs font-medium text-emerald-200 hover:border-emerald-400/50 hover:bg-emerald-400/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             >
               Build your own
               <ArrowRight className="w-3.5 h-3.5" />
@@ -1354,37 +1355,44 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
+              className="rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] overflow-hidden transition-colors duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
             >
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-sm sm:text-base font-semibold text-white pr-4">
-                    {faq.question}
-                  </h3>
+              <h3 className="text-sm sm:text-base font-semibold text-white">
+                <button
+                  type="button"
+                  id={`faq-trigger-${i}`}
+                  aria-expanded={openIndex === i}
+                  aria-controls={`faq-answer-${i}`}
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="w-full text-left p-5 flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+                >
+                  <span className="pr-4">{faq.question}</span>
                   <ChevronDown
                     className={`w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-200 ${
                       openIndex === i ? 'rotate-180' : ''
                     }`}
+                    aria-hidden="true"
                   />
-                </div>
-                <AnimatePresence>
-                  {openIndex === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="mt-3 text-sm text-white/50 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </button>
+                </button>
+              </h3>
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div
+                    id={`faq-answer-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-trigger-${i}`}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="px-5 pb-5 text-sm text-white/50 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>
@@ -1501,14 +1509,13 @@ function FinalCTA() {
 
           <div className="relative text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-              Take what helps. Build what matters.
+              Take what serves. Build what endures.
             </h2>
-            <p className="font-serif italic text-lg text-white/60 mb-2">
-              You do not have to become someone else to begin.
+            <p className="font-serif italic text-lg text-white/70 mb-2">
+              Sovereignty is not purchased; it is architected.
             </p>
             <p className="text-base text-white/60 mb-8 md:mb-12 max-w-md mx-auto">
-              Choose one honest next step. The music, maps, and tools will still be here when you
-              are ready for another.
+              Pick one constraint. Inspect one pattern. Deploy one system. The studio, the archive, and the code remain here whenever you are ready to compound.
             </p>
 
             <div className="flex w-full min-w-0 max-w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
@@ -1516,7 +1523,7 @@ function FinalCTA() {
                 href="/start"
                 className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-semibold leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4"
               >
-                Find My Starting Point
+                Find Your True Constraint
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
@@ -1560,6 +1567,9 @@ export default function HomePageElite({
 
         {/* 4c. Signature route atlas — one earned GSAP scene */}
         <MindPalaceAtlas />
+
+        {/* 4d. Interactive Signal Route Selector */}
+        <SignalRouteSelector />
 
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />
