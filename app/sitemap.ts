@@ -373,7 +373,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Research hub pages
   const researchPages = [
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
+    // Dedicated published dataset route; the generated catch-all briefs remain held.
+    { url: '/research/agentic-life-observatory', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/signals', priority: 0.9, changeFrequency: 'daily' as const },
     { url: '/dream-100', priority: 0.82, changeFrequency: 'weekly' as const },

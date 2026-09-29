@@ -5,6 +5,22 @@ import { fileURLToPath } from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const registry = JSON.parse(fs.readFileSync(path.join(root, 'data/research/approved-claims.json'), 'utf8'))
 
+const normalizedIdentity = (value) => String(value ?? '').normalize('NFKC').trim().replace(/\s+/g, ' ').toLocaleLowerCase('en')
+
+function isDirectSourceUrl(value) {
+  if (typeof value !== 'string') return false
+  let url
+  try { url = new URL(value) } catch { return false }
+  if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash) return false
+  const host = url.hostname.toLowerCase()
+  if (host === 'frankx.ai' || host.endsWith('.frankx.ai') ||
+      host.startsWith('search.') || host.startsWith('scholar.') ||
+      host === 'google.com' || host.endsWith('.google.com') ||
+      host === 'bing.com' || host.endsWith('.bing.com')) return false
+  if (url.pathname === '/' || /\/(search|scholar|results?|queries)(?:\/|$)/i.test(url.pathname)) return false
+  return true
+}
+
 export function validateApprovedClaims(input) {
   const errors = []
   if (input?.schemaVersion !== 1 || !Array.isArray(input.claims)) {
@@ -35,14 +51,7 @@ export function validateApprovedClaims(input) {
           errors.push(`${q}: source record required`)
           continue
         }
-        let url
-        try { url = new URL(source.url) } catch { /* reported below */ }
-        if (!url || url.protocol !== 'https:' ||
-            url.hostname === 'scholar.google.com' ||
-            url.hostname === 'www.google.com' ||
-            url.hostname === 'arxiv.org' && url.pathname.startsWith('/search') ||
-            url.hostname === 'frankx.ai' || url.hostname === 'www.frankx.ai' ||
-            /\/search(?:\/|$)/.test(url.pathname)) {
+        if (!isDirectSourceUrl(source.url)) {
           errors.push(`${q}: provide the individual publication or benchmark URL, not search or self-reference`)
         }
         if (typeof source.title !== 'string' || source.title.trim().length < 5) errors.push(`${q}: source title required`)
@@ -52,18 +61,34 @@ export function validateApprovedClaims(input) {
         }
       }
     }
-    if (item.status === 'independently-replicated' && (item.sources?.length ?? 0) < 2) {
-      errors.push(`${p}: replication needs independent source records and an experiment receipt`)
-    }
-    if (item.status === 'independently-replicated' && !item.replicationReceipt) {
-      errors.push(`${p}: replication receipt required`)
+    if (item.status === 'independently-replicated') {
+      const sources = Array.isArray(item.sources) ? item.sources : []
+      if (sources.length < 2 || sources.some((source) =>
+        typeof source?.studyId !== 'string' || !source.studyId.trim() ||
+        typeof source?.organization !== 'string' || !source.organization.trim()) ||
+        new Set(sources.map((source) => String(source?.url ?? '').toLowerCase().replace(/\/$/, ''))).size < 2 ||
+        new Set(sources.map((source) => normalizedIdentity(source?.studyId ?? ''))).size < 2 ||
+        new Set(sources.map((source) => normalizedIdentity(source?.organization ?? ''))).size < 2) {
+        errors.push(`${p}: replication requires two distinct studies and independent organizations`)
+      }
+      const receipt = item.replicationReceipt
+      if (!receipt || typeof receipt !== 'object' ||
+          !isDirectSourceUrl(receipt.protocolUrl) || !isDirectSourceUrl(receipt.resultUrl) ||
+          typeof receipt.team !== 'string' || !receipt.team.trim() ||
+          typeof receipt.performedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(receipt.performedAt) ||
+          Number.isNaN(Date.parse(receipt.performedAt)) ||
+          new Date(receipt.performedAt).toISOString().slice(0, 10) !== receipt.performedAt ||
+          normalizedIdentity(receipt.team) === normalizedIdentity(sources[0]?.organization ?? '') ||
+          normalizedIdentity(receipt.team) !== normalizedIdentity(sources[1]?.organization ?? '')) {
+        errors.push(`${p}: structured independent replication receipt required`)
+      }
     }
     if (typeof item.reviewedBy !== 'string' || item.reviewedBy.trim().length < 3 ||
         /^(ai|agent|bot|llm|gpt|claude|codex)$/i.test(item.reviewedBy.trim())) {
       errors.push(`${p}: named human reviewer required`)
     }
     if (typeof item.draftedBy !== 'string' || item.draftedBy.trim().length < 3 ||
-        item.draftedBy.trim() === item.reviewedBy?.trim()) {
+        normalizedIdentity(item.draftedBy) === normalizedIdentity(item.reviewedBy ?? '')) {
       errors.push(`${p}: drafter and reviewer must be distinct`)
     }
     if (!/^\d{4}-\d{2}-\d{2}$/.test(item.reviewedAt ?? '') ||

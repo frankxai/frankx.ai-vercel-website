@@ -13,12 +13,16 @@ generated from page-level metadata. They cannot support public scientific status
   reviewed publications will be added only with their approved dossier.
 - The domain routes display a review state and are `noindex` until a reviewed dossier
   replaces the holding page. They are omitted from the XML sitemap.
+- The separately published Agentic Life Observatory stays in the sitemap; the
+  noindexed source browser is omitted until it has reviewed sources.
 - Generated citation leads are retained in `lib/research/sources.ts` but are excluded
   from `domainSources`, the public source projection and JSON-LD.
 - The old generator exits before writing. Do not remove that hold to restore output.
 - `data/research/approved-claims.json` is an empty publication ledger. The prebuild
   gate checks any candidate for individual source URLs, exact locators, status,
   human review, distinct drafter/reviewer, date, and a full commit SHA receipt.
+- The agentic-life audit reports approved claim counts by domain. Its archived
+  discovery leads are not counted as publication evidence.
 - Passing this gate **does not automatically publish** a claim. A separate reviewed
   PR must bind the approved claim version to its public page and source projection.
 
@@ -30,6 +34,10 @@ locator, contrary evidence, limitations, correction/retraction check, rights dec
 distinct human reviewer, and exact reviewed commit. Benchmarks need workload, model,
 hardware, date, seed/sample and metric definitions. Human and biological studies need
 appropriate consent, ethics and domain review.
+
+An independently replicated claim also needs different study IDs and organizations,
+plus a dated structured receipt linking the protocol and result. Discovery search
+URLs and query links cannot be promoted as direct sources.
 
 Implement a small renderer from approved records; make the HTML and structured data
 consume the same release projection. Include the source-check and rights decision in
