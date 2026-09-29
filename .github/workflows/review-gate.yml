@@ -1,0 +1,80 @@
+name: Review Gate
+
+# Merges are autonomous, so AI review findings are the quality gate: every finding must be answered by the author or
+# a repo member (fixed with a commit of this PR, or declined with a reason; P0/P1 need one of those two) before
+# merge. Every run evaluates the PR's current state and publishes the commit status "Review Gate" on the PR head
+# SHA, so a comment-triggered run (which executes on the default branch) updates the same required status directly.
+# This workflow and its script are a locked governance surface, enforced by the trusted Surface Guard.
+# Resolving a thread without a reply has no Actions trigger; reply on the thread, or re-run the latest run.
+
+on:
+  pull_request:
+    # 'edited' covers a retarget (e.g. staging -> main): statuses are SHA-scoped, so the base change must re-run.
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+    branches: [main, staging]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  pull_request_review_comment:
+    types: [created, edited, deleted]
+  issue_comment:
+    types: [created, edited, deleted]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: review-gate-${{ github.event.pull_request.number || github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  review-gate:
+    if: github.event_name != 'issue_comment' || github.event.issue.pull_request
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/governance
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Resolve the PR head
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number || github.event.issue.number }}
+        run: |
+          echo "number=$PR" >> "$GITHUB_OUTPUT"
+          gh pr view "$PR" --repo "${{ github.repository }}" --json headRefOid,author --jq '"sha=\(.headRefOid)\nauthor=\(.author.login)"' >> "$GITHUB_OUTPUT"
+      # Pending first: while this run reads the PR, an earlier success must not stand for findings it has not seen.
+      - name: Mark Review Gate pending
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${{ github.repository }}/statuses/${{ steps.pr.outputs.sha }}" \
+            -f state=pending -f context="Review Gate" -f description="Evaluating AI review findings" \
+            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      - name: Every AI review finding answered
+        id: gate
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          PR_AUTHOR: ${{ steps.pr.outputs.author }}
+        run: node scripts/governance/review-gate.mjs
+      - name: Publish the verdict on the PR head
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STATE: ${{ steps.gate.outcome == 'success' && 'success' || 'failure' }}
+        run: |
+          gh api "repos/${{ github.repository }}/statuses/${{ steps.pr.outputs.sha }}" \
+            -f state="$STATE" -f context="Review Gate" \
+            -f description="AI review findings: $STATE (see the run for details)" \
+            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          test "$STATE" = success
