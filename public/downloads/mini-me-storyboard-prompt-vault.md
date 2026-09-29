@@ -102,7 +102,7 @@ mini-me-project/
   07-review/                 scores, corrections and release notes
 ```
 
-Give friends the six templates above. Keep personal reference photos private unless the subject consented. The two HTML collections below preserve this run's actual output images and prompt-to-result pairings.
+Give friends the six templates above. Keep personal reference photos private unless the subject consented. This download is a prompt archive; the full image/result collections remain separately in the creator's archive.
 
 ## Exact prompts from the two saved collections
 
