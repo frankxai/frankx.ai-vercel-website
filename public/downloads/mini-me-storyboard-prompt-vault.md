@@ -4,7 +4,25 @@
 
 Build a small cast that can enter your actual life, carry a story, and teach a useful idea. This pack reconstructs a real 20-image Mini Frank commission from its saved prompt and result collections. It is a creative case study, not a controlled model benchmark. The first collection made ten 4:5 editorial posts; the second made ten vertical scenes and infographics. The source conversation also included earlier iterations and changing direction, but this document does not claim to be a full chat transcript or a browser screenshot.
 
-The [public Mini Me guide](/guides/mini-me-storyboard) shows the workflow and selected result previews. This companion file preserves all 20 exact generation prompts. The full private result archives remain with the creator.
+The [public Mini Me guide](/guides/mini-me-storyboard) shows the workflow and selected result previews. This companion file preserves selected verbatim user direction and all 20 exact generation prompts. The full private result archives remain with the creator.
+
+## Frank's original direction (selected verbatim excerpts)
+
+These lines are user-authored creative direction from the conversation. They are excerpts, not a complete exported ChatGPT transcript:
+
+> “Turn this photo into a magical ‘Mini Me’ world where tiny animated versions of yourself come to life around you. These cute 3D-style mini characters interact with your everyday surroundings — climbing onto your shoulders, sitting on your bag, waving, playing, and copying your poses — creating a playful yet emotional social media story-worthy scene full of personality and story. The original photo remains untouched while the tiny characters bring the image to life with depth, movement, realistic shadows, and a soft aesthetic vibe.”
+
+> “Create image storyboard of all the variations as well all the core design files we need as foundation for all else.”
+
+> “The whole vibe of modern humans have some more edge what is it and how we also more value and impact and shareability over you missing some things what's sota high quality and best other creators do and we can build with and use.”
+
+> “Continue build and create way better also the character different outfits, sometimes black suit, black hemd with black knöpfe, i sometimes wear also meta ai rayban glasses and look cooler and more exploring and directing, curious adventurer but also elegant leader with the agents and systems and how to harmonize and combine and also bring other people in.”
+
+> “I only wear sunglasses not other also my beard not having sides as much right. Use more of these and create 10 better.”
+
+> “Continue and I feel we need a mix, me not looking to real but the other style previous also sometimes good just needs look like me more right.”
+
+> “10 more 9:16 and different types of well thought out and my hair is a little different and eyes look straight sometimes or and the infographics and whole vibe think hard how best also have characters create genius images with them all and infographics 10 different and scenes meaningful ready to post on Instagram state of art well thought out by best social media designer and CMO.”
 
 ## What changed through the work
 
