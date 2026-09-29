@@ -318,6 +318,15 @@ test("keeps JavaScript download handlers within the controlled sidecar limit", a
   assert.equal(result.status, 1)
   assert.match(result.stderr, /\.js sidecar exceeds the 0\.50 MiB Git limit/u)
 })
+test("case-variant download route filenames stay controlled", async (t) => {
+  const { root, base } = await repository(t)
+  await write(root, "app/api/download/route.TS", "export function GET() {}\n")
+  commit(root)
+
+  const result = run(root, base)
+  assert.equal(result.status, 1)
+  assert.match(result.stderr, /\.ts is not a classified web-media format/u)
+})
 
 test("rejects dangling symlinks in controlled media paths", posixOnly, async (t) => {
   const { root, base } = await repository(t)
