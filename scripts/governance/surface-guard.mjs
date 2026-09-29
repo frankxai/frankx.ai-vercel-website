@@ -41,8 +41,11 @@ export function matches(file, pattern) {
 export function parseBriefs(body) {
   const briefs = []
   // Only visible text counts: the PR template carries an example brief inside an HTML comment, and an unclosed
-  // "<!--" hides the rest of the body on GitHub.
-  for (const line of String(body ?? '').replace(/<!--[\s\S]*?(?:-->|$)/g, '').split(/\r?\n/)) {
+  // "<!--" hides the rest of the body on GitHub. Inside code spans and fences the marker renders as text instead.
+  const visible = String(body ?? '')
+    .replace(/```[\s\S]*?(?:```|$)|`[^`\n]*`/g, (code) => code.replaceAll('<!--', '<! --'))
+    .replace(/<!--[\s\S]*?(?:-->|$)/g, '')
+  for (const line of visible.split(/\r?\n/)) {
     const match = /^\s*[-*]?\s*\**(Surface|Kind|Intent|Keeps|Changes|Evidence)\**\s*:\s*(.*)$/i.exec(line)
     if (!match) continue
     const key = FIELDS.find((field) => field.toLowerCase() === match[1].toLowerCase())

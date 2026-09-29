@@ -54,13 +54,14 @@ const normalize = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(
 
 /**
  * A top-level answer must point at its finding (link, or the finding's title), so one reply cannot clear them all.
- * The quoted title must be long enough to tell the finding from its siblings; identical titles need the link.
+ * The quoted title must be long enough to tell the finding from the siblings stated before the reply; identical
+ * titles need the link. A later finding cannot make an earlier, unambiguous answer ambiguous.
  */
 function references(reply, found, siblings = []) {
   const anchor = /#(?:issuecomment|discussion_r|pullrequestreview)-?\d+/.exec(found.url ?? '')?.[0]
   if (anchor && reply.body.includes(anchor.slice(1))) return true
   const full = normalize(titleOf(found.body))
-  const others = siblings.filter((s) => s !== found).map((s) => normalize(titleOf(s.body)))
+  const others = siblings.filter((s) => s !== found && statedAt(s) <= reply.createdAt).map((s) => normalize(titleOf(s.body)))
   let length = 40
   while (others.some((o) => o.startsWith(full.slice(0, length)))) {
     if (length >= full.length) return false
@@ -91,10 +92,10 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
       errors.push(`thread ${index + 1} (${found[0].author}): "${titleOf(found[0].body)}" has more comments than one read returns; too long to verify, so it fails closed. Summarise the outcome in a new reply after resolving.`)
       continue
     }
-    // With several findings in one thread, an answer must name the one it answers (title or link).
-    const several = found.length > 1
+    // With several findings in the thread when a reply was posted, it must name the one it answers (title or link).
+    const several = (r) => found.filter((s) => statedAt(s) <= r.createdAt).length > 1
     for (const item of found) {
-      const answers = thread.comments.filter((r) => authorized(r, author) && r.createdAt >= statedAt(item) && (!several || references(r, item, found)))
+      const answers = thread.comments.filter((r) => authorized(r, author) && r.createdAt >= statedAt(item) && (!several(r) || references(r, item, found)))
       // A resolution predates any later edit of the finding, so an edited finding needs a fresh answer.
       if (thread.isResolved && severity(item.body) > 1 && !item.editedAt) continue
       const error = decide(item, answers, commits, `thread ${index + 1}`)

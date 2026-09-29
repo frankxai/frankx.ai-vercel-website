@@ -98,6 +98,7 @@ test('changing the gates themselves is a locked governance surface once they exi
 test('a brief left inside the template comment does not count', () => {
   assert.match(run({ body: `<!--\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/)
   assert.match(run({ body: `Notes <!-- never closed\n${brief()}` }).errors.join('\n'), /Add a Surface change brief/, 'GitHub hides everything after an unclosed comment')
+  assert.deepEqual(run({ body: 'Strips `<!--` markers.\n\n```html\n<!-- example\n```\n\n' + brief() }).errors, [], 'a marker inside code renders as text')
 })
 
 test('parseBriefs reads several surfaces from one body', () => {
@@ -249,6 +250,15 @@ test('review gate: a quoted title must tell the finding apart from siblings that
   assert.equal(gate([twins]).length, 2, 'identical titles can only be answered by link')
   twins.comments.push(reply('discussion_r11 and discussion_r12: fixed in a1b2c3d.'))
   assert.deepEqual(gate([twins]), [])
+})
+
+test('review gate: a later finding does not undo an answer given while it did not exist', () => {
+  const thread = { isResolved: false, comments: [
+    finding('![P2 Badge] Cache key ignores locale'),
+    reply('Good catch, keyed by locale now.', { createdAt: '2026-09-28T10:30:00Z' }),
+    finding('![P2 Badge] Cache key ignores locale for drafts', { createdAt: '2026-09-28T11:00:00Z' }),
+  ] }
+  assert.deepEqual(gate([thread]).map((e) => /drafts/.test(e)), [true], 'only the new finding is open')
 })
 
 test('review gate: resolving does not cover a finding edited afterwards', () => {
