@@ -4,7 +4,10 @@ import { createClient } from '@vercel/kv'
 import { createLocalLimiter } from './local-ratelimit'
 import { redisRestConfig } from './redis-env'
 
-const kv = createClient(redisRestConfig())
+const redisConfig = redisRestConfig()
+const kv = createClient(redisConfig)
+// An empty integration is not an outage. Skip the request that would throw and count locally.
+const sharedLimiterReady = Boolean(redisConfig.url && redisConfig.token)
 
 // Falls back to a per-instance window when Redis is unreachable, so an outage of
 // the shared store weakens protection instead of refusing every request.
@@ -12,6 +15,7 @@ function resilient(remote: Ratelimit, max: number, windowMs: number) {
   const allowLocally = createLocalLimiter(max, windowMs)
   return {
     async limit(key: string): Promise<{ success: boolean }> {
+      if (!sharedLimiterReady) return { success: allowLocally(key) }
       try {
         return await remote.limit(key)
       } catch (error) {
@@ -65,6 +69,15 @@ export const leadRatelimit = resilient(new Ratelimit({
   analytics: true,
   prefix: 'ratelimit:leads'
 }), 10, 60 * 60_000)
+
+// Public read-only MCP. One agent turn is initialize, tools/list, and a few
+// tool calls. 30 requests per minute per IP allows that turn and rejects a scrape.
+export const mcpRatelimit = resilient(new Ratelimit({
+  redis: kv,
+  limiter: Ratelimit.slidingWindow(30, '1 m'),
+  analytics: true,
+  prefix: 'ratelimit:mcp'
+}), 30, 60_000)
 
 /**
  * Get client identifier from request
