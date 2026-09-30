@@ -59,6 +59,8 @@ jobs:
             sleep $((attempt * 5))
           done
           sha=${sha:-$PAYLOAD_SHA}
+          # issue_comment carries no head; the git protocol is an independent path when the REST API is failing.
+          [ -n "$sha" ] || sha=$(git ls-remote "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}" "refs/pull/$PR/head" | cut -f1)
           test -n "$sha" || { echo "::error::Could not resolve the head of #$PR; no status can be set."; exit 1; }
           { echo "number=$PR"; echo "sha=$sha"; echo "author=$AUTHOR"; } >> "$GITHUB_OUTPUT"
       # Pending first: while this run reads the PR, an earlier success must not stand for findings it has not seen.

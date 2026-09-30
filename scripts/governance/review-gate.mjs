@@ -61,23 +61,28 @@ function references(reply, found, siblings = []) {
   const anchor = /#(?:issuecomment|discussion_r|pullrequestreview)-?\d+/.exec(found.url ?? '')?.[0]
   if (anchor && reply.body.includes(anchor.slice(1))) return true
   const full = normalize(titleOf(found.body))
-  const others = siblings.filter((s) => s !== found && statedAt(s) <= reply.createdAt).map((s) => normalize(titleOf(s.body)))
+  const others = siblings.filter((s) => s !== found && statedAt(s) <= answeredAt(reply)).map((s) => normalize(titleOf(s.body)))
+  const text = normalize(reply.body)
   let length = 40
-  while (others.some((o) => o.startsWith(full.slice(0, length)))) {
-    if (length >= full.length) return false
-    length += 10
-  }
+  while (length < full.length && others.some((o) => o.startsWith(full.slice(0, length)))) length += 10
   const title = full.slice(0, length)
+  // A title that is a prefix of a sibling's ("Validate input" / "Validate input before saving") is answered by quoting
+  // it in full without also quoting the longer sibling; identical titles can only be told apart by link.
+  if (others.some((o) => o.startsWith(title) && (o === full || text.includes(o)))) return false
   // Quoting the title exactly identifies the finding; very short titles (under 6 characters) would match anything.
-  return title.length >= 6 && normalize(reply.body).includes(title)
+  return title.length >= 6 && text.includes(title)
 }
+
+/** An edited reply speaks from its edit: a revised finding can be answered by revising the answer. */
+const answeredAt = (reply) => (reply.editedAt && reply.editedAt > reply.createdAt ? reply.editedAt : reply.createdAt)
 
 /**
  * One review body can hold several badged findings; each is its own finding with its own severity. With more than
  * one, a link to the shared review cannot say which was answered, so each needs its title quoted.
  */
 function sections(item) {
-  const starts = [...item.body.matchAll(/!\[P[0-3]\s*Badge\]/gi)].map((m) => m.index)
+  // Same grammar as BADGE: the image form first, so its alt text is not counted a second time.
+  const starts = [...item.body.matchAll(/!\[P[0-3]\s*Badge\][^)\s]*\)?|\bP[0-3]\s*Badge\b/gi)].map((m) => m.index)
   if (starts.length <= 1) return [item]
   return starts.map((start, i) => ({ ...item, url: undefined, body: item.body.slice(start, starts[i + 1]) }))
 }
@@ -93,9 +98,9 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
       continue
     }
     // With several findings in the thread when a reply was posted, it must name the one it answers (title or link).
-    const several = (r) => found.filter((s) => statedAt(s) <= r.createdAt).length > 1
+    const several = (r) => found.filter((s) => statedAt(s) <= answeredAt(r)).length > 1
     for (const item of found) {
-      const answers = thread.comments.filter((r) => authorized(r, author) && r.createdAt >= statedAt(item) && (!several(r) || references(r, item, found)))
+      const answers = thread.comments.filter((r) => authorized(r, author) && answeredAt(r) >= statedAt(item) && (!several(r) || references(r, item, found)))
       // A resolution predates any later edit of the finding, so an edited finding needs a fresh answer.
       if (thread.isResolved && severity(item.body) > 1 && !item.editedAt) continue
       const error = decide(item, answers, commits, `thread ${index + 1}`)
@@ -108,7 +113,7 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
   const findings = ordered.filter((item) => isReviewer(item) && !item.dismissed && BADGE.test(item.body)).flatMap((item) => sections(item).map((section) => ({ item, section })))
   const all = findings.map((f) => f.section)
   for (const { item, section } of findings) {
-    const answers = ordered.filter((r) => r !== item && r.createdAt >= statedAt(section) && authorized(r, author) && references(r, section, all))
+    const answers = ordered.filter((r) => r !== item && answeredAt(r) >= statedAt(section) && authorized(r, author) && references(r, section, all))
     const error = decide(section, answers, commits, 'review comment')
     if (error) errors.push(error)
   }
