@@ -273,6 +273,15 @@ test('review gate: a title that prefixes a sibling is answered by quoting it wit
   assert.equal(gate([], topLevel).length, 1, 'the short title is answered, the longer sibling is not')
 })
 
+test('review gate: findings in one review whose titles share 90+ characters can still be answered', () => {
+  const long = 'Validate every fix reference against the commits of this pull request before the gate accepts it'
+  const body = `![P1 Badge](x) ${long} for P0\n\ntext\n\n![P1 Badge](x) ${long} for P1\n\ntext`
+  const topLevel = [finding(body), reply(`${long} for P0 and ${long} for P1: fixed in a1b2c3d.`)]
+  assert.deepEqual(gate([], topLevel), [])
+  const twins = [finding(`![P1 Badge](x) ${long}\n\n![P1 Badge](x) ${long}`), reply(`${long}: fixed in a1b2c3d.`)]
+  assert.deepEqual(gate([], twins), [], 'identical sections of one review have no link, so the title answers them')
+})
+
 test('review gate: plain-text badges split a review body into findings too', () => {
   const topLevel = [finding('P2 Badge Rename the helper for clarity\n\nP1 Badge Missing auth check on export route'), reply('Rename the helper for clarity: done in a1b2c3d.')]
   assert.match(gate([], topLevel).join('\n'), /P1\): "P1 Badge Missing auth check/)

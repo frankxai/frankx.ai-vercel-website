@@ -23,7 +23,8 @@ const DECLINE = /^\s*declined\s*:\s*\S.{30,}/is
 
 const isReviewer = (c) => c.isBot === true && REVIEWERS.has(String(c.author ?? '').replace(/\[bot\]$/, '').toLowerCase())
 const authorized = (c, author) => !c.isBot && (c.author === author || MEMBERS.has(c.association))
-const titleOf = (body) => body.replace(/!\[[^\]]*\](\([^)]*\))?|<[^>]+>|\*+/g, '').trim().split('\n')[0].slice(0, 90)
+const fullTitleOf = (body) => body.replace(/!\[[^\]]*\](\([^)]*\))?|<[^>]+>|\*+/g, '').trim().split('\n')[0]
+const titleOf = (body) => fullTitleOf(body).slice(0, 90)
 
 /** When a finding was last stated: an edit replaces it, so earlier answers and commits no longer count. */
 const statedAt = (found) => (found.editedAt && found.editedAt > found.createdAt ? found.editedAt : found.createdAt)
@@ -60,15 +61,16 @@ const normalize = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(
 function references(reply, found, siblings = []) {
   const anchor = /#(?:issuecomment|discussion_r|pullrequestreview)-?\d+/.exec(found.url ?? '')?.[0]
   if (anchor && reply.body.includes(anchor.slice(1))) return true
-  const full = normalize(titleOf(found.body))
-  const others = siblings.filter((s) => s !== found && statedAt(s) <= answeredAt(reply)).map((s) => normalize(titleOf(s.body)))
+  const full = normalize(fullTitleOf(found.body))
+  const others = siblings.filter((s) => s !== found && statedAt(s) <= answeredAt(reply)).map((s) => normalize(fullTitleOf(s.body)))
   const text = normalize(reply.body)
   let length = 40
   while (length < full.length && others.some((o) => o.startsWith(full.slice(0, length)))) length += 10
   const title = full.slice(0, length)
   // A title that is a prefix of a sibling's ("Validate input" / "Validate input before saving") is answered by quoting
-  // it in full without also quoting the longer sibling; identical titles can only be told apart by link.
-  if (others.some((o) => o.startsWith(title) && (o === full || text.includes(o)))) return false
+  // it in full without also quoting the longer sibling. Identical titles are told apart by link; sections of one
+  // review body have no link of their own, so there the quoted title answers each indistinguishable twin.
+  if (others.some((o) => o.startsWith(title) && (o === full ? Boolean(found.url) : text.includes(o)))) return false
   // Quoting the title exactly identifies the finding; very short titles (under 6 characters) would match anything.
   return title.length >= 6 && text.includes(title)
 }
