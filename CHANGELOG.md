@@ -11,6 +11,10 @@ Technical release notes are generated from merged pull requests when a semantic-
 - A canonical, evidence-backed changelog with durable release-note pages, RSS discovery, structured data, and sitemap coverage.
 - Draft-first GitHub release automation and categorized generated release notes.
 
+### Fixed
+
+- PDF analytics reports storage failures instead of empty results, with bounded diagnostics that exclude visitor data.
+
 ### Changed
 
 - `/updates` now redirects permanently to `/changelog` so search engines and readers have one source of truth.
