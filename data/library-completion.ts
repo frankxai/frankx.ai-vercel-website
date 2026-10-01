@@ -1,3 +1,1 @@
-import type { BookChapterSummary, BookQuote, BookReview, BookVideo } from '../app/books/types';
-
-/** probe-restore-start */
+/workspace/heal-843/library-completion.ts
