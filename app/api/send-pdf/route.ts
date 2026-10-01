@@ -89,8 +89,9 @@ export async function POST(request: NextRequest) {
       })
       leadStore = { stored: true }
     } catch (error) {
-      console.error('PDF lead not stored:', error)
-      leadStore = { stored: false, ...describeStoreFailure(error, 'store') }
+      const failure = describeStoreFailure(error, 'store')
+      console.error('PDF lead not stored:', failure)
+      leadStore = { stored: false, ...failure }
     }
 
     // Send email with Resend
