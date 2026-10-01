@@ -102,6 +102,9 @@ test('a brief left inside the template comment does not count', () => {
   assert.match(run({ body: `prose \`\`\` <!--\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/, 'mid-line backticks are not a fence')
   assert.deepEqual(run({ body: '```\ncode\n````\n\n' + brief() }).errors, [], 'a longer closing fence closes the block')
   assert.match(run({ body: `a \`\`x <!--\` y\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/, 'unmatched backtick runs are not a code span')
+  // CommonMark 0.31.2 §4.5, example 145: a backtick in a backtick fence's info string makes the line inline code.
+  assert.match(run({ body: `\`\`\` a\`b\n<!--\n${brief()}\n` }).errors.join('\n'), /Add a Surface change brief/, 'a backtick info string is not a fence, so the comment hides the brief')
+  assert.deepEqual(run({ body: '~~~ a`b\n<!-- example\n~~~\n\n' + brief() }).errors, [], 'a tilde fence may carry a backtick in its info string')
 })
 
 test('parseBriefs reads several surfaces from one body', () => {

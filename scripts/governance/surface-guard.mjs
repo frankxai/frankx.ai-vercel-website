@@ -46,8 +46,9 @@ export function parseBriefs(body) {
   const neutralise = (code) => code.replaceAll('<!--', '<! --')
   const visible = String(body ?? '')
     // A fence closes on a run of the same character at least as long as the opener; a code span needs a closing
-    // backtick run of exactly the opener's length, as GitHub renders them.
-    .replace(/^ {0,3}((`|~)\2{2,})[^\n]*\n[\s\S]*?(?:^ {0,3}\1\2*[ \t]*$|$(?![\s\S]))/gm, neutralise)
+    // backtick run of exactly the opener's length, as GitHub renders them. A backtick fence's info string may not
+    // contain a backtick (CommonMark 0.31.2 §4.5): "``` a`b" is inline code, so a "<!--" after it still hides text.
+    .replace(/^ {0,3}((`|~)\2{2,})(?:(?<=~)|(?![^\n]*`))[^\n]*\n[\s\S]*?(?:^ {0,3}\1\2*[ \t]*$|$(?![\s\S]))/gm, neutralise)
     .replace(/(?<!`)(`+)(?!`)[^\n]*?(?<!`)\1(?!`)/g, neutralise)
     .replace(/<!--[\s\S]*?(?:-->|$)/g, '')
   for (const line of visible.split(/\r?\n/)) {
