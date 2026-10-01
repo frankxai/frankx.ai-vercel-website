@@ -35,6 +35,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: branch-cleanup-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   delete:
     runs-on: ubuntu-latest
