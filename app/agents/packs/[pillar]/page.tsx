@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const p = PILLARS.find((x) => x.id === pillar)
   if (!p) return { title: 'Pack not found' }
   return {
-    title: `${p.title} Pack · 9 agents for ${p.tagline.toLowerCase()} | FrankX`,
+    title: `${p.title} Pack · ${p.specialists.length} agents for ${p.tagline.toLowerCase()} | FrankX`,
     description: `Explore the planned ${p.title} pack and join the waitlist for standalone access. ${p.tagline}`,
     alternates: { canonical: `https://frankx.ai/agents/packs/${p.id}` },
     openGraph: {
@@ -123,7 +123,7 @@ export default async function PackPage({ params }: PageProps) {
         '@type': 'Product',
         '@id': `https://frankx.ai/agents/packs/${p.id}#product`,
         name: `${p.title} Pack`,
-        description: `9-agent pack: ${p.tagline}`,
+        description: `${p.specialists.length}-agent pack: ${p.tagline}`,
         url: `https://frankx.ai/agents/packs/${p.id}`,
         category: 'Software / AI Agents',
         offers: {
@@ -174,7 +174,7 @@ export default async function PackPage({ params }: PageProps) {
                   <Sparkles className="h-3 w-3" /> L{pillarLevel}
                 </span>
                 <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-semibold text-white">
-                  9 specialists
+                  {p.specialists.length} specialists
                 </span>
                 {shipped > 0 && (
                   <span className="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 font-semibold text-emerald-300">
@@ -218,7 +218,7 @@ export default async function PackPage({ params }: PageProps) {
             <Link href="/agents#install" className="font-semibold underline underline-offset-2 hover:text-white">
               public ACOS source installer
             </Link>{' '}
-            is available now, but it installs a broader system rather than this nine-role bundle.
+            is available now, but it installs a broader system rather than this pillar bundle.
           </div>
         </div>
       </section>
@@ -226,7 +226,7 @@ export default async function PackPage({ params }: PageProps) {
       {/* Specialists list */}
       <section className="border-t border-white/5 py-12">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-2xl font-bold text-white">9 specialists in this pack</h2>
+          <h2 className="text-2xl font-bold text-white">{p.specialists.length} specialists in this pack</h2>
           <p className="mt-2 text-sm text-slate-400">
             Status badges reflect what&rsquo;s shipped in the current catalog. In-progress slots ship as Frank writes them.
             Buyers get all updates as the pack evolves.
@@ -321,7 +321,7 @@ export default async function PackPage({ params }: PageProps) {
           <p className="mx-auto mt-3 max-w-xl text-slate-400">
             {pricing.tier === 'free'
               ? 'The Foundation bundle is planned to be free. Subscribe to FrankX updates while it is being packaged; the public ACOS source is available today.'
-              : `The ${p.title} pack is in active development — ${shipped} of 9 specialists are cataloged as shipped. Join the waitlist for release updates.`}
+              : `The ${p.title} pack is in active development — ${shipped} of ${p.specialists.length} specialists are cataloged as shipped. Join the waitlist for release updates.`}
           </p>
 
           <div className="mt-8 flex flex-col items-center gap-5">

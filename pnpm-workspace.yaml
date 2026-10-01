@@ -47,3 +47,15 @@ allowBuilds:
   'sharp@0.32.6': false
   'sharp@0.34.5': true
   'unrs-resolver@1.11.1': true
+
+# Supply-chain cooldown: do not resolve any version published less than 3 days
+# ago (minutes). This matches the cooldown Dependabot now applies on its own:
+# its pnpm updater runs `pnpm update ... --config.minimumReleaseAge=4320`. When
+# main was regenerated onto a fresher release (#756 resolved the
+# @ai-sdk/provider-utils floor to 4.0.54, two days old), every Dependabot job
+# failed with ERR_PNPM_NO_MATURE_MATCHING_VERSION until that version aged.
+# Holding main to the same window keeps the lockfile resolvable by Dependabot.
+# Frozen installs (CI, Vercel) do not re-check age, so builds are unaffected.
+# For an urgent security fix younger than 3 days, add the package to
+# minimumReleaseAgeExclude with a dated comment and remove it afterwards.
+minimumReleaseAge: 4320
