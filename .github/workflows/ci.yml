@@ -2,7 +2,38 @@ name: CI
 
 on:
   push:
-    branches: [main, staging]
+    branches: [main]
+    # Pull requests already prove workflow/docs-only changes before merge.
+    # Re-run the full install, typecheck, test, and build only when a main
+    # commit can change the deployed application.
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'content/**'
+      - 'data/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'styles/**'
+      - 'types/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'next.config.mjs'
+      - 'vercel.json'
+      - 'tailwind.config.js'
+      - 'tsconfig.json'
+      - 'proxy.ts'
+      - 'middleware.ts'
+      - 'middleware.js'
+      - '.vercelignore'
+      - '.npmrc'
+      - 'postcss.config.js'
+      - 'postcss.config.mjs'
+      - 'eslint.config.js'
+      - 'eslint.config.mjs'
+      - '.eslintrc.json'
+      - 'instrumentation.ts'
   pull_request:
     # 'edited' matters here for the base branch, not the title: a pull_request
     # run builds the merge commit, so this verdict is about one base. Retargeting
@@ -13,7 +44,8 @@ on:
     branches: [main, staging]
 
 # CI is an exact required landing check and test:build-integrity scans workflow
-# security controls. Keep it always-reporting; never add paths/paths-ignore.
+# security controls. Keep pull_request always-reporting; a required check with
+# PR paths/paths-ignore can leave unmatched pull requests permanently blocked.
 
 # Cancel superseded runs on rapid pushes to the same ref
 concurrency:

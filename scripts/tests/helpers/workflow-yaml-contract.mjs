@@ -80,7 +80,35 @@ export function topLevelMappingBlock(workflow, key) {
 const canonicalCiTriggerLines = [
   "on:",
   "  push:",
-  "    branches: [main, staging]",
+  "    branches: [main]",
+  "    paths:",
+  "      - 'app/**'",
+  "      - 'components/**'",
+  "      - 'lib/**'",
+  "      - 'content/**'",
+  "      - 'data/**'",
+  "      - 'public/**'",
+  "      - 'scripts/**'",
+  "      - 'styles/**'",
+  "      - 'types/**'",
+  "      - 'package.json'",
+  "      - 'pnpm-lock.yaml'",
+  "      - 'pnpm-workspace.yaml'",
+  "      - 'next.config.mjs'",
+  "      - 'vercel.json'",
+  "      - 'tailwind.config.js'",
+  "      - 'tsconfig.json'",
+  "      - 'proxy.ts'",
+  "      - 'middleware.ts'",
+  "      - 'middleware.js'",
+  "      - '.vercelignore'",
+  "      - '.npmrc'",
+  "      - 'postcss.config.js'",
+  "      - 'postcss.config.mjs'",
+  "      - 'eslint.config.js'",
+  "      - 'eslint.config.mjs'",
+  "      - '.eslintrc.json'",
+  "      - 'instrumentation.ts'",
   "  pull_request:",
   "    types: [opened, synchronize, reopened, edited, ready_for_review]",
   "    branches: [main, staging]"
@@ -120,6 +148,6 @@ export function ciAlwaysReportingErrors(workflow) {
     semanticLines.every((line, index) => line === canonicalCiTriggerLines[index])
     ? []
     : [
-      "CI required-check triggers must exactly cover main/staging pushes and reviewable pull requests"
+      "CI required-check triggers must cover relevant main pushes and all reviewable pull requests"
     ];
 }

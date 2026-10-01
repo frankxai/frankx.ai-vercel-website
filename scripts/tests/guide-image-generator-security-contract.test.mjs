@@ -684,7 +684,7 @@ on:
   `;
 
   assert.deepEqual(ciAlwaysReportingErrors(workflow), [
-    "CI required-check triggers must exactly cover main/staging pushes and reviewable pull requests"
+    "CI required-check triggers must cover relevant main pushes and all reviewable pull requests"
   ]);
 });
 
@@ -712,7 +712,7 @@ on:
 
   for (const workflow of hostileWorkflows) {
     assert.deepEqual(ciAlwaysReportingErrors(workflow), [
-      "CI required-check triggers must exactly cover main/staging pushes and reviewable pull requests"
+      "CI required-check triggers must cover relevant main pushes and all reviewable pull requests"
     ]);
   }
 });
