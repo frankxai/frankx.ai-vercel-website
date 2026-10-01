@@ -8,7 +8,7 @@ const SITE_URL = 'https://frankx.ai';
 export const metadata: Metadata = {
   title: 'Quotes — Every Passage I Marked | FrankX Library',
   description:
-    'Every quote worth remembering from the FrankX Library — a browsable collection of passages across philosophy, psychology, productivity, and more. Each quote links back to the book it came from.',
+    'Source-marked excerpts from the FrankX Library. Each passage links back to the book it came from.',
   keywords: [
     'book quotes',
     'curated quotes',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Quotes — Every Passage I Marked | FrankX Library',
     description:
-      'Every quote worth remembering from the FrankX Library — curated passages across 10+ books, each linking back to its source.',
+      'Source-marked excerpts from the FrankX Library. Each passage links back to its book.',
     type: 'article',
     url: `${SITE_URL}/library/quotes`,
     siteName: 'FrankX',
@@ -163,14 +163,14 @@ export default function LibraryQuotesPage() {
           <h1 className="text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight">
             Every passage
             <br />
-            <span className="bg-gradient-to-r from-rose-300 via-amber-200 to-rose-400 bg-clip-text text-transparent">
+            <span className="text-rose-200">
               worth remembering.
             </span>
           </h1>
           <p className="mt-8 text-lg text-white/60 leading-relaxed max-w-2xl">
-            Curated quotes from every deep-dived book in the library. Each quote carries
-            its chapter reference and, where useful, the one-sentence framing of why it
-            matters. Click any book title to open its full hub.
+            Source-marked excerpts from the library books that have them. Each line links
+            back to its book and names the chapter when the entry recorded one. A book
+            page with no excerpt is waiting on a source, and this vault does not invent one.
           </p>
 
           {/* Stats */}
