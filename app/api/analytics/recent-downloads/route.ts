@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getRecentDownloadCount } from '@/lib/pdf-analytics'
+import { describeStoreFailure } from '@/lib/store-failure'
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,9 +18,9 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ success: true, count })
   } catch (error) {
-    console.error('Get recent downloads error:', error)
+    console.error('Get recent downloads error:', describeStoreFailure(error, 'read'))
     return NextResponse.json(
-      { error: 'Failed to get download count' },
+      { error: 'Failed to get download count', ...describeStoreFailure(error, 'read') },
       { status: 500 }
     )
   }
