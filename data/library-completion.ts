@@ -252,6 +252,7 @@ export function applyLibraryCompletion(
 
   if (!next.chapters?.length && FRANK_CHAPTERS[next.slug]) {
     next.chapters = FRANK_CHAPTERS[next.slug];
+    next.chaptersBasis = 'Symbolic';
   }
 
   if (!next.faq?.length && next.guide) {

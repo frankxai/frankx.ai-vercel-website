@@ -79,6 +79,13 @@ export function ReviewTail({
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {review.continueReading.map((item, i) => {
+              const shelfHref = item.url?.startsWith('/')
+                ? item.url
+                : item.url?.startsWith('https://www.frankx.ai/')
+                  ? item.url.slice('https://www.frankx.ai'.length)
+                  : item.url?.startsWith('https://frankx.ai/')
+                    ? item.url.slice('https://frankx.ai'.length)
+                    : null;
               const cardInner = (
                 <>
                   <h3 className="text-[15px] font-semibold text-white group-hover:text-cyan-200 transition-colors leading-snug">
@@ -90,20 +97,22 @@ export function ReviewTail({
                   </p>
                   {item.url && (
                     <span className="inline-flex items-center gap-1 mt-4 text-[12px] text-cyan-400/60 group-hover:text-cyan-300 transition-colors">
-                      Get the book
-                      <svg
-                        className="w-3 h-3"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                        />
-                      </svg>
+                      {shelfHref ? 'Read on this shelf' : 'Get the book'}
+                      {!shelfHref && (
+                        <svg
+                          className="w-3 h-3"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={2}
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                          />
+                        </svg>
+                      )}
                     </span>
                   )}
                 </>
@@ -111,6 +120,14 @@ export function ReviewTail({
 
               const className =
                 'group block h-full p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-400/20 hover:bg-cyan-500/[0.03] transition-colors';
+
+              if (shelfHref) {
+                return (
+                  <Link key={i} href={shelfHref} className={className}>
+                    {cardInner}
+                  </Link>
+                );
+              }
 
               return item.url ? (
                 <a
@@ -142,7 +159,7 @@ export function ReviewTail({
           <p className="text-sm text-white/40 mb-6">
             {review.videos.every((video) => video.url.includes('/results?'))
               ? 'Each link opens a YouTube search for this book. Pick a named speaker before you treat a recording as a source.'
-              : 'Talks and interviews sit beside the book. A link marked YouTube search opens results, and a direct link opens one recording.'}
+              : 'A link marked YouTube search opens YouTube results. Any other link opens the page saved with this book.'}
           </p>
           <div className="space-y-3">
             {review.videos.map((v, i) => (

@@ -86,6 +86,7 @@ test('owned books gain source chapters and existing excerpts stay put', () => {
 
   assert.equal(frank.quotes.length, 6);
   assert.equal(frank.chapters.length, 14);
+  assert.equal(frank.chaptersBasis, 'Symbolic');
   assert.equal(frank.chapters[0].title, 'An Invitation');
   assert.match(frank.videos[0].url, /results\?search_query=/);
 
@@ -111,9 +112,13 @@ test('owned books gain source chapters and existing excerpts stay put', () => {
 test('the public catalog and the video label use the completion', () => {
   const reviews = read('data/library-reviews.ts');
   const tail = read('app/library/[slug]/review-tail.tsx');
+  const page = read('app/library/[slug]/page.tsx');
   const vault = read('app/library/quotes/page.tsx');
 
   assert.match(reviews, /applyLibraryCompletion/);
   assert.match(tail, /YouTube search/);
+  assert.match(tail, /Read on this shelf/);
+  assert.equal(tail.includes('opens one recording'), false);
+  assert.match(page, /chaptersBasis === 'Symbolic'/);
   assert.equal(vault.includes('every deep-dived book'), false);
 });

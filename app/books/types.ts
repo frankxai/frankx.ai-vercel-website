@@ -158,6 +158,7 @@ export interface BookReview {
   hasCover?: boolean; // true when coverImage resolves to approved public media
   quotes?: BookQuote[]; // curated memorable quotes
   chapters?: BookChapterSummary[]; // chapter-by-chapter breakdown
+  chaptersBasis?: 'Symbolic'; // required when chapter lines are story, not a measured finding
   continueReading?: RelatedReadingItem[]; // external related books
   videos?: BookVideo[]; // YouTube / podcast deep-dives
   guide?: {
