@@ -94,6 +94,29 @@ test('real Redis client and analytics routes keep outages distinct from empty re
       }
       assert.doesNotMatch(JSON.stringify(logs), /Ada|Visitor|synthetic-token|ada@example|command was|redis\.example/)
     })
+    await t.test('lead JSON parsing failures stay at request stage without a Redis call; refusal stays at store stage', async () => {
+      const before = paths.length
+      const malformed = new Request('https://app.example.invalid', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: '{"email":"ada@example.invalid","name":"Ada Visitor",',
+      })
+      const response = await lead.POST(malformed)
+      const payload = await response.json()
+      assert.equal(response.status, 500)
+      assert.equal(payload.stage, 'request')
+      assert.equal(paths.length, before, 'invalid JSON must not reach Redis')
+      assert.doesNotMatch(JSON.stringify(payload), /Ada|Visitor|ada@example/)
+      assert.equal(logs.at(-1)[1].stage, 'request')
+
+      const refused = await lead.POST(request({ ...common, email: 'ada@example.invalid', name: 'Ada Visitor' }))
+      const refusal = await refused.json()
+      assert.equal(refused.status, 500)
+      assert.equal(refusal.stage, 'store')
+      assert.equal(refusal.kind, 'store-refused')
+      assert.ok(paths.length > before, 'a valid request must attempt the store')
+      assert.equal(logs.at(-1)[1].stage, 'store')
+      assert.doesNotMatch(JSON.stringify(logs), /Ada|Visitor|synthetic-token|ada@example|command was|redis\.example/)
+    })
     await t.test('successful empty reads remain zero and writes still return tracked records', async () => {
       behavior = 'healthy'
       assert.equal(await analytics.getRecentDownloadCount('soulbook'), 0)
