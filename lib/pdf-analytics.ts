@@ -1,5 +1,4 @@
 // PDF Analytics & Lead Tracking System
-import { createClient } from '@vercel/kv'
 import type {
   PDFView,
   PDFDownload,
@@ -8,12 +7,12 @@ import type {
   AnalyticsSummary,
   WeeklyStats
 } from './types/pdf-analytics'
-import { redisRestConfig } from './redis-env'
+import { createRedisClient } from './redis-client'
 
 // Vercel's filesystem is read-only, so the JSON files this module used to write
 // were never persisted and every view, download and lead was lost. Each
 // collection is now an append-only Redis list, capped to its newest entries.
-const kv = createClient(redisRestConfig())
+const kv = createRedisClient()
 const VIEWS = 'pdf-analytics:views'
 const DOWNLOADS = 'pdf-analytics:downloads'
 const LEADS = 'pdf-analytics:leads'
@@ -27,13 +26,10 @@ function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
 }
 
+// A failed read throws: reporting zero views while the store is down made the
+// dashboards and the download counter look healthy during a total outage.
 async function readAll<T>(key: string): Promise<T[]> {
-  try {
-    return (await kv.lrange<T>(key, 0, -1)) ?? []
-  } catch (error) {
-    console.error(`PDF analytics read failed for ${key}:`, error)
-    return []
-  }
+  return (await kv.lrange<T>(key, 0, -1)) ?? []
 }
 
 async function append<T>(key: string, item: T): Promise<T> {
