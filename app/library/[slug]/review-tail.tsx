@@ -140,9 +140,9 @@ export function ReviewTail({
             Go Deeper — Videos
           </h2>
           <p className="text-sm text-white/40 mb-6">
-            The book is the foundation. These talks and interviews are where the ideas
-            sharpen, get challenged, and connect to adjacent work. Best watched after
-            reading, not instead of.
+            {review.videos.every((video) => video.url.includes('/results?'))
+              ? 'Each link opens a YouTube search for this book. Pick a named speaker before you treat a recording as a source.'
+              : 'Talks and interviews sit beside the book. A link marked YouTube search opens results, and a direct link opens one recording.'}
           </p>
           <div className="space-y-3">
             {review.videos.map((v, i) => (
@@ -172,11 +172,15 @@ export function ReviewTail({
                     {v.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">
-                    {v.kind && (
+                    {v.url.includes('/results?') ? (
+                      <span className="px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-white/5 text-white/50 border border-white/10">
+                        YouTube search
+                      </span>
+                    ) : v.kind ? (
                       <span className="px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-red-500/10 text-red-400/80 border border-red-500/15">
                         {v.kind}
                       </span>
-                    )}
+                    ) : null}
                     {v.duration && (
                       <span className="px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-white/40 border border-white/10">
                         {v.duration}
