@@ -82,20 +82,20 @@ function chapter(number: number, title: string, description: string): BookChapte
 
 const FRANK_CHAPTERS: Record<string, BookChapterSummary[]> = {
   'the-wordless-laws': [
-    chapter(1, 'An Invitation', 'The chapter explores why the book treats the most powerful laws of life as hiding in plain sight — and how a reader might learn to notice them.'),
-    chapter(2, 'The One Who Decides', 'The book holds that a single, total decision rearranges everything downstream, while an undecided life stays formless.'),
-    chapter(3, 'The Tuning of a Life', 'The chapter explores the teaching that what you hold steadily inside begins to meet you outside — that, in this book’s frame, state precedes circumstance.'),
-    chapter(4, 'The Words Said in the Dark', 'The book holds that repeated inner speech pours the floor you stand on, and that you become the sentence you say most.'),
-    chapter(5, 'The Picture Before the Thing', 'The chapter explores holding the finished image first, so the hands and the world arrange toward it — presented as the book’s method, not a lab result.'),
-    chapter(6, 'The Leap Taken Before the Bridge', 'The book holds that you must act as if it is already true before the proof exists — or, in this teaching, the proof never comes.'),
-    chapter(7, 'Thanks Given in Advance', 'The chapter explores thanks given before the gift as opening the channel for the gift; the book contrasts lack that repels with fullness that draws.'),
-    chapter(8, 'The Spark That Becomes the World', 'The book holds that everything ever built was first an invisible thing in one mind, and treats the idea itself as the asset.'),
-    chapter(9, 'The Mind That Will Not Bend', 'The chapter explores how the world, in this story, tests every desire with delay and refusal — and how the one who will not quit is rare, with rarity rewarded.'),
-    chapter(10, 'The Minds That Become One', 'The book holds that two minds in true alignment create a third, more capable than either alone.'),
-    chapter(11, 'The River That Returns', 'The chapter explores the teaching that what you release in the right spirit returns enlarged, and that the closed hand can neither give nor receive.'),
-    chapter(12, 'The Knowing That Sleeps', 'The book holds that handing the problem to the deeper mind and stopping the force lets the answer surface when you let go.'),
-    chapter(13, 'The Open Hand', 'The chapter explores deciding fully, then releasing the grip on how and when — tension blocks; allowing completes, as the book teaches it.'),
-    chapter(14, 'The Last Page', 'The book closes on the claim that the laws were in the reader the whole time.'),
+    chapter(1, 'An Invitation', 'Why the most powerful laws of life hide in plain sight — and how to read them.'),
+    chapter(2, 'The One Who Decides', 'A single, total decision rearranges everything downstream. The undecided life stays formless.'),
+    chapter(3, 'The Tuning of a Life', 'What you hold steadily inside begins to meet you outside. State precedes circumstance.'),
+    chapter(4, 'The Words Said in the Dark', 'Repeated inner speech pours the floor you stand on. You become the sentence you say most.'),
+    chapter(5, 'The Picture Before the Thing', 'Hold the finished image first, and the hands and the world arrange toward it.'),
+    chapter(6, 'The Leap Taken Before the Bridge', 'You must act as if it is already true before the proof exists — or the proof never comes.'),
+    chapter(7, 'Thanks Given in Advance', 'Thanks given before the gift opens the channel for the gift. Lack repels; fullness draws.'),
+    chapter(8, 'The Spark That Becomes the World', 'Everything ever built was first an invisible thing in one mind. The idea is the asset.'),
+    chapter(9, 'The Mind That Will Not Bend', 'The world tests every desire with delay and refusal. The one who will not quit is rare — and rarity is rewarded.'),
+    chapter(10, 'The Minds That Become One', 'Two minds in true alignment create a third, more capable than either alone.'),
+    chapter(11, 'The River That Returns', 'What you release in the right spirit returns enlarged. The closed hand can neither give nor receive.'),
+    chapter(12, 'The Knowing That Sleeps', 'Hand the problem to the deeper mind and stop forcing; the answer surfaces when you let go.'),
+    chapter(13, 'The Open Hand', 'Decide fully — then release the grip on how and when. Tension blocks; allowing completes.'),
+    chapter(14, 'The Last Page', 'The laws were in the reader the whole time.'),
   ],
   'the-book-of-secrets': [
     chapter(1, 'The Locked Drawers', 'The secrets of making good work are not hidden — only learned too late. This book hands them over at the start.'),
@@ -252,31 +252,7 @@ export function applyLibraryCompletion(
 
   if (!next.chapters?.length && FRANK_CHAPTERS[next.slug]) {
     next.chapters = FRANK_CHAPTERS[next.slug];
-  }
-
-  if (next.slug === 'the-wordless-laws' && !next.guide) {
-    const relatedFromContinue = CONTINUE_SLUGS[next.slug]?.map((pair) => pair.slug) ?? [];
-    next.guide = {
-      tradition: 'Human Layer',
-      kind: 'Contemporary teaching',
-      claimBasis: 'Symbolic',
-      context:
-        'Frank’s parable book presents twelve forces through story rather than as labeled science. Chapter summaries here are editorial distillations of the book’s teaching, not empirical claims.',
-      editionNote:
-        'Use the FrankX edition on this site. Chapter titles follow the published chapter map in content/books/the-wordless-laws.',
-      readingPath: [
-        {
-          title: 'Read the stories in order',
-          note: 'The book withholds named laws; follow the chapter sequence without skipping to a vocabulary list.',
-        },
-        {
-          title: 'Return to one chapter that stuck',
-          note: 'Re-read a single parable after you finish; the teaching is meant to be excavated, not memorized as slogans.',
-        },
-      ],
-      sources: [],
-      relatedSlugs: relatedFromContinue,
-    };
+    next.chaptersBasis = 'Symbolic';
   }
 
   if (!next.faq?.length && next.guide) {
