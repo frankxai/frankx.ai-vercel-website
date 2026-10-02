@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { ArrowRight, Check, FlaskConical, Sparkles, Users } from 'lucide-react'
 
 import { TrackedGlowButton } from '@/components/analytics/TrackedGlowButton'
@@ -46,6 +47,12 @@ export default function WorkshopsPage() {
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
                 Build the room around one useful result: something participants make, test, decide, or carry into the next week.
+              </p>
+              <p className="mt-5 max-w-2xl text-sm leading-6 text-slate-300">
+                <TrackedLink eventName="workshop_learning_cta_clicked" eventProperties={{ action: "read_curriculum", placement: "catalog", workshop: "ai-operating-systems" }} href="/guides/ai-operating-systems-workshop" className="font-semibold text-cyan-300 underline decoration-cyan-300/40 underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
+                  Study the AI operating systems curriculum
+                </TrackedLink>
+                {' '}— twelve lessons on agents, memory, MCP and coordinated work, with an offline build lab.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <TrackedGlowButton
