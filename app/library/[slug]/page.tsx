@@ -5,6 +5,9 @@ import { bookReviews, getReviewBySlug } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 import { BookCover } from '@/components/library/BookCover';
 import { ReadingGuide } from '@/components/library/ReadingGuide';
+import { SacredDepthPanel } from '@/components/library/SacredDepthPanel';
+import { sacredDepth } from '@/data/sacred-depth';
+import { withSacredDepth } from '@/data/sacred-guide-view';
 import { generateMetadata, StarRating } from './review-meta';
 import { ReviewTail } from './review-tail';
 
@@ -16,8 +19,13 @@ export default async function ReviewPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const review = getReviewBySlug(slug);
-  if (!review) notFound();
+  const fetched = getReviewBySlug(slug);
+  if (!fetched) notFound();
+
+  const depth = sacredDepth[fetched.slug];
+  const quotesFromDepth = Boolean(depth && !fetched.quotes?.length && depth.quotes.length > 0);
+  const mapFromDepth = Boolean(depth && !fetched.chapters?.length && depth.sections.length > 0);
+  const review = withSacredDepth(fetched, depth);
 
   const relatedBook = review.relatedBook
     ? booksRegistry.find((b) => b.slug === review.relatedBook)
@@ -145,6 +153,8 @@ export default async function ReviewPage({
 
       {review.guide && <ReadingGuide guide={review.guide} slug={review.slug} />}
 
+      {depth && <SacredDepthPanel depth={depth} />}
+
       {/* Table of Contents */}
       <nav className="mx-auto max-w-3xl px-6 pb-14" aria-label="Contents">
         <h2 className="font-display text-2xl text-white">In this guide</h2>
@@ -171,7 +181,7 @@ export default async function ReviewPage({
             {review.chapters && review.chapters.length > 0 && (
               <li>
                 <a href="#chapters" className="hover:text-amber-300 transition-colors">
-                  03 &nbsp;·&nbsp; Chapter-by-Chapter ({review.chapters.length})
+                  03 &nbsp;·&nbsp; {mapFromDepth ? 'Editorial reading map' : 'Chapter-by-Chapter'} ({review.chapters.length})
                 </a>
               </li>
             )}
@@ -232,7 +242,7 @@ export default async function ReviewPage({
             <span className="w-8 h-px bg-rose-400/60" />
             Quotes Worth Remembering
           </h2>
-          <p className="text-sm text-white/50 mb-6">{review.quotes.length} recorded excerpts. Check the named edition and location before sharing the wording.</p>
+          <p className="text-sm text-white/50 mb-6">{quotesFromDepth && depth ? `${review.quotes.length} passages in ${depth.translation.translator}’s ${depth.translation.year} translation, each linked to the page it was checked against. Other translations word these lines differently.` : `${review.quotes.length} recorded excerpts. Check the named edition and location before sharing the wording.`}</p>
           <div className="space-y-4">
             {review.quotes.map((quote, i) => (
               <figure
@@ -245,10 +255,10 @@ export default async function ReviewPage({
                 >
                   &ldquo;
                 </span>
-                <blockquote className="text-white/80 leading-relaxed text-[15.5px] font-light italic">
+                <blockquote className={`text-white/80 leading-relaxed text-[15.5px] font-light italic${quote.source ? ' whitespace-pre-line' : ''}`}>
                   {quote.text}
                 </blockquote>
-                {(quote.chapter || quote.context) && (
+                {(quote.chapter || quote.context || quote.source) && (
                   <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1">
                     {quote.chapter && (
                       <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
@@ -258,6 +268,12 @@ export default async function ReviewPage({
                     {quote.context && (
                       <p className="text-[13px] text-white/50 leading-relaxed">
                         {quote.context}
+                      </p>
+                    )}
+                    {quote.source && (
+                      <p className="text-[12px] text-white/45">
+                        <cite className="not-italic">{quote.source.label}</cite>{' · '}
+                        <a href={quote.source.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-rose-200 focus-visible:ring-2 focus-visible:ring-rose-300">check the source ↗</a>
                       </p>
                     )}
                   </figcaption>
@@ -273,12 +289,14 @@ export default async function ReviewPage({
         <section id="chapters" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
             <span className="w-8 h-px bg-violet-400/60" />
-            Chapter-by-Chapter
+            {mapFromDepth ? 'Editorial reading map' : 'Chapter-by-Chapter'}
           </h2>
           <p className="text-sm text-white/40 mb-6">
-            {review.chaptersBasis === 'Symbolic'
-              ? 'Symbolic. These are the book’s own chapter descriptions, told as story.'
-              : 'Each chapter carries a key idea and a short summary, so you can find the argument again.'}
+            {mapFromDepth
+              ? 'An editorial reading map. Each row names a place to start, with the idea to carry and a short summary. Read the text itself for its own order.'
+              : review.chaptersBasis === 'Symbolic'
+                ? 'Symbolic. These are the book’s own chapter descriptions, told as story.'
+                : 'Each chapter carries a key idea and a short summary, so you can find the argument again.'}
           </p>
           <div className="space-y-3">
             {review.chapters.map((ch) => (
