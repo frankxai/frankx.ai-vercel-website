@@ -63,6 +63,7 @@
 .mobilePath { display:none; }
 .productTitle { display:flex; justify-content:space-between; align-items:start; gap:1.5rem; margin-bottom:1.5rem; }
 .productTitle h2 { max-width:520px; margin:0; }
+.inspector { scroll-margin-top:110px; }
 .price { font-family:var(--font-mono),monospace; color:var(--accent); font-size:1.25rem; white-space:nowrap; }
 .price small { display:block; text-align:right; font-family:var(--font-inter),sans-serif; margin-top:.35rem; }
 .specification { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2rem; }

@@ -140,7 +140,7 @@ export default function EconomyAtlasClient({ atlas }: {atlas: Atlas}) {
         <section className={styles.products} aria-label="Product proposals">
           <div className={styles.columnHeading}><h2>Product proposals</h2><span aria-live="polite">{filtered.length} / {atlas.opportunities.length}</span></div>
           {filtered.length ? <ul>{filtered.map(p => <li key={p.id} data-selected={p.id === product.id}>
-            <button type="button" className={styles.productPick} aria-pressed={p.id === product.id} onClick={e => pick(p.id, e.detail === 0)}><small>{p.category}</small><strong>{p.name}</strong><span>{p.buyer}</span><small>{sequence(p.priority)}</small></button>
+            <button type="button" className={styles.productPick} aria-pressed={p.id === product.id} onClick={e => pick(p.id, e.detail === 0 || window.matchMedia('(max-width: 767px)').matches)}><small>{p.category}</small><strong>{p.name}</strong><span>{p.buyer}</span><small>{sequence(p.priority)}</small></button>
             <label className={styles.compareCheck}><input type="checkbox" checked={compare.includes(p.id)} onChange={() => toggleCompare(p.id)} /> Compare<span className={styles.srOnly}> {p.name}</span></label>
           </li>)}</ul> : <p className={styles.empty}>No matching proposals. Reset filters to see the full atlas.</p>}
         </section>
@@ -148,7 +148,7 @@ export default function EconomyAtlasClient({ atlas }: {atlas: Atlas}) {
           <section className={styles.routeMap} aria-labelledby="route-heading">
             <div className={styles.columnHeading}><h2 id="route-heading">From product to distribution</h2><span>Proposed route</span></div>
             <svg className={styles.diagram} viewBox="0 0 800 270" role="img" aria-labelledby="diagram-title diagram-desc">
-              <title id="diagram-title">{product.name}: proposed distribution routes</title><desc id="diagram-desc">Deliver {product.deliverable}. Proposed channels: {channels.map(m => m.name).join(', ')}. Connections show research relationships, not sales volume.</desc>
+              <title id="diagram-title">{`${product.name}: proposed distribution routes`}</title><desc id="diagram-desc">Deliver {product.deliverable}. Proposed channels: {channels.map(m => m.name).join(', ')}. Connections show research relationships, not sales volume.</desc>
               <text x="20" y="24" className={styles.graphLabel}>Create</text><text x="290" y="24" className={styles.graphLabel}>Package and deliver</text><text x="570" y="24" className={styles.graphLabel}>Distribute</text>
               <path d="M245 135 C267 135 267 135 290 135" className={styles.edge} />
               {channels.slice(0, 4).map((m, i) => <path key={m.id} d={`M525 135 C545 135 545 ${65 + i * 56} 565 ${65 + i * 56}`} className={styles.edge} />)}
