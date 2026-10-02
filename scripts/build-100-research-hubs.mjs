@@ -2,6 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// The historical generator invented citation types, review grades, and
+// replication status from search pages and self-references. Never regenerate
+// public research artifacts until it consumes independently reviewed records.
+throw new Error('Research generation is held: source-specific evidence and review receipts are required. See issue #824.');
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
