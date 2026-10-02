@@ -48,6 +48,7 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const searchRef = useRef<HTMLInputElement>(null)
   const activeRef = useRef<PlaybackTrack | null>(null)
   const attemptRef = useRef(0)
+  const restoreFocusOnCollapseRef = useRef(false)
   const requestId = useId()
   const panelId = useId()
   const pathname = usePathname()
@@ -61,9 +62,12 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const playable = catalog.filter(track => safeMediaUrl(track.streamUrl))
   const results = searched ? suggestTracks(catalog, request) : browseAll ? playable : playable.slice(0, 6)
 
-  function minimize() {
+  function collapse() {
+    restoreFocusOnCollapseRef.current = true
     setExpanded(false)
-    disclosureRef.current?.focus()
+  }
+  function minimize() {
+    collapse()
   }
   function clearSearch() {
     setRequest('')
@@ -187,6 +191,17 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
     updateMusicMediaSessionState(!active ? 'none' : state === 'playing' ? 'playing' : 'paused')
   }, [active, state])
 
+  // Restore keyboard and control focus when the dock collapses. On / and /library,
+  // the expanded dock unmounts and renders the collapsed chip, so focusing disclosureRef
+  // must happen after the chip mounts to avoid falling back to document.body.
+  useLayoutEffect(() => {
+    if (typeof window === 'undefined') return
+    if (!expanded && restoreFocusOnCollapseRef.current) {
+      restoreFocusOnCollapseRef.current = false
+      disclosureRef.current?.focus()
+    }
+  }, [expanded])
+
   // Publish measured dock clearance (chrome height + bottom offset + safe-area).
   // Home collapsed: bottom-right chip; full-width emerald CTA must stop short via
   // --music-chip-reserve (qa-overlay-clearance.css) — chip alone cannot clear w-full.
@@ -265,7 +280,20 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
           </button>
         ) : (
         <div className="flex min-h-14 items-center gap-1 px-3 py-2">
-          <button ref={disclosureRef} type="button" onClick={() => setExpanded(value => !value)} aria-controls={panelId} aria-expanded={expanded} className="min-h-11 min-w-0 flex-1 rounded-lg px-2 text-left focus-visible:outline focus-visible:outline-emerald-300">
+          <button
+            ref={disclosureRef}
+            type="button"
+            onClick={() => {
+              if (expanded) {
+                collapse()
+              } else {
+                setExpanded(true)
+              }
+            }}
+            aria-controls={panelId}
+            aria-expanded={expanded}
+            className="min-h-11 min-w-0 flex-1 rounded-lg px-2 text-left focus-visible:outline focus-visible:outline-emerald-300"
+          >
             <span className="block truncate text-sm font-medium">{active?.title || 'Music by FrankX'}</span>
             <span className="block text-xs text-white/65" aria-live="polite">{active ? subtitle : 'Choose a soundtrack'}</span>
           </button>
