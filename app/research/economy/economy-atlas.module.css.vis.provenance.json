@@ -3,17 +3,17 @@
   "schema_version": "1.0.0",
   "asset": {
     "asset_id": "economy-native-economy-atlas.module.css",
-    "version_id": "2047f88bcf7a6bb271db8d0d3e002fb5f89e9f51e1904e53984e33548f7d559c",
+    "version_id": "9afc0fe63762a6d6e79a1a4a312c5b384b85dfd6682fc2be11c54bdff765e462",
     "media_type": "design-source",
-    "sha256": "2047f88bcf7a6bb271db8d0d3e002fb5f89e9f51e1904e53984e33548f7d559c",
+    "sha256": "9afc0fe63762a6d6e79a1a4a312c5b384b85dfd6682fc2be11c54bdff765e462",
     "relative_path": "app/research/economy/economy-atlas.module.css"
   },
   "generation": {
     "provider": "OpenAI",
     "model": "GPT-6 Codex",
-    "prompt": "Implement the selected evidence atlas direction as a native Next.js research page for FrankX. Follow the current production research desktop/mobile baseline, obsidian/emerald tokens and host fonts. Show actual proposed product-to-channel relationships; mobile uses readable sequential paths. Include source qualifications, comparison, editable costs, browser save/restore, public-ID sharing and JSON export/import. No fabricated demand, sales or legal clearance. Compare exactly three compositions in the design record. Purposeful state feedback, native keyboard/touch semantics and static reduced motion. Founder release approval remains pending. Refinement: render SVG title as one string for React hydration; selecting a product on mobile focuses and scrolls to its details with navigation clearance. Preserve the selected composition and source qualifications.",
+    "prompt": "Implement the selected evidence atlas direction as a native Next.js research page for FrankX. Follow the current production research desktop/mobile baseline, obsidian/emerald tokens and host fonts. Show actual proposed product-to-channel relationships; mobile uses readable sequential paths. Include source qualifications, comparison, editable costs, browser save/restore, public-ID sharing and JSON export/import. No fabricated demand, sales or legal clearance. Compare exactly three compositions in the design record. Purposeful state feedback, native keyboard/touch semantics and static reduced motion. Founder release approval remains pending. Refinement: render SVG title as one string for React hydration; selecting a product on mobile focuses and scrolls to its details with navigation clearance. Preserve the selected composition and source qualifications. Accessibility refinement: keep the Research breadcrumb underlined so its link affordance does not depend on color.",
     "seed": null,
-    "created_at": "2026-10-02T12:03:43.554776+00:00"
+    "created_at": "2026-10-02T12:19:53.918006+00:00"
   },
   "agent": {
     "coding_agent": "Codex",
@@ -21,7 +21,7 @@
     "session_ref": "economy-atlas-20261002"
   },
   "evaluation": {
-    "status": "Initial production build passed; hydration fix and mobile refinement await exact-revision browser and independent review"
+    "status": "Five-width journeys passed; breadcrumb distinction fixed; final revision accessibility/independent review pending"
   },
   "rights": {
     "composition": "Original interface, source-backed research"

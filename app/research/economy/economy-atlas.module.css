@@ -18,6 +18,7 @@
 .atlas small { color:var(--muted); font-size:.72rem; line-height:1.6; }
 .hero { padding:0 0 3rem; max-width:1000px; }
 .hero nav { font-size:.8rem; margin-bottom:2.5rem; color:var(--muted); }
+.hero nav a { text-decoration:underline; }
 .eyebrow { font-size:.75rem; color:var(--accent)!important; letter-spacing:.03em; margin-bottom:.8rem; }
 .hero h1 { font-size:clamp(2.5rem,5.5vw,5rem); font-weight:600; letter-spacing:-.055em; line-height:1.06; margin-bottom:1.5rem; }
 .hero h1 span { color:var(--accent); }
