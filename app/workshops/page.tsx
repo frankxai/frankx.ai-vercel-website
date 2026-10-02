@@ -118,6 +118,15 @@ export default function WorkshopsPage() {
         </div>
       </section>
 
+      <section className="border-b border-emerald-300/20 bg-emerald-300/[0.035] py-12">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <p className="font-mono text-xs uppercase tracking-widest text-emerald-300">Practice before a workshop</p>
+          <h2 className="mt-4 font-display text-3xl font-semibold text-white">Bring a workflow. Leave with evidence.</h2>
+          <p className="mt-4 max-w-2xl leading-7 text-slate-300">The free self-guided lab helps you specify one task, inspect its sources, record failure tests and prepare a peer-review packet. AI-generated lessons; founder pedagogical review and learner validation pending.</p>
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- This App Route serves a complete HTML document and requires native navigation. */}
+          <a href="/courses/build-your-ai-creator-os/reliable-workflow" className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-300 px-6 py-3 font-semibold text-[#06110d] hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-void">Try the free workflow lab <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
+        </div>
+      </section>
       <section id="formats" className="surface-1 scroll-mt-24 border-b border-white/[0.08]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">

@@ -5,7 +5,7 @@ import { buildCourseData } from '@/components/seo/JsonLd'
 export const metadata = createMetadata({
   title: 'Build Your AI Creator OS | FrankX Courses',
   description:
-    'The complete blueprint for building an AI-powered creator business. 8 modules covering Claude Code, ACOS, n8n automation, multi-agent swarms, and revenue systems.',
+    'Explore the free Claude Code introduction and source-based workflow lab. The wider eight-module AI Creator OS curriculum is a roadmap with further modules in development.',
   path: '/courses/build-your-ai-creator-os',
   keywords: [
     'ai creator os',
@@ -24,7 +24,7 @@ export const metadata = createMetadata({
 const courseSchema = buildCourseData({
   name: 'Build Your AI Creator OS',
   description:
-    'The complete blueprint for building an AI-powered creator business. Learn Claude Code, ACOS, n8n automation, multi-agent swarms, and revenue systems from an AI Architect who ships this daily.',
+    'An AI Creator OS learning path with a free Claude Code introduction and AI-generated source-based workflow lab. Further curriculum modules are in development.',
   provider: 'FrankX.AI',
   url: 'https://frankx.ai/courses/build-your-ai-creator-os',
 })
@@ -40,28 +40,11 @@ export default function BuildYourAICreatorOSLayout({
         type="Course"
         data={{
           ...courseSchema,
-          instructor: {
-            '@type': 'Person',
-            name: 'Frank Riemer',
-            jobTitle: 'AI Architect',
-            alumniOf: {
-              '@type': 'Organization',
-              name: 'Oracle',
-            },
-          },
-          hasCourseInstance: {
-            '@type': 'CourseInstance',
-            courseMode: 'online',
-            courseWorkload: 'PT24H',
-          },
-          numberOfCredits: 8,
-          educationalLevel: 'Intermediate',
+          educationalLevel: 'Beginner',
           teaches: [
             'Claude Code setup and configuration',
-            'ACOS (Agentic Creator OS) framework',
-            'n8n workflow automation',
-            'Multi-agent AI swarms',
-            'Revenue system integration',
+            'Source-based drafting and evidence checks',
+            'Failure testing and human approval boundaries',
           ],
         }}
       />
