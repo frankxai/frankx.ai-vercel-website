@@ -135,7 +135,7 @@ export default function BuildYourAICreatorOSPage() {
             <h2 className="mt-4 font-display text-3xl font-semibold text-white">Build work you can inspect.</h2>
             <p className="mt-4 max-w-2xl leading-7 text-slate-300">Six AI-generated lessons, a fictional worked example, three failure tests and an exportable peer-review packet. Founder pedagogical review and learner validation are pending.</p>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- This App Route serves a complete HTML document and requires native navigation. */}
-<a href="/courses/build-your-ai-creator-os/reliable-workflow" className="mt-6 inline-flex min-h-12 items-center rounded-full bg-emerald-300 px-6 py-3 font-semibold text-[#06110d] hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]">Open the free workflow lab</a>
+          <a href="/courses/build-your-ai-creator-os/reliable-workflow" className="mt-6 inline-flex min-h-12 items-center rounded-full bg-emerald-300 px-6 py-3 font-semibold text-[#06110d] hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]">Open the free workflow lab</a>
           </div>
         </section>
         <section className="py-16 border-t border-white/5">

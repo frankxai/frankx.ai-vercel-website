@@ -167,7 +167,7 @@ export default function CoursesPage() {
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- This App Route serves a complete HTML document and requires native navigation. */}
-<a href="/courses/build-your-ai-creator-os/reliable-workflow" className="inline-flex min-h-12 items-center justify-center rounded-full border border-emerald-300/40 px-6 py-3 text-sm font-semibold text-emerald-200 hover:bg-emerald-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">
+          <a href="/courses/build-your-ai-creator-os/reliable-workflow" className="inline-flex min-h-12 items-center justify-center rounded-full border border-emerald-300/40 px-6 py-3 text-sm font-semibold text-emerald-200 hover:bg-emerald-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">
                   Build a source-based workflow
                 </a>
                 <Link
