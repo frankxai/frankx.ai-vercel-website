@@ -53,7 +53,10 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const pathname = usePathname()
   const suggestion = routeMusicSuggestion(pathname)
   const isHome = pathname === '/'
-  const homeCollapsedChip = isHome && !expanded
+  const onLibrary = pathname === '/library' || pathname.startsWith('/library/')
+  // Home and the library keep the corner chip until the reader opens the player.
+  // A wide bar covers the last shelf row at 375 and 1440.
+  const collapsedChip = (isHome || onLibrary) && !expanded
   const dockRef = useRef<HTMLElement>(null)
   const playable = catalog.filter(track => safeMediaUrl(track.streamUrl))
   const results = searched ? suggestTracks(catalog, request) : browseAll ? playable : playable.slice(0, 6)
@@ -187,7 +190,8 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   // Publish measured dock clearance (chrome height + bottom offset + safe-area).
   // Home collapsed: bottom-right chip; full-width emerald CTA must stop short via
   // --music-chip-reserve (qa-overlay-clearance.css) — chip alone cannot clear w-full.
-  // Expanded / non-home docks drive --music-dock-height for the end spacer (no rem guesswork).
+  // A wide dock publishes --music-dock-height for the end spacer.
+  // The corner chip publishes --music-chip-reserve. Focus stays above either one.
   useLayoutEffect(() => {
     const el = dockRef.current
     if (!el || typeof window === 'undefined') return
@@ -195,8 +199,8 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
       const rect = el.getBoundingClientRect()
       const clearance = Math.max(0, Math.ceil(window.innerHeight - rect.top))
       document.documentElement.style.setProperty('--music-dock-height', `${clearance}px`)
-      // Chip footprint: width + right inset + gap (home collapsed only).
-      if (homeCollapsedChip) {
+      document.documentElement.style.scrollPaddingBottom = `${clearance}px`
+      if (collapsedChip) {
         document.documentElement.style.setProperty('--music-chip-reserve', '4.75rem')
       } else {
         document.documentElement.style.removeProperty('--music-chip-reserve')
@@ -211,8 +215,9 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
       window.removeEventListener('resize', publish)
       document.documentElement.style.removeProperty('--music-dock-height')
       document.documentElement.style.removeProperty('--music-chip-reserve')
+      document.documentElement.style.scrollPaddingBottom = ''
     }
-  }, [expanded, isHome, homeCollapsedChip, active, state])
+  }, [expanded, isHome, collapsedChip, active, state])
 
   const subtitle = state === 'error' ? 'Playback unavailable' : state === 'loading' ? 'Loading audio…' : state === 'playing' ? 'Playing' : 'Paused'
   return (
@@ -231,21 +236,21 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
       {children}
       <div
         aria-hidden="true"
-        className={homeCollapsedChip ? 'h-20' : undefined}
-        style={homeCollapsedChip ? undefined : { height: 'var(--music-dock-height, calc(6rem + env(safe-area-inset-bottom, 0px)))' }}
+        className={collapsedChip ? 'h-20' : undefined}
+        style={collapsedChip ? undefined : { height: 'var(--music-dock-height, calc(6rem + env(safe-area-inset-bottom, 0px)))' }}
       />
       <aside
         ref={dockRef}
         aria-label="Music player"
         onKeyDown={event => { if (event.key === 'Escape' && expanded) { event.preventDefault(); event.stopPropagation(); minimize() } }}
         className={
-          homeCollapsedChip
+          collapsedChip
             ? 'fixed bottom-3 right-3 z-50 flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white'
             : 'fixed inset-x-3 bottom-3 z-50 mx-auto max-w-xl overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0b] text-white sm:inset-x-auto sm:right-5 sm:w-[min(34rem,calc(100vw-2.5rem))]'
         }
         style={{ marginBottom: 'env(safe-area-inset-bottom)' }}
       >
-        {homeCollapsedChip ? (
+        {collapsedChip ? (
           <button
             ref={disclosureRef}
             type="button"
