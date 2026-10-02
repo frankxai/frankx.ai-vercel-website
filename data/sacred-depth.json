@@ -1,0 +1,1754 @@
+[
+  {
+    "slug": "bible",
+    "translation": {
+      "translator": "Translators appointed under King James I (the Authorized Version)",
+      "title": "The Holy Bible, King James Version (text as reproduced at sacred-texts.com, in the standard 1769 revised spelling)",
+      "year": 1611,
+      "sourceUrl": "https://sacred-texts.com/bib/kjv/index.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "First published 1611. Public domain outside the United Kingdom. In the UK the Crown's rights in the Authorized Version are administered by Cambridge University Press, the King's Printer, which permits short quotation. Quotations here follow the familiar 1769 standard text used by sacred-texts.com, not the original 1611 spelling."
+    },
+    "quotes": [
+      {
+        "text": "In the beginning God created the heaven and the earth. And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters. And God said, Let there be light: and there was light.",
+        "locator": "Genesis 1:1–3",
+        "sourceUrl": "https://sacred-texts.com/bib/kjv/gen001.htm",
+        "why": "The opening of the whole collection presents creation as ordered speech, and the first chapter's repeated evening-and-morning refrain sets the rhythm for what follows."
+      },
+      {
+        "text": "My God, my God, why hast thou forsaken me? why art thou so far from helping me, and from the words of my roaring? O my God, I cry in the day time, but thou hearest not; and in the night season, and am not silent.",
+        "locator": "Psalm 22:1–2",
+        "sourceUrl": "https://archive.sacred-texts.com/bib/kjv/psa022.htm",
+        "why": "A lament that accuses God of absence and stays inside the prayer; the Gospels of Mark and Matthew place its first line on the lips of Jesus at the crucifixion."
+      },
+      {
+        "text": "To every thing there is a season, and a time to every purpose under the heaven: A time to be born, and a time to die; a time to plant, and a time to pluck up that which is planted; A time to kill, and a time to heal; a time to break down, and a time to build up; A time to weep, and a time to laugh; a time to mourn, and a time to dance; A time to cast away stones, and a time to gather stones together; a time to embrace, and a time to refrain from embracing; A time to get, and a time to lose; a time to keep, and a time to cast away; A time to rend, and a time to sew; a time to keep silence, and a time to speak; A time to love, and a time to hate; a time of war, and a time of peace.",
+        "locator": "Ecclesiastes 3:1–8",
+        "sourceUrl": "https://archive.sacred-texts.com/bib/kjv/ecc003.htm",
+        "why": "Often read as consolation, the poem includes killing, hating, and war, and the next verse asks what profit any of this labour brings."
+      },
+      {
+        "text": "Blessed are the poor in spirit: for theirs is the kingdom of heaven. Blessed are they that mourn: for they shall be comforted. Blessed are the meek: for they shall inherit the earth. Blessed are they which do hunger and thirst after righteousness: for they shall be filled. Blessed are the merciful: for they shall obtain mercy. Blessed are the pure in heart: for they shall see God. Blessed are the peacemakers: for they shall be called the children of God.",
+        "locator": "Matthew 5:3–9 (the Beatitudes)",
+        "sourceUrl": "https://archive.sacred-texts.com/bib/kjv/mat005.htm",
+        "why": "The opening of the Sermon on the Mount pronounces blessing on people ordinarily counted as losers, and the rest of the chapter raises the demand to loving enemies."
+      },
+      {
+        "text": "When I was a child, I spake as a child, I understood as a child, I thought as a child: but when I became a man, I put away childish things. For now we see through a glass, darkly; but then face to face: now I know in part; but then shall I know even as also I am known. And now abideth faith, hope, charity, these three; but the greatest of these is charity.",
+        "locator": "1 Corinthians 13:11–13",
+        "sourceUrl": "https://archive.sacred-texts.com/bib/kjv/co1013.htm",
+        "why": "Paul wrote this to a divided congregation arguing over spiritual gifts; the famous lines admit the limits of present knowledge before ranking love above it."
+      },
+      {
+        "text": "In the beginning was the Word, and the Word was with God, and the Word was God. The same was in the beginning with God. All things were made by him; and without him was not any thing made that was made. In him was life; and the life was the light of men. And the light shineth in darkness; and the darkness comprehended it not.",
+        "locator": "John 1:1–5",
+        "sourceUrl": "https://archive.sacred-texts.com/bib/kjv/joh001.htm",
+        "why": "John deliberately echoes the first words of Genesis, and this prologue became central to Christian teaching about the identity of Jesus."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "The Law (Genesis to Deuteronomy)",
+        "keyIdea": "Creation, the ancestors, the exodus from Egypt, and the covenant at Sinai.",
+        "summary": "The first five books move from creation and family narratives to Israel's liberation and the giving of the law. They combine story with legal and ritual instruction. Most scholars see several sources and long editorial history behind them; Jewish and Christian tradition long attributed them to Moses."
+      },
+      {
+        "number": 2,
+        "title": "The historical books (Joshua to Esther)",
+        "keyIdea": "Israel in the land: judges, kings, division, exile, and return.",
+        "summary": "Joshua through Kings tell of settlement, the monarchy of Saul, David, and Solomon, the split into two kingdoms, and the fall of Jerusalem to Babylon in 587/586 BCE. Chronicles retells the same history from a later vantage, and Ezra, Nehemiah, and Esther concern the Persian period. Christian Bibles group these books differently from the Jewish Tanakh, where several belong to the Prophets or the Writings."
+      },
+      {
+        "number": 3,
+        "title": "Wisdom and poetry (Job to Song of Songs)",
+        "keyIdea": "Prayer, protest, proverbs, and love poetry.",
+        "summary": "Job disputes the idea that suffering always follows wrongdoing. The 150 Psalms move between praise, lament, and thanksgiving and have been used in Jewish and Christian worship for centuries. Proverbs collects practical instruction, Ecclesiastes questions what any human effort secures, and the Song of Songs is a sequence of love poems read allegorically by both traditions."
+      },
+      {
+        "number": 4,
+        "title": "The prophets (Isaiah to Malachi)",
+        "keyIdea": "Speeches of judgment and hope addressed to specific crises.",
+        "summary": "The four 'major' prophets (Isaiah, Jeremiah, Ezekiel, Daniel, with Lamentations) and the twelve shorter books challenge injustice, idolatry, and false security, and speak of exile and restoration. Christian editions place the prophets last in the Old Testament, which frames them as pointing toward the New Testament. Catholic and Orthodox Bibles also include books such as Tobit, Judith, Wisdom, Sirach, Baruch, and 1–2 Maccabees, which Protestant Bibles omit or print separately as the Apocrypha."
+      },
+      {
+        "number": 5,
+        "title": "The Gospels (Matthew, Mark, Luke, John)",
+        "keyIdea": "Four accounts of the life, teaching, death, and resurrection of Jesus.",
+        "summary": "Matthew, Mark, and Luke share much material and are called the Synoptic Gospels; most scholars date Mark first, around 70 CE. John tells the story with different episodes and long discourses. Each Gospel should be read as a whole narrative with its own emphasis before comparing them."
+      },
+      {
+        "number": 6,
+        "title": "Acts and the letters (Acts to Jude)",
+        "keyIdea": "The spread of the early communities and the letters written to guide them.",
+        "summary": "Acts continues Luke's account, following the apostles from Jerusalem to Rome. The letters, thirteen attributed to Paul and eight others, answer particular disputes in particular congregations. Scholars agree on Paul's authorship of seven letters, including Romans and 1 Corinthians, and debate the rest."
+      },
+      {
+        "number": 7,
+        "title": "Revelation",
+        "keyIdea": "An apocalyptic vision addressed to churches under pressure.",
+        "summary": "The final book uses symbolic numbers, beasts, and cosmic imagery to speak of judgment and a new creation. Many scholars read it against Roman imperial power at the end of the first century. Its interpretation has varied more than almost any other part of the Bible, from historical and symbolic readings to predictive ones."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which translation of the Bible should I read?",
+        "a": "For study, choose a modern translation with notes, such as the NRSVue, the ESV, or the New American Bible Revised Edition used by Catholics. The King James Version (1611) has shaped English literature and liturgy, and it is public domain in most of the world, but its language is archaic and its New Testament follows later Greek manuscripts than the older ones modern translations draw on. Comparing two translations of a difficult passage is more reliable than trusting one English word."
+      },
+      {
+        "q": "Is the Old Testament the same as the Hebrew Bible?",
+        "a": "The Protestant Old Testament contains the same books as the Jewish Tanakh, but in a different order and division, and Christians read them in light of the New Testament. Catholic and Orthodox Old Testaments include additional books preserved in the Greek Septuagint. Jewish readers interpret the shared books through their own traditions of commentary, so the collections are related but not interchangeable."
+      },
+      {
+        "q": "Why do Catholic and Protestant Bibles have different numbers of books?",
+        "a": "Protestant Bibles have 66 books; Catholic Bibles have 73, and Orthodox Bibles include a few more. The difference lies in the deuterocanonical books, such as Tobit, Sirach, and 1–2 Maccabees, which circulated in Greek. Protestant reformers followed the Hebrew canon for the Old Testament, while the Catholic Church affirmed the longer list at the Council of Trent in 1546."
+      },
+      {
+        "q": "How long does it take to read the whole Bible?",
+        "a": "The King James Version runs to roughly 780,000 words, so a complete reading takes something like 50 to 80 hours. Common one-year plans assign three or four chapters a day, about 15 to 20 minutes. Many readers start with a single Gospel, such as Mark, before attempting the whole."
+      }
+    ],
+    "practice": {
+      "title": "Two beginnings side by side",
+      "duration": "20 minutes",
+      "instruction": "Read Genesis 1:1–5 and John 1:1–5 aloud, one after the other. Write the words the two passages share (beginning, God, light, darkness) in one column. In a second column, write what each passage says about them that the other does not. Then write two sentences: one on what John seems to assume his readers already know from Genesis, and one question you would take to a commentary."
+    },
+    "facts": {
+      "origin": "Written and edited over roughly a thousand years, from perhaps the 10th–8th century BCE to the early 2nd century CE, in ancient Israel and Judah, the Jewish diaspora, and the early Christian communities of the eastern Mediterranean; dates for many books are debated",
+      "language": "Hebrew, with some Aramaic (Old Testament); Koine Greek (New Testament and deuterocanonical books)",
+      "form": "66 books in Protestant Bibles (39 Old Testament, 27 New Testament), 73 in Catholic Bibles, more in Orthodox Bibles; 1,189 chapters in the Protestant canon",
+      "firstRead": "About 50–80 hours; a one-year plan takes 15–20 minutes a day"
+    }
+  },
+  {
+    "slug": "tanakh",
+    "translation": {
+      "translator": "Jewish Publication Society of America translation committee (editor-in-chief Max L. Margolis)",
+      "title": "The Holy Scriptures According to the Masoretic Text: A New Translation (JPS 1917)",
+      "year": 1917,
+      "sourceUrl": "https://mechon-mamre.org/p/pt/pt0.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Published 1917 by the Jewish Publication Society of America; the members of the translation committee all died before 1956. Public domain worldwide. Quotations were checked against the JPS 1917 text at sacred-texts.com (Torah) and Mechon Mamre (Prophets and Writings); Mechon Mamre's site design is its own, but the 1917 translation it reproduces is public domain."
+    },
+    "quotes": [
+      {
+        "text": "And thou shalt love the LORD thy God with all thy heart, and with all thy soul, and with all thy might. And these words, which I command thee this day, shall be upon thy heart; and thou shalt teach them diligently unto thy children, and shalt talk of them when thou sittest in thy house, and when thou walkest by the way, and when thou liest down, and when thou risest up.",
+        "locator": "Deuteronomy 6:5–7 (the Shema, continued)",
+        "sourceUrl": "https://archive.sacred-texts.com/bib/jps/deu006.htm",
+        "why": "These verses follow the Shema’s first line, which is recited in Jewish prayer each morning and evening; the passage itself prescribes that repetition, at home, on the road, lying down, and rising up."
+      },
+      {
+        "text": "Thou shalt not take vengeance, nor bear any grudge against the children of thy people, but thou shalt love thy neighbour as thyself: I am the LORD.",
+        "locator": "Leviticus 19:18",
+        "sourceUrl": "https://archive.sacred-texts.com/bib/jps/lev019.htm",
+        "why": "The command to love one's neighbour sits in the middle of the Holiness Code, among rules on harvest gleanings, wages, and fair judgment, and rabbinic tradition treats it as a great principle of the Torah."
+      },
+      {
+        "text": "And He shall judge between the nations, and shall decide for many peoples; and they shall beat their swords into plowshares, and their spears into pruninghooks; nation shall not lift up sword against nation, neither shall they learn war any more.",
+        "locator": "Isaiah 2:4",
+        "sourceUrl": "https://mechon-mamre.org/p/pt/pt1002.htm",
+        "why": "A prophetic vision of the end of days that also appears, almost word for word, in Micah 4:3; the chapter around it turns at once to judgment on pride and idols."
+      },
+      {
+        "text": "I hate, I despise your feasts, and I will take no delight in your solemn assemblies. Yea, though ye offer me burnt-offerings and your meal-offerings, I will not accept them; neither will I regard the peace-offerings of your fat beasts. Take thou away from Me the noise of thy songs; and let Me not hear the melody of thy psalteries. But let justice well up as waters, and righteousness as a mighty stream.",
+        "locator": "Amos 5:21–24",
+        "sourceUrl": "https://mechon-mamre.org/p/pt/pt1505.htm",
+        "why": "The famous last line only lands after three verses in which God rejects the people's own worship; Amos makes ritual worthless where the poor are trampled in the gate."
+      },
+      {
+        "text": "Then the LORD answered Job out of the whirlwind, and said: Who is this that darkeneth counsel by words without knowledge? Gird up now thy loins like a man; for I will demand of thee, and declare thou unto Me. Where wast thou when I laid the foundations of the earth? Declare, if thou hast the understanding. Who determined the measures thereof, if thou knowest? Or who stretched the line upon it? Whereupon were the foundations thereof fastened? Or who laid the corner-stone thereof, When the morning stars sang together, and all the sons of God shouted for joy?",
+        "locator": "Job 38:1–7",
+        "sourceUrl": "https://mechon-mamre.org/p/pt/pt2738.htm",
+        "why": "After thirty-five chapters of argument about why a righteous man suffers, God answers with questions rather than an explanation, and readers still dispute whether this is a reply at all."
+      },
+      {
+        "text": "By the rivers of Babylon, there we sat down, yea, we wept, when we remembered Zion. Upon the willows in the midst thereof we hanged up our harps. For there they that led us captive asked of us words of song, and our tormentors asked of us mirth: 'Sing us one of the songs of Zion.' How shall we sing the LORD'S song in a foreign land? If I forget thee, O Jerusalem, let my right hand forget her cunning. Let my tongue cleave to the roof of my mouth, if I remember thee not; if I set not Jerusalem above my chiefest joy.",
+        "locator": "Psalm 137:1–6",
+        "sourceUrl": "https://mechon-mamre.org/p/pt/pt26d7.htm",
+        "why": "A song of exile about the impossibility of singing; the psalm ends three verses later in a curse on Babylon's children that readers and commentators have never found easy."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Torah (Genesis to Deuteronomy)",
+        "keyIdea": "Teaching and instruction: creation, the ancestors, the exodus, Sinai, and the wilderness.",
+        "summary": "The five books of Moses move from the origins of the world and the families of Abraham, Isaac, and Jacob to slavery in Egypt, liberation, and the covenant at Sinai. Narrative and law are interwoven, and Deuteronomy restates the law as Moses' farewell before Israel enters the land. The Torah is read aloud in synagogue in weekly portions, completing the cycle each year on Simchat Torah. Traditional Judaism holds it to be given through Moses; most modern scholars see a long history of composition and editing."
+      },
+      {
+        "number": 2,
+        "title": "Former Prophets (Joshua, Judges, Samuel, Kings)",
+        "keyIdea": "Israel's story in the land, from conquest to the fall of Jerusalem.",
+        "summary": "These books narrate settlement, the era of the judges, the rise of Saul and David, Solomon's Temple, the split into northern and southern kingdoms, and destruction by Assyria and Babylon. Jewish tradition counts them as prophecy, not merely history, because they judge kings and people by their faithfulness to the covenant. Samuel and Kings are each one book in the traditional count."
+      },
+      {
+        "number": 3,
+        "title": "Latter Prophets: Isaiah, Jeremiah, Ezekiel",
+        "keyIdea": "Oracles of judgment and consolation addressed to specific crises.",
+        "summary": "Isaiah spans Assyrian threat and, in its later chapters, return from Babylonian exile; many scholars divide it into two or three sections from different periods. Jeremiah speaks before and during Jerusalem's fall in 587/586 BCE, and Ezekiel prophesies among the exiles in Babylon. Passages from these books are read as haftarot, the prophetic readings that follow the Torah portion on Sabbaths and festivals."
+      },
+      {
+        "number": 4,
+        "title": "The Twelve (Hosea to Malachi)",
+        "keyIdea": "Twelve shorter prophetic books counted as a single book.",
+        "summary": "Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, and Malachi were copied on one scroll and count as one book in the Jewish reckoning of twenty-four. They range from Amos's attack on injustice in the eighth century BCE to the post-exilic concerns of Haggai and Malachi. Jonah is read in full on the afternoon of Yom Kippur."
+      },
+      {
+        "number": 5,
+        "title": "Writings: Psalms, Proverbs, Job",
+        "keyIdea": "Poetry of prayer, instruction, and dispute.",
+        "summary": "Ketuvim opens with three poetic books. The 150 Psalms hold praise, lament, and protest, and supply much of the Jewish prayer book. Proverbs gathers practical instruction, and Job stages a long argument between a suffering man, his friends, and finally God."
+      },
+      {
+        "number": 6,
+        "title": "The Five Scrolls (Song of Songs, Ruth, Lamentations, Ecclesiastes, Esther)",
+        "keyIdea": "Five short books tied to the festival calendar.",
+        "summary": "Each megillah is read in synagogue at a set time of year: Song of Songs at Passover, Ruth at Shavuot, Lamentations on Tisha b'Av, Ecclesiastes at Sukkot, and Esther at Purim. Their moods run from love poetry to mourning for the destroyed Temple to Ecclesiastes' questioning of what any effort secures. Esther never names God, a fact the tradition has long discussed."
+      },
+      {
+        "number": 7,
+        "title": "Daniel, Ezra-Nehemiah, Chronicles",
+        "keyIdea": "Late books of exile, return, and retold history.",
+        "summary": "Daniel combines court tales with apocalyptic visions; in Jewish order it stands among the Writings rather than the Prophets, and parts are in Aramaic. Ezra-Nehemiah, one book in the traditional count, describes rebuilding in Jerusalem under Persian rule. In printed Hebrew Bibles, Chronicles comes last and ends with Cyrus's decree allowing the exiles to go up to Jerusalem, although some medieval manuscripts, such as the Aleppo Codex, place it first among the Writings."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is the Tanakh the same as the Old Testament?",
+        "a": "The Tanakh and the Protestant Old Testament contain the same books, but the Tanakh counts them as 24 rather than 39 and arranges them differently, ending with Chronicles rather than the prophet Malachi. Catholic and Orthodox Old Testaments add further books from the Greek tradition. Jewish readers interpret these books through rabbinic commentary rather than through the New Testament, so the shared text is read in different ways."
+      },
+      {
+        "q": "What does the word Tanakh mean?",
+        "a": "Tanakh is an acronym formed from the first letters of its three divisions: Torah (teaching), Nevi'im (Prophets), and Ketuvim (Writings). The word Torah can also refer more broadly to Jewish teaching as a whole, including the Oral Torah recorded in the Mishnah and Talmud. In the narrow sense used here, it means the first five books."
+      },
+      {
+        "q": "Which English translation of the Tanakh should I read?",
+        "a": "The JPS 1917 translation is public domain and follows the Masoretic Hebrew text, but its English is close to the King James style. The later JPS Tanakh (1985), its revised editions, and Robert Alter's The Hebrew Bible (2018) are widely used modern choices, and Sefaria sets several translations beside the Hebrew with classical commentaries such as Rashi. Reading with a commentary shows where Jewish interpretation diverges from a plain English rendering."
+      },
+      {
+        "q": "How is the Tanakh read in Jewish practice?",
+        "a": "The Torah is chanted from a handwritten scroll in weekly portions, completing the five books over a year, and each portion is paired with a haftarah from the Prophets. The Five Scrolls are read on particular festivals, and Psalms are woven through daily prayer. Study usually happens with commentary, so the biblical verse and its interpretation are read together while being kept distinct."
+      }
+    ],
+    "practice": {
+      "title": "Memory as a reason for law",
+      "duration": "20 minutes",
+      "instruction": "Read Deuteronomy 6:4–9 aloud, then Deuteronomy 6:20–25, where a child asks what the commandments mean. List every verb that tells the listener what to do. Then read Leviticus 19:33–34 on the stranger. In both places, underline where the memory of Egypt is given as the reason for a command. Write one sentence on how remembering functions as an argument in these passages, and one question to take to a commentary such as Rashi's on Sefaria."
+    },
+    "facts": {
+      "origin": "Composed and edited over many centuries, perhaps the 10th to the 2nd century BCE, in ancient Israel and Judah and among exiles in Babylon and Persian-ruled Judea; the exact dates and the closing of the canon are debated",
+      "language": "Biblical Hebrew, with portions of Daniel and Ezra in Aramaic",
+      "form": "24 books in three divisions (Torah, Nevi'im, Ketuvim), 929 chapters; the same content as the 39-book Protestant Old Testament",
+      "firstRead": "About 40–60 hours in English"
+    }
+  },
+  {
+    "slug": "quran",
+    "translation": {
+      "translator": "Marmaduke Pickthall",
+      "title": "The Meaning of the Glorious Koran: An Explanatory Translation",
+      "year": 1930,
+      "sourceUrl": "https://sacred-texts.com/isl/pick/index.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "First published in 1930 (New York: Knopf; London: Allen & Unwin). The passages here were checked against the 1938 Hyderabad printing reproduced by the Internet Sacred Text Archive; wording can differ slightly between printings. Pickthall died in 1936, so the translation has been public domain in life-plus-70 countries since 2007, and the United States term for works published in 1930 ended on 31 December 2025. The archive's older notice that the text is not public domain in the US predates that expiry."
+    },
+    "quotes": [
+      {
+        "text": "In the name of Allah, the Beneficent, the Merciful. Praise be to Allah, Lord of the Worlds, The Beneficent, the Merciful. Master of the Day of Judgment, Thee (alone) we worship; Thee (alone) we ask for help. Show us the straight path, The path of those whom Thou hast favoured; Not the (path) of those who earn Thine anger nor of those who go astray.",
+        "locator": "Surah 1 (Al-Fatiha), verses 1–7",
+        "sourceUrl": "https://sacred-texts.com/isl/pick/001.htm",
+        "why": "The whole opening surah, recited in every unit of the daily prayer, so a Muslim may say these seven verses dozens of times a day."
+      },
+      {
+        "text": "Warfare is ordained for you, though it is hateful unto you; but it may happen that ye hate a thing which is good for you, and it may happen that ye love a thing which is bad for you. Allah knoweth, ye know not.",
+        "locator": "Surah 2 (Al-Baqarah), verse 216",
+        "sourceUrl": "https://archive.sacred-texts.com/isl/pick/002.htm",
+        "why": "A hard Medinan verse addressed to a community under threat; it has to be read with its historical setting and with tafsir, and it closes on a limit to human judgment."
+      },
+      {
+        "text": "Allah! There is no God save Him, the Alive, the Eternal. Neither slumber nor sleep overtaketh Him. Unto Him belongeth whatsoever is in the heavens and whatsoever is in the earth. Who is he that intercedeth with Him save by His leave ? He knoweth that which is in front of them and that which is behind them, while they encompass nothing of His knowledge save what He will. His throne includeth the heavens and the earth, and He is never weary of preserving them. He is the Sublime, the Tremendous. There is no compulsion in religion. The right direction is henceforth distinct from error. And he who rejecteth false deities and believeth in Allah hath grasped a firm handhold which will never break. Allah is Hearer, Knower.",
+        "locator": "Surah 2 (Al-Baqarah), verses 255–256 (Ayat al-Kursi and the verse that follows)",
+        "sourceUrl": "https://archive.sacred-texts.com/isl/pick/002.htm",
+        "why": "The Throne Verse is among the most memorised passages in the Quran; reading it with the next verse shows a statement about God's sovereignty followed directly by a statement about human choice."
+      },
+      {
+        "text": "Allah is the Light of the heavens and the earth. The similitude of His light is as a niche wherein is a lamp. The lamp is in a glass. The glass is as it were a shining star. (This lamp is) kindled from a blessed tree, an olive neither of the East nor of the West, whose oil would almost glow forth (of itself) though no fire touched it. Light upon light. Allah guideth unto His light whom He will. And Allah speaketh to mankind in allegories, for Allah is Knower of all things.",
+        "locator": "Surah 24 (An-Nur), verse 35",
+        "sourceUrl": "https://archive.sacred-texts.com/isl/pick/024.htm",
+        "why": "The Light Verse sits inside a surah largely concerned with law and household conduct, and it names its own method: God speaks in similitudes."
+      },
+      {
+        "text": "O mankind! Lo! We have created you male and female, and have made you nations and tribes that ye may know one another. Lo! the noblest of you, in the sight of Allah, is the best in conduct. Lo! Allah is Knower, Aware.",
+        "locator": "Surah 49 (Al-Hujurat), verse 13",
+        "sourceUrl": "https://archive.sacred-texts.com/isl/pick/049.htm",
+        "why": "Addressed to all humankind rather than to believers only, the verse makes conduct, not lineage, the measure of standing before God."
+      },
+      {
+        "text": "Did He not find thee an orphan and protect (thee) ? Did He not find thee wandering and direct (thee) ? Did He not find thee destitute and enrich (thee) ? Therefor the orphan oppress not, Therefor the beggar drive not away, Therefor of the bounty of thy Lord be thy discourse.",
+        "locator": "Surah 93 (Ad-Duha), verses 6–11",
+        "sourceUrl": "https://archive.sacred-texts.com/isl/pick/093.htm",
+        "why": "An early Meccan surah addressed to the Prophet, in which three remembered mercies become three obligations toward the vulnerable."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "The opening (surah 1)",
+        "keyIdea": "A seven-verse prayer placed before the rest of the book.",
+        "summary": "Al-Fatiha praises God, names the Day of Judgment, and asks for guidance on the straight path. It is recited in every unit of the ritual prayer. Its position at the front is not chronological; many traditional reports place it among the early revelations, and Muslims often call it the mother of the book."
+      },
+      {
+        "number": 2,
+        "title": "The long surahs (surahs 2–9)",
+        "keyIdea": "Extended, mostly Medinan surahs that address a growing community.",
+        "summary": "Al-Baqarah, Al Imran, An-Nisa, and Al-Ma'idah combine law, worship, family obligations, and argument with Jews and Christians about earlier revelation. Classical scholars call a group of these 'the seven long ones', though authorities differ on exactly which surahs belong in it. Al-Baqarah alone, the longest surah, contains the Throne Verse (2:255). Surah 9, At-Tawbah, is the only surah that does not open with the basmala."
+      },
+      {
+        "number": 3,
+        "title": "The surahs of about a hundred verses (from surah 10)",
+        "keyIdea": "Largely Meccan surahs in which the stories of earlier prophets carry the argument.",
+        "summary": "Classical scholars call the next grouping al-mi'un, surahs of roughly a hundred verses or more; its boundaries vary between authorities. Yunus, Hud, and Yusuf tell of Noah, Moses, Joseph, and others as warnings and consolations. Yusuf (12) is the Quran's one sustained single narrative, while Al-Kahf (18) and Maryam (19) gather several stories, including those of Mary and Jesus."
+      },
+      {
+        "number": 4,
+        "title": "The oft-repeated surahs (the mathani)",
+        "keyIdea": "Middle-length surahs that mix Meccan reminder with Medinan instruction.",
+        "summary": "The traditional name al-mathani covers surahs shorter than the mi'un and longer than the final group; scholars disagree on the exact list. This stretch includes An-Nur (24), a Medinan surah on household law that holds the Light Verse, and Ya-Sin (36), widely recited for the dying and the dead. Reading straight through, a newcomer meets abrupt changes of address and subject, which classical commentators treat as part of the Quran's style."
+      },
+      {
+        "number": 5,
+        "title": "The separated surahs (from surah 49 or 50)",
+        "keyIdea": "Shorter surahs, often divided by the basmala, recited frequently in prayer.",
+        "summary": "Al-mufassal, 'the separated', begins at Al-Hujurat (49) or Qaf (50), depending on the authority. Al-Hujurat sets rules of speech and conduct for the Medinan community and ends with the verse on nations and tribes (49:13). Ar-Rahman (55) is built on a repeated refrain, and Al-Mulk (67) is commonly recited at night."
+      },
+      {
+        "number": 6,
+        "title": "The final thirtieth: Juz' 'Amma (surahs 78–114)",
+        "keyIdea": "Short, mostly Meccan surahs that many Muslims memorise first.",
+        "summary": "The last of the thirty equal parts (juz') used to pace recitation holds thirty-seven short surahs. Most are early Meccan: compressed oaths, images of the last day, and personal address to the Prophet, as in Ad-Duha (93) and Ash-Sharh (94). The book closes with Al-Ikhlas (112), a statement of God's oneness, and the two surahs of refuge (113–114)."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can the Quran be translated?",
+        "a": "Many Muslims hold that it cannot, in the full sense: the Quran is understood as God's speech revealed in Arabic, and its sound, rhyme, and wording are considered part of the revelation and of its inimitability (i'jaz). An English version is therefore usually presented as a translation of the meanings, which is why Pickthall called his book 'The Meaning of the Glorious Koran'. Ritual prayer is performed in Arabic, and recitation, not the printed translation, is how most Muslims first encounter the text."
+      },
+      {
+        "q": "Which English translation of the Quran should I read?",
+        "a": "Pickthall (1930) is public domain and close to the Arabic, but its archaic English and 'Lo!' can feel distant. Widely used modern versions include M.A.S. Abdel Haleem (Oxford, 2004), The Study Quran (ed. Seyyed Hossein Nasr et al., 2015) with commentary, and Sahih International. Whatever you choose, cite surah and verse and check a second translation before building an argument on one English word."
+      },
+      {
+        "q": "Why is the Quran not in chronological order?",
+        "a": "The surahs are arranged, broadly, from longest to shortest after the opening Al-Fatiha, not in order of revelation. Muslim tradition holds that the arrangement follows the Prophet's instruction, and the standard written codex is associated with the caliph Uthman (c. 650 CE). Surahs are labelled Meccan or Medinan by their traditional setting, and scholars, Muslim and non-Muslim, debate the dating of individual passages."
+      },
+      {
+        "q": "Where should a beginner start reading the Quran?",
+        "a": "Start with Al-Fatiha, then read several short surahs from the final juz' (78–114) while listening to them recited in Arabic. Next, read a narrative surah such as Yusuf (12) or Maryam (19) with a commentary. Al-Baqarah is better read after that, because its length and legal material make it a difficult first entry."
+      }
+    ],
+    "practice": {
+      "title": "Listen, then read Ad-Duha",
+      "duration": "20 minutes",
+      "instruction": "Listen twice to a recitation of Surah 93 (Ad-Duha) in Arabic, following the Arabic script if you can, before reading any English. Then read Pickthall's verses 1–11 aloud. Write the three 'Did He not find thee' questions in one column and the three 'Therefor' commands beside them, and note which mercy is matched to which obligation. Finally, read the same surah in one modern translation and write down one word or phrase where the two English versions differ, and what the difference changes."
+    },
+    "facts": {
+      "origin": "Received, in Muslim belief, by the Prophet Muhammad over about 23 years (c. 610–632 CE) in Mecca and Medina; the standard written codex is associated with the caliph Uthman, c. 650 CE",
+      "language": "Classical Arabic",
+      "form": "114 surahs of unequal length, about 6,236 verses in the most common (Kufan) count; divided into 30 juz' for recitation",
+      "firstRead": "12–20 hours in English; many Muslims recite the whole in Arabic over Ramadan, one juz' a day"
+    }
+  },
+  {
+    "slug": "bhagavad-gita",
+    "translation": {
+      "translator": "Sir Edwin Arnold",
+      "title": "The Song Celestial, or Bhagavad-Gîtâ (from the Mahâbhârata)",
+      "year": 1885,
+      "sourceUrl": "https://sacred-texts.com/hin/gita/index.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Published 1885; translator died 1904. Public domain worldwide. Arnold's version is a free verse rendering: his lines do not map one-to-one onto the Sanskrit verse numbers, so verse locators below are approximate."
+    },
+    "quotes": [
+      {
+        "text": "Never the spirit was born; the spirit shall cease to be never;\nNever was time it was not; End and Beginning are dreams!\nBirthless and deathless and changeless remaineth the spirit for ever;\nDeath hath not touched it at all, dead though the house of it seems!",
+        "locator": "Chapter II, c. v. 20",
+        "sourceUrl": "https://sacred-texts.com/hin/gita/bg02.htm",
+        "why": "Krishna's first answer to Arjuna's grief is a claim about what cannot die, and every later argument about action rests on it."
+      },
+      {
+        "text": "Let right deeds be\nThy motive, not the fruit which comes from them.\nAnd live in action! Labour! Make thine acts\nThy piety, casting all self aside,\nContemning gain and merit; equable\nIn good or evil: equability\nIs Yog, is piety!",
+        "locator": "Chapter II, c. vv. 47–48",
+        "sourceUrl": "https://sacred-texts.com/hin/gita/bg02.htm",
+        "why": "This is the passage behind the phrase \"action without attachment to its fruit\"; note that it commands more action, not withdrawal."
+      },
+      {
+        "text": "It were all one, I think,\nTo hold the wayward wind, as tame man's heart.\nKrishna. Hero long-armed! beyond denial, hard\nMan's heart is to restrain, and wavering;\nYet may it grow restrained by habit, Prince!\nBy wont of self-command.",
+        "locator": "Chapter VI, c. vv. 34–35",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/gita/bg06.htm",
+        "why": "Arjuna objects that the mind cannot be held still, and Krishna concedes the difficulty before naming practice as the answer."
+      },
+      {
+        "text": "Thou seest Me as Time who kills,\nTime who brings all to doom,\nThe Slayer Time, Ancient of Days, come hither to consume;\nExcepting thee, of all these hosts of hostile chiefs arrayed,\nThere stands not one shall leave alive the battlefield!",
+        "locator": "Chapter XI, c. v. 32",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/gita/bg11.htm",
+        "why": "The cosmic vision turns from splendour to terror here; the line Oppenheimer later paraphrased belongs to a scene about war and mortality, not consolation."
+      },
+      {
+        "text": "Better thine own work is, though done with fault,\nThan doing others' work, ev'n excellently.",
+        "locator": "Chapter XVIII, c. v. 47",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/gita/bg18.htm",
+        "why": "The line follows directly on the duties of the four varnas, so readers have to decide how far its idea of one's own duty is tied to caste."
+      },
+      {
+        "text": "Give Me thy heart! adore Me! serve Me! cling\nIn faith and love and reverence to Me!\nSo shalt thou come to Me! I promise true,\nFor thou art sweet to Me!\nAnd let go those-\nRites and writ duties! Fly to Me alone!\nMake Me thy single refuge!",
+        "locator": "Chapter XVIII, c. vv. 65–66",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/gita/bg18.htm",
+        "why": "Many devotional traditions treat this closing appeal as the summit of the whole teaching, which reframes the earlier chapters on knowledge and action."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Arjuna's refusal (ch. 1–2.10)",
+        "keyIdea": "The teaching begins from a real moral crisis on a battlefield.",
+        "summary": "The armies of two related clans face each other at Kurukshetra, and the narrator Sanjaya reports the scene to the blind king Dhritarashtra. Arjuna sees teachers and kinsmen in the opposing ranks, lays down his bow, and says he will not fight. His objections concern family, duty, and the social damage of war, and the rest of the dialogue answers them."
+      },
+      {
+        "number": 2,
+        "title": "The undying self and disciplined action (ch. 2–3)",
+        "keyIdea": "The self is not slain, and one may act without clinging to results.",
+        "summary": "Krishna first argues that the embodied self is neither born nor destroyed, then shifts to the discipline of action performed without attachment to its outcome. He describes the person of steady wisdom who is not carried off by the senses. Chapter 3 presses the point that no one can stop acting, so the question is how to act."
+      },
+      {
+        "number": 3,
+        "title": "Knowledge, renunciation, and meditation (ch. 4–6)",
+        "keyIdea": "Renouncing the fruit of action is set beside knowledge and seated meditation.",
+        "summary": "Krishna speaks of his own repeated descents to restore dharma and relates action to knowledge and sacrifice. Chapter 5 weighs renouncing action against renouncing its fruit. Chapter 6 gives instructions for meditation and admits, when Arjuna protests, that the mind is hard to restrain."
+      },
+      {
+        "number": 4,
+        "title": "Krishna's nature and the royal secret (ch. 7–10)",
+        "keyIdea": "The teacher reveals himself as the source of the world.",
+        "summary": "These chapters move from discipline to the identity of the teacher. Krishna describes his higher and lower natures, what happens at death, and the knowledge he calls a royal secret. Chapter 10 lists his manifestations as the best of each kind of thing."
+      },
+      {
+        "number": 5,
+        "title": "The cosmic form and devotion (ch. 11–12)",
+        "keyIdea": "A vision too large to bear leads into the chapter on devotion.",
+        "summary": "Arjuna asks to see Krishna's universal form and is given divine sight. The vision is splendid and then terrifying, showing warriors consumed as Time. Arjuna asks for the familiar form back, and chapter 12 turns to the qualities of the devotee."
+      },
+      {
+        "number": 6,
+        "title": "Field, qualities, and the supreme person (ch. 13–15)",
+        "keyIdea": "The analysis of matter and spirit, and of the three gunas.",
+        "summary": "Chapter 13 distinguishes the field, meaning body and nature, from the knower of the field. Chapter 14 sets out the three qualities of nature: sattva, rajas, and tamas. Chapter 15 uses the image of an inverted tree to describe the world and the highest person beyond it."
+      },
+      {
+        "number": 7,
+        "title": "Two natures and threefold faith (ch. 16–17)",
+        "keyIdea": "Character, faith, food, sacrifice, and gifts are sorted by the qualities.",
+        "summary": "Chapter 16 contrasts divine and demonic dispositions. Chapter 17 applies the three qualities to faith, diet, sacrifice, austerity, and giving. The tone becomes classificatory and practical."
+      },
+      {
+        "number": 8,
+        "title": "Renunciation and the final appeal (ch. 18)",
+        "keyIdea": "The dialogue closes with duty, surrender, and Arjuna's resolve.",
+        "summary": "Krishna gathers earlier threads into an account of true renunciation and of action shaped by the three qualities and by varna duty. He then asks Arjuna to take refuge in him alone. Arjuna says his confusion is gone and he will act, and Sanjaya closes the frame."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which translation of the Bhagavad Gita should I read?",
+        "a": "For a first reading, a modern prose or plain-verse translation such as Eknath Easwaran's is easier to follow than Edwin Arnold's Victorian verse. Arnold's 1885 version is public domain and was widely read, including by Gandhi, but it adds rhyme and paraphrase and does not track verse numbers closely. For study, compare a second translation with notes, since key terms such as dharma, yoga, and karma are translated differently by different schools."
+      },
+      {
+        "q": "How long is the Bhagavad Gita?",
+        "a": "It has 18 chapters and about 700 Sanskrit verses in the standard recension. Most English translations run to 100–200 pages without commentary. A first complete reading takes most people three to five hours."
+      },
+      {
+        "q": "Is the Bhagavad Gita part of the Mahabharata?",
+        "a": "Yes. It sits in the Bhishma Parva, the sixth book of the Mahabharata, at the point where the great battle is about to begin. Many scholars think it was composed or expanded separately and set into the epic, but dating is contested and usually placed somewhere between the 5th and 2nd centuries BCE."
+      },
+      {
+        "q": "Does the Gita tell people to go to war?",
+        "a": "In the narrative, Krishna urges Arjuna, a warrior, to fight a war the epic treats as just. Readers have taken this in different ways: some traditional commentators read it literally within the duties of the warrior class, while Gandhi and others read the battlefield as an allegory of inner conflict. Both readings exist within Hindu thought, and the text itself does not settle which is primary."
+      }
+    ],
+    "practice": {
+      "title": "Read one objection and one answer",
+      "duration": "25 minutes",
+      "instruction": "Read chapter 6 in full, then return to Arjuna's objection that the mind is as hard to hold as the wind (c. vv. 33–36) and Krishna's reply. Copy Arjuna's objection in your own words, then Krishna's reply in your own words. Underneath, write one sentence on what Krishna concedes and one on what he asks for. Finally, find one earlier line in chapter 6 that his reply depends on, and note its approximate verse."
+    },
+    "facts": {
+      "origin": "Composed c. 5th–2nd century BCE (dating contested); part of the Mahabharata, northern India",
+      "language": "Sanskrit",
+      "form": "About 700 verses in 18 chapters, mostly in the shloka metre",
+      "firstRead": "3–5 hours"
+    }
+  },
+  {
+    "slug": "upanishads",
+    "translation": {
+      "translator": "F. Max Müller",
+      "title": "The Upanishads, Parts I and II (Sacred Books of the East, vols. 1 and 15)",
+      "year": 1879,
+      "sourceUrl": "https://sacred-texts.com/hin/sbe01/index.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Vol. 1 published 1879, vol. 15 published 1884; translator died 1900. Public domain worldwide. Müller's paragraph numbering sometimes differs from the standard numbering, which is given first in each locator. His two volumes contain twelve Upanishads; they do not include the Mandukya."
+    },
+    "quotes": [
+      {
+        "text": "ALL this, whatsoever moves on earth, is to be hidden in the Lord (the Self). When thou hast surrendered all this, then thou mayest enjoy. Do not covet the wealth of any man!",
+        "locator": "Isa Upanishad, verse 1 (SBE 1, as the Vâgasaneyi-samhitâ-upanishad)",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/sbe01/sbe01243.htm",
+        "why": "The shortest principal Upanishad opens by joining renunciation and enjoyment in one sentence, and Müller's own note calls it one of the most difficult to understand properly."
+      },
+      {
+        "text": "All who worship what is not real knowledge (good works), enter into blind darkness: those who delight in real knowledge, enter, as it were, into greater darkness.",
+        "locator": "Isa Upanishad, verse 9 (SBE 1)",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/sbe01/sbe01243.htm",
+        "why": "Knowledge without practice is placed in greater darkness than practice without knowledge, a paradox that ancient commentators such as Shankara explained in sharply different ways."
+      },
+      {
+        "text": "'Know the Self to be sitting in the chariot, the body to be the chariot, the intellect (buddhi) the charioteer, and the mind the reins.'",
+        "locator": "Katha Upanishad I.3.3 (SBE 15)",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/sbe15/sbe15012.htm",
+        "why": "Death gives Nachiketas this image of self, intellect, mind, and senses, and the next verses use it to explain why an untrained mind leads back into the round of births."
+      },
+      {
+        "text": "'Now that which is that subtile essence (the root of all), in it all that exists has its self. It is the True. It is the Self, and thou, O Svetaketu, art it.'",
+        "locator": "Chandogya Upanishad VI.8.7 (SBE 1)",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/sbe01/sbe01126.htm",
+        "why": "This is the first occurrence of the refrain usually quoted as \"tat tvam asi\"; Müller renders it \"thou art it\", and Vedanta schools disagree on whether it states identity or a relation of part and whole."
+      },
+      {
+        "text": "'Lead me from the unreal to the real! Lead me from darkness to light! Lead me from death to immortality!'",
+        "locator": "Brihadaranyaka Upanishad I.3.28 (Müller's paragraph 27, SBE 15)",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/sbe15/sbe15054.htm",
+        "why": "Now a widely recited prayer, the lines first appear as formulas the sacrificer speaks while priests chant, and the text immediately glosses all three pairs as death and immortality."
+      },
+      {
+        "text": "Next follows the teaching (of Brahman) by No, no! for there is nothing else higher than this (if one says): 'It is not so.'",
+        "locator": "Brihadaranyaka Upanishad II.3.6 (SBE 15)",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/sbe15/sbe15060.htm",
+        "why": "This is the passage behind \"neti neti\": after describing Brahman through forms, the text says the highest description is a denial of every description."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Isa Upanishad (SBE 1)",
+        "keyIdea": "Eighteen verses on renunciation, action, and knowledge.",
+        "summary": "Müller translates it as the Vâgasaneyi-samhitâ-upanishad because it closes that collection of the White Yajurveda. It opens with the world \"hidden in the Lord\" and then sets knowledge and works against each other in paradoxical pairs. Commentators have long disagreed about what those pairs mean."
+      },
+      {
+        "number": 2,
+        "title": "Kena Upanishad (SBE 1)",
+        "keyIdea": "What moves the mind cannot itself be an object of the mind.",
+        "summary": "Müller calls it the Talavakâra-upanishad, after the Samaveda school that preserves it. Its verse half asks by whom the mind, speech, and breath are directed. Its prose half tells a story in which the gods fail to recognise Brahman until the goddess Uma explains."
+      },
+      {
+        "number": 3,
+        "title": "Katha Upanishad (SBE 15)",
+        "keyIdea": "A boy questions Death about what survives death.",
+        "summary": "Nachiketas, sent to Death by his father, is granted three wishes and refuses every distraction until Death answers his question. The teaching includes the chariot image and the warning that the path is as narrow as a razor's edge. Many readers begin here because the story carries the argument."
+      },
+      {
+        "number": 4,
+        "title": "Mundaka Upanishad (SBE 15)",
+        "keyIdea": "Lower and higher knowledge, and the two birds on one tree.",
+        "summary": "A householder asks what, once known, makes everything known. The teacher distinguishes the lower knowledge of the Vedas and sciences from the higher knowledge of the imperishable. The text uses images such as the spider and its thread, sparks from a fire, and two birds sitting on one tree."
+      },
+      {
+        "number": 5,
+        "title": "Mandukya Upanishad (not in SBE)",
+        "keyIdea": "The syllable Om and four states of consciousness.",
+        "summary": "In twelve prose verses it maps Om onto waking, dreaming, deep sleep, and a fourth state beyond them. Müller did not include it in his two SBE volumes, so a reader must use another translation. Its importance grew through Gaudapada's verse commentary, which is central to Advaita Vedanta."
+      },
+      {
+        "number": 6,
+        "title": "Chandogya Upanishad (SBE 1)",
+        "keyIdea": "Long Samaveda teachings on chant, meditation, and the self.",
+        "summary": "Much of the first half concerns the meaning of chanted syllables and ritual. Book VI is the dialogue in which Uddalaka teaches his son Svetaketu through examples such as salt dissolved in water, with the refrain rendered by Müller \"thou art it\". Book VIII turns to the self within the heart and the instruction of Indra by Prajapati."
+      },
+      {
+        "number": 7,
+        "title": "Brihadaranyaka Upanishad (SBE 15)",
+        "keyIdea": "The longest Upanishad, from sacrificial cosmology to Yajnavalkya's debates.",
+        "summary": "It begins with the horse sacrifice and a creation story told through Death and hunger. Later books present the sage Yajnavalkya debating at King Janaka's court and teaching his wife Maitreyi about the self. It contains both the \"lead me from the unreal to the real\" formulas and the teaching of Brahman as \"not so, not so\"."
+      },
+      {
+        "number": 8,
+        "title": "Svetasvatara Upanishad (SBE 15)",
+        "keyIdea": "A theistic Upanishad that names Rudra-Shiva as the highest lord.",
+        "summary": "Its six chapters combine Samkhya and Yoga vocabulary with devotion to a personal god. It contains early descriptions of posture and breath in meditation. Scholars usually date it later than the older prose Upanishads above."
+      }
+    ],
+    "faq": [
+      {
+        "q": "How many Upanishads are there?",
+        "a": "More than two hundred texts carry the name, but tradition treats about ten to thirteen as the principal ones, because early commentators such as Shankara wrote on them. A later list of 108 Upanishads is also widely cited. Most English selections contain between eight and thirteen."
+      },
+      {
+        "q": "Which Upanishad should a beginner read first?",
+        "a": "The Katha is a common starting point because it tells a story: a boy questions Death. The Isa and Kena are short enough to read several times in one sitting. The Chandogya and Brihadaranyaka are long and ritual-heavy, and they are easier with notes."
+      },
+      {
+        "q": "What does \"tat tvam asi\" mean?",
+        "a": "It is the refrain of Chandogya Upanishad book VI, usually translated \"you are that\"; Müller renders it \"thou art it\". Advaita Vedanta reads it as a statement of identity between the self and Brahman. Other Vedanta schools, such as Vishishtadvaita and Dvaita, read the same sentence as expressing dependence or relation rather than strict identity."
+      },
+      {
+        "q": "When were the Upanishads written?",
+        "a": "The oldest prose Upanishads, the Brihadaranyaka and Chandogya, are usually dated to around the 7th to 6th centuries BCE, though estimates vary. Verse texts such as the Katha and Svetasvatara are generally placed later, and many minor Upanishads were composed well into the common era. They were transmitted orally within Vedic schools before being written down."
+      }
+    ],
+    "practice": {
+      "title": "Follow one refrain through a dialogue",
+      "duration": "30 minutes",
+      "instruction": "Read Chandogya Upanishad book VI in Müller's translation (SBE 1, VI.1–VI.16). Each time the refrain \"thou art it\" appears, write down the example that comes right before it, such as the river, the salt, or the tree. When you finish, look at your list and write one sentence on what the examples share and one sentence on where they differ. Note which examples you would need a commentary to understand."
+    },
+    "facts": {
+      "origin": "Oldest texts c. 7th–6th century BCE, later ones into the common era (dates contested); Vedic schools of northern India",
+      "language": "Vedic and Classical Sanskrit",
+      "form": "A family of prose and verse texts; about 10–13 principal Upanishads out of more than 200",
+      "firstRead": "4–6 hours for the principal Upanishads"
+    }
+  },
+  {
+    "slug": "dhammapada",
+    "translation": {
+      "translator": "F. Max Müller",
+      "title": "The Dhammapada (Sacred Books of the East, vol. 10)",
+      "year": 1881,
+      "sourceUrl": "https://sacred-texts.com/bud/sbe10/index.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Published 1881; translator died 1900. Public domain worldwide. Müller's Victorian wording ('sin', 'priesthood', 'the Church', 'love') carries Christian overtones that later translators avoid; his own notes flag several contested renderings, including verse 1."
+    },
+    "quotes": [
+      {
+        "text": "All that we are is the result of what we have thought: it is founded on our thoughts, it is made up of our thoughts. If a man speaks or acts with an evil thought, pain follows him, as the wheel follows the foot of the ox that draws the carriage.",
+        "locator": "Chapter I (The Twin-Verses), verse 1",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe10/sbe1003.htm",
+        "why": "The opening verse ties the moral weight of action to the mind that precedes it, and Müller's own footnote shows how disputed the rendering of its first line is."
+      },
+      {
+        "text": "For hatred does not cease by hatred at any time: hatred ceases by love, this is an old rule.",
+        "locator": "Chapter I (The Twin-Verses), verse 5",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe10/sbe1003.htm",
+        "why": "It follows two verses about rehearsing grievances, so the claim is about what a person keeps repeating in the mind."
+      },
+      {
+        "text": "It is good to tame the mind, which is difficult to hold in and flighty, rushing wherever it listeth; a tamed mind brings happiness.",
+        "locator": "Chapter III (Thought), verse 35",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe10/sbe1005.htm",
+        "why": "The chapter on thought treats the untrained mind as restless by default and presents training it as ordinary, repeated work."
+      },
+      {
+        "text": "If one man conquer in battle a thousand times thousand men, and if another conquer himself, he is the greatest of conquerors.",
+        "locator": "Chapter VIII (The Thousands), verse 103",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe10/sbe1010.htm",
+        "why": "The chapter measures quantity against quality throughout, and this verse turns the language of military victory toward self-restraint."
+      },
+      {
+        "text": "Not to commit any sin, to do good, and to purify one's mind, that is the teaching of (all) the Awakened.",
+        "locator": "Chapter XIV (The Buddha), verse 183",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe10/sbe1016.htm",
+        "why": "Buddhists across traditions recite this verse as a summary of the teaching, and it names three distinct tasks in a fixed order."
+      },
+      {
+        "text": "You yourself must make an effort. The Tathâgatas (Buddhas) are only preachers. The thoughtful who enter the way are freed from the bondage of Mâra.",
+        "locator": "Chapter XX (The Way), verse 276",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe10/sbe1022.htm",
+        "why": "It places the burden of practice on the reader and limits what any teacher can do, which is a harder claim than it first sounds."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "The twin-verses and earnestness (ch. 1–2)",
+        "keyIdea": "Paired verses set out cause and consequence, then urge vigilance.",
+        "summary": "Chapter 1 arranges verses in contrasting pairs: the impure mind and the pure one, the hater and the one who lets go of grievance. Chapter 2 praises heedfulness (appamāda) as the ground of the path. Read each pair together; the second half often completes the thought."
+      },
+      {
+        "number": 2,
+        "title": "Thought, flowers, the fool and the wise (ch. 3–6)",
+        "keyIdea": "The restless mind can be trained, and the collection sorts people by how they respond to instruction.",
+        "summary": "Chapter 3 describes thought as flighty and hard to guard, using images of the fletcher and the fish on dry ground. Chapter 4 uses flowers and fragrance as images of conduct and death. Chapters 5 and 6 contrast the fool, who cannot learn from the teaching, with the wise person who welcomes correction."
+      },
+      {
+        "number": 3,
+        "title": "The arhat, the thousands, evil and punishment (ch. 7–10)",
+        "keyIdea": "Measures of worth are reversed: one good word outweighs a thousand empty ones.",
+        "summary": "Chapter 7 describes the arhat, the one who has completed the path. Chapter 8 repeatedly sets a large quantity against a small quality, including the verse on conquering oneself. Chapters 9 and 10 turn to wrongdoing, its results, and the refusal to harm others."
+      },
+      {
+        "number": 4,
+        "title": "Old age, self, the world and the Buddha (ch. 11–14)",
+        "keyIdea": "Ageing and death press the question of what a life is for.",
+        "summary": "Chapter 11 is blunt about the body's decay. Chapter 12 makes the self responsible for its own training, and chapter 13 contrasts worldly attachment with the path. Chapter 14 describes the awakened one and contains the frequently recited summary of the teaching in verse 183."
+      },
+      {
+        "number": 5,
+        "title": "Happiness, pleasure, anger, impurity and the just (ch. 15–19)",
+        "keyIdea": "The collection separates happiness from the pursuit of pleasure.",
+        "summary": "Chapter 15 describes a happiness that does not depend on possessions or victory. Chapter 16 traces grief back to attachment to what is dear. Chapters 17 to 19 address anger, moral stain, and what makes someone genuinely just or an elder, rather than merely old or learned."
+      },
+      {
+        "number": 6,
+        "title": "The way and its hazards (ch. 20–24)",
+        "keyIdea": "The eightfold path is named, and the obstacles to it are catalogued.",
+        "summary": "Chapter 20 names the eightfold way, the four truths, and the three characteristics of conditioned things, and insists that effort belongs to the practitioner. Chapters 21 and 22 gather miscellaneous verses and warnings about conduct that leads downward. Chapters 23 and 24 use the image of the elephant for endurance and describe craving (taṇhā) as a creeper that must be cut at the root."
+      },
+      {
+        "number": 7,
+        "title": "The mendicant and the brāhmaṇa (ch. 25–26)",
+        "keyIdea": "The closing chapters describe the monastic practitioner and redefine who deserves the title brāhmaṇa.",
+        "summary": "Chapter 25 addresses the bhikkhu, the monk, and the discipline of speech, body, and mind. Chapter 26, the longest, takes the Brahmanical title brāhmaṇa and applies it to the one who has ended craving, regardless of birth. It is a pointed argument within its historical setting."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which translation of the Dhammapada should I read?",
+        "a": "Readers commonly use Easwaran for an accessible edition with an introduction, Buddharakkhita or Thanissaro Bhikkhu for translations made within the Theravada tradition, and Gil Fronsdal or Valerie Roebuck for modern scholarly readings. Max Müller's 1881 version is public domain and historically important, but its Victorian vocabulary sometimes reads Christian ideas into Pali terms. Comparing two translations of the same chapter is more useful than reading one alone."
+      },
+      {
+        "q": "How long is the Dhammapada?",
+        "a": "The Pali Dhammapada has 423 verses in 26 chapters. A first complete reading takes about two to three hours. Many readers take one chapter a day for a month instead."
+      },
+      {
+        "q": "Did the Buddha write the Dhammapada?",
+        "a": "The Buddha wrote nothing down; the verses are attributed to him and were transmitted orally before being written in the Pali canon, traditionally in Sri Lanka in the first century BCE. Scholars agree the collection is an anthology, and many verses have parallels in other early Buddhist collections. Parallel versions exist in Gāndhārī, Sanskrit (the Udānavarga), and Chinese, which shows it circulated in several forms."
+      },
+      {
+        "q": "Where does the Dhammapada sit in the Buddhist canon?",
+        "a": "It belongs to the Khuddaka Nikāya, the 'minor collection' within the Sutta Piṭaka of the Pali canon used in Theravada Buddhism. The fifth-century commentary attributed to Buddhaghosa attaches a story to each verse explaining when it was spoken. Theravada teachers often read the verses through those stories, which a bare verse translation omits."
+      }
+    ],
+    "practice": {
+      "title": "Read the twin-verses as pairs",
+      "duration": "20 minutes",
+      "instruction": "Read Chapter I, verses 1 to 20, slowly and aloud. For each pair, write one line naming what differs between the two halves: the condition, the action, or the result. Then choose the one pair where you are least sure what the key term means (for example 'thought', 'love', or 'priesthood') and look up how a second translator renders it. Write down the two renderings side by side and one sentence on what the difference changes."
+    },
+    "facts": {
+      "origin": "Verses attributed to the Buddha (5th century BCE by most datings); compiled over time and written in the Pali canon, traditionally 1st century BCE in Sri Lanka",
+      "language": "Pali (parallel versions in Gāndhārī, Sanskrit and Chinese)",
+      "form": "423 verses in 26 chapters",
+      "firstRead": "2–3 hours"
+    }
+  },
+  {
+    "slug": "heart-sutra",
+    "translation": {
+      "translator": "F. Max Müller",
+      "title": "The Smaller Pragñâ-pâramitâ-hridaya-sûtra, in Buddhist Mahâyâna Texts (Sacred Books of the East, vol. 49)",
+      "year": 1894,
+      "sourceUrl": "https://sacred-texts.com/bud/sbe49/sbe4931.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Published 1894; translator died 1900. Public domain worldwide. Müller translated from the Sanskrit (the Hōryū-ji manuscript tradition), not from Xuanzang's Chinese. Diacritics in names (Avalokitesvara, Sâriputra, Pragñâpâramitâ, Nirvâna) are italicised letters in the source page and are given here without the markdown italic markers; no other change was made."
+    },
+    "quotes": [
+      {
+        "text": "The venerable Bodhisattva Avalokitesvara, performing his study in the deep Pragñâpâramitâ (perfection of wisdom), thought thus: 'There are the five Skandhas, and these he considered as by their nature empty (phenomenal).'",
+        "locator": "Opening (setting and the five skandhas)",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe49/sbe4931.htm",
+        "why": "The whole sutra hangs on this frame: a bodhisattva in deep practice looks at the five aggregates that make up a person and sees them as empty."
+      },
+      {
+        "text": "'O Sâriputra,' he said, 'form here is emptiness, and emptiness indeed is form. Emptiness is not different from form, form is not different from emptiness. What is form that is emptiness, what is emptiness that is form.'",
+        "locator": "Form and emptiness",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe49/sbe4931.htm",
+        "why": "The most quoted lines of the sutra run in both directions, which blocks the reading that emptiness is a separate void behind appearances."
+      },
+      {
+        "text": "Therefore, O Sâriputra, in this emptiness there is no form, no perception, no name, no concepts, no knowledge. No eye, ear, nose, tongue, body, mind. No form, sound, smell, taste, touch, objects.",
+        "locator": "The negation series",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe49/sbe4931.htm",
+        "why": "The sutra here negates the very categories of early Buddhist analysis, the aggregates, sense bases and sense objects, which is why its readers need the older lists in view."
+      },
+      {
+        "text": "'There is no knowledge, no ignorance, no destruction of knowledge, no destruction of ignorance,' &c., till we come to 'there is no decay and death, no destruction of decay and death; there are not (the four truths, viz. that there) is pain, origin of pain, stoppage of pain, and the path to it. There is no knowledge, no obtaining (of Nirvâna).'",
+        "locator": "No truths, no attainment",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe49/sbe4931.htm",
+        "why": "Even the four noble truths and the goal itself fall under the negation, the passage most likely to unsettle a reader who expects a scripture to affirm its own doctrine."
+      },
+      {
+        "text": "Therefore one ought to know the great verse of the Pragñâpâramitâ, the verse of the great wisdom, the unsurpassed verse, the peerless verse, which appeases all pain--it is truth, because it is not false-the verse proclaimed in the Pragñâpâramitâ: \"O wisdom, gone, gone, gone to the other shore. landed at the other shore, Svâhâ!\"",
+        "locator": "The mantra (closing)",
+        "sourceUrl": "https://sacred-texts.com/bud/sbe49/sbe4931.htm",
+        "why": "The text ends by moving from analysis to a spoken formula, which is how most communities encounter the sutra: chanted rather than studied."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Homage and setting",
+        "keyIdea": "Avalokiteśvara, practising the perfection of wisdom, looks at the five aggregates.",
+        "summary": "The shorter version opens with a homage and moves straight into the bodhisattva's insight. The longer version adds a narrative frame on Vulture Peak with the Buddha present in meditation. Either way, the speaker is Avalokiteśvara and the listener is Śāriputra, a disciple associated with early Buddhist analysis."
+      },
+      {
+        "number": 2,
+        "title": "The five skandhas seen as empty",
+        "keyIdea": "Form, feeling, perception, formations and consciousness lack a fixed own-nature.",
+        "summary": "The five aggregates (skandhas) are the standard Buddhist account of what a person consists of. The sutra says they are empty of svabhāva, an independent, self-standing nature. It does not say they do not appear or do not function."
+      },
+      {
+        "number": 3,
+        "title": "Form is emptiness, emptiness is form",
+        "keyIdea": "The identity is stated in both directions and extended to the other four aggregates.",
+        "summary": "The central formula refuses to separate emptiness from what appears. The text then says the same holds for the remaining aggregates. Mahayana commentators read this as the middle way between treating things as solid and treating them as nothing."
+      },
+      {
+        "number": 4,
+        "title": "The negation series",
+        "keyIdea": "The categories of Buddhist analysis are listed and each is denied a fixed status.",
+        "summary": "The sutra runs through the six senses, their objects and consciousnesses, the twelve links of dependent origination, and the four noble truths, negating each. The list presupposes Abhidharma categories that a first-time reader may not know. The negations are aimed at treating the teachings as fixed things; the sutra itself goes on to use them."
+      },
+      {
+        "number": 5,
+        "title": "No attainment and freedom from fear",
+        "keyIdea": "Because there is nothing to grasp, the bodhisattva is without obstruction or fear.",
+        "summary": "The text denies knowledge and attainment, then says that relying on the perfection of wisdom removes fear and leads to nirvana. It adds that all buddhas of the three times awaken through this perfection. The paradox of a goal reached by not grasping at a goal is deliberate."
+      },
+      {
+        "number": 6,
+        "title": "The mantra",
+        "keyIdea": "The sutra closes with gate gate pāragate pārasaṃgate bodhi svāhā.",
+        "summary": "The text calls the perfection of wisdom a great mantra that calms all suffering and then gives it. The Sanskrit words mean roughly 'gone, gone, gone beyond, gone completely beyond, awakening, svāhā'. In East Asian and Tibetan practice the mantra is usually chanted, often untranslated."
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is the difference between the longer and shorter Heart Sutra?",
+        "a": "The shorter version, the one most widely chanted, has no narrative frame and begins directly with Avalokiteśvara. The longer version opens with 'Thus have I heard', places the teaching on Vulture Peak with the Buddha in meditation, and ends with the Buddha approving the teaching and the assembly rejoicing. The doctrinal core is the same; the longer frame makes it formally a discourse of the Buddha."
+      },
+      {
+        "q": "Is the Heart Sutra originally Chinese or Sanskrit?",
+        "a": "Tradition treats it as a Sanskrit Indian text, and Sanskrit manuscripts survive, including the Hōryū-ji palm-leaf copy that Müller used. The most influential version is the Chinese text attributed to Xuanzang (649 CE), which is about 260 characters. In 1992 Jan Nattier argued that the sutra was composed in China from a passage of the larger Perfection of Wisdom literature and later rendered into Sanskrit; many scholars find the argument strong, others dispute it, and the question remains open."
+      },
+      {
+        "q": "Which translation of the Heart Sutra should I read?",
+        "a": "84000's translation of the Tibetan text (Toh 21) gives source notes and identifies the longer version. Red Pine's and Thich Nhat Hanh's editions add commentary, and Thich Nhat Hanh revised a key line in 2014 to prevent a nihilistic reading. Edward Conze's translations remain a scholarly reference. Müller's 1894 version is public domain and follows the Sanskrit closely but uses dated terms."
+      },
+      {
+        "q": "Does the Heart Sutra say nothing exists?",
+        "a": "No. Mahayana commentators read emptiness as the absence of a fixed, independent essence in things that still arise dependently and function. The sutra says form is emptiness and emptiness is form in the same breath, which rules out treating emptiness as plain nonexistence. Readers who want the philosophical background usually turn to Nāgārjuna's Madhyamaka."
+      }
+    ],
+    "practice": {
+      "title": "Read the negations against their lists",
+      "duration": "20 minutes",
+      "instruction": "Read the whole sutra once in Müller's version. Then write out the lists the negation series presupposes: the five aggregates, the six senses and their six objects, the twelve links from ignorance to decay and death, and the four noble truths. Mark each item the sutra negates. Finish by writing two or three sentences on one item: what an early Buddhist text affirms about it, and what the Heart Sutra's 'no' seems to be denying about it."
+    },
+    "facts": {
+      "origin": "Mahayana Perfection of Wisdom literature; earliest securely dated version is the Chinese text attributed to Xuanzang (649 CE); Indian or Chinese origin is debated",
+      "language": "Sanskrit and Chinese (also Tibetan, which transmits the longer version)",
+      "form": "One short sutra, in a shorter and a longer version; about 260 characters in Xuanzang's Chinese",
+      "firstRead": "5–10 minutes; several readings with notes take an hour"
+    }
+  },
+  {
+    "slug": "guru-granth-sahib",
+    "translation": {
+      "translator": "Max Arthur Macauliffe",
+      "title": "The Sikh Religion: Its Gurus, Sacred Writings and Authors, vol. 1 (Japji)",
+      "year": 1909,
+      "sourceUrl": "https://sacred-texts.com/skh/tsr1/tsr121.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Published 1909 by the Clarendon Press, Oxford; Macauliffe died 1913. Public domain worldwide. His rendering is a colonial-era scholar's interpretation, made with Sikh collaborators, and uses King James-style English; Sikh readers today commonly use the translations of Sant Singh Khalsa or Gurbachan Singh Talib, alongside Gurmukhi commentary. Words Macauliffe supplied in italics are given here without the markdown italic markers, and footnote numbers are removed."
+    },
+    "quotes": [
+      {
+        "text": "THERE is but one God whose name is true, the Creator, devoid of fear and enmity, immortal, unborn, self-existent by the favour of the Guru.",
+        "locator": "Japji, opening (Mul Mantar)",
+        "sourceUrl": "https://sacred-texts.com/skh/tsr1/tsr121.htm",
+        "why": "The Mul Mantar opens the scripture and much Sikh prayer; Macauliffe's own footnote shows that even its last words, gur prasad, are translated in more than one way."
+      },
+      {
+        "text": "How shall man become true before God? How shall the veil of falsehood be rent? By walking, O Nanak, according to the will of the Commander as preordained.",
+        "locator": "Japji, pauri 1",
+        "sourceUrl": "https://sacred-texts.com/skh/tsr1/tsr121.htm",
+        "why": "After four lines on what thinking, silence and cleverness cannot do, the first pauri poses the question the whole composition answers: living within hukam, the divine order."
+      },
+      {
+        "text": "All are subject to His order; none is exempt from it. He who understandeth God's order, O Nanak, is never guilty of egoism.",
+        "locator": "Japji, pauri 2",
+        "sourceUrl": "https://sacred-texts.com/skh/tsr1/tsr121.htm",
+        "why": "It sets hukam against haumai, self-centredness, a pairing that runs through Guru Nanak's writing."
+      },
+      {
+        "text": "At the ambrosial hour of morning meditate on the true Name and God's greatness.",
+        "locator": "Japji, pauri 4",
+        "sourceUrl": "https://sacred-texts.com/skh/tsr1/tsr121.htm",
+        "why": "The amrit vela, the hours before dawn, remains the time many Sikhs recite Japji and practise naam simran."
+      },
+      {
+        "text": "Neither the Jogi nor any other mortal knows the lunar day, or the week-day, or the season, or the month. Only the Creator who fashioned the world knoweth when He did so.",
+        "locator": "Japji, pauri 21",
+        "sourceUrl": "https://sacred-texts.com/skh/tsr1/tsr121.htm",
+        "why": "The pauri declines the claims of pandits, qazis and yogis alike to know the moment of creation, which shows how directly the Guru addressed the religious authorities of his time."
+      },
+      {
+        "text": "The air is the guru, water our father, and the great earth our mother; Day and night are our two nurses, male and female, who set the whole world a-playing.",
+        "locator": "Japji, closing salok",
+        "sourceUrl": "https://sacred-texts.com/skh/tsr1/tsr121.htm",
+        "why": "The closing salok places human life inside air, water, earth and time before turning to judgement, and Macauliffe notes it is generally attributed to Guru Angad."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Japji Sahib (pp. 1–8)",
+        "keyIdea": "Guru Nanak's opening composition: the Mul Mantar, 38 pauris and a closing salok.",
+        "summary": "Japji is not set to a raag and is recited rather than sung, traditionally in the early morning. It moves from the Mul Mantar through hukam, the divine order, to the value of hearing and obeying the Name, and ends with the five realms (khands) of spiritual ascent. Sikhs regard it as a key to the rest of the scripture."
+      },
+      {
+        "number": 2,
+        "title": "Sodar, So Purakh and Sohila (pp. 8–13)",
+        "keyIdea": "Short evening and night compositions that form part of daily prayer.",
+        "summary": "After Japji come the hymns known as Sodar and So Purakh, which form the core of Rehras, the evening prayer. Kirtan Sohila follows and is recited before sleep. Together with Japji they give the opening pages a liturgical shape tied to the daily cycle."
+      },
+      {
+        "number": 3,
+        "title": "The raag section (pp. 14–1353)",
+        "keyIdea": "Most of the scripture is arranged by 31 musical modes, then by author and form.",
+        "summary": "Each raag section begins with Sri Raag and continues through the modes, grouping hymns first by metre and form (chaupade, ashtapadi, chhant, vaar) and then by Guru, identified as Mahalla 1, 2, 3 and so on. The raag names the mood and time of day for singing. This arrangement is a reading cue: a hymn belongs to a musical and devotional setting, not only a page."
+      },
+      {
+        "number": 4,
+        "title": "Bhagat bani",
+        "keyIdea": "Compositions by fifteen bhagats, Hindu and Muslim, are included within the raag sections.",
+        "summary": "At the end of many raag sections come hymns by bhagats such as Kabir, Sheikh Farid, Namdev and Ravidas, from different regions, castes and faiths. Their inclusion reflects the Gurus' judgement that these voices agreed with the Sikh understanding of the Name. Readers should note each hymn's attributed author rather than reading the whole as one voice."
+      },
+      {
+        "number": 5,
+        "title": "Saloks, swayyas and Mundavani (pp. 1353–1430)",
+        "keyIdea": "The closing pages gather couplets and panegyrics and end with Guru Arjan's seal.",
+        "summary": "This part includes Salok Sahaskriti, the swayyas of the bhatts (court poets), saloks of Kabir and Farid, and the saloks of Guru Tegh Bahadur added in Guru Gobind Singh's recension. Mundavani, by Guru Arjan, describes the scripture as a platter holding truth, contentment and contemplation and serves as its seal. The final item, Raagmala, is included in standard editions, though its authorship and status are debated within the Panth."
+      },
+      {
+        "number": 6,
+        "title": "How the Granth is installed and read",
+        "keyIdea": "The scripture is treated as the living Guru in the gurdwara and the home.",
+        "summary": "Each morning the Granth is opened in the Prakash ceremony and each evening it is closed and put to rest in Sukhasan. An Akhand Path is an unbroken reading of the whole text by relays of readers, taking about 48 hours; a Sehaj Path is a reading at an unhurried pace. The Hukamnama is the hymn read from the page opened at random, taken as the Guru's word for that day or occasion."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which English translation of the Guru Granth Sahib should I read?",
+        "a": "Many readers use Sant Singh Khalsa's complete translation, which is widely available online alongside the Gurmukhi, or Gurbachan Singh Talib's four-volume translation published by Punjabi University. Macauliffe's 1909 renderings are public domain and historically important but cover only selections and reflect a colonial-era English idiom. Sikh commentators generally advise reading with the Gurmukhi text beside the English and treating any translation as an aid to reading the original."
+      },
+      {
+        "q": "Where should a beginner start?",
+        "a": "Most Sikh guides point to Japji Sahib, the opening composition by Guru Nanak. After that, Sukhmani Sahib by Guru Arjan (in Raag Gauri) and the evening Rehras are common next steps. Listening to kirtan of a hymn you have read adds the musical dimension the text was arranged for."
+      },
+      {
+        "q": "How long is the Guru Granth Sahib?",
+        "a": "Standard printed editions have 1,430 pages, called angs, and every edition keeps the same pagination. It contains several thousand hymns, often counted at around 5,800 to 5,900 shabads. A continuous recitation of the whole text, the Akhand Path, takes about 48 hours."
+      },
+      {
+        "q": "Why is the Guru Granth Sahib called the living Guru?",
+        "a": "Guru Arjan compiled the Adi Granth in 1604, and Guru Gobind Singh added the hymns of Guru Tegh Bahadur. Sikh tradition holds that before his death in 1708 Guru Gobind Singh ended the line of human Gurus and vested the Guruship in the scripture and the Khalsa Panth. It is therefore treated with the respect due to a person: it rests under a canopy, is attended with a chaur, and is carried on the head."
+      }
+    ],
+    "practice": {
+      "title": "Read the first pauris of Japji slowly",
+      "duration": "20 minutes",
+      "instruction": "Read the Mul Mantar and pauris 1 to 4 of Japji in one named translation, and if possible listen to them recited in Punjabi. Write down every word or phrase the translation leaves untranslated or explains in a note, such as hukam, haumai, naam or gur prasad. For two of them, look up how a Sikh source such as the SGPC or a published commentary explains the term. Finish by writing the question pauri 1 asks in your own words and the answer the pauri gives, without adding your own view."
+    },
+    "facts": {
+      "origin": "Compiled by Guru Arjan as the Adi Granth in 1604 at Amritsar; expanded by Guru Gobind Singh (c. 1706) and installed as Guru in 1708",
+      "language": "Gurmukhi script; Punjabi with Sant Bhasha, Braj, Lahnda, Persian and Sanskrit-derived vocabulary",
+      "form": "1,430 angs (pages): Japji and daily prayers, 31 raag sections, then saloks and closing compositions; hymns by six Gurus, bhagats and bhatts",
+      "firstRead": "Japji: about 30 minutes; the complete text: about 48 hours of continuous recitation, or several weeks of daily reading"
+    }
+  },
+  {
+    "slug": "yoga-sutras",
+    "translation": {
+      "translator": "Charles Johnston",
+      "title": "The Yoga Sutras of Patanjali: \"The Book of the Spiritual Man\"",
+      "year": 1912,
+      "sourceUrl": "https://sacred-texts.com/hin/ysp/index.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Published 1912; translator died 1931. Public domain worldwide. Johnston calls his book an interpretation: he renders technical terms freely (for example \"the Master\" for Ishvara and \"psychic nature\" for citta), so compare a modern scholarly translation before relying on any single English word."
+    },
+    "quotes": [
+      {
+        "text": "Union, spiritual consciousness, is gained through control of the versatile psychic nature.",
+        "locator": "Book I, sutra 2",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/ysp/ysp02.htm",
+        "why": "This is Johnston's version of the definition usually translated \"yoga is the stilling of the fluctuations of the mind\", and every later sutra depends on how a translator handles it."
+      },
+      {
+        "text": "The control of these psychic activities comes through the right use of the will, and through ceasing from self-indulgence.",
+        "locator": "Book I, sutra 12",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/ysp/ysp02.htm",
+        "why": "The two terms here, abhyasa and vairagya, are more often rendered \"practice and non-attachment\"; Johnston's wording shows how much a translator's moral vocabulary can shape a short sutra."
+      },
+      {
+        "text": "The practices which make for union with the Soul are: fervent aspiration, spiritual reading, and complete obedience to the Master.",
+        "locator": "Book II, sutra 1",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/ysp/ysp04.htm",
+        "why": "Book II opens with kriya yoga, the yoga of action: tapas, svadhyaya, and devotion to Ishvara, which Johnston renders in Christian-sounding terms."
+      },
+      {
+        "text": "The eight means of Yoga are: the Commandments, the Rules, right Poise, right Control of the life-force, Withdrawal, Attention, Meditation, Contemplation.",
+        "locator": "Book II, sutra 29",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/ysp/ysp04.htm",
+        "why": "This sutra names the eight limbs, and it places ethical restraints and observances before posture and breath."
+      },
+      {
+        "text": "Right poise must be firm and without strain.",
+        "locator": "Book II, sutra 46",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/ysp/ysp04.htm",
+        "why": "This is nearly the whole of what the sutra text says about asana; the large modern vocabulary of postures comes from later traditions."
+      },
+      {
+        "text": "These powers stand in contradistinction to the highest spiritual vision. In manifestation they are called magical powers.",
+        "locator": "Book III, sutra 37 (Johnston's numbering; III.37–38 in other editions)",
+        "sourceUrl": "https://archive.sacred-texts.com/hin/ysp/ysp06.htm",
+        "why": "After a long list of extraordinary capacities, the text warns that they can obstruct the goal, which is why commentators disagree on how literally to read Book III."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Samadhi pada: on concentration (Book I, 51 sutras)",
+        "keyIdea": "Yoga is defined, and practice with non-attachment is set out as the method.",
+        "summary": "The book opens with its definition of yoga and a list of the five kinds of mental activity. It names practice and dispassion as the means, and describes stages of concentration with and without an object. Devotion to Ishvara appears here as an alternative route."
+      },
+      {
+        "number": 2,
+        "title": "Sadhana pada: on practice (Book II, 55 sutras)",
+        "keyIdea": "The afflictions that cause suffering, and the practical means to reduce them.",
+        "summary": "It begins with kriya yoga and lists the five afflictions, with ignorance as the ground of the other four. It explains suffering as the confusion of the seer with what is seen. From sutra 28 it introduces the eight limbs and treats the first five in detail."
+      },
+      {
+        "number": 3,
+        "title": "Vibhuti pada: on powers (Book III, 55–56 sutras)",
+        "keyIdea": "The last three limbs combine into samyama, which the text links to extraordinary capacities.",
+        "summary": "The book defines concentration, meditation, and absorption, and names their combination samyama. Most of it lists capacities said to follow from samyama on various objects. It then warns that these capacities can become obstacles to the final goal."
+      },
+      {
+        "number": 4,
+        "title": "Kaivalya pada: on liberation (Book IV, 34 sutras)",
+        "keyIdea": "Mind, karma, and the isolation of pure consciousness.",
+        "summary": "The shortest book discusses how minds and karmic impressions work, and argues that the mind is not self-luminous. It ends with kaivalya, the separation of pure consciousness from the qualities of nature. Some scholars think this book was added or revised later; others read it as integral."
+      },
+      {
+        "number": 5,
+        "title": "The first two limbs: yama and niyama (II.29–45)",
+        "keyIdea": "Ethical restraints and personal observances come first.",
+        "summary": "The five yamas are non-harming, truthfulness, not stealing, sexual restraint, and non-possessiveness. The five niyamas are purity, contentment, austerity, self-study, and devotion to Ishvara. The text calls the yamas a great vow not limited by class, place, time, or circumstance."
+      },
+      {
+        "number": 6,
+        "title": "Posture, breath, and withdrawal (II.46–55)",
+        "keyIdea": "Asana, pranayama, and pratyahara prepare attention.",
+        "summary": "Posture should be steady and comfortable, and the text says little more about it. Breath regulation follows once posture is established. Withdrawal of the senses from their objects completes the outer limbs."
+      },
+      {
+        "number": 7,
+        "title": "The inner limbs: dharana, dhyana, samadhi (III.1–8)",
+        "keyIdea": "Holding attention, sustaining it, and absorption in the object.",
+        "summary": "Dharana binds attention to one place, dhyana is its unbroken flow, and samadhi is the state in which only the object shines forth. Together they are more inward than the first five limbs. The text says even these remain outer compared with seedless samadhi."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which translation of the Yoga Sutras should I read?",
+        "a": "For study, a translation that prints the Sanskrit and the classical commentary of Vyasa, such as Edwin Bryant's, lets you see how each terse sutra has been read. Charles Johnston's 1912 version is public domain and readable, but it is an interpretation shaped by Theosophy and Christian vocabulary. Comparing two translations on a few key sutras, such as I.2 and II.46, shows how much depends on the translator."
+      },
+      {
+        "q": "How long are the Yoga Sutras?",
+        "a": "The text has about 195 or 196 short aphorisms in four books, depending on the edition. The sutras alone can be read in under an hour. Most readers need commentary to understand them, which takes much longer."
+      },
+      {
+        "q": "Are the Yoga Sutras about yoga poses?",
+        "a": "Only briefly. Posture is one of eight limbs, and the text says little more than that it should be steady and comfortable. The work is mainly concerned with the mind, ethics, concentration, and liberation; the elaborate postural systems of modern yoga draw heavily on later hatha yoga texts and 20th-century teachers."
+      },
+      {
+        "q": "Who was Patanjali and when were the Yoga Sutras written?",
+        "a": "Almost nothing is known about Patanjali as a person, and tradition sometimes identifies him with a grammarian of the same name, which many scholars doubt. The text is usually dated between the 2nd century BCE and the 5th century CE, with many scholars favouring the early centuries CE. It was transmitted together with the commentary attributed to Vyasa, and some scholars argue the two were composed as one work."
+      }
+    ],
+    "practice": {
+      "title": "Read the eight limbs in order",
+      "duration": "20 minutes",
+      "instruction": "Read Book II, sutras 28–55, in Johnston's translation, reading only the sutras and skipping his commentary on the first pass. List the eight limbs in the order the text gives them. Next to each, write the number of sutras the text spends on it. Then write two sentences: which limbs receive the most attention, and what that suggests about the text's priorities compared with how yoga is often presented today."
+    },
+    "facts": {
+      "origin": "Compiled c. 2nd century BCE–5th century CE, most often placed in the early centuries CE (dating contested); India",
+      "language": "Sanskrit",
+      "form": "About 195 aphorisms (sutras) in four books (padas)",
+      "firstRead": "1 hour for the sutras alone; 6–10 hours with a commentary"
+    }
+  },
+  {
+    "slug": "zhuangzi",
+    "translation": {
+      "translator": "James Legge",
+      "title": "The Texts of Taoism: The Writings of Kwang-dze (Sacred Books of the East, vols. 39–40)",
+      "year": 1891,
+      "sourceUrl": "https://sacred-texts.com/tao/sbe39/index.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Published 1891; translator died 1897. Public domain worldwide. Legge romanizes the name as Kwang-dze and the author's personal name as Kwang Kâu; his notes sometimes read the text through Christian and Buddhist comparisons that modern scholars do not share."
+    },
+    "quotes": [
+      {
+        "text": "You, Sir, have a large tree and are troubled because it is of no use;--why do you not plant it in a tract where there is nothing else, or in a wide and barren wild?",
+        "locator": "Book I (Hsiâo-yâo Yû), closing exchange with Hui-dze",
+        "sourceUrl": "https://sacred-texts.com/tao/sbe39/sbe39122.htm",
+        "why": "The first chapter ends by turning a complaint about uselessness into a question about where and for whom a thing is supposed to be useful."
+      },
+      {
+        "text": "And there is the great awaking, after which we shall know that this life was a great dream. All the while, the stupid think they are awake, and with nice discrimination insist on their knowledge; now playing the part of rulers, and now of grooms. Bigoted was that Khiû! He and you are both dreaming. I who say that you are dreaming am dreaming myself.",
+        "locator": "Book II (Khî Wû Lun), paragraph 9",
+        "sourceUrl": "https://sacred-texts.com/tao/sbe39/sbe39123.htm",
+        "why": "The speaker includes himself in the dream he diagnoses, which is why the passage resists being read as a confident doctrine."
+      },
+      {
+        "text": "Formerly, I, Kwang Kâu, dreamt that I was a butterfly, a butterfly flying about, feeling that it was enjoying itself I did not know that it was Kâu. Suddenly I awoke, and was myself again, the veritable Kâu. I did not know whether it had formerly been Kâu dreaming that he was a butterfly, or it was now a butterfly dreaming that it was Kâu. But between Kâu and a butterfly there must be a difference. This is a case of what is called the Transformation of Things.",
+        "locator": "Book II (Khî Wû Lun), final paragraph",
+        "sourceUrl": "https://sacred-texts.com/tao/sbe39/sbe39123.htm",
+        "why": "The most quoted story in the book ends not with doubt alone but with the claim that a difference remains, and readers still argue over how the two fit."
+      },
+      {
+        "text": "What your servant loves is the method of the Tâo, something in advance of any art. When I first began to cut up an ox, I saw nothing but the (entire) carcase. After three years I ceased to see it as a whole. Now I deal with it in a spirit-like manner, and do not look at it with my eyes. The use of my senses is discarded, and my spirit acts as it wills. Observing the natural lines, (my knife) slips through the great crevices and slides through the great cavities, taking advantage of the facilities thus presented.",
+        "locator": "Book III (Yang Shang Kû), paragraph 2",
+        "sourceUrl": "https://sacred-texts.com/tao/sbe39/sbe39124.htm",
+        "why": "Cook Ding describes skill as years of practice that end in following the structure already there, and the ruler takes it as a lesson about nourishing life."
+      },
+      {
+        "text": "Kwang-dze and Hui-dze were walking on the dam over the Hâo, when the former said, 'These thryssas come out, and play about at their ease;--that is the enjoyment of fishes.' The other said, 'You are not a fish; how do you know what constitutes the enjoyment of fishes?' Kwang-dze rejoined, 'You are not I. How do you know that I do not know what constitutes the enjoyment of fishes?' Hui-dze said, 'I am not you; and though indeed I do not fully know you, you certainly are not a fish, and (the argument) is complete against your knowing what constitutes the happiness of fishes.' Kwang-dze replied, 'Let us keep to your original question. You said to me, \"How do you know what constitutes the enjoyment of fishes?\" You knew that I knew it, and yet you put your question to me;--well, I know it (from our enjoying ourselves together) over the Hâo.'",
+        "locator": "Book XVII (Khiû Shui), paragraph 13",
+        "sourceUrl": "https://sacred-texts.com/tao/sbe39/sbe39138.htm",
+        "why": "The logician Hui Shi seems to win the argument, and Zhuangzi answers by shifting the question from proof to the place where knowing happens."
+      },
+      {
+        "text": "During the intermingling of the waste and dark chaos, there ensued a change, and there was breath; another change, and there was the bodily form; another change, and there came birth and life. There is now a change again, and she is dead. The relation between these things is like the procession of the four seasons from spring to autumn, from winter to summer.",
+        "locator": "Book XVIII (Kih Lo), paragraph 2",
+        "sourceUrl": "https://sacred-texts.com/tao/sbe40/sbe4002.htm",
+        "why": "Found drumming and singing after his wife's death, Zhuangzi first admits he was affected, then gives this account of change, and the scene still unsettles readers."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Wandering at ease (chapter 1, inner)",
+        "keyIdea": "Freedom and usefulness look different at different scales.",
+        "summary": "The book opens with a vast fish that becomes a bird and flies south, while a cicada and a dove laugh at it. Stories of rulers and hermits follow. The chapter ends with Hui Shi's giant gourds and useless tree, which Zhuangzi says are useless only for the purposes Hui Shi has in mind."
+      },
+      {
+        "number": 2,
+        "title": "Making things equal (chapter 2, inner)",
+        "keyIdea": "Every judgment of right and wrong is made from a standpoint.",
+        "summary": "Legge titles it \"The Adjustment of Controversies\"; it is often called the discussion on making all things equal. It moves from the sounds of Earth and Heaven to the disputes of the schools, the monkeys offered three measures of acorns in the morning, the great dream, and the butterfly. It is the most argued-over chapter and the hardest to summarize."
+      },
+      {
+        "number": 3,
+        "title": "Nourishing life and living among people (chapters 3–4, inner)",
+        "keyIdea": "Skill and survival depend on attention to how things actually are.",
+        "summary": "Chapter 3 is short and centres on Cook Ding and his knife. Chapter 4 imagines Confucius advising his disciple Yan Hui before a dangerous mission to an unstable ruler, including the practice called fasting of the mind. It closes with more useless trees, including a sacred oak that survives because no carpenter wants it."
+      },
+      {
+        "number": 4,
+        "title": "Virtue, the great teacher, and rulers (chapters 5–7, inner)",
+        "keyIdea": "Damaged, ugly, or dying bodies do not measure a person's worth.",
+        "summary": "Chapter 5 presents mutilated and deformed men whose virtue draws others to them. Chapter 6 treats death among friends who sing beside a corpse, and describes the true person of old. Chapter 7 ends the Inner Chapters with Hundun, the faceless emperor of the centre, who dies when well-meaning friends drill seven openings in him."
+      },
+      {
+        "number": 5,
+        "title": "Outer chapters, first group (chapters 8–16)",
+        "keyIdea": "Later writers extend the critique of imposed morality and government.",
+        "summary": "Chapters 8 to 10 attack Confucian benevolence and righteousness as damage to natural endowment, using images such as webbed toes and horses' hoofs. The following chapters mix this polemic with discussion of how a ruler should govern by not interfering. Scholars such as A. C. Graham assign these chapters to several later schools, though the groupings are debated."
+      },
+      {
+        "number": 6,
+        "title": "Outer chapters, second group (chapters 17–22)",
+        "keyIdea": "Stories and dialogues develop the Inner Chapters' themes of perspective and death.",
+        "summary": "Chapter 17 opens with the River Earl discovering the size of the ocean and ends with the fish at the Hao river. Chapter 18 contains the death of Zhuangzi's wife and his conversation with a skull. Chapters 19 to 22 add skill stories and dialogues on knowing the Dao, and some scholars read this group as close in spirit to the Inner Chapters."
+      },
+      {
+        "number": 7,
+        "title": "Miscellaneous chapters (chapters 23–33)",
+        "keyIdea": "The final chapters are the most varied in date, voice, and viewpoint.",
+        "summary": "This section mixes dialogues, fragments, and essays. Chapters 28 to 31, including the story of Robber Zhi rebuking Confucius, have long been suspected by Chinese critics of being later additions. Chapter 33 surveys the thinkers of the age, Zhuangzi among them, and is often read as an early history of Chinese philosophy."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which translation of the Zhuangzi should I read?",
+        "a": "James Legge (1891) and Herbert Giles (1889) are public domain and complete, though their English is dated and Legge spells the name Kwang-dze. Burton Watson's Complete Works of Zhuangzi and Brook Ziporyn's translations are widely used modern choices. A. C. Graham's Chuang-tzu: The Inner Chapters rearranges the text according to his theory of its layers, which is useful but contested."
+      },
+      {
+        "q": "Did Zhuangzi write the whole book?",
+        "a": "Probably not. Most scholars hold that the seven Inner Chapters are closest to Zhuang Zhou himself, while the Outer and Miscellaneous Chapters include work by followers and other writers. The received 33-chapter text goes back to the edition of Guo Xiang in the 3rd–4th century CE, who is reported to have cut down a longer 52-chapter version. Even the Inner Chapters' authorship is debated."
+      },
+      {
+        "q": "Where should a beginner start, and how long is it?",
+        "a": "Start with the seven Inner Chapters, which take about three to four hours to read. Chapters 17 and 18 are good next steps because they contain the fish at the Hao and the death of Zhuangzi's wife. The complete text runs to roughly the length of a long novel."
+      },
+      {
+        "q": "What does the butterfly dream mean?",
+        "a": "Readers disagree. Some take it as a sceptical point about whether we can tell dreaming from waking; others stress its last lines, which insist that a difference remains and present the dream as a case of things changing into one another. Legge's note compares it to the Buddhist idea of illusion, a comparison many later scholars reject for this passage."
+      }
+    ],
+    "practice": {
+      "title": "Read one argument from both sides",
+      "duration": "20 minutes",
+      "instruction": "Read the dialogue at the Hao river (Book XVII, paragraph 13) twice. On the first reading, write in one line what Hui-dze claims and why his logic seems sound. On the second, write in one line what Kwang-dze claims, and mark the exact point where he changes the meaning of the question \"how do you know\". Then write one sentence naming the certainty the story makes harder to hold, and one sentence on whether you think Kwang-dze answered or evaded Hui-dze."
+    },
+    "facts": {
+      "origin": "Core material associated with Zhuang Zhou (traditionally c. 369–286 BCE), Warring States China; other chapters added by later hands, probably by the 2nd century BCE; received text edited by Guo Xiang (d. 312 CE)",
+      "language": "Classical Chinese",
+      "form": "33 chapters: 7 Inner, 15 Outer, and 11 Miscellaneous",
+      "firstRead": "3–4 hours for the Inner Chapters; 12–15 hours for the complete text"
+    }
+  },
+  {
+    "slug": "vijnana-bhairava-tantra",
+    "translation": {
+      "translator": "None available in the public domain",
+      "title": "Vijñānabhairava, Sanskrit text with the commentaries of Kṣemarāja and Śivopādhyāya, ed. Mukunda Rāma Śāstrī (Kashmir Series of Texts and Studies, no. 8)",
+      "year": 1918,
+      "sourceUrl": "https://hareesh.org/blog/2022/5/30/vbt-intro-and-verse-one",
+      "rightsBasis": "locator-only",
+      "rightsNote": "No English translation that is public domain worldwide is known. The first English translation made from the Sanskrit is Jaideva Singh's Vijñānabhairava, or Divine Consciousness (1979), and the widely read adaptation \"Centering\", in Zen Flesh, Zen Bones (1957) compiled by Paul Reps and Nyogen Senzaki, is also in copyright; Christopher Wallis's translation is current work. Quotations are therefore omitted. Verse pointers below follow the numbering of the Kashmir Series of Texts and Studies Sanskrit edition (1918), which Singh also uses; other editions can differ by a verse or two."
+    },
+    "quotes": [],
+    "sections": [
+      {
+        "number": 1,
+        "title": "The frame dialogue (vv. 1–23)",
+        "keyIdea": "Bhairavi asks what Bhairava's true nature is, and he answers that it lies beyond every ritual form.",
+        "summary": "The goddess Bhairavi says she has heard the teachings of the Rudrayamala Tantra yet her doubts remain. She asks whether the highest reality is sound, the phases of the Trika system, the energies, or something else. Bhairava replies that these are aids for the immature and that his real nature is a state free of all such designations. She then asks how that state can be reached, which introduces the practices."
+      },
+      {
+        "number": 2,
+        "title": "Breath and the pause between breaths (c. vv. 24–27)",
+        "keyIdea": "Attention rests at the points where breath turns.",
+        "summary": "The first dharanas take the incoming and outgoing breath as their object. They direct attention to the two points where breath arises and dissolves, and to the pause when breath is held. Breath returns later in the text as well, for example in the closing verses on the natural repetition of breath."
+      },
+      {
+        "number": 3,
+        "title": "Rising energy and the centres of the body (c. vv. 28–31)",
+        "keyIdea": "Visualizations of energy ascending through the body.",
+        "summary": "Several dharanas describe energy rising like lightning from centre to centre, up to and beyond the crown of the head. These verses draw on the subtle-body vocabulary of the wider Shaiva Tantric tradition. Commentators link them with kundalini, though the term itself is used sparingly."
+      },
+      {
+        "number": 4,
+        "title": "Closing the senses, sound, and mantra (c. vv. 32–42)",
+        "keyIdea": "Inner light, unstruck sound, and syllables that fade into silence.",
+        "summary": "Some practices close the openings of the senses and attend to the inner field that remains. Others take sound as the object: the unstruck inner sound, the syllable Om, a sound followed until it dies away, and the lingering tone of a stringed instrument. The common structure is to follow a sound to its end and remain there."
+      },
+      {
+        "number": 5,
+        "title": "Space and emptiness (c. vv. 43–60)",
+        "keyIdea": "The body and the world contemplated as empty space.",
+        "summary": "A long run of dharanas asks the practitioner to contemplate the body, its skin, or all directions at once as void. Others dissolve the body in imagined fire or contemplate the world as if it were burning away. These verses are the source of many modern summaries of the text as a manual of space meditation."
+      },
+      {
+        "number": 6,
+        "title": "Gaps and edges of experience (scattered, e.g. c. vv. 61, 118)",
+        "keyIdea": "The moment between two perceptions or at the edge of a strong event.",
+        "summary": "Several practices point to transitions: the gap between two thoughts or two perceptions, the start of a sneeze, or the moment of fear, grief, or sudden surprise. The text treats these moments as openings where ordinary mental activity briefly stops. They are spread through the text rather than gathered in one block."
+      },
+      {
+        "number": 7,
+        "title": "Pleasure, emotion, and ordinary life (c. vv. 68–138)",
+        "keyIdea": "Everyday sensations and feelings used as supports for contemplation.",
+        "summary": "A notable group uses pleasure as a support: the memory of sexual union, the joy of meeting a long-absent friend, the taste of food and drink, and absorption in music. Later dharanas turn to looking at the open sky, lying in darkness, swaying on a swing, or noticing desire and anger as they arise. The practices end at about verse 138, completing the traditional count of 112, although scholars note the count is not exact."
+      },
+      {
+        "number": 8,
+        "title": "The closing teaching (c. vv. 139–163)",
+        "keyIdea": "Ritual terms are redefined as inner recognition, and the dialogue ends.",
+        "summary": "Bhairava explains that repetition of mantra, meditation, worship, oblation, and pilgrimage are, in their real sense, forms of this same recognition. He describes the natural repetition of breath as a mantra that goes on by itself. Bhairavi, satisfied, embraces Bhairava, and the text closes."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is there a free English translation of the Vijnana Bhairava Tantra?",
+        "a": "No English translation is known to be in the public domain worldwide. Jaideva Singh's 1979 translation with commentary was the first made from the Sanskrit and is still widely used; Paul Reps's 1957 \"Centering\" is a loose adaptation rather than a translation. The Sanskrit text itself was published in 1918 in the Kashmir Series of Texts and Studies."
+      },
+      {
+        "q": "What does \"Vijnana Bhairava\" mean?",
+        "a": "Bhairava is a fierce form of Shiva, and in this text the name stands for ultimate reality. Vijnana means consciousness or awareness, so the title is often rendered \"the Bhairava of consciousness\" or \"consciousness as Bhairava\". Translators differ on the exact nuance."
+      },
+      {
+        "q": "How old is the Vijnana Bhairava Tantra?",
+        "a": "It presents itself as part of the Rudrayamala Tantra, but that attribution is traditional, not historical. Scholars usually place its composition between the 7th and 9th centuries CE, probably in Kashmir or elsewhere in northern India, and it was known to Abhinavagupta's circle by around 1000 CE. Dating remains uncertain."
+      },
+      {
+        "q": "Are there really 112 meditations?",
+        "a": "The number 112 comes from the traditional reckoning of the dharanas between about verse 24 and verse 138. Counting depends on how verses are divided, and some verses contain more than one practice while others restate earlier ones. Translators and commentators arrive at slightly different lists."
+      }
+    ],
+    "practice": {
+      "title": "Map the question before the answers",
+      "duration": "20 minutes",
+      "instruction": "Using a named translation such as Jaideva Singh's, read verses 1–23 slowly. Write down each thing Bhairavi asks about, in the order she asks, and next to it the reason Bhairava gives for setting it aside. Then read one practice from three different groups in this map, for example one on breath, one on sound, and one on an everyday experience. For each, write one line on what it takes as its object and where it asks attention to rest. Keep this as a reading exercise; the guide is a map of the text, not instruction in practice."
+    },
+    "facts": {
+      "origin": "Composed c. 7th–9th century CE (dating contested); Shaiva Tantric tradition, probably Kashmir or northern India",
+      "language": "Sanskrit",
+      "form": "About 163 verses: a frame dialogue, 112 contemplative practices (dharanas), and a closing teaching",
+      "firstRead": "1–2 hours for the verses in translation"
+    }
+  },
+  {
+    "slug": "analects",
+    "translation": {
+      "translator": "James Legge",
+      "title": "Confucian Analects (The Chinese Classics, vol. 1)",
+      "year": 1893,
+      "sourceUrl": "https://sacred-texts.com/cfu/conf1.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "First published 1861; revised second edition 1893, the text given on sacred-texts.com. Translator died 1897. Public domain worldwide. Passage numbers follow Legge's book and chapter divisions, which differ by one in places from some modern editions."
+    },
+    "quotes": [
+      {
+        "text": "Is it not pleasant to learn with a constant perseverance and application? Is it not delightful to have friends coming from distant quarters? Is he not a man of complete virtue, who feels no discomposure though men may take no note of him?",
+        "locator": "Book I, chapter 1",
+        "sourceUrl": "https://sacred-texts.com/cfu/conf1.htm",
+        "why": "The collection opens with three questions that tie study, friendship, and indifference to reputation into one picture of a cultivated person."
+      },
+      {
+        "text": "At fifteen, I had my mind bent on learning. At thirty, I stood firm. At forty, I had no doubts. At fifty, I knew the decrees of Heaven. At sixty, my ear was an obedient organ for the reception of truth. At seventy, I could follow what my heart desired, without transgressing what was right.",
+        "locator": "Book II, chapter 4",
+        "sourceUrl": "https://sacred-texts.com/cfu/conf1.htm",
+        "why": "Confucius describes his own life as decades of practice, ending where desire and right conduct no longer pull apart."
+      },
+      {
+        "text": "Yu, shall I teach you what knowledge is? When you know a thing, to hold that you know it; and when you do not know a thing, to allow that you do not know it;-this is knowledge.",
+        "locator": "Book II, chapter 17",
+        "sourceUrl": "https://sacred-texts.com/cfu/conf1.htm",
+        "why": "Addressed to the bold disciple Zilu, it defines knowledge partly as an honest account of its own limits."
+      },
+      {
+        "text": "The Master standing by a stream, said, \"It passes on just like this, not ceasing day or night!\"",
+        "locator": "Book IX, chapter 16",
+        "sourceUrl": "https://sacred-texts.com/cfu/conf1.htm",
+        "why": "Commentators have read this single image as a lament for passing time and as praise of unceasing effort, and the text leaves both open."
+      },
+      {
+        "text": "Chi Lu asked about serving the spirits of the dead. The Master said, \"While you are not able to serve men, how can you serve their spirits?\" Chi Lu added, \"I venture to ask about death?\" He was answered, \"While you do not know life, how can you know about death?\"",
+        "locator": "Book XI, chapter 11",
+        "sourceUrl": "https://sacred-texts.com/cfu/conf1.htm",
+        "why": "Confucius turns a question about spirits and death back to the duties of the living, a deflection readers still argue over."
+      },
+      {
+        "text": "Tsze-kung asked, saying, \"Is there one word which may serve as a rule of practice for all one's life?\" The Master said, \"Is not RECIPROCITY such a word? What you do not want done to yourself, do not do to others.\"",
+        "locator": "Book XV, chapter 23",
+        "sourceUrl": "https://sacred-texts.com/cfu/conf1.htm",
+        "why": "The term Legge renders as reciprocity (shu) is given a negative formulation here, which the text also uses in answer to Zhonggong at XII.2."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Learning and filial conduct (books I–II)",
+        "keyIdea": "Character is formed through study, family duty, and trustworthy speech.",
+        "summary": "The opening books set the vocabulary of the collection: learning, filial piety, sincerity, and self-examination. Disciples such as Master You and Master Zeng speak alongside Confucius. Book II adds government by virtue, compared to the pole star, and Confucius's short autobiography."
+      },
+      {
+        "number": 2,
+        "title": "Ritual and humaneness (books III–IV)",
+        "keyIdea": "Ritual form matters only when it carries real feeling and humaneness.",
+        "summary": "Book III criticizes leading ministerial families for taking ritual and music that are not theirs, and asks what ritual is without humaneness behind it. Book IV gathers sayings on ren, often translated as humaneness or perfect virtue, and on the contrast between the superior man and the small man."
+      },
+      {
+        "number": 3,
+        "title": "Disciples, contemporaries, and the Master's self-portrait (books V–VIII)",
+        "keyIdea": "Ethical ideals are tested against named people and their conduct.",
+        "summary": "Books V and VI assess disciples and public figures, often briefly and sometimes sharply. Book VII collects Confucius's descriptions of himself as a transmitter and lover of antiquity rather than an originator. Book VIII includes sayings of Master Zeng and praise of the ancient sage kings."
+      },
+      {
+        "number": 4,
+        "title": "The Master in person (books IX–X)",
+        "keyIdea": "The text shows Confucius's manner as well as his teaching.",
+        "summary": "Book IX records remarks by and about Confucius, including the image of the stream. Book X is different in kind: it describes his dress, diet, and bearing at court and at home, detail by detail. Readers who expect doctrine often find Book X the strangest part of the collection."
+      },
+      {
+        "number": 5,
+        "title": "Humaneness, government, and the disciples (books XI–XV)",
+        "keyIdea": "Personal cultivation and political order are treated as one continuous task.",
+        "summary": "Book XI centres on the disciples, especially Confucius's grief at the death of Yan Hui. Books XII and XIII answer questions about ren and about governing, including the rectification of names. Books XIV and XV range over recluses, ministers, and rulers, and include the rule of reciprocity."
+      },
+      {
+        "number": 6,
+        "title": "Later layers (books XVI–XX)",
+        "keyIdea": "The final books differ in form and are often read as later additions.",
+        "summary": "Book XVI groups sayings into numbered sets and introduces each with the formal heading \"Confucius said\" rather than \"The Master said\". Book XVIII records encounters with recluses who mock Confucius's efforts, Book XIX gives the sayings of disciples, and Book XX closes with speeches of the ancient kings. Many scholars treat these books as later strata, though the extent and order of accretion is debated."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which translation of the Analects should I read?",
+        "a": "James Legge's 1861 and 1893 translation is public domain and closely literal, with archaic phrasing and Victorian terms such as \"superior man\". Modern complete translations by D. C. Lau, Edward Slingerland, and David Hinton read more easily, and Slingerland adds traditional commentary. Comparing two translations on key terms such as ren and li is more useful than trusting one."
+      },
+      {
+        "q": "Did Confucius write the Analects?",
+        "a": "No. The Analects records sayings and conversations attributed to Confucius and his disciples, compiled by later followers. Most scholars date its compilation across several generations after his death in 479 BCE, with the received text settled in the Han dynasty. How early each book is remains contested."
+      },
+      {
+        "q": "How long is the Analects, and where should a beginner start?",
+        "a": "It has 20 short books and roughly 500 passages, most only a few lines long. Books I, II, IV, and XII give a good first sample of its main terms. Reading the whole text straight through takes about four to six hours."
+      },
+      {
+        "q": "Is the Analects a religious scripture?",
+        "a": "It has been a canonical classic of Confucian tradition, memorized for the imperial examinations and honoured in temple ritual. It contains little doctrine about gods or an afterlife, and Book XI deliberately turns questions about spirits back to human duties. Whether Confucianism is best described as a religion is itself a scholarly debate."
+      }
+    ],
+    "practice": {
+      "title": "Trace one word across the text",
+      "duration": "20 minutes",
+      "instruction": "Read Book IV, chapters 1 to 7, and Book XII, chapters 1 to 3, where the word Legge translates as \"perfect virtue\" (ren) appears repeatedly. On a sheet with two columns, write down each thing a passage says ren is and each thing it says ren is not. Then note who is being answered in Book XII and how the answer changes with the questioner. End by writing one sentence on what the answers have in common, without importing a modern definition."
+    },
+    "facts": {
+      "origin": "Compiled by followers of Confucius over several generations after 479 BCE, in the state of Lu and beyond; received text fixed in the Han dynasty (dating of individual books is debated)",
+      "language": "Classical Chinese",
+      "form": "20 books of short sayings and dialogues, about 500 passages in all",
+      "firstRead": "4–6 hours"
+    }
+  },
+  {
+    "slug": "tattvartha-sutra",
+    "translation": {
+      "translator": "J. L. Jaini",
+      "title": "Tattvarthadhigama Sutra: A Treatise on the Essential Principles of Jainism (Sacred Books of the Jainas, vol. II)",
+      "year": 1920,
+      "sourceUrl": "https://archive.org/details/in.ernet.dli.2015.344459",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Published at Arrah in 1920; translator Jagmandar Lal Jaini died 1927. Public domain worldwide. Quotes are taken from the text layer of the Digital Library of India scan on archive.org. That scan's text layer carries clean English only for chapter 1, so later sutras such as 5.21 (parasparopagraho jivanam) are described in the FAQ but not quoted. The third quote is Jaini's own editorial note, not a sutra."
+    },
+    "quotes": [
+      {
+        "text": "Right belief, (right) knowledge, (right) conduct, these (together constitute) the path to liberation",
+        "locator": "Chapter 1, sutra 1",
+        "sourceUrl": "https://ia601400.us.archive.org/1/items/in.ernet.dli.2015.344459/2015.344459.Tattvarthadhigama-Sutra.pdf",
+        "why": "The opening sutra names the three jewels together, and Jaini's commentary insists that liberation needs all three at once rather than any one alone."
+      },
+      {
+        "text": "Belief or conviction in things ascertained as they are, (is) right belief.",
+        "locator": "Chapter 1, sutra 2",
+        "sourceUrl": "https://ia601400.us.archive.org/1/items/in.ernet.dli.2015.344459/2015.344459.Tattvarthadhigama-Sutra.pdf",
+        "why": "Right belief is defined as conviction about the categories of reality, so faith in this text depends on the definitions that follow."
+      },
+      {
+        "text": "The following seven are known as the seven tattvas or principles Jiva (soul), Ajiva (non-soul) Asrava (inflow of matter into soul), Bandha (bondage of soul by matter), Samvara (stoppage of inflow of matter into soul), Nirjara (shedding of matter by the soul) and Moksa (liberation of soul from matter)",
+        "locator": "Jaini's note 2 to the invocatory verses before chapter 1, sutra 1 (the seven tattvas listed in sutra 1.4)",
+        "sourceUrl": "https://ia601400.us.archive.org/1/items/in.ernet.dli.2015.344459/2015.344459.Tattvarthadhigama-Sutra.pdf",
+        "why": "This editor's gloss lays out the seven principles that the rest of the sutra works through chapter by chapter, from soul to liberation."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "The path and the means of knowing (chapter 1)",
+        "keyIdea": "Liberation requires right faith, right knowledge, and right conduct together.",
+        "summary": "The chapter names the three jewels and the seven tattvas. It sets out how things are to be examined, through the standpoints (nayas) and valid means of knowledge. It then classifies the five kinds of knowledge, from sensory knowledge to the omniscience (kevala) of the liberated."
+      },
+      {
+        "number": 2,
+        "title": "The soul (chapter 2)",
+        "keyIdea": "The soul is defined by consciousness and classified by its condition and senses.",
+        "summary": "Chapter 2 lists the soul's dispositions (bhavas) according to how karma is subsided, destroyed, or operating. It gives consciousness (upayoga) as the soul's defining mark. It then classifies living beings from one-sensed beings such as plants up to five-sensed beings with mind, and describes their bodies and kinds of birth."
+      },
+      {
+        "number": 3,
+        "title": "The lower, middle, and celestial worlds (chapters 3–4)",
+        "keyIdea": "Souls are placed within a detailed map of the universe.",
+        "summary": "Chapter 3 describes the seven hells and the lifespans of their beings, then the concentric continents and oceans of the middle world where humans live. Chapter 4 describes the four orders of celestial beings, their dwellings, and their lifespans. Readers often find these cosmological chapters the least familiar part of the text."
+      },
+      {
+        "number": 4,
+        "title": "Non-soul substances (chapter 5)",
+        "keyIdea": "Reality consists of eternal substances, each with its own function.",
+        "summary": "Chapter 5 treats the non-soul (ajiva) substances: the media of motion and rest, space, matter, and time, whose status some commentators discuss. It assigns each substance a function, and at 5.21 says that the function of souls is to support one another. It ends by defining substance through its qualities and modes."
+      },
+      {
+        "number": 5,
+        "title": "The inflow of karma (chapter 6)",
+        "keyIdea": "Activity of body, speech, and mind draws karmic matter into the soul.",
+        "summary": "Chapter 6 defines yoga as activity of body, speech, and mind, and asrava as the inflow of karma it causes. It distinguishes inflow driven by passions from inflow without them. It then lists the kinds of conduct that attract each type of karma."
+      },
+      {
+        "number": 6,
+        "title": "The vows (chapter 7)",
+        "keyIdea": "Nonviolence heads the vows that restrain the inflow of karma.",
+        "summary": "Chapter 7 sets out the five vows of nonviolence, truthfulness, non-stealing, chastity, and non-possession, in their complete form for mendicants and a partial form for laypeople. It defines injury as harm to life caused through careless or passion-driven activity. It adds supplementary lay vows and discusses the end-of-life fast (sallekhana)."
+      },
+      {
+        "number": 7,
+        "title": "Bondage (chapter 8)",
+        "keyIdea": "Karma binds the soul in kinds, durations, intensities, and quantities.",
+        "summary": "Chapter 8 names the causes of bondage, including wrong belief, non-restraint, carelessness, passions, and activity. It lists the eight main types of karma and their subtypes. It then sets out how long each type can remain bound and how strongly it takes effect."
+      },
+      {
+        "number": 8,
+        "title": "Stoppage, shedding, and liberation (chapters 9–10)",
+        "keyIdea": "Restraint stops new karma, austerity removes old karma, and the freed soul rises.",
+        "summary": "Chapter 9 describes stoppage (samvara) through restraints, carefulness, ten virtues, twelve reflections, and the endurance of hardships, and shedding (nirjara) through outer and inner austerities, including meditation. Chapter 10 describes omniscience following the destruction of deluding karma, then liberation (moksha). The liberated soul rises to the summit of the universe."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Do Svetambara and Digambara Jains both accept the Tattvartha Sutra?",
+        "a": "Yes. It is one of the few doctrinal texts accepted by both major Jain traditions, which is part of its authority. The two transmit different recensions that differ in the number and wording of some sutras. Svetambaras read it with a commentary (Bhashya) they ascribe to Umasvati, while Digambaras call the author Umasvami and read it with Pujyapada's Sarvarthasiddhi; the authorship of the Bhashya is disputed."
+      },
+      {
+        "q": "Which translation should I read?",
+        "a": "J. L. Jaini's 1920 translation is public domain and gives the Sanskrit, a word-by-word gloss, and notes, though its English is dated. Nathmal Tatia's That Which Is (1994) translates the sutras with the combined commentaries of Umasvati, Pujyapada, and Siddhasenagani, and marks differences between recensions. Vijay K. Jain's 2018 edition gives the Digambara text with the Sarvarthasiddhi."
+      },
+      {
+        "q": "What does \"parasparopagraho jivanam\" mean?",
+        "a": "It is sutra 5.21, usually translated as \"souls render service to one another\" or \"the function of souls is to help one another\". In context it is one of a series of sutras naming what each substance does, alongside matter's role in pleasure, pain, life, and death. It has become a widely used modern Jain motto, and was adopted with the Jain emblem in 1974."
+      },
+      {
+        "q": "How long is it, and where should a beginner start?",
+        "a": "It has about 350 short sutras in ten chapters; the Digambara recension counts 357 and the Svetambara slightly fewer. The sutras alone can be read in one or two hours, but they are written to be read with commentary. Chapter 1 sets out the framework, chapter 5 the substances, and chapter 7 the ethical vows."
+      }
+    ],
+    "practice": {
+      "title": "Build the seven-principle glossary",
+      "duration": "20 minutes",
+      "instruction": "Read chapter 1, sutras 1 to 4, with the translator's notes. Write the seven tattvas in a column, and beside each write in plain words what process or entity it names, using only the translator's definitions. Then read the opening of chapter 7 on the vows, and mark which of the seven principles nonviolence is meant to affect. Close by writing one sentence on why the text defines these terms before it gives any ethical rule."
+    },
+    "facts": {
+      "origin": "Composed in Sanskrit by Umasvati (Umasvami in Digambara usage), India; proposed dates range from the 2nd to the 5th century CE",
+      "language": "Sanskrit",
+      "form": "About 350 aphorisms (sutras) in 10 chapters; counts differ between the Svetambara and Digambara recensions",
+      "firstRead": "1–2 hours for the sutras alone; several weeks with a commentary"
+    }
+  },
+  {
+    "slug": "avesta",
+    "translation": {
+      "translator": "L. H. Mills (Yasna and Gathas); James Darmesteter (Vendidad and Yashts)",
+      "title": "The Zend-Avesta (Sacred Books of the East, vols. 4, 23 and 31)",
+      "year": 1887,
+      "sourceUrl": "https://sacred-texts.com/zor/sbe31/index.htm",
+      "rightsBasis": "public-domain",
+      "rightsNote": "Darmesteter's volumes appeared in 1880 (vol. 4, Vendidad) and 1883 (vol. 23, Sirozahs, Yashts and Nyayish); Mills' vol. 31 (Yasna, Visperad, Afrinagan, Gahs) appeared in 1887. Darmesteter died in 1894 and Mills in 1918, so these translations are public domain worldwide. Mills' Gatha renderings are dense and much of his interpretation is now contested; modern readers of the Gathas usually turn to Stanley Insler (1975), Helmut Humbach (1991) or Prods Oktor Skjærvø, whose translations are in copyright and are not quoted here."
+    },
+    "quotes": [
+      {
+        "text": "Thus are the primeval spirits who as a pair (combining their opposite strivings), and (yet each) independent in his action, have been famed (of old). (They are) a better thing, they two, and a worse, as to thought, as to word, and as to deed. And between these two let the wisely acting choose aright. (Choose ye) not (as) the evil-doers!",
+        "locator": "Yasna 30.3 (Gatha Ahunavaiti), tr. Mills",
+        "sourceUrl": "https://sacred-texts.com/book/the-zend-avesta-part-iii/read/yasna-xxx",
+        "why": "This is the passage behind every summary of Zoroastrian dualism, and it frames the two spirits as a choice set before the listener rather than as a finished cosmology."
+      },
+      {
+        "text": "This I ask Thee, O Ahura! tell me aright: Who by generation was the first father of the Righteous Order (within the world)? Who gave the (recurring) sun and stars their (undeviating) way? Who established that whereby the moon waxes, and whereby she wanes, save Thee? These things, O Great Creator! would I know, and others likewise still.",
+        "locator": "Yasna 44.3 (Gatha Ushtavaiti), tr. Mills",
+        "sourceUrl": "https://sacred-texts.com/book/the-zend-avesta-part-iii/read/yasna-xliv",
+        "why": "Yasna 44 is built from repeated questions put to Ahura Mazda, and this verse shows the Gathas praying by asking rather than by asserting."
+      },
+      {
+        "text": "As the Ahû is excellent, so is the Ratu (one who rules) from (his) sanctity, a creator of mental goodness, and of life's actions done for Mazda; and the Kingdom (is) for Ahura, which to the poor may offer a nurturer.",
+        "locator": "Yasna 27.13, the Ahuna Vairya (Yatha Ahu Vairyo), tr. Mills",
+        "sourceUrl": "https://sacred-texts.com/zor/sbe31/sbe31049.htm",
+        "why": "This is the most recited Zoroastrian prayer, and Mills' bracketed, halting English shows how hard its compressed Avestan syntax is to carry over."
+      },
+      {
+        "text": "He who sows corn, sows holiness: he makes the law of Mazda grow higher and higher: he makes the law of Mazda as fat as he can with a hundred acts of adoration, a thousand oblations, ten thousand sacrifices.",
+        "locator": "Vendidad, Fargard 3.31, tr. Darmesteter",
+        "sourceUrl": "https://sacred-texts.com/book/the-zend-avesta-part-i/read/fargard-iii-the-earth",
+        "why": "The Vendidad treats farming as a religious act, and this line sets tilling the ground on the same scale as worship."
+      },
+      {
+        "text": "For that deed there is nothing that can pay, nothing that can atone, nothing that can cleanse from it; it is a trespass for which there is no atonement, for ever and ever.",
+        "locator": "Vendidad, Fargard 3.39, tr. Darmesteter",
+        "sourceUrl": "https://sacred-texts.com/book/the-zend-avesta-part-i/read/fargard-iii-the-earth",
+        "why": "The same chapter that praises the farmer ends with penalties for burying a corpse in the earth, and a reader should see how purity law and cosmic struggle are bound together in this book."
+      },
+      {
+        "text": "And when the sun rises up, then the earth, made by Ahura, becomes clean; the running waters become clean, the waters of the wells become clean, the waters of the sea become clean, the standing waters become clean; all the holy creatures, the creatures of the Good Spirit, become clean.",
+        "locator": "Khorshed Yasht (Yasht 6).2, tr. Darmesteter",
+        "sourceUrl": "https://sacred-texts.com/book/the-zend-avesta-part-ii/read/vi-khorshed-yast",
+        "why": "This short hymn to the sun belongs to the daily prayers of the Khordeh Avesta, and it shows the later Avesta's concern with light, water and cleanliness in concrete terms."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Yasna (72 chapters)",
+        "keyIdea": "The core liturgy recited by priests during the high ritual of the same name.",
+        "summary": "The Yasna is the text of the principal Zoroastrian act of worship, performed by priests with the preparation and offering of haoma. Its 72 chapters (haiti) combine invocations, confessions of faith and hymns. The Gathas and other Old Avestan pieces sit inside it, so the oldest material survives as part of a living ritual rather than as a separate book."
+      },
+      {
+        "number": 2,
+        "title": "The Gathas (Yasna 28–34, 43–51, 53)",
+        "keyIdea": "Seventeen hymns in Old Avestan, traditionally attributed to Zarathustra.",
+        "summary": "The seventeen Gathas are arranged in five groups by metre: Ahunavaiti, Ushtavaiti, Spentamainyu, Vohukhshathra and Vahishtoishti. They address Ahura Mazda directly and speak of truth (asha), the lie (druj), good mind and the choice each person makes. Their language is archaic and their syntax compressed, which is why translations differ sharply. The Yasna Haptanghaiti (Yasna 35–41), in the same Old Avestan dialect, is usually studied alongside them."
+      },
+      {
+        "number": 3,
+        "title": "Visperad",
+        "keyIdea": "Supplementary liturgy that extends the Yasna for seasonal festivals.",
+        "summary": "The Visperad (\"all the lords\") is a set of additional invocations inserted into the Yasna service, especially for the six seasonal festivals (gahambars). It is not read on its own in ritual practice. Mills translated it in the same SBE volume as the Yasna."
+      },
+      {
+        "number": 4,
+        "title": "Vendidad (22 fargards)",
+        "keyIdea": "Law against the demons: purity, penalties, and a cosmology of the good creation.",
+        "summary": "The Vendidad (videvdad, \"law against the daevas\") opens with a list of lands created by Ahura Mazda and the story of Yima, then turns to purity law, the handling of the dead, penalties and the care of dogs and the earth. Fargard 3, on what gladdens and grieves the earth, praises cultivation and forbids burying corpses. It is in Younger Avestan and is generally dated later than the Gathas, though scholars disagree about when it was compiled."
+      },
+      {
+        "number": 5,
+        "title": "Yashts (21 hymns)",
+        "keyIdea": "Hymns to individual yazatas, the beings worthy of worship.",
+        "summary": "The Yashts praise figures such as Mithra, Anahita, Tishtrya (Sirius) and the fravashis, and several preserve old Iranian myth and epic material. Some are long and narrative; others, like the Khorshed Yasht to the sun, are brief. Darmesteter translated them in SBE vol. 23 together with the Sirozahs and Nyayish."
+      },
+      {
+        "number": 6,
+        "title": "Khordeh Avesta",
+        "keyIdea": "The \"little Avesta\" of prayers used by lay Zoroastrians.",
+        "summary": "The Khordeh Avesta is a prayer book drawn from the wider corpus for daily and household use. It gathers short formulas such as the Ashem Vohu and the Ahuna Vairya, the five Nyayish, the Gah prayers for the times of day, the Sirozah and selected Yashts. Its contents vary between editions and between Parsi and Iranian communities."
+      },
+      {
+        "number": 7,
+        "title": "Survival and loss of the corpus",
+        "keyIdea": "What exists today is a fraction of a larger Sasanian canon, preserved mainly through ritual use.",
+        "summary": "The texts were transmitted orally for many centuries and written down in a purpose-built Avestan script, probably in the Sasanian period (c. 5th–6th century CE). Middle Persian sources, especially the Denkard, describe a Sasanian Avesta of 21 books (nasks), of which only part survives; a common estimate is about a quarter. The surviving manuscripts are late, the oldest dating from around the 13th–14th centuries CE, and what survived is largely what was recited in worship."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which translation of the Avesta should I read?",
+        "a": "For the Gathas, most readers now use a modern scholarly translation such as those by Stanley Insler, Helmut Humbach or Prods Oktor Skjærvø, since they rest on better linguistic knowledge than the Victorian versions. The Sacred Books of the East volumes by Mills and Darmesteter remain the only complete English Avesta that is freely available, and they are useful for the Vendidad and Yashts. Whichever you use, note the section and the translator, because renderings of the same verse can differ widely."
+      },
+      {
+        "q": "Did Zarathustra write the Avesta?",
+        "a": "Zoroastrian tradition attributes the Gathas to Zarathustra, and most scholars accept that they come from him or from his immediate circle. The rest of the Avesta was composed later by many hands over a long period. His dates are disputed: estimates range from before 1000 BCE to around the 6th century BCE, with many specialists favouring the earlier range on linguistic grounds."
+      },
+      {
+        "q": "Where should a beginner start with the Avesta?",
+        "a": "Start with a few Gathas, such as Yasna 30 and Yasna 44, read slowly with notes. Then read Vendidad Fargard 3 and one short Yasht, such as the Khorshed Yasht, to see how the later texts differ in language and concern. Keep in mind that these are liturgical texts recited in Avestan, not books written to be read silently in translation."
+      },
+      {
+        "q": "Is the Avesta the same as the Zend-Avesta?",
+        "a": "\"Zend-Avesta\" is an older European name that joins Avesta (the scripture) and Zand (its Middle Persian commentary and translation). Scholars now prefer to call the scripture simply the Avesta. Middle Persian works such as the Bundahishn and Denkard are a separate body of religious literature, even though they draw on the Avesta."
+      }
+    ],
+    "practice": {
+      "title": "Reading the choice in Yasna 30",
+      "duration": "20 minutes",
+      "instruction": "Read Yasna 30.1–30.6 in Mills' translation. Then copy verse 3 by hand, leaving out every word Mills placed in brackets, and read the shorter version aloud. Write down which bracketed words changed the meaning most, and what the verse asks the listener to do. If you have access to a modern translation, compare verse 3 and note one place where the two disagree."
+    },
+    "facts": {
+      "origin": "Gathas usually dated c. 1500–1000 BCE, though some scholars argue for later dates; the Younger Avesta was composed over the following centuries in eastern Iran; written down c. 5th–6th century CE",
+      "language": "Avestan (Old Avestan for the Gathas and Yasna Haptanghaiti; Younger Avestan for most of the rest)",
+      "form": "A liturgical corpus: Yasna (72 chapters, including 17 Gathas), Visperad, Vendidad (22 fargards), 21 Yashts and the Khordeh Avesta",
+      "firstRead": "2–3 hours for the Gathas with notes; 15–20 hours for the full SBE translation"
+    }
+  },
+  {
+    "slug": "kitab-i-aqdas",
+    "translation": {
+      "translator": "Bahá’í World Centre (incorporating translations by Shoghi Effendi)",
+      "title": "The Kitáb-i-Aqdas: The Most Holy Book (authorized English translation)",
+      "year": 1992,
+      "sourceUrl": "https://www.bahai.org/library/authoritative-texts/bahaullah/kitab-i-aqdas/",
+      "rightsBasis": "quotation",
+      "rightsNote": "The authorized English translation (1992) is in copyright. The Bahá’í Reference Library legal page (bahai.org/legal, last updated 5 September 2022) states that all site content is protected by copyright; it permits use provided the content is not used in a way that misrepresents the intent of the original source and is accompanied by the notice “Copyright © Bahá’í International Community” with attribution; commercial use requires prior permission (termsofuse@bahai.org); and permission may be withdrawn at any time. Four short excerpts (each under 40 words) are quoted here with paragraph locators and attribution: © Bahá’í International Community. No public-domain English translation of the whole book exists.",
+      "notice": "Copyright © Bahá’í International Community"
+    },
+    "quotes": [
+      {
+        "text": "These twin duties are inseparable. Neither is acceptable without the other.",
+        "locator": "¶ 1",
+        "sourceUrl": "https://www.bahai.org/library/authoritative-texts/bahaullah/kitab-i-aqdas/kitab-i-aqdas.xhtml",
+        "why": "The opening paragraph ties recognition of Bahá’u’lláh to observance of His laws, and this pairing governs how the rest of the book asks to be read. © Bahá’í International Community."
+      },
+      {
+        "text": "Think not that We have revealed unto you a mere code of laws. Nay, rather, We have unsealed the choice Wine with the fingers of might and power.",
+        "locator": "¶ 5",
+        "sourceUrl": "https://www.bahai.org/library/authoritative-texts/bahaullah/kitab-i-aqdas/kitab-i-aqdas.xhtml",
+        "why": "The book describes itself here, and the image of wine rather than statute tells the reader to take its laws as devotional as well as legal. © Bahá’í International Community."
+      },
+      {
+        "text": "Say: O leaders of religion! Weigh not the Book of God with such standards and sciences as are current amongst you, for the Book itself is the unerring Balance established amongst men.",
+        "locator": "¶ 99",
+        "sourceUrl": "https://www.bahai.org/library/authoritative-texts/bahaullah/kitab-i-aqdas/kitab-i-aqdas.xhtml",
+        "why": "This passage addresses religious scholars and sets the text as its own measure, which is a demanding claim for any outside reader to keep in view. © Bahá’í International Community."
+      },
+      {
+        "text": "Consort with all religions with amity and concord, that they may inhale from you the sweet fragrance of God. Beware lest amidst men the flame of foolish ignorance overpower you.",
+        "locator": "¶ 144",
+        "sourceUrl": "https://www.bahai.org/library/authoritative-texts/bahaullah/kitab-i-aqdas/kitab-i-aqdas.xhtml",
+        "why": "This command shapes Bahá’í relations with other faiths and sits alongside the book's abolition of earlier notions of ritual uncleanness (¶ 75). © Bahá’í International Community."
+      }
+    ],
+    "sections": [
+      {
+        "number": 1,
+        "title": "Preface, introduction and Shoghi Effendi's description",
+        "keyIdea": "The authorized edition first explains what the book is and how it is applied.",
+        "summary": "The volume opens with a preface and an introduction by the Universal House of Justice, followed by a description of the Kitáb-i-Aqdas by Shoghi Effendi. These pages explain that Bahá’u’lláh revealed the book in Arabic around 1873 in ‘Akká, that it was withheld for a time before being sent to Iran, and that its laws are applied progressively. They also explain the translation's style, which follows the English Shoghi Effendi used for the roughly one-third of the text he had already translated."
+      },
+      {
+        "number": 2,
+        "title": "The Kitáb-i-Aqdas (¶ 1–190)",
+        "keyIdea": "The main text: 190 numbered paragraphs of law, exhortation and address.",
+        "summary": "The main text has no chapters; the authorized edition numbers it in 190 paragraphs. It moves between the laws of obligatory prayer (from ¶ 6) and fasting (¶ 16–17), personal status such as marriage, divorce and inheritance, social ordinances, and addresses to kings, religious leaders and the peoples of the world. It establishes the House of Justice in every city (¶ 30) and directs believers after Bahá’u’lláh's passing to turn to “Him Whom God hath purposed” (¶ 121, ¶ 174), which Bahá’ís understand as the appointment of ‘Abdu’l‑Bahá and the basis of the Covenant."
+      },
+      {
+        "number": 3,
+        "title": "Some texts supplementary to the Kitáb-i-Aqdas",
+        "keyIdea": "Later passages by Bahá’u’lláh that add to or explain the book's provisions.",
+        "summary": "This section collects passages from Tablets revealed after the Aqdas, such as the Eighth Ishráq of the Tablet of Ishráqát, which Bahá’u’lláh said was to be counted as part of the Most Holy Book. Several concern the House of Justice and its authority to legislate on matters not in the text. They are printed separately so that readers can see which words belong to the main book."
+      },
+      {
+        "number": 4,
+        "title": "Questions and Answers (107 items)",
+        "keyIdea": "Bahá’u’lláh's replies to questions about how particular laws apply.",
+        "summary": "The Questions and Answers were compiled by Zaynu’l-Muqarrabín, a transcriber of Bahá’u’lláh's writings, from answers to questions put by believers. The introduction calls them an invaluable appendix to the Aqdas. They settle details such as festival dates, prayer, fasting, marriage and inheritance shares."
+      },
+      {
+        "number": 5,
+        "title": "Synopsis and Codification of the Laws and Ordinances",
+        "keyIdea": "A topical outline of the laws, first prepared under Shoghi Effendi.",
+        "summary": "The Synopsis and Codification arranges the laws of the Aqdas and its supplementary texts under headings such as prayer, fasting, personal status and miscellaneous laws. It lets a reader find every ordinance on one subject without searching the whole text. It is an aid to study and does not replace the text itself."
+      },
+      {
+        "number": 6,
+        "title": "Notes and key to Shoghi Effendi's translations",
+        "keyIdea": "194 explanatory notes, keyed to paragraphs, plus a list of earlier translations.",
+        "summary": "The notes explain terms, historical references and how particular laws are understood or applied, citing ‘Abdu’l‑Bahá, Shoghi Effendi and the Universal House of Justice. Each note links back to its paragraph. A final key lists the passages Shoghi Effendi had already translated and where they first appeared."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Where can I read the Kitáb-i-Aqdas in English?",
+        "a": "The authorized English translation, first published in 1992, is available free in the Bahá’í Reference Library at bahai.org, with PDF, DOCX and HTML downloads. That edition includes the supplementary texts, Questions and Answers, the Synopsis and Codification and the notes. Readers should use it rather than older partial or unofficial renderings, since the Bahá’í community treats it as the authoritative English text."
+      },
+      {
+        "q": "Are all the laws of the Kitáb-i-Aqdas in force today?",
+        "a": "No, not all of them. The introduction to the authorized edition explains that Bahá’u’lláh provided for the progressive application of His laws, because the society for which some were designed will come about only gradually. Some laws, such as obligatory prayer and fasting, are treated as binding now for Bahá’ís where they do not conflict with civil law; others are applied only when the Universal House of Justice decides."
+      },
+      {
+        "q": "What is the role of the Universal House of Justice in relation to the Aqdas?",
+        "a": "The Aqdas ordains Houses of Justice, and Bahá’ís understand the Universal House of Justice, first elected in 1963, as the institution it anticipates. According to the edition's introduction, it may legislate on matters not revealed in the book and may change its own legislation, but it cannot alter laws explicitly laid down in the text. Authoritative interpretation of the text itself was assigned to ‘Abdu’l‑Bahá and then to Shoghi Effendi."
+      },
+      {
+        "q": "How long is the Kitáb-i-Aqdas?",
+        "a": "The main text is 190 short paragraphs and can be read in about an hour and a half. The full authorized volume, with the supplementary texts, 107 Questions and Answers, the Synopsis and 194 notes, is several times longer. Most readers find the notes necessary for understanding specific laws."
+      }
+    ],
+    "practice": {
+      "title": "Reading a law with its note",
+      "duration": "20 minutes",
+      "instruction": "Read ¶ 1–5 of the main text in the authorized edition. Then choose one law from ¶ 6–20, read it, and write down in one sentence what you think it requires. Next, follow the note number attached to that paragraph and read the note and any related Question and Answer. Write a second sentence recording what the note added or corrected, and which voice (main text, question, note) each piece of information came from."
+    },
+    "facts": {
+      "origin": "Revealed by Bahá’u’lláh in ‘Akká (Acre), Ottoman Palestine, around 1873",
+      "language": "Arabic",
+      "form": "190 paragraphs in the main text; the authorized edition adds supplementary texts, 107 Questions and Answers, a Synopsis and Codification and 194 notes",
+      "firstRead": "1–2 hours for the main text; 5–6 hours with the notes and apparatus"
+    }
+  }
+]
