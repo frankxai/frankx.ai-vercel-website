@@ -164,7 +164,7 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
             <Link
               href={product.offer.ctaPrimaryHref}
               onClick={() => handleCTAClick('primary')}
-              className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
+              className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)]"
             >
               {product.offer.ctaPrimary}
             </Link>
@@ -186,12 +186,6 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-16 flex flex-wrap items-center justify-center gap-8 text-xs text-white/40"
         >
-          <div className="flex items-center gap-2">
-            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>500+ Sessions by Frank</span>
-          </div>
           <div className="flex items-center gap-2">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
