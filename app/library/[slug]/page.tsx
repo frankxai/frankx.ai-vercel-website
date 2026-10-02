@@ -276,9 +276,9 @@ export default async function ReviewPage({
             Chapter-by-Chapter
           </h2>
           <p className="text-sm text-white/40 mb-6">
-            Each chapter distilled to a key idea + 2–4 sentence summary — so you can navigate
-            the book's argument without re-reading it, and re-read it with fresh compass
-            if you want.
+            {review.chaptersBasis === 'Symbolic'
+              ? 'Symbolic. These are the book’s own chapter descriptions, told as story.'
+              : 'Each chapter carries a key idea and a short summary, so you can find the argument again.'}
           </p>
           <div className="space-y-3">
             {review.chapters.map((ch) => (
