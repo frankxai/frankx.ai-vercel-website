@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import registry from '@/data/products.json'
 import type { ProductRecord } from '@/types/products'
+import { isPublicDownloadProduct } from '@/lib/download-access'
 
 const products = registry as ProductRecord[]
 
@@ -37,6 +38,13 @@ export async function GET(request: NextRequest) {
   if (!product) {
     return NextResponse.json(
       { error: 'Product not found' },
+      { status: 404 }
+    )
+  }
+
+  if (!isPublicDownloadProduct(product)) {
+    return NextResponse.json(
+      { error: 'Download unavailable' },
       { status: 404 }
     )
   }
@@ -113,6 +121,13 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    if (!isPublicDownloadProduct(product)) {
+      return NextResponse.json(
+        { error: 'Download unavailable' },
+        { status: 404 }
+      )
+    }
+
     if (!product.delivery?.files?.length) {
       return NextResponse.json(
         { error: 'No downloadable files available' },
@@ -132,22 +147,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Add contact to Resend audience for follow-up
-    const RESEND_API_KEY = process.env.RESEND_API_KEY
-    if (RESEND_API_KEY) {
-      fetch(`https://api.resend.com/audiences/4d2e913e-6903-4dd4-8749-c02cdb844331/contacts`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          unsubscribed: false,
-        }),
-      }).catch((err) => console.error('Resend contact error:', err))
-    }
-
     // Generate direct download URL from your blob storage
     const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}`
 
@@ -163,7 +162,7 @@ export async function POST(request: NextRequest) {
         format: file.format,
         url: downloadUrl
       },
-      message: `Thanks ${email}! Your download is ready.`
+      message: 'Your download is ready.'
     })
   } catch (error) {
     console.error('Download POST error:', error)
@@ -173,4 +172,3 @@ export async function POST(request: NextRequest) {
     )
   }
 }
-
