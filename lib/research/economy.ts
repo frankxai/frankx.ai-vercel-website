@@ -59,6 +59,7 @@ export function restoreSelection(raw: string, productIds: readonly string[], cat
     if (!v || typeof v !== 'object') return null;
     const data = v as Record<string, unknown>;
     if (data.version !== 1 || !validScenario(data.scenario)) return null;
+    if (typeof data.product !== 'string' || !productIds.includes(data.product)) return null;
     const p = new URLSearchParams();
     if (typeof data.product === 'string') p.set('product', data.product);
     if (Array.isArray(data.compare)) p.set('compare', data.compare.filter(x => typeof x === 'string').join(','));
@@ -71,6 +72,6 @@ export function restoreSelection(raw: string, productIds: readonly string[], cat
 }
 export function sourceFreshness(checkedAt: string, refreshDays: number, now: Date): 'current' | 'stale' | 'unknown' {
   const checked = Date.parse(checkedAt + 'T00:00:00Z');
-  if (!Number.isFinite(checked) || !Number.isFinite(refreshDays) || refreshDays <= 0 || checked > now.getTime()) return 'unknown';
+  if (!Number.isFinite(checked) || !Number.isFinite(now.getTime()) || !Number.isFinite(refreshDays) || refreshDays <= 0 || checked > now.getTime()) return 'unknown';
   return now.getTime() - checked > refreshDays * 86400000 ? 'stale' : 'current';
 }

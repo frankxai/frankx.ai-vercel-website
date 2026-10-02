@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "title": "Machine to market",
-  "asOf": "2026-10-01",
+  "asOf": "2026-10-02",
   "state": "Research preview; product proposals and prices untested",
   "sources": [
     {
@@ -11,7 +11,7 @@
       "publishedAt": "2025-12-18",
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Reports more than 250 million monthly Store users. Device reach and paying customers are different metrics.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -36,7 +36,7 @@
       "publishedAt": "2023-05-10",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "More than 3 billion active Android devices reported in 2023; historical context, not a current paying-buyer count.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -61,7 +61,7 @@
       "publishedAt": "2025-03-13",
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "80% of net sales proceeds for paid apps, games, themes and items; 85% subscriptions, subject to deductions/custom agreements.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -73,7 +73,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Only selected theme designers get Themes Studio. Page shows an old 2023 application window; current intake availability is unknown.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -85,7 +85,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "From January 2026 Watch Face Format required for installing watch faces on Wear OS; declarative XML plus resources.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -97,7 +97,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Research lead for themes, fonts, watch faces, wallpapers and AOD. Designer eligibility and commercial terms require full-page review before use.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -109,7 +109,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "2025 average DAUs 127 million; average daily unique paying users approximately 1.8 million. Neither measures template buyers.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -121,7 +121,7 @@
       "publishedAt": "2025-09-05",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Over USD 1 billion earned through DevEx March 2024 to March 2025; aggregate historical creator payout.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -133,7 +133,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Models and plugins sold in USD; 100% net proceeds after tax/payment costs. Different from avatar sales and DevEx.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -145,7 +145,7 @@
       "publishedAt": "2025-01-29",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "USD 352 million paid to creators in 2024. Not a current median or expected payout.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -157,7 +157,7 @@
       "publishedAt": "2025-09-18",
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Announced developer share of 100% V-Bucks value Dec 2025 through 2026, ordinarily 50%. V-Bucks value is not gross consumer cash spend. Recheck implementation before launch.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -169,7 +169,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Community Market proceeds remain Steam Wallet funds and cannot be withdrawn to bank accounts. Workshop creator contracts are separate.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -194,7 +194,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Publisher retains 70% of revenue. Publisher agreement, refunds and deductions govern actual payout.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -219,7 +219,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Observed listed template prices include USD 49, 79, 99 and 129, alongside free alternatives. Asking prices do not establish realized sales.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -231,7 +231,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Templates, components and plugins are supported creator formats. No revenue-share number assumed here.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -243,7 +243,7 @@
       "publishedAt": "2026-08-05",
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Etsy marketplace active buyers 87.0 million at June 30 2026, a trailing active-buyer metric; not digital-product buyers.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -255,7 +255,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Seller-prompted AI creations permitted under creativity standards; listing disclosure and prohibited formats must be checked per product.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -267,7 +267,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Listing, transaction, processing and possible ads/regional fees all matter; no single all-in fee asserted.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -279,7 +279,7 @@
       "publishedAt": "2020-09-21",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Native Chrome Web Store payments deprecated; implement external payment/licensing while meeting current extension policies.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -291,7 +291,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Themes, icons, profiles, snippets, extensions, MCP integrations and agent plugins are extensible formats. Distribution does not imply native paid checkout.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -303,7 +303,7 @@
       "publishedAt": "2025-02-20",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "USD 50 million creator fund announcement is historical, with country/program eligibility. Fund size is not accessible revenue or guaranteed continuing funding.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -315,7 +315,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "App add-ons and subscriptions supported. App-store commerce differs from Horizon Worlds bonuses.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -327,7 +327,7 @@
       "publishedAt": "2025-09-15",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Combined Weixin/WeChat MAU 1,411 million at June 30 2025. Historical, includes overlapping ecosystems; not buyers or Mini Program spend.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -339,7 +339,7 @@
       "publishedAt": "2025-06-01",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Nearly USD 1.3 trillion ecosystem billings and sales in 2024 includes physical goods/services; not App Store developer net income.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -364,7 +364,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Domestic cards listed 2.7% + USD 0.30; international and currency-conversion additions apply. Billing and other product fees can be extra.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -389,7 +389,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "AI Office, EDPS and national competent authorities share supervision; role and system use determine obligations.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -401,7 +401,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "AP/RDI central roles, sector authorities such as AFM/DNB; designation status must be checked, not assumed completed.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -413,7 +413,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Bundesnetzagentur coordination/contact role; exact current statutory assignment and sector/data-protection responsibilities need per-product review.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -425,7 +425,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Data protection remains applicable to AI use; role, lawful basis, minimization, security and individual rights require assessment.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -437,7 +437,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Article 14 reporting from 11 Sep 2026; main requirements from 11 Dec 2027. Product scope and transitional provisions matter.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -449,7 +449,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Commercially supplied open source may be in scope; being open source is not blanket exemption. Steward obligations are distinct.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -461,7 +461,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Pre-contract disclosure, digital content/functionality, withdrawal and legal guarantees require correct buyer flow.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -473,7 +473,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "OSS can simplify eligible cross-border EU B2C VAT; merchant-of-record role and supplier responsibilities must be explicit.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -485,7 +485,7 @@
       "publishedAt": "2024-01-09",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Substantiate AI claims and honor privacy/confidentiality promises; FTC and state/sector laws may apply.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -497,7 +497,7 @@
       "publishedAt": "2023-08-04",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "App filing framework for mainland internet information services; local establishment/publisher and classification need counsel.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -509,7 +509,7 @@
       "publishedAt": "2023-08-30",
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Public generative AI services have content, security and filing obligations; do not infer that EU compliance covers mainland distribution.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -521,7 +521,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Science media, third-party content, logos and astronaut likenesses have different rights; no implied endorsement. Inspect each asset.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -533,7 +533,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "search-excerpt",
-      "note": "Launch price from USD 9.99. Historical vendor price demonstrates paid desktop-utility format, not present price or willingness to buy ours.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -558,7 +558,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Free GPLv2 desktop customization runtime with skins and a community forum; no built-in skin sales checkout assumed.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -570,7 +570,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Runtime is a one-time purchase; wallpapers on Workshop are free. External source-asset licensing needs separate rights and terms review.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -582,7 +582,7 @@
       "publishedAt": null,
       "checkedAt": "2026-10-01",
       "resolution": "full-page",
-      "note": "Extension acceptance depends on current policies; permission scope, handling user data and useful functionality need review.",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
       "status": "retrieved",
       "refreshDays": 30,
       "claimReview": "needs review"
@@ -3315,7 +3315,7 @@
       "id": "ms-store",
       "ecosystem": "Microsoft Store",
       "metric": "monthly users",
-      "value": 250000000,
+      "value": null,
       "unit": "people",
       "period": "2025",
       "sourceIds": [
@@ -3331,7 +3331,7 @@
       "id": "android",
       "ecosystem": "Android",
       "metric": "active devices",
-      "value": 3000000000,
+      "value": null,
       "unit": "devices",
       "period": "2023",
       "sourceIds": [
@@ -3347,7 +3347,7 @@
       "id": "roblox-active",
       "ecosystem": "Roblox",
       "metric": "average daily active users",
-      "value": 127000000,
+      "value": null,
       "unit": "people",
       "period": "2025",
       "sourceIds": [
@@ -3363,7 +3363,7 @@
       "id": "roblox-paying",
       "ecosystem": "Roblox",
       "metric": "average daily unique paying users",
-      "value": 1800000,
+      "value": null,
       "unit": "people",
       "period": "2025",
       "sourceIds": [
@@ -3379,7 +3379,7 @@
       "id": "etsy-active",
       "ecosystem": "Etsy",
       "metric": "active buyers",
-      "value": 87000000,
+      "value": null,
       "unit": "people",
       "period": "2026-06-30",
       "sourceIds": [
@@ -3395,7 +3395,7 @@
       "id": "wechat",
       "ecosystem": "Weixin / WeChat",
       "metric": "combined monthly active accounts",
-      "value": 1411000000,
+      "value": null,
       "unit": "accounts",
       "period": "2025-06-30",
       "sourceIds": [
@@ -3411,7 +3411,7 @@
       "id": "roblox-payout",
       "ecosystem": "Roblox",
       "metric": "DevEx creator earnings",
-      "value": 1000000000,
+      "value": null,
       "unit": "USD",
       "period": "2024-03 to 2025-03",
       "sourceIds": [
@@ -3427,7 +3427,7 @@
       "id": "fortnite-payout",
       "ecosystem": "Fortnite",
       "metric": "creator payouts",
-      "value": 352000000,
+      "value": null,
       "unit": "USD",
       "period": "2024",
       "sourceIds": [
@@ -3443,7 +3443,7 @@
       "id": "apple-sales",
       "ecosystem": "Apple ecosystem",
       "metric": "facilitated billings and sales",
-      "value": 1300000000000,
+      "value": null,
       "unit": "USD",
       "period": "2024",
       "sourceIds": [
@@ -3459,7 +3459,7 @@
       "id": "meta-fund",
       "ecosystem": "Meta Horizon",
       "metric": "announced creator fund",
-      "value": 50000000,
+      "value": null,
       "unit": "USD",
       "period": "2025 announcement",
       "sourceIds": [

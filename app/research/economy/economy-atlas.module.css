@@ -1,6 +1,7 @@
 .atlas { --ink:#f1f5f4; --muted:#a8b5b0; --accent:#6ee7b7; --line:#293732; background:#0a0a0b; color:var(--ink); padding:7rem max(1.25rem,calc((100vw - 1440px)/2)); font-family:var(--font-inter),system-ui,sans-serif; min-width:0; }
 .atlas *, .atlas *::before, .atlas *::after { box-sizing:border-box; }
 .atlas h1,.atlas h2,.atlas h3,.atlas h4,.atlas p { margin-top:0; }
+.atlas h1,.atlas h2 { font-family:var(--font-poppins),system-ui,sans-serif; }
 .atlas h2 { font-size:clamp(1.5rem,2.3vw,2.2rem); line-height:1.2; letter-spacing:-.025em; }
 .atlas h3 { font-size:1.1rem; margin:1.8rem 0 .8rem; }
 .atlas p { line-height:1.65; color:var(--muted); }
@@ -42,7 +43,7 @@
 .workspace { display:grid; grid-template-columns:minmax(240px, .34fr) minmax(0,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
 .products { min-width:0; border-right:1px solid var(--line); padding:1.25rem 1.25rem 1.25rem 0; }
 .columnHeading { display:flex; justify-content:space-between; align-items:baseline; gap:.75rem; margin-bottom:1rem; }
-.columnHeading h2 { font-size:.9rem; font-weight:600; letter-spacing:0; margin:0; }
+.columnHeading h2 { font-family:var(--font-inter),system-ui,sans-serif; font-size:.9rem; font-weight:600; letter-spacing:0; margin:0; }
 .columnHeading span { color:var(--muted); font-size:.72rem; }
 .products>ul { list-style:none; padding:0; margin:0; max-height:920px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:#3b5046 transparent; }
 .products li { border-bottom:1px solid var(--line); padding:.4rem 0 .8rem; }
@@ -67,6 +68,7 @@
 .inspector { scroll-margin-top:110px; }
 .price { font-family:var(--font-mono),monospace; color:var(--accent); font-size:1.25rem; white-space:nowrap; }
 .price small { display:block; text-align:right; font-family:var(--font-inter),sans-serif; margin-top:.35rem; }
+.price .noPriceMeaning { max-width:28rem; white-space:normal; }
 .specification { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2rem; }
 .specification dt { color:var(--accent); font-size:.72rem; margin-bottom:.5rem; }
 .specification dd { margin:0; font-size:.875rem; color:#d3ddd7; line-height:1.65; }
