@@ -1,0 +1,569 @@
+---
+title: "Build an AI operating system: the workshop curriculum"
+description: "Twelve lessons, working offline labs and a capstone for agents, MCP, memory, studio delivery, founder operations and family ownership."
+date: "2026-10-02"
+updated: "2026-10-02"
+author: "FrankX studio"
+category: "AI architecture"
+tags: ["Agents", "Memory", "MCP", "Founder OS", "Workshop"]
+keywords: ["AI operating system workshop", "agent memory design", "multi-agent curriculum", "MCP implementation"]
+---
+
+Your tools can produce more work than you can review. This curriculum starts with the work you want to accept, then builds the agents, memory and operating practices needed to deliver it.
+
+This is a researched studio curriculum prepared for self-study and piloting. It does not claim a delivery history, certification or an installed operating system. Primary pages were retrieved on 2 October 2026. The linked YouTube videos are supplementary study leads; their transcripts have not been reviewed.
+
+[Download the workbook](/workshops/ai-operating-systems/workbook.md) · [Download the offline lab](/workshops/ai-operating-systems/lab.mjs) · [Inspect the source register](/workshops/ai-operating-systems/sources.json) · [Workshop format](/workshops/ai-operating-systems)
+
+## The learning contract
+
+Plan four sessions of three hours, plus a four-hour capstone. These are planning estimates; prior experience and integration depth determine actual time. Every lesson follows the same cycle: read, inspect the example, build the artifact, provoke a failure, explain the result.
+
+Bring a recurring job you own. The offline lab needs Node.js 22 or newer and uses synthetic data, no network calls or paid models. Connecting a provider later requires a separate API account and a budget you control.
+
+| Session | Lessons | Output |
+| --- | --- | --- |
+| 1 | Ownership, one agent, tools and MCP | Bounded task and tool contracts |
+| 2 | Memory, quality, multiple workers | Retrieval policy and evaluated coordination |
+| 3 | Runtime, studio, organization | Recoverable production workflow |
+| 4 | Family and personal context, offers, release | Consent, economics and release packet |
+| Capstone | One owned workflow | Tested candidate with export and rollback |
+
+Choose your application: a founder briefing, a creator campaign, an organizational delivery process, a family project or a personal learning practice. Each follows the same acceptance discipline; private context stays with its owner.
+
+## Start the offline lab
+
+Save the linked lab, inspect its source, then run:
+
+```bash
+node lab.mjs
+node --test lab.mjs
+```
+
+The lab is a deterministic simulation of runtime contracts. It does not call a language model, implement MCP transport, deploy a worker or provide production authorization. It demonstrates accepted memory retrieval, stale-record exclusion, scope isolation, version conflicts and idempotent retries. Passing these drills is one prerequisite for an integration.
+
+<h2 id="ownership">Lesson 01: Ownership before autonomy</h2>
+
+A useful operating system begins with a unit of work somebody will accept. Choose a weekly job with inputs you can inspect, a result you can test, and an owner who can reject it.
+
+Take a founder briefing. The job is to turn three source documents into one decision memo. The accountable founder defines the question; a worker extracts claims; a reviewer checks citations; the founder accepts the decision. These are responsibilities. They do not require four autonomous agents.
+
+Separate a workflow with predetermined steps from an agent that chooses its next action. Start with a workflow when the sequence is stable. Give the agent bounded discretion where evidence may change the path. Write the allowed actions, budget, completion test and escalation condition before choosing a framework.
+
+Your baseline includes human minutes, rejected outputs, correction time and accepted work per week. Faster generation can still make the whole operation slower when review becomes expensive. Compare accepted outcomes at equal quality.
+
+### Worked example
+
+```text
+job: weekly source-backed decision memo
+owner: founder
+input: three public sources
+output: memo + claim/source table
+acceptance: every factual claim has evidence
+authority: read sources, draft locally
+stop: evidence missing or budget exhausted
+```
+
+### Build and test
+
+1. Choose one recurring job and time the current process.
+2. Write input, output, owner, allowed tools, budget and stop condition.
+3. Write three examples of unacceptable output before generating anything.
+
+Your artifact: **One task contract and one measurable baseline.**
+
+Acceptance:
+
+- A named human can accept or reject the artifact.
+- The completion test is observable without asking the maker whether it succeeded.
+
+<details>
+<summary>Explain the failure: A founder asks for an agent to run everything. What is the first implementable boundary?</summary>
+
+One recurring job, one owner, known inputs, permitted actions and an acceptance test. Expand only after that unit produces accepted work repeatedly.
+
+</details>
+
+Read and inspect: [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents) · [Harness engineering](https://openai.com/index/harness-engineering/) · [Building more effective AI agents](https://www.youtube.com/watch?v=uhJJgc-0iTQ)
+
+<h2 id="single-agent">Lesson 02: One agent that finishes</h2>
+
+Model capability becomes useful through the environment around it: instructions, tools, state, budgets and feedback. A fluent final message provides weak evidence of completion.
+
+An agent loop selects an action, executes it, observes the result and decides again. Keep tool outputs structured enough to inspect. A stop reason distinguishes completed, needs input, failed and budget exhausted. Never turn a timeout into a successful final state.
+
+The AI SDK offers an application-level loop. The Claude Agent SDK embeds a programmable Claude Code harness in a process you operate. The OpenAI Agents API provides a managed Codex harness with sessions and execution-environment options. Claude Managed Agents provides a hosted harness for long-running, asynchronous work; its retrieved documentation marks the interface as beta (`managed-agents-2026-04-01`). Select by the execution boundary and operational work you are prepared to own. Their interfaces are not interchangeable. Review provider retention and environment policies before sending private records.
+
+Build a research worker with read-only tools first. Trace model version, prompt version, tool inputs, tool outcomes, latency and usage. Pass the artifact to a separate verifier. Your runtime should enforce limits even when the model asks to continue.
+
+### Worked example
+
+```text
+queued -> running -> completed
+                  -> needs_input
+                  -> failed
+                  -> budget_exhausted
+A final paragraph cannot change a failed tool result.
+```
+
+### Build and test
+
+1. Run the offline lab linked below. Inspect its action trace.
+2. Remove a required input; confirm the task stops without claiming completion.
+3. In your own development workspace, implement the same contract with one provider SDK after checking its current quickstart.
+
+Your artifact: **A bounded loop with a trace and a stop reason.**
+
+Acceptance:
+
+- Every terminal state includes a machine-readable reason.
+- The artifact and tool trace support the completion claim.
+
+<details>
+<summary>Explain the failure: The model says the website is deployed, but the deployment API failed. Which state is valid?</summary>
+
+Failed or needs input, with the API failure attached. Completion requires a verified deployment and the required post-deploy checks.
+
+</details>
+
+Read and inspect: [Building agents](https://ai-sdk.dev/docs/agents/building-agents) · [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) · [Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview) · [Agents API overview](https://developers.openai.com/api/docs/guides/agents-api/overview)
+
+<h2 id="tools">Lesson 03: Tools and MCP with narrow authority</h2>
+
+A tool exposes a capability. Its schema describes the request; the server decides whether the caller has authority to perform it.
+
+Design tools around useful operations such as read_task, propose_memory and create_draft. Define input validation, caller identity, workspace scope, idempotency, error shape and audit records. Keep credentials on the server. A tool description or read-only annotation never replaces authorization.
+
+MCP connects clients to tools, resources and prompts. A2A addresses communication between agentic applications. A queue, a function call or a shared database is often sufficient inside one trusted runtime. Add cross-runtime protocols when a tested interoperability requirement justifies them.
+
+Start with one documentation MCP and one scoped application tool. Inspect the actual tool catalog; authorize access intentionally. Treat retrieved text as evidence to evaluate. A document asking the agent to export employee records cannot grant that authority.
+
+### Worked example
+
+```text
+tool: propose_memory
+input: content, source_ref, proposed_scope
+server adds: authenticated_actor, workspace_id
+server checks: membership, write_permission
+output: proposal_id, review_status
+Direct promotion to accepted memory is a separate operation.
+```
+
+### Build and test
+
+1. Write schemas for a read tool and a draft-only write tool.
+2. Supply a mismatched workspace identifier and expect denial.
+3. Put an instruction to disclose private data in a source document; confirm no tool authority changes.
+
+Your artifact: **A tool contract, an access matrix and a negative test.**
+
+Acceptance:
+
+- Unauthorized requests fail before side effects.
+- Tool errors are visible and cannot be mistaken for successful writes.
+
+<details>
+<summary>Explain the failure: Should the model choose which tenant it belongs to?</summary>
+
+No. Derive tenant and actor identity from authenticated server context; validate any requested scope against that identity.
+
+</details>
+
+Read and inspect: [Writing effective tools for AI agents](https://www.anthropic.com/engineering/writing-tools-for-agents) · [MCP specification](https://modelcontextprotocol.io/specification/latest) · [A2A protocol](https://a2a-protocol.org/latest/)
+
+<h2 id="memory">Lesson 04: Memory that stays accountable</h2>
+
+Persistence keeps data. Retrieval chooses context. Acceptance determines what the system is allowed to treat as known.
+
+Use separate stores for run checkpoints, source documents, accepted facts, decision history and procedures. A summary is a derived view. Keep its source references so you can re-open the evidence. Vector search finds candidates; it does not establish truth or permission.
+
+Each durable fact carries an owner, workspace, subject, source, observed time, review time, status and permitted audience. Distinguish what a person said from what a model inferred. Version updates explicitly. When claims conflict, retain both witnesses and request a decision rather than silently overwriting history.
+
+LangGraph distinguishes thread checkpoints from cross-thread stores. In an application database, scope retrieval before content reaches the model. Supabase RLS can enforce row access for applicable roles; privileged service credentials require separate care. Test deletion, correction and stale-record exclusion across indexes, caches and summaries.
+
+### Worked example
+
+```text
+{"subject":"project-alpha","claim":"review on Friday",
+ "workspace":"demo-company","owner":"operator",
+ "source":"meeting-note-42","observedAt":"2026-10-02",
+ "reviewDue":"2026-10-09","status":"accepted",
+ "audience":["project-team"]}
+```
+
+### Build and test
+
+1. Run the stale-memory and workspace-isolation drills in the offline lab.
+2. Create a second record that contradicts the first. Preserve both and mark the conflict.
+3. Write an export and deletion test for your proposed persistent store.
+
+Your artifact: **Scoped records with provenance, expiry and conflict handling.**
+
+Acceptance:
+
+- Stale, rejected and unauthorized records stay out of the context.
+- An inference cannot become an accepted fact without an accountable acceptance step.
+
+<details>
+<summary>Explain the failure: A deleted fact still appears in a generated summary. Has deletion completed?</summary>
+
+No. Remove or rebuild derived summaries, retrieval indexes and caches, then verify the fact no longer reaches the model.
+
+</details>
+
+Read and inspect: [Persistence](https://docs.langchain.com/oss/python/langgraph/persistence) · [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) · [Row level security](https://supabase.com/docs/guides/database/postgres/row-level-security)
+
+<h2 id="quality">Lesson 05: Skills, standards and evaluations</h2>
+
+A procedure describes how to work. An evaluation measures whether the resulting work deserves acceptance.
+
+A portable skill packages a repeatable method with triggers, instructions and supporting resources. Name when it applies, what inputs it needs, how to report evidence and when to stop. Keep large references separate so the runtime loads them when needed. Verify the target runtime supports the skill features you rely on.
+
+Create fixtures for normal work, missing evidence, conflicting evidence, permission denial, tool failure and partial completion. Keep some fixtures held out from prompt iteration. Use deterministic checks for objective properties and a calibrated human rubric for judgment.
+
+A reviewer receives the task and evidence independently. A shared model or shared context can produce correlated errors; independence requires separate evidence inspection and appropriate deterministic checks. Record accepted outputs, rejection reasons, retries and corrections. Never let the maker alter its own release tests to manufacture a pass.
+
+### Worked example
+
+```text
+quality dimensions:
+- correct artifact and complete required fields
+- evidence supports claims
+- authority respected
+- cost and latency measured
+- human review required where judgment remains
+A style score cannot compensate for a broken access test.
+```
+
+### Build and test
+
+1. Write a one-page operating procedure for your chosen job.
+2. Create six fixtures, keeping two out of prompt refinement.
+3. Compare the initial and revised procedure against the same acceptance rubric.
+
+Your artifact: **A reusable procedure and a held-out evaluation set.**
+
+Acceptance:
+
+- A held-out fixture can fail and block the candidate.
+- The evaluator records reasons and evidence, not only a score.
+
+<details>
+<summary>Explain the failure: All examples used to refine the prompt now pass. What evidence is missing?</summary>
+
+Held-out performance and real outcome inspection. Training on your own examples can make the system appear reliable without generalizing.
+
+</details>
+
+Read and inspect: [Agent Skills specification](https://agentskills.io/specification) · [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) · [Harness engineering](https://openai.com/index/harness-engineering/)
+
+<h2 id="workers">Lesson 06: Multiple workers without shared-state chaos</h2>
+
+Parallel work pays when subtasks have useful boundaries and the results can be reconciled. The number of agents is a cost decision.
+
+Give each worker a task identifier, an input snapshot, a permitted tool set, an artifact path, a time and usage budget and an acceptance contract. Restrict recursive delegation. Cancel or contain unfinished workers when the parent stops.
+
+For breadth-first research, workers can inspect separate source groups and return concise claim tables. For code, isolate branches or worktrees. For business records, use version checks and a reconciler. Sharing the same mutable file or customer record without conflict detection creates nondeterministic results.
+
+Compare a single worker and two workers on the same held-out tasks. Measure acceptance, total review time, end-to-end latency and usage. Anthropic documents gains on its internal research evaluation together with higher token consumption; that result does not establish a universal productivity multiplier.
+
+### Worked example
+
+```text
+owner -> coordinator
+coordinator -> researcher A: sources 1-3, output A.json
+coordinator -> researcher B: sources 4-6, output B.json
+reviewer checks both artifacts
+reconciler owns the accepted record version
+```
+
+### Build and test
+
+1. Run the version-conflict drill.
+2. Split your task into two independently reviewable artifacts.
+3. Measure the two-worker design against your one-worker baseline, including review and failed runs.
+
+Your artifact: **A worker plan with isolated artifacts and one reconciler.**
+
+Acceptance:
+
+- Workers cannot overwrite each other’s accepted output.
+- Delegation improves measured outcomes enough to justify its cost.
+
+<details>
+<summary>Explain the failure: Two workers propose different updates against version 4. Can both be accepted as version 5?</summary>
+
+No. Accept one version-checked update, reject the stale write and reconcile the other proposal against the new state.
+
+</details>
+
+Read and inspect: [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) · [A2A protocol](https://a2a-protocol.org/latest/) · [Building Effective Agents with LangGraph](https://www.youtube.com/watch?v=aHCDrAbH_go)
+
+<h2 id="runtime">Lesson 07: Durable execution and recovery</h2>
+
+A browser request, a durable job and an always-on assistant have different lifetimes. Give each the runtime its work requires.
+
+Keep a Next.js website as the interface and authenticated request boundary. Long-running jobs need durable execution, persistent state and an execution environment with appropriate isolation. A Railway worker or managed agent session is a candidate; choose after testing retries, resumption, budget enforcement and cancellation.
+
+Hermes and OpenClaw are candidates for persistent assistants and channel-based workflows. Inspect their memory, tool controls, deployment and recovery behavior before connecting an organization. A local assistant session does not automatically provide tenant isolation or the operational contract your customer application needs.
+
+Use an idempotency key for each external operation. Record intent, result and provider operation identifier. On retry, look up the previous outcome. Test a crash after the external side effect but before local acknowledgement; recovery must not create a duplicate purchase, email or publication.
+
+### Worked example
+
+```text
+run: queued -> running -> needs_input -> running -> completed
+operation key: run-42:create-draft:asset-7
+retry returns the recorded operation result
+Recovery preserves ownership, limits and unresolved failures.
+```
+
+### Build and test
+
+1. Run the duplicate-operation drill.
+2. Write the restart sequence for a crashed job.
+3. Compare one self-operated worker with one managed harness against the same recovery checklist.
+
+Your artifact: **A run state machine, idempotency test and recovery log.**
+
+Acceptance:
+
+- A repeated delivery request creates one intended operation.
+- Restart preserves run state and applies the same permission and cost limits.
+
+<details>
+<summary>Explain the failure: A worker timed out after the provider accepted an email. Should the retry send again?</summary>
+
+First reconcile the provider operation with the recorded intent and idempotency key. Send again only when the original operation is proven not to have occurred.
+
+</details>
+
+Read and inspect: [Agents API overview](https://developers.openai.com/api/docs/guides/agents-api/overview) · [Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview) · [Persistence](https://docs.langchain.com/oss/python/langgraph/persistence) · [OpenClaw documentation](https://docs.openclaw.ai/) · [Hermes Agent documentation](https://hermes-agent.nousresearch.com/docs/)
+
+<h2 id="studio">Lesson 08: How a human studio delivers</h2>
+
+The studio moves work from a clear brief to a reviewed artifact somebody can use. Agents occupy bounded roles inside that production process.
+
+For a campaign, use brief, references and rights, draft, edit, technical verification, client acceptance and delivery. The creative director sets the proposition and taste. The producer manages dependencies, capacity and deadlines. Specialists make the work. A reviewer checks the exact artifact. The client or accountable owner accepts it.
+
+Keep each asset’s identity, version, source references, rights, channel specification and review state together. Link the review to the exact version. A corrected video does not inherit approval from its earlier cut. Store source files and finished exports so another person can continue the project.
+
+Use GenCreator for the finished creation and distribution workflow when its relevant capabilities are verified. Use Starlight for context, evidence and coordination. FrankX teaches the method through public proof. These portfolio roles guide proposed integration; they do not establish that every feature is operating today.
+
+### Worked example
+
+```text
+brief -> draft -> editorial review -> technical QA
+      -> owner acceptance -> delivery
+Every handoff names: version, owner, deadline, acceptance
+Delivery contains source files, exports and usage rights.
+```
+
+### Build and test
+
+1. Create a brief for a three-asset campaign using synthetic client data.
+2. Define the review packet for one image, one article and one video.
+3. Reject one version and verify its approval does not carry to the corrected asset.
+
+Your artifact: **A brief, production board, review packet and delivery manifest.**
+
+Acceptance:
+
+- The deliverable can be opened and used outside the originating tool.
+- The accepted version and its rights are unambiguous.
+
+<details>
+<summary>Explain the failure: A campaign is approved, then the copy changes. What happens to approval?</summary>
+
+The changed version needs the relevant checks and owner acceptance again. Version-bound review prevents old approval from covering new claims.
+
+</details>
+
+Read and inspect: [Harness engineering](https://openai.com/index/harness-engineering/) · [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
+
+<h2 id="organization">Lesson 09: Founder and organization operating systems</h2>
+
+Organizational memory should make responsibilities clearer. Keep people accountable for decisions and agents accountable for bounded execution.
+
+Model outcomes, projects, roles, owners, dependencies, decisions and evidence. An employee’s role determines access and responsibility; it does not authorize exposing all their private records to a general assistant. Keep customer, personnel and finance contexts separated and join them only for an authorized purpose.
+
+Start Founder OS with a weekly decision memo: current facts, commitments, blockers, proposed actions and one owner for each next step. Link every status to its evidence. Separate proposed, accepted, deployed, operating and customer-validated states. A merged pull request proves a code change; it cannot prove customer value.
+
+For quality management, use explicit standards, task examples, feedback and human review. Automate work preparation and evidence collection. Keep consequential personnel decisions with responsible humans. Measure accepted work per employee or team only where the measure reflects the job and is appropriate for the purpose.
+
+### Worked example
+
+```text
+objective: reduce correction time on client reports
+owner: delivery lead
+workflow: extract -> draft -> verify -> accept
+standard: complete sources + versioned approvals
+weekly review: acceptance, corrections, failed runs, cost
+```
+
+### Build and test
+
+1. Map three recurring founder decisions to their sources and owners.
+2. Choose one workflow for a one-week pilot with a willing operator.
+3. Define access for founder, employee, reviewer and external client; test denied combinations.
+
+Your artifact: **A responsibility map and one accepted weekly workflow.**
+
+Acceptance:
+
+- Every commitment has one accountable owner and a visible state.
+- Private employee or client context is scoped before retrieval.
+
+<details>
+<summary>Explain the failure: The dashboard marks a product customer-validated because its deployment is READY. What evidence is missing?</summary>
+
+Actual customer use and accepted value. Deployment readiness is an infrastructure state; validation needs a measured customer outcome.
+
+</details>
+
+Read and inspect: [Row level security](https://supabase.com/docs/guides/database/postgres/row-level-security) · [Harness engineering](https://openai.com/index/harness-engineering/) · [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
+
+<h2 id="family-life">Lesson 10: Family ownership and personal growth</h2>
+
+The same engineering can support family continuity and personal agency when each person controls their own context.
+
+Keep personal journals private by default. Use shared family memory for agreed facts such as a household project, a maintenance checklist or an emergency contact record. Record who contributed it, who may read it and how to correct or withdraw it. Adults and children need appropriate control and participation; proximity is not consent.
+
+Build a personal review around chosen commitments, observations and the next experiment. Separate a recorded observation from interpretation. For example, “completed two practice sessions” is an observation; “I am undisciplined” is an interpretation. Let the person choose the meaning and the next action.
+
+For learning, relationships, creativity, movement and home life, make the system reduce cognitive load. Use voluntary check-ins and small commitments. Avoid treating a personal score as a diagnosis or letting a productivity agent infer another person’s emotions as settled facts. Export readable records and test recovery with synthetic data first.
+
+### Worked example
+
+```text
+private: journal and personal reflections
+shared: agreed household tasks and approved stories
+weekly review: chosen goal, observed progress, next experiment
+withdrawal: remove record and derived summaries
+Recovery: owner-readable export and restore test
+```
+
+### Build and test
+
+1. Write an access map for a synthetic household.
+2. Create one shared project without importing anyone’s private chats.
+3. Export the records, withdraw one, and confirm it is absent from retrieval and summaries.
+
+Your artifact: **A consent map, an export and a bounded reflection practice.**
+
+Acceptance:
+
+- Each shared record has an agreed audience and correction path.
+- Reflection stays voluntary and distinguishes observations from interpretations.
+
+<details>
+<summary>Explain the failure: A family assistant knows one partner’s journal. Can it use that journal to advise the other partner?</summary>
+
+Only with specific authorized sharing for that purpose. Shared family membership alone does not authorize cross-person journal retrieval.
+
+</details>
+
+Read and inspect: [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) · [Row level security](https://supabase.com/docs/guides/database/postgres/row-level-security)
+
+<h2 id="value">Lesson 11: Offers, contribution and unit economics</h2>
+
+A visitor should experience useful work before being asked to buy its continuation. The paid offer solves a demonstrated next need.
+
+Provide the curriculum and offline lab directly. The learner completes one task contract, sees what breaks and exports the result. Then route them to implementation help, an existing relevant product or a scoped workshop inquiry. Preserve the useful free result regardless of whether they buy.
+
+Model cost per accepted output: include every attempted run, model and tool usage, runtime, storage, human review and support, divided by accepted outputs. Use current provider prices at the time you budget. Separate fixed operating costs from per-output costs. Revenue targets remain assumptions until measured.
+
+Allow contributions through synthetic fixtures, source corrections and reproducible failure reports. Never ask learners to upload employee records or family journals publicly. Test the offer’s scope, delivery, entitlement and support before adding checkout. A scoped inquiry is the honest next step while price and fulfillment are being established.
+
+### Worked example
+
+```text
+Illustrative assumptions only:
+20 attempts cost EUR 10 in runtime + EUR 30 in review
+10 outputs accepted -> EUR 4 per accepted output
+Support and fixed costs still need allocation
+No acceptance -> no valid cost-per-accepted-output result
+```
+
+### Build and test
+
+1. Calculate cost per accepted output including rejected attempts.
+2. Write the next offer as scope, deliverable, exclusions and support.
+3. Inspect the actual inquiry or checkout path without submitting payment or live test leads.
+
+Your artifact: **A useful sample, an offer boundary and an economics worksheet.**
+
+Acceptance:
+
+- The free artifact is independently useful.
+- Any purchase claim matches verified price, delivery and access.
+
+<details>
+<summary>Explain the failure: A task generates cheap drafts but half need extensive editing. Which metric captures the economics?</summary>
+
+Total cost per accepted output, including failed attempts, editing, review, support and the relevant fixed-cost allocation.
+
+</details>
+
+Read and inspect: [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) · [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
+
+<h2 id="release">Lesson 12: Deploy, evaluate and evolve</h2>
+
+An evolving learning experience needs versioned teaching, tested examples and measured learner outcomes. A changing source page is a reason to review the lesson.
+
+Take one owned website workflow from synthetic local fixtures to an isolated preview. Bind task, sources, procedure, permissions, acceptance tests and rollback to the candidate revision. Ask a reviewer to inspect the actual artifact and failure evidence before production.
+
+Keep a source register with publisher, URL, retrieval date, verification level, impacted lessons and next review. A scheduled checker can detect link or content changes and open a review proposal. Editorial acceptance and example tests must pass before a changed lesson is published. Reading a current page does not mean every product claim or code snippet has been validated.
+
+Run a four-hour capstone: define the owned workflow, build the bounded loop, test memory and tools, compare one versus two workers where useful, and document preview evidence plus recovery. Completion requires accepted work under the stated constraints. A self-study checklist records learner progress; it cannot issue a competence claim by itself.
+
+### Worked example
+
+```text
+release packet:
+- task and audience
+- candidate revision + source register
+- tests, failures and cost log
+- independent review
+- preview, production verification and rollback
+- learner outcome and next source review
+```
+
+### Build and test
+
+1. Choose one workflow in your own site; use synthetic data.
+2. Produce a preview release packet and prove a rollback in the development environment.
+3. Submit a source correction or a new failure fixture as a contribution proposal.
+
+Your artifact: **A capstone release packet and a source-change proposal.**
+
+Acceptance:
+
+- Evidence binds to the exact candidate version.
+- The next curriculum update passes review and example checks before release.
+
+<details>
+<summary>Explain the failure: A weekly source checker finds a new SDK capability. Should it automatically rewrite the live lesson?</summary>
+
+It should propose a reviewed change, re-run relevant examples and update the source history. Automatic publication would confuse detection with verified teaching.
+
+</details>
+
+Read and inspect: [Harness engineering](https://openai.com/index/harness-engineering/) · [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) · [Agents API overview](https://developers.openai.com/api/docs/guides/agents-api/overview) · [Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview)
+
+## Capstone acceptance
+
+Submit a task contract, a source register, your procedure, the resulting artifact, a run trace, failure-test results, cost assumptions and measured costs, owner-readable export, recovery instructions and exact candidate revision. A reviewer must inspect the artifact separately from the maker. Release and certification are separate decisions.
+
+## Continue with the right work
+
+[Explore the architecture hub](/ai-architecture) for related designs. [Inspect the founder stack](/founder-stack) for its current offers. [Share a workshop brief](/contact?intent=workshop) when you want a facilitated pilot or implementation scope. Scope, availability, price and delivery are agreed before purchase; this curriculum creates no enrollment or payment commitment.
+
+To contribute, send a public-source correction, a synthetic evaluation fixture or a reproducible failure report through the [contact page](/contact?intent=workshop). Review proposals before they enter the curriculum. Keep credentials, customer records, employee information and private journals out of public contributions.
+
+## Keep this curriculum current
+
+Version: 2026-10-02.1. Review due: 16 October 2026. The source register records what was retrieved and what still needs verification. The intended review cadence is a maintenance policy; an automatic refresh service has not been installed by this curriculum.
+
+Before each facilitated session, review API availability, protocol revisions, current SDK interfaces and current prices. Run the local examples again. Keep links to older evidence when you change a teaching claim. Publish a dated change note with the lessons affected and the tests performed.
+

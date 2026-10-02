@@ -47,6 +47,12 @@ export default function WorkshopsPage() {
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
                 Build the room around one useful result: something participants make, test, decide, or carry into the next week.
               </p>
+              <p className="mt-5 max-w-2xl text-sm leading-6 text-slate-300">
+                <Link href="/guides/ai-operating-systems-workshop" className="font-semibold text-cyan-300 underline decoration-cyan-300/40 underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
+                  Study the AI operating systems curriculum
+                </Link>
+                {' '}— twelve lessons on agents, memory, MCP and coordinated work, with an offline build lab.
+              </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <TrackedGlowButton
                   href="#formats"
