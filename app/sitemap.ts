@@ -198,6 +198,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Learning and courses
   const learningPages = [
     '/courses',
+    '/courses/build-your-ai-creator-os',
+    '/courses/build-your-ai-creator-os/module-1',
+    '/courses/build-your-ai-creator-os/reliable-workflow',
     '/courses/conscious-ai-foundations',
     '/courses/agent-architecture-systems',
     '/courses/creator-business-systems',
