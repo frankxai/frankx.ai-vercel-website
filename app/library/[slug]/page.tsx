@@ -7,6 +7,7 @@ import { BookCover } from '@/components/library/BookCover';
 import { ReadingGuide } from '@/components/library/ReadingGuide';
 import { SacredDepthPanel } from '@/components/library/SacredDepthPanel';
 import { sacredDepth } from '@/data/sacred-depth';
+import { withSacredDepth } from '@/data/sacred-guide-view';
 import { generateMetadata, StarRating } from './review-meta';
 import { ReviewTail } from './review-tail';
 
@@ -18,14 +19,17 @@ export default async function ReviewPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const review = getReviewBySlug(slug);
-  if (!review) notFound();
+  const fetched = getReviewBySlug(slug);
+  if (!fetched) notFound();
+
+  const depth = sacredDepth[fetched.slug];
+  const quotesFromDepth = Boolean(depth && !fetched.quotes?.length && depth.quotes.length > 0);
+  const mapFromDepth = Boolean(depth && !fetched.chapters?.length && depth.sections.length > 0);
+  const review = withSacredDepth(fetched, depth);
 
   const relatedBook = review.relatedBook
     ? booksRegistry.find((b) => b.slug === review.relatedBook)
     : null;
-
-  const depth = sacredDepth[review.slug];
 
   const otherReviews = bookReviews
     .filter((r) => r.slug !== review.slug)
@@ -177,7 +181,7 @@ export default async function ReviewPage({
             {review.chapters && review.chapters.length > 0 && (
               <li>
                 <a href="#chapters" className="hover:text-amber-300 transition-colors">
-                  03 &nbsp;·&nbsp; {depth ? 'How the text is built' : 'Chapter-by-Chapter'} ({review.chapters.length})
+                  03 &nbsp;·&nbsp; {mapFromDepth ? 'Editorial reading map' : 'Chapter-by-Chapter'} ({review.chapters.length})
                 </a>
               </li>
             )}
@@ -238,7 +242,7 @@ export default async function ReviewPage({
             <span className="w-8 h-px bg-rose-400/60" />
             Quotes Worth Remembering
           </h2>
-          <p className="text-sm text-white/50 mb-6">{depth ? `${review.quotes.length} passages in ${depth.translation.translator}’s ${depth.translation.year} translation, each linked to the page it was checked against. Other translations word these lines differently.` : `${review.quotes.length} recorded excerpts. Check the named edition and location before sharing the wording.`}</p>
+          <p className="text-sm text-white/50 mb-6">{quotesFromDepth && depth ? `${review.quotes.length} passages in ${depth.translation.translator}’s ${depth.translation.year} translation, each linked to the page it was checked against. Other translations word these lines differently.` : `${review.quotes.length} recorded excerpts. Check the named edition and location before sharing the wording.`}</p>
           <div className="space-y-4">
             {review.quotes.map((quote, i) => (
               <figure
@@ -285,11 +289,11 @@ export default async function ReviewPage({
         <section id="chapters" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
             <span className="w-8 h-px bg-violet-400/60" />
-            {depth ? 'How the text is built' : 'Chapter-by-Chapter'}
+            {mapFromDepth ? 'Editorial reading map' : 'Chapter-by-Chapter'}
           </h2>
           <p className="text-sm text-white/40 mb-6">
-            {depth
-              ? 'A map of the text’s own divisions, each with the idea to carry and a short summary. Use it to find your place before and after reading the text itself.'
+            {mapFromDepth
+              ? 'An editorial reading map. Each row names a place to start, with the idea to carry and a short summary. Read the text itself for its own order.'
               : review.chaptersBasis === 'Symbolic'
                 ? 'Symbolic. These are the book’s own chapter descriptions, told as story.'
                 : 'Each chapter carries a key idea and a short summary, so you can find the argument again.'}
