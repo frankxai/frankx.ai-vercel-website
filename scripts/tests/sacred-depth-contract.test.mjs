@@ -93,6 +93,10 @@ test('depth corpus stays off the shared review and the guide page labels its map
   assert.match(metaSrc, /SACRED_DEPTH_REVISED/);
   assert.equal(metaSrc.includes('sacred-depth.json'), false);
 
+  const rssSrc = text('../../app/library/rss.xml/route.ts');
+  assert.match(rssSrc, /SACRED_DEPTH_REVISED/);
+  assert.equal(rssSrc.includes('sacred-depth.json'), false);
+
   const listed = [...text('../../data/sacred-depth-slugs.ts').matchAll(/'([a-z0-9-]+)'/gu)].map(match => match[1]);
   assert.deepEqual([...listed].sort(), depth.map(entry => entry.slug).sort());
 });
