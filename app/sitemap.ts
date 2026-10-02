@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { researchDomains } from '@/lib/research/domains'
 import { researchHubs } from '@/lib/research/hubs'
+import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
 import { listPartners } from '@/content/partnerships'
 import { getAllModels, registryLastUpdated } from '@/lib/llm-hub/registry'
@@ -374,7 +374,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Research hub pages
   const researchPages = [
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
+    // Dedicated published dataset route; the generated catch-all briefs remain held.
+    { url: '/research/agentic-life-observatory', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/signals', priority: 0.9, changeFrequency: 'daily' as const },
     { url: '/dream-100', priority: 0.82, changeFrequency: 'weekly' as const },
@@ -504,16 +505,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })
   researchHubs.forEach(hub => {
     entries.push({ url: `${BASE_URL}/research/hubs/${hub.slug}`, lastModified: '2026-09-13', changeFrequency: 'weekly', priority: 0.85 })
-  })
-
-  // Research domain pages (dynamic from registry)
-  researchDomains.forEach(domain => {
-    entries.push({
-      url: `${BASE_URL}/research/${domain.slug}`,
-      lastModified: domain.lastUpdated,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    })
   })
 
   // Tool pages
@@ -837,6 +828,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const noindexRoutes = new Set([
     '/founders-circle/apply',
     '/inner-circle/vault-preview',
+    '/research/sources',
+    ...researchDomains
+      .filter((domain) => domain.slug !== 'agentic-life-observatory')
+      .map((domain) => `/research/${domain.slug}`),
   ])
   const defaults: Record<string, { priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }> = {
     core: { priority: 0.8, changeFrequency: 'weekly' },

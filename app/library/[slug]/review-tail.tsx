@@ -79,6 +79,13 @@ export function ReviewTail({
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {review.continueReading.map((item, i) => {
+              const shelfHref = item.url?.startsWith('/')
+                ? item.url
+                : item.url?.startsWith('https://www.frankx.ai/')
+                  ? item.url.slice('https://www.frankx.ai'.length)
+                  : item.url?.startsWith('https://frankx.ai/')
+                    ? item.url.slice('https://frankx.ai'.length)
+                    : null;
               const cardInner = (
                 <>
                   <h3 className="text-[15px] font-semibold text-white group-hover:text-cyan-200 transition-colors leading-snug">
@@ -90,20 +97,22 @@ export function ReviewTail({
                   </p>
                   {item.url && (
                     <span className="inline-flex items-center gap-1 mt-4 text-[12px] text-cyan-400/60 group-hover:text-cyan-300 transition-colors">
-                      Get the book
-                      <svg
-                        className="w-3 h-3"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                        />
-                      </svg>
+                      {shelfHref ? 'Read on this shelf' : 'Get the book'}
+                      {!shelfHref && (
+                        <svg
+                          className="w-3 h-3"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={2}
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                          />
+                        </svg>
+                      )}
                     </span>
                   )}
                 </>
@@ -111,6 +120,14 @@ export function ReviewTail({
 
               const className =
                 'group block h-full p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-400/20 hover:bg-cyan-500/[0.03] transition-colors';
+
+              if (shelfHref) {
+                return (
+                  <Link key={i} href={shelfHref} className={className}>
+                    {cardInner}
+                  </Link>
+                );
+              }
 
               return item.url ? (
                 <a
@@ -140,9 +157,9 @@ export function ReviewTail({
             Go Deeper — Videos
           </h2>
           <p className="text-sm text-white/40 mb-6">
-            The book is the foundation. These talks and interviews are where the ideas
-            sharpen, get challenged, and connect to adjacent work. Best watched after
-            reading, not instead of.
+            {review.videos.every((video) => video.url.includes('/results?'))
+              ? 'Each link opens a YouTube search for this book. Pick a named speaker before you treat a recording as a source.'
+              : 'A link marked YouTube search opens YouTube results. Any other link opens the page saved with this book.'}
           </p>
           <div className="space-y-3">
             {review.videos.map((v, i) => (
@@ -172,11 +189,15 @@ export function ReviewTail({
                     {v.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">
-                    {v.kind && (
+                    {v.url.includes('/results?') ? (
+                      <span className="px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-white/5 text-white/50 border border-white/10">
+                        YouTube search
+                      </span>
+                    ) : v.kind ? (
                       <span className="px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-red-500/10 text-red-400/80 border border-red-500/15">
                         {v.kind}
                       </span>
-                    )}
+                    ) : null}
                     {v.duration && (
                       <span className="px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-white/40 border border-white/10">
                         {v.duration}
