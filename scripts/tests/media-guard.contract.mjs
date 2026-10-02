@@ -318,6 +318,44 @@ test("case-variant downloads page filenames stay controlled", async (t) => {
   assert.match(result.stderr, /\.tsx is not a classified web-media format/u)
 })
 
+
+test("allows download route source while still rejecting adjacent unclassified media", async (t) => {
+  const { root, base } = await repository(t)
+  await write(root, "app/api/download/route.ts", "export function GET() {}\n")
+  await write(root, "app/api/download/file/route.ts", "export function GET() {}\n")
+  await write(root, "app/api/download/route.js", "export function GET() {}\n")
+  commit(root)
+
+  const sourceResult = run(root, base)
+  assert.equal(sourceResult.status, 0, sourceResult.stderr)
+
+  await write(root, "app/api/download/file/asset.jxl", "unclassified media")
+  commit(root)
+  const mediaResult = run(root, base)
+  assert.equal(mediaResult.status, 1)
+  assert.match(mediaResult.stderr, /\.jxl is not a classified web-media format/u)
+})
+
+test("keeps JavaScript download handlers within the controlled sidecar limit", async (t) => {
+  const { root, base } = await repository(t)
+  await write(root, "app/api/download/route.js", Buffer.alloc(512 * 1024 + 1))
+  commit(root)
+
+  const result = run(root, base)
+  assert.equal(result.status, 1)
+  assert.match(result.stderr, /\.js sidecar exceeds the 0\.50 MiB Git limit/u)
+})
+
+test("case-variant download route filenames stay controlled", async (t) => {
+  const { root, base } = await repository(t)
+  await write(root, "app/api/download/route.TS", "export function GET() {}\n")
+  commit(root)
+
+  const result = run(root, base)
+  assert.equal(result.status, 1)
+  assert.match(result.stderr, /\.ts is not a classified web-media format/u)
+})
+
 test("rejects dangling symlinks in controlled media paths", posixOnly, async (t) => {
   const { root, base } = await repository(t)
   await mkdir(join(root, "public/images"), { recursive: true })
