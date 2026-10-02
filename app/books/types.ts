@@ -75,6 +75,7 @@ export interface BookQuote {
   chapter?: string; // e.g. "Chapter 3" or "Introduction"
   page?: number;
   context?: string; // short framing (1 sentence)
+  source?: { label: string; url: string }; // named translation the wording was checked against
 }
 
 export interface BookChapterSummary {

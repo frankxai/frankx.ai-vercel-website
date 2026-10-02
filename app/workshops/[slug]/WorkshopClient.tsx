@@ -2,6 +2,7 @@
 
 import { useId, useState } from 'react'
 import Link from 'next/link'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import {
   ArrowLeft,
@@ -345,10 +346,10 @@ export default function WorkshopClient({ workshop }: { workshop: Workshop }) {
                 <h3 className="text-xl font-semibold text-white mb-3">Study and build at your own pace</h3>
                 <p className="text-sm text-zinc-300 mb-5">{workshop.selfStudyResource.description}</p>
                 <div className="flex flex-wrap gap-4">
-                  <Link href="/guides/ai-operating-systems-workshop" className="text-sm font-semibold text-cyan-300 underline underline-offset-4">Read the full curriculum</Link>
-                  <a href={workshop.selfStudyResource.href} download className="text-sm font-semibold text-emerald-300 underline underline-offset-4">{workshop.selfStudyResource.label}</a>
-                  <a href="/workshops/ai-operating-systems/lab.mjs" download className="text-sm font-semibold text-emerald-300 underline underline-offset-4">Download the offline lab</a>
-                  <Link href="/contact?intent=workshop" className="text-sm font-semibold text-zinc-300 underline underline-offset-4">Discuss a facilitated pilot</Link>
+                  <TrackedLink href="/guides/ai-operating-systems-workshop" className="text-sm font-semibold text-cyan-300 underline underline-offset-4" eventName="workshop_learning_cta_clicked" eventProperties={{ action: "read_curriculum", placement: "workshop_detail", workshop: workshop.slug }}>Read the full curriculum</TrackedLink>
+                  <TrackedLink href={workshop.selfStudyResource.href} download className="text-sm font-semibold text-emerald-300 underline underline-offset-4" eventName="workshop_learning_cta_clicked" eventProperties={{ action: "download_workbook", placement: "workshop_detail", workshop: workshop.slug }}>{workshop.selfStudyResource.label}</TrackedLink>
+                  <TrackedLink href="/workshops/ai-operating-systems/lab.mjs" download className="text-sm font-semibold text-emerald-300 underline underline-offset-4" eventName="workshop_learning_cta_clicked" eventProperties={{ action: "download_lab", placement: "workshop_detail", workshop: workshop.slug }}>Download the offline lab</TrackedLink>
+                  <TrackedLink href="/contact?intent=workshop" className="text-sm font-semibold text-zinc-300 underline underline-offset-4" eventName="workshop_learning_cta_clicked" eventProperties={{ action: "pilot_inquiry", placement: "workshop_detail", workshop: workshop.slug }}>Discuss a facilitated pilot</TrackedLink>
                 </div>
               </div>
             </GlowCard>

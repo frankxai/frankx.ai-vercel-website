@@ -1,24 +1,24 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1015,
-    "aliases": 58,
+    "total": 1021,
+    "aliases": 59,
     "byType": {
       "core": 24,
-      "section": 434,
+      "section": 435,
       "community": 17,
-      "tool": 66,
+      "tool": 68,
       "static": 15,
       "blog": 270,
       "research": 23,
-      "guide": 27,
+      "guide": 29,
       "library": 88,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
       "product": 21,
       "video": 3,
-      "workshop": 8
+      "workshop": 9
     }
   },
   "routes": [
@@ -1588,7 +1588,7 @@
     {
       "href": "/blog/best-cheap-ai-music-generator-2026",
       "title": "Best Cheap AI Music Generator 2026: Free Tiers and Commercial Rights Compared",
-      "description": "A comparison of the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that de...",
+      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that de...",
       "tags": [
         "AI Music",
         "Suno",
@@ -3044,7 +3044,7 @@
     },
     {
       "href": "/blog/music-as-consciousness-technology",
-      "title": "What AI Music Taught Me About Creative Systems",
+      "title": "12,000 Songs Later: What AI Music Taught Me About Creative Systems",
       "description": "An experiential field note on iteration, taste, emotional specificity, and what high-volume AI music practice can—and cannot—prove.",
       "tags": [
         "Music",
@@ -3732,8 +3732,8 @@
     },
     {
       "href": "/blog/suno-ai-12000-songs-production-lessons",
-      "title": "Suno AI: What I Actually Learned",
-      "description": "Production lessons — prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
+      "title": "Suno AI After 12,000 Songs: What I Actually Learned",
+      "description": "Production lessons from creating 12K+ AI tracks — prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
       "tags": [
         "creator-systems",
         "ai-systems",
@@ -3785,7 +3785,7 @@
     {
       "href": "/blog/suno-vs-udio-2026",
       "title": "Suno vs Udio 2026: Which AI Music Tool Is Safe to Release Commercially",
-      "description": "The honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
+      "description": "After 12,000+ AI songs, here's the honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
       "tags": [
         "Suno",
         "Udio",
@@ -5704,6 +5704,19 @@
       "type": "guide"
     },
     {
+      "href": "/guides/ai-operating-systems-workshop",
+      "title": "Build an AI operating system: the workshop curriculum",
+      "description": "Twelve lessons, working offline labs and a capstone for agents, MCP, memory, studio delivery, founder operations and family ownership.",
+      "tags": [
+        "Agents",
+        "Memory",
+        "MCP",
+        "Founder OS",
+        "Workshop"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/ai-writing-system",
       "title": "Building an AI Writing System",
       "description": "Create a systematic approach to AI-assisted writing that preserves your voice while 10x-ing output",
@@ -5918,6 +5931,20 @@
         "guide",
         "tutorial",
         "visual-design"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/mini-me-storyboard",
+      "title": "Mini Me Storyboard: build a character world from your photos",
+      "description": "A real 20-image field guide to consistent miniature characters, scene storytelling, agent companions, exact infographics, and prompts you can copy.",
+      "tags": [
+        "image-generation",
+        "storyboard",
+        "personal-brand",
+        "social-media",
+        "infographics",
+        "prompts"
       ],
       "type": "guide"
     },
@@ -7302,6 +7329,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/claude-haiku-4-5-20251001",
+      "title": "Claude Haiku 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/claude-opus-4-5",
       "title": "Claude Opus 4.5 — Model Hub",
       "tags": [
@@ -7673,6 +7709,15 @@
     {
       "href": "/llm-hub/grok-4-6",
       "title": "Grok 4.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4.3",
+      "title": "Grok 4.3 — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -9344,6 +9389,16 @@
       "type": "core"
     },
     {
+      "href": "/resources/builder-stack",
+      "title": "Builder Stack",
+      "tags": [
+        "resources",
+        "builder",
+        "stack"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/resources/skills",
       "title": "Skills",
       "tags": [
@@ -10088,6 +10143,16 @@
       "type": "workshop"
     },
     {
+      "href": "/workshops/ai-operating-systems",
+      "title": "Build an AI operating system",
+      "tags": [
+        "ai",
+        "operating",
+        "systems"
+      ],
+      "type": "workshop"
+    },
+    {
       "href": "/workshops/build-first-ai-agent",
       "title": "Build Your First AI Agent",
       "type": "workshop"
@@ -10278,6 +10343,7 @@
     "/mindvalleyuniversity": "/mvu",
     "/mvu/breathwork-dan-brule": "/mvu/dan-brule-breathwork",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
+    "/research/core-qualities-and-human-drives": "/qualities",
     "/signal": "/ai-architecture",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",
