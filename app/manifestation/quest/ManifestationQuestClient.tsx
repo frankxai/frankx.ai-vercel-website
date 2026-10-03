@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { ArrowRight, Check, Music, Sparkles, NotebookPen, RotateCcw } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowRight, Check, Music, Sparkles, NotebookPen, RotateCcw, Share2 } from 'lucide-react'
 import { FaqList } from '@/components/manifestation/shared'
+import { trackEvent } from '@/lib/analytics'
+import EmailCapture from '@/components/EmailCapture'
 import { questDays, questFaqs, MANIFESTATION_QUEST_LENGTH } from '@/data/manifestation'
 
 const STORAGE_KEY = 'frankx-manifestation-quest'
@@ -39,16 +41,45 @@ export default function ManifestationQuestClient() {
   }
 
   function toggleDay(day: number) {
-    persist(completed.includes(day) ? completed.filter((d) => d !== day) : [...completed, day])
+    const isCompleting = !completed.includes(day)
+    persist(isCompleting ? [...completed, day] : completed.filter((d) => d !== day))
+    if (isCompleting) trackEvent('manifestation_quest_day_complete', { day })
   }
 
   function reset() {
     persist([])
     setOpenDay(1)
+    trackEvent('manifestation_quest_reset', {})
+  }
+
+  function shareQuest() {
+    trackEvent('manifestation_quest_share', {})
+    const url = 'https://www.frankx.ai/manifestation/quest'
+    const shareData = {
+      title: 'The Reality Architect Quest',
+      text: 'I ran the 10-day Reality Architect loop.',
+      url,
+    }
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      navigator.share(shareData).catch(() => {})
+    } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(url).catch(() => {})
+    }
   }
 
   const doneCount = completed.length
   const pct = Math.round((doneCount / MANIFESTATION_QUEST_LENGTH) * 100)
+  const completedAll = mounted && doneCount === MANIFESTATION_QUEST_LENGTH
+
+  // Fire the completion event once per full-loop, resetting if the user undoes a day.
+  const firedComplete = useRef(false)
+  useEffect(() => {
+    if (completedAll && !firedComplete.current) {
+      firedComplete.current = true
+      trackEvent('manifestation_quest_complete', {})
+    }
+    if (!completedAll) firedComplete.current = false
+  }, [completedAll])
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -103,22 +134,49 @@ export default function ManifestationQuestClient() {
             </button>
           )}
         </div>
-        {mounted && doneCount === MANIFESTATION_QUEST_LENGTH && (
+        {completedAll && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-4 rounded-2xl border border-violet-500/30 bg-violet-500/[0.06] p-6 text-center"
+            className="mt-4 rounded-2xl border border-violet-500/30 bg-violet-500/[0.06] p-6"
           >
-            <Sparkles className="w-6 h-6 text-violet-300 mx-auto mb-3" />
-            <p className="text-white font-semibold mb-1">You ran the full loop.</p>
-            <p className="text-white/60 text-sm">
-              You are a Reality Architect now — keep the standing daily practice, and run the next loop
-              sharper. The{' '}
-              <Link href="/manifestation" className="text-violet-300 hover:text-violet-200">
-                hub
-              </Link>{' '}
-              has the experiments to keep going.
-            </p>
+            <div className="text-center">
+              <Sparkles className="w-6 h-6 text-violet-300 mx-auto mb-3" />
+              <p className="text-white font-semibold mb-1">You ran the full loop.</p>
+              <p className="text-white/60 text-sm max-w-md mx-auto">
+                You are a Reality Architect now — keep the standing daily practice and run the next
+                loop sharper.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-3 mt-5">
+              <Link
+                href="/products/vibe-os"
+                onClick={() => trackEvent('manifestation_cta_click', { location: 'quest-complete', target: 'vibe-os' })}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black text-sm font-medium hover:bg-white/90 transition-colors"
+              >
+                <Music className="w-4 h-4" /> Set your state with Vibe OS
+              </Link>
+              <Link
+                href="/manifestation"
+                onClick={() => trackEvent('manifestation_cta_click', { location: 'quest-complete', target: 'hub' })}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-white/80 text-sm font-medium hover:bg-white/5 transition-colors"
+              >
+                Keep going on the hub
+              </Link>
+              <button
+                type="button"
+                onClick={shareQuest}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-white/80 text-sm font-medium hover:bg-white/5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/50"
+              >
+                <Share2 className="w-4 h-4" /> Share
+              </button>
+            </div>
+            <div className="border-t border-white/10 mt-6 pt-5 max-w-lg mx-auto">
+              <p className="text-white/70 text-sm font-medium mb-3 text-center">
+                Get the field notes — new experiments and the loop as I refine it.
+              </p>
+              <EmailCapture product="manifestation" listType="manifestation" buttonText="Send me the field notes" />
+            </div>
           </motion.div>
         )}
       </section>
