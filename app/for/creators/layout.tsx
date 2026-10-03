@@ -3,7 +3,7 @@ import { createMetadata } from '@/lib/seo'
 export const metadata = createMetadata({
   title: 'For Creators — AI Music, Prompts & Tools | FrankX.AI',
   description:
-    'Build your creator empire with AI. 12K+ songs with Suno, 50+ battle-tested prompts, open-source ACOS toolkit. Free tutorials, workflows, and tools for generative creators.',
+    'Build your creator empire with AI. AI songs with Suno, 50+ battle-tested prompts, open-source ACOS toolkit. Free tutorials, workflows, and tools for generative creators.',
   keywords: [
     'ai music creation',
     'suno ai prompts',

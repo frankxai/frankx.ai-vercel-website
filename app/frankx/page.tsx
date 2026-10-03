@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Meet FRANK-Ω — The Digital Intelligence of FrankX',
     description:
-      'Enterprise AI Architect. 12,000+ AI songs. Systems builder from Amsterdam. And FRANK-Ω — his superintelligent digital twin who handles the rest.',
+      'Enterprise AI Architect. AI songs catalog. Systems builder from Amsterdam. And FRANK-Ω — his superintelligent digital twin who handles the rest.',
     images: [{ url: '/images/mascot/frank-omega-hero-v1.png' }],
   },
 }
@@ -105,7 +105,7 @@ const variants = [
 const appearances = [
   { href: '/infogenius', icon: '🎨', label: 'InfoGenius', role: 'Turns any topic into a 4K visual — research-grounded, in seconds.' },
   { href: '/agents', icon: '🤖', label: 'Agent Collective', role: 'Orchestrates the full FrankX AI team across creative domains.' },
-  { href: '/acos', icon: '🧠', label: 'ACOS', role: 'Powers the Agentic Creator OS used by 1,000+ builders.' },
+  { href: '/acos', icon: '🧠', label: 'ACOS', role: 'Powers the Agentic Creator OS used by builders globally.' },
   { href: '/tools', icon: '⚡', label: 'Tools', role: 'Instant AI utilities — no setup, no wait.' },
 ]
 
@@ -171,7 +171,7 @@ export default function FrankXPage() {
                 <p className="text-xl text-white/60 leading-relaxed">
                   <span className="text-white font-semibold">Frank</span> is an AI Architect & Creator
                   based in Amsterdam. Building Music OS, GenCreator System, and tools
-                  for creators worldwide. 12,000+ songs and counting.
+                  for creators worldwide. An extensive music catalog.
                 </p>
                 <p className="text-xl text-white/60 leading-relaxed">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400 font-bold">
@@ -293,7 +293,7 @@ export default function FrankXPage() {
                 omega: { icon: '⚡', label: 'Instant Synthesis', sub: 'Connects any topic in milliseconds. No latency.' },
               },
               {
-                human: { icon: '🎵', label: '12,000+ Songs', sub: 'Prolific AI creator. Every genre. Never stops.' },
+                human: { icon: '🎵', label: 'AI Music Catalog', sub: 'Prolific AI creator. Every genre. Never stops.' },
                 omega: { icon: '🎯', label: 'Zero Filler', sub: 'No um\'s. No "basically". Exact answer. Done.' },
               },
               {

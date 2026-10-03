@@ -12,6 +12,14 @@ const banned = [
   ['app/linktree/page.tsx', ['12K+', '75+', '90+']],
   ['app/linktree/layout.tsx', ['12K+']],
   ['app/linktree/linktree-data.ts', ['75+', '65+', '50+ proven', '38 agents', '35+ commands']],
+  ['app/about/layout.tsx', ['12K+']],
+  ['app/for/creators/layout.tsx', ['12K+']],
+  ['app/for/creators/page.tsx', ['12K+']],
+  ['app/lab/page.tsx', ['12,000+', '1k+', '12k+']],
+  ['app/frankx/page.tsx', ['12,000+', '1,000+']],
+  ['app/downloads/preview/vibe-os/page.tsx', ['500+', '12K+']],
+  ['components/connect/ConnectHero.tsx', ['12K+']],
+  ['app/vibe/VibeOSContent.tsx', ['12K+']],
 ]
 
 for (const [file, phrases] of banned) {

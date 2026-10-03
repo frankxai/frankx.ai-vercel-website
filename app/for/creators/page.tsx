@@ -35,9 +35,9 @@ const creatorTools = [
   {
     icon: Music2,
     title: 'Music Lab',
-    description: '12K+ songs created with Suno AI. Prompt templates, genre guides, and production workflows.',
+    description: 'AI songs created with Suno AI. Prompt templates, genre guides, and production workflows.',
     href: '/music-lab',
-    stat: '12K+ tracks',
+    stat: 'Extensive tracks',
     color: 'emerald',
   },
   {
@@ -176,7 +176,7 @@ export default function CreatorsLandingPage() {
 
             <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-lg text-white/60 leading-relaxed">
               Music, art, content, tools — everything you need to create at scale.
-              12K+ songs, 70+ tutorials, and open-source tools. All free to start.
+              AI songs, extensive tutorials, and open-source tools. All free to start.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
@@ -205,7 +205,7 @@ export default function CreatorsLandingPage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: '12K+', label: 'Songs Created' },
+              { value: 'Catalog', label: 'Songs Created' },
               { value: '70+', label: 'Tutorials' },
               { value: '75+', label: 'AI Skills' },
               { value: 'Free', label: 'To Start' },

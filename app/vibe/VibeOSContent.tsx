@@ -106,7 +106,7 @@ const stack = [
 const stats = [
   { value: '4+', label: 'Specialist agents', color: '#AB47C7' },
   { value: '9', label: 'LLM models', color: '#43BFE3' },
-  { value: '12K+', label: 'Suno sessions', color: '#10B981' },
+  { value: 'Vast', label: 'Suno sessions', color: '#10B981' },
   { value: '$19', label: 'Vibe Club / mo', color: '#F59E0B' },
 ]
 
