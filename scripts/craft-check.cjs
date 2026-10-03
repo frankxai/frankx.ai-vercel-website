@@ -156,10 +156,25 @@ function brandVerdict(lookup) {
   return weakDesign || weakLogo ? 'iterate' : 'keep';
 }
 
+function checkerPath(filePath) {
+  return /(^|\/)(craft-check\.cjs|pr-disposition\.cjs|test_craft_check\.cjs|test_repo_craft_check\.cjs)$/.test(filePath)
+    || filePath.includes('/fixtures/craft/')
+    || filePath.includes('/fixtures/disposition/')
+    || filePath.includes('/fixtures/brand/');
+}
+
 function addedLines(diffText) {
-  return String(diffText || '')
-    .split(/\r?\n/)
-    .filter((line) => line.startsWith('+') && !line.startsWith('+++'));
+  const added = [];
+  let skip = false;
+  for (const line of String(diffText || '').split(/\r?\n/)) {
+    if (line.startsWith('diff --git ') || line.startsWith('+++ ')) {
+      const file = line.startsWith('+++ ') ? line.slice(4).replace(/^b\//, '') : '';
+      if (line.startsWith('+++ ')) skip = checkerPath(file.replace(/\\/g, '/'));
+      continue;
+    }
+    if (!skip && line.startsWith('+') && !line.startsWith('+++')) added.push(line);
+  }
+  return added;
 }
 
 function craftDiffFlags(files, diffText) {
