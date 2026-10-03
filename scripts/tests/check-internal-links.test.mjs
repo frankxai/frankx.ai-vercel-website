@@ -61,9 +61,10 @@ test('a valid object-literal href passes', () => {
   try {
     seed(dir, {
       'components/nav.tsx': "const link = { href: '/valid' }",
+      'components/quoted.tsx': 'const link = { "href": "/valid" }',
     })
     const { out } = findings(dir)
-    assert.equal(out.scannedFiles, 1)
+    assert.equal(out.scannedFiles, 2)
     assert.deepEqual(out.findings, [])
     assert.equal(run(dir).status, 0)
   } finally {
@@ -130,7 +131,7 @@ test('traversal paths stay rejected even when the escaped page exists', () => {
   }
 })
 
-test('quoted keys, space before the colon, multiline values, and suffix keys are not links', () => {
+test('quoted keys, space before the colon, and multiline values are checked, and a suffix key is not', () => {
   const dir = workspace()
   try {
     seed(dir, {
@@ -144,8 +145,11 @@ test('quoted keys, space before the colon, multiline values, and suffix keys are
       ].join('\n'),
     })
     const { out } = findings(dir)
-    assert.deepEqual(out.findings, [])
-    assert.equal(run(dir).status, 0)
+    assert.deepEqual(
+      out.findings.map((finding) => finding.href).sort(),
+      ['/missing-multiline', '/missing-quoted', '/missing-quoted-double', '/missing-space'],
+    )
+    assert.equal(run(dir).status, 1)
   } finally {
     fs.rmSync(dir, { recursive: true, force: true })
   }
