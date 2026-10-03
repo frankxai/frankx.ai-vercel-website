@@ -10,7 +10,7 @@ const checker = path.join(__dirname, '..', 'craft-check.cjs');
 const fixtures = path.join(__dirname, '..', 'fixtures', 'craft');
 
 test('the committed craft check scores both fixtures', () => {
-  for (const name of ['slop.html', 'craft.html']) {
+  for (const name of ['slop.html', 'craft.html', 'button.tsx', 'slop-page.tsx']) {
     const file = path.join(fixtures, name);
     const want = fs.readFileSync(file, 'utf8').match(/craft-expect:\s*(\S+)/)[1];
     const run = spawnSync(process.execPath, [checker, file], { encoding: 'utf8' });

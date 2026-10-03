@@ -102,6 +102,34 @@ function hasSlop(text) {
   return SLOP_PHRASES.filter((phrase) => hay.includes(phrase));
 }
 
+function sourceVisible(source) {
+  const text = String(source || '')
+    .replace(/\/\*[\s\S]*?\*\//g, ' ')
+    .replace(/(^|[^:])\/\/.*$/gm, ' ');
+  const parts = [];
+  const textRe = />([^<>{}]+)</g;
+  const attrRe = /\b(?:alt|aria-label|placeholder|title)\s*=\s*(?:"([^"]*)"|'([^']*)'|\{"([^"]*)"\}|\{'([^']*)'\}|\{`([^`]*)`\})/gi;
+  let match;
+  while ((match = textRe.exec(text))) parts.push(match[1]);
+  while ((match = attrRe.exec(text))) parts.push(match[1] || match[2] || match[3] || match[4] || match[5] || '');
+  return decodeEntities(parts.join(' ')).replace(/\s+/g, ' ').trim();
+}
+
+function scoreSource(source) {
+  const visible = sourceVisible(source);
+  const reasons = [];
+  if (EMOJI.test(visible)) reasons.push('emoji');
+  if (hasSlop(visible).length) reasons.push('slop');
+  const lexical = visible.split(' ').filter((word) => word.replace(/[^A-Za-z]/g, '').length > 2);
+  if (lexical.length >= 3 && !isSentenceCase(visible)) reasons.push('sentence-case');
+  const unique = [...new Set(reasons)];
+  return { verdict: unique.length ? 'reject' : 'accept', reasons: unique };
+}
+
+function scoreDocument(file, source) {
+  return /\.(?:tsx|jsx|mdx)$/i.test(String(file || '')) ? scoreSource(source) : scoreFixture(source);
+}
+
 function scoreFixture(html) {
   const source = String(html || '');
   const visible = visibleText(source);
@@ -246,7 +274,7 @@ if (require.main === module) {
     process.stderr.write('usage: node craft-check.cjs <fixture>\n');
     process.exit(2);
   }
-  const result = scoreFixture(readFixture(file));
+  const result = scoreDocument(file, readFixture(file));
   process.stdout.write(`${result.verdict}\n`);
   process.exit(EXIT_STATUS[result.verdict] ?? EXIT_STATUS.reject);
 }
@@ -260,6 +288,8 @@ module.exports = {
   decideDisposition,
   installedDesignSkills,
   scoreFixture,
+  scoreSource,
+  scoreDocument,
   selectUiSkills,
   skillHint,
 };
