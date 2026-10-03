@@ -666,6 +666,33 @@
   scroll-margin-top: 6rem;
 }
 
+/* Reading location. Scroll-linked, and absent when motion is reduced. */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: #6ee7b7;
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reading-progress {
+      animation: reading-progress linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes reading-progress {
+  to { transform: scaleX(1); }
+}
+
 /* Accessibility: Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,

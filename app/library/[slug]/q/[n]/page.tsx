@@ -160,13 +160,7 @@ export default async function QuotePage({
             data-quote-permalink={url}
             className="relative outline-none focus-visible:ring-2 focus-visible:ring-rose-400/30 rounded-2xl"
           >
-            <span
-              aria-hidden
-              className="block text-rose-400/30 font-serif text-7xl md:text-9xl leading-none text-center mb-2 select-none"
-            >
-              &ldquo;
-            </span>
-            <blockquote className={`text-2xl md:text-4xl leading-snug font-light italic text-white/90 text-center max-w-2xl mx-auto${quote.source ? ' whitespace-pre-line' : ''}`}>
+            <blockquote className={`mx-auto max-w-[40rem] text-left font-serif text-[1.5rem] leading-[1.6] text-white/90 md:text-[1.75rem]${quote.source ? ' whitespace-pre-line' : ''}`}>
               {quote.text}
             </blockquote>
             <figcaption className="mt-12 text-center space-y-3">
