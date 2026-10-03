@@ -11,6 +11,7 @@ const banned = [
   ['app/showcase/page.tsx', ['500+ Suno', '500+ creators', 'Proven Results', 'WCAG 2.2 AAA', 'Sarah Chen']],
   ['app/linktree/page.tsx', ['12K+', '75+', '90+']],
   ['app/linktree/layout.tsx', ['12K+']],
+  ['app/linktree/linktree-data.ts', ['75+', '65+', '50+ proven', '38 agents', '35+ commands']],
 ]
 
 for (const [file, phrases] of banned) {
