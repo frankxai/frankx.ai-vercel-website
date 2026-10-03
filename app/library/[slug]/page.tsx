@@ -147,7 +147,7 @@ export default async function ReviewPage({
       {review.tldr && (
         <section className="mx-auto max-w-3xl px-6 pb-14">
           <h2 className="font-display text-2xl text-white">The short answer</h2>
-          <p className="mt-4 max-w-[65ch] text-lg leading-relaxed text-white/80">{review.tldr}</p>
+          <p className="mt-5 max-w-[40rem] text-xl leading-[1.7] text-white/90">{review.tldr}</p>
         </section>
       )}
 
@@ -220,19 +220,11 @@ export default async function ReviewPage({
           <span className="w-8 h-px bg-amber-500/50" />
           Key Insights
         </h2>
-        <div className="space-y-4">
+        <ol className="max-w-[40rem] list-decimal space-y-6 pl-5 text-base leading-[1.7] text-white/90 marker:text-emerald-200">
           {review.keyInsights.map((insight, i) => (
-            <div
-              key={i}
-              className="flex gap-4 p-5 rounded-xl border border-white/[0.06] bg-white/[0.02]"
-            >
-              <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-sm font-bold">
-                {i + 1}
-              </span>
-              <p className="text-white/70 leading-relaxed text-[15px]">{insight}</p>
-            </div>
+            <li key={i} className="pl-2">{insight}</li>
           ))}
-        </div>
+        </ol>
       </section>
 
       {/* Quotes */}
@@ -242,36 +234,23 @@ export default async function ReviewPage({
             <span className="w-8 h-px bg-rose-400/60" />
             Quotes Worth Remembering
           </h2>
-          <p className="text-sm text-white/50 mb-6">{quotesFromDepth && depth ? `${review.quotes.length} passages in ${depth.translation.translator}’s ${depth.translation.year} translation, each linked to the page it was checked against. Other translations word these lines differently.` : `${review.quotes.length} recorded excerpts. Check the named edition and location before sharing the wording.`}</p>
-          <div className="space-y-4">
+          <p className="mb-8 max-w-[40rem] text-sm leading-relaxed text-white/70">{quotesFromDepth && depth ? `${review.quotes.length} passages in ${depth.translation.translator}’s ${depth.translation.year} translation, each linked to the page it was checked against. Other translations word these lines differently.` : `${review.quotes.length} recorded excerpts. Check the named edition and location before sharing the wording.`}</p>
+          <div className="max-w-[40rem] space-y-12">
             {review.quotes.map((quote, i) => (
-              <figure
-                key={i}
-                className="relative rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-6 pl-8"
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute top-3 left-3 text-rose-400/40 font-serif text-5xl leading-none select-none"
-                >
-                  &ldquo;
-                </span>
-                <blockquote className={`text-white/80 leading-relaxed text-[15.5px] font-light italic${quote.source ? ' whitespace-pre-line' : ''}`}>
+              <figure key={i}>
+                <blockquote className={`font-serif italic text-[1.25rem] leading-[1.65] text-white/90 sm:text-[1.375rem]${quote.source ? ' whitespace-pre-line' : ''}`}>
                   {quote.text}
                 </blockquote>
                 {(quote.chapter || quote.context || quote.source) && (
-                  <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1">
+                  <figcaption className="mt-4 space-y-2 text-sm leading-relaxed text-white/70">
                     {quote.chapter && (
-                      <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
-                        {quote.chapter}
-                      </p>
+                      <p>{quote.chapter}</p>
                     )}
                     {quote.context && (
-                      <p className="text-[13px] text-white/50 leading-relaxed">
-                        {quote.context}
-                      </p>
+                      <p>{quote.context}</p>
                     )}
                     {quote.source && (
-                      <p className="text-[12px] text-white/45">
+                      <p>
                         <cite className="not-italic">{quote.source.label}</cite>{' · '}
                         <a href={quote.source.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-rose-200 focus-visible:ring-2 focus-visible:ring-rose-300">check the source ↗</a>
                       </p>
@@ -291,37 +270,33 @@ export default async function ReviewPage({
             <span className="w-8 h-px bg-violet-400/60" />
             {mapFromDepth ? 'Editorial reading map' : 'Chapter-by-Chapter'}
           </h2>
-          <p className="text-sm text-white/40 mb-6">
+          <p className="mb-6 max-w-[40rem] text-sm leading-relaxed text-white/70">
             {mapFromDepth
               ? 'An editorial reading map. Each row names a place to start, with the idea to carry and a short summary. Read the text itself for its own order.'
               : review.chaptersBasis === 'Symbolic'
                 ? 'Symbolic. These are the book’s own chapter descriptions, told as story.'
                 : 'Each chapter carries a key idea and a short summary, so you can find the argument again.'}
           </p>
-          <div className="space-y-3">
+          <div className="max-w-[40rem] divide-y divide-white/10 border-y border-white/10">
             {review.chapters.map((ch) => (
-              <details
-                key={ch.number}
-                className="group rounded-xl border border-white/[0.06] bg-white/[0.02] open:border-violet-400/20 open:bg-violet-500/[0.03] transition-colors"
-              >
-                <summary className="cursor-pointer list-none p-5 flex items-start gap-4">
-                  <span className="flex-shrink-0 w-10 h-10 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-300 text-sm font-mono font-semibold">
+              <details key={ch.number} className="group">
+                <summary className="flex cursor-pointer list-none items-baseline gap-4 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">
+                  <span className="w-8 shrink-0 font-mono text-sm tabular-nums text-white/55">
                     {ch.number.toString().padStart(2, '0')}
                   </span>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-[15px] font-semibold text-white/90 group-open:text-violet-200 transition-colors leading-snug">
+                  <span className="min-w-0 flex-1">
+                    <h3 className="text-base font-medium leading-snug text-white">
                       {ch.title}
                     </h3>
-                    <p className="mt-1 text-[13px] text-white/55 leading-relaxed">
+                    <p className="mt-1 text-sm leading-relaxed text-white/70">
                       {ch.keyIdea}
                     </p>
-                  </div>
-                  <span className="flex-shrink-0 text-white/30 group-open:rotate-45 transition-transform text-lg leading-none mt-2.5">
-                    +
                   </span>
+                  <span className="shrink-0 text-sm text-emerald-200 group-open:hidden">Open</span>
+                  <span className="hidden shrink-0 text-sm text-emerald-200 group-open:inline">Close</span>
                 </summary>
-                <div className="px-5 pb-5 pl-[76px]">
-                  <p className="text-[14px] text-white/65 leading-relaxed">{ch.summary}</p>
+                <div className="pb-5 pl-12">
+                  <p className="text-base leading-[1.7] text-white/80">{ch.summary}</p>
                 </div>
               </details>
             ))}
