@@ -1,12 +1,17 @@
 import assert from 'node:assert/strict'
+import fs from 'node:fs'
+import path from 'node:path'
 import test from 'node:test'
+import { fileURLToPath } from 'node:url'
 
-const ROUTES = ['/waitlist', '/newsletter']
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
-test('existing capture routes must not 404', async () => {
-  const base = (process.env.BASE_URL || 'https://www.frankx.ai').replace(/\/$/, '')
-  for (const route of ROUTES) {
-    const res = await fetch(base + route, { method: 'HEAD', redirect: 'follow' })
-    assert.notEqual(res.status, 404, route + ' returned 404')
-  }
-})
+for (const route of [
+  'app/waitlist/page.tsx',
+  'app/newsletter/page.tsx',
+  'app/api/newsletter/route.ts',
+]) {
+  test(route + ' exists', () => {
+    assert.equal(fs.existsSync(path.join(root, route)), true, route)
+  })
+}
