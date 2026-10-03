@@ -101,7 +101,7 @@ function LinkCard({ link }: { link: LinktreeLink }) {
             {link.title}
           </h3>
           {link.badge && (
-            <span className="shrink-0 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 uppercase tracking-wider">
+            <span className="shrink-0 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 tracking-wide">
               {link.badge}
             </span>
           )}
@@ -166,30 +166,13 @@ export default function LinktreePage() {
             Frank X. Riemer
           </h1>
           <p className="mt-2 text-sm text-white/40 leading-relaxed max-w-xs mx-auto">
-            AI Architect. 12K+ AI songs. Builder of systems that amplify creativity.
+            AI Architect, music creator, and builder of practical AI systems.
           </p>
-
-          {/* Stats strip */}
-          <div className="mt-4 flex justify-center gap-3">
-            {[
-              { val: '12K+', label: 'AI Songs' },
-              { val: '75+', label: 'Skills' },
-              { val: '90+', label: 'Articles' },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1.5"
-              >
-                <span className="text-xs font-semibold text-white/70">{stat.val}</span>
-                <span className="ml-1 text-[10px] text-white/30">{stat.label}</span>
-              </div>
-            ))}
-          </div>
         </motion.div>
 
         {/* ─── Audience selector ─── */}
         <motion.div variants={fadeUp} className="mb-8">
-          <p className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-white/20">
+          <p className="mb-3 text-center text-[10px] font-semibold tracking-wide text-white/20">
             I am a...
           </p>
           <div className="grid grid-cols-3 gap-2">
@@ -228,7 +211,7 @@ export default function LinktreePage() {
               <div className="relative p-6">
                 {/* Badge */}
                 {hero.badge && (
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-400 mb-4">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-semibold tracking-wide text-emerald-400 mb-4">
                     <Terminal className="h-3 w-3" />
                     {hero.badge}
                   </span>
@@ -253,7 +236,7 @@ export default function LinktreePage() {
         {/* ─── Link sections ─── */}
         {sections.map((section) => (
           <motion.div key={section.id} variants={fadeUp} className="mb-6">
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/20 pl-1">
+            <p className="mb-3 pl-1 text-[10px] font-semibold tracking-wide text-white/20">
               {section.label}
             </p>
             <div className="space-y-2">

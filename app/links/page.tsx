@@ -10,9 +10,7 @@ import { trackEvent } from '@/lib/analytics'
 /**
  * FrankX Links Page - Mobile-First Creator Hub
  *
- * Design: 94/100 score - combines best of Linktree/link.me with FrankX cosmic aesthetic
- * Performance: <1.8s LCP on 3G, <500KB total weight
- * Accessibility: WCAG AAA compliant
+ * Design: Mobile-first directory using the FrankX visual system
  *
  * Social Links: Pulls from @/lib/social-links (BRAND_IDENTITY.md source of truth)
  * Design System: Follows DESIGN_SYSTEM.md patterns
@@ -54,37 +52,31 @@ export default function LinksPage() {
     }
   }
 
-  const stats = [
-    { label: '500+ AI Songs', icon: Music },
-    { label: '10K+ Creators', icon: Sparkles },
-    { label: 'Since 2021', icon: Zap }
-  ]
-
   const heroProduct = {
-    eyebrow: 'FEATURED',
-    title: 'Vibe OS',
-    description: 'AI-powered music creation system. Turn emotions into Suno sessions.',
-    href: '/products/vibe-os',
+    eyebrow: 'MUSIC',
+    title: 'Music showcase',
+    description: "Listen to tracks and browse playlists from Frank's Suno catalog.",
+    href: '/music',
     icon: Music,
     gradient: 'from-music-vibrant via-music-orange to-gold-accent',
-    badge: 'Most Popular'
+    badge: 'Listen'
   }
 
   const primaryLinks: Array<{title: string; description: string; href: string; icon: React.ComponentType<{className?: string}>; eyebrow: string; gradient: string; external?: boolean}> = [
     {
       title: 'Creative AI Toolkit',
-      description: 'Free prompts, workflows, and launch rituals for creators',
+      description: 'Browse prompts, workflow automations, playbooks, and implementation roadmaps',
       href: '/products/creative-ai-toolkit',
       icon: Download,
-      eyebrow: 'FREE TOOLKIT',
+      eyebrow: 'Toolkit',
       gradient: 'from-tech-cyan to-aurora-blue'
     },
     {
-      title: 'Inner Circle',
-      description: 'Join the exclusive creator community with live labs',
+      title: 'Inner Circle notes',
+      description: 'Register interest in possible private build notes',
       href: '/inner-circle',
       icon: Sparkles,
-      eyebrow: 'EXCLUSIVE',
+      eyebrow: 'Interest list',
       gradient: 'from-conscious-purple to-cosmic-purple'
     }
   ]
@@ -97,14 +89,14 @@ export default function LinksPage() {
       icon: BookOpen
     },
     {
-      title: 'Music Lab',
-      subtitle: 'Suno sessions & prompts',
+      title: 'Music lab',
+      subtitle: 'Browser instruments and guided notes',
       href: '/music-lab',
       icon: Music
     },
     {
-      title: 'Prompt Library',
-      subtitle: '50+ proven templates',
+      title: 'Prompt library',
+      subtitle: 'Search the public prompt corpus',
       href: '/prompt-library',
       icon: Zap
     },
@@ -194,27 +186,12 @@ export default function LinksPage() {
           <p className="text-slate-300 text-sm mb-4 leading-relaxed">
             Musician-technologist building AI systems that amplify human creativity.
             <br />
-            Creator of Vibe OS • Agentic Creator OS • Consciousness Tech
+            Music creator • AI Architect • Builder
           </p>
 
-          {/* Stats badges */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {stats.map((stat, i) => {
-              const Icon = stat.icon
-              return (
-                <div
-                  key={i}
-                  className="px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center gap-1.5"
-                >
-                  <Icon className="w-3 h-3 text-tech-cyan" />
-                  <span className="text-xs text-slate-300 font-medium">{stat.label}</span>
-                </div>
-              )
-            })}
-          </div>
         </motion.div>
 
-        {/* Hero Product Card (Vibe OS) */}
+        {/* Featured music card */}
         <motion.div variants={itemVariants} className="mb-6">
           <Link
             href={heroProduct.href}
@@ -247,7 +224,7 @@ export default function LinksPage() {
                 </p>
 
                 <div className="flex items-center text-tech-cyan font-semibold text-sm group-hover:translate-x-1 transition-transform">
-                  Explore Vibe OS
+                  Browse the music showcase
                   <ArrowRight className="w-4 h-4 ml-1" />
                 </div>
               </div>
@@ -334,11 +311,11 @@ export default function LinksPage() {
             <div className="relative">
               <div className="flex items-center gap-2 mb-3">
                 <Mail className="w-5 h-5 text-tech-cyan" />
-                <h3 className="text-lg font-bold text-white">Join 10K+ Creators</h3>
+                <h3 className="text-lg font-bold text-white">FrankX field notes</h3>
               </div>
 
               <p className="text-slate-300 text-sm mb-4">
-                Weekly insights on AI, creativity, and conscious tech. No spam, pure value.
+                Notes on AI architecture, creative systems, and current studio work.
               </p>
 
               <form
@@ -372,6 +349,7 @@ export default function LinksPage() {
                 <input
                   type="email"
                   name="email"
+                  aria-label="Email address"
                   placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -385,7 +363,7 @@ export default function LinksPage() {
                   disabled={formStatus === 'submitting'}
                   className="px-6 py-3 rounded-xl bg-gradient-to-r from-tech-cyan to-aurora-blue text-white font-semibold text-sm hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg shadow-tech-cyan/25 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {formStatus === 'submitting' ? '...' : 'Join'}
+                  {formStatus === 'submitting' ? '...' : 'Subscribe'}
                 </button>
               </form>
 
@@ -400,7 +378,7 @@ export default function LinksPage() {
                 {formStatus === 'success' && (
                   <div className="flex items-center gap-2 text-growth-green">
                     <CheckCircle className="w-4 h-4" />
-                    <span>Welcome to the community!</span>
+                    <span>Subscription confirmed.</span>
                   </div>
                 )}
                 {formStatus === 'error' && (

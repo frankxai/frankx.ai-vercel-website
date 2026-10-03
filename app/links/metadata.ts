@@ -9,7 +9,7 @@ import { SCHEMA_SAME_AS, SOCIAL_META } from '@/lib/social-links'
 export const metadata: Metadata = createMetadata({
   title: 'Frank X. Riemer | AI Architect & Music Creator - All Links',
   description:
-    'Connect with Frank X. Riemer. AI Architect. Creator of 12,000+ songs with Suno. Get the Creative AI Toolkit, explore Vibe OS, join the Inner Circle, and access all resources.',
+    'Find Frank X. Riemer’s music, AI architecture, learning resources, public projects, and social profiles.',
   path: '/links',
   keywords: [
     'frank x riemer',
@@ -18,7 +18,6 @@ export const metadata: Metadata = createMetadata({
     'suno music',
     'ai music creator',
     'oracle ai',
-    'vibe os',
     'creative ai toolkit',
     'ai for creators',
     'conscious ai',
@@ -41,7 +40,7 @@ export const linksPageSchema = {
     name: 'Frank X. Riemer',
     alternateName: 'FrankX',
     description:
-      'Musician-technologist building AI systems that amplify human creativity. Founder of FrankX.AI, creator of Vibe OS and Agentic Creator OS.',
+      'AI Architect and music creator working across agent systems and practical AI resources.',
     url: 'https://frankx.ai',
     image: {
       '@type': 'ImageObject',
