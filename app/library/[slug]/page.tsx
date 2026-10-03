@@ -40,7 +40,6 @@ export default async function ReviewPage({
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      <div className="reading-progress" aria-hidden="true" />
       {/* Back Link */}
       <div className="max-w-3xl mx-auto px-6 pt-28 pb-4">
         <Link
@@ -239,7 +238,7 @@ export default async function ReviewPage({
           <div className="max-w-[40rem] space-y-12">
             {review.quotes.map((quote, i) => (
               <figure key={i}>
-                <blockquote className={`font-serif text-[1.25rem] leading-[1.65] text-white/90 sm:text-[1.375rem]${quote.source ? ' whitespace-pre-line' : ''}`}>
+                <blockquote className={`font-serif italic text-[1.25rem] leading-[1.65] text-white/90 sm:text-[1.375rem]${quote.source ? ' whitespace-pre-line' : ''}`}>
                   {quote.text}
                 </blockquote>
                 {(quote.chapter || quote.context || quote.source) && (
