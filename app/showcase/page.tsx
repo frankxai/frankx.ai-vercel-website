@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const features = [
   {
     name: 'AI Music Production',
-    description: '500+ Suno sessions tested and refined for professional-quality AI music generation.',
+    description: 'Suno sessions and prompts for people making music with AI.',
     Icon: Music,
     href: '/music/learn',
     cta: 'Start Creating',
@@ -36,7 +36,7 @@ const features = [
   },
   {
     name: 'Creator Community',
-    description: 'Join 500+ creators amplifying their output with AI.',
+    description: 'A public realm page for people making work with AI.',
     Icon: Users,
     href: '/realm',
     cta: 'Join Now',
@@ -46,8 +46,8 @@ const features = [
     ),
   },
   {
-    name: 'Proven Results',
-    description: 'Ship faster without losing your creative soul.',
+    name: 'The work',
+    description: 'Products and notes for making the piece.',
     Icon: Trophy,
     href: '/products',
     cta: 'See Products',
@@ -58,42 +58,18 @@ const features = [
   },
 ]
 
-const testimonials = [
+const samples = [
   {
-    name: 'Sarah Chen',
-    role: 'Music Producer',
-    quote: "Vibe OS transformed how I approach creative sessions. I'm producing tracks with more consistency.",
-    avatar: '🎵',
+    title: 'Marquee',
+    detail: 'A looping row of cards. These are interface samples, not customer reviews.',
   },
   {
-    name: 'Marcus Rodriguez',
-    role: 'Content Creator',
-    quote: 'The AI Music Academy gave me skills I never thought possible. My audience loves it.',
-    avatar: '🎸',
+    title: 'Pause',
+    detail: 'The row can pause when a pointer rests on a card.',
   },
   {
-    name: 'Emma Thompson',
-    role: 'YouTuber',
-    quote: "FrankX's approach to AI is refreshing - powerful tools that enhance rather than replace creativity.",
-    avatar: '🎬',
-  },
-  {
-    name: 'David Kim',
-    role: 'Podcast Host',
-    quote: "The Creator Realm community is incredible. Best investment I've made in my creative journey.",
-    avatar: '🎙️',
-  },
-  {
-    name: 'Lisa Anderson',
-    role: 'Musician',
-    quote: "I was skeptical about AI music, but Frank's system opened up entirely new creative possibilities.",
-    avatar: '🎹',
-  },
-  {
-    name: 'James Wilson',
-    role: 'Producer',
-    quote: 'The quality of AI-generated tracks from these workflows is genuinely impressive.',
-    avatar: '🎧',
+    title: 'No headcount',
+    detail: 'This sample does not name a person or state a result.',
   },
 ]
 
@@ -117,7 +93,7 @@ export default function ShowcasePage() {
             delay={0.6}
           />
           <p className="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto">
-            Cinematic animations, premium components, and WCAG 2.2 AAA accessibility - all built with Magic UI
+            Cinematic animations and interface experiments built with Magic UI
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <ShimmerButton
@@ -190,27 +166,21 @@ export default function ShowcasePage() {
       <section className="relative px-6 py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              What Creators Say
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              Marquee sample
             </h2>
             <p className="text-xl text-slate-400">
-              Infinite scroll testimonials with smooth animations
+              Interface samples. Not customer reviews.
             </p>
           </div>
           <Marquee className="[--duration:40s]" pauseOnHover>
-            {testimonials.map((testimonial, index) => (
+            {samples.map((sample) => (
               <div
-                key={index}
-                className="relative w-80 flex-shrink-0 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 p-6 backdrop-blur-xl"
+                key={sample.title}
+                className="relative w-80 flex-shrink-0 rounded-2xl bg-white/5 border border-white/10 p-6"
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="text-4xl">{testimonial.avatar}</div>
-                  <div>
-                    <div className="font-semibold text-white">{testimonial.name}</div>
-                    <div className="text-sm text-slate-400">{testimonial.role}</div>
-                  </div>
-                </div>
-                <p className="text-slate-300 italic">"{testimonial.quote}"</p>
+                <h3 className="font-semibold text-white">{sample.title}</h3>
+                <p className="mt-3 text-slate-300">{sample.detail}</p>
               </div>
             ))}
           </Marquee>
