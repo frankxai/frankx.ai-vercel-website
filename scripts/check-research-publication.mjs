@@ -125,15 +125,94 @@ export function validateApprovedClaims(input, options = {}) {
   return errors
 }
 
-const GENERATED_GRADE = [
-  [/"replicationStatus": "replicated"/, 'replicationStatus replicated'],
-  [/"confidence": "high"/, 'confidence high'],
-  [/"evidenceQuality": "rct"/, 'evidenceQuality rct'],
-  [/"type": "journal"/, 'type journal'],
-  [/"crossRefCount":\s*[1-9]/, 'synthetic crossRefCount'],
-  [/scholar\.google|arxiv\.org\/search/i, 'search URL'],
-  [/PhD-grade/i, 'PhD-grade label'],
-]
+const PRIMARY_URL = /doi\.org\/|pubmed\.ncbi\.nlm\.nih\.gov\/|arxiv\.org\/(?:abs|pdf)\//i
+const SEARCH_URL = /scholar\.google|arxiv\.org\/search|bing\.com\/search/i
+const SELF_URL = /frankx\.ai\/research\/|^\/research\//i
+const DATA_EXPORTS = ['domainSources', 'validatedClaims', 'researchBriefs']
+
+function sliceLiteral(text, name) {
+  const marker = text.indexOf(`export const ${name}`)
+  if (marker < 0) return null
+  const eq = text.indexOf('=', marker)
+  if (eq < 0) return null
+  let i = eq + 1
+  while (text[i] === ' ' || text[i] === '\n' || text[i] === '\r') i += 1
+  const open = text[i]
+  const close = open === '{' ? '}' : open === '[' ? ']' : ''
+  if (!close) return null
+  let depth = 0
+  let quote = ''
+  for (let j = i; j < text.length; j += 1) {
+    const ch = text[j]
+    if (quote) {
+      if (ch === '\\') { j += 1; continue }
+      if (ch === quote) quote = ''
+      continue
+    }
+    if (ch === '"' || ch === "'") { quote = ch; continue }
+    if (ch === open) depth += 1
+    else if (ch === close) {
+      depth -= 1
+      if (depth === 0) return text.slice(i, j + 1)
+    }
+  }
+  return null
+}
+
+function parseDataLiteral(literal) {
+  try { return JSON.parse(literal) } catch { /* single quotes or bare keys */ }
+  const normalized = literal
+    .replace(/'([^'\\]*)'/g, (_, value) => JSON.stringify(value))
+    .replace(/([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)\s*:/g, '$1"$2":')
+  return JSON.parse(normalized)
+}
+
+function isPrimary(url) {
+  return PRIMARY_URL.test(url)
+}
+
+function hasPrimary(value) {
+  if (typeof value?.url === 'string' && isPrimary(value.url)) return true
+  return Array.isArray(value?.sources) && value.sources.some((source) => typeof source?.url === 'string' && isPrimary(source.url))
+}
+
+function walkEntry(value, where, errors) {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => walkEntry(item, `${where}[${index}]`, errors))
+    return
+  }
+  if (!value || typeof value !== 'object') return
+  if (typeof value.url === 'string') {
+    if (SEARCH_URL.test(value.url)) errors.push(`${where}: search URL`)
+    if (SELF_URL.test(value.url)) errors.push(`${where}: self-referential citation`)
+    if ((value.type === 'journal' || value.type === 'conference') && !isPrimary(value.url)) {
+      errors.push(`${where}: type ${value.type} without a primary source id`)
+    }
+  }
+  const backed = hasPrimary(value)
+  if (value.confidence === 'high' && !backed) errors.push(`${where}: confidence high`)
+  if (value.replicationStatus === 'replicated' && !backed) errors.push(`${where}: replicationStatus replicated`)
+  if (value.evidenceQuality === 'rct' && !backed) errors.push(`${where}: evidenceQuality rct`)
+  if (typeof value.crossRefCount === 'number' && value.crossRefCount > 0 && !backed) errors.push(`${where}: synthetic crossRefCount`)
+  for (const [key, child] of Object.entries(value)) {
+    if (typeof child === 'string' && /PhD-grade/i.test(child)) errors.push(`${where}: PhD-grade label`)
+    if (child && typeof child === 'object') walkEntry(child, `${where}.${key}`, errors)
+  }
+}
+
+function literalsIn(text) {
+  const exported = DATA_EXPORTS.filter((name) => text.includes(`export const ${name}`))
+  if (exported.length > 0) {
+    return exported.map((name) => {
+      const literal = sliceLiteral(text, name)
+      if (!literal) throw new Error(`${name} is not a data literal`)
+      return [name, literal]
+    })
+  }
+  const trimmed = text.trim()
+  if (trimmed.startsWith('{') || trimmed.startsWith('[')) return [['value', trimmed]]
+  return []
+}
 
 export function findUnsupportedGeneratedGrades(files) {
   const errors = []
@@ -142,8 +221,19 @@ export function findUnsupportedGeneratedGrades(files) {
       errors.push(`${label}: missing text`)
       continue
     }
-    for (const [pattern, name] of GENERATED_GRADE) {
-      if (pattern.test(text)) errors.push(`${label}: ${name}`)
+    let literals
+    try {
+      literals = literalsIn(text)
+    } catch (error) {
+      errors.push(`${label}: ${error.message}`)
+      continue
+    }
+    for (const [name, literal] of literals) {
+      try {
+        walkEntry(parseDataLiteral(literal), `${label} ${name}`, errors)
+      } catch {
+        errors.push(`${label} ${name}: registry literal could not be parsed`)
+      }
     }
   }
   return errors

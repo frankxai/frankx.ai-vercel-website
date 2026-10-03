@@ -141,9 +141,22 @@ test('generated search citations and synthetic grades fail closed', () => {
   assert.match(failures.join(' '), /replicationStatus replicated/)
   assert.match(failures.join(' '), /synthetic crossRefCount/)
   assert.deepEqual(findUnsupportedGeneratedGrades({
-    'lib/research/sources.ts': 'export const domainSources = {}',
-    'lib/research/validated-claims.ts': 'export const validatedClaims = []',
+    'lib/research/sources.ts': 'export const domainSources: Record<string, ResearchSource[]> = {}\nexport interface ResearchSource { type: SourceType }',
+    'lib/research/validated-claims.ts': "export type ConfidenceLevel = 'high'\nexport const validatedClaims: ValidatedClaim[] = []\nexport const researchBriefs: Record<string, ResearchBrief> = {}",
   }), [])
+  assert.deepEqual(findUnsupportedGeneratedGrades({
+    'approved.ts': '{ "url": "https://doi.org/10.1234/example", "type": "journal", "confidence": "high" }',
+  }), [])
+  const selfRef = findUnsupportedGeneratedGrades({
+    'sources.ts': "{ url: '/research/example', type: 'official' }",
+  }).join(' ')
+  assert.match(selfRef, /self-referential citation/)
+  const typescriptGrade = findUnsupportedGeneratedGrades({
+    'claims.ts': "{ confidence: 'high', replicationStatus: 'replicated', evidenceQuality: 'rct' }",
+  }).join(' ')
+  assert.match(typescriptGrade, /confidence high/)
+  assert.match(typescriptGrade, /replicationStatus replicated/)
+  assert.match(typescriptGrade, /evidenceQuality rct/)
 })
 
 test('committed research registries do not carry generated grades', () => {
