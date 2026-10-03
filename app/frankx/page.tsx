@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Meet FRANK-Ω — The Digital Intelligence of FrankX',
     description:
-      'Enterprise AI Architect. 12,000+ AI songs. Systems builder from Amsterdam. And FRANK-Ω — his superintelligent digital twin who handles the rest.',
+      'Enterprise AI Architect and systems builder from Amsterdam. FRANK-Ω is his superintelligent digital twin who handles the rest.',
     images: [{ url: '/images/mascot/frank-omega-hero-v1.png' }],
   },
 }
@@ -171,7 +171,7 @@ export default function FrankXPage() {
                 <p className="text-xl text-white/60 leading-relaxed">
                   <span className="text-white font-semibold">Frank</span> is an AI Architect & Creator
                   based in Amsterdam. Building Music OS, GenCreator System, and tools
-                  for creators worldwide. 12,000+ songs and counting.
+                  for creators worldwide.
                 </p>
                 <p className="text-xl text-white/60 leading-relaxed">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400 font-bold">
@@ -293,7 +293,7 @@ export default function FrankXPage() {
                 omega: { icon: '⚡', label: 'Instant Synthesis', sub: 'Connects any topic in milliseconds. No latency.' },
               },
               {
-                human: { icon: '🎵', label: '12,000+ Songs', sub: 'Prolific AI creator. Every genre. Never stops.' },
+                human: { icon: '🎵', label: 'AI Music', sub: 'Songs made with Suno.' },
                 omega: { icon: '🎯', label: 'Zero Filler', sub: 'No um\'s. No "basically". Exact answer. Done.' },
               },
               {

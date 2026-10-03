@@ -83,7 +83,7 @@ const tools = [
     name: 'Music Lab',
     tagline: 'AI prompt architecture for Suno mastery',
     description:
-      '12,000+ songs generated. 65 tracks indexed. Frank has cracked the Suno prompt formula across 8+ genres. Access the prompt library, album curation system, and production patterns.',
+      'Songs made with Suno. 65 tracks indexed. Access the prompt library, album curation system, and production patterns.',
     href: '/music-lab',
     hrefLabel: 'Explore Music Lab',
     externalHref: false,
