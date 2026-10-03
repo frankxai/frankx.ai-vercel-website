@@ -1,6 +1,6 @@
 {
   "$schema": "https://frankx.ai/schemas/site-links.json",
-  "updated": "2026-06-17",
+  "updated": "2026-09-27",
   "policy": {
     "commerce": "Do not migrate paid-product destinations without a verified checkout/product identifier. Flag uncertain paid links as needs-verification.",
     "sourceOfTruth": "This registry complements lib/social-links.ts, lib/cta-links.ts, data/products.json, and lib/delivery.ts. It exists for site-wide wiring audits and command-map generation."
@@ -203,12 +203,13 @@
   ],
   "commerce": [
     {
-      "id": "vibe-os",
-      "label": "Vibe OS",
+      "id": "vibe-os-guide-pdf",
+      "label": "Vibe OS Guide PDF",
       "kind": "free-download",
-      "url": "/products/vibe-os",
+      "url": "/api/download?product=vibe-os",
       "delivery": "products/vibe-os/Vibe-OS-Guide.pdf",
-      "status": "verified"
+      "status": "needs-verification",
+      "ownerAction": "The PDF endpoint resolves; review the guide content before presenting it as current workspace material."
     },
     {
       "id": "creators-soulbook",

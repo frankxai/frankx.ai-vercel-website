@@ -63,8 +63,9 @@ test('newsletter preference writes require signed ownership and never resubscrib
   assert.match(route, /\.update\(`\$\{email\}\\n\$\{payload\}`\)/)
   assert.match(route, /newsletter\/preferences\?token=\$\{encodeURIComponent\(token\)\}/)
   assert.doesNotMatch(route, /newsletter\/preferences\?email=/)
-  assert.match(route, /emailRatelimit\.limit\(`subscribe:ip:/)
-  assert.match(route, /emailRatelimit\.limit\(`subscribe:email:\$\{emailDigest\}`\)/)
+  assert.match(route, /listType === 'product-interest' \? productInterestRatelimit : emailRatelimit/)
+  assert.match(route, /limiter\.limit\(`subscribe:ip:/)
+  assert.match(route, /limiter\.limit\(`subscribe:email:\$\{emailDigest\}`\)/)
   assert.match(route, /rateLimit === 'unavailable'[\s\S]{0,240}?status: 503/)
   assert.ok(preferenceGuard >= 0 && preferenceGuard < createContact)
   assert.ok(

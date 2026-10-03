@@ -6,16 +6,16 @@ export type ProductListItem = {
   name: string
   tagline: string
   href: string
-  status: 'active' | 'early-access'
+  status: 'concept' | 'early-access'
 }
 
 export const productsListItemData: ProductListItem[] = [
   {
     id: 'vibe-os',
-    name: 'Vibe OS',
-    tagline: 'Suno Music Mastery',
+    name: 'Vibe OS creative-state workspace',
+    tagline: 'Concept notes',
     href: '/products/vibe-os',
-    status: 'active',
+    status: 'concept',
   },
   {
     id: 'creators-soulbook',
@@ -63,19 +63,19 @@ export const productsListItemData: ProductListItem[] = [
 
 export const productsFaq = [
   {
-    q: 'How are these different from other AI courses?',
-    a: "These aren't courses—they're operating systems. You get the exact frameworks, prompts, and workflows I use daily in my own creative practice and enterprise work. No fluff, just what works.",
+    q: 'What is on this page?',
+    a: 'Each card states its current status. Concept and early-access entries describe scope; linked pages show what can be inspected now.',
   },
   {
     q: 'Do I need technical experience?',
-    a: "Vibe OS and The Creator's Soulbook are designed for beginners. Creative AI Toolkit and Generative Creator OS are for intermediate users who want to go deeper.",
+    a: 'Open a product page to review its current scope and any stated requirements.',
   },
   {
     q: 'Which products are available now?',
-    a: "Vibe OS has a public guide you can inspect now. The Creator's Soulbook, Suno Prompt Bundles, and other listed products remain previews or early-access routes until delivery is verified.",
+    a: "The Vibe OS workspace is a concept. The other cards are early product outlines; some cards also link to related pages you can inspect now.",
   },
   {
     q: 'What do I get by joining Early Access?',
-    a: 'Early Access members get priority launch notification, exclusive early-bird pricing, behind-the-scenes development updates, and direct input on product refinement.',
+    a: 'The form records your email address and the product you selected.',
   },
 ]

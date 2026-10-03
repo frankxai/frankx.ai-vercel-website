@@ -61,13 +61,13 @@ export default function LinksPage() {
   ]
 
   const heroProduct = {
-    eyebrow: 'FEATURED',
-    title: 'Vibe OS',
-    description: 'AI-powered music creation system. Turn emotions into Suno sessions.',
-    href: '/products/vibe-os',
+    eyebrow: 'Featured',
+    title: 'Vibe OS Music Guide',
+    description: 'Explore the existing guide to AI music and Suno sessions.',
+    href: '/downloads/preview/vibe-os',
     icon: Music,
     gradient: 'from-music-vibrant via-music-orange to-gold-accent',
-    badge: 'Most Popular'
+    badge: 'Music guide'
   }
 
   const primaryLinks: Array<{title: string; description: string; href: string; icon: React.ComponentType<{className?: string}>; eyebrow: string; gradient: string; external?: boolean}> = [

@@ -43,7 +43,7 @@ flowchart TD
   Start --> Newsletter["Newsletter /newsletter"]
   Start --> Products["Products /products"]
   Start --> Work["Work with Frank /work-with-me"]
-  Music --> Vibe["Vibe OS /products/vibe-os"]
+  Music --> Vibe["Vibe OS Music Guide /downloads/preview/vibe-os"]
   Music --> School["Music School /music/learn"]
   Learn --> Guides["Guides /guides"]
   Learn --> Books["Books /books"]
@@ -73,7 +73,7 @@ flowchart LR
 | Start | /start | First intentional path after discovery | nav CTA, homepage CTAs, footer | canonical |
 | Create Music | /music | AI music portfolio and Suno proof | nav: Music, footer | canonical |
 | Practice Music | /music/learn | Music School curriculum surface | nav: Music, command palette | canonical |
-| Run Vibe OS | /products/vibe-os | Creative state management product and app entry | nav: Music, products | canonical |
+| Preview Vibe OS Music Guide | /downloads/preview/vibe-os | Existing AI music guide preview | nav: Music, footer | canonical |
 | Become a GenCreator | /gencreator | Framework for generative creators | nav: GenCreators | canonical |
 | Learn | /learn | Learning OS for courses, guides, books, assessment, watch | nav: Learn | canonical |
 | Build | /ai-architecture | Blueprints, prototypes, templates, and enterprise architecture | nav: Build, homepage | canonical |
@@ -87,7 +87,7 @@ Commerce links follow the verify-before-changing rule: paid-product CTAs are onl
 
 | ID | Label | Kind | URL | Status | Owner action |
 | --- | --- | --- | --- | --- | --- |
-| vibe-os | Vibe OS | free-download | /products/vibe-os | verified |  |
+| vibe-os-guide-pdf | Vibe OS Guide PDF | free-download | /api/download?product=vibe-os | needs-verification | The PDF endpoint resolves; review the guide content before presenting it as current workspace material. |
 | creators-soulbook | Creator's Soulbook | free-download | /soulbook | needs-verification | Confirm gated download and email delivery behavior. |
 | creative-ai-toolkit | Creative AI Toolkit | paid-product | https://frankx.gumroad.com/l/creative-ai-toolkit | needs-verification | Confirm canonical checkout platform and delivery file before changing CTAs. |
 | creation-chronicles | Creation Chronicles | paid-product | https://frankx.gumroad.com/l/creation-chronicles-creator | needs-verification | Confirm canonical checkout platform, tier links, and delivery pipeline. |
@@ -178,4 +178,3 @@ The Markdown map is canonical. The FigJam mirror is a presentation layer for whi
 ## Operating Rule
 
 When a page or link is ambiguous, prefer: verify destination -> add registry entry -> add redirect/canonical -> update nav/footer/homepage -> rerun audit -> regenerate this map.
-

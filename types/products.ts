@@ -113,3 +113,7 @@ export type ProductRecord = {
   delivery?: ProductDelivery
 }
 
+/** A catalog concept has no price, checkout, or deliverable offer. */
+export type ProductCatalogRecord =
+  | ProductRecord
+  | (Omit<ProductRecord, 'offer'> & { offer?: never })
