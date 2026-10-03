@@ -80,11 +80,12 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 
 ### Research authority boundaries
 
-- `research/sacred-texts/` is the current canonical home for historical sacred-source witnesses, original-language texts, provenance, and rights records used by the contemplative rails.
+- `research/sacred-texts/` owns FrankX research evidence, source excerpts, translation notes, provenance, and rights records used by the contemplative rails. It is not Starlight worldview canon.
 - `research/sacred-texts/collections/sacred-visions/` is a FrankX editorial collection, not a repository and not Arcanea canon.
-- `content/rails/` owns FrankX essays and public contemplative surfaces; `docs/rails/` owns their roadmap and editorial policy.
+- `content/rails/` owns FrankX essays and public contemplative surfaces; `docs/rails/` owns their roadmap and editorial policy. These essays are FrankX interpretations, not religious authority, Starlight canon, or scientific consensus.
 - `research-intelligence-os` and `research-intelligence-systems` provide reusable research methods; they do not own this corpus.
 - The planned `reality-intelligence-system` does not exist yet. Its roadmap is for portable framework extraction, not silent reassignment of FrankX prose or source ownership.
+- `frankxai/starlight-canon` owns Starlight worldview ontology, Sacred Horizons, Witnesses, practices, and original Starlight texts. FrankX may publish interpretations but cannot redefine that canon.
 - `arcanean-library` is fiction-only. Never place historical religious texts, real-world theology, documentary evidence, or modern scholarship there.
 - Before moving this material, update the portfolio placement record and preserve source, translation, interpretation, and new composition as separate layers.
 
