@@ -153,6 +153,11 @@ const PATTERNS = [
   // pattern above (href=) structurally cannot see any of them — so a broken
   // link in data/ or a nav config passed the gate for as long as it existed.
   // Adding this surfaced 9 real breaks, two of them in the global nav.
+  //
+  // Supported on one line only: an unquoted href key, a colon immediately
+  // after that key, then a quoted path. Quoted keys ('href':), a space before
+  // the colon (href :), and a value on the next line are intentionally not
+  // links. The word boundary keeps a longer key such as myhref from matching.
   /\bhref:\s*["']([^"']+)["']/g,
   /\bto=["']([^"']+)["']/g,
   /\]\((\/[^)\s]+)\)/g, // markdown link
@@ -219,6 +224,11 @@ function scanFile(file) {
         // A real page.tsx in the app tree serves this URL even when the
         // route-index omits it (redirect stubs, most commonly).
         if (isAppPage(cleanHref)) continue
+        // An extensionless route handler is a real URL too. /rss.xml is caught
+        // above because of its suffix; /courses/.../reliable-workflow is
+        // app/.../route.ts and has no suffix, so the same containment check
+        // has to run here or the static gate reports a live page as broken.
+        if (isRouteHandler(cleanHref)) continue
 
         findings.push({
           file: path.relative(ROOT, file).replace(/\\/g, '/'),

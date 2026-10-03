@@ -192,6 +192,7 @@ jobs:
         run: |
           pnpm run routes:build
           pnpm run links:check:static
+          pnpm run test:internal-links
 
       # Blocks two drift classes that reached production: an alias that shadows
       # a real page (which silently made /llm-hub unreachable for weeks), and
