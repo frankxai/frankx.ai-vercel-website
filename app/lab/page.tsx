@@ -93,7 +93,6 @@ const tools = [
     icon: '🎵',
     keyRequired: null,
     stats: [
-      { n: '12k+', label: 'Songs generated' },
       { n: '65', label: 'Indexed tracks' },
       { n: '5', label: 'Album concepts' },
     ],

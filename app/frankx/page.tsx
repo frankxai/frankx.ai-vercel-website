@@ -201,7 +201,6 @@ export default function FrankXPage() {
               {/* ── Mini stat strip ── */}
               <div className="mt-14 pt-10 border-t border-white/8 flex gap-10">
                 {[
-                  { n: '12k+', label: 'AI songs made' },
                   { n: 'Oracle', label: 'Enterprise AI' },
                   { n: '10', label: 'Character variants' },
                 ].map((s) => (

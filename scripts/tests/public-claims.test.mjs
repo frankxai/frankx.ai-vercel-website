@@ -27,9 +27,9 @@ const banned = [
 
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {
-    const text = fs.readFileSync(path.join(root, file), 'utf8')
+    const text = fs.readFileSync(path.join(root, file), 'utf8').toLowerCase()
     for (const phrase of phrases) {
-      assert.equal(text.includes(phrase), false, phrase)
+      assert.equal(text.includes(phrase.toLowerCase()), false, phrase)
     }
   })
 }
