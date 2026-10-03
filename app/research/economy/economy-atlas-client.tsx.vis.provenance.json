@@ -1,0 +1,29 @@
+{
+  "$schema": "https://frankx.ai/schemas/vis-provenance-sidecar.schema.json",
+  "schema_version": "1.0.0",
+  "asset": {
+    "asset_id": "economy-native-economy-atlas-client.tsx",
+    "version_id": "53f583ae0f5283ef009fbbd1a4894b29784442ddad050ebfcdcababfe39c64e4",
+    "media_type": "design-source",
+    "sha256": "53f583ae0f5283ef009fbbd1a4894b29784442ddad050ebfcdcababfe39c64e4",
+    "relative_path": "app/research/economy/economy-atlas-client.tsx"
+  },
+  "generation": {
+    "provider": "OpenAI",
+    "model": "GPT-6 Codex",
+    "prompt": "Implement the selected evidence atlas direction as a native Next.js research page for FrankX. Follow the current production research desktop/mobile baseline, obsidian/emerald tokens and host fonts. Show actual proposed product-to-channel relationships; mobile uses readable sequential paths. Include source qualifications, comparison, editable costs, browser save/restore, public-ID sharing and JSON export/import. No fabricated demand, sales or legal clearance. Compare exactly three compositions in the design record. Purposeful state feedback, native keyboard/touch semantics and static reduced motion. Founder release approval remains pending. Refinement: render SVG title as one string for React hydration; selecting a product on mobile focuses and scrolls to its details with navigation clearance. Preserve the selected composition and source qualifications. Review refinement: honor Poppins display and Inter body roles; preserve unknown prices as missing research, hide unqualified assertions, remove empty channel actions, and show a share link only for its current assumptions. Production publication remains gated on accepted release evidence.",
+    "seed": null,
+    "created_at": "2026-10-02T12:49:23.812244+00:00"
+  },
+  "agent": {
+    "coding_agent": "Codex",
+    "repo": "frankxai/frankx.ai-vercel-website",
+    "session_ref": "economy-atlas-20261002"
+  },
+  "evaluation": {
+    "status": "Reviewed findings addressed in candidate; exact-revision build/browser/review reconciliation pending"
+  },
+  "rights": {
+    "composition": "Original interface, source-backed research"
+  }
+}

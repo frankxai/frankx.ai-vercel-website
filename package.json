@@ -180,7 +180,7 @@
     "test:affiliate-links": "node --experimental-strip-types --test scripts/tests/affiliate-destination.test.mjs scripts/tests/tool-record-contract.test.mjs scripts/tests/tool-embed-contract.test.mjs",
     "test:mcp": "node --test scripts/tests/mcp-endpoint-contract.test.mjs",
     "test:mcp:e2e": "node --test scripts/tests/mcp-endpoint.e2e.mjs",
-    "research:publication:check": "node scripts/check-research-publication.mjs && node --test scripts/tests/research-publication-gate.test.mjs"
+    "research:publication:check": "node scripts/check-research-publication.mjs && node --test scripts/tests/research-publication-gate.test.mjs && node --experimental-strip-types --test scripts/tests/economy-atlas.test.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
