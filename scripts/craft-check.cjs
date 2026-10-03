@@ -234,6 +234,8 @@ function skillHint(skills) {
   return `Read this brand's rules and the accessibility notes before generic taste. Design skills for this task, at most four: ${names.join(', ')}.`;
 }
 
+const EXIT_STATUS = { accept: 0, reject: 2 };
+
 function readFixture(file) {
   return fs.readFileSync(file, 'utf8');
 }
@@ -246,10 +248,11 @@ if (require.main === module) {
   }
   const result = scoreFixture(readFixture(file));
   process.stdout.write(`${result.verdict}\n`);
-  process.exit(result.verdict === 'accept' ? 0 : 1);
+  process.exit(EXIT_STATUS[result.verdict] ?? EXIT_STATUS.reject);
 }
 
 module.exports = {
+  EXIT_STATUS,
   DESIGN_SKILLS,
   SLOP_PHRASES,
   brandVerdict,

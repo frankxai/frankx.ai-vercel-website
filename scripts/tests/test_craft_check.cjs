@@ -16,6 +16,6 @@ test('the committed craft check scores both fixtures', () => {
     const run = spawnSync(process.execPath, [checker, file], { encoding: 'utf8' });
     process.stdout.write(`${name} verdict=${String(run.stdout || '').trim()} exit=${run.status}\n`);
     assert.equal(String(run.stdout || '').trim(), want);
-    assert.equal(run.status, want === 'accept' ? 0 : 1);
+    assert.equal(run.status, require('../craft-check.cjs').EXIT_STATUS[want]);
   }
 });
