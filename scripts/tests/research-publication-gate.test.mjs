@@ -1,6 +1,9 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { validateApprovedClaims } from '../check-research-publication.mjs'
+import { spawnSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { validateApprovedClaims, findUnsupportedGeneratedGrades } from '../check-research-publication.mjs'
 
 const good = {
   schemaVersion: 1,
@@ -119,4 +122,41 @@ test('generated reviewer, missing dossier and fabricated review text fail', () =
   assert.match(failures, /human reviewer/)
   assert.match(failures, /dossier method/)
   assert.match(failures, /structured review receipt/)
+})
+
+test('generated search citations and synthetic grades fail closed', () => {
+  const bad = `{
+    "url": "https://scholar.google.com/scholar?q=example",
+    "type": "journal",
+    "confidence": "high",
+    "evidenceQuality": "rct",
+    "replicationStatus": "replicated",
+    "crossRefCount": 12
+  }`
+  const failures = findUnsupportedGeneratedGrades({ 'fixture.ts': bad })
+  assert.match(failures.join(' '), /search URL/)
+  assert.match(failures.join(' '), /type journal/)
+  assert.match(failures.join(' '), /confidence high/)
+  assert.match(failures.join(' '), /evidenceQuality rct/)
+  assert.match(failures.join(' '), /replicationStatus replicated/)
+  assert.match(failures.join(' '), /synthetic crossRefCount/)
+  assert.deepEqual(findUnsupportedGeneratedGrades({
+    'lib/research/sources.ts': 'export const domainSources = {}',
+    'lib/research/validated-claims.ts': 'export const validatedClaims = []',
+  }), [])
+})
+
+test('committed research registries do not carry generated grades', () => {
+  const failures = findUnsupportedGeneratedGrades({
+    'lib/research/sources.ts': readFileSync(new URL('../../lib/research/sources.ts', import.meta.url), 'utf8'),
+    'lib/research/validated-claims.ts': readFileSync(new URL('../../lib/research/validated-claims.ts', import.meta.url), 'utf8'),
+  })
+  assert.deepEqual(failures, [])
+})
+
+test('the research hub generator refuses to write', () => {
+  const script = fileURLToPath(new URL('../build-100-research-hubs.mjs', import.meta.url))
+  const result = spawnSync(process.execPath, [script], { encoding: 'utf8' })
+  assert.equal(result.status, 1)
+  assert.match(result.stderr, /fail-closed/)
 })

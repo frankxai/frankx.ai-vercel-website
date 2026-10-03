@@ -125,12 +125,41 @@ export function validateApprovedClaims(input, options = {}) {
   return errors
 }
 
+const GENERATED_GRADE = [
+  [/"replicationStatus": "replicated"/, 'replicationStatus replicated'],
+  [/"confidence": "high"/, 'confidence high'],
+  [/"evidenceQuality": "rct"/, 'evidenceQuality rct'],
+  [/"type": "journal"/, 'type journal'],
+  [/"crossRefCount":\s*[1-9]/, 'synthetic crossRefCount'],
+  [/scholar\.google|arxiv\.org\/search/i, 'search URL'],
+  [/PhD-grade/i, 'PhD-grade label'],
+]
+
+export function findUnsupportedGeneratedGrades(files) {
+  const errors = []
+  for (const [label, text] of Object.entries(files)) {
+    if (typeof text !== 'string') {
+      errors.push(`${label}: missing text`)
+      continue
+    }
+    for (const [pattern, name] of GENERATED_GRADE) {
+      if (pattern.test(text)) errors.push(`${label}: ${name}`)
+    }
+  }
+  return errors
+}
+
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const errors = validateApprovedClaims(registry)
+  const generated = findUnsupportedGeneratedGrades({
+    'lib/research/sources.ts': fs.readFileSync(path.join(root, 'lib/research/sources.ts'), 'utf8'),
+    'lib/research/validated-claims.ts': fs.readFileSync(path.join(root, 'lib/research/validated-claims.ts'), 'utf8'),
+  })
+  errors.push(...generated)
   if (errors.length) {
     console.error(errors.join('\n'))
     process.exitCode = 1
   } else {
-    console.log(`Research publication gate: ${registry.claims.length} reviewed claims`)
+    console.log(`Research publication gate: ${registry.claims.length} reviewed claims, generated grades clear`)
   }
 }

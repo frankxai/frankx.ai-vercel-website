@@ -1,8 +1,8 @@
 /**
- * Research Hub Domain Registry — 100 PhD-Grade Research Hubs
+ * Research hub topic map.
  *
- * Each domain represents a deeply researched, navigable discipline at /research/[slug].
- * Grounded in peer-reviewed science, engineering benchmarks, and primary literature.
+ * Each domain is a navigable topic at /research/[slug].
+ * Citations stay empty until a claim has an individual source and a review receipt.
  *
  * @see lib/research/sources.ts for primary source citations
  * @see lib/research/validated-claims.ts for Oxford CEBM evidence ratings
