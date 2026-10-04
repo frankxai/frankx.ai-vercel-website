@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
       </h1>
 
       <p style="font-size: 17px; color: #CBD5E1; line-height: 1.7; margin: 0 0 16px 0;">
-        Picture this: same frameworks I used to create 12,000+ AI songs and build enterprise AI systems - now in your hands.
+        Picture this: the same frameworks I use for Suno songs and enterprise AI systems, now in your hands.
       </p>
 
       <p style="font-size: 16px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px 0;">
@@ -157,7 +157,7 @@ export async function POST(request: NextRequest) {
           Quick note: Hit reply with questions. I read every message. Really.
         </p>
         <p style="font-size: 14px; color: #64748b; margin: 0; line-height: 1.6;">
-          Want more? Check out our <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">creator insights</a> or explore <a href="https://frankx.ai/music" style="color: #22d3ee; text-decoration: none;">12,000+ AI songs</a>.
+          Want more? Check out our <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">creator insights</a> or explore the <a href="https://frankx.ai/music" style="color: #22d3ee; text-decoration: none;">music</a>.
         </p>
       </div>
     </div>
@@ -170,7 +170,7 @@ export async function POST(request: NextRequest) {
         </p>
         <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
           Musician → AI Architect<br>
-          <span style="color: #22d3ee;">12,000+ AI Songs</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
+          <span style="color: #22d3ee;">Songs made with Suno</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
         </p>
       </div>
 
