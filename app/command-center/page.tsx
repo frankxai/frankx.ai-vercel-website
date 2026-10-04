@@ -170,7 +170,7 @@ const MIND_MAP_NODES: MindMapNode[] = [
     icon: <FileText className="w-5 h-5" />,
     children: [
       { label: 'Books', value: '23', icon: <BookOpen className="w-4 h-4" /> },
-      { label: 'Music', value: '65 tracks', icon: <Music className="w-4 h-4" /> },
+      { label: 'Music', value: 'Suno tracks', icon: <Music className="w-4 h-4" /> },
       { label: 'Newsletter', value: 'Active', icon: <Newspaper className="w-4 h-4" /> },
       { label: 'Social', value: 'Multi-platform', icon: <Share2 className="w-4 h-4" /> },
     ],

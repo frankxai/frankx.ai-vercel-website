@@ -14,7 +14,7 @@ const audienceTitles: Record<string, { title: string; description: string }> = {
   creators: {
     title: 'Frank X. Riemer | Tools for Creators & Artists',
     description:
-      'Music production, content systems, and creative AI tools. 65+ AI tracks, prompt library, and the GenCreator framework — by Frank X. Riemer.',
+      'Music production, content systems, and creative AI tools. Suno tracks, a prompt library, and the GenCreator framework — by Frank X. Riemer.',
   },
   devs: {
     title: 'Frank X. Riemer | Resources for Developers & Architects',

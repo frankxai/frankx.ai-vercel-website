@@ -138,7 +138,7 @@ export const DarkPremium = ({
               color: 'rgba(255,255,255,0.9)',
               marginBottom: '24px',
             }}>
-              I'm an AI Architect building enterprise systems for Oracle. Before that, I shipped AI products, created 500+ AI songs, and built multi-agent orchestration systems.
+              I'm an AI Architect building enterprise systems for Oracle. Before that, I shipped AI products, made music with Suno, and built multi-agent orchestration systems.
             </Text>
 
             <Text style={{

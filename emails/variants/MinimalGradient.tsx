@@ -150,7 +150,7 @@ export const MinimalGradient = ({
               color: '#1a1a1a',
               marginBottom: '24px',
             }}>
-              I'm an AI Architect building enterprise systems for Oracle. Before that, I shipped AI products, created 500+ AI songs, and built multi-agent orchestration systems.
+              I'm an AI Architect building enterprise systems for Oracle. Before that, I shipped AI products, made music with Suno, and built multi-agent orchestration systems.
             </Text>
 
             <Text style={{

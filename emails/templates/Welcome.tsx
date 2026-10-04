@@ -36,7 +36,7 @@ export function WelcomeEmail({ recipientName = 'there' }: WelcomeEmailProps) {
         <EmailHeading>Welcome, {recipientName}.</EmailHeading>
 
         <EmailText>
-          I'm Frank. I build enterprise AI systems during the day. At night I'm in the studio — 12,000+ AI-generated songs and counting.
+          I'm Frank. I build enterprise AI systems during the day. At night I make music with Suno and share production notes.
         </EmailText>
 
         <EmailText muted>

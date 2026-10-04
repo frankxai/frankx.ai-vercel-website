@@ -433,9 +433,7 @@ export default function MagicShell() {
               </h2>
               <div className="prose prose-lg prose-invert mx-auto text-slate-300">
                 <p>
-                  As a musician who discovered the transformative power of AI creation—producing
-                  over 12,000 songs with Suno—I realized that the future of creativity isn't about
-                  tools. It's about <em>partnership</em>.
+                  Making music with Suno led me to think about AI as a creative partner.
                 </p>
                 <p>
                   Arcanea is my answer to the question: What if AI felt less like software and

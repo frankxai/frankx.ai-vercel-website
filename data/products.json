@@ -721,11 +721,11 @@
     "category": "Music Intelligence",
     "badge": "INSTANT ACCESS",
     "headline": "100+ Battle-Tested Suno Prompts for Every Genre",
-    "subheadline": "Skip the prompt guessing game. Get the exact prompts that powered 500+ tracks across electronic, hip-hop, cinematic, ambient, and world music.",
+    "subheadline": "Prompts for electronic, hip-hop, cinematic, ambient, and world music, with notes on adapting them in Suno.",
     "promise": "Stop wasting generations on prompts that don't work. Get proven prompts organized by genre, mood, and energy level.",
-    "summary": "A comprehensive prompt library extracted from 500+ Suno sessions, organized for instant use in any creative project.",
+    "summary": "Suno prompts organized by genre and production task.",
     "transformation": [
-      "Access 100+ prompts that actually work\u2014tested across 500+ generations with detailed success notes",
+      "Explore prompts organized by production task, with notes on how to adapt them",
       "Find the perfect prompt in seconds with genre, mood, and energy filters (no more scrolling through chaos)",
       "Learn prompt patterns that unlock specific sounds (the 'why' behind each prompt so you can create your own)",
       "Get bonus prompt modifiers for tempo, instrumentation, and vocal styles that stack with any base prompt"
@@ -735,10 +735,6 @@
         {
           "number": "100+",
           "label": "Curated Prompts"
-        },
-        {
-          "number": "500+",
-          "label": "Sessions Tested"
         },
         {
           "number": "12",
@@ -1096,7 +1092,7 @@
     "category": "Music Intelligence",
     "badge": "FREE DOWNLOAD",
     "headline": "The Exact Prompts Behind My Top Suno Tracks",
-    "subheadline": "Copy the 5 prompts that generated 500+ plays. Each with breakdowns of why it works and variations to try.",
+    "subheadline": "Try five Suno prompts with arrangement notes and variations.",
     "promise": "Skip the guessing. Get proven prompts that actually produce great Suno tracks.",
     "summary": "Free guide with 5 battle-tested Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
     "transformation": [
@@ -1108,16 +1104,8 @@
     "socialProof": {
       "stats": [
         {
-          "number": "500+",
-          "label": "Tracks Created"
-        },
-        {
-          "number": "142",
-          "label": "Top Plays"
-        },
-        {
           "number": "5",
-          "label": "Proven Prompts"
+          "label": "Prompts"
         }
       ],
       "quotes": []
