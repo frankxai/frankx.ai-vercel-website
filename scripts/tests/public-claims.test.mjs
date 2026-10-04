@@ -81,6 +81,17 @@ const banned = [
   ['components/v0-variants/HomepageHeroV0.tsx', ['500+', '12,000+', '12K+']],
   ['components/v0-variants/MusicLabV0.tsx', ['500+']],
   ['components/youtube/YouTubeHubShell.tsx', ['12,000+', '12K+']],
+  ['components/v0-variants/AboutPageV0.tsx', ['AI Songs']],
+  ['components/golden-age/GoldenAgeShell.tsx', ['500+', 'AI Songs Created']],
+  ['app/golden-age/page.tsx', ['500+', 'AI Songs Created']],
+  ['lib/email-templates-premium.ts', ['12,000+', '12K+', '500+ AI Songs']],
+  ['lib/email-templates-welcome.ts', ['12,000+', '12K+', '500+ AI']],
+  ['lib/email-templates.ts', ['12,000+', '12K+']],
+  ['lib/hub.ts', ['12,000+', '12K+']],
+  ['lib/intake/personas.ts', ['12,000+', '12K+']],
+  ['lib/visual-intelligence/platform-personas.ts', ['12,000+', '12K+']],
+  ['lib/workshop-citations.ts', ['12,000+', '12K+']],
+  ['lib/plan/initiatives.ts', ['500+ AI songs', 'AI Songs Created']],
 ]
 
 for (const [file, phrases] of banned) {
