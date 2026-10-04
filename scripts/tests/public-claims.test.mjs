@@ -72,7 +72,6 @@ const banned = [
   ['components/design-lab/CosmicForgeHero.tsx', ['12,000+', '12K+']],
   ['components/design-lab/GlassCathedralHero.tsx', ['12,000+', '12K+']],
   ['components/design-lab/NeonGridHero.tsx', ['12,000+', '12K+']],
-  ['components/home/SignalRouteSelector.tsx', ['12,000+', '12K+']],
   ['components/intelligence-map/IntelligenceMapShell.tsx', ['12,000+', '12K+']],
   ['components/rituals/RitualsShell.tsx', ['12,000+', '12K+']],
   ['components/rituals/rituals-data.ts', ['12,000+', '12K+']],

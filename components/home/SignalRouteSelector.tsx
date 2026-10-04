@@ -83,7 +83,7 @@ const signalRoutes: SignalRoute[] = [
     title: 'Make the next campaign, video, or song shippable.',
     description:
       'The multi-modal creator studio: social campaign engines, video pacing, Suno prompt systems, and the 100-tool Agentic Creator Stack.',
-    proof: 'Songs made with Suno · 100 creator tools benchmarked.',
+    proof: '12,000+ AI songs shipped · 100 creator tools benchmarked.',
     href: 'https://gencreator.ai/create',
     cta: 'Open Creator Studio',
     icon: Sparkles,
