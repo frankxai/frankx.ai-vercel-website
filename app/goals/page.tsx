@@ -39,7 +39,7 @@ const goalSections = [
   {
     title: 'Music & Creative',
     goals: [
-      { text: 'Create 12,000+ AI songs across 20+ genres', done: true },
+      { text: 'Make songs with Suno across genres', done: true },
       { text: 'Release curated albums with premium production', done: false },
       { text: 'Build interactive music lab with Suno integration', done: true },
       { text: 'License tracks for commercial use', done: false },

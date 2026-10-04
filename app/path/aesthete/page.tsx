@@ -34,7 +34,7 @@ export default function AesthetePage() {
           </div>
           
           <p className="text-lg sm:text-xl text-white/60 max-w-2xl leading-relaxed mb-10">
-            I spent years as an AI architect at Oracle building systems that had to hold under real load. Then I pointed the same discipline at something no one asked me to: 12,000+ AI songs, a visual practice, a framework I called GenCreator. Aesthetic work still needs versioning, QA, and a repeatable pipeline — most creators just never build one.
+            I spent years as an AI architect at Oracle building systems that had to hold under real load. Then I pointed the same discipline at something no one asked me to: songs made with Suno, a visual practice, a framework I called GenCreator. Aesthetic work still needs versioning, QA, and a repeatable pipeline. Most creators just never build one.
           </p>
           <div className="flex flex-col items-start gap-4">
             <TrackingLink
