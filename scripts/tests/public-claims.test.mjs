@@ -45,6 +45,14 @@ const banned = [
   ['app/design-lab/frontend-design/page.tsx', ['12K+', '12,000+']],
   ['app/design-lab/nature/variants/homepage/page.tsx', ['12K+', '12,000+']],
   ['app/design-lab/strategy/page.tsx', ['12,000+']],
+  ['app/bio/layout.tsx', ['12,000+', '12K+']],
+  ['app/bio/page.tsx', ['12,000+', '12K+', '12,000 Songs']],
+  ['app/achievements/page.tsx', ['12,000+', '12K+', '13K hooks']],
+  ['app/api/send-pdf/route.ts', ['12,000+', '12K+']],
+  ['app/llms.txt/route.ts', ['12,000+', '12K+']],
+  ['app/llms-full.txt/route.ts', ['12,000+', '12K+']],
+  ['app/media-kit/page.tsx', ['12,000+', '12K+']],
+  ['app/frank-riemer/page.tsx', ['12,000+', '12K+']],
 ]
 
 for (const [file, phrases] of banned) {

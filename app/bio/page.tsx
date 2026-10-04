@@ -20,13 +20,13 @@ import CopyableBio from './CopyableBio';
 // or copy the length that fits.
 
 const ONE_LINE =
-  'Frank Riemer is an AI Architect & Creator, founder of FrankX, and creator of 12,000+ AI songs.';
+  'Frank Riemer is an AI Architect and Creator, founder of FrankX.';
 
-const SHORT_BIO = `Frank Riemer is an AI Architect & Creator, founder of FrankX, and creator of 12,000+ AI songs. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
+const SHORT_BIO = `Frank Riemer is an AI Architect and Creator, founder of FrankX. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
 
 const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
 
-He is a prolific AI music creator — 12,000+ tracks produced through Suno and the surrounding stack — and the author of *The Golden Age of Intelligence*, a book on the convergence of human and artificial intelligence.
+He makes music with Suno and is the author of *The Golden Age of Intelligence*, a book on the convergence of human and artificial intelligence.
 
 His work bridges three disciplines: enterprise AI architecture, generative creator workflows, and practical systems for human creativity. He writes, ships, and creates daily. FrankX is independent and is not affiliated with, endorsed by, or sponsored by Oracle.
 
@@ -51,7 +51,7 @@ const SPEAKER_TOPICS = [
       'The convergence of human and artificial intelligence — what neuroscience confirms, what the ancients knew, and how to deploy both.',
   },
   {
-    title: '12,000 Songs: AI Music as Creative System',
+    title: 'AI Music as a Creative System',
     summary:
       'Three years of daily AI music creation, what it taught me about the difference between generation and collaboration, and the state-induction music protocols I now run on myself.',
   },
@@ -90,7 +90,7 @@ const SELECTED_WORK = [
   },
   {
     label: 'Music',
-    title: '12,000+ AI tracks',
+    title: 'Songs made with Suno',
     summary: 'Three years of daily creation across genre, mood, and state-induction.',
     href: 'https://suno.com/@frankx',
     external: true,
@@ -115,7 +115,7 @@ const QUICK_FACTS = [
   ['Role', 'AI Architect & Creator'],
   ['Based', 'Amsterdam, Netherlands'],
   ['Languages', 'English, German, Russian'],
-  ['Songs released', '12,000+ via Suno'],
+  ['Songs', 'Made with Suno'],
   ['Books published', 'The Golden Age of Intelligence (2026)'],
   ['Open source', 'github.com/frankxai'],
 ];
@@ -123,7 +123,7 @@ const QUICK_FACTS = [
 export const metadata = createMetadata({
   title: 'Bio · Frank Riemer | FrankX',
   description:
-    'Press bio, speaker topics, and media kit for Frank Riemer — AI Architect & Creator, creator of 12,000+ AI songs, and author of The Golden Age of Intelligence.',
+    'Press bio, speaker topics, and media kit for Frank Riemer, AI Architect and Creator, and author of The Golden Age of Intelligence.',
   path: '/bio',
   keywords: [
     'Frank Riemer bio',
