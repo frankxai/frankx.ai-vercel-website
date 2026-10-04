@@ -106,14 +106,6 @@ export default function VibeOSSocialProof({ stats }: VibeOSSocialProofProps) {
             <span>4.9/5 Average Rating</span>
           </div>
 
-          <div className="hidden h-4 w-px bg-white/20 sm:block" />
-
-          <div className="flex items-center gap-2">
-            <svg className="h-4 w-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>Tested in 500+ Sessions</span>
-          </div>
         </motion.div>
       </div>
     </section>
