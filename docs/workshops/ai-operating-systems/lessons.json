@@ -1,0 +1,339 @@
+[
+  {
+    "id": "ownership",
+    "title": "Ownership before autonomy",
+    "artifact": "One task contract and one measurable baseline",
+    "sources": [
+      "agents",
+      "harness",
+      "video-agents"
+    ],
+    "thesis": "A useful operating system begins with a unit of work somebody will accept. Choose a weekly job with inputs you can inspect, a result you can test, and an owner who can reject it.",
+    "teach": [
+      "Take a founder briefing. The job is to turn three source documents into one decision memo. The accountable founder defines the question; a worker extracts claims; a reviewer checks citations; the founder accepts the decision. These are responsibilities. They do not require four autonomous agents.",
+      "Separate a workflow with predetermined steps from an agent that chooses its next action. Start with a workflow when the sequence is stable. Give the agent bounded discretion where evidence may change the path. Write the allowed actions, budget, completion test and escalation condition before choosing a framework.",
+      "Your baseline includes human minutes, rejected outputs, correction time and accepted work per week. Faster generation can still make the whole operation slower when review becomes expensive. Compare accepted outcomes at equal quality."
+    ],
+    "example": "job: weekly source-backed decision memo\nowner: founder\ninput: three public sources\noutput: memo + claim/source table\nacceptance: every factual claim has evidence\nauthority: read sources, draft locally\nstop: evidence missing or budget exhausted",
+    "lab": [
+      "Choose one recurring job and time the current process.",
+      "Write input, output, owner, allowed tools, budget and stop condition.",
+      "Write three examples of unacceptable output before generating anything."
+    ],
+    "accept": [
+      "A named human can accept or reject the artifact.",
+      "The completion test is observable without asking the maker whether it succeeded."
+    ],
+    "challenge": "A founder asks for an agent to run everything. What is the first implementable boundary?",
+    "answer": "One recurring job, one owner, known inputs, permitted actions and an acceptance test. Expand only after that unit produces accepted work repeatedly."
+  },
+  {
+    "id": "single-agent",
+    "title": "One agent that finishes",
+    "artifact": "A bounded loop with a trace and a stop reason",
+    "sources": [
+      "sdk",
+      "claude",
+      "managed",
+      "claude-managed"
+    ],
+    "thesis": "Model capability becomes useful through the environment around it: instructions, tools, state, budgets and feedback. A fluent final message provides weak evidence of completion.",
+    "teach": [
+      "An agent loop selects an action, executes it, observes the result and decides again. Keep tool outputs structured enough to inspect. A stop reason distinguishes completed, needs input, failed and budget exhausted. Never turn a timeout into a successful final state.",
+      "The AI SDK offers an application-level loop. The Claude Agent SDK embeds a programmable Claude Code harness in a process you operate. The OpenAI Agents API provides a managed Codex harness with sessions and execution-environment options. Claude Managed Agents provides a hosted harness for long-running, asynchronous work; its retrieved documentation marks the interface as beta (`managed-agents-2026-04-01`). Select by the execution boundary and operational work you are prepared to own. Their interfaces are not interchangeable. Review provider retention and environment policies before sending private records.",
+      "Build a research worker with read-only tools first. Trace model version, prompt version, tool inputs, tool outcomes, latency and usage. Pass the artifact to a separate verifier. Your runtime should enforce limits even when the model asks to continue."
+    ],
+    "example": "queued -> running -> completed\n                  -> needs_input\n                  -> failed\n                  -> budget_exhausted\nA final paragraph cannot change a failed tool result.",
+    "lab": [
+      "Run the offline lab linked below. Inspect its action trace.",
+      "Remove a required input; confirm the task stops without claiming completion.",
+      "In your own development workspace, implement the same contract with one provider SDK after checking its current quickstart."
+    ],
+    "accept": [
+      "Every terminal state includes a machine-readable reason.",
+      "The artifact and tool trace support the completion claim."
+    ],
+    "challenge": "The model says the website is deployed, but the deployment API failed. Which state is valid?",
+    "answer": "Failed or needs input, with the API failure attached. Completion requires a verified deployment and the required post-deploy checks."
+  },
+  {
+    "id": "tools",
+    "title": "Tools and MCP with narrow authority",
+    "artifact": "A tool contract, an access matrix and a negative test",
+    "sources": [
+      "tools",
+      "mcp",
+      "a2a"
+    ],
+    "thesis": "A tool exposes a capability. Its schema describes the request; the server decides whether the caller has authority to perform it.",
+    "teach": [
+      "Design tools around useful operations such as read_task, propose_memory and create_draft. Define input validation, caller identity, workspace scope, idempotency, error shape and audit records. Keep credentials on the server. A tool description or read-only annotation never replaces authorization.",
+      "MCP connects clients to tools, resources and prompts. A2A addresses communication between agentic applications. A queue, a function call or a shared database is often sufficient inside one trusted runtime. Add cross-runtime protocols when a tested interoperability requirement justifies them.",
+      "Start with one documentation MCP and one scoped application tool. Inspect the actual tool catalog; authorize access intentionally. Treat retrieved text as evidence to evaluate. A document asking the agent to export employee records cannot grant that authority."
+    ],
+    "example": "tool: propose_memory\ninput: content, source_ref, proposed_scope\nserver adds: authenticated_actor, workspace_id\nserver checks: membership, write_permission\noutput: proposal_id, review_status\nDirect promotion to accepted memory is a separate operation.",
+    "lab": [
+      "Write schemas for a read tool and a draft-only write tool.",
+      "Supply a mismatched workspace identifier and expect denial.",
+      "Put an instruction to disclose private data in a source document; confirm no tool authority changes."
+    ],
+    "accept": [
+      "Unauthorized requests fail before side effects.",
+      "Tool errors are visible and cannot be mistaken for successful writes."
+    ],
+    "challenge": "Should the model choose which tenant it belongs to?",
+    "answer": "No. Derive tenant and actor identity from authenticated server context; validate any requested scope against that identity."
+  },
+  {
+    "id": "memory",
+    "title": "Memory that stays accountable",
+    "artifact": "Scoped records with provenance, expiry and conflict handling",
+    "sources": [
+      "memory",
+      "context",
+      "rls"
+    ],
+    "thesis": "Persistence keeps data. Retrieval chooses context. Acceptance determines what the system is allowed to treat as known.",
+    "teach": [
+      "Use separate stores for run checkpoints, source documents, accepted facts, decision history and procedures. A summary is a derived view. Keep its source references so you can re-open the evidence. Vector search finds candidates; it does not establish truth or permission.",
+      "Each durable fact carries an owner, workspace, subject, source, observed time, review time, status and permitted audience. Distinguish what a person said from what a model inferred. Version updates explicitly. When claims conflict, retain both witnesses and request a decision rather than silently overwriting history.",
+      "LangGraph distinguishes thread checkpoints from cross-thread stores. In an application database, scope retrieval before content reaches the model. Supabase RLS can enforce row access for applicable roles; privileged service credentials require separate care. Test deletion, correction and stale-record exclusion across indexes, caches and summaries."
+    ],
+    "example": "{\"subject\":\"project-alpha\",\"claim\":\"review on Friday\",\n \"workspace\":\"demo-company\",\"owner\":\"operator\",\n \"source\":\"meeting-note-42\",\"observedAt\":\"2026-10-02\",\n \"reviewDue\":\"2026-10-09\",\"status\":\"accepted\",\n \"audience\":[\"project-team\"]}",
+    "lab": [
+      "Run the stale-memory and workspace-isolation drills in the offline lab.",
+      "Create a second record that contradicts the first. Preserve both and mark the conflict.",
+      "Write an export and deletion test for your proposed persistent store."
+    ],
+    "accept": [
+      "Stale, rejected and unauthorized records stay out of the context.",
+      "An inference cannot become an accepted fact without an accountable acceptance step."
+    ],
+    "challenge": "A deleted fact still appears in a generated summary. Has deletion completed?",
+    "answer": "No. Remove or rebuild derived summaries, retrieval indexes and caches, then verify the fact no longer reaches the model."
+  },
+  {
+    "id": "quality",
+    "title": "Skills, standards and evaluations",
+    "artifact": "A reusable procedure and a held-out evaluation set",
+    "sources": [
+      "skills",
+      "evals",
+      "harness"
+    ],
+    "thesis": "A procedure describes how to work. An evaluation measures whether the resulting work deserves acceptance.",
+    "teach": [
+      "A portable skill packages a repeatable method with triggers, instructions and supporting resources. Name when it applies, what inputs it needs, how to report evidence and when to stop. Keep large references separate so the runtime loads them when needed. Verify the target runtime supports the skill features you rely on.",
+      "Create fixtures for normal work, missing evidence, conflicting evidence, permission denial, tool failure and partial completion. Keep some fixtures held out from prompt iteration. Use deterministic checks for objective properties and a calibrated human rubric for judgment.",
+      "A reviewer receives the task and evidence independently. A shared model or shared context can produce correlated errors; independence requires separate evidence inspection and appropriate deterministic checks. Record accepted outputs, rejection reasons, retries and corrections. Never let the maker alter its own release tests to manufacture a pass."
+    ],
+    "example": "quality dimensions:\n- correct artifact and complete required fields\n- evidence supports claims\n- authority respected\n- cost and latency measured\n- human review required where judgment remains\nA style score cannot compensate for a broken access test.",
+    "lab": [
+      "Write a one-page operating procedure for your chosen job.",
+      "Create six fixtures, keeping two out of prompt refinement.",
+      "Compare the initial and revised procedure against the same acceptance rubric."
+    ],
+    "accept": [
+      "A held-out fixture can fail and block the candidate.",
+      "The evaluator records reasons and evidence, not only a score."
+    ],
+    "challenge": "All examples used to refine the prompt now pass. What evidence is missing?",
+    "answer": "Held-out performance and real outcome inspection. Training on your own examples can make the system appear reliable without generalizing."
+  },
+  {
+    "id": "workers",
+    "title": "Multiple workers without shared-state chaos",
+    "artifact": "A worker plan with isolated artifacts and one reconciler",
+    "sources": [
+      "research",
+      "a2a",
+      "video-graph"
+    ],
+    "thesis": "Parallel work pays when subtasks have useful boundaries and the results can be reconciled. The number of agents is a cost decision.",
+    "teach": [
+      "Give each worker a task identifier, an input snapshot, a permitted tool set, an artifact path, a time and usage budget and an acceptance contract. Restrict recursive delegation. Cancel or contain unfinished workers when the parent stops.",
+      "For breadth-first research, workers can inspect separate source groups and return concise claim tables. For code, isolate branches or worktrees. For business records, use version checks and a reconciler. Sharing the same mutable file or customer record without conflict detection creates nondeterministic results.",
+      "Compare a single worker and two workers on the same held-out tasks. Measure acceptance, total review time, end-to-end latency and usage. Anthropic documents gains on its internal research evaluation together with higher token consumption; that result does not establish a universal productivity multiplier."
+    ],
+    "example": "owner -> coordinator\ncoordinator -> researcher A: sources 1-3, output A.json\ncoordinator -> researcher B: sources 4-6, output B.json\nreviewer checks both artifacts\nreconciler owns the accepted record version",
+    "lab": [
+      "Run the version-conflict drill.",
+      "Split your task into two independently reviewable artifacts.",
+      "Measure the two-worker design against your one-worker baseline, including review and failed runs."
+    ],
+    "accept": [
+      "Workers cannot overwrite each other\u2019s accepted output.",
+      "Delegation improves measured outcomes enough to justify its cost."
+    ],
+    "challenge": "Two workers propose different updates against version 4. Can both be accepted as version 5?",
+    "answer": "No. Accept one version-checked update, reject the stale write and reconcile the other proposal against the new state."
+  },
+  {
+    "id": "runtime",
+    "title": "Durable execution and recovery",
+    "artifact": "A run state machine, idempotency test and recovery log",
+    "sources": [
+      "managed",
+      "claude",
+      "memory",
+      "openclaw",
+      "hermes"
+    ],
+    "thesis": "A browser request, a durable job and an always-on assistant have different lifetimes. Give each the runtime its work requires.",
+    "teach": [
+      "Keep a Next.js website as the interface and authenticated request boundary. Long-running jobs need durable execution, persistent state and an execution environment with appropriate isolation. A Railway worker or managed agent session is a candidate; choose after testing retries, resumption, budget enforcement and cancellation.",
+      "Hermes and OpenClaw are candidates for persistent assistants and channel-based workflows. Inspect their memory, tool controls, deployment and recovery behavior before connecting an organization. A local assistant session does not automatically provide tenant isolation or the operational contract your customer application needs.",
+      "Use an idempotency key for each external operation. Record intent, result and provider operation identifier. On retry, look up the previous outcome. Test a crash after the external side effect but before local acknowledgement; recovery must not create a duplicate purchase, email or publication."
+    ],
+    "example": "run: queued -> running -> needs_input -> running -> completed\noperation key: run-42:create-draft:asset-7\nretry returns the recorded operation result\nRecovery preserves ownership, limits and unresolved failures.",
+    "lab": [
+      "Run the duplicate-operation drill.",
+      "Write the restart sequence for a crashed job.",
+      "Compare one self-operated worker with one managed harness against the same recovery checklist."
+    ],
+    "accept": [
+      "A repeated delivery request creates one intended operation.",
+      "Restart preserves run state and applies the same permission and cost limits."
+    ],
+    "challenge": "A worker timed out after the provider accepted an email. Should the retry send again?",
+    "answer": "First reconcile the provider operation with the recorded intent and idempotency key. Send again only when the original operation is proven not to have occurred."
+  },
+  {
+    "id": "studio",
+    "title": "How a human studio delivers",
+    "artifact": "A brief, production board, review packet and delivery manifest",
+    "sources": [
+      "harness",
+      "evals"
+    ],
+    "thesis": "The studio moves work from a clear brief to a reviewed artifact somebody can use. Agents occupy bounded roles inside that production process.",
+    "teach": [
+      "For a campaign, use brief, references and rights, draft, edit, technical verification, client acceptance and delivery. The creative director sets the proposition and taste. The producer manages dependencies, capacity and deadlines. Specialists make the work. A reviewer checks the exact artifact. The client or accountable owner accepts it.",
+      "Keep each asset\u2019s identity, version, source references, rights, channel specification and review state together. Link the review to the exact version. A corrected video does not inherit approval from its earlier cut. Store source files and finished exports so another person can continue the project.",
+      "Use GenCreator for the finished creation and distribution workflow when its relevant capabilities are verified. Use Starlight for context, evidence and coordination. FrankX teaches the method through public proof. These portfolio roles guide proposed integration; they do not establish that every feature is operating today."
+    ],
+    "example": "brief -> draft -> editorial review -> technical QA\n      -> owner acceptance -> delivery\nEvery handoff names: version, owner, deadline, acceptance\nDelivery contains source files, exports and usage rights.",
+    "lab": [
+      "Create a brief for a three-asset campaign using synthetic client data.",
+      "Define the review packet for one image, one article and one video.",
+      "Reject one version and verify its approval does not carry to the corrected asset."
+    ],
+    "accept": [
+      "The deliverable can be opened and used outside the originating tool.",
+      "The accepted version and its rights are unambiguous."
+    ],
+    "challenge": "A campaign is approved, then the copy changes. What happens to approval?",
+    "answer": "The changed version needs the relevant checks and owner acceptance again. Version-bound review prevents old approval from covering new claims."
+  },
+  {
+    "id": "organization",
+    "title": "Founder and organization operating systems",
+    "artifact": "A responsibility map and one accepted weekly workflow",
+    "sources": [
+      "rls",
+      "harness",
+      "evals"
+    ],
+    "thesis": "Organizational memory should make responsibilities clearer. Keep people accountable for decisions and agents accountable for bounded execution.",
+    "teach": [
+      "Model outcomes, projects, roles, owners, dependencies, decisions and evidence. An employee\u2019s role determines access and responsibility; it does not authorize exposing all their private records to a general assistant. Keep customer, personnel and finance contexts separated and join them only for an authorized purpose.",
+      "Start Founder OS with a weekly decision memo: current facts, commitments, blockers, proposed actions and one owner for each next step. Link every status to its evidence. Separate proposed, accepted, deployed, operating and customer-validated states. A merged pull request proves a code change; it cannot prove customer value.",
+      "For quality management, use explicit standards, task examples, feedback and human review. Automate work preparation and evidence collection. Keep consequential personnel decisions with responsible humans. Measure accepted work per employee or team only where the measure reflects the job and is appropriate for the purpose."
+    ],
+    "example": "objective: reduce correction time on client reports\nowner: delivery lead\nworkflow: extract -> draft -> verify -> accept\nstandard: complete sources + versioned approvals\nweekly review: acceptance, corrections, failed runs, cost",
+    "lab": [
+      "Map three recurring founder decisions to their sources and owners.",
+      "Choose one workflow for a one-week pilot with a willing operator.",
+      "Define access for founder, employee, reviewer and external client; test denied combinations."
+    ],
+    "accept": [
+      "Every commitment has one accountable owner and a visible state.",
+      "Private employee or client context is scoped before retrieval."
+    ],
+    "challenge": "The dashboard marks a product customer-validated because its deployment is READY. What evidence is missing?",
+    "answer": "Actual customer use and accepted value. Deployment readiness is an infrastructure state; validation needs a measured customer outcome."
+  },
+  {
+    "id": "family-life",
+    "title": "Family ownership and personal growth",
+    "artifact": "A consent map, an export and a bounded reflection practice",
+    "sources": [
+      "context",
+      "rls"
+    ],
+    "thesis": "The same engineering can support family continuity and personal agency when each person controls their own context.",
+    "teach": [
+      "Keep personal journals private by default. Use shared family memory for agreed facts such as a household project, a maintenance checklist or an emergency contact record. Record who contributed it, who may read it and how to correct or withdraw it. Adults and children need appropriate control and participation; proximity is not consent.",
+      "Build a personal review around chosen commitments, observations and the next experiment. Separate a recorded observation from interpretation. For example, \u201ccompleted two practice sessions\u201d is an observation; \u201cI am undisciplined\u201d is an interpretation. Let the person choose the meaning and the next action.",
+      "For learning, relationships, creativity, movement and home life, make the system reduce cognitive load. Use voluntary check-ins and small commitments. Avoid treating a personal score as a diagnosis or letting a productivity agent infer another person\u2019s emotions as settled facts. Export readable records and test recovery with synthetic data first."
+    ],
+    "example": "private: journal and personal reflections\nshared: agreed household tasks and approved stories\nweekly review: chosen goal, observed progress, next experiment\nwithdrawal: remove record and derived summaries\nRecovery: owner-readable export and restore test",
+    "lab": [
+      "Write an access map for a synthetic household.",
+      "Create one shared project without importing anyone\u2019s private chats.",
+      "Export the records, withdraw one, and confirm it is absent from retrieval and summaries."
+    ],
+    "accept": [
+      "Each shared record has an agreed audience and correction path.",
+      "Reflection stays voluntary and distinguishes observations from interpretations."
+    ],
+    "challenge": "A family assistant knows one partner\u2019s journal. Can it use that journal to advise the other partner?",
+    "answer": "Only with specific authorized sharing for that purpose. Shared family membership alone does not authorize cross-person journal retrieval."
+  },
+  {
+    "id": "value",
+    "title": "Offers, contribution and unit economics",
+    "artifact": "A useful sample, an offer boundary and an economics worksheet",
+    "sources": [
+      "evals",
+      "research"
+    ],
+    "thesis": "A visitor should experience useful work before being asked to buy its continuation. The paid offer solves a demonstrated next need.",
+    "teach": [
+      "Provide the curriculum and offline lab directly. The learner completes one task contract, sees what breaks and exports the result. Then route them to implementation help, an existing relevant product or a scoped workshop inquiry. Preserve the useful free result regardless of whether they buy.",
+      "Model cost per accepted output: include every attempted run, model and tool usage, runtime, storage, human review and support, divided by accepted outputs. Use current provider prices at the time you budget. Separate fixed operating costs from per-output costs. Revenue targets remain assumptions until measured.",
+      "Allow contributions through synthetic fixtures, source corrections and reproducible failure reports. Never ask learners to upload employee records or family journals publicly. Test the offer\u2019s scope, delivery, entitlement and support before adding checkout. A scoped inquiry is the honest next step while price and fulfillment are being established."
+    ],
+    "example": "Illustrative assumptions only:\n20 attempts cost EUR 10 in runtime + EUR 30 in review\n10 outputs accepted -> EUR 4 per accepted output\nSupport and fixed costs still need allocation\nNo acceptance -> no valid cost-per-accepted-output result",
+    "lab": [
+      "Calculate cost per accepted output including rejected attempts.",
+      "Write the next offer as scope, deliverable, exclusions and support.",
+      "Inspect the actual inquiry or checkout path without submitting payment or live test leads."
+    ],
+    "accept": [
+      "The free artifact is independently useful.",
+      "Any purchase claim matches verified price, delivery and access."
+    ],
+    "challenge": "A task generates cheap drafts but half need extensive editing. Which metric captures the economics?",
+    "answer": "Total cost per accepted output, including failed attempts, editing, review, support and the relevant fixed-cost allocation."
+  },
+  {
+    "id": "release",
+    "title": "Deploy, evaluate and evolve",
+    "artifact": "A capstone release packet and a source-change proposal",
+    "sources": [
+      "harness",
+      "evals",
+      "managed",
+      "claude"
+    ],
+    "thesis": "An evolving learning experience needs versioned teaching, tested examples and measured learner outcomes. A changing source page is a reason to review the lesson.",
+    "teach": [
+      "Take one owned website workflow from synthetic local fixtures to an isolated preview. Bind task, sources, procedure, permissions, acceptance tests and rollback to the candidate revision. Ask a reviewer to inspect the actual artifact and failure evidence before production.",
+      "Keep a source register with publisher, URL, retrieval date, verification level, impacted lessons and next review. A scheduled checker can detect link or content changes and open a review proposal. Editorial acceptance and example tests must pass before a changed lesson is published. Reading a current page does not mean every product claim or code snippet has been validated.",
+      "Run a four-hour capstone: define the owned workflow, build the bounded loop, test memory and tools, compare one versus two workers where useful, and document preview evidence plus recovery. Completion requires accepted work under the stated constraints. A self-study checklist records learner progress; it cannot issue a competence claim by itself."
+    ],
+    "example": "release packet:\n- task and audience\n- candidate revision + source register\n- tests, failures and cost log\n- independent review\n- preview, production verification and rollback\n- learner outcome and next source review",
+    "lab": [
+      "Choose one workflow in your own site; use synthetic data.",
+      "Produce a preview release packet and prove a rollback in the development environment.",
+      "Submit a source correction or a new failure fixture as a contribution proposal."
+    ],
+    "accept": [
+      "Evidence binds to the exact candidate version.",
+      "The next curriculum update passes review and example checks before release."
+    ],
+    "challenge": "A weekly source checker finds a new SDK capability. Should it automatically rewrite the live lesson?",
+    "answer": "It should propose a reviewed change, re-run relevant examples and update the source history. Automatic publication would confuse detection with verified teaching."
+  }
+]

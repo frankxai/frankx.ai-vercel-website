@@ -357,7 +357,7 @@ export default function TheoryPage() {
               Frank&apos;s Music Collection
             </h2>
             <p className="mt-3 text-white/50">
-              Explore 12,000+ AI-generated tracks spanning orchestral, electronic, neoclassical,
+              Explore AI-generated tracks spanning orchestral, electronic, neoclassical,
               and pop — all built on the theory foundations covered here.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">

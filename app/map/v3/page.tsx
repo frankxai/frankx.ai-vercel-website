@@ -80,7 +80,7 @@ const EPOCHS: Epoch[] = [
     title: 'The Sovereign Estate',
     subtitle: 'L5 Distribution & Revenue',
     date: '2026 - Present',
-    description: 'Expanding the ecosystem to public-facing surfaces. Designing and deploying the frontend Next.js application, integrating secure Stripe gateways, cataloging the 12,000+ AI song catalog, and running developer coaching intakes.',
+    description: 'Expanding the ecosystem to public-facing surfaces. Designing and deploying the frontend Next.js application, integrating secure Stripe gateways, cataloging the songs made with Suno, and running developer coaching intakes.',
     image: '/images/map/sovereign_estate.png',
     color: 'amber',
     cluster: 'websites',

@@ -166,25 +166,12 @@ export default function LinktreePage() {
             Frank X. Riemer
           </h1>
           <p className="mt-2 text-sm text-white/40 leading-relaxed max-w-xs mx-auto">
-            AI Architect. 12K+ AI songs. Builder of systems that amplify creativity.
+            AI architect. Public songs, field notes, and a library.
           </p>
 
-          {/* Stats strip */}
-          <div className="mt-4 flex justify-center gap-3">
-            {[
-              { val: '12K+', label: 'AI Songs' },
-              { val: '75+', label: 'Skills' },
-              { val: '90+', label: 'Articles' },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1.5"
-              >
-                <span className="text-xs font-semibold text-white/70">{stat.val}</span>
-                <span className="ml-1 text-[10px] text-white/30">{stat.label}</span>
-              </div>
-            ))}
-          </div>
+          <p className="mt-4 text-xs text-white/40">
+            Songs, notes, and books. No headcount on this page.
+          </p>
         </motion.div>
 
         {/* ─── Audience selector ─── */}
