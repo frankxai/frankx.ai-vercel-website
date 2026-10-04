@@ -237,9 +237,8 @@ export default function DevelopersShell() {
         {/* Stats Section */}
         <section className="py-12 border-y border-white/5">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
               {[
-                { value: '500+', label: 'AI-Generated Songs', sublabel: 'Using Suno patterns' },
                 { value: '4+', label: 'Years Enterprise AI', sublabel: 'Production systems' },
                 { value: '50+', label: 'Agent Prompts', sublabel: 'Battle-tested templates' },
                 { value: '€197', label: 'Full System', sublabel: 'Agentic Creator OS' },

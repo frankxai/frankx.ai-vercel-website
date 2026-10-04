@@ -344,7 +344,7 @@ export default function ProductionPage() {
               Frank&apos;s Production Stack
             </h2>
             <p className="mt-4 leading-relaxed text-white/60">
-              With 12,000+ AI-generated tracks, Frank&apos;s production workflow is built on
+              Frank&apos;s production workflow is built on
               Suno for AI composition, n8n for automated catalog management and publishing
               workflows, and Vercel Blob for self-hosted audio delivery. The entire pipeline —
               from text prompt to published track with metadata, cover art, and streaming links —

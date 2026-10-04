@@ -261,7 +261,7 @@ function StaggerGridDemo() {
     { icon: Star, label: 'Skills', count: '75+', color: '#AB47C7' },
     { icon: Users, label: 'Agents', count: '38', color: '#43BFE3' },
     { icon: Command, label: 'Commands', count: '35+', color: '#10B981' },
-    { icon: Music, label: 'Songs', count: '12K+', color: '#F59E0B' },
+    { icon: Music, label: 'Songs', count: 'Suno', color: '#F59E0B' },
     { icon: BookOpen, label: 'Articles', count: '70+', color: '#E040FB' },
     { icon: Code2, label: 'MCP Servers', count: '8', color: '#6366F1' },
   ]
