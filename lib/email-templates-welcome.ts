@@ -198,7 +198,7 @@ export function welcomeEmail1(data: {
           </h1>
 
           <p style="font-size: 16px; color: #CBD5E1; line-height: 1.6; margin: 0 0 12px 0;">
-            I'm Frank Riemer. I bring former enterprise AI architecture experience into FrankX and create AI music in the studio at night — 12,000+ tracks and counting.
+            I'm Frank Riemer. I bring former enterprise AI architecture experience into FrankX and make songs with Suno at night.
           </p>
 
           <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
@@ -222,8 +222,8 @@ export function welcomeEmail1(data: {
           )}
 
           ${resourceRow(
-            '500+ AI Music Tracks',
-            'Browse the full catalog. Every genre. Every experiment. All created with AI.',
+            'Songs made with Suno',
+            'The music lab. Songs made with Suno.',
             'https://frankx.ai/music',
             '#22d3ee'
           )}
@@ -306,7 +306,7 @@ export function welcomeEmail2(data: {
 
           ${resourceRow(
             '01 — AI Music Production Guide',
-            'From blank prompt to finished track. The workflow behind 12,000+ songs.',
+            'From blank prompt to finished track. The Suno workflow I use.',
             'https://frankx.ai/research',
             '#22d3ee'
           )}

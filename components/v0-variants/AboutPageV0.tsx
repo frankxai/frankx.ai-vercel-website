@@ -169,9 +169,8 @@ export default function AboutPage() {
             By The Numbers
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { value: 500, suffix: '+', label: 'AI Songs' },
               { value: 40, suffix: '+', label: 'AI Agents' },
               { value: 70, suffix: '+', label: 'Articles' },
               { value: 630, suffix: '+', label: 'Skills Built' },
