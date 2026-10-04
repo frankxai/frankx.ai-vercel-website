@@ -296,7 +296,7 @@ export default function AIBriefingPage() {
                 <p className="text-white/50 leading-relaxed max-w-2xl">
                   From sales to AI sales to AI architecture — each move followed where AI was going next.
                   Building enterprise AI systems across automotive, telecom, and financial services.
-                  On the side: 12,000+ AI-generated songs, digital products, and this platform you are reading right now.
+                  On the side: songs made with Suno, digital products, and this platform you are reading right now.
                 </p>
                 <p className="text-white/40 text-sm mt-3 italic">
                   &ldquo;My father built houses with his hands. I build systems with AI. Same craftsmanship, different tools.&rdquo;
