@@ -104,7 +104,7 @@ export const MODULE_6_CITATIONS: Citation[] = [
 export const FRANK_CREDENTIALS = {
   role: 'AI Architect',
   org: 'Oracle EMEA AI Center of Excellence',
-  catalog: '12,000+ AI-produced tracks',
+  catalog: 'Songs made with Suno',
   site: 'frankx.ai',
   proofPoints: [
     'Designs enterprise AI Center of Excellence frameworks',
@@ -149,9 +149,9 @@ export const FRANK_RECEIPTS: FrankReceipt[] = [
     signal: 'Same hands. Different surface. Shipping discipline applies to anything.',
   },
   {
-    artifact: '12,000+ AI-produced tracks with Suno',
+    artifact: 'Songs made with Suno',
     href: 'https://frankx.ai/music',
-    signal: 'Volume + quality. AI augmentation, not replacement.',
+    signal: 'The music lab is public.',
   },
   {
     artifact: 'frankx.ai itself',

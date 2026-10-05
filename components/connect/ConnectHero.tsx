@@ -40,8 +40,7 @@ export function ConnectHero() {
         AI Architect & Creator
       </p>
       <p className="mt-3 max-w-md text-sm leading-relaxed text-white/60 sm:text-[15px]">
-        Enterprise AI systems, agentic orchestration, and 12K+ AI tracks shipped from
-        the studio.
+        Enterprise AI systems and agentic orchestration, shipped from the studio.
       </p>
 
       <div className="mt-6 flex w-full max-w-md flex-col gap-2.5 sm:flex-row sm:justify-center">

@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { Brain, Music, Zap } from 'lucide-react'
+import { Brain, Zap } from 'lucide-react'
 import { GlassCard } from '@/components/liquid-glass/GlassCard'
 
 // ── Stat Card Data ──
@@ -14,13 +14,6 @@ const stats = [
     sublabel: 'Former AI Architect',
     icon: Brain,
     element: 'water' as const,
-  },
-  {
-    label: 'AI Songs Created',
-    value: '12,000+',
-    sublabel: 'Suno & beyond',
-    icon: Music,
-    element: 'fire' as const,
   },
   {
     label: 'Open Source Skills',
@@ -92,8 +85,8 @@ export function GlassCathedralHero() {
           Built from enterprise practice. Documented here.
         </p>
 
-        {/* Crystal stat cards — 3 across */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-14">
+        {/* Crystal stat cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-14">
           {stats.map((stat) => {
             const Icon = stat.icon
             return (

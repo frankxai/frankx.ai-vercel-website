@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { ArticleFigure } from './ArticleFigure'
 import { ArticleRecommendation } from './ArticleRecommendation'
 import Link from 'next/link'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
@@ -147,6 +148,7 @@ function CustomImage({ src, alt, caption, ...props }: any) {
 }
 
 export const mdxComponents: MDXComponents = {
+  TrackedLink,
   // ── Headings ──────────────────────────────────────────────────────────
   h1: ({ children, ...props }: ComponentPropsWithoutRef<'h1'>) => (
     <h1 className="mt-14 mb-6 text-3xl font-bold tracking-tight text-white md:text-4xl" {...props}>

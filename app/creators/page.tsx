@@ -187,7 +187,7 @@ export default function CreatorsPage() {
               className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Master AI tools that amplify your creative voice—never replace it.
-              From 12,000+ AI songs to visual storytelling, discover the creator's path to AI mastery.
+              From AI songs to visual storytelling, discover the creator's path to AI mastery.
             </motion.p>
 
             {/* Tool badges */}
@@ -236,9 +236,8 @@ export default function CreatorsPage() {
         {/* Stats Section */}
         <section className="py-12 border-y border-white/5">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
               {[
-                { value: '500+', label: 'AI Songs Created', sublabel: 'Using Suno AI' },
                 { value: '50+', label: 'Creator Prompts', sublabel: 'Battle-tested templates' },
                 { value: '3', label: 'Creative Domains', sublabel: 'Music, Writing, Visual' },
                 { value: '€97', label: 'Full System', sublabel: 'GenCreator OS' },
@@ -395,7 +394,7 @@ export default function CreatorsPage() {
                         <Music className="h-6 w-6 text-pink-400" />
                       </div>
                       <div>
-                        <p className="font-semibold text-white">500+ AI Songs</p>
+                        <p className="font-semibold text-white">AI Songs</p>
                         <p className="text-sm text-slate-400">Created with Suno AI</p>
                       </div>
                     </div>
