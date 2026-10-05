@@ -128,7 +128,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
             <Link
               href={offer.ctaPrimaryHref}
               onClick={handleClick}
-              className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 text-lg font-semibold text-white shadow-[0_20px_70px_rgba(6,182,212,0.55)]"
+              className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 text-lg font-semibold text-white shadow-[0_20px_70px_rgba(6,182,212,0.45)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(6,182,212,0.55)]"
             >
               {offer.ctaPrimary}
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
