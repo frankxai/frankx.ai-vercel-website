@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Sparkles, Mail, ArrowRight, Zap } from 'lucide-react'
+import { Sparkles, Mail, ArrowRight } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import type { ProductOffer } from '@/types/products'
@@ -62,12 +62,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
               <Sparkles className="h-4 w-4" />
               Coming Soon
             </div>
-          ) : (
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-2.5 text-sm font-medium text-cyan-200">
-              <Zap className="h-4 w-4" />
-              Limited Availability
-            </div>
-          )}
+          ) : null}
         </motion.div>
 
         {/* Headline */}
@@ -107,7 +102,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
         >
           {COMING_SOON_MODE
             ? 'Join the waitlist for early access, exclusive launch pricing, and behind-the-scenes updates as we build the ultimate Suno workflow system.'
-            : 'Join hundreds of creators who are shipping music consistently with Vibe OS. From emotional vision to finished track in one session.'
+            : 'From emotional vision to finished track in one session.'
           }
         </motion.p>
 
@@ -133,7 +128,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
             <Link
               href={offer.ctaPrimaryHref}
               onClick={handleClick}
-              className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 text-lg font-semibold text-white shadow-[0_20px_70px_rgba(6,182,212,0.45)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(6,182,212,0.55)]"
+              className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 text-lg font-semibold text-white shadow-[0_20px_70px_rgba(6,182,212,0.55)]"
             >
               {offer.ctaPrimary}
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -180,7 +175,6 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
           <div className="h-10 w-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500" />
           <div className="text-left">
             <div className="text-sm font-semibold text-white">Created by Frank</div>
-            <div className="text-xs text-white/50">Songs produced with Suno</div>
           </div>
         </motion.div>
       </div>
