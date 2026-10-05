@@ -5851,17 +5851,14 @@
     },
     {
       "href": "/guides/higgsfield-ai-video-guide",
-      "title": "Higgsfield AI Video Masterclass: Cinema Studio, Soul ID, & Multi-Model Production",
-      "description": "Master Higgsfield AI for cinematic video production. Direct 70+ camera presets, maintain character consistency with Soul ID, orchestrate Seedance 2.0, Kling 3.0, and Veo 3.1, and build automated commercial video workflows.",
+      "title": "Higgsfield AI guide: video, ads and Cinema Studio",
+      "description": "Choose a Higgsfield workflow for cinematic video, product ads, or consistent characters. Prepare a production brief, follow creator tutorials, and check credits before generating.",
       "tags": [
         "ai",
         "higgsfield",
         "video-generation",
         "cinema-studio",
-        "soul-id",
-        "kling",
-        "veo",
-        "fal-ai",
+        "marketing-studio",
         "creative-workflows"
       ],
       "type": "guide"

@@ -38,7 +38,7 @@
     "test:agentic-life-research": "node --test scripts/tests/agentic-life-research-contract.test.mjs",
     "test:alba-gut": "node --test scripts/tests/alba-gut-intelligence-contract.test.mjs",
     "test:community-platform-guide": "node --test scripts/tests/community-platform-guide-contract.test.mjs",
-    "test:learning-routes": "node --experimental-strip-types --test scripts/tests/learning-routes-contract.test.mjs scripts/tests/reliable-workflow.test.mjs",
+    "test:learning-routes": "node --experimental-strip-types --test scripts/tests/higgsfield-guide.test.mjs scripts/tests/learning-routes-contract.test.mjs scripts/tests/reliable-workflow.test.mjs",
     "test:blog-discoverability": "node --experimental-strip-types --test scripts/tests/blog-discoverability-contract.test.mjs scripts/tests/blog-faq-schema-contract.test.mjs scripts/tests/blog-recommendation-payload-contract.test.mjs",
     "test:social-identity": "node --experimental-strip-types --test scripts/tests/social-identity-contract.test.mjs",
     "test:seo-title": "node --experimental-strip-types --test scripts/tests/seo-title-brand-suffix-contract.test.mjs",

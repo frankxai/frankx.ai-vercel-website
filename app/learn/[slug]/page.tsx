@@ -20,6 +20,7 @@ import {
   Target,
 } from 'lucide-react'
 import { learningPaths, type VideoResource } from '@/data/learning-paths'
+import { HiggsfieldLessons } from '@/components/guides/higgsfield/HiggsfieldWorkbench'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 
 const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
@@ -144,6 +145,7 @@ export default function LearningPathPage() {
     )
   }
 
+  const isHiggsfield = path.slug === 'higgsfield-mastery'
   const Icon = iconMap[path.icon] || BookOpen
   const colors = colorMap[path.color] || colorMap.emerald
 
@@ -162,8 +164,8 @@ export default function LearningPathPage() {
           />
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={isHiggsfield ? false : { opacity: 0, y: 20 }}
+            animate={isHiggsfield ? undefined : { opacity: 1, y: 0 }}
             className="grid lg:grid-cols-[1fr,300px] gap-12"
           >
             {/* Main content */}
@@ -213,7 +215,21 @@ export default function LearningPathPage() {
         </div>
       </section>
 
-      {/* Videos */}
+      {/* Higgsfield uses the same attributed lessons and opt-in players as its guide. */}
+      {isHiggsfield ? (
+        <section className="max-w-4xl mx-auto px-6 pb-16">
+          <HiggsfieldLessons />
+          <h2 className="text-2xl font-semibold text-white">Official workflow references</h2>
+          <ul className="mt-5 divide-y divide-white/10">
+            {path.ecosystem?.map(resource => (
+              <li key={resource.href} className="py-4">
+                <a href={resource.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-emerald-300 underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">{resource.name}<ExternalLink size={14} aria-hidden="true" /><span className="sr-only"> (opens in a new tab)</span></a>
+                <p className="mt-1 text-sm leading-6 text-slate-300">{resource.description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : (
       <section className="max-w-6xl mx-auto px-6 pb-16">
         <h2 className="text-2xl font-bold text-white mb-8">Course Videos</h2>
 
@@ -231,6 +247,8 @@ export default function LearningPathPage() {
         </div>
       </section>
 
+      )}
+
       {/* Related Resources */}
       {path.relatedGuides.length > 0 && (
         <section className="max-w-6xl mx-auto px-6 pb-16">
@@ -246,7 +264,7 @@ export default function LearningPathPage() {
                 <div className="flex items-center gap-3">
                   <BookOpen className={`w-5 h-5 ${colors.text}`} />
                   <span className="text-white font-medium">
-                    {guide.includes('blog') ? 'Related Article' : guide.includes('product') ? 'Product' : 'Guide'}
+                    {isHiggsfield ? (guide.includes('higgsfield') ? 'Higgsfield production guide' : 'Image generation guide') : guide.includes('blog') ? 'Related Article' : guide.includes('product') ? 'Product' : 'Guide'}
                   </span>
                 </div>
                 <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/70 group-hover:translate-x-1 transition-all" />
@@ -260,25 +278,24 @@ export default function LearningPathPage() {
       <section className="max-w-4xl mx-auto px-6 pb-24">
         <div className={`bg-gradient-to-br ${colors.gradientFrom} to-transparent rounded-3xl border ${colors.border} p-8 md:p-12 text-center`}>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Ready for Hands-On Practice?
+            {isHiggsfield ? path.ctaTitle : 'Ready for Hands-On Practice?'}
           </h2>
           <p className="text-white/60 mb-8 max-w-xl mx-auto">
-            These free videos give you the foundation.
-            Our guides take you deeper with practical exercises.
+            {isHiggsfield ? path.ctaBody : 'These free videos give you the foundation. Our guides take you deeper with practical exercises.'}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/guides"
-              className={`inline-flex items-center gap-2 px-6 py-3 ${colors.bg} text-white font-medium rounded-xl hover:opacity-90 transition-opacity`}
+              href={isHiggsfield ? "/guides/higgsfield-ai-video-guide#workflow" : "/guides"}
+              className={`inline-flex min-h-12 items-center justify-center gap-2 px-6 py-3 font-medium ${isHiggsfield ? "rounded-full bg-emerald-400 text-[#07120e] hover:bg-emerald-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300" : `${colors.bg} text-white rounded-xl hover:opacity-90 transition-opacity`}`}
             >
-              Explore Guides
+              {isHiggsfield ? 'Prepare a production brief' : 'Explore Guides'}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/learn"
               className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-xl hover:bg-white/5 transition-colors"
             >
-              More Learning Paths
+              {isHiggsfield ? 'More learning paths' : 'More Learning Paths'}
             </Link>
           </div>
         </div>
