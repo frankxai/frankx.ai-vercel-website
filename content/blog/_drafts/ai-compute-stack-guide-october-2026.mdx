@@ -1,0 +1,268 @@
+---
+title: "The AI Compute Stack Guide, October 2026"
+description: "How much memory always-on agents need, which mini PC to buy, when a GPU earns its place, and what AI video really costs, with sources and gaps stated."
+date: "2026-10-05"
+lastUpdated: "2026-10-05"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["ai-computer", "local-ai", "mini-pc", "strix-halo", "agent-infrastructure", "ai-hardware"]
+image: "/images/blog/ai-toolchain-motherboard.jpeg"
+coverAlt: "Circuit board with chips and traces, used as a visual for AI compute hardware"
+featured: false
+readingGoal: "Size an always-on agent node, pick a machine, and decide when to add a GPU, a second node or a cloud API."
+tldr: "Twenty agent sessions with browsers and builds need about 49 to 59 GB of RAM, so 64 GB is the floor and 128 GB is the comfortable node. Add a local model, Langfuse and Windows VMs and one box may overflow. Split into a 128 GB agent node and a 64 GB model node. Buy a GPU only when a job needs more than 24 GB of VRAM."
+keywords: ["ai compute stack 2026", "strix halo vs dgx spark", "gmktec evo x2 vs minisforum ms-s1 max", "how much ram for ai agents", "local llm always on", "faceless video cost per minute"]
+faq:
+  - question: "Is 64 GB enough for 20 parallel coding agents?"
+    answer: "In my model, yes. Twenty sessions, ten headless browsers, two concurrent builds, a gateway and monitoring come to about 49 to 59 GB including an 8 GB OS allowance and a 4 GB free floor. Most of that is my estimate, so measure your own sessions for a week before relying on it."
+  - question: "Should I buy GMKtec or Minisforum?"
+    answer: "The silicon is the same Ryzen AI Max+ 395 with the same 256 GB/s theoretical memory bandwidth, so the choice comes down to ports, cooling, serviceability and price on the day. Minisforum's MS-S1 MAX has dual 10GbE and a serviceable chassis. GMKtec's EVO-X3 adds OCuLink. Compare current prices for your region."
+  - question: "Is an eGPU worth adding to a Strix Halo mini PC?"
+    answer: "Only for jobs that need CUDA speed or more than the card's VRAM headroom. OCuLink gives PCIe 4.0 x4, which one retailer-blog gaming comparison put at about 6.7 GB/s (a weak source). That is fine for a model that lives in VRAM and weak for anything that streams weights across the link."
+  - question: "Can I run a 70B model all day on a 128 GB machine?"
+    answer: "It loads, but a 70B dense model at Q6 ran at 3.7 to 3.8 tokens per second on an EVO-X2 in ServeTheHome's test, and some owners report ROCm crashes at 70B. Treat it as batch-only. For always-on interactive use, a 30B-class mixture-of-experts model is the better fit."
+  - question: "Do I have to label AI-generated videos?"
+    answer: "YouTube asks creators to disclose realistic altered or synthetic content, and TikTok and Meta have their own labels. The EU AI Act's Article 50 transparency rules apply from 2 August 2026, with a possible transition for marking duties. Read the live platform pages and the regulation text before you rely on this summary."
+  - question: "Does fine-tuning my own model give me a moat?"
+    answer: "A fine-tuned small model helps on narrow, repeated tasks. The durable asset is the evaluation set and the workflow data you collect while running agents, which stay useful when the next base model arrives."
+---
+
+**Short answer:** for a swarm of about twenty agents, 64 GB of RAM is the floor and 128 GB is the comfortable single node. The moment you add an always-on local model, Langfuse, Windows VMs and a business app, one box may run out, and two nodes are the safer design. A GPU comes later, and only for jobs whose VRAM need you can name.
+
+I wrote this because my own machine kept hitting its RAM ceiling with agents running all day, and I wanted numbers before spending money. Every figure below comes from a source I opened, a measurement I took, or arithmetic I show. Where it is my estimate, I say so, and the memory model rests mostly on estimates from one 30-minute laptop profile, so measure your own sessions before you buy anything. Prices were read on 5 October 2026 and move fast, so check them before you buy. There are no affiliate links in this post.
+
+The research behind it is a sourced compute atlas that I keep in a repository. This guide is the readable version.
+
+## How much memory does an always-on agent node need?
+
+I built a small planner. Each line carries a basis label: documented (a vendor or project page says so), measured (I observed it), derived (arithmetic from measurements) or estimate (my assumption, to be replaced by real data).
+
+The constants:
+
+| Item | Memory | Basis |
+|---|---|---|
+| Agent session (CLI plus tool processes) | 1.0 to 1.5 GB | estimate |
+| Headless browser | 0.7 GB | derived from a 30-minute profile of my laptop |
+| Linux desktop container | 1.5 to 2.0 GB | estimate |
+| Windows VM | 4 to 8 GB | estimate |
+| Next.js build burst | 4 GB each | estimate |
+| OS and services | 8 GB | measured on my laptop |
+| Langfuse stack | 16 GB | documented: 4+ cores, 16 GiB, 100+ GiB storage |
+| RAG vectors | 4 to 6 GB per million chunks | documented vendor formula |
+| Free-RAM floor | 4 GB | policy |
+
+Four stages of growth, each adding to the one before:
+
+| Stage | One node needs | Fits |
+|---|---|---|
+| 20 agent sessions, 10 browsers, 2 builds, gateway, monitoring | 49 to 59 GB | 64 GB |
+| Six workspaces with desktops, 2 Windows VMs, Langfuse, 1M RAG chunks, a 30B MoE model | 106.2 to 128.2 GB | 128 GB only at the low estimate |
+| Add a 15-user Odoo, 3M RAG chunks, a 70B dense model | 145.6 to 176.6 GB | 192 GB |
+| Add image, video and fine-tune jobs | same node, plus a GPU queue | 32 GB card for the largest job I picked |
+
+The second row decides it. A configuration that fits only at the low estimate is too tight to rely on. Splitting it gives an agent node at 77.2 to 97.2 GB (128 GB class) and a model-and-RAG node at 41 to 43 GB (64 GB class).
+
+My estimates dominate these totals, and they come from one profile of one Windows laptop. Treat the table as a way to ask the right question of your own heartbeat data, which is what the tracking section below covers.
+
+## Which machine should I buy: GMKtec or Minisforum?
+
+Both brands sell the same chip for this job: Ryzen AI Max+ 395 with 128 GB LPDDR5X and 256 GB/s of theoretical memory bandwidth. An aggregator's comparison calls local LLM inference effectively tied between the EVO-X2 and the MS-S1 MAX. So the decision rests on everything around the chip.
+
+| | GMKtec | Minisforum |
+|---|---|---|
+| Machine | EVO-X2 (128 GB), EVO-X3 (128 GB) | MS-S1 MAX (128 GB) |
+| Network | 2.5GbE on X2 and X3 | Dual 10GbE |
+| Expansion | EVO-X3 adds OCuLink (PCIe 4.0 x4) | PCIe slot, physically x16 but electrically x4 Gen4 |
+| Power | External adapter on the X2 | 320 W internal PSU |
+| Noise | 41 to 43 dBA under load (ServeTheHome loaner unit, July 2025; also quoted second-hand) | About 43 dBA at 1 m in performance mode (ServeTheHome) |
+| Idle and load power | 8 to 14 W idle, 147 to 160 W load (ServeTheHome, EVO-X2 on 70B Q6_K) | 9 to 12 W idle, about 120 W under AI inference (ServeTheHome) |
+| Serviceability | Community disassembly and thermal-paste guides | Praised by ServeTheHome |
+
+ServeTheHome called the MS-S1 MAX its favorite of the Ryzen AI Max systems. That is one outlet's view, and I could not find a second hands-on review with matching depth.
+
+Prices I read in euros on 5 October 2026, mostly without a stated tax basis:
+
+| Machine | Price | Source type |
+|---|---|---|
+| EVO-X2 64 GB | EUR 1,999.99 | maker's German store |
+| EVO-X3 128 GB | EUR 3,499.99 | maker's German store |
+| EVO-X2 128 GB | EUR 3,999 | price-comparison listing from an Austrian reseller, VAT rate not verified |
+| MS-S1 MAX 64 GB | EUR 2,679 | maker's EU store, promo |
+| MS-S1 MAX 128 GB | EUR 3,999 (regular EUR 4,999) | maker's EU store, promo |
+| Framework Desktop 395, 128 GB | EUR 3,889 | maker, out of stock when read, tax not stated |
+| HP Z2 Mini G1a 128 GB | EUR 3,890.15 incl. VAT | Dutch reseller, ships when available |
+
+Two things stand out. The 128 GB prices converge near EUR 4,000 only at the Minisforum promo price. At its regular EUR 4,999 it sits about EUR 1,000 above the EVO-X3. And one aggregator notes the EVO-X2 128 GB was listed at USD 2,199 to 2,299 in June and USD 3,499 direct in September. I cannot explain that gap from sources, so I will not guess at the cause.
+
+Company quality is harder to read. GMKtec's Trustpilot page showed 273 reviews with 45% five-star and 37% one-star, and Trustpilot noted removed fake reviews. Complaints centered on customs fees, restocking disputes and outdated drivers. Minisforum's main store profile had six reviews with a 2.5 score and 66% one-star, citing capacitor failures and slow RMAs. That sample is too small to conclude anything, but it is not reassuring. A German reviewer also found a pre-installed AI agent on an EVO-X2 that ran system commands without asking, and recommended a clean Windows reinstall. I would do that on any mini PC from any brand.
+
+My read: buy the Minisforum if you value 10GbE and serviceability, buy the GMKtec EVO-X3 if you want OCuLink, and take whichever is cheaper on the day for the same memory, comparing regular prices with the same VAT basis. I could not verify EU warranty or RMA terms for either brand, so ask the seller for them in writing first.
+
+## Should I add an eGPU, a second mini PC or jump to 192 GB?
+
+Three ways to grow past one 128 GB box, with what I could establish for each.
+
+**eGPU over OCuLink.** The link is PCIe 4.0 x4. One retailer-blog gaming comparison reported about 6.7 GB/s over it, which is a weak source with no stated method. A card that holds its whole job in VRAM works well. A job that streams weights across the link does not.
+
+**A second node.** Clustering two machines with llama.cpp RPC lets you fit a model larger than one machine holds. In the runs I read it gave no general speedup. So I use a second node to separate workloads and leave the speedup out of the case. Agents stay on node one, the model and RAG stay on node two.
+
+**One 192 GB machine.** The MS-S1 MAX-P495 with a Ryzen AI Max+ Pro 495 lists at EUR 7,799 as a promo price (regular EUR 9,749) in the maker's EU store, and its memory bandwidth is 273 GB/s. A 128 GB plus 64 GB pair using the prices above (EVO-X3 at EUR 3,499.99 and EVO-X2 64 GB at EUR 1,999.99) comes to EUR 5,499.98. Those prices come from different sellers and tax bases, so treat the EUR 2,300 gap as a rough size and expect a different number at checkout. Two nodes also give you redundancy and let each one be rebooted without taking the other down.
+
+For my own case, the split wins at today's prices. The 192 GB machine wins if I need one pool of memory for a single model that exceeds about 100 GB, and I have no such model today.
+
+Windows adds a wrinkle. A claim of 96 GB of GPU-addressable memory under Windows ran into reports of Vulkan failures near 64 GB, and I have not read a primary source for the 96 GB figure. On Linux, community guides set the GPU memory limit around 124 GB. If you want the largest local models, plan on Linux for that node.
+
+## How do Blackwell GPUs, a DGX Spark or a gaming PC fit in?
+
+Start with what each device is good at.
+
+| Device | Memory | Bandwidth | Note |
+|---|---|---|---|
+| RTX 5090 | 32 GB GDDR7 | 1,792 GB/s | 575 W |
+| RTX PRO 5000 Blackwell | 48 GB | 1,344 GB/s | 300 W |
+| RTX PRO 6000 Blackwell | 96 GB | not found | 600 W |
+| DGX Spark or Asus GX10 (GB10) | 128 GB unified | 273 GB/s | Linux only |
+| Strix Halo mini PC | up to 128 GB unified | 256 GB/s | shared with the OS |
+
+I could not verify European street prices for any of the discrete cards, so I list none. Do not take a number from me for those.
+
+The bandwidth column explains most of what I saw. Video diffusion is bandwidth-bound, and one forum test of Wan 2.2 TI2V-5B at 1280x704 took about 3 minutes on an RTX 5070 with 12 GB and 14.1 minutes on a DGX Spark through ComfyUI. That is a single user's report. It points the same way as the bandwidth gap (roughly 672 GB/s against 273 GB/s), though the 4.7x time gap is larger than the 2.5x bandwidth gap, and the 12 GB card probably ran with offloading. Big unified memory holds larger models, and fast GDDR runs smaller ones faster.
+
+A gaming PC with a 5090 fits best as a separate GPU node on your network that runs ComfyUI jobs, and it should stay off the agent node's expansion port. Jobs go in over the network, and the agent node keeps its memory. The planner's last scenario needs 26 GB of VRAM for the biggest job I queued (a 32B QLoRA fine-tune), which points to a 32 GB card.
+
+## What does an always-on local model actually give me?
+
+The arithmetic from my planner: a 30B-class mixture-of-experts model at Q4 needs about 25 GB, and a 70B dense model at Q4 needs about 46 GB.
+
+The speed data splits the two. ServeTheHome measured 3.7 to 3.8 tokens per second on a 70B dense model at Q6_K on an EVO-X2. Owner data on GitHub shows mixture-of-experts models in the 30 to 86 tokens-per-second range on Linux with ROCm. So a 30B-class MoE can sit behind an agent as an always-on worker, while a 70B dense model is for overnight batches at best. Some EVO-X2 owners report 70B models crashing through a ROCm bug with large tensors, and ServeTheHome did not state its backend or OS, so test your own stack before relying on 70B.
+
+I keep frontier models on cloud APIs for hard reasoning and use the local model for cheap, high-volume work: classification, extraction, drafts, embeddings. A local model that sits idle earns nothing, so I would not size a node around a model I might use twice a week. My longer notes on picking models are in [best local LLM 2026](/blog/best-local-llm-2026), and the GPU-versus-cloud economics are in [do you need an RTX 5090 for AI](/blog/do-you-need-rtx-5090-for-ai-2026).
+
+## How do I track my workloads before buying more?
+
+I would not buy a second machine before a week of data from the first. What I plan to record on each node:
+
+- Free RAM, committed RAM and swap, sampled every minute.
+- Per-process-group memory (agents, browsers, builds, services), so a spike has a name.
+- Model-call counts, tokens and cost per agent, through a gateway such as LiteLLM, whose budget features need Postgres.
+- Traces and evaluations in Langfuse, which documents 16 GiB of RAM and 100+ GiB of storage on one VM without high availability. That makes it the largest single line in my planner, so I weigh a hosted option against running it myself.
+- For GPU nodes, `nvidia-smi` metrics. DCGM exporter is Linux-only.
+
+OpenTelemetry's GenAI metric conventions exist, but their stability level was still Development when I read them, so I would avoid dashboards that depend on exact names. A small stack such as windows_exporter, Beszel or Netdata, plus Uptime Kuma, covers the host side. I wrote more about agent observability in [the observability stack for multi-agent systems](/blog/observability-stack-multi-agent-systems-2026).
+
+An admission rule helps too: refuse to start a new session when free RAM drops under the floor. Mine is 4 GB. It turns a crash into a queue.
+
+## Can I fine-tune models and build a moat?
+
+The memory requirements for fine-tuning are documented. Unsloth's published minimums, as 4-bit QLoRA and 16-bit LoRA:
+
+| Model size | QLoRA | 16-bit LoRA |
+|---|---|---|
+| 7B | 5 GB | 19 GB |
+| 14B | 8.5 GB | 33 GB |
+| 32B | 26 GB | 76 GB |
+| 70B | 41 GB | 164 GB |
+
+Unsloth also reports about 68 GB for 4-bit QLoRA of gpt-oss-120b on a DGX Spark. So a 32 GB card handles QLoRA up to 32B, and 70B QLoRA wants a 48 GB card or unified memory.
+
+A fine-tune helps most on a narrow task you repeat many times, such as classifying support tickets in your own taxonomy or writing in a fixed format. I would only start one after I had a few hundred graded examples. Those examples are where I think the lasting value sits. An evaluation set and a log of what worked survive every base-model change, which a fine-tuned checkpoint does not. I treat the hardware as a way to run that loop cheaply.
+
+## What changes when agents run ERP, CRM or logistics software?
+
+Business apps add steady memory and a stricter permission model. Odoo's documentation gives numbers I could use: workers equal CPU count times two, plus one; one worker serves about 6 concurrent users; and a worker needs about 150 MB when light and about 1 GB when heavy, assuming 20% heavy requests. For 15 users that is 3 workers, which my planner turns into roughly 3 to 5 GB with Postgres. The Postgres figure is my estimate.
+
+Memory is a minor cost here. The design work is deciding what an agent may write. I would give agents read access to ERP and CRM data first, route writes through a narrow API with an audit log, and keep personal data processing inside the agreements your company has with its model providers. A GDPR controller and processor question comes up as soon as an agent touches customer records, so ask your counsel before you connect one.
+
+I run these apps on the model-and-RAG side of the split so that a runaway agent session cannot starve them.
+
+## What do faceless video channels cost per minute?
+
+I will give per-second API prices I read on 5 October 2026 and the arithmetic, and leave out any blended number I cannot trace.
+
+| Service | Price | Per generated minute |
+|---|---|---|
+| Veo 3.1 Fast, 720p | USD 0.10 per second | USD 6.00 |
+| Veo 3.1 Standard, 720p or 1080p | USD 0.40 per second | USD 24.00 |
+| Veo 3.1 Lite, 720p | USD 0.05 per second | USD 3.00 |
+| Grok Imagine video 1.5 | USD 0.080 per second | USD 4.80 |
+| Grok Imagine video 1.5 lite | USD 0.020 per second | USD 1.20 |
+| Nano Banana image, 1K | USD 0.067 per image | |
+| Grok Imagine image | USD 0.02 to 0.05 per image | |
+
+Sora 2 and the OpenAI Videos API ended on 24 September 2026 according to OpenAI's docs, so do not plan on them.
+
+I did not verify audio, 9:16 support or clip-length caps for these prices, and "Nano Banana" is Google's Gemini 3.1 Flash Image. A finished minute costs more than a generated one. If you assume 2.5 takes per kept clip, Veo 3.1 Fast lands near USD 15 per finished minute. That retake rate is my assumption, not a measurement.
+
+For local generation, the VRAM numbers are documented:
+
+- Qwen-Image fp8 in ComfyUI: about 24 GB recommended, with 34 to 94 seconds per image on a 24 GB card.
+- Wan 2.2 TI2V-5B: at least 24 GB per the README, or 8 GB with offloading at lower speed.
+- Wan 2.2 A14B: 80 GB on one GPU.
+- HunyuanVideo: 45 GB at 540p, 60 GB at 720p.
+- FLUX.1 dev: non-commercial license, which matters for a channel that earns money.
+
+I did not research local lip-sync, avatar or text-to-speech models, so I make no claim about them. If you are building avatars and recurring characters, test each tool on your own scripts before committing to a pipeline.
+
+## What rules apply to AI-generated channels?
+
+This is the section where I trust my sources least, so I list what I read and what I could not.
+
+- **YouTube** asks creators to disclose realistic altered or synthetic content, such as making a real person appear to say something they did not. It may add labels itself and can penalize creators who consistently skip disclosure. Its monetization policy on inauthentic content excludes repetitive or mass-produced material.
+- **TikTok** requires labeling of realistic AI-generated content and reads C2PA content credentials. I read newsroom posts only. The current Community Guidelines and Creator Rewards pages did not render, so I cannot state the present rules.
+- **Meta** requires its disclosure tool for photorealistic video and realistic audio, and may apply penalties otherwise. Its label was renamed "AI info" in an April 2024 newsroom post, and I could not read its current help-centre wording.
+- **EU AI Act, Article 50** transparency obligations apply from 2 August 2026. Secondary sources I read describe a transition to 2 December 2026 for marking duties under a Digital Omnibus regulation. I have not read the regulation text myself, so check the Official Journal before you rely on the date.
+
+These pages change. I would put a disclosure in every upload, keep the generation prompts and sources on file, and re-read each platform's live policy monthly.
+
+## What would I buy, and in what order?
+
+My plan, in the order I would act:
+
+1. **Measure for a week** on the current machine. Record peak committed RAM, the number of live agent sessions and the largest single process group.
+2. **Buy a 128 GB agent node** if peak demand sits above about 51 GB, which is 80% of 64 GB. In my model, 20 sessions and their helpers need 49 to 59 GB, which is inside 64 GB but leaves no room for growth, services or a VM.
+3. **Add a 64 GB model-and-RAG node** when the local model, Langfuse and RAG together push the first node past 100 GB. In my second scenario the split totals 77.2 to 97.2 GB plus 41 to 43 GB.
+4. **Rent GPU time by the hour** before buying a card. Buy a 32 GB card only when a job you run weekly needs more than 24 GB of VRAM.
+5. **Hold the 192 GB machine** until a single model above about 100 GB earns its place.
+
+Pick the vendor last, because for the same chip the differences are ports, cooling, serviceability and the day's price. My broader stack and spending notes are in [my 100-dollar monthly AI stack](/blog/my-100-month-ai-stack-every-tool-i-actually-use), the operating design is in [the sovereign AI operating system](/blog/sovereign-ai-operating-system-local-cloud-swarm), and the agent side is in [the ultimate guide to AI coding agents](/blog/ultimate-guide-ai-coding-agents-2026). The living hardware hub is the [AI Computer Field Guide](/ai-computer).
+
+## What could I not verify?
+
+These are the gaps in my sources:
+
+- European street prices for RTX 5090 and RTX PRO cards, and any Coolblue, Megekko or Azerty prices.
+- Used-market prices on Marktplaats.
+- A primary Microsoft source for the Windows 96 GB GPU-memory claim.
+- Current TikTok and Meta policy text (I read 2023 and 2024 newsroom posts only), and Dutch rules on e-invoicing and record retention.
+- Independent reviews for the HP Z2 Mini G1a.
+- Local lip-sync, avatar and text-to-speech model requirements.
+- Any measured retake rate for AI video.
+- Business-to-business warranty terms under Dutch law, and EU RMA terms, for each seller.
+
+If you can fill one of these from a primary source, that is the most useful correction you can send me.
+
+## FAQ
+
+### Is 64 GB enough for 20 parallel coding agents?
+
+In my model, yes. Twenty sessions, ten headless browsers, two concurrent builds, a gateway and monitoring come to 49 to 59 GB including an 8 GB OS allowance and a 4 GB free floor. Most inputs are my estimates from one laptop profile, so measure your own sessions for a week first.
+
+### Should I buy GMKtec or Minisforum?
+
+The chip, memory and theoretical bandwidth match, so compare ports, cooling, serviceability and the current price in your region. The MS-S1 MAX has dual 10GbE and drew praise for serviceability, and the EVO-X3 adds OCuLink.
+
+### Is an eGPU worth adding to a Strix Halo mini PC?
+
+It helps when a whole job fits in the card's VRAM. OCuLink is PCIe 4.0 x4, reported at about 6.7 GB/s by one weak gaming source, which is slow for anything that streams weights across the link.
+
+### Can I run a 70B model all day on a 128 GB machine?
+
+It loads, but ServeTheHome measured 3.7 to 3.8 tokens per second for a 70B dense model at Q6_K on an EVO-X2, and some owners report ROCm crashes at 70B. For interactive always-on use, a 30B-class mixture-of-experts model is a better match.
+
+### Do I have to label AI-generated videos?
+
+YouTube, TikTok and Meta each ask for disclosure of realistic AI content, and Article 50 of the EU AI Act applies from 2 August 2026. Read the live policies and the regulation text, since I could not read every platform's current page.
+
+### Does fine-tuning my own model give me a moat?
+
+It helps on narrow, repeated tasks. The asset that lasts is your evaluation set and workflow data, which carry over when you change base models.
