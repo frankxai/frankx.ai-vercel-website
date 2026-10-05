@@ -84,23 +84,8 @@ export const lifeBooks: LifeBook[] = [
       'Committed to 12-week journey',
       'Value community support'
     ],
-    testimonials: [
-      {
-        name: 'Sarah M.',
-        role: 'Entrepreneur',
-        quote: 'Life Symphony didn\'t just change my business—it transformed every relationship, my health, and my sense of purpose. Worth every moment.',
-        avatar: 'SM',
-        metric: 'Lost 30lbs, doubled revenue'
-      },
-      {
-        name: 'David K.',
-        role: 'Executive',
-        quote: 'After 20 years in corporate, I finally found my purpose. The pillar integration work is powerful beyond words.',
-        avatar: 'DK',
-        metric: 'Left corporate, started dream business'
-      }
-    ],
-    guarantee: '100% money-back guarantee within 30 days if you\'re not transformed'
+    testimonials: [],
+    guarantee: '30-day refund, no questions asked. We never promise outcomes.'
   },
   {
     id: 'golden-path',
@@ -145,23 +130,8 @@ export const lifeBooks: LifeBook[] = [
       'Prefer focused, intensive work',
       'Want to test the framework first'
     ],
-    testimonials: [
-      {
-        name: 'Maria L.',
-        role: 'Creative Director',
-        quote: 'In just 4 weeks, I cleared 10 years of emotional baggage and found my creative purpose. The focus on 3 pillars was perfect.',
-        avatar: 'ML',
-        metric: 'Cleared decade-old patterns'
-      },
-      {
-        name: 'James R.',
-        role: 'Software Engineer',
-        quote: 'Golden Path gave me the awareness tools I needed. Simple, powerful, immediately applicable.',
-        avatar: 'JR',
-        metric: 'Improved all relationships'
-      }
-    ],
-    guarantee: '100% money-back guarantee within 14 days if you\'re not clearer about your path'
+    testimonials: [],
+    guarantee: '14-day refund, no questions asked. We never promise outcomes.'
   },
   {
     id: 'seven-pillars',
@@ -206,23 +176,8 @@ export const lifeBooks: LifeBook[] = [
       'Plan to become a practitioner',
       'Value comprehensive expertise'
     ],
-    testimonials: [
-      {
-        name: 'Elena V.',
-        role: 'Life Coach',
-        quote: 'I\'ve done many programs, but the 7 Pillars gave me a framework I now use with all my clients. Absolutely transformative.',
-        avatar: 'EV',
-        metric: 'Doubled coaching income'
-      },
-      {
-        name: 'Michael T.',
-        role: 'Therapist',
-        quote: 'As a therapist, I\'ve studied many modalities. The pillar system is the most comprehensive framework I\'ve encountered.',
-        avatar: 'MT',
-        metric: 'Integrated into therapy practice'
-      }
-    ],
-    guarantee: '100% money-back guarantee within 30 days if you don\'t feel like an expert in each pillar'
+    testimonials: [],
+    guarantee: '30-day refund, no questions asked. We never promise outcomes.'
   }
 ]
 
