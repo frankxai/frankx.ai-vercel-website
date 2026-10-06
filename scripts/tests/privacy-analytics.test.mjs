@@ -56,6 +56,7 @@ test('the aggregate default gates providers before mount and redacts page-view U
   assert.match(client, /if \(analyticsInitialized\) return true/)
   assert.match(client, /privacyNavigator\.globalPrivacyControl/)
   assert.match(client, /sanitizeAnalyticsUrl\(event\.url\)/)
+  assert.match(client, /absoluteAnalyticsUrl\(sanitizeAnalyticsUrl\(event\.url\), event\.url\)/)
 })
 
 test('custom event properties exclude PII, free text, full URLs, and query data', () => {
@@ -203,7 +204,7 @@ test('custom events initialize the provider before tracking and inject exactly o
         type: 'event',
         url: 'https://frankx.ai/connect?ref=mvu-sabrina#private',
       }),
-      { type: 'event', url: '/connect' },
+      { type: 'event', url: 'https://frankx.ai/connect' },
     )
   })
 })
