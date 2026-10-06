@@ -5,7 +5,7 @@ import { StageBadge } from './StageBadge'
 
 export function RoleCard({ role, index }: { role: AgenticRole; index: number }) {
   return (
-    <li className="group relative flex flex-col rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 transition-colors duration-200 motion-reduce:transition-none hover:border-emerald-400/40 hover:bg-white/[0.05] focus-within:border-emerald-400/60 sm:p-7">
+    <div className="group relative flex flex-col rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 transition-colors duration-200 motion-reduce:transition-none hover:border-emerald-400/40 hover:bg-white/[0.05] focus-within:border-emerald-400/60 sm:p-7">
       <div className="flex items-center justify-between gap-3">
         <span className="font-mono text-xs text-slate-400" aria-hidden="true">
           {String(index + 1).padStart(2, '0')}
@@ -32,6 +32,34 @@ export function RoleCard({ role, index }: { role: AgenticRole; index: number }) 
           aria-hidden="true"
         />
       </span>
+    </div>
+  )
+}
+
+export function RoleRow({ role, index }: { role: AgenticRole; index: number }) {
+  return (
+    <li className="group relative grid gap-3 py-6 transition-colors duration-200 motion-reduce:transition-none hover:bg-white/[0.03] focus-within:bg-white/[0.03] md:grid-cols-[3rem_15rem_1fr_auto] md:items-baseline md:gap-6 md:px-4">
+      <span className="hidden font-mono text-xs text-slate-400 md:block" aria-hidden="true">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+      <div>
+        <h3 className="font-[family-name:var(--font-poppins)] text-xl font-semibold tracking-tight text-white">
+          <Link
+            href={`/agentic-creator/${role.slug}`}
+            className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-inset focus-visible:after:ring-emerald-300"
+          >
+            {role.name}
+          </Link>
+        </h3>
+        <p className="mt-1 text-sm text-slate-400">{role.youBecome}</p>
+      </div>
+      <p className="text-base leading-relaxed text-slate-200">
+        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">First win</span>
+        {role.firstWin}
+      </p>
+      <div className="md:justify-self-end">
+        <StageBadge stage={role.stage} />
+      </div>
     </li>
   )
 }

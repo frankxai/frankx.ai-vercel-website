@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { ldJson } from '@/lib/seo/jsonld'
 import { agenticFounder, agenticRoles } from '@/lib/agentic-roles'
-import { RoleCard } from '@/components/agentic-creator/RoleCard'
+import { RoleCard, RoleRow } from '@/components/agentic-creator/RoleCard'
 
 export const metadata: Metadata = createMetadata({
   title: 'Agentic Creator: run AI as a crew',
@@ -56,7 +56,7 @@ export default function AgenticCreatorPage() {
     <main className="bg-[#0a0a0b] text-slate-200">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(structuredData) }} />
 
-      <section className="mx-auto max-w-5xl px-4 pb-16 pt-28 sm:px-6 sm:pt-36 lg:pb-24">
+      <section className="mx-auto max-w-5xl px-4 pb-24 pt-28 sm:px-6 sm:pt-36 lg:pb-32">
         <p className={eyebrow}>Agentic Creator</p>
         <h1 className="mt-5 max-w-4xl font-[family-name:var(--font-poppins)] text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-6xl lg:text-7xl">
           {f.headline}
@@ -79,7 +79,7 @@ export default function AgenticCreatorPage() {
       </section>
 
       <section aria-labelledby="manifesto" className="border-t border-white/10">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
+        <div className="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:py-32">
           <p className={eyebrow}>Manifesto</p>
           <h2 id="manifesto" className={`${h2} mt-4`}>
             Give the crew a memory.
@@ -107,22 +107,25 @@ export default function AgenticCreatorPage() {
       </section>
 
       <section id="roles" aria-labelledby="roles-heading" className="scroll-mt-20 border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
           <p className={eyebrow}>The map</p>
           <h2 id="roles-heading" className={`${h2} mt-4`}>
             Nine roles, each with a first win.
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">{f.stageNote}</p>
-          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {agenticRoles.map((role, i) => (
-              <RoleCard key={role.slug} role={role} index={i} />
+          <div className="mt-12">
+            <RoleCard role={agenticRoles[0]} index={0} />
+          </div>
+          <ol className="mt-8 divide-y divide-white/10 border-y border-white/10">
+            {agenticRoles.slice(1).map((role, i) => (
+              <RoleRow key={role.slug} role={role} index={i + 1} />
             ))}
-          </ul>
+          </ol>
         </div>
       </section>
 
       <section aria-labelledby="first-win" className="border-t border-white/10">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
+        <div className="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:py-32">
           <p className={eyebrow}>Method</p>
           <h2 id="first-win" className={`${h2} mt-4`}>
             {f.firstWin.title}
@@ -168,7 +171,7 @@ export default function AgenticCreatorPage() {
       </section>
 
       <section id="receipt" aria-labelledby="receipt-heading" className="scroll-mt-20 border-t border-white/10">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
+        <div className="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:py-32">
           <p className={eyebrow}>Proof</p>
           <h2 id="receipt-heading" className={`${h2} mt-4`}>
             {f.receipt.title}
@@ -191,7 +194,7 @@ export default function AgenticCreatorPage() {
       </section>
 
       <section aria-labelledby="local" className="border-t border-white/10">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
+        <div className="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:py-32">
           <p className={eyebrow}>Ownership</p>
           <h2 id="local" className={`${h2} mt-4`}>
             {f.local.title}

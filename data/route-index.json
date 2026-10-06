@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1021,
+    "total": 1031,
     "aliases": 59,
     "byType": {
       "core": 24,
-      "section": 435,
+      "section": 445,
       "community": 17,
       "tool": 68,
       "static": 15,
@@ -91,6 +91,103 @@
         "agentic",
         "builder",
         "lab"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator",
+      "title": "Agentic Creator",
+      "tags": [
+        "agentic",
+        "creator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/creator",
+      "title": "GenCreator: Turn one clear idea into work you can review and ship.",
+      "description": "GenCreator teaches you to run a crew of agents on your own machine: brief, draft, review, ship, with a receipt for each step.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "gencreator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/curator",
+      "title": "GenCurator: Keep every idea with its source.",
+      "description": "Capture across every AI, tag it, trace where it came from, and build a library you can search a year from now.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "gencurator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/musician",
+      "title": "GenMusician: Write songs with a crew that remembers what you like.",
+      "description": "Capture your taste once. Every new song starts from it, and every prompt is kept so you can repeat what worked.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genmusician"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/orchestrator",
+      "title": "GenOrchestrator: One brain for the whole fleet.",
+      "description": "Claude Code, Codex, Cursor, Gemini and Grok on one memory, with gates between them and a different agent checking every maker.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genorchestrator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/player",
+      "title": "GenPlayer: Play with a crew. Build the game while you play.",
+      "description": "Start with one small mechanic you can play, then grow it into a world with rules, quests and a playtest log.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genplayer"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/producer",
+      "title": "GenProducer: Ship the track: art, metadata, rights and a release gate.",
+      "description": "Turn finished songs into a catalog you control, with the checks that stop a bad release before it goes out.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genproducer"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/rig",
+      "title": "GenRig: Build the machine your crew runs on.",
+      "description": "Hardware, local models, harness, hooks and memory in one setup that gets checked, so Monday morning still works.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genrig"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/teacher",
+      "title": "GenTeacher: Turn what you know into a path other people can finish.",
+      "description": "Attempt, one critique, revision, export, changed problem. Build the path once, and learners run it alone.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genteacher"
       ],
       "type": "section"
     },
@@ -4678,6 +4775,18 @@
         "creator",
         "os",
         "module"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/courses/build-your-ai-creator-os/reliable-workflow",
+      "title": "Build a source-based AI workflow · Free lab",
+      "description": "Six AI-generated lessons, failure tests and a portable peer-review packet.",
+      "tags": [
+        "learning",
+        "AI workflow",
+        "sources",
+        "peer review"
       ],
       "type": "section"
     },
