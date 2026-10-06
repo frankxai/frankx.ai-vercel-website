@@ -38,6 +38,8 @@ const banned = [
   ['app/music/page.tsx', ['published tracks on Suno', 'Public Tracks', 'totalTracks}+']],
   ['components/music/MusicShell.tsx', ['published tracks on Suno', 'Public Tracks', 'totalTracks}+']],
   ['app/music-os/page.tsx', ['indexed tracks', 'totalTracks']],
+  ['app/magic/page.tsx', ['12,000 songs', 'over 12,000 songs']],
+  ['components/magic/MagicShell.tsx', ['12,000 songs', 'over 12,000 songs']],
   ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ['12,000+']],
   ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions']],
   ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions']],
