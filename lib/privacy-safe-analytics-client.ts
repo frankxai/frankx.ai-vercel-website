@@ -26,12 +26,25 @@ function browserAllowsAnalyticsMeasurement(): boolean {
   )
 }
 
+/**
+ * Keep the origin. Vercel drops the event when `url` is only a path
+ * (`body/o must match pattern ^https?://`). Query and hash stay removed.
+ */
+function absoluteAnalyticsUrl(pathname: string, source: string): string {
+  const path = pathname.startsWith('/') ? pathname : `/${pathname}`
+  try {
+    return `${new URL(source).origin}${path}`
+  } catch {
+    return `https://www.frankx.ai${path}`
+  }
+}
+
 export function privacySafeBeforeSend(event: BeforeSendEvent): BeforeSendEvent | null {
   if (!browserAllowsAnalyticsMeasurement()) return null
 
   return {
     ...event,
-    url: sanitizeAnalyticsUrl(event.url),
+    url: absoluteAnalyticsUrl(sanitizeAnalyticsUrl(event.url), event.url),
   }
 }
 

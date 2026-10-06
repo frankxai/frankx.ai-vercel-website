@@ -13,6 +13,7 @@ Technical release notes are generated from merged pull requests when a semantic-
 
 ### Fixed
 
+- Web Analytics pageviews keep an https origin after query redaction, so production visitors are counted instead of rejected.
 - PDF analytics reports storage failures instead of empty results, with bounded diagnostics that exclude visitor data.
 
 ### Changed
