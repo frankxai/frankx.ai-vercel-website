@@ -142,7 +142,7 @@ export default function AgenticCreatorPage() {
 
           <h3 className="mt-16 font-[family-name:var(--font-poppins)] text-2xl font-semibold text-white">{f.firstWin.rungs.title}</h3>
           <p className="mt-3 max-w-2xl text-slate-300">{f.firstWin.rungs.intro}</p>
-          <div className="mt-8 overflow-x-auto rounded-2xl border border-white/10">
+          <div tabIndex={0} role="region" aria-label="Rungs table, scrolls sideways on small screens" className="mt-8 overflow-x-auto rounded-2xl border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">
             <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
               <caption className="sr-only">What a person has done at each rung and the artifact they keep</caption>
               <thead>
@@ -176,7 +176,7 @@ export default function AgenticCreatorPage() {
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">{f.receipt.intro}</p>
           <figure className="mt-10">
             <figcaption className="mb-3 font-mono text-sm text-slate-400">{f.receipt.fileName}</figcaption>
-            <div className="overflow-x-auto rounded-2xl border border-white/10 bg-black/40 p-5 sm:p-6">
+            <div tabIndex={0} role="region" aria-label="Receipt fields, scrolls sideways on small screens" className="overflow-x-auto rounded-2xl border border-white/10 bg-black/40 p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 sm:p-6">
               <dl className="min-w-[20rem] space-y-2 font-mono text-sm leading-relaxed">
                 {f.receipt.fields.map((field) => (
                   <div key={field.key} className="grid grid-cols-[9.5rem_1fr] gap-3">
