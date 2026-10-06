@@ -6,7 +6,7 @@
     "manifesto": [
       "An agent can write a song today and forget by tomorrow why you chose it. Most people use AI like a vending machine: ask, get something, start over.",
       "An Agentic Creator gives the crew a memory. It reads a brief before it starts and keeps what it learned after the session ends. It leaves a record of what ran, what failed and what changed afterward, so any piece of work traces back to a decision you made.",
-      "One person can carry more of a studio's work this way. A songwriter can run a catalog with a release gate. An investor can hold a thesis with its sources attached and its kill criteria written before the money moves. A teacher can turn what they know into a path other people finish without them in the room. A builder can set up a machine, a harness and a fleet of agents that still work on Monday morning.",
+      "One person can carry more of a studio's work this way. A songwriter can run a catalog with a release gate. An investor can keep a thesis with its sources attached and its kill criteria written before the money moves. A teacher can turn what they know into a path other people finish without them in the room. A builder can set up a machine, a harness and a fleet of agents that still work on Monday morning.",
       "Run the crew with your own keys, on your own disk. Your briefs, receipts and files stay with you, and you can take them anywhere. Start with one brief, one review and one finished piece of work.",
       "Nine roles are on the map: creator, investor, musician, producer, player, rig builder, teacher, orchestrator and curator. Each is meant to begin with a first win and end with an artifact you can show. Roles go live one at a time, once their first win has been tested with a real person."
     ],
@@ -89,8 +89,8 @@
       "youBecome": "An investor whose every number has a source",
       "who": "Someone who invests their own money and wants to know why they believe what they believe.",
       "headline": "Every number shows its source.",
-      "subline": "Open-source, local-first research for people who hold their own thesis. Keep the sources, write the kill criteria first, check your calls against what happened.",
-      "firstWin": "Take a thesis you already hold. The agent asks five questions, then writes thesis.md with sources, two kill criteria and a review date.",
+      "subline": "Open-source, local-first research for people who keep their own thesis. Keep the sources, state what would prove you wrong, check your calls against what happened.",
+      "firstWin": "Take a thesis you already have. The agent asks five questions, then writes thesis.md with sources, two kill criteria and a review date.",
       "proof": "A thesis file with sources and kill criteria, then a calibration log of what the thesis predicted against what happened.",
       "compounds": "A calibration log that shows the person where their judgment drifts.",
       "exists": "Open-source alpha, 4 skills, research workspace",
@@ -239,7 +239,7 @@
     "waitlist": {
       "label": "Waitlist open",
       "note": "The GenCreator waitlist runs on gencreator.ai.",
-      "href": "https://gencreator.ai"
+      "href": "https://gencreator.ai/products/waitlist?product=gencreator-templates"
     },
     "concept": {
       "label": "Concept",

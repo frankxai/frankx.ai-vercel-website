@@ -21,6 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ role: str
     title: `${role.name}: ${role.headline}`,
     description: role.subline,
     path: `/agentic-creator/${role.slug}`,
+    // Legal read of investor copy pending; remove when cleared.
+    noindex: role.slug === 'investor',
   })
 }
 
@@ -119,10 +121,11 @@ export default async function AgenticRolePage({ params }: { params: Promise<{ ro
             {role.stage === 'waitlist' && 'href' in stage ? (
               <a
                 href={stage.href}
-                rel="noopener"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#0a0a0b] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] motion-reduce:transition-none"
               >
-                Join the waitlist on gencreator.ai
+                Join the waitlist
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
             ) : null}

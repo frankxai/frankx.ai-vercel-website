@@ -139,7 +139,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/founders-circle', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/human-layer', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/agentic-creator', priority: 0.85, changeFrequency: 'monthly' as const },
-    ...agenticRoles.map((role) => ({ url: `/agentic-creator/${role.slug}`, priority: 0.7, changeFrequency: 'monthly' as const })),
+    // investor excluded: legal read of investor copy pending
+    ...agenticRoles.filter((role) => role.slug !== 'investor').map((role) => ({ url: `/agentic-creator/${role.slug}`, priority: 0.7, changeFrequency: 'monthly' as const })),
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
     { url: '/journal', priority: 0.8, changeFrequency: 'daily' as const },
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
