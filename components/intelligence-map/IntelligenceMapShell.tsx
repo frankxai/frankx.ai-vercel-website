@@ -135,7 +135,7 @@ const ring2Nodes: SystemNode[] = [
     id: 'music-sync',
     label: 'Music Catalog Sync',
     description: 'Daily synchronization of the music catalog from Suno.',
-    details: ['65+ tracks indexed', 'Metadata enrichment', 'Cover art sync to Vercel Blob'],
+    details: ['Track index', 'Metadata enrichment', 'Cover art sync to Vercel Blob'],
     icon: <Music className="h-5 w-5" />,
   },
 ]
@@ -218,7 +218,7 @@ const ring4Nodes: SystemNode[] = [
     id: 'suno',
     label: 'Suno',
     description: 'AI music platform. Tracks published under @frankx.',
-    details: ['Primary music distribution', '65+ self-hosted tracks', 'Genre: Pop, Neoclassical, Electronic, Dance'],
+    details: ['Primary music distribution', 'Self-hosted tracks', 'Genre: Pop, Neoclassical, Electronic, Dance'],
     icon: <Music className="h-5 w-5" />,
   },
 ]

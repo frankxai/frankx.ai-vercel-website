@@ -176,7 +176,7 @@ export const TALLINN_PUBLIC_FORMATS = [
     promise: 'Move from a musical idea to one finished track while learning the prompt, iteration, and release decisions behind it.',
     artifact: 'One original track and a reusable creation recipe',
     fit: 'Creators, musicians, storytellers, and curious first-timers',
-    status: 'Built from Frank’s 12,000+ song practice; live format to be shaped',
+    status: 'Draws on Frank’s music practice; live format to be shaped',
     accent: 'amber' as const,
     sourceHref: '/music',
     sourceLabel: 'Explore FrankX Music',

@@ -137,7 +137,7 @@ const premiumTemplates = [
   },
   {
     title: 'Vibe OS & Suno Prompt Architecture',
-    description: '12,000-track battle-tested prompt systems, 5-layer architecture, and frequency science production packs.',
+    description: 'Suno prompts, arrangement notes, and music production workflows.',
     href: '/products/vibe-os',
     icon: Music,
     meta: 'Music Creation · $37',

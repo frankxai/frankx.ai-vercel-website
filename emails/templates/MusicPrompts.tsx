@@ -21,11 +21,11 @@ import {
 } from '../components/Layout'
 
 const TRACKS = [
-  { title: 'The Awakening', stat: '142 plays', genre: 'African / World', url: 'https://suno.com/song/8374d2ad-9142-4900-9028-a1e805688407' },
-  { title: 'Vibe O S', stat: '128 plays', genre: 'Hip Hop / Bass', url: 'https://suno.com/song/9cbad174-9276-427f-9aed-1ba00c7db3db' },
-  { title: 'Golden Age of Intelligence', stat: '119 plays', genre: 'EDM / Epic', url: 'https://suno.com/song/d1ad41a9-9239-454d-bc2c-a187f42ac30b' },
-  { title: 'Trust in Yourself', stat: '34 likes', genre: 'Pop Punk / Symphonic', url: 'https://suno.com/song/66572f21-2682-41f3-9051-86446e9b9bd7' },
-  { title: 'Lumina', stat: '108 plays', genre: 'Rock / Soul', url: 'https://suno.com/song/1fc13c04-a7b3-427d-bff0-cac92ee524ae' },
+  { title: 'The Awakening', genre: 'African / World', url: 'https://suno.com/song/8374d2ad-9142-4900-9028-a1e805688407' },
+  { title: 'Vibe O S', genre: 'Hip Hop / Bass', url: 'https://suno.com/song/9cbad174-9276-427f-9aed-1ba00c7db3db' },
+  { title: 'Golden Age of Intelligence', genre: 'EDM / Epic', url: 'https://suno.com/song/d1ad41a9-9239-454d-bc2c-a187f42ac30b' },
+  { title: 'Trust in Yourself', genre: 'Pop Punk / Symphonic', url: 'https://suno.com/song/66572f21-2682-41f3-9051-86446e9b9bd7' },
+  { title: 'Lumina', genre: 'Rock / Soul', url: 'https://suno.com/song/1fc13c04-a7b3-427d-bff0-cac92ee524ae' },
 ]
 
 interface MusicPromptsProps {
@@ -35,14 +35,14 @@ interface MusicPromptsProps {
 
 export function MusicPromptsEmail({ recipientName, downloadUrl }: MusicPromptsProps) {
   return (
-    <EmailLayout preview="The exact prompts behind 500+ plays on Suno AI. Download your 5 free prompts now.">
+    <EmailLayout preview="Your Suno prompts are ready, with arrangement notes and variations to try.">
       <GlassCard accent={t.accentGreen}>
         <MascotSpeech mood="chill" message={`5 prompts from the studio, ${recipientName}. Make something fire.`} />
 
         <EmailHeading>Your 5 Suno prompts are ready.</EmailHeading>
 
         <EmailText>
-          These are the exact prompts behind my top-performing tracks. 500+ combined plays, refined over 500+ songs.
+          These are prompts I use to shape Suno tracks, with notes on how to adapt them.
         </EmailText>
 
         <EmailText muted>
@@ -56,7 +56,7 @@ export function MusicPromptsEmail({ recipientName, downloadUrl }: MusicPromptsPr
             <Text key={track.title} style={{ fontFamily: t.font, fontSize: '14px', color: t.textPrimary, margin: '0 0 8px 0', lineHeight: '1.5' }}>
               <Link href={track.url} style={{ color: t.accentCyan, textDecoration: 'none', fontWeight: 600 }}>{track.title}</Link>
               <br />
-              <span style={{ fontSize: '13px', color: t.textDim }}>{track.genre} &middot; {track.stat}</span>
+              <span style={{ fontSize: '13px', color: t.textDim }}>{track.genre}</span>
             </Text>
           ))}
         </HighlightBox>

@@ -83,7 +83,7 @@ const tools = [
     name: 'Music Lab',
     tagline: 'AI prompt architecture for Suno mastery',
     description:
-      'Songs made with Suno. 65 tracks indexed. Access the prompt library, album curation system, and production patterns.',
+      'Songs made with Suno. Explore the prompt library, album concepts, and production notes.',
     href: '/music-lab',
     hrefLabel: 'Explore Music Lab',
     externalHref: false,
@@ -93,7 +93,6 @@ const tools = [
     icon: '🎵',
     keyRequired: null,
     stats: [
-      { n: '65', label: 'Indexed tracks' },
       { n: '5', label: 'Album concepts' },
     ],
   },
