@@ -71,12 +71,12 @@ export const lifeBooks: LifeBook[] = [
     ],
     pillars: getPillarsForLifeBook('symphony'),
     outcomes: [
-      'Complete life transformation',
-      'Integrated self-awareness',
-      'Mastered emotional intelligence',
-      'Healthier relationships',
-      'Aligned purpose & direction',
-      'Sustainable creative practice'
+      'All 7 pillars, and how they connect',
+      'Self-awareness practices',
+      'Emotional intelligence, and how to develop it',
+      'Relationship patterns',
+      'Purpose and direction',
+      'Building a creative practice'
     ],
     forWho: [
       'Ready for comprehensive change',
@@ -85,7 +85,7 @@ export const lifeBooks: LifeBook[] = [
       'Value community support'
     ],
     testimonials: [],
-    guarantee: '30-day refund, no questions asked. We never promise outcomes.'
+    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
   },
   {
     id: 'golden-path',
@@ -119,10 +119,10 @@ export const lifeBooks: LifeBook[] = [
     ],
     pillars: getPillarsForLifeBook('path'),
     outcomes: [
-      'Breakthrough in self-awareness',
-      'Mastered core emotional patterns',
-      'Clear sense of purpose',
-      'Foundation for continued growth'
+      'Self-awareness practices',
+      'Core emotional patterns, and how to work with them',
+      'Purpose, and how to explore it',
+      'A roadmap for what to work on next'
     ],
     forWho: [
       'Want rapid transformation',
@@ -131,7 +131,7 @@ export const lifeBooks: LifeBook[] = [
       'Want to test the framework first'
     ],
     testimonials: [],
-    guarantee: '14-day refund, no questions asked. We never promise outcomes.'
+    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
   },
   {
     id: 'seven-pillars',
@@ -165,10 +165,10 @@ export const lifeBooks: LifeBook[] = [
     ],
     pillars: getPillarsForLifeBook('pillars'),
     outcomes: [
-      'Expert-level pillar understanding',
-      'Complete personal toolkit',
-      'Ability to teach others',
-      'Integrated life mastery'
+      'Each pillar in depth, one per week',
+      'Exercises and tools for each pillar',
+      'How to teach the pillars to others',
+      'How the 7 pillars fit together'
     ],
     forWho: [
       'Want to master each pillar deeply',
@@ -177,7 +177,7 @@ export const lifeBooks: LifeBook[] = [
       'Value comprehensive expertise'
     ],
     testimonials: [],
-    guarantee: '30-day refund, no questions asked. We never promise outcomes.'
+    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
   }
 ]
 
