@@ -2,7 +2,7 @@
 title: "Suno AI: What the Practice Actually Taught"
 description: "Production lessons from a Suno practice: prompt patterns that work, genres that stick, and the workflow that makes the music findable."
 date: "2026-03-21"
-lastUpdated: "2026-08-18"
+lastUpdated: "2026-10-06"
 author: "FrankX"
 category: "Creator Systems"
 tags: ["creator-systems", "ai-systems", "production"]
@@ -26,22 +26,11 @@ Most people who use Suno build up a chaotic library of tracks with names like "E
 
 ## What the Data Actually Shows
 
-After running `scripts/enrich-suno-tracks.mjs` against my full catalog, the genre distribution in my indexed tracks breaks down like this:
+An earlier draft printed a six-row genre table and called it the indexed inventory. That table does not match `data/inventories/frankx/music.json`. The genre strings there are not grouped into those rows, and the old row counts do not reproduce. This essay no longer prints the table.
 
-| Genre        | Tracks |
-| ------------ | ------ |
-| Pop          | 14     |
-| Vocal        | 14     |
-| Dance        | 12     |
-| Neoclassical | 12     |
-| Electronic   | 12     |
-| Orchestral   | 9      |
+What still holds is the selection rule. A track stayed when the output cleared a catalog bar. Pop and vocal prompts cleared it more often, because clear lead vocals over straightforward arrangements are more consistent than most other configurations.
 
-These are not the genres I set out to produce. They are the genres where Suno's output quality consistently cleared the bar for catalog inclusion. Pop and Vocal made the cut most often because the production quality is most consistent there — Suno handles clear lead vocals over straightforward arrangements better than most other configurations.
-
-Neoclassical was a surprise. I started prompting in that space because I wanted music for ambient listening, and the success rate was high enough that it became a real focus. 12 cataloged Neoclassical tracks represent maybe 200 generation attempts — a roughly 6% catalog-inclusion rate, which is actually above average.
-
-Dance and Electronic have the worst ratio of generations to catalog inclusions — lots of attempts, fewer that hold up. The model handles rhythm and energy well but struggles with transitions and builds in longer electronic formats.
+Neoclassical started as music for ambient listening. The keep rate was high enough that it became a real focus. Dance and electronic prompts produced a worse ratio of attempts to kept tracks. The model handles rhythm and energy, and it struggles with transitions and builds in longer electronic formats.
 
 ---
 
@@ -124,7 +113,7 @@ The custom audio player at `lib/player-context.tsx` reads from the catalog JSON.
 
 **Treating every generation as a single.** The economics of AI music only make sense when the kept work has consistent genres and real metadata. A single track has minimal commercial value. Licensing, sync, and streaming royalties need that metadata. Kept work beats a pile of singles.
 
-**Ignoring album architecture.** I have five albums in draft state in `data/albums.json`: Golden Frequencies, Arcanea Soundtrack, Electric Soul, Vibe State, and Tech House Sessions. Album framing changes how catalog tracks are perceived. The same track sounds different when it is "Track 7 on Vibe State" versus "a random MP3 in my downloads folder."
+**Ignoring album architecture.** I have five albums in draft state in `data/albums.json`: Golden Frequencies, Arcanea: The Soundtrack, Electric Soul, Vibe State, and Tech House Sessions. Album framing changes how catalog tracks are perceived. The same track sounds different when it is "Track 7 on Vibe State" versus "a random MP3 in my downloads folder."
 
 ---
 
@@ -142,13 +131,13 @@ For the technical side of the Suno prompt engineering approach, the [Suno prompt
 
 Streaming royalties from a single track are negligible. Sync licensing from a single track requires luck and connections. A catalog changes the math.
 
-Across the six genre families in the indexed set:
+A catalog changes what a brief can match.
 
-- Sync licensing searches yield multiple matching options for any brief
-- Streaming distribution across multiple platforms creates compound royalty accumulation
+- A sync search can return more than one kept track
+- Distribution across platforms compounds only when the metadata is real
 - A body of kept work, with metadata and a way to license it, is a different statement than "I make music with AI"
 
-I built five draft albums because album releases give existing tracks new context without requiring new generation. The same 12 neoclassical tracks that are currently scattered across `data/inventories/frankx/music.json` become a cohesive release when packaged under a single cover art, sequenced deliberately, and distributed as a body of work.
+I built five draft albums because album releases give existing tracks new context without requiring new generation. Tracks scattered across `data/inventories/frankx/music.json` become a cohesive release when packaged under one cover, sequenced deliberately, and distributed as a body of work.
 
 The production leverage is significant: generation cost is already paid. The incremental cost of album packaging, metadata, and distribution is hours of work, not days. The output is a professional release.
 
