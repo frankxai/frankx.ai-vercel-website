@@ -57,7 +57,7 @@ export const visualStack: StackLayer[] = [
       },
       {
         tool: 'music-video-batch',
-        role: 'Lyric video generation across the 12k catalog',
+        role: 'Lyric video generation for music releases',
         whenToUse:
           'Batch lyric videos for music releases. Composes with Higgsfield video for cinematic sections.',
         whenNotToUse: 'Single hero video — use HyperFrames + Higgsfield directly.',
