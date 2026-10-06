@@ -51,7 +51,7 @@ export const FRANKX_VOICE = {
     narrative:
       'Personal AI CoE — enterprise AI architecture patterns (Strategy, Governance, Talent, Technology, Data, Ethics) translated into practical systems for creators, entrepreneurs, and operators.',
     proof: [
-      '12,000+ AI songs shipped',
+      'Music releases and production notes at /music',
       'Built Oracle EMEA AI CoE — 1000+ requests handled',
       'Helped build a seven-figure business',
       'ACOS, Workshop OS, Watch OS, Library OS, SIS, IIS shipped to production',
@@ -92,7 +92,7 @@ export const FRANKX_VOICE = {
       'Use precise technical language: "AI Architect", "agentic orchestration", "MCP protocol", "dual-repo deploy".',
       'Show, don\'t tell. Concrete examples beat abstract claims.',
       'Confident but understated. Authority through specificity, not volume.',
-      'Use specific numbers when they exist. "12,000+ AI songs" beats "many AI songs".',
+      'Use numbers only with a current source record. Otherwise name the work and link to it.',
       'Active voice. Strong verbs. Find the real verb instead of "helps/enables/empowers".',
       'First person when first person is the truth. "I built this" beats "We built this" when one person built it.',
       'One idea per paragraph. If a paragraph turns a corner, it\'s two paragraphs.',
@@ -251,7 +251,7 @@ export const FRANKX_VOICE = {
     },
     marketing: {
       description:
-        'Confident but understated. Used on landing pages, hero sections, CTAs, and product pages. Shows the proof (12,000+ songs, Oracle EMEA, shipped systems) instead of claiming it. Specific outcomes, never vague verbs. Pricing is honest — no fake urgency, no countdown timers.',
+        'Confident but understated. Used on landing pages, hero sections, CTAs, and product pages. Names the work and links to inspectable examples of music and shipped systems. Specific outcomes, never vague verbs. Pricing is honest — no fake urgency, no countdown timers.',
       lengthBias: 'short',
       examples: ['/start-here', '/build', '/founders-circle', 'homepage hero copy'],
     },

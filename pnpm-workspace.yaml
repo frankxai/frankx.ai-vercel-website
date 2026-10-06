@@ -10,8 +10,8 @@ overrides:
   'ip-address': '^10.4.0'
   'nanoid': '^3.3.18'
   'postcss': '^8.5.26'
-  '@vercel/blob>undici': '6.28.0'
-  'jsdom@28.1.0>undici': '7.29.0'
+  'undici@6': '6.28.1'
+  'jsdom@28.1.0>undici': '7.29.1'
   # Advisory floors added 2026-09-03 (#647). Every value is bounded to the
   # package's current major; a major selector such as js-yaml@3 is used where
   # two majors coexist so each line only touches its own major.
@@ -20,7 +20,8 @@ overrides:
   '@opentelemetry/core@2': '^2.8.0'
   '@tiptap/core': '^3.30.4'
   '@tiptap/pm': '^3.31.0'
-  'adm-zip': '^0.6.0'
+  '@ai-sdk/provider-utils@4': '^4.0.33'
+  'adm-zip': '^0.6.1'
   'body-parser': '^2.3.0'
   'brace-expansion@1': '^1.1.18'
   'brace-expansion@2': '^2.1.4'
@@ -46,3 +47,15 @@ allowBuilds:
   'sharp@0.32.6': false
   'sharp@0.34.5': true
   'unrs-resolver@1.11.1': true
+
+# Supply-chain cooldown: do not resolve any version published less than 3 days
+# ago (minutes). This matches the cooldown Dependabot now applies on its own:
+# its pnpm updater runs `pnpm update ... --config.minimumReleaseAge=4320`. When
+# main was regenerated onto a fresher release (#756 resolved the
+# @ai-sdk/provider-utils floor to 4.0.54, two days old), every Dependabot job
+# failed with ERR_PNPM_NO_MATURE_MATCHING_VERSION until that version aged.
+# Holding main to the same window keeps the lockfile resolvable by Dependabot.
+# Frozen installs (CI, Vercel) do not re-check age, so builds are unaffected.
+# For an urgent security fix younger than 3 days, add the package to
+# minimumReleaseAgeExclude with a dated comment and remove it afterwards.
+minimumReleaseAge: 4320

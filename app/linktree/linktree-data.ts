@@ -71,7 +71,7 @@ export const audienceMeta: Record<
 export const heroLinks: Record<Audience | 'default', LinktreeLink> = {
   default: {
     title: 'Agentic Creator OS',
-    subtitle: '75+ skills. 38 agents. One entry point. Open source.',
+    subtitle: 'Open-source skills and agents. One entry point.',
     href: '/acos',
     icon: Terminal,
     image: '/images/acos/acos-architecture.png',
@@ -91,17 +91,17 @@ export const heroLinks: Record<Audience | 'default', LinktreeLink> = {
   },
   creators: {
     title: 'Music Lab',
-    subtitle: '65+ AI tracks. Suno prompts. Production techniques that work.',
+    subtitle: 'Suno prompts and production notes.',
     href: '/music-lab',
     icon: Music,
     image: '/images/acos/creation-pipeline.png',
     gradient: 'from-violet-600 via-fuchsia-600 to-pink-600',
-    badge: '65+ Tracks',
+    badge: 'Music',
     audiences: ['creators'],
   },
   devs: {
     title: 'Agentic Creator OS',
-    subtitle: 'Clone it. Type /acos. 75+ skills auto-activate. MIT licensed.',
+    subtitle: 'Clone it. Type /acos. MIT licensed.',
     href: 'https://github.com/frankxai/agentic-creator-os',
     icon: Github,
     image: '/images/acos/acos-architecture.png',
@@ -122,7 +122,7 @@ export const sections: LinktreeSection[] = [
     links: [
       {
         title: 'Agentic Creator OS',
-        subtitle: '75+ skills, 38 agents, 35+ commands for Claude Code',
+        subtitle: 'Skills, agents, and commands for Claude Code',
         href: '/acos',
         icon: Terminal,
         image: '/images/acos/acos-architecture.png',
@@ -132,17 +132,17 @@ export const sections: LinktreeSection[] = [
       },
       {
         title: 'Music Lab',
-        subtitle: '65+ AI-generated tracks across pop, electronic, orchestral',
+        subtitle: 'AI tracks across pop, electronic, and orchestral',
         href: '/music-lab',
         icon: Music,
         image: '/images/acos/creation-pipeline.png',
         gradient: 'from-fuchsia-500/20 to-pink-500/20',
-        badge: '65+ Tracks',
+        badge: 'Music',
         audiences: ['creators', 'students'],
       },
       {
         title: 'Prompt Library',
-        subtitle: '50+ proven templates for Suno, Claude, and creative AI',
+        subtitle: 'Templates for Suno, Claude, and creative AI',
         href: '/prompt-library',
         icon: Zap,
         gradient: 'from-amber-500/20 to-orange-500/20',
@@ -223,7 +223,7 @@ export const sections: LinktreeSection[] = [
       },
       {
         title: 'Suno Profile',
-        subtitle: '65+ published AI tracks — listen, remix, collaborate',
+        subtitle: 'Published AI tracks. Listen, remix, collaborate.',
         href: 'https://suno.com/@frankx',
         icon: Music,
         gradient: 'from-orange-500/20 to-amber-500/20',

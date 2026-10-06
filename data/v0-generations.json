@@ -12,14 +12,14 @@
       "wave": 2,
       "model": "v0-pro (GPT-5)",
       "thinkingEnabled": true,
-      "brandContext": "FrankX glassmorphism dark theme — ultra-premium",
+      "brandContext": "FrankX glassmorphism dark theme \u2014 ultra-premium",
       "generatedAt": "2026-02-08T03:42:00Z"
     },
     {
       "wave": 3,
       "model": "v0-pro (GPT-5 + MCP Starlight)",
       "thinkingEnabled": true,
-      "brandContext": "FrankX Sovereign Creator OS — Next.js 16 + Vercel 1-Click Blueprints",
+      "brandContext": "FrankX Sovereign Creator OS \u2014 Next.js 16 + Vercel 1-Click Blueprints",
       "generatedAt": "2026-08-24T17:30:00Z"
     }
   ],
@@ -37,8 +37,12 @@
       "color": "emerald",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 2,
@@ -53,8 +57,12 @@
       "color": "violet",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 3,
@@ -69,8 +77,12 @@
       "color": "cyan",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 4,
@@ -85,8 +97,12 @@
       "color": "amber",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 5,
@@ -101,8 +117,12 @@
       "color": "rose",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 6,
@@ -117,8 +137,12 @@
       "color": "emerald",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 7,
@@ -133,8 +157,12 @@
       "color": "blue",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 8,
@@ -149,8 +177,12 @@
       "color": "teal",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 9,
@@ -165,8 +197,12 @@
       "color": "violet",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 10,
@@ -181,8 +217,12 @@
       "color": "orange",
       "status": "completed",
       "quality": "premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 11,
@@ -197,8 +237,12 @@
       "color": "amber",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 12,
@@ -213,8 +257,12 @@
       "color": "cyan",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 13,
@@ -229,8 +277,12 @@
       "color": "violet",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 14,
@@ -245,8 +297,12 @@
       "color": "rose",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 15,
@@ -261,8 +317,12 @@
       "color": "emerald",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 16,
@@ -277,8 +337,12 @@
       "color": "blue",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 17,
@@ -293,8 +357,12 @@
       "color": "emerald",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 18,
@@ -309,8 +377,12 @@
       "color": "cyan",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     },
     {
       "id": 19,
@@ -325,8 +397,22 @@
       "color": "amber",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": true,
-      "vercelDeployUrl": ""
+      "deployed": false,
+      "vercelDeployUrl": "",
+      "maturity": "study",
+      "shippingAuthority": "none",
+      "previewPublished": true,
+      "notes": "Interactive design reference only until FrankX-owned code and release evidence say otherwise."
     }
-  ]
+  ],
+  "policy": {
+    "currentAuthority": "docs/strategy/v0-mcp-operating-standard.md",
+    "defaultMaturity": "study",
+    "previewHostsAreShippingAuthority": false,
+    "notes": [
+      "v0 MCP outputs are interface studies unless repository-owned evidence promotes them.",
+      "Preview URLs are reference infrastructure, not deployment proof.",
+      "Creator Launch OS is the open evidence-backed graduation path described on /v0."
+    ]
+  }
 }

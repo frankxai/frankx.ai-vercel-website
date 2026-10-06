@@ -64,6 +64,9 @@ jobs:
       - name: AgentDB runtime smoke
         run: pnpm run test:agentdb-runtime
 
+      - name: ACOS install command contract
+        run: pnpm run test:acos-install
+
       - name: Type Check
         run: pnpm run type-check
 
@@ -85,8 +88,14 @@ jobs:
       - name: Site search relevance
         run: pnpm run test:site-search
 
+      - name: MCP endpoint contract (read-only, no priced claims)
+        run: pnpm run test:mcp
+
       - name: Navigation completeness
         run: pnpm run test:navigation-completeness
+
+      - name: Rate limiter reads the Upstash integration env
+        run: pnpm run test:redis-env
 
       - name: Build
         run: pnpm run build

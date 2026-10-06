@@ -1,7 +1,11 @@
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
+import { readFile, readdir } from 'node:fs/promises'
+import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 import { listPublicEngagements } from '../../content/work/index.ts'
+import { researchDomains } from '../../lib/research/domains.ts'
+import { publicTopicMaps } from '../../lib/research/topic-maps.public.ts'
 
 const readBuildJson = async (path) =>
   JSON.parse(await readFile(new URL(`../../.next/${path}`, import.meta.url), 'utf8'))
@@ -52,4 +56,58 @@ test('work routes emit every public engagement and no non-public engagement', as
     expectedPublicRoutes,
     'the built route set must exactly match the public work registry',
   )
+})
+
+async function listClientJsUnderStatic(staticRoot) {
+  const jsFiles = []
+  const walk = async (dir) => {
+    let entries
+    try {
+      entries = await readdir(dir, { withFileTypes: true })
+    } catch (error) {
+      if (error && error.code === 'ENOENT') return
+      throw error
+    }
+    for (const entry of entries) {
+      const fullPath = join(dir, entry.name)
+      if (entry.isDirectory()) {
+        await walk(fullPath)
+        continue
+      }
+      if (entry.isFile() && entry.name.endsWith('.js')) {
+        jsFiles.push(fullPath)
+      }
+    }
+  }
+  await walk(staticRoot)
+  return jsFiles
+}
+
+test('research client chunks contain only the narrow topic projection', async () => {
+  const expected = researchDomains
+    .filter((domain) => !domain.slug.startsWith('REMOVED-') && !domain.title.startsWith('[REMOVED]'))
+    .map((domain) => domain.slug)
+  assert.deepEqual(publicTopicMaps.map((domain) => domain.slug), expected)
+  for (const topic of publicTopicMaps) {
+    assert.deepEqual(Object.keys(topic).sort(), ['category', 'color', 'icon', 'slug', 'title'])
+  }
+
+  // Next on Vercel may not emit a flat `.next/static/chunks/` directory.
+  // Scan all client JS under `.next/static` (not server bundles) and fail closed
+  // if the build produced no client JS at all.
+  const staticRoot = fileURLToPath(new URL('../../.next/static/', import.meta.url))
+  const jsFiles = await listClientJsUnderStatic(staticRoot)
+  assert.ok(
+    jsFiles.length > 0,
+    'expected client JS under .next/static after build; found none',
+  )
+  const chunks = await Promise.all(jsFiles.map((file) => readFile(file, 'utf8')))
+  for (const heldText of [
+    'OpenAI o1 Technical Report',
+    'AIME 2024 pass@1',
+    'scholar.google.com/scholar?q=Frontier',
+  ]) {
+    assert.equal(chunks.some((chunk) => chunk.includes(heldText)), false,
+      `held research text reached a client chunk: ${heldText}`)
+  }
 })

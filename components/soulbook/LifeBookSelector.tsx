@@ -266,7 +266,7 @@ export default function LifeBookSelector() {
 
               {/* Outcomes */}
               <div className="space-y-3 mb-6">
-                <h4 className="font-semibold text-white/90">What you'll transform:</h4>
+                <h4 className="font-semibold text-white/90">What the book covers:</h4>
                 <div className="grid grid-cols-2 gap-2">
                   {lifeBooks[selectedBook].outcomes.slice(0, 4).map((outcome, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm text-white/60">
@@ -282,7 +282,12 @@ export default function LifeBookSelector() {
                 <svg className="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-                {lifeBooks[selectedBook].guarantee}
+                <span>
+                  {lifeBooks[selectedBook].guarantee}{' '}
+                  <Link href="/legal/refund" className="underline underline-offset-2 transition-colors hover:text-white/80">
+                    Read the refund policy.
+                  </Link>
+                </span>
               </div>
             </div>
 

@@ -246,9 +246,10 @@ node scripts/generate-book-epubs.mjs
 ## Library Integration
 
 ### Book Reviews (`/library/`)
-- **Data**: `data/book-reviews.ts` — 8 reviews with cross-references to our books
-- **Schema**: Title, author, rating (1-5), key insights, best-for tags, related book slug
-- **Cross-sell**: Each review links to "Our book on this topic" via `relatedBook` field
+- **Skill for the public shelf**: `.claude/skills/library-os/SKILL.md`. Follow `/library-deepen` and `/library-research`. Do not manufacture quotations, chapter titles, page numbers, or video URLs.
+- **Data**: `data/library-reviews.ts` is the module `@/data/book-reviews` resolves to. It publishes the legacy `data/book-reviews.ts` entries, the reading guides, and `data/library-completion.ts`.
+- **Schema**: Title, author, rating, key insights, best-for tags, and `relatedBook` when a FrankX book in `books-registry.ts` is the right companion. Quotes stay source-marked. Reading guides carry edition, path, sources, FAQ, and a YouTube search when no recording has been checked.
+- **Cross-sell**: `relatedBook` links to `/books/{slug}` through the registry.
 
 ### Review Voice
 Reviews follow FrankX blog voice: concise, opinionated, actionable insights over summary. Each review answers "What changed after reading this?" not "What is this book about?"
