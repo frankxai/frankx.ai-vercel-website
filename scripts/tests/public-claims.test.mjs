@@ -35,6 +35,9 @@ const banned = [
   ['app/music/learn/orchestration/page.tsx', ['500+ tracks']],
   ['app/music/learn/production/page.tsx', ['12,000+']],
   ['app/music/learn/theory/page.tsx', ['12,000+']],
+  ['app/music/page.tsx', ['published tracks on Suno', 'Public Tracks', 'totalTracks}+']],
+  ['components/music/MusicShell.tsx', ['published tracks on Suno', 'Public Tracks', 'totalTracks}+']],
+  ['app/music-os/page.tsx', ['indexed tracks', 'totalTracks']],
   ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ['12,000+']],
   ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions']],
   ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions']],
@@ -91,6 +94,7 @@ const banned = [
   ['lib/intake/personas.ts', ['12,000+', '12K+']],
   ['lib/visual-intelligence/platform-personas.ts', ['12,000+', '12K+']],
   ['lib/workshop-citations.ts', ['12,000+', '12K+']],
+  ['lib/voice/frankx-voice.ts', ['12,000+', '12K+', '12,000+ AI songs', '12,000+ songs']],
   ['lib/plan/initiatives.ts', ['500+ AI songs', 'AI Songs Created']],
 ]
 
