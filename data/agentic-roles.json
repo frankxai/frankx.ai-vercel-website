@@ -1,0 +1,249 @@
+{
+  "founder": {
+    "headline": "Run AI as a crew. Keep the receipts.",
+    "subline": "Agentic Creators work with a brief, a memory and a record of what ran. Pick the role you want to grow into, run its first win with your own agent, and keep the receipt.",
+    "metaDescription": "Nine roles for people who run AI as a crew: creator, investor, musician, producer, player, rig builder, teacher, orchestrator and curator.",
+    "manifesto": [
+      "An agent can write a song today and forget by tomorrow why you chose it. Most people use AI like a vending machine: ask, get something, start over.",
+      "An Agentic Creator gives the crew a memory. It reads a brief before it starts and keeps what it learned after the session ends. It leaves a record of what ran, what failed and what changed afterward, so any piece of work traces back to a decision you made.",
+      "One person can carry more of a studio's work this way. A songwriter can run a catalog with a release gate. An investor can hold a thesis with its sources attached and its kill criteria written before the money moves. A teacher can turn what they know into a path other people finish without them in the room. A builder can set up a machine, a harness and a fleet of agents that still work on Monday morning.",
+      "Run the crew with your own keys, on your own disk. Your briefs, receipts and files stay with you, and you can take them anywhere. Start with one brief, one review and one finished piece of work.",
+      "Nine roles are on the map: creator, investor, musician, producer, player, rig builder, teacher, orchestrator and curator. Each is meant to begin with a first win and end with an artifact you can show. Roles go live one at a time, once their first win has been tested with a real person."
+    ],
+    "loop": {
+      "title": "One loop, nine materials",
+      "body": "Every role runs the same loop on a different material: See, Design, Build, Automate, Compound. The roles differ in what the crew works on. The loop stays the same, which is why a person who learns one role learns most of the next.",
+      "steps": ["See", "Design", "Build", "Automate", "Compound"]
+    },
+    "firstWin": {
+      "title": "How a first win works",
+      "intro": "A first win is one small job, run end to end with your own agent. It ends in a receipt.",
+      "steps": [
+        { "title": "Pick a role", "body": "Choose the role you want to grow into. Each one names its first win up front." },
+        { "title": "Run one small job", "body": "Take the role's brief into your own agent, with your own keys. The crew reads the brief, does the work and gets reviewed." },
+        { "title": "Export the result", "body": "The output and a receipt come out as plain files that you own." }
+      ],
+      "rungs": {
+        "title": "Three rungs, one artifact each",
+        "intro": "Education here teaches how, and every rung needs an artifact. A quiz does not count.",
+        "items": [
+          { "rung": "First win", "did": "Ran one small job end to end with their own agent", "keeps": "A receipt: the brief, the steps, the failures, the output" },
+          { "rung": "Shipped", "did": "Explained the workflow and produced the real thing", "keeps": "A workflow packet with a failure trace and a revision" },
+          { "rung": "Compounding", "did": "Solved a changed problem faster using the first one", "keeps": "A second receipt that cites the first, plus a peer review" }
+        ],
+        "note": "Progress is a list of receipts you own as plain files. There are no points and no streaks."
+      }
+    },
+    "receipt": {
+      "title": "The receipt format",
+      "intro": "Every first win ends in a receipt, a plain file you own. One format across all nine roles.",
+      "fileName": "receipt.md",
+      "fields": [
+        { "key": "role", "value": "one of the nine" },
+        { "key": "date", "value": "the date" },
+        { "key": "brief", "value": "the brief the crew read" },
+        { "key": "steps", "value": "what ran, in order" },
+        { "key": "failures", "value": "what broke, and what fixed it" },
+        { "key": "revision", "value": "what changed after the first critique" },
+        { "key": "output", "value": "file paths or links" },
+        { "key": "changed problem", "value": "only on the compounding rung" },
+        { "key": "agent and model", "value": "what ran it" }
+      ]
+    },
+    "local": {
+      "title": "What stays on your computer",
+      "intro": "You run the crew with your own keys, on your own disk.",
+      "items": [
+        "Your briefs, receipts and files stay with you, and you can take them anywhere.",
+        "No account is needed to run a first win, and nothing is uploaded.",
+        "Sharing a receipt is your choice.",
+        "Circle membership is a separate, optional step."
+      ]
+    },
+    "stageNote": "Only GenCreator has a waitlist today. The other eight roles are concepts. Each page says what already exists behind it and gives no delivery date."
+  },
+  "roles": [
+    {
+      "slug": "creator",
+      "name": "GenCreator",
+      "stage": "waitlist",
+      "youBecome": "A maker who ships reviewed work with a crew",
+      "who": "A creator with one clear idea and a pile of tools.",
+      "headline": "Turn one clear idea into work you can review and ship.",
+      "subline": "GenCreator teaches you to run a crew of agents on your own machine: brief, draft, review, ship, with a receipt for each step.",
+      "firstWin": "Take one idea, write the brief, run one draft and one review pass, export the result and the receipt.",
+      "proof": "A reviewed artifact with its receipt.",
+      "compounds": "A brief library that makes the second piece faster.",
+      "exists": "Live site, OS, Studio, community, creator skills",
+      "crew": ["gencreator.ai", "GenCreator-OS", "GenCreator-Studio", "gencreator-community", "creator-skills", "agentic-creator-os", "starlight-creator-mcp"],
+      "scene": {
+        "title": "6:40 a.m.",
+        "body": "The interview is forty minutes long and the brief was written last night. It says who the clips are for, what they should sound like, and the one sentence the creator never wants cut. By the time the kettle boils the crew has pulled three vertical clips with captions. The creator rewrites one caption, rejects another clip, and writes down why. Tomorrow's brief starts from that note."
+      },
+      "boundary": "No checkout."
+    },
+    {
+      "slug": "investor",
+      "name": "GenInvestor",
+      "stage": "concept",
+      "youBecome": "An investor whose every number has a source",
+      "who": "Someone who invests their own money and wants to know why they believe what they believe.",
+      "headline": "Every number shows its source.",
+      "subline": "Open-source, local-first research for people who hold their own thesis. Keep the sources, write the kill criteria first, check your calls against what happened.",
+      "firstWin": "Take a thesis you already hold. The agent asks five questions, then writes thesis.md with sources, two kill criteria and a review date.",
+      "proof": "A thesis file with sources and kill criteria, then a calibration log of what the thesis predicted against what happened.",
+      "compounds": "A calibration log that shows the person where their judgment drifts.",
+      "exists": "Open-source alpha, 4 skills, research workspace",
+      "crew": ["GenInvestor", "geninvestor-skills", "starlight-investor-portal", "agentic-investor-os"],
+      "scene": {
+        "title": "Sunday evening",
+        "body": "thesis.md is open. Reason three still says \"no source yet\". The kill criteria were written in March: revenue growth below 8 percent for two quarters. The latest filing is in the folder. The agent will not say what to do, and it never has. It says the condition the investor wrote down has happened. The decision stays with the person who wrote the condition."
+      },
+      "boundary": "Information, not advice."
+    },
+    {
+      "slug": "musician",
+      "name": "GenMusician",
+      "stage": "concept",
+      "youBecome": "A songwriter with a crew that remembers your taste",
+      "who": "Someone who writes songs with AI and wants a result that sounds like them.",
+      "headline": "Write songs with a crew that remembers what you like.",
+      "subline": "Capture your taste once. Every new song starts from it, and every prompt is kept so you can repeat what worked.",
+      "firstWin": "One song from brief to three iterations, with the taste notes saved as a file.",
+      "proof": "A finished track, its prompt history and a taste file.",
+      "compounds": "A taste file that shortens the next song.",
+      "exists": "Suno tooling, music skills",
+      "crew": ["agentic-music-producer-os", "suno-mcp-server", "kura", "suno-library-archiver", "music-is-song-intake", "music-is-suno-prompt", "music-is-persona-canon", "music-is-naming-intelligence"],
+      "scene": {
+        "title": "The third iteration",
+        "body": "The taste file says no reverb on the lead vocal before the first chorus, and a minor sixth in the bridge. The new song's first draft already respects both. The creator argues with the third iteration, because the chorus is too polite. The argument goes into the file, and next week's song starts a little closer to the person who is making it."
+      },
+      "boundary": "Rights-aware."
+    },
+    {
+      "slug": "producer",
+      "name": "GenProducer",
+      "stage": "concept",
+      "youBecome": "A producer who takes finished tracks to a released catalog",
+      "who": "A musician with finished tracks and no path to a released catalog.",
+      "headline": "Ship the track: art, metadata, rights and a release gate.",
+      "subline": "Turn finished songs into a catalog you control, with the checks that stop a bad release before it goes out.",
+      "firstWin": "Run one finished track through the release gate and fix the first failing check.",
+      "proof": "A release packet that passes the gate, with the gate receipt.",
+      "compounds": "A catalog ledger covering every release and its rights.",
+      "exists": "Release gate, royalty graph, distribution skills",
+      "crew": ["music-intelligence-os", "agentic-music-os", "music-is-asset-render", "music-is-release-gate", "music-is-catalog-systems", "music-is-royalty-graph", "music-is-distribution-flow"],
+      "scene": {
+        "title": "The gate",
+        "body": "The track is finished and the artwork is ready. The release gate stops on check four: the writer split is missing from the metadata. The fix is small. Without the gate the gap could have surfaced after release. The receipt shows the failure and the fix."
+      },
+      "boundary": "Royalty and rights statements need a source file."
+    },
+    {
+      "slug": "player",
+      "name": "GenPlayer",
+      "stage": "concept",
+      "youBecome": "A player who builds the game while playing it",
+      "who": "Someone who plays games and wants to build one, or a world, a mod or a mechanic.",
+      "headline": "Play with a crew. Build the game while you play.",
+      "subline": "Start with one small mechanic you can play, then grow it into a world with rules, quests and a playtest log.",
+      "firstWin": "One playable mechanic built with your own agent and played once.",
+      "proof": "A playable build and a playtest log.",
+      "compounds": "A mechanics library that gets reused in the next game.",
+      "exists": "Two skill catalogs",
+      "crew": ["awesome-gamedev-agent-skills", "awesome-gamification-agent-skills"],
+      "scene": {
+        "title": "The second ledge",
+        "body": "The mechanic is a jump with weight. The playtest log has four entries, and in three of them the player dies at the second ledge. One number changes, the gap width. The fifth entry says the player laughed and went again. The mechanic goes into the library for the next game."
+      },
+      "boundary": "This is the least developed role. Skill catalogs are all that exist behind it today."
+    },
+    {
+      "slug": "rig",
+      "name": "GenRig",
+      "stage": "concept",
+      "youBecome": "A builder whose machine, harness and fleet stay healthy",
+      "who": "A builder whose agents are only as good as the machine and setup under them.",
+      "headline": "Build the machine your crew runs on.",
+      "subline": "Hardware, local models, harness, hooks and memory in one setup that gets checked, so Monday morning still works.",
+      "firstWin": "Run the rig check and fix the top item it reports.",
+      "proof": "A rig report before and after.",
+      "compounds": "A rig ledger of changes and what each one bought.",
+      "exists": "Health auditor, device registry, hook system",
+      "crew": ["peak-performance", "starlight-devices", "claude-code-config", "claude-code-hooks", "mcp-doctor", "starlight-agent-config"],
+      "scene": {
+        "title": "Monday",
+        "body": "The rig check says the memory reserve is too low for the local model. It names the one setting to change. The change takes one line. On Monday morning the crew starts without anyone restarting anything, and the rig ledger has a new row with the date, the change and what it fixed."
+      },
+      "boundary": "Local models need a memory reserve."
+    },
+    {
+      "slug": "teacher",
+      "name": "GenTeacher",
+      "stage": "concept",
+      "youBecome": "A teacher whose path others finish alone",
+      "who": "An expert whose knowledge lives in their head and in 1:1 hours.",
+      "headline": "Turn what you know into a path other people can finish.",
+      "subline": "Attempt, one critique, revision, export, changed problem. Build the path once, and learners run it alone.",
+      "firstWin": "Write one lesson with an exercise and a rubric, then run it yourself first.",
+      "proof": "A three-lesson path, one learner artifact and one review.",
+      "compounds": "A path library where each path reuses the same five-step shape.",
+      "exists": "Academy, plugin, Circle campus, 26 lesson drafts",
+      "crew": ["starlight-intelligence-academy", "starlight-academy-plugin", "teach", "Circle campus"],
+      "scene": {
+        "title": "Midnight",
+        "body": "A stranger finishes the first lesson alone, at midnight. The export arrives with a failure trace and a revision. The teacher was asleep. In the morning they read it and write one critique, and the stranger tries again."
+      },
+      "boundary": "Learning outcomes get claimed only after a real learner has finished a path."
+    },
+    {
+      "slug": "orchestrator",
+      "name": "GenOrchestrator",
+      "stage": "concept",
+      "youBecome": "A conductor of many agents on one memory",
+      "who": "Someone running several coding agents who is tired of re-explaining everything to each.",
+      "headline": "One brain for the whole fleet.",
+      "subline": "Claude Code, Codex, Cursor, Gemini and Grok on one memory, with gates between them and a different agent checking every maker.",
+      "firstWin": "Two agents, one task, one reviewer, one receipt. The maker never reviews its own work.",
+      "proof": "A multi-agent run with a handover note and an eval receipt.",
+      "compounds": "A fleet ledger of routing decisions, costs and failures.",
+      "exists": "SIS, swarm, command, ops hub",
+      "crew": ["Starlight-Intelligence-System", "starlight-swarm", "starlight-command", "agentic-ops-hub", "workflow-tier-plugin", "agents-council", "prompt-engine"],
+      "scene": {
+        "title": "Two names on a receipt",
+        "body": "Three agents work from one memory. One writes the change. A different one reviews it and rejects it, with a reason. The first fixes it and the second approves. The receipt carries both names and both verdicts. Nothing reached main because one agent liked its own work."
+      },
+      "boundary": "Fleets spend your own tokens."
+    },
+    {
+      "slug": "curator",
+      "name": "GenCurator",
+      "stage": "concept",
+      "youBecome": "A collector whose library keeps its provenance",
+      "who": "Someone whose best ideas, prompts, images and sources are scattered across ten tools.",
+      "headline": "Keep every idea with its source.",
+      "subline": "Capture across every AI, tag it, trace where it came from, and build a library you can search a year from now.",
+      "firstWin": "Export one AI chat into a vault note with its source link and one tag.",
+      "proof": "A small collection where every item carries provenance.",
+      "compounds": "A library that answers questions the person has not asked yet.",
+      "exists": "Kura, vault, visual intelligence, catalogs",
+      "crew": ["kura", "second-brain-os", "visual-intelligence", "prompt-library", "frankx-mind-palace", "starlight-memory-vault"],
+      "scene": {
+        "title": "Eight months later",
+        "body": "A prompt from last winter comes up in search. Beside it sit the source link, the chat it came from, and the image it produced, with its provenance file. The curator did not remember writing it, and the library had kept it."
+      },
+      "boundary": "Privacy first."
+    }
+  ],
+  "stages": {
+    "waitlist": {
+      "label": "Waitlist open",
+      "note": "The GenCreator waitlist runs on gencreator.ai.",
+      "href": "https://gencreator.ai"
+    },
+    "concept": {
+      "label": "Concept",
+      "note": "No form, no checkout and no delivery date. The first win is not yet tested with a real person."
+    }
+  }
+}
