@@ -71,12 +71,12 @@ export const lifeBooks: LifeBook[] = [
     ],
     pillars: getPillarsForLifeBook('symphony'),
     outcomes: [
-      'Complete life transformation',
-      'Integrated self-awareness',
-      'Mastered emotional intelligence',
-      'Healthier relationships',
-      'Aligned purpose & direction',
-      'Sustainable creative practice'
+      'All 7 pillars, and how they connect',
+      'Self-awareness practices',
+      'Emotional intelligence, and how to develop it',
+      'Relationship patterns',
+      'Purpose and direction',
+      'Building a creative practice'
     ],
     forWho: [
       'Ready for comprehensive change',
@@ -84,23 +84,8 @@ export const lifeBooks: LifeBook[] = [
       'Committed to 12-week journey',
       'Value community support'
     ],
-    testimonials: [
-      {
-        name: 'Sarah M.',
-        role: 'Entrepreneur',
-        quote: 'Life Symphony didn\'t just change my business—it transformed every relationship, my health, and my sense of purpose. Worth every moment.',
-        avatar: 'SM',
-        metric: 'Lost 30lbs, doubled revenue'
-      },
-      {
-        name: 'David K.',
-        role: 'Executive',
-        quote: 'After 20 years in corporate, I finally found my purpose. The pillar integration work is powerful beyond words.',
-        avatar: 'DK',
-        metric: 'Left corporate, started dream business'
-      }
-    ],
-    guarantee: '100% money-back guarantee within 30 days if you\'re not transformed'
+    testimonials: [],
+    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
   },
   {
     id: 'golden-path',
@@ -134,10 +119,10 @@ export const lifeBooks: LifeBook[] = [
     ],
     pillars: getPillarsForLifeBook('path'),
     outcomes: [
-      'Breakthrough in self-awareness',
-      'Mastered core emotional patterns',
-      'Clear sense of purpose',
-      'Foundation for continued growth'
+      'Self-awareness practices',
+      'Core emotional patterns, and how to work with them',
+      'Purpose, and how to explore it',
+      'A roadmap for what to work on next'
     ],
     forWho: [
       'Want rapid transformation',
@@ -145,23 +130,8 @@ export const lifeBooks: LifeBook[] = [
       'Prefer focused, intensive work',
       'Want to test the framework first'
     ],
-    testimonials: [
-      {
-        name: 'Maria L.',
-        role: 'Creative Director',
-        quote: 'In just 4 weeks, I cleared 10 years of emotional baggage and found my creative purpose. The focus on 3 pillars was perfect.',
-        avatar: 'ML',
-        metric: 'Cleared decade-old patterns'
-      },
-      {
-        name: 'James R.',
-        role: 'Software Engineer',
-        quote: 'Golden Path gave me the awareness tools I needed. Simple, powerful, immediately applicable.',
-        avatar: 'JR',
-        metric: 'Improved all relationships'
-      }
-    ],
-    guarantee: '100% money-back guarantee within 14 days if you\'re not clearer about your path'
+    testimonials: [],
+    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
   },
   {
     id: 'seven-pillars',
@@ -195,10 +165,10 @@ export const lifeBooks: LifeBook[] = [
     ],
     pillars: getPillarsForLifeBook('pillars'),
     outcomes: [
-      'Expert-level pillar understanding',
-      'Complete personal toolkit',
-      'Ability to teach others',
-      'Integrated life mastery'
+      'Each pillar in depth, one per week',
+      'Exercises and tools for each pillar',
+      'How to teach the pillars to others',
+      'How the 7 pillars fit together'
     ],
     forWho: [
       'Want to master each pillar deeply',
@@ -206,23 +176,8 @@ export const lifeBooks: LifeBook[] = [
       'Plan to become a practitioner',
       'Value comprehensive expertise'
     ],
-    testimonials: [
-      {
-        name: 'Elena V.',
-        role: 'Life Coach',
-        quote: 'I\'ve done many programs, but the 7 Pillars gave me a framework I now use with all my clients. Absolutely transformative.',
-        avatar: 'EV',
-        metric: 'Doubled coaching income'
-      },
-      {
-        name: 'Michael T.',
-        role: 'Therapist',
-        quote: 'As a therapist, I\'ve studied many modalities. The pillar system is the most comprehensive framework I\'ve encountered.',
-        avatar: 'MT',
-        metric: 'Integrated into therapy practice'
-      }
-    ],
-    guarantee: '100% money-back guarantee within 30 days if you don\'t feel like an expert in each pillar'
+    testimonials: [],
+    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
   }
 ]
 
