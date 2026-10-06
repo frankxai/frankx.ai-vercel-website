@@ -90,9 +90,13 @@ if (declared && locked) {
 // Named floor. The checks above compare the two files to each other, so deleting
 // a pin from both would pass them. These two were added by #645 to keep patched
 // undici on the @vercel/blob and jsdom paths; removing either needs to be loud.
+// 2026-09-29: GHSA-3wwx-pv8p-q78v covers undici 6.25.0-6.28.0 and 7.28.0-7.29.0,
+// so both pins moved to 6.28.1 and 7.29.1. The 6.x pin became the major selector
+// undici@6 because @ai-sdk/provider-utils also depends on undici 6, outside
+// @vercel/blob, and the parent-scoped pin never reached it.
 const REQUIRED_PINS = {
-  '@vercel/blob>undici': '6.28.0',
-  'jsdom@28.1.0>undici': '7.29.0',
+  'undici@6': '6.28.1',
+  'jsdom@28.1.0>undici': '7.29.1',
 };
 for (const [key, value] of Object.entries(REQUIRED_PINS)) {
   if (declared?.get(key) !== value) {
