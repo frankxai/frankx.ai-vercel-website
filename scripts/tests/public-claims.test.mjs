@@ -93,6 +93,8 @@ const banned = [
   ['lib/hub.ts', ['12,000+', '12K+']],
   ['lib/intake/personas.ts', ['12,000+', '12K+', '12k music catalog']],
   ['lib/visual-intelligence/platform-personas.ts', ['12,000+', '12K+', '12k music catalog']],
+  ['lib/visual-intelligence/visual-stack.ts', ['12k catalog']],
+  ['lib/gen/backends.ts', ['12k catalog']],
   ['lib/workshop-citations.ts', ['12,000+', '12K+']],
   ['lib/voice/frankx-voice.ts', ['12,000+', '12K+', '12,000+ AI songs', '12,000+ songs']],
   ['lib/plan/initiatives.ts', ['500+ AI songs', 'AI Songs Created']],
