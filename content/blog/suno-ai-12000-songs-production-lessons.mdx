@@ -101,7 +101,7 @@ Run prompts in sets of four. Suno generates two variants per prompt. I evaluate 
 `scripts/enrich-suno-tracks.mjs` pulls title, genre, duration, and cover art from each track's Suno page. The sunoId becomes the primary key: `{sunoId}.mp3`.
 
 **Step 3 — Vercel Blob Upload**
-`scripts/upload-products-to-blob.mjs` (adapted for music) pushes each MP3 to Vercel Blob at path `music/{sunoId}/{sunoId}.mp3`. 61 tracks currently live at this path. Suno CDN pattern (`https://cdn1.suno.ai/{sunoId}.mp3`) provides a backup source.
+`scripts/upload-products-to-blob.mjs` (adapted for music) pushes each MP3 to Vercel Blob at path `music/{sunoId}/{sunoId}.mp3`. Suno CDN pattern (`https://cdn1.suno.ai/{sunoId}.mp3`) provides a backup source.
 
 **Step 4 — Catalog Entry**
 Each track gets a JSON entry in `data/inventories/frankx/music.json` with: sunoId, title, genre array, mood tags, duration, blob URL, cover art URL, album assignment (if any), and license status.
@@ -122,7 +122,7 @@ The custom audio player at `lib/player-context.tsx` reads from the catalog JSON.
 
 **Not capturing the sunoId immediately.** Suno's URLs contain the track ID. If you close a session without recording it, the track is findable but requires extra steps. I built a browser bookmark that extracts and copies the sunoId from any Suno URL as the first step of any evaluation session.
 
-**Treating every generation as a single.** The economics of AI music only make sense at catalog scale. A single track has minimal commercial value. A catalog of 60+ tracks in consistent genres with proper metadata has licensing potential, sync potential, streaming royalty potential. Catalog > singles, always.
+**Treating every generation as a single.** The economics of AI music only make sense when the kept work has consistent genres and real metadata. A single track has minimal commercial value. Licensing, sync, and streaming royalties need that metadata. Kept work beats a pile of singles.
 
 **Ignoring album architecture.** I have five albums in draft state in `data/albums.json`: Golden Frequencies, Arcanea Soundtrack, Electric Soul, Vibe State, and Tech House Sessions. Album framing changes how catalog tracks are perceived. The same track sounds different when it is "Track 7 on Vibe State" versus "a random MP3 in my downloads folder."
 
