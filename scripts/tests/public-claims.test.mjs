@@ -100,6 +100,8 @@ const banned = [
   ['lib/workshop-citations.ts', ['12,000+', '12K+']],
   ['lib/voice/frankx-voice.ts', ['12,000+', '12K+', '12,000+ AI songs', '12,000+ songs']],
   ['lib/plan/initiatives.ts', ['500+ AI songs', 'AI Songs Created']],
+  ['lib/qualities.ts', ['12,000 Songs']],
+  ['content/blog/suno-ai-12000-songs-production-lessons.mdx', ['12,000', '12K+', '65 tracks', '61 self-hosted', '61 catalog-quality', '61 tracks currently', '60+ tracks', 'six genre families', '12 cataloged', '12 neoclassical']],
 ]
 
 for (const [file, phrases] of banned) {
