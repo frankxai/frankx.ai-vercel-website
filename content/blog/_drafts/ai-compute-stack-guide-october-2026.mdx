@@ -6,8 +6,8 @@ lastUpdated: "2026-10-05"
 author: "FrankX"
 category: "AI Architecture"
 tags: ["ai-computer", "local-ai", "mini-pc", "strix-halo", "agent-infrastructure", "ai-hardware"]
-image: "/images/blog/ai-toolchain-motherboard.jpeg"
-coverAlt: "Circuit board with chips and traces, used as a visual for AI compute hardware"
+image: "/images/blog/ai-compute-stack-2026/hero.webp"
+coverAlt: "Title \"The AI compute stack guide\" in large type beside three bars labelled 64, 128 and 192 GB on a dark background"
 featured: false
 readingGoal: "Size an always-on agent node, pick a machine, and decide when to add a GPU, a second node or a cloud API."
 tldr: "Twenty agent sessions with browsers and builds need about 49 to 59 GB of RAM, so 64 GB is the floor and 128 GB is the comfortable node. Add a local model, Langfuse and Windows VMs and one box may overflow. Split into a 128 GB agent node and a 64 GB model node. Buy a GPU only when a job needs more than 24 GB of VRAM."
@@ -31,13 +31,13 @@ faq:
 
 I wrote this because my own machine kept hitting its RAM ceiling with agents running all day, and I wanted numbers before spending money. Every figure below comes from a source I opened, a measurement I took, or arithmetic I show. Where it is my estimate, I say so, and the memory model rests mostly on estimates from one 30-minute laptop profile, so measure your own sessions before you buy anything. Prices were read on 5 October 2026 and move fast, so check them before you buy. There are no affiliate links in this post.
 
-The research behind it is a sourced compute atlas that I keep in a repository. This guide is the readable version.
+I keep the underlying research in a sourced compute atlas. Here is the buying decision it led me to.
 
 ## How much memory does an always-on agent node need?
 
 I built a small planner. Each line carries a basis label: documented (a vendor or project page says so), measured (I observed it), derived (arithmetic from measurements) or estimate (my assumption, to be replaced by real data).
 
-The constants:
+The inputs:
 
 | Item | Memory | Basis |
 |---|---|---|
@@ -60,7 +60,10 @@ Four stages of growth, each adding to the one before:
 | Add a 15-user Odoo, 3M RAG chunks, a 70B dense model | 145.6 to 176.6 GB | 192 GB |
 | Add image, video and fine-tune jobs | same node, plus a GPU queue | 32 GB card for the largest job I picked |
 
-The second row decides it. A configuration that fits only at the low estimate is too tight to rely on. Splitting it gives an agent node at 77.2 to 97.2 GB (128 GB class) and a model-and-RAG node at 41 to 43 GB (64 GB class).
+![Four bars on a 0 to 192 GB scale: 49 to 59 GB fits 64 GB, 106.2 to 128.2 GB fits 128 GB only at the low end, 145.6 to 176.6 GB needs 192 GB, and the GPU queue needs 26 GB of VRAM. A split alternative is 77.2 to 97.2 GB plus 41 to 43 GB.](/images/blog/ai-compute-stack-2026/memory-ladder.webp)
+*Memory by stage. Bars run from my low to my high estimate. Basis: estimates from one 30-minute laptop profile plus documented figures for Langfuse and RAG vectors.*
+
+The second row decides it for me. A configuration that fits only at the low estimate is too tight to rely on. Splitting it gives an agent node at 77.2 to 97.2 GB (128 GB class) and a model-and-RAG node at 41 to 43 GB (64 GB class).
 
 My estimates dominate these totals, and they come from one profile of one Windows laptop. Treat the table as a way to ask the right question of your own heartbeat data, which is what the tracking section below covers.
 
@@ -79,6 +82,9 @@ Both brands sell the same chip for this job: Ryzen AI Max+ 395 with 128 GB LPDDR
 | Serviceability | Community disassembly and thermal-paste guides | Praised by ServeTheHome |
 
 ServeTheHome called the MS-S1 MAX its favorite of the Ryzen AI Max systems. That is one outlet's view, and I could not find a second hands-on review with matching depth.
+
+![Table comparing GMKtec EVO-X2 and EVO-X3 with Minisforum MS-S1 MAX on network, expansion, power supply, noise, power draw and euro price.](/images/blog/ai-compute-stack-2026/machine-scorecard.webp)
+*Same chip, different box. Prices come from different sellers and tax bases, and GMKtec's noise figure is partly second-hand.*
 
 Prices I read in euros on 5 October 2026, mostly without a stated tax basis:
 
@@ -100,7 +106,7 @@ My read: buy the Minisforum if you value 10GbE and serviceability, buy the GMKte
 
 ## Should I add an eGPU, a second mini PC or jump to 192 GB?
 
-Three ways to grow past one 128 GB box, with what I could establish for each.
+I found three ways to grow past one 128 GB box.
 
 **eGPU over OCuLink.** The link is PCIe 4.0 x4. One retailer-blog gaming comparison reported about 6.7 GB/s over it, which is a weak source with no stated method. A card that holds its whole job in VRAM works well. A job that streams weights across the link does not.
 
@@ -114,7 +120,7 @@ Windows adds a wrinkle. A claim of 96 GB of GPU-addressable memory under Windows
 
 ## How do Blackwell GPUs, a DGX Spark or a gaming PC fit in?
 
-Start with what each device is good at.
+I would assign each device a different job.
 
 | Device | Memory | Bandwidth | Note |
 |---|---|---|---|
@@ -177,7 +183,7 @@ I run these apps on the model-and-RAG side of the split so that a runaway agent 
 
 ## What do faceless video channels cost per minute?
 
-I will give per-second API prices I read on 5 October 2026 and the arithmetic, and leave out any blended number I cannot trace.
+These are the per-second API prices I read on 5 October 2026, with the arithmetic for one generated minute.
 
 | Service | Price | Per generated minute |
 |---|---|---|
@@ -188,6 +194,9 @@ I will give per-second API prices I read on 5 October 2026 and the arithmetic, a
 | Grok Imagine video 1.5 lite | USD 0.020 per second | USD 1.20 |
 | Nano Banana image, 1K | USD 0.067 per image | |
 | Grok Imagine image | USD 0.02 to 0.05 per image | |
+
+![Bar chart of API price per generated minute of video: Veo 3.1 Standard USD 24.00, Veo 3.1 Fast USD 6.00, Grok Imagine video 1.5 USD 4.80, Veo 3.1 Lite USD 3.00, Grok Imagine video 1.5 lite USD 1.20.](/images/blog/ai-compute-stack-2026/video-cost.webp)
+*Per-second list prices read on 5 October 2026, multiplied by 60. The 2.5 takes per kept clip is my assumption.*
 
 Sora 2 and the OpenAI Videos API ended on 24 September 2026 according to OpenAI's docs, so do not plan on them.
 
@@ -224,11 +233,14 @@ My plan, in the order I would act:
 4. **Rent GPU time by the hour** before buying a card. Buy a 32 GB card only when a job you run weekly needs more than 24 GB of VRAM.
 5. **Hold the 192 GB machine** until a single model above about 100 GB earns its place.
 
+![Five numbered steps: measure for a week, 128 GB agent node, 64 GB model and RAG node, rent GPU hours first, hold the 192 GB machine.](/images/blog/ai-compute-stack-2026/buy-order.webp)
+*The order I would act in, with the thresholds from the planner.*
+
 Pick the vendor last, because for the same chip the differences are ports, cooling, serviceability and the day's price. My broader stack and spending notes are in [my 100-dollar monthly AI stack](/blog/my-100-month-ai-stack-every-tool-i-actually-use), the operating design is in [the sovereign AI operating system](/blog/sovereign-ai-operating-system-local-cloud-swarm), and the agent side is in [the ultimate guide to AI coding agents](/blog/ultimate-guide-ai-coding-agents-2026). The living hardware hub is the [AI Computer Field Guide](/ai-computer).
 
 ## What could I not verify?
 
-These are the gaps in my sources:
+These gaps would change what I buy or publish:
 
 - European street prices for RTX 5090 and RTX PRO cards, and any Coolblue, Megekko or Azerty prices.
 - Used-market prices on Marktplaats.

@@ -1,0 +1,19 @@
+{
+  "image": "social-square.png",
+  "prompt": "Procedural layout, no generative model. Text and numbers set in code from content/blog/_drafts/ai-compute-stack-guide-october-2026.mdx via src/build_assets.py.",
+  "negative_prompt": "",
+  "model": "none (Pillow raster render)",
+  "provider": "local script src/build_assets.py",
+  "seed": null,
+  "settings": {
+    "supersample": 2,
+    "font": "Bahnschrift (Windows system font)"
+  },
+  "agent": {
+    "coding_agent": "claude",
+    "session_ref": "22f28a9a"
+  },
+  "evaluation": "viewed at full size; every figure checked against the post",
+  "rights_status": "generated-owned",
+  "generated_at": "2026-10-06T00:04:45.749704Z"
+}
