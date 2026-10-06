@@ -105,7 +105,11 @@ export function getClientMusicStats(clientId: string) {
 
   // Owner gets rich stats from music.ts
   if (client?.isOwner || clientId === defaultClient.id) {
-    return music.getMusicStats()
+    const ownerStats = music.getMusicStats()
+    return {
+      ...ownerStats,
+      totalTracks: ownerStats.totalTracks ?? 0,
+    }
   }
 
   // Other clients get computed stats
