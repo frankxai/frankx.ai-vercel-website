@@ -42,7 +42,6 @@ const albums = getAlbums()
 const musicStats = getMusicStats()
 
 const stats = [
-  { value: `${musicStats.totalTracks}+`, label: 'Public Tracks' },
   { value: String(musicStats.followers), label: 'Followers' },
   { value: String(musicStats.totalPlays), label: 'Total Plays' },
   { value: String(musicStats.albums), label: 'Albums' },
@@ -287,7 +286,7 @@ function HeroSection() {
             </p>
 
             <p className="text-[17px] leading-relaxed text-white/60 mb-8 max-w-lg">
-              {musicStats.totalTracks}+ published tracks on Suno AI. From meditation-inspired soundscapes to orchestral epics
+              Songs made with Suno. From meditation-inspired soundscapes to orchestral epics
               to tech house and hip hop. This page now runs as a visual operating system: narrative assets,
               swarm-owned media pipelines, and platform-ready sales paths.
             </p>
@@ -417,7 +416,7 @@ function StatsSection() {
   return (
     <section className="py-12 border-y border-white/5">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}

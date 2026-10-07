@@ -37,6 +37,6 @@ export async function GET(request: NextRequest) {
   }
 
   // Redirect directly to your public blob storage
-  const blobUrl = `${BLOB_BASE_URL}/${blobKey}`
+  const blobUrl = `${BLOB_BASE_URL}/${blobKey}?download=1`
   return NextResponse.redirect(blobUrl)
 }
