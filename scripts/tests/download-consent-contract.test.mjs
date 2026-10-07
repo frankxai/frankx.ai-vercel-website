@@ -27,7 +27,7 @@ function loadDownloadRoute(fetch, path = 'app/api/download/route.ts', analytics 
   const registry = JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8'))
   const imports = {
     'next/server': {
-      after: (callback) => analytics.scheduled?.push(callback),
+      after: analytics.after ?? ((callback) => analytics.scheduled?.push(callback)),
       NextResponse: {
         json: (body, init) => Response.json(body, init),
         redirect: (url) => Response.redirect(url, 307),
@@ -35,6 +35,7 @@ function loadDownloadRoute(fetch, path = 'app/api/download/route.ts', analytics 
     },
     '@/data/products.json': { __esModule: true, default: registry },
     '@/lib/download-access': loadModule('lib/download-access.ts', {}, fetch),
+    '@/lib/store-failure': loadModule('lib/store-failure.ts', {}, fetch),
     '@/lib/pdf-analytics': {
       TRACKED_GUIDES: new Set(['soulbook', 'vibe-os', 'love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']),
       trackDirectDownloadOnce: analytics.track ?? (async () => true),
@@ -145,25 +146,30 @@ test('analytics failure or denial never prevents a free PDF redirect', async () 
   process.env.VERCEL_ENV = 'production'
   console.error = (...args) => errors.push(args)
   try {
-    for (const failure of ['limiter', 'denied', 'store']) {
+    for (const failure of ['scheduler', 'limiter', 'denied', 'store']) {
       const scheduled = []
       let writes = 0
       const { GET } = loadDownloadRoute(() => assert.fail('unexpected network request'), undefined, {
         scheduled,
+        after: callback => {
+          if (failure === 'scheduler') throw new Error('visitor-private scheduler detail')
+          scheduled.push(callback)
+        },
         limit: async () => {
-          if (failure === 'limiter') throw new Error('rate limit store unavailable')
+          if (failure === 'limiter') throw new Error('visitor-private rate limit store unavailable')
           return { success: failure !== 'denied' }
         },
-        track: async () => { writes++; throw new Error('event store unavailable') },
+        track: async () => { writes++; throw new Error('visitor-private event store unavailable') },
       })
       const response = await GET(new Request('https://frankx.ai/api/download?product=love-and-poetry&attempt=123e4567-e89b-42d3-a456-426614174000'))
       assert.equal(response.status, 307, failure)
       assert.match(response.headers.get('location'), /love-and-poetry\.pdf\?download=1$/)
-      assert.equal(scheduled.length, 1)
-      await scheduled[0]()
+      assert.equal(scheduled.length, failure === 'scheduler' ? 0 : 1)
+      if (scheduled[0]) await scheduled[0]()
       assert.equal(writes, failure === 'store' ? 1 : 0)
     }
-    assert.equal(errors.length, 2)
+    assert.equal(errors.length, 3)
+    assert.doesNotMatch(JSON.stringify(errors), /visitor-private/)
   } finally {
     console.error = originalError
     if (previousEnv === undefined) delete process.env.VERCEL_ENV
@@ -190,6 +196,13 @@ test('PDF analytics allows the registered free book slugs', () => {
   const { hasBookPdf } = loadModule('app/books/components/BookDownloadGate.tsx', {
     'react/jsx-runtime': {}, './BookDownloadLink': { __esModule: true, default: () => null },
   }, () => {})
+  const { booksRegistry } = loadModule('app/books/lib/books-registry.ts', {}, () => {})
+  const { isPublicDownloadProduct } = loadModule('lib/download-access.ts', {}, () => {})
+  const products = JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8'))
+  const bookSlugs = new Set(booksRegistry.map(book => book.slug))
+  const registered = new Set(products.filter(product => bookSlugs.has(product.slug) && isPublicDownloadProduct(product) && product.delivery?.requiresEmail === false && product.delivery.files?.some(file => file.format === 'pdf')).map(product => product.slug))
+  assert.deepEqual(DIRECT_BOOK_GUIDES, registered, 'counter allowlist must match the public book PDF catalog')
+  assert.deepEqual(new Set([...bookSlugs].filter(hasBookPdf)), registered, 'UI availability must match the public book PDF catalog')
   assert.equal(DIRECT_BOOK_GUIDES.size, 6)
   for (const slug of ['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
     assert.equal(hasBookPdf(slug), true, slug)

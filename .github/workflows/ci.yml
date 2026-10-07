@@ -109,12 +109,14 @@ jobs:
       - name: Reader journeys and screen evidence
         run: node scripts/qa/book-journey.mjs
         timeout-minutes: 8
+        env:
+          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Save reader journey evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: book-journey-${{ github.sha }}
+          name: book-journey-${{ github.sha }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/book-journey
           if-no-files-found: ignore
           retention-days: 14

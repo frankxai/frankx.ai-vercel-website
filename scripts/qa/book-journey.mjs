@@ -28,6 +28,8 @@ assert.equal(process.env.GITHUB_ACTIONS, 'true', 'This runner is for GitHub Acti
 const revision = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim()
 const manifest = {
   schema: 'frankx.book-journey-evidence.v1', revision,
+  reviewedHead: process.env.REVIEWED_HEAD_SHA || revision,
+  runAttempt: process.env.GITHUB_RUN_ATTEMPT,
   environment: 'cloud runner, production build; not the live deployment',
   runUrl: `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,
   startedAt: new Date().toISOString(), captures: [], checks: [], failures: [],
@@ -168,7 +170,7 @@ try {
       const plainResponse = await fetch(plainHref, { redirect: 'manual', signal: AbortSignal.timeout(10_000) })
       assert.equal(plainResponse.status, 307, 'No-JavaScript link must resolve to a PDF redirect')
       assert.deepEqual(errors, [], `Client exceptions at ${size.name}`)
-      manifest.checks.push({ viewport: size.name, result: 'passed', readingNavigation: true, keyboardDownload: true, interruptedDownloadRecovery: true, noJavaScriptLink: true })
+      manifest.checks.push({ viewport: size.name, result: 'passed', readingNavigation: true, keyboardActivationEmitsAttempt: true, linkAvailableAfterAbort: true, noJavaScriptHrefRedirect: true })
     } finally {
       try { await context.close() } catch (error) {
         manifest.failures.push({ message: `Context cleanup failed: ${error.message}` })
