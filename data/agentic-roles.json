@@ -93,7 +93,7 @@
       "firstWin": "Take a thesis you already have. The agent asks five questions, then writes thesis.md with sources, two kill criteria and a review date.",
       "proof": "A thesis file with sources and kill criteria, then a calibration log of what the thesis predicted against what happened.",
       "compounds": "A calibration log that shows the person where their judgment drifts.",
-      "exists": "Open-source alpha, 4 skills, research workspace",
+      "exists": "Open-source alpha, skills, research workspace",
       "crew": ["GenInvestor", "geninvestor-skills", "starlight-investor-portal", "agentic-investor-os"],
       "scene": {
         "title": "Sunday evening",
@@ -188,7 +188,7 @@
       "firstWin": "Write one lesson with an exercise and a rubric, then run it yourself first.",
       "proof": "A three-lesson path, one learner artifact and one review.",
       "compounds": "A path library where each path reuses the same five-step shape.",
-      "exists": "Academy, plugin, Circle campus, 26 lesson drafts",
+      "exists": "Academy, plugin, Circle campus, lesson drafts",
       "crew": ["starlight-intelligence-academy", "starlight-academy-plugin", "teach", "Circle campus"],
       "scene": {
         "title": "Midnight",
