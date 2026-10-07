@@ -63,7 +63,7 @@ try {
     await page.setViewport({ width: size.width, height: size.height, deviceScaleFactor: 1, isMobile: size.name.startsWith('mobile'), hasTouch: size.name.startsWith('mobile') })
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: size.reducedMotion ? 'reduce' : 'no-preference' }])
 
-    async function capture(state, selector = 'main') {
+    async function capture(state, selector = '#main') {
       await page.waitForSelector(selector, { visible: true })
       await page.evaluate(() => document.fonts.ready)
       const layout = await page.evaluate(() => ({
@@ -93,6 +93,8 @@ try {
       assert.equal(response?.status(), 200, path)
     }
     async function follow(selector, path) {
+      // Match the reader content, not hidden desktop/mobile navigation copies.
+      selector = `#main ${selector}`
       await page.waitForSelector(selector, { visible: true })
       if (size.name.startsWith('mobile')) await page.tap(selector)
       else await page.click(selector)
