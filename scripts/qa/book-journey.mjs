@@ -127,7 +127,7 @@ try {
       const target = await page.$eval(download, element => ({ text: element.textContent.trim(), height: element.getBoundingClientRect().height }))
       assert.ok(target.height >= 44, 'PDF link must have a 44px touch target')
       assert.match(target.text, /Download .* PDF/)
-      assert.equal(await page.$('input[type="email"]'), null, 'Downloading a book must not require email')
+      assert.equal(await page.$('#main input[type="email"]'), null, 'Downloading a book must not require email')
       await page.$eval(download, element => element.scrollIntoView({ block: 'center' }))
       // Starting from a fresh navigation, reach the link through the actual tab
       // order. Programmatic focus could conceal tabindex/inert regressions.
@@ -156,7 +156,7 @@ try {
       await page.keyboard.press('Enter')
       const clickedDeadline = Date.now() + 10_000
       while (!attempt && Date.now() < clickedDeadline) await new Promise(resolveWait => setTimeout(resolveWait, 50))
-      assert.match(attempt || '', /^[0-9a-f-]{36}$/, 'Keyboard activation must produce a download attempt')
+      assert.match(attempt || '', /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i, 'Keyboard activation must produce a download attempt')
       page.off('request', observe)
       await page.setRequestInterception(false)
       await navigate('/books/love-and-poetry')

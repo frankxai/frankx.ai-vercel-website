@@ -104,7 +104,10 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
 
       - name: Install the reader QA browser
-        run: pnpm exec puppeteer browsers install chrome --install-deps
+        # The GitHub-hosted Ubuntu image already provides Chrome's OS libraries.
+        # Download the Puppeteer-pinned binary as the runner user; --install-deps
+        # requires root and would also put its browser cache in root's home.
+        run: pnpm exec puppeteer browsers install chrome
 
       - name: Reader journeys and screen evidence
         run: node scripts/qa/book-journey.mjs

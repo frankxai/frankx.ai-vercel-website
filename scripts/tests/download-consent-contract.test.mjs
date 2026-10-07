@@ -94,7 +94,7 @@ test('the book link reuses one attempt token without requiring browser storage',
   const link = { href: 'https://frankx.ai/api/download?product=love-and-poetry', dataset: {} }
   anchor.props.onClick({ currentTarget: link })
   const firstAttempt = new URL(link.href).searchParams.get('attempt')
-  assert.match(firstAttempt, /^[0-9a-f-]{36}$/)
+  assert.match(firstAttempt, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i)
   anchor.props.onClick({ currentTarget: link })
   assert.equal(new URL(link.href).searchParams.get('attempt'), firstAttempt)
 })
