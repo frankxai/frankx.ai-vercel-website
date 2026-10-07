@@ -68,6 +68,14 @@ try {
     async function capture(state, selector = '#main') {
       await page.waitForSelector(selector, { visible: true })
       await page.evaluate(() => document.fonts.ready)
+      // Preserve real motion; finish finite header transitions before capture.
+      await page.evaluate(async () => {
+        const transitions = document.getAnimations().filter(animation => {
+          const effect = animation.effect
+          return effect?.target instanceof Element && effect.target.closest('header') && effect.getComputedTiming().iterations !== Infinity
+        })
+        await Promise.all(transitions.map(animation => animation.finished.catch(() => {})))
+      })
       const layout = await page.evaluate(() => ({
         viewportWidth: innerWidth, documentWidth: document.documentElement.scrollWidth,
         heading: document.querySelector('h1')?.textContent?.trim(),
@@ -123,6 +131,13 @@ try {
       await capture('wordless-laws')
       await follow(`a[href="${firstPath}"]`, firstPath)
       await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, firstChapter.title)
+      const readerHeader = await page.$eval('#main header', header => ({
+        bottom: header.getBoundingClientRect().bottom,
+        firstContentTop: document.querySelector('article header > div')?.getBoundingClientRect().top,
+        returnTargetHeight: header.querySelector('a').getBoundingClientRect().height,
+      }))
+      assert.ok(readerHeader.returnTargetHeight >= 44, 'Reader return link must have a 44px touch target')
+      assert.ok(readerHeader.firstContentTop >= readerHeader.bottom, 'Reader header must not cover the first chapter label')
       await capture('first-chapter', 'article')
       await follow(`a[href="${secondPath}"]`, secondPath)
       await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, secondChapter.title)

@@ -129,21 +129,21 @@ export default function BookReader({
     <>
       <BookProgress gradientClass={tc.progressGradient} />
 
-      <div className={`min-h-screen ${tc.bgPage} text-white`}>
+      <div className={`min-h-screen pt-14 sm:pt-16 ${tc.bgPage} text-white`}>
         {/* Sticky Header */}
         {/* Match NavigationMega's h-14 / sm:h-16 fixed header so the return
             link remains visible and clickable after chapter navigation. */}
         <header className="sticky top-14 sm:top-16 z-30 bg-black/60 backdrop-blur-xl border-b border-white/5">
-          <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="max-w-7xl mx-auto px-6 py-1">
             <div className="flex items-center justify-between">
               <Link
                 href={`/books/${bookSlug}`}
-                className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
+                className="inline-flex min-h-11 items-center gap-2 text-white/60 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-colors motion-reduce:transition-none"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                 <span className="font-medium text-sm">{bookTitle}</span>
               </Link>
-              <div className="flex items-center gap-4 text-sm text-white/40">
+              <div className="flex items-center gap-4 text-sm text-white/60">
                 <span>{chapter.label ?? `Ch. ${chapter.number}`}</span>
                 <span>{chapter.readingTime}</span>
               </div>
@@ -231,6 +231,10 @@ export default function BookReader({
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
               <style jsx global>{`
+                .book-reader-content [id],
+                .book-reader-content a {
+                  scroll-margin-top: 9rem;
+                }
                 .book-reader-content > h1 + p:first-letter,
                 .book-reader-content > h2 + p:first-letter {
                   float: left;
