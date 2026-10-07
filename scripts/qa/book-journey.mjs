@@ -92,7 +92,11 @@ try {
     }
     async function navigate(path) {
       const response = await page.goto(`${origin}${path}`, { waitUntil: 'networkidle2' })
-      assert.equal(response?.status(), 200, path)
+      const status = response?.status()
+      // Chromium can expose a conditional 304 on a reload while rendering its
+      // cached document. Subsequent DOM/link checks still verify the real page.
+      assert.ok(status === 200 || status === 304, `${path}: unexpected document status ${status}`)
+      manifest.checks.push({ path, documentStatus: status, scope: 'Browser document navigation; 304 reuses cached content' })
     }
     async function follow(selector, path) {
       // Match the reader content, not hidden desktop/mobile navigation copies.

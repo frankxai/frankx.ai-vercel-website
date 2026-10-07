@@ -17,3 +17,5 @@ The first rendered run exposed an existing reader header collision: its return-t
 The required Merge Gate runs `test:email-safety`, including consent, paid denial and analytics failure regressions. Evidence upload errors fail the job. When a build or browser installation fails before capture starts, missing-output upload is skipped and the earlier failure keeps CI red. A runner-level timeout can retain partial PNGs without a final manifest.
 
 The download-email assertion applies inside the book content landmark; the separate global newsletter form remains available. Sources: [GitHub Ubuntu runner image](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md), [Puppeteer browser installation](https://pptr.dev/browsers-api).
+
+Browser document navigation accepts HTTP 200 and conditional 304, recording the status. On a 304 Chromium renders its cached document; the route's subsequent real DOM, heading and download-link assertions remain required. Server API checks still assert their exact redirect or denial status.
