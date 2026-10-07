@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/frankxai/frankx.ai-vercel-website/b01509dedcfb3e84cc1fc22d760f4b515ebf1497/AGENTS.md
+dGVzdA==
