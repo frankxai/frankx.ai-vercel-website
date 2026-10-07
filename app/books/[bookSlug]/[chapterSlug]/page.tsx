@@ -1,10 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { notFound } from 'next/navigation';
-// Using the noSSR wrapper — BookReader.tsx imports marked + isomorphic-dompurify
-// which can't survive Turbopack's SSR pre-render even when externalized.
-// See app/books/components/BookReaderNoSSR.tsx for full rationale.
-import BookReader from '../../components/BookReaderNoSSR';
+import BookReader from '../../components/BookReader';
 import { booksRegistry, getBookBySlug } from '../../lib/books-registry';
 import { createMetadata } from '@/lib/seo';
 import JsonLd from '@/components/seo/JsonLd';
