@@ -131,7 +131,9 @@ export default function BookReader({
 
       <div className={`min-h-screen ${tc.bgPage} text-white`}>
         {/* Sticky Header */}
-        <header className="sticky top-0 z-30 bg-black/60 backdrop-blur-xl border-b border-white/5">
+        {/* Match NavigationMega's h-14 / sm:h-16 fixed header so the return
+            link remains visible and clickable after chapter navigation. */}
+        <header className="sticky top-14 sm:top-16 z-30 bg-black/60 backdrop-blur-xl border-b border-white/5">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <Link

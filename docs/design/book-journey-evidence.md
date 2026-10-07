@@ -12,6 +12,8 @@ The source journey map is [saved in FigJam](https://www.figma.com/board/5ycG7mAq
 
 This pilot covers book reading and registered free PDF delivery. It does not establish full-site journey coverage, completed file transfers, screen-reader usability, human visual acceptance or conversion improvement.
 
+The first rendered run exposed an existing reader header collision: its return-to-book link sat beneath the fixed global navigation. The reader header now uses that navigation's 56px mobile / 64px desktop offset. Journey navigation checks the actual pointer hit target before clicking or tapping, and waits for the previous chapter's heading before returning to the book. This prevents a covered link or unfinished route transition from masquerading as successful navigation.
+
 The required Merge Gate runs `test:email-safety`, including consent, paid denial and analytics failure regressions. Evidence upload errors fail the job. When a build or browser installation fails before capture starts, missing-output upload is skipped and the earlier failure keeps CI red. A runner-level timeout can retain partial PNGs without a final manifest.
 
 The download-email assertion applies inside the book content landmark; the separate global newsletter form remains available. Sources: [GitHub Ubuntu runner image](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md), [Puppeteer browser installation](https://pptr.dev/browsers-api).

@@ -98,6 +98,13 @@ try {
       // Match the reader content, not hidden desktop/mobile navigation copies.
       selector = `#main ${selector}`
       await page.waitForSelector(selector, { visible: true })
+      await page.$eval(selector, element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
+      const target = await page.$eval(selector, element => {
+        const bounds = element.getBoundingClientRect()
+        const hit = document.elementFromPoint(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
+        return { reachable: hit === element || element.contains(hit), obstructedBy: hit?.closest('a,button,nav,header')?.outerHTML.slice(0, 500) }
+      })
+      assert.ok(target.reachable, `${selector}: pointer target is obstructed by ${target.obstructedBy}`)
       if (size.name.startsWith('mobile')) await page.tap(selector)
       else await page.click(selector)
       await page.waitForFunction(expected => location.pathname === expected, {}, path)
@@ -117,7 +124,7 @@ try {
       await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, secondChapter.title)
       await capture('next-chapter', 'article')
       await follow(`a[href="${firstPath}"]`, firstPath)
-      await page.waitForSelector('article', { visible: true })
+      await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, firstChapter.title)
       await follow('a[href="/books/the-wordless-laws"]', '/books/the-wordless-laws')
       await follow('a[href="/books"]', '/books')
 
