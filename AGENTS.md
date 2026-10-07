@@ -1,1 +1,1 @@
-LOAD_FROM_FILE:/tmp/AGENTS.new.md
+@file:///workspace/mcp-args-agents-restore.json
