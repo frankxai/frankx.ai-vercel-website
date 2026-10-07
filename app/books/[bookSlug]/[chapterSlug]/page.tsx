@@ -77,8 +77,8 @@ export default async function ChapterPage({ params }: PageProps) {
     notFound();
   }
 
-  const previousChapter = chapterIndex > 0 ? book.chapters[chapterIndex - 1] : undefined;
-  const nextChapter = chapterIndex < book.chapters.length - 1 ? book.chapters[chapterIndex + 1] : undefined;
+  const previousChapter = book.chapters.slice(0, chapterIndex).reverse().find(candidate => candidate.published);
+  const nextChapter = book.chapters.slice(chapterIndex + 1).find(candidate => candidate.published);
 
   return (
     <>

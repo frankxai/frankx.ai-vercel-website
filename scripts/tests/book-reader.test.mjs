@@ -5,12 +5,13 @@ import test from 'node:test'
 import ts from 'typescript'
 import * as marked from 'marked'
 import DOMPurify from 'isomorphic-dompurify'
+import * as jsxRuntime from 'react/jsx-runtime'
 
 const root = new URL('../../', import.meta.url)
 const source = path => readFileSync(new URL(path, root), 'utf8')
 function load(path, imports = {}) {
   const module = { exports: {} }
-  const { outputText } = ts.transpileModule(source(path), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } })
+  const { outputText } = ts.transpileModule(source(path), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } })
   new Function('require', 'module', 'exports', outputText)(id => {
     assert.ok(Object.hasOwn(imports, id), `Unexpected import: ${id}`)
     return imports[id]
@@ -101,11 +102,34 @@ test('explicit duplicate heading IDs cannot make contents navigate to the wrong 
   assert.deepEqual(result.tocItems.map(item => item.id), ['shared', 'shared-2', 'shared-3'])
 })
 
+test('reserved DOM names still receive safe usable contents anchors', () => {
+  const result = renderChapter('## Constructor\n\nKeep this.\n\n## Location\n\nKeep that.', 'Reserved names')
+  assertAnchors(result)
+  assert.deepEqual(result.tocItems.map(item => item.id), ['constructor-2', 'location-2'])
+})
+
 test('chapter requests keep their reference counters isolated', () => {
   const note = 'Reference[^one].\n\n[^one]: Keep this.'
   const first = renderChapter(note, 'One')
   renderChapter('Reference[^two].\n\n[^two]: Another note.', 'Two')
   assert.deepEqual(renderChapter(note, 'One'), first)
+})
+
+test('the route only advertises published neighboring chapters and still denies unpublished routes', async () => {
+  const registry = load('app/books/lib/books-registry.ts')
+  const reader = () => null
+  const route = load('app/books/[bookSlug]/[chapterSlug]/page.tsx', {
+    'react/jsx-runtime': jsxRuntime, fs: { readFileSync }, path: { join },
+    'next/navigation': { notFound() { throw new Error('Not found') } },
+    '../../components/BookReader': { default: reader }, '../../lib/books-registry': registry,
+    '@/lib/seo': { createMetadata: data => data },
+    '@/components/seo/JsonLd': { default: () => null }, '@/components/qualities/RelatedQualities': { default: () => null },
+  })
+  const page = await route.default({ params: Promise.resolve({ bookSlug: 'wonderproof', chapterSlug: 'chapter-02-the-milkshake-effect' }) })
+  const renderedReader = page.props.children.find(child => child?.type === reader)
+  assert.equal(renderedReader.props.previousChapter.published, true)
+  assert.equal(renderedReader.props.nextChapter, undefined, 'Do not link to the unpublished body-vote chapter')
+  await assert.rejects(route.default({ params: Promise.resolve({ bookSlug: 'wonderproof', chapterSlug: 'chapter-03-the-body-vote' }) }), /Not found/)
 })
 
 test('footnotes avoid authored anchor collisions without changing the authored targets', () => {

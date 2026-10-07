@@ -123,7 +123,7 @@ export function renderChapter(content: string, chapterTitle: string): { html: st
       const base = (heading.textContent ?? '').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '') || 'section';
       let id = base;
       let suffix = 2;
-      while (usedIds.has(id)) id = `${base}-${suffix++}`;
+      while (usedIds.has(id) || !DOMPurify.isValidAttribute('h2', 'id', id)) id = `${base}-${suffix++}`;
       heading.id = id;
       usedIds.add(id);
     }
