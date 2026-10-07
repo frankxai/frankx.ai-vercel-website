@@ -102,5 +102,21 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: 1
 
+      - name: Install the reader QA browser
+        run: pnpm exec puppeteer browsers install chrome --install-deps
+
+      - name: Reader journeys and screen evidence
+        run: node scripts/qa/book-journey.mjs
+        timeout-minutes: 8
+
+      - name: Save reader journey evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: book-journey-${{ github.sha }}
+          path: ${{ runner.temp }}/book-journey
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: GenCreator rendered metadata
         run: pnpm run test:gencreator-metadata:rendered
