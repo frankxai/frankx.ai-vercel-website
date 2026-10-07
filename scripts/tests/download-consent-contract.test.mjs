@@ -187,7 +187,12 @@ test('PDF analytics allows the registered free book slugs', () => {
   const { DIRECT_BOOK_GUIDES, TRACKED_GUIDES } = loadModule('lib/pdf-analytics.ts', {
     './redis-client': { createRedisClient: () => ({}) },
   }, () => {})
+  const { hasBookPdf } = loadModule('app/books/components/BookDownloadGate.tsx', {
+    'react/jsx-runtime': {}, './BookDownloadLink': { __esModule: true, default: () => null },
+  }, () => {})
+  assert.equal(DIRECT_BOOK_GUIDES.size, 6)
   for (const slug of ['love-and-poetry', 'spartan-mindset', 'self-development', 'imagination', 'manifestation', 'golden-age']) {
+    assert.equal(hasBookPdf(slug), true, slug)
     assert.equal(TRACKED_GUIDES.has(slug), true, slug)
     assert.equal(DIRECT_BOOK_GUIDES.has(slug), true, slug)
   }
@@ -345,6 +350,7 @@ test('every free book remains direct without audience enrollment when Resend is 
     assert.equal(book.status, 200)
     const result = await book.json()
     assert.equal(result.success, true)
+    assert.match(result.file.url, /love-and-poetry\.pdf\?download=1$/)
     assert.equal(result.message, 'Your download is ready.')
     assert.doesNotMatch(JSON.stringify(result), /reader@example\.invalid/)
     assert.deepEqual(networkCalls, [], 'download must not contact an email audience when Resend is configured')

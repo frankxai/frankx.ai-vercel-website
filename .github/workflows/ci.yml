@@ -98,6 +98,7 @@ jobs:
         run: pnpm run test:redis-env
 
       - name: Build
+        id: build
         run: pnpm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
@@ -119,4 +120,5 @@ jobs:
           retention-days: 14
 
       - name: GenCreator rendered metadata
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: pnpm run test:gencreator-metadata:rendered

@@ -169,7 +169,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate direct download URL from your blob storage
-    const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}`
+    const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
 
     return NextResponse.json({
       success: true,
