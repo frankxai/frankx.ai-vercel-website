@@ -139,7 +139,7 @@ try {
       assert.ok(target.height >= 44, 'PDF link must have a 44px touch target')
       assert.match(target.text, /Download .* PDF/)
       assert.equal(await page.$('#main input[type="email"]'), null, 'Downloading a book must not require email')
-      await page.$eval(download, element => element.scrollIntoView({ block: 'center' }))
+      await page.$eval(download, element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
       // Starting from a fresh navigation, reach the link through the actual tab
       // order. Programmatic focus could conceal tabindex/inert regressions.
       let reached = false
@@ -148,6 +148,15 @@ try {
         reached = await page.$eval(download, element => document.activeElement === element)
       }
       assert.ok(reached, 'PDF link must be reachable through the keyboard tab order')
+      // Tab navigation may scroll other links into view. Center the already
+      // keyboard-focused target without moving focus or waiting on smooth scroll.
+      await page.$eval(download, element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
+      await page.waitForFunction(selector => {
+        const element = document.querySelector(selector)
+        const bounds = element.getBoundingClientRect()
+        const hit = document.elementFromPoint(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
+        return document.activeElement === element && bounds.top >= 64 && bounds.bottom <= innerHeight && (hit === element || element.contains(hit))
+      }, {}, download)
       const focus = await page.$eval(download, element => ({ outline: getComputedStyle(element).outlineStyle, width: getComputedStyle(element).outlineWidth }))
       assert.notEqual(focus.outline, 'none', 'Keyboard focus must be visible')
       assert.ok(parseFloat(focus.width) >= 2, 'Keyboard focus must have a visible outline')

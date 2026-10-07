@@ -19,3 +19,5 @@ The required Merge Gate runs `test:email-safety`, including consent, paid denial
 The download-email assertion applies inside the book content landmark; the separate global newsletter form remains available. Sources: [GitHub Ubuntu runner image](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md), [Puppeteer browser installation](https://pptr.dev/browsers-api).
 
 Browser document navigation accepts HTTP 200 and conditional 304, recording the status. On a 304 Chromium renders its cached document; the route's subsequent real DOM, heading and download-link assertions remain required. Server API checks still assert their exact redirect or denial status.
+
+The focus capture keeps the link reached through real Tab navigation, then centers that already-focused link without animation. It requires the entire link inside the viewport below global navigation and verifies its pointer hit target before taking the screenshot. A computed outline on an offscreen link is insufficient visual evidence.
