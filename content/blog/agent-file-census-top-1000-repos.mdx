@@ -6,7 +6,8 @@ lastUpdated: "2026-10-08"
 author: "FrankX"
 category: "AI Engineering"
 tags: ["Claude Code", "AGENTS.md", "Coding Agents", "Research"]
-coverAlt: "Bar chart of agent instruction file presence across the 1,000 most-starred GitHub repositories"
+image: "/images/blog/agent-file-census/presence.svg"
+coverAlt: "Bar chart: 39.4% of the 1,000 most-starred GitHub repositories have an agent instruction file; AGENTS.md 30.9%, CLAUDE.md 20.7%"
 tldr: "39% of the top 1,000 GitHub repos ship an agent instruction file. AGENTS.md leads CLAUDE.md 31% to 21%, and where both exist CLAUDE.md is usually a short pointer. The median file is 106 lines; mine was 2.5 times the 90th percentile."
 keywords: ["agents.md", "claude.md", "coding agents", "claude code", "codex", "repository instructions", "census"]
 ---
@@ -15,7 +16,7 @@ keywords: ["agents.md", "claude.md", "coding agents", "claude code", "codex", "r
 
 Most coding agents read a Markdown file at the start of a session. Codex and several others read `AGENTS.md`. Claude Code reads `CLAUDE.md`, and its documentation says that since v2.1.277 it reads `AGENTS.md` as well when there is no `CLAUDE.md`. Gemini CLI has `GEMINI.md`, Copilot has `.github/copilot-instructions.md`, Cursor has a `.cursor/` folder.
 
-I wanted to know what people actually put in these files, so on 7 October 2026 I measured the 1,000 most-starred public repositories on GitHub. One root listing each, every agent file downloaded, counted with regular expressions, no model in the loop. The code, the manifest and the per-file numbers are public. A second reviewer went through the first draft and found thirteen problems, which is why some numbers here differ from the ones I posted internally the day before.
+I wanted to know what people actually put in these files. On 7 October 2026 I measured the 1,000 most-starred public repositories on GitHub: one root listing each, every agent file downloaded and checked against its git blob hash, counted with regular expressions, no model in the loop. The code, the manifest and the per-file numbers are public. A second reviewer went through the first draft and found thirteen problems, so some numbers here differ from the ones I posted internally the day before.
 
 ## Key takeaways
 
@@ -26,6 +27,8 @@ I wanted to know what people actually put in these files, so on 7 October 2026 I
 - **My own root file is 15,000 tokens.** It would be the fifth largest in the top 1,000.
 
 ## How many repos have an agent file?
+
+![Horizontal bar chart of agent instruction file presence in the top 1,000 repos](/images/blog/agent-file-census/presence.svg)
 
 | Surface (name present at the root) | Repos | Share |
 |---|---:|---:|
@@ -55,30 +58,34 @@ Because in the biggest repos it points somewhere else. 168 of the top 1,000 have
 | six lines or fewer, something else | 2 |
 | longer and different from AGENTS.md | 47 |
 
-Goose, Ansible and Alibaba's open-code-review write `@AGENTS.md`, which is Claude Code's import syntax, so Claude loads the other file inline. Ansible adds two more lines, a personal file under `~/.claude/` and a `CLAUDE.local.md` for uncommitted notes. Airflow, Spark and Ant Design write the bare word `AGENTS.md`, which is a hint to the reader rather than an import. Whether a tool honours the bare form is up to the tool.
+Goose, Ansible and Alibaba's open-code-review write `@AGENTS.md`, which is Claude Code's import syntax, so Claude loads the other file inline. Ansible adds two more lines, a personal file under `~/.claude/` and a `CLAUDE.local.md` for uncommitted notes. Airflow, Spark and Ant Design write the bare word `AGENTS.md`, a hint to the reader rather than an import. Whether a tool honours the bare form is up to the tool.
 
 My reading: most large repos keep one instruction file and treat the vendor files as thin adapters. If Claude Code's documented behaviour holds, even the adapter is now optional for Claude users. The 47 repos with two different bodies, and the 39 with only a `CLAUDE.md`, are the ones with a decision to make.
 
 ## What do the files actually say?
 
-Among the 309 top-1,000 `AGENTS.md` files, measured by regular expression, so read these as "contains text that looks like" rather than "verified":
+Among the 309 top-1,000 `AGENTS.md` files, measured by regular expression. Read these as "contains text that looks like", not "verified". I hand-checked the first two markers on 50 files each; details below the table.
 
 | Marker | Share |
 |---|---:|
-| A build, test or lint invocation such as `npm test`, `pytest`, `cargo test`, `make <target>` | 68.3% |
-| The word test or testing | 83.5% |
-| Commit message, pull request or conventional-commit wording | 55.3% |
-| Secrets, API keys, credentials or `.env` | 30.1% |
-| `SKILL.md` or a `/skills/` path | 28.2% |
-| Worktree | 17.8% |
-| MCP | 16.5% |
-| Subagent | 6.8% |
+| A build, test or lint invocation such as `npm test`, `pytest`, `cargo test`, `make <target>`, `./script.sh` | 66% |
+| Any mention of commits, pull requests or PRs | 79% |
+| The word test or testing | 84% |
+| Secrets, API keys, credentials or `.env` | 30% |
+| `SKILL.md` or a `/skills/` path | 28% |
+| Worktree | 18% |
+| MCP | 17% |
+| Subagent | 7% |
+
+On the labelling: the first version of the command regex matched "make a widening request" and "ESLint" used as a noun, so 18 of 25 hits were real. After fixing it, 21 of 25 are, and five commands it had missed (`zig build`, `./build.py`, `ansible-test`, a shell script, `./gradlew`) are caught. The commit marker went the other way: its hits were almost all real, but 10 of 25 files it skipped contained commit rules in other words, such as "never commit without asking" or a `Signed-off-by` requirement. So that row now counts any mention of commits or PRs, and says so. The remaining markers are unchecked; give every share about ten points either way.
 
 The most common section headings are "Commands" (12%), "Testing" (10.4%), "Project overview" (9.4%), "Architecture" (8.1%) and "Code style" (7.4%). The sample file in the agents.md README has three headings, dev environment tips, testing instructions and PR instructions, and the top 1,000 cluster around those same three subjects.
 
 Counting only prose lines, the median file has 13 lines per 100 that contain never, always, must, do not or avoid. The 90th percentile has 30. Above that you are writing a rulebook.
 
 ## How long should the file be?
+
+![Range chart of approximate token length for three groups of agent files](/images/blog/agent-file-census/size.svg)
 
 | Top-1,000 AGENTS.md | p10 | median | p90 | max |
 |---|---:|---:|---:|---:|
@@ -99,13 +106,13 @@ starlight/AGENTS.md            ~15,193 tokens  warn  long: p90 is 6,193, median 
 frankx.ai-vercel-website        ~3,592 tokens  info  AGENTS.md, CLAUDE.md and GEMINI.md all differ
 ```
 
-My root instruction file would be the fifth largest in the top 1,000. It grew the way these files grow: every incident added a rule and nobody removed one. The first version of the lint also flagged my global `CLAUDE.md` as rule-dense. It was counting code blocks. Once the density is measured on prose only, the file passes, which is a small example of why the second reviewer matters.
+My root instruction file would be the fifth largest in the top 1,000. It grew the way these files grow: every incident added a rule and nobody removed one. The first version of the lint also flagged my global `CLAUDE.md` as rule-dense. It was counting code blocks. Measured on prose only, the file passes, which is a small example of why the second reviewer matters.
 
 ## What I am doing with this
 
 1. **The lint.** `agentfile-lint` reports size against the census, missing command markers, rule density, `/init` markers, differences between sibling instruction files, token-shaped strings and hidden Unicode. Zero dependencies, thresholds adjustable. Only the last two are errors; the rest are information.
 2. **The numbers upstream.** An issue to the agents.md project with the presence figures and the pointer breakdown, which their README does not mention.
-3. **A re-run with the same files.** The manifest records each blob's SHA, but the collector fetched from `HEAD`, so the next version fetches by SHA and keeps dated cohorts. Then a second snapshot means something.
+3. **A re-run against the same files.** Every downloaded body was checked against the blob hash GitHub reported when it was listed. 2,395 of 2,397 matched; the two that did not were stale search-index entries, re-fetched by hash. The next snapshot keeps this one beside it.
 
 The honest limit, which the reviewer put better than I did: this measures what people write, not what works. The experiment that would change how you write your file is a before/after, consolidating instructions into one file across several repos and measuring failed runs. That is the next one.
 
@@ -133,7 +140,7 @@ GitHub code search returns at most 1,000 results in best-match order. Whatever t
 
 ### Can I reproduce the census?
 
-Mostly. The collector and analyzer are two Node scripts with no dependencies beyond a logged-in `gh`, and the manifest lists every repo, path and the blob SHA reported at listing time. Bodies were fetched from `HEAD`, so a file edited in the minutes between listing and download could differ from its recorded SHA; the next version fetches by SHA. Raw bodies are not redistributed because they are other people's files under their own licences.
+Yes. The collector, analyzer and verifier are Node scripts with no dependencies beyond a logged-in `gh`. The manifest lists every repo, path and blob hash, and every body in the analysis matches its hash, so the exact files can be re-fetched through the git blobs API. Raw bodies are not redistributed because they are other people's files under their own licences.
 
 ### Does a longer file make the agent worse?
 
