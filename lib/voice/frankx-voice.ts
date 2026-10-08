@@ -53,7 +53,7 @@ export const FRANKX_VOICE = {
     proof: [
       'Music releases and production notes at /music',
       'Built Oracle EMEA AI CoE — 1000+ requests handled',
-      'Helped build a seven-figure business',
+      'Helped build a business with his brother',
       'ACOS, Workshop OS, Watch OS, Library OS, SIS, IIS shipped to production',
     ],
     disclaimer: 'Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.',
