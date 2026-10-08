@@ -178,7 +178,7 @@ export default function ConnectPage() {
             </p>
           </Link>
           <Link href="/music" className="group border-l border-white/25 pl-4">
-            <p className="text-3xl font-medium tracking-[-0.04em]">12,000+</p>
+            <p className="text-3xl font-medium tracking-[-0.04em]">Music lab</p>
             <p className="mt-1 text-sm leading-6 text-white/65 group-hover:text-white">
               music experiments in a long-running creative practice
             </p>

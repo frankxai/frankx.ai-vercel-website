@@ -388,8 +388,8 @@ export const planInitiatives: PlanInitiative[] = [
     slug: 'music-lab-v2',
     title: 'Music Lab V2',
     subtitle: 'Enhanced AI music production with Suno workflow improvements',
-    description: 'Upgrade the Music Lab with better Suno prompt engineering workflows, genre-specific templates, batch generation, and a listening room for 500+ AI songs. Integrate with the creative track of the broader ecosystem.',
-    tldr: 'Enhance Music Lab with better Suno workflows, genre templates, and a listening room for 500+ AI songs.',
+    description: 'Upgrade the Music Lab with better Suno prompt engineering workflows, genre-specific templates, batch generation, and a listening room for songs made with Suno. Integrate with the creative track of the broader ecosystem.',
+    tldr: 'Enhance Music Lab with better Suno workflows, genre templates, and a listening room for songs made with Suno.',
     icon: 'Music',
     color: 'teal',
     track: 'creative',
@@ -397,7 +397,6 @@ export const planInitiatives: PlanInitiative[] = [
     priority: 'medium',
     progress: 0,
     highlights: [
-      { stat: '500+', label: 'AI Songs Created' },
       { stat: '50+', label: 'Genre Templates' },
       { stat: 'V2', label: 'Version Target' },
     ],

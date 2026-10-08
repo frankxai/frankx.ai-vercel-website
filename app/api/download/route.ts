@@ -1,6 +1,10 @@
-import { type NextRequest, NextResponse } from 'next/server'
+import { after, type NextRequest, NextResponse } from 'next/server'
 import registry from '@/data/products.json'
 import type { ProductRecord } from '@/types/products'
+import { isPublicDownloadProduct } from '@/lib/download-access'
+import { describeStoreFailure } from '@/lib/store-failure'
+import { TRACKED_GUIDES, trackDirectDownloadOnce } from '@/lib/pdf-analytics'
+import { bookDownloadRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
 const products = registry as ProductRecord[]
 
@@ -14,7 +18,7 @@ const BLOB_BASE_URL = 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com'
  * Product Download API
  *
  * Handles file downloads from your existing Vercel Blob storage.
- * Supports gated downloads (email required) and direct downloads.
+ * Provides direct free downloads; legacy POST validates email without enrollment.
  *
  * GET /api/download?product={slug}&file={filename}
  * POST /api/download (with email for gated content)
@@ -37,6 +41,13 @@ export async function GET(request: NextRequest) {
   if (!product) {
     return NextResponse.json(
       { error: 'Product not found' },
+      { status: 404 }
+    )
+  }
+
+  if (!isPublicDownloadProduct(product)) {
+    return NextResponse.json(
+      { error: 'Download unavailable' },
       { status: 404 }
     )
   }
@@ -70,7 +81,30 @@ export async function GET(request: NextRequest) {
   }
 
   // Construct the public blob URL
-  const blobUrl = `${BLOB_BASE_URL}/${file.blobKey}`
+  const blobUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
+
+  // Count a production redirect once per rendered link. The attempt token is
+  // short-lived and never enters the stored event or the public Blob URL.
+  const attemptId = searchParams.get('attempt')
+  if (request.method === 'GET' && process.env.VERCEL_ENV === 'production' && attemptId && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(attemptId) && TRACKED_GUIDES.has(product.slug) && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
+    try {
+      after(async () => {
+        try {
+          const { success } = await bookDownloadRatelimit.limit(getClientIdentifier(request))
+          if (!success) return
+          await trackDirectDownloadOnce({
+            guideSlug: product.slug,
+            guideTitle: product.name || (product as ProductRecord & { title?: string }).title || product.slug,
+            downloadMethod: 'direct',
+          }, attemptId)
+        } catch (error) {
+          console.error('Book download analytics failed:', describeStoreFailure(error, 'store'))
+        }
+      })
+    } catch (error) {
+      console.error('Book download analytics scheduling failed:', describeStoreFailure(error, 'store'))
+    }
+  }
 
   // Redirect to the public blob URL for download
   return NextResponse.redirect(blobUrl)
@@ -113,6 +147,13 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    if (!isPublicDownloadProduct(product)) {
+      return NextResponse.json(
+        { error: 'Download unavailable' },
+        { status: 404 }
+      )
+    }
+
     if (!product.delivery?.files?.length) {
       return NextResponse.json(
         { error: 'No downloadable files available' },
@@ -132,24 +173,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Add contact to Resend audience for follow-up
-    const RESEND_API_KEY = process.env.RESEND_API_KEY
-    if (RESEND_API_KEY) {
-      fetch(`https://api.resend.com/audiences/4d2e913e-6903-4dd4-8749-c02cdb844331/contacts`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          unsubscribed: false,
-        }),
-      }).catch((err) => console.error('Resend contact error:', err))
-    }
-
     // Generate direct download URL from your blob storage
-    const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}`
+    const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
 
     return NextResponse.json({
       success: true,
@@ -163,7 +188,7 @@ export async function POST(request: NextRequest) {
         format: file.format,
         url: downloadUrl
       },
-      message: `Thanks ${email}! Your download is ready.`
+      message: 'Your download is ready.'
     })
   } catch (error) {
     console.error('Download POST error:', error)
@@ -173,4 +198,3 @@ export async function POST(request: NextRequest) {
     )
   }
 }
-

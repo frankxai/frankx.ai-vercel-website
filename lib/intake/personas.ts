@@ -126,7 +126,7 @@ export const platformPersonas: PlatformPersona[] = [
   {
     platform: 'instagram',
     label: 'Instagram',
-    persona: 'The Aesthete — the 12k music catalog and generative art',
+    persona: 'The Aesthete — generative art and the music practice',
     voicePosture:
       'Visual-first. Caption is liner notes, not pitch. Soul spectrum dominant — this is the music side of the brand.',
     visualTreatment:
@@ -200,7 +200,7 @@ export const platformPersonas: PlatformPersona[] = [
   {
     platform: 'spotify',
     label: 'Spotify / Apple Music',
-    persona: 'The Producer — the 12,000+ song catalog',
+    persona: 'The Producer — songs made with Suno',
     voicePosture:
       'No voice. The cover and the music carry it. Track titles are the only copy that matters.',
     visualTreatment:

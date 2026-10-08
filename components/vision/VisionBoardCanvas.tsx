@@ -84,7 +84,6 @@ function buildVisionClusters(context: VisionBoardContext): VisionCluster[] {
         `Routes mapped: ${context.site.totalRoutes}`,
         `Products mapped: ${context.products.count}`,
         `Blog index size: ${context.content.blogCount}`,
-        `Music inventory: ${context.content.musicPublishedCount} visible / ${context.content.musicEstimatedCount}+ estimated`,
         `Profiles tracked: ${context.content.profileCount}`,
         `Snapshot generated: ${generatedAtLabel}`,
       ],

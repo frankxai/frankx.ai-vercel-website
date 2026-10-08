@@ -29,6 +29,13 @@ const navCards = [
   { href: '/research/manifestation-law-of-attraction-ai-systems', icon: FlaskConical, title: 'The Research', desc: 'Mechanism vs. belief, with sources and honest limitations.' },
 ]
 
+// Reality Architect is where the loop on this page runs as a practice: open, local-first, exported as Markdown.
+const realityArchitect = [
+  { href: 'https://www.realityarchitect.ai/studio', title: 'Reality Studio', desc: 'The daily practice: your Atlas, bridges of reps and bold moves, signs, and approved snapshots, kept on your device.' },
+  { href: 'https://www.realityarchitect.ai/library', title: 'The Library', desc: 'The manifestation canon taught honestly: what to keep, the mechanism it rides on, and its limits.' },
+  { href: 'https://www.realityarchitect.ai/threshold', title: 'The Imaginal Act', desc: 'Author one ordinary scene of a life you would love, face one fact, and choose one act you can verify.' },
+]
+
 export default function ManifestationClient() {
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -119,6 +126,30 @@ export default function ManifestationClient() {
           intro="Two stages. The first is the inner game. The second turns the felt vision into shipped reality on a loop."
         />
         <IdentityProgression tiers={identityTiers} />
+      </section>
+
+      {/* The practice, built: Reality Architect */}
+      <section className="max-w-5xl mx-auto px-6 pb-20">
+        <SectionHeading
+          eyebrow="The practice, built"
+          title="Run the loop at Reality Architect"
+          intro="Reality Architect is the open practice this page points toward: author the scene, bridge to it with reps and bold moves, and keep an honest record of what happens. It runs in your browser and exports Markdown you own."
+        />
+        <div className="grid md:grid-cols-3 gap-4">
+          {realityArchitect.map((c) => (
+            <a
+              key={c.href}
+              href={c.href}
+              className="group relative block rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:bg-white/[0.04] hover:border-violet-500/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+            >
+              <h3 className="font-bold text-white mb-1">{c.title}</h3>
+              <p className="text-sm text-white/50 mb-4">{c.desc}</p>
+              <span className="inline-flex items-center gap-1.5 text-sm text-violet-300/90 group-hover:text-violet-200 transition-colors">
+                realityarchitect.ai <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </span>
+            </a>
+          ))}
+        </div>
       </section>
 
       {/* Navigation cards */}

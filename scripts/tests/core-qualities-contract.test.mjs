@@ -13,8 +13,8 @@ const desktopNav = read('components/NavigationMega.tsx')
 const mobileNav = read('components/MobileNavOverlay.tsx')
 const footer = read('components/Footer.tsx')
 const routeEnumerator = read('lib/route-enumeration.mjs')
-const researchDomains = read('lib/research/domains.ts')
 const researchSources = read('lib/research/sources.ts')
+const archivedResearchLeads = read('lib/research/source-leads.archive.ts')
 const legacyValues = read('content/blog/frankx-vision-mission-values.mdx')
 const routeIndex = JSON.parse(read('data/route-index.json'))
 
@@ -97,48 +97,11 @@ test('all commissioned quality images exist', () => {
   }
 })
 
-test('research domain and source registry stay in parity', () => {
-  const domainRecords = extractIndentedObjects(
-    extractScopedBlock(
-      researchDomains,
-      'export const researchDomains: ResearchDomain[] = [\n',
-      '\n]\n\n// Helper functions',
-      'research domain registry',
-    ),
-    '  ',
-  )
-  const coreDomain = domainRecords.find((record) =>
-    /^    slug: 'core-qualities-and-human-drives'/m.test(record),
-  )
-  assert.ok(coreDomain, 'cross-quality research domain is missing')
-
-  const declaredSourceCount = Number(coreDomain.match(/^    sourceCount: (\d+),?$/m)?.[1])
-  const coreSources = extractIndentedObjects(
-    extractScopedBlock(
-      researchSources,
-      "  'core-qualities-and-human-drives': [\n",
-      '\n  ],',
-      'cross-quality research sources',
-    ),
-    '    ',
-  )
-  const meaningSources = extractIndentedObjects(
-    extractScopedBlock(
-      researchSources,
-      "  'meaning-os': [\n",
-      '\n  ],',
-      'meaning research sources',
-    ),
-    '    ',
-  )
-
-  assert.equal(declaredSourceCount, 10)
-  assert.equal(coreSources.length, declaredSourceCount)
-  assert.ok(meaningSources.length > 0, 'meaning research sources are missing')
-  assert.ok(
-    routeIndex.routes.some((route) => route.href === '/research/core-qualities-and-human-drives'),
-    'cross-quality research route is missing from the generated route index',
-  )
+test('archived discovery leads stay out of the public research source registry', () => {
+  assert.match(researchSources, /export const domainSources: Record<string, ResearchSource\[\]> = \{\}/)
+  assert.doesNotMatch(researchSources, /generatedDomainSourceLeads|scholar\.google\.com/)
+  assert.match(archivedResearchLeads, /import 'server-only'/)
+  assert.match(archivedResearchLeads, /OpenAI o1 Technical Report/)
 })
 
 test('legacy six-value article points to the canonical four-quality system', () => {

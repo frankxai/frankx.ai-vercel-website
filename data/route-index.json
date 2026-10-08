@@ -1,24 +1,24 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1015,
-    "aliases": 58,
+    "total": 1031,
+    "aliases": 59,
     "byType": {
       "core": 24,
-      "section": 434,
+      "section": 445,
       "community": 17,
-      "tool": 66,
+      "tool": 68,
       "static": 15,
       "blog": 270,
       "research": 23,
-      "guide": 27,
+      "guide": 29,
       "library": 88,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
       "product": 21,
       "video": 3,
-      "workshop": 8
+      "workshop": 9
     }
   },
   "routes": [
@@ -91,6 +91,103 @@
         "agentic",
         "builder",
         "lab"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator",
+      "title": "Agentic Creator",
+      "tags": [
+        "agentic",
+        "creator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/creator",
+      "title": "GenCreator: Turn one clear idea into work you can review and ship.",
+      "description": "GenCreator teaches you to run a crew of agents on your own machine: brief, draft, review, ship, with a receipt for each step.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "gencreator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/curator",
+      "title": "GenCurator: Keep every idea with its source.",
+      "description": "Capture across every AI, tag it, trace where it came from, and build a library you can search a year from now.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "gencurator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/musician",
+      "title": "GenMusician: Write songs with a crew that remembers what you like.",
+      "description": "Capture your taste once. Every new song starts from it, and every prompt is kept so you can repeat what worked.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genmusician"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/orchestrator",
+      "title": "GenOrchestrator: One brain for the whole fleet.",
+      "description": "Claude Code, Codex, Cursor, Gemini and Grok on one memory, with gates between them and a different agent checking every maker.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genorchestrator"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/player",
+      "title": "GenPlayer: Play with a crew. Build the game while you play.",
+      "description": "Start with one small mechanic you can play, then grow it into a world with rules, quests and a playtest log.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genplayer"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/producer",
+      "title": "GenProducer: Ship the track: art, metadata, rights and a release gate.",
+      "description": "Turn finished songs into a catalog you control, with the checks that stop a bad release before it goes out.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genproducer"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/rig",
+      "title": "GenRig: Build the machine your crew runs on.",
+      "description": "Hardware, local models, harness, hooks and memory in one setup that gets checked, so Monday morning still works.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genrig"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/agentic-creator/teacher",
+      "title": "GenTeacher: Turn what you know into a path other people can finish.",
+      "description": "Attempt, one critique, revision, export, changed problem. Build the path once, and learners run it alone.",
+      "tags": [
+        "agentic creator",
+        "role",
+        "genteacher"
       ],
       "type": "section"
     },
@@ -1588,7 +1685,7 @@
     {
       "href": "/blog/best-cheap-ai-music-generator-2026",
       "title": "Best Cheap AI Music Generator 2026: Free Tiers and Commercial Rights Compared",
-      "description": "A comparison of the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that de...",
+      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that de...",
       "tags": [
         "AI Music",
         "Suno",
@@ -3044,7 +3141,7 @@
     },
     {
       "href": "/blog/music-as-consciousness-technology",
-      "title": "What AI Music Taught Me About Creative Systems",
+      "title": "12,000 Songs Later: What AI Music Taught Me About Creative Systems",
       "description": "An experiential field note on iteration, taste, emotional specificity, and what high-volume AI music practice can—and cannot—prove.",
       "tags": [
         "Music",
@@ -3732,8 +3829,8 @@
     },
     {
       "href": "/blog/suno-ai-12000-songs-production-lessons",
-      "title": "Suno AI: What I Actually Learned",
-      "description": "Production lessons — prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
+      "title": "Suno AI After 12,000 Songs: What I Actually Learned",
+      "description": "Production lessons from creating 12K+ AI tracks — prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
       "tags": [
         "creator-systems",
         "ai-systems",
@@ -3785,7 +3882,7 @@
     {
       "href": "/blog/suno-vs-udio-2026",
       "title": "Suno vs Udio 2026: Which AI Music Tool Is Safe to Release Commercially",
-      "description": "The honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
+      "description": "After 12,000+ AI songs, here's the honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
       "tags": [
         "Suno",
         "Udio",
@@ -4678,6 +4775,18 @@
         "creator",
         "os",
         "module"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/courses/build-your-ai-creator-os/reliable-workflow",
+      "title": "Build a source-based AI workflow · Free lab",
+      "description": "Six AI-generated lessons, failure tests and a portable peer-review packet.",
+      "tags": [
+        "learning",
+        "AI workflow",
+        "sources",
+        "peer review"
       ],
       "type": "section"
     },
@@ -5704,6 +5813,19 @@
       "type": "guide"
     },
     {
+      "href": "/guides/ai-operating-systems-workshop",
+      "title": "Build an AI operating system: the workshop curriculum",
+      "description": "Twelve lessons, working offline labs and a capstone for agents, MCP, memory, studio delivery, founder operations and family ownership.",
+      "tags": [
+        "Agents",
+        "Memory",
+        "MCP",
+        "Founder OS",
+        "Workshop"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/ai-writing-system",
       "title": "Building an AI Writing System",
       "description": "Create a systematic approach to AI-assisted writing that preserves your voice while 10x-ing output",
@@ -5918,6 +6040,20 @@
         "guide",
         "tutorial",
         "visual-design"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/mini-me-storyboard",
+      "title": "Mini Me Storyboard: build a character world from your photos",
+      "description": "A real 20-image field guide to consistent miniature characters, scene storytelling, agent companions, exact infographics, and prompts you can copy.",
+      "tags": [
+        "image-generation",
+        "storyboard",
+        "personal-brand",
+        "social-media",
+        "infographics",
+        "prompts"
       ],
       "type": "guide"
     },
@@ -7302,6 +7438,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/claude-haiku-4-5-20251001",
+      "title": "Claude Haiku 4.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/claude-opus-4-5",
       "title": "Claude Opus 4.5 — Model Hub",
       "tags": [
@@ -7673,6 +7818,15 @@
     {
       "href": "/llm-hub/grok-4-6",
       "title": "Grok 4.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4.3",
+      "title": "Grok 4.3 — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -9344,6 +9498,16 @@
       "type": "core"
     },
     {
+      "href": "/resources/builder-stack",
+      "title": "Builder Stack",
+      "tags": [
+        "resources",
+        "builder",
+        "stack"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/resources/skills",
       "title": "Skills",
       "tags": [
@@ -10088,6 +10252,16 @@
       "type": "workshop"
     },
     {
+      "href": "/workshops/ai-operating-systems",
+      "title": "Build an AI operating system",
+      "tags": [
+        "ai",
+        "operating",
+        "systems"
+      ],
+      "type": "workshop"
+    },
+    {
       "href": "/workshops/build-first-ai-agent",
       "title": "Build Your First AI Agent",
       "type": "workshop"
@@ -10278,6 +10452,7 @@
     "/mindvalleyuniversity": "/mvu",
     "/mvu/breathwork-dan-brule": "/mvu/dan-brule-breathwork",
     "/personal-ai-coe": "/workshops/personal-ai-coe",
+    "/research/core-qualities-and-human-drives": "/qualities",
     "/signal": "/ai-architecture",
     "/soul-frequency-assessment": "/soul-frequency-quiz",
     "/sovereign-leadership": "/workshops/sovereign-leadership",

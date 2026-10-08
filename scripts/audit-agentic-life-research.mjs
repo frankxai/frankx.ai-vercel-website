@@ -3,6 +3,7 @@
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { validateApprovedClaims } from './check-research-publication.mjs'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const args = new Set(process.argv.slice(2))
@@ -14,6 +15,7 @@ const registryPath = process.env.AGENTIC_LIFE_REGISTRY_PATH
   : join(ROOT, 'data/research/agentic-life-market.json')
 const domainsPath = join(ROOT, 'lib/research/domains.ts')
 const sourcesPath = join(ROOT, 'lib/research/sources.ts')
+const approvedClaimsPath = join(ROOT, 'data/research/approved-claims.json')
 const pagePath = join(ROOT, 'app/research/agentic-life-observatory/page.tsx')
 const apiPath = join(ROOT, 'app/research/agentic-life-observatory/registry.json/route.ts')
 const componentPath = join(ROOT, 'components/research/AgenticLifeObservatory.tsx')
@@ -21,6 +23,7 @@ const componentPath = join(ROOT, 'components/research/AgenticLifeObservatory.tsx
 const registry = JSON.parse(readFileSync(registryPath, 'utf8'))
 const domains = readFileSync(domainsPath, 'utf8').replace(/\r\n/g, '\n')
 const sources = readFileSync(sourcesPath, 'utf8').replace(/\r\n/g, '\n')
+const approvedClaims = JSON.parse(readFileSync(approvedClaimsPath, 'utf8'))
 const page = readFileSync(pagePath, 'utf8').replace(/\r\n/g, '\n')
 const api = readFileSync(apiPath, 'utf8').replace(/\r\n/g, '\n')
 const component = readFileSync(componentPath, 'utf8').replace(/\r\n/g, '\n')
@@ -28,6 +31,7 @@ const component = readFileSync(componentPath, 'utf8').replace(/\r\n/g, '\n')
 const failures = []
 const warnings = []
 const checks = []
+const publicationErrors = validateApprovedClaims(approvedClaims)
 
 function check(condition, id, detail) {
   checks.push({ id, status: condition ? 'pass' : 'fail', detail })
@@ -40,15 +44,6 @@ function sectionForSlug(text, slug) {
   const start = match.index
   const nextMatch = text.slice(start + 10).match(/\n\s*\{\s*\n?\s*["']?slug["']?\s*:/)
   const next = nextMatch ? start + 10 + nextMatch.index : -1
-  return text.slice(start, next === -1 ? text.length : next)
-}
-
-function sourceBlock(text, slug) {
-  const match = text.match(new RegExp(`["']${slug}["']\\s*:\\s*\\[`))
-  if (!match) return ''
-  const start = match.index
-  const nextMatch = text.slice(start).match(/\n\s*\],/)
-  const next = nextMatch ? start + nextMatch.index : -1
   return text.slice(start, next === -1 ? text.length : next)
 }
 
@@ -109,9 +104,18 @@ if (ageDays > 60) warnings.push(`Registry is ${ageDays} days old; begin the mont
 for (const slug of lifeSlugs) {
   const domainSection = sectionForSlug(domains, slug)
   check(Boolean(domainSection), `domain:${slug}`, 'registered in domains.ts')
-  const block = sourceBlock(sources, slug)
-  const sourceCount = (block.match(/["']?url["']?\s*:\s*["']https:\/\//g) ?? []).length
-  check(sourceCount >= 12, `sources:${slug}`, `${sourceCount} HTTPS sources; minimum 12`)
+}
+
+// The source file contains archived discovery leads. They cannot be counted
+// as reviewed evidence; the publication ledger is the only claim projection.
+check(publicationErrors.length === 0, 'approved-claims:validation',
+  publicationErrors.length ? publicationErrors.join('; ') : 'versioned reviewed-claim ledger is valid')
+const reviewedClaims = publicationErrors.length === 0 ? approvedClaims.claims : []
+const approvedClaimsByDomain = Object.fromEntries(lifeSlugs.map((slug) => [
+  slug, reviewedClaims.filter((claim) => claim.domain === slug).length,
+]))
+if (Object.values(approvedClaimsByDomain).some((count) => count === 0)) {
+  warnings.push('Some agentic-life topic maps have no approved claims; archived leads are excluded from evidence coverage.')
 }
 
 for (const slug of lifeSlugs.slice(0, 4)) {
@@ -169,6 +173,7 @@ const receipt = {
     categoryBreakdown,
     coveragePercent,
   },
+  publication: { approvedClaimsByDomain },
   checks: {
     total: checks.length,
     passed: checks.filter((item) => item.status === 'pass').length,

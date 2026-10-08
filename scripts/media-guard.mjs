@@ -68,6 +68,7 @@ const controlledMediaRoot = /(?:^|\/)(?:public|generated_audio|generated_imgs)(?
 const controlledMediaPath = /(?:^|\/)(?:audios?|downloads?|fonts?|images?|media|videos?)(?:\/|$)/i
 // App Router UI under /downloads — not binary media (Media Guard path match is segment-based).
 const downloadUiSource = /^app\/downloads?(?:\/[^/]+)*\/(page|layout|loading|error|not-found|template|default|route)\.(ts|tsx)$/
+const downloadRouteSource = /^app\/api\/downloads?(?:\/[^/]+)*\/route\.ts$/
 const protectedPolicyFiles = new Set([
   ".github/media-guard-policy.json",
   ".github/workflows/media-guard-trusted.yml",
@@ -219,6 +220,8 @@ function prohibitedSuffix(file) {
 function isControlledMediaFile(file) {
   // Exact lowercase .ts/.tsx App Router filenames only.
   if (downloadUiSource.test(file)) return false
+  // Exact lowercase route.ts only; route.js + case variants stay controlled.
+  if (downloadRouteSource.test(file)) return false
   return controlledMediaRoot.test(file) || controlledMediaPath.test(file)
 }
 

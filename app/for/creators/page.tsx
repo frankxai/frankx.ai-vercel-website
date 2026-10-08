@@ -35,9 +35,9 @@ const creatorTools = [
   {
     icon: Music2,
     title: 'Music Lab',
-    description: '12K+ songs created with Suno AI. Prompt templates, genre guides, and production workflows.',
+    description: 'Songs created with Suno AI. Prompt templates, genre guides, and production workflows.',
     href: '/music-lab',
-    stat: '12K+ tracks',
+    stat: 'Suno workflows',
     color: 'emerald',
   },
   {
@@ -175,8 +175,8 @@ export default function CreatorsLandingPage() {
             </motion.h1>
 
             <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-lg text-white/60 leading-relaxed">
-              Music, art, content, tools — everything you need to create at scale.
-              12K+ songs, 70+ tutorials, and open-source tools. All free to start.
+              Music, art, content, and tools for creating with AI.
+              The tutorials and the open-source tools are free to start.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
@@ -197,31 +197,6 @@ export default function CreatorsLandingPage() {
               </Link>
             </motion.div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Stats bar */}
-      <section className="relative border-y border-white/[0.08] bg-white/[0.03] py-10">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: '12K+', label: 'Songs Created' },
-              { value: '70+', label: 'Tutorials' },
-              { value: '75+', label: 'AI Skills' },
-              { value: 'Free', label: 'To Start' },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <div className="text-3xl sm:text-4xl font-bold text-white">{stat.value}</div>
-                <div className="mt-1 text-sm text-white/40">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 

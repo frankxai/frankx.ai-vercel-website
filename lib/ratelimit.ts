@@ -1,11 +1,12 @@
 import { Ratelimit } from '@upstash/ratelimit'
-import { createClient } from '@vercel/kv'
 
 import { createLocalLimiter } from './local-ratelimit'
 import { redisRestConfig } from './redis-env'
+import { createRedisClient } from './redis-client'
+import { describeStoreFailure } from './store-failure'
 
 const redisConfig = redisRestConfig()
-const kv = createClient(redisConfig)
+const kv = createRedisClient(redisConfig)
 // An empty integration is not an outage. Skip the request that would throw and count locally.
 const sharedLimiterReady = Boolean(redisConfig.url && redisConfig.token)
 
@@ -19,7 +20,7 @@ function resilient(remote: Ratelimit, max: number, windowMs: number) {
       try {
         return await remote.limit(key)
       } catch (error) {
-        console.error('Shared rate limiter unavailable; using the per-instance fallback:', error)
+        console.error('Shared rate limiter unavailable; using the per-instance fallback:', describeStoreFailure(error, 'ratelimit'))
         return { success: allowLocally(key) }
       }
     },
@@ -61,6 +62,15 @@ export const analyticsRatelimit = resilient(new Ratelimit({
   analytics: true,
   prefix: 'ratelimit:analytics'
 }), 100, 60_000)
+
+// Book download counting is optional. Keep network identifiers out of the
+// long-lived Upstash analytics dashboard, and skip counting if Redis fails.
+export const bookDownloadRatelimit = new Ratelimit({
+  redis: kv,
+  limiter: Ratelimit.slidingWindow(100, '1 m'),
+  analytics: false,
+  prefix: 'ratelimit:book-download'
+})
 
 // Lead creation rate limit - Moderate to prevent abuse
 export const leadRatelimit = resilient(new Ratelimit({

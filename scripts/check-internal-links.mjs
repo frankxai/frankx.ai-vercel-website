@@ -148,15 +148,53 @@ function walk(dir) {
 // fragments are stripped before lookup.
 const PATTERNS = [
   /\bhref=["']([^"']+)["']/g,
-  // Object-literal form: `href: '/x'`. Every nav config, product ladder and
-  // linktree entry in this repo is written this way, and the JSX-attribute
-  // pattern above (href=) structurally cannot see any of them — so a broken
-  // link in data/ or a nav config passed the gate for as long as it existed.
-  // Adding this surfaced 9 real breaks, two of them in the global nav.
-  /\bhref:\s*["']([^"']+)["']/g,
   /\bto=["']([^"']+)["']/g,
   /\]\((\/[^)\s]+)\)/g, // markdown link
 ]
+
+// Object-literal form: `href: '/x'`. Nav config, product ladders, and the
+// quoted keys in data/ai-os-workshop.ts are written this way, and the JSX
+// attribute pattern above cannot see them. Quoted keys, a space before the
+// colon, and a value on the next line are the same property. \s matches a
+// newline, so this pattern runs on the whole file. Word boundaries keep a
+// longer key such as myhref from matching.
+const OBJECT_HREF = /(?:['"])?\bhref\b(?:['"])?\s*:\s*["']([^"']+)["']/g
+
+function recordHref(file, line, href) {
+  if (!href.startsWith('/')) return
+  if (SKIP_PREFIXES.some((p) => href.startsWith(p))) return
+  if (TEMPLATE_RE.test(href)) return
+
+  const cleanHref = href.split('?')[0].split('#')[0]
+  if (!cleanHref || cleanHref === '/') return
+  if (validHrefs.has(cleanHref)) return
+  if (validAliases.has(cleanHref)) return
+  if (validHrefs.has(cleanHref.replace(/\/$/, ''))) return
+
+  const finding = {
+    file: path.relative(ROOT, file).replace(/\\/g, '/'),
+    line,
+    href: cleanHref,
+  }
+
+  // Anything ending in a file extension is an asset or a file-shaped route.
+  // Resolve it. Skipping on the extension alone used to hide a missing file.
+  if (ASSET_EXT_RE.test(cleanHref)) {
+    if (isPublicAsset(cleanHref) || isRouteHandler(cleanHref)) return
+    findings.push(finding)
+    return
+  }
+
+  const seg = cleanHref.split('/')[1]
+  if (validHrefs.has('/' + seg) && cleanHref.split('/').length === 3) return
+  if (isPublicAsset(cleanHref)) return
+  if (isAppPage(cleanHref)) return
+  // Extensionless route handlers are real URLs. /rss.xml is caught above
+  // because of its suffix; /courses/.../reliable-workflow is route.ts.
+  if (isRouteHandler(cleanHref)) return
+
+  findings.push(finding)
+}
 
 function scanFile(file) {
   scannedFiles++
@@ -166,65 +204,22 @@ function scanFile(file) {
   } catch {
     return
   }
+
+  OBJECT_HREF.lastIndex = 0
+  let objectMatch
+  while ((objectMatch = OBJECT_HREF.exec(src)) !== null) {
+    const line = src.slice(0, objectMatch.index).split('\n').length
+    recordHref(file, line, objectMatch[1])
+  }
+
   const lines = src.split('\n')
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]
     for (const pattern of PATTERNS) {
       pattern.lastIndex = 0
-      let m
-      while ((m = pattern.exec(line)) !== null) {
-        const href = m[1]
-        if (!href.startsWith('/')) continue
-        if (SKIP_PREFIXES.some((p) => href.startsWith(p))) continue
-        if (TEMPLATE_RE.test(href)) continue
-
-        // Strip query string + hash for matching
-        const cleanHref = href.split('?')[0].split('#')[0]
-        if (!cleanHref || cleanHref === '/') continue
-
-        // Direct hit
-        if (validHrefs.has(cleanHref)) continue
-        // Alias hit (also fine — redirects work)
-        if (validAliases.has(cleanHref)) continue
-        // Trailing-slash variant
-        if (validHrefs.has(cleanHref.replace(/\/$/, ''))) continue
-
-        // Anything ending in a file extension is an asset or a file-shaped
-        // route: resolve it, do not wave it through. This used to skip on the
-        // extension alone, so a missing /hero.png passed silently — the same
-        // guess-instead-of-look mistake as the old SKIP_PREFIXES list, one
-        // line higher up.
-        if (ASSET_EXT_RE.test(cleanHref)) {
-          if (isPublicAsset(cleanHref) || isRouteHandler(cleanHref)) continue
-          findings.push({
-            file: path.relative(ROOT, file).replace(/\\/g, '/'),
-            line: i + 1,
-            href: cleanHref,
-          })
-          continue
-        }
-        // Dynamic-segment heuristic: if the href matches a known prefix like
-        // /blog/<something>, /workshops/<something> and we have the listing
-        // page, assume the dynamic page exists (we can't fully resolve every slug)
-        const seg = cleanHref.split('/')[1]
-        if (validHrefs.has('/' + seg) && cleanHref.split('/').length === 3) {
-          // /<section>/<slug> — accept if the slug isn't obviously broken
-          // Catches cases where MDX files exist but didn't make it into the index
-          // (e.g. unreadable frontmatter). Logged at --warn level.
-          continue
-        }
-
-        // A real file under public/ is a working link, not a broken route.
-        if (isPublicAsset(cleanHref)) continue
-        // A real page.tsx in the app tree serves this URL even when the
-        // route-index omits it (redirect stubs, most commonly).
-        if (isAppPage(cleanHref)) continue
-
-        findings.push({
-          file: path.relative(ROOT, file).replace(/\\/g, '/'),
-          line: i + 1,
-          href: cleanHref,
-        })
+      let match
+      while ((match = pattern.exec(line)) !== null) {
+        recordHref(file, i + 1, match[1])
       }
     }
   }
