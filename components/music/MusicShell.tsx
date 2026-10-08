@@ -23,7 +23,6 @@ import {
   ShoppingBag,
   BarChart3,
   AudioWaveform,
-  Network,
   Orbit,
 } from 'lucide-react'
 import {
@@ -154,12 +153,6 @@ const revenuePaths = [
     icon: Clapperboard,
     summary: 'Offer clean licensing lanes for creators, podcasters, and video teams.',
     actions: ['Create licensing tiers', 'Publish usage terms', 'Ship pre-cleared packs'],
-  },
-  {
-    title: 'Membership + Inner Circle',
-    icon: Network,
-    summary: 'Monthly drops with unreleased tracks, prompts, and production breakdowns.',
-    actions: ['Run themed monthly drop', 'Publish private breakdown notes', 'Reward early members'],
   },
 ]
 
@@ -666,12 +659,12 @@ function RevenuePathsSection() {
           <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80 mb-4">Music Sales Possibilities</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Monetization Lanes, Steered by Agents</h2>
           <p className="text-[17px] leading-relaxed text-white/60 max-w-3xl">
-            Keep revenue diversified: streaming, direct products, licensing, and membership. Each lane gets a
+            Keep revenue diversified: streaming, direct products, and licensing. Each lane gets a
             dedicated asset system and feedback loop.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {revenuePaths.map((path, i) => {
             const Icon = path.icon
             return (

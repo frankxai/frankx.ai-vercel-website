@@ -23,7 +23,8 @@ const DECLINE = /^\s*declined\s*:\s*\S.{30,}/is
 
 const isReviewer = (c) => c.isBot === true && REVIEWERS.has(String(c.author ?? '').replace(/\[bot\]$/, '').toLowerCase())
 const authorized = (c, author) => !c.isBot && (c.author === author || MEMBERS.has(c.association))
-const titleOf = (body) => body.replace(/!\[[^\]]*\](\([^)]*\))?|<[^>]+>|\*+/g, '').trim().split('\n')[0].slice(0, 90)
+const fullTitleOf = (body) => body.replace(/!\[[^\]]*\](\([^)]*\))?|<[^>]+>|\*+/g, '').trim().split('\n')[0]
+const titleOf = (body) => fullTitleOf(body).slice(0, 90)
 
 /** When a finding was last stated: an edit replaces it, so earlier answers and commits no longer count. */
 const statedAt = (found) => (found.editedAt && found.editedAt > found.createdAt ? found.editedAt : found.createdAt)
@@ -52,21 +53,38 @@ function decide(found, answers, commits, label) {
 
 const normalize = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 
-/** A top-level answer must point at its finding (link, or the finding's title), so one reply cannot clear them all. */
-function references(reply, found) {
+/**
+ * A top-level answer must point at its finding (link, or the finding's title), so one reply cannot clear them all.
+ * The quoted title must be long enough to tell the finding from the siblings stated before the reply; identical
+ * titles need the link. A later finding cannot make an earlier, unambiguous answer ambiguous.
+ */
+function references(reply, found, siblings = []) {
   const anchor = /#(?:issuecomment|discussion_r|pullrequestreview)-?\d+/.exec(found.url ?? '')?.[0]
   if (anchor && reply.body.includes(anchor.slice(1))) return true
-  const title = normalize(titleOf(found.body)).slice(0, 40)
+  const full = normalize(fullTitleOf(found.body))
+  const others = siblings.filter((s) => s !== found && statedAt(s) <= answeredAt(reply)).map((s) => normalize(fullTitleOf(s.body)))
+  const text = normalize(reply.body)
+  let length = 40
+  while (length < full.length && others.some((o) => o.startsWith(full.slice(0, length)))) length += 10
+  const title = full.slice(0, length)
+  // A title that is a prefix of a sibling's ("Validate input" / "Validate input before saving") is answered by quoting
+  // it in full without also quoting the longer sibling. Identical titles are told apart by link; sections of one
+  // review body have no link of their own, so there the quoted title answers each indistinguishable twin.
+  if (others.some((o) => o.startsWith(title) && (o === full ? Boolean(found.url) : text.includes(o)))) return false
   // Quoting the title exactly identifies the finding; very short titles (under 6 characters) would match anything.
-  return title.length >= 6 && normalize(reply.body).includes(title)
+  return title.length >= 6 && text.includes(title)
 }
+
+/** An edited reply speaks from its edit: a revised finding can be answered by revising the answer. */
+const answeredAt = (reply) => (reply.editedAt && reply.editedAt > reply.createdAt ? reply.editedAt : reply.createdAt)
 
 /**
  * One review body can hold several badged findings; each is its own finding with its own severity. With more than
  * one, a link to the shared review cannot say which was answered, so each needs its title quoted.
  */
 function sections(item) {
-  const starts = [...item.body.matchAll(/!\[P[0-3]\s*Badge\]/gi)].map((m) => m.index)
+  // Same grammar as BADGE: the image form first, so its alt text is not counted a second time.
+  const starts = [...item.body.matchAll(/!\[P[0-3]\s*Badge\][^)\s]*\)?|\bP[0-3]\s*Badge\b/gi)].map((m) => m.index)
   if (starts.length <= 1) return [item]
   return starts.map((start, i) => ({ ...item, url: undefined, body: item.body.slice(start, starts[i + 1]) }))
 }
@@ -81,10 +99,10 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
       errors.push(`thread ${index + 1} (${found[0].author}): "${titleOf(found[0].body)}" has more comments than one read returns; too long to verify, so it fails closed. Summarise the outcome in a new reply after resolving.`)
       continue
     }
-    // With several findings in one thread, an answer must name the one it answers (title or link).
-    const several = found.length > 1
+    // With several findings in the thread when a reply was posted, it must name the one it answers (title or link).
+    const several = (r) => found.filter((s) => statedAt(s) <= answeredAt(r)).length > 1
     for (const item of found) {
-      const answers = thread.comments.filter((r) => authorized(r, author) && r.createdAt >= statedAt(item) && (!several || references(r, item)))
+      const answers = thread.comments.filter((r) => authorized(r, author) && answeredAt(r) >= statedAt(item) && (!several(r) || references(r, item, found)))
       // A resolution predates any later edit of the finding, so an edited finding needs a fresh answer.
       if (thread.isResolved && severity(item.body) > 1 && !item.editedAt) continue
       const error = decide(item, answers, commits, `thread ${index + 1}`)
@@ -92,13 +110,14 @@ export function evaluateFindings({ threads, topLevel, commits, author }) {
     }
   }
   const ordered = [...topLevel].sort((a, b) => a.createdAt.localeCompare(b.createdAt))
-  for (const item of ordered) {
-    if (!isReviewer(item) || item.dismissed || !BADGE.test(item.body)) continue
-    for (const section of sections(item)) {
-      const answers = ordered.filter((r) => r !== item && r.createdAt >= statedAt(section) && authorized(r, author) && references(r, section))
-      const error = decide(section, answers, commits, 'review comment')
-      if (error) errors.push(error)
-    }
+  // Every top-level finding is a sibling of every other, whichever comment carries it: two AI comments that open
+  // with the same words must not be cleared by one quote of that shared opening.
+  const findings = ordered.filter((item) => isReviewer(item) && !item.dismissed && BADGE.test(item.body)).flatMap((item) => sections(item).map((section) => ({ item, section })))
+  const all = findings.map((f) => f.section)
+  for (const { item, section } of findings) {
+    const answers = ordered.filter((r) => r !== item && answeredAt(r) >= statedAt(section) && authorized(r, author) && references(r, section, all))
+    const error = decide(section, answers, commits, 'review comment')
+    if (error) errors.push(error)
   }
   return errors
 }
