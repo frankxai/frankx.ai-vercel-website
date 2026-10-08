@@ -77,11 +77,15 @@ try {
     // waitForFunction re-checks from inside the page (requestAnimationFrame or timers), and those never run while
     // setJavaScriptEnabled(false) is in effect. A smooth-scrolling fragment jump is still moving at the first check,
     // so no-JavaScript position checks poll from Node instead, with the same condition and a bounded budget.
+    // A check passes only once the condition holds and scrollY is unchanged since the previous check, so a smooth
+    // scroll that is still in flight never counts as landed.
     async function pollInPage(measure, arg, description, attempts = 50, intervalMs = 100) {
       let last
+      let previous
       for (let attempt = 1; attempt <= attempts; attempt++) {
         last = await page.evaluate(measure, arg)
-        if (last.ok) return last
+        if (last.ok && previous?.scrollY === last.scrollY) return last
+        previous = last
         await new Promise(resolveWait => setTimeout(resolveWait, intervalMs))
       }
       throw new Error(`${description}; not reached after ${attempts} checks ${intervalMs}ms apart, last measured ${JSON.stringify(last)}`)
@@ -156,10 +160,10 @@ try {
         const header = document.querySelector('[data-book-reader-header]')
         const top = heading.getBoundingClientRect().top
         const headerBottom = header.getBoundingClientRect().bottom
-        return { ok: top >= headerBottom && top <= 200, top, headerBottom, scrollY }
+        return { ok: top >= headerBottom && top <= 200, top, headerBottom, headerTop: header.getBoundingClientRect().top, scrollY }
       }, target.id, `Contents jump to #${target.id} must land the heading below the sticky reader header and within 200px of the top`)
       const sticky = await page.$eval('[data-book-reader-header]', header => ({ actualTop: header.getBoundingClientRect().top, expectedTop: parseFloat(getComputedStyle(header).top) }))
-      assert.ok(Math.abs(sticky.actualTop - sticky.expectedTop) <= 1, 'Reader header stays below global navigation after scrolling')
+      assert.ok(Math.abs(sticky.actualTop - sticky.expectedTop) <= 1, `Reader header stays below global navigation after scrolling; measured ${JSON.stringify(sticky)}`)
       if (keyboard) assert.equal(await page.evaluate(id => document.activeElement?.id === id, target.id), true, 'Contents activation moves focus to the reading section')
       if (mobile && keyboard) assert.equal(await page.$eval(contents, element => element.open), false, 'Contents closes after choosing a section')
       if (size.reducedMotion) assert.equal(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior), 'auto', 'Reduced motion disables smooth page scrolling')
