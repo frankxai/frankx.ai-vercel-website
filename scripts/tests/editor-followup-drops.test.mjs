@@ -47,7 +47,7 @@ test('song counts are dropped from blog prose', () => {
   const soulFrequency = read('../../content/blog/02-the-soul-frequency-framework.mdx')
   const acos = read('../../content/blog/acos-philosophy-technology-amplifies.mdx')
   assert.ok(!soulFrequency.includes('over 500 songs'))
-  assert.ok(soulFrequency.includes('From making music with AI and coaching hundreds of creators, I discovered'))
+  assert.ok(soulFrequency.includes('From making music with AI, I discovered'))
   assert.ok(!acos.includes('After producing 500 songs'))
   assert.ok(acos.includes('Producing songs with AI, I noticed:'))
 })
