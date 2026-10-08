@@ -8,6 +8,7 @@ import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
 import { editorialLinkRel } from '@/lib/affiliates/link-builder'
 import Diagram from '@/components/blog/Diagram'
+import { EmailSignup } from '@/components/email-signup'
 import { FunnelCTA } from '@/components/funnel/FunnelCTA'
 import { LeadMagnetCard } from '@/components/blog/LeadMagnetCard'
 import { buildInlineVideoSchema } from '@/lib/video-schema'
@@ -325,6 +326,7 @@ export const mdxComponents: MDXComponents = {
   PlatformMarkGrid,
   Callout,
   AffiliateLink,
+  EmailSignup,
   FunnelCTA,
   LeadMagnetCard,
   LeadMagnetInline: LeadMagnetCard,

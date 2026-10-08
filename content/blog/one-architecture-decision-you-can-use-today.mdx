@@ -1,0 +1,92 @@
+---
+title: "One architecture decision you can use today"
+description: "Copy the seven-field architecture decision record, then read one worked example on retrieval and fine-tuning. The waitlist asks what you would pay."
+date: "2026-10-08"
+lastUpdated: "2026-10-08"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["ai-architecture", "decision-record", "retrieval", "academy"]
+image: "/images/blog/generated/frankx-editorial-20260830/ai-architecture-four-seams.webp"
+featured: false
+readingGoal: "Fill the seven-field decision record, using the retrieval example as the worked case."
+tldr: "The template has seven fields: title, status, context, decision, the options you rejected, the cost of being wrong, and the trigger that reopens it. The worked example chooses retrieval over fine-tuning for a support assistant and names the evidence that would reverse it. That example is a composite for teaching. The waitlist asks what you would pay, who you are, and what you are trying to do."
+keywords: ["architecture decision record", "retrieval before fine-tuning", "AI architect academy", "support assistant architecture"]
+---
+
+An architecture decision record is the shortest note that lets someone who was not in the room check the decision a year later. The template is below. The worked example after it is a composite written for teaching. It is not a client, an employer, or any real organisation. The budgets in it are set at decision time so they can be measured. They are not measurements.
+
+If you already have a system in front of you, fill the template for that system. The example shows what a filled field looks like.
+
+The longer argument for which decisions are expensive to reverse is in [Four decisions that are hard to reverse](/blog/ai-architecture-2026-four-decisions-hard-to-reverse). The [AI architect guide](/blog/ai-architect-guide-2026) and [architecture patterns for solo builders](/blog/ai-architecture-patterns-solo-builders) sit beside it.
+
+## The template
+
+Seven fields. If a field is hard to fill, that is the finding.
+
+```
+Title: One sentence, in the form of the decision. "Retrieval before fine-tuning", not "Model strategy".
+Status: Proposed, accepted, superseded by ADR-n, or reversed on a date. Never "in progress".
+Context: What is true that forces a decision now. Constraints you did not choose. The failure the system exists to prevent.
+Decision: What you will do, stated so a reviewer can check whether you did it.
+Options rejected: Each serious alternative, why it lost, and the change that would make it win.
+Cost of being wrong: What it costs, in time, money, and trust, if this decision is wrong, and how soon you would know.
+Revisit when: The observable trigger that reopens the decision. A date is acceptable. "When we have time" is not.
+```
+
+## ADR-0001: Retrieval before fine-tuning
+
+Status: accepted. The revisit trigger is set below. The decision owner is the engineer accountable for the first release.
+
+### Context
+
+A product team at a mid-size software company is asked to ship an assistant that answers customer support questions from the company's own documentation. Leadership has already said "fine-tune" in two meetings. The documentation is about a thousand pages, it changes weekly, and it is the only thing the assistant may cite. The failure the system exists to prevent is a confident wrong answer that a customer acts on. A slow answer, or an honest "I don't know", is acceptable for the first release.
+
+Constraints the team did not choose: an eight-week window to a first internal release, no labelled dataset of question-and-answer pairs, one engineer full-time and one part-time, and a data-handling rule that customer conversations may not leave the company's own environment for training.
+
+### Decision
+
+The first release retrieves passages from the current documentation at question time and asks a general model to answer only from those passages, citing them. No model is fine-tuned in the first release. A question with no passage above the retrieval threshold gets a fixed "I can't find that in the documentation" response and a link to a person.
+
+### Options rejected
+
+1. Fine-tune a model on the documentation. There is no question-and-answer dataset. The documentation changes weekly, so the model would be stale within days of every training run. A fine-tuned model cannot cite the passage it drew from, which removes the check a support agent can do. This option would win if the documentation were stable for months and the goal were tone or format rather than facts.
+
+2. Fine-tune and retrieve. It doubles the surface to evaluate before the team has an evaluation. It is worth testing once retrieval alone has a measured wrong-answer rate to beat.
+
+3. Put the whole documentation in the prompt. A thousand pages exceeds a sensible per-question cost, and a long-context answer cannot be checked: the reviewer cannot tell which page produced it. This option would win for a documentation set of a few dozen pages.
+
+4. Buy a hosted support-bot product. The team could not get a written answer on where customer conversations would be stored, and the data-handling rule is not negotiable. Reopen this option if a vendor answers that question in writing.
+
+### Cost of being wrong
+
+If retrieval alone cannot reach an acceptable wrong-answer rate, the team has spent roughly five of eight weeks and owns a working evaluation set of real questions. That set is the input the fine-tuning option needed and did not have. The reversal is cheap, and the work is kept. The expensive failure is shipping without a way to check answers, and finding out from a customer.
+
+Budgets set at decision time, to be measured, not assumed: answer latency under eight seconds at the 95th percentile; retrieval cost per question small enough that a full day of expected traffic costs less than one hour of a support agent; and a wrong-answer rate on the evaluation set below the rate of the current human-written macro replies. The team measures that human rate in week one, before writing any assistant code.
+
+### Revisit when
+
+- The evaluation set reaches 300 real questions with reviewed answers, whatever the wrong-answer rate.
+- The wrong-answer rate on that set stays above the human-macro rate for two consecutive weeks.
+- The documentation change cadence drops to monthly or slower for a quarter.
+- A vendor answers the data-handling question in writing.
+
+The rejected options and the revisit triggers are what a later reviewer can check. The course is a sequence of records like this one, in the order a system forces you to make them.
+
+## If you want the next record
+
+This page has no checkout. Copy the record above. If you want the rest of the sequence when the academy opens, leave an email. Three questions follow, and you can skip any of them. The price band is how these signups are read. A count is not published.
+
+People on this list, if the course opens, get a founding cohort price lock, a named credit in the materials, a say in the curriculum order, and lifetime access to revisions. No date is set.
+
+<EmailSignup
+  listType="courses-waitlist"
+  intent="ai-architect-academy"
+  intentLabel="AI Architect Academy"
+  source="/blog/one-architecture-decision-you-can-use-today"
+  askDemand={true}
+  buttonText="Join the waitlist"
+  placeholder="you@company.com"
+  className="my-8"
+/>
+
+The curriculum page is [AI Architect Academy](/ai-architect-academy). It collects updates. This post is the decision you can use before that page changes.
