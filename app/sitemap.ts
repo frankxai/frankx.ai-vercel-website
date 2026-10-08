@@ -16,6 +16,7 @@ import { getChangelogUpdates } from '@/lib/changelog'
 import { isCanonicalBlogSlug } from '@/lib/blog-redirects.mjs'
 import { askQuestions } from '@/data/ask-questions'
 import { publishedSignals } from '@/lib/dream100'
+import { agenticRoles } from '@/lib/agentic-roles'
 
 const BASE_URL = siteConfig.url
 
@@ -137,6 +138,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/founder-signal', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/founders-circle', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/human-layer', priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: '/agentic-creator', priority: 0.85, changeFrequency: 'monthly' as const },
+    // investor excluded: legal read of investor copy pending
+    ...agenticRoles.filter((role) => role.slug !== 'investor').map((role) => ({ url: `/agentic-creator/${role.slug}`, priority: 0.7, changeFrequency: 'monthly' as const })),
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
     { url: '/journal', priority: 0.8, changeFrequency: 'daily' as const },
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },

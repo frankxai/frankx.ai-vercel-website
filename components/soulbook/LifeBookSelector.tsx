@@ -257,7 +257,7 @@ export default function LifeBookSelector() {
 
               {/* Outcomes */}
               <div className="space-y-3 mb-6">
-                <h4 className="font-semibold text-white/90">What you'll transform:</h4>
+                <h4 className="font-semibold text-white/90">What the book covers:</h4>
                 <div className="grid grid-cols-2 gap-2">
                   {lifeBooks[selectedBook].outcomes.slice(0, 4).map((outcome, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm text-white/60">

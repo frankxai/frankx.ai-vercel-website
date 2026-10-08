@@ -80,8 +80,8 @@
     ],
     "analyticsId": "creators-soulbook",
     "delivery": {
-      "methods": ["download", "gated"],
-      "requiresEmail": true,
+      "methods": ["download"],
+      "requiresEmail": false,
       "files": [
         {
           "name": "Soulbook 7 Pillars Framework",
@@ -1196,8 +1196,8 @@
     "modules": [],
     "analyticsId": "book-love-and-poetry",
     "delivery": {
-      "methods": ["download", "gated"],
-      "requiresEmail": true,
+      "methods": ["download"],
+      "requiresEmail": false,
       "files": [
         {
           "name": "Love & Poetry (PDF)",
@@ -1247,8 +1247,8 @@
     "modules": [],
     "analyticsId": "book-spartan-mindset",
     "delivery": {
-      "methods": ["download", "gated"],
-      "requiresEmail": true,
+      "methods": ["download"],
+      "requiresEmail": false,
       "files": [
         {
           "name": "Spartan Mindset (PDF)",
@@ -1298,8 +1298,8 @@
     "modules": [],
     "analyticsId": "book-self-development",
     "delivery": {
-      "methods": ["download", "gated"],
-      "requiresEmail": true,
+      "methods": ["download"],
+      "requiresEmail": false,
       "files": [
         {
           "name": "The Art of Self-Development (PDF)",
@@ -1349,8 +1349,8 @@
     "modules": [],
     "analyticsId": "book-imagination",
     "delivery": {
-      "methods": ["download", "gated"],
-      "requiresEmail": true,
+      "methods": ["download"],
+      "requiresEmail": false,
       "files": [
         {
           "name": "Imagination (PDF)",
@@ -1400,8 +1400,8 @@
     "modules": [],
     "analyticsId": "book-manifestation",
     "delivery": {
-      "methods": ["download", "gated"],
-      "requiresEmail": true,
+      "methods": ["download"],
+      "requiresEmail": false,
       "files": [
         {
           "name": "Manifestation (PDF)",
@@ -1432,8 +1432,8 @@
       "href": "/books/golden-age"
     },
     "delivery": {
-      "methods": ["download", "gated"],
-      "requiresEmail": true,
+      "methods": ["download"],
+      "requiresEmail": false,
       "files": [
         {
           "name": "The Golden Age of Creators (PDF)",
