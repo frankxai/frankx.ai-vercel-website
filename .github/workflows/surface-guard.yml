@@ -32,6 +32,15 @@ jobs:
       pull-requests: write
       statuses: write
     steps:
+      # Pending first: a label removed or a brief edited away leaves the head SHA unchanged, so the earlier success
+      # would stand while this run evaluates.
+      - name: Mark Surface Guard pending
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }}" \
+            -f state=pending -f context="Surface Guard" -f description="Evaluating protected surfaces" \
+            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
