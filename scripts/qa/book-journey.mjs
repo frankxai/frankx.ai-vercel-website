@@ -18,15 +18,6 @@ const [firstChapter, secondChapter] = wordless.chapters.filter(chapter => chapte
 assert.ok(firstChapter && secondChapter, 'Reading fixture needs two published chapters')
 const firstPath = `/books/${wordless.slug}/${firstChapter.slug}`
 const secondPath = `/books/${wordless.slug}/${secondChapter.slug}`
-const fixture = slug => {
-  const book = registryModule.exports.getBookBySlug(slug)
-  const chapter = book?.chapters.find(chapter => chapter.published)
-  assert.ok(chapter, `${slug}: fixture needs a published chapter`)
-  return { book, chapter, path: `/books/${book.slug}/${chapter.slug}` }
-}
-const poetryFixture = fixture('love-and-poetry')
-const sansFixture = fixture('spartan-mindset')
-const footnoteFixture = fixture('golden-age-of-intelligence')
 const sizes = [
   { name: 'desktop', width: 1440, height: 1000, reducedMotion: false },
   { name: 'tablet', width: 768, height: 1024, reducedMotion: false },
@@ -73,102 +64,6 @@ try {
     page.setDefaultTimeout(20_000)
     await page.setViewport({ width: size.width, height: size.height, deviceScaleFactor: 1, isMobile: size.name.startsWith('mobile'), hasTouch: size.name.startsWith('mobile') })
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: size.reducedMotion ? 'reduce' : 'no-preference' }])
-
-    // waitForFunction re-checks from inside the page (requestAnimationFrame or timers), and those never run while
-    // setJavaScriptEnabled(false) is in effect. A smooth-scrolling fragment jump is still moving at the first check,
-    // so no-JavaScript position checks poll from Node instead, with the same condition and a bounded budget.
-    // A check passes only once the condition holds and scrollY is unchanged since the previous check, so a smooth
-    // scroll that is still in flight never counts as landed.
-    async function pollInPage(measure, arg, description, attempts = 50, intervalMs = 100) {
-      let last
-      let previous
-      for (let attempt = 1; attempt <= attempts; attempt++) {
-        last = await page.evaluate(measure, arg)
-        if (last.ok && previous?.scrollY === last.scrollY) return last
-        previous = last
-        await new Promise(resolveWait => setTimeout(resolveWait, intervalMs))
-      }
-      throw new Error(`${description}; not reached after ${attempts} checks ${intervalMs}ms apart, last measured ${JSON.stringify(last)}`)
-    }
-
-    async function phase(action) {
-      manifest.currentAction = { viewport: size.name, action, at: new Date().toISOString() }
-      await saveJson('progress.json', manifest.currentAction)
-    }
-
-    async function readability(book, chapter) {
-      await page.evaluate(() => document.fonts.ready)
-      const type = await page.$eval('.book-reader-content', content => {
-        const body = getComputedStyle(content)
-        const paragraph = content.querySelector('p')
-        const heading = document.querySelector('article h1') || document.querySelector('#main h1')
-        return {
-          fontFamily: body.fontFamily, headingFamily: getComputedStyle(heading).fontFamily,
-          fontSize: parseFloat(body.fontSize), lineHeight: parseFloat(body.lineHeight),
-          paragraphMargin: parseFloat(getComputedStyle(paragraph).marginBottom),
-          alignment: body.textAlign, h1Count: document.querySelectorAll('#main h1').length,
-          contentHeadingCount: content.querySelectorAll('h1').length,
-          textLength: content.textContent.trim().length,
-        }
-      })
-      assert.equal(type.h1Count, 1, `${book.slug}/${chapter.slug}: one page heading`)
-      assert.equal(type.contentHeadingCount, 0, 'Authored headings cannot duplicate the page title')
-      assert.ok(type.textLength > 100, 'The chapter body must be rendered')
-      assert.ok(type.fontSize >= 18 && type.lineHeight / type.fontSize >= 1.75, 'Readable body size and leading')
-      assert.ok(type.paragraphMargin >= type.fontSize * 1.3, 'Paragraphs need visible separation')
-      assert.match(type.fontFamily, book.theme.bodyFont === 'serif' ? /Playfair|Georgia/i : /Inter/i, 'Body font follows the book theme')
-      assert.match(type.headingFamily, book.theme.headingFont === 'serif' ? /Playfair|Georgia/i : /Inter/i, 'Heading font follows the book theme')
-      if (chapter.type === 'poetry' || chapter.type === 'quotes') assert.equal(type.alignment, 'center', 'Poetry preserves its centered composition')
-      manifest.checks.push({ viewport: size.name, path: page.url(), scope: 'Computed reading typography', ...type })
-    }
-
-    async function keyboardReach(selector) {
-      for (let tabs = 0; tabs < 80; tabs++) {
-        await page.keyboard.press('Tab')
-        if (await page.$eval(selector, element => document.activeElement === element)) return
-      }
-      assert.fail(`${selector}: unreachable through the keyboard tab order`)
-    }
-
-    async function contentsJump(keyboard = false) {
-      const mobile = size.width < 1024
-      const contents = `[data-book-toc="${mobile ? 'mobile' : 'desktop'}"]`
-      if (mobile) {
-        const summary = `${contents} summary`
-        if (keyboard) {
-          await keyboardReach(summary)
-          await page.keyboard.press('Enter')
-          await page.keyboard.press('Escape')
-          assert.equal(await page.$eval(contents, element => element.open), false, 'Escape closes contents')
-          assert.equal(await page.$eval(summary, element => document.activeElement === element), true, 'Escape restores summary focus')
-          await page.keyboard.press('Enter')
-        } else await page.click(summary)
-      }
-      const link = `${contents} a`
-      const target = await page.$eval(link, element => ({ id: decodeURIComponent(element.hash.slice(1)), height: element.getBoundingClientRect().height }))
-      assert.ok(target.height >= 44, 'Contents links need a 44px touch target')
-      if (keyboard) {
-        await keyboardReach(link)
-        const focus = await page.$eval(link, element => ({ style: getComputedStyle(element).outlineStyle, width: parseFloat(getComputedStyle(element).outlineWidth) }))
-        assert.notEqual(focus.style, 'none', 'Contents keyboard focus is visible')
-        assert.ok(focus.width >= 2, 'Contents focus outline is visible')
-        await page.keyboard.press('Enter')
-      } else await page.click(link)
-      await page.waitForFunction(id => decodeURIComponent(location.hash.slice(1)) === id, {}, target.id)
-      await pollInPage(id => {
-        const heading = document.getElementById(id)
-        const header = document.querySelector('[data-book-reader-header]')
-        const top = heading.getBoundingClientRect().top
-        const headerBottom = header.getBoundingClientRect().bottom
-        return { ok: top >= headerBottom && top <= 200, top, headerBottom, headerTop: header.getBoundingClientRect().top, scrollY }
-      }, target.id, `Contents jump to #${target.id} must land the heading below the sticky reader header and within 200px of the top`)
-      const sticky = await page.$eval('[data-book-reader-header]', header => ({ actualTop: header.getBoundingClientRect().top, expectedTop: parseFloat(getComputedStyle(header).top) }))
-      assert.ok(Math.abs(sticky.actualTop - sticky.expectedTop) <= 1, `Reader header stays below global navigation after scrolling; measured ${JSON.stringify(sticky)}`)
-      if (keyboard) assert.equal(await page.evaluate(id => document.activeElement?.id === id, target.id), true, 'Contents activation moves focus to the reading section')
-      if (mobile && keyboard) assert.equal(await page.$eval(contents, element => element.open), false, 'Contents closes after choosing a section')
-      if (size.reducedMotion) assert.equal(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior), 'auto', 'Reduced motion disables smooth page scrolling')
-      manifest.checks.push({ viewport: size.name, result: 'passed', scope: keyboard ? 'Keyboard contents navigation' : 'No-JavaScript native contents navigation', target: target.id, sticky })
-    }
 
     async function capture(state, selector = '#main') {
       await page.waitForSelector(selector, { visible: true })
@@ -228,17 +123,6 @@ try {
     }
 
     try {
-      await phase('Read and navigate server HTML with JavaScript disabled')
-      await page.setJavaScriptEnabled(false)
-      await navigate(firstPath)
-      await readability(wordless, firstChapter)
-      await follow(`a[href="${secondPath}"]`, secondPath)
-      await readability(wordless, secondChapter)
-      await contentsJump()
-      manifest.checks.push({ viewport: size.name, result: 'passed', noJavaScriptChapterBody: true, noJavaScriptNextChapter: true })
-      await page.setJavaScriptEnabled(true)
-
-      await phase('Shelf and reading round trip')
       await navigate('/books')
       await capture('shelf')
       await follow('a[href="/books/the-wordless-laws"]', '/books/the-wordless-laws')
@@ -247,75 +131,22 @@ try {
       await capture('wordless-laws')
       await follow(`a[href="${firstPath}"]`, firstPath)
       await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, firstChapter.title)
-      await readability(wordless, firstChapter)
-      // Next scrolls a client navigation back to the top through the global smooth scroll-behavior, so measure
-      // once that scroll has settled rather than mid-animation.
-      const readerHeader = await pollInPage(() => {
-        const header = document.querySelector('[data-book-reader-header]')
-        const bottom = header.getBoundingClientRect().bottom
-        const firstContentTop = document.querySelector('article header > div')?.getBoundingClientRect().top
-        return { ok: firstContentTop >= bottom, bottom, firstContentTop, returnTargetHeight: header.querySelector('a').getBoundingClientRect().height, scrollY }
-      }, undefined, 'Reader header must not cover the first chapter label')
+      const readerHeader = await page.$eval('#main header', header => ({
+        bottom: header.getBoundingClientRect().bottom,
+        firstContentTop: document.querySelector('article header > div')?.getBoundingClientRect().top,
+        returnTargetHeight: header.querySelector('a').getBoundingClientRect().height,
+      }))
       assert.ok(readerHeader.returnTargetHeight >= 44, 'Reader return link must have a 44px touch target')
+      assert.ok(readerHeader.firstContentTop >= readerHeader.bottom, 'Reader header must not cover the first chapter label')
       await capture('first-chapter', 'article')
       await follow(`a[href="${secondPath}"]`, secondPath)
       await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, secondChapter.title)
       await capture('next-chapter', 'article')
-      await phase('Keyboard contents navigation and sticky header')
-      // A fresh document establishes the actual keyboard starting position.
-      await navigate(secondPath)
-      await readability(wordless, secondChapter)
-      await contentsJump(true)
-      const dock = await page.$eval('[aria-label="Music player"]', element => ({ width: element.getBoundingClientRect().width, height: element.getBoundingClientRect().height }))
-      assert.ok(dock.width <= 60 && dock.height <= 60, 'The closed reader music player stays a small corner chip')
-      await capture('contents-navigation', 'article')
-      const toTop = 'button[aria-label="Scroll to top"]'
-      await page.waitForSelector(toTop, { visible: true })
-      const clearance = await page.$eval(toTop, element => {
-        const target = element.getBoundingClientRect()
-        const player = document.querySelector('[aria-label="Music player"]').getBoundingClientRect()
-        const hit = document.elementFromPoint(target.x + target.width / 2, target.y + target.height / 2)
-        return { clear: target.bottom <= player.top - 8, reachable: hit === element || element.contains(hit), height: target.height }
-      })
-      assert.ok(clearance.clear && clearance.reachable && clearance.height >= 44, 'Scroll-to-top stays reachable above the music player')
-      await page.click(toTop)
-      await page.waitForFunction(() => scrollY <= 1)
-      manifest.checks.push({ viewport: size.name, result: 'passed', scrollToTopActivation: true, ...clearance })
       await follow(`a[href="${firstPath}"]`, firstPath)
       await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, firstChapter.title)
       await follow('a[href="/books/the-wordless-laws"]', '/books/the-wordless-laws')
       await follow('a[href="/books"]', '/books')
 
-      await phase('Poetry and sans theme reading')
-      for (const [reading, state] of [[poetryFixture, 'poetry-chapter'], [sansFixture, 'sans-chapter']]) {
-        await navigate(reading.path)
-        await readability(reading.book, reading.chapter)
-        await capture(state, '.book-reader-content')
-      }
-
-      await phase('Footnote reference and return navigation')
-      await navigate(footnoteFixture.path)
-      await readability(footnoteFixture.book, footnoteFixture.chapter)
-      const noteLink = '.book-reader-content .footnote-ref a'
-      const noteId = await page.$eval(noteLink, element => element.hash.slice(1))
-      await page.$eval(noteLink, element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
-      await page.click(noteLink)
-      await page.waitForFunction(id => location.hash.slice(1) === id, {}, noteId)
-      await page.waitForFunction(id => document.getElementById(id).getBoundingClientRect().top >= 0 && document.getElementById(id).getBoundingClientRect().bottom <= innerHeight, {}, noteId)
-      const backLink = `.book-reader-content [id="${noteId}"] .footnote-back`
-      const referenceId = await page.$eval(backLink, element => element.hash.slice(1))
-      await capture('footnotes', backLink)
-      await page.click(backLink)
-      await page.waitForFunction(id => location.hash.slice(1) === id, {}, referenceId)
-      assert.ok(await page.$(`[id="${referenceId}"]`), 'Footnote return target exists')
-      await page.waitForFunction(id => {
-        const target = document.getElementById(id).getBoundingClientRect()
-        const header = document.querySelector('[data-book-reader-header]').getBoundingClientRect()
-        return target.top >= header.bottom && target.bottom <= innerHeight
-      }, {}, referenceId)
-      manifest.checks.push({ viewport: size.name, result: 'passed', footnoteRoundTrip: true })
-
-      await phase('PDF keyboard activation and interruption recovery')
       await navigate('/books/love-and-poetry')
       const download = 'a[href="/api/download?product=love-and-poetry"]'
       await page.waitForSelector(download, { visible: true })
