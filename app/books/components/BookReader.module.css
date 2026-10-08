@@ -1,6 +1,9 @@
 .reader { padding-bottom: var(--music-dock-height, 6rem); }
 
-/* Clip the shared ancestor without creating a non-scrolling sticky container. */
+/* Clip the shared ancestors without creating a non-scrolling sticky container.
+   globals.css sets overflow-x: hidden on both html and body; html's value moves to the viewport,
+   so body's makes body its own scroll container and the sticky reader header scrolls away. */
+:global(body):has(.reader),
 :global(#main):has(.reader) { overflow-x: clip; }
 
 .content {
