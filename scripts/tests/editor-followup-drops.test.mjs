@@ -50,6 +50,8 @@ test('song counts are dropped from blog prose', () => {
   assert.ok(soulFrequency.includes('From making music with AI, I discovered'))
   assert.ok(!acos.includes('After producing 500 songs'))
   assert.ok(acos.includes('Producing songs with AI, I noticed:'))
+  assert.ok(!acos.includes('12,000+ AI songs produced with Suno'))
+  assert.ok(acos.includes('- AI songs produced with Suno'))
 })
 
 test('golden-age and SEO masterplan copy carries no word-count claim', () => {
