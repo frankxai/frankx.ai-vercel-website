@@ -24,6 +24,6 @@ test('the library uses the corner music chip until the player is opened', () => 
   // Assert library shelf clears the collapsed chip
   assert.match(
     clearanceCss,
-    /#book-results\s*\{\s*padding-bottom:\s*var\(--music-chip-reserve,\s*4\.75rem\);\s*\}/,
+    /#book-results\s*\{\s*padding-bottom:\s*calc\(var\(--music-chip-reserve,\s*4\.75rem\)\s*\+\s*env\(safe-area-inset-bottom,\s*0px\)\);\s*\}/,
   )
 })
