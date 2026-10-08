@@ -11,10 +11,11 @@ test('homepage Music Lab copy drops the invented workflow and instrument claims'
     'eyebrow="AI music production"',
     'Suno prompt systems',
     'playable instruments',
+    'built from daily studio practice',
   ]) {
     assert.ok(!home.includes(claim), claim)
   }
-  assert.ok(home.includes('A working archive of AI songs and production notes, built from daily studio practice.'))
+  assert.ok(home.includes('A working archive of AI songs and production notes, built from studio practice.'))
 })
 
 test('an empty proof-room eyebrow renders no empty paragraph', () => {

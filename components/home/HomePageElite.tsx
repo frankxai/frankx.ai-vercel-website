@@ -1612,7 +1612,7 @@ export default function HomePageElite({
           id="music-lab"
           eyebrow=""
           title="Music Lab"
-          description="A working archive of AI songs and production notes, built from daily studio practice."
+          description="A working archive of AI songs and production notes, built from studio practice."
           imageSrc={musicArtwork}
           imageAlt="Conceptual music studio with a grand piano, analog synthesizer, and amber light wave"
           links={[
