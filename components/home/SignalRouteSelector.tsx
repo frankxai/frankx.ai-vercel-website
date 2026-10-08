@@ -83,7 +83,7 @@ const signalRoutes: SignalRoute[] = [
     title: 'Make the next campaign, video, or song shippable.',
     description:
       'The multi-modal creator studio: social campaign engines, video pacing, Suno prompt systems, and the 100-tool Agentic Creator Stack.',
-    proof: 'Songs made with Suno · 100 creator tools benchmarked.',
+    proof: '',
     href: 'https://gencreator.ai/create',
     cta: 'Open Creator Studio',
     icon: Sparkles,
@@ -97,7 +97,7 @@ const signalRoutes: SignalRoute[] = [
     title: 'Fork the system behind the work.',
     description:
       'Move from tool experiments to a working creator stack: ACOS, prompts, templates, agent patterns, and build notes.',
-    proof: '630+ AI skills shipped across the operating system.',
+    proof: '',
     href: '/acos',
     cta: 'Explore ACOS',
     icon: Bot,
@@ -222,12 +222,14 @@ export function SignalRouteSelector() {
                     {route.description}
                   </p>
 
-                  <div className="mt-6 rounded-2xl border border-white/[0.07] bg-[#0a0a0b]/45 p-4">
-                    <div className="flex items-start gap-3">
-                      <ShieldCheck className={`mt-0.5 h-4 w-4 shrink-0 ${accent.text}`} aria-hidden="true" />
-                      <p className="text-sm leading-relaxed text-white/62">{route.proof}</p>
+                  {route.proof ? (
+                    <div className="mt-6 rounded-2xl border border-white/[0.07] bg-[#0a0a0b]/45 p-4">
+                      <div className="flex items-start gap-3">
+                        <ShieldCheck className={`mt-0.5 h-4 w-4 shrink-0 ${accent.text}`} aria-hidden="true" />
+                        <p className="text-sm leading-relaxed text-white/62">{route.proof}</p>
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     {route.checks.map((check) => (
