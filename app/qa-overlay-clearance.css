@@ -11,7 +11,7 @@
 
 @media (max-width: 639px) {
   /* Hero primary CTA: leave gutter for the Music corner chip. */
-  .order-1.min-w-0 a[href="/ai-architecture"] {
+  .order-1.min-w-0 a[href='/ai-architecture'] {
     max-width: calc(100% - var(--music-chip-reserve, 4.75rem));
   }
 }
@@ -26,4 +26,9 @@ main:has(a[href='/research/model-arena/receipts.json']) > div.relative.z-10 {
   main:has(a[href='/research/model-arena/receipts.json']) > div.relative.z-10 {
     padding-top: 9rem !important; /* md:pt-36 */
   }
+}
+
+/* /library: Last shelf row clears the collapsed music chip */
+#book-results {
+  padding-bottom: var(--music-chip-reserve, 4.75rem);
 }
