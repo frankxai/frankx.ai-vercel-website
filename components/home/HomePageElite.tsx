@@ -584,7 +584,7 @@ const products = [
   },
   {
     title: 'Music Lab',
-    description: 'Public music room and studio notes.',
+    description: 'Playable browser instruments (violin, piano, drums, and pads) with guided notes and tabs.',
     href: '/music-lab',
     color: 'orange' as const,
   },
@@ -744,11 +744,9 @@ function HubShowcase({
         <GlowCard color={color} className={`rounded-[2rem] ${theme.room}`}>
           <div className="grid gap-x-10 gap-y-7 p-5 sm:p-7 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8 lg:p-10 xl:gap-x-16 xl:p-12">
             <header className={`order-1 min-w-0 self-end ${textColumn} lg:row-start-1`}>
-              {eyebrow ? (
-                <p className={`mb-3 text-xs font-medium tracking-[0.08em] ${theme.eyebrow}`}>
-                  {eyebrow}
-                </p>
-              ) : null}
+              <p className={`mb-3 text-xs font-medium tracking-[0.08em] ${theme.eyebrow}`}>
+                {eyebrow}
+              </p>
               <h2 id={headingId} className="text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl lg:text-5xl">
                 {title}
               </h2>
@@ -1610,9 +1608,9 @@ export default function HomePageElite({
         {/* 7. Music Lab hub showcase */}
         <HubShowcase
           id="music-lab"
-          eyebrow=""
+          eyebrow="Browser instruments"
           title="Music Lab"
-          description="A working archive of AI songs and production notes, built from studio practice."
+          description="Playable browser instruments (violin, piano, drums, and pads) with guided notes and tabs, next to a working archive of AI songs and production notes."
           imageSrc={musicArtwork}
           imageAlt="Conceptual music studio with a grand piano, analog synthesizer, and amber light wave"
           links={[
