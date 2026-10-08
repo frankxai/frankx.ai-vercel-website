@@ -87,12 +87,12 @@ function AssessmentCTA() {
               glow
               href="/soulbook/vault"
             >
-              Download free vault
+              Open the free vault
             </PremiumButton>
             <PremiumButton
               variant="ghost"
               size="xl"
-              href="/assessment"
+              href="/soulbook/assessment"
             >
               Take free assessment
             </PremiumButton>

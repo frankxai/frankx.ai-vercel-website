@@ -15,7 +15,7 @@
     "test:delivery": "node --experimental-strip-types scripts/test-delivery.mjs",
     "test:library": "node --experimental-strip-types --test scripts/tests/library-discovery.test.mjs scripts/tests/library-prerender-contract.test.mjs scripts/tests/library-completion.test.mjs scripts/tests/library-music-dock.test.mjs scripts/tests/sacred-depth-contract.test.mjs scripts/tests/library-reading-surface.test.mjs",
     "test:site-search": "node --experimental-strip-types --test scripts/tests/site-search-relevance.test.mjs",
-    "test:navigation-completeness": "node --experimental-strip-types --test scripts/tests/navigation-completeness.test.mjs scripts/tests/public-claims.test.mjs scripts/tests/music-inventory-header.test.mjs",
+    "test:navigation-completeness": "node --experimental-strip-types --test scripts/tests/navigation-completeness.test.mjs scripts/tests/public-claims.test.mjs scripts/tests/music-inventory-header.test.mjs scripts/tests/soulbook-free-offer.test.mjs",
     "test:redis-env": "node --experimental-strip-types --test scripts/tests/redis-env.test.mjs scripts/tests/local-ratelimit.test.mjs scripts/tests/store-failure.test.mjs scripts/tests/analytics-store.test.mjs",
     "test:dream100": "node --test scripts/tests/dream100-contract.test.mjs",
     "dream100:brief": "node scripts/dream100-brief.mjs",

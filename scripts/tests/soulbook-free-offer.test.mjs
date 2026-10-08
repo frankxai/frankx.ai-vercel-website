@@ -17,8 +17,10 @@ test('soulbook offers the free vault and publishes no price', () => {
   assert.equal(pageContent.includes('Money-Back'), false)
   assert.equal(pageContent.includes('pricingTiers'), false)
   assert.equal(pageContent.includes('href="/soulbook/vault"'), true)
-  assert.equal(pageContent.includes('Download free vault'), true)
-  assert.equal(pageContent.includes('href="/assessment"'), true)
+  assert.equal(pageContent.includes('Open the free vault'), true)
+  assert.equal(pageContent.includes('Download free vault'), false)
+  assert.equal(pageContent.includes('href="/soulbook/assessment"'), true)
+  assert.equal(pageContent.includes('href="/assessment"'), false)
 
   assert.equal(selectorContent.includes('book.price'), false)
   assert.equal(selectorContent.includes('price.current'), false)
