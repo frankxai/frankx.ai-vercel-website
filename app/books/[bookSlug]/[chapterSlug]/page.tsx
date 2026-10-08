@@ -1,10 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { notFound } from 'next/navigation';
-// Using the noSSR wrapper — BookReader.tsx imports marked + isomorphic-dompurify
-// which can't survive Turbopack's SSR pre-render even when externalized.
-// See app/books/components/BookReaderNoSSR.tsx for full rationale.
-import BookReader from '../../components/BookReaderNoSSR';
+import BookReader from '../../components/BookReader';
 import { booksRegistry, getBookBySlug } from '../../lib/books-registry';
 import { createMetadata } from '@/lib/seo';
 import JsonLd from '@/components/seo/JsonLd';
@@ -80,8 +77,8 @@ export default async function ChapterPage({ params }: PageProps) {
     notFound();
   }
 
-  const previousChapter = chapterIndex > 0 ? book.chapters[chapterIndex - 1] : undefined;
-  const nextChapter = chapterIndex < book.chapters.length - 1 ? book.chapters[chapterIndex + 1] : undefined;
+  const previousChapter = book.chapters.slice(0, chapterIndex).reverse().find(candidate => candidate.published);
+  const nextChapter = book.chapters.slice(chapterIndex + 1).find(candidate => candidate.published);
 
   return (
     <>

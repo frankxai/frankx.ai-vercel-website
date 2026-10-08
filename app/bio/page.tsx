@@ -22,9 +22,9 @@ import CopyableBio from './CopyableBio';
 const ONE_LINE =
   'Frank Riemer is an AI Architect and Creator, founder of FrankX.';
 
-const SHORT_BIO = `Frank Riemer is an AI Architect and Creator, founder of FrankX. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
+const SHORT_BIO = `Frank Riemer is an AI Architect and Creator, founder of FrankX. He has worked around enterprise-scale AI/cloud transformation environments, helped build a business with his brother, and now helps creators, entrepreneurs, and operators build practical AI systems at frankx.ai. Based in Amsterdam.`;
 
-const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
+const LONG_BIO = `Frank Riemer is a musician-technologist, founder of FrankX, and AI Architect & Creator. He has worked around enterprise-scale AI/cloud transformation environments, helped build a business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
 
 He makes music with Suno and is the author of *The Golden Age of Intelligence*, a book on the convergence of human and artificial intelligence.
 
