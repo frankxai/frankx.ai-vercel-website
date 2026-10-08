@@ -18,10 +18,10 @@ test('homepage component is restored and uses the requested hero copy', () => {
   assert.ok(homepage.includes('Excellence and agentic operating systems—built'))
 })
 
-test('case signals omit unsupported claims and quotes while retaining the rating', () => {
+test('case signals omit unsupported claims, quotes and the unbacked rating', () => {
   assert.doesNotMatch(
     caseSignals,
-    /organic traffic up 62%|\+62% traffic|Retention up 38%|\+38% retention|\$2\.3M budget|pipeline value tripled|churn decreased by 33%|\*\*Quote\*\*/,
+    /organic traffic up 62%|\+62% traffic|Retention up 38%|\+38% retention|\$2\.3M budget|pipeline value tripled|churn decreased by 33%|Customer satisfaction hit 4\.9\/5|\*\*Quote\*\*/,
   )
-  assert.ok(caseSignals.includes('4.9/5'))
+  assert.ok(!caseSignals.includes('4.9/5'))
 })

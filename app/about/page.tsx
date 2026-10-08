@@ -101,7 +101,7 @@ export default function AboutPage() {
         <div className="relative mx-auto grid min-h-[86svh] max-w-7xl items-center gap-14 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:px-10">
           <div className="max-w-3xl">
             <p className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80">
-              Frank Riemer · Amsterdam · AI Architect & Musician
+              Frank Riemer · Amsterdam · AI Architect &amp; Musician
             </p>
             <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
               Building sovereign systems for a
