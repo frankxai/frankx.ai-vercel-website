@@ -28,6 +28,9 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   // Product rows in the knowledge-to-offer graph.
   'creative-ai-toolkit': { label: 'Creative AI Toolkit', listType: 'premium-packs' },
   'creation-chronicles': { label: 'Creation Chronicles', listType: 'creation-chronicles' },
+  // Lab-led probe (starlight-intelligence-lab LN-004). Graph row proposed in that repo's
+  // proposals/agentfile-census/products-row.json; premium-packs until a dedicated list exists.
+  'agentfile-audit': { label: 'Agent-file audit', listType: 'premium-packs' },
   // Pre-existing course intents.
   'course-conscious-ai-foundations': {
     label: 'Conscious AI Foundations',
