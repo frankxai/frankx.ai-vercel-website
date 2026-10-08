@@ -27,7 +27,7 @@ Frank Riemer is an AI Architect & Creator, creator of AI music, and founder of F
 
 ## Long Bio
 
-Frank Riemer is a musician-technologist, founder of FrankX, and AI Architect & Creator. He has worked around enterprise-scale AI and cloud transformation environments, helped build a seven-figure business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
+Frank Riemer is a musician-technologist, founder of FrankX, and AI Architect & Creator. He has worked around enterprise-scale AI and cloud transformation environments, helped build a business with his brother, and now turns that pattern recognition into practical AI systems for creators, entrepreneurs, and operators.
 
 FrankX is his independent studio for human-first AI systems: creator operating systems, AI music workflows, prompt libraries, automation playbooks, and founder-grade execution frameworks. The work translates lessons from large enterprise AI/cloud environments into tools that help individuals and small teams move with more clarity, taste, and leverage.
 
@@ -40,7 +40,7 @@ The central narrative arc that drives brand attraction across all segments is th
 **The Narrative Core:**
 - **The Crucible:** Operating at the highest levels of enterprise AI (Oracle). Understanding the systems, but realizing corporate architecture is ultimately a cage that limits true creative freedom.
 - **The Pivot:** The layoff/departure wasn't a failure — it was the catalyst. It was the moment of applying enterprise-grade intelligence to personal sovereignty.
-- **The Empire:** Use the approved bio language exactly — "helped build a seven-figure business with his brother," "creator of AI music." Don't loosen this into "built a 7-figure digital business" — that reads as a claim about FrankX/GenCreator revenue specifically, which isn't accurate yet.
+- **The Empire:** Use the approved bio language exactly — "helped build a business with his brother," "creator of AI music." Don't add a revenue tier ("seven-figure", "built a 7-figure digital business") unless it is evidenced with a source — it also reads as a claim about FrankX/GenCreator revenue specifically, which isn't accurate yet.
 
 **Why this works (register, not a targeting filter — see `CONTENT_VOICE_DNA.md` §14):**
 - **For the creator/aesthetic audience:** it signals high competence, ambition, and freedom without needing to name a demographic in the copy itself.
@@ -55,7 +55,7 @@ The central narrative arc that drives brand attraction across all segments is th
 
 **Deck:** FrankX translates lessons from enterprise-scale AI/cloud work and creator-led building into operating systems for entrepreneurs, creators, and operators. Build workflows that help you think, create, automate, publish, and sell without losing your voice.
 
-**Proof line:** AI Architect & Creator. Helped build a seven-figure business. Creator of AI music. Building human-first AI systems in public.
+**Proof line:** AI Architect & Creator. Helped build a business with his brother. Creator of AI music. Building human-first AI systems in public.
 
 **Primary CTA:** Build Your Creator OS
 
