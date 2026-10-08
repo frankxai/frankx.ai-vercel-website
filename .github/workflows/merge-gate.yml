@@ -159,6 +159,7 @@ jobs:
           pnpm run test:expert-authority
           pnpm run test:ai-architecture
           pnpm run test:email-safety
+          pnpm run test:book-reader
           pnpm run test:checkout-sku
           pnpm run test:auction-bid
           pnpm run test:agentic-life-research

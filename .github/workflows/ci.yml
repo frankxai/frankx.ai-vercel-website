@@ -103,6 +103,9 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: 1
 
+      - name: Request-time book chapters (no jsdom in the chapter function)
+        run: pnpm run test:book-chapter:rendered
+
       - name: Install the reader QA browser
         # The GitHub-hosted Ubuntu image already provides Chrome's OS libraries.
         # Download the Puppeteer-pinned binary as the runner user; --install-deps
