@@ -74,6 +74,19 @@ try {
     await page.setViewport({ width: size.width, height: size.height, deviceScaleFactor: 1, isMobile: size.name.startsWith('mobile'), hasTouch: size.name.startsWith('mobile') })
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: size.reducedMotion ? 'reduce' : 'no-preference' }])
 
+    // waitForFunction re-checks from inside the page (requestAnimationFrame or timers), and those never run while
+    // setJavaScriptEnabled(false) is in effect. A smooth-scrolling fragment jump is still moving at the first check,
+    // so no-JavaScript position checks poll from Node instead, with the same condition and a bounded budget.
+    async function pollInPage(measure, arg, description, attempts = 50, intervalMs = 100) {
+      let last
+      for (let attempt = 1; attempt <= attempts; attempt++) {
+        last = await page.evaluate(measure, arg)
+        if (last.ok) return last
+        await new Promise(resolveWait => setTimeout(resolveWait, intervalMs))
+      }
+      throw new Error(`${description}; not reached after ${attempts} checks ${intervalMs}ms apart, last measured ${JSON.stringify(last)}`)
+    }
+
     async function phase(action) {
       manifest.currentAction = { viewport: size.name, action, at: new Date().toISOString() }
       await saveJson('progress.json', manifest.currentAction)
@@ -138,12 +151,13 @@ try {
         await page.keyboard.press('Enter')
       } else await page.click(link)
       await page.waitForFunction(id => decodeURIComponent(location.hash.slice(1)) === id, {}, target.id)
-      await page.waitForFunction(id => {
+      await pollInPage(id => {
         const heading = document.getElementById(id)
         const header = document.querySelector('[data-book-reader-header]')
         const top = heading.getBoundingClientRect().top
-        return top >= header.getBoundingClientRect().bottom && top <= 200
-      }, {}, target.id)
+        const headerBottom = header.getBoundingClientRect().bottom
+        return { ok: top >= headerBottom && top <= 200, top, headerBottom, scrollY }
+      }, target.id, `Contents jump to #${target.id} must land the heading below the sticky reader header and within 200px of the top`)
       const sticky = await page.$eval('[data-book-reader-header]', header => ({ actualTop: header.getBoundingClientRect().top, expectedTop: parseFloat(getComputedStyle(header).top) }))
       assert.ok(Math.abs(sticky.actualTop - sticky.expectedTop) <= 1, 'Reader header stays below global navigation after scrolling')
       if (keyboard) assert.equal(await page.evaluate(id => document.activeElement?.id === id, target.id), true, 'Contents activation moves focus to the reading section')
