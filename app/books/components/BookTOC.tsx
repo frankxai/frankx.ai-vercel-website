@@ -48,7 +48,7 @@ export default function BookTOC({ items, activeClass }: BookTOCProps) {
       {/* Mobile Toggle */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden fixed top-24 right-6 z-40 p-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg hover:border-white/20 transition-all cursor-pointer"
+        className="lg:hidden fixed top-24 right-6 z-40 p-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg hover:border-white/20 transition cursor-pointer"
         aria-label="Toggle table of contents"
         aria-expanded={isOpen}
       >
@@ -90,7 +90,7 @@ export default function BookTOC({ items, activeClass }: BookTOCProps) {
             <button
               key={item.id}
               onClick={() => handleClick(item.id)}
-              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all cursor-pointer ${
+              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition cursor-pointer ${
                 item.level === 2 ? 'pl-3' : 'pl-6'
               } ${
                 activeId === item.id
