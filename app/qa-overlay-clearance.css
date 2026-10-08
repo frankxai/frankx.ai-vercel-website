@@ -30,5 +30,5 @@ main:has(a[href='/research/model-arena/receipts.json']) > div.relative.z-10 {
 
 /* /library: Last shelf row clears the collapsed music chip */
 #book-results {
-  padding-bottom: var(--music-chip-reserve, 4.75rem);
+  padding-bottom: calc(var(--music-chip-reserve, 4.75rem) + env(safe-area-inset-bottom, 0px));
 }
