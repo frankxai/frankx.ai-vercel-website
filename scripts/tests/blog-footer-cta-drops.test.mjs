@@ -15,7 +15,10 @@ test('blog footer CTA no longer links the coming-soon architecture templates', (
   assert.ok(!cta.includes('Download AI architecture templates'))
 })
 
-test('blog footer CTA keeps the start card and a grid without empty columns', () => {
-  assert.ok(cta.includes("href: '/start'"))
+test('blog footer CTA drops the ACOS guide claims and keeps one plain link to /start', () => {
+  assert.ok(!cta.includes('Build your first AI system'))
+  assert.ok(!cta.includes('Step-by-step guide to setting up ACOS'))
+  assert.ok(!cta.includes('GlowCard'))
   assert.ok(!cta.includes('md:grid-cols-3'))
+  assert.match(cta, /<Link\s+href="\/start"[\s\S]*?>\s*Start here\s*<ArrowRight/)
 })
