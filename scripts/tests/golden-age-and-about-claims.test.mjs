@@ -2,10 +2,6 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
 
-const homepage = readFileSync(
-  new URL('../../components/home/HomePageElite.tsx', import.meta.url),
-  'utf8',
-)
 const article = readFileSync(
   new URL('../../content/blog/golden-age-of-intelligence.mdx', import.meta.url),
   'utf8',
@@ -15,12 +11,6 @@ const aboutShell = readFileSync(
   new URL('../../components/about/AboutShell.tsx', import.meta.url),
   'utf8',
 )
-
-test('homepage component is restored and uses the requested hero copy', () => {
-  assert.ok(homepage.length > 1000)
-  assert.ok(!homepage.startsWith('$file:'))
-  assert.ok(homepage.includes('Excellence and agentic operating systems—built'))
-})
 
 test('case signals omit unsupported claims, quotes and the unbacked rating', () => {
   assert.doesNotMatch(

@@ -468,7 +468,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
                 Most AI advice is noise. Here are the working blueprints: personal Centers of
-                Excellence and agentic operating systems—built
+                Excellence, agentic operating systems, and twelve thousand tracks of studio craft—built
                 with your own keys on your own terms.
               </p>
 
