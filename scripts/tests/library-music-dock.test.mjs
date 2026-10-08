@@ -12,7 +12,7 @@ test('the library uses the corner music chip until the player is opened', () => 
   )
   assert.match(
     source,
-    /const collapsedChip = \(isHome \|\| onLibrary\) && !expanded/,
+    /const collapsedChip = \(isHome \|\| onLibrary \|\| onBooks\) && !expanded/,
   )
   assert.match(
     source,
