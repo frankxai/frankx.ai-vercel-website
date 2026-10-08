@@ -27,3 +27,25 @@ test('soulbook offers the free vault and publishes no price', () => {
   assert.equal(selectorContent.includes('money-back'), false)
   assert.equal(selectorContent.includes('.guarantee'), false)
 })
+
+test('life-book cards publish no sessions, feature bundle or journey CTA', () => {
+  const selectorContent = fs.readFileSync(selectorPath, 'utf8')
+  const absent = [
+    [/live\s+coaching\s+sessions/i, 'live coaching sessions'],
+    [/\.sessions\b/, 'a rendered sessions count'],
+    [/\.features\b/, 'the features preview'],
+    [/\+[^\n]{0,80}\bmore\b/i, "a '+N more' line"],
+    [/Start\s+your/i, 'Start your'],
+    [/\bjourney\b/i, 'journey'],
+    [/200\s*\+\s*pages/i, '200+ pages'],
+    [/private\s+community/i, 'private community'],
+    [/lifetime/i, 'lifetime'],
+  ]
+  for (const [pattern, label] of absent) {
+    assert.doesNotMatch(selectorContent, pattern, `LifeBookSelector.tsx still contains ${label}`)
+  }
+  const actions = selectorContent.match(/<(PremiumButton|Link|a)\b[\s\S]*?<\/\1>/g) ?? []
+  for (const action of actions) {
+    assert.doesNotMatch(action, /journey|waitlist|deliver/i, `action text: ${action}`)
+  }
+})

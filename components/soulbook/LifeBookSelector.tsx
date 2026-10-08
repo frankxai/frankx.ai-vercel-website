@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
@@ -119,7 +118,7 @@ function LifeBookCard({
           {/* Tagline */}
           <p className="text-white/80 font-medium mb-4">{book.tagline}</p>
 
-          {/* Duration & Sessions */}
+          {/* Duration */}
           <div className="flex items-center gap-4 text-sm text-white/60 mb-6">
             <span className="flex items-center gap-1">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -127,33 +126,10 @@ function LifeBookCard({
               </svg>
               {book.duration}
             </span>
-            <span className="flex items-center gap-1">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-              {book.sessions} sessions
-            </span>
           </div>
 
           {/* Description */}
           <p className="text-white/70 mb-6 flex-grow">{book.shortDescription}</p>
-
-          {/* Features preview */}
-          <ul className="space-y-2 mb-6">
-            {book.features.slice(0, 4).map((feature, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-white/60">
-                <svg className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                {feature}
-              </li>
-            ))}
-            {book.features.length > 4 && (
-              <li className="text-sm text-white/40">
-                +{book.features.length - 4} more features
-              </li>
-            )}
-          </ul>
 
           {/* CTA */}
           <PremiumButton
@@ -285,17 +261,6 @@ export default function LifeBookSelector() {
                   ))}
                 </ul>
               </div>
-
-              {/* CTA */}
-              <PremiumButton
-                variant="luxury"
-                size="xl"
-                glow
-                className="w-full"
-                href={lifeBooks[selectedBook].slug === 'seven-pillars' ? '/soulbook/7-pillars' : `/soulbook/${lifeBooks[selectedBook].slug}`}
-              >
-                Start your {lifeBooks[selectedBook].title} journey
-              </PremiumButton>
             </div>
           </div>
           </div>
