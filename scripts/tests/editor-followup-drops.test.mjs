@@ -34,3 +34,32 @@ test('links to the music article use the new title', () => {
     assert.ok(!post.includes('12,000 Songs Later'))
   }
 })
+
+test('blog posts no longer link the unpublished manifestation research page', () => {
+  const manifestation = read('../../content/blog/manifestation-reality-architect-ai-vibe.mdx')
+  const domainMap = read('../../lib/research/blog-domain-map.ts')
+  assert.ok(!manifestation.includes('/research/manifestation-law-of-attraction-ai-systems'))
+  assert.ok(!manifestation.includes('The deeper write-up, with sources, lives in the research hub'))
+  assert.ok(!domainMap.includes('manifestation-law-of-attraction-ai-systems'))
+})
+
+test('song counts are dropped from blog prose', () => {
+  const soulFrequency = read('../../content/blog/02-the-soul-frequency-framework.mdx')
+  const acos = read('../../content/blog/acos-philosophy-technology-amplifies.mdx')
+  assert.ok(!soulFrequency.includes('over 500 songs'))
+  assert.ok(soulFrequency.includes('From making music with AI and coaching hundreds of creators, I discovered'))
+  assert.ok(!acos.includes('After producing 500 songs'))
+  assert.ok(acos.includes('Producing songs with AI, I noticed:'))
+})
+
+test('golden-age and SEO masterplan copy carries no word-count claim', () => {
+  for (const [relative, claims] of [
+    ['../../content/blog/golden-age-of-intelligence.mdx', ['15,000-word masterplan', 'This 15,000-word operating system']],
+    ['../../content/blog/08-golden-age-of-intelligence.mdx', ['A 15,000-word masterwork']],
+    ['../../content/blog/agentic-seo-publishing-masterplan.mdx', ['15,000-word intelligence system', '15,000-word command center']],
+    ['../../app/golden-age/metadata.ts', ['A 15,000-word masterwork']],
+  ]) {
+    const source = read(relative)
+    for (const claim of claims) assert.ok(!source.includes(claim), `${relative}: ${claim}`)
+  }
+})
