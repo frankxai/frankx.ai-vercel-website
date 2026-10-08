@@ -248,13 +248,15 @@ try {
       await follow(`a[href="${firstPath}"]`, firstPath)
       await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, firstChapter.title)
       await readability(wordless, firstChapter)
-      const readerHeader = await page.$eval('[data-book-reader-header]', header => ({
-        bottom: header.getBoundingClientRect().bottom,
-        firstContentTop: document.querySelector('article header > div')?.getBoundingClientRect().top,
-        returnTargetHeight: header.querySelector('a').getBoundingClientRect().height,
-      }))
+      // Next scrolls a client navigation back to the top through the global smooth scroll-behavior, so measure
+      // once that scroll has settled rather than mid-animation.
+      const readerHeader = await pollInPage(() => {
+        const header = document.querySelector('[data-book-reader-header]')
+        const bottom = header.getBoundingClientRect().bottom
+        const firstContentTop = document.querySelector('article header > div')?.getBoundingClientRect().top
+        return { ok: firstContentTop >= bottom, bottom, firstContentTop, returnTargetHeight: header.querySelector('a').getBoundingClientRect().height, scrollY }
+      }, undefined, 'Reader header must not cover the first chapter label')
       assert.ok(readerHeader.returnTargetHeight >= 44, 'Reader return link must have a 44px touch target')
-      assert.ok(readerHeader.firstContentTop >= readerHeader.bottom, 'Reader header must not cover the first chapter label')
       await capture('first-chapter', 'article')
       await follow(`a[href="${secondPath}"]`, secondPath)
       await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, secondChapter.title)
