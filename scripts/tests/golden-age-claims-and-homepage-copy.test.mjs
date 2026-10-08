@@ -30,7 +30,7 @@ test('case signals omit unsupported claims, quotes and the unbacked rating', () 
   assert.ok(!caseSignals.includes('4.9/5'))
 })
 
-test('case signals omit unsourced client results and pipeline result claims', () => {
+test('case signals omit unsourced client results and the pipeline signals block', () => {
   for (const claim of [
     '### Case Signal Examples',
     '### Case Signal Table',
@@ -45,9 +45,16 @@ test('case signals omit unsourced client results and pipeline result claims', ()
     'Enrollment filled in 48 hours',
     'media mentions spiked',
     'keynote collaborations',
+    '### Additional Signals in the Pipeline',
+    'Boutique Agency Reinvention',
+    'two flagships, 120 HFIBs',
+    '120 HFIBs',
+    'University Innovation Lab',
+    'co-created an "AI for Civic Good" challenge',
+    'Wellness Startup',
   ]) assert.ok(!caseSignals.includes(claim), claim)
   assert.ok(caseSignals.includes('### Case Signal Production Workflow'))
-  assert.ok(caseSignals.includes('**Signal 6: University Innovation Lab**'))
+  assert.ok(caseSignals.includes('### Storytelling Best Practices'))
 })
 
 test('about story carries no unsourced revenue tier', () => {
