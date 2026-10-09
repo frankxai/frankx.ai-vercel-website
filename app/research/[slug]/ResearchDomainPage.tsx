@@ -258,6 +258,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
               </div>
 
               {/* Stats */}
+              {domain.highlights.length > 0 && (
               <div
                 className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12"
               >
@@ -266,7 +267,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                   const sourceKey = h.source ? Object.keys(sourceUrlMap).find(
                     name => h.source!.toLowerCase().startsWith(name.toLowerCase())
                   ) : undefined
-                  const sourceUrl = sourceKey ? sourceUrlMap[sourceKey] : undefined
+                  const sourceUrl = h.url ?? (sourceKey ? sourceUrlMap[sourceKey] : undefined)
 
                   return (
                     <div
@@ -294,6 +295,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                   )
                 })}
               </div>
+              )}
 
               {/* Sections with numbering */}
               <div className="space-y-10 mb-12">
