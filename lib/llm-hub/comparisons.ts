@@ -214,9 +214,9 @@ export const COMPARISONS: Comparison[] = [
     models: ['claude-fable-5', 'grok-4-3'],
     title: 'Claude Fable 5 vs Grok 4.3',
     description:
-      'Claude Fable 5 vs Grok 4.3: the agentic ceiling at $10/$50 against intelligence-per-dollar at $1.25/$2.50 \u2014 a 20\u00d7 output-price gap. Which to route where in 2026.',
+      'Claude Fable 5 vs Grok 4.3: $10/$50 against intelligence-per-dollar at $1.25/$2.50 \u2014 a 20\u00d7 output-price gap. Which to route where in 2026.',
     verdict:
-      'Different products. Fable 5 is the agentic-coding ceiling; Grok 4.3 is the cheapest credible frontier intelligence with the fastest throughput in its class. The 20\u00d7 output-price gap means most stacks should run both \u2014 at different tiers.',
+      'Different products. Grok 4.3 is the cheapest credible frontier intelligence. The 20\u00d7 output-price gap means most stacks should run both \u2014 at different tiers.',
     analysis: [
       'The price gap is the story: Fable 5 at $10/$50 per million tokens against Grok 4.3 at $1.25/$2.50 \u2014 twenty times cheaper on output. Grok 4.3 is not a benchmark leader (AA Intelligence Index 53, about 8 points below Opus 4.8 and further below Fable-class), but it pairs credible frontier intelligence with 181 tokens/sec throughput, the fastest in its class.',
       'Fable 5 justifies its premium exactly where Grok cannot follow: 95.0% SWE-Bench Verified and ~80% SWE-Bench Pro (vendor-claimed) on long-horizon agentic coding. No circulating Grok 4.3 figure is in that conversation. For correctness-critical pipelines \u2014 code that ships, outputs that feed tools \u2014 the cost of an error dwarfs the cost of the tokens.',

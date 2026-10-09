@@ -106,6 +106,7 @@
         "vision"
       ],
       "capabilities": [
+        "reasoning",
         "multimodal",
         "coding",
         "agentic-infra"
@@ -183,7 +184,7 @@
         "https://developers.openai.com/api/docs/pricing"
       ],
       "last_verified": "2026-10-09",
-      "verification_scope": "Release date, model ID, context/input/output limits, modalities, reasoning effort levels, availability and standard API pricing; no benchmarks recorded and no independent capability evaluation."
+      "verification_scope": "Release date, model ID, context/input/output limits, modalities, reasoning effort levels, availability and standard API pricing, including the long-context rates for prompts over 272K tokens (input $4, output $15, cached input $0.20 per million tokens, OpenAI pricing page https://developers.openai.com/api/docs/pricing); no benchmarks recorded and no independent capability evaluation."
     },
     "gpt-6-sol": {
       "name": "GPT-6 Sol",
@@ -654,7 +655,7 @@
         "Standard $2/$10 pricing; the previously announced September price increase was cancelled"
       ],
       "acos_tier": "sonnet",
-      "frankx_notes": "Supersedes Sonnet 4.6 as the mid-tier default. Pricing checked 7 September 2026: Anthropic retains $2/$10 standard pricing after cancelling the announced September increase. Opus still leads hard agentic coding (69.2% vs 63.2% SWE-Bench Pro on Opus 4.8, and further on Opus 5), which Anthropic states in its own launch material as reported by multiple outlets. Benchmarks are vendor-reported. The Starlight Model Arena does hold a receipt for this model - round 5, 2026-07-01, published at /research/arena-receipts/2026-07-01-r5-sonnet5-arrives.json.",
+      "frankx_notes": "Supersedes Sonnet 4.6.",
       "sources": [
         "https://platform.claude.com/docs/en/models/sonnet-5/overview",
         "https://platform.claude.com/docs/en/models/overview",
@@ -909,6 +910,37 @@
       ],
       "last_verified": "2026-09-13",
       "verification_scope": "Release date, model ID, stable availability, input/output limits, modalities, API capabilities and pricing; no independent capability evaluation."
+    },
+    "gemini-omni-flash": {
+      "name": "Gemini Omni Flash",
+      "id": "gemini-omni-1.1-flash",
+      "organization": "google",
+      "family": "gemini",
+      "status": "ga",
+      "context_window": 1048576,
+      "modalities": [
+        "text",
+        "vision",
+        "video"
+      ],
+      "capabilities": [
+        "multimodal",
+        "video-gen"
+      ],
+      "key_capabilities": [
+        "Input: text, image and video (video up to 10s for editing and extension); output: video",
+        "Output video 3s-10s at 360p, 720p, 1080p or 4K, 24 FPS; 1,048,576-token context window",
+        "Text- and image-to-video generation, conversational editing through the Interactions API, video extension, resolution upscaling and interpolation (vendor-described)",
+        "Paid tier only, USD per million tokens: input $1.50 (text/image/video/audio); output $9.00 text, $17.50 video. Google bills video output at 5,792 tokens per second of 720p video, about $0.10 per second."
+      ],
+      "frankx_notes": "Stable Gemini API release of Google's Omni video model; the preview version is gemini-omni-flash-preview. No FrankX video-workflow evaluation is recorded, so this entry establishes no ranking or production recommendation. Video rates are listed in key capabilities and are not text-token estimates.",
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash",
+        "https://ai.google.dev/gemini-api/docs/pricing",
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Model ID, stable and preview versions, input/output types, context and output-video limits, and paid-tier pricing from Google's Gemini API model and pricing pages; release date not recorded; no benchmarks and no independent capability evaluation."
     },
     "gemini-3-7-flash": {
       "name": "Gemini 3.7 Flash",
@@ -1747,6 +1779,7 @@
       "url": "https://deepmind.google",
       "models": [
         "gemini-3-8-flash",
+        "gemini-omni-flash",
         "gemini-3-7-flash",
         "gemini-3-5-pro",
         "gemini-3-5-flash",

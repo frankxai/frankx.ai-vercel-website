@@ -7,10 +7,13 @@ import { Calculator, Sparkles } from "lucide-react"
 import type { ModelRow } from '@/lib/llm-hub/rows'
 import { tokenCost } from '@/lib/llm-hub/pricing'
 
+// Current registry models; rates come from the registry rows passed in, never from this file.
 const CALCULATOR_IDS = new Set([
-  'gpt-6-astra', 'deepseek-v4-pro-0813', 'gemini-3-7-flash',
-  'claude-sonnet-5', 'grok-4-6', 'claude-opus-5', 'claude-fable-5',
+  'gpt-6-1-sol', 'gpt-6-astra', 'deepseek-v4-pro-0813', 'gemini-3-8-flash',
+  'claude-sonnet-5-5', 'grok-4-7', 'claude-opus-5-5', 'claude-fable-5-1',
 ])
+const FAST_PATH_ID = 'gemini-3-8-flash'
+const DEEP_REASON_ID = 'claude-opus-5-5'
 
 const PRESETS = [
   {
@@ -50,12 +53,12 @@ export function CostCalculator({ rows }: { rows: ModelRow[] }) {
 
 
   const hybrid = useMemo(() => {
-    const fast = calculations.find(c => c.id === 'gemini-3-7-flash')
-    const deep = calculations.find(c => c.id === 'claude-opus-5')
+    const fast = calculations.find(c => c.id === FAST_PATH_ID)
+    const deep = calculations.find(c => c.id === DEEP_REASON_ID)
     if (!fast || !deep) return null
     const total = fast.total * 0.8 + deep.total * 0.2
     const diff = deep.total - total
-    return { total, diff, pct: deep.total > 0 ? ((diff / deep.total) * 100).toFixed(0) : '0' }
+    return { total, diff, pct: deep.total > 0 ? ((diff / deep.total) * 100).toFixed(0) : '0', fastName: fast.name, deepName: deep.name }
   }, [calculations])
 
   if (!calculations.length) return <p>No token-price estimates are available. Check provider pricing before budgeting.</p>
@@ -152,8 +155,8 @@ export function CostCalculator({ rows }: { rows: ModelRow[] }) {
                 Hybrid 80/20 Architecture: <span className="text-emerald-300">${hybrid.total.toFixed(2)}/mo</span>
               </h3>
               <p className="text-xs text-white/60">
-                Illustrative split: 80% of input and output tokens to Fast-Path (Gemini 3.7 Flash) + 20% to Deep-Reason (Claude Opus 5). Saves{" "}
-                <strong className="text-emerald-400">${hybrid.diff.toFixed(2)}/mo ({hybrid.pct}%)</strong> vs 100% flagship.
+                Illustrative split: 80% of input and output tokens to Fast-Path ({hybrid.fastName}) + 20% to Deep-Reason ({hybrid.deepName}). Saves{" "}
+                <strong className="text-emerald-400">${hybrid.diff.toFixed(2)}/mo ({hybrid.pct}%)</strong> vs 100% {hybrid.deepName}.
               </p>
             </div>
           </div>
