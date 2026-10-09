@@ -119,7 +119,7 @@
         "output_per_1m_over_100k": 2.5,
         "cached_input_per_1m_over_100k": 0.05,
         "verified_at": "2026-10-09",
-        "scope": "Standard Claude API rates in USD for prompts up to 100,000 tokens. A request whose prompt is over 100,000 tokens pays the over_100k rates for the full request. Cache writes, batch, geography and partner-platform modifiers excluded."
+        "scope": "Standard Claude API rates in USD for prompts up to 100,000 tokens. A request whose prompt is over 100,000 tokens pays $0.50 / $2.50 per million input/output tokens for the full request. Cache writes, batch, geography and partner-platform modifiers excluded."
       },
       "benchmarks": {},
       "key_capabilities": [

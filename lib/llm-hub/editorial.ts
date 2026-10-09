@@ -263,7 +263,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'meta-llama/llama-4-maverick',
   },
   'deepseek-v4-pro-0813': {
-    tagline: 'A 1.6T MoE at the top of SWE-bench Verified and last on agentic coding \u2014 read both numbers.',
+    tagline: 'A 1.6T MoE with a vendor-reported 96.4% on SWE-bench Verified and last on agentic coding \u2014 read both numbers.',
     bestFor: [
       'Verifiable, well-specified coding tasks at low cost per test',
       'Long-context work (1M in, up to 384K out)',

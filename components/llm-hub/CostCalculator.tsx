@@ -13,6 +13,8 @@ const CALCULATOR_IDS = new Set([
   'claude-sonnet-5-5', 'grok-4-7', 'claude-opus-5-5', 'claude-fable-5-1',
   'claude-haiku-5-5',
 ])
+// Rates shown are the lower prompt tier; the note gives the rates above it.
+const PROMPT_TIER_SUFFIX: Record<string, string> = { 'claude-haiku-5-5': ' up to 100K' }
 const FAST_PATH_ID = 'gemini-3-8-flash'
 const DEEP_REASON_ID = 'claude-opus-5-5'
 
@@ -200,12 +202,21 @@ export function CostCalculator({ rows }: { rows: ModelRow[] }) {
                   </span>
                 </div>
                 <div className="flex justify-between text-[11px] text-white/40">
-                  <span>In: ${model.inputCost.toFixed(2)}{model.pricingWindow === 'off-peak' ? ' off-peak' : ''}</span>
-                  <span>Out: ${model.outputCost.toFixed(2)}{model.pricingWindow === 'off-peak' ? ' off-peak' : ''}</span>
+                  <span>In: ${model.inputCost.toFixed(2)}{model.pricingWindow === 'off-peak' ? ' off-peak' : ''}{PROMPT_TIER_SUFFIX[model.id] ?? ''}</span>
+                  <span>Out: ${model.outputCost.toFixed(2)}{model.pricingWindow === 'off-peak' ? ' off-peak' : ''}{PROMPT_TIER_SUFFIX[model.id] ?? ''}</span>
                 </div>
                 {model.pricingWindow === 'off-peak' && (
                   <p className="mt-1 text-[11px] text-amber-300/80">
-                    Off-peak rates. Peak rates are 2× (provider pricing page).
+                    Off-peak rates. Peak rates are 2× (
+                    <a
+                      href="https://api-docs.deepseek.com/quick_start/pricing"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:text-amber-200"
+                    >
+                      DeepSeek pricing page
+                    </a>
+                    ).
                   </p>
                 )}
               </div>

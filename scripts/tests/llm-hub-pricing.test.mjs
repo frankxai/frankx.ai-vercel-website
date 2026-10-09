@@ -146,3 +146,13 @@ test('no unbacked ranking or latency claims on model pages and Grok 4.3 editoria
   assert.doesNotMatch(source('lib/llm-hub/editorial.ts'), /Latency-sensitive/)
   assert.doesNotMatch(registry.models['deepseek-v4-pro-0813'].frankx_notes, /at or near the top of published tables/)
 })
+
+test('DeepSeek tagline states the vendor number and Haiku cells carry their prompt tier', () => {
+  assert.doesNotMatch(source('lib/llm-hub/editorial.ts'), /at the top of SWE-bench/)
+  const calculator = source('components/llm-hub/CostCalculator.tsx')
+  assert.match(calculator, /'claude-haiku-5-5': ' up to 100K'/)
+  assert.match(calculator, /href="https:\/\/api-docs\.deepseek\.com\/quick_start\/pricing"/)
+  const haiku = registry.models['claude-haiku-5-5'].pricing
+  assert.match(haiku.scope, /\$0\.50 \/ \$2\.50/)
+  assert.doesNotMatch(haiku.scope, /over_100k/)
+})
