@@ -59,3 +59,10 @@ test('the /start link has a 24px minimum tap target and names its destination', 
   assert.match(link, /className="[^"]*\bmin-h-6\b[^"]*"/)
   assert.match(link, /aria-label="Start here: find your founder constraint with the Founder Stack map"/)
 })
+
+test('the newsletter block under the blog footer promises no weekly cadence', () => {
+  // The signup fine print says "Occasional"; the block description must not promise a schedule.
+  const post = readFileSync(new URL('../../app/blog/[slug]/page.tsx', import.meta.url), 'utf8')
+  assert.ok(!/Weekly field notes/i.test(post))
+  assert.ok(post.includes('description="Field notes on AI systems, production patterns, and builder strategy."'))
+})
