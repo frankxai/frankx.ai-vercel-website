@@ -174,3 +174,19 @@ test('DeepSeek tagline states the vendor number and Haiku cells carry their prom
   assert.match(haiku.scope, /\$0\.50 \/ \$2\.50/)
   assert.doesNotMatch(haiku.scope, /over_100k/)
 })
+
+test('long-prompt pricing notes give dollar figures, not raw registry field names', () => {
+  for (const [id, model] of Object.entries(registry.models)) {
+    assert.doesNotMatch(model.pricing?.scope ?? '', /over_\d+k/, `${id} pricing.scope`)
+  }
+  const sol = registry.models['gpt-6-1-sol'].pricing
+  assert.equal(sol.input_per_1m_over_272k, 4)
+  assert.equal(sol.output_per_1m_over_272k, 15)
+  assert.equal(sol.cached_input_per_1m_over_272k, 0.2)
+  assert.match(sol.scope, /more than 272K input tokens pays \$4 \/ \$15 per million input\/output tokens \(\$0\.20 cached input\)/)
+  const grok = registry.models['grok-4-7'].pricing
+  assert.equal(grok.input_per_1m_over_200k, 4)
+  assert.equal(grok.output_per_1m_over_200k, 12)
+  assert.equal(grok.cached_input_per_1m_over_200k, 1)
+  assert.match(grok.scope, /200K prompt tokens or more pays \$4 \/ \$12 per million input\/output tokens \(\$1 cached input\)/)
+})
