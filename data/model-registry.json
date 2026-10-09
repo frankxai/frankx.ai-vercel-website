@@ -655,7 +655,7 @@
         "Standard $2/$10 pricing; the previously announced September price increase was cancelled"
       ],
       "acos_tier": "sonnet",
-      "frankx_notes": "Supersedes Sonnet 4.6.",
+      "frankx_notes": "Supersedes Sonnet 4.6. Pricing checked 7 September 2026: Anthropic retains $2/$10 standard pricing after cancelling the announced September increase.",
       "sources": [
         "https://platform.claude.com/docs/en/models/sonnet-5/overview",
         "https://platform.claude.com/docs/en/models/overview",
@@ -766,18 +766,16 @@
       },
       "benchmarks": {
         "aa_intelligence_index": 53,
-        "gdpval_aa": 1500,
-        "output_tokens_per_sec": 181.3
+        "gdpval_aa": 1500
       },
       "key_capabilities": [
         "Always-on reasoning by default",
         "1M-token context window",
         "Native video input (first for xAI API)",
         "Custom Voices voice-cloning suite",
-        "Agentic tool use (web search, Python sandbox, PDF/Excel/PPTX generation)",
-        "Highest output throughput in its price tier (~181 tok/s)"
+        "Agentic tool use (web search, Python sandbox, PDF/Excel/PPTX generation)"
       ],
-      "frankx_notes": "Not a benchmark leader — sits ~8 points below Claude Opus 4.8 on the AA Intelligence Index. The play is intelligence-per-dollar: ~10x cheaper output than Opus-tier with the fastest throughput in its class. Context window shrank from 2M to 1M, and reasoning can no longer be turned off. SWE-bench Verified / ARC-AGI-2 scores specific to 4.3 were not independently published, so they are omitted rather than recycled from older Grok versions.",
+      "frankx_notes": "Not a benchmark leader — sits ~8 points below Claude Opus 4.8 on the AA Intelligence Index. The play is intelligence-per-dollar: ~10x cheaper output than Opus-tier. Context window shrank from 2M to 1M, and reasoning can no longer be turned off. SWE-bench Verified / ARC-AGI-2 scores specific to 4.3 were not independently published, so they are omitted rather than recycled from older Grok versions.",
       "sources": [
         "https://artificialanalysis.ai/articles/xai-launches-grok-4-3-with-improved-agentic-performance-and-lower-pricing",
         "https://docs.x.ai/developers/models/grok-4.3",
@@ -1131,7 +1129,9 @@
         "input_per_1m": 0.66,
         "output_per_1m": 1.98,
         "peak_input_per_1m": 1.32,
-        "peak_output_per_1m": 3.96
+        "peak_output_per_1m": 3.96,
+        "verified_at": "2026-10-09",
+        "scope": "Off-peak DeepSeek API rates (cache-miss input, output). Peak rates are double: input $1.32, output $3.96 per million tokens, 01:00-04:00 and 06:00-10:00 UTC Monday to Friday, excluding Chinese public holidays. Cache-hit input is $0.022 off-peak and $0.044 peak."
       },
       "benchmarks": {
         "swe_bench_verified": 96.4,
@@ -1146,13 +1146,16 @@
       ],
       "frankx_notes": "GA on 13 August 2026, ending the preview that began in April; a tier above DeepSeek V4, not a replacement for it. Read its benchmarks together rather than selectively: 96.4% on SWE-bench Verified - at or near the top of published tables, though trackers disagree on the exact ordering against Claude Opus 5's 96.0% - yet last of seven frontier peers on LiveBench agentic coding. That spread is the story - a headline score here does not predict agent behaviour. Prices rose sharply on 2026-08-16 (up to 12x on some lanes) and now vary peak/off-peak; recorded pricing is off-peak. Vendor figures await independent proof. The Model Arena's August 2026 wave lists this model, but that wave is labelled in its own source as synthesized from public reports pending harness verification - treat it as routing guidance, not a first-party receipt.",
       "sources": [
+        "https://api-docs.deepseek.com/quick_start/pricing",
         "https://openrouter.ai/deepseek/deepseek-v4-pro-0813",
         "https://artificialanalysis.ai/models/deepseek-v4-pro",
         "https://www.techtimes.com/articles/324241/20260813/deepseek-v4-pro-0813-goes-ga-benchmark-claims-await-independent-proof.htm",
         "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813"
       ],
       "open_weights": true,
-      "open_weights_verified_at": "2026-09-10"
+      "open_weights_verified_at": "2026-09-10",
+      "last_verified": "2026-10-09",
+      "verification_scope": "Model version (DeepSeek-V4-Pro-0813 behind deepseek-v4-pro) and off-peak/peak API pricing from DeepSeek's official pricing page; no independent capability evaluation."
     },
     "deepseek-v4": {
       "name": "DeepSeek V4",

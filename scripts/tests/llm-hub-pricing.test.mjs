@@ -114,3 +114,12 @@ test('research hub does not render a zero registered-sources count', () => {
   assert.match(hub, /\{totalSources > 0 && \(\s*<Link\s+href="\/research\/sources"/)
   assert.match(hub, /totalSources > 0\s*\?\s*\[\{ label: 'Published sources'/)
 })
+
+test('no unsourced throughput or fastest-in-class claims for Grok 4.3', () => {
+  for (const path of ['lib/llm-hub/comparisons.ts', 'data/model-registry.json']) {
+    const text = source(path)
+    assert.doesNotMatch(text, /181 tok/, path)
+    assert.doesNotMatch(text, /fastest in its class/, path)
+    assert.doesNotMatch(text, /fastest throughput in (its )?class/, path)
+  }
+})

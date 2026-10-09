@@ -92,7 +92,7 @@ export default function ResearchModelWatch() {
               Inside Models & intelligence
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight">
-              The labs. The current models.
+              The labs. Selected models.
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/65">
               Selected model families

@@ -216,9 +216,9 @@ export const COMPARISONS: Comparison[] = [
     description:
       'Claude Fable 5 vs Grok 4.3: $10/$50 against intelligence-per-dollar at $1.25/$2.50 \u2014 a 20\u00d7 output-price gap. Which to route where in 2026.',
     verdict:
-      'Different products. Grok 4.3 is the cheapest credible frontier intelligence. The 20\u00d7 output-price gap means most stacks should run both \u2014 at different tiers.',
+      'Different products. The 20\u00d7 output-price gap means most stacks should run both \u2014 at different tiers.',
     analysis: [
-      'The price gap is the story: Fable 5 at $10/$50 per million tokens against Grok 4.3 at $1.25/$2.50 \u2014 twenty times cheaper on output. Grok 4.3 is not a benchmark leader (AA Intelligence Index 53, about 8 points below Opus 4.8 and further below Fable-class), but it pairs credible frontier intelligence with 181 tokens/sec throughput, the fastest in its class.',
+      'The price gap is the story: Fable 5 at $10/$50 per million tokens against Grok 4.3 at $1.25/$2.50 \u2014 twenty times cheaper on output. Grok 4.3 is not a benchmark leader (AA Intelligence Index 53, about 8 points below Opus 4.8 and further below Fable-class).',
       'Fable 5 justifies its premium exactly where Grok cannot follow: 95.0% SWE-Bench Verified and ~80% SWE-Bench Pro (vendor-claimed) on long-horizon agentic coding. No circulating Grok 4.3 figure is in that conversation. For correctness-critical pipelines \u2014 code that ships, outputs that feed tools \u2014 the cost of an error dwarfs the cost of the tokens.',
       'The honest routing math: if a task is error-tolerant and volume-heavy (drafting, classification, summarization at scale, exploratory generation), Grok 4.3\u2019s intelligence-per-dollar wins outright. If a task is error-expensive and agentic, Fable 5\u2019s premium is cheaper than the rework. Match the model to the task\u2019s cost-of-error, not to the leaderboard.',
     ],
@@ -229,7 +229,7 @@ export const COMPARISONS: Comparison[] = [
     ],
     pickSecond: [
       'High-volume, error-tolerant generation \u2014 20\u00d7 cheaper output',
-      'Latency-sensitive products (fastest throughput in class)',
+      'Latency-sensitive products',
       'Real-time X/social data integration is part of the workload',
     ],
     keywords: [
