@@ -191,7 +191,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'anthropic/claude-haiku-4.5',
   },
   'grok-4-6': {
-    tagline: 'Current xAI flagship: same-scale agent refresh of 4.5, AA Index 61, $2/$6 under 200k. No Starlight arena receipt yet.',
+    tagline: 'xAI flagship from 12 August to 21 September 2026: same-scale agent refresh of 4.5, AA Index 61, $2/$6 under 200k. No Starlight arena receipt yet.',
     bestFor: [
       'Long-running coding and knowledge-work agents on the xAI API',
       'First-pass app and visual structure work (vendor-stated focus)',

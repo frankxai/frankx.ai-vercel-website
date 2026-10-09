@@ -1,9 +1,235 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-09-22",
+  "_updated": "2026-10-09",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
   "models": {
+    "claude-opus-5-5": {
+      "name": "Claude Opus 5.5",
+      "id": "claude-opus-5-5",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-09-22",
+      "status": "ga",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "pricing": {
+        "input_per_1m": 4,
+        "output_per_1m": 20,
+        "cached_input_per_1m": 0.2,
+        "verified_at": "2026-10-09",
+        "scope": "Standard Claude API rates in USD; cache writes, batch, fast mode, geography and partner-platform modifiers excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1M-token context and 128K maximum output",
+        "Adaptive thinking is always on; default effort is medium",
+        "Cache reads cost $0.20 per million tokens (0.05x base input)",
+        "Fast mode (research preview, Claude API only) is priced at $8/$40 per million tokens"
+      ],
+      "acos_tier": "opus",
+      "frankx_notes": "Released 22 September 2026. As of 9 October 2026, Anthropic's model overview recommends starting with Opus 5.5 for most workloads and using Fable 5.1 for demanding reasoning and long-horizon agentic work. Launch-post benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://www.anthropic.com/claude-opus-5-5",
+        "https://platform.claude.com/docs/en/about-claude/models/overview",
+        "https://platform.claude.com/docs/en/about-claude/pricing"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/output limits, modalities, thinking mode, default effort, vendor-stated positioning and standard API pricing; no benchmarks recorded and no independent capability evaluation."
+    },
+    "claude-sonnet-5-5": {
+      "name": "Claude Sonnet 5.5",
+      "id": "claude-sonnet-5-5",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-09-28",
+      "status": "ga",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "pricing": {
+        "input_per_1m": 2,
+        "output_per_1m": 10,
+        "cached_input_per_1m": 0.1,
+        "verified_at": "2026-10-09",
+        "scope": "Standard Claude API rates in USD; cache writes, batch, fast mode, geography and partner-platform modifiers excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1M-token context and 128K maximum output",
+        "Adaptive thinking; default effort is high",
+        "Cache reads cost $0.10 per million tokens (0.05x base input) from 7 October 2026; the launch rate was $0.20"
+      ],
+      "acos_tier": "sonnet",
+      "frankx_notes": "Released 28 September 2026 at the same $2/$10 list price as Sonnet 5. Anthropic cut the cache-read rate to $0.10 per million tokens on 7 October 2026. Launch-post benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://www.anthropic.com/claude-sonnet-5-5",
+        "https://www.anthropic.com/claude-haiku-5-5",
+        "https://platform.claude.com/docs/en/about-claude/models/overview",
+        "https://platform.claude.com/docs/en/about-claude/pricing"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/output limits, modalities, thinking mode, default effort and standard API pricing including the 7 October 2026 cache-read change; no benchmarks recorded and no independent capability evaluation."
+    },
+    "claude-haiku-5-5": {
+      "name": "Claude Haiku 5.5",
+      "id": "claude-haiku-5-5",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-10-07",
+      "status": "ga",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "pricing": {
+        "input_per_1m": 0.1,
+        "output_per_1m": 0.5,
+        "cached_input_per_1m": 0.01,
+        "input_per_1m_over_100k": 0.5,
+        "output_per_1m_over_100k": 2.5,
+        "cached_input_per_1m_over_100k": 0.05,
+        "verified_at": "2026-10-09",
+        "scope": "Standard Claude API rates in USD for prompts up to 100,000 tokens. A request whose prompt is over 100,000 tokens pays the over_100k rates for the full request. Cache writes, batch, geography and partner-platform modifiers excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1M-token context and 128K maximum output",
+        "Default effort is medium",
+        "Priced by prompt length: $0.10/$0.50 per million tokens up to 100K prompt tokens, $0.50/$2.50 above"
+      ],
+      "acos_tier": "haiku",
+      "frankx_notes": "Released 7 October 2026. Pricing changes at a 100,000-token prompt threshold, so long-context requests cost five times the short-prompt rate. Launch-post benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://www.anthropic.com/claude-haiku-5-5",
+        "https://platform.claude.com/docs/en/about-claude/models/overview",
+        "https://platform.claude.com/docs/en/about-claude/pricing"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/output limits, modalities, default effort and both prompt-length price bands; no benchmarks recorded and no independent capability evaluation."
+    },
+    "gpt-6-1-sol": {
+      "name": "GPT-6.1 Sol",
+      "id": "gpt-6.1-sol",
+      "organization": "openai",
+      "family": "gpt",
+      "released": "2026-09-29",
+      "status": "ga",
+      "context_window": 1050000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "pricing": {
+        "scope": "Standard USD rates for prompts up to 272K input tokens. Above 272K, the full request uses 2x input/cache and 1.5x output rates. Cache writes, tools and other processing tiers are charged separately.",
+        "verified_at": "2026-10-09",
+        "input_per_1m": 2,
+        "output_per_1m": 10,
+        "cached_input_per_1m": 0.1
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1,050,000-token context window (922,000 maximum input) and 128,000 maximum output",
+        "API reasoning effort: low, medium (default), high, xhigh, max",
+        "Fast mode is priced at 2x and Ultrafast at 6x the applicable rates; Batch and Flex at 50%",
+        "Available in ChatGPT Work, Codex and the API at launch; not yet in Chat"
+      ],
+      "frankx_notes": "Released 29 September 2026 as the newer Sol model, one week after GPT-6 Sol, at the same $2/$10 list price with cached input at $0.10. Launch-page benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://openai.com/index/introducing-gpt-6-1-sol/",
+        "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+        "https://deploymentsafety.openai.com/gpt-6-1-sol"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/input/output limits, modalities, reasoning effort levels, availability and standard API pricing; no benchmarks recorded and no independent capability evaluation."
+    },
+    "gpt-6-sol": {
+      "name": "GPT-6 Sol",
+      "id": "gpt-6-sol",
+      "organization": "openai",
+      "family": "gpt",
+      "released": "2026-09-22",
+      "status": "ga",
+      "context_window": 1050000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "pricing": {
+        "scope": "Standard USD rates for prompts up to 272K input tokens. Above 272K, the full request uses 2x input/cache and 1.5x output rates. Cache writes, tools and other processing tiers are charged separately.",
+        "verified_at": "2026-10-09",
+        "input_per_1m": 2,
+        "output_per_1m": 10,
+        "cached_input_per_1m": 0.2
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1,050,000-token context window (922,000 maximum input) and 128,000 maximum output",
+        "API reasoning effort: none, low, medium (default), high, xhigh, max",
+        "Batch and Flex are priced at 50% of Standard; fast mode at 2x"
+      ],
+      "frankx_notes": "Released 22 September 2026 alongside GPT-6 Luna, at half the GPT-5.6 Sol promotional API price. OpenAI's model page points to GPT-6.1 Sol (29 September 2026) as the newer Sol model. Launch-page benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+        "https://developers.openai.com/api/docs/models/gpt-6-sol"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/input/output limits, modalities, reasoning effort levels and standard API pricing; no benchmarks recorded and no independent capability evaluation."
+    },
+    "grok-4-7": {
+      "name": "Grok 4.7",
+      "id": "grok-4.7",
+      "organization": "xai",
+      "family": "grok",
+      "released": "2026-09-21",
+      "status": "ga",
+      "context_window": 500000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "pricing": {
+        "input_per_1m": 2,
+        "output_per_1m": 6,
+        "cached_input_per_1m": 0.5,
+        "input_per_1m_over_200k": 4,
+        "output_per_1m_over_200k": 12,
+        "verified_at": "2026-10-09",
+        "scope": "xAI API rates in USD for prompts up to 200K tokens; above 200K prompt tokens the over_200k rates apply (cached input $1). Tool calls and the Cursor/Grok Build fast variant are excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "New, larger base model than Grok 4.6 (vendor-stated); parameter count undisclosed",
+        "500k context window",
+        "Text and image input, text output",
+        "Reasoning effort: low, medium, high (default), xhigh",
+        "Function calling, web search, X search and code execution via the Responses API"
+      ],
+      "frankx_notes": "Released 21 September 2026 at the same $2/$6 list price as Grok 4.6. xAI describes it as a new, larger base model. A 2x-priced fast variant is offered only in Cursor and Grok Build. Launch-post benchmarks are vendor-reported and are not recorded here. No Starlight Model Arena receipt or other FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://x.ai/news/grok-4-7",
+        "https://docs.x.ai/developers/grok-4-7",
+        "https://docs.x.ai/developers/release-notes"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, API model name, context window, modalities, reasoning effort levels, tools and both price bands; no benchmarks recorded and no independent capability evaluation."
+    },
     "gpt-6-astra": {
       "name": "GPT-6 Astra",
       "id": "gpt-6-astra",
@@ -95,7 +321,7 @@
         "Cache reads cost $0.25 per million tokens; input and output prices are unchanged from Fable 5"
       ],
       "acos_tier": "fable",
-      "frankx_notes": "Current Fable release, verified against Anthropic model documentation on 13 September 2026. Anthropic recommends Opus 5 for most workloads and Fable 5.1 for demanding reasoning or long-horizon work where Opus evaluation results fall short. No first-party FrankX evaluation is recorded for this version. Fable 5 arena receipts remain historical evidence for that earlier model.",
+      "frankx_notes": "Current Fable release, verified against Anthropic model documentation on 13 September 2026. On 13 September 2026 Anthropic recommended Opus 5 for most workloads and Fable 5.1 for demanding reasoning or long-horizon work where Opus evaluation results fall short. As of 9 October 2026 the model overview recommends Opus 5.5 for most workloads and keeps Fable 5.1 for demanding reasoning and long-horizon agentic work. No first-party FrankX evaluation is recorded for this version. Fable 5 arena receipts remain historical evidence for that earlier model.",
       "sources": [
         "https://platform.claude.com/docs/en/models/fable-5-1/overview",
         "https://www.anthropic.com/claude-fable-and-mythos-5-1",
@@ -1441,6 +1667,9 @@
       "name": "Anthropic",
       "url": "https://anthropic.com",
       "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "claude-haiku-5-5",
         "claude-fable-5-1",
         "claude-sonnet-5",
         "claude-opus-5",
@@ -1458,6 +1687,8 @@
       "name": "OpenAI",
       "url": "https://openai.com",
       "models": [
+        "gpt-6-1-sol",
+        "gpt-6-sol",
         "gpt-6-astra",
         "gpt-5-5",
         "gpt-5-2-pro",
@@ -1484,11 +1715,12 @@
       "name": "xAI",
       "url": "https://x.ai",
       "models": [
+        "grok-4-7",
         "grok-4-6",
         "grok-4-3",
         "grok-4-1"
       ],
-      "flagship_model_id": "grok-4-6"
+      "flagship_model_id": "grok-4-7"
     },
     "meta": {
       "name": "Meta AI",
@@ -1545,6 +1777,6 @@
     "haiku": "claude-haiku-4-5",
     "fable": "claude-fable-5-1"
   },
-  "last_updated": "2026-09-22",
-  "_update_scope": "Added Claude Fable 5.1 and Gemini 3.8 Flash from official sources. Corrected Sonnet 5 output limit and Astra benchmark labels/values, refreshed selected API prices, and advanced Anthropic/Google current-model references. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
+  "last_updated": "2026-10-09",
+  "_update_scope": "Added Claude Opus 5.5, Sonnet 5.5 and Haiku 5.5, GPT-6 Sol, GPT-6.1 Sol and Grok 4.7 from official sources, checked 9 October 2026, and made Grok 4.7 the xAI flagship. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
 }

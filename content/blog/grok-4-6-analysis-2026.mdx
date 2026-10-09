@@ -2,7 +2,7 @@
 title: "Grok 4.6: Same Scale, Stronger Agents"
 description: "xAI shipped Grok 4.6 on 12 August 2026 with large gains in long-running agent work. A rigorous brief separating vendor numbers from independent Starlight Model Arena measurements."
 date: "2026-08-14"
-lastUpdated: "2026-08-14"
+lastUpdated: "2026-10-09"
 author: "Frank"
 readingGoal: "Understand Grok 4.6 benchmark results, agentic capabilities, and how it compares to frontier models in production workflows."
 category: "Intelligence Dispatches"
@@ -27,7 +27,7 @@ image: "/images/blog/grok-4-6-analysis-2026-hero.png"
 featured: true
 schema: ["Article", "FAQPage"]
 architectNote:
-  recommendation: "Treat Grok 4.6 as the current xAI flagship for long-running agent and coding work at $2/$6 per million tokens under 200k prompt tokens. Route it when stamina, first-pass app structure, and token efficiency matter more than a new base-model scale jump. Do not treat vendor or Artificial Analysis tables as Starlight Model Arena results. The SIS arena harness is still Claude Code Agent-native; no Grok 4.6 receipt exists in tools/arena/runs as of 2026-08-14."
+  recommendation: "As of 14 August 2026, Grok 4.6 was the xAI flagship for long-running agent and coding work (Grok 4.7 replaced it as flagship on 21 September 2026). It is priced at $2/$6 per million tokens under 200k prompt tokens. Route it when stamina, first-pass app structure, and token efficiency matter more than a new base-model scale jump. Do not treat vendor or Artificial Analysis tables as Starlight Model Arena results. The SIS arena harness is still Claude Code Agent-native; no Grok 4.6 receipt exists in tools/arena/runs as of 2026-08-14."
   coePillar: "Technology · model routing + Strategy · evidence honesty"
   personas:
     - persona: "Long-running coding agents"
@@ -107,7 +107,7 @@ I did **not** run a Starlight Model Arena card against Grok 4.6. I did retrieve 
 
 ## How to route it this week
 
-1. **Default xAI flagship** for new Grok API work: `grok-4.6`, reasoning `high` unless you have a latency budget for `medium`.
+1. **Default xAI flagship as of 14 August 2026** for new Grok API work: `grok-4.6`, reasoning `high` unless you have a latency budget for `medium`.
 2. **Use `xhigh`** only when a long agent loop is stalling. It is a cost and latency knob, not a personality.
 3. **Watch the 200k cliff** and set a prompt cache key so cached input actually hits.
 4. **Keep Claude on SIS-native evals** until a Grok receipt exists.
