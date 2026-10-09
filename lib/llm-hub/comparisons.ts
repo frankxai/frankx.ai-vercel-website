@@ -229,7 +229,6 @@ export const COMPARISONS: Comparison[] = [
     ],
     pickSecond: [
       'High-volume, error-tolerant generation \u2014 20\u00d7 cheaper output',
-      'Latency-sensitive products',
       'Real-time X/social data integration is part of the workload',
     ],
     keywords: [

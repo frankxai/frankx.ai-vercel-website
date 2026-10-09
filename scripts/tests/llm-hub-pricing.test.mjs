@@ -123,3 +123,9 @@ test('no unsourced throughput or fastest-in-class claims for Grok 4.3', () => {
     assert.doesNotMatch(text, /fastest throughput in (its )?class/, path)
   }
 })
+
+test('a newly linked model page carries no unsourced editorial verdict', () => {
+  const editorial = source('lib/llm-hub/editorial.ts')
+  assert.doesNotMatch(editorial, /'gemini-omni-flash':/)
+  assert.doesNotMatch(source('lib/llm-hub/comparisons.ts'), /Latency-sensitive products/)
+})
