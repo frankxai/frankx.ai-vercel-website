@@ -353,7 +353,7 @@ export default async function BlogPostPage({
             <InlineLeadMagnet
               variant="banner"
               headline="Stay in the intelligence loop"
-              description="Weekly field notes on AI systems, production patterns, and builder strategy."
+              description="Field notes on AI systems, production patterns, and builder strategy."
               listType="newsletter"
             />
           </div>
