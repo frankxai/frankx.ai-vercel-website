@@ -35,6 +35,8 @@ export interface ModelRow {
   tagline?: string
   imagePricing?: ModelEntry['image_pricing']
   workflow?: ModelEntry['workflow']
+  /** Set when the registry rate is an off-peak rate and peak rates differ (DeepSeek). */
+  pricingWindow?: 'off-peak'
 }
 
 export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
@@ -43,7 +45,10 @@ export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
     const o = org as OrganizationEntry
     for (const m of models) {
       // Image token prices are not comparable to the text-token calculator.
-      const livePrice = m.image_pricing ? undefined : live[m.id]
+      // Off-peak registry rates stay authoritative: a live catalog rate does not
+      // say which time window it is, so it could silently drop the off-peak label.
+      const offPeak = typeof m.pricing?.peak_input_per_1m === 'number'
+      const livePrice = m.image_pricing || offPeak ? undefined : live[m.id]
       const pricing = resolveModelPricing(m, livePrice)
       rows.push({
         id: m.id,
@@ -76,6 +81,7 @@ export function buildModelRows(live: LivePricingMap = {}): ModelRow[] {
         tagline: getEditorial(m.id)?.tagline,
         imagePricing: m.image_pricing,
         workflow: m.workflow,
+        ...(offPeak ? { pricingWindow: 'off-peak' as const } : {}),
       })
     }
   }
