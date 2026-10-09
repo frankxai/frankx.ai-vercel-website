@@ -161,7 +161,7 @@ try {
         const top = heading.getBoundingClientRect().top
         const headerBottom = header.getBoundingClientRect().bottom
         return { ok: top >= headerBottom && top <= 200, top, headerBottom, headerTop: header.getBoundingClientRect().top, scrollY }
-      }, target.id, `Contents jump to #${target.id} must land the heading below the sticky reader header and within 200px of the top`)
+      }, target.id, `Contents jump to #${target.id} must land the heading below the sticky reader header and within 200px of the top`, 100, 200)
       const sticky = await page.$eval('[data-book-reader-header]', header => ({ actualTop: header.getBoundingClientRect().top, expectedTop: parseFloat(getComputedStyle(header).top) }))
       assert.ok(Math.abs(sticky.actualTop - sticky.expectedTop) <= 1, `Reader header stays below global navigation after scrolling; measured ${JSON.stringify(sticky)}`)
       if (keyboard) assert.equal(await page.evaluate(id => document.activeElement?.id === id, target.id), true, 'Contents activation moves focus to the reading section')
