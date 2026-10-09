@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1031,
+    "total": 1029,
     "aliases": 59,
     "byType": {
       "core": 24,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 68,
       "static": 15,
-      "blog": 270,
+      "blog": 268,
       "research": 23,
       "guide": 29,
       "library": 88,
@@ -2154,19 +2154,6 @@
       "type": "blog"
     },
     {
-      "href": "/blog/das-fundament-und-der-glaube",
-      "title": "Die Linie des Erbauers: Was mein Vater mit Händen baute, und was wir im Geist errichten müssen",
-      "description": "Die Reflexion eines Sohnes an Witali Riemer zu seinem 57. Geburtstag. Ein wolgadeutscher Handwerksmeister, das Gewicht chronischer Erschöpfung, die Anatomie einer Prognose und die innere Architektur wahrer Vitalität.",
-      "tags": [
-        "die-linie-des-erbauers",
-        "state-engineering",
-        "handwerk",
-        "vitalitaet",
-        "autonome-gesundheit"
-      ],
-      "type": "blog"
-    },
-    {
       "href": "/blog/deepseek-r1-open-weight-reasoning-analysis",
       "title": "DeepSeek R1: What Open-Weight Reasoning Actually Means",
       "description": "The model that disrupted AI pricing. How DeepSeek R1 works, where it excels, and what it means for builders choosing between open and closed models.",
@@ -3914,19 +3901,6 @@
         "ai-architecture",
         "ai-systems",
         "production"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/the-builder-and-the-belief",
-      "title": "The Builder's Line: What My Father Built With His Hands, What We Must Build in Our Minds",
-      "description": "A son's reflection on Witali Riemer on his 57th birthday. An immigrant craftsman who built homes from ruins, the weight of chronic depletion, the anatomy of a medical prognosis, and the inner architecture of vitality.",
-      "tags": [
-        "the-builders-line",
-        "state-engineering",
-        "craftsmanship",
-        "vitality",
-        "autonomic-health"
       ],
       "type": "blog"
     },

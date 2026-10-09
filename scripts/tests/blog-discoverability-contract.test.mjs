@@ -4,7 +4,7 @@ import path from 'node:path'
 import test from 'node:test'
 
 import { buildBlogIndex } from '../../lib/blog-index.ts'
-import { BLOG_REDIRECTS } from '../../lib/blog-redirects.mjs'
+import { BLOG_REDIRECTS, isCanonicalBlogSlug, isCanonicalBlogHref } from '../../lib/blog-redirects.mjs'
 import { enumerateRoutes, loadAliases } from '../../lib/route-enumeration.mjs'
 
 const post = (slug, { category = 'Architecture', featured = false } = {}) => ({
@@ -121,5 +121,17 @@ test('the shared alias projection includes every permanent blog redirect', () =>
 
   for (const { source, destination } of BLOG_REDIRECTS) {
     assert.equal(aliases[source], destination, `${source} must project to ${destination}`)
+  }
+})
+
+test('nested draft paths cannot be admitted as public blog articles or markdown exports', () => {
+  for (const slug of [
+    '_drafts/the-builder-and-the-belief',
+    '_drafts/das-fundament-und-der-glaube',
+    '../blog/_drafts/the-builder-and-the-belief',
+    '..\\_drafts\\the-builder-and-the-belief',
+  ]) {
+    assert.equal(isCanonicalBlogSlug(slug), false, slug)
+    assert.equal(isCanonicalBlogHref(`/blog/${slug}`), false, slug)
   }
 })
