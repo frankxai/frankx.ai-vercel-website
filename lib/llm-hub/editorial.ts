@@ -200,7 +200,6 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     tagline: 'Previous cheap-frontier Grok — superseded as flagship by Grok 4.6 on 12 August 2026.',
     bestFor: [
       'High-volume cost-sensitive inference (classification, extraction, summarization)',
-      'Latency-sensitive agentic tool loops',
       'Native video-input and voice-cloning workflows',
     ],
     watchOut: 'Context window dropped 2M → 1M; per-token price doubles past 200K tokens in a single request; reasoning is always-on so trivial calls cost slightly more.',
@@ -264,7 +263,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'meta-llama/llama-4-maverick',
   },
   'deepseek-v4-pro-0813': {
-    tagline: 'A 1.6T MoE at the top of SWE-bench Verified and last on agentic coding \u2014 read both numbers.',
+    tagline: 'A 1.6T MoE with a vendor-reported 96.4% on SWE-bench Verified and last on agentic coding \u2014 read both numbers.',
     bestFor: [
       'Verifiable, well-specified coding tasks at low cost per test',
       'Long-context work (1M in, up to 384K out)',
