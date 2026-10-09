@@ -15,15 +15,16 @@ import { researchDomains, getDomainBySlug } from '@/lib/research/domains'
 export const metadata: Metadata = {
   title: 'The Architecture of Intelligence | FrankX Research Series',
   description:
-    'A research spine on how intelligence organizes itself across human minds, AI systems, meaning, and embodied life. Five connected briefs — IFS, Self-Led AI Architecture, the Predictive Mind, Meaning OS, Embodied Cognition — read as one argument.',
+    'A research spine on how intelligence organizes itself across human minds, AI systems, meaning, and embodied life. The proposed brief sequence remains under editorial development; no reviewed series briefs are published here yet.',
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: 'https://frankx.ai/research/series/architecture-of-intelligence',
+    canonical: 'https://www.frankx.ai/research/series/architecture-of-intelligence',
   },
   openGraph: {
     title: 'The Architecture of Intelligence | FrankX Research',
-    description: 'Five connected research briefs on how intelligence organizes itself — across mind, machine, meaning, and embodied life.',
+    description: 'A proposed research agenda spanning mind, machine, meaning and embodied life. The connected briefs are not yet published.',
     type: 'article',
-    url: 'https://frankx.ai/research/series/architecture-of-intelligence',
+    url: 'https://www.frankx.ai/research/series/architecture-of-intelligence',
   },
   twitter: {
     card: 'summary_large_image',
@@ -96,27 +97,27 @@ const companionContent = [
 const collectionLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  '@id': 'https://frankx.ai/research/series/architecture-of-intelligence',
+  '@id': 'https://www.frankx.ai/research/series/architecture-of-intelligence',
   name: 'The Architecture of Intelligence',
   description: 'A FrankX research series on how intelligence organizes itself across mind, machine, meaning, and embodied life.',
-  url: 'https://frankx.ai/research/series/architecture-of-intelligence',
+  url: 'https://www.frankx.ai/research/series/architecture-of-intelligence',
   isPartOf: {
     '@type': 'WebSite',
-    '@id': 'https://frankx.ai',
+    '@id': 'https://www.frankx.ai',
     name: 'FrankX',
   },
   hasPart: seriesDomains.map((d) => ({
     '@type': 'TechArticle',
     headline: d.title,
-    url: `https://frankx.ai/research/${d.slug}`,
+    url: `https://www.frankx.ai/research/${d.slug}`,
     description: d.tldr,
   })),
   breadcrumb: {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-      { '@type': 'ListItem', position: 2, name: 'Research', item: 'https://frankx.ai/research' },
-      { '@type': 'ListItem', position: 3, name: 'Architecture of Intelligence', item: 'https://frankx.ai/research/series/architecture-of-intelligence' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.frankx.ai' },
+      { '@type': 'ListItem', position: 2, name: 'Research', item: 'https://www.frankx.ai/research' },
+      { '@type': 'ListItem', position: 3, name: 'Architecture of Intelligence', item: 'https://www.frankx.ai/research/series/architecture-of-intelligence' },
     ],
   },
 })
@@ -182,20 +183,19 @@ export default function SeriesPage() {
               </h1>
 
               <p className="text-lg md:text-xl text-white/65 mb-8 leading-relaxed max-w-3xl">
-                Five connected research briefs on how intelligence organizes itself — across human minds, AI systems,
-                meaning, and embodied life. Read as one continuous argument or pull individual threads.
+                A proposed research agenda on how intelligence organizes itself across human minds, AI systems,
+                meaning and embodied life. The five planned briefs are not yet published.
               </p>
 
               <p className="text-base text-white/45 mb-10 max-w-3xl leading-relaxed">
-                The frontier of AI is no longer compute, context, or benchmarks. It is architecture shaped by deeper
-                models of mind. This series maps that architecture across five surfaces — IFS as structural vocabulary,
-                Self-Led AI Architecture as the agentic translation, the Predictive Mind as the cognitive mechanism,
-                Meaning OS as the relevance layer, and Embodied Cognition as the substrate the whole stack runs on.
+                The agenda asks where models of mind can inform software architecture, and where the analogy breaks.
+                Proposed themes include internal family systems, agent governance, predictive cognition, meaning and embodiment.
+                Each connection needs its own evidence and limitations before it can become a reviewed brief.
               </p>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
                 {[
-                  { label: 'Research briefs', value: '5', icon: Layers },
+                  { label: 'Published series briefs', value: String(seriesDomains.length), icon: Layers },
                   { label: 'Companion blogs', value: '5', icon: Brain },
                   { label: 'Implementation guides', value: '3', icon: Network },
                   { label: 'Convergence', value: 'IFS · AI · Mind', icon: Compass },
@@ -218,12 +218,12 @@ export default function SeriesPage() {
                   The Spine
                 </h2>
                 <p className="text-white/50 max-w-2xl">
-                  Read in order for the full argument. Each brief stands alone, but the sequence is intentional —
-                  foundation, translation, mechanism, integration, grounding.
+                  The brief sequence is under development. Until source review is complete, explore the existing topic hubs and companion reading below.
                 </p>
               </div>
 
               <div className="space-y-4">
+                {seriesDomains.length === 0 && <p className="rounded-xl border border-white/15 p-6 text-sm leading-7 text-white/70">No reviewed series briefs are published yet. <Link href="/research#hubs" className="text-emerald-300 underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-emerald-300">Explore the research hubs</Link>.</p>}
                 {seriesDomains.map((domain, index) => {
                   const colors = colorMap[domain.color] || colorMap.emerald
                   const note = sequenceNotes[domain.slug]

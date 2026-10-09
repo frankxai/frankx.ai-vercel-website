@@ -1,0 +1,2602 @@
+{
+  "schema_version": "1.0.0",
+  "research_id": "agentic-product-development-2026-10",
+  "article_content_id": "frankx-research-agentic-product-development",
+  "status": "HOLD",
+  "authority": "PREVIEW",
+  "as_of": "2026-10-09",
+  "brief": {
+    "question": "Which documented agent execution capabilities can support a complete product workflow, and what evidence is needed to release it?",
+    "decision": "Choose an execution boundary and evaluate accepted customer outcomes, recovery, authority and full cost.",
+    "contribution": "Three linked dossiers compare execution layers, inspect coding harnesses and reconcile current benchmark/productivity corrections.",
+    "strongest_objection": "Provider documentation and engineering guidance do not demonstrate product reliability or net productivity on a customer workload."
+  },
+  "method": {
+    "mode": "source_review",
+    "limitations": [
+      "No original framework comparison, benchmark or customer-workload experiment was executed.",
+      "Source inspection and independent AI-worker review do not satisfy production named-human attestation.",
+      "This is a directed review of selected current interfaces and empirical corrections, not an exhaustive census or formal systematic review."
+    ],
+    "contrary_search": [
+      "Read the February and July OpenAI benchmark audit sequence, including the retracted SWE-Bench Pro recommendation.",
+      "Separate the early-2025 METR RCT, the compromised later experiment, and the 2026 self-report survey.",
+      "Inspect provider availability, data-handling, checkpoint and side-effect boundaries."
+    ],
+    "coverage_gaps": [
+      "Account-specific feature access and plan costs were not tested.",
+      "Human acceptance of the proposed product evaluation contract remains pending.",
+      "Unlicensed OpenAI diagram remains link-only."
+    ]
+  },
+  "sources": [
+    {
+      "id": "openai-codex-sdk",
+      "url": "https://learn.chatgpt.com/docs/codex-sdk",
+      "title": "Codex SDK",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "OpenAI",
+      "availability": "unknown",
+      "limitations": [
+        "Local automation is a different execution boundary from an OpenAI-managed Agents API session. Specific model access depends on the signed-in account."
+      ]
+    },
+    {
+      "id": "openai-agents-sdk",
+      "url": "https://openai.github.io/openai-agents-python/",
+      "title": "OpenAI Agents SDK",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "OpenAI",
+      "availability": "unknown",
+      "limitations": [
+        "An SDK's sessions and resumable state are not evidence that an arbitrary surrounding deployment has crash-safe durable execution."
+      ]
+    },
+    {
+      "id": "openai-agents-api",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+      "title": "Agents API",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "OpenAI",
+      "availability": "beta",
+      "limitations": [
+        "The execution environment can be self-hosted while the harness and session service remain OpenAI-managed. Beta/API permissions must be checked separately."
+      ]
+    },
+    {
+      "id": "openai-agents-api-access",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/quickstart",
+      "title": "Agents API quickstart",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "OpenAI",
+      "availability": "unknown",
+      "limitations": [
+        "Presence in public docs does not prove a specific project's permission configuration or rollout access."
+      ]
+    },
+    {
+      "id": "anthropic-agent-sdk",
+      "url": "https://code.claude.com/docs/en/agent-sdk/overview",
+      "title": "Agent SDK overview",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Anthropic",
+      "availability": "unknown",
+      "limitations": [
+        "Operating a Claude Code process is not the same service boundary as Claude Managed Agents; authentication terms matter to resale/product architecture."
+      ]
+    },
+    {
+      "id": "anthropic-managed-agents",
+      "url": "https://platform.claude.com/docs/en/managed-agents/overview",
+      "title": "Claude Managed Agents overview",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Anthropic",
+      "availability": "beta",
+      "limitations": [
+        "Claude Platform on AWS has differences in feature availability and session behavior. A self-hosted environment does not imply the hosted session service stores no data."
+      ]
+    },
+    {
+      "id": "google-adk-overview",
+      "url": "https://adk.dev/",
+      "title": "Agent Development Kit",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Google",
+      "availability": "unknown",
+      "limitations": [
+        "Language parity should be checked per feature; the landing page's general capabilities do not prove identical support in every SDK."
+      ]
+    },
+    {
+      "id": "google-adk-template-workflows",
+      "url": "https://adk.dev/agents/workflow-agents/",
+      "title": "Template agent workflows",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Google",
+      "availability": "unknown",
+      "limitations": [
+        "The graph page independently lists Python, TypeScript, and Go v2.0.0 support. Preserve the narrower wording when citing this page."
+      ]
+    },
+    {
+      "id": "google-adk-graphs",
+      "url": "https://adk.dev/graphs/",
+      "title": "Graph-based agent workflows",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Google",
+      "availability": "unknown",
+      "limitations": [
+        "A deterministic control-flow graph does not make LLM outputs deterministic. Feature support is version- and language-specific."
+      ]
+    },
+    {
+      "id": "google-adk-context",
+      "url": "https://adk.dev/sessions/",
+      "title": "Conversational Context: Session, State, and Memory",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Google",
+      "availability": "unknown",
+      "limitations": [
+        "In-memory development services are not production persistence; select appropriate backing services for the deployment."
+      ]
+    },
+    {
+      "id": "langgraph-persistence",
+      "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "title": "Persistence",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "LangChain",
+      "availability": "unknown",
+      "limitations": [
+        "Checkpoints, long-term memory, and external filesystem persistence are separate concerns. The old durable-execution URL currently redirects here."
+      ]
+    },
+    {
+      "id": "langgraph-checkpointers",
+      "url": "https://docs.langchain.com/oss/python/langgraph/checkpointers",
+      "title": "Checkpointers",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "LangChain",
+      "availability": "unknown",
+      "limitations": [
+        "Persisted node outputs do not guarantee exactly-once effects at external APIs; partially completed side effects still need application safeguards."
+      ]
+    },
+    {
+      "id": "langgraph-functional-api",
+      "url": "https://docs.langchain.com/oss/python/langgraph/functional-api",
+      "title": "Functional API overview",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "LangChain",
+      "availability": "unknown",
+      "limitations": [
+        "Replay depends on stable ordering of tasks and interrupts. JSON-serializable task outputs and entrypoint inputs/outputs are required."
+      ]
+    },
+    {
+      "id": "langchain-deep-agents",
+      "url": "https://docs.langchain.com/oss/python/deepagents/overview",
+      "title": "Deep Agents overview",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "LangChain",
+      "availability": "unknown",
+      "limitations": [
+        "Filesystem tools alone are not a security boundary. Backend selection controls where files live and whether shell execution is available."
+      ]
+    },
+    {
+      "id": "langchain-managed-deep-agents",
+      "url": "https://docs.langchain.com/langsmith/python/managed-deep-agents-overview",
+      "title": "Managed Deep Agents",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "LangChain",
+      "availability": "beta",
+      "limitations": [
+        "Do not conflate the open-source harness with the managed deployment offering; ownership of persistence, backends, and server differs."
+      ]
+    },
+    {
+      "id": "langchain-managed-beta",
+      "url": "https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta",
+      "title": "Managed Deep Agents is now in Public Beta",
+      "kind": "documentation",
+      "published_at": "2026-08-07",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "LangChain",
+      "availability": "beta",
+      "limitations": [
+        "This dated launch describes its announced scope, which may differ from later docs. Check deployment region and current API support before implementation."
+      ]
+    },
+    {
+      "id": "vercel-ai-sdk-release",
+      "url": "https://vercel.com/changelog/ai-sdk-7",
+      "title": "AI SDK 7 is now available",
+      "kind": "documentation",
+      "published_at": "2026-06-25",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Vercel",
+      "availability": "unknown",
+      "limitations": [
+        "This is a release snapshot, not a guarantee of later adapter parity or all provider features. Model IDs in examples are not an endorsed ranking."
+      ]
+    },
+    {
+      "id": "vercel-workflow-agent",
+      "url": "https://ai-sdk.dev/docs/agents/workflow-agent",
+      "title": "WorkflowAgent",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Vercel",
+      "availability": "unknown",
+      "limitations": [
+        "Automatic retries do not prove exactly-once external side effects. A workflow function and appropriate persistent runtime still need configuration."
+      ]
+    },
+    {
+      "id": "vercel-workflow-ai",
+      "url": "https://workflow-sdk.dev/docs/ai",
+      "title": "Building Durable AI Agents",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Vercel",
+      "availability": "unknown",
+      "limitations": [
+        "The flight-booking example mocks tool implementations; its presence is not a measured production result."
+      ]
+    },
+    {
+      "id": "cloudflare-agents",
+      "url": "https://developers.cloudflare.com/agents/",
+      "title": "Build Agents on Cloudflare",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Cloudflare",
+      "availability": "unknown",
+      "limitations": [
+        "The opinionated Project Think harness and the underlying Agents runtime have different responsibilities. Hosting a Durable Object does not preserve in-memory closures."
+      ]
+    },
+    {
+      "id": "cloudflare-agent-fibers",
+      "url": "https://developers.cloudflare.com/agents/runtime/execution/durable-execution/",
+      "title": "Durable execution with fibers",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Cloudflare",
+      "availability": "unknown",
+      "limitations": [
+        "Durable acceptance is not a stored callback result. An evicted inline caller cannot receive the original result; explicit recovery logic is required."
+      ]
+    },
+    {
+      "id": "mcp-2026-release",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "title": "The 2026-07-28 Specification",
+      "kind": "documentation",
+      "published_at": "2026-07-28",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Model Context Protocol maintainers",
+      "availability": "unknown",
+      "limitations": [
+        "Application state still exists through explicit handles. Protocol release does not establish client/server version interoperability without testing."
+      ]
+    },
+    {
+      "id": "agent-skills-format",
+      "url": "https://agentskills.io/specification",
+      "title": "Agent Skills Overview",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Agent Skills maintainers",
+      "availability": "unknown",
+      "limitations": [
+        "A portable instruction format does not grant tool permissions, supply runtime persistence, or prove identical behavior across compatible clients."
+      ]
+    },
+    {
+      "id": "a2a-specification",
+      "url": "https://a2a-protocol.org/latest/specification/",
+      "title": "Agent2Agent Protocol Specification",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "A2A Project / Linux Foundation",
+      "availability": "unknown",
+      "limitations": [
+        "A2A is an interoperability contract; the standard does not supply a durable implementation, shared permissions, or benchmarked reasoning quality."
+      ]
+    },
+    {
+      "id": "a2a-mcp-comparison",
+      "url": "https://a2a-protocol.org/latest/topics/a2a-and-mcp/",
+      "title": "A2A and MCP: Detailed Comparison",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "A2A Project / Linux Foundation",
+      "availability": "unknown",
+      "limitations": [
+        "A peer exposed as a simple tool does not automatically preserve richer task/session semantics. The page footer identifies Apache 2.0 licensing."
+      ]
+    },
+    {
+      "id": "swe-maintainers",
+      "url": "https://www.swebench.com/",
+      "title": "SWE-bench official leaderboards",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "SWE-bench maintainers",
+      "availability": "unknown",
+      "limitations": [
+        "Results depend on task split and agent environment. This ledger records benchmark definition, not a live model ranking."
+      ]
+    },
+    {
+      "id": "swe-verified-2024",
+      "url": "https://openai.com/index/introducing-swe-bench-verified/",
+      "title": "Introducing SWE-bench Verified",
+      "kind": "documentation",
+      "published_at": "2024-08-13",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "OpenAI",
+      "availability": "unknown",
+      "limitations": [
+        "Human filtering improves task feasibility but does not prove complete test coverage or absence of later training contamination."
+      ]
+    },
+    {
+      "id": "swe-verified-audit-2026",
+      "url": "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/",
+      "title": "Why SWE-bench Verified no longer measures frontier coding capabilities",
+      "kind": "documentation",
+      "published_at": "2026-02-23",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "OpenAI",
+      "availability": "unknown",
+      "limitations": [
+        "138 audited tasks were selected from problems o3 did not consistently solve; 59.4% is not a random-sample estimate for all 500 tasks. Audit is OpenAI-reported; contamination examples do not establish every model/task is contaminated."
+      ]
+    },
+    {
+      "id": "swe-pro-audit-2026",
+      "url": "https://openai.com/index/separating-signal-from-noise-coding-evaluations/",
+      "title": "Separating signal from noise in coding evaluations",
+      "kind": "documentation",
+      "published_at": "2026-07-08",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "OpenAI",
+      "availability": "unknown",
+      "limitations": [
+        "Publisher is a model provider. Automated screening plus review of flagged tasks can miss flaws outside the flagged subset; the ~30% number is an audit estimate, not a universal property of coding tasks."
+      ]
+    },
+    {
+      "id": "metr-rct-2025",
+      "url": "https://arxiv.org/html/2507.09089v1",
+      "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+      "kind": "paper",
+      "published_at": "2025-07-12",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "METR",
+      "availability": "unknown",
+      "limitations": [
+        "16 developers with established repository expertise; 246 tasks in mature open-source projects; primarily Cursor with early-2025 Claude models. Total implementation time was self-reported, including review. Does not estimate all developers or October 2026 tools."
+      ]
+    },
+    {
+      "id": "metr-update-2026",
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "title": "We are Changing our Developer Productivity Experiment Design",
+      "kind": "documentation",
+      "published_at": "2026-02-24",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "METR",
+      "availability": "unknown",
+      "limitations": [
+        "Selection of developers and tasks, changed pay, incomplete AI-disallowed tasks and concurrent work compromise current causal interpretation. Both later-study confidence intervals include zero."
+      ]
+    },
+    {
+      "id": "metr-survey-2026",
+      "url": "https://metr.org/blog/2026-05-11-ai-usage-survey/",
+      "title": "Measuring the Self-Reported Impact of Early-2026 AI on Technical Worker Productivity",
+      "kind": "documentation",
+      "published_at": "2026-05-11",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "METR",
+      "availability": "unknown",
+      "limitations": [
+        "Self-reported counterfactuals; convenience sample; low approximately 2% emailed response rate; nonrepresentative recruitment. Internal consistency does not verify real causal productivity gains."
+      ]
+    },
+    {
+      "id": "osworld-v1",
+      "url": "https://osworld-v1.xlang.ai/",
+      "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Benchmark authors / maintainers",
+      "availability": "unknown",
+      "limitations": [
+        "Network-dependent tasks and maximum action budget can alter comparability. Original 2024 baseline results describe historical models, not current capability."
+      ]
+    },
+    {
+      "id": "gaia",
+      "url": "https://arxiv.org/html/2311.12983v1",
+      "title": "GAIA: A Benchmark for General AI Assistants",
+      "kind": "paper",
+      "published_at": "2023-11-21",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Benchmark authors / maintainers",
+      "availability": "unknown",
+      "limitations": [
+        "Question-answer evaluation does not measure write actions such as posting, uploads or booking. Web facts can change. Language/cultural diversity and human annotation costs limit coverage."
+      ]
+    },
+    {
+      "id": "tau-bench",
+      "url": "https://arxiv.org/html/2406.12045v1",
+      "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+      "kind": "paper",
+      "published_at": "2024-06-17",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Benchmark authors / maintainers",
+      "availability": "unknown",
+      "limitations": [
+        "Simulated users and simplified retail/airline policies. Matching the final database/output can still miss intermediate policy violations. Original model results are historical."
+      ]
+    },
+    {
+      "id": "agentbench",
+      "url": "https://arxiv.org/html/2308.03688v3",
+      "title": "AgentBench: Evaluating LLMs as Agents",
+      "kind": "paper",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Benchmark authors / maintainers",
+      "availability": "unknown",
+      "limitations": [
+        "Eight heterogeneous text-based environments; aggregate score combines different tasks/metrics. Historical 29-model experiment does not rank current tools."
+      ]
+    },
+    {
+      "id": "osworld-v2",
+      "url": "https://arxiv.org/html/2606.29537v1",
+      "title": "OSWorld 2.0: Benchmarking Computer Use Agents on Long-Horizon Real-World Tasks",
+      "kind": "paper",
+      "published_at": "2026-06-28",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Benchmark authors / maintainers",
+      "availability": "unknown",
+      "limitations": [
+        "108 tasks are diagnostic, not representative of all professions. Scores depend on release, action settings, task mix and stochastic behavior; paper HTML content/abstract-version model details should be reconciled before quoting a live ranking."
+      ]
+    },
+    {
+      "id": "programbench",
+      "url": "https://programbench.com/",
+      "title": "ProgramBench: Can Language Models Rebuild Programs From Scratch?",
+      "kind": "documentation",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Benchmark authors / maintainers",
+      "availability": "unknown",
+      "limitations": [
+        "Complete behavioral equivalence against compiled programs is narrower than open-ended product usefulness. Tests are finite; open-source programs may have been seen in training. Partial test percentage must not be relabeled fully resolved."
+      ]
+    },
+    {
+      "id": "effective-agents",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "title": "Building effective agents",
+      "kind": "documentation",
+      "published_at": "2024-12-19",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Anthropic",
+      "availability": "unknown",
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    },
+    {
+      "id": "long-running-harness",
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "title": "Effective harnesses for long-running agents",
+      "kind": "documentation",
+      "published_at": "2025-11-26",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Anthropic",
+      "availability": "unknown",
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    },
+    {
+      "id": "managed-architecture",
+      "url": "https://www.anthropic.com/engineering/managed-agents",
+      "title": "The architecture behind Claude Managed Agents",
+      "kind": "documentation",
+      "published_at": "2026-04-08",
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "Anthropic",
+      "availability": "unknown",
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    },
+    {
+      "id": "acos-workflow",
+      "url": "https://github.com/frankxai/agentic-creator-os/blob/05d68aeef6cfd9caaf3234d464a12279bc5c6bbe/workflows/content/research-to-article.yaml",
+      "title": "ACOS research-to-article workflow",
+      "kind": "repository",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "FrankX / ACOS",
+      "availability": "unknown",
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    },
+    {
+      "id": "acos-contract",
+      "url": "https://github.com/frankxai/agentic-creator-os/blob/05d68aeef6cfd9caaf3234d464a12279bc5c6bbe/docs/content-intelligence.md",
+      "title": "ACOS content intelligence contract",
+      "kind": "repository",
+      "published_at": null,
+      "updated_at": null,
+      "retrieved_at": "2026-10-09",
+      "retrieval_precision": "date",
+      "reviewed": true,
+      "evidence_family": "FrankX / ACOS",
+      "availability": "unknown",
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "openai-codex-sdk-c1",
+      "text": "The Codex SDK starts, continues, and resumes local Codex threads; the app server is the documented integration surface for custom clients handling authentication, history, approvals, and events.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-codex-sdk",
+          "locator": "#codex-sdk; #typescript-library",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Local automation is a different execution boundary from an OpenAI-managed Agents API session. Specific model access depends on the signed-in account."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-codex-sdk-c2",
+      "text": "The Python SDK controls the local Codex app server over JSON-RPC, requires Python 3.10+, and published builds bundle a pinned CLI runtime.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-codex-sdk",
+          "locator": "#python-library",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Local automation is a different execution boundary from an OpenAI-managed Agents API session. Specific model access depends on the signed-in account."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-codex-sdk-c3",
+      "text": "The documentation identifies the Python SDK as stable and states that codex mcp-server and the standalone codex-mcp-server binary have been removed.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-codex-sdk",
+          "locator": "#python-library; introductory integration guidance",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Local automation is a different execution boundary from an OpenAI-managed Agents API session. Specific model access depends on the signed-in account."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-agents-sdk-c1",
+      "text": "The Agents SDK provides agents, agents-as-tools/handoffs, guardrails, a tool execution loop, tracing, sessions, MCP tool calling, and human-in-the-loop mechanisms.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-agents-sdk",
+          "locator": "#openai-agents-sdk; #why-use-the-agents-sdk",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "An SDK's sessions and resumable state are not evidence that an arbitrary surrounding deployment has crash-safe durable execution."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-agents-sdk-c2",
+      "text": "Sandbox agents support isolated workspaces, manifest-defined files, sandbox-client selection, and resumable sandbox sessions.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-agents-sdk",
+          "locator": "#why-use-the-agents-sdk",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "An SDK's sessions and resumable state are not evidence that an arbitrary surrounding deployment has crash-safe durable execution."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-agents-sdk-c3",
+      "text": "The SDK uses Responses API by default for OpenAI models; direct Responses API calls leave loop, tool dispatch, and state handling to the application.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-agents-sdk",
+          "locator": "#agents-sdk-or-responses-api",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "An SDK's sessions and resumable state are not evidence that an arbitrary surrounding deployment has crash-safe durable execution."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-agents-api-c1",
+      "text": "The Agents API exposes an OpenAI-managed Codex harness that manages sessions, orchestration, context compaction, and recovery while the application chooses tools and execution environment.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-agents-api",
+          "locator": "Introduction; #core-concepts",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The execution environment can be self-hosted while the harness and session service remain OpenAI-managed. Beta/API permissions must be checked separately."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-agents-api-c2",
+      "text": "The managed harness supports sandbox commands, skills, MCP, steering, compaction, subagent delegation, and session resumption.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-agents-api",
+          "locator": "#what-the-managed-harness-provides",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The execution environment can be self-hosted while the harness and session service remain OpenAI-managed. Beta/API permissions must be checked separately."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-agents-api-c3",
+      "text": "The current Agents API supports data residency only in the United States and does not support Zero Data Retention; a self-hosted sandbox does not change ZDR eligibility.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-agents-api",
+          "locator": "Closing retention and residency notice",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The execution environment can be self-hosted while the harness and session service remain OpenAI-managed. Beta/API permissions must be checked separately."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-agents-api-access-c1",
+      "text": "Agents API requests require OpenAI-Beta: agents=v1, and the official SDKs add this header automatically.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-agents-api-access",
+          "locator": "#prerequisites",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Presence in public docs does not prove a specific project's permission configuration or rollout access."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "openai-agents-api-access-c2",
+      "text": "An application API key requires api.agents.read, api.agents.write, and api.responses.write permissions; the key should remain outside the agent sandbox.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "openai-agents-api-access",
+          "locator": "#prerequisites",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Presence in public docs does not prove a specific project's permission configuration or rollout access."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "anthropic-agent-sdk-c1",
+      "text": "The Claude Agent SDK embeds Claude Code's tools, agent loop, and context management in Python or TypeScript applications running in a process the developer operates.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "anthropic-agent-sdk",
+          "locator": "#compare-the-agent-sdk-to-other-claude-tools",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Operating a Claude Code process is not the same service boundary as Claude Managed Agents; authentication terms matter to resale/product architecture."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "anthropic-agent-sdk-c2",
+      "text": "The SDK includes file and command tools, lifecycle hooks, specialized subagents, MCP connections, permissions, sessions, skills, and plugins.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "anthropic-agent-sdk",
+          "locator": "#capabilities",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Operating a Claude Code process is not the same service boundary as Claude Managed Agents; authentication terms matter to resale/product architecture."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "anthropic-agent-sdk-c3",
+      "text": "Unless previously approved, third-party developers may not offer claude.ai login or subscription rate limits through products built with the SDK; the docs specify API-key authentication.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "anthropic-agent-sdk",
+          "locator": "#get-started",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Operating a Claude Code process is not the same service boundary as Claude Managed Agents; authentication terms matter to resale/product architecture."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "anthropic-managed-agents-c1",
+      "text": "Claude Managed Agents provides a hosted, configurable agent harness with cloud or self-hosted sandbox environments, persisted events, steering, file/command tools, web tools, MCP, and scheduled execution.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "anthropic-managed-agents",
+          "locator": "#core-concepts; #how-it-works; #supported-tools",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Claude Platform on AWS has differences in feature availability and session behavior. A self-hosted environment does not imply the hosted session service stores no data."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "anthropic-managed-agents-c2",
+      "text": "Managed Agents is beta and uses the managed-agents-2026-04-01 header; access is enabled by default for API accounts, while MCP tunnels and dreaming require research-preview access.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "anthropic-managed-agents",
+          "locator": "#beta-access",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Claude Platform on AWS has differences in feature availability and session behavior. A self-hosted environment does not imply the hosted session service stores no data."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "anthropic-managed-agents-c3",
+      "text": "Stateful Managed Agents is currently ineligible for Zero Data Retention or HIPAA BAA coverage.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "anthropic-managed-agents",
+          "locator": "#beta-access",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Claude Platform on AWS has differences in feature availability and session behavior. A self-hosted environment does not imply the hosted session service stores no data."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "google-adk-overview-c1",
+      "text": "ADK is an open-source agent development framework with Python, TypeScript, Go, Java, and Kotlin SDKs.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "google-adk-overview",
+          "locator": "Main overview",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Language parity should be checked per feature; the landing page's general capabilities do not prove identical support in every SDK."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "google-adk-overview-c2",
+      "text": "ADK supports Gemini and other providers, including local models, and can be containerized on customer infrastructure or deployed to Google Cloud.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "google-adk-overview",
+          "locator": "#frequently-asked-questions: models and deployment",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Language parity should be checked per feature; the landing page's general capabilities do not prove identical support in every SDK."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "google-adk-template-workflows-c1",
+      "text": "ADK template agents implement deterministic sequential, loop, or parallel control flow without consulting an LLM for orchestration.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "google-adk-template-workflows",
+          "locator": "#template-agent-workflows",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The graph page independently lists Python, TypeScript, and Go v2.0.0 support. Preserve the narrower wording when citing this page."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "google-adk-template-workflows-c2",
+      "text": "The template-workflow page says graph and dynamic workflows supersede template workflows in ADK 2.0 for Python and Go.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "google-adk-template-workflows",
+          "locator": "Alternative: graph-based workflows",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The graph page independently lists Python, TypeScript, and Go v2.0.0 support. Preserve the narrower wording when citing this page."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "google-adk-graphs-c1",
+      "text": "ADK graph workflows explicitly connect functions, tools, AI agents, and human-input nodes through execution edges; the docs list Python, TypeScript, and Go v2.0.0 support.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "google-adk-graphs",
+          "locator": "Introduction; Figure 1",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A deterministic control-flow graph does not make LLM outputs deterministic. Feature support is version- and language-specific."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "google-adk-graphs-c2",
+      "text": "ADK distinguishes declarative graphs, programmatic dynamic workflows, and prebuilt sequential/parallel/loop templates.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "google-adk-graphs",
+          "locator": "Workflow styles in ADK",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A deterministic control-flow graph does not make LLM outputs deterministic. Feature support is version- and language-specific."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "google-adk-graphs-c3",
+      "text": "Some third-party integrations may be incompatible with graph-based workflows.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "google-adk-graphs",
+          "locator": "#known-limitations",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A deterministic control-flow graph does not make LLM outputs deterministic. Feature support is version- and language-specific."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "google-adk-context-c1",
+      "text": "ADK separates Session conversation history, State within a conversation, and Memory for information across conversations.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "google-adk-context",
+          "locator": "#core-concepts",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "In-memory development services are not production persistence; select appropriate backing services for the deployment."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "google-adk-context-c2",
+      "text": "SessionService manages sessions and events while MemoryService manages searchable long-term knowledge.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "google-adk-context",
+          "locator": "#managing-context-services",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "In-memory development services are not production persistence; select appropriate backing services for the deployment."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langgraph-persistence-c1",
+      "text": "LangGraph checkpointers persist thread-scoped graph state; stores persist application-defined data outside graph state for cross-thread memory.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langgraph-persistence",
+          "locator": "Main overview",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Checkpoints, long-term memory, and external filesystem persistence are separate concerns. The old durable-execution URL currently redirects here."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langgraph-persistence-c2",
+      "text": "A graph can be compiled with a checkpointer, a store, or both.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langgraph-persistence",
+          "locator": "#quickstart",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Checkpoints, long-term memory, and external filesystem persistence are separate concerns. The old durable-execution URL currently redirects here."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langgraph-checkpointers-c1",
+      "text": "LangGraph saves checkpoints at super-step boundaries and persists successful per-node writes so a failed parallel step can resume without rerunning successful sibling nodes.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langgraph-checkpointers",
+          "locator": "#core-concepts; pending writes",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Persisted node outputs do not guarantee exactly-once effects at external APIs; partially completed side effects still need application safeguards."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langgraph-checkpointers-c2",
+      "text": "Checkpoint threads enable interrupted execution, state inspection, replay/fork debugging, and fault-tolerant resumption.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langgraph-checkpointers",
+          "locator": "#why-use-checkpointers",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Persisted node outputs do not guarantee exactly-once effects at external APIs; partially completed side effects still need application safeguards."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langgraph-checkpointers-c3",
+      "text": "LangSmith Agent Server manages checkpointing infrastructure automatically.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langgraph-checkpointers",
+          "locator": "Introduction: Agent Server handles checkpointing automatically",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Persisted node outputs do not guarantee exactly-once effects at external APIs; partially completed side effects still need application safeguards."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langgraph-functional-api-c1",
+      "text": "LangGraph's Functional API uses entrypoint and task primitives while sharing the same runtime as Graph API.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langgraph-functional-api",
+          "locator": "#functional-api-vs-graph-api",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Replay depends on stable ordering of tasks and interrupts. JSON-serializable task outputs and entrypoint inputs/outputs are required."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langgraph-functional-api-c2",
+      "text": "Resumption replays the entrypoint from its start and restores completed task/subgraph results from checkpoints rather than resuming the original line of code.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langgraph-functional-api",
+          "locator": "#determinism",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Replay depends on stable ordering of tasks and interrupts. JSON-serializable task outputs and entrypoint inputs/outputs are required."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langgraph-functional-api-c3",
+      "text": "A task that started but did not finish may execute again; side effects should be idempotent and use idempotency keys or existing-result checks.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langgraph-functional-api",
+          "locator": "#idempotency",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Replay depends on stable ordering of tasks and interrupts. JSON-serializable task outputs and entrypoint inputs/outputs are required."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langchain-deep-agents-c1",
+      "text": "Deep Agents is a harness built on LangChain primitives and the LangGraph runtime, with filesystem/context management, subagents, memory, streaming, and human-in-the-loop capabilities.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langchain-deep-agents",
+          "locator": "Introduction; architecture section",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Filesystem tools alone are not a security boundary. Backend selection controls where files live and whether shell execution is available."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langchain-deep-agents-c2",
+      "text": "Task planning and skills are optional extensions to the default harness.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langchain-deep-agents",
+          "locator": "Introduction",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Filesystem tools alone are not a security boundary. Backend selection controls where files live and whether shell execution is available."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langchain-deep-agents-c3",
+      "text": "The execute shell-command tool is available only with a sandbox backend; unsupported execution/deletion tools are hidden.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langchain-deep-agents",
+          "locator": "#virtual-filesystem-access",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Filesystem tools alone are not a security boundary. Backend selection controls where files live and whether shell execution is available."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langchain-managed-deep-agents-c1",
+      "text": "Managed Deep Agents runs the open-source Deep Agents harness on LangSmith Agent Server with threads, runs, streaming, and an MCP endpoint.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langchain-managed-deep-agents",
+          "locator": "Introduction",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Do not conflate the open-source harness with the managed deployment offering; ownership of persistence, backends, and server differs."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langchain-managed-deep-agents-c2",
+      "text": "Instructions, skills, tools, middleware, memory, sandbox, identity, channels, schedules, and evals are declared in project files.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langchain-managed-deep-agents",
+          "locator": "#core-capabilities",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Do not conflate the open-source harness with the managed deployment offering; ownership of persistence, backends, and server differs."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langchain-managed-deep-agents-c3",
+      "text": "create_deep_agent returns a compiled agent operated by the developer; define_deep_agent returns a definition compiled by the managed runtime.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langchain-managed-deep-agents",
+          "locator": "#relationship-to-deep-agents",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Do not conflate the open-source harness with the managed deployment offering; ownership of persistence, backends, and server differs."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langchain-managed-beta-c1",
+      "text": "Managed Deep Agents entered public beta on August 7, 2026, with Python and TypeScript projects deployed through the mda CLI.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langchain-managed-beta",
+          "locator": "Opening announcement",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "This dated launch describes its announced scope, which may differ from later docs. Check deployment region and current API support before implementation."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langchain-managed-beta-c2",
+      "text": "The announced public-beta scope is LangSmith Cloud in the US region and CLI-first while the supported API is finalized.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langchain-managed-beta",
+          "locator": "#when-to-use-managed-deep-agents",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "This dated launch describes its announced scope, which may differ from later docs. Check deployment region and current API support before implementation."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "langchain-managed-beta-c3",
+      "text": "The Harbor integration grades resulting files or environment state; users still run Harbor in a configured environment.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "langchain-managed-beta",
+          "locator": "#harbor-evals-without-the-setup-work",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "This dated launch describes its announced scope, which may differ from later docs. Check deployment region and current API support before implementation."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "vercel-ai-sdk-release-c1",
+      "text": "Vercel released AI SDK 7 on June 25, 2026, documenting approvals, WorkflowAgent durability, sandbox abstractions, external harness adapters, and expanded telemetry.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "vercel-ai-sdk-release",
+          "locator": "#at-a-glance; #run-agents-in-production; #integrate-agent-harnesses",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "This is a release snapshot, not a guarantee of later adapter parity or all provider features. Model IDs in examples are not an endorsed ranking."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "vercel-ai-sdk-release-c2",
+      "text": "AI SDK 7 requires Node.js 22+ and ESM imports.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "vercel-ai-sdk-release",
+          "locator": "#before-you-upgrade",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "This is a release snapshot, not a guarantee of later adapter parity or all provider features. Model IDs in examples are not an endorsed ranking."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "vercel-ai-sdk-release-c3",
+      "text": "Realtime and video generation are labelled experimental; speech and transcription exports are stable.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "vercel-ai-sdk-release",
+          "locator": "#build-beyond-text",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "This is a release snapshot, not a guarantee of later adapter parity or all provider features. Model IDs in examples are not an endorsed ranking."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "vercel-workflow-agent-c1",
+      "text": "ToolLoopAgent runs its loop in memory; WorkflowAgent adds workflow-backed state persistence and approvals that survive suspension.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "vercel-workflow-agent",
+          "locator": "#why-durable-agents; #when-to-use-workflowagent-vs-toolloopagent",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Automatic retries do not prove exactly-once external side effects. A workflow function and appropriate persistent runtime still need configuration."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "vercel-workflow-agent-c2",
+      "text": "Tool execute functions marked use step run as durable workflow steps with retries; unmarked tools remain in-memory functions.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "vercel-workflow-agent",
+          "locator": "#tools-as-workflow-steps",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Automatic retries do not prove exactly-once external side effects. A workflow function and appropriate persistent runtime still need configuration."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "vercel-workflow-agent-c3",
+      "text": "The current docs require Workflow 5 plus ai and zod peer dependencies for @ai-sdk/workflow.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "vercel-workflow-agent",
+          "locator": "#installation",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Automatic retries do not prove exactly-once external side effects. A workflow function and appropriate persistent runtime still need configuration."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "vercel-workflow-agent-c4",
+      "text": "WorkflowAgent stream() is unbounded unless stopWhen is set, while generate() defaults to a maximum of 20 steps.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "vercel-workflow-agent",
+          "locator": "#loop-control; #non-streaming-generation",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Automatic retries do not prove exactly-once external side effects. A workflow function and appropriate persistent runtime still need configuration."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "vercel-workflow-ai-c1",
+      "text": "The Workflow SDK guide marks orchestration with use workflow and tool execution with use step, with persistent streams read by API endpoints.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "vercel-workflow-ai",
+          "locator": "#create-a-workflow-function; #update-the-api-route; #convert-tools-to-steps",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The flight-booking example mocks tool implementations; its presence is not a measured production result."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "vercel-workflow-ai-c2",
+      "text": "The guide documents automatic retries for failed tool executions marked use step.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "vercel-workflow-ai",
+          "locator": "#convert-tools-to-steps",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The flight-booking example mocks tool implementations; its presence is not a measured production result."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "cloudflare-agents-c1",
+      "text": "Cloudflare separates communication channels, an agent harness, a durable Agents SDK runtime, and capability tools.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "cloudflare-agents",
+          "locator": "Main architectural breakdown",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The opinionated Project Think harness and the underlying Agents runtime have different responsibilities. Hosting a Durable Object does not preserve in-memory closures."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "cloudflare-agents-c2",
+      "text": "The runtime provides durable identity, local SQL state, real-time connections, scheduling, routing, fibers, and observability; a harness owns the model/tool loop.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "cloudflare-agents",
+          "locator": "Main architectural breakdown",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The opinionated Project Think harness and the underlying Agents runtime have different responsibilities. Hosting a Durable Object does not preserve in-memory closures."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "cloudflare-agent-fibers-c1",
+      "text": "runFiber registers work in SQLite and stash persists recovery state; onFiberRecovered handles work interrupted by Durable Object eviction.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "cloudflare-agent-fibers",
+          "locator": "Introduction; #checkpoints-with-stash",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Durable acceptance is not a stored callback result. An evicted inline caller cannot receive the original result; explicit recovery logic is required."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "cloudflare-agent-fibers-c2",
+      "text": "startFiber durably accepts retained background work with status, retry deduplication, and cooperative cancellation.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "cloudflare-agent-fibers",
+          "locator": "#startfiber",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Durable acceptance is not a stored callback result. An evicted inline caller cannot receive the original result; explicit recovery logic is required."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "cloudflare-agent-fibers-c3",
+      "text": "Fibers do not replay the original closure or automatically retry application work; recovery policy belongs in onFiberRecovered. Cloudflare Workflows serves separate multi-step orchestration.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "cloudflare-agent-fibers",
+          "locator": "#recovery; #why-fibers-exist",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Durable acceptance is not a stored callback result. An evicted inline caller cannot receive the original result; explicit recovery logic is required."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "mcp-2026-release-c1",
+      "text": "MCP 2026-07-28 removes initialize/initialized and Mcp-Session-Id transport sessions; requests carry protocol version, identity, and capabilities independently.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "mcp-2026-release",
+          "locator": "#no-handshake-or-sessions",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Application state still exists through explicit handles. Protocol release does not establish client/server version interoperability without testing."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "mcp-2026-release-c2",
+      "text": "The release introduces stateless Multi Round-Trip Requests, method/name routing headers, cacheable list results, and formal extensions.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "mcp-2026-release",
+          "locator": "#multi-round-trip-requests-mrtr; #header-based-routing; #list-results-are-cacheable",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Application state still exists through explicit handles. Protocol release does not establish client/server version interoperability without testing."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "mcp-2026-release-c3",
+      "text": "Tasks moves into the io.modelcontextprotocol/tasks extension; roots, sampling, logging, and legacy HTTP+SSE are deprecated with at least twelve months of support.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "mcp-2026-release",
+          "locator": "#tasks; #deprecations",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Application state still exists through explicit handles. Protocol release does not establish client/server version interoperability without testing."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "agent-skills-format-c1",
+      "text": "An Agent Skill is an open-format folder containing SKILL.md metadata and instructions, optionally with scripts, references, and assets.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "agent-skills-format",
+          "locator": "#what-are-agent-skills",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A portable instruction format does not grant tool permissions, supply runtime persistence, or prove identical behavior across compatible clients."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "agent-skills-format-c2",
+      "text": "Skill loading uses progressive disclosure: name/description discovery, full-instruction activation, then referenced resources or code during execution.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "agent-skills-format",
+          "locator": "#how-do-agent-skills-work",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A portable instruction format does not grant tool permissions, supply runtime persistence, or prove identical behavior across compatible clients."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "a2a-specification-c1",
+      "text": "The current A2A specification page identifies 1.0.0 as the latest released version.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "a2a-specification",
+          "locator": "Opening version selector",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A2A is an interoperability contract; the standard does not supply a durable implementation, shared permissions, or benchmarked reasoning quality."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "a2a-specification-c2",
+      "text": "A2A defines communication between independent opaque agent systems through capability discovery, messages, tasks, artifacts, streaming, and asynchronous updates.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "a2a-specification",
+          "locator": "#1-introduction; #11-key-goals-of-a2a",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A2A is an interoperability contract; the standard does not supply a durable implementation, shared permissions, or benchmarked reasoning quality."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "a2a-specification-c3",
+      "text": "Peer agents can exchange work without exposing internal state, memory, or tool implementations.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "a2a-specification",
+          "locator": "#12-guiding-principles",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A2A is an interoperability contract; the standard does not supply a durable implementation, shared permissions, or benchmarked reasoning quality."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "a2a-mcp-comparison-c1",
+      "text": "MCP connects agents to tools/resources while A2A connects independent agents for task-oriented collaboration; the protocols can be used together.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "a2a-mcp-comparison",
+          "locator": "#model-context-protocol; #agent2agent-protocol; #a2a--mcp-complementary-protocols-for-agentic-systems",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A peer exposed as a simple tool does not automatically preserve richer task/session semantics. The page footer identifies Apache 2.0 licensing."
+      ],
+      "freshness_triggers": [
+        "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-swe-definition",
+      "text": "SWE-bench Verified is a human-filtered 500-task subset of real repository issues; its resolved metric records tasks that pass the benchmark tests.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "swe-maintainers",
+          "locator": "Official benchmark definitions; 2024 release Dataset construction",
+          "support": "direct"
+        },
+        {
+          "source_id": "swe-verified-2024",
+          "locator": "Official benchmark definitions; 2024 release Dataset construction",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Test success does not establish UI quality, security, maintainability, deployment correctness or product-market fit."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-swe-audit",
+      "text": "OpenAI reported material issues in 59.4% of a selected 138-problem SWE-bench Verified audit and contamination evidence in the frontier models it examined.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "swe-verified-audit-2026",
+          "locator": "Test-design audit and Contamination sections",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Selected hard/failing-task sample; retain denominator and selection rule. Attribute the audit to OpenAI."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-swe-pro-retraction",
+      "text": "In July 2026, OpenAI estimated that about 30% of the SWE-Bench Pro public tasks had breaking issues and retracted its earlier recommendation to adopt that benchmark.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "swe-pro-audit-2026",
+          "locator": "Summary and Discussion final paragraph",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Estimate comes from automated screening plus independent review of flagged tasks; vendor-reported audit."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-metr-rct",
+      "text": "METR’s early-2025 randomized study of 16 experienced open-source developers and 246 tasks found that allowing the tested AI tools increased completion time by 19%.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "metr-rct-2025",
+          "locator": "Abstract; §2 methodology; §3 results",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Dates, participants and setting must remain in public wording. This is not a claim that October 2026 coding agents slow all developers."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-metr-update",
+      "text": "METR’s February 2026 update judged its later experiment an unreliable signal of current AI productivity effects because of developer/task selection and time-measurement problems.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "metr-update-2026",
+          "locator": "Opening summary; Wider adoption section",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Does not reverse the earlier RCT by establishing a reliable current speedup."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-metr-update-estimates",
+      "text": "In the later study, raw estimated time changes were −18% for returning developers (interval −38% to +9%) and −4% for new developers (−15% to +9%); METR warns against treating those estimates as reliable current effects.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "metr-update-2026",
+          "locator": "Opening raw-results paragraph, line 41",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Both intervals include zero. Selection effects and concurrent work compromise interpretation."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-metr-survey",
+      "text": "METR’s February–April 2026 survey of 349 technical workers reported a median self-assessed 1.4–2× change in work value from AI; the authors caution that those perceptions may not match reality.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "metr-survey-2026",
+          "locator": "Summary and sampling methodology",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Self-reported convenience sample with low response; no causal effect estimate. Speed and value are distinct measures."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-osworld-definition",
+      "text": "OSWorld evaluates desktop agents through real applications and execution-based final-state checks; maintainers permit either 369 tasks or 361 after excluding eight network-dependent Google Drive tasks.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "osworld-v1",
+          "locator": "Project description and Google Drive Tasks notice",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Report task count, maximum steps and environment; original model baseline numbers are historical."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-gaia-definition",
+      "text": "GAIA contains 466 assistant questions scored with a normalized, quasi-exact match to short factual answers. It does not evaluate actions such as posting content or booking a meeting.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "gaia",
+          "locator": "§3.2 and §3.3",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "A correct short answer does not certify the trace, write authorization or end-to-end product workflow."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-tau-repetition",
+      "text": "τ-bench distinguishes pass@k, at least one success in k trials, from pass^k, success in every one of k trials; these answer different reliability questions.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "tau-bench",
+          "locator": "§3 reward and pass^k definition",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "The trials concern the same underlying simulated task with conversation variation; do not treat repeated-trial success as independent real-world deployment certification."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-tau-state-limits",
+      "text": "The original τ-bench reward checks final database state and required output information, and the paper explicitly notes that a passing episode can still violate a policy such as required user confirmation.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "tau-bench",
+          "locator": "§3 reward caveat, lines 174–178",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Requires supplementary trajectory/policy evaluation for intermediate violations."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-agentbench-coverage",
+      "text": "AgentBench spans eight text-interactive environments including operating-system, database, knowledge-graph, game, household, shopping and web tasks.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "agentbench",
+          "locator": "Abstract and benchmark composition",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Heterogeneous environment scores should not be converted into a universal agent reliability percentage."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-agentbench-failure-taxonomy",
+      "text": "AgentBench separates completed episodes, context-limit failures, invalid response formats, invalid actions and task-limit failures.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "agentbench",
+          "locator": "Appendix J.1 Validity Analysis",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "This is a diagnostic taxonomy from the benchmark, not an exhaustive product incident taxonomy."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-osworld2-coverage",
+      "text": "OSWorld 2.0 expands computer-use evaluation to 108 end-to-end workflows with challenges such as cross-source reasoning, changing environments, hidden state, conflict resolution and proactive user interaction.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "osworld-v2",
+          "locator": "Abstract; Table 2 challenge phenomena; §6 limitations",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "No claim of occupation-wide representativeness or comparability with OSWorld 1.0 percentages."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "eval-programbench-definition",
+      "text": "ProgramBench asks agents to rebuild 200 programs from executable behavior and documentation without original source access or internet use; the primary metric is complete resolution against the hidden behavioral tests.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "programbench",
+          "locator": "About ProgramBench; scoring FAQ",
+          "support": "direct"
+        }
+      ],
+      "limitations": [
+        "Average test pass rate and ≥95% almost-resolved are auxiliary metrics. Finite tests cannot certify every possible input."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "inference-separate-evaluation-units",
+      "text": "A product research program should measure patch correctness, complete artifacts, answer accuracy, desktop state and interaction-policy compliance separately before combining them into a release decision.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "swe-maintainers",
+          "locator": "Derived from distinct benchmark task definitions",
+          "support": "derived"
+        },
+        {
+          "source_id": "gaia",
+          "locator": "Derived from distinct benchmark task definitions",
+          "support": "derived"
+        },
+        {
+          "source_id": "osworld-v1",
+          "locator": "Derived from distinct benchmark task definitions",
+          "support": "derived"
+        },
+        {
+          "source_id": "tau-bench",
+          "locator": "Derived from distinct benchmark task definitions",
+          "support": "derived"
+        },
+        {
+          "source_id": "programbench",
+          "locator": "Derived from distinct benchmark task definitions",
+          "support": "derived"
+        }
+      ],
+      "limitations": [
+        "FrankX architectural recommendation; sources describe different units and do not validate this exact release framework."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    },
+    {
+      "id": "inference-measure-value",
+      "text": "An agent-product experiment should record accepted useful work, human review time, rework, cost, latency and policy violations; raw tokens or task counts cannot alone establish productivity.",
+      "type": "fact",
+      "as_of": "2026-10-09",
+      "verdict": "revise",
+      "references": [
+        {
+          "source_id": "metr-rct-2025",
+          "locator": "Derived from implementation-time measurement and value/speed distinctions",
+          "support": "derived"
+        },
+        {
+          "source_id": "metr-update-2026",
+          "locator": "Derived from implementation-time measurement and value/speed distinctions",
+          "support": "derived"
+        },
+        {
+          "source_id": "metr-survey-2026",
+          "locator": "Derived from implementation-time measurement and value/speed distinctions",
+          "support": "derived"
+        }
+      ],
+      "limitations": [
+        "Proposed measurement contract; this exact composite has not been empirically validated here."
+      ],
+      "freshness_triggers": [
+        "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+      ],
+      "contrary_evidence": []
+    }
+  ],
+  "experiments": [],
+  "media": [
+    {
+      "id": "openai-managed-architecture",
+      "kind": "graphic",
+      "source_id": "openai-agents-api",
+      "url": "https://developers.openai.com/images/api/agents-api/overview-1.webp",
+      "publisher": "OpenAI",
+      "captured_at": "2026-10-09T22:00:37Z",
+      "locator": "Original resource reference inspected from https://developers.openai.com/api/docs/guides/agents-api/overview; HTTP 200",
+      "caption": "OpenAI-hosted Agents API architecture",
+      "alt": "Application sessions and events connect to an OpenAI-managed Codex harness and sandbox.",
+      "placement": "Managed harness versus execution-environment ownership.",
+      "transformation": "Original remote resource; no copying, clipping, redrawing, download or reupload in the deliverable.",
+      "use": "link",
+      "rights_basis": "link_only",
+      "rights_evidence": "Link-only original publication reference; no reuse right claimed."
+    },
+    {
+      "id": "google-adk-graph-workflow",
+      "kind": "graphic",
+      "source_id": "google-adk-graphs",
+      "url": "https://adk.dev/assets/workflow-design.svg",
+      "publisher": "Google",
+      "captured_at": "2026-10-09T22:00:42Z",
+      "locator": "Original resource reference inspected from https://adk.dev/graphs/; HTTP 200",
+      "caption": "Graph-based flight upgrade agent",
+      "alt": "An ADK graph combining function nodes, human input, tools, and LLM capabilities.",
+      "placement": "Deterministic process flow with model reasoning inside selected nodes.",
+      "transformation": "Original remote resource; no copying, clipping, redrawing, download or reupload in the deliverable.",
+      "use": "embed",
+      "rights_basis": "license",
+      "rights_evidence": "https://github.com/google/adk-docs/blob/12712d00d48712998f15a2a9d8bd26d708b727a3/LICENSE"
+    },
+    {
+      "id": "mcp-stateless-core-demo",
+      "kind": "video",
+      "source_id": "mcp-2026-release",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/stateless-core-demo.mp4",
+      "publisher": "Model Context Protocol maintainers",
+      "captured_at": "2026-10-09T22:00:48Z",
+      "locator": "Original resource reference inspected from https://blog.modelcontextprotocol.io/posts/2026-07-28/; HTTP 200",
+      "caption": "MCP stateless protocol core demo",
+      "alt": "Official screen demonstration of the MCP stateless protocol core. The connected tools perform requests without a core initialization handshake or transport session ID; applications still own their explicit state. The source article explains the protocol transition. This demonstration is not a benchmark.",
+      "placement": "MCP 2026-07-28 transport migration; use native muted video with controls and explanatory transcript/caption.",
+      "transformation": "Original remote resource; no copying, clipping, redrawing, download or reupload in the deliverable.",
+      "use": "embed",
+      "rights_basis": "license",
+      "rights_evidence": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/LICENSE"
+    },
+    {
+      "id": "langchain-managed-deep-agents-video",
+      "kind": "video",
+      "source_id": "langchain-managed-beta",
+      "url": "https://www.youtube.com/watch?v=yi-XZnAVFJg",
+      "publisher": "LangChain",
+      "captured_at": "2026-10-09T22:00:53Z",
+      "locator": "Original resource reference inspected from https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta; HTTP 200",
+      "caption": "Managed Deep Agents explained in 20 minutes",
+      "alt": "Official LangChain walkthrough of its managed agent service. Use the original player for available captions and transcript.",
+      "placement": "Optional supporting walkthrough of managed deployment primitives, not evidence of vendor superiority.",
+      "transformation": "Original remote resource; no copying, clipping, redrawing, download or reupload in the deliverable.",
+      "use": "embed",
+      "rights_basis": "provider_embed",
+      "rights_evidence": "Official publisher article embeds the same YouTube video: https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta"
+    },
+    {
+      "id": "a2a-mcp-boundary",
+      "kind": "graphic",
+      "source_id": "a2a-mcp-comparison",
+      "url": "https://a2a-protocol.org/latest/assets/a2a-mcp.png",
+      "publisher": "A2A Project / Linux Foundation",
+      "captured_at": "2026-10-09T22:00:57Z",
+      "locator": "Original resource reference inspected from https://a2a-protocol.org/latest/topics/a2a-and-mcp/; HTTP 200",
+      "caption": "A2A and MCP working together",
+      "alt": "User and agents communicate through A2A while an agent reaches tools through MCP.",
+      "placement": "Distinct protocol boundaries in the interoperability section.",
+      "transformation": "Original remote resource; no copying, clipping, redrawing, download or reupload in the deliverable.",
+      "use": "embed",
+      "rights_basis": "license",
+      "rights_evidence": "https://a2a-protocol.org/latest/topics/a2a-and-mcp/"
+    }
+  ],
+  "publication_record": {
+    "canonical_url": "https://www.frankx.ai/research/agentic-product-development",
+    "title": "Agentic product development: from intent to a verified release",
+    "description": "A source-led investigation of coding harnesses, managed agents, durable workflows, portable skills and the evidence needed to release a real product.",
+    "author": "Codex research editor",
+    "reviewer": null,
+    "reviewed_at": null,
+    "related_urls": [
+      "https://www.frankx.ai/research/coding-agents-full-stack",
+      "https://www.frankx.ai/research/agentic-evals-swe-bench-trajectories"
+    ],
+    "render_strategy": "server_or_static"
+  },
+  "blocked": [
+    "Production requires named-human editorial review and an externally verified exact-revision receipt.",
+    "Atomic discovery-ledger claims remain revise until their wording and bindings are accepted against the final candidate."
+  ]
+}
