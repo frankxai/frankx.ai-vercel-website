@@ -72,7 +72,7 @@ export const COMPARISONS: Comparison[] = [
       'grok 4.6 pricing',
     ],
     architect: {
-      call: 'Two Grok seats: 4.6 for flagship agent loops, 4.3 for cheap volume. Do not collapse them. Do not invent a SIS winner.',
+      call: 'Two Grok seats: 4.6 for agent loops, 4.3 for cheap volume. Do not collapse them. Do not invent a SIS winner.',
       coePillar: 'Technology · model routing + Strategy · evidence honesty',
       personas: [
         { persona: 'Long-running coding agents', pick: 'Grok 4.6' },

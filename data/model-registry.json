@@ -935,7 +935,7 @@
         "MCP-native tool use (83.6% MCP Atlas)",
         "Full multimodal: text, vision, audio, video"
       ],
-      "frankx_notes": "The one Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding (Terminal-Bench 2.1 76.2%) at Flash pricing — the new default agent runtime. Gemini 3.5 Pro remains in limited preview as of June 2026.",
+      "frankx_notes": "The one Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding (Terminal-Bench 2.1 76.2%) at Flash pricing. Gemini 3.5 Pro remains in limited preview as of June 2026.",
       "sources": [
         "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
         "https://deepmind.google/models/model-cards/gemini-3-5-flash/",
