@@ -401,7 +401,7 @@
         "Frontier-class agentic coding and computer use at unchanged Opus pricing"
       ],
       "acos_tier": "opus",
-      "frankx_notes": "Shipped 24 July 2026 at the unchanged Opus price of $5/$25, which makes it half the cost of Fable 5 while reporting higher coding numbers - the routing question between the two Anthropic flagships is now cost and task shape, not capability tiers. Benchmarks are vendor-reported. Note that published leaderboards disagree on ordering at the top of SWE-Bench Verified: DeepSeek V4 Pro 0813 reports 96.4% against this model's 96.0%, and different trackers rank them differently, so treat any '#1' claim as source-dependent.",
+      "frankx_notes": "Shipped 24 July 2026 at the unchanged Opus price of $5/$25, which makes it half the cost of Fable 5 while reporting higher coding numbers - at launch the routing question between the two Anthropic flagships was cost and task shape. Benchmarks are vendor-reported. Note that published leaderboards disagree on ordering at the top of SWE-Bench Verified: DeepSeek V4 Pro 0813 reports 96.4% against this model's 96.0%, and different trackers rank them differently, so treat any '#1' claim as source-dependent.",
       "sources": [
         "https://www.anthropic.com/news/claude-opus-5",
         "https://platform.claude.com/docs/en/models/overview",
@@ -1778,5 +1778,5 @@
     "fable": "claude-fable-5-1"
   },
   "last_updated": "2026-10-09",
-  "_update_scope": "Added Claude Opus 5.5, Sonnet 5.5 and Haiku 5.5, GPT-6 Sol, GPT-6.1 Sol and Grok 4.7 from official sources, checked 9 October 2026, and made Grok 4.7 the xAI flagship. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
+  "_update_scope": "Added Claude Opus 5.5, Sonnet 5.5 and Haiku 5.5, GPT-6 Sol, GPT-6.1 Sol and Grok 4.7 from official sources, checked 9 October 2026, and made Grok 4.7 the xAI flagship. Anthropic and OpenAI flagship IDs were re-checked against vendor pages on 9 October 2026 and kept: Anthropic does not call Opus 5.5 its flagship or most capable model, and OpenAI names GPT-6 Astra its flagship. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
 }

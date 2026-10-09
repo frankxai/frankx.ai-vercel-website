@@ -218,7 +218,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'x-ai/grok-4.1',
   },
   'gpt-5-5': {
-    tagline: 'OpenAI’s agentic flagship: best-in-class computer-use and knowledge-work scores, at double the price.',
+    tagline: 'OpenAI’s agentic flagship at its April 2026 launch: best-in-class computer-use and knowledge-work scores at the time, at double the price.',
     bestFor: [
       'Terminal-agent and Codex-style autonomous loops',
       'Computer-use / OSWorld automation',
