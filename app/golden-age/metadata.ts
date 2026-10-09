@@ -55,7 +55,7 @@ export const essays: Essay[] = [
     subtitle: 'Flagship Atlas for Agentic Marketing Teams',
     readingTime: '52 min',
     category: 'Flagship',
-    description: 'A 15,000-word masterwork fusing SEO strategy, agentic operations, and automation.',
+    description: 'A long-form playbook fusing SEO strategy, agentic operations, and automation.',
   },
   {
     slug: 'golden-age-field-guide',
