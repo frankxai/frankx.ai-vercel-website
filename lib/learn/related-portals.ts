@@ -30,6 +30,7 @@ export const CLOUD_PORTALS = [
 
 /** content/guides/<slug>.mdx → portal slugs. Omitted guides get the default set. */
 const GUIDE_PORTALS: Record<string, string[]> = {
+  'higgsfield-ai-video-guide': ['higgsfield-mastery'],
   'claude-anthropic-guide': ['claude-mastery'],
   'claude-code-getting-started': ['claude-mastery', 'codex-mastery'],
   'openai-chatgpt-guide': ['chatgpt-mastery'],

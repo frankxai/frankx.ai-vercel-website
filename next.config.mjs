@@ -55,6 +55,12 @@ function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = [])
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  experimental: {
+    // Bound static-generation workers on smaller build machines; default behavior is unchanged.
+    ...(/^[1-8]$/.test(process.env.FRANKX_BUILD_WORKERS ?? '')
+      ? { cpus: Number(process.env.FRANKX_BUILD_WORKERS) }
+      : {}),
+  },
   typescript: {
     // Type-check on every Vercel build. `npm run merge:gate` enforces tsc locally
     // and in CI; this guarantees the same gate fires at deploy time. Flipped to

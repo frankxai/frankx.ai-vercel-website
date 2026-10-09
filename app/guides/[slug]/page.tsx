@@ -8,6 +8,7 @@ import LearnHubSection from '@/components/learn/LearnHubSection'
 import { portalsForGuide } from '@/lib/learn/related-portals'
 import JsonLd from '@/components/seo/JsonLd'
 import { createMetadata, siteConfig } from '@/lib/seo'
+import HiggsfieldWorkbench, { HiggsfieldLessons } from '@/components/guides/higgsfield/HiggsfieldWorkbench'
 import AgenticObsidianHero from '@/components/guides/AgenticObsidianHero'
 import CommunityPlatformGuidePage from '@/components/guides/community-platform/CommunityPlatformGuidePage'
 import { getCommunityPlatforms } from '@/lib/community-platforms'
@@ -85,14 +86,16 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
               ]}
             />
             <h1 className="text-4xl md:text-5xl font-bold text-white mt-6 mb-4">{guide.title}</h1>
-            <div className="text-sm text-slate-400 mb-8 flex items-center gap-3">
+            <div className="text-sm text-slate-400 mb-8 flex flex-wrap items-center gap-3">
               <span>{guide.readingTime}</span>
               <span className="text-slate-600">•</span>
-              <span>{new Date(guide.date).toLocaleDateString()}</span>
+              <span>{guide.slug === 'higgsfield-ai-video-guide' && guide.updated ? `Updated ${new Date(guide.updated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}` : new Date(guide.date).toLocaleDateString()}</span>
               <span className="text-slate-600">•</span>
               <span>{guide.author}</span>
             </div>
-            {guide.slug === 'agentic-obsidian-second-brain' ? (
+            {guide.slug === 'higgsfield-ai-video-guide' ? (
+              <HiggsfieldWorkbench />
+            ) : guide.slug === 'agentic-obsidian-second-brain' ? (
               <AgenticObsidianHero />
             ) : guide.image ? (
               <HeroImage
@@ -106,6 +109,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <div className="space-y-6 text-base leading-relaxed text-white/75">
               <MDXContent source={guide.content} />
             </div>
+            {guide.slug === 'higgsfield-ai-video-guide' ? <HiggsfieldLessons /> : null}
             {guide.faqs && guide.faqs.length > 0 ? (
               <section className="mt-16 border-t border-white/[0.08] pt-12" aria-labelledby="guide-faq-heading">
                 <h2 id="guide-faq-heading" className="text-3xl font-bold tracking-tight text-white">
