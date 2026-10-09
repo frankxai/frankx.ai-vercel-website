@@ -53,11 +53,6 @@ const structuredData = {
     price: '0',
     priceCurrency: product.offer.currency,
     availability: 'https://schema.org/InStock'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    reviewCount: '23'
   }
 }
 

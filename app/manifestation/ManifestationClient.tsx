@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, BookOpen, FlaskConical, Music, Sparkles, Compass } from 'lucide-react'
+import { ArrowRight, BookOpen, Music, Sparkles, Compass } from 'lucide-react'
 import EmailCapture from '@/components/EmailCapture'
 import {
   SectionHeading,
@@ -26,7 +26,6 @@ const navCards = [
   { href: '/the-secret', icon: BookOpen, title: 'The Secret', desc: 'The Law of Attraction, read honestly — what worked, what to ignore.' },
   { href: '/think-and-grow-rich', icon: Compass, title: 'Think and Grow Rich', desc: "Hill's 13 principles reframed as a system you can actually run." },
   { href: '/manifestation/quest', icon: Sparkles, title: 'The 10-Day Quest', desc: 'A guided loop from Manifestation Master to Reality Architect.' },
-  { href: '/research/manifestation-law-of-attraction-ai-systems', icon: FlaskConical, title: 'The Research', desc: 'Mechanism vs. belief, with sources and honest limitations.' },
 ]
 
 // Reality Architect is where the loop on this page runs as a practice: open, local-first, exported as Markdown.
@@ -67,12 +66,6 @@ export default function ManifestationClient() {
               >
                 Start the 10-day quest
                 <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/research/manifestation-law-of-attraction-ai-systems"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-white/15 text-white/80 font-medium rounded-full hover:bg-white/5 transition-colors"
-              >
-                Read the research
               </Link>
             </div>
           </motion.div>
