@@ -52,10 +52,7 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'Inference compute scaling scales benchmark accuracy on competition math and code by up to 40 percentage points over direct zero-shot prompting.',
-      'Process Reward Models (PRMs) reduce reasoning hallucinations by 64% compared to standard Outcome Reward Models (ORMs).',
       'Pure RLVR with cold-start rejection sampling induces emergent self-correction behaviors without requiring human demonstration traces.',
-      'Extended thinking modes require explicit context preservation to avoid attention dilution over 64k+ chain-of-thought tokens.',
       'Hybrid reasoning architectures dynamically switch between fast System 1 autoregressive output and deep System 2 search based on calibrated entropy estimators.',
     ],
     faq: [
@@ -125,11 +122,7 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'Sparse MoE architectures achieve identical benchmark performance to dense models while consuming 70% fewer FLOPs per inference token.',
-      'Multi-Head Latent Attention (MLA) reduces KV cache memory consumption from 1.2GB/token-batch to under 0.08GB/token-batch on 128k contexts.',
-      'Fine-grained expert division (e.g. 256 sub-experts routing 8 active) outperforms coarse expert architectures across coding and reasoning tasks.',
       'Auxiliary-loss-free routing eliminates the performance degradation penalty inherent in standard MoE load-balancing objectives.',
-      'Multi-token prediction (MTP) heads trained alongside MoE backbones improve pre-training data efficiency by 15% and accelerate speculative decoding.',
     ],
     faq: [
       { question: 'Why are MoE models more cost-effective for deployment than dense models?', answer: 'MoE models activate only a fraction of their total parameters per token. A 671B MoE model only runs 37B parameters per forward pass, giving the execution speed of a 37B model while retaining the knowledge capacity of a 670B+ model.' },
@@ -198,11 +191,10 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'Prompt caching reduces input token costs by up to 90% and cuts Time To First Token (TTFT) by over 80% on long enterprise documents.',
-      'Contextual Retrieval (prepending chunk context before embedding) reduces RAG retrieval failure rates by 49% across enterprise knowledge bases.',
+      'Prompt caching reduces costs by up to 90% and latency by up to 85% for long prompts, per Anthropic\'s launch announcement. Source: https://www.anthropic.com/news/prompt-caching',
+      'Contextual Retrieval (Contextual Embeddings plus Contextual BM25) reduced the top-20-chunk retrieval failure rate by 49% in Anthropic\'s experiments. Source: https://www.anthropic.com/news/contextual-retrieval',
       'Models exhibit a "Lost in the Middle" attention degradation curve unless explicit structural anchors (XML tags, markdown headers) partition the prompt.',
       'Attention sinks prevent perplexity explosion in infinite-length streaming generations by preserving initial token attention mass.',
-      'Multi-hop reasoning across 500k+ tokens degrades unless intermediate synthesis summaries are explicitly generated during the reasoning trace.',
     ],
     faq: [
       { question: 'What is the difference between Prompt Engineering and Context Engineering?', answer: 'Prompt engineering focuses on phrasing individual instructions. Context engineering focuses on architecting the entire dynamic information environment: system prompts, cached KV states, retrieved documents, tool outputs, and memory pruning.' },
@@ -342,11 +334,7 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'Native multimodal pre-training improves pure text reasoning benchmarks by 8% compared to training on text-only corpora, demonstrating cross-modal knowledge transfer.',
-      'Direct audio-to-audio modeling reduces conversational latency below 200ms while retaining speaker identity and emotional inflections.',
       'Spatial reasoning benchmarks (like MMMU and MathVista) show that high-resolution dynamic patching is essential for parsing complex scientific charts and blueprints.',
-      'Vision-Language-Action models generalize manipulation tasks to unseen objects with 3x higher success rates than isolated imitation learning models.',
-      'Multimodal chain-of-thought (generating intermediate visual sketches or bounding boxes before answering) increases visual geometry problem-solving accuracy by 32%.',
     ],
     faq: [
       { question: 'What is the difference between native multimodality and multi-stage pipelines?', answer: 'Multi-stage pipelines convert audio to text (ASR), process text, and convert text back to speech (TTS), losing emotional nuance and adding 1–3s latency. Native models process audio, vision, and text directly inside a single neural network at sub-200ms speeds.' },
@@ -414,11 +402,8 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'Distilling verified reasoning traces from a 671B model into an 8B model achieves higher competition math scores than GPT-4o zero-shot prompting.',
-      'Speculative decoding delivers a 2.5x–3.8x throughput acceleration with zero divergence from the target model output probability distribution.',
-      'Activation-aware weight quantization (AWQ) allows 4-bit compressed models to retain 99.2% of full FP16 benchmark performance.',
+      'Distilling DeepSeek-R1 outputs into an 8B model (DeepSeek-R1-Distill-Llama-8B) produced a higher AIME 2024 score than GPT-4o-0513 (DeepSeek-R1 paper, Table 5). Source: https://arxiv.org/abs/2501.12948',
       'Multi-token draft heads (like Medusa) eliminate the need to run a separate draft model, simplifying serving cluster orchestration.',
-      'Small distilled models require explicit context compaction to avoid performance degradation on inputs exceeding 32k tokens.',
     ],
     faq: [
       { question: 'What is speculative decoding?', answer: 'Speculative decoding is an acceleration technique where a small, fast model drafts multiple tokens in advance, and a large model verifies them all in parallel in a single GPU pass, boosting generation speed by 2x–4x without changing output quality.' },
@@ -484,11 +469,8 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'High-quality synthetic textbooks allow compact models (like Phi-4 and Gemma-3) to match models 10x their size trained on raw web crawls.',
-      'Automated execution-based filtering rejects ~85% of raw synthetic candidate tokens, creating a high-density, error-free training corpus.',
       'Training on synthetic data with strict diversity clustering avoids model collapse and preserves downstream linguistic entropy.',
       'Multi-agent debate generation produces higher-quality philosophical and qualitative reasoning datasets than single-agent prompting.',
-      'Targeted synthetic remediation datasets can fix specific benchmark failure modes with as few as 50,000 highly curated examples.',
     ],
     faq: [
       { question: 'What is model collapse and how is it avoided?', answer: 'Model collapse occurs when models are trained on uncurated AI-generated data, causing degenerative feedback loops and loss of variance. It is prevented by rigorous deduplication, high-ratio rejection filtering, and anchoring to ground-truth verifiers.' },
@@ -558,8 +540,6 @@ export const frontierAiDomains = [
     ],
     keyFindings: [
       'Diffusion Transformers (DiT) scale image and video quality predictably with compute, eliminating the architectural ceilings of convolutional U-Nets.',
-      'Rectified Flow Matching cuts required sampling steps from 50 to under 10 while improving temporal coherence and visual sharpness.',
-      '3D Variational Autoencoders (3D VAEs) compress raw video pixels by 8x spatially and 4x temporally, making full-length video training computationally tractable.',
       'Explicit camera trajectory conditioning (Plücker coordinates) enables professional virtual cinematography and predictable scene control.',
       'High-capacity video diffusion models develop emergent representations of basic Newtonian physics without explicit 3D engine physics programming.',
     ],
@@ -629,11 +609,8 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'Direct end-to-end audio models reduce conversational latency from ~2.5s (traditional pipeline) to under 180ms, matching human conversational cadence.',
       'Residual Vector Quantization (RVQ) captures acoustic fidelity, room reverberation, and emotional nuance in discrete token sequences.',
-      'Voice in-context conditioning achieves 96% speaker similarity matching from a 3-second reference audio snippet.',
       'Full-duplex streaming models with active barge-in detection create intuitive human-AI interactions with zero manual button pressing.',
-      'Expressive prosody modeling (pitch, tempo, vocal fry, laughter) increases perceived human empathy ratings by over 50% in customer interactions.',
     ],
     faq: [
       { question: 'What is a neural audio codec (RVQ)?', answer: 'A neural audio codec compresses high-resolution raw audio into compact discrete tokens using neural networks. This allows transformer models to generate and process speech as token sequences without losing sound quality.' },
@@ -703,9 +680,7 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'Mamba 2 and State Space Models achieve linear computational complexity (O(N)) and constant memory during generation, bypassing the KV-cache bottleneck.',
-      'FlashAttention-3 achieves up to 1.2 PFLOPs/s on NVIDIA H100 GPUs, running exact attention 2x faster than FlashAttention-2.',
-      'Hybrid architectures (e.g. 80% Mamba / 20% Transformer) match pure transformer reasoning benchmarks while cutting serving memory by 70%.',
+      'FlashAttention-3 reports a 1.5–2.0× speedup on H100 GPUs with FP16, and close to 1.2 PFLOPs/s with FP8. Source: https://arxiv.org/abs/2407.08608',
       'Linear attention models process million-token sequences with flat memory consumption, enabling real-time continuous sensor and log processing.',
       'Hardware-aware kernel fusion is as impactful for real-world model latency as theoretical algorithmic complexity reductions.',
     ],
@@ -780,7 +755,6 @@ export const frontierAiDomains = [
       'Sparse Autoencoders (SAEs) successfully decompose polysemantic neural activations into millions of distinct, interpretable monosemantic concepts.',
       'Clamping feature vectors directly in the residual stream allows surgical control over model tone, truthfulness, and safety without fine-tuning.',
       'Mechanistic circuit analysis proves that in-context learning is primarily driven by specialized "induction head" two-layer attention circuits.',
-      'Internal state monitoring can detect deceptive alignment and strategic dishonesty with over 95% accuracy before output tokens are emitted.',
       'Representation engineering provides a deterministic safety auditing layer that outperforms external black-box prompt guardrails.',
     ],
     faq: [
@@ -851,9 +825,7 @@ export const frontierAiDomains = [
     ],
     keyFindings: [
       'Prompt-based safety instructions alone cannot reliably stop indirect prompt injection; architectural data-instruction separation is mandatory.',
-      'The Dual-LLM pattern (isolating unprivileged data ingestion from privileged decision-making) blocks over 99% of automated indirect injection vectors.',
       'Multi-turn jailbreaks (such as Crescendo attacks) achieve high success rates against static safety classifiers by distributing attacks across benign sub-prompts.',
-      'Automated red-teaming swarms discover latent vulnerability clusters 100x faster than manual human penetration testing teams.',
       'Sandboxing tool execution in ephemeral WASM runtimes prevents compromised agents from establishing persistence or exfiltrating host environment variables.',
     ],
     faq: [
@@ -920,8 +892,6 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'Expanding tokenizer vocabulary size from 32k to 256k reduces non-English token consumption by up to 60%, drastically cutting inference costs.',
-      'High-order reasoning learned in high-resource languages transfers zero-shot across multilingual representations with over 88% efficiency.',
       'Byte-level fallback tokenizers eliminate out-of-vocabulary errors across all global unicode character sets.',
       'Native multilingual reasoning outperforms multi-stage translation pipelines by preserving idiomatic nuance and conversational speed.',
       'Cultural alignment requires native pre-training data; post-training translation alone fails to capture local legal and social nuances.',
@@ -992,8 +962,7 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'Neuro-symbolic architectures combining LLMs with formal proof kernels (Lean 4) eliminate hallucinations with 100% mathematical certainty.',
-      'AlphaProof and AlphaGeometry 2 solved 4 out of 6 problems at the 2024 International Mathematical Olympiad, achieving the equivalent of a Silver medal.',
+      'AlphaProof and AlphaGeometry 2 solved 4 out of 6 problems at the 2024 International Mathematical Olympiad, achieving the equivalent of a Silver medal. Source: https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/',
       'Auto-formalization (converting informal math text into formal code) is the primary bottleneck for unlocking web-scale mathematical knowledge for AI training.',
       'Formal methods prove software immunity to entire classes of cybersecurity bugs (memory safety, race conditions) before compilation.',
       'Synthetic conjecture generation and autonomous proof exploration allow models to bootstrap mathematical intuition beyond human textbooks.',
@@ -1062,8 +1031,6 @@ export const frontierAiDomains = [
       },
     ],
     keyFindings: [
-      'GPU-accelerated simulation (Sim2Real) allows humanoid robots to learn stable bipedal locomotion across rough terrains in less than 24 hours of compute.',
-      'End-to-end neural policies eliminate classical perception-action latency bottlenecks, reacting to balance disturbances in under 5 milliseconds.',
       'Diffusion policies trained on human teleoperation data generalize dexterous manipulation across diverse household and industrial tools.',
       'Optical tactile sensing combined with vision-language models prevents slippage while handling fragile items (eggs, glassware, electronic components).',
       'Spatial world models enable robots to imagine and evaluate the physical consequences of actions before executing them in the physical world.',
@@ -1136,7 +1103,6 @@ export const frontierAiDomains = [
     ],
     keyFindings: [
       'Owning domain evaluation datasets and tool contracts provides higher enterprise defensibility than self-hosting static pre-trained weights.',
-      'Routing queries through a multi-tier model cascade (8B → 70B → Frontier Reasoning) reduces total enterprise API spend by up to 75%.',
       'Fine-tuning is designed to teach tone, format, and repeated behavioral style, whereas RAG is required to teach dynamic and private facts.',
       'Cost Per Verified Outcome (CPVO) is the only reliable metric for comparing model tier economics in mission-critical workflows.',
       'Open weights and proprietary APIs form a complementary portfolio: use proprietary models for fast capability exploration and open weights for high-volume, sovereign deployment.',

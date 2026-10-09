@@ -79,3 +79,53 @@ test('image rates cannot become generic text estimates or live price attestation
     assert.equal(model.image_pricing.image_output, 30)
   }
 })
+
+const source = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8')
+
+test('every creator-stack model link resolves to a registry entry (no /llm-hub/gemini-omni 404)', () => {
+  const ids = [...source('lib/llm-hub/creator-stacks.ts').matchAll(/modelId:\s*'([^']+)'/g)].map((m) => m[1])
+  assert.ok(ids.length > 0)
+  for (const id of ids) assert.ok(registry.models[id], `creator-stack modelId ${id} has no registry entry`)
+  assert.ok(!ids.includes('gemini-omni') || registry.models['gemini-omni'])
+})
+
+test('cost-calculator examples are registry models with registry token rates', () => {
+  const block = source('components/llm-hub/CostCalculator.tsx').match(/CALCULATOR_IDS = new Set\(\[([\s\S]*?)\]\)/)
+  assert.ok(block)
+  const ids = [...block[1].matchAll(/'([^']+)'/g)].map((m) => m[1])
+  for (const id of ids) {
+    const model = registry.models[id]
+    assert.ok(model, `calculator id ${id} is not in the registry`)
+    assert.notEqual(model.status, 'superseded', id)
+    assert.equal(typeof model.pricing?.input_per_1m, 'number', id)
+    assert.equal(typeof model.pricing?.output_per_1m, 'number', id)
+  }
+})
+
+test('research lab tiles name a logo-less lab once and date checks from the registry', () => {
+  const watch = source('app/research/research-model-watch.tsx')
+  assert.doesNotMatch(watch, /sr-only">\s*\{lab\.name\}/)
+  assert.doesNotMatch(watch, /\b\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) 20\d\d\b/)
+  assert.match(watch, /last_verified/)
+})
+
+test('research hub does not render a zero registered-sources count', () => {
+  const hub = source('app/research/research-hub-client.tsx')
+  assert.match(hub, /\{totalSources > 0 && \(\s*<Link\s+href="\/research\/sources"/)
+  assert.match(hub, /totalSources > 0\s*\?\s*\[\{ label: 'Published sources'/)
+})
+
+test('no unsourced throughput or fastest-in-class claims for Grok 4.3', () => {
+  for (const path of ['lib/llm-hub/comparisons.ts', 'data/model-registry.json']) {
+    const text = source(path)
+    assert.doesNotMatch(text, /181 tok/, path)
+    assert.doesNotMatch(text, /fastest in its class/, path)
+    assert.doesNotMatch(text, /fastest throughput in (its )?class/, path)
+  }
+})
+
+test('a newly linked model page carries no unsourced editorial verdict', () => {
+  const editorial = source('lib/llm-hub/editorial.ts')
+  assert.doesNotMatch(editorial, /'gemini-omni-flash':/)
+  assert.doesNotMatch(source('lib/llm-hub/comparisons.ts'), /Latency-sensitive products/)
+})

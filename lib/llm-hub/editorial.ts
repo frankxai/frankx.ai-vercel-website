@@ -85,11 +85,6 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     watchOut: 'Preview. Head-to-head vs Veo 3 / Sora 2 not yet independently run.',
     creatorUse: 'The one to watch for agentic video pipelines — author, narrate, produce in one tool-use sequence.',
   },
-  'gemini-omni-flash': {
-    tagline: 'Production-ready video generation at Flash economics.',
-    bestFor: ['High-throughput video gen', 'Cost-sensitive creative pipelines'],
-    creatorUse: 'Bulk short-form video generation where speed and cost beat cinematic fidelity.',
-  },
   'mai-thinking-1': {
     tagline: 'Microsoft’s in-house reasoning flagship — frontier ambitions on MAIA silicon.',
     bestFor: [

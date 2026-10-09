@@ -29,12 +29,57 @@ const labs = [
     name: "xAI",
     logo: "",
     org: "xai",
-    source: "https://docs.x.ai/developers/grok-4-6",
+    source: "https://docs.x.ai/developers/grok-4-7",
     note: "Configurable reasoning and tool use.",
   },
 ];
+type Provider = ReturnType<typeof getProviders>[number];
+type Model = NonNullable<Provider["flagship"]>;
+
+function selectModels(provider: Provider | undefined, org: string): Model[] {
+  if (org === "anthropic") {
+    return (
+      provider?.models
+        .filter((m) => m.status === "ga" && m.last_verified)
+        .sort((a, b) => (b.released ?? "").localeCompare(a.released ?? ""))
+        .slice(0, 3) ?? []
+    );
+  }
+  return provider?.flagship ? [provider.flagship] : [];
+}
+
+function formatDay(iso: string): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+/** Date span of the registry checks behind the models shown, so the copy can't be older or newer than the data. */
+export function checkedSpan(dates: string[]): string {
+  const sorted = dates.filter(Boolean).sort();
+  if (!sorted.length) return "";
+  const first = formatDay(sorted[0]);
+  const last = formatDay(sorted[sorted.length - 1]);
+  return first === last ? `on ${last}` : `between ${first} and ${last}`;
+}
+
 export default function ResearchModelWatch() {
   const providers = getProviders();
+  const selectedByOrg = new Map(
+    labs.map((lab) => [
+      lab.org,
+      selectModels(
+        providers.find((p) => p.org.slug === lab.org),
+        lab.org,
+      ),
+    ]),
+  );
+  const checked = checkedSpan(
+    [...selectedByOrg.values()].flat().map((m) => m.last_verified ?? ""),
+  );
   return (
     <section
       id="models"
@@ -47,12 +92,13 @@ export default function ResearchModelWatch() {
               Inside Models & intelligence
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight">
-              The labs. The current models.
+              The labs. Selected models.
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/65">
-              Selected model families, checked against provider documentation on
-              13 September 2026. Specifications are provider-reported; local
-              experiments remain separately dated.
+              Selected model families
+              {checked ? `, checked against provider documentation ${checked}` : ""}
+              . Specifications are provider-reported; local experiments remain
+              separately dated.
             </p>
           </div>
           <Link
@@ -80,42 +126,23 @@ export default function ResearchModelWatch() {
                     {lab.name}
                   </span>
                 )}
-                <span className="sr-only">{lab.name}</span>
               </div>
               <p className="mb-5 text-sm text-white/60">{lab.note}</p>
               <ul className="space-y-3">
-                {(() => {
-                  const provider = providers.find(
-                    (p) => p.org.slug === lab.org,
-                  );
-                  const selected =
-                    lab.org === "anthropic"
-                      ? (provider?.models
-                          .filter((m) => m.status === "ga" && m.last_verified)
-                          .sort((a, b) =>
-                            (b.released ?? "").localeCompare(a.released ?? ""),
-                          )
-                          .slice(0, 3) ?? [])
-                      : provider?.flagship
-                        ? [provider.flagship]
-                        : [];
-                  return selected.map((model) =>
-                    model ? (
-                      <li key={model.id}>
-                        <Link
-                          href={`/llm-hub/${model.id}`}
-                          className="inline-flex items-center gap-3 rounded-sm text-lg font-semibold hover:text-emerald-300 focus-visible:ring-2 focus-visible:ring-emerald-300"
-                        >
-                          {model.name}
-                          <ArrowUpRight
-                            aria-hidden="true"
-                            className="h-4 w-4 text-emerald-300"
-                          />
-                        </Link>
-                      </li>
-                    ) : null,
-                  );
-                })()}
+                {(selectedByOrg.get(lab.org) ?? []).map((model) => (
+                  <li key={model.id}>
+                    <Link
+                      href={`/llm-hub/${model.id}`}
+                      className="inline-flex items-center gap-3 rounded-sm text-lg font-semibold hover:text-emerald-300 focus-visible:ring-2 focus-visible:ring-emerald-300"
+                    >
+                      {model.name}
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="h-4 w-4 text-emerald-300"
+                      />
+                    </Link>
+                  </li>
+                ))}
               </ul>
               <a
                 href={lab.source}
