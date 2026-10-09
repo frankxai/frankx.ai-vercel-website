@@ -11,6 +11,7 @@ import { tokenCost } from '@/lib/llm-hub/pricing'
 const CALCULATOR_IDS = new Set([
   'gpt-6-1-sol', 'gpt-6-astra', 'deepseek-v4-pro-0813', 'gemini-3-8-flash',
   'claude-sonnet-5-5', 'grok-4-7', 'claude-opus-5-5', 'claude-fable-5-1',
+  'claude-haiku-5-5',
 ])
 const FAST_PATH_ID = 'gemini-3-8-flash'
 const DEEP_REASON_ID = 'claude-opus-5-5'
@@ -199,9 +200,14 @@ export function CostCalculator({ rows }: { rows: ModelRow[] }) {
                   </span>
                 </div>
                 <div className="flex justify-between text-[11px] text-white/40">
-                  <span>In: ${model.inputCost.toFixed(2)}</span>
-                  <span>Out: ${model.outputCost.toFixed(2)}</span>
+                  <span>In: ${model.inputCost.toFixed(2)}{model.pricingWindow === 'off-peak' ? ' off-peak' : ''}</span>
+                  <span>Out: ${model.outputCost.toFixed(2)}{model.pricingWindow === 'off-peak' ? ' off-peak' : ''}</span>
                 </div>
+                {model.pricingWindow === 'off-peak' && (
+                  <p className="mt-1 text-[11px] text-amber-300/80">
+                    Off-peak rates. Peak rates are 2× (provider pricing page).
+                  </p>
+                )}
               </div>
             </motion.div>
           )

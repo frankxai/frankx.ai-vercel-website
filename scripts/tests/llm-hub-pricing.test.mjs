@@ -129,3 +129,20 @@ test('a newly linked model page carries no unsourced editorial verdict', () => {
   assert.doesNotMatch(editorial, /'gemini-omni-flash':/)
   assert.doesNotMatch(source('lib/llm-hub/comparisons.ts'), /Latency-sensitive products/)
 })
+
+test('DeepSeek off-peak rates carry a visible label that live prices cannot drop', () => {
+  assert.equal(typeof registry.models['deepseek-v4-pro-0813'].pricing.peak_input_per_1m, 'number')
+  const rows = source('lib/llm-hub/rows.ts')
+  assert.match(rows, /m\.image_pricing \|\| offPeak \? undefined : live\[m\.id\]/)
+  assert.match(rows, /pricingWindow: 'off-peak'/)
+  const calculator = source('components/llm-hub/CostCalculator.tsx')
+  assert.match(calculator, /model\.pricingWindow === 'off-peak' \? ' off-peak' : ''/)
+  assert.match(calculator, /Off-peak rates\. Peak rates are 2×/)
+})
+
+test('no unbacked ranking or latency claims on model pages and Grok 4.3 editorial', () => {
+  assert.doesNotMatch(source('app/llm-hub/[slug]/page.tsx'), /best llm 2026/i)
+  assert.doesNotMatch(source('app/llm-hub/layout.tsx'), /best llm 2026/i)
+  assert.doesNotMatch(source('lib/llm-hub/editorial.ts'), /Latency-sensitive/)
+  assert.doesNotMatch(registry.models['deepseek-v4-pro-0813'].frankx_notes, /at or near the top of published tables/)
+})

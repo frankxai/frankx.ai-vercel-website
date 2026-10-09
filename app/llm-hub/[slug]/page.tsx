@@ -50,7 +50,6 @@ export async function generateMetadata({
       `${model.name.toLowerCase()} pricing`,
       `${model.name.toLowerCase()} context window`,
       `${model.name.toLowerCase()} vs`,
-      'best llm 2026',
     ],
     alternates: { canonical: `https://frankx.ai/llm-hub/${slug}` },
     openGraph: {

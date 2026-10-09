@@ -200,7 +200,6 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     tagline: 'Previous cheap-frontier Grok — superseded as flagship by Grok 4.6 on 12 August 2026.',
     bestFor: [
       'High-volume cost-sensitive inference (classification, extraction, summarization)',
-      'Latency-sensitive agentic tool loops',
       'Native video-input and voice-cloning workflows',
     ],
     watchOut: 'Context window dropped 2M → 1M; per-token price doubles past 200K tokens in a single request; reasoning is always-on so trivial calls cost slightly more.',
