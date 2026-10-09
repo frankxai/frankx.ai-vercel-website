@@ -33,6 +33,24 @@ updates:
       # Hold the major until that test moves off it.
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
+      # lucide-react 1.x removes the brand icons (Github, Instagram, Linkedin,
+      # Twitter, Youtube) imported across app/ and components/.
+      - dependency-name: "lucide-react"
+        update-types: ["version-update:semver-major"]
+      # framer-motion 14 changes the variants and transition types used by the
+      # motion pages; it needs a typed migration pass.
+      - dependency-name: "framer-motion"
+        update-types: ["version-update:semver-major"]
+      # React 19 and its types move as one migration: the global JSX namespace
+      # goes away and element props are typed unknown.
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/react-dom"
+        update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "chore(deps)"
     labels: ["dependencies"]
