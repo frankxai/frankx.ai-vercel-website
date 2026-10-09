@@ -28,6 +28,11 @@ updates:
       # the Tailwind 4 migration, not before it.
       - dependency-name: "tailwind-merge"
         update-types: ["version-update:semver-major"]
+      # TypeScript 7 drops the JS compiler API that
+      # scripts/tests/build-integrity-contract.test.mjs uses (ts.ScriptTarget).
+      # Hold the major until that test moves off it.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "chore(deps)"
     labels: ["dependencies"]
