@@ -30,9 +30,9 @@ updates:
         update-types: ["version-update:semver-major"]
       # TypeScript 7 drops the JS compiler API that
       # scripts/tests/build-integrity-contract.test.mjs uses (ts.ScriptTarget).
-      # Hold the major until that test moves off it.
+      # Hold 7 until that test moves off it; 6.x (still the JS compiler) stays open.
       - dependency-name: "typescript"
-        update-types: ["version-update:semver-major"]
+        versions: [">=7"]
       # lucide-react 1.x removes the brand icons (Github, Instagram, Linkedin,
       # Twitter, Youtube) imported across app/ and components/.
       - dependency-name: "lucide-react"
