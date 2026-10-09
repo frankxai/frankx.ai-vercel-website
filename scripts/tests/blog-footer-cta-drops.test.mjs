@@ -47,6 +47,12 @@ test('blog footer CTA drops the ACOS guide claims and keeps one plain link to /s
   assert.match(cta, /<Link\s+href="\/start"[\s\S]*?>\s*Start here\s*<ArrowRight/)
 })
 
+test('the newsletter lead magnet promises no weekly cadence by default', () => {
+  const magnet = readFileSync(new URL('../../components/conversion/InlineLeadMagnet.tsx', import.meta.url), 'utf8')
+  assert.ok(!/weekly/i.test(magnet))
+  assert.ok(magnet.includes("headline = 'Get AI insights',"))
+})
+
 test('the /start link has a 24px minimum tap target and names its destination', () => {
   const link = cta.match(/<Link\s[\s\S]*?>/)?.[0] ?? ''
   assert.match(link, /className="[^"]*\binline-flex\b[^"]*"/)
