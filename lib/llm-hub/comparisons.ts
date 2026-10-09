@@ -49,14 +49,14 @@ export const COMPARISONS: Comparison[] = [
     description:
       'Grok 4.6 vs Grok 4.3: same vendor family, different jobs. 4.6 is the August 2026 flagship agent refresh; 4.3 remains the cheap closed-frontier SKU. No Starlight arena receipt for 4.6.',
     verdict:
-      'Use 4.6 as the current xAI flagship for long agent loops. Keep 4.3 when the $1.25/$2.50 band still fits. Do not treat published AA/vendor tables as SIS Model Arena winners.',
+      'Grok 4.6 was the xAI flagship for long agent loops from 12 August 2026 until Grok 4.7 replaced it on 21 September 2026. Keep 4.3 when the $1.25/$2.50 band still fits. Do not treat published AA/vendor tables as SIS Model Arena winners.',
     analysis: [
       'Grok 4.6 shipped 12 August 2026 as a same-scale post-training refresh of Grok 4.5. Official High scores put it at 61 on the Artificial Analysis Intelligence Index. Grok 4.3 remains the earlier cheap-frontier SKU at $1.25/$2.50 with a 1M context window.',
-      'The routing fork is price versus published agent scores. 4.6 stays $2/$6 under 200k prompt tokens and doubles above that. 4.3 is still cheaper per token. 4.6 is the model xAI now points at long-running agents; 4.3 is not retired from the cheap tier.',
+      'The routing fork is price versus published agent scores. 4.6 stays $2/$6 under 200k prompt tokens and doubles above that. 4.3 is still cheaper per token. 4.6 was the model xAI pointed at long-running agents in August 2026; 4.3 is not retired from the cheap tier.',
       'The Starlight Model Arena has receipts for Claude-native cards, not for Grok 4.6. This page is a catalog comparison, not a battle result.',
     ],
     pickFirst: [
-      'New xAI API work that needs the current flagship',
+      'New xAI API work that needed the flagship as of August 2026',
       'Long-running coding or knowledge-work loops that can stay under 200k tokens',
       'Cases where 4.5 stamina failed and you want the documented 4.6 refresh',
     ],
@@ -72,7 +72,7 @@ export const COMPARISONS: Comparison[] = [
       'grok 4.6 pricing',
     ],
     architect: {
-      call: 'Two Grok seats: 4.6 for flagship agent loops, 4.3 for cheap volume. Do not collapse them. Do not invent a SIS winner.',
+      call: 'Two Grok seats: 4.6 for agent loops, 4.3 for cheap volume. Do not collapse them. Do not invent a SIS winner.',
       coePillar: 'Technology · model routing + Strategy · evidence honesty',
       personas: [
         { persona: 'Long-running coding agents', pick: 'Grok 4.6' },
@@ -571,11 +571,11 @@ export const COMPARISONS: Comparison[] = [
     description:
       'Gemini 3.5 Flash vs Claude Opus 4.6: benchmarks, pricing, and which to use for agentic coding, reasoning, and long-context work in 2026.',
     verdict:
-      'Different tiers, different jobs. Flash wins cost-sensitive agentic coding (76.2% Terminal-Bench 2.1); Opus 4.6 wins high-stakes reasoning. Note: Opus 4.6 is now superseded by Opus 4.8 — see Opus 4.8 vs GPT-5.5 for the current flagship matchup.',
+      'Different tiers, different jobs. Flash wins cost-sensitive agentic coding (76.2% Terminal-Bench 2.1); Opus 4.6 wins high-stakes reasoning. Note: Opus 4.6 was superseded by Opus 4.8 in May 2026; see Opus 4.8 vs GPT-5.5 for that May 2026 matchup.',
     analysis: [
       'These are the two ends of a sensible routing strategy. Gemini 3.5 Flash, announced at Google I/O ’26, posts frontier agentic-coding numbers (76.2% Terminal-Bench 2.1, 83.6% MCP Atlas) at less than half the cost of comparable flagships. Claude Opus 4.6 led abstract reasoning (68.8% ARC-AGI-2), computer-use (72.7% OSWorld), and offered a 1M-token beta context with Agent Teams.',
       'For a production agentic system, the cost delta is large enough to be architectural: route routine and high-volume steps to Flash, reserve the top Claude tier for the critical reasoning path. Running both is usually correct.',
-      'Currency note: Opus 4.6 has since been superseded by Opus 4.8 (May 2026), which now tops the intelligence index. The Flash routing logic here still holds against the current Opus tier.',
+      'Currency note: Opus 4.6 was superseded by Opus 4.8 in May 2026, and Anthropic has released newer Opus models since (Opus 5.5 on 22 September 2026). Re-check the Flash routing logic against the Opus model you deploy.',
     ],
     pickFirst: [
       'You run high-volume agent loops where cost compounds',
@@ -599,13 +599,13 @@ export const COMPARISONS: Comparison[] = [
     models: ['claude-opus-4-6', 'gpt-5-2-pro'],
     title: 'Claude Opus 4.6 vs GPT-5.2 Pro',
     description:
-      'Claude Opus 4.6 vs GPT-5.2 Pro: reasoning, multimodal, voice, and pricing compared. Both are now superseded — see the current flagship matchup.',
+      'Claude Opus 4.6 vs GPT-5.2 Pro: reasoning, multimodal, voice, and pricing compared. Both have since been superseded; this page is kept for reference.',
     verdict:
-      'Opus 4.6 for reasoning and long-context depth; GPT-5.2 Pro for native voice and the broadest multimodal footprint. Note: both are superseded — Opus 4.8 and GPT-5.5 are the current flagships; see Opus 4.8 vs GPT-5.5.',
+      'Opus 4.6 for reasoning and long-context depth; GPT-5.2 Pro for native voice and the broadest multimodal footprint. Note: both were superseded in 2026 (GPT-5.2 Pro by GPT-5.5 in April, Opus 4.6 by Opus 4.8 in May); see Opus 4.8 vs GPT-5.5 for that later matchup.',
     analysis: [
       'Claude Opus 4.6 led the reasoning benchmarks that matter for hard agentic work — 68.8% ARC-AGI-2 (vs 54.2%), 72.7% OSWorld, 90.2% BigLaw Bench — plus a 1M-token beta context and the Compaction API for effectively unbounded sessions.',
       'GPT-5.2 Pro answered with breadth: native audio modality, strong general multimodal performance, the first 90% ARC-AGI-1, and the widest enterprise integration ecosystem. For voice-native products there was no close runner-up.',
-      'Currency note: this matchup is preserved for reference. Opus 4.6 has been superseded by Opus 4.8 (May 2026) and GPT-5.2 Pro by GPT-5.5 (April 2026). For a current decision, see Claude Opus 4.8 vs GPT-5.5.',
+      'Currency note: this matchup is preserved for reference. Opus 4.6 has been superseded by Opus 4.8 (May 2026) and GPT-5.2 Pro by GPT-5.5 (April 2026).',
     ],
     pickFirst: [
       'Hard reasoning, computer-use, or legal/technical depth',
@@ -631,11 +631,11 @@ export const COMPARISONS: Comparison[] = [
     description:
       'Gemini 3.5 Flash vs GPT-5.2 Pro: cost, agentic coding, multimodal, and voice compared for 2026 builders.',
     verdict:
-      'Flash for cost-efficient agentic coding at scale; GPT-5.2 Pro for voice-native and broad multimodal apps. Note: GPT-5.2 Pro is superseded by GPT-5.5 — see Grok 4.3 vs GPT-5.5 or Opus 4.8 vs GPT-5.5 for current matchups.',
+      'Flash for cost-efficient agentic coding at scale; GPT-5.2 Pro for voice-native and broad multimodal apps. Note: GPT-5.2 Pro is superseded by GPT-5.5 — see Grok 4.3 vs GPT-5.5 or Opus 4.8 vs GPT-5.5 for the April–May 2026 matchups.',
     analysis: [
       'Gemini 3.5 Flash is built for the agent runtime: 76.2% Terminal-Bench 2.1, 83.6% MCP Atlas, 1M context, at sub-flagship pricing. If your bottleneck is running many agent steps affordably, Flash is hard to beat.',
       'GPT-5.2 Pro was the generalist with native voice and the deepest integration ecosystem — the better default for consumer-facing multimodal and voice products, less optimal as a high-volume coding-agent runtime on cost grounds.',
-      'Currency note: GPT-5.2 Pro has since been superseded by GPT-5.5 (April 2026), which extends the lead on computer-use and knowledge work. The Flash-as-runtime logic still applies against the current OpenAI flagship.',
+      'Currency note: GPT-5.2 Pro has since been superseded by GPT-5.5 (April 2026), which extended the lead on computer-use and knowledge work at the time. OpenAI has released newer models since (GPT-6.1 Sol on 29 September 2026); re-check the Flash-as-runtime logic against the OpenAI model you deploy.',
     ],
     pickFirst: [
       'Cost-sensitive, high-volume agentic coding',
@@ -661,11 +661,11 @@ export const COMPARISONS: Comparison[] = [
     description:
       'Claude Sonnet 4.5 vs Gemini 3.5 Flash: the mid-tier workhorse comparison for production coding and content agents.',
     verdict:
-      'Gemini 3.5 Flash edges ahead on agentic-coding benchmarks and cost; Claude Sonnet 4.5 remains a proven production workhorse. Note: Sonnet 4.6 (Feb 2026) is the current Anthropic mid-tier.',
+      'Gemini 3.5 Flash edges ahead on agentic-coding benchmarks and cost; Claude Sonnet 4.5 remains a proven production workhorse. Note: newer Anthropic mid-tier models have shipped since (Sonnet 4.6 in February 2026, Sonnet 5 in June 2026, Sonnet 5.5 on 28 September 2026).',
     analysis: [
       'This is the mid-tier decision most teams actually face. Gemini 3.5 Flash posts stronger published agentic-coding numbers at lower cost and ships with 1M context. Claude Sonnet 4.5 is the battle-tested workhorse with excellent Claude Code / Agent SDK integration and predictable behavior.',
       'If you are already on Claude Code and value the tooling, the Sonnet tier is a safe, strong default. If you are cost-optimizing a high-volume agent runtime from scratch, Flash is the sharper pick.',
-      'Currency note: Sonnet 4.6 (February 2026) is now the current Anthropic mid-tier — a 1M-context upgrade that approaches Opus 4.6 at ~40% lower cost — and is the version to actually deploy in this slot.',
+      'Currency note: Sonnet 4.6 (February 2026) succeeded Sonnet 4.5 as a 1M-context upgrade that approached Opus 4.6 at ~40% lower cost. As of 9 October 2026 the Anthropic mid-tier is Sonnet 5.5, released 28 September 2026.',
     ],
     pickFirst: [
       'You are standardized on Claude Code / Agent SDK',

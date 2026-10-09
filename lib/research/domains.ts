@@ -12,6 +12,10 @@ export interface ResearchHighlight {
   stat: string
   label: string
   source?: string
+  /** Primary-source URL (vendor page, paper or official leaderboard). */
+  url?: string
+  /** Source publication date, or the date a living source was last checked (ISO). */
+  date?: string
 }
 
 export interface ResearchSection {
@@ -117,24 +121,25 @@ export const researchDomains: ResearchDomain[] = [
     "category": "frontier-ai",
     "highlights": [
       {
-        "stat": "O(log N) → O(N)",
-        "label": "Test-time compute scaling on verified logic",
-        "source": "OpenAI o1 Technical Report"
+        "stat": "79.8%",
+        "label": "AIME 2024 pass@1 reported for DeepSeek-R1",
+        "source": "DeepSeek-R1 paper (DeepSeek-AI)",
+        "url": "https://arxiv.org/abs/2501.12948",
+        "date": "2025-01-22"
       },
       {
-        "stat": "96.3%",
-        "label": "AIME 2024 pass@1 with extended test-time search",
-        "source": "DeepSeek R1 Evaluation"
-      },
-      {
-        "stat": "80%+",
-        "label": "SWE-bench Verified resolution via agentic reasoning",
-        "source": "Claude 3.7 Sonnet Frontier Benchmarks"
+        "stat": "70.3%",
+        "label": "SWE-bench Verified for Claude 3.7 Sonnet with Anthropic's high-compute scaffold (489 of 500 tasks)",
+        "source": "Anthropic, Claude 3.7 Sonnet announcement",
+        "url": "https://www.anthropic.com/news/claude-3-7-sonnet",
+        "date": "2025-02-24"
       },
       {
         "stat": "PRMs",
         "label": "Process reward models vs outcome reward models",
-        "source": "Lightman et al. (OpenAI)"
+        "source": "Lightman et al. (OpenAI), Let's Verify Step by Step",
+        "url": "https://arxiv.org/abs/2305.20050",
+        "date": "2023-05-31"
       }
     ],
     "sections": [
@@ -243,10 +248,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/august-2026-frontier-model-wave-routing"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 18,
+    "sourceCount": 3,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Backed by primary technical reports from OpenAI (o1/o3-mini), DeepSeek (R1), Anthropic (Claude 3.7), and peer-reviewed PRM literature (Lightman et al., NeurIPS).",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 3 highlight stats link to 3 primary sources checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "Inference costs and token generation latencies are substantially higher than standard models.",
       "RLVR requires deterministic verification oracles; qualitative domains still require proxy reward modeling."
@@ -255,7 +260,7 @@ export const researchDomains: ResearchDomain[] = [
       "The exact theoretical ceiling of test-time search scaling on non-formal qualitative reasoning.",
       "Optimal trade-offs between pre-training compute vs post-training RLVR compute allocation."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "mixture-of-experts-architectures",
@@ -270,22 +275,16 @@ export const researchDomains: ResearchDomain[] = [
       {
         "stat": "671B / 37B",
         "label": "Total vs active parameter ratio in DeepSeek-V3",
-        "source": "DeepSeek-V3 Technical Report"
+        "source": "DeepSeek-V3 Technical Report",
+        "url": "https://arxiv.org/abs/2412.19437",
+        "date": "2024-12-27"
       },
       {
         "stat": "93.3%",
-        "label": "KV-cache memory compression via MLA",
-        "source": "MLA Architecture Analysis"
-      },
-      {
-        "stat": "0.00",
-        "label": "Auxiliary routing loss with bias-driven balancing",
-        "source": "DeepSeek Research"
-      },
-      {
-        "stat": "3.2x",
-        "label": "Inference throughput increase over dense models",
-        "source": "vLLM MoE Benchmarks"
+        "label": "KV-cache reduction in DeepSeek-V2 vs DeepSeek 67B, attributed to MLA",
+        "source": "DeepSeek-V2 paper (DeepSeek-AI)",
+        "url": "https://arxiv.org/abs/2405.04434",
+        "date": "2024-05-07"
       }
     ],
     "sections": [
@@ -394,10 +393,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/multi-agent-model-fabric-2026-wave"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 15,
+    "sourceCount": 2,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Based on DeepSeek-V3/V4 technical reports, Mixtral MoE research papers, and IEEE/ACM systems benchmarks on distributed sparse routing.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 2 highlight stats link to 2 primary sources checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "MoE models require massive total GPU VRAM to hold all expert weights, even though active compute FLOPs are low.",
       "Distributed inference requires high-bandwidth inter-node networking (e.g. InfiniBand or NVLink) to prevent token routing stalls."
@@ -406,7 +405,7 @@ export const researchDomains: ResearchDomain[] = [
       "The optimal theoretical ratio of active to total experts as total parameter counts cross into multi-trillion scale.",
       "Dynamic routing behaviors when running on heterogeneous edge-cloud hybrid clusters."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "context-engineering-long-context",
@@ -419,24 +418,18 @@ export const researchDomains: ResearchDomain[] = [
     "category": "frontier-ai",
     "highlights": [
       {
-        "stat": "10M+",
-        "label": "Token context window capacity in production systems",
-        "source": "Gemini 2.5 Architecture"
-      },
-      {
-        "stat": "99.8%",
-        "label": "Retrieval accuracy across 1M token needle tests",
-        "source": "Anthropic Contextual Evals"
-      },
-      {
         "stat": "90%",
-        "label": "Inference cost reduction via Prompt Caching",
-        "source": "Anthropic & OpenAI Documentation"
+        "label": "Input-price discount on Anthropic prompt-cache reads at the standard 0.1x rate",
+        "source": "Anthropic API pricing documentation",
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "date": "2026-10-09"
       },
       {
         "stat": "4 tokens",
-        "label": "Streaming attention sinks for infinite context length",
-        "source": "Xiao et al., ICLR"
+        "label": "Initial tokens kept as attention sinks in StreamingLLM",
+        "source": "Xiao et al., Efficient Streaming Language Models with Attention Sinks",
+        "url": "https://arxiv.org/abs/2309.17453",
+        "date": "2023-09-29"
       }
     ],
     "sections": [
@@ -545,10 +538,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/terminal-first-ai-workflow-claude-code"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 16,
+    "sourceCount": 2,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Supported by empirical benchmarks from Anthropic Contextual Retrieval, Google Gemini 2.5 Long-Context Whitepaper, and ICLR attention sink publications.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 2 highlight stats link to 2 primary sources checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "Processing millions of uncached tokens remains latency-intensive and prone to attention drift if poorly structured.",
       "Prompt cache eviction policies vary by provider (e.g. 5-minute TTL vs persistent memory)."
@@ -557,7 +550,7 @@ export const researchDomains: ResearchDomain[] = [
       "The exact degradation boundary for complex 10+ hop causal deductions over 10M+ continuous token spaces.",
       "Theoretical limits of lossy KV-cache compression algorithms on nuanced legal reasoning."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "reinforcement-learning-verifiable-rewards",
@@ -570,24 +563,11 @@ export const researchDomains: ResearchDomain[] = [
     "category": "frontier-ai",
     "highlights": [
       {
-        "stat": "Zero",
-        "label": "Human preference annotations required for RLVR scaling",
-        "source": "DeepSeek Research"
-      },
-      {
         "stat": "GRPO",
-        "label": "Group Relative Policy Optimization removing critic networks",
-        "source": "DeepSeek Math"
-      },
-      {
-        "stat": "100%",
-        "label": "Deterministic ground-truth verifiability on code/math",
-        "source": "Formal Methods Literature"
-      },
-      {
-        "stat": "+45%",
-        "label": "Benchmark uplift over supervised fine-tuning alone",
-        "source": "OpenAI o-series Evals"
+        "label": "Group Relative Policy Optimization, a PPO variant introduced with DeepSeekMath",
+        "source": "Shao et al., DeepSeekMath",
+        "url": "https://arxiv.org/abs/2402.03300",
+        "date": "2024-02-05"
       }
     ],
     "sections": [
@@ -696,10 +676,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/sis-trajectory-learning-how-ai-agents-improve"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 14,
+    "sourceCount": 1,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Backed by DeepSeek Math/R1 papers, OpenAI o-series technical documentation, and peer-reviewed reinforcement learning publications.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 1 highlight stat links to 1 primary source checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "Requires deterministic ground-truth verifiers, making pure RLVR challenging for subjective creative tasks.",
       "Prone to reward hacking if evaluation suites are static and non-adversarial."
@@ -708,7 +688,7 @@ export const researchDomains: ResearchDomain[] = [
       "How to seamlessly bridge formal mathematical RLVR with high-level ethical and alignment constraints.",
       "The exact conditions under which RLVR-trained exploration converges on optimal algorithmic complexity."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "multimodal-reasoning-foundations",
@@ -721,24 +701,11 @@ export const researchDomains: ResearchDomain[] = [
     "category": "frontier-ai",
     "highlights": [
       {
-        "stat": "1 Unified",
-        "label": "Autoregressive token space for text, audio, and vision",
-        "source": "Gemini Technical Architecture"
-      },
-      {
-        "stat": "60 FPS",
-        "label": "Real-time video temporal stream processing",
-        "source": "Gemini 2.0 Realtime API"
-      },
-      {
         "stat": "VLA",
         "label": "Vision-Language-Action policies for robotics control",
-        "source": "Google DeepMind RT-2/RT-X"
-      },
-      {
-        "stat": "94.2%",
-        "label": "DocVQA spatial document understanding accuracy",
-        "source": "Multimodal Frontier Benchmarks"
+        "source": "Brohan et al. (Google DeepMind), RT-2",
+        "url": "https://arxiv.org/abs/2307.15818",
+        "date": "2023-07-28"
       }
     ],
     "sections": [
@@ -847,10 +814,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/ultimate-guide-ai-coding-agents-2026"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 15,
+    "sourceCount": 1,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Synthesized from Google DeepMind Gemini technical reports, RT-2 robotics papers, OpenAI GPT-4.5/5 multimodal releases, and CVPR/ICCV proceedings.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 1 highlight stat links to 1 primary source checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "High-resolution video streaming requires massive compute and memory bandwidth during multi-hour continuous ingestion.",
       "VLA robotics policies still struggle with high-precision tactile feedback and deformable object manipulation."
@@ -859,7 +826,7 @@ export const researchDomains: ResearchDomain[] = [
       "The optimal neural architecture for continuous 4D physics simulation within standard transformer attention layers.",
       "How to eliminate visual hallucinations in complex multi-object spatial reasoning tasks."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "post-training-distillation",
@@ -872,24 +839,11 @@ export const researchDomains: ResearchDomain[] = [
     "category": "frontier-ai",
     "highlights": [
       {
-        "stat": "1.5B–8B",
-        "label": "Parameter scale of state-of-the-art distilled reasoning models",
-        "source": "DeepSeek-R1-Distill Models"
-      },
-      {
-        "stat": "3.5x",
-        "label": "Inference latency speedup with Speculative Decoding",
-        "source": "EAGLE-2 / Medusa Benchmarks"
-      },
-      {
-        "stat": "90%+",
-        "label": "Teacher performance retained at 1/50th parameter scale",
-        "source": "Knowledge Distillation Evals"
-      },
-      {
-        "stat": "INT4/FP4",
-        "label": "Quantization precision without benchmark degradation",
-        "source": "BitsAndBytes / AWQ"
+        "stat": "1.5B–70B",
+        "label": "Parameter range of the six open DeepSeek-R1 distilled models",
+        "source": "DeepSeek-R1 paper (DeepSeek-AI)",
+        "url": "https://arxiv.org/abs/2501.12948",
+        "date": "2025-01-22"
       }
     ],
     "sections": [
@@ -998,10 +952,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/my-100-month-ai-stack-every-tool-i-actually-use"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 14,
+    "sourceCount": 1,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Supported by DeepSeek-R1 distillation papers, Medusa / EAGLE-2 research publications, and vLLM / TensorRT-LLM production benchmarks.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 1 highlight stat links to 1 primary source checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "Distilled models lack the broad world-knowledge breadth of massive 500B+ models, requiring RAG for specialized factual lookup.",
       "Speculative decoding gains diminish on highly stochastic creative tasks with low draft acceptance rates."
@@ -1010,7 +964,7 @@ export const researchDomains: ResearchDomain[] = [
       "The minimal parameter count required to support generalized zero-shot multi-step self-correction.",
       "Optimal multi-teacher distillation strategies combining diverse reasoning archetypes."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "synthetic-data-curation-pipelines",
@@ -1021,28 +975,7 @@ export const researchDomains: ResearchDomain[] = [
     "icon": "Sparkles",
     "color": "indigo",
     "category": "frontier-ai",
-    "highlights": [
-      {
-        "stat": "80%+",
-        "label": "Synthetic data proportion in post-training datasets",
-        "source": "Industry Consensus 2026"
-      },
-      {
-        "stat": "5x–10x",
-        "label": "Sample efficiency improvement over raw internet scraping",
-        "source": "Phi / Gemma Technical Reports"
-      },
-      {
-        "stat": "Zero",
-        "label": "PII exposure risk in clean synthetic corpora",
-        "source": "Enterprise Privacy Audits"
-      },
-      {
-        "stat": "LMSYS",
-        "label": "Elo rating gains driven purely by synthetic data curation",
-        "source": "Frontier Post-Training Research"
-      }
-    ],
+    "highlights": [],
     "sections": [
       {
         "title": "Generative Data Engines & Self-Instruct Architectures",
@@ -1149,10 +1082,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/reader-first-golden-age"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 15,
+    "sourceCount": 0,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Grounded in Anthropic Constitutional AI papers, Microsoft Phi-series synthetic data methodologies, and ICLR synthetic curriculum learning research.",
+    "evidenceGrade": "D",
+    "evidenceNote": "Grade D (editorial): no stat on this page links to a primary source yet. Unsourced highlight stats were removed on 2026-10-09.",
     "limitations": [
       "Synthetic data generation requires substantial upfront compute to generate, verify, and filter candidate pools.",
       "Risk of amplifying subtle teacher model biases if diversity controls are insufficiently constrained."
@@ -1161,7 +1094,7 @@ export const researchDomains: ResearchDomain[] = [
       "The theoretical upper bound on how many recursive synthetic generations a model can undergo before subtle tail distributions erode.",
       "Optimal automated grading algorithms for highly subjective aesthetic and creative synthetic writing."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "diffusion-transformers-neural-video",
@@ -1176,22 +1109,16 @@ export const researchDomains: ResearchDomain[] = [
       {
         "stat": "DiT",
         "label": "Diffusion Transformers replacing convolutional U-Nets",
-        "source": "Peebles & Xie, ICCV"
-      },
-      {
-        "stat": "4K / 60fps",
-        "label": "Ultra-high-definition neural video rendering capacity",
-        "source": "Veo 2 & Runway Technical Reports"
+        "source": "Peebles & Xie, Scalable Diffusion Models with Transformers",
+        "url": "https://arxiv.org/abs/2212.09748",
+        "date": "2022-12-19"
       },
       {
         "stat": "Flow Matching",
-        "label": "Straight-line ODE paths replacing curved diffusion schedules",
-        "source": "Lipman et al., ICLR"
-      },
-      {
-        "stat": "3D VAE",
-        "label": "Spatio-temporal compression reducing video compute by 16x",
-        "source": "Video Generation Architecture Evals"
+        "label": "Optimal-transport probability paths as an alternative to diffusion paths",
+        "source": "Lipman et al., Flow Matching for Generative Modeling",
+        "url": "https://arxiv.org/abs/2210.02747",
+        "date": "2022-10-06"
       }
     ],
     "sections": [
@@ -1300,10 +1227,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 15,
+    "sourceCount": 2,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Backed by foundational DiT research (Peebles & Xie, ICCV), Flow Matching literature (Lipman et al.), and technical releases from OpenAI Sora, Google Veo, and Runway.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 2 highlight stats link to 2 primary sources checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "High inference compute cost per minute of generated video compared to static image generation.",
       "Complex multi-agent physical interactions (e.g. hands tying shoelaces) still exhibit occasional topological glitches."
@@ -1312,7 +1239,7 @@ export const researchDomains: ResearchDomain[] = [
       "The exact threshold at which neural video models can serve as deterministic simulators for real-world robotics training.",
       "Methods for infinite-length, fully coherent video generation with zero latent drift over multi-hour runtimes."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "neural-audio-speech-synthesis",
@@ -1325,24 +1252,11 @@ export const researchDomains: ResearchDomain[] = [
     "category": "frontier-ai",
     "highlights": [
       {
-        "stat": "<150ms",
-        "label": "Full-duplex conversational audio response latency",
-        "source": "Hume & OpenAI Realtime APIs"
-      },
-      {
         "stat": "RVQ",
         "label": "Residual Vector Quantization audio codec architecture",
-        "source": "Meta EnCodec / SoundStream"
-      },
-      {
-        "stat": "3 seconds",
-        "label": "Audio reference required for zero-shot voice cloning",
-        "source": "ElevenLabs Voice Engine"
-      },
-      {
-        "stat": "48 kHz",
-        "label": "Lossless studio-grade neural audio reconstruction",
-        "source": "Descript / DAC Codec"
+        "source": "Zeghidour et al., SoundStream",
+        "url": "https://arxiv.org/abs/2107.03312",
+        "date": "2021-07-07"
       }
     ],
     "sections": [
@@ -1451,10 +1365,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/suno-music-production-workflow"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 14,
+    "sourceCount": 1,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Synthesized from Meta EnCodec/Voicebox research, ElevenLabs technical papers, Hume AI EVI documentation, and ICASSP/Interspeech proceedings.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 1 highlight stat links to 1 primary source checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "Streaming audio models require stable, low-jitter network connections (WebRTC) to maintain sub-200ms conversational loops.",
       "Background acoustic noise can occasionally trigger false-positive interruption (barge-in) events."
@@ -1463,7 +1377,7 @@ export const researchDomains: ResearchDomain[] = [
       "The optimal neural architecture for polyphonic multi-speaker conversational separation in noisy environments.",
       "Long-term psychological impacts of hyper-empathic synthetic voice personas on human attachment."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "sparse-attention-linear-transformers",
@@ -1477,23 +1391,24 @@ export const researchDomains: ResearchDomain[] = [
     "highlights": [
       {
         "stat": "O(N)",
-        "label": "Computational complexity of State Space Models vs O(N²) transformers",
-        "source": "Gu & Dao, Mamba Research"
+        "label": "Linear scaling in sequence length for selective state space models",
+        "source": "Gu & Dao, Mamba",
+        "url": "https://arxiv.org/abs/2312.00752",
+        "date": "2023-12-01"
       },
       {
         "stat": "1.2 PFLOPs",
-        "label": "FlashAttention-3 throughput on NVIDIA H100 GPUs",
-        "source": "Dao et al., FlashAttention-3 Paper"
+        "label": "FlashAttention-3 FP8 throughput on NVIDIA H100 GPUs",
+        "source": "Shah, Dao et al., FlashAttention-3",
+        "url": "https://arxiv.org/abs/2407.08608",
+        "date": "2024-07-11"
       },
       {
-        "stat": "5x–8x",
-        "label": "Inference throughput speedup over standard attention kernels",
-        "source": "Mamba 2 Hardware Benchmarks"
-      },
-      {
-        "stat": "Hybrid",
-        "label": "SSM-Transformer hybrid architectures leading benchmarks",
-        "source": "Jamba / Nemotron Architectures"
+        "stat": "5x",
+        "label": "Inference throughput vs Transformers reported for Mamba",
+        "source": "Gu & Dao, Mamba",
+        "url": "https://arxiv.org/abs/2312.00752",
+        "date": "2023-12-01"
       }
     ],
     "sections": [
@@ -1602,10 +1517,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/ultimate-guide-ai-coding-agents-2026"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 15,
+    "sourceCount": 2,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Backed by Mamba / Mamba-2 foundational papers (Gu & Dao), FlashAttention-3 technical reports, and IEEE/ACM computer architecture benchmarks.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 3 highlight stats link to 2 primary sources checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "Pure SSM models can exhibit slight degradation on complex multi-query associative recall tasks compared to pure attention transformers.",
       "Specialized SSM kernels require custom CUDA/Triton implementations for optimal hardware acceleration."
@@ -1614,7 +1529,7 @@ export const researchDomains: ResearchDomain[] = [
       "The optimal architectural interleaving ratio of SSM to attention layers across multi-trillion parameter scales.",
       "Theoretical limits of linear attention expressivity on complex formal mathematical proofs."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "representation-engineering-mechanistic-interpretability",
@@ -1628,23 +1543,24 @@ export const researchDomains: ResearchDomain[] = [
     "highlights": [
       {
         "stat": "Millions",
-        "label": "Monosemantic features extracted via Sparse Autoencoders",
-        "source": "Anthropic Golden Gate Claude Research"
+        "label": "Sparse autoencoder features extracted from Claude 3 Sonnet (dictionaries of ~1M, ~4M and ~34M)",
+        "source": "Anthropic, Scaling Monosemanticity",
+        "url": "https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html",
+        "date": "2024-05-21"
       },
       {
         "stat": "SAE",
         "label": "Sparse Autoencoders decomposing polysemantic superposition",
-        "source": "Cunningham et al. / Anthropic"
+        "source": "Cunningham et al., Sparse Autoencoders Find Highly Interpretable Features",
+        "url": "https://arxiv.org/abs/2309.08600",
+        "date": "2023-09-15"
       },
       {
         "stat": "Direct",
-        "label": "Feature activation clamping steering model behavior in real time",
-        "source": "Representation Engineering Labs"
-      },
-      {
-        "stat": "Zero-Shot",
-        "label": "Detection of deception and hidden reasoning traces",
-        "source": "Mechanistic Safety Audits"
+        "label": "Feature activation clamping steering model behavior",
+        "source": "Anthropic, Golden Gate Claude",
+        "url": "https://www.anthropic.com/news/golden-gate-claude",
+        "date": "2024-05-23"
       }
     ],
     "sections": [
@@ -1753,10 +1669,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/misinformation-guardian-hackathon-build-log-2026"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 15,
+    "sourceCount": 3,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Backed by primary publications from Anthropic Alignment Science team, Center for AI Safety, and NeurIPS / ICLR mechanistic interpretability workshops.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 3 highlight stats link to 3 primary sources checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "Training high-capacity SAEs across all layers of frontier models requires massive auxiliary compute infrastructure.",
       "Interpreting complex multi-layer interactions across distributed reasoning chains remains an active research challenge."
@@ -1765,7 +1681,7 @@ export const researchDomains: ResearchDomain[] = [
       "Whether all internal knowledge in multi-trillion parameter models can be 100% decomposed without residual uninterpretable superposition.",
       "How to automate full-model formal verification via mechanistic circuit mappings."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "adversarial-robustness-jailbreak-defense",
@@ -1778,24 +1694,18 @@ export const researchDomains: ResearchDomain[] = [
     "category": "frontier-ai",
     "highlights": [
       {
-        "stat": "100%",
-        "label": "Separation of untrusted data from instruction channels in secure architectures",
-        "source": "OWASP Top 10 for LLMs"
-      },
-      {
         "stat": "Crescendo",
         "label": "Multi-turn conversational jailbreak attack patterns",
-        "source": "Microsoft AI Red Team"
+        "source": "Russinovich, Salem & Eldan (Microsoft), Crescendo",
+        "url": "https://arxiv.org/abs/2404.01833",
+        "date": "2024-04-02"
       },
       {
         "stat": "Dual-LLM",
-        "label": "Privileged controller vs unprivileged executor architecture",
-        "source": "Simon Willison Security Model"
-      },
-      {
-        "stat": "99.9%",
-        "label": "Indirect prompt injection mitigation with structured schemas",
-        "source": "Enterprise Security Benchmarks"
+        "label": "Privileged controller vs quarantined executor architecture",
+        "source": "Simon Willison, The Dual LLM pattern",
+        "url": "https://simonwillison.net/2023/Apr/25/dual-llm-pattern/",
+        "date": "2023-04-25"
       }
     ],
     "sections": [
@@ -1904,10 +1814,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/ultimate-guide-ai-coding-agents-2026"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 16,
+    "sourceCount": 2,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Synthesized from OWASP LLM Security Top 10, Microsoft AI Red Team research, Anthropic Alignment reports, and IEEE Security & Privacy conference proceedings.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 2 highlight stats link to 2 primary sources checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "Adversarial optimization techniques continuously evolve as attack surface capabilities expand.",
       "Strict multi-model security boundaries introduce minor token latency and API cost overheads."
@@ -1916,7 +1826,7 @@ export const researchDomains: ResearchDomain[] = [
       "Whether a mathematical formal proof can be constructed that guarantees zero prompt injection in unified token architectures.",
       "Long-term defense strategies against quantum-accelerated adversarial token search algorithms."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "multilingual-frontier-intelligence",
@@ -1927,28 +1837,7 @@ export const researchDomains: ResearchDomain[] = [
     "icon": "Compass",
     "color": "blue",
     "category": "frontier-ai",
-    "highlights": [
-      {
-        "stat": "100+",
-        "label": "Languages natively supported with high-fidelity reasoning",
-        "source": "Qwen 2.5 & Llama 4 Reports"
-      },
-      {
-        "stat": "3x–5x",
-        "label": "Tokenization compression efficiency gains in non-Latin scripts",
-        "source": "Modern Polyglot Tokenizers"
-      },
-      {
-        "stat": "Zero-Shot",
-        "label": "Cross-lingual reasoning transfer from high to low-resource languages",
-        "source": "Cross-Lingual Benchmark Evals"
-      },
-      {
-        "stat": "Byte-Level",
-        "label": "Fallback mechanisms eliminating out-of-vocabulary UNK tokens",
-        "source": "BPE / SentencePiece Research"
-      }
-    ],
+    "highlights": [],
     "sections": [
       {
         "title": "Tokenizer Efficiency & The \"Token Tax\" in Non-Latin Scripts",
@@ -2055,10 +1944,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/eu-inc-28th-regime-european-startups"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 14,
+    "sourceCount": 0,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Backed by Qwen 2.5/3 multilingual technical reports, Meta Llama 4 multilingual evaluations, and ACL/EMNLP cross-lingual representation papers.",
+    "evidenceGrade": "D",
+    "evidenceNote": "Grade D (editorial): no stat on this page links to a primary source yet. Unsourced highlight stats were removed on 2026-10-09.",
     "limitations": [
       "Low-resource languages with scarce native digital text still lag high-resource languages on nuanced cultural reasoning.",
       "Large vocabulary tokenizers increase the embedding matrix memory footprint on GPU VRAM."
@@ -2067,7 +1956,7 @@ export const researchDomains: ResearchDomain[] = [
       "The optimal cross-lingual loss formulation that prevents catastrophic forgetting of minority dialect subtleties.",
       "How to fully eliminate western-centric ideological bias when models generalize across distinct global ethical traditions."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "mathematical-theorem-proving-ai",
@@ -2081,23 +1970,10 @@ export const researchDomains: ResearchDomain[] = [
     "highlights": [
       {
         "stat": "Silver Medal",
-        "label": "Standard achieved at International Mathematical Olympiad (IMO)",
-        "source": "Google DeepMind AlphaProof / AlphaGeometry 2"
-      },
-      {
-        "stat": "100%",
-        "label": "Mathematical proof certainty verified by formal kernel compilers",
-        "source": "Lean 4 Formal Verification System"
-      },
-      {
-        "stat": "Neuro-Symbolic",
-        "label": "Integration of generative search with deterministic solvers",
-        "source": "Formal Methods Research"
-      },
-      {
-        "stat": "Zero",
-        "label": "Hallucination rate in formally compiled proof steps",
-        "source": "Automated Deduction Literature"
+        "label": "Standard achieved at the International Mathematical Olympiad (IMO) 2024",
+        "source": "Google DeepMind, AlphaProof and AlphaGeometry 2",
+        "url": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
+        "date": "2024-07-25"
       }
     ],
     "sections": [
@@ -2206,10 +2082,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/production-agent-patterns-7-pillars"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 16,
+    "sourceCount": 1,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Backed by Google DeepMind AlphaProof / AlphaGeometry publications (Nature), Lean 4 foundational papers, and International Mathematical Olympiad verified results.",
+    "evidenceGrade": "C",
+    "evidenceNote": "Grade C (mixed): 1 highlight stat links to 1 primary source checked on 2026-10-09. The rest of this page is editorial synthesis whose claims are not yet source-linked.",
     "limitations": [
       "Formalizing complex natural language mathematics into Lean 4 requires substantial compute and domain-expert supervision.",
       "Search spaces in open-ended combinatorial proofs can suffer from exponential branch explosion without well-tuned value heuristics."
@@ -2218,7 +2094,7 @@ export const researchDomains: ResearchDomain[] = [
       "When neuro-symbolic systems will solve open, unsolved Millennium Prize mathematical conjectures (e.g. Riemann Hypothesis, P vs NP).",
       "The optimal architecture for unifying continuous neural intuition with discrete symbolic proof engines."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "embodied-physical-ai-world-models",
@@ -2229,28 +2105,7 @@ export const researchDomains: ResearchDomain[] = [
     "icon": "Rocket",
     "color": "orange",
     "category": "frontier-ai",
-    "highlights": [
-      {
-        "stat": "1000x",
-        "label": "Simulation acceleration via GPU-parallel physics in Isaac Sim",
-        "source": "NVIDIA Isaac Lab Reports"
-      },
-      {
-        "stat": "200 Hz",
-        "label": "Low-level motor torque control loop frequency",
-        "source": "Humanoid Robotics Control Standards"
-      },
-      {
-        "stat": "End-to-End",
-        "label": "Neural networks replacing classical PID controller stacks",
-        "source": "Tesla Optimus & Figure 02"
-      },
-      {
-        "stat": "Bimanual",
-        "label": "Dexterous dual-arm manipulation with tactile force sensing",
-        "source": "Physical AI Benchmark Suites"
-      }
-    ],
+    "highlights": [],
     "sections": [
       {
         "title": "Simulation-to-Real (Sim2Real) Transfer & Domain Randomization",
@@ -2357,10 +2212,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/ultimate-guide-ai-coding-agents-2026"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 16,
+    "sourceCount": 0,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Backed by NVIDIA Isaac Sim technical whitepapers, Tesla Optimus autonomy updates, Figure AI technical reports, and IEEE ICRA / IROS robotics conference proceedings.",
+    "evidenceGrade": "D",
+    "evidenceNote": "Grade D (editorial): no stat on this page links to a primary source yet. Unsourced highlight stats were removed on 2026-10-09.",
     "limitations": [
       "Battery power density constraints limit untethered humanoid robot operational runtime to 2–4 hours per charge.",
       "Sim2Real transfer on complex fluid and soft-body deformable objects still requires physical calibration."
@@ -2369,7 +2224,7 @@ export const researchDomains: ResearchDomain[] = [
       "The unified foundation model architecture that seamlessly unifies high-level language planning with 200Hz joint motor control.",
       "Long-term hardware durability metrics for continuous 24/7 robotic actuator operation in unconstrained industrial environments."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "ai-model-strategy",
@@ -2380,28 +2235,7 @@ export const researchDomains: ResearchDomain[] = [
     "icon": "Scale",
     "color": "emerald",
     "category": "frontier-ai",
-    "highlights": [
-      {
-        "stat": "7 Layers",
-        "label": "From prompt engineering to new foundation model pre-training",
-        "source": "FrankX Architectural Synthesis"
-      },
-      {
-        "stat": "6 Gates",
-        "label": "Outcome, data rights, capital, control, operations, law",
-        "source": "Enterprise Decision Framework"
-      },
-      {
-        "stat": "CPVO",
-        "label": "Cost Per Verified Outcome as true economic North Star",
-        "source": "AI Economics Standard"
-      },
-      {
-        "stat": "80%+",
-        "label": "Cost savings by routing simple tasks to specialized small models",
-        "source": "Production Routing Metrics"
-      }
-    ],
+    "highlights": [],
     "sections": [
       {
         "title": "Own the Learning Loop Before the GPUs",
@@ -2523,10 +2357,10 @@ export const researchDomains: ResearchDomain[] = [
       "/blog/my-100-month-ai-stack-every-tool-i-actually-use"
     ],
     "lastUpdated": "2026-08-18",
-    "sourceCount": 18,
+    "sourceCount": 0,
     "status": "active",
-    "evidenceGrade": "A",
-    "evidenceNote": "Synthesized from enterprise case studies, cloud provider whitepapers (AWS, Azure, OCI, Google Cloud), and academic AI economics research.",
+    "evidenceGrade": "D",
+    "evidenceNote": "Grade D (editorial): no stat on this page links to a primary source yet. Unsourced highlight stats were removed on 2026-10-09.",
     "limitations": [
       "Rapid release cycles of frontier models require continuous re-evaluation of model tier assignments.",
       "Self-hosted open-weight infrastructure requires dedicated in-house DevOps and security maintenance teams."
@@ -2535,7 +2369,7 @@ export const researchDomains: ResearchDomain[] = [
       "The long-term pricing trajectory of frontier intelligence as post-training compute costs rise while inference hardware efficiency accelerates.",
       "Optimal governance structures for sovereign multi-cloud model deployments across conflicting geopolitical jurisdictions."
     ],
-    "lastVerified": "2026-08-18"
+    "lastVerified": "2026-10-09"
   },
   {
     "slug": "multi-agent-orchestration-swarms",

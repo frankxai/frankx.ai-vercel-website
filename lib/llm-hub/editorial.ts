@@ -47,7 +47,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     creatorUse: 'Coordinate documented tools, then inspect outputs and editable sources. Adobe, Canva and HeyGen have separate access requirements. Astra does not natively output audio or video.',
   },
   'gemini-3-7-flash': {
-    tagline: 'Google\u2019s current Flash tier \u2014 a coding and agent refresh at an introductory price with a known expiry.',
+    tagline: 'Google\u2019s Flash tier \u2014 a coding and agent refresh at an introductory price with a known expiry.',
     bestFor: [
       'High-volume agentic coding where cost compounds',
       'Web development and agent workflows (Google\u2019s stated focus)',
@@ -58,7 +58,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'google/gemini-3.7-flash',
   },
   'gemini-3-5-flash': {
-    tagline: 'Frontier agentic coding at sub-flagship economics — the new default agent runtime.',
+    tagline: 'Frontier agentic coding at sub-flagship economics.',
     bestFor: [
       'High-volume agentic workloads where cost compounds',
       'MCP-heavy tool-use pipelines (83.6% MCP Atlas)',
@@ -113,7 +113,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     creatorUse: 'Cheap, fast in-editor help; route real architecture work to a frontier model.',
   },
   'claude-fable-5': {
-    tagline: 'Mythos-class made generally available — the new agentic-coding ceiling, at 2× Opus pricing.',
+    tagline: 'Mythos-class made generally available, at 2× Opus pricing.',
     bestFor: [
       'Agentic pipelines feeding schemas, tools, and other agents (measured constraint precision)',
       'Long-horizon coding — SWE-Bench Verified 95% / Pro ~80% at launch (vendor-claimed)',
@@ -134,7 +134,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'anthropic/claude-opus-5',
   },
   'claude-opus-4-8': {
-    tagline: 'Modest version bump, real frontier gains — tops the intelligence index at the same price as 4.7.',
+    tagline: 'Modest version bump, real frontier gains, at the same price as 4.7.',
     bestFor: [
       'Hard agentic coding and codebase-scale migrations',
       'Long-horizon autonomous work with a clear up-front spec',
@@ -145,7 +145,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'anthropic/claude-opus-4.8',
   },
   'claude-sonnet-5': {
-    tagline: 'The new mid-tier default \u2014 1M context and frontier computer-use at Sonnet economics.',
+    tagline: '1M context and frontier computer-use at Sonnet economics.',
     bestFor: [
       'Production coding and integrations at $2/$10',
       'Computer-use agents (81.2% OSWorld, vendor-reported)',
@@ -191,14 +191,14 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'anthropic/claude-haiku-4.5',
   },
   'grok-4-6': {
-    tagline: 'Current xAI flagship: same-scale agent refresh of 4.5, AA Index 61, $2/$6 under 200k. No Starlight arena receipt yet.',
+    tagline: 'xAI flagship from 12 August to 21 September 2026: same-scale agent refresh of 4.5, AA Index 61, $2/$6 under 200k. No Starlight arena receipt yet.',
     bestFor: [
       'Long-running coding and knowledge-work agents on the xAI API',
       'First-pass app and visual structure work (vendor-stated focus)',
       'Frontier-priced loops that must stay under the 200k prompt cliff',
     ],
     watchOut: 'Not a documented new base model. Cached input rose to $0.50. Price doubles past 200k prompt tokens. Do not treat vendor or AA tables as SIS Model Arena winners.',
-    creatorUse: 'Use as the default Grok API model for multi-step build loops; keep Claude on receipt-gated SIS arena work until a Grok 4.6 JSON receipt exists.',
+    creatorUse: 'Use for multi-step build loops; keep Claude on receipt-gated SIS arena work until a Grok 4.6 JSON receipt exists.',
     openrouterId: 'x-ai/grok-4.6',
   },
   'grok-4-3': {
@@ -218,7 +218,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'x-ai/grok-4.1',
   },
   'gpt-5-5': {
-    tagline: 'OpenAI’s agentic flagship: best-in-class computer-use and knowledge-work scores, at double the price.',
+    tagline: 'OpenAI’s agentic flagship at its April 2026 launch: best-in-class computer-use and knowledge-work scores at the time, at double the price.',
     bestFor: [
       'Terminal-agent and Codex-style autonomous loops',
       'Computer-use / OSWorld automation',
