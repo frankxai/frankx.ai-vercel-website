@@ -39,7 +39,7 @@ export default function VibeOSAppPage() {
             Vibe OS App Coming Soon
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-white/60">
-            We're building the web app. In the meantime, download the Notion template to start tracking your creative states today.
+            The web app is still in development.
           </p>
         </div>
 
@@ -94,23 +94,17 @@ export default function VibeOSAppPage() {
         {/* Download Section */}
         <div className="rounded-2xl border border-cyan-500/20 bg-gradient-to-b from-cyan-500/10 to-cyan-500/5 p-8">
           <h2 className="mb-4 text-xl font-semibold text-white">
-            Start Now with the Notion Template
+            The web app is in development
           </h2>
           <p className="mb-6 text-white/70">
-            Get the Vibe OS Notion dashboard and start tracking your creative states while we build the web app. It's free and ready to use today.
+            There is no template on this page yet. Join the list and you will get a note when the app is ready.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/products/vibe-os#download"
+              href="/newsletter"
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Download Notion Template
-            </Link>
-            <Link
-              href="/newsletter"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10"
-            >
-              Get Launch Updates
+              Get launch updates
             </Link>
           </div>
         </div>

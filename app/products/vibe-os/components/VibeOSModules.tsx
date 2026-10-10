@@ -156,22 +156,38 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                   <>
                     {/* Normal Pricing Mode */}
                     <div className="mb-6 text-center">
-                      <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
-                        One-time investment
-                      </div>
-                      <div className="mt-4 flex items-center justify-center gap-3">
-                        {offer.originalPrice && (
-                          <span className="text-2xl text-white/30 line-through">
-                            ${offer.originalPrice}
-                          </span>
-                        )}
-                        <span className="bg-gradient-to-r from-cyan-300 to-cyan-500 bg-clip-text text-5xl font-bold text-transparent">
-                          ${offer.primaryPrice}
-                        </span>
-                      </div>
-                      <p className="mt-3 text-sm text-white/50">
-                        {offer.note || 'Lifetime updates included'}
-                      </p>
+                      {offer.primaryPrice > 0 ? (
+                        <>
+                          <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+                            One-time investment
+                          </div>
+                          <div className="mt-4 flex items-center justify-center gap-3">
+                            {offer.originalPrice && (
+                              <span className="text-2xl text-white/30 line-through">
+                                ${offer.originalPrice}
+                              </span>
+                            )}
+                            <span className="bg-gradient-to-r from-cyan-300 to-cyan-500 bg-clip-text text-5xl font-bold text-transparent">
+                              ${offer.primaryPrice}
+                            </span>
+                          </div>
+                          <p className="mt-3 text-sm text-white/50">
+                            {offer.note || 'Lifetime updates included'}
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+                            Free
+                          </div>
+                          <div className="mt-4 bg-gradient-to-r from-cyan-300 to-cyan-500 bg-clip-text text-5xl font-bold text-transparent">
+                            Free
+                          </div>
+                          <p className="mt-3 text-sm text-white/50">
+                            The web app is still in development.
+                          </p>
+                        </>
+                      )}
                     </div>
 
                     <Link

@@ -719,13 +719,13 @@
     "slug": "suno-prompt-library",
     "name": "Suno Prompt Library Pack",
     "category": "Music Intelligence",
-    "badge": "INSTANT ACCESS",
+    "badge": "Coming soon",
     "headline": "100+ Battle-Tested Suno Prompts for Every Genre",
-    "subheadline": "Skip the prompt guessing game. Get the exact prompts that powered 500+ tracks across electronic, hip-hop, cinematic, ambient, and world music.",
-    "promise": "Stop wasting generations on prompts that don't work. Get proven prompts organized by genre, mood, and energy level.",
-    "summary": "A comprehensive prompt library extracted from 500+ Suno sessions, organized for instant use in any creative project.",
+    "subheadline": "Skip the prompt guessing game. The prompts are organized by genre, mood, and energy for electronic, hip-hop, cinematic, ambient, and world music.",
+    "promise": "Stop wasting generations on prompts that don't work. Get prompts organized by genre, mood, and energy level.",
+    "summary": "A prompt library organized by genre, mood, and energy for a creative project.",
     "transformation": [
-      "Access 100+ prompts that actually work\u2014tested across 500+ generations with detailed success notes",
+      "Access 100+ prompts organized by genre, mood, and energy, with notes on what each one is for",
       "Find the perfect prompt in seconds with genre, mood, and energy filters (no more scrolling through chaos)",
       "Learn prompt patterns that unlock specific sounds (the 'why' behind each prompt so you can create your own)",
       "Get bonus prompt modifiers for tempo, instrumentation, and vocal styles that stack with any base prompt"
@@ -735,10 +735,6 @@
         {
           "number": "100+",
           "label": "Curated Prompts"
-        },
-        {
-          "number": "500+",
-          "label": "Sessions Tested"
         },
         {
           "number": "12",
@@ -1094,9 +1090,9 @@
     "slug": "5-suno-prompts",
     "name": "5 Prompts That Made My Best Suno Tracks",
     "category": "Music Intelligence",
-    "badge": "FREE DOWNLOAD",
+    "badge": "Coming soon",
     "headline": "The Exact Prompts Behind My Top Suno Tracks",
-    "subheadline": "Copy the 5 prompts that generated 500+ plays. Each with breakdowns of why it works and variations to try.",
+    "subheadline": "Copy five Suno prompts, with a breakdown of each one and variations to try.",
     "promise": "Skip the guessing. Get proven prompts that actually produce great Suno tracks.",
     "summary": "Free guide with 5 battle-tested Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
     "transformation": [
@@ -1108,16 +1104,8 @@
     "socialProof": {
       "stats": [
         {
-          "number": "500+",
-          "label": "Tracks Created"
-        },
-        {
-          "number": "142",
-          "label": "Top Plays"
-        },
-        {
           "number": "5",
-          "label": "Proven Prompts"
+          "label": "Prompts in the guide"
         }
       ],
       "quotes": []
@@ -1132,8 +1120,8 @@
       "ctaSecondary": "Full Prompt Library",
       "ctaSecondaryHref": "/products/suno-prompt-library",
       "guarantee": {
-        "label": "Instant Access",
-        "description": "Enter your email and get the PDF delivered immediately. No spam, unsubscribe anytime."
+        "label": "Waitlist",
+        "description": "Join the waitlist. This guide is not delivered from the page yet."
       }
     },
     "modules": [],
@@ -1143,8 +1131,8 @@
         "answer": "Yes. All prompts are tested on v4 and newer. They work with any recent Suno version."
       },
       {
-        "question": "Is this really free?",
-        "answer": "Yes. Enter your email and the PDF is delivered instantly. We also offer a full 100+ prompt library for $27."
+        "question": "Can I download it now?",
+        "answer": "Not yet. Join the waitlist and you will get a note when the guide is ready."
       }
     ],
     "analyticsId": "5-suno-prompts",
