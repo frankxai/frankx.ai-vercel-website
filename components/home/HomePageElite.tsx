@@ -308,7 +308,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/start"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-[box-shadow,background-color,color,transform] duration-200 hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Explore the Work
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -317,7 +317,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/blog"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white/80 hover:text-white px-8 h-14 text-base font-medium transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white/80 hover:text-white px-8 h-14 text-base font-medium transition-colors duration-200"
               >
                 Read the Blog
               </Link>
@@ -1160,7 +1160,7 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
+                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-colors duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="text-sm sm:text-base font-semibold text-white pr-4">
@@ -1316,14 +1316,14 @@ function FinalCTA() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-[box-shadow,background-color,color,transform] duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Start Here
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/newsletter"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-colors duration-200"
               >
                 Get the Newsletter
               </Link>

@@ -191,14 +191,14 @@ export default function CreativeAIAssessmentPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/products/creation-chronicles"
-                  className="inline-flex items-center justify-center rounded-full px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-semibold text-base shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all duration-300 hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-full px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-semibold text-base shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   Explore Creation Chronicles
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link
                   href="/products/vibe-os"
-                  className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-base transition-all duration-300 hover:bg-white/10"
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-base transition-colors duration-300 hover:bg-white/10"
                 >
                   Try Vibe OS
                 </Link>

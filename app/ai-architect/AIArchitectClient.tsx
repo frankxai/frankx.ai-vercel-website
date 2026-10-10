@@ -218,9 +218,9 @@ function PrincipleCard({
       whileInView="animate"
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="group relative rounded-2xl border border-violet-500/20 bg-violet-500/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/10"
+      className="group relative rounded-2xl border border-violet-500/20 bg-violet-500/5 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-violet-500/40 hover:bg-violet-500/10"
     >
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400 transition-all group-hover:scale-110">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400 transition-transform duration-200 group-hover:scale-110">
         <Icon className="h-6 w-6" />
       </div>
       <h3 className="mb-2 text-lg font-bold text-white">{principle.title}</h3>
@@ -249,7 +249,7 @@ function PhaseCard({
         <div className="absolute left-8 top-16 h-full w-px bg-gradient-to-b from-cyan-500/50 to-transparent" />
       )}
       <div className="group flex gap-6">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-cyan-500/30 bg-cyan-500/10 text-2xl font-bold text-cyan-400 transition-all group-hover:border-cyan-500/50 group-hover:bg-cyan-500/20">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-cyan-500/30 bg-cyan-500/10 text-2xl font-bold text-cyan-400 transition-colors duration-200 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/20">
           {phase.number}
         </div>
         <div className="flex-1 pb-12">
@@ -444,9 +444,9 @@ export default function AIArchitectClient() {
                     key={pattern.name}
                     variants={fadeInUp}
                     transition={{ delay: index * 0.1 }}
-                    className="group rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-white/20 hover:bg-white/[0.04]"
+                    className="group rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-colors duration-200 hover:border-white/20 hover:bg-white/[0.04]"
                   >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-all group-hover:bg-violet-500/20 group-hover:text-violet-400">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-colors duration-200 group-hover:bg-violet-500/20 group-hover:text-violet-400">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="mb-1 font-semibold text-white">{pattern.name}</h3>
@@ -507,7 +507,7 @@ export default function AIArchitectClient() {
                 </div>
                 <Link
                   href="/prototype/frankx-ai-platform"
-                  className="hidden items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-4 py-2 text-sm font-medium text-violet-400 transition-all hover:border-violet-500/50 hover:bg-violet-500/20 sm:flex"
+                  className="hidden items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-4 py-2 text-sm font-medium text-violet-400 transition-colors duration-200 hover:border-violet-500/50 hover:bg-violet-500/20 sm:flex"
                 >
                   View Prototype
                   <ArrowRight className="h-4 w-4" />
@@ -577,7 +577,7 @@ export default function AIArchitectClient() {
                 </div>
                 <Link
                   href="/prototype/arcanea-game-engine"
-                  className="hidden items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-4 py-2 text-sm font-medium text-rose-400 transition-all hover:border-rose-500/50 hover:bg-rose-500/20 sm:flex"
+                  className="hidden items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-4 py-2 text-sm font-medium text-rose-400 transition-colors duration-200 hover:border-rose-500/50 hover:bg-rose-500/20 sm:flex"
                 >
                   View Prototype
                   <ArrowRight className="h-4 w-4" />
@@ -685,7 +685,7 @@ export default function AIArchitectClient() {
                 <div className="flex shrink-0 flex-col gap-3">
                   <Link
                     href="/ai-architect/multi-cloud-comparison"
-                    className="flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-3 font-medium text-cyan-400 transition-all hover:border-cyan-500/50 hover:bg-cyan-500/20"
+                    className="flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-3 font-medium text-cyan-400 transition-colors duration-200 hover:border-cyan-500/50 hover:bg-cyan-500/20"
                   >
                     Multi-Cloud Comparison
                     <ArrowRight className="h-4 w-4" />
@@ -694,7 +694,7 @@ export default function AIArchitectClient() {
                     href="https://github.com/frankxai/ai-architect-academy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 font-medium text-slate-300 transition-all hover:bg-white/5"
+                    className="flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 font-medium text-slate-300 transition-colors duration-200 hover:bg-white/5"
                   >
                     View on GitHub
                     <ExternalLink className="h-4 w-4" />
@@ -720,14 +720,14 @@ export default function AIArchitectClient() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/ai-architect-academy"
-                  className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 px-8 py-4 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-500/25"
+                  className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 px-8 py-4 font-semibold text-white transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-500/25"
                 >
                   Enter the Academy
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="flex items-center gap-2 rounded-full border border-white/20 px-8 py-4 font-medium text-white transition-all hover:bg-white/10"
+                  className="flex items-center gap-2 rounded-full border border-white/20 px-8 py-4 font-medium text-white transition-colors duration-200 hover:bg-white/10"
                 >
                   Work With Frank
                 </Link>

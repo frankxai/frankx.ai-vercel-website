@@ -373,12 +373,12 @@ function StreamCard({
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
                   disabled={status === 'loading'}
-                  className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-white/20 disabled:opacity-50"
+                  className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:border-white/30 transition-colors disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="flex-shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-all hover:brightness-110 disabled:opacity-50"
+                  className="flex-shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-[filter,opacity] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 disabled:opacity-50"
                   style={{
                     background: `linear-gradient(135deg, ${stream.accentHex}, ${stream.accentHex}cc)`,
                   }}

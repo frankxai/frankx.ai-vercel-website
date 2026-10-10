@@ -179,7 +179,7 @@ export default function AboutPage() {
                 href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
               >
                 <Linkedin className="h-4 w-4" /> LinkedIn
               </a>
@@ -187,7 +187,7 @@ export default function AboutPage() {
                 href="https://github.com/frankxai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
               >
                 <Github className="h-4 w-4" /> GitHub
               </a>
@@ -195,13 +195,13 @@ export default function AboutPage() {
                 href="https://suno.com/@frankx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
               >
                 <Music className="h-4 w-4" /> Suno
               </a>
               <a
                 href="mailto:hello@frankx.ai"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
               >
                 <Mail className="h-4 w-4" /> Email
               </a>
@@ -622,21 +622,21 @@ export default function AboutPage() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/start"
-                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/20 transition-[color,background-color,border-color,box-shadow,transform] duration-200 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
                 >
                   Start Here
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/music-lab"
-                  className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-colors hover:bg-white/10"
                 >
                   Music Lab
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/blog"
-                  className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-colors hover:bg-white/10"
                 >
                   Read the Blog
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

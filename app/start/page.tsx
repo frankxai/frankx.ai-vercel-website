@@ -211,7 +211,7 @@ export default function StartPage() {
                   >
                     <Link href={path.href} className="group block h-full">
                       <div
-                        className={`relative h-full overflow-hidden rounded-3xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 ${colors.glow}`}
+                        className={`relative h-full overflow-hidden rounded-3xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-1 ${colors.glow}`}
                       >
                         {/* Icon and Stats Row */}
                         <div className="mb-6 flex items-start justify-between">
@@ -286,7 +286,7 @@ export default function StartPage() {
                   >
                     <Link
                       href={item.href}
-                      className="group flex items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300 hover:border-white/15 hover:bg-white/[0.05]"
+                      className="group flex items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm transition-colors duration-300 hover:border-white/15 hover:bg-white/[0.05]"
                     >
                       <div className="flex items-center gap-4">
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors group-hover:text-white">
@@ -297,7 +297,7 @@ export default function StartPage() {
                           <p className="text-sm text-white/40">{item.description}</p>
                         </div>
                       </div>
-                      <ChevronRight className="h-5 w-5 text-white/30 transition-all group-hover:translate-x-1 group-hover:text-white/40" />
+                      <ChevronRight className="h-5 w-5 text-white/30 transition-[transform,color] duration-200 group-hover:translate-x-1 group-hover:text-white/40" />
                     </Link>
                   </motion.div>
                 )
@@ -331,7 +331,7 @@ export default function StartPage() {
                 </div>
                 <Link
                   href="/about"
-                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30"
+                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30"
                 >
                   About me
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -173,12 +173,12 @@ export default function NewsletterHero({
                   onChange={(e) => setAllEmail(e.target.value)}
                   placeholder="your@email.com"
                   disabled={allStatus === 'loading'}
-                  className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/5 px-6 py-4 text-white placeholder-slate-500 outline-none transition-all focus:border-violet-500/30 disabled:opacity-50"
+                  className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/5 px-6 py-4 text-white placeholder-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/50 focus-visible:border-violet-500/50 transition-colors disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={allStatus === 'loading'}
-                  className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 px-7 py-4 font-semibold text-white transition-all hover:from-violet-500 hover:to-cyan-500 disabled:opacity-50"
+                  className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 px-7 py-4 font-semibold text-white transition-[background-image,opacity] duration-200 hover:from-violet-500 hover:to-cyan-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 disabled:opacity-50"
                 >
                   {allStatus === 'loading' ? '...' : 'Get All'}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
