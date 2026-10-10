@@ -1,17 +1,59 @@
 ---
-title: "The ACOS Hooks System: Automated Quality Gates"
-description: "Master ACOS hooks for automated quality enforcement. SessionStart, PreToolUse, PostToolUse, and Notification hooks that catch issues before they ship."
-date: "2026-01-27"
-lastUpdated: "2026-08-18"
-author: "FrankX"
-category: "AI Architecture"
-tags: ["hooks", "quality", "automation", "claude code", "acos"]
-image: "/images/blog/acos-hooks-system-quality-gates-hero-v8.jpg"
+title: 'The ACOS Hooks System: Automated Quality Gates'
+description: >-
+  Mastering the ACOS hooks system: enforcing automated quality gates, linting
+  checks, and brand voice validation before git commit.
+date: '2026-01-27'
+lastModified: '2026-01-27'
+author: Frank
+tags:
+  - hooks
+  - quality
+  - automation
+  - claude code
+  - acos
+keywords:
+  - acos hooks system
+  - quality gates
+  - pre commit ai checks
+  - brand voice linting
+  - automated verification
+category: AI Architecture
 featured: false
-readingGoal: "Implement hooks that automatically enforce quality standards in your ACOS workflows."
-tldr: "Master ACOS hooks for automated quality enforcement. SessionStart, PreToolUse, PostToolUse, and Notification hooks that catch issues before they ship."
-keywords: ["claude code hooks", "acos quality gates", "automated code review", "brand voice enforcement", "ai quality automation"]
+image: /images/blog/acos-hooks-hero.png
+readingGoal: >-
+  Implement hooks that automatically enforce quality standards in your ACOS
+  workflows.
+readingTime: 10 min
+tldr: >-
+  Unsupervised AI code generation inevitably leads to drift, broken links, and
+  brand voice degradation. The ACOS Hooks System establishes programmatic
+  quality gates at critical lifecycle moments, automatically executing
+  TypeScript type checks, AI-slop refusal audits, and broken link verification
+  before any changes are committed or deployed.
+faq:
+  - question: What are ACOS hooks?
+    answer: >-
+      Automated lifecycle scripts triggered before or after agent tool calls,
+      file writes, and git commits to enforce system invariants.
+  - question: How do hooks prevent AI-slop copy from reaching production?
+    answer: >-
+      By executing regex and semantic scans that flag banned marketing clichés
+      and jargon before markdown files are saved.
+  - question: Can hooks reject agent file modifications?
+    answer: >-
+      Yes. If a pre-commit hook fails its validation gate, the operation
+      terminates with actionable error output returned to the agent.
+  - question: What hooks are included by default in ACOS?
+    answer: >-
+      Type-check verification, strict claim audits, static link checks, brand
+      rail validation, and schema integrity tests.
+  - question: How do developers create custom hooks?
+    answer: >-
+      By writing standard Node.js or bash scripts in the hooks directory and
+      declaring them in the ACOS configuration manifest.
 ---
+
 # The ACOS Hooks System: Automated Quality Gates
 
 *Catch mistakes before they ship. Automatically.*
@@ -218,7 +260,7 @@ Catch phrases that don't match your brand:
       "leverage",
       "circle back",
       "touch base",
-      "boil the ocean",
+      "deep dive",
       "low-hanging fruit",
       "move the needle",
       "think outside the box"
@@ -228,7 +270,7 @@ Catch phrases that don't match your brand:
       "leverage": "use",
       "circle back": "follow up",
       "touch base": "connect",
-      "boil the ocean": "try to do everything at once"
+      "deep dive": "detailed look"
     }
   }
 }

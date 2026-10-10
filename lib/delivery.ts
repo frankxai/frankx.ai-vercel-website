@@ -63,6 +63,61 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
     ],
     emailTemplateId: 'product-delivery',
   },
+  'system-architect-starter-kit': {
+    productId: 'system-architect-starter-kit',
+    deliveryType: 'access-code',
+    files: ['System-Architect-Starter-Kit.zip'],
+    accessCategories: ['systems-architecture', 'ai-architecture'],
+    emailTemplateId: 'premium-product',
+  },
+  'visual-creation-loop': {
+    productId: 'visual-creation-loop',
+    deliveryType: 'access-code',
+    files: ['Visual-Creation-Loop.zip'],
+    accessCategories: ['creative', 'image-generation', 'video-generation'],
+    emailTemplateId: 'premium-product',
+  },
+  'income-architecture-blueprint': {
+    productId: 'income-architecture-blueprint',
+    deliveryType: 'pdf',
+    files: ['Income-Architecture-Blueprint.pdf'],
+    emailTemplateId: 'product-delivery',
+  },
+  'dpi-field-kit': {
+    productId: 'dpi-field-kit',
+    deliveryType: 'access-code',
+    files: ['DPI-Field-Kit.zip'],
+    accessCategories: ['sovereign-wealth', 'dpi'],
+    emailTemplateId: 'premium-product',
+  },
+  'agent-fleet-pro': {
+    productId: 'agent-fleet-pro',
+    deliveryType: 'access-code',
+    files: ['Agent-Fleet-Pro.zip'],
+    accessCategories: ['multi-agent', 'orchestration', 'coding'],
+    emailTemplateId: 'premium-product',
+  },
+  'memory-palace-os': {
+    productId: 'memory-palace-os',
+    deliveryType: 'access-code',
+    files: ['Memory-Palace-OS.zip'],
+    accessCategories: ['memory-vaults', 'knowledge-architecture'],
+    emailTemplateId: 'premium-product',
+  },
+  'agentic-media-machine': {
+    productId: 'agentic-media-machine',
+    deliveryType: 'access-code',
+    files: ['Agentic-Media-Machine.zip'],
+    accessCategories: ['creator-intelligence', 'content-engine'],
+    emailTemplateId: 'premium-product',
+  },
+  'starlight-operator-pack': {
+    productId: 'starlight-operator-pack',
+    deliveryType: 'access-code',
+    files: ['Starlight-Operator-Pack.zip'],
+    accessCategories: ['starlight-protocol', 'council-harness'],
+    emailTemplateId: 'premium-product',
+  },
 }
 
 /**

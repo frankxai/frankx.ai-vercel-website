@@ -53,7 +53,7 @@ export function getDeliveryMethods(product: ProductRecord) {
 
 export function getProductCards(): ProductCard[] {
   return products.map((product) => {
-    const firstQuote = product.socialProof.quotes[0]
+    const firstQuote = product.socialProof?.quotes?.[0]
 
     return {
       id: product.id,
@@ -63,10 +63,10 @@ export function getProductCards(): ProductCard[] {
       badge: product.badge,
       category: product.category,
       href: `/products/${product.slug}`,
-      price: product.offer.primaryPrice,
-      priceDisplay: product.offer.primaryPriceDisplay,
-      originalPrice: product.offer.originalPrice,
-      highlights: product.transformation.slice(0, 3),
+      price: product.offer?.primaryPrice ?? 0,
+      priceDisplay: product.offer?.primaryPriceDisplay,
+      originalPrice: product.offer?.originalPrice,
+      highlights: product.transformation?.slice(0, 3) ?? [],
       testimonial: firstQuote
         ? {
             text: firstQuote.quote,

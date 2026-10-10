@@ -1,13 +1,13 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1036,
+    "total": 1055,
     "aliases": 59,
     "byType": {
       "core": 24,
       "section": 445,
       "community": 17,
-      "tool": 68,
+      "tool": 75,
       "static": 15,
       "blog": 270,
       "research": 23,
@@ -16,7 +16,7 @@
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
-      "product": 21,
+      "product": 33,
       "video": 3,
       "workshop": 9
     }
@@ -1001,7 +1001,7 @@
     {
       "href": "/blog/agent-family-architecture",
       "title": "Agent Family Architecture vs Agent Swarms",
-      "description": "More agents is not more intelligence. The architectural choice between swarm (more workers) and family (governed roles) determines whether your agent stack scales coherently or fragments under load.",
+      "description": "Designing collaborative agent families: specialized subagent roles, team council governance, and clean handoff protocols.",
       "tags": [
         "agent architecture",
         "multi-agent",
@@ -1014,7 +1014,7 @@
     {
       "href": "/blog/agent-feed-privacy-first-ai-transparency",
       "title": "Building Privacy-First AI Transparency: The Agent Feed Architecture",
-      "description": "How we built a curated AI agent commentary system without logging sessions. The journey from raw surveillance to smart curation.",
+      "description": "Architecture for transparent, privacy-first agent logging: how to monitor autonomous agents without exposing confidential customer data.",
       "tags": [
         "ai-agents",
         "privacy",
@@ -1113,7 +1113,7 @@
     {
       "href": "/blog/agentic-seo-publishing-masterplan",
       "title": "Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19",
-      "description": "Build a 15,000-word intelligence system that fuses Google's latest search dynamics with agentic AI production pipelines.",
+      "description": "A comprehensive intelligence masterplan fusing Google search dynamics with agentic AI pipelines to publish authoritative content at high velocity.",
       "tags": [
         "seo",
         "agentic ai",
@@ -1286,8 +1286,8 @@
     },
     {
       "href": "/blog/ai-guide-for-families-and-professionals",
-      "title": "The Family & Professional's Guide to Thriving with AI (Not Just Surviving It)",
-      "description": "A practical, honest guide for families and working professionals who want to understand AI's real impact and how to navigate it successfully — without the hype or fear.",
+      "title": "The Family & Professional's Guide to Thriving with AI (Beyond Basic Survival)",
+      "description": "A balanced, human-first guide to adopting AI safely and purposefully for families, students, and working professionals.",
       "tags": [
         "AI Education",
         "Family",
@@ -1341,7 +1341,7 @@
     {
       "href": "/blog/ai-model-routing-guide",
       "title": "The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)",
-      "description": "The working AI Architect's routing matrix as a narrative: which frontier model runs your coding agents, review gates, fan-out workers, and sovereign stacks — with prices, evidence grade...",
+      "description": "Architectural guide to dynamic model routing: balancing latency, token economics, and reasoning depth across production AI applications.",
       "tags": [
         "frontier-models",
         "model-routing",
@@ -1368,7 +1368,7 @@
     {
       "href": "/blog/ai-video-generation-2026-sora-runway-kling-veo",
       "title": "AI Video Generation in 2026: Sora, Runway, Kling, Veo",
-      "description": "Every major AI video tool compared — quality, speed, pricing, and which to use for short-form, long-form, and creative production.",
+      "description": "In-depth benchmark of 2026 video models: Sora, Runway Gen-3, Kling 1.5, and Google Veo for cinematic creator workflows.",
       "tags": [
         "AI Video",
         "Sora",
@@ -1639,9 +1639,12 @@
       "title": "The Best AI Tools for Creators in 2026: A GenCreator's Production Stack",
       "description": "The complete AI creator toolkit — from Claude Code for development to Suno for music. Every tool battle-tested in daily production use.",
       "tags": [
-        "creator-systems",
-        "ai-systems",
-        "production"
+        "ai-tools",
+        "creator-stack",
+        "gencreator",
+        "ai-workflow",
+        "productivity",
+        "automation"
       ],
       "type": "blog"
     },
@@ -1863,7 +1866,7 @@
     {
       "href": "/blog/chatgpt-vs-claude-vs-gemini-2026",
       "title": "ChatGPT vs Claude vs Gemini 2026: Which AI Assistant for Everyday Use?",
-      "description": "An honest, results-first comparison of the three $20 AI subscriptions — ChatGPT Plus, Claude Pro, and Google AI Pro — for writing, research, images, voice, memory, and everyday questions.",
+      "description": "An honest, results-first comparison of the three $20 AI subscriptions — ChatGPT Plus, Claude Pro, and Google AI Pro — for writing, research, images, voice, memory, and everyday questions. Pick by use case.",
       "tags": [
         "AI Assistants",
         "ChatGPT",
@@ -1876,7 +1879,7 @@
     },
     {
       "href": "/blog/cheapest-frontier-model-access-2026",
-      "title": "Cheapest Way to Access GPT-5.5, Claude Opus 4.8 and Gemini 3.1 in 2026 (Subsc...",
+      "title": "Cheapest Way to Access GPT-5.5, Claude Opus 4.8 and Gemini 3.1 in 2026 (Subscription vs API vs Gateway)",
       "description": "Verified June-2026 pricing for every route to GPT-5.5, Claude Opus 4.8 and Gemini 3.1 Pro — subscriptions, raw APIs, and gateways. The cheapest path per use case, with the exact break-even math.",
       "tags": [
         "AI pricing",
@@ -2142,8 +2145,8 @@
     },
     {
       "href": "/blog/cursor-vs-claude-code-vs-windsurf-2026",
-      "title": "Cursor vs Claude Code vs Windsurf in 2026: Which AI Coding Agent for Which Job",
-      "description": "A practitioner's head-to-head: Claude Code, Cursor, and Windsurf (now Devin Desktop) compared on agentic capability, IDE vs terminal, MCP support, and 2026 pricing — plus where Copilot and Codex fit.",
+      "title": "Claude Code vs Cursor 2026: A Practitioner's Verdict",
+      "description": "Head-to-head comparison of every major AI coding agent — architecture, pricing, strengths, and which one to choose for your workflow. Updated March 2026.",
       "tags": [
         "Coding Agents",
         "Claude Code",
@@ -2974,9 +2977,11 @@
       "title": "MCP Server Guide 2026: ClawHub, Smithery, and What to Install",
       "description": "MCP servers, registries, and the protocol connecting AI assistants to databases, APIs, browsers, and developer tools. Includes my 21-server production stack.",
       "tags": [
-        "intelligence-dispatches",
-        "ai-systems",
-        "production"
+        "MCP",
+        "Model Context Protocol",
+        "Claude Code",
+        "AI Tools",
+        "Developer Tools"
       ],
       "type": "blog"
     },
@@ -3829,8 +3834,8 @@
     },
     {
       "href": "/blog/suno-ai-12000-songs-production-lessons",
-      "title": "Suno AI After 12,000 Songs: What I Actually Learned",
-      "description": "Production lessons from creating 12K+ AI tracks — prompt patterns that work, genres that stick, and the workflow behind a real music catalog.",
+      "title": "Suno AI: What the Practice Actually Taught",
+      "description": "Production lessons from a Suno practice: prompt patterns that work, genres that stick, and the workflow that makes the music findable.",
       "tags": [
         "creator-systems",
         "ai-systems",
@@ -5975,6 +5980,61 @@
       "type": "guide"
     },
     {
+      "href": "/guides/higgsfield-camera-movement-prompts",
+      "title": "Higgsfield camera movement prompts: pan, dolly, orbit and locked shots",
+      "description": "Write clearer Higgsfield camera prompts with start and end frames, one controlled move, practical examples and a failure diagnosis table.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/higgsfield-credits-pricing-guide",
+      "title": "Higgsfield credits and pricing: calculate cost per usable shot",
+      "description": "Compare Higgsfield plans using actual generation quotes, rejected attempts, web versus MCP entitlements and cost per accepted video shot.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/higgsfield-music-video-workflow",
+      "title": "Higgsfield music video workflow: plan shots around your own track",
+      "description": "Turn an authorized music track into a coherent Higgsfield visual sequence with a beat map, reusable characters, short motion shots and an export plan.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/higgsfield-soul-id-character-consistency",
+      "title": "Higgsfield Soul ID: a character consistency workflow",
+      "description": "Build a reusable character reference pack, test Soul ID across angles and lighting, diagnose identity drift and prepare recurring presenters or mascots.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/higgsfield-ugc-product-video-workflow",
+      "title": "Higgsfield UGC product videos: brief, presenter, proof and edit",
+      "description": "Plan a UGC-style product video with an original presenter, accurate product references, one verifiable claim and a controlled variation test.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/ifs-ai-agent-architecture",
       "title": "IFS as an AI Architecture Pattern",
       "description": "A practical guide to translating Internal Family Systems role structure into agentic system design — Self-orchestrator, manager / firefighter / protector parts, exile memory, and integration loops.",
@@ -7446,6 +7506,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/claude-haiku-5-5",
+      "title": "Claude Haiku 5.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/claude-opus-4-5",
       "title": "Claude Opus 4.5 — Model Hub",
       "tags": [
@@ -7482,6 +7551,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/claude-opus-5-5",
+      "title": "Claude Opus 5.5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/claude-sonnet-4-5",
       "title": "Claude Sonnet 4.5 — Model Hub",
       "tags": [
@@ -7502,6 +7580,15 @@
     {
       "href": "/llm-hub/claude-sonnet-5",
       "title": "Claude Sonnet 5 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/claude-sonnet-5-5",
+      "title": "Claude Sonnet 5.5 — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -7734,6 +7821,15 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/gemini-omni-flash",
+      "title": "Gemini Omni Flash — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/gemma-4",
       "title": "Gemma 4 — Model Hub",
       "tags": [
@@ -7761,8 +7857,26 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/gpt-6-1-sol",
+      "title": "GPT-6.1 Sol — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/gpt-6-astra",
       "title": "GPT-6 Astra — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gpt-6-sol",
+      "title": "GPT-6 Sol — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -7817,6 +7931,15 @@
     {
       "href": "/llm-hub/grok-4-6",
       "title": "Grok 4.6 — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/grok-4-7",
+      "title": "Grok 4.7 — Model Hub",
       "tags": [
         "llm-hub",
         "model"
@@ -8751,6 +8874,16 @@
       "type": "product"
     },
     {
+      "href": "/products/agent-fleet-pro",
+      "title": "Agent Fleet Pro: Turnkey Multi-Agent Mesh",
+      "tags": [
+        "agent",
+        "fleet",
+        "pro"
+      ],
+      "type": "product"
+    },
+    {
       "href": "/products/agentic-content-engine",
       "title": "Agentic Content Engine",
       "tags": [
@@ -8796,6 +8929,26 @@
       "type": "product"
     },
     {
+      "href": "/products/agentic-media-machine",
+      "title": "The Agentic Media Machine",
+      "tags": [
+        "agentic",
+        "media",
+        "machine"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/anti-slop-matrix",
+      "title": "The Anti-Slop Content Matrix",
+      "tags": [
+        "anti",
+        "slop",
+        "matrix"
+      ],
+      "type": "product"
+    },
+    {
       "href": "/products/aurora-ui-kit",
       "title": "Aurora UI Kit",
       "tags": [
@@ -8814,6 +8967,15 @@
         "kit"
       ],
       "type": "section"
+    },
+    {
+      "href": "/products/capability-audit",
+      "title": "The Capability-to-Cash Inventory Audit",
+      "tags": [
+        "capability",
+        "audit"
+      ],
+      "type": "product"
     },
     {
       "href": "/products/command-center-template",
@@ -8845,6 +9007,16 @@
         "toolkit"
       ],
       "type": "section"
+    },
+    {
+      "href": "/products/dpi-field-kit",
+      "title": "DPI Field Kit: Wealth Substrate Pro",
+      "tags": [
+        "dpi",
+        "field",
+        "kit"
+      ],
+      "type": "product"
     },
     {
       "href": "/products/founders-circle",
@@ -8887,6 +9059,15 @@
       "type": "product"
     },
     {
+      "href": "/products/income-blueprint",
+      "title": "Income Architecture Blueprint",
+      "tags": [
+        "income",
+        "blueprint"
+      ],
+      "type": "product"
+    },
+    {
       "href": "/products/love-and-poetry",
       "title": "Love & Poetry",
       "tags": [
@@ -8901,6 +9082,25 @@
       "title": "Manifestation",
       "tags": [
         "manifestation"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/memory-palace-os",
+      "title": "The Sovereign Memory Palace OS",
+      "tags": [
+        "memory",
+        "palace",
+        "os"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/mythic-codex",
+      "title": "The Arcanea Mythic Codex",
+      "tags": [
+        "mythic",
+        "codex"
       ],
       "type": "product"
     },
@@ -8951,11 +9151,48 @@
       "type": "product"
     },
     {
+      "href": "/products/starlight-operator-pack",
+      "title": "Starlight Operator Field Kit & Council Harness",
+      "tags": [
+        "starlight",
+        "operator",
+        "pack"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/starlight-spec",
+      "title": "Starlight Intelligence Protocol (SIP v1.1.1) Spec",
+      "tags": [
+        "starlight",
+        "spec"
+      ],
+      "type": "product"
+    },
+    {
       "href": "/products/starter-kit",
       "title": "System Architect Starter Kit",
       "tags": [
         "starter",
         "kit"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/stream-atlas",
+      "title": "The 12-Stream Atlas: Honest Stream Engineering",
+      "tags": [
+        "stream",
+        "atlas"
+      ],
+      "type": "product"
+    },
+    {
+      "href": "/products/stream-taxonomy",
+      "title": "The DPI Stream Taxonomy & Progression Map",
+      "tags": [
+        "stream",
+        "taxonomy"
       ],
       "type": "product"
     },
@@ -10397,61 +10634,6 @@
         "strategy"
       ],
       "type": "section"
-    },
-    {
-      "href": "/guides/higgsfield-camera-movement-prompts",
-      "title": "Higgsfield camera movement prompts: pan, dolly, orbit and locked shots",
-      "description": "Write clearer Higgsfield camera prompts with start and end frames, one controlled move, practical examples and a failure diagnosis table.",
-      "tags": [
-        "higgsfield",
-        "ai-video",
-        "creator-workflows"
-      ],
-      "type": "guide"
-    },
-    {
-      "href": "/guides/higgsfield-credits-pricing-guide",
-      "title": "Higgsfield credits and pricing: calculate cost per usable shot",
-      "description": "Compare Higgsfield plans using actual generation quotes, rejected attempts, web versus MCP entitlements and cost per accepted video shot.",
-      "tags": [
-        "higgsfield",
-        "ai-video",
-        "creator-workflows"
-      ],
-      "type": "guide"
-    },
-    {
-      "href": "/guides/higgsfield-music-video-workflow",
-      "title": "Higgsfield music video workflow: plan shots around your own track",
-      "description": "Turn an authorized music track into a coherent Higgsfield visual sequence with a beat map, reusable characters, short motion shots and an export plan.",
-      "tags": [
-        "higgsfield",
-        "ai-video",
-        "creator-workflows"
-      ],
-      "type": "guide"
-    },
-    {
-      "href": "/guides/higgsfield-soul-id-character-consistency",
-      "title": "Higgsfield Soul ID: a character consistency workflow",
-      "description": "Build a reusable character reference pack, test Soul ID across angles and lighting, diagnose identity drift and prepare recurring presenters or mascots.",
-      "tags": [
-        "higgsfield",
-        "ai-video",
-        "creator-workflows"
-      ],
-      "type": "guide"
-    },
-    {
-      "href": "/guides/higgsfield-ugc-product-video-workflow",
-      "title": "Higgsfield UGC product videos: brief, presenter, proof and edit",
-      "description": "Plan a UGC-style product video with an original presenter, accurate product references, one verifiable claim and a controlled variation test.",
-      "tags": [
-        "higgsfield",
-        "ai-video",
-        "creator-workflows"
-      ],
-      "type": "guide"
     }
   ],
   "aliases": {

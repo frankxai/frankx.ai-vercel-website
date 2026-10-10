@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Cheapest Way to Access GPT-5.5, Claude Opus 4.8 and Gemini 3.1 in 2026 (Subscription vs API vs Gateway)",
+      "description": "Verified June-2026 pricing for every route to GPT-5.5, Claude Opus 4.8 and Gemini 3.1 Pro — subscriptions, raw APIs, and gateways. The cheapest path per use case, with the exact break-even math.",
+      "url": "https://frankx.ai/blog/cheapest-frontier-model-access-2026",
+      "datePublished": "2026-06-06",
+      "dateModified": "2026-06-06",
+      "author": {
+        "@type": "Person",
+        "name": "FrankX",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/cheapest-frontier-model-access-2026"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/cheapest-frontier-model-access-2026-hero.svg"
+      },
+      "keywords": "cheapest way to access gpt-5.5 and claude, frontier model pricing 2026, openrouter vs api, claude opus 4.8 cost, gemini 3.1 pro price",
+      "abstract": "Accessing frontier models in 2026 economically requires leveraging prompt caching, open-weight self-hosting, and aggregator API providers like OpenRouter and DeepSeek directly. Smart routing cuts monthly inference costs by 70 to 85 percent."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the most cost-effective way to query frontier models?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Using providers that support prompt caching (Anthropic, DeepSeek) and routing routine sub-tasks to efficient tier models."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does DeepSeek V4 compare in price-to-performance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DeepSeek V4 provides frontier-level coding and reasoning at approximately one-fifth the cost of proprietary western frontier models."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are API aggregator platforms cheaper than direct provider APIs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aggregators like OpenRouter offer competitive rates and easy failover, though direct APIs offer lower latency and native caching."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does prompt caching reduce AI operational expenses?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cached system prompts and documentation incur only a fraction of normal input token costs across repeat queries."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can small teams run frontier-grade models locally?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quantized open-weight models (like Llama 4 and DeepSeek distillations) run effectively on high-end consumer hardware."
+          }
+        }
+      ]
+    }
+  ]
+}
