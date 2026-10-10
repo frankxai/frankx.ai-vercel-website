@@ -118,7 +118,7 @@ export const metadata = createMetadata({
 
 export default function AssessmentPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
 <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-7xl space-y-20">
           {/* Hero Section */}
@@ -143,14 +143,14 @@ export default function AssessmentPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
               <Link
                 href="/ai-assessment"
-                className="inline-flex items-center justify-center rounded-full px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1"
+                className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
               >
                 Start Free Assessment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
                 href="#assessments"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-[color,background-color,border-color,transform] duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
               >
                 Compare Assessments
               </Link>
@@ -248,7 +248,7 @@ export default function AssessmentPage() {
 
                   <Link
                     href={assessment.href}
-                    className={`block w-full text-center px-6 py-3 rounded-full font-semibold transition-colors duration-300 ${
+                    className={`block w-full text-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                       assessment.recommended
                         ? 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)]'
                         : 'border border-white/20 bg-white/5 text-white/90 hover:bg-white/10'

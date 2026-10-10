@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1042,
+    "total": 1055,
     "aliases": 59,
     "byType": {
       "core": 24,
-      "section": 432,
+      "section": 445,
       "community": 17,
       "tool": 75,
       "static": 15,
@@ -368,13 +368,130 @@
       "type": "section"
     },
     {
+      "href": "/ai-architecture/arcanea-game-engine",
+      "title": "Arcanea Game Platform",
+      "description": "AI-driven narrative game with dynamic world generation",
+      "tags": [
+        "arcanea",
+        "game",
+        "engine"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ai-architecture/blueprints",
       "title": "AI Architecture Blueprints",
       "type": "section"
     },
     {
+      "href": "/ai-architecture/claude-agent-sdk-vercel",
+      "title": "Claude Agent SDK on Vercel Sandbox",
+      "description": "Production agent deployment on Vercel Edge with secure code execution",
+      "tags": [
+        "claude",
+        "agent",
+        "sdk",
+        "vercel"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/claude-code-multi-agent-team-railway",
+      "title": "Claude Code Multi-Agent Team on Railway",
+      "description": "Coordinate multiple Claude Code agents working in parallel on a shared codebase",
+      "tags": [
+        "claude",
+        "code",
+        "multi",
+        "agent",
+        "team",
+        "railway"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/conscious-ai-multi-agent-platform",
+      "title": "Conscious AI Multi-Agent Platform",
+      "description": "Multi-tenant agent platform with guardian ethics, persistent memory, and biometric integration",
+      "tags": [
+        "conscious",
+        "ai",
+        "multi",
+        "agent",
+        "platform"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/enterprise-rag-platform",
+      "title": "Enterprise RAG Platform",
+      "description": "Production-grade document Q&A system for enterprises",
+      "tags": [
+        "enterprise",
+        "rag",
+        "platform"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/frankx-ai-platform",
+      "title": "FrankX.AI Content Platform",
+      "description": "AI-powered content creation and publishing system",
+      "tags": [
+        "frankx",
+        "ai",
+        "platform"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/mcp-agent-marketplace",
+      "title": "MCP Agent & Skill Marketplace",
+      "description": "Community-driven marketplace for AI agents, MCP servers, skills, and workflow automations",
+      "tags": [
+        "mcp",
+        "agent",
+        "marketplace"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/misinformation-guardian-platform",
+      "title": "Misinformation Guardian Platform",
+      "description": "Live risk analysis, evidence scoring, and human escalation for high-stakes content",
+      "tags": [
+        "misinformation",
+        "guardian",
+        "platform"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/multi-agent-code-assistant",
+      "title": "Multi-Agent Code Assistant",
+      "description": "Autonomous coding system with specialized agents",
+      "tags": [
+        "multi",
+        "agent",
+        "code",
+        "assistant"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/ai-architecture/multi-cloud-comparison",
       "title": "Multi-Cloud AI Comparison",
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/ollama-openwebui-railway",
+      "title": "Ollama + OpenWebUI on Railway",
+      "description": "Self-hosted ChatGPT alternative in 10 minutes",
+      "tags": [
+        "ollama",
+        "openwebui",
+        "railway"
+      ],
       "type": "section"
     },
     {
@@ -384,6 +501,28 @@
         "ai",
         "architecture",
         "prototypes"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/sovereign-knowledge-vault",
+      "title": "Sovereign Knowledge Vault",
+      "description": "Multi-generational family and business intelligence system with shared and private vaults",
+      "tags": [
+        "sovereign",
+        "knowledge",
+        "vault"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/starlight-intelligence-system",
+      "title": "Starlight Intelligence System (SIS)",
+      "description": "Strategic AI orchestration layer with multi-model routing, agent coordination, and purpose-driven decision intelligence",
+      "tags": [
+        "starlight",
+        "intelligence",
+        "system"
       ],
       "type": "section"
     },
@@ -404,6 +543,18 @@
         "ai",
         "architecture",
         "tools"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/ai-architecture/vital-intelligence-health-system",
+      "title": "Vital Intelligence Health System",
+      "description": "Wellness-logging assistant that summarizes wearable signals for personal planning context",
+      "tags": [
+        "vital",
+        "intelligence",
+        "health",
+        "system"
       ],
       "type": "section"
     },
@@ -1135,7 +1286,7 @@
     },
     {
       "href": "/blog/ai-guide-for-families-and-professionals",
-      "title": "The Family & Professional's Guide to Thriving with AI (Not Just Surviving It)",
+      "title": "The Family & Professional's Guide to Thriving with AI (Beyond Basic Survival)",
       "description": "A balanced, human-first guide to adopting AI safely and purposefully for families, students, and working professionals.",
       "tags": [
         "AI Education",

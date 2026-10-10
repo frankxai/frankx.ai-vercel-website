@@ -36,10 +36,10 @@ const variantStyles = {
 }
 
 const sizeStyles = {
-  sm: 'px-4 py-2.5 text-sm rounded-full min-h-[40px]', // Increased min-height for better touch targets
-  md: 'px-6 py-3.5 text-base rounded-full min-h-[44px]',
-  lg: 'px-8 py-4 text-lg rounded-full min-h-[48px]',
-  xl: 'px-10 py-5 text-xl rounded-full min-h-[52px]'
+  sm: 'px-4 py-2.5 text-sm rounded-lg min-h-[40px]', // Increased min-height for better touch targets
+  md: 'px-6 py-3.5 text-base rounded-xl min-h-[44px]',
+  lg: 'px-8 py-4 text-lg rounded-xl min-h-[48px]',
+  xl: 'px-10 py-5 text-xl rounded-2xl min-h-[52px]'
 }
 
 const glowStyles = {

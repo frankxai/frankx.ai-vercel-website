@@ -216,7 +216,7 @@ export default function ROICalculatorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0b] text-slate-100 pt-24 pb-16">
+    <div className="min-h-screen bg-slate-950 text-slate-100 pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <StaggerContainer>
@@ -235,19 +235,19 @@ export default function ROICalculatorPage() {
               {/* Quick Stats */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-300 mb-2">3-Year</div>
-                  <div className="text-slate-400 text-sm">Financial Horizon</div>
+                  <div className="text-2xl font-bold text-green-300 mb-2">15 min</div>
+                  <div className="text-slate-400 text-sm">Complete Analysis</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-300 mb-2">Multi-Factor</div>
-                  <div className="text-slate-400 text-sm">Sensitivity Model</div>
+                  <div className="text-2xl font-bold text-blue-300 mb-2">97%</div>
+                  <div className="text-slate-400 text-sm">Accuracy Rate</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-300 mb-2">Full-Spectrum</div>
-                  <div className="text-slate-400 text-sm">Risk Assessment</div>
+                  <div className="text-2xl font-bold text-purple-300 mb-2">5K+</div>
+                  <div className="text-slate-400 text-sm">Calculations Run</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-cyan-300 mb-2">Instant</div>
+                  <div className="text-2xl font-bold text-cyan-300 mb-2">Free</div>
                   <div className="text-slate-400 text-sm">Executive Report</div>
                 </div>
               </div>

@@ -1,346 +1,219 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import {
-  Compass,
-  Music,
-  BookOpen,
-  Sparkles,
   ArrowRight,
-  Code,
-  Lightbulb,
-  Target,
-  Zap,
-  ChevronRight,
+  BookOpen,
+  Brain,
+  CircleDot,
+  Hammer,
+  HeartPulse,
+  Users,
 } from 'lucide-react'
-import { ProductLadder } from '@/components/ui/ProductLadder'
 
-// Premium background matching the site aesthetic
-function StartBackground() {
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
+import JsonLd from '@/components/seo/JsonLd'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
-      {/* Static gradient orbs — ambient depth */}
-      <div
-        className="absolute -left-40 top-20 h-[600px] w-[600px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)', filter: 'blur(128px)' }}
-      />
-      <div
-        className="absolute -right-40 top-1/2 h-[700px] w-[700px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%)', filter: 'blur(128px)' }}
-      />
-      <div
-        className="absolute bottom-20 left-1/3 h-[500px] w-[500px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)', filter: 'blur(128px)' }}
-      />
+export const metadata = createMetadata({
+  title: 'Start Here — Find Your Founder Constraint',
+  description:
+    'Start with the Founder Stack Map, then choose the route that matches your current constraint: signal, systems, strategy, the Human Layer, or field notes.',
+  path: '/start',
+  keywords: [
+    'Founder Stack',
+    'founder assessment',
+    'AI systems for founders',
+    'founder strategy',
+  ],
+})
 
-      {/* Subtle grid */}
-      <div
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px',
-        }}
-      />
-    </div>
-  )
+const startingPaths = [
+  {
+    eyebrow: 'Diagnose',
+    title: 'Founder Stack Map',
+    description:
+      'Ten private questions identify the current constraint across State, Signal, Systems, Scale, and Stewardship.',
+    href: '/founder-stack',
+    action: 'Map my stack',
+    Icon: CircleDot,
+  },
+  {
+    eyebrow: 'Protect the signal',
+    title: 'Founder Signal Scan',
+    description:
+      'A specialist scan for the voice, judgment, and earned beliefs your AI systems should amplify rather than average away.',
+    href: '/founder-signal',
+    action: 'Run the signal scan',
+    Icon: Brain,
+  },
+  {
+    eyebrow: 'Install',
+    title: 'The Foundry',
+    description:
+      'A bounded build engagement for installing your site, agent harness, business memory, and quality controls around real work.',
+    href: '/foundry',
+    action: 'Explore the Foundry',
+    Icon: Hammer,
+  },
+  {
+    eyebrow: 'Compound judgment',
+    title: "Founder's Circle",
+    description:
+      'A quarterly strategic route for consequential architecture, product, and AI decisions under uncertainty.',
+    href: '/founders-circle',
+    action: 'Explore the Circle',
+    Icon: Users,
+  },
+  {
+    eyebrow: 'Founder statecraft',
+    title: 'The Human Layer',
+    description:
+      'Meditation, breathwork, sound, neurotechnology, manifestation, dream practice, and related fields through four honest lenses.',
+    href: '/human-layer',
+    action: 'Study the Human Layer',
+    Icon: HeartPulse,
+  },
+  {
+    eyebrow: 'Stay in the loop',
+    title: 'Founder Field Notes',
+    description:
+      'Join the Signal Loop for founder field notes and explore the wider newsletter hub for specialist editorial lanes.',
+    href: '/newsletter',
+    action: 'Choose my streams',
+    Icon: BookOpen,
+  },
+] as const
+
+const itemListSchema = {
+  '@type': 'ItemList',
+  '@id': `${siteConfig.url}/start#founder-routes`,
+  name: 'FrankX founder starting paths',
+  itemListElement: startingPaths.map((path, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: path.title,
+    url: `${siteConfig.url}${path.href}`,
+  })),
 }
-
-const journeyPaths = [
-  {
-    id: 'music',
-    icon: Music,
-    title: 'Create AI Music',
-    subtitle: 'The Music Lab',
-    description: 'Learn how I create music with Suno AI. Prompts, workflows, and the creative process.',
-    href: '/music-lab',
-    color: 'emerald',
-    stats: '12K+ songs',
-  },
-  {
-    id: 'learn',
-    icon: BookOpen,
-    title: 'Learn AI Skills',
-    subtitle: 'Curated Courses',
-    description: 'Free courses from Oracle, Google, and MIT. Hand-picked learning paths for AI mastery.',
-    href: '/students',
-    color: 'cyan',
-    stats: '20+ courses',
-  },
-  {
-    id: 'prompts',
-    icon: Sparkles,
-    title: 'Use My Prompts',
-    subtitle: 'Prompt Library',
-    description: 'Battle-tested prompts I actually use daily. Copy them, adapt them, make them yours.',
-    href: '/prompt-library',
-    color: 'violet',
-    stats: '22 prompts',
-  },
-  {
-    id: 'build',
-    icon: Code,
-    title: 'Build with AI',
-    subtitle: 'Architecture Hub',
-    description: 'Blueprints, BYOK prototypes, and production templates for AI systems.',
-    href: '/ai-architecture',
-    color: 'amber',
-    stats: 'Blueprints & Templates',
-  },
-]
-
-const quickWins = [
-  {
-    title: 'Browse the blog',
-    description: 'Field notes on AI workflows and creative systems',
-    href: '/blog',
-    icon: Lightbulb,
-  },
-  {
-    title: 'See my achievements',
-    description: 'Certifications, milestones, and what I\'ve built',
-    href: '/achievements',
-    icon: Target,
-  },
-  {
-    title: 'Get the newsletter',
-    description: 'Architecture blueprints and creative agent frameworks',
-    href: '/creation-chronicles',
-    icon: Zap,
-  },
-]
 
 export default function StartPage() {
   return (
-    <>
-      <StartBackground />
-      <main id="main" className="relative min-h-screen">
-        {/* Hero Section */}
-        <section className="pt-32 pb-16">
-          <div className="mx-auto max-w-6xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8 flex items-center gap-3"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400">
-                <Compass className="h-5 w-5" />
-              </div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-white/40">
-                Your Starting Point
+    <main tabIndex={-1} className="min-h-screen bg-[#0a0a0b] text-white">
+      <section className="relative overflow-hidden border-b border-white/[0.07]">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_5%,rgba(16,185,129,0.12),transparent_34%),radial-gradient(circle_at_14%_10%,rgba(6,182,212,0.06),transparent_30%)]"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto grid min-h-[78svh] max-w-7xl items-center gap-12 px-5 pb-16 pt-28 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:px-10">
+          <div className="max-w-3xl">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80">
+              Start with the constraint
+            </p>
+            <h1 className="mt-6 font-display text-5xl font-bold leading-[0.96] tracking-[-0.048em] sm:text-6xl lg:text-7xl">
+              One founder.
+              <span className="block font-serif font-normal italic text-emerald-100/78">
+                Five operating layers.
               </span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/68">
+              Entrepreneur, solopreneur, coach, and creator-led operator are
+              contexts. If you carry the risk and make the consequential
+              decisions, founder is the word used here.
+            </p>
+            <Link
+              href="/founder-stack"
+              className="mt-9 inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
             >
-              Welcome to the hub.
-              <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
-                Pick your path.
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="max-w-2xl text-lg leading-relaxed text-white/60 sm:text-xl"
-            >
-              AI Architect at Oracle EMEA AI Center of Excellence. Creator of 12,000+ AI songs.
-              Every architecture, prompt, and system I build—shared openly for creators who ship.
-            </motion.p>
+              Map my Founder Stack
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
-        </section>
 
-        {/* Journey Paths Grid */}
-        <section className="py-12">
-          <div className="mx-auto max-w-6xl px-6">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="grid gap-6 md:grid-cols-2"
+          <aside
+            className="rounded-[2rem] border border-white/10 bg-[#0d1111] p-6 shadow-[0_36px_120px_rgba(0,0,0,0.42)] sm:p-8"
+            aria-label="Founder route summary"
+          >
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-cyan-200/75">
+              Choose by intent
+            </p>
+            <div className="mt-5 divide-y divide-white/[0.08] border-y border-white/[0.08]">
+              {startingPaths.slice(0, 4).map(({ Icon, ...path }) => (
+                <Link
+                  key={path.title}
+                  href={path.href}
+                  className="group grid min-h-16 grid-cols-[40px_1fr_auto] items-center gap-4 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.035] text-cyan-200">
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <span>
+                    <span className="block text-sm font-semibold text-white">
+                      {path.title}
+                    </span>
+                    <span className="mt-1 block text-xs text-white/52">
+                      {path.eyebrow}
+                    </span>
+                  </span>
+                  <ArrowRight
+                    className="h-4 w-4 text-white/40 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+                    aria-hidden="true"
+                  />
+                </Link>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section className="py-20 lg:py-24" aria-labelledby="routes-title">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="max-w-3xl">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-white/52">
+              Founder routes
+            </p>
+            <h2
+              id="routes-title"
+              className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl"
             >
-              {journeyPaths.map((path, index) => {
-                const Icon = path.icon
-                const colorMap = {
-                  emerald: {
-                    bg: 'bg-white/[0.03]',
-                    border: 'border-white/[0.08] hover:border-emerald-500/30',
-                    icon: 'bg-emerald-500/10 text-emerald-400',
-                    text: 'text-emerald-400',
-                    glow: 'group-hover:shadow-lg group-hover:shadow-emerald-500/10',
-                  },
-                  cyan: {
-                    bg: 'bg-white/[0.03]',
-                    border: 'border-white/[0.08] hover:border-cyan-500/30',
-                    icon: 'bg-cyan-500/10 text-cyan-400',
-                    text: 'text-cyan-400',
-                    glow: 'group-hover:shadow-lg group-hover:shadow-cyan-500/10',
-                  },
-                  violet: {
-                    bg: 'bg-white/[0.03]',
-                    border: 'border-white/[0.08] hover:border-violet-500/30',
-                    icon: 'bg-violet-500/10 text-violet-400',
-                    text: 'text-violet-400',
-                    glow: 'group-hover:shadow-lg group-hover:shadow-violet-500/10',
-                  },
-                  amber: {
-                    bg: 'bg-white/[0.03]',
-                    border: 'border-white/[0.08] hover:border-amber-500/30',
-                    icon: 'bg-amber-500/10 text-amber-400',
-                    text: 'text-amber-400',
-                    glow: 'group-hover:shadow-lg group-hover:shadow-amber-500/10',
-                  },
-                }
-                const colors = colorMap[path.color as keyof typeof colorMap]
-
-                return (
-                  <motion.div
-                    key={path.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  >
-                    <Link href={path.href} className="group block h-full">
-                      <div
-                        className={`relative h-full overflow-hidden rounded-3xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-1 ${colors.glow}`}
-                      >
-                        {/* Icon and Stats Row */}
-                        <div className="mb-6 flex items-start justify-between">
-                          <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}>
-                            <Icon className="h-7 w-7" />
-                          </div>
-                          <span className={`text-sm font-medium ${colors.text}`}>
-                            {path.stats}
-                          </span>
-                        </div>
-
-                        {/* Content */}
-                        <div className="space-y-2">
-                          <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/40">
-                            {path.subtitle}
-                          </p>
-                          <h3 className="text-2xl font-bold text-white group-hover:text-white/90">
-                            {path.title}
-                          </h3>
-                          <p className="leading-relaxed text-white/40">
-                            {path.description}
-                          </p>
-                        </div>
-
-                        {/* Arrow */}
-                        <div className="mt-6 flex items-center gap-2 text-white/40 transition-colors group-hover:text-white">
-                          <span className="text-sm font-medium">Explore</span>
-                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
+              Choose the next useful move.
+            </h2>
+            <p className="mt-6 text-base leading-7 text-white/64">
+              The map is the default. Direct routes remain open when you already
+              know what kind of help you need.
+            </p>
           </div>
-        </section>
-
-        {/* Product Ladder Section */}
-        <ProductLadder />
-
-        {/* Quick Links Section */}
-        <section className="py-16">
-          <div className="mx-auto max-w-6xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="mb-8"
-            >
-              <h2 className="text-2xl font-bold text-white">Quick links</h2>
-              <p className="mt-2 text-white/40">More ways to explore</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="space-y-3"
-            >
-              {quickWins.map((item, index) => {
-                const Icon = item.icon
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
-                  >
-                    <Link
-                      href={item.href}
-                      className="group flex items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm transition-colors duration-300 hover:border-white/15 hover:bg-white/[0.05]"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors group-hover:text-white">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-white">{item.title}</h3>
-                          <p className="text-sm text-white/40">{item.description}</p>
-                        </div>
-                      </div>
-                      <ChevronRight className="h-5 w-5 text-white/30 transition-[transform,color] duration-200 group-hover:translate-x-1 group-hover:text-white/40" />
-                    </Link>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* About CTA */}
-        <section className="py-16 pb-24">
-          <div className="mx-auto max-w-6xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] p-10 backdrop-blur-xl"
-            >
-              {/* Decorative gradient */}
-              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 blur-3xl" />
-
-              <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-                <div className="max-w-xl">
-                  <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                    Want the full story?
-                  </h2>
-                  <p className="mt-3 text-white/40">
-                    Learn about my journey from enterprise architecture to AI music creation,
-                    and why I built this hub to share everything openly.
+          <div className="mt-14 divide-y divide-white/[0.08] border-y border-white/[0.08]">
+            {startingPaths.map(({ Icon, ...path }) => (
+              <article
+                key={path.title}
+                className="grid gap-5 py-7 sm:grid-cols-[48px_1fr_auto] sm:items-start"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-300/15 bg-emerald-300/[0.05] text-emerald-300">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/52">
+                    {path.eyebrow}
+                  </p>
+                  <h3 className="mt-2 text-xl font-semibold text-white">
+                    {path.title}
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-white/64">
+                    {path.description}
                   </p>
                 </div>
                 <Link
-                  href="/about"
-                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30"
+                  href={path.href}
+                  className="inline-flex min-h-11 items-center gap-2 self-center text-sm font-medium text-emerald-300 hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                 >
-                  About me
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  {path.action}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-              </div>
-            </motion.div>
+              </article>
+            ))}
           </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+
+      <JsonLd type="ItemList" data={itemListSchema} />
+    </main>
   )
 }
