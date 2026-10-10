@@ -1,0 +1,135 @@
+---
+title: "Higgsfield Soul ID: a character consistency workflow"
+description: "Build a reusable character reference pack, test Soul ID across angles and lighting, diagnose identity drift and prepare recurring presenters or mascots."
+date: "2026-10-10"
+updated: "2026-10-10"
+author: "Frank Riemer"
+category: "AI video"
+tags: ["higgsfield", "ai-video", "creator-workflows"]
+keywords: ["higgsfield soul id tutorial", "higgsfield character consistency", "same character ai video", "higgsfield recurring presenter"]
+image: "/images/guides/higgsfield/cinema-4-poster.jpg"
+---
+
+A recurring character needs a reference pack and a continuity test. Saving a Soul ID is one input to that process. You still need to decide which face, outfit, proportions and behaviors must remain recognizable across the series.
+
+Higgsfield's [official short-film walkthrough](https://higgsfield.ai/blog/ai-short-film-youtube-guide) uses character references and Soul ID. This guide adds an original review matrix. It does not claim that the system guarantees a specific likeness percentage.
+
+<ArticleRecommendation affiliateId="higgsfield" article="higgsfield-soul-id-character-consistency" title="Higgsfield">
+Start with one approved reference and one short shot. Inspect the result and the quoted credit cost before increasing the batch.
+</ArticleRecommendation>
+
+## Define what must remain recognizable
+
+For a human presenter, record face shape, hairstyle, approximate proportions and signature wardrobe. For a stylized mascot, record silhouette, materials, color placement, accessories and expressions. A human face workflow should not be assumed to preserve every robot or stylized character equally well.
+
+Use your own likeness, a consenting person's references or an original fictional character. Keep the source and authorization with the assets. A synthetic presenter can explain a product; do not invent a customer identity or testimonial for it.
+
+## Build the reference pack
+
+| Asset | Why it exists | Review before use |
+|---|---|---|
+| Neutral portrait | Establish the face | Clear features, neutral light |
+| Three-quarter view | Support an angled shot | Same identity and hairstyle |
+| Profile | Reduce guessing at side angles | Consistent jaw and nose |
+| Full-body view | Establish proportions and clothing | Recognizable silhouette |
+| Outfit detail | Preserve meaningful clothing or accessories | Stable color and shape |
+| Expression sheet | Define the performance range | Expressions still read as the same character |
+| Location reference | Keep the surrounding scene coherent | Architecture and light direction |
+
+This checklist covers production continuity. The Soul ID training requirements are described in the next section; check the current upload interface before training.
+
+Save references with durable IDs: `presenter-v1-front`, `presenter-v1-profile`, `presenter-v1-outfit`. When an asset changes, increment its version rather than replacing it silently.
+
+## Train or reference through the supported route
+
+The [official Soul ID help page](https://higgsfield.ai/creator-hub/help-center/ai-models/how-do-i-create-and-use-a-soul-id-character), checked October 10, describes this route:
+
+1. Open Soul and choose **Train new character**.
+2. Upload at least 20 clear photos of the same authorized person; the documented maximum is 80. Vary angles and expressions and include a full-height view.
+3. Start training, then name the character.
+4. Select the saved character in the Character tab for a neutral check image.
+5. For the documented Seedance route, select that character through **@ Elements**. If it is missing, create an Element from an approved character image in Assets.
+
+Soul ID is the trained identity layer in the Soul family. Video reuse follows the supported Elements route; do not assume training adds a facial lock to every video model. Verify the current account interface before a batch.
+
+When operating through an agent, first inspect the available tools and their schemas. Ask the agent to retrieve the saved character or approved references. Do not assume an arbitrary token in square brackets becomes a trained identity.
+
+The [official Claude workflow](https://higgsfield.ai/blog/claude-higgsfield-mcp-creative-studio) documents reference reuse and generation history. The [agent setup guide](/blog/ultimate-higgsfield-workflow-2026) covers connection verification and bounded jobs.
+
+## Run a small continuity test
+
+| Test | Keep fixed | Change | Acceptance |
+|---|---|---|---|
+| Front view | Identity, outfit, neutral light | Framing | Face and body agree with reference |
+| Three-quarter | Identity and outfit | Angle | Profile features remain plausible |
+| Window light | Identity, outfit, pose | Light direction | Face remains recognizable |
+| Simple motion | Identity, scene and light | One turn or glance | Likeness survives the usable clip |
+| Wider scene | Identity and outfit | Subject scale | Silhouette and wardrobe remain stable |
+
+Approve the pack only after inspecting the actual images and clips. Build a contact sheet from selected frames. Review eyes, jawline, hair, hands and distinctive accessories. Write rejection reasons that another reviewer can understand.
+
+## An original shot brief for a recurring presenter
+
+```text
+References: approved presenter-v1 portrait, profile and outfit.
+Scene: the same quiet studio used in the previous episode.
+Framing: medium eye-level view, enough space for captions in the edit.
+Action: presenter looks from the notebook toward the camera once.
+Camera: locked throughout; no cut.
+Continuity: retain facial structure, hairstyle, jacket and key light.
+End: hold the gaze briefly for an edit point.
+No new accessories or text generated inside the scene.
+```
+
+Use ordinary supported controls for aspect ratio and duration. Keep dialogue separate until the face and motion work. Adding lip sync introduces another requirement that needs its own review.
+
+## Understand the official example
+
+<YouTubeEmbed id="tW40b122Rbs" title="Higgsfield AI: character references in a complete short film" structuredData={false} />
+
+Watch how the tutorial establishes characters and locations before staging dialogue. It illustrates production discipline; it does not establish a universal success rate for your subject or model.
+
+## Recover from drift
+
+| Failure | Likely missing constraint | First correction |
+|---|---|---|
+| New face after a turn | Angle coverage | Add the approved profile and reduce the turn |
+| Wardrobe changes | Outfit reference | Reuse the outfit asset and simplify the description |
+| Mascot loses a distinctive part | Silhouette or material reference | Supply the missing view; test stills again |
+| Multiple subjects merge | Ambiguous staging | Test each character separately before interaction |
+| Lip sync damages likeness | Combined motion and speech burden | Shorten the line and simplify framing |
+
+Treat each likely cause as a hypothesis. Change one input at a time and compare the output to see whether the change helps.
+
+## Keep a character production record
+
+```text
+Character and version:
+Source and rights:
+Reference IDs and saved character ID:
+Approved face, outfit and material notes:
+Tested model and route:
+Angles, lighting and actions inspected:
+Accepted shots and rejected examples:
+Known limits:
+```
+
+A recurring character becomes useful when someone else can make the next episode from the record. Preserve the approved reference files with the final footage.
+
+## Frequently asked questions
+
+### Does Soul ID guarantee the same face in every shot?
+
+No guarantee is asserted here. Review the actual sequence across angles, lighting, subject scale and movement.
+
+### Can I use a Mini Me or robot mascot?
+
+Test your stylized references in the supported workflow. Human identity tools and general reference conditioning have different constraints. Keep the character's silhouette and materials explicit; do not assume human-face behavior transfers unchanged.
+
+### How many references should I upload?
+
+The official Soul ID help page currently specifies 20–80 training photos. Follow the upload instructions for your account. The reference pack above adds the views, wardrobe and location notes your production needs.
+
+## Continue the sequence
+
+Use the [camera prompt guide](/guides/higgsfield-camera-movement-prompts), [UGC product workflow](/guides/higgsfield-ugc-product-video-workflow), or [music video plan](/guides/higgsfield-music-video-workflow) to put the approved character to work.

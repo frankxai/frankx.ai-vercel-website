@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ArticleVideo } from './ArticleVideo'
 import { ArticleFigure } from './ArticleFigure'
 import { ArticleRecommendation } from './ArticleRecommendation'
 import Link from 'next/link'
@@ -213,6 +214,7 @@ export const mdxComponents: MDXComponents = {
   a: ({ href, children, rel, ...props }: ComponentPropsWithoutRef<'a'>) => (
     <Link
       href={href || '#'}
+      prefetch={href?.startsWith('/go/') ? false : undefined}
       rel={editorialLinkRel(href, rel)}
       className="text-emerald-400 underline decoration-emerald-400/30 underline-offset-[3px] transition-colors hover:text-emerald-300 hover:decoration-emerald-300/50"
       {...props}
@@ -319,6 +321,7 @@ export const mdxComponents: MDXComponents = {
   img: CustomImage,
   LiquidGlassImage,
   ArticleFigure,
+  ArticleVideo,
   ArticleRecommendation,
   InfographicImage: LiquidGlassImage,
   Diagram,

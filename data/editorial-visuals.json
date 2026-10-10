@@ -22,5 +22,31 @@
     "rights": "original",
     "createdOn": "2026-09-16",
     "kind": "diagram"
+  },
+  "higgsfield-camera-settings": {
+    "src": "/images/guides/higgsfield/cinema-interface.png",
+    "width": 1404,
+    "height": 906,
+    "alt": "Higgsfield camera, lens, focal length and aperture selector in the earlier Cinema Studio interface.",
+    "caption": "Archived official interface screenshot: the camera and lens selector from the earlier Cinema Studio guide. Current controls may differ; use this to understand the relationship between camera look, focal length and aperture.",
+    "credit": "Higgsfield AI \u2014 official product documentation",
+    "sourceUrl": "https://higgsfield.ai/blog/cinema-studio-guide",
+    "rights": "vendor documentation excerpt for attributed editorial commentary",
+    "createdOn": "2026-10-10",
+    "kind": "screenshot",
+    "aspectRatio": "1404/906"
+  },
+  "higgsfield-studio-interface": {
+    "src": "/images/guides/higgsfield/camera-controls.png",
+    "width": 2286,
+    "height": 1420,
+    "alt": "Earlier Higgsfield Cinema Studio workspace with preview, reference image and prompt controls.",
+    "caption": "Archived official Cinema Studio 2.0 workspace. Locate the reference, prompt and preview before your first test; follow current documentation for exact button names.",
+    "credit": "Higgsfield AI \u2014 official product documentation",
+    "sourceUrl": "https://higgsfield.ai/blog/cinema-studio-guide",
+    "rights": "vendor documentation excerpt for attributed editorial commentary",
+    "createdOn": "2026-10-10",
+    "kind": "screenshot",
+    "aspectRatio": "2286/1420"
   }
 }

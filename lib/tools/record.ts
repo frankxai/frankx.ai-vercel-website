@@ -1,7 +1,5 @@
 export const SPONSOR_MAX_AGE_DAYS = 45
 
-const GENERATION_BANNED = new Set(['higgsfield'])
-
 const ORACLE_EXCLUDED = new Set([
   'aws',
   'amazon-web-services',
@@ -52,8 +50,9 @@ export type ProgramSource = {
   hasProgram?: boolean
   status?: string
   ourLink?: string | null
+  useHop?: boolean
   signupUrl?: string
-  evidence?: ToolEvidence
+  evidence?: string
   verifiedOn?: string
   checkedOn?: string
   oracleExcluded?: boolean
@@ -82,14 +81,11 @@ export function isFresh(iso: string | undefined, now: Date, maxDays = SPONSOR_MA
   return age >= 0 && age <= maxDays * 24 * 60 * 60 * 1000
 }
 
-function banned(id: string, name: string) {
-  return GENERATION_BANNED.has(id) || GENERATION_BANNED.has(toolSlug(name)) || name.toLowerCase().includes('higgsfield')
-}
-
 export function programToRecord(program: ProgramSource): ToolRecord {
   const id = toolSlug(program.tool)
   const oracleExcluded = program.oracleExcluded === true || ORACLE_EXCLUDED.has(id)
-  const evidence = program.evidence ?? 'not-tested'
+  const evidence: ToolEvidence = program.evidence === 'official-docs' || program.evidence === 'first-party' || program.evidence === 'vendor-claim'
+    ? program.evidence : 'not-tested'
   const canBeLive = program.hasProgram === true
     && program.status === 'active'
     && Boolean(program.ourLink)
@@ -168,7 +164,6 @@ export function findRecord(records: readonly ToolRecord[], slug: string) {
 export function sponsorDecision(record: ToolRecord, now = new Date()): SponsorDecision {
   const editorial = (reason: string): SponsorDecision => ({ sponsored: false, rel: 'noopener', reason })
 
-  if (banned(record.id, record.name)) return editorial('generation-banned')
   if (record.oracleExcluded || ORACLE_EXCLUDED.has(record.id)) return editorial('oracle-excluded')
   if (record.evidence !== 'official-docs' && record.evidence !== 'first-party') return editorial('evidence')
   if (!isFresh(record.verifiedOn, now)) return editorial('stale-verification')

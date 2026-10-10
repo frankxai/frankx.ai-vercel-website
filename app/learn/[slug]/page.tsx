@@ -189,7 +189,7 @@ export default function LearningPathPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Play className="w-5 h-5" />
-                  {path.videos.length} videos
+                  {path.videos.length} {path.videos.length === 1 ? 'video' : 'videos'}
                 </div>
               </div>
             </div>
@@ -246,7 +246,7 @@ export default function LearningPathPage() {
                 <div className="flex items-center gap-3">
                   <BookOpen className={`w-5 h-5 ${colors.text}`} />
                   <span className="text-white font-medium">
-                    {guide.includes('blog') ? 'Related Article' : guide.includes('product') ? 'Product' : 'Guide'}
+                    {path.relatedResourceTitles?.[guide] ?? (guide.includes('blog') ? 'Related Article' : guide.includes('product') ? 'Product' : 'Guide')}
                   </span>
                 </div>
                 <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/70 group-hover:translate-x-1 transition-all" />

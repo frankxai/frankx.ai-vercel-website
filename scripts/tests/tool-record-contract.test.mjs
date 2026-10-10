@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
-import { resolveGoDestination } from '../../lib/tools/go-destination.ts'
+import { outboundRedirect, resolveGoDestination } from '../../lib/tools/go-destination.ts'
 import { recordHop, writeHopToKv } from '../../lib/tools/hop-log.ts'
 import { programToRecord, socialToolToRecord, sponsorDecision } from '../../lib/tools/record.ts'
 import { resolveProgramDestination } from '../../lib/affiliates/resolve-destination.ts'
@@ -35,14 +35,13 @@ test('a checked first-party record preserves the issued URL and is sponsored', (
   )
 })
 
-test('not-tested, stale, closed, oracle-excluded, and Higgsfield records cannot be sponsored', () => {
+test('not-tested, stale, closed, oracle-excluded, and unchecked records cannot be sponsored', () => {
   const cases = [
     liveProgram({ evidence: 'not-tested' }),
     liveProgram({ evidence: 'vendor-claim' }),
     liveProgram({ verifiedOn: '2026-01-01', checkedOn: '2026-01-01' }),
     liveProgram({ status: 'closed', hasProgram: false }),
     liveProgram({ tool: 'AWS', aliases: ['aws'], oracleExcluded: true }),
-    liveProgram({ tool: 'Higgsfield', aliases: ['higgsfield'], ourLink: 'https://go.agenticincome.ai/higgsfield' }),
   ]
   for (const program of cases) {
     const decision = sponsorDecision(programToRecord(program), now)
@@ -83,6 +82,7 @@ test('/go refuses a destination that is not the issued URL', () => {
       tool: 'Higgsfield',
       aliases: ['higgsfield'],
       ourLink: 'https://go.agenticincome.ai/higgsfield',
+      evidence: 'not-tested',
     }))],
     outboundDestination: 'https://go.agenticincome.ai/higgsfield',
     now,
@@ -131,4 +131,31 @@ test('an editorial short link still resolves when the program is closed', () => 
     now,
   })
   assert.deepEqual(decision, { action: 'outbound', href: 'https://www.canva.com/' })
+})
+
+// Owner authorized this exact issued URL on 2026-10-10 (issue #953).
+test('Higgsfield routes the issued referral and falls back when verification expires', () => {
+  const registry = JSON.parse(readFileSync(new URL('../../data/affiliate/programs.json', import.meta.url), 'utf8'))
+  const program = registry.programs.find(entry => entry.tool === 'Higgsfield')
+  const records = [programToRecord(program)]
+  assert.deepEqual(resolveGoDestination({slug: 'higgsfield', records, now: new Date('2026-10-10T12:00:00Z')}),
+    {action: 'hop', href: 'https://higgsfield.ai?fpr=frank-255866'})
+  assert.deepEqual(resolveGoDestination({slug: 'higgsfield', records, outboundDestination: 'https://higgsfield.ai', now: new Date('2026-12-01T12:00:00Z')}),
+    {action: 'outbound', href: 'https://higgsfield.ai'})
+  assert.equal(sponsorDecision(records[0], new Date('2026-12-01')).sponsored, false)
+})
+
+test('unknown imported evidence fails closed instead of authorizing sponsorship', () => {
+  const record = programToRecord(liveProgram({ evidence: 'unrecognized' }))
+  assert.equal(record.evidence, 'not-tested')
+  assert.equal(sponsorDecision(record, now).sponsored, false)
+})
+
+test('hop HTTP response preserves issued bytes and cannot cache an expired relationship', () => {
+  for (const href of [issued, 'https://higgsfield.ai?fpr=frank-255866']) {
+    const response = outboundRedirect(href)
+    assert.equal(response.status, 302)
+    assert.equal(response.headers.get('location'), href)
+    assert.equal(response.headers.get('cache-control'), 'private, no-store')
+  }
 })
