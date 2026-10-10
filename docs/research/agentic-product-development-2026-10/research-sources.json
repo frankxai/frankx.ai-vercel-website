@@ -1,0 +1,1238 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "DRAFT",
+  "retrievedDate": "2026-10-09",
+  "commission": "Primary official source ledger for agentic product development; capability, execution ownership, durability, availability, and interoperability.",
+  "method": {
+    "sourcePolicy": "Only official documentation, maintainers, and first-party release announcements; search snippets used for discovery only. Main source content inspected through web open and live Firecrawl where needed.",
+    "datePolicy": "Publication/update dates recorded only when explicit; null means not stated. Capability facts are documentation observations, not benchmark results.",
+    "quotePolicy": "Public claim wording paraphrased; each source kept under 200 derived words.",
+    "reviewPolicy": "Research author cannot approve own factual or rights lane. Claims require independent fact/rights review.",
+    "bounds": "Research scoped to named frameworks and official capability contracts; no exhaustive ecosystem coverage or vendor rankings."
+  },
+  "sources": [
+    {
+      "id": "openai-codex-sdk",
+      "url": "https://learn.chatgpt.com/docs/codex-sdk",
+      "title": "Codex SDK",
+      "publisher": "OpenAI",
+      "webRef": "turn3view0",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "openai-codex-sdk-c1",
+          "type": "fact",
+          "publicWording": "The Codex SDK starts, continues, and resumes local Codex threads; the app server is the documented integration surface for custom clients handling authentication, history, approvals, and events.",
+          "locator": "#codex-sdk; #typescript-library",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "openai-codex-sdk-c2",
+          "type": "fact",
+          "publicWording": "The Python SDK controls the local Codex app server over JSON-RPC, requires Python 3.10+, and published builds bundle a pinned CLI runtime.",
+          "locator": "#python-library",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "openai-codex-sdk-c3",
+          "type": "fact",
+          "publicWording": "The documentation identifies the Python SDK as stable and states that codex mcp-server and the standalone codex-mcp-server binary have been removed.",
+          "locator": "#python-library; introductory integration guidance",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Local automation is a different execution boundary from an OpenAI-managed Agents API session. Specific model access depends on the signed-in account."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "openai-agents-sdk",
+      "url": "https://openai.github.io/openai-agents-python/",
+      "title": "OpenAI Agents SDK",
+      "publisher": "OpenAI",
+      "webRef": "turn3view1",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "openai-agents-sdk-c1",
+          "type": "fact",
+          "publicWording": "The Agents SDK provides agents, agents-as-tools/handoffs, guardrails, a tool execution loop, tracing, sessions, MCP tool calling, and human-in-the-loop mechanisms.",
+          "locator": "#openai-agents-sdk; #why-use-the-agents-sdk",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "openai-agents-sdk-c2",
+          "type": "fact",
+          "publicWording": "Sandbox agents support isolated workspaces, manifest-defined files, sandbox-client selection, and resumable sandbox sessions.",
+          "locator": "#why-use-the-agents-sdk",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "openai-agents-sdk-c3",
+          "type": "fact",
+          "publicWording": "The SDK uses Responses API by default for OpenAI models; direct Responses API calls leave loop, tool dispatch, and state handling to the application.",
+          "locator": "#agents-sdk-or-responses-api",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "An SDK's sessions and resumable state are not evidence that an arbitrary surrounding deployment has crash-safe durable execution."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "openai-agents-api",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+      "title": "Agents API",
+      "publisher": "OpenAI",
+      "webRef": "turn3view2",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "openai-agents-api-c1",
+          "type": "fact",
+          "publicWording": "The Agents API exposes an OpenAI-managed Codex harness that manages sessions, orchestration, context compaction, and recovery while the application chooses tools and execution environment.",
+          "locator": "Introduction; #core-concepts",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "openai-agents-api-c2",
+          "type": "fact",
+          "publicWording": "The managed harness supports sandbox commands, skills, MCP, steering, compaction, subagent delegation, and session resumption.",
+          "locator": "#what-the-managed-harness-provides",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "openai-agents-api-c3",
+          "type": "fact",
+          "publicWording": "The current Agents API supports data residency only in the United States and does not support Zero Data Retention; a self-hosted sandbox does not change ZDR eligibility.",
+          "locator": "Closing retention and residency notice",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "The execution environment can be self-hosted while the harness and session service remain OpenAI-managed. Beta/API permissions must be checked separately."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "openai-agents-api-access",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/quickstart",
+      "title": "Agents API quickstart",
+      "publisher": "OpenAI",
+      "webRef": "turn17view3",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": "agents=v1 beta header",
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "openai-agents-api-access-c1",
+          "type": "fact",
+          "publicWording": "Agents API requests require OpenAI-Beta: agents=v1, and the official SDKs add this header automatically.",
+          "locator": "#prerequisites",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "openai-agents-api-access-c2",
+          "type": "fact",
+          "publicWording": "An application API key requires api.agents.read, api.agents.write, and api.responses.write permissions; the key should remain outside the agent sandbox.",
+          "locator": "#prerequisites",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Presence in public docs does not prove a specific project's permission configuration or rollout access."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "anthropic-agent-sdk",
+      "url": "https://code.claude.com/docs/en/agent-sdk/overview",
+      "title": "Agent SDK overview",
+      "publisher": "Anthropic",
+      "webRef": "turn3view4",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "anthropic-agent-sdk-c1",
+          "type": "fact",
+          "publicWording": "The Claude Agent SDK embeds Claude Code's tools, agent loop, and context management in Python or TypeScript applications running in a process the developer operates.",
+          "locator": "#compare-the-agent-sdk-to-other-claude-tools",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "anthropic-agent-sdk-c2",
+          "type": "fact",
+          "publicWording": "The SDK includes file and command tools, lifecycle hooks, specialized subagents, MCP connections, permissions, sessions, skills, and plugins.",
+          "locator": "#capabilities",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "anthropic-agent-sdk-c3",
+          "type": "fact",
+          "publicWording": "Unless previously approved, third-party developers may not offer claude.ai login or subscription rate limits through products built with the SDK; the docs specify API-key authentication.",
+          "locator": "#get-started",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Operating a Claude Code process is not the same service boundary as Claude Managed Agents; authentication terms matter to resale/product architecture."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "anthropic-managed-agents",
+      "url": "https://platform.claude.com/docs/en/managed-agents/overview",
+      "title": "Claude Managed Agents overview",
+      "publisher": "Anthropic",
+      "webRef": "turn3view3",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": "managed-agents-2026-04-01 beta header",
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "anthropic-managed-agents-c1",
+          "type": "fact",
+          "publicWording": "Claude Managed Agents provides a hosted, configurable agent harness with cloud or self-hosted sandbox environments, persisted events, steering, file/command tools, web tools, MCP, and scheduled execution.",
+          "locator": "#core-concepts; #how-it-works; #supported-tools",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "anthropic-managed-agents-c2",
+          "type": "fact",
+          "publicWording": "Managed Agents is beta and uses the managed-agents-2026-04-01 header; access is enabled by default for API accounts, while MCP tunnels and dreaming require research-preview access.",
+          "locator": "#beta-access",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "anthropic-managed-agents-c3",
+          "type": "fact",
+          "publicWording": "Stateful Managed Agents is currently ineligible for Zero Data Retention or HIPAA BAA coverage.",
+          "locator": "#beta-access",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Claude Platform on AWS has differences in feature availability and session behavior. A self-hosted environment does not imply the hosted session service stores no data."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "google-adk-overview",
+      "url": "https://adk.dev/",
+      "title": "Agent Development Kit",
+      "publisher": "Google",
+      "webRef": "turn9view0",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "google-adk-overview-c1",
+          "type": "fact",
+          "publicWording": "ADK is an open-source agent development framework with Python, TypeScript, Go, Java, and Kotlin SDKs.",
+          "locator": "Main overview",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "google-adk-overview-c2",
+          "type": "fact",
+          "publicWording": "ADK supports Gemini and other providers, including local models, and can be containerized on customer infrastructure or deployed to Google Cloud.",
+          "locator": "#frequently-asked-questions: models and deployment",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Language parity should be checked per feature; the landing page's general capabilities do not prove identical support in every SDK."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "google-adk-template-workflows",
+      "url": "https://adk.dev/agents/workflow-agents/",
+      "title": "Template agent workflows",
+      "publisher": "Google",
+      "webRef": "turn9view1",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "google-adk-template-workflows-c1",
+          "type": "fact",
+          "publicWording": "ADK template agents implement deterministic sequential, loop, or parallel control flow without consulting an LLM for orchestration.",
+          "locator": "#template-agent-workflows",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "google-adk-template-workflows-c2",
+          "type": "fact",
+          "publicWording": "The template-workflow page says graph and dynamic workflows supersede template workflows in ADK 2.0 for Python and Go.",
+          "locator": "Alternative: graph-based workflows",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "The graph page independently lists Python, TypeScript, and Go v2.0.0 support. Preserve the narrower wording when citing this page."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "google-adk-graphs",
+      "url": "https://adk.dev/graphs/",
+      "title": "Graph-based agent workflows",
+      "publisher": "Google",
+      "webRef": "turn17view1",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": "ADK 2.0.0 as explicitly listed",
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "google-adk-graphs-c1",
+          "type": "fact",
+          "publicWording": "ADK graph workflows explicitly connect functions, tools, AI agents, and human-input nodes through execution edges; the docs list Python, TypeScript, and Go v2.0.0 support.",
+          "locator": "Introduction; Figure 1",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "google-adk-graphs-c2",
+          "type": "fact",
+          "publicWording": "ADK distinguishes declarative graphs, programmatic dynamic workflows, and prebuilt sequential/parallel/loop templates.",
+          "locator": "Workflow styles in ADK",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "google-adk-graphs-c3",
+          "type": "fact",
+          "publicWording": "Some third-party integrations may be incompatible with graph-based workflows.",
+          "locator": "#known-limitations",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "A deterministic control-flow graph does not make LLM outputs deterministic. Feature support is version- and language-specific."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "google-adk-context",
+      "url": "https://adk.dev/sessions/",
+      "title": "Conversational Context: Session, State, and Memory",
+      "publisher": "Google",
+      "webRef": "turn9view2",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "google-adk-context-c1",
+          "type": "fact",
+          "publicWording": "ADK separates Session conversation history, State within a conversation, and Memory for information across conversations.",
+          "locator": "#core-concepts",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "google-adk-context-c2",
+          "type": "fact",
+          "publicWording": "SessionService manages sessions and events while MemoryService manages searchable long-term knowledge.",
+          "locator": "#managing-context-services",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "In-memory development services are not production persistence; select appropriate backing services for the deployment."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "langgraph-persistence",
+      "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "title": "Persistence",
+      "publisher": "LangChain",
+      "webRef": "turn3view5",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "langgraph-persistence-c1",
+          "type": "fact",
+          "publicWording": "LangGraph checkpointers persist thread-scoped graph state; stores persist application-defined data outside graph state for cross-thread memory.",
+          "locator": "Main overview",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langgraph-persistence-c2",
+          "type": "fact",
+          "publicWording": "A graph can be compiled with a checkpointer, a store, or both.",
+          "locator": "#quickstart",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Checkpoints, long-term memory, and external filesystem persistence are separate concerns. The old durable-execution URL currently redirects here."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "langgraph-checkpointers",
+      "url": "https://docs.langchain.com/oss/python/langgraph/checkpointers",
+      "title": "Checkpointers",
+      "publisher": "LangChain",
+      "webRef": "turn11view2",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "langgraph-checkpointers-c1",
+          "type": "fact",
+          "publicWording": "LangGraph saves checkpoints at super-step boundaries and persists successful per-node writes so a failed parallel step can resume without rerunning successful sibling nodes.",
+          "locator": "#core-concepts; pending writes",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langgraph-checkpointers-c2",
+          "type": "fact",
+          "publicWording": "Checkpoint threads enable interrupted execution, state inspection, replay/fork debugging, and fault-tolerant resumption.",
+          "locator": "#why-use-checkpointers",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langgraph-checkpointers-c3",
+          "type": "fact",
+          "publicWording": "LangSmith Agent Server manages checkpointing infrastructure automatically.",
+          "locator": "Introduction: Agent Server handles checkpointing automatically",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Persisted node outputs do not guarantee exactly-once effects at external APIs; partially completed side effects still need application safeguards."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "langgraph-functional-api",
+      "url": "https://docs.langchain.com/oss/python/langgraph/functional-api",
+      "title": "Functional API overview",
+      "publisher": "LangChain",
+      "webRef": "turn22view0",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "langgraph-functional-api-c1",
+          "type": "fact",
+          "publicWording": "LangGraph's Functional API uses entrypoint and task primitives while sharing the same runtime as Graph API.",
+          "locator": "#functional-api-vs-graph-api",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langgraph-functional-api-c2",
+          "type": "fact",
+          "publicWording": "Resumption replays the entrypoint from its start and restores completed task/subgraph results from checkpoints rather than resuming the original line of code.",
+          "locator": "#determinism",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langgraph-functional-api-c3",
+          "type": "fact",
+          "publicWording": "A task that started but did not finish may execute again; side effects should be idempotent and use idempotency keys or existing-result checks.",
+          "locator": "#idempotency",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Replay depends on stable ordering of tasks and interrupts. JSON-serializable task outputs and entrypoint inputs/outputs are required."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "langchain-deep-agents",
+      "url": "https://docs.langchain.com/oss/python/deepagents/overview",
+      "title": "Deep Agents overview",
+      "publisher": "LangChain",
+      "webRef": "turn3view6",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "langchain-deep-agents-c1",
+          "type": "fact",
+          "publicWording": "Deep Agents is a harness built on LangChain primitives and the LangGraph runtime, with filesystem/context management, subagents, memory, streaming, and human-in-the-loop capabilities.",
+          "locator": "Introduction; architecture section",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langchain-deep-agents-c2",
+          "type": "fact",
+          "publicWording": "Task planning and skills are optional extensions to the default harness.",
+          "locator": "Introduction",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langchain-deep-agents-c3",
+          "type": "fact",
+          "publicWording": "The execute shell-command tool is available only with a sandbox backend; unsupported execution/deletion tools are hidden.",
+          "locator": "#virtual-filesystem-access",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Filesystem tools alone are not a security boundary. Backend selection controls where files live and whether shell execution is available."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "langchain-managed-deep-agents",
+      "url": "https://docs.langchain.com/langsmith/python/managed-deep-agents-overview",
+      "title": "Managed Deep Agents",
+      "publisher": "LangChain",
+      "webRef": "turn22view3",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "langchain-managed-deep-agents-c1",
+          "type": "fact",
+          "publicWording": "Managed Deep Agents runs the open-source Deep Agents harness on LangSmith Agent Server with threads, runs, streaming, and an MCP endpoint.",
+          "locator": "Introduction",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langchain-managed-deep-agents-c2",
+          "type": "fact",
+          "publicWording": "Instructions, skills, tools, middleware, memory, sandbox, identity, channels, schedules, and evals are declared in project files.",
+          "locator": "#core-capabilities",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langchain-managed-deep-agents-c3",
+          "type": "fact",
+          "publicWording": "create_deep_agent returns a compiled agent operated by the developer; define_deep_agent returns a definition compiled by the managed runtime.",
+          "locator": "#relationship-to-deep-agents",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Do not conflate the open-source harness with the managed deployment offering; ownership of persistence, backends, and server differs."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "langchain-managed-beta",
+      "url": "https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta",
+      "title": "Managed Deep Agents is now in Public Beta",
+      "publisher": "LangChain",
+      "webRef": "turn22view1",
+      "sourceType": "primary_official_release_announcement",
+      "accessedDate": "2026-10-09",
+      "publishedDate": "2026-08-07",
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "langchain-managed-beta-c1",
+          "type": "fact",
+          "publicWording": "Managed Deep Agents entered public beta on August 7, 2026, with Python and TypeScript projects deployed through the mda CLI.",
+          "locator": "Opening announcement",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langchain-managed-beta-c2",
+          "type": "fact",
+          "publicWording": "The announced public-beta scope is LangSmith Cloud in the US region and CLI-first while the supported API is finalized.",
+          "locator": "#when-to-use-managed-deep-agents",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "langchain-managed-beta-c3",
+          "type": "fact",
+          "publicWording": "The Harbor integration grades resulting files or environment state; users still run Harbor in a configured environment.",
+          "locator": "#harbor-evals-without-the-setup-work",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "This dated launch describes its announced scope, which may differ from later docs. Check deployment region and current API support before implementation."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "vercel-ai-sdk-release",
+      "url": "https://vercel.com/changelog/ai-sdk-7",
+      "title": "AI SDK 7 is now available",
+      "publisher": "Vercel",
+      "webRef": "turn9view5",
+      "sourceType": "primary_official_release_announcement",
+      "accessedDate": "2026-10-09",
+      "publishedDate": "2026-06-25",
+      "updatedDate": null,
+      "documentVersion": "AI SDK 7",
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "vercel-ai-sdk-release-c1",
+          "type": "fact",
+          "publicWording": "Vercel released AI SDK 7 on June 25, 2026, documenting approvals, WorkflowAgent durability, sandbox abstractions, external harness adapters, and expanded telemetry.",
+          "locator": "#at-a-glance; #run-agents-in-production; #integrate-agent-harnesses",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "vercel-ai-sdk-release-c2",
+          "type": "fact",
+          "publicWording": "AI SDK 7 requires Node.js 22+ and ESM imports.",
+          "locator": "#before-you-upgrade",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "vercel-ai-sdk-release-c3",
+          "type": "fact",
+          "publicWording": "Realtime and video generation are labelled experimental; speech and transcription exports are stable.",
+          "locator": "#build-beyond-text",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "This is a release snapshot, not a guarantee of later adapter parity or all provider features. Model IDs in examples are not an endorsed ranking."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "vercel-workflow-agent",
+      "url": "https://ai-sdk.dev/docs/agents/workflow-agent",
+      "title": "WorkflowAgent",
+      "publisher": "Vercel",
+      "webRef": "turn22view2",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": "Workflow 5 dependency as explicitly documented",
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "vercel-workflow-agent-c1",
+          "type": "fact",
+          "publicWording": "ToolLoopAgent runs its loop in memory; WorkflowAgent adds workflow-backed state persistence and approvals that survive suspension.",
+          "locator": "#why-durable-agents; #when-to-use-workflowagent-vs-toolloopagent",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "vercel-workflow-agent-c2",
+          "type": "fact",
+          "publicWording": "Tool execute functions marked use step run as durable workflow steps with retries; unmarked tools remain in-memory functions.",
+          "locator": "#tools-as-workflow-steps",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "vercel-workflow-agent-c3",
+          "type": "fact",
+          "publicWording": "The current docs require Workflow 5 plus ai and zod peer dependencies for @ai-sdk/workflow.",
+          "locator": "#installation",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "vercel-workflow-agent-c4",
+          "type": "fact",
+          "publicWording": "WorkflowAgent stream() is unbounded unless stopWhen is set, while generate() defaults to a maximum of 20 steps.",
+          "locator": "#loop-control; #non-streaming-generation",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Automatic retries do not prove exactly-once external side effects. A workflow function and appropriate persistent runtime still need configuration."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "vercel-workflow-ai",
+      "url": "https://workflow-sdk.dev/docs/ai",
+      "title": "Building Durable AI Agents",
+      "publisher": "Vercel",
+      "webRef": "turn9view4",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "vercel-workflow-ai-c1",
+          "type": "fact",
+          "publicWording": "The Workflow SDK guide marks orchestration with use workflow and tool execution with use step, with persistent streams read by API endpoints.",
+          "locator": "#create-a-workflow-function; #update-the-api-route; #convert-tools-to-steps",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "vercel-workflow-ai-c2",
+          "type": "fact",
+          "publicWording": "The guide documents automatic retries for failed tool executions marked use step.",
+          "locator": "#convert-tools-to-steps",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "The flight-booking example mocks tool implementations; its presence is not a measured production result."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "cloudflare-agents",
+      "url": "https://developers.cloudflare.com/agents/",
+      "title": "Build Agents on Cloudflare",
+      "publisher": "Cloudflare",
+      "webRef": "turn3view7",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": "2026-09-18",
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "cloudflare-agents-c1",
+          "type": "fact",
+          "publicWording": "Cloudflare separates communication channels, an agent harness, a durable Agents SDK runtime, and capability tools.",
+          "locator": "Main architectural breakdown",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "cloudflare-agents-c2",
+          "type": "fact",
+          "publicWording": "The runtime provides durable identity, local SQL state, real-time connections, scheduling, routing, fibers, and observability; a harness owns the model/tool loop.",
+          "locator": "Main architectural breakdown",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "The opinionated Project Think harness and the underlying Agents runtime have different responsibilities. Hosting a Durable Object does not preserve in-memory closures."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "cloudflare-agent-fibers",
+      "url": "https://developers.cloudflare.com/agents/runtime/execution/durable-execution/",
+      "title": "Durable execution with fibers",
+      "publisher": "Cloudflare",
+      "webRef": "turn17view2",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": "2026-08-20",
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "cloudflare-agent-fibers-c1",
+          "type": "fact",
+          "publicWording": "runFiber registers work in SQLite and stash persists recovery state; onFiberRecovered handles work interrupted by Durable Object eviction.",
+          "locator": "Introduction; #checkpoints-with-stash",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "cloudflare-agent-fibers-c2",
+          "type": "fact",
+          "publicWording": "startFiber durably accepts retained background work with status, retry deduplication, and cooperative cancellation.",
+          "locator": "#startfiber",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "cloudflare-agent-fibers-c3",
+          "type": "fact",
+          "publicWording": "Fibers do not replay the original closure or automatically retry application work; recovery policy belongs in onFiberRecovered. Cloudflare Workflows serves separate multi-step orchestration.",
+          "locator": "#recovery; #why-fibers-exist",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Durable acceptance is not a stored callback result. An evicted inline caller cannot receive the original result; explicit recovery logic is required."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "mcp-2026-release",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "title": "The 2026-07-28 Specification",
+      "publisher": "Model Context Protocol maintainers",
+      "webRef": "turn9view6",
+      "sourceType": "primary_official_release_announcement",
+      "accessedDate": "2026-10-09",
+      "publishedDate": "2026-07-28",
+      "updatedDate": null,
+      "documentVersion": "MCP 2026-07-28",
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "mcp-2026-release-c1",
+          "type": "fact",
+          "publicWording": "MCP 2026-07-28 removes initialize/initialized and Mcp-Session-Id transport sessions; requests carry protocol version, identity, and capabilities independently.",
+          "locator": "#no-handshake-or-sessions",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "mcp-2026-release-c2",
+          "type": "fact",
+          "publicWording": "The release introduces stateless Multi Round-Trip Requests, method/name routing headers, cacheable list results, and formal extensions.",
+          "locator": "#multi-round-trip-requests-mrtr; #header-based-routing; #list-results-are-cacheable",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "mcp-2026-release-c3",
+          "type": "fact",
+          "publicWording": "Tasks moves into the io.modelcontextprotocol/tasks extension; roots, sampling, logging, and legacy HTTP+SSE are deprecated with at least twelve months of support.",
+          "locator": "#tasks; #deprecations",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "Application state still exists through explicit handles. Protocol release does not establish client/server version interoperability without testing."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "agent-skills-format",
+      "url": "https://agentskills.io/home",
+      "title": "Agent Skills Overview",
+      "publisher": "Agent Skills maintainers",
+      "webRef": "turn9view7",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "agent-skills-format-c1",
+          "type": "fact",
+          "publicWording": "An Agent Skill is an open-format folder containing SKILL.md metadata and instructions, optionally with scripts, references, and assets.",
+          "locator": "#what-are-agent-skills",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "agent-skills-format-c2",
+          "type": "fact",
+          "publicWording": "Skill loading uses progressive disclosure: name/description discovery, full-instruction activation, then referenced resources or code during execution.",
+          "locator": "#how-do-agent-skills-work",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "A portable instruction format does not grant tool permissions, supply runtime persistence, or prove identical behavior across compatible clients."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "a2a-specification",
+      "url": "https://a2a-protocol.org/latest/specification/",
+      "title": "Agent2Agent Protocol Specification",
+      "publisher": "A2A Project / Linux Foundation",
+      "webRef": "turn9view8",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": "A2A 1.0.0 as explicitly identified",
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "a2a-specification-c1",
+          "type": "fact",
+          "publicWording": "The current A2A specification page identifies 1.0.0 as the latest released version.",
+          "locator": "Opening version selector",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "a2a-specification-c2",
+          "type": "fact",
+          "publicWording": "A2A defines communication between independent opaque agent systems through capability discovery, messages, tasks, artifacts, streaming, and asynchronous updates.",
+          "locator": "#1-introduction; #11-key-goals-of-a2a",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        },
+        {
+          "id": "a2a-specification-c3",
+          "type": "fact",
+          "publicWording": "Peer agents can exchange work without exposing internal state, memory, or tool implementations.",
+          "locator": "#12-guiding-principles",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "A2A is an interoperability contract; the standard does not supply a durable implementation, shared permissions, or benchmarked reasoning quality."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    },
+    {
+      "id": "a2a-mcp-comparison",
+      "url": "https://a2a-protocol.org/latest/topics/a2a-and-mcp/",
+      "title": "A2A and MCP: Detailed Comparison",
+      "publisher": "A2A Project / Linux Foundation",
+      "webRef": "turn22view4",
+      "sourceType": "primary_official_documentation",
+      "accessedDate": "2026-10-09",
+      "publishedDate": null,
+      "updatedDate": null,
+      "documentVersion": null,
+      "readStatus": "relevant_main_content_read",
+      "claims": [
+        {
+          "id": "a2a-mcp-comparison-c1",
+          "type": "fact",
+          "publicWording": "MCP connects agents to tools/resources while A2A connects independent agents for task-oriented collaboration; the protocols can be used together.",
+          "locator": "#model-context-protocol; #agent2agent-protocol; #a2a--mcp-complementary-protocols-for-agentic-systems",
+          "support": "direct",
+          "asOf": "2026-10-09",
+          "independentVerdict": "pending_independent_review"
+        }
+      ],
+      "limitations": [
+        "A peer exposed as a simple tool does not automatically preserve richer task/session semantics. The page footer identifies Apache 2.0 licensing."
+      ],
+      "freshnessTrigger": "Recheck on API/SDK/spec release or before implementation; do not infer account access from documentation."
+    }
+  ],
+  "media": [
+    {
+      "id": "openai-managed-architecture",
+      "type": "image",
+      "url": "https://developers.openai.com/images/api/agents-api/overview-1.webp",
+      "sourceId": "openai-agents-api",
+      "sourceUrl": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+      "publisher": "OpenAI",
+      "title": "OpenAI-hosted Agents API architecture",
+      "width": 1400,
+      "height": 552,
+      "alt": "Application sessions and events connect to an OpenAI-managed Codex harness and sandbox.",
+      "provenance": "Exact img src and dimensions read from first-party HTML, live HTTP 200 scrape.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "First-party documentary figure; no explicit reproduction license verified. Prefer attributed source-linked remote reference pending rights review.",
+      "semanticPlacement": "Managed harness versus execution-environment ownership."
+    },
+    {
+      "id": "google-adk-graph-workflow",
+      "type": "image",
+      "url": "https://adk.dev/assets/workflow-design.svg",
+      "sourceId": "google-adk-graphs",
+      "sourceUrl": "https://adk.dev/graphs/",
+      "publisher": "Google",
+      "title": "Graph-based flight upgrade agent",
+      "alt": "An ADK graph combining function nodes, human input, tools, and LLM capabilities.",
+      "provenance": "Exact img src read from first-party graph documentation HTML, live HTTP 200 scrape.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Documentation license must be checked by rights reviewer before copying; preserve attribution and semantic caption.",
+      "semanticPlacement": "Deterministic process flow with model reasoning inside selected nodes."
+    },
+    {
+      "id": "google-adk-template-topologies",
+      "type": "image",
+      "url": "https://adk.dev/assets/template_workflows.svg",
+      "sourceId": "google-adk-template-workflows",
+      "sourceUrl": "https://adk.dev/agents/workflow-agents/",
+      "publisher": "Google",
+      "title": "Template workflow execution patterns",
+      "alt": "Sequential, loop, and parallel ADK template workflow patterns.",
+      "provenance": "Exact img src read from first-party template-workflow HTML, live HTTP 200 scrape.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Documentation license must be checked before copying.",
+      "semanticPlacement": "Historical/current template control flow; caption must state ADK 2.0 graph/dynamic alternative."
+    },
+    {
+      "id": "mcp-stateless-core-demo",
+      "type": "video",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/stateless-core-demo.mp4",
+      "sourceId": "mcp-2026-release",
+      "sourceUrl": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "publisher": "Model Context Protocol maintainers",
+      "title": "MCP stateless protocol core demo",
+      "width": 1280,
+      "height": 454,
+      "provenance": "Exact video/source src and dimensions read from first-party release HTML; official page calls it a short demo of the stateless protocol core.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Embed documentary demonstration with attribution and source link; no explicit reuse license verified.",
+      "semanticPlacement": "MCP 2026-07-28 transport migration; use native muted video with controls and explanatory transcript/caption."
+    },
+    {
+      "id": "langchain-managed-deep-agents-video",
+      "type": "youtube",
+      "url": "https://www.youtube.com/watch?v=yi-XZnAVFJg",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/yi-XZnAVFJg",
+      "videoId": "yi-XZnAVFJg",
+      "sourceId": "langchain-managed-beta",
+      "sourceUrl": "https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta",
+      "publisher": "LangChain",
+      "title": "Managed Deep Agents explained in 20 minutes",
+      "channelUrl": "https://www.youtube.com/channel/UCC-lyoTfSrcJzA1ab3APAgw",
+      "provenance": "Official LangChain article embeds this video; live rendered iframe identifies title and LangChain channel URL/name. Direct YouTube web fetch throttled, so validation used the first-party rendered embedded player.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Use official publisher's YouTube embed without downloading/reuploading; preserve source attribution.",
+      "semanticPlacement": "Optional supporting walkthrough of managed deployment primitives, not evidence of vendor superiority."
+    },
+    {
+      "id": "a2a-mcp-boundary",
+      "type": "image",
+      "url": "https://a2a-protocol.org/latest/assets/a2a-mcp.png",
+      "sourceId": "a2a-mcp-comparison",
+      "sourceUrl": "https://a2a-protocol.org/latest/topics/a2a-and-mcp/",
+      "publisher": "A2A Project / Linux Foundation",
+      "title": "A2A and MCP working together",
+      "alt": "User and agents communicate through A2A while an agent reaches tools through MCP.",
+      "provenance": "Exact image src read from official page HTML; official footer states Apache License 2.0.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Apache 2.0 page license; preserve publisher/source credit and applicable notices; confirm asset-specific exceptions during independent review.",
+      "semanticPlacement": "Distinct protocol boundaries in the interoperability section."
+    }
+  ],
+  "architecturalSynthesis": [
+    {
+      "id": "synthesis-ownership",
+      "type": "inference",
+      "publicWording": "Choose the owner of harness, execution environment, durable state, identity, and approvals before choosing an agent framework.",
+      "sourceIds": [
+        "openai-agents-api",
+        "anthropic-agent-sdk",
+        "anthropic-managed-agents",
+        "langchain-managed-deep-agents",
+        "cloudflare-agents"
+      ],
+      "support": "derived",
+      "independentVerdict": "pending_independent_review"
+    },
+    {
+      "id": "synthesis-recovery",
+      "type": "inference",
+      "publicWording": "Crash recovery requires an explicit persistence and replay contract; session history, actor storage, workflow replay, and sandbox files are distinct guarantees.",
+      "sourceIds": [
+        "langgraph-persistence",
+        "langgraph-functional-api",
+        "vercel-workflow-agent",
+        "cloudflare-agent-fibers"
+      ],
+      "support": "derived",
+      "independentVerdict": "pending_independent_review"
+    },
+    {
+      "id": "synthesis-side-effects",
+      "type": "inference",
+      "publicWording": "A production agent needs business-level idempotency and artifact/state evaluation around externally visible effects, even when its runtime resumes automatically.",
+      "sourceIds": [
+        "langgraph-functional-api",
+        "vercel-workflow-ai",
+        "cloudflare-agent-fibers",
+        "langchain-managed-beta"
+      ],
+      "support": "derived",
+      "independentVerdict": "pending_independent_review"
+    },
+    {
+      "id": "synthesis-protocol",
+      "type": "inference",
+      "publicWording": "Treat skills as procedural context, MCP as capability integration, and A2A as delegated peer tasks; none replaces the runtime's authorization and persistence contract.",
+      "sourceIds": [
+        "agent-skills-format",
+        "mcp-2026-release",
+        "a2a-specification",
+        "a2a-mcp-comparison"
+      ],
+      "support": "derived",
+      "independentVerdict": "pending_independent_review"
+    }
+  ],
+  "freshnessCorrections": [
+    "Codex SDK canonical now learn.chatgpt.com/docs/codex-sdk; stable Python SDK and removed Codex MCP server are documented.",
+    "ADK canonical now adk.dev; graph workflows documented for Python/TypeScript/Go 2.0.0.",
+    "Managed Deep Agents is public beta, launched 2026-08-07; official launch scope US region and CLI-first.",
+    "AI SDK 7 official release dated 2026-06-25; current WorkflowAgent docs depend on Workflow 5.",
+    "MCP 2026-07-28 stateless core replaces initialize/initialized and transport sessions.",
+    "A2A spec currently lists 1.0.0 as latest released."
+  ]
+}

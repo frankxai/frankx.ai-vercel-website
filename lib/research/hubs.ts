@@ -99,8 +99,7 @@ export function domainsForHub(category: DomainCategory) {
     (d) =>
       researchCategory(d.category) === category &&
       !d.slug.startsWith("REMOVED-") &&
-      !d.title.startsWith("[REMOVED]") &&
-      d.sourceCount > 0,
+      !d.title.startsWith("[REMOVED]"),
   );
 }
 

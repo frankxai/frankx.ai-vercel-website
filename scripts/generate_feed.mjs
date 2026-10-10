@@ -7,6 +7,13 @@ const BLOG_DIR = path.join(ROOT, 'content', 'blog')
 const GUIDES_DIR = path.join(ROOT, 'content', 'guides')
 const PUBLIC_DIR = path.join(ROOT, 'public')
 
+// The application route owns this URL. A public export at the same path
+// causes a route conflict rather than providing a useful fallback.
+if (fs.existsSync(path.join(ROOT, 'app', 'rss.xml', 'route.ts'))) {
+  console.log('RSS feed is served by app/rss.xml/route.ts; static emission skipped')
+  process.exit(0)
+}
+
 function readMdxDir(dir) {
   if (!fs.existsSync(dir)) return []
   return fs.readdirSync(dir)
