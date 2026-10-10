@@ -77,6 +77,7 @@ export interface LearningPath {
   category: LearningPathCategory
   videos: VideoResource[]
   relatedGuides: string[]
+  relatedResourceTitles?: Record<string, string>
   outcomes: string[]
   // Optional richer portal sections — render conditionally when populated.
   heroEyebrow?: string
@@ -2462,6 +2463,15 @@ export const learningPaths: LearningPath[] = [
   },
   {
     id: 'higgsfield-mastery',
+    relatedResourceTitles: {
+      '/guides/higgsfield-ai-video-guide': 'Start here: video production',
+      '/guides/higgsfield-camera-movement-prompts': 'Camera movement prompts',
+      '/guides/higgsfield-soul-id-character-consistency': 'Soul ID and character continuity',
+      '/guides/higgsfield-ugc-product-video-workflow': 'UGC and product video workshop',
+      '/guides/higgsfield-music-video-workflow': 'Music video workshop',
+      '/guides/higgsfield-credits-pricing-guide': 'Credits and cost per accepted shot',
+      '/blog/ultimate-higgsfield-workflow-2026': 'Agent and MCP connection guide',
+    },
     title: 'Higgsfield video production workshop',
     slug: 'higgsfield-mastery',
     description: 'Make a three-shot sequence with a shot brief, reference pack, camera test and credit budget. Free guides and a verified official walkthrough.',
