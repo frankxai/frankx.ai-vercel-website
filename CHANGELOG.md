@@ -8,10 +8,14 @@ Technical release notes are generated from merged pull requests when a semantic-
 
 ### Added
 
+- Five focused Higgsfield workshops, free production worksheets, and attributed official teaching media.
+
 - A canonical, evidence-backed changelog with durable release-note pages, RSS discovery, structured data, and sitemap coverage.
 - Draft-first GitHub release automation and categorized generated release notes.
 
 ### Fixed
+
+- Higgsfield guide hero, unsupported performance claims and unverified learning-portal videos; issued referrals now resolve through the central affiliate registry.
 
 - PDF analytics reports storage failures instead of empty results, with bounded diagnostics that exclude visitor data.
 

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1031,
+    "total": 1036,
     "aliases": 59,
     "byType": {
       "core": 24,
@@ -11,7 +11,7 @@
       "static": 15,
       "blog": 270,
       "research": 23,
-      "guide": 29,
+      "guide": 34,
       "library": 88,
       "newsletter": 1,
       "os": 11,
@@ -1658,8 +1658,8 @@
     },
     {
       "href": "/blog/best-ai-video-generators-2026-x-aggregated",
-      "title": "Best AI Video Generators June 2026",
-      "description": "X-aggregated signals on Higgsfield, Seedance 2.0, Kling 3.0, Veo 3.1, Sora 2, Runway and the rest. Head-to-head on control, audio, value, consistency.",
+      "title": "Compare AI video generators: a shot-based evaluation method",
+      "description": "Compare Higgsfield and direct AI video tools using your own references, motion requirements, accepted footage and total credit spend.",
       "tags": [
         "AI Video",
         "Higgsfield",
@@ -3985,8 +3985,8 @@
     },
     {
       "href": "/blog/the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
-      "title": "The Research + Generation Flywheel",
-      "description": "How data-backed short-form research (Sandcastles or X outlier signals) feeds directly into production (Higgsfield, native Grok video tools, editing).",
+      "title": "Short-form video research: turn one observed pattern into a controlled test",
+      "description": "Research short-form hooks, write an original brief, generate selective Higgsfield footage and measure qualified visits with one-variable tests.",
       "tags": [
         "Short Form",
         "Sandcastles",
@@ -4132,8 +4132,8 @@
     },
     {
       "href": "/blog/ultimate-higgsfield-workflow-2026",
-      "title": "The Ultimate Higgsfield Workflow in 2026",
-      "description": "How I run Higgsfield in 2026: one subscription for 30+ video models, Soul ID for character-consistent series, and the MCP that lets Claude Code generate video directly.",
+      "title": "Higgsfield MCP setup: Claude, ChatGPT and a controlled video workflow",
+      "description": "Connect Higgsfield to Claude or ChatGPT, verify the tool connection, budget generation jobs and reuse references without duplicate renders.",
       "tags": [
         "Higgsfield",
         "AI Video",
@@ -4189,8 +4189,8 @@
     },
     {
       "href": "/blog/using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll",
-      "title": "The Ultimate Guide: Using ElevenLabs for Faceless YouTube Channels and Higgsf...",
-      "description": "How to combine modern AI voice models with responsive video tools for high-retention faceless production.",
+      "title": "ElevenLabs and Higgsfield: a faceless YouTube production workflow",
+      "description": "Create a narration-led YouTube video with ElevenLabs voiceover, a timed visual plan, selective Higgsfield B-roll and a publication checklist.",
       "tags": [
         "creator-systems",
         "ai-systems",
@@ -5960,8 +5960,8 @@
     },
     {
       "href": "/guides/higgsfield-ai-video-guide",
-      "title": "Higgsfield AI Video Masterclass: Cinema Studio, Soul ID, & Multi-Model Production",
-      "description": "Master Higgsfield AI for cinematic video production. Direct 70+ camera presets, maintain character consistency with Soul ID, orchestrate Seedance 2.0, Kling 3.0, and Veo 3.1, and build automated commercial video workflows.",
+      "title": "Higgsfield AI video guide: from shot list to finished film",
+      "description": "A practical Higgsfield tutorial for Cinema Studio, character references, camera prompts, credit budgeting and editing, with official demonstrations and reusable briefs.",
       "tags": [
         "ai",
         "higgsfield",
@@ -5970,7 +5970,6 @@
         "soul-id",
         "kling",
         "veo",
-        "fal-ai",
         "creative-workflows"
       ],
       "type": "guide"
@@ -10398,6 +10397,61 @@
         "strategy"
       ],
       "type": "section"
+    },
+    {
+      "href": "/guides/higgsfield-camera-movement-prompts",
+      "title": "Higgsfield camera movement prompts: pan, dolly, orbit and locked shots",
+      "description": "Write clearer Higgsfield camera prompts with start and end frames, one controlled move, practical examples and a failure diagnosis table.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/higgsfield-credits-pricing-guide",
+      "title": "Higgsfield credits and pricing: calculate cost per usable shot",
+      "description": "Compare Higgsfield plans using actual generation quotes, rejected attempts, web versus MCP entitlements and cost per accepted video shot.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/higgsfield-music-video-workflow",
+      "title": "Higgsfield music video workflow: plan shots around your own track",
+      "description": "Turn an authorized music track into a coherent Higgsfield visual sequence with a beat map, reusable characters, short motion shots and an export plan.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/higgsfield-soul-id-character-consistency",
+      "title": "Higgsfield Soul ID: a character consistency workflow",
+      "description": "Build a reusable character reference pack, test Soul ID across angles and lighting, diagnose identity drift and prepare recurring presenters or mascots.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/higgsfield-ugc-product-video-workflow",
+      "title": "Higgsfield UGC product videos: brief, presenter, proof and edit",
+      "description": "Plan a UGC-style product video with an original presenter, accurate product references, one verifiable claim and a controlled variation test.",
+      "tags": [
+        "higgsfield",
+        "ai-video",
+        "creator-workflows"
+      ],
+      "type": "guide"
     }
   ],
   "aliases": {

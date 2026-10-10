@@ -2462,139 +2462,48 @@ export const learningPaths: LearningPath[] = [
   },
   {
     id: 'higgsfield-mastery',
-    title: 'Higgsfield AI & Cinematic Video Mastery',
+    title: 'Higgsfield video production workshop',
     slug: 'higgsfield-mastery',
-    description:
-      'Master multi-model AI video production with Higgsfield AI: Cinema Studio, 70+ camera presets, Soul ID consistency, Seedance 2.0, Kling 3.0, and Veo 3.1.',
-    icon: 'image',
-    difficulty: 'intermediate',
-    estimatedHours: 6,
-    color: 'violet',
-    category: 'consumer',
-    heroEyebrow: 'Updated August 2026 · Multi-Model Video Suite',
-    longIntro:
-      'Higgsfield AI unifies the top AI video generation models under a single studio interface. Rather than switching between separate tools, you can direct Kling 3.0 for character motion, Veo 3.1 for lighting and realism, Seedance 2.0 for commercial ads, and Wan 2.6 for VFX. This portal guides you through camera trajectory control with Cinema Studio, persistent characters with Soul ID, and automated commercial production with Marketing Studio.',
-    distillation:
-      'Generative video has shifted from single-model toys to multi-model director suites. No single generative model wins every shot type: Kling 3.0 dominates human anatomy and acting, Veo 3.1 delivers physical realism and lighting, and Seedance 2.0 powers rapid commercial B-roll. Higgsfield unifies these engines under one interface with precision camera trajectory controls and character identity locks.\n\nThe real breakthrough in Higgsfield is Cinema Studio and Soul ID. Text prompts alone are terrible at controlling physical camera trajectories — Cinema Studio gives you deterministic mathematical moves like Orbital 360, Bullet Time, and Vertigo Dolly Zooms. Soul ID anchors facial geometry across multiple scene renders, solving character drift for narrative filmmaking.\n\nFor creators and founders, the highest-impact move is pairing Marketing Studio (URL-to-Video) for rapid ad production with custom Cinema Studio shots for hero brand content. Master the multi-model selection matrix and camera moves, and you can produce studio-grade video at 10x speed.',
-
-    ctaTitle: 'Ready to direct your first AI film?',
-    ctaBody:
-      'Pair this video portal with our in-depth written playbook. Master prompt engineering, camera move coordinates, and automated production pipelines.',
+    description: 'Make a three-shot sequence with a shot brief, reference pack, camera test and credit budget. Free guides and a verified official walkthrough.',
+    icon: 'image', difficulty: 'intermediate', estimatedHours: 6, color: 'violet', category: 'consumer',
+    heroEyebrow: 'Documentation checked October 10, 2026',
+    longIntro: 'Start with one story and three shots. This workshop takes you from a written brief to a reviewed sequence using Higgsfield, then helps you diagnose motion, identity and editing problems. The curriculum is free; generating media may require a paid product plan. Product capabilities are documented by the vendor. The production exercises and acceptance rules are FrankX editorial proposals.',
+    distillation: 'Write the acceptance rule before generating: what should the viewer understand, which movement carries that meaning, and what makes the clip usable? Keep one subject and one camera movement in your first test. Review the first, middle and last frames before accepting it.\n\nReference tools can help with character continuity, but inspect faces, wardrobe, product labels and background geometry across every shot. Test one variable at a time instead of changing the model, reference and prompt together.\n\nMeasure cost per accepted shot rather than cost per generation. Stop when a repeat failure needs a different reference or simpler composition. Assemble the accepted shots in an editor, review the sequence at phone size and export for your chosen platform.',
+    ctaTitle: 'Build your first three-shot sequence',
+    ctaBody: 'Follow the production guide, download the brief and ledger, then choose a focused workshop for your next project.',
     outcomes: [
-      'Direct 70+ camera movements including Orbital 360, Bullet Time, and Dolly Zooms',
-      'Maintain character facial identity across 10+ sequential shots with Soul ID',
-      'Select the optimal model (Kling 3.0, Veo 3.1, Seedance 2.0, Wan 2.6) for each scene',
-      'Generate commercial product video ads with Marketing Studio URL-to-Video',
-      'Integrate Higgsfield programmatically via Fal.ai and developer APIs',
-      'Upscale and export pristine 4K 24fps master videos for client delivery',
+      'Write a shot brief with a subject, movement, reference and acceptance rule',
+      'Test camera movement with a controlled prompt and diagnose failures',
+      'Review character continuity across close-ups, profiles and lighting changes',
+      'Create a product-video shot plan with one demonstrable claim',
+      'Calculate credits per accepted clip and set a retry budget',
+      'Connect a supported agent workflow and inspect job status before retrying',
     ],
     relatedGuides: [
-      '/guides/higgsfield-ai-video-guide',
-      '/guides/image-generation-mastery',
-      '/learn/gemini-mastery',
-      '/learn/claude-mastery',
+      '/guides/higgsfield-ai-video-guide', '/guides/higgsfield-camera-movement-prompts',
+      '/guides/higgsfield-soul-id-character-consistency', '/guides/higgsfield-ugc-product-video-workflow',
+      '/guides/higgsfield-music-video-workflow', '/guides/higgsfield-credits-pricing-guide',
+      '/blog/ultimate-higgsfield-workflow-2026',
     ],
-    videos: [
-      {
-        id: 'higgsfield-overview',
-        youtubeId: 'mKyaNr3jK-E',
-        title: 'Learn 98% of Higgsfield AI in 18 Minutes',
-        creator: 'Youri van Hofwegen',
-        creatorChannel: 'https://www.youtube.com/@yourivanhofwegen',
-        duration: '18 min',
-        level: 'beginner',
-        description:
-          'Complete walkthrough of Higgsfield AI: Cinema Studio, Marketing Studio, audio tools, and character consistency.',
-        tags: ['higgsfield', 'overview', 'ai-video'],
-      },
-      {
-        id: 'higgsfield-tutorial-beginner',
-        youtubeId: 'FF1sRs4LDCN',
-        title: 'How to Use Higgsfield AI for Beginners (Step by Step)',
-        creator: 'Creator Tutorials',
-        creatorChannel: 'https://www.youtube.com/results?search_query=Higgsfield+AI+tutorial',
-        duration: '14 min',
-        level: 'beginner',
-        description:
-          'Step-by-step beginner guide covering text-to-video, image-to-video, and camera movements.',
-        tags: ['higgsfield', 'tutorial', 'camera-control'],
-      },
-      {
-        id: 'higgsfield-cinema-studio',
-        youtubeId: 'Ee9qCk59BIv',
-        title: 'Directing Cinematic AI Video with Camera Presets and Soul ID',
-        creator: 'AI Filmmaking Lab',
-        creatorChannel: 'https://www.youtube.com/results?search_query=Higgsfield+Cinema+Studio',
-        duration: '16 min',
-        level: 'intermediate',
-        description:
-          'Deep dive into Cinema Studio camera trajectories, character facial locks, and multi-shot composition.',
-        tags: ['cinema-studio', 'soul-id', 'consistency'],
-      },
-    ],
+    videos: [{
+      id: 'higgsfield-official-short-film', youtubeId: 'tW40b122Rbs',
+      title: "The Complete AI Short Film Workflow Everyone's Missing",
+      creator: 'Higgsfield AI', creatorChannel: 'https://www.youtube.com/@HiggsfieldAI',
+      duration: 'See YouTube', level: 'beginner',
+      description: 'Official short-film walkthrough linked from Higgsfield documentation. Watch reference reuse and scene construction, then write your own shot brief. The interface shown predates Cinema Studio 4.0.',
+      tags: ['higgsfield', 'short-film', 'references'],
+    }],
     ecosystem: [
-      {
-        name: 'Cinema Studio',
-        category: 'Camera Direction',
-        description:
-          '70+ camera presets including Orbital 360, Bullet Time, Vertigo Dolly Zoom, and Drone Passes with precision trajectory vectors.',
-        href: 'https://higgsfield.ai',
-        status: 'New',
-      },
-      {
-        name: 'Soul ID',
-        category: 'Character Consistency',
-        description:
-          'Face landmark and identity embedding anchor preserving subject likeness across sequential scene renders.',
-        href: 'https://higgsfield.ai',
-        status: 'New',
-      },
-      {
-        name: 'Marketing Studio',
-        category: 'Commercial Ads',
-        description:
-          'URL-to-video e-commerce ad generation with automated scriptwriting, voiceover sync, and multi-ratio exports.',
-        href: 'https://higgsfield.ai',
-        status: 'Updated',
-      },
-      {
-        name: 'Kling 3.0 Integration',
-        category: 'Motion Engine',
-        description:
-          'Frontier human anatomy and organic motion engine, ideal for dialogue scenes and complex character choreography.',
-        href: 'https://higgsfield.ai',
-        status: 'Updated',
-      },
-      {
-        name: 'Veo 3.1 Integration',
-        category: 'Cinematic Realism',
-        description:
-          'Google DeepMind cinematic model for photorealism, atmospheric lighting, and native synchronized soundscapes.',
-        href: 'https://deepmind.google/models/veo/',
-        status: 'Updated',
-      },
+      { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-10' },
+      { name: 'Agent connection guide', category: 'Automation', description: 'Official supported agent and MCP integrations. Inspect tools and job status before generating.', href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-10' },
+      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://console.higgsfield.ai/', lastVerified: '2026-10-10' },
+      { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-10' },
     ],
     faqs: [
-      {
-        question: 'What is Higgsfield AI?',
-        answer:
-          'Higgsfield AI is a unified multi-model video production platform that aggregates top generative engines (Kling 3.0, Veo 3.1, Seedance 2.0, Wan 2.6) with precision camera control (Cinema Studio) and character consistency (Soul ID).',
-      },
-      {
-        question: 'How does Soul ID preserve character faces across shots?',
-        answer:
-          'Soul ID analyzes 3 to 5 reference photos, generates a facial embedding vector, and locks the character token (e.g. [HERO_NAME]) across sequential prompts, achieving 98%+ identity retention across varying lighting and angles.',
-      },
-      {
-        question: 'How do Cinema Studio camera presets work?',
-        answer:
-          'Cinema Studio applies trajectory vector math to the rendering pipeline, giving you deterministic control over moves like Orbital 360, Vertigo Dolly Zoom, Bullet Time, and Crane High Passes rather than relying on random text prompts.',
-      },
-      {
-        question: 'Can I use Higgsfield programmatically via API?',
-        answer:
-          'Yes. Higgsfield Cinema Studio and generation endpoints are accessible programmatically via Fal.ai and direct developer APIs for batch video generation and automated pipelines.',
-      },
+      { question: 'Is this Higgsfield course free?', answer: 'The FrankX guides, exercises and worksheets are free to read. Higgsfield generation and connected-agent usage may require credits or a paid plan. Check current pricing before starting.' },
+      { question: 'Does Soul ID guarantee the same face in every shot?', answer: 'No guaranteed retention percentage is established here. Use a reference pack and review close-ups, profiles, lighting and movement. The character consistency guide gives you a test matrix.' },
+      { question: 'Which AI video model should I choose?', answer: 'Test the models available in your account against the same brief and acceptance rule. Score motion, identity, composition, editability and cost per accepted clip. There is no universal winner for every shot.' },
+      { question: 'Can I use Higgsfield from Claude or another agent?', answer: 'Higgsfield documents Claude MCP and other supported agent connections. Follow the current connection guide and inspect exposed tools, costs, job IDs and completion state before automating retries.' },
     ],
   },
   {

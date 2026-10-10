@@ -39,3 +39,11 @@ function isUnissuedPartnerUrl(destination: string, record: ToolRecord) {
     return true
   }
 }
+
+/** Preserve issued query strings and signatures without URL normalization. */
+export function outboundRedirect(href: string) {
+  return new Response(null, {
+    status: 302,
+    headers: { Location: href, 'Cache-Control': 'private, no-store' },
+  })
+}

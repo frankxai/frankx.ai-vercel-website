@@ -1,7 +1,7 @@
 import { after, NextRequest, NextResponse } from 'next/server'
 import programs from '@/data/affiliate/programs.json'
 import { getOutboundLink } from '@/data/outbound-links'
-import { resolveGoDestination } from '@/lib/tools/go-destination'
+import { outboundRedirect, resolveGoDestination } from '@/lib/tools/go-destination'
 import { recordHop, type HopDevice } from '@/lib/tools/hop-log'
 import { recordsFromPrograms } from '@/lib/tools/record'
 
@@ -62,5 +62,5 @@ export async function GET(
     after(() => recordHop(event))
   }
 
-  return NextResponse.redirect(decision.href, 302)
+  return outboundRedirect(decision.href)
 }
