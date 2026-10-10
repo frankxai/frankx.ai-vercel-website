@@ -80,7 +80,7 @@ export function PricingTable({ products }: { products: Product[] }) {
 
             <Link
               href={p.tier === 'founders' ? '/founders-circle' : `/build/${p.slug}`}
-              className={`inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-lg text-sm font-medium transition-colors border ${
+              className={`inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-full text-sm font-medium transition-colors border ${
                 isFeatured
                   ? 'bg-cyan-500/15 hover:bg-cyan-500/25 border-cyan-500/30 text-cyan-300'
                   : 'bg-white/[0.04] hover:bg-white/[0.08] border-white/[0.08] text-zinc-200'

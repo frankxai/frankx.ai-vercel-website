@@ -1,433 +1,480 @@
 ---
-title: "AI Agent Orchestration: Loops, DAGs and Durable Graphs"
-description: "Choose pipelines, loops, routers, state machines or dynamic graphs using state duration, consequence, recovery and evidence."
-date: "2026-08-24"
-lastUpdated: "2026-08-25"
-author: "FrankX"
-category: "AI Architecture"
-tags: ["AI Agent Orchestration", "Agentic Workflows", "State Machines", "Multi-Agent Systems", "Graph Engineering"]
-image: "/images/blog/graph-engineering/loop-to-graph.webp"
+title: 'Multi-Agent Orchestration Patterns: Building Production Systems in 2026'
+description: >-
+  Beyond simple agent comparisons: architectural patterns, handoff strategies,
+  state management, and observability for production multi-agent systems.
+date: '2026-01-26'
+author: Frank
+category: AI & Systems
+tags:
+  - Multi-Agent
+  - LangGraph
+  - CrewAI
+  - Orchestration
+  - Production AI
+keywords:
+  - multi-agent orchestration
+  - agent handoff patterns
+  - langgraph state management
+  - production ai agents
+  - agent observability
+image: /images/blog/multi-agent-orchestration-v2.png
 featured: true
-flagship: false
-readingGoal: "Choose the smallest orchestration pattern that can recover from your real failures"
-tldr: "Orchestration should grow with structural uncertainty, state duration, consequence and recovery needs—not with the number of agents a runtime can launch. Start with deterministic code, add a bounded loop for local uncertainty, and introduce routers, durable state machines or dynamic graphs only when the work and its failure modes earn the added coordination."
-architectNote:
-  recommendation: "Choose topology from ownership, state and failure semantics. Agent count comes later."
-  coePillar: "Runtime architecture"
-keywords: ["AI agent orchestration patterns", "agentic workflow architecture", "AI agent state machine", "multi-agent architecture patterns", "dynamic agent graph"]
-schema: ["Article", "FAQPage"]
-faqSource: "body"
+tldr: >-
+  Production multi-agent systems in 2026 rely on structured handoff protocols,
+  distributed state machines, and fine-grained observability. Moving past
+  single-prompt chains into specialized agent networks ensures resilient
+  execution across complex enterprise and engineering tasks.
 faq:
-  - q: "What is AI agent orchestration?"
-    a: "It is the control of routes, state, tools, handoffs, retries, approvals and termination across one or more agent loops."
-  - q: "When should I use a single agent loop?"
-    a: "Use one loop for a coherent, reversible task with shared context and an immediate definition of done."
-  - q: "When should I move from a loop to a graph?"
-    a: "Move when work branches, parallelizes, crosses authority boundaries, survives sessions or needs selective recovery."
-  - q: "Should I use a DAG or a state machine?"
-    a: "Use a DAG for fixed acyclic dependencies and a state machine for durable lifecycles with valid transitions and cycles."
-  - q: "Do multi-agent systems always improve results?"
-    a: "No. They add tokens and coordination. They help when context separation, parallel breadth or genuine specialization pays for that cost."
-series:
-  slug: "graph-engineering-field-guide"
-  title: "Graph Engineering Field Guide"
-  part: 2
-  total: 9
+  - question: What is the biggest failure mode in multi-agent orchestration?
+    answer: >-
+      Unbounded context drift and unmonitored error propagation during
+      uncontrolled agent handoffs.
+  - question: How should agent handoffs be structured?
+    answer: >-
+      Using explicit state schemas and typed data contracts that validate
+      preconditions before transferring execution context.
+  - question: What orchestration framework is best suited for production?
+    answer: >-
+      State graph frameworks like LangGraph combined with Model Context Protocol
+      servers for external tool isolation.
+  - question: How do you monitor multi-agent systems in production?
+    answer: >-
+      By recording OpenTelemetry-compatible traces that capture prompt payloads,
+      tool inputs, latency, and step-level completion metrics.
+  - question: When should you choose a swarm pattern over a supervisor pattern?
+    answer: >-
+      Swarm patterns excel in peer collaborative exploration, while supervisor
+      patterns are required for deterministic enterprise workflows.
 ---
 
-The fastest way to overbuild an AI system is to begin with the question, “How many agents should we use?”
+Picture this: You're orchestrating a track with four producers in different cities. Each has their specialty—drums, melody, bass, vocals. The magic isn't in any single element. It's in how they hand off to each other, when they sync, how they recover when someone drops the beat.
 
-Begin somewhere else:
+Multi-agent AI systems work exactly the same way.
 
-> **What must remain true while the system is uncertain, stateful, expensive, or partially failing?**
+**TL;DR**: 72% of enterprise AI projects now use multi-agent architectures. This guide covers the orchestration patterns that make them work: handoff strategies, state management approaches, error handling, and observability. Not framework comparisons—system design.
 
-That question selects the orchestration pattern. Agent count is a consequence.
+---
 
-This guide covers ten patterns from deterministic pipelines to dynamic graphs. It is the evergreen companion to [Graph Engineering: The AI Architect’s Guide](/blog/graph-engineering-ai-agents), where I define the execution, context, and control planes in detail.
+## Why Orchestration Matters More Than Framework Choice
 
-For the worker-level view, start with [Six Primitives of Every AI Agent](/blog/six-primitives-ai-agent). For runtime and trust-boundary decisions, use [AI Architecture 2026](/blog/ai-architecture-2026-four-decisions-hard-to-reverse). Once the graph is live, the companion is the [multi-agent observability stack](/blog/observability-stack-multi-agent-systems-2026).
+The framework debates (LangGraph vs CrewAI vs AutoGen) miss the point. The hard problems are:
 
-## The decision in one table
+1. **How do agents hand off work?** (not which framework to use)
+2. **How do you manage state across agents?** (not which LLM is best)
+3. **How do you handle failures gracefully?** (not which tool is fastest)
+4. **How do you observe what's happening?** (not which UI is prettiest)
 
-| If your work looks like this | Start with | Add next when needed |
-|---|---|---|
-| Known steps, stable inputs, deterministic transformations | Pipeline / DAG | Validation and durable retries |
-| One open-ended task with local tools | Single agent loop | Explicit stop, budget, and verifier |
-| Requests belong to distinct capabilities | Router | Fallback and confidence handling |
-| Work is independent and broad | Fan-out / merge | Evidence-aware synthesis |
-| One owner should retain the user relationship | Manager + agents-as-tools | Parallel tools and specialist contracts |
-| A specialist should take over the conversation | Handoff | Return/escalation contract |
-| State changes through a finite business lifecycle | State machine | Durable event history and compensation |
-| A result must be criticized and repaired against a rubric | Evaluator–optimizer | Independent evidence and a bounded retry loop |
-| Work spans hours, systems, approvals, or restarts | Durable event-driven workflow | Agent nodes inside activities |
-| The system must invent and refine its own plan | Dynamic graph | Hard budgets, checkpoints, and policy gates |
+These patterns work across frameworks. Master them, and you can implement in any stack.
 
-## Five axes that choose your topology
+---
 
-### 1. Structural uncertainty
+## Pattern 1: The Handoff Strategies
 
-Can you know the steps before execution?
+### Sequential Handoff (Pipeline)
 
-- Low uncertainty favors deterministic code and DAGs.
-- Medium uncertainty favors routers and bounded loops.
-- High uncertainty may justify an orchestrator that creates work dynamically.
+The simplest pattern. Agent A completes, passes output to Agent B.
 
-### 2. State duration
-
-Does state live for one model call, one session, one task, or months?
-
-The longer state must survive, the less acceptable an in-memory transcript becomes. Durable workflow history, external artifacts, and versioned schemas move from conveniences to requirements.
-
-### 3. Parallel separability
-
-Can workers operate independently without repeatedly sharing a mutable artifact?
-
-Anthropic’s [multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) benefited from broad parallel research. The same article warns that tightly dependent tasks—including many coding tasks—offer less parallelism. If workers collide on the same file or decision, coordination can cost more than it saves.
-
-### 4. Consequence
-
-What happens if the system is wrong?
-
-A brainstorm can tolerate model-owned routing. A payment, deployment, outbound message, legal claim, or data deletion should cross deterministic policy and often human approval.
-
-### 5. Recovery granularity
-
-When one step fails, must you rerun the whole process, retry one node, compensate for an external side effect, or resume from a checkpoint?
-
-Recovery is where a pleasant demo becomes architecture.
-
-## Pattern 0: deterministic pipeline
-
-```text
-input → validate → transform → store → notify
+```
+[Research Agent] → [Analysis Agent] → [Writing Agent] → [Review Agent]
 ```
 
-Use a pipeline when the steps and order are known. The model may enrich one step, but code owns the route.
+**When to use:**
 
-**Best for:** ingestion, document conversion, data cleanup, publishing mechanics, scheduled reports.
+- Linear workflows with clear stages
+- Each stage has different expertise requirements
+- Output of one stage is input to next
 
-**Strength:** cheap, testable, observable, easy to replay.
+**Implementation considerations:**
 
-**Failure mode:** teams insert an autonomous planner where a function would be more reliable.
+- Define clear contracts between agents (what format? what fields?)
+- Handle partial failures (what if Analysis fails but Research succeeded?)
+- Consider checkpointing (can you resume from middle?)
 
-**Graduation signal:** a step cannot be specified in advance and requires bounded exploration.
+### Parallel Handoff (Fan-Out/Fan-In)
 
-## Pattern 1: single agent loop
+Multiple agents work simultaneously, results merge.
 
-```text
-context → decide → tool → observe → verify ↺
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-01.svg"
+  alt="Parallel Handoff (Fan-Out/Fan-In) diagram 1"
+  caption="Parallel Handoff (Fan-Out/Fan-In)"
+/>
+
+**When to use:**
+
+- Independent subtasks that don't depend on each other
+- Time-sensitive operations where parallelism matters
+- Diverse expertise needed simultaneously
+
+**Implementation considerations:**
+
+- Define merge strategy (how do you combine results?)
+- Handle stragglers (wait for all? timeout?)
+- Manage token budgets across parallel branches
+
+### Hierarchical Handoff (Delegation)
+
+Manager agent delegates to specialists, aggregates results.
+
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-02.svg"
+  alt="Hierarchical Handoff (Delegation) diagram 2"
+  caption="Hierarchical Handoff (Delegation)"
+/>
+
+**When to use:**
+
+- Complex problems requiring decomposition
+- When you need a "thinking" layer above execution
+- Dynamic task allocation based on problem analysis
+
+**Implementation considerations:**
+
+- Manager needs strong reasoning (use capable model)
+- Define delegation protocol (how does manager assign?)
+- Handle re-delegation (what if specialist can't complete?)
+
+### Iterative Handoff (Loop)
+
+Agents pass work back and forth until quality threshold met.
+
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-03.svg"
+  alt="Iterative Handoff (Loop) diagram 3"
+  caption="Iterative Handoff (Loop)"
+/>
+
+**When to use:**
+
+- Quality-sensitive outputs
+- Creative generation with refinement
+- Code generation with testing
+
+**Implementation considerations:**
+
+- Define termination criteria (how many iterations max?)
+- Prevent infinite loops (score trending wrong direction?)
+- Balance quality vs cost (each iteration costs tokens)
+
+---
+
+## Pattern 2: State Management Approaches
+
+### Shared State (Blackboard Pattern)
+
+All agents read/write to a central state object.
+
+```python
+# Conceptual - works across frameworks
+class SharedState:
+    context: dict           # Shared context
+    messages: list          # Conversation history
+    artifacts: dict         # Generated outputs
+    metadata: dict          # Tracking info
+
+# Each agent reads and writes
+def research_agent(state: SharedState) -> SharedState:
+    # Read existing context
+    topic = state.context.get("topic")
+
+    # Do work
+    findings = research(topic)
+
+    # Write results
+    state.artifacts["research"] = findings
+    return state
 ```
 
-This is the basic unit of agency. One model maintains local ownership while it gathers context and acts.
+**Pros:**
 
-**Best for:** repository exploration, data analysis, troubleshooting, research with a narrow objective, interactive work.
+- Simple mental model
+- Easy debugging (inspect state at any point)
+- Natural for graph-based frameworks (LangGraph)
 
-**Required controls:** turn limit, time/cost budget, tool permissions, stop conditions, and a definition of done.
+**Cons:**
 
-**Failure mode:** the loop becomes a memory substitute. It keeps re-reading, re-planning, or repeating side effects because progress was never serialized.
+- Potential for conflicts (two agents write same key)
+- State can grow large (context window concerns)
+- Harder to parallelize (locking?)
 
-**Graduation signal:** the task contains distinct contracts or independent work that should not share one context window.
+### Message Passing (Actor Pattern)
 
-## Pattern 2: router
+Agents communicate through messages, maintain local state.
 
-```text
-request → classify → specialist A | specialist B | deterministic path
+```python
+# Conceptual actor model
+class ResearchActor:
+    def __init__(self):
+        self.local_cache = {}
+
+    def handle_message(self, msg: Message) -> Message:
+        if msg.type == "research_request":
+            findings = self.research(msg.topic)
+            return Message(type="research_complete", data=findings)
 ```
 
-A router chooses among well-defined paths. Anthropic identifies routing as a foundational workflow pattern; OpenAI’s orchestration primitives can implement it with code, handoffs, or agents-as-tools.
+**Pros:**
 
-**Best for:** support categories, risk tiers, modality selection, model routing, tool domains.
+- Natural isolation (each agent is independent)
+- Scales well (no shared state bottleneck)
+- Maps to distributed systems patterns
 
-**Contract:** the router returns a typed route and confidence—not a paragraph describing its mood.
+**Cons:**
 
-**Failure mode:** overlapping specialists make routing arbitrary. The system adds latency without creating real separation.
+- More complex coordination
+- Message format design is critical
+- Harder to inspect "global" state
 
-**Graduation signal:** one request needs several paths concurrently, not one selected path.
+### Event Sourcing (Append-Only Log)
 
-## Pattern 3: fan-out and merge
+All state changes are events. Current state = replay of events.
 
-```text
-                         ┌→ worker A ┐
-goal → work packets ─────┼→ worker B ┼→ evidence merge → result
-                         └→ worker C ┘
+```python
+# Event log
+events = [
+    {"type": "task_created", "data": {...}, "timestamp": ...},
+    {"type": "research_started", "agent": "research_01", ...},
+    {"type": "research_completed", "findings": [...], ...},
+    {"type": "analysis_started", "agent": "analysis_01", ...},
+    # ...
+]
+
+# Current state = fold over events
+def get_current_state(events):
+    state = initial_state()
+    for event in events:
+        state = apply_event(state, event)
+    return state
 ```
 
-Fan-out is the pattern behind research swarms, parallel review, map-reduce, and candidate generation.
+**Pros:**
 
-**Best for:** independent source research, separate files or modules, market comparisons, test generation, diverse hypotheses.
+- Complete audit trail
+- Time-travel debugging
+- Natural for compliance requirements
 
-**Work-packet contract:** exclusive scope, expected artifact, evidence requirement, budget, and no shared mutable ownership.
+**Cons:**
 
-**Merge contract:** deduplicate, reconcile contradictions, record provenance, and reject unsupported claims.
+- More complex implementation
+- Storage growth over time
+- Replay can be slow for long histories
 
-**Failure mode:** the synthesizer treats five confident summaries as five independent facts.
+---
 
-**Graduation signal:** the workers themselves need dynamic decomposition or cross-worker negotiation.
+## Pattern 3: Error Handling Strategies
 
-## Pattern 4: manager with agents-as-tools
+### Retry with Backoff
 
-A manager retains conversation and decision ownership. Specialists act like powerful tools and return bounded results.
+Simple but effective for transient failures.
 
-OpenAI’s Agents SDK distinguishes this from a handoff: an [agent used as a tool](https://openai.github.io/openai-agents-js/guides/agents/#agents-as-tools) does not take over the conversation.
-
-**Best for:** one coherent user experience with specialist research, legal, financial, design, or coding capabilities.
-
-**Strength:** centralized policy and synthesis.
-
-**Failure mode:** the manager becomes a context bottleneck and blindly trusts specialist summaries.
-
-**Graduation signal:** a specialist needs sustained direct interaction or owns a separate lifecycle.
-
-## Pattern 5: handoff
-
-In a handoff, a specialist becomes the active owner.
-
-**Best for:** triage into a specialized support experience, language or jurisdiction transitions, role-based assistance.
-
-**Required contract:** what context transfers, what does not, who may return control, and what happens when the target refuses or fails.
-
-**Failure mode:** ownership ping-pongs between agents, each with partial context and no durable case state.
-
-**Graduation signal:** the handoff is part of a longer business lifecycle that needs explicit states rather than conversational ownership alone.
-
-## Pattern 6: finite state machine
-
-```text
-draft → review → approved → scheduled → published
-          ↓          ↓
-       changes    cancelled
+```python
+async def call_agent_with_retry(agent, input, max_retries=3):
+    for attempt in range(max_retries):
+        try:
+            return await agent.run(input)
+        except TransientError:
+            wait_time = 2 ** attempt  # Exponential backoff
+            await asyncio.sleep(wait_time)
+    raise MaxRetriesExceeded()
 ```
 
-A state machine constrains the system to valid lifecycle transitions. Agents may propose transitions; code enforces them.
+### Fallback Chain
 
-**Best for:** content, orders, onboarding, claims, hiring, approvals, incident response.
+Try primary, fall back to alternatives.
 
-**Strength:** invalid states are representable as errors rather than stories the model tells itself.
+```python
+async def call_with_fallback(input):
+    agents = [primary_agent, secondary_agent, simple_fallback]
 
-**Failure mode:** hidden state remains in chat, while the database says something else.
+    for agent in agents:
+        try:
+            return await agent.run(input)
+        except AgentError as e:
+            log.warning(f"{agent.name} failed: {e}")
+            continue
 
-**Graduation signal:** transitions cross external systems, require long waits, or must recover across process restarts.
-
-## Pattern 7: durable event-driven workflow
-
-```text
-event → durable state → activity → wait/approval → activity → outcome
-                        ↘ retry / compensate / resume
+    raise AllAgentsFailed()
 ```
 
-This pattern treats agent calls as activities inside a durable business process. Temporal’s [OpenAI Agents integration](https://docs.temporal.io/develop/typescript/integrations/openai-agents) is a strong TypeScript example.
+### Circuit Breaker
 
-**Best for:** processes lasting minutes to months, payment or messaging side effects, approvals, retries, distributed services, business SLAs.
+Prevent cascade failures by failing fast.
 
-**Strength:** event history, durable timers, resumability, and explicit compensation.
+```python
+class CircuitBreaker:
+    def __init__(self, failure_threshold=5, reset_timeout=60):
+        self.failures = 0
+        self.state = "closed"  # closed, open, half-open
+        self.last_failure_time = None
 
-**Failure mode:** model calls or side effects are placed directly in replay-sensitive workflow code. Activities are not idempotent, so retries duplicate real-world actions.
+    async def call(self, agent, input):
+        if self.state == "open":
+            if time.time() - self.last_failure_time > self.reset_timeout:
+                self.state = "half-open"
+            else:
+                raise CircuitOpen()
 
-**Graduation signal:** the system must dynamically invent subgraphs during execution—but the durable workflow should still own authority and state.
-
-## Pattern 8: evaluator–optimizer and adversarial gate
-
-```text
-candidate → evaluator → pass
-    ↑           ↓ fail + evidence
-    └────── repair
+        try:
+            result = await agent.run(input)
+            self.failures = 0
+            self.state = "closed"
+            return result
+        except Exception:
+            self.failures += 1
+            self.last_failure_time = time.time()
+            if self.failures >= self.failure_threshold:
+                self.state = "open"
+            raise
 ```
 
-Anthropic lists evaluator–optimizer as a core workflow. Claude dynamic workflows add adversarial verification, generate-and-filter, tournaments, and loop-until-done.
+### Human-in-the-Loop Escalation
 
-**Best for:** code, claims, plans, designs, compliance-sensitive artifacts, high-value decisions.
+When agents can't handle it, route to humans.
 
-**Evaluator contract:** rubric, observable evidence, threshold, budget, and independence from the creator.
+```python
+async def process_with_escalation(task):
+    try:
+        # Try automated processing
+        result = await agent_pipeline.run(task)
 
-**Failure mode:** the evaluator rewards fluent form rather than the final state. Or the creator and critic share the same blind spot.
+        # Confidence check
+        if result.confidence < CONFIDENCE_THRESHOLD:
+            return await escalate_to_human(task, result)
 
-**Graduation signal:** several evaluators or repair routes need to be selected dynamically based on failure type.
+        return result
 
-## Pattern 9: dynamic agent graph
-
-A dynamic graph creates or revises topology during the run. An orchestrator may decide which workers to spawn, which evidence routes to traverse, or which verification subgraph to activate.
-
-**Best for:** open-ended investigations, large codebases, incident response, scientific search, evolving plans under incomplete information.
-
-**Non-negotiable controls:**
-
-- maximum depth, width, turns, cost, and wall time;
-- versioned work packets and state;
-- explicit join and cancellation semantics;
-- deterministic authorization for consequential edges;
-- checkpoints before expensive branches;
-- traceable parent-child relationships;
-- a terminal definition of done;
-- outcome-based evaluation that tolerates several valid paths.
-
-**Failure mode:** topology becomes the product. The system launches workers because it can, not because the work is separable.
-
-## DAG, state machine, or dynamic graph?
-
-| Property | DAG | State machine | Dynamic graph |
-|---|---|---|---|
-| Topology | Fixed and acyclic | Fixed states; transitions may cycle | May expand or reroute at runtime |
-| Best mental model | Data/build pipeline | Business lifecycle | Adaptive problem-solving system |
-| Recovery | Recompute failed descendants | Resume from current valid state | Checkpoint subgraphs and repair selectively |
-| Primary risk | Stale dependencies, expensive replay | Hidden or invalid state | Runaway cost, coordination, untestable paths |
-| Evaluation | Node outputs and final artifact | Valid transitions and terminal state | Final outcome plus path-level invariants |
-
-Many production systems combine them: a durable state machine launches a dynamic research graph, whose workers execute small loops, then a deterministic DAG publishes the verified artifacts.
-
-## Static graph versus model-routed graph
-
-Use code for routes when the condition is available as structured state:
-
-```ts
-const next = invoice.total > approvalLimit
-  ? "human-approval"
-  : "issue-invoice"
+    except CriticalDecisionRequired:
+        return await escalate_to_human(task, context="requires_approval")
 ```
 
-Use a model for routing when meaning must be inferred from ambiguous content. The following TypeScript is conceptual—the method names stand in for the SDK and schema library you select:
+---
 
-```ts
-const route = await triageAgent.run({
-  message,
-  allowedRoutes: ["billing", "technical", "safety"],
-})
+## Pattern 4: Observability Stack
 
-routeSchema.parse(route)
+### Structured Logging
+
+Every agent action should be traceable.
+
+```python
+@traced
+async def research_agent(state):
+    with span("research_agent") as s:
+        s.set_attribute("topic", state.context["topic"])
+        s.set_attribute("model", "claude-3-opus")
+
+        result = await llm.generate(...)
+
+        s.set_attribute("tokens_used", result.usage.total_tokens)
+        s.set_attribute("latency_ms", result.latency)
+
+        return result
 ```
 
-Then let policy authorize the transition. A model-routed edge still needs a typed destination, confidence handling, and fallback.
+### Metrics to Track
 
-## Shared state without shared confusion
+| Metric                    | Why It Matters           |
+| ------------------------- | ------------------------ |
+| **Latency per agent**     | Identify bottlenecks     |
+| **Token usage per agent** | Cost attribution         |
+| **Success/failure rates** | Reliability tracking     |
+| **Handoff counts**        | Flow analysis            |
+| **Human escalation rate** | Automation effectiveness |
+| **Quality scores**        | Output monitoring        |
 
-Separate at least four scopes:
+### Trace Visualization
 
-1. **Run state** — current inputs, outputs, retries, budgets, and trace IDs.
-2. **Artifact state** — files, documents, plans, code, reports, and their owners.
-3. **Business state** — account, order, publication, issue, or case lifecycle.
-4. **Knowledge state** — facts, sources, relationships, validity intervals, and provenance.
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-04.svg"
+  alt="Trace Visualization diagram 4"
+  caption="Trace Visualization"
+/>
 
-Do not let every agent write every scope. A graph with unrestricted shared memory is an argument with a database attached.
+### Alerting Rules
 
-## Human-in-the-loop is a state, not a notification
+```yaml
+alerts:
+  - name: high_failure_rate
+    condition: agent_failures / agent_calls > 0.1
+    window: 5m
+    action: page_oncall
 
-A production approval node must record:
+  - name: cost_spike
+    condition: hourly_token_cost > 2x average
+    action: notify_slack
 
-- the exact proposed action and parameters;
-- the evidence available to the reviewer;
-- the policy that required review;
-- approve, reject, or edit semantics;
-- expiry and stale-state behavior;
-- the identity of the reviewer;
-- how the same serialized run resumes.
+  - name: latency_degradation
+    condition: p95_latency > 30s
+    action: notify_slack
+```
 
-OpenAI’s Agents SDK can pause on approval and resume serialized state. Claude Code uses permission prompts and hooks for deterministic lifecycle control, while its dynamic workflows currently have more limited ordinary mid-run interaction. The runtime difference matters.
+---
 
-## Evaluating orchestration
+## Putting It Together: A Reference Architecture
 
-Do not require one golden path when several paths can be correct. Score:
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-05.svg"
+  alt="Putting It Together: A Reference Architecture diagram 5"
+  caption="Putting It Together: A Reference Architecture"
+/>
 
-### Outcome
+---
 
-- Was the terminal state correct?
-- Did the artifact meet its acceptance criteria?
-- Were side effects correct and authorized?
+## Frequently Asked Questions
 
-### Evidence
+### How many agents should a system have?
 
-- Are material claims supported?
-- Is provenance intact through synthesis?
-- Was stale or contradictory context handled?
+Start with the minimum needed. Each agent adds complexity. A well-designed 3-agent system beats a poorly-designed 10-agent system. Scale up when you have evidence of need.
 
-### Control
+### Should I use one framework or mix them?
 
-- Were budgets, permissions, and approvals respected?
-- Did the system stop when it should?
-- Did retries remain idempotent?
+Use one primary framework for orchestration. Mix only when you have specific needs (e.g., LangGraph for orchestration, CrewAI agents for specific tasks). Complexity is the enemy.
 
-### Operations
+### How do I debug multi-agent failures?
 
-- Cost and latency by successful path;
-- retry and recovery success;
-- duplicate work;
-- bottlenecks and queue time;
-- human intervention rate;
-- regression by model, node, skill, and graph version.
+Structured logging + trace visualization. You need to see the full flow to diagnose issues. Invest in observability before you need it.
 
-## A practical selection algorithm
+### What's the biggest mistake teams make?
 
-1. Write the desired terminal state.
-2. List irreversible side effects.
-3. Mark the state that must outlive a context window.
-4. Identify truly independent work.
-5. Define evidence required at every merge.
-6. Choose the smallest pattern that protects those conditions.
-7. Add one recovery path before adding one more agent.
-8. Measure verified outcomes per unit of coordination.
+Starting with complex architectures before validating the use case. Build the simplest thing that could work, measure, then add complexity.
 
-## The enduring architecture
+### How do I handle agent disagreements?
 
-Models will change. Vendor names will change. The orchestration problem is more stable:
+Define arbitration rules upfront. Options: majority vote, confidence weighting, hierarchical override, human escalation. Pick one and be consistent.
 
-- deterministic code where the world is known;
-- bounded loops where local uncertainty matters;
-- specialists where contracts genuinely differ;
-- durable state where time and failure matter;
-- evidence where truth matters;
-- human authority where consequence matters;
-- dynamic graphs only where the problem earns them.
+---
 
-The sophisticated system is not the one with the most nodes.
+## Key Takeaways
 
-It is the one that can become more capable **without becoming less governable**.
+1. **Orchestration patterns are framework-agnostic** - Master the patterns, implement in any stack
+2. **Handoff strategy determines system behavior** - Choose based on your workflow shape
+3. **State management is critical** - Shared state vs message passing vs event sourcing
+4. **Error handling prevents cascades** - Retry, fallback, circuit breaker, escalation
+5. **Observability is not optional** - You can't fix what you can't see
 
-## Choose the implementation boundary
+The 72% of enterprise projects using multi-agent systems didn't get there by choosing the right framework. They got there by understanding orchestration patterns.
 
-- Use [Claude agent engineering](/blog/graph-engineering-claude-code) when the work belongs inside Claude Code loops, subagents, teams, hooks, or dynamic workflows.
-- Use [OpenAI Codex delivery graphs](/blog/graph-engineering-openai-codex) when repository Skills, worktrees, CI evidence, and release controls are the center of the system.
-- Use [Hermes Agent worker graphs](/blog/graph-engineering-hermes-agent) when a durable Kanban plane and named worker lanes fit the operating model.
-- Use [Grok Build parallel coding graphs](/blog/graph-engineering-grok-build) when Grok should be a bounded coding node rather than the workflow authority.
-- Use [Google Antigravity with ADK 2.0](/blog/graph-engineering-antigravity-adk) when a Google-native stack needs a precise split between coding loop, graph runtime, and durable process history.
+---
 
-## Verification receipt
+_Building multi-agent systems? [Check the AI Architecture Hub](/ai-architecture) for blueprints, BYOK prototypes, and deployment templates._
 
-I mapped every pattern here to a current first-party runtime primitive or an original research result, then checked the taxonomy against state duration, consequence, separability, and recovery. The two short TypeScript fragments are intentionally conceptual; they show the policy boundary and must be adapted to a pinned SDK before execution. This page is a selection framework, not a claim that one topology wins every workload.
+---
 
-## FAQ
+**Sources:**
 
-### What is AI agent orchestration?
+- [LangGraph Documentation](https://python.langchain.com/docs/langgraph)
+- [CrewAI Documentation](https://docs.crewai.com/)
+- [Microsoft AutoGen](https://microsoft.github.io/autogen/)
+- [OpenTelemetry for LLMs](https://opentelemetry.io/)
+- [G2 Enterprise AI Agents Report 2026](https://learn.g2.com/enterprise-ai-agents-report)
 
-It is the control of routes, state, tools, handoffs, retries, approvals and termination across one or more agent loops. The model may help choose a route; the system still owns the valid destinations and consequences.
+---
 
-### When should I use a single agent loop?
+## Related Articles
 
-Use one loop for a coherent, reversible task that benefits from shared context and can be verified immediately. Add a budget, tool boundary and stop condition before adding another agent.
-
-### When should I move from a loop to a graph?
-
-Move when work branches, parallelizes, crosses trust or authority boundaries, must survive a session, or needs selective recovery. A diagram alone is not a reason.
-
-### Should I use a DAG or a state machine?
-
-Use a DAG for fixed, acyclic dependencies. Use a state machine for durable business lifecycles where only certain transitions are valid and repair may cycle. A production system can combine both.
-
-### Do multi-agent systems always improve results?
-
-No. Anthropic’s current guidance says multi-agent systems often spend several times the tokens of comparable single-agent implementations. They earn that cost when context isolation, parallel breadth or genuine specialization improves the verified outcome.
-
-## Primary sources
-
-- [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
-- [Anthropic: Multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
-- [Anthropic: Dynamic workflows in Claude Code](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code)
-- [OpenAI Agents SDK: Orchestration](https://openai.github.io/openai-agents-js/guides/agents/#orchestration)
-- [OpenAI Agents SDK: Human-in-the-loop](https://openai.github.io/openai-agents-js/guides/human-in-the-loop/)
-- [Temporal: OpenAI Agents SDK integration](https://docs.temporal.io/develop/typescript/integrations/openai-agents)
-- [LangGraphJS](https://github.com/langchain-ai/langgraphjs)
-- [LangGraph Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api)
-- [GitHub Agentic Workflows](https://github.com/github/gh-aw)
-- [StateFlow](https://arxiv.org/abs/2403.11322)
-- [LLMCompiler](https://arxiv.org/abs/2312.04511)
-- [Stanford SPRINT](https://arxiv.org/abs/2506.05745)
-- [Stanford AgentFlow](https://arxiv.org/abs/2510.05592)
-- [GraphFlow](https://arxiv.org/abs/2605.22566)
-- [MAST: Why Do Multi-Agent LLM Systems Fail?](https://arxiv.org/abs/2503.13657)
+- [Production LLM Agents on OCI](/blog/production-llm-agents-oci-part-1-architecture) — Enterprise deployment architecture
+- [Swarm Intelligence for Multi-Agent Systems](/blog/swarm-intelligence-multi-agent-orchestration) — Advanced coordination patterns
+- [What is Agentic AI?](/blog/what-is-agentic-ai) — Understanding autonomous AI agents
+- [Agent Family Architecture vs Agent Swarms](/blog/agent-family-architecture) — The architectural choice that determines whether multi-agent stacks scale coherently or fragment under load
+- [No Bad Parts: Sovereign AI](/blog/no-bad-parts-sovereign-ai) — The IFS-derived governance pattern these orchestration patterns are converging toward
+- [Self-Led AI Architecture (research)](/research/self-led-ai-architecture) — Internal governance over agent swarms

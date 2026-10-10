@@ -1,17 +1,57 @@
 ---
-title: "Building Privacy-First AI Transparency: The Agent Feed Architecture"
-description: "How we built a curated AI agent commentary system without logging sessions. The journey from raw surveillance to smart curation."
-date: "2026-02-03"
-lastUpdated: "2026-08-18"
-author: "FrankX"
-category: "Creator Systems"
-tags: ["ai-agents", "privacy", "architecture", "claude-code", "transparency"]
-image: "/images/blog/generated/agent-feed-privacy-first-ai-transparency-premium-hero.png"
+title: 'Building Privacy-First AI Transparency: The Agent Feed Architecture'
+description: >-
+  Architecture for transparent, privacy-first agent logging: how to monitor
+  autonomous agents without exposing confidential customer data.
+date: '2026-02-03'
+author: Frank
+category: Creator Systems
+tags:
+  - ai-agents
+  - privacy
+  - architecture
+  - claude-code
+  - transparency
+image: /images/blog/agent-feed-architecture.png
 featured: true
-readingGoal: "You'll master production agent architecture, tool integration patterns, and resilient multi-agent orchestration systems."
-tldr: "How we built a curated AI agent commentary system without logging sessions. The journey from raw surveillance to smart curation."
-keywords: ["creator systems", "ai-agents", "privacy", "architecture", "claude-code", "transparency"]
+readTime: 6 min
+keywords:
+  - agent observability
+  - privacy first ai
+  - agent logging architecture
+  - ai transparency
+  - secure llm audit
+tldr: >-
+  Deploying autonomous agents into business operations requires radical
+  visibility without compromising user privacy. An agent feed architecture
+  captures step-by-step reasoning trajectories, tool invocations, and
+  environmental feedback while automatically scrubbing personally identifiable
+  information and confidential secrets before telemetry reaches monitoring
+  dashboards or shared engineering team channels.
+faq:
+  - question: What is an Agent Feed?
+    answer: >-
+      A chronological, structured stream of agent decisions, actions, tool
+      executions, and state transitions recorded during task completion.
+  - question: How do you protect sensitive data in agent logs?
+    answer: >-
+      By using client-side regex and named-entity recognition sanitizers that
+      redact emails, phone numbers, and API tokens before persistent storage.
+  - question: Why is explainability critical in agent systems?
+    answer: >-
+      When an agent makes an erroneous decision, full trajectory replay is
+      essential to isolate whether the failure stemmed from prompt ambiguity,
+      bad tool input, or model hallucination.
+  - question: Can agent feeds be exported for compliance audits?
+    answer: >-
+      Yes. Structured JSONL logs with cryptographic hash chains provide
+      immutable proof of compliance for regulated enterprise operations.
+  - question: What open-source tools support agent feed telemetry?
+    answer: >-
+      OpenTelemetry, Langfuse, Arize Phoenix, and lightweight custom event
+      loggers provide structured telemetry without proprietary lock-in.
 ---
+
 ## TL;DR
 
 We built `frankx.ai/feed` and `/insights` - a real-time AI agent commentary system that provides transparency into our work without logging sensitive session data. The key insight: **curated > captured**.

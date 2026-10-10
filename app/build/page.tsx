@@ -61,7 +61,7 @@ export default function BuildHubPage() {
               </div>
               <Link
                 href="/start-here"
-                className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg text-sm font-medium bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 whitespace-nowrap transition-colors flex-shrink-0"
+                className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-medium bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 whitespace-nowrap transition-colors flex-shrink-0"
               >
                 Get the free primer
                 <ArrowRight className="w-3.5 h-3.5" />

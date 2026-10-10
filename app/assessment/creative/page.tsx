@@ -33,7 +33,7 @@ const questions = [
     question: 'Which AI creative tools do you currently use?',
     options: [
       { value: 'none', label: 'No AI creative tools currently', score: 1 },
-      { value: 'basic', label: 'Basic tools like Canva AI or ChatGPT', score: 2 },
+      { value: 'basic', label: 'Entry-level AI tools or basic chatbots', score: 2 },
       { value: 'specialized', label: 'Specialized tools like Midjourney, Runway', score: 3 },
       { value: 'comprehensive', label: 'Comprehensive AI creative suite', score: 4 }
     ]
@@ -183,22 +183,22 @@ export default function CreativeAIAssessmentPage() {
             </section>
 
             {/* Next Steps */}
-            <section className="text-center space-y-8 py-16 px-8 rounded-3xl border border-white/10 bg-gradient-to-br from-purple-500/5 via-slate-900 to-slate-950">
-              <h2 className="text-3xl font-bold text-white">Ready to Transform Your Creative Process?</h2>
-              <p className="text-xl text-white/70 max-w-2xl mx-auto">
-                Take the next step in your creative AI journey with our specialized tools and guidance.
+            <section className="text-center space-y-8 py-16 px-8 rounded-3xl border border-white/10 bg-gradient-to-br from-purple-500/5 via-[#111113] to-[#0a0a0b]">
+              <h2 className="text-3xl font-bold text-white tracking-tight">Move From Prompt Dabbler to Creative Engineer</h2>
+              <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+                Build repeatable pipelines for music, visuals, and long-form writing that compound your output without diluting your taste.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/products/creation-chronicles"
-                  className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all duration-300 hover:-translate-y-1"
+                  className="inline-flex items-center justify-center rounded-full px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-semibold text-base shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all duration-300 hover:-translate-y-0.5"
                 >
                   Explore Creation Chronicles
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link
                   href="/products/vibe-os"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10"
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-base transition-all duration-300 hover:bg-white/10"
                 >
                   Try Vibe OS
                 </Link>
@@ -214,7 +214,7 @@ export default function CreativeAIAssessmentPage() {
   const selectedAnswer = answers[currentQ.id]
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
 <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-4xl space-y-12">
           {/* Header */}

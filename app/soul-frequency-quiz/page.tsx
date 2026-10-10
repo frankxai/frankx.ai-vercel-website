@@ -301,7 +301,7 @@ export default function SoulFrequencyQuiz() {
   const ResultIcon = result?.icon ?? Heart
 
   return (
-    <div className="min-h-screen bg-midnight-950 text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
 <div className="relative overflow-hidden">
         <div className={clsx('absolute inset-0 opacity-85', gradientPresets.heroBase)} />
         <div className={clsx('absolute inset-0 opacity-60 blur-3xl', gradientPresets.heroAurora)} />
@@ -402,7 +402,7 @@ export default function SoulFrequencyQuiz() {
                       onClick={nextQuestion}
                       disabled={!selectedType}
                       className={clsx(
-                        'inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70',
+                        'inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70',
                         gradientPresets.buttonAurora,
                         selectedType
                           ? 'hover:-translate-y-0.5 shadow-[0_14px_32px_rgba(12,27,68,0.35)]'
@@ -491,7 +491,7 @@ export default function SoulFrequencyQuiz() {
                         <button
                           type="submit"
                           className={clsx(
-                            'inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold text-white transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70',
+                            'inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70',
                             gradientPresets.buttonAurora
                           )}
                         >

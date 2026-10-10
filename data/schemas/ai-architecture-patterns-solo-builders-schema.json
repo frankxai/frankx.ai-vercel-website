@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "AI Architecture Patterns for Solo Builders",
+      "description": "The system design decisions that matter when one person builds what teams used to require — from monolith to agents.",
+      "url": "https://frankx.ai/blog/ai-architecture-patterns-solo-builders",
+      "datePublished": "2026-03-21",
+      "dateModified": "2026-03-21",
+      "author": {
+        "@type": "Person",
+        "name": "FrankX",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/ai-architecture-patterns-solo-builders"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/creators-life-architecture-guide-hero-v2.png"
+      },
+      "keywords": "ai architecture solo developer, solo builder ai systems, one person ai company, ai architecture patterns, solo founder ai stack",
+      "abstract": "Solo technical builders can compete with enterprise engineering teams by adopting decoupled, agent-driven architectures. By leveraging headless frameworks, automated CI/CD gates, and persistent AI orchestrators, solo builders achieve extraordinary velocity with minimal overhead."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the most effective architecture for solo builders?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A modular Next.js application backed by static markdown content, serverless edge functions, and automated testing pipelines."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can solo builders manage DevOps without a team?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By using managed platforms like Vercel and Railway alongside automated git hooks and pull request quality gates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What role do AI agents play in solo development?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agents act as junior engineers, researching APIs, writing unit tests, refactoring modules, and drafting technical documentation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you keep operational costs low as a solo builder?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use free and pay-per-use developer tiers, avoid dedicated idle servers, and optimize prompt token consumption with caching."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the biggest trap for solo AI developers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Over-engineering complex multi-agent swarms before validating core product utility and user demand."
+          }
+        }
+      ]
+    }
+  ]
+}

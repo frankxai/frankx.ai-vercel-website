@@ -1,0 +1,80 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "AWS Bedrock AgentCore Architecture: Production Patterns for Enterprise AI Agents",
+      "description": "A comprehensive guide to building production-ready AI agents on AWS using Bedrock, AgentCore, and the Strands framework. Learn the architectural patterns, security controls, and operational best practices that power enterprise agent deployments.",
+      "url": "https://frankx.ai/blog/production-agent-patterns-aws-bedrock",
+      "datePublished": "2026-01-21",
+      "dateModified": "2026-01-21",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/production-agent-patterns-aws-bedrock"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/aws-bedrock-agents.png"
+      },
+      "abstract": "AWS Bedrock provides an enterprise foundation for AI agents through Bedrock Agents, AgentCore runtime, and the open-source Strands framework. Deep IAM integration, automated guardrails, and persistent DynamoDB memory enable production workloads with strict compliance."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are the three agent tiers in AWS Bedrock?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bedrock Agents for managed workflows, AgentCore for framework-agnostic execution, and Strands for multi-agent orchestration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does AWS Bedrock enforce security?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Through native AWS IAM roles, VPC private endpoints, and automated Guardrails that filter harmful inputs and data leaks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is agent memory managed on AWS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bedrock utilizes managed session storage backed by DynamoDB, preserving conversation history and user preferences across sessions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the latency impact of Bedrock Guardrails?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Guardrails typically add 100 to 200 milliseconds per request, with options for asynchronous evaluation in high-speed pipelines."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Bedrock agents call third-party APIs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, via OpenAPI schema action groups that invoke AWS Lambda functions to communicate securely with external services."
+          }
+        }
+      ]
+    }
+  ]
+}
