@@ -1,7 +1,7 @@
 {
   "higgsfield-cinema-era-example": {
     "src": "https://cdn.sanity.io/files/s479xw3z/production/98376e892c8ae55d59daf65a051f7185f8071ff6.mp4",
-    "poster": "/images/guides/higgsfield/cinema-4-poster.webp",
+    "poster": "/images/guides/higgsfield/cinema-4-poster.jpg",
     "title": "Higgsfield Cinema Studio 4.0 example",
     "caption": "Vendor-published example from the Cinema Studio 4.0 announcement. Study shot changes and visual continuity; this is not a FrankX benchmark or a guarantee of your results.",
     "sourceUrl": "https://higgsfield.ai/blog/cinema-studio-4-0",
