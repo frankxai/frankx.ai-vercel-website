@@ -1,4 +1,4 @@
-import { programToRecord, sponsorDecision, type ProgramSource } from '../tools/record.ts'
+import { programToRecord, sponsorDecision, toolSlug, type ProgramSource } from '../tools/record.ts'
 
 export type ProgramDestination = ProgramSource & {
   hasProgram: boolean
@@ -13,7 +13,7 @@ export function httpsDestination(value?: string | null): string | undefined {
   } catch { return undefined }
 }
 
-/** Preserve partner-issued parameters byte for byte. Article IDs belong in analytics. */
+/** Hop-enabled programs recheck freshness on click, even from cached articles. */
 export function resolveProgramDestination(
   id: string,
   programs: readonly ProgramDestination[],
@@ -25,6 +25,7 @@ export function resolveProgramDestination(
     .some(name => names.includes(name.toLowerCase())))
   if (program) {
     const decision = sponsorDecision(programToRecord(program), now)
+    if (program.useHop) return { href: `/go/${toolSlug(program.tool)}`, sponsored: decision.sponsored }
     if (decision.sponsored && decision.href) return { href: decision.href, sponsored: true }
   }
   const href = httpsDestination(fallback?.url)

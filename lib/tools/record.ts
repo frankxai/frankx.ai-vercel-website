@@ -50,6 +50,7 @@ export type ProgramSource = {
   hasProgram?: boolean
   status?: string
   ourLink?: string | null
+  useHop?: boolean
   signupUrl?: string
   evidence?: string
   verifiedOn?: string
