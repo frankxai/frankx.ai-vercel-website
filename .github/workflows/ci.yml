@@ -102,6 +102,16 @@ jobs:
         run: pnpm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+      # The homepage contracts assert the server-rendered document for /, so they
+      # need this build. merge-gate.yml runs test:homepage-release without one,
+      # where the rendered tests skip; here HOMEPAGE_RENDERED_REQUIRED turns a
+      # missing build into a failure instead of a silent skip.
+      - name: Homepage rendered contract
+        run: |
+          pnpm run test:homepage-release
+          node --test scripts/tests/homepage-hero-320-cta.test.mjs scripts/tests/homepage-honest-proof-copy.test.mjs scripts/tests/homepage-music-lab-copy.test.mjs
+        env:
+          HOMEPAGE_RENDERED_REQUIRED: '1'
 
       - name: Request-time book chapters (no jsdom in the chapter function)
         run: pnpm run test:book-chapter:rendered
