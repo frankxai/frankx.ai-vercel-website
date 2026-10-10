@@ -1,15 +1,14 @@
 import Link from 'next/link'
-import { ArrowRight, ExternalLink } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
 import { CopyButton } from '@/components/prompt-library/CopyButton'
-import { VibeStatePicker } from '@/components/music/VibeStatePicker'
 
 const PAGE_URL = 'https://frankx.ai/music/templates'
 
 export const metadata = createMetadata({
-  title: 'Free Suno Prompt Templates — 9 Research-Backed States | FrankX',
+  title: 'Free Suno Prompt Templates — 9 Starting Points | FrankX',
   description:
-    'Nine free, copy-paste Suno style prompts from the Vibe OS state library. Each maps BPM, key, mode, and instrumentation to a target state — deep focus, workout, sleep, and more.',
+    'Nine free, copy-paste Suno style prompts with BPM, key, mode, and instrumentation for focus, workout, sleep, and more.',
   path: '/music/templates',
   keywords: [
     'suno prompt templates',
@@ -17,14 +16,13 @@ export const metadata = createMetadata({
     'suno style prompts',
     'ai music prompts',
     'focus music prompt',
-    'vibe os',
   ],
 })
 
 type StateTemplate = {
   id: string
   name: string
-  research: string
+  note: string
   prompt: string
 }
 
@@ -32,72 +30,63 @@ const templates: StateTemplate[] = [
   {
     id: 'deep-focus',
     name: 'Deep Focus',
-    research:
-      'Around 90 BPM in a major key with minimal percussion keeps arousal low and valence positive — background that leaves working memory alone.',
+    note: 'A restrained arrangement with soft piano, ambient pads, and minimal percussion.',
     prompt:
       'study music, 90 BPM, C Major, soft piano, ambient synth pads, minimal percussion, warm, calm and relaxed, no drums, no vocals',
   },
   {
     id: 'morning-energy',
     name: 'Morning Energy',
-    research:
-      'Tempo raises arousal; a bright major key keeps the mood positive. 115 BPM is enough lift without tipping into workout intensity.',
+    note: 'Acoustic guitar, light percussion, and piano at a steady mid-tempo pace.',
     prompt:
       'uplifting acoustic pop, 115 BPM, G Major, acoustic guitar, light percussion, piano, bright and uplifting, building momentum',
   },
   {
     id: 'workout',
     name: 'Workout',
-    research:
-      'Music reliably improves exercise output and motivation, and tempo drives the effect — 145 BPM sits in the high-arousal zone the research points to.',
+    note: 'Driving drums, bass, and synth leads for a high-energy electronic track.',
     prompt:
       'energetic electronic, 145 BPM, E Minor, driving bass, powerful drums, synth leads, powerful and driving, explosive energy',
   },
   {
     id: 'creative-flow',
     name: 'Creative Flow',
-    research:
-      'Moderate tempo and low-complexity ambient texture hold arousal mid-range without grabbing attention — the corridor where ideas connect.',
+    note: 'Warm synths and soft arpeggios with a light ambient texture.',
     prompt:
       'ambient electronic, 100 BPM, D Major, warm synths, soft arpeggios, light texture, warm and comforting, gently flowing',
   },
   {
     id: 'relaxation',
     name: 'Relaxation',
-    research:
-      'Slow tempo lowers arousal; the major key keeps it warm rather than melancholic. Soft timbre does the rest.',
+    note: 'A slow acoustic arrangement built from soft guitar, piano, and strings.',
     prompt:
       'calm acoustic, 70 BPM, F Major, soft guitar, gentle piano, strings, soft and gentle, calm and relaxed, no drums',
   },
   {
     id: 'meditation',
     name: 'Meditation',
-    research:
-      '60 BPM sits near resting heart rate, and a sparse texture supports a slow breathing pace — the standard slow-tempo protocol in relaxation studies.',
+    note: 'A sparse ambient arrangement with bowls, pads, and nature sounds.',
     prompt:
       'meditation ambient, 60 BPM, C Major, singing bowls, soft pads, nature sounds, soft and gentle, very peaceful, minimal, no drums, no bass',
   },
   {
     id: 'sleep',
     name: 'Sleep',
-    research:
-      'The gentlest arousal floor in the library: 50 BPM, no percussion, nothing that asks for attention on the way down.',
+    note: 'Soft piano and ambient pads without percussion or vocals.',
     prompt:
       'sleep music, 50 BPM, F Major, soft piano, ambient pads, very peaceful, minimal, extremely gentle, no percussion, no vocals',
   },
   {
     id: 'confidence',
     name: 'Confidence',
-    research:
-      'Rising dynamics, brass timbre, and a major key read as power and momentum — the same cues film scores use for arrival scenes.',
+    note: 'A cinematic arrangement with brass, strings, drums, and rising dynamics.',
     prompt:
       'epic cinematic, 105 BPM, D Major, brass, strings, powerful drums, powerful and driving, building momentum',
   },
   {
     id: 'gratitude',
     name: 'Gratitude',
-    research:
-      'Mid-tempo acoustic major sits in the positive-valence, moderate-arousal quadrant — warm timbre, balanced energy, nothing forced.',
+    note: 'A mid-tempo acoustic arrangement with guitar, piano, and soft strings.',
     prompt:
       'warm acoustic folk, 85 BPM, G Major, acoustic guitar, piano, soft strings, warm and comforting, balanced energy',
   },
@@ -112,7 +101,7 @@ const jsonLd = {
       url: PAGE_URL,
       name: 'Free Suno Prompt Templates',
       description:
-        'Nine free, copy-paste Suno style prompts from the Vibe OS research-backed state library.',
+        'Nine free, copy-paste Suno style prompts with defined tempo, key, and instrumentation.',
       isPartOf: { '@id': 'https://frankx.ai/#website' },
       author: {
         '@type': 'Person',
@@ -153,7 +142,7 @@ const steps = [
   },
   {
     title: 'Match the track to its job',
-    body: 'Use the track for the state it was engineered for — focus music while working, the sleep template at night. The parameters only pay off in context.',
+    body: 'Listen to the variations and keep the one that fits your project. These prompts are creative starting points, not promises about how a track will affect a listener.',
   },
 ]
 
@@ -173,24 +162,14 @@ export default function MusicTemplatesPage() {
         />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/60">
-            Vibe OS State Library
+            Free music resources
           </p>
           <h1 className="mb-6 text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl">
             Free Suno prompt templates
           </h1>
           <p className="max-w-3xl text-lg leading-relaxed text-white/60">
-            Nine copy-paste style prompts from the{' '}
-            <a
-              href="https://github.com/frankxai/vibe-os"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-emerald-300 transition-colors hover:text-emerald-200"
-            >
-              Vibe OS
-            </a>{' '}
-            research-backed state library. Each template fixes the parameters that matter — BPM,
-            key, mode, and instrumentation — for one target state, so the generation varies but the
-            effect holds.
+            Nine copy-paste style prompts with a defined BPM, key, mode, and instrument palette.
+            Use them as starting points, generate a few variations, and judge the results by ear.
           </p>
         </div>
       </section>
@@ -209,7 +188,7 @@ export default function MusicTemplatesPage() {
               >
                 <h3 className="mb-2 text-base font-semibold text-white">{template.name}</h3>
                 <p className="mb-4 flex-1 text-sm leading-relaxed text-white/60">
-                  {template.research}
+                  {template.note}
                 </p>
                 <pre className="mb-3 overflow-x-auto whitespace-pre-wrap rounded-lg border border-white/[0.06] bg-black/40 p-4">
                   <code className="font-mono text-xs leading-relaxed text-emerald-200/90">
@@ -222,24 +201,6 @@ export default function MusicTemplatesPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Vibe State Picker */}
-      <section className="border-t border-white/5 py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/60">
-            All 25 States
-          </p>
-          <h2 className="mb-3 text-3xl font-bold tracking-tight text-white md:text-4xl">
-            Want a state that isn&apos;t in the nine above?
-          </h2>
-          <p className="mb-10 max-w-xl text-base text-white/60">
-            The full Vibe OS state library covers 25 targets, from morning energy to grief
-            processing. Pick one below to see its BPM, key, instrumentation, and a ready-made
-            Suno prompt.
-          </p>
-          <VibeStatePicker />
         </div>
       </section>
 
@@ -276,51 +237,41 @@ export default function MusicTemplatesPage() {
         </div>
       </section>
 
-      {/* Upsell + back link */}
+      {/* Next step + back link */}
       <section className="border-t border-white/5 py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-8 md:p-10">
             <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/60">
-              Go Further
+              Keep creating
             </p>
             <h2 className="mb-3 text-2xl font-bold tracking-tight text-white">
-              Want the full Suno Music Mastery toolkit?
+              Want more music examples?
             </h2>
             <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/60">
-              Vibe OS is the paid companion to these templates: prompt packs across genres, emotion
-              mapping, and production checklists — the complete system behind the nine states on
-              this page.
+              Browse the released catalog to hear how different prompts, genres, and arrangements
+              turned into finished tracks.
             </p>
             <Link
-              href="/products/vibe-os"
+              href="/music"
               className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-emerald-400"
             >
-              Explore Vibe OS
+              Browse the music catalog
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
           <p className="mt-10 text-sm text-white/40">
-            These templates are one piece of a larger system — see the{' '}
+            See the{' '}
             <Link
               href="/music-intelligence"
               className="text-white/60 transition-colors hover:text-white"
             >
-              Music Intelligence System
+              music intelligence index
             </Link>{' '}
-            for the research, agents, and tooling around them, or browse{' '}
-            <Link href="/music" className="text-white/60 transition-colors hover:text-white">
-              the music catalog
+            for the open tools and learning resources around them, or read the{' '}
+            <Link href="/music/create" className="text-white/60 transition-colors hover:text-white">
+              AI music creation guide
             </Link>
-            .{' '}
-            <a
-              href="https://github.com/frankxai/vibe-os"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-white/60 transition-colors hover:text-white"
-            >
-              Vibe OS on GitHub
-              <ExternalLink className="h-3 w-3" aria-hidden="true" />
-            </a>
+            .
           </p>
         </div>
       </section>
