@@ -41,13 +41,13 @@ jobs:
           gh api "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }}" \
             -f state=pending -f context="Surface Guard" -f description="Evaluating protected surfaces" \
             -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
       - name: Fetch the PR head as data
         run: git fetch --no-tags origin "refs/pull/${{ github.event.pull_request.number }}/head:refs/remotes/pr/head"
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
       - name: Gate self-test (base revision)
