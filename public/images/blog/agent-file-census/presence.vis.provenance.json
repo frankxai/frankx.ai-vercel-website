@@ -1,0 +1,14 @@
+{
+  "schema": "https://frankx.ai/schemas/vis-provenance-sidecar.schema.json",
+  "image": "presence.svg",
+  "generator": "tools/agentfile-census/chart.mjs",
+  "provider": "none (deterministic SVG from data)",
+  "model": null,
+  "seed": null,
+  "prompt": null,
+  "source": "data/agentfile-census/summary.json",
+  "generatedAt": "2026-10-08T11:13:38.772Z",
+  "renderedAt": "2026-10-08T11:14:44.907Z",
+  "description": "Presence of agent instruction surfaces in the top 1000 repos",
+  "agentSession": "https://claude.ai/code/session_01QmX8hJScp62ciYKS43Zh8n"
+}
