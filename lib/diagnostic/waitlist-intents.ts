@@ -41,6 +41,10 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
     label: 'Creator Business Systems',
     listType: 'courses-waitlist',
   },
+  'ai-architect-academy': {
+    label: 'AI Architect Academy',
+    listType: 'courses-waitlist',
+  },
 }
 
 export const WAITLIST_INTENT_LABELS: Record<string, string> = Object.fromEntries(

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { createRequire } from 'node:module'
 import test from 'node:test'
 import ts from 'typescript'
@@ -57,6 +58,7 @@ async function submitWaitlist(intent) {
     return { ok: true, json: async () => ({ success: true }) }
   })
   const { default: WaitlistPage } = loadModule('app/waitlist/page.tsx', {
+    'next/link': { default: 'a' },
     '@/components/email-signup': { EmailSignup },
     '@/lib/diagnostic/waitlist-intents': loadModule('lib/diagnostic/waitlist-intents.ts'),
     '@/lib/seo': { createMetadata: (value) => value },
@@ -103,4 +105,41 @@ test('missing, repeated, or unsafe intents cannot become product attribution', a
     assert.equal(body.intent, undefined)
     assert.equal(body.listType, 'courses-waitlist')
   }
+})
+
+test('ai-architect-academy asks the three questions on the shared waitlist', async () => {
+  const { props, body } = await submitWaitlist('ai-architect-academy')
+  assert.equal(props.intentLabel, 'AI Architect Academy')
+  assert.equal(props.askDemand, true)
+  assert.equal(body.intent, 'ai-architect-academy')
+  assert.equal(body.listType, 'courses-waitlist')
+  assert.equal(body.source, '/waitlist')
+})
+
+test('ai-architect-academy roles come from the shared demand vocabulary', () => {
+  const { rolesFor } = loadModule('lib/diagnostic/demand.ts')
+  assert.deepEqual(rolesFor('ai-architect-academy'), [
+    'Engineer',
+    'Architect / staff+',
+    'Eng manager',
+    'Consultant',
+    'Founder',
+    'Career switcher',
+  ])
+})
+
+test('the blog post is the ADR gift plus the shared capture', () => {
+  const postUrl = repoFile('content/blog/one-architecture-decision-you-can-use-today.mdx')
+  const post = readFileSync(postUrl, 'utf8')
+  assert.match(post, /Retrieval before fine-tuning/)
+  assert.match(post, /intent="ai-architect-academy"/)
+  assert.match(post, /askDemand=\{true\}/)
+  assert.match(post, /listType="courses-waitlist"/)
+  assert.equal(post.includes('/checkout'), false)
+  assert.equal(post.includes('299'), false)
+  assert.equal(existsSync(fileURLToPath(repoFile(
+    'public/images/blog/generated/frankx-editorial-20260830/ai-architecture-four-seams.webp',
+  ))), true)
+  const components = readFileSync(repoFile('components/blog/MDXComponents.tsx'), 'utf8')
+  assert.match(components, /EmailSignup/)
 })
