@@ -11,7 +11,7 @@ const COMING_SOON_MODE = true
 
 interface OfferStackProps {
   productId: string
-  offer: ProductOffer
+  offer?: ProductOffer
   modules: ProductModule[]
   bonuses?: ProductBonus[]
   pricingTiers?: ProductPricingTier[]
@@ -32,9 +32,9 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
     })
   }
 
-  const secondaryHref = offer.ctaSecondaryHref
-  const secondaryLabel = offer.ctaSecondary
-  const secondaryTracking = offer.ctaSecondaryTracking
+  const secondaryHref = offer?.ctaSecondaryHref
+  const secondaryLabel = offer?.ctaSecondary
+  const secondaryTracking = offer?.ctaSecondaryTracking
 
   return (
     <section className="bg-[#0a0a0b] py-20">
@@ -58,7 +58,9 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {bonuses.map((bonus) => (
                   <div key={bonus.title} className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-5 text-white">
-                    <div className="text-sm uppercase tracking-[0.3em] text-cyan-200">{bonus.value}</div>
+                    {!COMING_SOON_MODE && bonus.value ? (
+                      <div className="text-sm uppercase tracking-[0.3em] text-cyan-200">{bonus.value}</div>
+                    ) : null}
                     <div className="mt-2 text-lg font-semibold">{bonus.title}</div>
                     <p className="mt-2 text-sm text-white/70">{bonus.description}</p>
                   </div>
@@ -95,7 +97,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                   <p className="mt-2 leading-relaxed">Priority access when launched, exclusive early-bird pricing, and insider updates on development progress.</p>
                 </div>
               </>
-            ) : (
+            ) : offer ? (
               <>
                 {/* Normal Pricing Mode */}
                 <div className="text-sm uppercase tracking-[0.3em] text-white/50">One-time investment</div>
@@ -171,7 +173,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                   <p className="mt-2 leading-relaxed">{offer.guarantee.description}</p>
                 </div>
               </>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

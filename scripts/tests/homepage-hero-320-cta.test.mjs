@@ -33,3 +33,11 @@ test('hero identity column and CTAs shrink inside a 320px viewport', async () =>
     /href="\/ai-architecture"[\s\S]{0,220}className="group inline-flex h-auto min-h-14 w-full items-center/,
   )
 })
+
+test('the music chip gutter includes Map the Ecosystem', async () => {
+  const css = await readRepoFile('app/qa-overlay-clearance.css')
+  assert.match(
+    css,
+    /\.order-1\.min-w-0 a\[href='\/ai-architecture'\],\s*\.order-1\.min-w-0 a\[href='\/ecosystem'\]/,
+  )
+})

@@ -15,7 +15,7 @@ interface ProductHeroProps {
   title: string
   subtitle: string
   promise: string
-  offer: ProductOffer
+  offer?: ProductOffer
 }
 
 function isExternal(href: string) {
@@ -24,12 +24,22 @@ function isExternal(href: string) {
 
 export default function ProductHero({ productId, badge, title, subtitle, promise, offer }: ProductHeroProps) {
   const handleClick = (target: 'primary' | 'secondary') => {
+    const href = COMING_SOON_MODE
+      ? '/newsletter'
+      : target === 'primary'
+        ? offer?.ctaPrimaryHref
+        : offer?.ctaSecondaryHref
+    const label = COMING_SOON_MODE
+      ? 'join-waitlist'
+      : target === 'primary'
+        ? offer?.ctaPrimaryTracking ?? offer?.ctaPrimary
+        : offer?.ctaSecondaryTracking ?? offer?.ctaSecondary
     trackEvent('product_cta_click', {
       productId,
       location: 'hero',
       target,
-      href: target === 'primary' ? offer.ctaPrimaryHref : offer.ctaSecondaryHref,
-      label: target === 'primary' ? offer.ctaPrimaryTracking ?? offer.ctaPrimary : offer.ctaSecondaryTracking ?? offer.ctaSecondary
+      href,
+      label,
     })
   }
 
@@ -71,7 +81,7 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
               <Mail className="h-4 w-4" />
               Join Waitlist
             </Link>
-          ) : (
+          ) : offer ? (
             <>
               {(() => {
                 const content = (
@@ -120,7 +130,7 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
                 })()
               ) : null}
             </>
-          )}
+          ) : null}
         </div>
       </div>
     </section>

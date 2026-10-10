@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowLeft, Book, Download, Zap } from 'lucide-react'
+import { ArrowLeft, Book, Mail, Zap } from 'lucide-react'
 
 export const metadata = {
   title: 'Vibe OS Documentation | FrankX.ai',
@@ -52,9 +52,9 @@ export default function VibeOSDocsPage() {
                 1
               </div>
               <div>
-                <h3 className="font-semibold text-white">Download the Notion Template</h3>
+                <h3 className="font-semibold text-white">Write down the first check-in</h3>
                 <p className="mt-1 text-sm text-white/60">
-                  Get the Vibe OS dashboard template and duplicate it to your Notion workspace.
+                  A downloadable dashboard is not published yet. Start with the energy number and the work in front of you.
                 </p>
               </div>
             </li>
@@ -133,13 +133,13 @@ export default function VibeOSDocsPage() {
           <h2 className="mb-4 text-xl font-semibold text-white">Resources</h2>
           <div className="space-y-4">
             <Link
-              href="/products/vibe-os#download"
+              href="/newsletter"
               className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
             >
-              <Download className="h-5 w-5 text-cyan-400" />
+              <Mail className="h-5 w-5 text-cyan-400" />
               <div>
-                <div className="font-semibold text-white">Notion Template</div>
-                <div className="text-sm text-white/60">Download the complete Vibe OS dashboard</div>
+                <div className="font-semibold text-white">App updates</div>
+                <div className="text-sm text-white/60">Get a note when the app is ready</div>
               </div>
             </Link>
 

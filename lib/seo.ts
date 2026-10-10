@@ -120,6 +120,25 @@ export function createMetadata({
   }
 }
 
+/** Structured data for a product that is still on the waitlist. */
+export function comingSoonProductStructuredData(
+  name: string,
+  description: string,
+  image?: string,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name,
+    description,
+    ...(image ? { image } : {}),
+    brand: {
+      '@type': 'Brand',
+      name: 'FrankX.ai',
+    },
+  }
+}
+
 export const robotsConfig: Metadata['robots'] = {
   index: true,
   follow: true,
