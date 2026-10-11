@@ -54,7 +54,10 @@ export default function IkigaiSpeakerPage() {
     () => setIndex((i) => Math.min(total - 1, i + 1)),
     [setIndex, total],
   )
-  const prev = useCallback(() => setIndex((i) => Math.max(0, i - 1)), [setIndex])
+  const prev = useCallback(
+    () => setIndex((i) => Math.max(0, i - 1)),
+    [setIndex],
+  )
 
   const startTimer = useCallback(() => {
     startRef.current = Date.now() - elapsed
@@ -90,7 +93,11 @@ export default function IkigaiSpeakerPage() {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       const target = e.target as HTMLElement
-      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return
+      if (
+        target &&
+        (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')
+      )
+        return
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
         e.preventDefault()
         next()
@@ -123,7 +130,9 @@ export default function IkigaiSpeakerPage() {
             <div className="px-2.5 py-1 rounded-md border border-amber-500/30 bg-amber-500/[0.08] text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-300">
               Speaker view
             </div>
-            <p className="text-sm text-zinc-400">Ikigai &amp; Branding · 75 min workshop</p>
+            <p className="text-sm text-zinc-400">
+              Ikigai &amp; Branding · 75 min workshop
+            </p>
           </div>
 
           <div className="flex items-center gap-4">
@@ -138,7 +147,11 @@ export default function IkigaiSpeakerPage() {
                 className="p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-white/[0.06]"
                 aria-label={running ? 'Pause' : 'Start'}
               >
-                {running ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {running ? (
+                  <Pause className="w-4 h-4" />
+                ) : (
+                  <Play className="w-4 h-4" />
+                )}
               </button>
               <button
                 onClick={resetTimer}
@@ -152,6 +165,7 @@ export default function IkigaiSpeakerPage() {
             <Link
               href="/workshops/ikigai-branding/present"
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white"
             >
               <ExternalLink className="w-3.5 h-3.5" />
@@ -173,7 +187,8 @@ export default function IkigaiSpeakerPage() {
                   overTarget ? 'text-rose-400' : 'text-zinc-400'
                 }`}
               >
-                {formatTime(slideElapsed)} <span className="text-zinc-600">/ {slide.minutes}m</span>
+                {formatTime(slideElapsed)}{' '}
+                <span className="text-zinc-600">/ {slide.minutes}m</span>
               </div>
             </div>
             <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 min-h-[180px]">
@@ -266,7 +281,9 @@ export default function IkigaiSpeakerPage() {
                 title={s.title}
                 aria-label={`Jump to slide ${i + 1}: ${s.title}`}
                 className={`h-2 rounded-full transition-all ${
-                  i === index ? 'w-8 bg-violet-400' : 'w-2 bg-white/[0.12] hover:bg-white/[0.25]'
+                  i === index
+                    ? 'w-8 bg-violet-400'
+                    : 'w-2 bg-white/[0.12] hover:bg-white/[0.25]'
                 }`}
               />
             ))}
@@ -275,7 +292,8 @@ export default function IkigaiSpeakerPage() {
 
         {/* Keyboard hint */}
         <p className="text-center text-[10px] text-zinc-700">
-          ← → next · P play/pause timer · R reset · 0-9 jump to slide · Open audience view in a separate window and drag to projector
+          ← → next · P play/pause timer · R reset · 0-9 jump to slide · Open
+          audience view in a separate window and drag to projector
         </p>
       </div>
     </div>
