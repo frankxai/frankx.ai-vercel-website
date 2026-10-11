@@ -11,6 +11,8 @@ export type ProductCard = {
   badge?: string
   category?: string
   href: string
+  primaryCtaHref?: string
+  primaryCtaLabel?: string
   price: number
   priceDisplay?: string
   originalPrice?: number
@@ -54,26 +56,51 @@ export function getDeliveryMethods(product: ProductRecord) {
 export function getProductCards(): ProductCard[] {
   return products.map((product) => {
     const firstQuote = product.socialProof?.quotes?.[0]
+    const legacy = product as ProductRecord & {
+      title?: string
+      description?: string
+      price?: number
+      cta?: { label: string; href: string }
+    }
+
+    const price = product.offer?.primaryPrice ?? legacy.price ?? 0
+    const priceDisplay =
+      product.offer?.primaryPriceDisplay ??
+      (price === 0 ? 'Free' : `$${price}`)
+
+    const primaryCtaHref =
+      product.offer?.ctaPrimaryHref ??
+      legacy.cta?.href ??
+      (price === 0 && product.delivery?.files?.[0]?.blobKey
+        ? `/api/download?product=${product.slug}&file=${product.delivery.files[0].name}`
+        : `/products/${product.slug}`)
+
+    const primaryCtaLabel =
+      product.offer?.ctaPrimary ??
+      legacy.cta?.label ??
+      (price === 0 ? 'Free Access' : 'Acquire')
 
     return {
       id: product.id,
-      name: product.name,
-      headline: product.headline,
-      summary: product.summary ?? product.promise,
+      name: product.name ?? legacy.title ?? product.slug,
+      headline: product.headline ?? legacy.description ?? '',
+      summary: product.summary ?? product.promise ?? legacy.description ?? '',
       badge: product.badge,
       category: product.category,
       href: `/products/${product.slug}`,
-      price: product.offer?.primaryPrice ?? 0,
-      priceDisplay: product.offer?.primaryPriceDisplay,
+      primaryCtaHref,
+      primaryCtaLabel,
+      price,
+      priceDisplay,
       originalPrice: product.offer?.originalPrice,
       highlights: product.transformation?.slice(0, 3) ?? [],
       testimonial: firstQuote
         ? {
             text: firstQuote.quote,
             author: firstQuote.author,
-            role: firstQuote.role
+            role: firstQuote.role,
           }
-        : undefined
+        : undefined,
     }
   })
 }
