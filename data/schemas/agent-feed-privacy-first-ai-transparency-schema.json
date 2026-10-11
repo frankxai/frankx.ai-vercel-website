@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Building Privacy-First AI Transparency: The Agent Feed Architecture",
+      "description": "Architecture for transparent, privacy-first agent logging: how to monitor autonomous agents without exposing confidential customer data.",
+      "url": "https://frankx.ai/blog/agent-feed-privacy-first-ai-transparency",
+      "datePublished": "2026-02-03",
+      "dateModified": "2026-02-03",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/agent-feed-privacy-first-ai-transparency"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/agent-feed-architecture.png"
+      },
+      "keywords": "agent observability, privacy first ai, agent logging architecture, ai transparency, secure llm audit",
+      "abstract": "Deploying autonomous agents into business operations requires radical visibility without compromising user privacy. An agent feed architecture captures step-by-step reasoning trajectories, tool invocations, and environmental feedback while automatically scrubbing personally identifiable information and confidential secrets before telemetry reaches monitoring dashboards or shared engineering team channels."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an Agent Feed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A chronological, structured stream of agent decisions, actions, tool executions, and state transitions recorded during task completion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you protect sensitive data in agent logs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By using client-side regex and named-entity recognition sanitizers that redact emails, phone numbers, and API tokens before persistent storage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is explainability critical in agent systems?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When an agent makes an erroneous decision, full trajectory replay is essential to isolate whether the failure stemmed from prompt ambiguity, bad tool input, or model hallucination."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can agent feeds be exported for compliance audits?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Structured JSONL logs with cryptographic hash chains provide immutable proof of compliance for regulated enterprise operations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What open-source tools support agent feed telemetry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenTelemetry, Langfuse, Arize Phoenix, and lightweight custom event loggers provide structured telemetry without proprietary lock-in."
+          }
+        }
+      ]
+    }
+  ]
+}

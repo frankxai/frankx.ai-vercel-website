@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19",
+      "description": "A comprehensive intelligence masterplan fusing Google search dynamics with agentic AI pipelines to publish authoritative content at high velocity.",
+      "url": "https://frankx.ai/blog/agentic-seo-publishing-masterplan",
+      "datePublished": "2024-09-19",
+      "dateModified": "2024-09-19",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/agentic-seo-publishing-masterplan"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/agentic-seo-publishing-masterplan-hero.png"
+      },
+      "keywords": "agentic seo, publishing masterplan, google search core updates, ai overviews seo, automated content operations",
+      "abstract": "The Agentic SEO Publishing Masterplan bridges modern search engine mechanics with multi-agent content pipelines. By combining human editorial judgment, structured schemas, and automated distribution rituals, technical teams can deploy authoritative content networks that capture search intent and thrive under AI Overviews."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the core principle of Agentic SEO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Treating search optimization as an algorithmic engineering problem where information gain, factual verification, and technical schema take priority over keyword density."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do AI Overviews change keyword strategy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI engines synthesize answers from authoritative sources. Content must answer complex multi-hop queries directly within top-loaded executive summaries."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the flagship-to-satellite publishing model?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A hierarchical content architecture where deep, comprehensive pillar assets anchor topical authority while satellite posts target specific long-tail search intents."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you prevent search engine spam penalties with AI content?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By enforcing strict verification gates, eliminating synthetic clichés, citing original research, and maintaining hands-on editorial oversight."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which structured data schemas yield the best visibility?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TechArticle, FAQPage, BreadcrumbList, and Author profile schemas that link directly to verified entity graphs."
+          }
+        }
+      ]
+    }
+  ]
+}

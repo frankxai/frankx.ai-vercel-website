@@ -1,0 +1,35 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Karpathy's AI Vision: First Principles Analysis",
+      "description": "Key takeaways from Karpathy's latest AI insights",
+      "url": "https://frankx.ai/blog/karpathys-ai-vision-deep-dive",
+      "datePublished": "2026-02-18",
+      "dateModified": "2026-02-18",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/karpathys-ai-vision-deep-dive"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/karpathys-ai-vision-hero.png"
+      },
+      "keywords": "AI, machine learning, deep learning, Andrej Karpathy, video analysis, micrograd, backpropagation, first principles"
+    }
+  ]
+}

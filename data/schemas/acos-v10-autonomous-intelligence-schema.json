@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "ACOS v10: Autonomous Intelligence — The System That Improves Itself",
+      "description": "ACOS v10 introduces autonomous swarm intelligence, dynamic MCP routing, and automated quality gates for high-velocity software engineering.",
+      "url": "https://frankx.ai/blog/acos-v10-autonomous-intelligence",
+      "datePublished": "2026-02-14",
+      "dateModified": "2026-02-14",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/acos-v10-autonomous-intelligence"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/acos/acos-v10-architecture.png"
+      },
+      "keywords": "acos v10, autonomous intelligence, agentic creator os, ai safety systems, experience replay, agent iam, circuit breaker, self-improving ai",
+      "abstract": "ACOS v10 represents an architectural evolution in agentic workflows, featuring autonomous swarm coordination, dynamic MCP routing, and continuous quality gates. It bridges high-level creative ideation with verifiable software delivery."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is new in ACOS v10?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Autonomous swarm intelligence, dynamic tool selection, real-time memory synchronization, and built-in brand voice enforcement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does ACOS v10 handle tool routing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It automatically routes tool calls to the most efficient MCP server based on task classification and context availability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can ACOS v10 run locally without cloud dependencies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. ACOS executes in local terminal environments using local files, local tools, and direct model API connections."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What quality gates does ACOS v10 enforce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TypeScript compilation, schema validation, link integrity, and strict taste/brand contract audits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I find the ACOS v10 source repository?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The source is hosted openly on GitHub under the frankxai organization."
+          }
+        }
+      ]
+    }
+  ]
+}

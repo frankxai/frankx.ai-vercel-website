@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "The AI Model Routing Guide: Which Model for Which Agent (Q2 2026 Edition)",
+      "description": "Architectural guide to dynamic model routing: balancing latency, token economics, and reasoning depth across production AI applications.",
+      "url": "https://frankx.ai/blog/ai-model-routing-guide",
+      "datePublished": "2026-06-10",
+      "dateModified": "2026-06-10",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/ai-model-routing-guide"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/ai-model-routing-guide-hero.svg"
+      },
+      "keywords": "ai model routing, llm gateway architecture, cost optimization llm, semantic routing, hybrid model deployment",
+      "abstract": "Production AI systems cannot rely on a single monolithic foundation model. By implementing dynamic semantic routing, engineering teams direct simple queries to ultra-fast lightweight models while escalating multi-step reasoning to frontier reasoning architectures. This hybrid pattern slashes API costs by up to 78 percent while improving response speeds."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is dynamic model routing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An architectural pattern where incoming user requests are analyzed and dispatched to the most suitable model based on complexity, latency, and cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does semantic classification work in routing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A small embeddings model or lightweight classifier categorizes intent in under 15 milliseconds before selecting the optimal downstream LLM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What cost savings are achievable with model routing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Production deployments typically achieve a 60 to 80 percent reduction in token spend compared to sending all traffic to top-tier reasoning models."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you handle model provider outages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Modern gateways include automated fallback cascades that reroute traffic to secondary providers if error rates or latencies spike."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What open-source tools facilitate LLM routing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LiteLLM, OpenRouter, Cloudflare AI Gateway, and custom Fastify middleware provide battle-tested routing and caching layers."
+          }
+        }
+      ]
+    }
+  ]
+}
