@@ -1,9 +1,20 @@
 import { createMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import {
-  Github, ExternalLink, ArrowRight, Zap, Package,
-  Globe, Wrench, FlaskConical, Star, Activity,
-  GitBranch, ChevronRight, Terminal, Layers
+  Github,
+  ExternalLink,
+  ArrowRight,
+  Zap,
+  Package,
+  Globe,
+  Wrench,
+  FlaskConical,
+  Star,
+  Activity,
+  GitBranch,
+  ChevronRight,
+  Terminal,
+  Layers,
 } from 'lucide-react'
 import {
   getClusters,
@@ -18,19 +29,20 @@ import {
 
 export const metadata = createMetadata({
   title: 'Universe Map | FrankX',
-  description: 'The complete map of the FrankX ecosystem — 50+ repos across 6 clusters. From Arcanea to ACOS to Products.',
+  description:
+    'The complete map of the FrankX ecosystem across 6 clusters. From Arcanea to ACOS to Products.',
   path: '/map',
 })
 
 // ─── Cluster icons ────────────────────────────────────────────────────────
 
 const CLUSTER_ICONS: Record<RepoCluster, React.ReactNode> = {
-  arcanea:         <Layers className="w-4 h-4" />,
-  acos:            <Zap className="w-4 h-4" />,
-  websites:        <Globe className="w-4 h-4" />,
+  arcanea: <Layers className="w-4 h-4" />,
+  acos: <Zap className="w-4 h-4" />,
+  websites: <Globe className="w-4 h-4" />,
   'creator-tools': <Wrench className="w-4 h-4" />,
-  products:        <Package className="w-4 h-4" />,
-  research:        <FlaskConical className="w-4 h-4" />,
+  products: <Package className="w-4 h-4" />,
+  research: <FlaskConical className="w-4 h-4" />,
 }
 
 // ─── Repo Card ────────────────────────────────────────────────────────────
@@ -40,22 +52,30 @@ function RepoCard({ repo }: { repo: Repo }) {
   const cluster = CLUSTER_COLORS[repo.cluster]
 
   return (
-    <div className={`group relative rounded-xl border bg-white/[0.02] p-4 transition-all hover:bg-white/[0.04] hover:border-white/10 ${cluster.border}`}>
+    <div
+      className={`group relative rounded-xl border bg-white/[0.02] p-4 transition-all hover:bg-white/[0.04] hover:border-white/10 ${cluster.border}`}
+    >
       {/* Priority indicator */}
       {(repo.priority === 'critical' || repo.priority === 'high') && (
-        <div className={`absolute top-0 left-0 w-1 h-full rounded-l-xl ${repo.priority === 'critical' ? 'bg-red-400/60' : 'bg-amber-400/40'}`} />
+        <div
+          className={`absolute top-0 left-0 w-1 h-full rounded-l-xl ${repo.priority === 'critical' ? 'bg-red-400/60' : 'bg-amber-400/40'}`}
+        />
       )}
 
       <div className="pl-1">
         {/* Header row */}
         <div className="flex items-start justify-between gap-2 mb-2">
           <div className="flex items-center gap-2 min-w-0">
-            <span className={`inline-flex items-center gap-1 shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full border ${status.badge}`}>
+            <span
+              className={`inline-flex items-center gap-1 shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full border ${status.badge}`}
+            >
               <span className={`w-1.5 h-1.5 rounded-full ${status.dot}`} />
               {status.label}
             </span>
             {repo.private && (
-              <span className="text-[10px] text-white/30 font-mono">private</span>
+              <span className="text-[10px] text-white/30 font-mono">
+                private
+              </span>
             )}
           </div>
           <div className="flex items-center gap-2 shrink-0">
@@ -96,7 +116,9 @@ function RepoCard({ repo }: { repo: Repo }) {
 
         {/* Milestone pill */}
         {repo.milestone && (
-          <div className={`inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full border ${cluster.badge}`}>
+          <div
+            className={`inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full border ${cluster.badge}`}
+          >
             <GitBranch className="w-2.5 h-2.5" />
             {repo.milestone}
           </div>
@@ -110,14 +132,16 @@ function RepoCard({ repo }: { repo: Repo }) {
 
 function ClusterSection({ clusterId }: { clusterId: RepoCluster }) {
   const clusters = getClusters()
-  const config = clusters.find(c => c.id === clusterId)
+  const config = clusters.find((c) => c.id === clusterId)
   if (!config) return null
 
   const repos = getReposByCluster(clusterId)
   const colors = CLUSTER_COLORS[clusterId]
   const icon = CLUSTER_ICONS[clusterId]
 
-  const active = repos.filter(r => r.status === 'shipping' || r.status === 'building').length
+  const active = repos.filter(
+    (r) => r.status === 'shipping' || r.status === 'building',
+  ).length
 
   return (
     <section>
@@ -128,7 +152,9 @@ function ClusterSection({ clusterId }: { clusterId: RepoCluster }) {
             {icon}
           </div>
           <div>
-            <h2 className={`font-bold text-sm ${colors.accent}`}>{config.name}</h2>
+            <h2 className={`font-bold text-sm ${colors.accent}`}>
+              {config.name}
+            </h2>
             <p className="text-xs text-white/40">{config.tagline}</p>
           </div>
         </div>
@@ -145,7 +171,7 @@ function ClusterSection({ clusterId }: { clusterId: RepoCluster }) {
 
       {/* Repo grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {repos.map(repo => (
+        {repos.map((repo) => (
           <RepoCard key={repo.name} repo={repo} />
         ))}
       </div>
@@ -161,9 +187,11 @@ export default function MapPage() {
   const clusters = getClusters()
 
   const activeCount = manifest.repos.filter(
-    r => r.status === 'shipping' || r.status === 'building'
+    (r) => r.status === 'shipping' || r.status === 'building',
   ).length
-  const shippingCount = manifest.repos.filter(r => r.status === 'shipping').length
+  const shippingCount = manifest.repos.filter(
+    (r) => r.status === 'shipping',
+  ).length
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -174,7 +202,6 @@ export default function MapPage() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <div className="mb-12">
           {/* Label */}
@@ -191,8 +218,8 @@ export default function MapPage() {
           </h1>
 
           <p className="text-lg text-white/50 max-w-2xl mb-8">
-            {manifest.totalRepos} repos across {clusters.length} clusters.
-            From Arcanea to ACOS to Products — everything being built.
+            {manifest.totalRepos} repos across {clusters.length} clusters. From
+            Arcanea to ACOS to Products — everything being built.
           </p>
 
           {/* Stats bar */}
@@ -202,7 +229,9 @@ export default function MapPage() {
                 <Github className="w-4 h-4 text-white/50" />
               </div>
               <div>
-                <div className="text-xl font-bold text-white">{manifest.totalRepos}</div>
+                <div className="text-xl font-bold text-white">
+                  {manifest.totalRepos}
+                </div>
                 <div className="text-xs text-white/40">Total repos</div>
               </div>
             </div>
@@ -211,7 +240,9 @@ export default function MapPage() {
                 <Activity className="w-4 h-4 text-amber-400" />
               </div>
               <div>
-                <div className="text-xl font-bold text-white">{activeCount}</div>
+                <div className="text-xl font-bold text-white">
+                  {activeCount}
+                </div>
                 <div className="text-xs text-white/40">Active now</div>
               </div>
             </div>
@@ -220,7 +251,9 @@ export default function MapPage() {
                 <Zap className="w-4 h-4 text-emerald-400" />
               </div>
               <div>
-                <div className="text-xl font-bold text-white">{shippingCount}</div>
+                <div className="text-xl font-bold text-white">
+                  {shippingCount}
+                </div>
                 <div className="text-xs text-white/40">Shipping</div>
               </div>
             </div>
@@ -229,7 +262,9 @@ export default function MapPage() {
                 <Layers className="w-4 h-4 text-purple-400" />
               </div>
               <div>
-                <div className="text-xl font-bold text-white">{clusters.length}</div>
+                <div className="text-xl font-bold text-white">
+                  {clusters.length}
+                </div>
                 <div className="text-xs text-white/40">Clusters</div>
               </div>
             </div>
@@ -241,10 +276,12 @@ export default function MapPage() {
           <section className="mb-12">
             <div className="flex items-center gap-2 mb-4">
               <Star className="w-4 h-4 text-amber-400" />
-              <h2 className="text-sm font-semibold text-white/70 uppercase tracking-wider">Current Focus</h2>
+              <h2 className="text-sm font-semibold text-white/70 uppercase tracking-wider">
+                Current Focus
+              </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {topPriority.map(repo => {
+              {topPriority.map((repo) => {
                 const cluster = CLUSTER_COLORS[repo.cluster]
                 const status = STATUS_COLORS[repo.status]
                 return (
@@ -256,11 +293,17 @@ export default function MapPage() {
                     className={`group flex flex-col gap-2 p-4 rounded-xl border bg-white/[0.03] hover:bg-white/[0.05] transition-all ${cluster.border}`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-400/10 text-red-300 border border-red-400/20`}>
+                      <span
+                        className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-400/10 text-red-300 border border-red-400/20`}
+                      >
                         {repo.priority}
                       </span>
-                      <span className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border ${status.badge}`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${status.dot}`} />
+                      <span
+                        className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border ${status.badge}`}
+                      >
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full ${status.dot}`}
+                        />
                         {status.label}
                       </span>
                     </div>
@@ -269,7 +312,9 @@ export default function MapPage() {
                         {repo.name}
                       </div>
                       {repo.milestone && (
-                        <div className={`text-xs mt-0.5 ${cluster.accent}`}>{repo.milestone}</div>
+                        <div className={`text-xs mt-0.5 ${cluster.accent}`}>
+                          {repo.milestone}
+                        </div>
                       )}
                     </div>
                     {repo.description && (
@@ -291,7 +336,16 @@ export default function MapPage() {
 
         {/* ── Cluster Grid ──────────────────────────────────────────────── */}
         <div className="space-y-12">
-          {(['arcanea', 'acos', 'websites', 'creator-tools', 'products', 'research'] as RepoCluster[]).map(clusterId => (
+          {(
+            [
+              'arcanea',
+              'acos',
+              'websites',
+              'creator-tools',
+              'products',
+              'research',
+            ] as RepoCluster[]
+          ).map((clusterId) => (
             <ClusterSection key={clusterId} clusterId={clusterId} />
           ))}
         </div>
@@ -302,9 +356,13 @@ export default function MapPage() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <Zap className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm font-semibold text-emerald-400">Install ACOS</span>
+                <span className="text-sm font-semibold text-emerald-400">
+                  Install ACOS
+                </span>
               </div>
-              <p className="text-white/60 text-sm">The operating system that powers this entire ecosystem.</p>
+              <p className="text-white/60 text-sm">
+                The operating system that powers this entire ecosystem.
+              </p>
             </div>
             <code className="px-4 py-2.5 rounded-lg bg-black/40 border border-white/10 text-xs text-emerald-300 font-mono whitespace-nowrap shrink-0">
               git clone github.com/frankxai/agentic-creator-os
@@ -315,11 +373,28 @@ export default function MapPage() {
         {/* ── Nav links ─────────────────────────────────────────────────── */}
         <div className="mt-10 pt-8 border-t border-white/5 flex flex-wrap gap-6">
           {[
-            { href: '/sprint', label: 'Current Sprint', icon: <Activity className="w-3.5 h-3.5" /> },
-            { href: '/roadmap', label: 'Roadmap', icon: <GitBranch className="w-3.5 h-3.5" /> },
-            { href: '/changelog', label: 'Changelog', icon: <Star className="w-3.5 h-3.5" /> },
-            { href: 'https://github.com/frankxai', label: 'GitHub', icon: <Github className="w-3.5 h-3.5" />, external: true },
-          ].map(({ href, label, icon, external }) => (
+            {
+              href: '/sprint',
+              label: 'Current Sprint',
+              icon: <Activity className="w-3.5 h-3.5" />,
+            },
+            {
+              href: '/roadmap',
+              label: 'Roadmap',
+              icon: <GitBranch className="w-3.5 h-3.5" />,
+            },
+            {
+              href: '/changelog',
+              label: 'Changelog',
+              icon: <Star className="w-3.5 h-3.5" />,
+            },
+            {
+              href: 'https://github.com/frankxai',
+              label: 'GitHub',
+              icon: <Github className="w-3.5 h-3.5" />,
+              external: true,
+            },
+          ].map(({ href, label, icon, external }) =>
             external ? (
               <a
                 key={href}
@@ -342,13 +417,14 @@ export default function MapPage() {
                 <span>{label}</span>
                 <ArrowRight className="w-3 h-3" />
               </Link>
-            )
-          ))}
+            ),
+          )}
         </div>
 
         {/* Last updated */}
         <p className="mt-6 text-xs text-white/20 font-mono">
-          Last synced: {manifest.lastUpdated} · Auto-updates every Monday via GitHub Actions
+          Last synced: {manifest.lastUpdated} · Auto-updates every Monday via
+          GitHub Actions
         </p>
       </div>
     </div>
