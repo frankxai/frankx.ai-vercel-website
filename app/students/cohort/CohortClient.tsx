@@ -33,7 +33,8 @@ function AuroraBackground() {
       <motion.div
         className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.08) 0%, transparent 70%)',
+          background:
+            'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.08) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
         animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.1, 1] }}
@@ -42,7 +43,8 @@ function AuroraBackground() {
       <motion.div
         className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%]"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(139, 92, 246, 0.06) 0%, transparent 70%)',
+          background:
+            'radial-gradient(ellipse at center, rgba(139, 92, 246, 0.06) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
         animate={{ x: [0, -80, 0], y: [0, -30, 0], scale: [1, 1.15, 1] }}
@@ -51,7 +53,8 @@ function AuroraBackground() {
       <motion.div
         className="absolute top-1/2 left-1/3 w-[40%] h-[40%]"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.05) 0%, transparent 70%)',
+          background:
+            'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.05) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
@@ -73,7 +76,14 @@ function AuroraBackground() {
 // ============================================================================
 
 function ConfettiPiece({ delay }: { delay: number }) {
-  const colors = ['#06b6d4', '#8b5cf6', '#10b981', '#f59e0b', '#ec4899', '#3b82f6']
+  const colors = [
+    '#06b6d4',
+    '#8b5cf6',
+    '#10b981',
+    '#f59e0b',
+    '#ec4899',
+    '#3b82f6',
+  ]
   const color = colors[Math.floor(Math.random() * colors.length)]
   const left = Math.random() * 100
   const rotation = Math.random() * 360
@@ -120,7 +130,12 @@ function Confetti() {
 // FAQ ACCORDION ITEM
 // ============================================================================
 
-function FAQItem({ question, answer, isOpen, onClick }: {
+function FAQItem({
+  question,
+  answer,
+  isOpen,
+  onClick,
+}: {
   question: string
   answer: string
   isOpen: boolean
@@ -171,24 +186,39 @@ const tracks = [
     icon: Code,
     title: 'Portfolio Builder',
     subtitle: 'Ship an AI-powered portfolio project',
-    description: 'Build a real project that demonstrates your AI skills. From concept to deployed product — something you can show employers, clients, or collaborators.',
-    highlights: ['Deployed on Vercel or similar', 'Code on GitHub', 'Case study write-up'],
+    description:
+      'Build a real project that demonstrates your AI skills. From concept to deployed product — something you can show employers, clients, or collaborators.',
+    highlights: [
+      'Deployed on Vercel or similar',
+      'Code on GitHub',
+      'Case study write-up',
+    ],
     color: 'cyan',
   },
   {
     icon: Rocket,
     title: 'Product Launcher',
     subtitle: 'Build and launch a real AI product',
-    description: 'Go beyond a portfolio piece. Build something people actually use — a tool, a SaaS, an API. Ship it and get your first users during the cohort.',
-    highlights: ['Live product with users', 'Landing page', 'Launch on Product Hunt or similar'],
+    description:
+      'Go beyond a portfolio piece. Build something people actually use — a tool, a SaaS, an API. Ship it and get your first users during the cohort.',
+    highlights: [
+      'Live product with users',
+      'Landing page',
+      'Launch on Product Hunt or similar',
+    ],
     color: 'violet',
   },
   {
     icon: Paintbrush,
     title: 'Creator & Community',
     subtitle: 'Create content, build audience',
-    description: 'Document your AI journey publicly. Write, record, or stream. Build an audience while you learn — the most underrated career accelerator.',
-    highlights: ['Content series published', 'Audience growth strategy', 'Personal brand established'],
+    description:
+      'Document your AI journey publicly. Write, record, or stream. Build an audience while you learn — the most underrated career accelerator.',
+    highlights: [
+      'Content series published',
+      'Audience growth strategy',
+      'Personal brand established',
+    ],
     color: 'emerald',
   },
 ]
@@ -245,33 +275,108 @@ const weeks = [
 ]
 
 const benefits = [
-  { icon: Brain, title: 'Direct mentorship from AI Architect', description: 'Weekly group sessions + async feedback from someone who builds AI systems professionally.' },
-  { icon: Rocket, title: 'A shipped project for your portfolio', description: 'Not a tutorial project — a real thing you designed, built, and deployed.' },
-  { icon: Award, title: 'Certificate of completion', description: 'Signed certificate recognizing your 4-week build sprint.' },
-  { icon: Star, title: 'Recommendation potential', description: 'Outstanding builders get personal recommendations from Frank.' },
-  { icon: BookOpen, title: 'Access to GenCreator framework', description: 'The same AI-powered creation framework used across frankx.ai.' },
-  { icon: Users, title: 'Alumni network (43 other builders)', description: 'Join a tight-knit community of motivated builders who shipped together.' },
-  { icon: Globe, title: 'Featured on frankx.ai', description: 'Excellent projects get showcased on the website — real visibility.' },
+  {
+    icon: Brain,
+    title: 'Direct mentorship from AI Architect',
+    description:
+      'Weekly group sessions + async feedback from someone who builds AI systems professionally.',
+  },
+  {
+    icon: Rocket,
+    title: 'A shipped project for your portfolio',
+    description:
+      'Not a tutorial project — a real thing you designed, built, and deployed.',
+  },
+  {
+    icon: Award,
+    title: 'Certificate of completion',
+    description: 'Signed certificate recognizing your 4-week build sprint.',
+  },
+  {
+    icon: Star,
+    title: 'Recommendation potential',
+    description:
+      'Outstanding builders get personal recommendations from Frank.',
+  },
+  {
+    icon: BookOpen,
+    title: 'Access to GenCreator framework',
+    description:
+      'The same AI-powered creation framework used across frankx.ai.',
+  },
+  {
+    icon: Users,
+    title: 'Alumni network (43 other builders)',
+    description:
+      'Join a tight-knit community of motivated builders who shipped together.',
+  },
+  {
+    icon: Globe,
+    title: 'Featured on frankx.ai',
+    description:
+      'Excellent projects get showcased on the website — real visibility.',
+  },
 ]
 
 const faqs = [
-  { q: 'Is it really free?', a: 'Yes. Completely free. No hidden fees, no upsells. We believe in giving first. The best way to build a community is to genuinely help people succeed.' },
-  { q: 'What skills do I need?', a: 'Basic coding or design experience. You should be comfortable with HTML/CSS at minimum, or have design tool experience. AI skills will be taught — that\'s the whole point.' },
-  { q: 'What\'s the time commitment?', a: '5-10 hours per week for 4 weeks. The minimum is 5 hours — enough for weekly sessions, building, and one content piece. More ambitious builders typically invest 8-10 hours.' },
-  { q: 'Will I get a job from this?', a: 'We provide mentorship, portfolio projects, and recommendations — not job placement. That said, a shipped AI project with a recommendation from an AI Architect is a powerful signal to employers.' },
-  { q: 'What tools will we use?', a: 'Claude, ChatGPT, Cursor, v0, Vercel, and GitHub. All free-tier friendly. You\'ll learn to use AI as a true development partner, not just a chatbot.' },
-  { q: 'Can I do this remotely?', a: 'Yes, 100% online. Async-first with scheduled weekly live sessions. We\'ll use Discord for daily communication and collaboration.' },
+  {
+    q: 'Is it really free?',
+    a: 'Yes. Completely free. No hidden fees, no upsells. We believe in giving first. The best way to build a community is to genuinely help people succeed.',
+  },
+  {
+    q: 'What skills do I need?',
+    a: "Basic coding or design experience. You should be comfortable with HTML/CSS at minimum, or have design tool experience. AI skills will be taught — that's the whole point.",
+  },
+  {
+    q: "What's the time commitment?",
+    a: '5-10 hours per week for 4 weeks. The minimum is 5 hours — enough for weekly sessions, building, and one content piece. More ambitious builders typically invest 8-10 hours.',
+  },
+  {
+    q: 'Will I get a job from this?',
+    a: 'We provide mentorship, portfolio projects, and recommendations — not job placement. That said, a shipped AI project with a recommendation from an AI Architect is a powerful signal to employers.',
+  },
+  {
+    q: 'What tools will we use?',
+    a: "Claude, ChatGPT, Cursor, v0, Vercel, and GitHub. All free-tier friendly. You'll learn to use AI as a true development partner, not just a chatbot.",
+  },
+  {
+    q: 'Can I do this remotely?',
+    a: "Yes, 100% online. Async-first with scheduled weekly live sessions. We'll use Discord for daily communication and collaboration.",
+  },
 ]
 
 // ============================================================================
 // COLOR UTILITIES
 // ============================================================================
 
-const colorStyles: Record<string, { border: string; bg: string; text: string; glow: string }> = {
-  cyan: { border: 'border-cyan-500/20 hover:border-cyan-500/40', bg: 'bg-cyan-500/10', text: 'text-cyan-400', glow: 'rgba(6, 182, 212, 0.15)' },
-  violet: { border: 'border-violet-500/20 hover:border-violet-500/40', bg: 'bg-violet-500/10', text: 'text-violet-400', glow: 'rgba(139, 92, 246, 0.15)' },
-  emerald: { border: 'border-emerald-500/20 hover:border-emerald-500/40', bg: 'bg-emerald-500/10', text: 'text-emerald-400', glow: 'rgba(16, 185, 129, 0.15)' },
-  amber: { border: 'border-amber-500/20 hover:border-amber-500/40', bg: 'bg-amber-500/10', text: 'text-amber-400', glow: 'rgba(245, 158, 11, 0.15)' },
+const colorStyles: Record<
+  string,
+  { border: string; bg: string; text: string; glow: string }
+> = {
+  cyan: {
+    border: 'border-cyan-500/20 hover:border-cyan-500/40',
+    bg: 'bg-cyan-500/10',
+    text: 'text-cyan-400',
+    glow: 'rgba(6, 182, 212, 0.15)',
+  },
+  violet: {
+    border: 'border-violet-500/20 hover:border-violet-500/40',
+    bg: 'bg-violet-500/10',
+    text: 'text-violet-400',
+    glow: 'rgba(139, 92, 246, 0.15)',
+  },
+  emerald: {
+    border: 'border-emerald-500/20 hover:border-emerald-500/40',
+    bg: 'bg-emerald-500/10',
+    text: 'text-emerald-400',
+    glow: 'rgba(16, 185, 129, 0.15)',
+  },
+  amber: {
+    border: 'border-amber-500/20 hover:border-amber-500/40',
+    bg: 'bg-amber-500/10',
+    text: 'text-amber-400',
+    glow: 'rgba(245, 158, 11, 0.15)',
+  },
 }
 
 // ============================================================================
@@ -330,7 +435,14 @@ export default function CohortClient() {
     }
   }
 
-  const isFormValid = formData.name && formData.email && formData.track && formData.projectIdea && formData.whyYou && formData.commitTime && formData.commitContent
+  const isFormValid =
+    formData.name &&
+    formData.email &&
+    formData.track &&
+    formData.projectIdea &&
+    formData.whyYou &&
+    formData.commitTime &&
+    formData.commitContent
 
   return (
     <main className="relative min-h-screen text-white">
@@ -338,7 +450,6 @@ export default function CohortClient() {
       {showConfetti && <Confetti />}
 
       <div className="relative z-10">
-
         {/* ================================================================ */}
         {/* HERO */}
         {/* ================================================================ */}
@@ -380,8 +491,9 @@ export default function CohortClient() {
               </p>
 
               <p className="text-white/40 max-w-xl mb-10 leading-relaxed">
-                A free, intensive cohort for builders who want to create with AI — mentored by an AI Architect
-                with enterprise experience across 8+ industries.
+                A free, intensive cohort for builders who want to create with AI
+                — mentored by an AI Architect with enterprise experience across
+                8+ industries.
               </p>
 
               {/* Stats */}
@@ -398,8 +510,12 @@ export default function CohortClient() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 + i * 0.1 }}
                   >
-                    <div className="text-3xl font-bold text-white">{stat.value}</div>
-                    <div className="text-xs uppercase tracking-[0.2em] text-white/40">{stat.label}</div>
+                    <div className="text-3xl font-bold text-white">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs uppercase tracking-[0.2em] text-white/40">
+                      {stat.label}
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -447,19 +563,35 @@ export default function CohortClient() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.15 }}
-                    whileHover={{ y: -4, boxShadow: `0 20px 60px ${colors.glow}` }}
+                    whileHover={{
+                      y: -4,
+                      boxShadow: `0 20px 60px ${colors.glow}`,
+                    }}
                     className={`relative p-6 rounded-2xl border ${colors.border} bg-white/[0.02] backdrop-blur-sm transition-all duration-300`}
                   >
-                    <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mb-4`}>
+                    <div
+                      className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mb-4`}
+                    >
                       <track.icon className={`w-6 h-6 ${colors.text}`} />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1">{track.title}</h3>
-                    <p className={`text-sm ${colors.text} mb-3`}>{track.subtitle}</p>
-                    <p className="text-white/40 text-sm leading-relaxed mb-4">{track.description}</p>
+                    <h3 className="text-xl font-bold text-white mb-1">
+                      {track.title}
+                    </h3>
+                    <p className={`text-sm ${colors.text} mb-3`}>
+                      {track.subtitle}
+                    </p>
+                    <p className="text-white/40 text-sm leading-relaxed mb-4">
+                      {track.description}
+                    </p>
                     <ul className="space-y-2">
                       {track.highlights.map((h) => (
-                        <li key={h} className="flex items-start gap-2 text-sm text-white/50">
-                          <CheckCircle2 className={`w-4 h-4 ${colors.text} mt-0.5 flex-shrink-0`} />
+                        <li
+                          key={h}
+                          className="flex items-start gap-2 text-sm text-white/50"
+                        >
+                          <CheckCircle2
+                            className={`w-4 h-4 ${colors.text} mt-0.5 flex-shrink-0`}
+                          />
                           {h}
                         </li>
                       ))}
@@ -512,22 +644,41 @@ export default function CohortClient() {
                     >
                       {/* Node */}
                       <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10">
-                        <div className={`w-12 h-12 rounded-full ${colors.bg} border-2 border-[#0a0a0b] flex items-center justify-center`}>
-                          <span className={`text-sm font-bold ${colors.text}`}>{week.number}</span>
+                        <div
+                          className={`w-12 h-12 rounded-full ${colors.bg} border-2 border-[#0a0a0b] flex items-center justify-center`}
+                        >
+                          <span className={`text-sm font-bold ${colors.text}`}>
+                            {week.number}
+                          </span>
                         </div>
                       </div>
 
                       {/* Content */}
-                      <div className={`ml-16 md:ml-0 md:w-[calc(50%-3rem)] ${isLeft ? 'md:pr-8 md:text-right' : 'md:pl-8'}`}>
-                        <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.text} mb-2`}>
+                      <div
+                        className={`ml-16 md:ml-0 md:w-[calc(50%-3rem)] ${isLeft ? 'md:pr-8 md:text-right' : 'md:pl-8'}`}
+                      >
+                        <div
+                          className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.text} mb-2`}
+                        >
                           Week {week.number}
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-1">{week.title}</h3>
-                        <p className="text-white/40 text-sm mb-3">{week.description}</p>
-                        <ul className={`space-y-1.5 ${isLeft ? 'md:ml-auto' : ''}`}>
+                        <h3 className="text-xl font-bold text-white mb-1">
+                          {week.title}
+                        </h3>
+                        <p className="text-white/40 text-sm mb-3">
+                          {week.description}
+                        </p>
+                        <ul
+                          className={`space-y-1.5 ${isLeft ? 'md:ml-auto' : ''}`}
+                        >
                           {week.details.map((d) => (
-                            <li key={d} className={`flex items-start gap-2 text-sm text-white/50 ${isLeft ? 'md:flex-row-reverse md:text-right' : ''}`}>
-                              <Calendar className={`w-3.5 h-3.5 ${colors.text} mt-0.5 flex-shrink-0`} />
+                            <li
+                              key={d}
+                              className={`flex items-start gap-2 text-sm text-white/50 ${isLeft ? 'md:flex-row-reverse md:text-right' : ''}`}
+                            >
+                              <Calendar
+                                className={`w-3.5 h-3.5 ${colors.text} mt-0.5 flex-shrink-0`}
+                              />
                               <span>{d}</span>
                             </li>
                           ))}
@@ -577,29 +728,39 @@ export default function CohortClient() {
                   {/* Avatar */}
                   <div className="flex-shrink-0">
                     <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-white/10 flex items-center justify-center">
-                      <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-violet-400">FR</span>
+                      <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-violet-400">
+                        FR
+                      </span>
                     </div>
                   </div>
 
                   <div className="text-center md:text-left">
-                    <h3 className="text-2xl font-bold text-white mb-1">Frank Riemer</h3>
-                    <p className="text-cyan-400 text-sm font-medium mb-4">AI Architect | FrankX</p>
+                    <h3 className="text-2xl font-bold text-white mb-1">
+                      Frank Riemer
+                    </h3>
+                    <p className="text-cyan-400 text-sm font-medium mb-4">
+                      AI Architect | FrankX
+                    </p>
                     <p className="text-white/50 leading-relaxed mb-6">
-                      I design AI systems for enterprises across 8+ industries. I&apos;ve written 23 books on AI,
-                      built 76 AI architect tools, and created 6 research portals. Now I want to help the next
-                      generation of builders ship real things with AI.
+                      I design AI systems for enterprises across 8+ industries.
+                      I&apos;ve written 23 books on AI, built 76 AI architect
+                      tools, and created 6 research portals. Now I want to help
+                      the next generation of builders ship real things with AI.
                     </p>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {[
-                        { value: '8+', label: 'Industries' },
                         { value: '23', label: 'Books' },
                         { value: '76', label: 'AI Tools' },
                         { value: '6', label: 'Research Portals' },
                       ].map((stat) => (
                         <div key={stat.label} className="text-center">
-                          <div className="text-xl font-bold text-white">{stat.value}</div>
-                          <div className="text-xs text-white/40 uppercase tracking-wider">{stat.label}</div>
+                          <div className="text-xl font-bold text-white">
+                            {stat.value}
+                          </div>
+                          <div className="text-xs text-white/40 uppercase tracking-wider">
+                            {stat.label}
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -640,8 +801,12 @@ export default function CohortClient() {
                   className="group p-5 rounded-xl border border-white/[0.06] hover:border-white/15 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300"
                 >
                   <benefit.icon className="w-5 h-5 text-cyan-400 mb-3" />
-                  <h3 className="text-white font-semibold mb-1 text-sm">{benefit.title}</h3>
-                  <p className="text-white/40 text-sm leading-relaxed">{benefit.description}</p>
+                  <h3 className="text-white font-semibold mb-1 text-sm">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-white/40 text-sm leading-relaxed">
+                    {benefit.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -651,7 +816,11 @@ export default function CohortClient() {
         {/* ================================================================ */}
         {/* APPLICATION FORM */}
         {/* ================================================================ */}
-        <section className="py-20 border-t border-white/5" ref={formRef} id="apply">
+        <section
+          className="py-20 border-t border-white/5"
+          ref={formRef}
+          id="apply"
+        >
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -666,7 +835,8 @@ export default function CohortClient() {
                 Apply Now
               </h2>
               <p className="text-white/40 mt-3 max-w-lg mx-auto">
-                44 spots. We review every application personally. Decisions within 48 hours.
+                44 spots. We review every application personally. Decisions
+                within 48 hours.
               </p>
             </motion.div>
 
@@ -686,10 +856,12 @@ export default function CohortClient() {
                     >
                       <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto mb-6" />
                     </motion.div>
-                    <h3 className="text-2xl font-bold text-white mb-3">Application Received</h3>
+                    <h3 className="text-2xl font-bold text-white mb-3">
+                      Application Received
+                    </h3>
                     <p className="text-white/50 text-lg leading-relaxed max-w-md mx-auto">
-                      We&apos;ll review your application and get back to you within 48 hours.
-                      Check your email for a confirmation.
+                      We&apos;ll review your application and get back to you
+                      within 48 hours. Check your email for a confirmation.
                     </p>
                     <div className="mt-8 flex items-center justify-center gap-2 text-emerald-400/60 text-sm">
                       <Heart className="w-4 h-4" />
@@ -706,12 +878,16 @@ export default function CohortClient() {
                   >
                     {/* Name */}
                     <div>
-                      <label className="block text-sm font-medium text-white/70 mb-2">Name</label>
+                      <label className="block text-sm font-medium text-white/70 mb-2">
+                        Name
+                      </label>
                       <input
                         type="text"
                         required
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
                         className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/25 transition-colors"
                         placeholder="Your full name"
                       />
@@ -719,12 +895,16 @@ export default function CohortClient() {
 
                     {/* Email */}
                     <div>
-                      <label className="block text-sm font-medium text-white/70 mb-2">Email</label>
+                      <label className="block text-sm font-medium text-white/70 mb-2">
+                        Email
+                      </label>
                       <input
                         type="email"
                         required
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
                         className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/25 transition-colors"
                         placeholder="you@email.com"
                       />
@@ -732,11 +912,15 @@ export default function CohortClient() {
 
                     {/* LinkedIn */}
                     <div>
-                      <label className="block text-sm font-medium text-white/70 mb-2">LinkedIn URL</label>
+                      <label className="block text-sm font-medium text-white/70 mb-2">
+                        LinkedIn URL
+                      </label>
                       <input
                         type="url"
                         value={formData.linkedin}
-                        onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, linkedin: e.target.value })
+                        }
                         className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/25 transition-colors"
                         placeholder="https://linkedin.com/in/you"
                       />
@@ -744,12 +928,26 @@ export default function CohortClient() {
 
                     {/* Track Selection */}
                     <div>
-                      <label className="block text-sm font-medium text-white/70 mb-3">Choose Your Track</label>
+                      <label className="block text-sm font-medium text-white/70 mb-3">
+                        Choose Your Track
+                      </label>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         {[
-                          { value: 'portfolio', label: 'Portfolio Builder', icon: Code },
-                          { value: 'product', label: 'Product Launcher', icon: Rocket },
-                          { value: 'creator', label: 'Creator & Community', icon: Paintbrush },
+                          {
+                            value: 'portfolio',
+                            label: 'Portfolio Builder',
+                            icon: Code,
+                          },
+                          {
+                            value: 'product',
+                            label: 'Product Launcher',
+                            icon: Rocket,
+                          },
+                          {
+                            value: 'creator',
+                            label: 'Creator & Community',
+                            icon: Paintbrush,
+                          },
                         ].map((option) => (
                           <label
                             key={option.value}
@@ -764,11 +962,18 @@ export default function CohortClient() {
                               name="track"
                               value={option.value}
                               checked={formData.track === option.value}
-                              onChange={(e) => setFormData({ ...formData, track: e.target.value })}
+                              onChange={(e) =>
+                                setFormData({
+                                  ...formData,
+                                  track: e.target.value,
+                                })
+                              }
                               className="sr-only"
                             />
                             <option.icon className="w-5 h-5" />
-                            <span className="text-sm font-medium text-center">{option.label}</span>
+                            <span className="text-sm font-medium text-center">
+                              {option.label}
+                            </span>
                           </label>
                         ))}
                       </div>
@@ -776,12 +981,19 @@ export default function CohortClient() {
 
                     {/* Project Idea */}
                     <div>
-                      <label className="block text-sm font-medium text-white/70 mb-2">What do you want to build?</label>
+                      <label className="block text-sm font-medium text-white/70 mb-2">
+                        What do you want to build?
+                      </label>
                       <textarea
                         required
                         rows={3}
                         value={formData.projectIdea}
-                        onChange={(e) => setFormData({ ...formData, projectIdea: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            projectIdea: e.target.value,
+                          })
+                        }
                         className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/25 transition-colors resize-none"
                         placeholder="Describe your project idea in 2-3 sentences..."
                       />
@@ -789,12 +1001,16 @@ export default function CohortClient() {
 
                     {/* Why You */}
                     <div>
-                      <label className="block text-sm font-medium text-white/70 mb-2">Why should we pick you?</label>
+                      <label className="block text-sm font-medium text-white/70 mb-2">
+                        Why should we pick you?
+                      </label>
                       <textarea
                         required
                         rows={3}
                         value={formData.whyYou}
-                        onChange={(e) => setFormData({ ...formData, whyYou: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, whyYou: e.target.value })
+                        }
                         className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/25 transition-colors resize-none"
                         placeholder="What makes you a great fit for this cohort?"
                       />
@@ -807,11 +1023,18 @@ export default function CohortClient() {
                           <input
                             type="checkbox"
                             checked={formData.commitTime}
-                            onChange={(e) => setFormData({ ...formData, commitTime: e.target.checked })}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                commitTime: e.target.checked,
+                              })
+                            }
                             className="sr-only peer"
                           />
                           <div className="w-5 h-5 rounded-md border border-white/20 bg-white/[0.04] peer-checked:bg-cyan-500/20 peer-checked:border-cyan-500/50 transition-colors flex items-center justify-center">
-                            {formData.commitTime && <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />}
+                            {formData.commitTime && (
+                              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                            )}
                           </div>
                         </div>
                         <span className="text-sm text-white/60 group-hover:text-white/80 transition-colors">
@@ -824,15 +1047,23 @@ export default function CohortClient() {
                           <input
                             type="checkbox"
                             checked={formData.commitContent}
-                            onChange={(e) => setFormData({ ...formData, commitContent: e.target.checked })}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                commitContent: e.target.checked,
+                              })
+                            }
                             className="sr-only peer"
                           />
                           <div className="w-5 h-5 rounded-md border border-white/20 bg-white/[0.04] peer-checked:bg-cyan-500/20 peer-checked:border-cyan-500/50 transition-colors flex items-center justify-center">
-                            {formData.commitContent && <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />}
+                            {formData.commitContent && (
+                              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                            )}
                           </div>
                         </div>
                         <span className="text-sm text-white/60 group-hover:text-white/80 transition-colors">
-                          I will create at least 1 public content piece about the experience
+                          I will create at least 1 public content piece about
+                          the experience
                         </span>
                       </label>
                     </div>
@@ -846,8 +1077,12 @@ export default function CohortClient() {
                           ? 'bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:shadow-[0_0_40px_rgba(6,182,212,0.25)] cursor-pointer'
                           : 'bg-white/10 text-white/30 cursor-not-allowed'
                       }`}
-                      whileHover={isFormValid && !submitting ? { scale: 1.01 } : {}}
-                      whileTap={isFormValid && !submitting ? { scale: 0.99 } : {}}
+                      whileHover={
+                        isFormValid && !submitting ? { scale: 1.01 } : {}
+                      }
+                      whileTap={
+                        isFormValid && !submitting ? { scale: 0.99 } : {}
+                      }
                     >
                       {submitting ? 'Submitting...' : 'Apply for Batch 1'}
                     </motion.button>
@@ -923,7 +1158,8 @@ export default function CohortClient() {
                 Ready to build?
               </h2>
               <p className="text-white/40 max-w-md mx-auto mb-8">
-                44 spots. Free. 4 weeks. The only requirement is that you actually ship.
+                44 spots. Free. 4 weeks. The only requirement is that you
+                actually ship.
               </p>
               <motion.button
                 onClick={scrollToForm}
@@ -946,7 +1182,10 @@ export default function CohortClient() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <p className="text-white/30 text-sm">
                 A{' '}
-                <Link href="/" className="text-white/50 hover:text-white transition-colors underline underline-offset-2">
+                <Link
+                  href="/"
+                  className="text-white/50 hover:text-white transition-colors underline underline-offset-2"
+                >
                   FrankX
                 </Link>{' '}
                 initiative
@@ -969,7 +1208,6 @@ export default function CohortClient() {
             </div>
           </div>
         </footer>
-
       </div>
     </main>
   )
