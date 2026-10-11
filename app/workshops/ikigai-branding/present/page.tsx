@@ -52,7 +52,10 @@ export default function IkigaiPresentPage() {
     () => setIndex((i: number) => Math.min(total - 1, i + 1)),
     [setIndex, total],
   )
-  const prev = useCallback(() => setIndex((i: number) => Math.max(0, i - 1)), [setIndex])
+  const prev = useCallback(
+    () => setIndex((i: number) => Math.max(0, i - 1)),
+    [setIndex],
+  )
 
   const startTimer = useCallback(() => {
     startRef.current = Date.now() - elapsed
@@ -123,7 +126,11 @@ export default function IkigaiPresentPage() {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       const target = e.target as HTMLElement
-      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return
+      if (
+        target &&
+        (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')
+      )
+        return
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
         e.preventDefault()
         next()
@@ -159,7 +166,8 @@ export default function IkigaiPresentPage() {
   }
 
   function onTouchEnd(e: React.TouchEvent) {
-    if (touchStartXRef.current === null || touchStartYRef.current === null) return
+    if (touchStartXRef.current === null || touchStartYRef.current === null)
+      return
     const t = e.changedTouches[0]
     const dx = t.clientX - touchStartXRef.current
     const dy = t.clientY - touchStartYRef.current
@@ -211,6 +219,7 @@ export default function IkigaiPresentPage() {
                 <Link
                   href="/workshops/ikigai-branding/present/speaker"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-amber-300 transition-colors"
                   title="Opens speaker view in new window for dual-screen setup"
                 >
@@ -309,7 +318,9 @@ export default function IkigaiPresentPage() {
                     onClick={() => setIndex(i)}
                     aria-label={`Go to slide ${i + 1}: ${s.title}`}
                     className={`h-1.5 rounded-full transition-all ${
-                      i === index ? 'w-6 bg-violet-400' : 'w-1.5 bg-white/[0.12] hover:bg-white/[0.25]'
+                      i === index
+                        ? 'w-6 bg-violet-400'
+                        : 'w-1.5 bg-white/[0.12] hover:bg-white/[0.25]'
                     }`}
                   />
                 ))}
@@ -318,7 +329,9 @@ export default function IkigaiPresentPage() {
               {/* Timer + controls */}
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1.5 text-sm font-mono">
-                  <span className={running ? 'text-emerald-300' : 'text-zinc-500'}>
+                  <span
+                    className={running ? 'text-emerald-300' : 'text-zinc-500'}
+                  >
                     {formatTime(elapsed)}
                   </span>
                   <button
@@ -326,7 +339,11 @@ export default function IkigaiPresentPage() {
                     className="text-zinc-400 hover:text-white p-1"
                     aria-label={running ? 'Pause timer' : 'Start timer'}
                   >
-                    {running ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+                    {running ? (
+                      <Pause className="w-3.5 h-3.5" />
+                    ) : (
+                      <Play className="w-3.5 h-3.5" />
+                    )}
                   </button>
                   <button
                     onClick={resetTimer}
@@ -351,7 +368,11 @@ export default function IkigaiPresentPage() {
                   className="p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-white/[0.06]"
                   aria-label="Fullscreen"
                 >
-                  {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+                  {isFullscreen ? (
+                    <Minimize2 className="w-4 h-4" />
+                  ) : (
+                    <Maximize2 className="w-4 h-4" />
+                  )}
                 </button>
 
                 <div className="w-px h-5 bg-white/[0.08]" />
@@ -392,11 +413,16 @@ export default function IkigaiPresentPage() {
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <StickyNote className="w-4 h-4 text-amber-300" />
-                  <p className="text-sm font-semibold text-white">Speaker notes</p>
-                  <span className="text-xs text-zinc-500">· suggested {slide.minutes} min</span>
+                  <p className="text-sm font-semibold text-white">
+                    Speaker notes
+                  </p>
+                  <span className="text-xs text-zinc-500">
+                    · suggested {slide.minutes} min
+                  </span>
                   <Link
                     href="/workshops/ikigai-branding/present/speaker"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="text-xs text-amber-300 hover:text-amber-200 ml-2 underline underline-offset-2"
                   >
                     Open full speaker view →
@@ -412,7 +438,10 @@ export default function IkigaiPresentPage() {
               </div>
               <ul className="space-y-1.5">
                 {slide.speakerNotes.map((n: string, i: number) => (
-                  <li key={i} className="text-sm text-zinc-300 flex items-start gap-2 leading-relaxed">
+                  <li
+                    key={i}
+                    className="text-sm text-zinc-300 flex items-start gap-2 leading-relaxed"
+                  >
                     <span className="text-amber-300/60 mt-0.5">›</span>
                     <span>{n}</span>
                   </li>
@@ -432,13 +461,15 @@ export default function IkigaiPresentPage() {
             exit={{ opacity: 0 }}
             className="absolute bottom-1 inset-x-0 text-center text-[10px] text-zinc-700 print:hidden"
           >
-            ← → next · N notes · P pause · R reset · F fullscreen · 0-9 jump · Speaker view opens in new window
+            ← → next · N notes · P pause · R reset · F fullscreen · 0-9 jump ·
+            Speaker view opens in new window
           </motion.p>
         )}
       </AnimatePresence>
 
       <style jsx global>{`
-        html, body {
+        html,
+        body {
           /* Prevent pull-to-refresh and bounce on mobile while in presenter mode */
           overscroll-behavior: contain;
         }
@@ -451,8 +482,14 @@ export default function IkigaiPresentPage() {
           }
         }
         @media print {
-          html, body { background: white !important; color: black !important; }
-          .fixed { position: static !important; }
+          html,
+          body {
+            background: white !important;
+            color: black !important;
+          }
+          .fixed {
+            position: static !important;
+          }
         }
       `}</style>
     </div>
