@@ -16,17 +16,11 @@ export interface LifeBook {
   icon: string
   duration: string
   sessions: number
-  price: {
-    original: number
-    current: number
-    currency: string
-  }
   features: string[]
   pillars: Pillar[]
   outcomes: string[]
   forWho: string[]
   testimonials: Testimonial[]
-  guarantee: string
   image?: string
 }
 
@@ -54,11 +48,6 @@ export const lifeBooks: LifeBook[] = [
     image: '/images/soulbook/life-symphony.png',
     duration: '12 weeks',
     sessions: 24,
-    price: {
-      original: 997,
-      current: 697,
-      currency: 'USD'
-    },
     features: [
       '24 live coaching sessions (2x weekly)',
       'Complete Soulbook workbook (200+ pages)',
@@ -84,8 +73,7 @@ export const lifeBooks: LifeBook[] = [
       'Committed to 12-week journey',
       'Value community support'
     ],
-    testimonials: [],
-    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
+    testimonials: []
   },
   {
     id: 'golden-path',
@@ -102,11 +90,6 @@ export const lifeBooks: LifeBook[] = [
     image: '/images/soulbook/golden-path.png',
     duration: '4 weeks',
     sessions: 8,
-    price: {
-      original: 497,
-      current: 297,
-      currency: 'USD'
-    },
     features: [
       '8 live coaching sessions (2x weekly)',
       'Golden Path workbook (80 pages)',
@@ -130,8 +113,7 @@ export const lifeBooks: LifeBook[] = [
       'Prefer focused, intensive work',
       'Want to test the framework first'
     ],
-    testimonials: [],
-    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
+    testimonials: []
   },
   {
     id: 'seven-pillars',
@@ -148,11 +130,6 @@ export const lifeBooks: LifeBook[] = [
     image: '/images/soulbook/seven-pillars.png',
     duration: '7 weeks (one pillar per week)',
     sessions: 14,
-    price: {
-      original: 1297,
-      current: 897,
-      currency: 'USD'
-    },
     features: [
       '14 live coaching sessions (2x per pillar)',
       '7 pillar workbooks (40 pages each)',
@@ -176,8 +153,7 @@ export const lifeBooks: LifeBook[] = [
       'Plan to become a practitioner',
       'Value comprehensive expertise'
     ],
-    testimonials: [],
-    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
+    testimonials: []
   }
 ]
 
@@ -190,65 +166,6 @@ export function getLifeBookById(id: string): LifeBook | undefined {
   return lifeBooks.find(book => book.id === id)
 }
 
-export const pricingTiers = [
-  {
-    name: 'Starter',
-    description: 'Begin your journey with a single pillar',
-    price: 97,
-    features: [
-      '1 pillar deep-dive course',
-      'Workbook included',
-      '3 meditation tracks',
-      'Community access'
-    ],
-    cta: 'Start Single Pillar',
-    popular: false
-  },
-  {
-    name: 'Golden Path',
-    description: 'Accelerated 4-week transformation',
-    price: 297,
-    features: [
-      '3 core pillars',
-      'Complete workbook',
-      '8 coaching sessions',
-      'Weekly video teachings',
-      'Priority community access'
-    ],
-    cta: 'Begin Golden Path',
-    popular: true
-  },
-  {
-    name: 'Life Symphony',
-    description: 'Complete 12-week transformation',
-    price: 697,
-    features: [
-      'All 7 pillars integrated',
-      'Full workbook collection',
-      '24 coaching sessions',
-      'All meditation tracks',
-      'Lifetime community access',
-      'Monthly Q&A calls'
-    ],
-    cta: 'Start Transformation',
-    popular: false
-  },
-  {
-    name: '7 Pillars Mastery',
-    description: 'Expert-level systematic mastery',
-    price: 897,
-    features: [
-      'All 7 pillar courses',
-      'Complete workbooks (7)',
-      '14 pillar coaching sessions',
-      'All meditation sets',
-      'Practitioner certification option',
-      'Exclusive mastermind access'
-    ],
-    cta: 'Master All Pillars',
-    popular: false
-  }
-]
 
 export const philosophyStatements = [
   {
