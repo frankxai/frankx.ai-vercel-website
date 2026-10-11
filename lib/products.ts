@@ -15,6 +15,8 @@ export type ProductCard = {
   primaryCtaLabel?: string
   price: number
   priceDisplay?: string
+  currency?: string
+  isWaitlist?: boolean
   originalPrice?: number
   highlights: string[]
   testimonial?: {
@@ -54,53 +56,64 @@ export function getDeliveryMethods(product: ProductRecord) {
 }
 
 export function getProductCards(): ProductCard[] {
-  return products.map((product) => {
-    const firstQuote = product.socialProof?.quotes?.[0]
-    const legacy = product as ProductRecord & {
-      title?: string
-      description?: string
-      price?: number
-      cta?: { label: string; href: string }
-    }
+  return products
+    .filter((product) => !product.id.includes('arcanea') && !product.slug?.includes('arcanea'))
+    .map((product) => {
+      const firstQuote = product.socialProof?.quotes?.[0]
+      const legacy = product as ProductRecord & {
+        title?: string
+        description?: string
+        price?: number
+        cta?: { label: string; href: string }
+      }
 
-    const price = product.offer?.primaryPrice ?? legacy.price ?? 0
-    const priceDisplay =
-      product.offer?.primaryPriceDisplay ??
-      (price === 0 ? 'Free' : `$${price}`)
+      const price = product.offer?.primaryPrice ?? legacy.price ?? 0
+      const currency = product.offer?.currency ?? 'USD'
+      const priceDisplay =
+        product.offer?.primaryPriceDisplay ??
+        (price === 0 ? 'Free' : currency === 'EUR' ? `€${price}` : `$${price}`)
 
-    const primaryCtaHref =
-      product.offer?.ctaPrimaryHref ??
-      legacy.cta?.href ??
-      (price === 0 && product.delivery?.files?.[0]?.blobKey
-        ? `/api/download?product=${product.slug}&file=${product.delivery.files[0].name}`
-        : `/products/${product.slug}`)
+      const isWaitlist = Boolean(
+        product.offer?.ctaPrimary?.toLowerCase().includes('waitlist') ||
+        legacy.cta?.label?.toLowerCase().includes('waitlist')
+      )
 
-    const primaryCtaLabel =
-      product.offer?.ctaPrimary ??
-      legacy.cta?.label ??
-      (price === 0 ? 'Free Access' : 'Acquire')
+      const primaryCtaHref = isWaitlist
+        ? (product.offer?.ctaPrimaryHref ?? `/waitlist?intent=${product.slug}`)
+        : (price === 0
+            ? (product.offer?.ctaPrimaryHref ?? legacy.cta?.href ?? `/products/${product.slug}`)
+            : (product.offer?.ctaPrimaryHref?.startsWith('http')
+                ? product.offer.ctaPrimaryHref
+                : `/checkout/${product.slug}`))
 
-    return {
-      id: product.id,
-      name: product.name ?? legacy.title ?? product.slug,
-      headline: product.headline ?? legacy.description ?? '',
-      summary: product.summary ?? product.promise ?? legacy.description ?? '',
-      badge: product.badge,
-      category: product.category,
-      href: `/products/${product.slug}`,
-      primaryCtaHref,
-      primaryCtaLabel,
-      price,
-      priceDisplay,
-      originalPrice: product.offer?.originalPrice,
-      highlights: product.transformation?.slice(0, 3) ?? [],
-      testimonial: firstQuote
-        ? {
-            text: firstQuote.quote,
-            author: firstQuote.author,
-            role: firstQuote.role,
-          }
-        : undefined,
-    }
-  })
+      const primaryCtaLabel =
+        product.offer?.ctaPrimary ??
+        legacy.cta?.label ??
+        (isWaitlist ? 'Join Waitlist' : (price === 0 ? 'Free Access' : 'Acquire'))
+
+      return {
+        id: product.id,
+        name: product.name ?? legacy.title ?? product.slug,
+        headline: product.headline ?? legacy.description ?? '',
+        summary: product.summary ?? product.promise ?? legacy.description ?? '',
+        badge: product.badge,
+        category: product.category,
+        href: `/products/${product.slug}`,
+        primaryCtaHref,
+        primaryCtaLabel,
+        price,
+        priceDisplay,
+        currency,
+        isWaitlist,
+        originalPrice: product.offer?.originalPrice,
+        highlights: product.transformation?.slice(0, 3) ?? [],
+        testimonial: firstQuote
+          ? {
+              text: firstQuote.quote,
+              author: firstQuote.author,
+              role: firstQuote.role,
+            }
+          : undefined,
+      }
+    })
 }

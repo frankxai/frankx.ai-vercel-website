@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight,
@@ -22,6 +21,7 @@ import {
   ExternalLink,
   SlidersHorizontal,
   X,
+  ChevronDown,
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -38,11 +38,13 @@ interface NormalizedProduct {
   badge?: string
   price: number
   priceDisplay: string
+  currency: string
   originalPrice?: number
   highlights: string[]
   color: GlowColor
   icon: typeof Cpu
   isFree: boolean
+  isWaitlist: boolean
   featured: boolean
   href: string
   primaryCtaHref: string
@@ -89,84 +91,62 @@ function ProductsBackground() {
 
 const CATEGORY_TABS = [
   'All',
-  'Agentic Systems',
-  'Architecture & Code',
-  'Creative & Multimodal',
-  'Wealth & Operations',
-  'Books & Wisdom',
-  'Free Starter Kits',
+  'Agentic systems',
+  'Systems and code',
+  'Creative and media',
+  'Wealth and operations',
+  'Books and wisdom',
+  'Free starter kits',
 ] as const
 
 type CategoryTab = (typeof CATEGORY_TABS)[number]
 
 const CATEGORY_MAPPINGS: Record<string, string[]> = {
-  'Agentic Systems': [
-    'agent-fleet-pro',
+  'Agentic systems': [
     'agentic-creator-os',
-    'multi-agent-orchestrator',
+    'agent-fleet-pro',
+    'agentic-media-machine',
     'agentic-content-engine',
+  ],
+  'Systems and code': [
     'system-architect-starter-kit',
     'command-center-template',
-    'memory-palace-os',
-    'agentic-media-machine',
     'starlight-operator-pack',
+    'reality-architect-os',
+    'starlight-protocol-spec',
   ],
-  'Architecture & Code': [
-    'ai-systems-architecture',
-    'ai-developer-toolkit',
-    'mcp-developer-suite',
-    'frontier-model-router',
-    'ai-operations-engine',
-    'ai-consulting-playbook',
-    'ai-app-factory',
-    'ai-prompt-engineering-mastery',
-    'ai-product-lab',
-  ],
-  'Creative & Multimodal': [
+  'Creative and media': [
     'vibe-os',
-    'suno-prompt-library',
-    '5-suno-prompts',
-    'creative-ai-toolkit',
-    'visual-creation-loop',
-    'aurora-ui-kit',
     'generative-creator-os',
+    'visual-creation-loop',
     'creation-chronicles',
-    'ai-audio-mastery',
-    'ai-video-mastery',
-    'ai-cinema-lab',
-    'ai-brand-foundry',
-    'ai-music-mastery',
-    'ai-marketing-os',
+    '5-suno-prompts',
+    'suno-prompt-library',
+    'aurora-ui-kit',
+    'creative-ai-toolkit',
   ],
-  'Wealth & Operations': [
+  'Wealth and operations': [
+    'founders-circle-guild',
     'dpi-field-kit',
     'income-architecture-blueprint',
+    'memory-palace-os',
     '12-stream-atlas',
+    'anti-slop-content-matrix',
     'capability-to-cash-audit',
     'dpi-stream-taxonomy',
-    'ai-dealflow-pro',
-    'ai-due-diligence-engine',
-    'founders-circle-guild',
-    'reality-architect-os',
-    'agentic-deal-flow-engine',
-    'agentic-finance-hub',
-    'agentic-research-engine',
-    'ai-growth-engine',
   ],
-  'Books & Wisdom': [
-    'golden-age-book',
+  'Books and wisdom': [
     'creators-soulbook',
+    'golden-age-book',
     'book-love-and-poetry',
     'book-spartan-mindset',
     'book-self-development',
     'book-imagination',
     'book-manifestation',
-    'arcanea-mythic-codex',
-    'anti-slop-content-matrix',
-    'starlight-protocol-spec',
-    'ai-deep-research-hub',
   ],
 }
+
+const FLAGSHIP_IDS = ['agentic-creator-os', 'vibe-os', 'creators-soulbook']
 
 function resolveProductColor(category: string, price: number): GlowColor {
   if (category.includes('Music') || category.includes('Creative')) return 'emerald'
@@ -187,64 +167,77 @@ function resolveProductIcon(category: string, id: string) {
 export default function ProductsPage() {
   const [selectedTab, setSelectedTab] = useState<CategoryTab>('All')
   const [searchQuery, setSearchQuery] = useState('')
+  const [showAllCards, setShowAllCards] = useState(false)
 
-  // Normalize all products once
+  // Normalize all products once, excluding Arcanea mythology per FrankX brand boundary
   const allProducts: NormalizedProduct[] = useMemo(() => {
-    return (rawProducts as any[]).map((p) => {
-      const price = p.offer?.primaryPrice ?? p.price ?? 0
-      const priceDisplay =
-        p.offer?.primaryPriceDisplay ?? (price === 0 ? 'Free' : `$${price}`)
-      const name = p.name ?? p.title ?? p.slug
-      const headline = p.headline ?? p.description ?? ''
-      const description = p.summary ?? p.promise ?? p.description ?? ''
-      const category = p.category || 'General'
-      const highlights =
-        p.transformation && p.transformation.length > 0
-          ? p.transformation.slice(0, 3)
-          : [
-              'Validated enterprise engineering blueprint',
-              'Production-ready prompts, workflows, and schemas',
-              'Direct execution architecture with zero fluff',
-            ]
+    return (rawProducts as any[])
+      .filter((p) => !p.id.includes('arcanea') && !p.slug?.includes('arcanea') && p.brand !== 'arcanea')
+      .map((p) => {
+        const price = p.offer?.primaryPrice ?? p.price ?? 0
+        const currency = p.offer?.currency ?? 'USD'
+        const priceDisplay =
+          p.offer?.primaryPriceDisplay ??
+          (price === 0 ? 'Free' : currency === 'EUR' ? `€${price}` : `$${price}`)
+        const name = p.name ?? p.title ?? p.slug
+        const headline = p.headline ?? p.description ?? ''
+        const description = p.summary ?? p.promise ?? p.description ?? ''
+        const category = p.category || 'General'
 
-      return {
-        id: p.id,
-        slug: p.slug,
-        name,
-        headline,
-        description,
-        category,
-        badge: p.badge,
-        price,
-        priceDisplay,
-        originalPrice: p.offer?.originalPrice,
-        highlights,
-        color: resolveProductColor(category, price),
-        icon: resolveProductIcon(category, p.id),
-        isFree: price === 0,
-        featured: p.featured === true || price >= 147,
-        href: `/products/${p.slug}`,
-        primaryCtaHref:
-          p.offer?.ctaPrimaryHref ??
-          p.cta?.href ??
-          (p.id === 'soulbook' ? '/soulbook/vault' : undefined) ??
-          (p.id === 'vibe-os' ? '/products/vibe-os/app' : undefined) ??
-          (price === 0 && p.delivery?.files?.[0]?.blobKey
-            ? `/api/download?product=${p.slug}&file=${p.delivery.files[0].name}`
-            : `/products/${p.slug}`),
-        primaryCtaLabel:
+        const isWaitlist = Boolean(
+          p.offer?.ctaPrimary?.toLowerCase().includes('waitlist') ||
+          p.cta?.label?.toLowerCase().includes('waitlist')
+        )
+
+        // Truthful transformation highlights — no invented engineering claims for books
+        const highlights =
+          Array.isArray(p.transformation) && p.transformation.length > 0
+            ? p.transformation.slice(0, 3)
+            : []
+
+        const primaryCtaHref = isWaitlist
+          ? (p.offer?.ctaPrimaryHref ?? `/waitlist?intent=${p.slug}`)
+          : (price === 0
+              ? (p.offer?.ctaPrimaryHref ?? p.cta?.href ?? `/products/${p.slug}`)
+              : (p.offer?.ctaPrimaryHref?.startsWith('http')
+                  ? p.offer.ctaPrimaryHref
+                  : `/checkout/${p.slug}`))
+
+        const primaryCtaLabel =
           p.offer?.ctaPrimary ??
           p.cta?.label ??
-          (price === 0 ? 'Free Access' : 'Acquire'),
-      }
-    })
+          (isWaitlist ? 'Join waitlist' : price === 0 ? 'Free access' : 'Acquire')
+
+        return {
+          id: p.id,
+          slug: p.slug,
+          name,
+          headline,
+          description,
+          category,
+          badge: p.badge,
+          price,
+          priceDisplay,
+          currency,
+          originalPrice: p.offer?.originalPrice,
+          highlights,
+          color: resolveProductColor(category, price),
+          icon: resolveProductIcon(category, p.id),
+          isFree: price === 0,
+          isWaitlist,
+          featured: FLAGSHIP_IDS.includes(p.id) || p.featured === true || price >= 147,
+          href: `/products/${p.slug}`,
+          primaryCtaHref,
+          primaryCtaLabel,
+        }
+      })
   }, [])
 
   // Filtered list based on active tab and search query
   const filteredProducts = useMemo(() => {
     return allProducts.filter((product) => {
       // Tab matching
-      if (selectedTab === 'Free Starter Kits') {
+      if (selectedTab === 'Free starter kits') {
         if (!product.isFree) return false
       } else if (selectedTab !== 'All') {
         const allowedIds = CATEGORY_MAPPINGS[selectedTab]
@@ -269,12 +262,25 @@ export default function ProductsPage() {
     })
   }, [allProducts, selectedTab, searchQuery])
 
-  // Structured Data Schema for Google Product Carousel
+  // Split flagship spotlight from progressive catalog to prevent 33-card wall in All view
+  const isDefaultAllView = selectedTab === 'All' && !searchQuery.trim()
+  const flagshipProducts = useMemo(() => {
+    return allProducts.filter((p) => FLAGSHIP_IDS.includes(p.id))
+  }, [allProducts])
+
+  const visibleProducts = useMemo(() => {
+    if (!isDefaultAllView) return filteredProducts
+    if (showAllCards) return filteredProducts
+    // In All view without search, show 9 curated systems initially
+    return filteredProducts.slice(0, 9)
+  }, [isDefaultAllView, showAllCards, filteredProducts])
+
+  // Structured Data Schema for Google Product Carousel with verified currencies and stock status
   const structuredData = useMemo(() => {
     return {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: 'FrankX AI Digital Estate & Architecture Solutions',
+      name: 'FrankX AI Digital Estate and Architecture Solutions',
       description:
         'Production agent frameworks, system prompt suites, multi-modal workflows, and enterprise AI blueprints by AI Architect Frank Riemer.',
       numberOfItems: allProducts.length,
@@ -290,8 +296,10 @@ export default function ProductsPage() {
           offers: {
             '@type': 'Offer',
             price: product.price,
-            priceCurrency: 'USD',
-            availability: 'https://schema.org/InStock',
+            priceCurrency: product.currency,
+            availability: product.isWaitlist
+              ? 'https://schema.org/PreOrder'
+              : 'https://schema.org/InStock',
           },
         },
       })),
@@ -319,7 +327,7 @@ export default function ProductsPage() {
                 <Package className="h-5 w-5" />
               </div>
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
-                The Sovereign Digital Estate
+                The sovereign digital estate
               </span>
             </motion.div>
 
@@ -341,11 +349,130 @@ export default function ProductsPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              The verified agent frameworks, system prompt suites, multi-modal pipelines, and
-              enterprise advisory playbooks deployed across my personal practice and client systems.
+              Verified agent frameworks, system prompt suites, multi-modal pipelines, and
+              enterprise advisory playbooks deployed across live operations.
             </motion.p>
           </div>
         </section>
+
+        {/* Flagship Architectures Spotlight (in default All view) */}
+        {isDefaultAllView && (
+          <section className="pb-12">
+            <div className="mx-auto max-w-6xl px-6">
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400 mb-1">
+                    Flagship architectures
+                  </p>
+                  <h2 className="text-xl font-bold text-white">
+                    Primary operational foundations
+                  </h2>
+                </div>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-3">
+                {flagshipProducts.map((product) => {
+                  const Icon = product.icon
+                  return (
+                    <div
+                      key={`spotlight-${product.id}`}
+                      className="flex flex-col"
+                    >
+                      <GlowCard
+                        color={product.color}
+                        className="group flex flex-col h-full p-7 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.02] hover:border-emerald-500/40 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1"
+                      >
+                        <div className="mb-5 flex items-start justify-between gap-3">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <Icon className="h-6 w-6" />
+                          </div>
+                          <span className="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            {product.priceDisplay}
+                          </span>
+                        </div>
+
+                        <div className="mb-4 flex-1">
+                          <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-emerald-400/80 block mb-1">
+                            Flagship system
+                          </span>
+                          <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200 mb-2">
+                            {product.name}
+                          </h3>
+                          <p className="text-sm leading-relaxed text-slate-400 line-clamp-3">
+                            {product.headline || product.description}
+                          </p>
+                        </div>
+
+                        {product.highlights.length > 0 && (
+                          <div className="mb-6 border-t border-white/5 pt-4">
+                            <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2.5">
+                              Core deliverables
+                            </p>
+                            <ul className="space-y-2">
+                              {product.highlights.map((highlight, hIdx) => (
+                                <li
+                                  key={hIdx}
+                                  className="flex items-start gap-2.5 text-xs leading-snug text-slate-300"
+                                >
+                                  <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-400" />
+                                  <span className="line-clamp-2">{highlight}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        <div className="mt-auto flex items-center gap-3 pt-4 border-t border-white/5">
+                          <Link
+                            href={product.href}
+                            onClick={() =>
+                              trackEvent('product_explore_click', { productId: product.id })
+                            }
+                            className="min-h-[44px] flex-1 flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 text-xs font-semibold text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300 transition-[background-color,border-color,color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+                          >
+                            <span>Inspect blueprint</span>
+                            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                          </Link>
+
+                          {!product.isFree ? (
+                            <Link
+                              href={
+                                product.isWaitlist
+                                  ? (product.primaryCtaHref || `/waitlist?intent=${product.slug}`)
+                                  : (product.primaryCtaHref.startsWith('http')
+                                      ? product.primaryCtaHref
+                                      : `/checkout/${product.slug}`)
+                              }
+                              onClick={() =>
+                                trackEvent(
+                                  product.isWaitlist ? 'product_waitlist_click' : 'product_checkout_click',
+                                  { productId: product.id }
+                                )
+                              }
+                              className="min-h-[44px] flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-semibold text-black hover:bg-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] transition-[background-color,box-shadow] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50"
+                            >
+                              <span>{product.isWaitlist ? 'Join waitlist' : 'Acquire'}</span>
+                            </Link>
+                          ) : (
+                            <Link
+                              href={product.primaryCtaHref || product.href}
+                              onClick={() =>
+                                trackEvent('product_free_access_click', { productId: product.id })
+                              }
+                              className="min-h-[44px] flex items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+                            >
+                              <span>{product.primaryCtaLabel || 'Free access'}</span>
+                            </Link>
+                          )}
+                        </div>
+                      </GlowCard>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Filter and Search Controls */}
         <section className="sticky top-20 z-20 border-y border-white/5 bg-[#0a0a0b]/80 backdrop-blur-xl py-4">
@@ -382,7 +509,7 @@ export default function ProductsPage() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search 33 systems..."
+                  placeholder="Search systems and blueprints..."
                   aria-label="Search systems and blueprints"
                   className="min-h-[44px] w-full rounded-full border border-white/10 bg-white/[0.03] pl-10 pr-10 py-2 text-sm text-white placeholder-slate-500 transition-[border-color,background-color] duration-300 outline-none focus-visible:border-emerald-500/50 focus-visible:ring-2 focus-visible:ring-emerald-500/30"
                 />
@@ -406,8 +533,7 @@ export default function ProductsPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-6 flex items-center justify-between text-xs sm:text-sm text-slate-400">
               <span>
-                Showing <strong className="text-white">{filteredProducts.length}</strong> of{' '}
-                <strong className="text-white">{allProducts.length}</strong> operational assets
+                Showing <strong className="text-white">{filteredProducts.length}</strong> operational systems
               </span>
               {selectedTab !== 'All' && (
                 <button
@@ -438,122 +564,153 @@ export default function ProductsPage() {
                   }}
                   className="min-h-[44px] rounded-full border border-emerald-500/30 bg-emerald-500/10 px-6 py-2 text-sm font-medium text-emerald-400 hover:bg-emerald-500/20 transition-colors duration-200"
                 >
-                  View All 33 Blueprints
+                  View all blueprints
                 </button>
               </div>
             ) : (
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {filteredProducts.map((product, index) => {
-                  const Icon = product.icon
+              <>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {visibleProducts.map((product, index) => {
+                    const Icon = product.icon
 
-                  return (
-                    <motion.div
-                      key={product.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) }}
-                      className="flex flex-col"
-                    >
-                      <GlowCard
-                        color={product.color}
-                        className="group flex flex-col h-full p-7 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:border-white/20 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1"
+                    return (
+                      <motion.div
+                        key={product.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) }}
+                        className="flex flex-col"
                       >
-                        {/* Header Badges */}
-                        <div className="mb-5 flex items-start justify-between gap-3">
-                          <div
-                            className={`flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] text-white/90 border border-white/10 group-hover:border-emerald-500/30 transition-colors duration-300`}
-                          >
-                            <Icon className="h-6 w-6 text-emerald-400" />
-                          </div>
-                          <div className="flex flex-wrap items-center justify-end gap-1.5">
-                            {product.badge && (
-                              <span className="rounded-full bg-white/5 px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-slate-300 border border-white/10">
-                                {product.badge}
-                              </span>
-                            )}
-                            <span
-                              className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                                product.isFree
-                                  ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                                  : 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/20'
-                              }`}
+                        <GlowCard
+                          color={product.color}
+                          className="group flex flex-col h-full p-7 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:border-white/20 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1"
+                        >
+                          {/* Header Badges */}
+                          <div className="mb-5 flex items-start justify-between gap-3">
+                            <div
+                              className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] text-white/90 border border-white/10 group-hover:border-emerald-500/30 transition-colors duration-300"
                             >
-                              {product.priceDisplay}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Title and Summary */}
-                        <div className="mb-4 flex-1">
-                          <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-slate-500 block mb-1">
-                            {product.category}
-                          </span>
-                          <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200 mb-2">
-                            {product.name}
-                          </h3>
-                          <p className="text-sm leading-relaxed text-slate-400 line-clamp-3">
-                            {product.headline || product.description}
-                          </p>
-                        </div>
-
-                        {/* Deliverables / Transformation Highlights */}
-                        <div className="mb-6 border-t border-white/5 pt-4">
-                          <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2.5">
-                            Core Deliverables
-                          </p>
-                          <ul className="space-y-2">
-                            {product.highlights.map((highlight, hIdx) => (
-                              <li
-                                key={hIdx}
-                                className="flex items-start gap-2.5 text-xs leading-snug text-slate-300"
+                              <Icon className="h-6 w-6 text-emerald-400" />
+                            </div>
+                            <div className="flex flex-wrap items-center justify-end gap-1.5">
+                              {product.badge && (
+                                <span className="rounded-full bg-white/5 px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-slate-300 border border-white/10">
+                                  {product.badge}
+                                </span>
+                              )}
+                              <span
+                                className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                                  product.isFree
+                                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                    : 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/20'
+                                }`}
                               >
-                                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-400" />
-                                <span className="line-clamp-2">{highlight}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                                {product.priceDisplay}
+                              </span>
+                            </div>
+                          </div>
 
-                        {/* Action Buttons */}
-                        <div className="mt-auto flex items-center gap-3 pt-4 border-t border-white/5">
-                          <Link
-                            href={product.href}
-                            onClick={() =>
-                              trackEvent('product_explore_click', { productId: product.id })
-                            }
-                            className="min-h-[44px] flex-1 flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 text-xs font-semibold text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300 transition-[background-color,border-color,color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
-                          >
-                            <span>Inspect Blueprint</span>
-                            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-                          </Link>
+                          {/* Title and Summary */}
+                          <div className="mb-4 flex-1">
+                            <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-slate-500 block mb-1">
+                              {product.category}
+                            </span>
+                            <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200 mb-2">
+                              {product.name}
+                            </h3>
+                            <p className="text-sm leading-relaxed text-slate-400 line-clamp-3">
+                              {product.headline || product.description}
+                            </p>
+                          </div>
 
-                          {!product.isFree ? (
-                            <Link
-                              href={`/checkout?sku=${product.id}`}
-                              onClick={() =>
-                                trackEvent('product_checkout_click', { productId: product.id })
-                              }
-                              className="min-h-[44px] flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-semibold text-black hover:bg-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] transition-[background-color,box-shadow] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50"
-                            >
-                              <span>Acquire</span>
-                            </Link>
-                          ) : (
-                            <Link
-                              href={product.primaryCtaHref || product.href}
-                              onClick={() =>
-                                trackEvent('product_free_access_click', { productId: product.id })
-                              }
-                              className="min-h-[44px] flex items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
-                            >
-                              <span>{product.primaryCtaLabel || 'Free Access'}</span>
-                            </Link>
+                          {/* Deliverables / Transformation Highlights (truthful, only rendered when present) */}
+                          {product.highlights.length > 0 && (
+                            <div className="mb-6 border-t border-white/5 pt-4">
+                              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2.5">
+                                Core deliverables
+                              </p>
+                              <ul className="space-y-2">
+                                {product.highlights.map((highlight, hIdx) => (
+                                  <li
+                                    key={hIdx}
+                                    className="flex items-start gap-2.5 text-xs leading-snug text-slate-300"
+                                  >
+                                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-400" />
+                                    <span className="line-clamp-2">{highlight}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
                           )}
-                        </div>
-                      </GlowCard>
-                    </motion.div>
-                  )
-                })}
-              </div>
+
+                          {/* Action Buttons */}
+                          <div className="mt-auto flex items-center gap-3 pt-4 border-t border-white/5">
+                            <Link
+                              href={product.href}
+                              onClick={() =>
+                                trackEvent('product_explore_click', { productId: product.id })
+                              }
+                              className="min-h-[44px] flex-1 flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 text-xs font-semibold text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300 transition-[background-color,border-color,color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+                            >
+                              <span>Inspect blueprint</span>
+                              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                            </Link>
+
+                            {!product.isFree ? (
+                              <Link
+                                href={
+                                  product.isWaitlist
+                                    ? (product.primaryCtaHref || `/waitlist?intent=${product.slug}`)
+                                    : (product.primaryCtaHref.startsWith('http')
+                                        ? product.primaryCtaHref
+                                        : `/checkout/${product.slug}`)
+                                }
+                                onClick={() =>
+                                  trackEvent(
+                                    product.isWaitlist ? 'product_waitlist_click' : 'product_checkout_click',
+                                    { productId: product.id }
+                                  )
+                                }
+                                className={`min-h-[44px] flex items-center justify-center rounded-xl px-4 py-2.5 text-xs font-semibold transition-[background-color,box-shadow] duration-200 outline-none focus-visible:ring-2 ${
+                                  product.isWaitlist
+                                    ? 'border border-amber-500/30 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 focus-visible:ring-amber-500/40'
+                                    : 'bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] focus-visible:ring-emerald-500/50'
+                                }`}
+                              >
+                                <span>{product.isWaitlist ? 'Join waitlist' : 'Acquire'}</span>
+                              </Link>
+                            ) : (
+                              <Link
+                                href={product.primaryCtaHref || product.href}
+                                onClick={() =>
+                                  trackEvent('product_free_access_click', { productId: product.id })
+                                }
+                                className="min-h-[44px] flex items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+                              >
+                                <span>{product.primaryCtaLabel || 'Free access'}</span>
+                              </Link>
+                            )}
+                          </div>
+                        </GlowCard>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+
+                {/* Progressive Reveal Toggle to Avoid Card Wall in All View */}
+                {isDefaultAllView && !showAllCards && filteredProducts.length > 9 && (
+                  <div className="mt-12 text-center">
+                    <button
+                      type="button"
+                      onClick={() => setShowAllCards(true)}
+                      className="min-h-[44px] inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-8 py-3 text-sm font-semibold text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300 transition-[border-color,background-color,color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+                    >
+                      <span>Show all {filteredProducts.length} systems</span>
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </section>
@@ -563,7 +720,7 @@ export default function ProductsPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="text-center mb-12">
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400 mb-2">
-                Rigorous Execution Standards
+                Rigorous execution standards
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-white">
                 Battle-tested architectures for sovereign builders
@@ -573,24 +730,24 @@ export default function ProductsPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  title: 'Production Prompts & Contracts',
+                  title: 'Production prompts and contracts',
                   description:
-                    'Every prompt suite is verified across live projects. No theoretical examples; each carries typed parameters and concrete schemas.',
+                    'Every prompt suite is verified across live operations. Typed parameters and concrete schemas with zero theoretical filler.',
                   icon: Sparkles,
                 },
                 {
-                  title: 'Modular Agent Workflows',
+                  title: 'Modular agent workflows',
                   description:
                     'Turnkey multi-agent workflows designed for Claude Code, Codex, and modern orchestrators. Decoupled, observable, and reproducible.',
                   icon: Zap,
                 },
                 {
-                  title: 'Continuous Protocol Updates',
+                  title: 'Continuous protocol updates',
                   description:
                     'AI models and protocols advance continuously. Every asset receives rolling updates as frontier models and frameworks evolve.',
                   icon: Star,
                 },
-              ].map((item, i) => (
+              ].map((item) => (
                 <div
                   key={item.title}
                   className="p-7 rounded-2xl border border-white/[0.06] bg-white/[0.02]"
@@ -611,7 +768,7 @@ export default function ProductsPage() {
           <div className="mx-auto max-w-4xl px-6">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-white">
-                Architecture & Delivery FAQ
+                Architecture and delivery FAQ
               </h2>
             </div>
 
@@ -627,13 +784,13 @@ export default function ProductsPage() {
                 },
                 {
                   q: 'Are these tools compatible with modern AI orchestrators?',
-                  a: 'Yes. All agentic architectures, MCP configurations, and prompt chains conform to standard Model Context Protocol and modern agent execution environments like Claude Code, Cursor, and custom Python/TypeScript runtimes.',
+                  a: 'Yes. All agentic architectures, MCP configurations, and prompt chains conform to standard Model Context Protocol and modern agent execution environments like Claude Code, Cursor, and custom Python and TypeScript runtimes.',
                 },
                 {
                   q: 'How are enterprise advisory and custom mesh deployments handled?',
                   a: 'Advanced tiers such as the Founders Circle Guild and Center of Excellence kits include dedicated architecture advisory sessions, governance setup, and customized swarm orchestration reviews.',
                 },
-              ].map((faq, i) => (
+              ].map((faq) => (
                 <div
                   key={faq.q}
                   className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.02]"
@@ -655,7 +812,7 @@ export default function ProductsPage() {
               <div className="relative flex flex-col items-center gap-6 text-center max-w-2xl mx-auto">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs sm:text-sm font-medium border border-emerald-500/20">
                   <Shield className="w-4 h-4" />
-                  Sovereign Architecture
+                  Sovereign architecture
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
                   Deploy elite AI architectures in your own stack
@@ -682,7 +839,7 @@ export default function ProductsPage() {
                     }
                     className="min-h-[44px] flex-1 flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white hover:border-white/40 hover:bg-white/[0.08] transition-[background-color,border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                   >
-                    <span>Read The Dispatch</span>
+                    <span>Read the dispatch</span>
                     <ExternalLink className="h-4 w-4" />
                   </Link>
                 </div>
