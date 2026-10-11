@@ -113,3 +113,51 @@ for (const [file, phrases] of banned) {
     }
   })
 }
+
+import { auditContent } from '../audit-marketing-claims.mjs'
+
+test('claims-audit fails on a seeded bad page with unbacked claims', () => {
+  const badPage = `
+    export default function BadPage() {
+      return (
+        <div>
+          <h1>Welcome to our product</h1>
+          <p>Trusted by Fortune 500 companies worldwide.</p>
+          <p>Our platform is 10x faster than traditional systems.</p>
+          <p>We deliver a 99.99% uptime SLA with 0ms latency.</p>
+          <p>Customer satisfaction hit 4.9/5 stars from 150+ testimonials.</p>
+          <p>Achieved $100k MRR and 10K+ Creators onboarded.</p>
+        </div>
+      )
+    }
+  `
+  const findings = auditContent('app/test-bad/page.tsx', badPage)
+  assert.ok(findings.length >= 4, `Expected at least 4 findings, got ${findings.length}`)
+  const rulesTriggered = findings.map((f) => f.rule)
+  assert.ok(rulesTriggered.some((r) => r.includes('Fortune')))
+  assert.ok(rulesTriggered.some((r) => r.includes('Performance multiplier')))
+  assert.ok(rulesTriggered.some((r) => r.includes('SLA') || r.includes('latency')))
+  assert.ok(rulesTriggered.some((r) => r.includes('testimonial') || r.includes('vanity')))
+})
+
+test('claims-audit passes on a clean page using linked evidence escape hatch', () => {
+  const cleanEvidencedPage = `
+    export default function CleanPage() {
+      return (
+        <div>
+          <h1>Verified Architecture</h1>
+          {/* claims-evidence: https://github.com/frankxai/benchmarks */}
+          <p>Our benchmark achieved 10x faster execution.</p>
+          <p>
+            <a href="https://status.example.com/sla">99.99% uptime SLA guaranteed</a>
+          </p>
+          <p evidenceUrl="https://arxiv.org/abs/2504.19413">
+            Achieved 26% accuracy boost using persistent memory.
+          </p>
+        </div>
+      )
+    }
+  `
+  const findings = auditContent('app/test-clean/page.tsx', cleanEvidencedPage)
+  assert.equal(findings.length, 0, `Expected 0 findings for evidenced page, got ${JSON.stringify(findings)}`)
+})

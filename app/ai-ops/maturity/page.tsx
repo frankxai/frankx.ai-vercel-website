@@ -9,7 +9,7 @@ const levels = [
   { level: 1, name: 'Reactive', desc: 'Basic tools, no observability', icon: Minus, color: '#f59e0b', traits: ['Single LLM provider', 'Manual prompting', 'No cost tracking', 'Individual usage'] },
   { level: 2, name: 'Organized', desc: 'Consolidated interfaces, basic routing', icon: Settings, color: '#3b82f6', traits: ['Unified interface (Open WebUI)', 'Multiple models accessible', 'Basic prompt templates', 'Team-level adoption'] },
   { level: 3, name: 'Systematic', desc: 'Observability, documented workflows', icon: Zap, color: '#10b981', traits: ['LLM gateway (LiteLLM)', 'Cost tracking per model', 'Trace-based debugging', 'Documented processes'] },
-  { level: 4, name: 'Intelligent', desc: 'Agents, memory systems, automation', icon: Brain, color: '#a855f7', traits: ['Multi-agent systems', 'Persistent memory (Mem0)', 'Cascade routing (85% savings)', 'Self-improving prompts'] },
+  { level: 4, name: 'Intelligent', desc: 'Agents, memory systems, automation', icon: Brain, color: '#a855f7', traits: ['Multi-agent systems', 'Persistent memory (Mem0)', 'Cascade routing (85% savings)', 'Self-improving prompts'], evidenceUrl: 'https://arxiv.org/abs/2504.19413' },
   { level: 5, name: 'Autonomous', desc: 'Self-improving, human-in-the-loop only', icon: Sparkles, color: '#C74634', traits: ['Autonomous optimization', 'Human approval for high-risk only', 'Cross-system orchestration', 'Continuous learning'] },
 ]
 
