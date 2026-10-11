@@ -70,6 +70,13 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
     accessCategories: ['systems-architecture', 'ai-architecture'],
     emailTemplateId: 'premium-product',
   },
+  'command-center-template': {
+    productId: 'command-center-template',
+    deliveryType: 'access-code',
+    files: ['The-Command-Center-Template.zip'],
+    accessCategories: ['command-center', 'operations', 'executive-intelligence'],
+    emailTemplateId: 'premium-product',
+  },
   'visual-creation-loop': {
     productId: 'visual-creation-loop',
     deliveryType: 'access-code',
