@@ -420,6 +420,7 @@ export default function VisionContent() {
               {
                 icon: Building2,
                 stat: '$0 → $14k MRR',
+                evidenceUrl: '/blog/the-great-transition',
                 title: 'The Old Barriers Are Gone',
                 body: 'Tools that cost millions five years ago now cost $20/month. The capital requirement for building a real business has collapsed to nearly zero.',
                 color: 'text-emerald-400',

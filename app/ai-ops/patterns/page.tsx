@@ -51,7 +51,7 @@ from mem0 import Memory
 m = Memory()
 m.add("User prefers RAG over fine-tuning",
       user_id="frank", metadata={"topic": "ai-ops"})
-# +26% accuracy, -90% token usage`,
+# +26% accuracy, -90% token usage (claims-evidence: https://arxiv.org/abs/2504.19413)`,
   },
   {
     num: 4,
