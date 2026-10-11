@@ -62,7 +62,9 @@ function PartCheck({
 export default function DarePage() {
   // Computed on mount so the statically prerendered HTML never bakes in the
   // build date — content enters under the same motion as everything else.
-  const [today, setToday] = useState<ReturnType<typeof getTodaysDare> | null>(null)
+  const [today, setToday] = useState<ReturnType<typeof getTodaysDare> | null>(
+    null,
+  )
   const streakState = useDareStreak()
   const [promptCopied, setPromptCopied] = useState(false)
 
@@ -80,7 +82,8 @@ export default function DarePage() {
       : undefined
 
   const copyPrompt = async () => {
-    if (!prompt || typeof navigator === 'undefined' || !navigator.clipboard) return
+    if (!prompt || typeof navigator === 'undefined' || !navigator.clipboard)
+      return
     try {
       await navigator.clipboard.writeText(prompt.content)
       setPromptCopied(true)
@@ -93,7 +96,7 @@ export default function DarePage() {
   const daysInChapterDone = today
     ? Array.from(
         { length: today.chapter.days[1] - today.chapter.days[0] + 1 },
-        (_, i) => today.chapter.days[0] + i
+        (_, i) => today.chapter.days[0] + i,
       ).filter((d) => streakState.isDayCompleted(d)).length
     : 0
 
@@ -106,7 +109,11 @@ export default function DarePage() {
           description:
             'A 4-part daily challenge: stretch your mind with AI, run a prompt, train one principle of how the mind works, and do one good thing for the world.',
           url: 'https://frankx.ai/dare',
-          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
+          isPartOf: {
+            '@type': 'WebSite',
+            name: 'FrankX.AI',
+            url: 'https://frankx.ai',
+          },
         }}
       />
 
@@ -114,7 +121,10 @@ export default function DarePage() {
       <section className="relative pt-24 pb-12 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-transparent" />
         <div className="relative max-w-3xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             <div className="flex items-center justify-between gap-4 mb-6">
               <p className="text-[11px] tracking-[0.25em] uppercase text-white/60">
                 {today
@@ -164,13 +174,18 @@ export default function DarePage() {
                 label="Mark done"
               />
             </div>
-            <h2 className="text-xl font-bold text-white mb-2">{today.dare.mindStretch.title}</h2>
+            <h2 className="text-xl font-bold text-white mb-2">
+              {today.dare.mindStretch.title}
+            </h2>
             <p className="text-white/60 mb-5">{today.dare.mindStretch.body}</p>
 
             {today.dare.mindStretch.videoId && (
               <DareVideo
                 videoId={today.dare.mindStretch.videoId}
-                title={today.dare.mindStretch.videoTitle ?? today.dare.mindStretch.title}
+                title={
+                  today.dare.mindStretch.videoTitle ??
+                  today.dare.mindStretch.title
+                }
                 channel={today.dare.mindStretch.videoChannel}
               />
             )}
@@ -226,7 +241,11 @@ export default function DarePage() {
                   onClick={copyPrompt}
                   className="absolute top-3 right-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/15 text-xs text-white/60 hover:text-white hover:border-white/30 transition-colors"
                 >
-                  {promptCopied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                  {promptCopied ? (
+                    <Check className="w-3 h-3" />
+                  ) : (
+                    <Copy className="w-3 h-3" />
+                  )}
                   {promptCopied ? 'Copied' : 'Copy'}
                 </button>
                 <pre className="whitespace-pre-wrap font-mono text-sm text-white/70 max-h-72 overflow-y-auto pr-20">
@@ -239,7 +258,7 @@ export default function DarePage() {
               href="/prompt-library"
               className="inline-flex items-center gap-1.5 mt-5 text-sm text-white/50 hover:text-white transition-colors"
             >
-              200+ more in the prompt library <ArrowRight className="w-3.5 h-3.5" />
+              More in the prompt library <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </motion.div>
 
@@ -265,12 +284,16 @@ export default function DarePage() {
                 label="Mark done"
               />
             </div>
-            <h2 className="text-xl font-bold text-white mb-2">{today.dare.mindConcept.title}</h2>
+            <h2 className="text-xl font-bold text-white mb-2">
+              {today.dare.mindConcept.title}
+            </h2>
             <p className="text-white/60">{today.dare.mindConcept.body}</p>
 
             {quote && (
               <blockquote className="mt-5 border-l-2 border-amber-500/40 pl-4">
-                <p className="text-white/80 italic">&ldquo;{quote.text}&rdquo;</p>
+                <p className="text-white/80 italic">
+                  &ldquo;{quote.text}&rdquo;
+                </p>
                 <footer className="mt-2 text-xs text-white/40">
                   {book?.author}
                   {quote.chapter ? ` · ${quote.chapter}` : ''}
@@ -310,7 +333,9 @@ export default function DarePage() {
                 label="Mark done"
               />
             </div>
-            <h2 className="text-xl font-bold text-white mb-2">{today.dare.goodDeed.title}</h2>
+            <h2 className="text-xl font-bold text-white mb-2">
+              {today.dare.goodDeed.title}
+            </h2>
             <p className="text-white/60 mb-4">{today.dare.goodDeed.body}</p>
             <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-white/50">
               {EFFORT_LABELS[today.dare.goodDeed.effort]}
@@ -327,8 +352,10 @@ export default function DarePage() {
             {streakState.dayComplete ? (
               <p className="text-white/70">
                 Day {today.day} complete.
-                {streakState.streak > 1 ? ` ${streakState.streak} days and counting.` : ''} See you
-                tomorrow.
+                {streakState.streak > 1
+                  ? ` ${streakState.streak} days and counting.`
+                  : ''}{' '}
+                See you tomorrow.
               </p>
             ) : (
               <p className="text-white/40 text-sm">
@@ -344,8 +371,8 @@ export default function DarePage() {
               />
             </div>
             <p className="text-white/40 text-sm mt-4 max-w-md mx-auto">
-              This works better with two minds. Send today&rsquo;s dare to the friend who&rsquo;ll
-              actually do it.
+              This works better with two minds. Send today&rsquo;s dare to the
+              friend who&rsquo;ll actually do it.
             </p>
           </motion.div>
 
@@ -368,11 +395,12 @@ export default function DarePage() {
                 </p>
               </div>
               <h2 className="text-xl font-bold text-white mb-2">
-                {today.chapter.title} — {streakState.mounted ? daysInChapterDone : 0}/5 days done
+                {today.chapter.title} —{' '}
+                {streakState.mounted ? daysInChapterDone : 0}/5 days done
               </h2>
               <p className="text-white/50 text-sm">
-                {QUEST_LENGTH} days, 6 principles of the mind. See the whole map, your progress, and
-                where this is going.
+                {QUEST_LENGTH} days, 6 principles of the mind. See the whole
+                map, your progress, and where this is going.
               </p>
               <ArrowRight className="absolute bottom-6 right-6 w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
             </Link>
