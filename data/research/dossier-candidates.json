@@ -1,0 +1,1728 @@
+{
+  "schemaVersion": 1,
+  "status": "editorial-candidate",
+  "checkedAt": "2026-10-09",
+  "sources": [
+    {
+      "id": "openai-codex-sdk",
+      "title": "Codex SDK",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/docs/codex-sdk",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "#codex-sdk; #typescript-library",
+        "#python-library",
+        "#python-library; introductory integration guidance"
+      ],
+      "limitations": [
+        "Local automation is a different execution boundary from an OpenAI-managed Agents API session. Specific model access depends on the signed-in account."
+      ]
+    },
+    {
+      "id": "openai-agents-sdk",
+      "title": "OpenAI Agents SDK",
+      "publisher": "OpenAI",
+      "url": "https://openai.github.io/openai-agents-python/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "#openai-agents-sdk; #why-use-the-agents-sdk",
+        "#why-use-the-agents-sdk",
+        "#agents-sdk-or-responses-api"
+      ],
+      "limitations": [
+        "An SDK's sessions and resumable state are not evidence that an arbitrary surrounding deployment has crash-safe durable execution."
+      ]
+    },
+    {
+      "id": "openai-agents-api",
+      "title": "Agents API",
+      "publisher": "OpenAI",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "Introduction; #core-concepts",
+        "#what-the-managed-harness-provides",
+        "Closing retention and residency notice"
+      ],
+      "limitations": [
+        "The execution environment can be self-hosted while the harness and session service remain OpenAI-managed. Beta/API permissions must be checked separately."
+      ]
+    },
+    {
+      "id": "openai-agents-api-access",
+      "title": "Agents API quickstart",
+      "publisher": "OpenAI",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/quickstart",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "agents=v1 beta header",
+      "locators": [
+        "#prerequisites",
+        "#prerequisites"
+      ],
+      "limitations": [
+        "Presence in public docs does not prove a specific project's permission configuration or rollout access."
+      ]
+    },
+    {
+      "id": "anthropic-agent-sdk",
+      "title": "Agent SDK overview",
+      "publisher": "Anthropic",
+      "url": "https://code.claude.com/docs/en/agent-sdk/overview",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "#compare-the-agent-sdk-to-other-claude-tools",
+        "#capabilities",
+        "#get-started"
+      ],
+      "limitations": [
+        "Operating a Claude Code process is not the same service boundary as Claude Managed Agents; authentication terms matter to resale/product architecture."
+      ]
+    },
+    {
+      "id": "anthropic-managed-agents",
+      "title": "Claude Managed Agents overview",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/managed-agents/overview",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "managed-agents-2026-04-01 beta header",
+      "locators": [
+        "#core-concepts; #how-it-works; #supported-tools",
+        "#beta-access",
+        "#beta-access"
+      ],
+      "limitations": [
+        "Claude Platform on AWS has differences in feature availability and session behavior. A self-hosted environment does not imply the hosted session service stores no data."
+      ]
+    },
+    {
+      "id": "google-adk-overview",
+      "title": "Agent Development Kit",
+      "publisher": "Google",
+      "url": "https://adk.dev/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "Main overview",
+        "#frequently-asked-questions: models and deployment"
+      ],
+      "limitations": [
+        "Language parity should be checked per feature; the landing page's general capabilities do not prove identical support in every SDK."
+      ]
+    },
+    {
+      "id": "google-adk-template-workflows",
+      "title": "Template agent workflows",
+      "publisher": "Google",
+      "url": "https://adk.dev/agents/workflow-agents/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "#template-agent-workflows",
+        "Alternative: graph-based workflows"
+      ],
+      "limitations": [
+        "The graph page independently lists Python, TypeScript, and Go v2.0.0 support. Preserve the narrower wording when citing this page."
+      ]
+    },
+    {
+      "id": "google-adk-graphs",
+      "title": "Graph-based agent workflows",
+      "publisher": "Google",
+      "url": "https://adk.dev/graphs/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "ADK 2.0.0 as explicitly listed",
+      "locators": [
+        "Introduction; Figure 1",
+        "Workflow styles in ADK",
+        "#known-limitations"
+      ],
+      "limitations": [
+        "A deterministic control-flow graph does not make LLM outputs deterministic. Feature support is version- and language-specific."
+      ]
+    },
+    {
+      "id": "google-adk-context",
+      "title": "Conversational Context: Session, State, and Memory",
+      "publisher": "Google",
+      "url": "https://adk.dev/sessions/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "#core-concepts",
+        "#managing-context-services"
+      ],
+      "limitations": [
+        "In-memory development services are not production persistence; select appropriate backing services for the deployment."
+      ]
+    },
+    {
+      "id": "langgraph-persistence",
+      "title": "Persistence",
+      "publisher": "LangChain",
+      "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "Main overview",
+        "#quickstart"
+      ],
+      "limitations": [
+        "Checkpoints, long-term memory, and external filesystem persistence are separate concerns. The old durable-execution URL currently redirects here."
+      ]
+    },
+    {
+      "id": "langgraph-checkpointers",
+      "title": "Checkpointers",
+      "publisher": "LangChain",
+      "url": "https://docs.langchain.com/oss/python/langgraph/checkpointers",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "#core-concepts; pending writes",
+        "#why-use-checkpointers",
+        "Introduction: Agent Server handles checkpointing automatically"
+      ],
+      "limitations": [
+        "Persisted node outputs do not guarantee exactly-once effects at external APIs; partially completed side effects still need application safeguards."
+      ]
+    },
+    {
+      "id": "langgraph-functional-api",
+      "title": "Functional API overview",
+      "publisher": "LangChain",
+      "url": "https://docs.langchain.com/oss/python/langgraph/functional-api",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "#functional-api-vs-graph-api",
+        "#determinism",
+        "#idempotency"
+      ],
+      "limitations": [
+        "Replay depends on stable ordering of tasks and interrupts. JSON-serializable task outputs and entrypoint inputs/outputs are required."
+      ]
+    },
+    {
+      "id": "langchain-deep-agents",
+      "title": "Deep Agents overview",
+      "publisher": "LangChain",
+      "url": "https://docs.langchain.com/oss/python/deepagents/overview",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "Introduction; architecture section",
+        "Introduction",
+        "#virtual-filesystem-access"
+      ],
+      "limitations": [
+        "Filesystem tools alone are not a security boundary. Backend selection controls where files live and whether shell execution is available."
+      ]
+    },
+    {
+      "id": "langchain-managed-deep-agents",
+      "title": "Managed Deep Agents",
+      "publisher": "LangChain",
+      "url": "https://docs.langchain.com/langsmith/python/managed-deep-agents-overview",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "Introduction",
+        "#core-capabilities",
+        "#relationship-to-deep-agents"
+      ],
+      "limitations": [
+        "Do not conflate the open-source harness with the managed deployment offering; ownership of persistence, backends, and server differs."
+      ]
+    },
+    {
+      "id": "langchain-managed-beta",
+      "title": "Managed Deep Agents is now in Public Beta",
+      "publisher": "LangChain",
+      "url": "https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2026-08-07",
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "Opening announcement",
+        "#when-to-use-managed-deep-agents",
+        "#harbor-evals-without-the-setup-work"
+      ],
+      "limitations": [
+        "This dated launch describes its announced scope, which may differ from later docs. Check deployment region and current API support before implementation."
+      ]
+    },
+    {
+      "id": "vercel-ai-sdk-release",
+      "title": "AI SDK 7 is now available",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/changelog/ai-sdk-7",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2026-06-25",
+      "version": "AI SDK 7",
+      "locators": [
+        "#at-a-glance; #run-agents-in-production; #integrate-agent-harnesses",
+        "#before-you-upgrade",
+        "#build-beyond-text"
+      ],
+      "limitations": [
+        "This is a release snapshot, not a guarantee of later adapter parity or all provider features. Model IDs in examples are not an endorsed ranking."
+      ]
+    },
+    {
+      "id": "vercel-workflow-agent",
+      "title": "WorkflowAgent",
+      "publisher": "Vercel",
+      "url": "https://ai-sdk.dev/docs/agents/workflow-agent",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Workflow 5 dependency as explicitly documented",
+      "locators": [
+        "#why-durable-agents; #when-to-use-workflowagent-vs-toolloopagent",
+        "#tools-as-workflow-steps",
+        "#installation",
+        "#loop-control; #non-streaming-generation"
+      ],
+      "limitations": [
+        "Automatic retries do not prove exactly-once external side effects. A workflow function and appropriate persistent runtime still need configuration."
+      ]
+    },
+    {
+      "id": "vercel-workflow-ai",
+      "title": "Building Durable AI Agents",
+      "publisher": "Vercel",
+      "url": "https://workflow-sdk.dev/docs/ai",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "#create-a-workflow-function; #update-the-api-route; #convert-tools-to-steps",
+        "#convert-tools-to-steps"
+      ],
+      "limitations": [
+        "The flight-booking example mocks tool implementations; its presence is not a measured production result."
+      ]
+    },
+    {
+      "id": "cloudflare-agents",
+      "title": "Build Agents on Cloudflare",
+      "publisher": "Cloudflare",
+      "url": "https://developers.cloudflare.com/agents/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "Main architectural breakdown",
+        "Main architectural breakdown"
+      ],
+      "limitations": [
+        "The opinionated Project Think harness and the underlying Agents runtime have different responsibilities. Hosting a Durable Object does not preserve in-memory closures."
+      ]
+    },
+    {
+      "id": "cloudflare-agent-fibers",
+      "title": "Durable execution with fibers",
+      "publisher": "Cloudflare",
+      "url": "https://developers.cloudflare.com/agents/runtime/execution/durable-execution/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "Introduction; #checkpoints-with-stash",
+        "#startfiber",
+        "#recovery; #why-fibers-exist"
+      ],
+      "limitations": [
+        "Durable acceptance is not a stored callback result. An evicted inline caller cannot receive the original result; explicit recovery logic is required."
+      ]
+    },
+    {
+      "id": "mcp-2026-release",
+      "title": "The 2026-07-28 Specification",
+      "publisher": "Model Context Protocol maintainers",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2026-07-28",
+      "version": "MCP 2026-07-28",
+      "locators": [
+        "#no-handshake-or-sessions",
+        "#multi-round-trip-requests-mrtr; #header-based-routing; #list-results-are-cacheable",
+        "#tasks; #deprecations"
+      ],
+      "limitations": [
+        "Application state still exists through explicit handles. Protocol release does not establish client/server version interoperability without testing."
+      ]
+    },
+    {
+      "id": "agent-skills-format",
+      "title": "Agent Skills Overview",
+      "publisher": "Agent Skills maintainers",
+      "url": "https://agentskills.io/specification",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "Directory structure; SKILL.md format; Optional directories; Progressive disclosure"
+      ],
+      "limitations": [
+        "A portable instruction format does not grant tool permissions, supply runtime persistence, or prove identical behavior across compatible clients."
+      ]
+    },
+    {
+      "id": "a2a-specification",
+      "title": "Agent2Agent Protocol Specification",
+      "publisher": "A2A Project / Linux Foundation",
+      "url": "https://a2a-protocol.org/latest/specification/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "A2A 1.0.0 as explicitly identified",
+      "locators": [
+        "Opening version selector",
+        "#1-introduction; #11-key-goals-of-a2a",
+        "#12-guiding-principles"
+      ],
+      "limitations": [
+        "A2A is an interoperability contract; the standard does not supply a durable implementation, shared permissions, or benchmarked reasoning quality."
+      ]
+    },
+    {
+      "id": "a2a-mcp-comparison",
+      "title": "A2A and MCP: Detailed Comparison",
+      "publisher": "A2A Project / Linux Foundation",
+      "url": "https://a2a-protocol.org/latest/topics/a2a-and-mcp/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "Living documentation; checked 2026-10-09",
+      "locators": [
+        "#model-context-protocol; #agent2agent-protocol; #a2a--mcp-complementary-protocols-for-agentic-systems"
+      ],
+      "limitations": [
+        "A peer exposed as a simple tool does not automatically preserve richer task/session semantics. The page footer identifies Apache 2.0 licensing."
+      ]
+    },
+    {
+      "id": "swe-maintainers",
+      "title": "SWE-bench official leaderboards",
+      "publisher": "SWE-bench maintainers",
+      "url": "https://www.swebench.com/",
+      "type": "benchmark",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "full page definition, news, benchmark links; leaderboard dynamic rows not independently executed",
+      "locators": [
+        "Lines 49–81: resolved definition, 2294 original instances, 500 Verified instances, Bash Only mini-SWE-agent view",
+        "Lines 101–104: newer ProgramBench and CodeClash benchmarks"
+      ],
+      "limitations": [
+        "Results depend on task split and agent environment. This ledger records benchmark definition, not a live model ranking."
+      ]
+    },
+    {
+      "id": "swe-verified-2024",
+      "title": "Introducing SWE-bench Verified",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-swe-bench-verified/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2024-08-13",
+      "version": "task annotation and dataset construction sections",
+      "locators": [
+        "Dataset construction, lines 160–190"
+      ],
+      "limitations": [
+        "Human filtering improves task feasibility but does not prove complete test coverage or absence of later training contamination."
+      ]
+    },
+    {
+      "id": "swe-verified-audit-2026",
+      "title": "Why SWE-bench Verified no longer measures frontier coding capabilities",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2026-02-23",
+      "version": "background, test-design audit, contamination method and examples, discussion",
+      "locators": [
+        "Summary lines 40–49; selected audit lines 68–74; contamination method lines 267–284"
+      ],
+      "limitations": [
+        "138 audited tasks were selected from problems o3 did not consistently solve; 59.4% is not a random-sample estimate for all 500 tasks. Audit is OpenAI-reported; contamination examples do not establish every model/task is contaminated."
+      ]
+    },
+    {
+      "id": "swe-pro-audit-2026",
+      "title": "Separating signal from noise in coding evaluations",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/separating-signal-from-noise-coding-evaluations/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2026-07-08",
+      "version": "full substantive article excluding unrelated navigation and code-example formatting",
+      "locators": [
+        "Lines 35–50: 731 public tasks and estimated ~30% broken",
+        "Lines 51–64: pipeline and five-engineer reviews",
+        "Lines 70–75: retracts Pro recommendation"
+      ],
+      "limitations": [
+        "Publisher is a model provider. Automated screening plus review of flagged tasks can miss flaws outside the flagged subset; the ~30% number is an audit estimate, not a universal property of coding tasks."
+      ]
+    },
+    {
+      "id": "metr-rct-2025",
+      "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+      "publisher": "METR",
+      "url": "https://arxiv.org/html/2507.09089v1",
+      "type": "preprint",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2025-07-12",
+      "version": "abstract, background, methodology, results, key caveats and overgeneralization appendix",
+      "locators": [
+        "Abstract; §2 Methodology; §3 Results; §4.1 Key Caveats; Appendix B overgeneralizations",
+        "Official companion https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/ lines 46–63"
+      ],
+      "limitations": [
+        "16 developers with established repository expertise; 246 tasks in mature open-source projects; primarily Cursor with early-2025 Claude models. Total implementation time was self-reported, including review. Does not estimate all developers or October 2026 tools."
+      ]
+    },
+    {
+      "id": "metr-update-2026",
+      "title": "We are Changing our Developer Productivity Experiment Design",
+      "publisher": "METR",
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2026-02-24",
+      "version": "full substantive article",
+      "locators": [
+        "Lines 35–64: raw estimates, selection and concurrent-agent time issues; lines 70–80: redesigned research options"
+      ],
+      "limitations": [
+        "Selection of developers and tasks, changed pay, incomplete AI-disallowed tasks and concurrent work compromise current causal interpretation. Both later-study confidence intervals include zero."
+      ]
+    },
+    {
+      "id": "metr-survey-2026",
+      "title": "Measuring the Self-Reported Impact of Early-2026 AI on Technical Worker Productivity",
+      "publisher": "METR",
+      "url": "https://metr.org/blog/2026-05-11-ai-usage-survey/",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2026-05-11",
+      "version": "summary, sampling/methodology, detailed value-speed distinction and caveats",
+      "locators": [
+        "Summary lines 35–52; value/speed discussion and convenience sampling lines 82–93"
+      ],
+      "limitations": [
+        "Self-reported counterfactuals; convenience sample; low approximately 2% emailed response rate; nonrepresentative recruitment. Internal consistency does not verify real causal productivity gains."
+      ]
+    },
+    {
+      "id": "osworld-v1",
+      "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+      "publisher": "Benchmark authors / maintainers",
+      "url": "https://osworld-v1.xlang.ai/",
+      "type": "benchmark",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "full maintainer project page, benchmark setting and Google Drive exclusion notice",
+      "locators": [
+        "Lines 9–20: real desktop tasks and execution-based setup/evaluation; lines 64–79: 369 vs 361 permitted task counts"
+      ],
+      "limitations": [
+        "Network-dependent tasks and maximum action budget can alter comparability. Original 2024 baseline results describe historical models, not current capability."
+      ]
+    },
+    {
+      "id": "gaia",
+      "title": "GAIA: A Benchmark for General AI Assistants",
+      "publisher": "Benchmark authors / maintainers",
+      "url": "https://arxiv.org/html/2311.12983v1",
+      "type": "preprint",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2023-11-21",
+      "version": "abstract, question design, answer evaluation, task composition and limitations",
+      "locators": [
+        "§3.2 lines 139–140: quasi-exact answer scoring",
+        "§3.3 lines 143–147: 466 questions and action limitations",
+        "§6 Limitations"
+      ],
+      "limitations": [
+        "Question-answer evaluation does not measure write actions such as posting, uploads or booking. Web facts can change. Language/cultural diversity and human annotation costs limit coverage."
+      ]
+    },
+    {
+      "id": "tau-bench",
+      "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+      "publisher": "Benchmark authors / maintainers",
+      "url": "https://arxiv.org/html/2406.12045v1",
+      "type": "preprint",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2024-06-17",
+      "version": "abstract, environment construction, reward metric, empirical results, failure analyses; appendix conversations treated as examples",
+      "locators": [
+        "§3 lines 174–182: final database/output reward and pass^k versus pass@k",
+        "§5.1 lines 216–239: trial budgets, historical table and repeated success",
+        "License line 44: CC BY 4.0"
+      ],
+      "limitations": [
+        "Simulated users and simplified retail/airline policies. Matching the final database/output can still miss intermediate policy violations. Original model results are historical."
+      ]
+    },
+    {
+      "id": "agentbench",
+      "title": "AgentBench: Evaluating LLMs as Agents",
+      "publisher": "Benchmark authors / maintainers",
+      "url": "https://arxiv.org/html/2308.03688v3",
+      "type": "preprint",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "abstract, composition, evaluation setup, failure analysis and validity taxonomy",
+      "locators": [
+        "Abstract lines 84–87; composition lines 102–122; Appendix J.1 lines 1701–1733",
+        "License line 79: CC BY 4.0"
+      ],
+      "limitations": [
+        "Eight heterogeneous text-based environments; aggregate score combines different tasks/metrics. Historical 29-model experiment does not rank current tools."
+      ]
+    },
+    {
+      "id": "osworld-v2",
+      "title": "OSWorld 2.0: Benchmarking Computer Use Agents on Long-Horizon Real-World Tasks",
+      "publisher": "Benchmark authors / maintainers",
+      "url": "https://arxiv.org/html/2606.29537v1",
+      "type": "preprint",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2026-06-28",
+      "version": "abstract, task construction, challenge phenomena, evaluation release/scoring discipline, limitations",
+      "locators": [
+        "Abstract lines 131–135; §2.2 task construction; Table 2 lines 239–253; §6 limitations lines 407–410"
+      ],
+      "limitations": [
+        "108 tasks are diagnostic, not representative of all professions. Scores depend on release, action settings, task mix and stochastic behavior; paper HTML content/abstract-version model details should be reconciled before quoting a live ranking."
+      ]
+    },
+    {
+      "id": "programbench",
+      "title": "ProgramBench: Can Language Models Rebuild Programs From Scratch?",
+      "publisher": "Benchmark authors / maintainers",
+      "url": "https://programbench.com/",
+      "type": "benchmark",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "full definition, harness, security controls, scoring and contamination FAQ; dynamic rankings not imported",
+      "locators": [
+        "Lines 11–20: task and primary metric",
+        "Lines 61–68: binary, documentation, code-free environment and 200 tasks",
+        "Lines 89–126: harness, resolved metric and contamination discussion"
+      ],
+      "limitations": [
+        "Complete behavioral equivalence against compiled programs is narrower than open-ended product usefulness. Tests are finite; open-source programs may have been seen in training. Partial test percentage must not be relabeled fully resolved."
+      ]
+    },
+    {
+      "id": "effective-agents",
+      "title": "Building effective agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2024-12-19",
+      "version": "Source read 2026-10-09",
+      "locators": [
+        "Workflows versus agents; When (and when not) to use agents; Building blocks, workflows, and agents"
+      ],
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    },
+    {
+      "id": "long-running-harness",
+      "title": "Effective harnesses for long-running agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2025-11-26",
+      "version": "Source read 2026-10-09",
+      "locators": [
+        "Making progress across sessions; Feature list; Testing; Getting up to speed"
+      ],
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    },
+    {
+      "id": "managed-architecture",
+      "title": "The architecture behind Claude Managed Agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/managed-agents",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": "2026-04-08",
+      "version": "Source read 2026-10-09",
+      "locators": [
+        "Separating the session from the harness and sandbox; session durability"
+      ],
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    },
+    {
+      "id": "acos-workflow",
+      "title": "ACOS research-to-article workflow",
+      "publisher": "FrankX / ACOS",
+      "url": "https://github.com/frankxai/agentic-creator-os/blob/05d68aeef6cfd9caaf3234d464a12279bc5c6bbe/workflows/content/research-to-article.yaml",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "05d68aeef6cfd9caaf3234d464a12279bc5c6bbe",
+      "locators": [
+        "Evidence packet and independent review phases"
+      ],
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    },
+    {
+      "id": "acos-contract",
+      "title": "ACOS content intelligence contract",
+      "publisher": "FrankX / ACOS",
+      "url": "https://github.com/frankxai/agentic-creator-os/blob/05d68aeef6cfd9caaf3234d464a12279bc5c6bbe/docs/content-intelligence.md",
+      "type": "official",
+      "accessedAt": "2026-10-09",
+      "publishedAt": null,
+      "version": "05d68aeef6cfd9caaf3234d464a12279bc5c6bbe",
+      "locators": [
+        "Primary source ledger, proof wave, publication and anti-fabrication requirements"
+      ],
+      "limitations": [
+        "Engineering guidance or workflow definition; no comparative benchmark was conducted for this dossier."
+      ]
+    }
+  ],
+  "media": [
+    {
+      "id": "openai-managed-architecture",
+      "type": "link",
+      "url": "https://developers.openai.com/images/api/agents-api/overview-1.webp",
+      "sourceId": "openai-agents-api",
+      "sourceUrl": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+      "publisher": "OpenAI",
+      "title": "OpenAI-hosted Agents API architecture",
+      "width": 1400,
+      "height": 552,
+      "alt": "Application sessions and events connect to an OpenAI-managed Codex harness and sandbox.",
+      "provenance": "Exact img src and dimensions read from first-party HTML, live HTTP 200 scrape.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Link only. No explicit reuse license established.",
+      "semanticPlacement": "Managed harness versus execution-environment ownership.",
+      "description": "Application sessions and events connect to an OpenAI-managed Codex harness and sandbox."
+    },
+    {
+      "id": "google-adk-graph-workflow",
+      "type": "image",
+      "url": "https://adk.dev/assets/workflow-design.svg",
+      "sourceId": "google-adk-graphs",
+      "sourceUrl": "https://adk.dev/graphs/",
+      "publisher": "Google",
+      "title": "Graph-based flight upgrade agent",
+      "alt": "An ADK graph combining function nodes, human input, tools, and LLM capabilities.",
+      "provenance": "Exact img src read from first-party graph documentation HTML, live HTTP 200 scrape.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Original remote reference under repository Apache-2.0 license; attribution and license link retained.",
+      "semanticPlacement": "Deterministic process flow with model reasoning inside selected nodes.",
+      "width": 777,
+      "height": 235,
+      "description": "An ADK graph combining function nodes, human input, tools, and LLM capabilities.",
+      "license": "Apache License 2.0",
+      "licenseUrl": "https://github.com/google/adk-docs/blob/12712d00d48712998f15a2a9d8bd26d708b727a3/LICENSE"
+    },
+    {
+      "id": "mcp-stateless-core-demo",
+      "type": "video",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/stateless-core-demo.mp4",
+      "sourceId": "mcp-2026-release",
+      "sourceUrl": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "publisher": "Model Context Protocol maintainers",
+      "title": "MCP stateless protocol core demo",
+      "width": 1280,
+      "height": 454,
+      "provenance": "Exact video/source src and dimensions read from first-party release HTML; official page calls it a short demo of the stateless protocol core.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Repository documentation licensed CC-BY-4.0; original remote asset, credited and unchanged.",
+      "semanticPlacement": "MCP 2026-07-28 transport migration; use native muted video with controls and explanatory transcript/caption.",
+      "description": "Official screen demonstration of the MCP stateless protocol core. The connected tools perform requests without a core initialization handshake or transport session ID; applications still own their explicit state. The source article explains the protocol transition. This demonstration is not a benchmark.",
+      "license": "Creative Commons Attribution 4.0",
+      "licenseUrl": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/LICENSE"
+    },
+    {
+      "id": "langchain-managed-deep-agents-video",
+      "type": "youtube",
+      "url": "https://www.youtube.com/watch?v=yi-XZnAVFJg",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/yi-XZnAVFJg",
+      "videoId": "yi-XZnAVFJg",
+      "sourceId": "langchain-managed-beta",
+      "sourceUrl": "https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta",
+      "publisher": "LangChain",
+      "title": "Managed Deep Agents explained in 20 minutes",
+      "channelUrl": "https://www.youtube.com/channel/UCC-lyoTfSrcJzA1ab3APAgw",
+      "provenance": "Official LangChain article embeds this video; live rendered iframe identifies title and LangChain channel URL/name. Direct YouTube web fetch throttled, so validation used the first-party rendered embedded player.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Use official publisher's YouTube embed without downloading/reuploading; preserve source attribution.",
+      "semanticPlacement": "Optional supporting walkthrough of managed deployment primitives, not evidence of vendor superiority.",
+      "description": "Official LangChain walkthrough of its managed agent service. Use the original player for available captions and transcript."
+    },
+    {
+      "id": "a2a-mcp-boundary",
+      "type": "image",
+      "url": "https://a2a-protocol.org/latest/assets/a2a-mcp.png",
+      "sourceId": "a2a-mcp-comparison",
+      "sourceUrl": "https://a2a-protocol.org/latest/topics/a2a-and-mcp/",
+      "publisher": "A2A Project / Linux Foundation",
+      "title": "A2A and MCP working together",
+      "alt": "User and agents communicate through A2A while an agent reaches tools through MCP.",
+      "provenance": "Exact image src read from official page HTML; official footer states Apache License 2.0.",
+      "accessedDate": "2026-10-09",
+      "rightsStatus": "Official documentation footer states Apache-2.0. Original remote figure, credited and unchanged.",
+      "semanticPlacement": "Distinct protocol boundaries in the interoperability section.",
+      "width": 1524,
+      "height": 864,
+      "description": "User and agents communicate through A2A while an agent reaches tools through MCP.",
+      "license": "Apache License 2.0",
+      "licenseUrl": "https://a2a-protocol.org/latest/topics/a2a-and-mcp/"
+    }
+  ],
+  "dossiers": [
+    {
+      "slug": "agentic-product-development",
+      "title": "Agentic product development: from intent to a verified release",
+      "description": "A source-led investigation of coding harnesses, managed agents, durable workflows, portable skills and the evidence needed to release a real product.",
+      "abstract": "Agentic product development delegates research, implementation and verification inside an explicit product contract. Current runtimes can carry more of that work, but product decisions, evidence and release authority still need an owner. This dossier compares the execution layers and specifies a reproducible method for judging the result.",
+      "decision": "Keep the product contract and evidence portable. Select the runtime by the work, recovery model and authority boundary.",
+      "category": "agentic-products",
+      "reviewedAt": "2026-10-09",
+      "reviewStatus": "editorial-candidate",
+      "method": "Primary documentation and research were read on 9 October 2026. Vendor documentation establishes advertised behavior and access limits; empirical papers establish results only under their stated protocols. The architecture and experiment designs are FrankX synthesis. No comparative platform run was performed for this dossier.",
+      "limitations": [
+        "Documentation can change after this review; beta access and plan entitlements must be checked before procurement.",
+        "This is a literature and documentation review, with an original implementation contract. It contains no first-party productivity, reliability or cost benchmark.",
+        "A framework API, a hosted service and a coding harness operate at different layers; the table is a placement guide rather than a quality ranking."
+      ],
+      "related": [
+        {
+          "slug": "coding-agents-full-stack",
+          "reason": "Inspect the coding loop, context handover and verification boundary."
+        },
+        {
+          "slug": "agentic-evals-swe-bench-trajectories",
+          "reason": "Design a workload evaluation before expanding autonomy."
+        },
+        {
+          "slug": "human-in-the-loop-governance",
+          "reason": "Research agenda: policy, approvals and escalation."
+        },
+        {
+          "slug": "agentic-memory-architectures",
+          "reason": "Research agenda: durable state, retrieval and forgetting."
+        },
+        {
+          "slug": "mcp-ecosystem-tool-calling",
+          "reason": "Research agenda: tool contracts and protocol migration."
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-contract",
+          "title": "The product contract is the unit of delegation",
+          "paragraphs": [
+            {
+              "text": "An agent can turn a request into a specification and code. The unresolved question is whether the request describes a product somebody can use. A generated PRD cannot establish demand, correct economics or the intended consequence of a release. Those are separate decisions with separate evidence.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-product-contract-p1"
+            },
+            {
+              "text": "Start each run with a named user job, an observable acceptance condition, the source revision, the allowed changes and the release owner. For example: a studio operator imports a client brief, receives a cited research packet and exports an editable campaign draft. Acceptance includes correct source attribution, tenant isolation, export fidelity and recovery after interruption. “Build a content platform” leaves every one of those conditions unspecified.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-product-contract-p2"
+            },
+            {
+              "text": "Anthropic distinguishes predefined workflows from agents that choose their own process at runtime.",
+              "kind": "documented",
+              "sourceIds": [
+                "effective-agents"
+              ],
+              "id": "agentic-product-development-product-contract-p3"
+            },
+            {
+              "id": "agentic-product-development-product-contract-p3-implication",
+              "text": "That distinction remains useful: a product lifecycle can keep fixed acceptance and release boundaries while allowing dynamic exploration inside a research or implementation step.",
+              "kind": "analysis",
+              "sourceIds": []
+            },
+            {
+              "text": "ACOS supplies a concrete first-party example: its research-to-article workflow records authority levels, claim types, independent review and the difference between a preview and publication. Reading those files verifies the design of the workflow. It does not prove that an installation executed it successfully.",
+              "kind": "documented",
+              "sourceIds": [
+                "acos-workflow",
+                "acos-contract"
+              ],
+              "id": "agentic-product-development-product-contract-p4"
+            }
+          ],
+          "mediaIds": []
+        },
+        {
+          "id": "capability-map",
+          "title": "What the current execution layers actually provide",
+          "paragraphs": [
+            {
+              "text": "Treat the following as a capability placement map as of 9 October 2026. A managed service owns more of the harness and recovery infrastructure; an SDK leaves more responsibility in your application. Deployment geography, credentials and export behavior can decide the choice before model quality does.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-capability-map-p1"
+            },
+            {
+              "text": "OpenAI documents a beta Agents API with a managed Codex harness and explicit session/environment separation. Its current overview says US-only data residency and no Zero Data Retention support, including with a self-hosted sandbox. Those limits matter for a European product architecture.",
+              "kind": "documented",
+              "sourceIds": [
+                "openai-agents-api"
+              ],
+              "id": "agentic-product-development-capability-map-p2"
+            },
+            {
+              "text": "Anthropic describes Managed Agents through session, harness and sandbox interfaces. Its documentation labels the service beta; selected capabilities have additional research-preview gates.",
+              "kind": "documented",
+              "sourceIds": [
+                "anthropic-managed-agents",
+                "managed-architecture"
+              ],
+              "id": "agentic-product-development-capability-map-p3"
+            },
+            {
+              "id": "agentic-product-development-capability-map-p3-implication",
+              "text": "A managed runtime should therefore appear in a product plan with its exact access requirements and a replacement path.",
+              "kind": "analysis",
+              "sourceIds": []
+            },
+            {
+              "text": "Durability is a specific runtime contract. Vercel WorkflowAgent makes a tool call durable when its execute function is marked with \"use step\"; an unmarked tool runs in memory. Cloudflare fibers preserve checkpoint state for recovery, but do not replay the original JavaScript closure automatically. Test the exact interruption boundary rather than treating \"durable\" as a universal guarantee.",
+              "kind": "documented",
+              "sourceIds": [
+                "vercel-workflow-agent",
+                "cloudflare-agent-fibers"
+              ],
+              "id": "agentic-product-development-capability-map-p4"
+            },
+            {
+              "text": "Managed Deep Agents is a separate hosted execution option from the open-source Deep Agents harness. Its official walkthrough explains deployment primitives. The demonstration is useful for understanding the service boundary; it supplies no independent evidence that the service outperforms another provider.",
+              "kind": "documented",
+              "sourceIds": [
+                "langchain-managed-deep-agents",
+                "langchain-managed-beta"
+              ],
+              "id": "agentic-product-development-capability-map-p5"
+            }
+          ],
+          "table": {
+            "caption": "Execution layers and the responsibility that stays with the product owner",
+            "headings": [
+              "Layer",
+              "Documented capability",
+              "Design decision"
+            ],
+            "rows": [
+              {
+                "cells": [
+                  "Codex SDK / app server",
+                  "Programmatic access to a coding harness, sessions and execution surfaces.",
+                  "Use for repository work when the coding environment and approval model fit the product."
+                ],
+                "sourceIds": [
+                  "openai-codex-sdk"
+                ],
+                "id": "agentic-product-development-capability-map-row1"
+              },
+              {
+                "cells": [
+                  "OpenAI Agents API",
+                  "Managed harness, persistent sessions, tools and environments; beta.",
+                  "Check residency, retention and environment boundaries before choosing it."
+                ],
+                "sourceIds": [
+                  "openai-agents-api"
+                ],
+                "id": "agentic-product-development-capability-map-row2"
+              },
+              {
+                "cells": [
+                  "Claude Agent SDK / Managed Agents",
+                  "Self-hosted SDK loop or hosted beta session/harness/sandbox service.",
+                  "Choose who owns runtime recovery and what credentials generated code can reach."
+                ],
+                "sourceIds": [
+                  "anthropic-agent-sdk",
+                  "anthropic-managed-agents"
+                ],
+                "id": "agentic-product-development-capability-map-row3"
+              },
+              {
+                "cells": [
+                  "Google ADK",
+                  "Agent composition and orchestration; graph workflows are documented for Python, TypeScript and Go v2.0.0; the template migration notice specifically names Python and Go.",
+                  "Pin language and version; avoid transferring older template examples without checking migration."
+                ],
+                "sourceIds": [
+                  "google-adk-graphs"
+                ],
+                "id": "agentic-product-development-capability-map-row4"
+              },
+              {
+                "cells": [
+                  "LangGraph / Deep Agents",
+                  "Persisted graph execution plus a higher-level harness with filesystem context, subagents and optional planning and skills.",
+                  "Separate durable graph state, long-term memory and sandboxed execution."
+                ],
+                "sourceIds": [
+                  "langgraph-persistence",
+                  "langchain-deep-agents"
+                ],
+                "id": "agentic-product-development-capability-map-row5"
+              },
+              {
+                "cells": [
+                  "Vercel AI SDK / Workflow",
+                  "Application-facing agent abstractions; WorkflowAgent persists orchestration, while tool operations require the use step directive for durable execution.",
+                  "Set an explicit stop condition and budget; keep streaming UI, resumable work and external side effects distinct."
+                ],
+                "sourceIds": [
+                  "vercel-workflow-agent",
+                  "vercel-workflow-ai"
+                ],
+                "id": "agentic-product-development-capability-map-row6"
+              },
+              {
+                "cells": [
+                  "Cloudflare Agents",
+                  "Stateful agents on Durable Objects with scheduling and human interaction patterns.",
+                  "Place per-user state and ongoing work where storage and execution limits fit."
+                ],
+                "sourceIds": [
+                  "cloudflare-agents"
+                ],
+                "id": "agentic-product-development-capability-map-row7"
+              }
+            ]
+          },
+          "mediaIds": [
+            "openai-managed-architecture",
+            "google-adk-graph-workflow",
+            "langchain-managed-deep-agents-video"
+          ]
+        },
+        {
+          "id": "portable-substrate",
+          "title": "Tools, skills and agent protocols solve different problems",
+          "paragraphs": [
+            {
+              "text": "MCP exposes tools and context through a protocol. Agent Skills packages task-specific instructions and supporting resources. A2A coordinates work across agents. None of these by itself establishes that an agent may publish a release, move money or access another customer’s records.",
+              "kind": "documented",
+              "sourceIds": [
+                "mcp-2026-release",
+                "agent-skills-format",
+                "a2a-specification"
+              ],
+              "id": "agentic-product-development-portable-substrate-p1"
+            },
+            {
+              "text": "The Agent Skills specification defines a SKILL.md file, metadata and optional scripts, references and assets. Progressive disclosure lets a host load the instructions relevant to a task.",
+              "kind": "documented",
+              "sourceIds": [
+                "agent-skills-format"
+              ],
+              "id": "agentic-product-development-portable-substrate-p2"
+            },
+            {
+              "id": "agentic-product-development-portable-substrate-p2-implication",
+              "text": "The product must still inspect the package and enforce permissions around any executable resources.",
+              "kind": "analysis",
+              "sourceIds": []
+            },
+            {
+              "text": "MCP’s 2026-07-28 specification changes the core lifecycle toward independent, self-contained requests. Older assumptions about persistent protocol sessions and initialization handshakes need an explicit migration check. Application sessions and durable product state still belong in the application.",
+              "kind": "documented",
+              "sourceIds": [
+                "mcp-2026-release"
+              ],
+              "id": "agentic-product-development-portable-substrate-p3"
+            },
+            {
+              "text": "A2A describes Agent Cards, messages and task-oriented coordination.",
+              "kind": "documented",
+              "sourceIds": [
+                "a2a-specification"
+              ],
+              "id": "agentic-product-development-portable-substrate-p4"
+            },
+            {
+              "id": "agentic-product-development-portable-substrate-p4-implication",
+              "text": "Interoperability does not make two agents share a policy engine, memory store or failure model. Put the cross-agent contract in versioned schemas and test what happens when one participant times out or sends an incompatible result.",
+              "kind": "analysis",
+              "sourceIds": []
+            },
+            {
+              "text": "Keep three interfaces stable: the task contract, the artifact contract and the evidence contract. A runtime adapter should translate these into the provider’s session and tool model. That makes a provider change a migration you can evaluate, rather than a rewrite of every product decision.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-portable-substrate-p5"
+            }
+          ],
+          "mediaIds": [
+            "mcp-stateless-core-demo",
+            "a2a-mcp-boundary"
+          ]
+        },
+        {
+          "id": "release-loop",
+          "title": "A release is a sequence of independently checked artifacts",
+          "paragraphs": [
+            {
+              "text": "Separate discovery, specification, implementation, verification and release. Each phase produces an artifact that a later phase can inspect without inheriting the author’s assumptions. The verifier receives the acceptance contract, the change and the observed results; it must be able to fail the candidate.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-release-loop-p1"
+            },
+            {
+              "text": "Anthropic’s long-running harness experiment uses an initializer, a feature list, incremental changes, Git history and progress notes. It identifies premature completion and undocumented partial work as failure modes. This is useful engineering evidence from one vendor experiment, with no basis for treating the pattern as a universal productivity guarantee.",
+              "kind": "documented",
+              "sourceIds": [
+                "long-running-harness"
+              ],
+              "id": "agentic-product-development-release-loop-p2"
+            },
+            {
+              "text": "Managed Agents separates recoverable session history from the current context window. Its architecture also keeps credentials outside the generated-code sandbox.",
+              "kind": "documented",
+              "sourceIds": [
+                "managed-architecture"
+              ],
+              "id": "agentic-product-development-release-loop-p3"
+            },
+            {
+              "id": "agentic-product-development-release-loop-p3-implication",
+              "text": "The useful general principle is that losing a worker should leave recoverable work and narrowly scoped external authority.",
+              "kind": "analysis",
+              "sourceIds": []
+            },
+            {
+              "text": "A retry must not duplicate an external consequence. If a deployment, email or payment request can be replayed, make the operation idempotent or require the system to reconcile its real external state before retrying. Persist the artifact reference and receipt before declaring the step complete.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-release-loop-p4"
+            },
+            {
+              "text": "The practical release boundary is an immutable candidate: the exact source commit, the checks executed against it, the preview inspected and the rollback target. A green build from an older revision cannot approve a newer patch. A READY deployment only establishes that the platform completed its deployment process; it leaves the user journey to be verified.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-release-loop-p5"
+            }
+          ],
+          "code": "task:\n  user_job: \"Export a cited campaign draft from a client brief\"\n  base_revision: \"<verified Git commit>\"\n  allowed_paths: [\"app/studio\", \"lib/campaigns\"]\n  release_authority: \"preview\"\nacceptance:\n  - \"Every material research claim resolves to its source\"\n  - \"A second tenant cannot read the first tenant’s packet\"\n  - \"Interruption resumes without duplicate external writes\"\n  - \"Export preserves text, citations and asset references\"\nevidence:\n  candidate_revision: \"<commit checked>\"\n  attempts: \"<all attempts, including failures>\"\n  human_interventions: \"<recorded count and reasons>\"\n  observed_outcome: \"<not inferred from model narration>\"\n  rollback_target: \"<verified prior release>\"",
+          "mediaIds": []
+        },
+        {
+          "id": "experiment",
+          "title": "Evaluate a complete job before adding more agents",
+          "paragraphs": [
+            {
+              "text": "Use a bounded task set from the product’s actual backlog. Include ambiguous requirements, old repositories, failing dependencies, unavailable tools and interrupted runs. Keep the acceptance tests outside the implementer’s control. Public benchmark scores help select candidates; they cannot replace this workload.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-experiment-p1"
+            },
+            {
+              "text": "Compare three conditions: the present workflow, one coding harness, and a coordinator with separately scoped research or verification workers. Hold the task definition and acceptance procedure constant. Record all attempts and the total review burden. The experiment should distinguish whether extra coordination buys better accepted outcomes or only more generated work.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-experiment-p2"
+            },
+            {
+              "text": "Measure accepted outcomes per total cost, elapsed time to acceptance, intervention minutes, regression count, duplicate writes and recovery success. Include failed runs and provider charges. A cheaper successful attempt is not cheaper when its retries and reviewer time exceed the baseline.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-experiment-p3"
+            },
+            {
+              "text": "Precommit the expansion rule. For example, widen autonomy only after the candidate passes the unchanged workload, tenant/security checks and interruption tests. The required threshold belongs to the product owner and consequence of error; this dossier does not invent one universal reliability target.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-experiment-p4"
+            },
+            {
+              "text": "Coding evaluation protocols themselves are moving. OpenAI’s 2026 follow-ups challenge both SWE-bench Verified and its earlier recommendation of SWE-Bench Pro. Read the evaluation companion for the audit scope and why replacing one headline score with another is insufficient.",
+              "kind": "documented",
+              "sourceIds": [
+                "swe-pro-audit-2026"
+              ],
+              "id": "agentic-product-development-experiment-p5"
+            }
+          ],
+          "table": {
+            "caption": "Proposed workload receipt: a test design, not measured results",
+            "headings": [
+              "Measure",
+              "Record",
+              "Decision it supports"
+            ],
+            "rows": [
+              {
+                "cells": [
+                  "Acceptance",
+                  "Passed / failed against the same contract, with failure reason.",
+                  "Can the product actually complete the job?"
+                ],
+                "sourceIds": [],
+                "id": "agentic-product-development-experiment-row1"
+              },
+              {
+                "cells": [
+                  "Recovery",
+                  "Injected failure location, resumed state and duplicated effects.",
+                  "Can the service survive a worker or network failure?"
+                ],
+                "sourceIds": [],
+                "id": "agentic-product-development-experiment-row2"
+              },
+              {
+                "cells": [
+                  "Economics",
+                  "Model/tool/compute charges plus human review and failed attempts.",
+                  "Does the workflow remain viable at the intended usage?"
+                ],
+                "sourceIds": [],
+                "id": "agentic-product-development-experiment-row3"
+              },
+              {
+                "cells": [
+                  "Review burden",
+                  "Intervention time, correction type and who made the decision.",
+                  "How much responsibility is still carried by the operator?"
+                ],
+                "sourceIds": [],
+                "id": "agentic-product-development-experiment-row4"
+              }
+            ]
+          },
+          "mediaIds": []
+        },
+        {
+          "id": "open-questions",
+          "title": "The unresolved questions that should shape the next build",
+          "paragraphs": [
+            {
+              "text": "Which tasks benefit from a manager and workers after coordination overhead is counted? How much history does a resumed run need to recover the right decision? Can a customer export the task, artifacts, memory and receipts into another runtime? Which external actions can be reconciled after an uncertain response?",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-open-questions-p1"
+            },
+            {
+              "text": "Those questions are more useful than a universal claim that a particular framework is best. For ACOS and Starlight, the next defensible contribution is a published workload and its complete receipts. This page specifies that experiment; it does not claim it already happened.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-product-development-open-questions-p2"
+            }
+          ],
+          "mediaIds": []
+        }
+      ]
+    },
+    {
+      "slug": "coding-agents-full-stack",
+      "title": "Coding agents: the harness, the handover and the acceptance test",
+      "description": "Research on coding harnesses, long-running work, context handover and the difference between a passing patch and a usable full-stack product.",
+      "abstract": "A coding agent’s output depends on its model, tools, repository context, execution environment and acceptance procedure. Treat the harness as part of the system under test. Evaluate feature completion, recovery and reviewer effort at an exact revision before treating code generation as delivery.",
+      "decision": "Give the agent a reproducible environment and an acceptance contract. Require a separate verifier to inspect the real user journey.",
+      "category": "agentic-systems",
+      "reviewedAt": "2026-10-09",
+      "reviewStatus": "editorial-candidate",
+      "method": "Primary documentation and research were read on 9 October 2026. Vendor documentation establishes advertised behavior and access limits; empirical papers establish results only under their stated protocols. The architecture and experiment designs are FrankX synthesis. No comparative platform run was performed for this dossier.",
+      "limitations": [
+        "Vendor harness examples establish mechanisms and failure observations, not a cross-vendor effectiveness ranking.",
+        "Historical developer productivity estimates do not establish current model performance.",
+        "No coding task or platform was benchmarked by FrankX for this review."
+      ],
+      "related": [
+        {
+          "slug": "agentic-product-development",
+          "reason": "Place coding inside the complete product lifecycle."
+        },
+        {
+          "slug": "agentic-evals-swe-bench-trajectories",
+          "reason": "Audit the task, score and measurement protocol."
+        },
+        {
+          "slug": "context-engineering-long-context",
+          "reason": "Research agenda: what context to retain and retrieve."
+        },
+        {
+          "slug": "agent-sovereignty-sandboxing-security",
+          "reason": "Research agenda: isolate generated code and credentials."
+        }
+      ],
+      "sections": [
+        {
+          "id": "harness",
+          "title": "The harness is part of the experiment",
+          "paragraphs": [
+            {
+              "text": "A model chooses actions from the interface it can see. The harness decides which repository files, tools, errors and prior events become visible. It also decides when to stop, ask, retry or resume. Changing that layer changes the experiment even when the model name stays the same.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-harness-p1"
+            },
+            {
+              "text": "Codex SDK and Claude Agent SDK expose programmatic coding harnesses.",
+              "kind": "documented",
+              "sourceIds": [
+                "openai-codex-sdk",
+                "anthropic-agent-sdk"
+              ],
+              "id": "coding-agents-full-stack-harness-p2"
+            },
+            {
+              "id": "coding-agents-full-stack-harness-p2-implication",
+              "text": "Their interfaces can support a product-specific loop, but availability of an SDK does not establish that a workload passes. Pin the harness, instructions, environment and tool permissions alongside the model configuration.",
+              "kind": "analysis",
+              "sourceIds": []
+            },
+            {
+              "text": "Test repository context as a deliberate input: the existing implementation, versioned instructions, relevant tests, runtime commands and known constraints. A repository-wide dump consumes context without deciding what the next change needs. Retrieve context against the task and preserve the evidence that informed a decision.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-harness-p3"
+            }
+          ],
+          "mediaIds": []
+        },
+        {
+          "id": "long-horizon",
+          "title": "What survives a context window or a dead worker?",
+          "paragraphs": [
+            {
+              "text": "Anthropic’s November 2025 harness experiment reports two recurring failures: taking on too much work in one context window and declaring a partially built application complete. The proposed response was an initializer, structured feature list, incremental implementation and progress artifacts that a later session can read.",
+              "kind": "documented",
+              "sourceIds": [
+                "long-running-harness"
+              ],
+              "id": "coding-agents-full-stack-long-horizon-p1"
+            },
+            {
+              "text": "That finding should lead to a recoverability test. Interrupt the agent during an edit, after a test and after an external request. Resume from the persisted state. Inspect whether the worker distinguishes a completed operation from an intention, preserves unfinished work and chooses the next incomplete acceptance condition.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-long-horizon-p2"
+            },
+            {
+              "text": "Managed-agent architecture makes session history durable outside the disposable worker. LangGraph persistence makes execution state available through checkpoints and threads. These are different mechanisms; neither automatically proves that an external side effect happened exactly once.",
+              "kind": "documented",
+              "sourceIds": [
+                "managed-architecture",
+                "langgraph-persistence"
+              ],
+              "id": "coding-agents-full-stack-long-horizon-p3"
+            },
+            {
+              "text": "Store progress as artifact references and observations. “Implemented export” is a statement. A source commit plus the rendered export, its test outcome and the failure cases is a handover another worker can verify. Keep the full log recoverable even when the active context contains only a summary.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-long-horizon-p4"
+            }
+          ],
+          "mediaIds": [
+            "openai-managed-architecture"
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Test the journey the customer actually takes",
+          "paragraphs": [
+            {
+              "text": "A full-stack feature can pass unit tests while authentication, state hydration, persistence or the export path fails in a browser. The acceptance procedure should exercise the customer journey across the relevant boundaries: input, authorization, execution, saved state, visible result and recovery.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-verification-p1"
+            },
+            {
+              "text": "In the long-running harness experiment, Anthropic reports that agents often treated code changes or development-server checks as sufficient before browser-level testing was explicitly required. The Puppeteer MCP integration also missed browser-native alert modals. That is a scoped observation about the experiment, and a reason to verify the test tool’s blind spots.",
+              "kind": "documented",
+              "sourceIds": [
+                "long-running-harness"
+              ],
+              "id": "coding-agents-full-stack-verification-p2"
+            },
+            {
+              "text": "Keep the verifier’s responsibilities narrow and explicit. It can read the acceptance contract, inspect the candidate, run tests and report defects. It should not quietly weaken an expectation so that the implementer’s output passes. A changed requirement needs a recorded product decision.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-verification-p3"
+            },
+            {
+              "text": "Use baseline failures to separate regressions from inherited debt. If the repository already has a failed build, record the boundary and repair it in an isolated change. Never label the feature verified because the unrelated baseline was difficult to execute.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-verification-p4"
+            }
+          ],
+          "table": {
+            "caption": "Failure boundaries for a full-stack candidate",
+            "headings": [
+              "Boundary",
+              "Discriminating check",
+              "Evidence to retain"
+            ],
+            "rows": [
+              {
+                "cells": [
+                  "Repository",
+                  "Build, types and relevant existing tests at the candidate SHA.",
+                  "Commands, exit codes and baseline comparison."
+                ],
+                "sourceIds": [],
+                "id": "coding-agents-full-stack-verification-row1"
+              },
+              {
+                "cells": [
+                  "User journey",
+                  "Real input through authorization, persistence and export.",
+                  "Observed result, screenshots and error logs."
+                ],
+                "sourceIds": [],
+                "id": "coding-agents-full-stack-verification-row2"
+              },
+              {
+                "cells": [
+                  "Recovery",
+                  "Interruption with a known pending operation.",
+                  "Checkpoint, external operation identity and resumed outcome."
+                ],
+                "sourceIds": [],
+                "id": "coding-agents-full-stack-verification-row3"
+              },
+              {
+                "cells": [
+                  "Release",
+                  "Stable domain serves the accepted candidate.",
+                  "Deployment/source mapping and rollback target."
+                ],
+                "sourceIds": [],
+                "id": "coding-agents-full-stack-verification-row4"
+              }
+            ]
+          },
+          "mediaIds": []
+        },
+        {
+          "id": "productivity",
+          "title": "Productivity requires a denominator",
+          "paragraphs": [
+            {
+              "text": "METR’s early-2025 randomized trial concerned experienced maintainers working in repositories they knew. With that study’s tools, AI access increased completion time by 19%. The study does not justify a claim about every developer, unfamiliar repositories or current coding agents.",
+              "kind": "measured",
+              "sourceIds": [
+                "metr-rct-2025"
+              ],
+              "id": "coding-agents-full-stack-productivity-p1"
+            },
+            {
+              "text": "METR’s February 2026 update describes selection and time-measurement problems in estimating later productivity gains. Its May 2026 survey provides self-reported value and use patterns. These designs answer different questions; self-reports are not a replacement causal estimate for task completion time.",
+              "kind": "documented",
+              "sourceIds": [
+                "metr-update-2026",
+                "metr-survey-2026"
+              ],
+              "id": "coding-agents-full-stack-productivity-p2"
+            },
+            {
+              "text": "For a product team, record elapsed time to an accepted change and reviewer effort, including attempts that fail. Code volume, number of commits and the agent’s self-assessment are weak proxies. The mechanism to test is whether delegation reduces the total work required for the same outcome.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-productivity-p3"
+            },
+            {
+              "text": "Keep a parallel backlog measure for work enabled by the agent: useful tasks that the team previously would not attempt. Report that separately from speed on the existing workload. Combining new output and faster completion into one unqualified multiplier hides which effect you observed.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-productivity-p4"
+            }
+          ],
+          "mediaIds": []
+        },
+        {
+          "id": "deployment",
+          "title": "Choose local or managed execution by the failure model",
+          "paragraphs": [
+            {
+              "text": "A local coding harness can use the customer’s existing repository and environment. A managed runtime can provide isolated execution and ongoing sessions. Their operational obligations differ: credentials, network access, retention, restart behavior, usage accounting and artifact export must be decided for the actual service.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-deployment-p1"
+            },
+            {
+              "text": "OpenAI’s beta Agents API currently documents data-handling constraints that also apply with self-hosted sandboxes. Hosting the code execution yourself should not be described as keeping all agent data local.",
+              "kind": "documented",
+              "sourceIds": [
+                "openai-agents-api"
+              ],
+              "id": "coding-agents-full-stack-deployment-p2"
+            },
+            {
+              "text": "Separate the exportable product work from the runtime. Preserve the specification, source patch, source links, acceptance tests and receipts in ordinary versioned artifacts. That gives the customer a practical recovery path when a provider, plan or harness changes.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "coding-agents-full-stack-deployment-p3"
+            }
+          ],
+          "mediaIds": []
+        }
+      ]
+    },
+    {
+      "slug": "agentic-evals-swe-bench-trajectories",
+      "title": "Agentic evaluations: evidence for a product release",
+      "description": "Benchmark validity, developer productivity studies, computer-use evaluation and a reproducible release contract for agent products.",
+      "abstract": "A patch, a factual answer, a completed desktop workflow and a correctly handled customer interaction are different evaluation units. This review examines benchmark corrections and proposes an operational evaluation contract.",
+      "decision": "Evaluate the complete customer outcome, the policy trace and the recovery path. Keep benchmark capability, causal productivity and self-reported value separate.",
+      "category": "agentic-systems",
+      "reviewStatus": "editorial-candidate",
+      "reviewedAt": "2026-10-09",
+      "method": "Primary benchmark definitions and empirical studies were read alongside their subsequent corrections. The release contract is a FrankX proposal; no new benchmark runs were conducted.",
+      "limitations": [
+        "Source review is performed by separate AI research workers; named human editorial attestation remains required for publication.",
+        "Reported measurements belong to their original studies and workloads. No provider comparison or product experiment was executed here."
+      ],
+      "related": [
+        {
+          "slug": "agentic-product-development",
+          "reason": "Turn evaluation into a product acceptance contract."
+        },
+        {
+          "slug": "coding-agents-full-stack",
+          "reason": "Inspect the coding harness, review and release boundary."
+        },
+        {
+          "slug": "methodology",
+          "reason": "Read how sources, corrections and limits are handled."
+        }
+      ],
+      "sections": [
+        {
+          "id": "completion-unit",
+          "title": "Choose the unit of completion",
+          "paragraphs": [
+            {
+              "text": "SWE-bench Verified tests repository issue resolution against a curated 500-task subset. ProgramBench asks agents to reconstruct complete programs from a binary and its documentation, with no original source access or internet. Its primary metric requires passing all behavioral tests for an instance. A high average percentage of passing tests is an auxiliary diagnostic, and can coexist with an unusable program.",
+              "kind": "documented",
+              "sourceIds": [
+                "swe-maintainers",
+                "programbench"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-completion-unit-p1"
+            },
+            {
+              "text": "GAIA evaluates 466 assistant questions through normalized matches to short factual answers. It explicitly excludes actions such as uploading content, posting a comment or booking a meeting. OSWorld evaluates computer tasks through real applications and execution-based state checks. Its maintainers permit either 369 tasks or 361 when eight network-dependent Google Drive tasks are excluded. Record that denominator and the action budget before comparing scores.",
+              "kind": "documented",
+              "sourceIds": [
+                "osworld-v1",
+                "gaia"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-completion-unit-p2"
+            },
+            {
+              "text": "τ-bench measures tool-mediated conversations with simulated users, domain policies and a final database state. It distinguishes pass@k, at least one success across k trials, from pass^k, success across every trial. Discovery and consistency require different measurements. The paper also notes that its state-based reward can pass an episode that skipped required user confirmation. A passing final state therefore needs a separate review of authorization and policy compliance along the trajectory.",
+              "kind": "documented",
+              "sourceIds": [
+                "tau-bench"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-completion-unit-p3"
+            }
+          ],
+          "mediaIds": []
+        },
+        {
+          "id": "benchmark-quality",
+          "title": "Benchmark quality is part of the result",
+          "paragraphs": [
+            {
+              "text": "In February 2026, OpenAI reported material issues in 59.4% of a selected 138-problem SWE-bench Verified audit. Those tasks were chosen because o3 did not consistently solve them across repeated runs. The percentage must retain that denominator and selection rule. The same report presented contamination evidence and withdrew OpenAI’s use of Verified for frontier capability reporting. These are OpenAI-reported findings, rather than an independent audit of every task and model.",
+              "kind": "documented",
+              "sourceIds": [
+                "swe-verified-audit-2026"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-benchmark-quality-p1"
+            },
+            {
+              "text": "The update sequence matters. OpenAI initially recommended SWE-Bench Pro. In July 2026, its further audit estimated breaking issues in roughly 30% of the 731-task public split and retracted that recommendation. Its analysis used automated screening, investigator agents and five-engineer reviews of flagged tasks. This audit does not establish that every coding benchmark is invalid; it demonstrates why prompt, test and intended-outcome alignment need inspection.",
+              "kind": "documented",
+              "sourceIds": [
+                "swe-pro-audit-2026"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-benchmark-quality-p2"
+            },
+            {
+              "text": "A product evaluation should include adversarial checks of the evaluator itself. Can a superficial artifact pass? Can a functionally valid implementation fail because a test enforces an unstated interface? Can the agent access the answer or modify the evaluator? Document the failure and repair the task before interpreting the score. This is our architectural recommendation, derived from the audit failure categories.",
+              "kind": "analysis",
+              "sourceIds": [
+                "swe-verified-audit-2026",
+                "swe-pro-audit-2026"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-benchmark-quality-p3"
+            }
+          ],
+          "mediaIds": []
+        },
+        {
+          "id": "productivity-evidence",
+          "title": "Keep productivity claims inside their study",
+          "paragraphs": [
+            {
+              "text": "METR’s early-2025 randomized study involved 16 experienced open-source developers completing 246 tasks in mature projects they knew well. Allowing the tested AI tools increased task completion time by 19%. The study principally involved Cursor and early-2025 Claude models; implementation time included work before and after pull-request review. It does not estimate the productivity of all developers, unfamiliar-codebase work or October 2026 agents.",
+              "kind": "measured",
+              "sourceIds": [
+                "metr-rct-2025"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-productivity-evidence-p1"
+            },
+            {
+              "text": "METR’s February 2026 follow-up judged its later experiment an unreliable signal of current productivity effects. Developers and tasks increasingly selected out when participation could require working without AI. Reduced pay and difficulties measuring concurrent-agent work also complicated interpretation. Its raw estimates suggested an 18% reduction in time for returning developers and 4% for newly recruited developers, with both confidence intervals including zero. Those estimates establish neither a dependable current speedup nor persistence of the earlier slowdown.",
+              "kind": "measured",
+              "sourceIds": [
+                "metr-update-2026"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-productivity-evidence-p2"
+            },
+            {
+              "text": "A May 2026 survey of 349 technical workers found a median self-reported 1.4–2× change in work value. METR cautions that perceptions may differ from reality; recruitment used a convenience sample and emailed response rates were approximately 2%. Value, perceived speed and experimentally measured completion time should remain separate columns.",
+              "kind": "measured",
+              "sourceIds": [
+                "metr-survey-2026"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-productivity-evidence-p3"
+            }
+          ],
+          "mediaIds": []
+        },
+        {
+          "id": "sustained-execution",
+          "title": "Evaluate sustained execution",
+          "paragraphs": [
+            {
+              "text": "OSWorld 2.0 shifts evaluation toward 108 end-to-end workflows. Its tasks exercise cross-source reasoning, hidden state, conflicting information, changing environments and proactive user interaction. The authors describe the coverage as diagnostic and acknowledge underrepresented occupations, stochastic behavior and dependence on the task mix. Its percentages should not be compared directly with OSWorld 1.0 as a universal progress measure.",
+              "kind": "documented",
+              "sourceIds": [
+                "osworld-v2"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-sustained-execution-p1"
+            },
+            {
+              "text": "For a product team, the corresponding test is whether an agent preserves the task’s meaning through an interruption, a changed requirement and incomplete evidence. Include workflows that require recovery and a final deliverable check. Record premature completion, wrong actions, malformed outputs and exhausted budgets separately; AgentBench’s validity taxonomy provides a useful starting point for this diagnosis. These are proposed product tests, rather than results measured here.",
+              "kind": "analysis",
+              "sourceIds": [
+                "agentbench",
+                "osworld-v2"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-sustained-execution-p2"
+            }
+          ],
+          "mediaIds": []
+        },
+        {
+          "id": "evaluation-contract",
+          "title": "A proposed product evaluation contract",
+          "paragraphs": [
+            {
+              "text": "Define the user outcome and acceptance criteria before the run. Freeze the workspace, task fixtures, tool permissions, model and harness versions, maximum budget and evaluator. Keep the expected answer and acceptance checks outside the agent’s writable environment. Use representative tasks plus deliberately difficult cases, and retain failed, abandoned and escalated runs in the denominator. Publish this as a workload evaluation, with its sampling method and limits.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-evals-swe-bench-trajectories-evaluation-contract-p1"
+            },
+            {
+              "text": "For each run, collect the artifact, functional result, policy trace, human intervention, rework, wall-clock duration and model/tool cost. Distinguish an agent’s completion message from an accepted deliverable. A human correction that makes a failed result usable belongs in the record. Concurrent work requires separate measures for elapsed time and human attention; summing agent waiting time into human labor would distort the comparison. These design choices address the measurement problems identified by METR and the benchmark audits.",
+              "kind": "analysis",
+              "sourceIds": [
+                "swe-pro-audit-2026",
+                "metr-rct-2025",
+                "metr-update-2026",
+                "metr-survey-2026"
+              ],
+              "id": "agentic-evals-swe-bench-trajectories-evaluation-contract-p2"
+            },
+            {
+              "text": "Compute cost per accepted outcome from the observed cohort:",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-evals-swe-bench-trajectories-evaluation-contract-p3"
+            },
+            {
+              "text": "State the accounting assumptions and acceptance rule. Report zero accepted outcomes directly; a denominator of zero produces no useful unit-cost estimate. Present completion rate beside interventions, policy violations and total cost. A product can improve one of these measures while worsening another.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-evals-swe-bench-trajectories-evaluation-contract-p4"
+            },
+            {
+              "text": "Use matched or randomized tasks when comparing configurations, and explain selection bias when that is impractical. Release only within the authority and workload supported by the evidence. The deliverable is a reproducible receipt: what ran, what changed, what passed, what required human repair and which failure classes remain. This is the FrankX proposed operating contract, to be tested on actual product workloads.",
+              "kind": "analysis",
+              "sourceIds": [],
+              "id": "agentic-evals-swe-bench-trajectories-evaluation-contract-p5"
+            }
+          ],
+          "mediaIds": [],
+          "code": "Cost per accepted outcome =\n  (model + tools + infrastructure + review + rework cost)\n  / number of accepted outcomes\n\nInclude failed attempts in total cost.\nReport zero accepted outcomes without dividing by zero."
+        }
+      ]
+    }
+  ]
+}

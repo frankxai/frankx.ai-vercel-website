@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_at": "2026-10-09",
+  "reviewer": "/root/hub_audit",
+  "authority": "DRAFT_READ_ONLY",
+  "scope": "Independent review of product/coding productivity and benchmark claims; ACOS research-packet integrity and workflow inspection. Evaluation companion was authored by this reviewer and received an author recheck, not independent approval.",
+  "artifacts": [
+    "/workspace/scratch/dee1bde820f1/dossiers-draft.json",
+    "/workspace/scratch/dee1bde820f1/evals-draft.md",
+    "/workspace/scratch/dee1bde820f1/research-evals.json"
+  ],
+  "dossier_review": {
+    "verdict": "PASS_WITH_REQUIRED_CORRECTIONS_WITHIN_REVIEWED_SCOPE",
+    "passed_checks": [
+      "Early-2025 METR 19% time increase is scoped to experienced maintainers and study tools.",
+      "No projection of the 2025 slowdown to all developers or current agents.",
+      "METR February 2026 experimental limitations and May 2026 self-reported survey remain different evidence types.",
+      "Product dossier states no first-party productivity/reliability/cost experiment.",
+      "OpenAI July 2026 follow-up is not used to imply that every benchmark is contaminated or invalid.",
+      "SWE-Bench Pro is not recommended as an uncontested replacement for Verified.",
+      "Workload receipts and acceptance metrics are labeled proposed designs, not measured results.",
+      "Failed runs, reviewer effort and recovery are retained in the proposed denominator."
+    ],
+    "required_corrections": [
+      {
+        "id": "C1",
+        "artifact": "dossiers-draft.json",
+        "locator": "agentic-product-development / portable-substrate / paragraphs[0]",
+        "problem": "The paragraph contains factual definitions of MCP, Agent Skills and A2A but has sourceIds=[] because it is tagged analysis.",
+        "exact_correction": "Set sourceIds to [\"mcp-spec\", \"agent-skills\", \"a2a\"]. Preserve the final permission/authority sentence as architectural interpretation. An analysis label does not remove the need to source embedded factual claims."
+      },
+      {
+        "id": "C2",
+        "artifact": "dossiers-draft.json and eventual renderer",
+        "locator": "coding-agents-full-stack / productivity / paragraphs[0] / kind=measured",
+        "problem": "The empirical result is measured by METR, not FrankX. A generic 'Measured' public badge could imply first-party experimentation.",
+        "exact_correction": "Use the public label \"Reported study\" or \"Externally reported result\" for this paragraph. Alternatively change kind to documented while retaining the METR citation. Keep the visible method statement that FrankX performed no benchmark run."
+      }
+    ],
+    "recommended_precision_edit": {
+      "locator": "coding-agents-full-stack / productivity / paragraphs[0]",
+      "replacement_text": "METR’s early-2025 randomized trial studied 16 experienced open-source developers completing 246 tasks in mature repositories they knew. With the tested tools, primarily Cursor and early-2025 Claude models, allowing AI increased completion time by 19%. The study does not establish the effect for all developers, unfamiliar repositories or current coding agents.",
+      "sourceIds": ["metr-2025"]
+    },
+    "scope_limits": [
+      "Runtime/SDK beta, residency, retention, protocol migration and managed-harness documentation claims were not independently re-fetched in this lane; the runtime research reviewer must approve those.",
+      "Exact documentary media rights, third-party figure components and embed availability remain with the independent media/rights lane.",
+      "Source ID resolution against the final canonical website registry must be checked after implementation; draft IDs differ from the separate research-sources.json ledger IDs."
+    ]
+  },
+  "eval_companion_author_recheck": {
+    "verdict": "AUTHOR_RECHECK_PASS_NOT_INDEPENDENT_APPROVAL",
+    "checks": [
+      "59.4% is explicitly bounded to the selected 138-task Verified audit.",
+      "July 2026 Pro retraction supersedes the February recommendation.",
+      "METR RCT, compromised later experiment and observational self-report survey remain separate.",
+      "OSWorld 2.0 is diagnostic coverage rather than occupation-wide representation.",
+      "pass@k and pass^k definitions and final-state policy caveat remain explicit.",
+      "ProgramBench fully resolved and partial-test metrics are not conflated.",
+      "Operational cost formula and release contract are identified as FrankX proposals.",
+      "No current leaderboard winner or independently executed experiment is claimed."
+    ],
+    "required_next_action": "Another reviewer must inspect this authored companion before independent-review status is recorded."
+  },
+  "acos_review": {
+    "repository": "frankxai/agentic-creator-os",
+    "commit": "d6a0267894e74fe1ad2dff53a66c1234f609efa2",
+    "verdict": "REVISE_IDENTITY_NORMALIZATION_THEN_RECHECK",
+    "tests": [
+      {"command": "node --test test/research-packet.test.mjs", "exit_code": 0, "result": "10 tests passed"},
+      {"command": "node scripts/workflow-validate.mjs", "exit_code": 0, "result": "7 existing JavaScript workflows validated; this command does not validate the changed YAML article workflow"},
+      {"command": "PyYAML safe_load workflows/content/research-to-article.yaml plus declared path checks", "exit_code": 0, "result": "Changed YAML parsed, and contract, article template, research template and validator paths exist"}
+    ],
+    "supported_integrity": [
+      "Unfilled template fails closed.",
+      "Unknown/duplicate IDs and missing claim locators are rejected.",
+      "Contextual-only factual support cannot promote.",
+      "Uninspected sources cannot promote.",
+      "An experiment plan cannot become an executed experiment by status alone.",
+      "Provider embed permission does not permit rehosting.",
+      "Disputed claims require explicit limitations.",
+      "Source readiness is kept distinct from live article publication state."
+    ],
+    "required_correction": {
+      "id": "ACOS-C1",
+      "locator": "scripts/validate-research-packet.mjs / promoted publication_record author-reviewer comparison",
+      "reproduction": "Starting from the passing test fixture, set author='Research Author' and reviewer='  RESEARCH   AUTHOR  '. validateResearchPacket returns {valid:true,errors:[]}.",
+      "problem": "Raw string inequality treats case/whitespace aliases of the same person as independent identities.",
+      "exact_correction": "Normalize each author/reviewer with Unicode NFKC, trim, collapse internal whitespace, and lowercase before comparison. Reject equal normalized identities. Add a regression test using the reproduced values and keep the existing valid independent-review fixture passing."
+    },
+    "limitations": [
+      "Validator establishes declared packet integrity, not source truth, license validity or genuine independent human identity.",
+      "No source/packet-to-article cross-record joining or renderer behavior was executed here.",
+      "No public release or deployment was performed or certified."
+    ]
+  },
+  "publication_integrity": {
+    "verified_state": "draft_and_local_tests_only",
+    "no_remote_write": true,
+    "no_website_edit": true,
+    "human_or_external_release_attestation_verified": false,
+    "note": "Existing website approved-claims gate requires a named human reviewer and externally verified exact-revision review receipt. No such receipt was asserted by this reviewer. This report supplies evidence for review; it does not certify production publication."
+  }
+}

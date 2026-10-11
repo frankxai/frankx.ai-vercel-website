@@ -1,0 +1,655 @@
+{
+  "schema_version": "1.0.0",
+  "as_of": "2026-10-09",
+  "editorial_status": "DRAFT",
+  "purpose": "Evidence packet for agentic-product-development, coding-agents-full-stack and agentic-evals-swe-bench-trajectories; atomic claims, primary-source locators, contradictory updates and limits.",
+  "sources": [
+    {
+      "id": "swe-maintainers",
+      "title": "SWE-bench official leaderboards",
+      "url": "https://www.swebench.com/",
+      "published_at": "living; retrieved 2026-10-09",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn8view2",
+      "type": "benchmark_maintainer_documentation",
+      "read_scope": "full page definition, news, benchmark links; leaderboard dynamic rows not independently executed",
+      "claim_locators": [
+        "Lines 49\u201381: resolved definition, 2294 original instances, 500 Verified instances, Bash Only mini-SWE-agent view",
+        "Lines 101\u2013104: newer ProgramBench and CodeClash benchmarks"
+      ],
+      "limitations": [
+        "Results depend on task split and agent environment. This ledger records benchmark definition, not a live model ranking."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "swe-verified-2024",
+      "title": "Introducing SWE-bench Verified",
+      "url": "https://openai.com/index/introducing-swe-bench-verified/",
+      "published_at": "2024-08-13",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn8view3",
+      "type": "first_party_benchmark_release",
+      "read_scope": "task annotation and dataset construction sections",
+      "claim_locators": [
+        "Dataset construction, lines 160\u2013190"
+      ],
+      "limitations": [
+        "Human filtering improves task feasibility but does not prove complete test coverage or absence of later training contamination."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review",
+      "last_revised_at": "2025-02-24"
+    },
+    {
+      "id": "swe-verified-audit-2026",
+      "title": "Why SWE-bench Verified no longer measures frontier coding capabilities",
+      "url": "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/",
+      "published_at": "2026-02-23",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn20view0",
+      "type": "first_party_benchmark_audit",
+      "read_scope": "background, test-design audit, contamination method and examples, discussion",
+      "claim_locators": [
+        "Summary lines 40\u201349; selected audit lines 68\u201374; contamination method lines 267\u2013284"
+      ],
+      "limitations": [
+        "138 audited tasks were selected from problems o3 did not consistently solve; 59.4% is not a random-sample estimate for all 500 tasks. Audit is OpenAI-reported; contamination examples do not establish every model/task is contaminated."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "swe-pro-audit-2026",
+      "title": "Separating signal from noise in coding evaluations",
+      "url": "https://openai.com/index/separating-signal-from-noise-coding-evaluations/",
+      "published_at": "2026-07-08",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn20view1",
+      "type": "first_party_benchmark_audit",
+      "read_scope": "full substantive article excluding unrelated navigation and code-example formatting",
+      "claim_locators": [
+        "Lines 35\u201350: 731 public tasks and estimated ~30% broken",
+        "Lines 51\u201364: pipeline and five-engineer reviews",
+        "Lines 70\u201375: retracts Pro recommendation"
+      ],
+      "limitations": [
+        "Publisher is a model provider. Automated screening plus review of flagged tasks can miss flaws outside the flagged subset; the ~30% number is an audit estimate, not a universal property of coding tasks."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "metr-rct-2025",
+      "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+      "url": "https://arxiv.org/html/2507.09089v1",
+      "published_at": "2025-07-12",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn10view0",
+      "type": "primary_empirical_study",
+      "read_scope": "abstract, background, methodology, results, key caveats and overgeneralization appendix",
+      "claim_locators": [
+        "Abstract; \u00a72 Methodology; \u00a73 Results; \u00a74.1 Key Caveats; Appendix B overgeneralizations",
+        "Official companion https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/ lines 46\u201363"
+      ],
+      "limitations": [
+        "16 developers with established repository expertise; 246 tasks in mature open-source projects; primarily Cursor with early-2025 Claude models. Total implementation time was self-reported, including review. Does not estimate all developers or October 2026 tools."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review",
+      "companion_blog_published_at": "2025-07-10",
+      "last_revised_at": "2025-07-25"
+    },
+    {
+      "id": "metr-update-2026",
+      "title": "We are Changing our Developer Productivity Experiment Design",
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "published_at": "2026-02-24",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn8view1",
+      "type": "primary_empirical_update",
+      "read_scope": "full substantive article",
+      "claim_locators": [
+        "Lines 35\u201364: raw estimates, selection and concurrent-agent time issues; lines 70\u201380: redesigned research options"
+      ],
+      "limitations": [
+        "Selection of developers and tasks, changed pay, incomplete AI-disallowed tasks and concurrent work compromise current causal interpretation. Both later-study confidence intervals include zero."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "metr-survey-2026",
+      "title": "Measuring the Self-Reported Impact of Early-2026 AI on Technical Worker Productivity",
+      "url": "https://metr.org/blog/2026-05-11-ai-usage-survey/",
+      "published_at": "2026-05-11",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn20view2",
+      "type": "primary_observational_survey",
+      "read_scope": "summary, sampling/methodology, detailed value-speed distinction and caveats",
+      "claim_locators": [
+        "Summary lines 35\u201352; value/speed discussion and convenience sampling lines 82\u201393"
+      ],
+      "limitations": [
+        "Self-reported counterfactuals; convenience sample; low approximately 2% emailed response rate; nonrepresentative recruitment. Internal consistency does not verify real causal productivity gains."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "osworld-v1",
+      "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+      "url": "https://osworld-v1.xlang.ai/",
+      "published_at": "2024-04; maintainer notice 2025-07-28",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn10view1",
+      "type": "benchmark_maintainer_documentation",
+      "read_scope": "full maintainer project page, benchmark setting and Google Drive exclusion notice",
+      "claim_locators": [
+        "Lines 9\u201320: real desktop tasks and execution-based setup/evaluation; lines 64\u201379: 369 vs 361 permitted task counts"
+      ],
+      "limitations": [
+        "Network-dependent tasks and maximum action budget can alter comparability. Original 2024 baseline results describe historical models, not current capability."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "gaia",
+      "title": "GAIA: A Benchmark for General AI Assistants",
+      "url": "https://arxiv.org/html/2311.12983v1",
+      "published_at": "2023-11-21",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn10view2",
+      "type": "primary_paper",
+      "read_scope": "abstract, question design, answer evaluation, task composition and limitations",
+      "claim_locators": [
+        "\u00a73.2 lines 139\u2013140: quasi-exact answer scoring",
+        "\u00a73.3 lines 143\u2013147: 466 questions and action limitations",
+        "\u00a76 Limitations"
+      ],
+      "limitations": [
+        "Question-answer evaluation does not measure write actions such as posting, uploads or booking. Web facts can change. Language/cultural diversity and human annotation costs limit coverage."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "tau-bench",
+      "title": "\u03c4-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+      "url": "https://arxiv.org/html/2406.12045v1",
+      "published_at": "2024-06-17",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn10view3",
+      "type": "primary_paper",
+      "read_scope": "abstract, environment construction, reward metric, empirical results, failure analyses; appendix conversations treated as examples",
+      "claim_locators": [
+        "\u00a73 lines 174\u2013182: final database/output reward and pass^k versus pass@k",
+        "\u00a75.1 lines 216\u2013239: trial budgets, historical table and repeated success",
+        "License line 44: CC BY 4.0"
+      ],
+      "limitations": [
+        "Simulated users and simplified retail/airline policies. Matching the final database/output can still miss intermediate policy violations. Original model results are historical."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "agentbench",
+      "title": "AgentBench: Evaluating LLMs as Agents",
+      "url": "https://arxiv.org/html/2308.03688v3",
+      "published_at": "original 2023-08; version read 2025-10-04",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn15view0",
+      "type": "primary_paper",
+      "read_scope": "abstract, composition, evaluation setup, failure analysis and validity taxonomy",
+      "claim_locators": [
+        "Abstract lines 84\u201387; composition lines 102\u2013122; Appendix J.1 lines 1701\u20131733",
+        "License line 79: CC BY 4.0"
+      ],
+      "limitations": [
+        "Eight heterogeneous text-based environments; aggregate score combines different tasks/metrics. Historical 29-model experiment does not rank current tools."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "osworld-v2",
+      "title": "OSWorld 2.0: Benchmarking Computer Use Agents on Long-Horizon Real-World Tasks",
+      "url": "https://arxiv.org/html/2606.29537v1",
+      "published_at": "2026-06-28",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn15view1",
+      "type": "primary_paper",
+      "read_scope": "abstract, task construction, challenge phenomena, evaluation release/scoring discipline, limitations",
+      "claim_locators": [
+        "Abstract lines 131\u2013135; \u00a72.2 task construction; Table 2 lines 239\u2013253; \u00a76 limitations lines 407\u2013410"
+      ],
+      "limitations": [
+        "108 tasks are diagnostic, not representative of all professions. Scores depend on release, action settings, task mix and stochastic behavior; paper HTML content/abstract-version model details should be reconciled before quoting a live ranking."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    },
+    {
+      "id": "programbench",
+      "title": "ProgramBench: Can Language Models Rebuild Programs From Scratch?",
+      "url": "https://programbench.com/",
+      "published_at": "living page updated 2026-09-28",
+      "retrieved_at": "2026-10-09",
+      "web_ref": "turn20view3",
+      "type": "benchmark_maintainer_documentation",
+      "read_scope": "full definition, harness, security controls, scoring and contamination FAQ; dynamic rankings not imported",
+      "claim_locators": [
+        "Lines 11\u201320: task and primary metric",
+        "Lines 61\u201368: binary, documentation, code-free environment and 200 tasks",
+        "Lines 89\u2013126: harness, resolved metric and contamination discussion"
+      ],
+      "limitations": [
+        "Complete behavioral equivalence against compiled programs is narrower than open-ended product usefulness. Tests are finite; open-source programs may have been seen in training. Partial test percentage must not be relabeled fully resolved."
+      ],
+      "rights_status": "link_only_until_asset_specific_license_review"
+    }
+  ],
+  "claims": [
+    {
+      "id": "eval-swe-definition",
+      "public_wording": "SWE-bench Verified is a human-filtered 500-task subset of real repository issues; its resolved metric records tasks that pass the benchmark tests.",
+      "type": "fact",
+      "source_ids": [
+        "swe-maintainers",
+        "swe-verified-2024"
+      ],
+      "support": "direct",
+      "locator": "Official benchmark definitions; 2024 release Dataset construction",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "Test success does not establish UI quality, security, maintainability, deployment correctness or product-market fit."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-swe-audit",
+      "public_wording": "OpenAI reported material issues in 59.4% of a selected 138-problem SWE-bench Verified audit and contamination evidence in the frontier models it examined.",
+      "type": "fact",
+      "source_ids": [
+        "swe-verified-audit-2026"
+      ],
+      "support": "direct",
+      "locator": "Test-design audit and Contamination sections",
+      "as_of": "2026-10-09",
+      "scope": "first_party_audit_specific",
+      "limitations": [
+        "Selected hard/failing-task sample; retain denominator and selection rule. Attribute the audit to OpenAI."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-swe-pro-retraction",
+      "public_wording": "In July 2026, OpenAI estimated that about 30% of the SWE-Bench Pro public tasks had breaking issues and retracted its earlier recommendation to adopt that benchmark.",
+      "type": "fact",
+      "source_ids": [
+        "swe-pro-audit-2026"
+      ],
+      "support": "direct",
+      "locator": "Summary and Discussion final paragraph",
+      "as_of": "2026-10-09",
+      "scope": "first_party_audit_specific",
+      "limitations": [
+        "Estimate comes from automated screening plus independent review of flagged tasks; vendor-reported audit."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-metr-rct",
+      "public_wording": "METR\u2019s early-2025 randomized study of 16 experienced open-source developers and 246 tasks found that allowing the tested AI tools increased completion time by 19%.",
+      "type": "fact",
+      "source_ids": [
+        "metr-rct-2025"
+      ],
+      "support": "direct",
+      "locator": "Abstract; \u00a72 methodology; \u00a73 results",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "Dates, participants and setting must remain in public wording. This is not a claim that October 2026 coding agents slow all developers."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-metr-update",
+      "public_wording": "METR\u2019s February 2026 update judged its later experiment an unreliable signal of current AI productivity effects because of developer/task selection and time-measurement problems.",
+      "type": "fact",
+      "source_ids": [
+        "metr-update-2026"
+      ],
+      "support": "direct",
+      "locator": "Opening summary; Wider adoption section",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "Does not reverse the earlier RCT by establishing a reliable current speedup."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-metr-update-estimates",
+      "public_wording": "In the later study, raw estimated time changes were \u221218% for returning developers (interval \u221238% to +9%) and \u22124% for new developers (\u221215% to +9%); METR warns against treating those estimates as reliable current effects.",
+      "type": "fact",
+      "source_ids": [
+        "metr-update-2026"
+      ],
+      "support": "direct",
+      "locator": "Opening raw-results paragraph, line 41",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "Both intervals include zero. Selection effects and concurrent work compromise interpretation."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-metr-survey",
+      "public_wording": "METR\u2019s February\u2013April 2026 survey of 349 technical workers reported a median self-assessed 1.4\u20132\u00d7 change in work value from AI; the authors caution that those perceptions may not match reality.",
+      "type": "fact",
+      "source_ids": [
+        "metr-survey-2026"
+      ],
+      "support": "direct",
+      "locator": "Summary and sampling methodology",
+      "as_of": "2026-10-09",
+      "scope": "self_reported_observational",
+      "limitations": [
+        "Self-reported convenience sample with low response; no causal effect estimate. Speed and value are distinct measures."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-osworld-definition",
+      "public_wording": "OSWorld evaluates desktop agents through real applications and execution-based final-state checks; maintainers permit either 369 tasks or 361 after excluding eight network-dependent Google Drive tasks.",
+      "type": "fact",
+      "source_ids": [
+        "osworld-v1"
+      ],
+      "support": "direct",
+      "locator": "Project description and Google Drive Tasks notice",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "Report task count, maximum steps and environment; original model baseline numbers are historical."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-gaia-definition",
+      "public_wording": "GAIA contains 466 assistant questions scored with a normalized, quasi-exact match to short factual answers. It does not evaluate actions such as posting content or booking a meeting.",
+      "type": "fact",
+      "source_ids": [
+        "gaia"
+      ],
+      "support": "direct",
+      "locator": "\u00a73.2 and \u00a73.3",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "A correct short answer does not certify the trace, write authorization or end-to-end product workflow."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-tau-repetition",
+      "public_wording": "\u03c4-bench distinguishes pass@k, at least one success in k trials, from pass^k, success in every one of k trials; these answer different reliability questions.",
+      "type": "fact",
+      "source_ids": [
+        "tau-bench"
+      ],
+      "support": "direct",
+      "locator": "\u00a73 reward and pass^k definition",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "The trials concern the same underlying simulated task with conversation variation; do not treat repeated-trial success as independent real-world deployment certification."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-tau-state-limits",
+      "public_wording": "The original \u03c4-bench reward checks final database state and required output information, and the paper explicitly notes that a passing episode can still violate a policy such as required user confirmation.",
+      "type": "fact",
+      "source_ids": [
+        "tau-bench"
+      ],
+      "support": "direct",
+      "locator": "\u00a73 reward caveat, lines 174\u2013178",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "Requires supplementary trajectory/policy evaluation for intermediate violations."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-agentbench-coverage",
+      "public_wording": "AgentBench spans eight text-interactive environments including operating-system, database, knowledge-graph, game, household, shopping and web tasks.",
+      "type": "fact",
+      "source_ids": [
+        "agentbench"
+      ],
+      "support": "direct",
+      "locator": "Abstract and benchmark composition",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "Heterogeneous environment scores should not be converted into a universal agent reliability percentage."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-agentbench-failure-taxonomy",
+      "public_wording": "AgentBench separates completed episodes, context-limit failures, invalid response formats, invalid actions and task-limit failures.",
+      "type": "fact",
+      "source_ids": [
+        "agentbench"
+      ],
+      "support": "direct",
+      "locator": "Appendix J.1 Validity Analysis",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "This is a diagnostic taxonomy from the benchmark, not an exhaustive product incident taxonomy."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-osworld2-coverage",
+      "public_wording": "OSWorld 2.0 expands computer-use evaluation to 108 end-to-end workflows with challenges such as cross-source reasoning, changing environments, hidden state, conflict resolution and proactive user interaction.",
+      "type": "fact",
+      "source_ids": [
+        "osworld-v2"
+      ],
+      "support": "direct",
+      "locator": "Abstract; Table 2 challenge phenomena; \u00a76 limitations",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "No claim of occupation-wide representativeness or comparability with OSWorld 1.0 percentages."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "eval-programbench-definition",
+      "public_wording": "ProgramBench asks agents to rebuild 200 programs from executable behavior and documentation without original source access or internet use; the primary metric is complete resolution against the hidden behavioral tests.",
+      "type": "fact",
+      "source_ids": [
+        "programbench"
+      ],
+      "support": "direct",
+      "locator": "About ProgramBench; scoring FAQ",
+      "as_of": "2026-10-09",
+      "scope": "benchmark_or_study_specific",
+      "limitations": [
+        "Average test pass rate and \u226595% almost-resolved are auxiliary metrics. Finite tests cannot certify every possible input."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "inference-separate-evaluation-units",
+      "public_wording": "A product research program should measure patch correctness, complete artifacts, answer accuracy, desktop state and interaction-policy compliance separately before combining them into a release decision.",
+      "type": "inference",
+      "source_ids": [
+        "swe-maintainers",
+        "gaia",
+        "osworld-v1",
+        "tau-bench",
+        "programbench"
+      ],
+      "support": "derived",
+      "locator": "Derived from distinct benchmark task definitions",
+      "as_of": "2026-10-09",
+      "scope": "architectural_recommendation",
+      "limitations": [
+        "FrankX architectural recommendation; sources describe different units and do not validate this exact release framework."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    },
+    {
+      "id": "inference-measure-value",
+      "public_wording": "An agent-product experiment should record accepted useful work, human review time, rework, cost, latency and policy violations; raw tokens or task counts cannot alone establish productivity.",
+      "type": "inference",
+      "source_ids": [
+        "metr-rct-2025",
+        "metr-update-2026",
+        "metr-survey-2026"
+      ],
+      "support": "derived",
+      "locator": "Derived from implementation-time measurement and value/speed distinctions",
+      "as_of": "2026-10-09",
+      "scope": "architectural_recommendation",
+      "limitations": [
+        "Proposed measurement contract; this exact composite has not been empirically validated here."
+      ],
+      "research_verdict": "supported_as_scoped_by_primary_source",
+      "independent_verdict": "pending_editorial_review",
+      "freshness_trigger": "benchmark version, evaluation harness, model release, replication, study update, or maintainer correction"
+    }
+  ],
+  "contrary_evidence_sequence": [
+    {
+      "date": "2024-08",
+      "event": "SWE-bench Verified human-filtered release",
+      "source_id": "swe-verified-2024"
+    },
+    {
+      "date": "2025-07",
+      "event": "METR narrow early-2025 RCT finds slowdown",
+      "source_id": "metr-rct-2025"
+    },
+    {
+      "date": "2026-02-23",
+      "event": "OpenAI withdraws Verified reporting and recommends Pro",
+      "source_id": "swe-verified-audit-2026"
+    },
+    {
+      "date": "2026-02-24",
+      "event": "METR later-study signal is compromised; raw intervals include zero",
+      "source_id": "metr-update-2026"
+    },
+    {
+      "date": "2026-05-11",
+      "event": "METR survey shows higher perceived value with explicit self-report/selection caveats",
+      "source_id": "metr-survey-2026"
+    },
+    {
+      "date": "2026-07-08",
+      "event": "OpenAI retracts Pro recommendation after further audit",
+      "source_id": "swe-pro-audit-2026"
+    }
+  ],
+  "do_not_publish": [
+    "AI coding agents are 19% slower today.",
+    "AI doubles technical worker productivity (presenting self-report as causal).",
+    "59.4% of all SWE-bench Verified tasks are broken (wrong denominator/selection).",
+    "Use SWE-Bench Pro as the clean substitute for Verified (superseded recommendation).",
+    "A current model wins because its vendor benchmark percentage exceeds another number obtained with a different harness.",
+    "\u03c4-bench final-state success proves every intermediate authorization/policy requirement was followed.",
+    "Historical OSWorld/GAIA/AgentBench model baselines represent October 2026 capability.",
+    "ProgramBench average behavioral-test pass rate equals fully resolved instance percentage."
+  ],
+  "media_candidates": [
+    {
+      "source_id": "agentbench",
+      "locator": "Figure 2 benchmark environment overview; Appendix J Figure 6 failure types",
+      "license_evidence": "arXiv HTML line 79 declares CC BY 4.0",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "reuse_decision": "Candidate for attributed official figure after asset-specific check for third-party components. Credit authors, paper, license and any changes."
+    },
+    {
+      "source_id": "tau-bench",
+      "locator": "Figure 4 pass^k vs pass@k consistency plot",
+      "license_evidence": "arXiv HTML line 44 declares CC BY 4.0",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "reuse_decision": "Candidate for attributed official plot after verifying final asset provenance. Caption as historical 2024 experiment; do not imply current model ranking."
+    },
+    {
+      "source_id": "metr-rct-2025",
+      "locator": "Official companion page forecast vs observed slowdown chart",
+      "reuse_decision": "Source-visible link or separately rights-reviewed screenshot; no blanket reusable-asset license verified."
+    },
+    {
+      "source_id": "osworld-v2",
+      "locator": "Figure 1 expense-reimbursement workflow or Table 2",
+      "reuse_decision": "Paper uses arXiv perpetual non-exclusive license, which is not a public reuse license. Link to source or produce original exact-data diagram with attribution; do not assert copied-figure clearance."
+    }
+  ],
+  "measurement_contract": {
+    "task_record": [
+      "task_id",
+      "predefined_user_outcome",
+      "baseline_repository_or_workspace",
+      "tools_and_model_versions",
+      "harness_version",
+      "budget",
+      "authority_scope"
+    ],
+    "outcomes": [
+      "accepted_deliverable",
+      "functional_tests",
+      "policy_trace_review",
+      "human_minutes",
+      "rework_minutes",
+      "wall_clock_latency",
+      "model_cost",
+      "failure_category"
+    ],
+    "comparison_rule": "Use matched or randomized tasks where practicable, retain failed and abandoned runs, separate self-report from observed outcomes, and state selection and coverage limits."
+  },
+  "review_receipt": {
+    "research_lane": "primary_source_read_complete_for_material_claim_sections",
+    "independent_truth_review": "pending",
+    "first_party_workload_experiments": "none conducted",
+    "production_publication": "none performed",
+    "remote_write": "none performed"
+  }
+}

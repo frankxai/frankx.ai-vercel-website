@@ -43,7 +43,7 @@ function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = [])
     "font-src 'self' https://fonts.gstatic.com data:",
     "img-src 'self' data: blob: https: http:",
     "media-src 'self' https:",
-    "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
+    "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://www.youtube-nocookie.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
     "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io",
     "object-src 'none'",
     "base-uri 'self'",

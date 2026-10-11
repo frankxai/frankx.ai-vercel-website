@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowUpRight, FileSearch, FlaskConical } from 'lucide-react'
 import { researchDomains, getDomainBySlug, getRelatedDomains } from '@/lib/research/domains'
+import { getReviewDossier } from '@/lib/research/dossiers'
+import ResearchDossier from '@/components/research/ResearchDossier'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -14,6 +16,21 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
+  const candidate = getReviewDossier(slug)
+  if (candidate) return {
+    title: candidate.title,
+    description: candidate.description,
+    alternates: { canonical: `https://www.frankx.ai/research/${slug}` },
+    robots: { index: false, follow: true },
+    openGraph: {
+      title: candidate.title,
+      description: candidate.description,
+      type: 'article',
+      url: `https://www.frankx.ai/research/${slug}`,
+      images: [{ url: '/images/brand/frankx-public-workspace-og-1200x630.png', width: 1200, height: 630, alt: candidate.title }],
+    },
+    twitter: { card: 'summary_large_image', title: candidate.title, description: candidate.description, images: ['/images/brand/frankx-public-workspace-og-1200x630.png'] },
+  }
   const domain = getDomainBySlug(slug)
   if (!domain) return {}
 
@@ -22,11 +39,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: `The ${domain.title} brief is being reviewed against individual sources and methods.`,
     alternates: { canonical: `https://www.frankx.ai/research/${slug}` },
     robots: { index: false, follow: true },
+    openGraph: { title: `${domain.title} — Research review`, description: `The ${domain.title} brief is under source review.`, url: `https://www.frankx.ai/research/${slug}`, type: 'website' },
+    twitter: { title: `${domain.title} — Research review`, description: `The ${domain.title} brief is under source review.` },
   }
 }
 
 export default async function ResearchDomainRoute({ params }: PageProps) {
   const { slug } = await params
+  const candidate = getReviewDossier(slug)
+  if (candidate) return <ResearchDossier dossier={candidate} />
   const domain = getDomainBySlug(slug)
   if (!domain) notFound()
   const related = getRelatedDomains(slug).slice(0, 4)
