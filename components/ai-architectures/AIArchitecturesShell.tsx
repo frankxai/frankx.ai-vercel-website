@@ -8,8 +8,6 @@ import {
   Layers,
   Sparkles,
   ExternalLink,
-  CheckCircle2,
-  Zap,
   Globe,
   Cloud,
 } from 'lucide-react'
@@ -126,7 +124,10 @@ const architectures = [
   },
 ]
 
-const colorMap: Record<string, { bg: string; border: string; badge: string; glow: string }> = {
+const colorMap: Record<
+  string,
+  { bg: string; border: string; badge: string; glow: string }
+> = {
   emerald: {
     bg: 'from-emerald-500/10 to-emerald-600/5',
     border: 'border-emerald-500/20 hover:border-emerald-500/40',
@@ -180,7 +181,8 @@ function ArchitecturesBackground() {
       <motion.div
         className="absolute -left-60 top-40 h-[600px] w-[600px] rounded-full opacity-15"
         style={{
-          background: 'radial-gradient(circle, rgba(6,182,212,0.4) 0%, transparent 70%)',
+          background:
+            'radial-gradient(circle, rgba(6,182,212,0.4) 0%, transparent 70%)',
         }}
         animate={{ scale: [1, 1.1, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
@@ -188,7 +190,8 @@ function ArchitecturesBackground() {
       <motion.div
         className="absolute -right-40 bottom-20 h-[500px] w-[500px] rounded-full opacity-10"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
+          background:
+            'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
         }}
         animate={{ scale: [1.1, 1, 1.1] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
@@ -226,7 +229,9 @@ function ArchitectureCard({
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] to-transparent" />
           {/* Category badge */}
           <div className="absolute left-4 top-4">
-            <span className={`rounded-full px-3 py-1 text-xs font-medium ${colors.badge}`}>
+            <span
+              className={`rounded-full px-3 py-1 text-xs font-medium ${colors.badge}`}
+            >
               {architecture.category}
             </span>
           </div>
@@ -234,16 +239,22 @@ function ArchitectureCard({
 
         {/* Content */}
         <div className="flex flex-1 flex-col p-6">
-          <h3 className="mb-1 text-xl font-bold text-white">{architecture.title}</h3>
+          <h3 className="mb-1 text-xl font-bold text-white">
+            {architecture.title}
+          </h3>
           <p className="mb-3 text-sm text-slate-400">{architecture.subtitle}</p>
-          <p className="mb-4 text-sm text-slate-500 line-clamp-3">{architecture.description}</p>
+          <p className="mb-4 text-sm text-slate-500 line-clamp-3">
+            {architecture.description}
+          </p>
 
           {/* Metrics */}
           <div className="mb-4 grid grid-cols-3 gap-2">
             {Object.entries(architecture.metrics).map(([key, value]) => (
               <div key={key} className="text-center">
                 <p className="text-lg font-bold text-white">{value}</p>
-                <p className="text-[10px] uppercase tracking-wider text-slate-500">{key}</p>
+                <p className="text-[10px] uppercase tracking-wider text-slate-500">
+                  {key}
+                </p>
               </div>
             ))}
           </div>
@@ -325,8 +336,9 @@ export default function AIArchitecturesShell() {
               transition={{ delay: 0.2 }}
               className="mb-8 max-w-2xl text-lg text-slate-400"
             >
-              Production architectures built for enterprise scale. Each showcases proven patterns, real metrics,
-              and lessons learned from live deployments.
+              Production architectures built for enterprise scale. Each
+              showcases proven patterns, real metrics, and lessons learned from
+              live deployments.
             </motion.p>
 
             <motion.div
@@ -358,17 +370,21 @@ export default function AIArchitecturesShell() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
               {[
-                { icon: Boxes, value: architectures.length, label: 'Architectures' },
+                {
+                  icon: Boxes,
+                  value: architectures.length,
+                  label: 'Architectures',
+                },
                 { icon: Globe, value: '4', label: 'Cloud Providers' },
-                { icon: Zap, value: '50M+', label: 'Requests/Day' },
-                { icon: CheckCircle2, value: '99.9%', label: 'Avg Uptime' },
               ].map((stat) => {
                 const Icon = stat.icon
                 return (
                   <div key={stat.label} className="flex items-center gap-3">
                     <Icon className="h-5 w-5 text-slate-500" />
                     <div>
-                      <p className="text-xl font-bold text-white">{stat.value}</p>
+                      <p className="text-xl font-bold text-white">
+                        {stat.value}
+                      </p>
                       <p className="text-xs text-slate-500">{stat.label}</p>
                     </div>
                   </div>
@@ -382,13 +398,21 @@ export default function AIArchitecturesShell() {
         <section className="py-16">
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-8 flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-white">Featured Architectures</h2>
-              <span className="text-sm text-slate-500">{architectures.length} total</span>
+              <h2 className="text-xl font-semibold text-white">
+                Featured Architectures
+              </h2>
+              <span className="text-sm text-slate-500">
+                {architectures.length} total
+              </span>
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {architectures.map((architecture, index) => (
-                <ArchitectureCard key={architecture.id} architecture={architecture} index={index} />
+                <ArchitectureCard
+                  key={architecture.id}
+                  architecture={architecture}
+                  index={index}
+                />
               ))}
             </div>
           </div>
@@ -404,10 +428,13 @@ export default function AIArchitecturesShell() {
               className="text-center"
             >
               <Sparkles className="mx-auto mb-4 h-8 w-8 text-violet-400" />
-              <h2 className="mb-4 text-2xl font-bold text-white">How These Are Built</h2>
+              <h2 className="mb-4 text-2xl font-bold text-white">
+                How These Are Built
+              </h2>
               <p className="mb-8 mx-auto max-w-2xl text-slate-400">
-                Every architecture follows the AI Architect methodology: business-first design, cloud-agnostic
-                patterns, security by default, and pragmatic innovation.
+                Every architecture follows the AI Architect methodology:
+                business-first design, cloud-agnostic patterns, security by
+                default, and pragmatic innovation.
               </p>
               <Link
                 href="/ai-architecture"
@@ -428,9 +455,12 @@ export default function AIArchitecturesShell() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="mb-4 text-2xl font-bold text-white">Need a Custom Architecture?</h2>
+              <h2 className="mb-4 text-2xl font-bold text-white">
+                Need a Custom Architecture?
+              </h2>
               <p className="mb-8 text-slate-400">
-                Work with an enterprise AI architect to design production-ready solutions for your specific needs.
+                Work with an enterprise AI architect to design production-ready
+                solutions for your specific needs.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
