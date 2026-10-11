@@ -83,6 +83,19 @@ export function ArchitectureShowroom() {
             <div className={styles.canvas}>
               <Diagram key={system.id} nodes={nodes} edges={edges} interactive editable={false} onNodeSelect={id => setStepId(id)} className={styles.diagram} />
             </div>
+            <ol className={styles.mobileFlow} aria-label="Architecture components and connections">
+              {system.steps.map((item, index) => {
+                const next = system.connections.filter(([source]) => source === item.id).map(([, target]) => system.steps.find(component => component.id === target)?.label).filter(Boolean)
+                return <li key={item.id}>
+                  <button type="button" aria-pressed={item.id === step.id} onClick={() => setStepId(item.id)}>
+                    <span className={styles.flowNumber}>{String(index + 1).padStart(2, '0')}</span>
+                    <span><strong>{item.label}</strong><small>{item.technology}</small></span>
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </button>
+                  <p>{next.length ? `Connects to: ${next.join(' · ')}` : 'Output boundary'}</p>
+                </li>
+              })}
+            </ol>
             <div className={styles.inspector} aria-live="polite">
               <p className={styles.smallLabel}>Selected component / {step.technology}</p>
               <h4>{step.label}</h4><p>{step.description}</p>
