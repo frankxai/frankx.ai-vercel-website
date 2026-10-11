@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { execFileSync, spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { runHiggsfieldReader } from './higgsfield-reader-journey.mjs'
 
 // CI owns a disposable browser and production server. Interactive local browser
 // work uses the harness browser connection instead of launching a second browser.
@@ -403,6 +404,7 @@ try {
     assert.equal(response.status, 404, path)
     manifest.checks.push({ path, result: 'passed', status: response.status })
   }
+  await runHiggsfieldReader({ browser, origin, manifest })
 } catch (error) {
   manifest.failures.push({ message: error.message, stack: error.stack })
   process.exitCode = 1
