@@ -10,7 +10,7 @@ import {
   ArrowRight,
   Terminal,
   Sparkles,
-  Layers
+  Layers,
 } from 'lucide-react'
 
 /**
@@ -25,7 +25,8 @@ import {
 
 export const metadata: Metadata = {
   title: 'Documentation | Agentic Creator OS | FrankX.ai',
-  description: 'Complete documentation for Agentic Creator OS - the operating system for Golden Age Creators. Learn how to use 62 skills, 9 agents, and orchestrated workflows with Claude Code.',
+  description:
+    'Complete documentation for Agentic Creator OS - the operating system for Golden Age Creators. Learn how to use 62 skills, 9 agents, and orchestrated workflows with Claude Code.',
   keywords: [
     'agentic creator os documentation',
     'claude code skills',
@@ -34,17 +35,18 @@ export const metadata: Metadata = {
     'creator workflows',
     'ai assistant customization',
     'personal jarvis',
-    'claude code tutorial'
+    'claude code tutorial',
   ],
   openGraph: {
     title: 'Agentic Creator OS Documentation',
-    description: 'Complete guide to building your personal AI operating system with 62 skills, 9 agents, and MCP integrations.',
+    description:
+      'Complete guide to building your personal AI operating system with 62 skills, 9 agents, and MCP integrations.',
     url: 'https://frankx.ai/products/agentic-creator-os/docs',
-    type: 'website'
+    type: 'website',
   },
   alternates: {
-    canonical: 'https://frankx.ai/products/agentic-creator-os/docs'
-  }
+    canonical: 'https://frankx.ai/products/agentic-creator-os/docs',
+  },
 }
 
 const docSections = [
@@ -52,81 +54,104 @@ const docSections = [
     title: 'Getting Started',
     slug: 'getting-started',
     icon: Zap,
-    description: 'Install Agentic Creator OS and run your first skill in minutes.',
-    topics: ['Installation', 'Quick Start', 'Configuration', 'First Steps']
+    description:
+      'Install Agentic Creator OS and run your first skill in minutes.',
+    topics: ['Installation', 'Quick Start', 'Configuration', 'First Steps'],
   },
   {
     title: 'Skills Guide',
     slug: 'skills',
     icon: BookOpen,
-    description: 'Walk through the 62 skills that power your creative workflows.',
-    topics: ['Skill Categories', 'Auto-Activation', 'Creating Skills', 'Best Practices']
+    description:
+      'Walk through the 62 skills that power your creative workflows.',
+    topics: [
+      'Skill Categories',
+      'Auto-Activation',
+      'Creating Skills',
+      'Best Practices',
+    ],
   },
   {
     title: 'Agents Guide',
     slug: 'agents',
     icon: Users,
-    description: 'Understand the multi-agent architecture and specialist personas.',
-    topics: ['Specialist Agents', 'Department Teams', 'Weighted Synthesis', 'Custom Agents']
+    description:
+      'Understand the multi-agent architecture and specialist personas.',
+    topics: [
+      'Specialist Agents',
+      'Department Teams',
+      'Weighted Synthesis',
+      'Custom Agents',
+    ],
   },
   {
     title: 'Workflows',
     slug: 'workflows',
     icon: GitBranch,
-    description: 'Build orchestrated pipelines that coordinate skills and agents.',
-    topics: ['Pipeline Pattern', 'Parallel Dispatch', 'Iterative Loops', 'Custom Workflows']
+    description:
+      'Build orchestrated pipelines that coordinate skills and agents.',
+    topics: [
+      'Pipeline Pattern',
+      'Parallel Dispatch',
+      'Iterative Loops',
+      'Custom Workflows',
+    ],
   },
   {
     title: 'MCP Integration',
     slug: 'mcp',
     icon: Puzzle,
     description: 'Connect external tools via Model Context Protocol servers.',
-    topics: ['Browser Server', 'Memory Server', 'Custom Servers', 'Security']
-  }
+    topics: ['Browser Server', 'Memory Server', 'Custom Servers', 'Security'],
+  },
 ]
 
 const quickStats = [
   { value: '62', label: 'Skills', icon: Layers },
   { value: '9', label: 'Agents', icon: Users },
   { value: '8', label: 'Workflows', icon: GitBranch },
-  { value: '6+', label: 'MCP Servers', icon: Puzzle }
 ]
 
 const faqs = [
   {
     question: 'What is Agentic Creator OS?',
-    answer: 'Agentic Creator OS is a superintelligent operating system for generative creators. It combines 62 specialized skills, 9 intelligent agents, orchestrated workflows, and MCP integrations into one cohesive system that works with Claude Code.'
+    answer:
+      'Agentic Creator OS is a superintelligent operating system for generative creators. It combines 62 specialized skills, 9 intelligent agents, orchestrated workflows, and MCP integrations into one cohesive system that works with Claude Code.',
   },
   {
     question: 'Do I need to know how to code to use it?',
-    answer: 'No coding required for basic usage. Skills and workflows activate automatically based on context. Developers can extend the system with custom skills and MCP servers.'
+    answer:
+      'No coding required for basic usage. Skills and workflows activate automatically based on context. Developers can extend the system with custom skills and MCP servers.',
   },
   {
     question: 'How does it work with Claude Code?',
-    answer: 'Agentic Creator OS installs skill files that Claude Code reads automatically. When you describe a task, relevant skills activate and provide Claude with specialized knowledge for that domain.'
+    answer:
+      'Agentic Creator OS installs skill files that Claude Code reads automatically. When you describe a task, relevant skills activate and provide Claude with specialized knowledge for that domain.',
   },
   {
     question: 'Can I create my own skills?',
-    answer: 'Yes! Use the included skill template to create custom skills for your specific workflows. Skills follow a simple markdown format with YAML frontmatter for triggers.'
+    answer:
+      'Yes! Use the included skill template to create custom skills for your specific workflows. Skills follow a simple markdown format with YAML frontmatter for triggers.',
   },
   {
     question: 'What MCP servers are included?',
-    answer: 'The system includes Browser (Playwright automation), Memory (knowledge persistence), Sequential Thinking (structured reasoning), and custom servers for social media, database, and email.'
-  }
+    answer:
+      'The system includes Browser (Playwright automation), Memory (knowledge persistence), Sequential Thinking (structured reasoning), and custom servers for social media, database, and email.',
+  },
 ]
 
 // FAQ Schema for rich snippets
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faqs.map(faq => ({
+  mainEntity: faqs.map((faq) => ({
     '@type': 'Question',
     name: faq.question,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: faq.answer
-    }
-  }))
+      text: faq.answer,
+    },
+  })),
 }
 
 // TechArticle schema for documentation
@@ -134,16 +159,17 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
   headline: 'Agentic Creator OS Documentation',
-  description: 'Complete documentation for the AI operating system for Golden Age Creators',
+  description:
+    'Complete documentation for the AI operating system for Golden Age Creators',
   author: {
     '@type': 'Person',
     name: 'Frank X. Riemer',
-    url: 'https://frankx.ai'
+    url: 'https://frankx.ai',
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX.ai',
-    url: 'https://frankx.ai'
+    url: 'https://frankx.ai',
   },
   datePublished: '2026-01-21',
   dateModified: '2026-01-21',
@@ -151,8 +177,8 @@ const articleSchema = {
     '@type': 'SoftwareApplication',
     name: 'Agentic Creator OS',
     applicationCategory: 'DeveloperApplication',
-    operatingSystem: 'Cross-platform'
-  }
+    operatingSystem: 'Cross-platform',
+  },
 }
 
 export default function DocsIndexPage() {
@@ -173,8 +199,8 @@ export default function DocsIndexPage() {
         </h1>
 
         <p className="text-xl text-slate-300 max-w-2xl">
-          Everything you need to build your personal AI operating system.
-          62 skills, 9 agents, orchestrated workflows, and MCP integrations.
+          Everything you need to build your personal AI operating system. 62
+          skills, 9 agents, orchestrated workflows, and MCP integrations.
         </p>
 
         {/* Quick Stats */}
@@ -188,7 +214,9 @@ export default function DocsIndexPage() {
               >
                 <div className="flex items-center gap-2 mb-1">
                   <Icon className="w-4 h-4 text-tech-primary" />
-                  <span className="text-2xl font-bold text-white">{stat.value}</span>
+                  <span className="text-2xl font-bold text-white">
+                    {stat.value}
+                  </span>
                 </div>
                 <span className="text-sm text-slate-400">{stat.label}</span>
               </div>
@@ -204,7 +232,9 @@ export default function DocsIndexPage() {
           <h2 className="text-lg font-semibold text-white">Quick Install</h2>
         </div>
         <div className="bg-void/50 rounded-lg p-4 font-mono text-sm">
-          <code className="text-tech-primary">npm install -g @frankx/agentic-creator-os && acos install</code>
+          <code className="text-tech-primary">
+            npm install -g @frankx/agentic-creator-os && acos install
+          </code>
         </div>
         <p className="mt-3 text-sm text-slate-400">
           Or clone from{' '}
@@ -215,14 +245,16 @@ export default function DocsIndexPage() {
             className="text-tech-primary hover:underline"
           >
             GitHub
-          </a>
-          {' '}and run <code className="text-tech-primary">./install.sh</code>
+          </a>{' '}
+          and run <code className="text-tech-primary">./install.sh</code>
         </p>
       </div>
 
       {/* Documentation Sections */}
       <div className="not-prose mb-12">
-        <h2 className="text-2xl font-bold text-white mb-6">Documentation Guides</h2>
+        <h2 className="text-2xl font-bold text-white mb-6">
+          Documentation Guides
+        </h2>
         <div className="grid gap-4">
           {docSections.map((section) => {
             const Icon = section.icon
@@ -267,18 +299,21 @@ export default function DocsIndexPage() {
           <h2 className="text-2xl font-bold text-white">Philosophy</h2>
         </div>
         <blockquote className="text-xl text-slate-300 italic border-l-4 border-tech-primary pl-6">
-          &ldquo;Technology that amplifies creative expression, not replaces it.&rdquo;
+          &ldquo;Technology that amplifies creative expression, not replaces
+          it.&rdquo;
         </blockquote>
         <p className="mt-4 text-slate-400">
-          Agentic Creator OS exists to help creators produce more without burning out,
-          maintain authentic voice at scale, leverage AI as a creative partner, and
-          build sustainable creative businesses.
+          Agentic Creator OS exists to help creators produce more without
+          burning out, maintain authentic voice at scale, leverage AI as a
+          creative partner, and build sustainable creative businesses.
         </p>
       </div>
 
       {/* FAQ Section */}
       <div className="not-prose mb-12">
-        <h2 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold text-white mb-6">
+          Frequently Asked Questions
+        </h2>
         <div className="space-y-4">
           {faqs.map((faq) => (
             <details
@@ -289,9 +324,7 @@ export default function DocsIndexPage() {
                 {faq.question}
                 <ArrowRight className="w-5 h-5 text-slate-400 group-open:rotate-90 transition-transform" />
               </summary>
-              <div className="px-6 pb-6 text-slate-300">
-                {faq.answer}
-              </div>
+              <div className="px-6 pb-6 text-slate-300">{faq.answer}</div>
             </details>
           ))}
         </div>
@@ -299,9 +332,12 @@ export default function DocsIndexPage() {
 
       {/* CTA Section */}
       <div className="not-prose p-8 rounded-2xl bg-gradient-to-r from-tech-primary/20 to-cyan-500/20 border border-tech-primary/30 text-center">
-        <h2 className="text-2xl font-bold text-white mb-3">Ready to Build Your Personal Jarvis?</h2>
+        <h2 className="text-2xl font-bold text-white mb-3">
+          Ready to Build Your Personal Jarvis?
+        </h2>
         <p className="text-slate-300 mb-6">
-          Get started with Agentic Creator OS and transform your creative workflow.
+          Get started with Agentic Creator OS and transform your creative
+          workflow.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
