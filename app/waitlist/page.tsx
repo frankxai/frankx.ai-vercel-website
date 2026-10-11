@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { EmailSignup } from '@/components/email-signup'
 import { sanitizeIntent, WAITLIST_INTENTS } from '@/lib/diagnostic/waitlist-intents'
 import { createMetadata } from '@/lib/seo'
@@ -22,6 +23,7 @@ const intentLabelMap: Record<string, string> = {
   'suno-prompt-library': 'Suno Prompt Library',
   'aurora-ui-kit': 'Aurora UI Kit',
   'agentic-content-engine': 'Agentic Content Engine',
+  'ai-architect-academy': 'AI Architect Academy',
 }
 
 export default async function WaitlistPage({ searchParams }: WaitlistPageProps) {
@@ -49,6 +51,19 @@ export default async function WaitlistPage({ searchParams }: WaitlistPageProps) 
           </section>
         )}
 
+        {intent === 'ai-architect-academy' && (
+          <p className="text-base leading-relaxed text-white/70">
+            The decision record is free to copy.{' '}
+            <Link
+              href="/blog/one-architecture-decision-you-can-use-today"
+              className="text-emerald-300 underline decoration-emerald-400/40 underline-offset-2"
+            >
+              Read the record
+            </Link>
+            , then use the form if you want the next one. The three questions after the email are optional.
+          </p>
+        )}
+
         <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8">
           <EmailSignup
             listType={productLaunch?.listType ?? 'courses-waitlist'}
@@ -56,6 +71,7 @@ export default async function WaitlistPage({ searchParams }: WaitlistPageProps) 
             intentLabel={selectedIntentLabel}
             source="/waitlist"
             showName
+            askDemand={intent === 'ai-architect-academy'}
             buttonText="Join Waitlist"
             placeholder="you@company.com"
           />

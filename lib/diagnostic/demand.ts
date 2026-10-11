@@ -52,6 +52,7 @@ const ROLES: Record<string, string[]> = {
   default: ['Founder or solo operator', 'Engineer', 'Creator', 'Consultant', 'Team lead', 'Student'],
   'creative-ai-toolkit': ['Creator', 'Solo operator', 'Engineer', 'Agency or studio', 'Exploring'],
   'creation-chronicles': ['Builder in public', 'Operator', 'Writer', 'Investor', 'Passing through'],
+  'ai-architect-academy': ['Engineer', 'Architect / staff+', 'Eng manager', 'Consultant', 'Founder', 'Career switcher'],
 }
 
 export const rolesFor = (intent: string | undefined) =>
