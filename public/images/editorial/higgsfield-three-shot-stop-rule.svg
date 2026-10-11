@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1060" viewBox="0 0 960 1060" role="img" aria-labelledby="title desc">
+<title id="title">Three shots. One stop rule.</title>
+<desc id="desc">Production sequence acceptance checks for AI video. Shot 01 Arrival: Wide static view, door and room geometry stay stable. Shot 02 Preparation: Medium side view, hand and notebook contact make sense. Shot 03 Decision: Close push, eye level, face likeness and expression hold. Stop rule before next render: Reject on identity drift, warped geometry, or anatomy failure. FrankX / Production standard / October 2026</desc>
+<rect width="960" height="1060" rx="24" fill="#0a0a0b"/>
+<path d="M56 68h60" stroke="#34d399" stroke-width="6"/>
+<text x="56" y="139" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="44" font-weight="700">Three shots. One stop rule.</text>
+<text x="56" y="190" fill="#b6b9b4" font-family="Arial,sans-serif" font-size="26">Production sequence acceptance checks for AI video.</text>
+<rect x="56" y="234" width="848" height="142" rx="16" fill="#15191a" stroke="#303635"/>
+<text x="86" y="292" fill="#34d399" font-family="Arial,sans-serif" font-size="30">01</text>
+<text x="154" y="292" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="32" font-weight="700">Shot 01: Arrival (wide view)</text>
+<text x="154" y="340" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="24">Door and room geometry stay stable. Natural window light.</text>
+<rect x="56" y="398" width="848" height="142" rx="16" fill="#15191a" stroke="#303635"/>
+<text x="86" y="456" fill="#34d399" font-family="Arial,sans-serif" font-size="30">02</text>
+<text x="154" y="456" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="32" font-weight="700">Shot 02: Preparation (medium view)</text>
+<text x="154" y="504" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="24">Hand and notebook contact make sense. No fused fingers.</text>
+<rect x="56" y="562" width="848" height="142" rx="16" fill="#15191a" stroke="#303635"/>
+<text x="86" y="620" fill="#34d399" font-family="Arial,sans-serif" font-size="30">03</text>
+<text x="154" y="620" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="32" font-weight="700">Shot 03: Decision (close push)</text>
+<text x="154" y="668" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="24">Face likeness remains locked. Readable expression holds for exit.</text>
+<rect x="56" y="726" width="848" height="152" rx="16" fill="#1b1715" stroke="#78350f"/>
+<text x="86" y="784" fill="#f59e0b" font-family="Arial,sans-serif" font-size="28">STOP</text>
+<text x="174" y="784" fill="#fef3c7" font-family="Arial,sans-serif" font-size="30" font-weight="700">The stop rule: reject before rendering next</text>
+<text x="174" y="832" fill="#d1d5db" font-family="Arial,sans-serif" font-size="22">Extra figures, warped geometry, identity drift, or broken anatomy.</text>
+<path d="M56 942h848" stroke="#303635"/>
+<text x="56" y="992" fill="#b6b9b4" font-family="Arial,sans-serif" font-size="26">FrankX  /  Production standard  /  October 2026</text>
+</svg>
