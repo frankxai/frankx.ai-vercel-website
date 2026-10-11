@@ -73,7 +73,7 @@ export function ArchitectureShowroom() {
               <p className={styles.projectOwner}>{system.owner}</p>
               <h3>{system.title}</h3><p>{system.description}</p>
               <a href={system.deploy} target="_blank" rel="noopener" className={styles.primary} onClick={() => record('deploy_opened', system.id)}>{system.deployLabel}<ExternalLink size={15} aria-hidden="true" /></a>
-              <a href={system.source} target="_blank" rel="noopener" className={styles.sourceLink} onClick={() => record('source_opened', system.id)}><Github size={16} aria-hidden="true" /> Inspect the source <ArrowRight size={15} aria-hidden="true" /></a>
+              <a href={system.source} target="_blank" rel="noopener" className={styles.sourceLink} onClick={() => record('source_opened', system.id)}>{system.sourceLabel ? <ExternalLink size={16} aria-hidden="true" /> : <Github size={16} aria-hidden="true" />} {system.sourceLabel ?? 'Inspect the source'} <ArrowRight size={15} aria-hidden="true" /></a>
               <p className={styles.smallLabel}>Before you deploy</p>
               <ul className={styles.requirements}>{system.requirements.map(item => <li key={item}><Check size={14} aria-hidden="true" />{item}</li>)}</ul>
             </div>

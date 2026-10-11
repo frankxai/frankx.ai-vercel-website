@@ -19,6 +19,7 @@ export type ShowroomSystem = {
   image: string
   owner: string
   source: string
+  sourceLabel?: string
   deploy: string
   deployLabel: string
   requirements: string[]
@@ -32,9 +33,11 @@ function vercelClone(directory: string, name: string, env?: string) {
   url.searchParams.set('repository-url', `${SOURCE}/${directory}`)
   url.searchParams.set('project-name', name)
   url.searchParams.set('repository-name', name)
-  if (env) url.searchParams.set('env', env)
-  url.searchParams.set('env-description', 'Configure the database; supply your model key in the app.')
-  url.searchParams.set('env-link', `${SOURCE}/${directory}#quickstart`)
+  if (env) {
+    url.searchParams.set('env', env)
+    url.searchParams.set('envDescription', 'Apply supabase/schema.sql, then enter your project URL and anon key. Supply your model key in the app.')
+    url.searchParams.set('envLink', `${SOURCE}/${directory}#quickstart`)
+  }
   return url.toString()
 }
 
@@ -87,7 +90,7 @@ export const showroomSystems: ShowroomSystem[] = [
     id: 'n8n', label: 'n8n automation', title: 'Separate the editor from execution.',
     description: 'A hosted n8n queue-mode stack separates the workflow editor, workers, execution queue, and database. Bring your workflows and credentials after setup.',
     image: '/images/ai-architecture/knowledge-vault-v1.webp', owner: 'Railway · community template',
-    source: 'https://railway.com/deploy/n8n-with-workers', deploy: 'https://railway.com/new/template/n8n-with-workers', deployLabel: 'Open n8n deployment',
+    source: 'https://railway.com/deploy/n8n-with-workers', sourceLabel: 'Review template details', deploy: 'https://railway.com/new/template/n8n-with-workers', deployLabel: 'Open n8n deployment',
     requirements: ['Railway account + hosting budget', 'Review encryption and database variables', 'Import workflows and connect credentials'],
     limitation: 'This deploys the n8n runtime. AI workflow imports, model credentials, and production hardening are separate steps.',
     steps: [

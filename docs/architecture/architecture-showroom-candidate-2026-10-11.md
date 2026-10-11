@@ -43,6 +43,7 @@ Railway, Vercel, and n8n issued referral URLs are absent from the current regist
 - No text animation or autoplay. Reduced-motion removes transitions.
 - Component buttons provide keyboard access to inspector content outside the graph. Phones use a semantic component list with outgoing connections derived from the same graph data, instead of scaling a desktop canvas into a narrow screen.
 - Readonly diagrams allow movement/zoom but disallow connection edits and deletion.
+- Automated PR review found two integration issues: Vercel setup-help parameters now use documented `envDescription` and `envLink`; the n8n reference action is explicitly labelled template details rather than code source. Its mobile clipping finding is addressed by the semantic phone layout.
 - Privacy-safe action events record static action/system identifiers; they contain no prompt, credential, email, or external URL.
 - Independent source and image review by `architecture_review` found and prompted corrections to advisory routing, keyboard deletion, font variable, node descriptions, n8n provenance, and Railway topology claims.
 
