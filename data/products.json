@@ -40,11 +40,7 @@
       "ctaPrimaryHref": "/soulbook/vault",
       "ctaPrimaryTracking": "soulbook-vault-download",
       "ctaSecondary": "Explore the Framework",
-      "ctaSecondaryHref": "/soulbook",
-      "guarantee": {
-        "label": "Open Source Forever",
-        "description": "The Creator's Soulbook is and will always be free. Open source on GitHub for the creator community."
-      }
+      "ctaSecondaryHref": "/soulbook"
     },
     "modules": [
       {
@@ -123,17 +119,12 @@
     },
     "offer": {
       "primaryPrice": 47,
-      "originalPrice": 97,
       "currency": "USD",
       "ctaPrimary": "Join Waitlist",
       "ctaPrimaryHref": "/waitlist?intent=creative-ai-toolkit",
       "ctaPrimaryTracking": "creative-ai-toolkit-primary",
       "ctaSecondary": "Bundle with Agentic Creator OS",
-      "ctaSecondaryHref": "/products/agentic-creator-os",
-      "guarantee": {
-        "label": "Agent Team Promise",
-        "description": "30-day complete satisfaction guarantee. If your workflow isn't transformed, we refund every penny."
-      }
+      "ctaSecondaryHref": "/products/agentic-creator-os"
     },
     "modules": [
       {
@@ -309,7 +300,6 @@
     "summary": "Strategic frameworks, AI-assisted workflows, and distribution rituals that ship stories consistently and build real authority.",
     "transformation": [
       "Replace scattered messaging with a core narrative arc that runs through every piece you ship (essays, videos, social)",
-      "Publish 2-3x more content with the same effort using templated AI workflows",
       "Grow engaged community with distribution playbooks that send your best work to the right people every week",
       "Track revenue impact: each piece connected to pipeline milestones so you see what storytelling actually returns"
     ],
@@ -328,17 +318,12 @@
     },
     "offer": {
       "primaryPrice": 497,
-      "originalPrice": 997,
       "currency": "USD",
       "ctaPrimary": "Explore the Framework",
       "ctaPrimaryHref": "/creation-chronicles",
       "ctaPrimaryTracking": "creation-chronicles-primary",
       "ctaSecondary": "Preview Free Resources",
-      "ctaSecondaryHref": "/resources",
-      "guarantee": {
-        "label": "Narrative Impact Guarantee",
-        "description": "Implement the core storytelling sprints for 45 days. If you don't see clearer messaging and measurable engagement lifts, we refund you in full."
-      }
+      "ctaSecondaryHref": "/resources"
     },
     "modules": [
       {
@@ -471,10 +456,6 @@
       "ctaPrimaryTracking": "generative-creator-os-primary",
       "ctaSecondary": "Explore Resources",
       "ctaSecondaryHref": "/resources",
-      "guarantee": {
-        "label": "Creative Integrity Promise",
-        "description": "We co-design workflow changes with you. If the system does not boost output within 45 days, we iterate at no cost."
-      },
       "note": "Diagnostics map your current process, gaps, and the automation plan before any build begins."
     },
     "modules": [
@@ -572,7 +553,7 @@
     "category": "Creator Systems",
     "badge": "GUIDED COHORT",
     "headline": "30-Day Lab to Ship Your Repeatable Launch Machine",
-    "subheadline": "Co-designed coaching + build sessions that architect your complete creator operating system. Idea to monetized release every single week, guaranteed.",
+    "subheadline": "Co-designed coaching + build sessions for your creator operating system.",
     "promise": "Build the system that turns creative chaos into predictable weekly shipping. Momentum, clarity, revenue\u2014measured from day 1.",
     "summary": "Live cohort lab where you co-architect rituals, automations, and accountability that keep your practice consistently shipping.",
     "transformation": [
@@ -599,10 +580,6 @@
       "ctaPrimaryTracking": "creator-lab-apply",
       "ctaSecondary": "Download Creator Lab Overview",
       "ctaSecondaryHref": "/creation-chronicles",
-      "guarantee": {
-        "label": "Momentum Promise",
-        "description": "If you do the work and the system does not increase your publishing cadence within 30 days of graduation, we coach you until it does."
-      },
       "note": "Applications reviewed weekly. Cohorts are capped to keep the studio intimate."
     },
     "modules": [
@@ -741,17 +718,12 @@
     },
     "offer": {
       "primaryPrice": 27,
-      "originalPrice": 47,
       "currency": "USD",
       "ctaPrimary": "Join Waitlist",
       "ctaPrimaryHref": "/waitlist?intent=suno-prompt-library",
       "ctaPrimaryTracking": "suno-prompt-library-primary",
       "ctaSecondary": "Bundle with Vibe OS",
-      "ctaSecondaryHref": "/products/vibe-os",
-      "guarantee": {
-        "label": "Prompt Success Guarantee",
-        "description": "If these prompts don't improve your Suno output within 7 days, get a full refund. No questions asked."
-      }
+      "ctaSecondaryHref": "/products/vibe-os"
     },
     "modules": [
       {
@@ -871,7 +843,6 @@
     },
     "offer": {
       "primaryPrice": 19,
-      "originalPrice": 39,
       "currency": "USD",
       "ctaPrimary": "Join Waitlist",
       "ctaPrimaryHref": "/waitlist?intent=aurora-ui-kit",
@@ -982,7 +953,6 @@
     },
     "offer": {
       "primaryPrice": 97,
-      "originalPrice": 197,
       "currency": "USD",
       "ctaPrimary": "Join Waitlist",
       "ctaPrimaryHref": "/waitlist?intent=agentic-content-engine",

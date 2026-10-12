@@ -18,6 +18,15 @@ type LegacyFields = {
   cta?: { label: string; href: string }
 }
 
+const LIVE_FREE_CTA_SLUGS = new Set([
+  'love-and-poetry',
+  'spartan-mindset',
+  'self-development',
+  'imagination',
+  'manifestation',
+  'reality-architect-os',
+])
+
 function normalize(product: ProductRecord) {
   const legacy = product as ProductRecord & LegacyFields
   return {
@@ -62,6 +71,17 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   }
 
   const { name, headline, summary } = normalize(product)
+  const offer = product.offer
+  // Free products whose registry CTA target was checked live (returns 200) link to it.
+  // Everything else is not deliverable yet and goes to the waitlist.
+  const liveFreeCta =
+    offer &&
+    offer.primaryPrice === 0 &&
+    LIVE_FREE_CTA_SLUGS.has(product.slug) &&
+    offer.ctaPrimary &&
+    offer.ctaPrimaryHref
+      ? { label: offer.ctaPrimary, href: offer.ctaPrimaryHref }
+      : null
 
   const productSchema = {
     name,
@@ -142,17 +162,28 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           {/* Right Column: Offer & Pricing */}
           <div className="lg:sticky lg:top-24 lg:h-fit">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm sm:p-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">Coming soon</p>
-              <h3 className="mt-3 text-xl font-semibold text-white">Join the waitlist</h3>
-              <p className="mt-3 text-sm leading-6 text-white/70">
-                You will get a note when this product is ready to deliver.
-              </p>
-              <Link
-                href="/newsletter"
-                className="mt-8 flex min-h-14 w-full items-center justify-center rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#0a0a0b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Join the waitlist
-              </Link>
+              {liveFreeCta ? (
+                <Link
+                  href={liveFreeCta.href}
+                  className="mt-8 flex min-h-14 w-full items-center justify-center rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#0a0a0b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  {liveFreeCta.label}
+                </Link>
+              ) : (
+                <>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">Coming soon</p>
+                  <h3 className="mt-3 text-xl font-semibold text-white">Join the waitlist</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/70">
+                    You will get a note when this product is ready to deliver.
+                  </p>
+                  <Link
+                    href={`/waitlist?intent=${product.slug}`}
+                    className="mt-8 flex min-h-14 w-full items-center justify-center rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#0a0a0b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  >
+                    Join the waitlist
+                  </Link>
+                </>
+              )}
 
               {/* Social Proof */}
               {product.socialProof?.stats && (
