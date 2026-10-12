@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1055,
+    "total": 1056,
     "aliases": 59,
     "byType": {
       "core": 24,
-      "section": 445,
+      "section": 446,
       "community": 17,
       "tool": 75,
       "static": 15,
@@ -5612,6 +5612,16 @@
         "estefania"
       ],
       "type": "section"
+    },
+    {
+      "href": "/friends/joei",
+      "title": "Joei",
+      "tags": [
+        "friends",
+        "joei"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/friends/jojo",
