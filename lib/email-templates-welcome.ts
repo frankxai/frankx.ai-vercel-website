@@ -202,7 +202,7 @@ export function welcomeEmail1(data: {
           </p>
 
           <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
-            You just joined a community of creators and builders who use AI as a creative amplifier. Here are three resources to get you started right away.
+            You just joined a community of creators and builders who use AI as a creative amplifier. Here are two resources you can use now, and one that is coming soon.
           </p>
 
           <!-- Top 3 Resources -->
@@ -229,8 +229,8 @@ export function welcomeEmail1(data: {
           )}
 
           ${resourceRow(
-            'Free Suno Prompt Pack',
-            'Five production-ready prompts from my top-performing tracks. Copy, paste, create.',
+            'Suno prompt guide (coming soon)',
+            'Five Suno prompts with notes on why each works. Coming soon.',
             'https://frankx.ai/products/5-suno-prompts',
             '#10b981'
           )}
@@ -242,7 +242,7 @@ export function welcomeEmail1(data: {
                 <p style="font-size: 12px; color: #22d3ee; margin: 0 0 12px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">What to Expect</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #22d3ee;">›</span> <strong style="color: white;">Curated AI insights</strong> — tools and techniques that actually work</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #22d3ee;">›</span> <strong style="color: white;">Behind-the-scenes</strong> — from late-night studio sessions and enterprise builds</p>
-                <p style="font-size: 15px; color: #CBD5E1; margin: 0; line-height: 1.5;"><span style="color: #22d3ee;">›</span> <strong style="color: white;">Early access</strong> — new guides, frameworks, and products before anyone else</p>
+                <p style="font-size: 15px; color: #CBD5E1; margin: 0; line-height: 1.5;"><span style="color: #22d3ee;">›</span> New guides, frameworks and products in your inbox</p>
               </td>
             </tr>
           </table>
@@ -265,7 +265,7 @@ export function welcomeEmail1(data: {
 
   return {
     subject: 'Welcome to the FrankX Ecosystem',
-    html: welcomeWrapper(content, 'You\'re in. Here are three resources to get started right away.', data.recipientEmail)
+    html: welcomeWrapper(content, 'You\'re in. Two resources to start with now, and one coming soon.', data.recipientEmail)
   }
 }
 
@@ -313,7 +313,7 @@ export function welcomeEmail2(data: {
 
           ${resourceRow(
             '02 — Prompt Library',
-            'Battle-tested prompts for Suno, ChatGPT, Claude, and Midjourney. Organized by use case.',
+            'Prompts for Suno, ChatGPT, Claude, and Midjourney. Organized by use case.',
             'https://frankx.ai/prompt-library',
             '#7C3AED'
           )}
@@ -453,7 +453,7 @@ export function welcomeEmail3(data: {
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top: 1px solid #334155;">
             <tr>
               <td style="padding: 20px 0 0 0;">
-                <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">This is the last onboarding email. From here, you'll receive the regular newsletter — curated AI insights, studio notes, and early access to new work.</p>
+                <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">This is the last onboarding email. From here, you'll receive the regular newsletter — curated AI insights, studio notes, and notes on new work.</p>
                 <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">Reply anytime. I read every message.</p>
                 <p style="font-size: 13px; color: #64748b; margin: 0;">— Frank</p>
               </td>
