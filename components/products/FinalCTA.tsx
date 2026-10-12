@@ -46,7 +46,7 @@ export default function FinalCTA({ productId, title, description, primaryLabel, 
         </h2>
         <p className="mt-4 text-base text-white/70 sm:text-lg">
           {COMING_SOON_MODE
-            ? 'Join the waitlist for early access, exclusive launch discounts, and behind-the-scenes updates.'
+            ? 'Join the waitlist to hear when it launches.'
             : description
           }
         </p>

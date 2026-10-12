@@ -199,14 +199,16 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                     </Link>
 
                     {/* Guarantee */}
-                    <div className="mt-8 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-5">
-                      <div className="mb-2 text-xs font-semibold uppercase tracking-[0.15em] text-cyan-300">
-                        {offer.guarantee.label}
+                    {offer.guarantee && (
+                      <div className="mt-8 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-5">
+                        <div className="mb-2 text-xs font-semibold uppercase tracking-[0.15em] text-cyan-300">
+                          {offer.guarantee.label}
+                        </div>
+                        <p className="text-sm text-white/70 leading-relaxed">
+                          {offer.guarantee.description}
+                        </p>
                       </div>
-                      <p className="text-sm text-white/70 leading-relaxed">
-                        {offer.guarantee.description}
-                      </p>
-                    </div>
+                    )}
                   </>
                 )}
 
