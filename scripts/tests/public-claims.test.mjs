@@ -108,6 +108,10 @@ const banned = [
   ['components/v0-variants/AboutPageV0.tsx', ['AI Songs']],
   ['components/golden-age/GoldenAgeShell.tsx', ['500+', 'AI Songs Created']],
   ['app/golden-age/page.tsx', ['500+', 'AI Songs Created']],
+  ['app/products/(index)/page.tsx', ['deployed across live operations', 'Battle-tested architectures', 'verified across live operations', 'rolling updates', 'instant fulfillment', 'continuous version updates', 'conform to standard Model Context Protocol', 'Center of Excellence', 'turnkey multi-agent meshes', 'Rigorous execution standards', 'Decoupled, observable, and reproducible']],
+  ['lib/products.ts', ["startsWith('http')"]],
+  ['public/pdf-templates/5-suno-prompts.html', ['$27', 'cta-price-old', 'battle-tested', '100+', '500+', 'plays &middot;', 'likes &middot;', '432Hz', '528Hz', '~2 min', 'Get the Full Library', '$29', 'Longer, more descriptive', 'most powerful Suno keywords', 'Top Plays']],
+  ['data/products.json', ['battle-tested', 'proven prompts that actually produce', '100+ Suno Prompts', '100+ prompts and 12', 'Curated Prompts', 'Sessions Tested', 'Prompts Included', 'Automation Recipes"', 'Complete 100+', '25 prompts for', '20 prompts spanning', '15 prompts for', 'get the PDF delivered immediately', 'Empirical Grounding', 'AI Slop"', '180 seconds Time-to-First-Value', 'buy.lemonsqueezy.com/checkout/buy', '14-Day System Integration', '500+ plays', 'Max Members', 'in under 180 seconds', 'zero-slop', 'Anti-Slop Linter', 'empirical production benchmarks', 'Cryptographically verified SIP attestation', '100+ prompt library for', '/stream-atlas/download', '/anti-slop-matrix/download', '/capability-audit/download', '/stream-taxonomy/download', '/starlight-spec/download', '/mythic-codex/download', '100% Free Forever', 'Unconditional open access', 'PDF is delivered instantly']],
   ['lib/email-templates-premium.ts', ['12,000+', '12K+', '500+ AI Songs']],
   ['lib/email-templates-welcome.ts', ['12,000+', '12K+', '500+ AI']],
   ['lib/email-templates.ts', ['12,000+', '12K+']],
@@ -134,6 +138,52 @@ for (const [file, phrases] of banned) {
     }
   })
 }
+
+test('the stale 5-suno PDF is not shipped or uploaded', () => {
+  assert.equal(fs.existsSync(path.join(root, 'public/pdfs/5-suno-prompts.pdf')), false)
+  const upload = fs.readFileSync(path.join(root, 'scripts/upload-products-to-blob.mjs'), 'utf8')
+  assert.equal(upload.includes('public/pdfs/5-suno-prompts.pdf'), false)
+})
+
+test('5-suno-prompts is a waitlist item with no downloadable file', () => {
+  const data = JSON.parse(fs.readFileSync(path.join(root, 'data/products.json'), 'utf8'))
+  const list = Array.isArray(data) ? data : data.products
+  const p = list.find((x) => x.slug === '5-suno-prompts')
+  assert.ok(p, '5-suno-prompts not found')
+  assert.equal(p.badge, 'Coming soon')
+  assert.equal(p.offer.ctaPrimary, 'Join the waitlist')
+  assert.equal(p.offer.ctaPrimaryHref, '/waitlist?intent=5-suno-prompts')
+  assert.equal(p.offer.ctaPrimaryTracking, '5-suno-prompts-waitlist')
+  assert.equal(p.offer.guarantee, undefined)
+  assert.deepEqual(p.delivery?.files ?? [], [])
+  const text = JSON.stringify(p)
+  for (const phrase of ['COMING SOON', 'Proven Prompts', 'Get Free Prompts', 'Is this really free?', 'FREE DOWNLOAD', 'products/5-suno-prompts/5-suno-prompts.pdf']) {
+    assert.equal(text.includes(phrase), false, phrase)
+  }
+})
+
+test('music-lab signup email and route promise no download, counts or price', () => {
+  const route = fs.readFileSync(path.join(root, 'app/api/subscribe/route.ts'), 'utf8')
+  for (const phrase of ['downloadUrl', '/api/download?product=5-suno-prompts', 'your free prompts', 'the prompt email could not be sent']) {
+    assert.equal(route.includes(phrase), false, phrase)
+  }
+  const templates = fs.readFileSync(path.join(root, 'lib/email-templates.ts'), 'utf8')
+  for (const phrase of ['Your 5 Suno prompts are ready', 'Download Your 5 Prompts', 'top-performing tracks', '500+ combined plays', '500+ plays', '142 plays', '128 plays', '119 plays', '108 plays', '34 likes', '100+ prompts', 'Get 100+ Prompts', '($27)', 'Want more?']) {
+    assert.equal(templates.includes(phrase), false, phrase)
+  }
+  for (const phrase of ["You're on the list for the 5 Suno prompts", "The guide with five Suno prompts isn't ready yet.", 'The Suno Prompt Library is on the launch list.', 'waitlist?intent=suno-prompt-library']) {
+    assert.ok(templates.includes(phrase), phrase)
+  }
+})
+
+test('5-suno naming no longer claims "best" tracks', () => {
+  for (const file of ['data/products.json', 'lib/diagnostic/waitlist-intents.ts', 'public/pdf-templates/5-suno-prompts.html']) {
+    const text = fs.readFileSync(path.join(root, file), 'utf8')
+    assert.equal(text.includes('Made My Best'), false, file)
+  }
+  const index = fs.readFileSync(path.join(root, 'app/products/(index)/page.tsx'), 'utf8')
+  assert.equal(index.includes('immediate download'), false)
+})
 
 test('higgsfield-mastery publishes no estimatedHours', () => {
   const text = fs.readFileSync(path.join(root, 'data/learning-paths.ts'), 'utf8')
