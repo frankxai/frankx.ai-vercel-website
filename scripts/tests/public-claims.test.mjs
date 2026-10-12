@@ -152,3 +152,26 @@ test('5-suno-prompts is a waitlist item with no downloadable file', () => {
     assert.equal(text.includes(phrase), false, phrase)
   }
 })
+
+test('music-lab signup email and route promise no download, counts or price', () => {
+  const route = fs.readFileSync(path.join(root, 'app/api/subscribe/route.ts'), 'utf8')
+  for (const phrase of ['downloadUrl', '/api/download?product=5-suno-prompts', 'your free prompts', 'the prompt email could not be sent']) {
+    assert.equal(route.includes(phrase), false, phrase)
+  }
+  const templates = fs.readFileSync(path.join(root, 'lib/email-templates.ts'), 'utf8')
+  for (const phrase of ['Your 5 Suno prompts are ready', 'Download Your 5 Prompts', 'top-performing tracks', '500+ combined plays', '500+ plays', '142 plays', '128 plays', '119 plays', '108 plays', '34 likes', '100+ prompts', 'Get 100+ Prompts', '($27)', 'Want more?']) {
+    assert.equal(templates.includes(phrase), false, phrase)
+  }
+  for (const phrase of ["You're on the list for the 5 Suno prompts", "The guide with five Suno prompts isn't ready yet.", 'The Suno Prompt Library is on the launch list.', 'waitlist?intent=suno-prompt-library']) {
+    assert.ok(templates.includes(phrase), phrase)
+  }
+})
+
+test('5-suno naming no longer claims "best" tracks', () => {
+  for (const file of ['data/products.json', 'lib/diagnostic/waitlist-intents.ts', 'public/pdf-templates/5-suno-prompts.html']) {
+    const text = fs.readFileSync(path.join(root, file), 'utf8')
+    assert.equal(text.includes('Made My Best'), false, file)
+  }
+  const index = fs.readFileSync(path.join(root, 'app/products/(index)/page.tsx'), 'utf8')
+  assert.equal(index.includes('immediate download'), false)
+})
