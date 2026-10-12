@@ -48,7 +48,7 @@ const banned = [
   ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ["'/newsletter'", 'href="/newsletter"']],
   ['data/products.json', ['Notion Dashboard Template', 'Open Source & Free Forever', 'Science-backed']],
   ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions', '30-Day Guarantee', 'Lifetime Updates', '50+ Genre Prompts', 'Emotion Mapping', 'Release Playbooks']],
-  ['data/learning-paths.ts', ['verified official walkthrough', 'Official supported agent', "difficulty: 'intermediate', estimatedHours: 6, color: 'violet'"]],
+  ['data/learning-paths.ts', ['verified official walkthrough', 'Official supported agent']],
   ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions', 'Creators in Early Access']],
   ['app/soul-frequency-assessment/page.tsx', ['500+ Suno']],
   ['app/team/page.tsx', ['12,000+', '50+ genres']],
@@ -120,3 +120,13 @@ for (const [file, phrases] of banned) {
     }
   })
 }
+
+test('higgsfield-mastery publishes no estimatedHours', () => {
+  const text = fs.readFileSync(path.join(root, 'data/learning-paths.ts'), 'utf8')
+  const at = text.indexOf("slug: 'higgsfield-mastery'")
+  assert.ok(at > 0, 'higgsfield-mastery path not found')
+  const start = text.lastIndexOf('\n  {', at)
+  const end = text.indexOf('\n  },', at)
+  assert.ok(start >= 0 && end > at, 'higgsfield-mastery object bounds not found')
+  assert.doesNotMatch(text.slice(start, end), /\bestimatedHours\s*:/)
+})
