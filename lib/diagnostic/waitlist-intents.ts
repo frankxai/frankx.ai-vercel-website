@@ -39,6 +39,9 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   'capability-audit': { label: 'The Capability-to-Cash Inventory Audit', listType: 'premium-packs' },
   'stream-taxonomy': { label: 'The DPI Stream Taxonomy & Progression Map', listType: 'premium-packs' },
   'starlight-spec': { label: 'Starlight Intelligence Protocol (SIP v1.1.1) Spec', listType: 'premium-packs' },
+  'mythic-codex': { label: 'The Arcanea Mythic Codex', listType: 'premium-packs' },
+  'suno-prompt-library': { label: 'Suno Prompt Library Pack', listType: 'premium-packs' },
+  '5-suno-prompts': { label: '5 Suno Prompts', listType: 'premium-packs' },
   'vibe-os': { label: 'Vibe OS: Creative State Management', listType: 'premium-packs' },
   // Product rows in the knowledge-to-offer graph.
   'creative-ai-toolkit': { label: 'Creative AI Toolkit', listType: 'premium-packs' },
@@ -75,6 +78,9 @@ export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'capability-audit',
   'stream-taxonomy',
   'starlight-spec',
+  'mythic-codex',
+  'suno-prompt-library',
+  '5-suno-prompts',
   'vibe-os',
 ])
 
