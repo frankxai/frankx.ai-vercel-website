@@ -76,16 +76,12 @@ const products = [
     id: 'vibe-os',
     icon: Music,
     name: 'Vibe OS',
-    tagline: 'Suno Music Mastery',
-    description:
-      'Prompt packs, emotion mapping, and production checklists for Suno creators.',
+    tagline: '',
+    description: '',
     status: 'active',
     href: '/products/vibe-os',
     color: 'emerald',
-    highlights: [
-      'Emotion-to-sound mapping system',
-      'Production enhancement and mastering guide',
-    ],
+    highlights: [],
     featured: true,
   },
   {
