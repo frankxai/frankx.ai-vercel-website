@@ -50,9 +50,16 @@ const banned = [
   ['app/music-os/page.tsx', ['indexed tracks', 'totalTracks']],
   ['app/magic/page.tsx', ['12,000 songs', 'over 12,000 songs']],
   ['components/magic/MagicShell.tsx', ['12,000 songs', 'over 12,000 songs']],
-  ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ['12,000+']],
-  ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions']],
-  ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions']],
+  ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ['12,000+', '30-Day Guarantee', 'Lifetime Updates', 'Instant Access', 'Music Production', 'ultimate Suno workflow', 'finished track']],
+  ['app/products/vibe-os/components/VibeOSFeatures.tsx', ['Music Production', 'shipping tracks', '60–90 min', 'finished track']],
+  ['app/products/vibe-os/components/VibeOSBonuses.tsx', ['Limited Bonuses', 'music production journey', 'Total Bonus Value']],
+  ['app/products/vibe-os/components/VibeOSModules.tsx', ['Instant Access', 'Lifetime Updates', "'/newsletter'", 'href="/newsletter"', 'exclusive discounts']],
+  ['app/products/vibe-os/components/VibeOSHero.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['data/products.json', ['Notion Dashboard Template', 'Open Source & Free Forever', 'Science-backed']],
+  ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions', '30-Day Guarantee', 'Lifetime Updates', '50+ Genre Prompts', 'Emotion Mapping', 'Release Playbooks']],
+  ['data/learning-paths.ts', ['verified official walkthrough', 'Official supported agent']],
+  ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions', 'Creators in Early Access']],
   ['app/soul-frequency-assessment/page.tsx', ['500+ Suno']],
   ['app/team/page.tsx', ['12,000+', '50+ genres']],
   ['app/vibe/producer/page.tsx', ['500+', '12,000+']],
@@ -117,6 +124,8 @@ const banned = [
   ['content/blog/voice-ai-agents-2026-elevenlabs-hume-audio.mdx', ['12,000 songs of lessons']],
 ]
 
+banned.push(['components/products/ProductsShell.tsx', ['50+ genre-specific', '50+ battle-tested', 'Genre-specific prompts (electronic']])
+
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {
     const text = fs.readFileSync(path.join(root, file), 'utf8').toLowerCase()
@@ -125,3 +134,13 @@ for (const [file, phrases] of banned) {
     }
   })
 }
+
+test('higgsfield-mastery publishes no estimatedHours', () => {
+  const text = fs.readFileSync(path.join(root, 'data/learning-paths.ts'), 'utf8')
+  const at = text.indexOf("slug: 'higgsfield-mastery'")
+  assert.ok(at > 0, 'higgsfield-mastery path not found')
+  const start = text.lastIndexOf('\n  {', at)
+  const end = text.indexOf('\n  },', at)
+  assert.ok(start >= 0 && end > at, 'higgsfield-mastery object bounds not found')
+  assert.doesNotMatch(text.slice(start, end), /\bestimatedHours\s*:/)
+})
