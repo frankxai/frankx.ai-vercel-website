@@ -25,6 +25,20 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   // Product launch lists linked from their existing product pages.
   'bv-kit': { label: 'Creator BV Kit', listType: 'premium-packs' },
   'prompt-vault': { label: 'Prompt Vault', listType: 'premium-packs' },
+  // Launch lists for products whose checkout or download is not open yet.
+  'starter-kit': { label: 'System Architect Starter Kit', listType: 'premium-packs' },
+  'visual-creation-loop': { label: 'Visual Creation Loop', listType: 'premium-packs' },
+  'income-blueprint': { label: 'Income Architecture Blueprint', listType: 'premium-packs' },
+  'dpi-field-kit': { label: 'DPI Field Kit: Wealth Substrate Pro', listType: 'premium-packs' },
+  'agent-fleet-pro': { label: 'Agent Fleet Pro: Turnkey Multi-Agent Mesh', listType: 'premium-packs' },
+  'memory-palace-os': { label: 'The Sovereign Memory Palace OS', listType: 'premium-packs' },
+  'agentic-media-machine': { label: 'The Agentic Media Machine', listType: 'premium-packs' },
+  'starlight-operator-pack': { label: 'Starlight Operator Field Kit & Council Harness', listType: 'premium-packs' },
+  'stream-atlas': { label: 'The 12-Stream Atlas: Honest Stream Engineering', listType: 'premium-packs' },
+  'anti-slop-matrix': { label: 'The Anti-Slop Content Matrix', listType: 'premium-packs' },
+  'capability-audit': { label: 'The Capability-to-Cash Inventory Audit', listType: 'premium-packs' },
+  'stream-taxonomy': { label: 'The DPI Stream Taxonomy & Progression Map', listType: 'premium-packs' },
+  'starlight-spec': { label: 'Starlight Intelligence Protocol (SIP v1.1.1) Spec', listType: 'premium-packs' },
   // Product rows in the knowledge-to-offer graph.
   'creative-ai-toolkit': { label: 'Creative AI Toolkit', listType: 'premium-packs' },
   'creation-chronicles': { label: 'Creation Chronicles', listType: 'creation-chronicles' },
@@ -42,6 +56,25 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
     listType: 'courses-waitlist',
   },
 }
+
+/** Launch-list intents the /waitlist page routes through this registry (product-launch flow). */
+export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
+  'bv-kit',
+  'prompt-vault',
+  'starter-kit',
+  'visual-creation-loop',
+  'income-blueprint',
+  'dpi-field-kit',
+  'agent-fleet-pro',
+  'memory-palace-os',
+  'agentic-media-machine',
+  'starlight-operator-pack',
+  'stream-atlas',
+  'anti-slop-matrix',
+  'capability-audit',
+  'stream-taxonomy',
+  'starlight-spec',
+])
 
 export const WAITLIST_INTENT_LABELS: Record<string, string> = Object.fromEntries(
   Object.entries(WAITLIST_INTENTS).map(([id, intent]) => [id, intent.label]),

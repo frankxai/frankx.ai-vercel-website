@@ -35,17 +35,58 @@ export function UpsellModal({
   triggerContext = 'download'
 }: UpsellModalProps) {
   const modalRef = useRef<HTMLDivElement>(null)
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
 
-  // Keyboard accessibility: Escape key closes modal
+  // Dialog focus management: move focus in on open, trap Tab, close on Escape,
+  // and return focus to the element that was focused when the dialog opened.
   useEffect(() => {
+    if (!isOpen) return
+
+    const returnTo = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const focusableSelector =
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    const getFocusable = () =>
+      Array.from(modalRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? [])
+
+    const frame = window.requestAnimationFrame(() => {
+      const [first] = getFocusable()
+      ;(first ?? modalRef.current)?.focus()
+    })
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose()
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        onCloseRef.current()
+        return
+      }
+      if (e.key !== 'Tab') return
+      const focusable = getFocusable()
+      if (focusable.length === 0) {
+        e.preventDefault()
+        modalRef.current?.focus()
+        return
+      }
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      const active = document.activeElement
+      const inside = active instanceof Node && modalRef.current?.contains(active)
+      if (e.shiftKey && (active === first || !inside)) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && (active === last || !inside)) {
+        e.preventDefault()
+        first.focus()
       }
     }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen, onClose])
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.cancelAnimationFrame(frame)
+      document.removeEventListener('keydown', handleKeyDown)
+      if (returnTo && document.contains(returnTo)) returnTo.focus()
+    }
+  }, [isOpen])
 
   // Prevent body scroll when open
   useEffect(() => {
@@ -82,6 +123,7 @@ export function UpsellModal({
           {/* Modal Container */}
           <motion.div
             ref={modalRef}
+            tabIndex={-1}
             initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 16 }}

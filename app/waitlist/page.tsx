@@ -1,5 +1,5 @@
 import { EmailSignup } from '@/components/email-signup'
-import { sanitizeIntent, WAITLIST_INTENTS } from '@/lib/diagnostic/waitlist-intents'
+import { LAUNCH_LIST_INTENTS, sanitizeIntent, WAITLIST_INTENTS } from '@/lib/diagnostic/waitlist-intents'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -27,7 +27,7 @@ const intentLabelMap: Record<string, string> = {
 export default async function WaitlistPage({ searchParams }: WaitlistPageProps) {
   const intent = sanitizeIntent((await searchParams)?.intent)
   // Keep the existing list routing for other waitlist entry points.
-  const productLaunch = intent === 'bv-kit' || intent === 'prompt-vault'
+  const productLaunch = LAUNCH_LIST_INTENTS.has(intent)
     ? WAITLIST_INTENTS[intent]
     : undefined
   const selectedIntentLabel = productLaunch?.label ?? intentLabelMap[intent]
