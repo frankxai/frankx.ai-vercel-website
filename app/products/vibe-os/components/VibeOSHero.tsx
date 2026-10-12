@@ -131,10 +131,6 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
           className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/70"
         >
           <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span>50+ Genre Prompts</span>
-          </div>
-          <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
             <span>Emotion Mapping</span>
           </div>
@@ -190,13 +186,7 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span>30-Day Guarantee</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>Lifetime Updates</span>
+            <span>Free</span>
           </div>
         </motion.div>
       </div>
