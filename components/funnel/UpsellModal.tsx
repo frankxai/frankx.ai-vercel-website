@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Check, ArrowRight, ShieldCheck, Sparkles, Terminal } from 'lucide-react'
+import { X, Check, ArrowRight, Sparkles, Terminal } from 'lucide-react'
 import Link from 'next/link'
 
 export interface UpsellOffer {
@@ -109,7 +109,7 @@ export function UpsellModal({
                 </span>
                 {triggerContext === 'download' && (
                   <span className="text-xs text-zinc-400">
-                    Vault Download Starting...
+                    Your vault download has started.
                   </span>
                 )}
               </div>
@@ -132,7 +132,7 @@ export function UpsellModal({
               {/* Value Stack / Inclusions */}
               <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-4 mb-6 space-y-3">
                 <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                  Included in this Sovereign Bundle:
+                  What's in the kit:
                 </div>
                 <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-200">
                   {offer.features.map((feature, idx) => (
@@ -159,9 +159,6 @@ export function UpsellModal({
                       </span>
                     )}
                   </div>
-                  <span className="text-xs text-zinc-400 block mt-0.5">
-                    One-time payment · Lifetime access
-                  </span>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-2.5 w-full sm:w-auto">
@@ -184,10 +181,6 @@ export function UpsellModal({
                 >
                   {offer.dismissText || 'No thanks, continue with my free vault'}
                 </button>
-                <div className="flex items-center gap-1 text-zinc-400">
-                  <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>30-Day Money Back Guarantee</span>
-                </div>
               </div>
 
               {offer.footnote && (
