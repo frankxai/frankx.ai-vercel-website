@@ -176,6 +176,20 @@ test('music-lab signup email and route promise no download, counts or price', ()
   }
 })
 
+test('inner-circle waitlist email promises no launch, price, bonus, cap or position', () => {
+  const text = fs.readFileSync(path.join(root, 'lib/email-templates-inner-circle.ts'), 'utf8')
+  const start = text.indexOf('export function innerCircleWaitlistEmail')
+  const end = text.indexOf('// Email 2:', start)
+  assert.ok(start >= 0 && end > start, 'innerCircleWaitlistEmail bounds not found')
+  const email = text.slice(start, end).toLowerCase()
+  for (const phrase of ['100 founding members', 'founding-member bonus', 'small by design', 'capping the first cohort', 'opens June 1', 'June 1 launch', 'May 27', 'May 30', 'T-5', 'T-2', '4 days to decide', 'pricing email', 'Circle tier price', 'one-click checkout', 'open the doors', 'Just the three emails', 'No content marketing', 'waitlist confirmed', 'waitlistPosition', '/labs', 'member-only', 'P.S.']) {
+    assert.equal(email.includes(phrase.toLowerCase()), false, phrase)
+  }
+  for (const phrase of ["You're on the Inner Circle interest list", 'Inner Circle is not currently open. It is not a paid membership or a live community, and no payment is collected.', 'list=inner-circle']) {
+    assert.ok(email.includes(phrase.toLowerCase()), phrase)
+  }
+})
+
 test('5-suno naming no longer claims "best" tracks', () => {
   for (const file of ['data/products.json', 'lib/diagnostic/waitlist-intents.ts', 'public/pdf-templates/5-suno-prompts.html']) {
     const text = fs.readFileSync(path.join(root, file), 'utf8')
