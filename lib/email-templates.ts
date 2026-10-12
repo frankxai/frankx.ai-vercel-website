@@ -258,7 +258,7 @@ export function newsletterWelcomeEmail(data: {
                 <p style="font-size: 12px; color: #7C3AED; margin: 0 0 12px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">What to Expect</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> <strong style="color: white;">AI tools and workflows</strong> — what's actually useful, not hype</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> <strong style="color: white;">Music creation insights</strong> — prompts, techniques, production notes</p>
-                <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> <strong style="color: white;">Early access</strong> — new guides and frameworks before public</p>
+                <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> New guides and frameworks in your inbox</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> <strong style="color: white;">Real results</strong> — successes, failures, and everything between</p>
               </td>
             </tr>
@@ -426,7 +426,7 @@ export function musicPromptsEmail(data: {
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin: 0 0 24px 0;">
             <tr>
               <td style="padding: 16px 0 8px 16px; border-left: 3px solid #10b981;">
-                <p style="font-size: 12px; color: #10b981; margin: 0 0 8px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Tracks Included</p>
+                <p style="font-size: 12px; color: #10b981; margin: 0 0 8px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Tracks in the guide</p>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="color: #E2E8F0;">
                   ${trackRows}
                 </table>

@@ -140,6 +140,16 @@ for (const [file, phrases] of banned) {
   })
 }
 
+test('welcome email describes the Suno guide and prompt library without unsourced claims', () => {
+  const welcome = fs.readFileSync(path.join(root, 'lib/email-templates-welcome.ts'), 'utf8')
+  for (const phrase of ['Free Suno Prompt Pack', 'production-ready prompts', 'top-performing tracks', 'Battle-tested prompts']) {
+    assert.equal(welcome.toLowerCase().includes(phrase.toLowerCase()), false, phrase)
+  }
+  for (const phrase of ['Suno prompt guide (coming soon)', 'Five Suno prompts with notes on why each works. Coming soon.', 'Prompts for Suno, ChatGPT, Claude, and Midjourney. Organized by use case.']) {
+    assert.ok(welcome.includes(phrase), phrase)
+  }
+})
+
 test('the stale 5-suno PDF is not shipped or uploaded', () => {
   assert.equal(fs.existsSync(path.join(root, 'public/pdfs/5-suno-prompts.pdf')), false)
   const upload = fs.readFileSync(path.join(root, 'scripts/upload-products-to-blob.mjs'), 'utf8')
@@ -208,6 +218,34 @@ test('higgsfield-mastery publishes no estimatedHours', () => {
   const end = text.indexOf('\n  },', at)
   assert.ok(start >= 0 && end > at, 'higgsfield-mastery object bounds not found')
   assert.doesNotMatch(text.slice(start, end), /\bestimatedHours\s*:/)
+})
+
+test('email follow-ups drop early-access promises, song counts and the prompt download', () => {
+  const read = (p) => fs.readFileSync(path.join(root, p), 'utf8')
+  const bans = [
+    ['lib/email-templates-welcome.ts', ['new guides, frameworks, and products before anyone else', 'early access to new work']],
+    ['lib/email-templates.ts', ['new guides and frameworks before public', 'Tracks Included']],
+    ['emails/templates/Welcome.tsx', ['12,000+', 'AI-generated songs and counting']],
+    ['emails/templates/MusicPrompts.tsx', ['Download Your 5 Prompts', 'Your 5 Suno prompts are ready', '500+', 'plays', 'likes', 'top-performing tracks', 'Tracks Included', 'downloadUrl}']],
+    ...['CardBased', 'ClassicWhite', 'DarkPremium', 'MinimalGradient', 'ModernLight'].map((v) => [`emails/variants/${v}.tsx`, ['500+ AI songs']]),
+  ]
+  // Case-insensitive; scoped to the files this PR owns. 'I read every one' still signs other live emails (lib/email-templates.ts,
+  // emails/components/Layout.tsx, lib/email-design-system.ts, emails/templates/PdfDelivery.tsx, lib/email-templates-foundry.ts).
+  for (const file of ['emails/index.ts', 'emails/templates/MusicPrompts.tsx', 'emails/templates/Welcome.tsx', 'lib/email-templates-welcome.ts']) {
+    bans.push([file, ['ready to use', 'three things happen', 'I read every one']])
+  }
+  for (const [file, phrases] of bans) {
+    const text = read(file).toLowerCase()
+    for (const phrase of phrases) assert.equal(text.includes(phrase.toLowerCase()), false, `${file}: ${phrase}`)
+  }
+  assert.ok(read('emails/index.ts').includes("subject: \"You're on the list for the 5 Suno prompts\""))
+  assert.ok(read('lib/email-templates-welcome.ts').includes('New guides, frameworks and products in your inbox'))
+  assert.ok(read('lib/email-templates-welcome.ts').includes('and notes on new work.'))
+  assert.ok(read('lib/email-templates.ts').includes('New guides and frameworks in your inbox'))
+  assert.ok(read('lib/email-templates.ts').includes('Tracks in the guide'))
+  assert.ok(read('emails/templates/Welcome.tsx').includes("I'm Frank. I build enterprise AI systems during the day and make songs with Suno at night."))
+  const mp = read('emails/templates/MusicPrompts.tsx')
+  for (const phrase of ["isn't ready yet", 'Join the launch list', 'waitlist?intent=suno-prompt-library', 'Tracks in the guide']) assert.ok(mp.includes(phrase), phrase)
 })
 
 test('Vibe OS final CTA and products shell carry no music-mastery claims', () => {
