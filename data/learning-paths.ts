@@ -2504,10 +2504,10 @@ export const learningPaths: LearningPath[] = [
       tags: ['higgsfield', 'short-film', 'references'],
     }],
     ecosystem: [
-      { name: 'Higgsfield Official Portal', category: 'Platform', description: 'Access Higgsfield AI Cinema Studio, model selection, and account settings.', href: '/go/higgsfield', lastVerified: '2026-10-11' },
+      { name: 'Higgsfield platform', category: 'Platform', description: 'Access Higgsfield AI Cinema Studio, model selection, and account settings (referral link).', href: '/go/higgsfield', lastVerified: '2026-10-12' },
       { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-11' },
       { name: 'Agent connection guide', category: 'Automation', description: "Higgsfield's own guide to connecting Claude, ChatGPT, Cursor and other agents via MCP or CLI. Inspect tools and job status before generating.", href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-11' },
-      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://open.higgsfield.ai/', lastVerified: '2026-10-11' },
+      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://open.higgsfield.ai/', lastVerified: '2026-10-12' },
       { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-11' },
     ],
     faqs: [
