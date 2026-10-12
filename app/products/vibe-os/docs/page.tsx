@@ -133,7 +133,7 @@ export default function VibeOSDocsPage() {
           <h2 className="mb-4 text-xl font-semibold text-white">Resources</h2>
           <div className="space-y-4">
             <Link
-              href="/newsletter"
+              href="/waitlist?intent=vibe-os"
               className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
             >
               <Mail className="h-5 w-5 text-cyan-400" />

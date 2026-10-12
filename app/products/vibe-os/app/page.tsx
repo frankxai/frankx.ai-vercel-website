@@ -101,7 +101,7 @@ export default function VibeOSAppPage() {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/newsletter"
+              href="/waitlist?intent=vibe-os"
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
             >
               Get launch updates

@@ -8,7 +8,12 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
 const banned = [
   ['data/products.json', ['500+', 'Top Plays', '25+ AI coaching', '40-60%', 'within 48 hours', '$250 billion', 'Limited Spots', 'Ship It Guarantee', 'Content Velocity Guarantee', '30-Day Money Back', '100% Satisfaction', 'Bespoke Execution', '2-3x more content', 'Agent Team Promise', 'Narrative Impact Guarantee', 'Creative Integrity Promise', 'Momentum Promise', 'Prompt Success Guarantee', 'Open source on GitHub for the creator community', 'originalPrice', ', guaranteed']],
-  ['app/products/vibe-os/components/VibeOSModules.tsx', ['Instant Access', 'Lifetime Updates']],
+  ['app/products/vibe-os/components/VibeOSModules.tsx', ['Instant Access', 'Lifetime Updates', "'/newsletter'", 'href="/newsletter"']],
+  ['components/products/ProductHero.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['components/products/OfferStack.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['components/products/FinalCTA.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['app/products/vibe-os/app/page.tsx', ['href="/newsletter"']],
+  ['app/products/vibe-os/docs/page.tsx', ['href="/newsletter"']],
   ['app/products/[slug]/page.tsx', ['href="/newsletter"']],
   ['components/products/OfferStack.tsx', ['Limited Bonuses', 'Lifetime updates included', 'exclusive discounts', 'early-bird pricing']],
   ['components/products/FinalCTA.tsx', ['exclusive launch discounts']],
